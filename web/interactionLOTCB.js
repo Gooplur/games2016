@@ -20,6 +20,8 @@ function messageReader()
         if (sKey)
         {
             sKey = false;
+            player.dialogueChoiceMade = false;
+            player.dialoguePosition = 0;
             playersTurnToSpeak = true;
             conversationID[0] = "none";
             msgPhrase = -1;
@@ -29,6 +31,8 @@ function messageReader()
             message = " ";
             tellMessage = false;
             msgKeepTime = 0;
+            lowBar = "information";
+            player.dialogueOptions = [];
         }
     }
 
@@ -95,7 +99,7 @@ function messageReader()
 
 function setMsg(msg)
 {
-    if (tellMessage == false && tellMessage != "reset")
+    if (tellMessage == false) // && tellMessage != "reset"
     {
         message = msg;
         console.log(message);
@@ -1364,7 +1368,7 @@ function interaction(me)
                         }
                     }
 
-                    if (self.ID == "Altezor Captain" && player.nirwadenFaction >= 0 && self.team != "player" && player.raceName == "Nirwaden" && player.title == "Nobility" || self.ID == "Altezor Captain" && player.nirwadenFaction >= 0 && self.team != "player" && player.raceName == "Nirwaden" && player.title == "Royalty" || self.ID == "Altezor Soldier" && player.nirwadenFaction >= 0 && self.team != "player" && player.raceName == "Nirwaden" && player.title == "Royalty" || self.ID == "Altezor Soldier" && player.nirwadenFaction >= 0 && self.team != "player" && player.raceName == "Nirwaden" && player.title == "Nobility" || conversationID[0] == "Altezor" && player.nirwadenFaction >= 0 && self.team != "player" && player.raceName == "Nirwaden" && player.title == "Nobility" || conversationID[0] == "Altezor" && player.nirwadenFaction >= 0 && self.team != "player" && player.raceName == "Nirwaden" && player.title == "Royalty")
+                    if (self.ID == "Altezor Captain" && player.nirwadenFaction >= 0 && self.team != "player" && player.raceName == "Nirwaden" && player.title == "Nobility" || self.ID == "Altezor Captain" && player.nirwadenFaction >= 0 && self.team != "player" && player.raceName == "Nirwaden" && player.title == "Royalty" || self.ID == "Altezor Soldier" && player.nirwadenFaction >= 0 && self.team != "player" && player.raceName == "Nirwaden" && player.title == "Royalty" || self.ID == "Altezor Soldier" && player.nirwadenFaction >= 0 && self.team != "player" && player.raceName == "Nirwaden" && player.title == "Nobility" || self.ID == "Altezor Knight" && player.nirwadenFaction >= 0 && self.team != "player" && player.raceName == "Nirwaden" && player.title == "Nobility" || self.ID == "Altezor Knight" && player.nirwadenFaction >= 0 && self.team != "player" && player.raceName == "Nirwaden" && player.title == "Royalty" || conversationID[0] == "Altezor" && player.nirwadenFaction >= 0 && self.team != "player" && player.raceName == "Nirwaden" && player.title == "Nobility" || conversationID[0] == "Altezor" && player.nirwadenFaction >= 0 && self.team != "player" && player.raceName == "Nirwaden" && player.title == "Royalty")
                     {
                         lowBar = "dialogue";
                         conversationID[0] = "Altezor";
@@ -1595,6 +1599,3703 @@ function interaction(me)
                         {
                             //text dialogue
                             setMsg("Business is hard work youngin'. When I was a girl I had four sisters, and we'd all help my ma' with the sowing. Now it's just me. I'll tell you, this work is not as easy as it seems...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "High Dame Emylia Altezor" || conversationID[0] == "Emylia")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Emylia";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                if (quests.aFeastForFewerQuest == true)
+                                {
+                                    if (player.raceName == "Nirwaden" && player.title == "Nobility")
+                                    {
+                                        player.dialogueOptions = [["What happened?!", false, "a"], ["Are you okay, mom!?", false, "b"], ["Are you okay, mother!?", false, "b"], ["Do you know of anybody who would have wanted to harm father?", false, "c"], ["I'm glad that you are safe...", false, "d"]];
+                                    }
+                                    else
+                                    {
+                                        if (player.title == "Royalty")
+                                        {
+                                            player.dialogueOptions = [["What happened here?", false, "a"], ["Do you know of anybody who would have wanted to hurt your husband?", false, "c"]];
+                                        }
+                                        else
+                                        {
+                                            player.dialogueOptions = [["What happened here, your highness?", false, "a"], ["Do you know of anybody who would have wanted to hurt your husband, your highness?", false, "c"]];
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    if (player.raceName == "Nirwaden" && player.title == "Nobility")
+                                    {
+                                        player.dialogueOptions = [["Hello.", false, "a"], ["I love you!", false, "b"], ["How are you?", false, "c"], ["Do you miss your father's family, mother?", false, "d"], ["Do you miss your father's family, mom?", false, "d"]];
+                                    }
+                                    else
+                                    {
+                                        if (player.title == "Royalty")
+                                        {
+                                            player.dialogueOptions = [["Greetings.", false, "a"], ["I wish you a bountiful harvest and joy all year round!", false, "b"], ["Your dress looks absolutely dashing.", false, "c"], ["You look as lovely as a rare flower, your highness.", false, "c"], ["Fair thee well.", false, "d"]];
+                                        }
+                                        else
+                                        {
+                                            if (quests.emyliaOffended != true)
+                                            {
+                                                player.dialogueOptions = [["Hello, your highness.", false, "a"], ["Is there anything you can do about the bandit problem in the countryside or the rampant crime in Atalin, your highness?", false, "b"], ["Thank you for ruling Atalin so justly, your highness.", false, "c"], ["Fair well, your highness.", false, "d"], ["Perhaps if you spent as much money dealing with Atalin's crime problem as you do on your appearance, this city would be a decent place to live... with respect, your highness.", false, "b"]];
+                                            }
+                                            else
+                                            {
+                                                player.dialogueOptions = [["Hello, your highness.", false, "a"]];
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+
+                            //text dialogue
+                            if (quests.aFeastForFewerQuest == true)
+                            {
+                                if (player.raceName == "Nirwaden" && player.title == "Nobility")
+                                {
+                                    setMsg("Oh my sweet child, it's terrible!!! Your father has been poisoned! He collapsed in a violent fit of illness. It is so hard to be faithful during such trying times... but this is when we must rely on our faith the most.");
+                                }
+                                else
+                                {
+                                    if (player.title == "Royalty")
+                                    {
+                                        setMsg("My husband was poisoned, your grace! He's been murdered!! [she weeps dramatically]");
+                                    }
+                                    else
+                                    {
+                                        setMsg("What does it look like you imbecil!? My husband has been poisoned!!! [she weeps dramatically]");
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                if (player.raceName == "Nirwaden" && player.title == "Nobility")
+                                {
+                                    if (player.gender == "Female")
+                                    {
+                                        setMsg("Hello, my sweet daughter.");
+                                    }
+                                    else
+                                    {
+                                        setMsg("Hello, my sweet boy.");
+                                    }
+                                }
+                                else
+                                {
+                                    if (player.title == "Royalty")
+                                    {
+                                        setMsg("Why Hello, your excellency.");
+                                    }
+                                    else
+                                    {
+                                        if (quests.emyliaOffended != true)
+                                        {
+                                            setMsg("Hello there, what brings you to conference with me... do tell.");
+                                        }
+                                        else
+                                        {
+                                            setMsg("Leave this castle you brute; you are lucky to leave with your head!!! Raging fool! [she huffs angrily]");
+                                        }
+                                    }
+                                }
+                            }
+
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            if (quests.aFeastForFewerQuest == true)
+                            {
+                                if (player.raceName == "Nirwaden" && player.title == "Nobility")
+                                {
+                                    setMsg("Do I look okay!? [she puts her hand to her face in a show of dismay to emphasize her sadness]");
+                                }
+                            }
+                            else
+                            {
+                                if (player.raceName == "Nirwaden" && player.title == "Nobility")
+                                {
+                                    if (player.gender == "Male")
+                                    {
+                                        setMsg("You know I love you too, my handsome little darling.");
+                                    }
+                                    else
+                                    {
+                                        setMsg("You know I love you too, my pretty little darling.");
+                                    }
+                                }
+                                else
+                                {
+                                    if (player.title == "Royalty")
+                                    {
+                                        setMsg("You are too kind!");
+                                    }
+                                    else
+                                    {
+                                        setMsg("You are a brutish fool to suggest that this lovely city or the bountiful countryside surrounding it is anything less than perfect. Leave here at once!");
+                                        quests.emyliaOffended = true;
+                                    }
+                                }
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            if (quests.aFeastForFewerQuest == true)
+                            {
+                                if (player.raceName == "Nirwaden" && player.title == "Nobility")
+                                {
+                                    setMsg("Your father had as many enemies as there were cruel people in the world. Your father was a great man, and cruel people resent great men.");
+                                }
+                                else
+                                {
+                                    if (player.title == "Royalty")
+                                    {
+                                        setMsg("Perhaps the cook, your grace. She is always so ungrateful.");
+                                    }
+                                    else
+                                    {
+                                        setMsg("Perhaps the cook... She is always so ungrateful.");
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                if (player.raceName == "Nirwaden" && player.title == "Nobility")
+                                {
+                                    setMsg("By the light of the Spirit Everlasting I am aging well and am in good health.");
+                                }
+                                else
+                                {
+                                    if (player.title == "Royalty")
+                                    {
+                                        setMsg("I'm flattered!");
+                                    }
+                                    else
+                                    {
+                                        if (quests.emyliaOffended != true)
+                                        {
+                                            if (uniqueChars.basilioAltezorLDS == true)
+                                            {
+                                                setMsg("Well, I don't really rule anything. But I do occasionally whisper some good ideas to my husband.");
+                                            }
+                                            else
+                                            {
+                                                setMsg("Yes, it is not as easy as I make it look. It takes patience and wisdom.");
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            if (quests.aFeastForFewerQuest == true)
+                            {
+                                if (player.raceName == "Nirwaden" && player.title == "Nobility")
+                                {
+                                    setMsg("I'm glad that you dallied, who knows if you were meant to be poisoned too... That wretched cook!!");
+                                }
+                            }
+                            else
+                            {
+                                if (player.raceName == "Nirwaden" && player.title == "Nobility")
+                                {
+                                    setMsg("No, it is my responsibility to rid myself of vane oversensitive feelings, leaving my family to marry your father was my duty. I do not regret doing my duty, that would be absurd!!");
+                                }
+                                else
+                                {
+                                    if (player.title == "Royalty")
+                                    {
+                                        setMsg("Until we meet again, your grace.");
+                                    }
+                                    else
+                                    {
+                                        if (quests.emyliaOffended != true)
+                                        {
+                                            setMsg("Ta ta... now go waste some other person's time. [in a hushed voice but loud enough to hear]");
+                                        }
+                                    }
+                                }
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Lailiona" || conversationID[0] == "Lailiona")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Lailiona";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [];
+                                if (quests.aFeastForFewerQuest == true)
+                                {
+                                    message = "[Lailiona is sobbing uncontrollably]";
+                                    if (player.raceName == "Nirwaden" && player.title == "Nobility")
+                                    {
+                                        player.dialogueOptions.unshift(["Are you okay, Lailiona?!", false, "a"]);
+                                        player.dialogueOptions.unshift(["I will get justice for father, I promise.", false, "a"]);
+                                    }
+                                    else
+                                    {
+                                        player.dialogueOptions.unshift(["I will avenge your father's death, I promise!", false, "a"]);
+                                    }
+                                }
+                                else
+                                {
+                                    if (quests.atalinTeshirAnnexed == true && quests.atalinSisterJarl == true)
+                                    {
+                                        if (player.gender == "Female")
+                                        {
+                                            player.dialogueOptions.unshift(["Tell me about your experience as the Dame of Teshir, Lailiona.", false, "g"]);
+                                        }
+                                        else
+                                        {
+                                            player.dialogueOptions.unshift(["How is governing going for you, or is mother doing most everything for you still?", false, "g"]);
+                                        }
+                                        if (player.gender == "Female")
+                                        {
+                                            player.dialogueOptions.unshift(["Let us pray for Teshir, Lailiona, for prosperity, happiness, and bountiful faith in the Everlasting Spirit.", false, "e"]);
+                                        }
+                                        else
+                                        {
+                                            player.dialogueOptions.unshift(["Let's pray that these northmen know how to farm and trade as well as they can brew mead... otherwise this purchase will have been for not.", false, "e"]);
+                                        }
+                                    }
+                                    if (player.raceName == "Nirwaden" && player.title == "Nobility")
+                                    {
+                                        if (player.gender == "Female")
+                                        {
+                                            player.dialogueOptions.unshift(["Hello there, sister!", false, "h"]);
+                                        }
+                                        else
+                                        {
+                                            player.dialogueOptions.unshift(["Hello, my beautiful little sister.", false, "h"]);
+                                        }
+                                        if (player.gender == "Female")
+                                        {
+                                            player.dialogueOptions.unshift(["Are you enjoying yourself, Lailiona?", false, "f"]);
+                                        }
+                                        else
+                                        {
+                                            player.dialogueOptions.unshift(["How are you fairing, my lovely little sister?", false, "f"]);
+                                        }
+
+                                        if (player.gender == "Female")
+                                        {
+                                            player.dialogueOptions.unshift(["Have you had any fun today, Lailiona?", false, "d"]);
+                                        }
+                                        else
+                                        {
+                                            player.dialogueOptions.unshift(["Have you said your prayers yet, sister?", false, "d"]);
+                                        }
+
+                                        if (player.gender == "Female")
+                                        {
+                                            player.dialogueOptions.unshift(["I love you, sister!", false, "c"]);
+                                        }
+                                        else
+                                        {
+                                            player.dialogueOptions.unshift(["Try not to slouch so much, you'll not find a husband if you act with such poor manners.", false, "c"]);
+                                        }
+
+                                        if (quests.atalinTeshirAnnexed == true && quests.atalinSisterJarl == false)
+                                        {
+                                            if (player.gender == "Female")
+                                            {
+                                                player.dialogueOptions.push(["Lailiona, I want you to be the Dame of Teshir. You'll get your very own longhouse and be in charge of all of those queer northern folk over there... It will be fun! And mama will even go with you!", false, "b"]);
+                                            }
+                                            else
+                                            {
+                                                player.dialogueOptions.push(["Lailiona, I need you to be the Dame of Teshir, now that it is under our house's control. Mother will go with you to watch over you and help you govern the stubborn northern folk.", false, "b"]);
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        player.dialogueOptions.unshift(["Hi there.", false, "h"]);
+                                    }
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "f")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0f";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "g")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0g";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "h")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0h";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            setMsg("[she looks up at you with a tear streaked face and continues to sob uncontrollably]");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+
+                            if (player.gender == "Female")
+                            {
+                                setMsg("Okay, sister, I will go. I love you so much!! I will miss you!");
+                            }
+                            else
+                            {
+                                setMsg("I will go... [begins to cry quietly]");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                dialogueReset(self);
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+
+                                player.blinded = true;
+                                player.blindedStoreTime = new Date().getTime();
+                                player.blindedTime = 1;
+                                change = "departure";
+                                quests.atalinSisterJarl = true;
+
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            if (player.gender == "Female")
+                            {
+                                setMsg("I love you too! You're so beautiful, sister, I wish I were just like you...");
+                            }
+                            else
+                            {
+                                setMsg("Okay, I won't, brother...");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            if (player.gender == "Female")
+                            {
+                                if (quests.atalinSisterJarl == true)
+                                {
+                                    setMsg("I've been too busy to play much, but I did run around the pretty flower in the garden a little bit.");
+                                }
+                                else
+                                {
+                                    setMsg("Yeah, I was playing in the courtyard, and there was a big dragon! It said mean words and I told it no... just no.");
+                                }
+                            }
+                            else
+                            {
+                                if (quests.atalinSisterJarl == true)
+                                {
+                                    setMsg("Yes, I say my prayers everyday. The Eternal Spirit keeps me safe from the heretics...");
+                                }
+                                else
+                                {
+                                    setMsg("No, not yet... I was playing make believe.");
+                                }
+                            }
+
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            //text dialogue
+                            if (player.gender == "Female")
+                            {
+                                setMsg("[in unison] May the Eternal Spirit bless this city with prosperous times, happiness, and unyielding faith.");
+                            }
+                            else
+                            {
+                                setMsg("Not all of the Freydic people are bad, brother. Only the Heritics, and I pray everyday that they join us in the light of the Everlasting Spirit.");
+                            }
+
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0f")
+                        {
+                            if (player.gender == "Female")
+                            {
+                                player.dialogueOptions.unshift(["Are you enjoying yourself, Lailiona?", false, "f"]);
+                            }
+                            else
+                            {
+                                player.dialogueOptions.unshift(["How are you fairing, my lovely little sister?", false, "f"]);
+                            }
+                            //text dialogue
+                            if (player.gender == "Female")
+                            {
+                                if (quests.atalinSisterJarl == true)
+                                {
+                                    if (uniqueChars.emyliaLDS == true)
+                                    {
+                                        setMsg("I like it here a lot, sister... but I do really miss being at home with you.");
+                                    }
+                                    else
+                                    {
+                                        setMsg("I'm lonely, I want to go back home, sister. [cries softly]");
+                                    }
+                                }
+                                else
+                                {
+                                    setMsg("Yeah, the tart I just ate was very tasty!");
+                                }
+                            }
+                            else
+                            {
+                                if (quests.atalinSisterJarl == true)
+                                {
+                                    setMsg("Well... [a soft and forlorn sigh follows her faint voiced lie]");
+                                }
+                                else
+                                {
+                                    setMsg("I am well, brother.");
+                                }
+                            }
+
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0g")
+                        {
+
+                            if (player.gender == "Female")
+                            {
+                                player.dialogueOptions.unshift(["Tell me about your experience as the Dame of Teshir, Lailiona.", false, "g"]);
+                            }
+                            else
+                            {
+                                player.dialogueOptions.unshift(["How is governing going for you, or is mother doing most everything for you still?", false, "g"]);
+                            }
+                            //text dialogue
+                            if (player.gender == "Female")
+                            {
+                                setMsg("I wave to the people when they come and ask for stuff. I sometimes get sort of shy though...");
+                            }
+                            else
+                            {
+                                setMsg("...I, um, I wave to people and say hello to the supplicants, but mom does do most of it for me...");
+                            }
+
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0h")
+                        {
+                            //text dialogue
+                            setMsg("Hello.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Mechelo the Steward" || conversationID[0] == "Mechelo")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Mechelo";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                if (quests.aFeastForFewerQuest == true)
+                                {
+                                    player.dialogueOptions = [["What do you know about this?", false, "f"]];
+                                }
+                                else
+                                {
+                                    if (uniqueChars.basilioAltezorLDS == false && player.title == "Nobility" && player.raceName == "Nirwaden")
+                                    {
+                                        player.dialogueOptions = [["I would like to host a Tournament.", false, "b"]];
+
+                                        if (quests.teshirConverted == false)
+                                        {
+                                            player.dialogueOptions.push(["I would like to promote the church to send missionaries to Teshir to spread the faith of the Everlasting Spirit.", false, "d"]);
+                                        }
+
+                                        if (quests.atalinTeshirAnnexed == false)
+                                        {
+                                            if (uniqueChars.OrjovTorLDS == true)
+                                            {
+                                                player.dialogueOptions.push(["I would like the jarl of Teshir to die in a hunting accident so that the city will be without a noble heir.", false, "e"]);
+                                            }
+                                            player.dialogueOptions.push(["I would like to send an envoy to the kingdom of Freynor to inquire into purchasing their southern most city of Teshir.", false, "a"]);
+
+                                        }
+                                        else
+                                        {
+                                            player.dialogueOptions.push(["I would like to send some soldiers to Teshir to collect the taxes I am owed from their jarl.", false, "c"]);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        player.dialogueOptions = [["What do you do?", false, "f"]];
+                                    }
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "f")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0f";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            var buyYes = false;
+                            var coinzHit = -1;
+                            for (var i = 0; i < Inventory.length; i++)
+                            {
+                                if (Inventory[i][0].type == "coins" && Inventory[i][1] >= 400000)
+                                {
+                                    coinzHit = i;
+                                    break;
+                                }
+                            }
+                            if (coinzHit == -1)
+                            {
+                                if (player.gender == "Female")
+                                {
+                                    setMsg("I'm sorry, my dame, but you cannot afford to to make a viable offer it should cost you 400,000 coins.");
+                                }
+                                else
+                                {
+                                    setMsg("I'm sorry, my Lord, but you cannot afford to to make a viable offer it should cost you 400,000 coins.");
+                                }
+                            }
+                            else
+                            {
+                                if (uniqueChars.OrjovTorLDS == true || player.freynorFaction <= -50)
+                                {
+                                    if (uniqueChars.OrjovTorLDS == true)
+                                    {
+                                        setMsg("The king of Teshir has responded! He finds it... mmmhhmm... errr his words, not mine... he finds it 'barbaric' to assume that he would sell a holding that he has entrusted to a Jarl.");
+                                    }
+                                    else
+                                    {
+                                        setMsg("The king of Teshir has responded! He says that... eeerr well he says that you are a... oh just read it for yourself: ... you are a despicable person... I would not even sell you a an axe to hunt with...");
+                                    }
+                                }
+                                else
+                                {
+                                    if (quests.teshirConverted != true)
+                                    {
+                                        if (Math.random() > 0.66)
+                                        {
+                                            setMsg("The king of Teshir has responded! He will sell you Teshir.");
+                                            buyYes = true;
+                                        }
+                                        else
+                                        {
+                                            setMsg("The king of Teshir has responded! Unfortunately, he will not part with Teshir because he fears that its inhabitants would be unhappy living under a different faith. Bloody Heretical oaf of a king they have...");
+                                        }
+                                    }
+                                    else
+                                    {
+                                        setMsg("The king of Teshir has responded! He will happily sell you Teshir, he has been hoping to find a way to keep Teshir's new religion away from the rest of his holdings.");
+                                        buyYes = true;
+                                    }
+                                }
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                                if (buyYes == true)
+                                {
+                                    if (coinzHit != -1)
+                                    {
+                                        if (Inventory[coinzHit][1] > 400000)
+                                        {
+                                            Inventory[coinzHit][1] -= 400000;
+                                        }
+                                        else
+                                        {
+                                            Inventory.splice(coinzHit, 1);
+                                        }
+                                        quests.atalinTeshirAnnexed = true;
+                                    }
+                                }
+                                sleeperTime += (60 * 60 * 24 * 180);
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            var coinzHit = -1;
+                            for (var i = 0; i < Inventory.length; i++)
+                            {
+                                if (Inventory[i][0].type == "coins" && Inventory[i][1] >= 25000)
+                                {
+                                    coinzHit = i;
+                                    break;
+                                }
+                            }
+                            if (coinzHit == -1)
+                            {
+                                if (player.gender == "Female")
+                                {
+                                    setMsg("I'm sorry, my dame, but you cannot afford to host a tournament.");
+                                }
+                                else
+                                {
+                                    setMsg("I'm sorry, my Lord, but you cannot afford to host a tournament.");
+                                }
+                            }
+                            else
+                            {
+                                setMsg("Oooh I can't wait till the tournament happens, it is going to be great for our finances because people are going to come from all around the empire to compete!");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                                if (coinzHit != -1)
+                                {
+                                    if (Inventory[coinzHit][1] > 25000)
+                                    {
+                                        Inventory[coinzHit][1] -= 25000;
+                                    }
+                                    else
+                                    {
+                                        Inventory.splice(coinzHit, 1);
+                                    }
+                                    quests.atalinTourny += 1;
+                                    player.nirwadenFaction += 25;
+                                }
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            setMsg("The soldiers came back with " + quests.teshirTaxes + " coins that they merged with the taxes from Atalin. You can pick up the taxes from the tax officiated as always.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                                quests.atalinTaxes += quests.teshirTaxes;
+                                quests.teshirTaxes = 0;
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            var coinzHit = -1;
+                            for (var i = 0; i < Inventory.length; i++)
+                            {
+                                if (Inventory[i][0].type == "coins" && Inventory[i][1] >= 18000)
+                                {
+                                    coinzHit = i;
+                                    break;
+                                }
+                            }
+                            if (coinzHit == -1)
+                            {
+                                if (player.gender == "Female")
+                                {
+                                    setMsg("I'm sorry, my dame, but you cannot afford to fund the missionary movement.");
+                                }
+                                else
+                                {
+                                    setMsg("I'm sorry, my Lord, but you cannot afford to fund the missionary movement.");
+                                }
+                            }
+                            else
+                            {
+                                setMsg("It is wonderful that you are such a big supporter of the faith!");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                                if (coinzHit != -1)
+                                {
+                                    if (Inventory[coinzHit][1] > 18000)
+                                    {
+                                        Inventory[coinzHit][1] -= 18000;
+                                    }
+                                    else
+                                    {
+                                        Inventory.splice(coinzHit, 1);
+                                    }
+                                    quests.teshirConverted = true;
+                                    player.nirwadenFaction += 200;
+                                }
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            var coinzHit = -1;
+                            for (var i = 0; i < Inventory.length; i++)
+                            {
+                                if (Inventory[i][0].type == "coins" && Inventory[i][1] >= 3000)
+                                {
+                                    coinzHit = i;
+                                    break;
+                                }
+                            }
+                            if (coinzHit == -1)
+                            {
+                                if (player.gender == "Female")
+                                {
+                                    setMsg("I'm sorry, my dame, but you cannot afford it right now.");
+                                }
+                                else
+                                {
+                                    setMsg("I'm sorry, my Lord, but you cannot afford it right now.");
+                                }
+                            }
+                            else
+                            {
+                                setMsg("You are ambitious... I think that can be arranged, I'll ask around. Just a warning, whoever we hire isn't necessarily going to succeed. Let us ask the Eternal Spirit for luck.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                                if (coinzHit != -1)
+                                {
+                                    if (Inventory[coinzHit][1] > 3000)
+                                    {
+                                        Inventory[coinzHit][1] -= 3000;
+                                    }
+                                    else
+                                    {
+                                        Inventory.splice(coinzHit, 1);
+                                    }
+                                    if (Math.random() > 0.3)
+                                    {
+                                        alert("A report came in that the Jarl of Teshir went hunting up north and supposedly froze to death.");
+                                        uniqueChars.OrjovTorLDS = false;
+                                    }
+                                    else
+                                    {
+                                        if (Math.random() > 0.78)
+                                        {
+                                            alert("The assassin you sent to kill the Jarl of Teshir was caught and ratted you out as his employer. This doesn't bode well for you at all...");
+                                            player.freynorFaction -= 600;
+                                            player.nirwadenFaction -= 300;
+                                            player.fame += 3;
+                                            quests.retaliation = true;
+                                        }
+                                        else
+                                        {
+                                            alert("You hear news that an assassin was killed when he ambushed the Jarl of Teshir during a hunt.");
+                                        }
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0f")
+                        {
+                            if (quests.aFeastForFewerQuest == true)
+                            {
+                                //text dialogue
+                                setMsg("I, I... I can't believe he's dead!");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                //text dialogue
+                                setMsg("I am the steward, I help the regent manage their political and economic affairs.");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Belgos the Disgraced" || self.ID == "Belgos" || conversationID[0] == "Belgos" && quests.aFeastForFewerBelgos == "disgraced" || conversationID[0] == "Belgos" && quests.aFeastForFewerBelgos == "forgiven")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Belgos";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        if (conversationID[1] == "0k")
+                        {
+                            conversationID[1] = 0;
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Tell me what you have learnt in your pennance.", false, "b"], ["How can I cleave to the Eternal Spirit?", false, "c"], ["I forgive you, I hope you find an honourable path in your worship of the most divine and eternal spirit", false, "d"]];
+
+                                if (quests.aFeastForFewerBelgos == "disgraced")
+                                {
+                                    player.dialogueOptions.unshift(["You became a priest...", false, "a"]);
+                                    if (player.title == "Nobility" && player.raceName == "Nirwaden")
+                                    {
+                                        player.dialogueOptions.push(["I forgive you, I hope you find an honourable path in your worship of the most divine and eternal spirit", false, "d"], ["I forgive you for the incompetence that led to your dismissal, will you rejoin me in my noble court?", false, "e"]);
+                                    }
+                                    else if (player.title == "Royalty" && player.raceName == "Nirwaden")
+                                    {
+                                        player.dialogueOptions.push(["I forgive you, I hope you find an honourable path in your worship of the most divine and eternal spirit", false, "d"]);
+                                    }
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            setMsg("Yes, I will not be forgiven for my grand incompetence without giving myself fully to the eternal spirit.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            setMsg("Trust is a dangerous value when it is placed on humanity, one cannot expect truth to sprout from that which is not divine, after all. The only one we can all truly trust is the Eternal Spirit. And its holy messengers, of course...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            setMsg("Everytime you are confronted with a decision, think this: am I doing this for myself, or am I serving divinity and light? If what you do is always to serve divinity you will find the Eternal Spirit within yourself. If you focus your attentions only on yourself, you will find not but the void.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            setMsg("You are noble to tell me such words, I am certain that the Eternal Spirit will bring us all honour and divine peace.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.aFeastForFewerBelgos = "forgiven";
+                                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                                {
+                                    if (ArtificialIntelligenceAccess[i].ID == "Belgos the Disgraced")
+                                    {
+                                        ArtificialIntelligenceAccess[i].ID = "Belgos";
+                                    }
+                                }
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            //text dialogue
+                            if (quests.aFeastForFewerQuest != "complete")
+                            {
+                                setMsg("You are noble to make such an offer. Unfortunately I must refuse it, the only one who can truly bring me forgiveness is the Everlasting Spirit.");
+                            }
+                            else
+                            {
+                                setMsg("I am overjoyed that you have found it in yourself to forgive my incompetence and bring me back into your court to be with those whom I know and love and whom I would protect with my life!");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                if (quests.aFeastForFewerQuest == "complete")
+                                {
+                                    quests.aFeastForFewerBelgos = true;
+                                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                                    {
+                                        if (ArtificialIntelligenceAccess[i].ID == "Belgos the Disgraced")
+                                        {
+                                            ArtificialIntelligenceAccess[i].ID = "Belgos of Atalin";
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    quests.aFeastForFewerBelgos = "forgiven";
+                                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                                    {
+                                        if (ArtificialIntelligenceAccess[i].ID == "Belgos the Disgraced")
+                                        {
+                                            ArtificialIntelligenceAccess[i].ID = "Belgos";
+                                        }
+                                    }
+                                }
+
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Ser Belgos of Atalin" || conversationID[0] == "Belgos" && quests.aFeastForFewerBelgos != "disgraced" && quests.aFeastForFewerBelgos != "forgiven")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Belgos";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                if (quests.aFeastForFewerQuest == true)
+                                {
+                                    if (player.raceName == "Nirwaden" && player.title == "Nobility")
+                                    {
+                                        player.dialogueOptions = [["What happened!?", false, "e"], ["What will happen now?", false, "g"]]; //["Have the cook who poisoned my father burnt at the pyre!", false, "h"]
+                                        if (quests.aFeastForFewerBelgos == true)
+                                        {
+                                            player.dialogueOptions.unshift(["You recruited the man who is likely behind the poisoning. What do you have to say for yourself.", false, "h"]);
+                                        }
+                                        else if (quests.aFeastForFewerBelgos == "evidence")
+                                        {
+                                            player.dialogueOptions.unshift(["You must have used your power as master of arms to convince your newly recruited soldier to commit treason!", false, "j"], ["Ser Belgos of Atalin, Master of Arms and once honourable knight, I hereby indict you for high treason against the Nirwaden Empire, surrender your arms.", false, "i"], ["You have demonstrated incompetence by letting a murderer join the ranks. Thusly you will be removed from your post and stripped of your title.", false, "k"], ["You recruited the man who is likely behind the poisoning. What do you have to say for yourself.", false, "h"]);
+                                        }
+                                        else
+                                        {
+                                            player.dialogueOptions.push(["Who is behind this treason!?", false, "f"]);
+                                        }
+                                    }
+                                    else if (player.raceName == "Nirwaden" && player.title == "Royalty")
+                                    {
+                                        player.dialogueOptions = [["Tell me what happened here!", false, "e"], ["Who will rule in High Lord Altezor's Stead?", false, "g"]]; //["Have the cook who poisoned the high lord burnt at the pyre!", false, "h"]
+                                        if (quests.aFeastForFewerBelgos == true)
+                                        {
+                                            player.dialogueOptions.unshift(["You recruited the man who is likely behind the poisoning. What do you have to say for yourself.", false, "h"]);
+                                        }
+                                        else if (quests.aFeastForFewerBelgos == "evidence")
+                                        {
+                                            player.dialogueOptions.unshift(["You must have used your power as master of arms to convince your newly recruited soldier to commit treason!", false, "j"], ["Ser Belgos of Atalin, Master of Arms and once honourable knight, I hereby indict you for high treason against the Nirwaden Empire, surrender your armaments.", false, "i"], ["You have demonstrated incompetence by letting a murderer join the ranks. Thusly you will be removed from your post and stripped of your title.", false, "k"], ["You recruited the man who is likely behind the poisoning. What do you have to say for yourself.", false, "h"]);
+                                        }
+                                        else
+                                        {
+                                            player.dialogueOptions.push(["Who is behind this treason!?", false, "f"]);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        player.dialogueOptions = [["What happened here?", false, "e"], ["What happened here? Is that... the lord of Atalin?", false, "e"], ["What will happen now that the lord is dead?", false, "g"]];
+                                        if (quests.aFeastForFewerBelgos == true)
+                                        {
+                                            player.dialogueOptions.unshift(["You recruited the man who is likely behind the poisoning. What do you have to say for yourself.", false, "h"]);
+                                        }
+                                        else if (quests.aFeastForFewerBelgos == "evidence")
+                                        {
+                                            if (player.inquisitionRank != "none" && player.inquisitionRank != "Initiate")
+                                            {
+                                                player.dialogueOptions.unshift(["You recruited the man who is likely behind the poisoning. What do you have to say for yourself.", false, "h"], ["You must have used your power as master of arms to convince your newly recruited soldier to commit treason!", false, "j"], ["Ser Belgos of Atalin, Master of Arms and once honourable knight, I hereby indict you for high treason against the Nirwaden Empire, surrender your armaments.", false, "i"])
+                                            }
+                                            else
+                                            {
+                                                player.dialogueOptions.unshift(["You recruited the man who is likely behind the poisoning. What do you have to say for yourself.", false, "h"], ["You must have used your power as master of arms to convince your newly recruited soldier to commit treason!", false, "j"], ["I plan to recommend that you be brought to justice for conspiring to murder the high lord by using new recruits as pawns to carry out your treachery...", false, "l"]);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            player.dialogueOptions.push(["Do you know who is behind this?", false, "f"]);
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    if (player.raceName == "Nirwaden" && player.title == "Nobility")
+                                    {
+                                        if (uniqueChars.basilioAltezorLDS == true)
+                                        {
+                                            player.dialogueOptions = [["Good day.", false, "a"], ["Tell me about yourself.", false, "b"], ["So my father knighted you...", false, "m"]];
+                                        }
+                                        else
+                                        {
+                                            player.dialogueOptions = [["Good day.", false, "a"], ["Tell me about yourself.", false, "b"], ["I would like to discuss my troops.", false, "c"], ["Can you offer me council...", false, "d"]];
+                                        }
+                                    }
+                                    else if (player.raceName == "Nirwaden" && player.title == "Royalty")
+                                    {
+                                        player.dialogueOptions = [["Good day.", false, "a"], ["Tell me about yourself.", false, "b"]];
+                                    }
+                                    else
+                                    {
+                                        player.dialogueOptions = [["Good day, Sir.", false, "a"], ["What do you do around here?", false, "b"], ["Who are you exactly?", false, "b"]];
+                                    }
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "f")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0f";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "g")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0g";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "h")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0h";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "i")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0i";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "j")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0j";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "k")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0k";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "l")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0l";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "m")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0m";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            if (player.raceName == "Nirwaden" && player.title == "Nobility")
+                            {
+                                if (player.gender == "Male")
+                                {
+                                    setMsg("And good day to you, my lord.");
+                                }
+                                else
+                                {
+                                    setMsg("And good day to you, my dame.");
+                                }
+                            }
+                            else if (player.raceName == "Nirwaden" && player.title == "Royalty")
+                            {
+                                setMsg("It's a lovely day indeed, your highness!");
+                            }
+                            else if (player.inquisitionRank != "none" && player.inquisitionRank != "Initiate")
+                            {
+                                setMsg("Good day, " + player.inquisitionRank+ ".");
+                            }
+                            else if (player.raceName == "Nirwaden" && player.title == "Highfolk")
+                            {
+                                setMsg("Good day, hidalgo.");
+                            }
+                            else if (player.title == "Royalty" || player.title == "Nobility")
+                            {
+                                setMsg("Good day, your grace.");
+                            }
+                            else
+                            {
+                                setMsg("Good day.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            if (player.raceName == "Nirwaden" && player.title == "Nobility")
+                            {
+                                setMsg("I am a knight of Atalin, knighted by your father, and I am the Master of Arms as well. My duties involve recruiting soldiers, and managing large troop movements so that you and your family can worry about everyday politics rather than the minutia of military upkeep. I also guard you and your family to keep you safe from danger.");
+                            }
+                            else
+                            {
+                                setMsg("I am a knight of Atalin, and the Master of Arms for the house of Altezor. My duties involve recruiting soldiers, and managing large troop movements... I also guard the Noble family of house Altezor to keep them safe from danger.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            setMsg("Of course, what would you like me to do?");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            setMsg("Ask what is on your mind...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 2;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            //text dialogue
+                            if (player.raceName == "Nirwaden" && player.title == "Nobility")
+                            {
+                                setMsg("His excellency your father was poisoned. It came on so suddenly nobody knew what could be done. One moment he was fine and the next he began to choke, his face went pale and he began to spew blood and bile from his mouth. I wish I could have done domething, anything, to save your father from such a wretched demise.");
+                            }
+                            else
+                            {
+                                setMsg("His excellency the high lord of Atalin was poisoned. It came on so suddenly nobody knew what could be done. One moment he was fine and the next he began to choke, his face went pale and he began to spew blood and bile from his mouth. If only there were something I could have done to save his lordship from such a wretched demise.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0f")
+                        {
+                            //text dialogue
+                            if (player.raceName == "Nirwaden" && player.title == "Nobility")
+                            {
+                                setMsg("I suspect the cook is behind it, as she often complains and sometimes has a temper. She is the only one with a reason to do something like this, within these castle walls that is, and she is the only one with access to your father's food.");
+                            }
+                            else
+                            {
+                                setMsg("I suspect the cook is behind it, as she often complains and sometimes has a temper. She is the only one with a reason to do something like this, within these castle walls that is, and she is the only one with access to his lordship's food.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0g")
+                        {
+                            //text dialogue
+                            if (player.raceName == "Nirwaden" && player.title == "Nobility")
+                            {
+                                setMsg("I know this is an utter tragedy and it is a lot to take in, but you are your father's heir, so now that he is dead the burden of Ruling Átalin and the lands surrounding her falls upon you.");
+                            }
+                            else
+                            {
+                                if (uniqueChars.emyliaLDS == true && uniqueChars.lailionaLDS == true)
+                                {
+                                    setMsg("The High Dame Emylia will rule Atalin until his lordship's daughter Lailiona comes of age.");
+                                }
+                                else if (uniqueChars.emyliaLDS == true && uniqueChars.lailionaLDS == false)
+                                {
+                                    setMsg("The High Dame Emylia will rule Atalin until his lordship's daughter Lailiona comes of age.");
+                                }
+                                else if (uniqueChars.emyliaLDS == false && uniqueChars.lailionaLDS == true)
+                                {
+                                    if (uniqueChars.emmanuelLDS)
+                                    {
+                                        setMsg("His lordship's daughter, Lailiona, the new High Dame of Atalin will rule despite her young age, but with my direct oversight and council, and with the occasional council and moral teachings of the local Bishop, Emmanuel.");
+                                    }
+                                    else
+                                    {
+                                        setMsg("His lordship's daughter, Lailiona, the new High Dame of Atalin will rule despite her young age, but with my direct oversight and council. Unfortunately the local Bishop has died and will not be able to provide the spiritual council she will require, so I will make sure to put out an inquiry to the church that our city will need a new Bishop.");
+                                    }
+                                }
+                                else
+                                {
+                                    setMsg("As the High Lord Altezor and his entire family are passed away, I will act as regent until the Empress has made her intentions for Atalin clear.");
+                                }
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0h")
+                        {
+                            //text dialogue
+                            if (player.raceName == "Nirwaden" && player.title == "Nobility")
+                            {
+                                if (player.gender == "Female")
+                                {
+                                    setMsg("My dame, I am shocked to hear that the culprit was a soldier I hired in your father's name... I feel most ashamed for such a drastic failure to screen the recruits I hire. Punish me for my incompetence if you will, but I assure you, " + player.name + ", that I had no part in this nefarious plot.");
+                                }
+                                else
+                                {
+                                    setMsg("My lord, I am shocked to hear that the culprit was a soldier I hired in your father's name... I feel most ashamed for such a drastic failure to screen the recruits I hire. Punish me for my incompetence if you will, but I assure you, " + player.name + ", that I had no part in this nefarious plot.");
+                                }
+                            }
+                            else if (player.raceName == "Nirwaden" && player.title == "Royalty" || player.inquisitionRank != "none" && player.inquisitionRank != "Initiate")
+                            {
+                                setMsg("I am shocked to hear that the culprit was a soldier I hired in the Altezor name... I feel most ashamed for such a drastic failure to screen the recruits I hire. Punish me for my incompetence if you will, but I assure you that I had no part in this nefarious plot.");
+                            }
+                            else
+                            {
+                                setMsg("I am shocked to hear that the culprit was a soldier I hired in the Altezor name... I feel most ashamed for such a drastic failure to screen the recruits I hire. I will accept the punishment I am owed with grace and honour, but I must be clear with you that I had no part in this nefarious plot.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.aFeastForFewerBelgos = "evidence";
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0i")
+                        {
+                            //text dialogue
+                            setMsg("You know not the horrific injustice you commit by sentencing me. I am innocent of this crime. I am innocent!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                dialogueReset(self);
+
+                                change = "pireGathering";
+                                quests.doPire = true;
+                                player.blinded = true;
+                                player.blindedStoreTime = new Date().getTime();
+                                player.blindedTime = 1;
+                                X = -46299;
+                                Y = 34;
+                                quests.pireVictim = "Belgos";
+                                quests.aFeastForFewerBelgos = true;
+                                for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--)
+                                {
+                                    if (ArtificialIntelligenceAccess[i].ID == "Ser Belgos of Atalin")
+                                    {
+                                        ArtificialIntelligenceAccess.splice(i, 1);
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0j")
+                        {
+                            //text dialogue
+                            setMsg("It is true that I hired the man who committed the crime, but your suggestion of a plot or a conspiracy to arrange a poisoning for some malevolent means is simply not. My only sin is that of trusting a man in my charge not to commit a foul crime, I loved High Lord Altezor and would never wish him harm!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0k")
+                        {
+                            //text dialogue
+                            setMsg("I deserve this punishment, I am so ashamed and sorry that I have failed you to this extent...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                quests.aFeastForFewerBelgos = "disgraced";
+                                dialogueReset(self);
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+
+                                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                                {
+                                    if (ArtificialIntelligenceAccess[i].ID == "Ser Belgos of Atalin")
+                                    {
+                                        ArtificialIntelligenceAccess[i].ID = "Belgos the Disgraced One";
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0l")
+                        {
+                            //text dialogue
+                            if (player.title == "Royalty" && player.nirwadenFaction >= 0 || player.title == "Nobility" && player.nirwadenFaction >= 0 || player.getCharisma >= 30 && player.nirwadenFaction >= 0)
+                            {
+                                setMsg("You know not the injustice you commit against me, so I forgive you and will willingly submit to any higher authorities that wish to see me punished for a crime I have not committed. I will not let human ignorance deprive me of my honour... only life.");
+                            }
+                            else
+                            {
+                                setMsg("First of all the accusation you level against me is untrue, and second, nobody would take your word over mine on this matter because I have not given a soul a reason to doubt my integrity and honour.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                if (player.title == "Royalty" && player.nirwadenFaction >= 0 || player.title == "Nobility" && player.nirwadenFaction >= 0 || player.getCharisma >= 30 && player.nirwadenFaction >= 0)
+                                {
+                                    dialogueReset(self);
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                    player.blinded = true;
+                                    player.blindedStoreTime = new Date().getTime();
+                                    player.blindedTime = 1;
+                                    uniqueChars.belgosLDS = false;
+                                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                                    {
+                                        if (ArtificialIntelligenceAccess[i].ID == "Ser Belgos of Atalin")
+                                        {
+                                            ArtificialIntelligenceAccess[i].X = 999999999999;
+                                            ArtificialIntelligenceAccess[i].Y = 999999999999;
+                                        }
+                                    }
+                                    quests.aFeastForFewerCompletionStyle = "knightFramed";
+                                    quests.aFeastForFewerQuest = "complete";
+                                    quests.completeQuests.push({name: "A Feast for Fewer", description: "You convinced those remaining in power that the Knight and Master of Arms Ser Belgos was ultimately behind the assassination of the High Lord of Atalin."});
+                                    player.nirwadenFaction += 60;
+                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                    {
+                                        player.magicalExperience += 65;
+                                    }
+                                    else
+                                    {
+                                        player.experience += 220;
+                                    }
+                                    player.fame += 2;
+                                }
+                                else
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0m")
+                        {
+                            //text dialogue
+                            setMsg("Yes. Your father knighted me. I was raised the son of one of the lords under your father and served as a squire for many years fighting the Aldrekii hordes. Unfortunately the knight I served with was struck in the thigh with an arrow. The injury was lethal, so I was forced to carry on without him towards the great southern city Salaza. I fought alongside your father's own forces and together we took the city. After the feasting your father sent for me and Knighted me right then and there. I owe your father for everything I am today.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 1)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["I would like to expand my army in Atalin.", false, "a"], ["I would like to more thoroughly protect the countryside.", false, "b"], ["That is all for now.", false, "f"]];
+                                if (quests.atalinEmpressWarPermission == true)
+                                {
+                                    if (quests.atalinTownShip == false)
+                                    {
+                                        player.dialogueOptions.push(["Send troops westward to establish a township in the Kellish Planes.", false, "c"]);
+                                    }
+                                    if (quests.atalinCalcuttConquered == false && quests.atalinRaidingParty == true || quests.atalinCalcuttConquered == "failure" && quests.atalinRaidingParty == true)
+                                    {
+                                        player.dialogueOptions.push(["Send troops to conquer Calcutt village, burn their primitive huts and replace them with real homes.", false, "d"]);
+                                    }
+                                    if (quests.atalinRaidingParty == false)
+                                    {
+                                        player.dialogueOptions.push(["I want to develop an army meant for raiding and warring.", false, "e"]);
+                                    }
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            if (Math.random >= 0.8)
+                                            {
+                                                quests.atalinRaidingParty = false;
+                                            }
+                                            conversationID[1] = "1d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1e";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "f")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1f";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1a")
+                        {
+                            var coinzHit = -1;
+                            for (var i = 0; i < Inventory.length; i++)
+                            {
+                                if (Inventory[i][0].type == "coins" && Inventory[i][1] >= 35000)
+                                {
+                                    coinzHit = i;
+                                    break;
+                                }
+                            }
+                            if (coinzHit == -1)
+                            {
+                                if (player.gender == "Female")
+                                {
+                                    setMsg("I'm sorry, my dame, but you cannot afford to do that.");
+                                }
+                                else
+                                {
+                                    setMsg("I'm sorry, my Lord, but you cannot afford to do that.");
+                                }
+                            }
+                            else
+                            {
+                                setMsg("Now crime will have no place in Atalin, your new soldier's will make sure of that.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                                if (coinzHit != -1)
+                                {
+                                    if (Inventory[coinzHit][1] > 35000)
+                                    {
+                                        Inventory[coinzHit][1] -= 35000;
+                                    }
+                                    else
+                                    {
+                                        Inventory.splice(coinzHit, 1);
+                                    }
+                                    quests.atalinArmyEnhanced = true;
+                                }
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1b")
+                        {
+                            var coinzHit = -1;
+                            for (var i = 0; i < Inventory.length; i++)
+                            {
+                                if (Inventory[i][0].type == "coins" && Inventory[i][1] >= 40000)
+                                {
+                                    coinzHit = i;
+                                    break;
+                                }
+                            }
+                            if (coinzHit == -1)
+                            {
+                                if (player.gender == "Female")
+                                {
+                                    setMsg("I'm sorry, my dame, but you cannot afford to do that.");
+                                }
+                                else
+                                {
+                                    setMsg("I'm sorry, my Lord, but you cannot afford to do that.");
+                                }
+                            }
+                            else
+                            {
+                                setMsg("Now crime will have no place in the northern countryside, your new soldier's will make sure of that.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                                if (coinzHit != -1)
+                                {
+                                    if (Inventory[coinzHit][1] > 40000)
+                                    {
+                                        Inventory[coinzHit][1] -= 40000;
+                                    }
+                                    else
+                                    {
+                                        Inventory.splice(coinzHit, 1);
+                                    }
+                                    quests.atalinCampoProtected = true;
+                                }
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1c")
+                        {
+                            var coinzHit = -1;
+                            for (var i = 0; i < Inventory.length; i++)
+                            {
+                                if (Inventory[i][0].type == "coins" && Inventory[i][1] >= 100000)
+                                {
+                                    coinzHit = i;
+                                    break;
+                                }
+                            }
+                            if (coinzHit == -1)
+                            {
+                                if (player.gender == "Female")
+                                {
+                                    setMsg("I'm sorry, my dame, but you cannot afford to do that.");
+                                }
+                                else
+                                {
+                                    setMsg("I'm sorry, my Lord, but you cannot afford to do that.");
+                                }
+                            }
+                            else
+                            {
+                                setMsg("We finally have the opportunity to expand our economy and our faith! This is going to be wonderful!");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                                if (coinzHit != -1)
+                                {
+                                    if (Inventory[coinzHit][1] > 100000)
+                                    {
+                                        Inventory[coinzHit][1] -= 100000;
+                                    }
+                                    else
+                                    {
+                                        Inventory.splice(coinzHit, 1);
+                                    }
+                                    quests.atalinTownShip = true;
+                                    quests.atalinTownShipName = prompt("What will this new Nirwaden controlled town to the west be called?");
+                                    sleeperTime += (60 * 60 * 24 * 300);
+                                }
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1d")
+                        {
+                            //text dialogue
+                            if (quests.atalinRaidingParty == false)
+                            {
+                                if (player.gender == "Male")
+                                {
+                                    setMsg("My lord, a courier from the west has reported that the Echlin tribe were able to pull together aid from surrounding kellish tribes and defeat our forces.");
+                                }
+                                else
+                                {
+                                    setMsg("My dame, a courier from the west has reported that the Echlin tribe were able to pull together aid from surrounding kellish tribes and defeat our forces.");
+                                }
+                            }
+                            else
+                            {
+                                if (player.gender == "Male")
+                                {
+                                    setMsg("My lord, a courier from the west has reported that our forces have defeated the echlin tribe's forces at Calcutt, Calcutt is yours.");
+                                }
+                                else
+                                {
+                                    setMsg("My dame, a courier from the west has reported that our forces have defeated the echlin tribe's forces at Calcutt, Calcutt is yours.");
+                                }
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                if (quests.atalinRaidingParty == false)
+                                {
+                                    quests.atalinCalcuttConquered = "failure";
+                                }
+                                else
+                                {
+                                    quests.atalinCalcuttConquered = true;
+                                }
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                sleeperTime += (60 * 60 * 24 * 14);
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1e")
+                        {
+                            var coinzHit = -1;
+                            for (var i = 0; i < Inventory.length; i++)
+                            {
+                                if (Inventory[i][0].type == "coins" && Inventory[i][1] >= 15000)
+                                {
+                                    coinzHit = i;
+                                    break;
+                                }
+                            }
+                            if (coinzHit == -1)
+                            {
+                                if (player.gender == "Female")
+                                {
+                                    setMsg("I'm sorry, my dame, but you cannot afford to do that.");
+                                }
+                                else
+                                {
+                                    setMsg("I'm sorry, my Lord, but you cannot afford to do that.");
+                                }
+                            }
+                            else
+                            {
+                                setMsg("With this new army Átalin's glory and faith can expand westward!");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                                if (coinzHit != -1)
+                                {
+                                    if (Inventory[coinzHit][1] > 15000)
+                                    {
+                                        Inventory[coinzHit][1] -= 15000;
+                                    }
+                                    else
+                                    {
+                                        Inventory.splice(coinzHit, 1);
+                                    }
+                                    quests.atalinRaidingParty = true;
+                                }
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1f")
+                        {
+                            setMsg("Serving you has been my pleasure!");
+
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 2)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["How do I get the money I need to rule my lands?", false, "a"], ["What do you believe is the most important thing I should focus on.", false, "b"], ["How often should I host tournaments?", false, "c"], ["How do I promote the economy?", false, "d"], ["That should be all for now.", false, "e"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "2a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "2b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "2c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "2d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "2e";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "2a")
+                        {
+                            //text dialogue
+                            setMsg("The tax officiator is in charge of the tax collectors if you speak with them you can ask for the taxes, as the money is owed to your family.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 2;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "2b")
+                        {
+                            //text dialogue
+                            if (quests.atalinArmyEnhanced == false)
+                            {
+                                setMsg("I reccommend that you focus your political efforts on keeping crime away from the wealthy districts that support the regional economy. Ideally you would stop crime in all of the districts, but I more than anyone understands how busy your soldiers are with the duties they already have.");
+                            }
+                            else if (quests.atalinEmpressWarPermission == false)
+                            {
+                                setMsg("Since you seem to have a good stance against crime with your enhanced army, I reccomend considering the possibility of expanding your territory into the kellish plains. This would of course involve convincing the empress that Nirwaden would be best suited by expanding westward. I can have a courier ask her if you like...");
+                            }
+                            else
+                            {
+                                setMsg("Now that you have built up your power, I recommend that you focus on yourself, that is, go to church, be seen, do things that will endear you to your people even more...");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                if (quests.atalinArmyEnhanced != false && quests.atalinEmpressWarPermission == false)
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 3;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 2;
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "2c")
+                        {
+                            //text dialogue
+                            setMsg("If you want your coffers to stay at a healthy amount, I recommend perhaps holding only one a year. Tournaments are fun and they bring you attention and commerce in the long run. But you will lose money if you have them too often. Trust me, I spoke with the treasurer about it once.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 2;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "2d")
+                        {
+                            //text dialogue
+                            setMsg("The best way to support the economy is to avoid trying to control it. That was your father's policy and it worked wonders!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 2;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "2e")
+                        {
+                            //text dialogue
+                            setMsg("I wish you the best.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        if (conversationID[1] == 3)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["No, thank you.", false, "a"], ["Yes, do.", false, "b"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "3a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "3b";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "3a")
+                        {
+                            //text dialogue
+                            setMsg("Alright, I just thought I would ask.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 2;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "3b")
+                        {
+                            //text dialogue
+                            setMsg("Excellent... [2 moons later] The courier I sent out for has returned! The answer is yes!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 2;
+                                sleeperTime += (60 * 60 * 24 * 60);
+                                quests.atalinEmpressWarPermission = true;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Suspected Regicide" || conversationID[0] == "SuspectedRegicide")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "SuspectedRegicide";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Who hired you?", false, "c"], ["Your features match the description that the servant boy mentioned, you are thus guilty of high treason and will be burnt at the pyre.", false, "b"], ["I believe you are not guilty but you shall die for your part in this murder, be it indirect as it is.", false, "d"]];
+                                if (player.raceName == "Nirwaden" && player.title == "Nobility" || player.raceName == "Nirwaden" && player.title == "Royalty" || player.inquisitionRank != "none" && player.inquisitionRank != "Initiate" && player.inquisitionRank != "Inquisitor")
+                                {
+                                    player.dialogueOptions.push(["I know you are behind the poisoning, but I also know that you are just a pawn... Tell me the real culprit and your life shall be spared.", false, "e"]);
+                                }
+                                else
+                                {
+                                    player.dialogueOptions.push(["If you tell me who put you up to this, your life may be spared by those in charge around here...", false, "f"]);
+                                }
+                                if (player.estolRank != "none" && player.estolRank != "Hooker" && player.estolRank != "Courtesan")
+                                {
+                                    player.dialogueOptions.unshift(["Tell me true, is the Estol Gang behind this poisoning? If so, I can help you frame somebody...", false, "a"]);
+                                }
+                                else
+                                {
+                                    player.dialogueOptions.unshift(["Have you been consorting with the servants?", false, "a"]);
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "f")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0f";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            if (player.title == "Highfolk" || player.title == "Nobility" || player.title == "Royalty" || player.inquisitionRank != "none")
+                            {
+                                setMsg("No, of course not. I have been on patrol and then on my break. I would never share words with the servants, they are not worth my time.");
+                            }
+                            else if (player.estolRank != "none" && player.estolRank != "Hooker" && player.estolRank != "Courtesan")
+                            {
+                                setMsg("Yeah, this is part of a distraction for the boss to implement his master plan. The cook will be the easiest to frame, she is the likeliest suspect since she can have a temper and is in charge of the food.");
+                            }
+                            else
+                            {
+                                setMsg("No, of course not. I have been on patrol and then on my break. I would never share words with the servants, they are not worth my time. Come to think of it, neither are you...");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            setMsg("You're making a big mistake, I'm a loyal servant of the house of Altezor!!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                dialogueReset(self);
+
+                                if (quests.aFeastForFewerQuest == true)
+                                {
+                                    quests.aFeastForFewerCompletionStyle = "proper";
+                                    quests.aFeastForFewerQuest = "complete";
+                                    if (player.raceName == "Nirwaden" && player.title == "Nobility")
+                                    {
+                                        quests.completeQuests.push({name: "A Feast for Fewer", description: "You sentenced a rogue soldier to burn at the pyre for the poisoning of your father."});
+                                    }
+                                    if (player.raceName == "Nirwaden" && player.title == "Nobility" || player.raceName == "Nirwaden" && player.title == "Highfolk")
+                                    {
+                                        quests.completeQuests.push({name: "A Feast for Fewer", description: "You sentenced a rogue soldier to burn at the pyre for the poisoning of High Lord Altezor."});
+                                    }
+                                    else
+                                    {
+                                        quests.completeQuests.push({name: "A Feast for Fewer", description: "You reported a rogue soldier to the proper authorities who executed her for poisoning the high lord."});
+                                    }
+                                    player.nirwadenFaction += 55;
+                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                    {
+                                        player.magicalExperience += 60;
+                                    }
+                                    else
+                                    {
+                                        player.experience += 190;
+                                    }
+                                }
+
+                                change = "pireGathering";
+                                quests.doPire = true;
+                                player.blinded = true;
+                                player.blindedStoreTime = new Date().getTime();
+                                player.blindedTime = 1;
+                                X = -46299;
+                                Y = 34;
+                                quests.pireVictim = "Suspected Regicide";
+                                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                                {
+                                    if (ArtificialIntelligenceAccess[i].ID == "Suspected Regicide")
+                                    {
+                                        worldItems.push([new Item("estolPoisoningOrders", ArtificialIntelligenceAccess[i].X, ArtificialIntelligenceAccess[i].Y), 1]);
+                                        ArtificialIntelligenceAccess[i].muzzle = true;
+                                        ArtificialIntelligenceAccess[i].revived = true;
+                                        break;
+                                    }
+                                }
+                                for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--)
+                                {
+                                    if (ArtificialIntelligenceAccess[i].ID == quests.pireVictim)
+                                    {
+                                        ArtificialIntelligenceAccess.splice(i, 1);
+                                        break;
+                                    }
+                                }
+
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            setMsg("I believe it was Ser Belgos of Atalin, he is in charge of hiring all of the new soldiers who guard the castle.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.aFeastForFewerBelgos = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            setMsg("You fiend!!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                dialogueReset(self);
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                                player.blinded = true;
+                                player.blindedStoreTime = new Date().getTime();
+                                player.blindedTime = 1;
+                                uniqueChars.altezorInfiltratorLDS = false;
+                                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                                {
+                                    if (ArtificialIntelligenceAccess[i].ID == "Suspected Regicide")
+                                    {
+                                        worldItems.push([new Item("estolPoisoningOrders", ArtificialIntelligenceAccess[i].X, ArtificialIntelligenceAccess[i].Y), 1]);
+                                        ArtificialIntelligenceAccess.splice(i, 1);
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            //text dialogue
+                            setMsg("Fine, was it that obvious that I have no motive to poison a high lord of my own volition? I work for the Estol Gang, I was sent to poison the high lord as a distraction so that my boss could implement some sort of plan or something... Here just read my orders for yourself, I need to get as far away from here as possible so that the gang doesn't kill me for ratting them out.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                dialogueReset(self);
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                                player.blinded = true;
+                                player.blindedStoreTime = new Date().getTime();
+                                player.blindedTime = 1;
+                                uniqueChars.altezorInfiltratorLDS = false;
+                                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                                {
+                                    if (ArtificialIntelligenceAccess[i].ID == "Suspected Regicide")
+                                    {
+                                        worldItems.push([new Item("estolPoisoningOrders", ArtificialIntelligenceAccess[i].X, ArtificialIntelligenceAccess[i].Y), 1]);
+                                        ArtificialIntelligenceAccess.splice(i, 1);
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0f")
+                        {
+                            //text dialogue
+                            setMsg("Somehow I don't believe that they will show me the mercy you speak of... and... I'm not going to die a traitor! I will fight you till my last breath!!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                dialogueReset(self);
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+
+                                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                                {
+                                    if (ArtificialIntelligenceAccess[i].ID == "Suspected Regicide")
+                                    {
+                                        ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime() + 99999999;
+                                        ArtificialIntelligenceAccess[i].disturbed = true;
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Libo the Servant Boy" || conversationID[0] == "Libo")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Libo";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [];
+                                if (quests.aFeastForFewerQuest == true)
+                                {
+                                    player.dialogueOptions.push(["Did you see the cook put anything strange into the food?", false, "a"], ["Tell me what you have been up to!", false, "c"], ["Tell me everything you saw!", false, "d"]);
+                                    if (player.raceName == "Nirwaden" && player.title == "Nobility")
+                                    {
+                                        player.dialogueOptions.push(["Has the cook ever said anything distasteful about my father or me?", false, "b"]);
+                                    }
+                                    else if (player.title == "Highfolk" || player.title == "Nobility" || player.title == "Royalty" || player.inquisitionRank != "none" && player.inquisitionRank != "Initiate")
+                                    {
+                                        player.dialogueOptions.push(["Has the cook ever said anything distasteful about the high lord?", false, "b"]);
+                                    }
+                                    else
+                                    {
+                                        player.dialogueOptions.push(["Has the cook ever said anything bad about the high lord?", false, "b"]);
+                                    }
+                                }
+                                else
+                                {
+                                    player.dialogueOptions.push(["Hello there!", false, "e"], ["What are you up to?", false, "f"], ["How are you doing?", false, "g"]);
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "f")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0f";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "g")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0g";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            setMsg("Yeah, she put garlic and tialo fronds in the food, yuck I hate both of them! Ewy ewy ewy!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            setMsg("Sometimes she um, she gets mad that the horses get to eat the leftovers before we get to eat any of them...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            setMsg("I was helping cook food and I um, nothing...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            setMsg("I saw the cook, and I saw the food, um, I saw a friendly soldier man who gave me some money [jingles a surpisingly full pocket of coins].");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            //text dialogue
+                            if (player.raceName == "Nirwaden" && player.title == "Nobility")
+                            {
+                                if (player.gender == "Male")
+                                {
+                                    setMsg("Hello, me lord.");
+                                }
+                                else
+                                {
+                                    setMsg("Hello, me dame.");
+                                }
+                            }
+                            else if (player.raceName == "Nirwaden" && player.title == "Highfolk")
+                            {
+                                setMsg("Hello, Hidalgo.");
+                            }
+                            else if (player.title == "Nobility" || player.title == "Royalty")
+                            {
+                                setMsg("Hello, your grace.");
+                            }
+                            else
+                            {
+                                setMsg("Hi.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0f")
+                        {
+                            //text dialogue
+                            setMsg("I'm just doing my daily chores. I already made the beds, and now I am helping make some food.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0g")
+                        {
+                            //text dialogue
+                            if (player.raceName == "Nirwaden" && player.title == "Nobility")
+                            {
+                                if (player.gender == "Male")
+                                {
+                                    setMsg("I'm happy for all your family has given me, I would be an orphan if not for your family's kindness, me lord.");
+                                }
+                                else
+                                {
+                                    setMsg("I'm happy for all your family has given me, I would be an orphan if not for your family's kindness, me dame.");
+                                }
+                            }
+                            else if (player.raceName == "Nirwaden" && player.title == "Highfolk")
+                            {
+                                setMsg("All's well, Hidalgo.");
+                            }
+                            else if (player.title == "Nobility" || player.title == "Royalty")
+                            {
+                                setMsg("Very good, your grace.");
+                            }
+                            else
+                            {
+                                setMsg("I am sooo bored, I just want to play with other children...");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        if (conversationID[1] == 1)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [];
+                                if (quests.aFeastForFewerQuest == true)
+                                {
+                                    player.dialogueOptions.push(["What did the man tell you to do when he gave you the money?", false, "a"], ["What did the soldier man look like?", false, "b"]);
+                                    if (player.raceName == "Nirwaden" && player.title == "Nobility")
+                                    {
+                                        player.dialogueOptions.push(["I find you to be a guilty party to my father's poisoning and thusly you shall be burnt at the pyre, regardless of your age.", false, "c"]);
+                                    }
+                                    else if (player.raceName == "Nirwaden" && player.title == "Royalty" || player.raceName == "Nirwaden" && player.title == "Highfolk" || player.inquisitionRank != "none" && player.inquisitionRank != "Initiate")
+                                    {
+                                        player.dialogueOptions.push(["I find you to be a guilty party to murdering the high lord and thusly you shall be burnt at the pyre, regardless of your age.", false, "c"]);
+                                    }
+                                    else
+                                    {
+                                        player.dialogueOptions.push(["It's your fault that the high lord died! [report him to the authorities to be executed]", false, "c"], ["I have determined that it is your fault that the high lord died, your age will not save you from justice... [report him to the authorities to be executed]", false, "c"]);
+                                    }
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1c";
+                                        }
+
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1a")
+                        {
+                            //text dialogue
+                            setMsg("He gave me lots of shiny coins and asked me to put some special flavour water onto the salmon. I put the rest of the flavour water on the counter if you want to try some...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1b")
+                        {
+                            //text dialogue
+                            setMsg("He, ummmm, he was, umm, skinny, and had a beard, and um a poiny nose sort of...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                if (quests.aFeastForFewerInfiltrator == false)
+                                {
+                                    quests.aFeastForFewerInfiltrator = true;
+                                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                                    {
+                                        if (ArtificialIntelligenceAccess[i].ID == "Off Duty Altezor Soldier")
+                                        {
+                                            ArtificialIntelligenceAccess.splice(i, 1);
+                                            break;
+                                        }
+                                    }
+                                    change = "altezorinfiltrator";
+                                }
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1c")
+                        {
+                            //text dialogue
+                            setMsg("I'm sorry, I'm sorry, I'm sorry!! I won't do anything bad ever again okay?");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                dialogueReset(self);
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                                player.blinded = true;
+                                player.blindedStoreTime = new Date().getTime();
+                                player.blindedTime = 1;
+                                uniqueChars.liboLDS = false;
+                                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                                {
+                                    if (ArtificialIntelligenceAccess[i].ID == "Libo the Servant Boy")
+                                    {
+                                        ArtificialIntelligenceAccess[i].X = 999999999999;
+                                        ArtificialIntelligenceAccess[i].Y = 999999999999;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+
+                    }
+
+                    if (self.ID == "Marta the Cook" || conversationID[0] == "Marta")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Marta";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [];
+
+                                if (quests.aFeastForFewerQuest != true)
+                                {
+                                    player.dialogueOptions.push(["Good day.", false, "b"], ["What is that you're working on?", false, "a"], ["The food smells good!", false, "c"], ["Fair well!", false, "d"], ["Bye!", false, "d"]);
+                                }
+                                else
+                                {
+
+                                    if (player.title == "Nobility" && player.raceName == "Nirwaden")
+                                    {
+                                        player.dialogueOptions.push(["Tell me what you were up to before my father was poisoned!", false, "e"], ["Who else had access to our food?", false, "h"], ["You will burn for what you have done to my father you vile scum!!", false, "f"], ["I'll have you know that I take no pleasure in this... you are to burn at the pyre for the premeditated murder of my father, the high lord of these lands.", false, "f"], ["Though I do not believe it was your intention to kill my father, your incompetence is worthy of death...", false, "g"]);
+                                    }
+                                    else if (player.title == "Royalty" && player.raceName == "Nirwaden" || player.title == "Highfolk" && player.raceName == "Nirwaden" || player.inquisitionRank != "none" && player.inquisitionRank != "Initiate")
+                                    {
+                                        player.dialogueOptions.push(["Tell me the events that took place before the High Lord Altezor was poisoned. Be thorough.", false, "e"], ["Who else had access to the high lord's food?", false, "h"], ["You are guilty of high treason for the murder of a high lord by poisoning and will be burnt at the pyre.", false, "f"], ["As the cook who served High Lord Altezor the meal that ended his life, you will be held fully accountable for his death.", false, "f"], ["Though I do not believe you are behind this murder, you will face death for your role in this misfortune.", false, "g"]);
+                                    }
+                                    else
+                                    {
+                                        player.dialogueOptions.push(["Tell me everything you did leading up to the moment you served his lordship the poisoned food.", false, "e"], ["Was anyone other than you around the food?", false, "h"], ["As the cook who served his blessed lordship the meal that ended his life, it's your fault he's dead. [turn in to the authorities]", false, "f"]);
+                                    }
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "f")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0f";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "g")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0g";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "h")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0h";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            if (player.raceName == "Nirwaden" && player.title == "Nobility")
+                            {
+                                if (player.gender == "Female")
+                                {
+                                    setMsg("I am preparing you and your family a decadent feast, me dame.");
+                                }
+                                else
+                                {
+                                    setMsg("I am fixing up a wonderful feast for you and your family, me lord.");
+                                }
+                            }
+                            else if (player.raceName == "Nirwaden" && player.title == "Royalty")
+                            {
+                                setMsg("I am preparing a feast for me masters of the house of Altezor, and for yourself, your highness.");
+                            }
+                            else if (player.raceName == "Nirwaden" && player.title == "Highfolk")
+                            {
+                                setMsg("I am putting together a grand feast for the house of Altezor. I'm afraid you won't be invited... don't be offended though. I just mean that not many people are invited at all. I'm not even allowed to taste what I cook!");
+                            }
+                            else if (player.title == "Nobility" || player.title == "Royalty")
+                            {
+                                setMsg("I am making a great feast for me masters of the house of Altezor.");
+                            }
+                            else
+                            {
+                                setMsg("Cooking a big feast for ... I do this almost every day, it's exhausting! Can you believe that they send their leftovers to the horses, to the bloody horses. Us servants get the scraps only after the horses have had their fill!");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            if (player.raceName == "Nirwaden" && player.title == "Nobility")
+                            {
+                                if (player.gender == "Female")
+                                {
+                                    setMsg("Good day, me dame.");
+                                }
+                                else
+                                {
+                                    setMsg("Good day, me lord.");
+                                }
+                            }
+                            else if (player.raceName == "Nirwaden" && player.title == "Royalty")
+                            {
+                                setMsg("And you a wonderful one, your excellency!");
+                            }
+                            else if (player.raceName == "Nirwaden" && player.title == "Highfolk")
+                            {
+                                setMsg("Good day, me Hidalgo, sir.");
+                            }
+                            else if (player.title == "Nobility" || player.title == "Royalty")
+                            {
+                                setMsg("Good day, your grace.");
+                            }
+                            else
+                            {
+                                setMsg("Good day.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                        if (player.title == "Nobility" || player.title == "Royalty" || player.title == "Highfolk")
+                        {
+                            setMsg("Why thank you!");
+                        }
+                        else
+                        {
+                            setMsg("Of course it does... Enjoy that smell! that's all you're gonna get...");
+                        }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            setMsg("Fair well.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            //text dialogue
+                            setMsg("I woke up and started right off on the cooking, like I always do. I started with the large bits of meat that need to cook for a long time, I baked the pastries, cooked the fish, and cooked up the vegetables and made sure to set out fresh wine...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0f")
+                        {
+                            //text dialogue
+                            setMsg("I didn't do it, I swear! It wasn't me, I would never do such a thing, never! never! It wasn't me!, Please, no, no, no please no! I don't want to die!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                dialogueReset(self);
+
+                                if (quests.aFeastForFewerQuest == true)
+                                {
+                                    quests.aFeastForFewerCompletionStyle = "easywayout";
+                                    quests.aFeastForFewerQuest = "complete";
+                                    if (player.raceName == "Nirwaden" && player.title == "Nobility")
+                                    {
+                                        quests.completeQuests.push({name: "A Feast for Fewer", description: "You sentenced the cook to burn at the pyre for the poisoning of your father."});
+                                        player.nirwadenFaction += 25;
+                                    }
+                                    else if (player.raceName == "Nirwaden" && player.title == "Royalty" || player.raceName == "Nirwaden" && player.title == "Highfolk")
+                                    {
+                                        quests.completeQuests.push({name: "A Feast for Fewer", description: "You sentenced the cook to burn at the pyre for the poisoning of High Lord Altezor."});
+                                        player.nirwadenFaction += 20;
+                                    }
+                                    else
+                                    {
+                                        quests.completeQuests.push({name: "A Feast for Fewer", description: "You reported the cook to the proper authorities who executed her for poisoning the high lord."});
+                                        player.nirwadenFaction += 15;
+                                    }
+                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                    {
+                                        player.magicalExperience += 20;
+                                    }
+                                    else
+                                    {
+                                        player.experience += 75;
+                                    }
+                                }
+                                change = "pireGathering";
+                                quests.doPire = true;
+                                player.blinded = true;
+                                player.blindedStoreTime = new Date().getTime();
+                                player.blindedTime = 1;
+                                X = -46299;
+                                Y = 34;
+                                quests.pireVictim = "Marta the Cook";
+                                for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--)
+                                {
+                                    if (ArtificialIntelligenceAccess[i].ID == quests.pireVictim)
+                                    {
+                                        ArtificialIntelligenceAccess.splice(i, 1);
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0g")
+                        {
+                            //text dialogue
+                            setMsg("Please, I beg of you, grant me mercy your excellency!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                dialogueReset(self);
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                                uniqueChars.martaLDS = false;
+                                player.blinded = true;
+                                player.blindedStoreTime = new Date().getTime();
+                                player.blindedTime = 1;
+                                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                                {
+                                    if (ArtificialIntelligenceAccess[i].ID == "Marta the Cook")
+                                    {
+                                        ArtificialIntelligenceAccess[i].X += 999999999999;
+                                        ArtificialIntelligenceAccess[i].Y += 999999999999;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0h")
+                        {
+                            //text dialogue
+                            setMsg("Besides me... well, little Libo helps me in the kitchen, but besides him nobody else has been in here. I have not left the kitchen except to deliver the high lord's food to him.");
 
                             //on ended text dialogue
                             if (tellMessage == "reset")
@@ -2303,7 +6004,7 @@ function interaction(me)
                             //on ended text dialogue
                             if (tellMessage == "reset")
                             {
-                                msgReset();
+                                dialogueReset(self);
 
                                 change = "pireGathering";
                                 quests.doPire = true;
@@ -2322,11 +6023,6 @@ function interaction(me)
                                         break;
                                     }
                                 }
-
-                                playersTurnToSpeak = true;
-                                player.dialoguePosition = 0;
-                                conversationID[1] = 1;
-                                self.SC();
                             }
                             else
                             {
@@ -14938,6 +18634,7 @@ function interaction(me)
 function dialogueReset(self)
 {
     self.engagedInDialogue = false;
+    player.dialogueChoiceMade = false;
     player.dialoguePosition = 0;
     player.inventoryPosition = 0;
     invScroll = 0;
@@ -14956,6 +18653,10 @@ function dialogueReset(self)
     makeWord = [];
     message = " ";
     tellMessage = false;
+    msgKeepTime = 0;
+
+    player.dialogueOptions = [];
+    playersTurnToSpeak = true;
 }
 
 function msgReset()

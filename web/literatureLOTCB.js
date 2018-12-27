@@ -70,5 +70,60 @@ function findLiterature(itemType)
     else if (itemType == "estolProof")
     {
         reading = [["^|Lo, the boss needs you to get him this new spell we stole as soon as possible. You can't let anybody else in on our boss's secret, alright. If anybody asks, this scroll is just a secret code, or something like that. Oh and I left you some more kolum powder to sell, keep up the good work!"]];
+        if (quests.theEstolConspiracyQuest == false)
+        {
+            quests.theEstolConspiracyQuest = true;
+            quests.activeQuests.push({name: "The Estol Conspiracy", description: "The Estol Gang is apparently collecting magic scrolls."});
+        }
+    }
+    else if (itemType == "estolPoisoningOrders")
+    {
+        var lordLady;
+        if (player.raceName == "Nirwaden" || player.title == "Nobility")
+        {
+            if (player.gender == "Male")
+            {
+                lordLady = "lord";
+            }
+            else
+            {
+                lordLady = "dame";
+            }
+        }
+        else
+        {
+            lordLady = "regent";
+        }
+        if (quests.aFeastForFewerQuest == true)
+        {
+            quests.aFeastForFewerCompletionStyle = "estolConspiracy";
+            quests.aFeastForFewerQuest = "complete";
+            if (player.raceName == "Nirwaden" && player.title == "Nobility")
+            {
+                quests.completeQuests.push({name: "A Feast for Fewer", description: "You've learnt that your father's assassination was part of a larger criminal conspiracy by the Estol Gang."});
+            }
+            else
+            {
+                quests.completeQuests.push({name: "A Feast for Fewer", description: "You've learnt that the assassination of Lord Altezor was part of a larger criminal conspiracy by the Estol Gang."});
+            }
+            player.nirwadenFaction += 40;
+            if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+            {
+                player.magicalExperience += 70;
+            }
+            else
+            {
+                player.experience += 200;
+            }
+            player.fame += 1;
+            quests.theEstolConspiracyQuest = true;
+            quests.activeQuests.push({name: "The Estol Conspiracy", description: "The Estol Gang has a nefarious master plan."});
+        }
+        else if (quests.theEstolConspiracyQuest == false)
+        {
+            quests.theEstolConspiracyQuest = true;
+            quests.activeQuests.push({name: "The Estol Conspiracy", description: "The Estol Gang has a nefarious master plan."});
+        }
+        reading = [["^| Now that you were able to join their ranks its time to get to business. The boss wants the lord dead because he says it will cause enough dissaray with the new " + lordLady + " having to learn the ropes and all, that his big plan should go almost completely unnoticed, that is, until it is too late to stop it... | @ Yours truly, Lo. ||If you mess this up I will personally eviscerate you."]];
     }
 }

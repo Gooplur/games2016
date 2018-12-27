@@ -411,6 +411,8 @@ function worldBuilder()
             outlineBuilder( 12, 1, "nirRoad", 150, -20); //garden road L
             outlineBuilder( 12, 1, "nirRoad", 156, -20); //garden road R
 
+            outlineBuilder( 1, 3, "nirRoad", 152, -9);
+
         }
         //mapE4 //Atalin City
         if (Y > -3919 && Y < 6870 && X < -33089 && X > -44725) //X4

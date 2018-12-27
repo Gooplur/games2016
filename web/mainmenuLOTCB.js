@@ -1247,9 +1247,22 @@ function applySelectionsButton()
 
             if (player.title == "Nobility")
             {
-                X = -45081;
-                Y = 9127;
+                X = -44825;
+                Y = 8859;
+                quests.aFeastForFewerQuest = true;
+                quests.activeQuests.push({name: "A Feast for Fewer", description: "Your father has just been poisoned; for all you know you were meant to die as well..."});
             }
+            else if (player.title == "Royalty")
+            {
+                quests.aFeastForFewerQuest = true;
+                quests.activeQuests.push({name: "A Feast for Fewer", description: "One of the high lord's of Nirwaden has been assassinated with poison. Found out who is behind it."});
+            }
+            else if (player.title == "Highfolk")
+            {
+                quests.aFeastForFewerQuest = true;
+                quests.activeQuests.push({name: "A Feast for Fewer", description: "One of the high lord's of Nirwaden has been assassinated with poison. Found out who is behind it."});
+            }
+
         }
 
         //set the players credit rating based on title

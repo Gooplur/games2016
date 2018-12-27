@@ -3337,7 +3337,14 @@ function theLegend()
         cristobal: ["Cristobal", 0],
         vela: ["Vela", 0],
         lelaila: ["Lelaila", 0],
-        emmanuel: ["Emmanuel", 0]
+        emmanuel: ["Emmanuel", 0],
+        emylia: ["Emylia", 0],
+        lailiona: ["Lailiona", 0],
+        belgos: ["Belgos", 0],
+        marta: ["Marta", 0],
+        libo: ["Libo", 0],
+        suspReg: ["SuspectedRegicide", 0],
+        mechelo: ["Mechelo", 0]
     };
 
 //time Tracker Variables
@@ -3508,7 +3515,14 @@ function theLegend()
         cristobalLDS: true,
         velaLDS: true,
         lelailaLDS: true,
-        emmanuelLDS: true
+        emmanuelLDS: true,
+        emyliaLDS: true,
+        lailionaLDS: true,
+        belgosLDS: true,
+        martaLDS: true,
+        liboLDS: true,
+        altezorInfiltratorLDS: true,
+        mecheloLDS: true
     };
 //QUESTS
     quests =
@@ -3560,12 +3574,31 @@ function theLegend()
         ultherMapItems: true,
         venningMapItems: true,
         atalinE4Items: true,
+        altezorCastleItems: true,
 
         //EVENTS (non quest)
         ultherFlower: true,
         doPire: false,
         pireVictim: "none",
         atalinTaxManReformed: false,
+        retaliation: false, //turning this to true sends exactly one assassin at the player.
+        emyliaOffended: false,
+
+        //POLITICS
+            //Atalin
+        atalinArmyEnhanced: false, //double Atalin City's soldier count
+        atalinCampoProtected: false, //protect the countryside with new soldiers
+        atalinRaidingParty: false, //develop a warring army
+        atalinEmpressWarPermission: false, //do you have permission to go to war from the empress
+        atalinCalcuttConquered: false, //is calcutt city conquered or in the process of being it
+        atalinTownShip: false, //is the township built?
+        atalinTownShipName: false, //if a township is founded it will be named by the player's choice
+        atalinTeshirAnnexed: false, //does the high regent of atalin control Teshir?
+        atalinTourny: 0, //once a season a tournament can happen if there are enough points here to spend.
+        atalinTournySeason: false,
+        atalinTournyHosted: false, //is the tourny happening or not?
+        atalinSisterJarl: false, //your sister is the obvious choice to be the dame of Teshir.
+        teshirConverted: false, //is teshir converted to the faith of the everlasting spirit (do they had a church and a pyre built?)
 
         //PLAYER CHILDREN SPAWN
         hilmundChild: false,
@@ -3575,6 +3608,16 @@ function theLegend()
         cherylChildAccompany: false,
         rannukChild: false,
         rannukChildName: "Espen",
+
+        //QUEST: A Feast for Few ---- given by note
+        theEstolConspiracyQuest: false,
+        theEstolConspiracyCompletionStyle: false,
+
+        //QUEST: A Feast for Few ---- given by (onStart || fame)
+        aFeastForFewerQuest: false,
+        aFeastForFewerCompletionStyle: false,
+        aFeastForFewerInfiltrator: false,
+        aFeastForFewerBelgos: false,
 
         //QUEST: Tortured Spirit ---- given by Bishop Emmanuel
         torturedSpiritQuest: false,
@@ -3824,6 +3867,7 @@ function theLegend()
     allWeapons.push(new Item("spade", false)); //78
     allWeapons.push(new Item("vampire", false)); //79 //FORM
     allWeapons.push(new Item("selkieSkin"));//80 //FORM
+    allWeapons.push(new Item("sickle"));//81
 
 
 
@@ -4293,6 +4337,7 @@ function theLegend()
     alchemy.push(new Item("ghoulFlyPowder", false));
     alchemy.push(new Item("kolumPowder", false));
     alchemy.push(new Item("adhesive", false));
+    alchemy.push(new Item("vialOfGojiiPoison", false));
 
 //Brewing (alcohols, liquid fermentation, etc.)
     brewing = [];
@@ -4330,6 +4375,8 @@ function theLegend()
     handcrafted.push(new Item("bagOfHarstFlour", false));
     handcrafted.push(new Item("emptyBagSanth", false));
     handcrafted.push(new Item("bagOfSanthFlour", false));
+    handcrafted.push(new Item("darkRoseBoquet", false));
+    handcrafted.push(new Item("roseBoquet", false));
     handcrafted.push(new Item("suuliMelonSlice", false));
     handcrafted.push(new Item("naapridButter", false));
     handcrafted.push(new Item("waantiButter", false));

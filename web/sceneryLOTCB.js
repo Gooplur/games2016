@@ -2785,6 +2785,56 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 this.activate = false;
             }
         }
+        else if (this.type == "stillFountain")
+        {
+            //TRAITS
+            this.solid = true;
+            this.interactionRange = 1;
+
+            this.zIndex = 1;
+            if (this.temporary == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(bogg, 545, 804, 78, 78, -(1/2 * 78 * this.information), -(1/2 * 78 * this.information), 78 * this.information, 78 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 1)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(bogg, 641, 807, 78, 78, -(1/2 * 78 * this.information), -(1/2 * 78 * this.information), 78 * this.information, 78 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 2)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(bogg, 690, 893, 78, 78, -(1/2 * 78 * this.information), -(1/2 * 78 * this.information), 78 * this.information, 78 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 3)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(bogg, 445, 801, 78, 78, -(1/2 * 78 * this.information), -(1/2 * 78 * this.information), 78 * this.information, 78 * this.information);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 34 * this.information;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
         else if (this.type == "longTable")
         {
             //TRAITS
@@ -4637,6 +4687,52 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 this.activate = false;
             }
         }
+        else if (this.type == "nirwadenStadium")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 135;
+
+            //DRAWSELF
+            this.zIndex = 1;
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(Math.PI);
+            XXX.drawImage(bogg, 21, 4, 766, 496, -(1/2 * 766 * 2), -(1/2 * 496 * 2), 766 * 2, 496 * 2);
+            XXX.restore();
+
+
+            //barrierList.push(new Barrier(this.X -117, this.Y - 105, 209, 230, false)); // a square that covers the entire building
+
+            //BARRIERS
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+                barrierList.push(new Barrier((this.X - 595), (this.Y - 331), 537, 32, true)); //right wall
+                barrierList.push(new Barrier((this.X + 561), (this.Y - 331), 537, 32, true)); //left wall
+                barrierList.push(new Barrier((this.X - 595), (this.Y - 331 + 505), 32, 1163, true)); //top wall
+                barrierList.push(new Barrier((this.X - 595), (this.Y - 331), 20, 558, true)); //bottom wallR
+                barrierList.push(new Barrier((this.X - 595 + 558 + 75), (this.Y - 331), 20, 550, true)); //bottom wallL
+                barrierList.push(new Barrier((this.X - 595 + 558 + 75), (this.Y - 464), 149, 9, true)); //entry L
+                barrierList.push(new Barrier((this.X - 595 + 558 - 9), (this.Y - 464), 149, 9, true)); //entry R
+                barrierList.push(new Barrier((this.X - 595 + 558 + 176), (this.Y + 288), 193, 20, true)); //royal box L
+                barrierList.push(new Barrier((this.X - 595 + 558 - 128), (this.Y + 288), 193, 23, true)); //royal box R
+                barrierList.push(new Barrier((this.X - 595 + 558 - 128), (this.Y + 288 + 171), 22, 322, true)); //royal box top
+                //barrierList.push(new Barrier((this.X - 113.5), (this.Y + 92), 19, 230, true));
+                //barrierList.push(new Barrier((this.X - 113.5), (this.Y - 109), 19, 85, true)); //bottom wall
+                //barrierList.push(new Barrier((this.X - 113.5 + 142), (this.Y - 109), 19, 88, true)); //bottom wall
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 1;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
         else if (this.type == "thenganSandbox")
         {
             //TRAITS
@@ -5749,6 +5845,52 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
             this.radius = 90;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "nirwadenStadiumCanopy")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 135;
+            this.zIndex = 6;
+
+            //DRAWSELF
+            if (X > (this.X - 130) && X < (this.X - 130) + 260 && Y > (this.Y - 90) && Y < (this.Y - 90) + 220)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(Math.PI);
+                XXX.globalAlpha = 0.1;
+                XXX.drawImage(bogg, 324, 519, 169, 198, -(1/2 * 169 * 2), -(1/2 * 198 * 2), 169 * 2, 198 * 2);
+                XXX.restore();
+            }
+            else
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(Math.PI);
+                XXX.drawImage(bogg, 324, 519, 169, 198, -(1/2 * 169 * 2), -(1/2 * 198 * 2), 169 * 2, 198 * 2);
+                XXX.restore();
+            }
+
+
+            //barrierList.push(new Barrier(this.X - 230, this.Y - 245, 470, 495, false)); // a square that covers the entire building
+
+            //BARRIERS
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+                //barrierList.push(new Barrier((this.X - 91), (this.Y - 45), 90, 186, true));
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 1;
 
             //INTERACTION
             if (this.activate == true)
@@ -9176,6 +9318,457 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 if (hits == Inventory.length)
                 {
                     Inventory.push([new Item("neprilneBerries", false, false), 1]);
+                }
+            }
+        }
+        else if (this.type == "redStetriliPlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.nectar(8);
+            this.solid = false;
+            this.interactionRange = 100;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(bogg, 754, 596, 43, 47, -(1/2 * 43), -(1/2 * 47), 43, 47);
+                XXX.restore();
+            }
+            else if (this.phase == "picked")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(bogg, 754, 642, 43, 47, -(1/2 * 43), -(1/2 * 47), 43, 47);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 22;
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0)
+            {
+                this.activate = false;
+
+                //if the plant is owned and you are noticed by any AI then decrease faction relation for stealing.
+                if (this.owned.length > 1)
+                {
+                    if (player.noticed == true)
+                    {
+                        this.changeFactionRelation(-5);
+                    }
+                }
+
+                this.phase = "picked";
+                var hits = 0;
+                for (var i = 0; i < Inventory.length; i ++)
+                {
+                    if (Inventory[i][0].type == "redStetriliFlower")
+                    {
+                        Inventory[i][1] += Math.floor(Math.random() * 5) + 1;
+                        break;
+                    }
+                    else
+                    {
+                        hits += 1;
+                    }
+                }
+                if (hits == Inventory.length)
+                {
+                    Inventory.push([new Item("redStetriliFlower", false, false), Math.floor(Math.random() * 5) + 1]);
+                }
+            }
+        }
+        else if (this.type == "yellowStetriliPlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.nectar(8);
+            this.solid = false;
+            this.interactionRange = 100;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(bogg, 515, 516, 43, 47, -(1/2 * 43), -(1/2 * 47), 43, 47);
+                XXX.restore();
+            }
+            else if (this.phase == "picked")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(bogg, 514, 562, 43, 47, -(1/2 * 43), -(1/2 * 47), 43, 47);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 22;
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0)
+            {
+                this.activate = false;
+
+                //if the plant is owned and you are noticed by any AI then decrease faction relation for stealing.
+                if (this.owned.length > 1)
+                {
+                    if (player.noticed == true)
+                    {
+                        this.changeFactionRelation(-5);
+                    }
+                }
+
+                this.phase = "picked";
+                var hits = 0;
+                for (var i = 0; i < Inventory.length; i ++)
+                {
+                    if (Inventory[i][0].type == "yellowStetriliFlower")
+                    {
+                        Inventory[i][1] += Math.floor(Math.random() * 5) + 1;
+                        break;
+                    }
+                    else
+                    {
+                        hits += 1;
+                    }
+                }
+                if (hits == Inventory.length)
+                {
+                    Inventory.push([new Item("yellowStetriliFlower", false, false), Math.floor(Math.random() * 5) + 1]);
+                }
+            }
+        }
+        else if (this.type == "orangeStetriliPlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.nectar(8);
+            this.solid = false;
+            this.interactionRange = 100;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(bogg, 701, 688, 43, 47, -(1/2 * 43), -(1/2 * 47), 43, 47);
+                XXX.restore();
+            }
+            else if (this.phase == "picked")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(bogg, 701, 734, 43, 47, -(1/2 * 43), -(1/2 * 47), 43, 47);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 22;
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0)
+            {
+                this.activate = false;
+
+                //if the plant is owned and you are noticed by any AI then decrease faction relation for stealing.
+                if (this.owned.length > 1)
+                {
+                    if (player.noticed == true)
+                    {
+                        this.changeFactionRelation(-5);
+                    }
+                }
+
+                this.phase = "picked";
+                var hits = 0;
+                for (var i = 0; i < Inventory.length; i ++)
+                {
+                    if (Inventory[i][0].type == "orangeStetriliFlower")
+                    {
+                        Inventory[i][1] += Math.floor(Math.random() * 5) + 1;
+                        break;
+                    }
+                    else
+                    {
+                        hits += 1;
+                    }
+                }
+                if (hits == Inventory.length)
+                {
+                    Inventory.push([new Item("orangeStetriliFlower", false, false), Math.floor(Math.random() * 5) + 1]);
+                }
+            }
+        }
+        else if (this.type == "peachStetriliPlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.nectar(6);
+            this.solid = false;
+            this.interactionRange = 100;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(bogg, 514, 605, 43, 47, -(1/2 * 43), -(1/2 * 47), 43, 47);
+                XXX.restore();
+            }
+            else if (this.phase == "picked")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(bogg, 513, 651, 43, 47, -(1/2 * 43), -(1/2 * 47), 43, 47);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 22;
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0)
+            {
+                this.activate = false;
+
+                //if the plant is owned and you are noticed by any AI then decrease faction relation for stealing.
+                if (this.owned.length > 1)
+                {
+                    if (player.noticed == true)
+                    {
+                        this.changeFactionRelation(-5);
+                    }
+                }
+
+                this.phase = "picked";
+                var hits = 0;
+                for (var i = 0; i < Inventory.length; i ++)
+                {
+                    if (Inventory[i][0].type == "peachStetriliFlower")
+                    {
+                        Inventory[i][1] += Math.floor(Math.random() * 5) + 1;
+                        break;
+                    }
+                    else
+                    {
+                        hits += 1;
+                    }
+                }
+                if (hits == Inventory.length)
+                {
+                    Inventory.push([new Item("peachStetriliFlower", false, false), Math.floor(Math.random() * 5) + 1]);
+                }
+            }
+        }
+        else if (this.type == "blueStetriliPlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.nectar(11);
+            this.solid = false;
+            this.interactionRange = 100;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(bogg, 752, 688, 43, 47, -(1/2 * 43), -(1/2 * 47), 43, 47);
+                XXX.restore();
+            }
+            else if (this.phase == "picked")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(bogg, 752, 735, 43, 47, -(1/2 * 43), -(1/2 * 47), 43, 47);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 22;
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0)
+            {
+                this.activate = false;
+
+                //if the plant is owned and you are noticed by any AI then decrease faction relation for stealing.
+                if (this.owned.length > 1)
+                {
+                    if (player.noticed == true)
+                    {
+                        this.changeFactionRelation(-5);
+                    }
+                }
+
+                this.phase = "picked";
+                var hits = 0;
+                for (var i = 0; i < Inventory.length; i ++)
+                {
+                    if (Inventory[i][0].type == "blueStetriliFlower")
+                    {
+                        Inventory[i][1] += Math.floor(Math.random() * 5) + 1;
+                        break;
+                    }
+                    else
+                    {
+                        hits += 1;
+                    }
+                }
+                if (hits == Inventory.length)
+                {
+                    Inventory.push([new Item("blueStetriliFlower", false, false), Math.floor(Math.random() * 5) + 1]);
+                }
+            }
+        }
+        else if (this.type == "rosePlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.nectar(12);
+            this.solid = false;
+            this.interactionRange = 100;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(bogg, 621, 525, 53, 46, -(1/2 * 53), -(1/2 * 46), 53, 46);
+                XXX.restore();
+            }
+            else if (this.phase == "picked")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(bogg, 567, 524, 53, 46, -(1/2 * 53), -(1/2 * 46), 53, 46);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 16;
+
+            if (this.playerer <= this.radius && player.armourTotal < 0.15)
+            {
+                player.health -= 0.005;
+            }
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0)
+            {
+                this.activate = false;
+
+                //if the plant is owned and you are noticed by any AI then decrease faction relation for stealing.
+                if (this.owned.length > 1)
+                {
+                    if (player.noticed == true)
+                    {
+                        this.changeFactionRelation(-9);
+                    }
+                }
+
+                this.phase = "picked";
+                var hits = 0;
+                for (var i = 0; i < Inventory.length; i ++)
+                {
+                    if (Inventory[i][0].type == "rose")
+                    {
+                        Inventory[i][1] += Math.floor(Math.random() * 8) + 1;
+                        break;
+                    }
+                    else
+                    {
+                        hits += 1;
+                    }
+                }
+                if (hits == Inventory.length)
+                {
+                    Inventory.push([new Item("rose", false, false), Math.floor(Math.random() * 8) + 1]);
+                }
+            }
+        }
+        else if (this.type == "darkRosePlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.nectar(11);
+            this.solid = false;
+            this.interactionRange = 100;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(bogg, 622, 578, 53, 46, -(1/2 * 53), -(1/2 * 46), 53, 46);
+                XXX.restore();
+            }
+            else if (this.phase == "picked")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(bogg, 568, 577, 53, 46, -(1/2 * 53), -(1/2 * 46), 53, 46);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 16;
+
+            if (this.playerer <= this.radius && player.armourTotal < 0.15)
+            {
+                player.health -= 0.005;
+            }
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0)
+            {
+                this.activate = false;
+
+                //if the plant is owned and you are noticed by any AI then decrease faction relation for stealing.
+                if (this.owned.length > 1)
+                {
+                    if (player.noticed == true)
+                    {
+                        this.changeFactionRelation(-9);
+                    }
+                }
+
+                this.phase = "picked";
+                var hits = 0;
+                for (var i = 0; i < Inventory.length; i ++)
+                {
+                    if (Inventory[i][0].type == "darkRose")
+                    {
+                        Inventory[i][1] += Math.floor(Math.random() * 8) + 1;
+                        break;
+                    }
+                    else
+                    {
+                        hits += 1;
+                    }
+                }
+                if (hits == Inventory.length)
+                {
+                    Inventory.push([new Item("darkRose", false, false), Math.floor(Math.random() * 8) + 1]);
                 }
             }
         }

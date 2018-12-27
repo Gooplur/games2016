@@ -17,6 +17,7 @@ function Item(type, x, y)
     this.store = []; //these are the items you gain from opening a package utility item.
     this.aqua = false; //this determines if the item can be dropped or used while in water
     this.barcode = this.type + (Math.random() * Math.random());
+    this.questy = false;
 
     this.turn = 0;
     this.flashFrame = 0;
@@ -8811,6 +8812,196 @@ function Item(type, x, y)
             this.buyValue = 3 - Math.floor(player.getCharisma() / 50); // at max, buy for 2.
             this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
         }
+        else if (this.type == "rose")
+        {
+            //For All Items
+            this.identity = "Rose";
+            this.weight = 0.05;
+            this.size = 5;
+            this.description = "A red rose.";
+            this.intForDes = 0;
+            this.intDescription = "Red roses are considered a symbol of romantic passion and love.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 2; // at max, sell for 2.
+        }
+        else if (this.type == "roseBoquet")
+        {
+            //For All Items
+            this.identity = "Boquet of Roses";
+            this.weight = 0.25;
+            this.size = 9;
+            this.description = "A boquet of red roses.";
+            this.intForDes = 0;
+            this.intDescription = "Red roses are considered a symbol of romantic passion and love.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 0;
+            this.ingredients = [["Rose", 5]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 12; // at max, buy for 12.
+            this.sellValue = 12; // at max, sell for 12.
+        }
+        else if (this.type == "darkRose")
+        {
+            //For All Items
+            this.identity = "Dark Rose";
+            this.weight = 0.05;
+            this.size = 5;
+            this.description = "A dark red rose.";
+            this.intForDes = 0;
+            this.intDescription = "Dark roses are common throughout Thengaria and the west.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 2; // at max, sell for 2.
+        }
+        else if (this.type == "darkRoseBoquet")
+        {
+            //For All Items
+            this.identity = "Boquet of Dark Roses";
+            this.weight = 0.25;
+            this.size = 9;
+            this.description = "A boquet of dark red roses.";
+            this.intForDes = 0;
+            this.intDescription = "Dark roses are common throughout Thengaria and the west.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 0;
+            this.ingredients = [["Dark Rose", 5]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 11; // at max, buy for 11.
+            this.sellValue = 11; // at max, sell for 11.
+        }
+        else if (this.type == "redStetriliFlower")
+        {
+            //For All Items
+            this.identity = "Red Stetrili Flower";
+            this.weight = 0.06;
+            this.size = 5;
+            this.description = "A six petalled red flower from the eastern lands.";
+            this.intForDes = 0;
+            this.intDescription = "Stetrili flowers can be used to make dye.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 4; // at max, buy for 4.
+            this.sellValue = 4; // at max, sell for 4.
+        }
+        else if (this.type == "orangeStetriliFlower")
+        {
+            //For All Items
+            this.identity = "Orange Stetrili Flower";
+            this.weight = 0.06;
+            this.size = 5;
+            this.description = "A six petalled orange flower from the eastern lands.";
+            this.intForDes = 0;
+            this.intDescription = "Stetrili flowers can be used to make dye.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3; // at max, buy for 3.
+            this.sellValue = 3; // at max, sell for 3.
+        }
+        else if (this.type == "yellowStetriliFlower")
+        {
+            //For All Items
+            this.identity = "Yellow Stetrili Flower";
+            this.weight = 0.06;
+            this.size = 5;
+            this.description = "A six petalled yellow flower from the eastern lands.";
+            this.intForDes = 0;
+            this.intDescription = "Stetrili flowers can be used to make dye.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3; // at max, buy for 3.
+            this.sellValue = 3; // at max, sell for 3.
+        }
+        else if (this.type == "peachStetriliFlower")
+        {
+            //For All Items
+            this.identity = "Peach Stetrili Flower";
+            this.weight = 0.06;
+            this.size = 5;
+            this.description = "A six petalled peach coloured flower from the eastern lands.";
+            this.intForDes = 0;
+            this.intDescription = "Stetrili flowers can be used to make dye.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 4; // at max, buy for 4.
+            this.sellValue = 4; // at max, sell for 4.
+        }
+        else if (this.type == "blueStetriliFlower")
+        {
+            //For All Items
+            this.identity = "Blue Stetrili Flower";
+            this.weight = 0.06;
+            this.size = 5;
+            this.description = "A six petalled blue flower from the eastern lands.";
+            this.intForDes = 0;
+            this.intDescription = "Stetrili flowers can be used to make dye.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5; // at max, buy for 5.
+            this.sellValue = 5; // at max, sell for 5.
+        }
         else if (this.type == "galloshFlower")
         {
             //For All Items
@@ -10888,8 +11079,8 @@ function Item(type, x, y)
             this.ability = "gojii";
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
-            this.buyValue = 45 - Math.floor(player.getCharisma() / 2.5); // at max, buy for 25.
-            this.sellValue = 5 + Math.floor(player.getCharisma() / 5); // at max, sell for 15.
+            this.buyValue = 400 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 300.
+            this.sellValue = 25 + Math.floor(player.getCharisma() / 1); // at max, sell for 75.
         }
         else if (this.type == "healingSalve")
         {
@@ -12770,6 +12961,63 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 2 - Math.floor(player.getCharisma() / 50); // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "emptyVialOfGojiiPoison")
+        {
+            //For All Items
+            this.identity = "Empty vile of Gojii Poison";
+            this.weight = 0.2;
+            this.size = 6;
+            this.description = "The vile was labeled as a poison...";
+            this.intForDes = 2;
+            this.intDescription = "It was sort of dumb of them to leave the label on, it would be impossible to tell that it was poison otherwise...";
+
+            //Define Utility
+            this.utility = "questItem";
+
+            //ability
+            this.ability = "none";
+
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "vialOfGojiiPoison")
+        {
+            //For All Items
+            this.identity = "Gojii Poison";
+            this.weight = 0.5;
+            this.size = 5;
+            this.description = "A vile of one of the most deadly poisons in the lands.";
+            this.intForDes = 4;
+            this.intDescription = "As this is perfectly clear it is the poison of choice for poisoning somebody's food...";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["potionGlass", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "gojii";
+
+            //Crafting
+            this.yield = 4;
+            this.intForCraft = 2;
+            this.ingredients = [["Gojii Berries", 1], ["Vial of Water", 4]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 150 - Math.floor(player.getCharisma() / 1); // at max, buy for 100.
+            this.sellValue = 25; // at max, sell for 10.
         }
         else if (this.type == "vialOfWater")
         {
@@ -18013,6 +18261,26 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 13; // at max, buy for 13.
             this.sellValue = 13; // at max, sell for 13.
+        }
+        else if (this.type == "boggartSpine")
+        {
+            //For All Items
+            this.identity = "Boggart Spine";
+            this.weight = 4;
+            this.size = 12;
+            this.description = "The curled spinal chord of a nefarious fairy being.";
+            this.intForDes = 1;
+            this.intDescription = "This can be used in alchemy as a changer.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 53; // at max, buy for 53.
+            this.sellValue = 53; // at max, sell for 53.
         }
         else if (this.type == "cloth")
         {
@@ -25616,7 +25884,7 @@ function Item(type, x, y)
             this.weight = 1;
             this.size = 26;
             this.description = "A cloth outfit with both a skirt and veil of silk and strands of silk decoratively adorning the sleeves.";
-            this.intForDes = 1;
+            this.intForDes = 0;
             this.intDescription = "This is the outfit that all females not of noble or royal ancestry are expected to wear.";
 
             //Define Utility
@@ -25680,7 +25948,7 @@ function Item(type, x, y)
             this.weight = 1;
             this.size = 26;
             this.description = "A cloth outfit and a red turbin.";
-            this.intForDes = 1;
+            this.intForDes = 0;
             this.intDescription = "It is customary for men in aldrekii culture to wear a turbin while in public, but some exceptions are made...";
 
             //Define Utility
@@ -25737,7 +26005,7 @@ function Item(type, x, y)
             this.weight = 1;
             this.size = 26;
             this.description = "A cloth outfit and a purple turbin.";
-            this.intForDes = 1;
+            this.intForDes = 0;
             this.intDescription = "It is customary for men in aldrekii culture to wear a turbin while in public, but some exceptions are made...";
 
             //Define Utility
@@ -28306,6 +28574,39 @@ function Item(type, x, y)
             this.buyValue = 274 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 174.
             this.sellValue = 118 + Math.floor(player.getCharisma() / 1); // at max, sell for 168.
         }
+        else if (this.type == "sickle")
+        {
+            //For All Items
+            this.identity = "Sickle";
+            this.weight = 1;
+            this.size = 19;
+            this.description = "A blade used commonly by farmers to harvest grain.";
+            this.intForDes = 13;
+            this.intDescription = "This tool is used most commonly in southern regions and nirwaden.";
+
+            //Define Utility
+            this.utility = "weapon";
+
+            //Utility Focused
+            this.energyCost = 1;
+            this.distance = 18 + (this.range * 7);
+            this.range = 5 + 4 / 7;
+            this.rate = 100;
+            this.damage = ((3 - (this.damageHandicap * 1.5)) * (this.leveledDamageMultiple / 25)) * (1 + 0.2 * this.superStealthNum(1));
+            this.magicalDamage = 0;
+            this.negateArmour = 0 + this.superStealthNum(1);
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 14;
+            this.ingredients = [["Steel", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 13 - Math.floor(player.getCharisma() / 25); // at max, buy for 11.
+            this.sellValue = 9 + Math.floor(player.getCharisma() / 25); // at max, sell for 11.
+        }
         else if (this.type == "scimitar")
         {
             //For All Items
@@ -29267,6 +29568,27 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 0; // at max, sell for 0.
         }
+        else if (this.type == "estolPoisoningOrders")
+        {
+            //For All Items
+            this.identity = "Estol Poisoning Orders";
+            this.weight = 0.001;
+            this.size = 12;
+            this.description = "A note with details concerning the poisoning of Lord Altezor from the estol gang.";
+            this.intForDes = 1001;
+            this.intDescription = "";
+
+            //Define Utility
+            this.utility = "note";
+            this.questy = true;
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
         else if (this.type == "estolProof")
         {
             //For All Items
@@ -29279,6 +29601,7 @@ function Item(type, x, y)
 
             //Define Utility
             this.utility = "note";
+            this.questy = true;
 
             //ability
             this.ability = "none";
@@ -29299,6 +29622,7 @@ function Item(type, x, y)
 
             //Define Utility
             this.utility = "material";
+            this.questy = true;
 
             //ability
             this.ability = "none";
@@ -29319,6 +29643,7 @@ function Item(type, x, y)
 
             //Define Utility
             this.utility = "material";
+            this.questy = true;
 
             //ability
             this.ability = "none";
@@ -29462,7 +29787,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 1979, 12, 17, 20, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 20 * 1), 17 * 1, 20 * 1);
         }
-        else if (this.type == "madmanNote" || this.type == "ultherRIP" || this.type == "stolenTabletLetter" || this.type == "paperwork" || this.type == "falseInventionPlans" || this.type == "inventionPlans" || this.type == "estolProof")
+        else if (this.type == "madmanNote" || this.type == "ultherRIP" || this.type == "stolenTabletLetter" || this.type == "paperwork" || this.type == "falseInventionPlans" || this.type == "inventionPlans" || this.type == "estolProof" || this.type == "estolPoisoningOrders")
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 15 * 1, 23 * 1);
@@ -29471,6 +29796,56 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(candlewic, 60, 167, 27, 29, X - this.X + (1/2 * CCC.width) - (1/2 * 27 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 29 * 1.5), 27 * 1.5, 29 * 1.5);
+        }
+        else if (this.type == "sickle")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bogg, 64, 814, 30, 39, X - this.X + (1/2 * CCC.width) - (1/2 * 30 * 1.35), Y - this.Y + (1/2 * CCC.height) - (1/2 * 39 * 1.35), 30 * 1.35, 39 * 1.35);
+        }
+        else if (this.type == "rose")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bogg, 717, 530, 33, 42, X - this.X + (1/2 * CCC.width) - (1/2 * 33 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 42 * 1), 33 * 1, 42 * 1);
+        }
+        else if (this.type == "roseBoquet")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bogg, 684, 527, 33, 42, X - this.X + (1/2 * CCC.width) - (1/2 * 33 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 42 * 1), 33 * 1, 42 * 1);
+        }
+        else if (this.type == "darkRoseBoquet")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bogg, 685, 580, 33, 42, X - this.X + (1/2 * CCC.width) - (1/2 * 33 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 42 * 1), 33 * 1, 42 * 1);
+        }
+        else if (this.type == "darkRose")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bogg, 718, 583, 33, 42, X - this.X + (1/2 * CCC.width) - (1/2 * 33 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 42 * 1), 33 * 1, 42 * 1);
+        }
+        else if (this.type == "orangeStetriliFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bogg, 611, 681, 22, 35, X - this.X + (1/2 * CCC.width) - (1/2 * 22 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 35 * 1), 22 * 1, 35 * 1);
+        }
+        else if (this.type == "yellowStetriliFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bogg, 558, 682, 22, 35, X - this.X + (1/2 * CCC.width) - (1/2 * 22 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 35 * 1), 22 * 1, 35 * 1);
+        }
+        else if (this.type == "peachStetriliFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bogg, 584, 682, 22, 35, X - this.X + (1/2 * CCC.width) - (1/2 * 22 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 35 * 1), 22 * 1, 35 * 1);
+        }
+        else if (this.type == "blueStetriliFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bogg, 636, 683, 22, 35, X - this.X + (1/2 * CCC.width) - (1/2 * 22 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 35 * 1), 22 * 1, 35 * 1);
+        }
+        else if (this.type == "boggartSpine")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bogg, 410, 978, 51, 45, X - this.X + (1/2 * CCC.width) - (1/2 * 51 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 45 * 0.8), 51 * 0.8, 45 * 0.8);
         }
         else if (this.type == "assassinWrappings")
         {
@@ -31967,12 +32342,12 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(freeverse, 431, 972, 10, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 10), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17), 10, 17);
         }
-        else if (this.type == "potionGlass")
+        else if (this.type == "potionGlass" || this.type == "emptyVialOfGojiiPoison")
         {
             XXX.beginPath();
             XXX.drawImage(freeverse, 419, 1, 10, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 10), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17), 10, 17);
         }
-        else if (this.type == "vialOfWater")
+        else if (this.type == "vialOfWater" || this.type == "vialOfGojiiPoison")
         {
             XXX.beginPath();
             XXX.drawImage(freeverse, 406, 1, 10, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 10), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16), 10, 16);
@@ -33275,7 +33650,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(polypol, 1979, 12, 17, 20, this.invX - (1/2 * 17 * 1), this.invY - (1/2 * 20 * 1), 17 * 1, 20 * 1);
         }
-        else if (this.type == "madmanNote" || this.type == "ultherRIP" || this.type == "stolenTabletLetter" || this.type == "paperwork" || this.type == "falseInventionPlans" || this.type == "inventionPlans" || this.type == "estolProof")
+        else if (this.type == "madmanNote" || this.type == "ultherRIP" || this.type == "stolenTabletLetter" || this.type == "paperwork" || this.type == "falseInventionPlans" || this.type == "inventionPlans" || this.type == "estolProof" || this.type == "estolPoisoningOrders")
         {
             LXX.beginPath();
             LXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
@@ -33284,6 +33659,61 @@ function Item(type, x, y)
         {
             LXX.beginPath();
             LXX.drawImage(candlewic, 61, 201, 27, 29, this.invX - (1/2 * 27 * 1.5), this.invY - (1/2 * 29 * 1.5), 27 * 1.5, 29 * 1.5);
+        }
+        else if (this.type == "sickle")
+        {
+            LXX.beginPath();
+            LXX.drawImage(bogg, 64, 814, 30, 39, this.invX - (1/2 * 30 * 1.35), this.invY - (1/2 * 39 * 1.35), 30 * 1.35, 39 * 1.35);
+        }
+        else if (this.type == "rose")
+        {
+            LXX.beginPath();
+            LXX.drawImage(bogg, 717, 530, 33, 42, this.invX - (1/2 * 33 * 1), this.invY - (1/2 * 42 * 1), 33 * 1, 42 * 1);
+        }
+        else if (this.type == "roseBoquet")
+        {
+            LXX.beginPath();
+            LXX.drawImage(bogg, 684, 527, 33, 42, this.invX - (1/2 * 33 * 1), this.invY - (1/2 * 42 * 1), 33 * 1, 42 * 1);
+        }
+        else if (this.type == "darkRoseBoquet")
+        {
+            LXX.beginPath();
+            LXX.drawImage(bogg, 685, 580, 33, 42, this.invX - (1/2 * 33 * 1), this.invY - (1/2 * 42 * 1), 33 * 1, 42 * 1);
+        }
+        else if (this.type == "darkRose")
+        {
+            LXX.beginPath();
+            LXX.drawImage(bogg, 718, 583, 33, 42, this.invX - (1/2 * 33 * 1), this.invY - (1/2 * 42 * 1), 33 * 1, 42 * 1);
+        }
+        else if (this.type == "redStetriliFlower")
+        {
+            LXX.beginPath();
+            LXX.drawImage(bogg, 659, 684, 22, 35, this.invX - (1/2 * 22 * 1), this.invY - (1/2 * 35 * 1), 22 * 1, 35 * 1);
+        }
+        else if (this.type == "orangeStetriliFlower")
+        {
+            LXX.beginPath();
+            LXX.drawImage(bogg, 611, 681, 22, 35, this.invX - (1/2 * 22 * 1), this.invY - (1/2 * 35 * 1), 22 * 1, 35 * 1);
+        }
+        else if (this.type == "yellowStetriliFlower")
+        {
+            LXX.beginPath();
+            LXX.drawImage(bogg, 558, 682, 22, 35, this.invX - (1/2 * 22 * 1), this.invY - (1/2 * 35 * 1), 22 * 1, 35 * 1);
+        }
+        else if (this.type == "peachStetriliFlower")
+        {
+            LXX.beginPath();
+            LXX.drawImage(bogg, 584, 682, 22, 35, this.invX - (1/2 * 22 * 1), this.invY - (1/2 * 35 * 1), 22 * 1, 35 * 1);
+        }
+        else if (this.type == "blueStetriliFlower")
+        {
+            LXX.beginPath();
+            LXX.drawImage(bogg, 636, 683, 22, 35, this.invX - (1/2 * 22 * 1), this.invY - (1/2 * 35 * 1), 22 * 1, 35 * 1);
+        }
+        else if (this.type == "boggartSpine")
+        {
+            LXX.beginPath();
+            LXX.drawImage(bogg, 410, 978, 51, 45, this.invX - (1/2 * 51 * 0.8), this.invY - (1/2 * 45 * 0.8), 51 * 0.8, 45 * 0.8);
         }
         else if (this.type == "assassinWrappings")
         {
@@ -35871,12 +36301,12 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(freeverse, 431, 972, 10, 17, this.invX - (1/2 * 10), this.invY - (1/2 * 17), 10, 17);
         }
-        else if (this.type == "potionGlass")
+        else if (this.type == "potionGlass" || this.type == "emptyVialOfGojiiPoison")
         {
             LXX.beginPath();
             LXX.drawImage(freeverse, 419, 1, 10, 17, this.invX - (1/2 * 10), this.invY - (1/2 * 17), 10, 17);
         }
-        else if (this.type == "vialOfWater")
+        else if (this.type == "vialOfWater" || this.type == "vialOfGojiiPoison")
         {
             LXX.beginPath();
             LXX.drawImage(freeverse, 406, 1, 10, 16, this.invX - (1/2 * 10), this.invY - (1/2 * 16), 10, 16);
@@ -37058,7 +37488,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 1979, 12, 17, 20, this.invX - (1/2 * 17 * 1), this.invY - (1/2 * 20 * 1), 17 * 1, 20 * 1);
         }
-        else if (this.type == "madmanNote" || this.type == "ultherRIP" || this.type == "stolenTabletLetter" || this.type == "paperwork" || this.type == "falseInventionPlans" || this.type == "inventionPlans" || this.type == "estolProof")
+        else if (this.type == "madmanNote" || this.type == "ultherRIP" || this.type == "stolenTabletLetter" || this.type == "paperwork" || this.type == "falseInventionPlans" || this.type == "inventionPlans" || this.type == "estolProof" || this.type == "estolPoisoningOrders")
         {
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 23 * 1), 15 * 1, 23 * 1);
@@ -37067,6 +37497,61 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(candlewic, 61, 201, 27, 29, this.invX - (1/2 * 27 * 1.5), this.invY - (1/2 * 29 * 1.5), 27 * 1.5, 29 * 1.5);
+        }
+        else if (this.type == "sickle")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bogg, 64, 814, 30, 39, this.invX - (1/2 * 30 * 1.35), this.invY - (1/2 * 39 * 1.35), 30 * 1.35, 39 * 1.35);
+        }
+        else if (this.type == "rose")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bogg, 717, 530, 33, 42, this.invX - (1/2 * 33 * 1), this.invY - (1/2 * 42 * 1), 33 * 1, 42 * 1);
+        }
+        else if (this.type == "roseBoquet")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bogg, 684, 527, 33, 42, this.invX - (1/2 * 33 * 1), this.invY - (1/2 * 42 * 1), 33 * 1, 42 * 1);
+        }
+        else if (this.type == "darkRoseBoquet")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bogg, 685, 580, 33, 42, this.invX - (1/2 * 33 * 1), this.invY - (1/2 * 42 * 1), 33 * 1, 42 * 1);
+        }
+        else if (this.type == "darkRose")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bogg, 718, 583, 33, 42, this.invX - (1/2 * 33 * 1), this.invY - (1/2 * 42 * 1), 33 * 1, 42 * 1);
+        }
+        else if (this.type == "redStetriliFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bogg, 659, 684, 22, 35, this.invX - (1/2 * 22 * 1), this.invY - (1/2 * 35 * 1), 22 * 1, 35 * 1);
+        }
+        else if (this.type == "orangeStetriliFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bogg, 611, 681, 22, 35, this.invX - (1/2 * 22 * 1), this.invY - (1/2 * 35 * 1), 22 * 1, 35 * 1);
+        }
+        else if (this.type == "yellowStetriliFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bogg, 558, 682, 22, 35, this.invX - (1/2 * 22 * 1), this.invY - (1/2 * 35 * 1), 22 * 1, 35 * 1);
+        }
+        else if (this.type == "peachStetriliFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bogg, 584, 682, 22, 35, this.invX - (1/2 * 22 * 1), this.invY - (1/2 * 35 * 1), 22 * 1, 35 * 1);
+        }
+        else if (this.type == "blueStetriliFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bogg, 636, 683, 22, 35, this.invX - (1/2 * 22 * 1), this.invY - (1/2 * 35 * 1), 22 * 1, 35 * 1);
+        }
+        else if (this.type == "boggartSpine")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bogg, 410, 978, 51, 45, this.invX - (1/2 * 51 * 0.8), this.invY - (1/2 * 45 * 0.8), 51 * 0.8, 45 * 0.8);
         }
         else if (this.type == "assassinWrappings")
         {
@@ -39652,12 +40137,12 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(freeverse, 431, 972, 10, 17, this.invX - (1/2 * 10), this.invY - (1/2 * 17), 10, 17);
         }
-        else if (this.type == "potionGlass")
+        else if (this.type == "potionGlass" || this.type == "emptyVialOfGojiiPoison")
         {
             XXX.beginPath();
             XXX.drawImage(freeverse, 419, 1, 10, 17, this.invX - (1/2 * 10), this.invY - (1/2 * 17), 10, 17);
         }
-        else if (this.type == "vialOfWater")
+        else if (this.type == "vialOfWater" || this.type == "vialOfGojiiPoison")
         {
             XXX.beginPath();
             XXX.drawImage(freeverse, 406, 1, 10, 16, this.invX - (1/2 * 10), this.invY - (1/2 * 16), 10, 16);

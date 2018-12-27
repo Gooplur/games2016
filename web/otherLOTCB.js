@@ -1014,12 +1014,33 @@ function taxes()
         //Átalin
         if (uniqueChars.basilioAltezorLDS == false && player.raceName == "Nirwaden" && player.title == "Nobility" && player.nirwadenFaction > -50)
         {
-            quests.atalinTaxes += (15.94 / 20); //bountiful/large
+            if (quests.atalinTournyHosted == true)
+            {
+                quests.atalinTaxes += (19.95 / 9);
+            }
+            else
+            {
+                quests.atalinTaxes += (15.94 / 9); //bountiful/large
+            }
         }
         //Teshir
-        if (uniqueChars.OrjovTorLDS == false && player.raceName == "Freynor" && player.title == "Nobility" && quests.matrimonyTorStambjordCompletionStyle != "marriage" && player.freynorFaction > -50)
+        if (uniqueChars.OrjovTorLDS == false && player.raceName == "Freynor" && player.title == "Nobility" && quests.matrimonyTorStambjordCompletionStyle != "marriage" && player.freynorFaction > -50 || quests.atalinTeshirAnnexed == true)
         {
-            quests.teshirTaxes += (6.22 / 20); //bountiful/medium
+            if (quests.atalinTeshirAnnexed == true)
+            {
+                if (quests.atalinSisterJarl == true)
+                {
+                    quests.teshirTaxes += (7.22 / 9);
+                }
+                else
+                {
+                    quests.teshirTaxes += (4.13 / 9);
+                }
+            }
+            else
+            {
+                quests.teshirTaxes += (6.22 / 9); //bountiful/medium
+            }
         }
     }
 }
@@ -1027,11 +1048,12 @@ function taxes()
 function miniEvent()
 {
     //Assassin that comes to kill the player
-    if (player.debt >= (2 * (player.creditRating * 500)))
+    if (player.debt >= (2 * (player.creditRating * 500)) || quests.retaliation == true)
     {
         if (new Date().getTime() - player.timeTillAssassinAttack >= 29 * 60 * 1000)
         {
             player.timeTillAssassinAttack = new Date().getTime();
+            quests.retaliation = false;
 
             var rrnnddm = Math.random();
             ArtificialIntelligenceAccess.push(new Unit(X + Math.cos(2* Math.PI * rrnnddm) * 900, Y + Math.sin(2* Math.PI * rrnnddm) * 900, "Soldier", false, "Assassin", {race: "Orgell", faction: "Assassin", con: 4, speed: 1.7, outfit: ["assassinWrappings", 0], weapon: ["thenganDagger", [6, 6], 2, 17, 1.1], ranged: [false, "arrow", 11, 2100, 11, 11, 0, "poisonII", 2.2], patrolStops: 0, patrolLoop: false, route:[[0, 0]]}));

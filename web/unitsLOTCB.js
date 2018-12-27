@@ -960,7 +960,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         }
         if (this.team == "Kel")
         {
-            if (player.kelPeace && player.kelFaction > -50)
+            if (player.kelPeace && player.kelFaction > -50 && quests.atalinEmpressWarPermission == false)
             {
                 this.allys.push("player");
             }
@@ -971,7 +971,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.allys.push("Orgell");
             this.allys.push("Vardan");
             this.allys.push("Cephrite");
-            this.allys.push("Nirwaden");
+            if (quests.atalinEmpressWarPermission == false)
+            {
+                this.allys.push("Nirwaden");
+            }
             this.allys.push("clamia");
             this.allys.push("EstolGang");
             this.allys.push("Sylkeem");
@@ -1057,7 +1060,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.allys.push("herdia");
             this.allys.push("TheBalgurMercenaries");
             this.allys.push("Thengar");
-            this.allys.push("Kel");
+            if (quests.atalinEmpressWarPermission == false)
+            {
+                this.allys.push("Kel");
+            }
             this.allys.push("Freynor");
             this.allys.push("Orgell");
             this.allys.push("Vardan");
@@ -1116,7 +1122,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         }
         if (this.team == "Sylkeem")
         {
-            if (player.sylkeemPeace && player.sylkeemFaction > -50)
+            if (player.sylkeemPeace && player.sylkeemRepublicansFaction > -50)
             {
                 this.allys.push("player");
             }
@@ -10123,6 +10129,8 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     player.experience += Math.max(0, this.experience - this.lessEXP);
                 }
 
+                var chanced = false;
+                console.log(chanced);
                 if (this.killNotByPlayer == false && this.muzzle == false || this.killedByCompanion && this.muzzle == false)
                 {
                     if (!this.water || this.flotation || this.land) //items are lost to the water unless the creature can float
@@ -10131,6 +10139,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         {
                             if (this.revived != true)
                             {
+                                chanced = true;
                                 for (var i = 0; i < this.drops.length; i++)
                                 {
                                     worldItems.push([this.drops[i][0], this.drops[i][1]]);
@@ -10167,6 +10176,22 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             if (addEntry)
                             {
                                 beastJournal.push(this.beastEntry);
+                            }
+                        }
+                    }
+                }
+
+                //if player would not otherwise get the dropped item make sure to drop all quest important items.
+                if (chanced == false)
+                {
+                    if (this.revived != true)
+                    {
+                        for (var i = 0; i < this.drops.length; i++)
+                        {
+                            this.drops[i][0].setItemID();
+                            if (this.drops[i][0].questy == true || this.drops[i][0].utility == "questItem")
+                            {
+                                worldItems.push([this.drops[i][0], this.drops[i][1]]);
                             }
                         }
                     }
@@ -10594,6 +10619,36 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 XXX.rotate(this.rotation);
                 XXX.drawImage(atal, 444, 3515, 65, 54, -(1 / 2 * 65 * 0.62) - 8, -(1 / 2 * 54 * 0.62) - 0, 65 * 0.62, 54 * 0.62);
             }
+            else if (outfit == "nirwadenNobleOutfit")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(atal, 24, 846, 48, 53, -(1 / 2 * 48 * 0.66) - 5, -(1 / 2 * 53 * 0.66) -1.5, 48 * 0.66, 53 * 0.66);
+            }
+            else if (outfit == "nirwadenNobleDress")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(atal, 470, 745, 95, 63, -(1 / 2 * 95 * 0.54) - 17, -(1 / 2 * 63 * 0.54) -1, 95 * 0.54, 63 * 0.54);
+            }
+            else if (outfit == "nirwadenLadyPointyCap")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(atal, 470, 745, 95, 63, -(1 / 2 * 95 * 0.54) - 17, -(1 / 2 * 63 * 0.54) -1, 95 * 0.54, 63 * 0.54);
+            }
             else if (outfit == "nirwadenGambeson")
             {
                 XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
@@ -10863,7 +10918,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     XXX.scale(this.kidSize, this.kidSize);
                 }
                 XXX.rotate(this.rotation - 0.4);
-                XXX.drawImage(bogg, 585, 781, 26, 24, -(1 / 2 * 26 * 1.35) + 0, -(1 / 2 * 24 * 1.35) + 0.85, 26 * 1.35, 24 * 1.35);
+                XXX.drawImage(bogg, 585, 781, 26, 24, -(1 / 2 * 26 * 1.5) + 0, -(1 / 2 * 24 * 1.5) + 0.85, 26 * 1.5, 24 * 1.5);
             }
             else if (outfit == "aldrekiiTurbanRed")
             {
@@ -10976,6 +11031,26 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 }
                 XXX.rotate(this.rotation);
                 XXX.drawImage(polypol, 622, 3, 23, 22, -(1 / 2 * 23 * 1.4) - 0, -(1 / 2 * 22 * 1.4) + 0, 23 * 1.4, 22 * 1.4);
+            }
+            XXX.restore();
+        }
+    };
+
+    this.drawHumanOutfitBelow = function(outfit, dead)
+    {
+        //Unit Worn Outfits
+        if (dead != true)
+        {
+            XXX.save();
+            if (outfit == "nirwadenNobleDress")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(atal, 449, 827, 127, 157, -(1 / 2 * 127 * 0.55) + 0, -(1 / 2 * 157 * 0.55) -3, 127 * 0.55, 157 * 0.55);
             }
             XXX.restore();
         }
@@ -13307,6 +13382,75 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
             }
             this.swimSpeed = this.speed * 0.8;
+        }
+        else if (this.type == "Boggart")
+        {
+            this.damageFrame = "automatic";
+            this.resistances = ["water", "night"];
+            this.team = "Boggart";
+            if (this.ID == "docile")
+            {
+                this.team = "docile";
+            }
+            this.baseTeam = this.team;
+            this.tamable = false;
+            this.estyle = "normal";
+            if (this.ID == "Boggart" || this.ID == "boggart" || this.ID == "docile")
+            {
+                this.boggartNamed = false;
+            }
+            else
+            {
+                this.boggartNamed = true;
+            }
+
+            if (this.alpha == true)
+            {
+                //this multiplies the draw image skew numbers by 1 so that it stays the same
+                this.alphaSize = 1;
+                // this is the adjustment the alpha type of Etyr needs to be centered.
+                this.yAdjustment = 0;
+                this.xAdjustment = 0;
+
+                this.magicalResistance = 0;
+                this.heatResistance = 2;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = 4 + (24 * this.alphaSize * Math.max(1, Math.floor(this.alphaSize + 0.1)));
+                this.health = this.healthMAX;
+                this.armour = 0;
+                this.speed = 1.5 + (0.5 * this.alphaSize);
+                this.rangeOfSight = 0; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.1 + (0.02 * this.alphaSize);
+                this.engagementRadius = 14 + (37 * this.alphaSize);
+                this.sizeRadius = 5 + 9 * this.alphaSize;
+                this.negateArmour = 0;
+                this.attackWait = 0.9;
+            }
+            else
+            {
+                //this multiplies the draw image skew numbers by 1 so that it stays the same
+                this.alphaSize = 0.6;
+                // this is the adjustment the alpha type of Etyr needs to be centered.
+                this.yAdjustment = 0;
+                this.xAdjustment = 0;
+
+                this.magicalResistance = 0;
+                this.heatResistance = 2;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = 4 + (24 * this.alphaSize * Math.max(1, Math.floor(this.alphaSize + 0.1)));
+                this.health = this.healthMAX;
+                this.armour = 0;
+                this.speed = 1.5 + (0.5 * this.alphaSize);
+                this.rangeOfSight = 0; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.1 + (0.02 * this.alphaSize);
+                this.engagementRadius = 14 + (37 * this.alphaSize);
+                this.sizeRadius = 5 + 9 * this.alphaSize;
+                this.negateArmour = 0;
+                this.attackWait = 0.9;
+            }
+            this.swimSpeed = this.speed * 0.9;
         }
         else if (this.type == "GreyTroll")
         {
@@ -23825,6 +23969,286 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             else
             {
                 this.drawUnit(norc, 716, 183, 60, 27, -1/2 * 60 * this.alphaSize - this.xAdjustment, -1/2 * 27 * this.alphaSize - this.yAdjustment, 60 * this.alphaSize, 27 * this.alphaSize);
+            }
+        }
+        //BOGGART
+        if (this.type == "Boggart")
+        {
+            var swallowed = [];
+
+            if (this.alphaSize > 3)
+            {
+                this.alphaSize = 3;
+            }
+
+            this.healthMAX = 4 + (24 * this.alphaSize * Math.max(1, Math.floor(this.alphaSize + 0.1)));
+            //this.health = this.healthMAX;
+            this.speed = 1.5 + (0.5 * this.alphaSize);
+            this.rotationSpeed = 0.1 + (0.02 * this.alphaSize);
+            this.engagementRadius = 14 + (37 * this.alphaSize);
+            this.sizeRadius = 5 + 16 * this.alphaSize;
+            if (this.disturbed == true || this.offended == true)
+            {
+                this.baseTeam = "Boggart";
+                this.flying = false;
+                this.armour = 0;
+                this.magicalResistance = 0;
+            }
+            else
+            {
+                this.baseTeam = "neutral";
+                this.flying = true;
+                this.armour = 1000; //a boggart cannot be harmed when not tangible
+                this.magicalResistance = 1000; //a boggart cannot be harmed when not tangible
+            }
+
+            //Set Drops and experience
+            if (Math.max(0, ((7 * this.alphaSize) + (6 * this.alphaSize)) - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+            {
+                this.experience = 40 * this.alphaSize * ((player.getIntelligence() / 50) + 1);
+            }
+            else
+            {
+                this.experience = (40 * this.alphaSize * ((player.getIntelligence() / 50) + 1)) / 10;
+            }
+
+            this.drops = [[new Item("boggartSpine", this.X, this.Y), 1]];
+
+            //RANGE OF SIGHT (anything related to range of sight)
+
+            this.rangeOfSightCalculator(200 + 245 * this.alphaSize, "mildy");
+
+            //AI
+            if (this.alive == true)
+            {
+                this.Attack(7* this.alphaSize, 6 * this.alphaSize);
+
+                //this.deathChecker();
+                this.disturbedTimer();
+                this.visibleSight();
+                this.friendDecider();
+                this.targeting();
+
+                if (this.target == player)
+                {
+                    this.offended = false;
+                    if (player.health - 15 * this.alphaSize <= 0)
+                    {
+                        this.estyle = "finisher";
+                    }
+                    else
+                    {
+                        this.estyle = "normal";
+                    }
+
+                    if (this.disturbed == true || this.offended == true)
+                    {
+                        this.pointTowardsPlayer();
+                        this.moveInRelationToPlayer();
+                    }
+                    else
+                    {
+                        if (this.boggartNamed == true)
+                        {
+                            this.pointTowardsPlayer();
+                            if (this.DTP() <= this.engagementRadius)
+                            {
+                                this.moveInRelationToPlayer();
+                                this.disturbed = true;
+                                this.disturbedTime = new Date().getTime();
+                            }
+                        }
+                    }
+                }
+                else if (this.target != "none")
+                {
+                    if (this.target.health - 15 * this.alphaSize <= 0)
+                    {
+                        this.estyle = "finisher";
+                    }
+                    else
+                    {
+                        this.estyle = "normal";
+                    }
+
+                    if (this.disturbed == true || this.offended == true)
+                    {
+                        this.pointTowards(this.target);
+                        this.moveInRelationToThing(this.target);
+                    }
+                    else
+                    {
+                        if (this.boggartNamed == true)
+                        {
+                            this.pointTowards(this.target);
+                            if (this.DTU(this.target) <= this.engagementRadius)
+                            {
+                                this.moveInRelationToThing(this.target);
+                                this.offended = true;
+                            }
+                        }
+                    }
+                }
+
+            }
+
+            //ANIMATIONS
+            var szx = 0.6;
+            if (this.alive == true)
+            {
+                if (this.moving && !this.attacking) //If moving and not attacking initiate moving animation...
+                {
+                    this.costumeEngine(4, 0.085, false);
+                }
+                else if (this.attacking) //otherwise if it is attacking then initiate attacking animation, and if neither...
+                {
+                    if(new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000 / timeSpeed * this.timeResistance))
+                    {
+                        if (this.estyle == "finisher")
+                        {
+                            this.costumeEngine(7, 0.110, true);
+                        }
+                        else
+                        {
+                            this.costumeEngine(4, 0.110, true);
+                        }
+                    }
+                }
+
+                // the frames/stages/costumes of the animation.
+                var theCostume = Math.floor(this.costume); //This rounds this.costume down to the nearest whole number.
+
+                if (this.disturbed == true || this.offended == true)
+                {
+                    if (theCostume <= 0)
+                    {
+                        if (this.attacking)
+                        {
+                            if (this.estyle == "finisher")
+                            {
+                                this.drawUnit(bogg, 36, 2054, 183, 224, -1/2 * 183 * szx * this.alphaSize - this.xAdjustment, -1/2 * 224 * szx * this.alphaSize - this.yAdjustment, 183 * szx * this.alphaSize, 224 * szx * this.alphaSize);
+                            }
+                            else
+                            {
+                                this.drawUnit(bogg, 36, 2054, 183, 224, -1/2 * 183 * szx * this.alphaSize - this.xAdjustment, -1/2 * 224 * szx * this.alphaSize - this.yAdjustment, 183 * szx * this.alphaSize, 224 * szx * this.alphaSize);
+                            }
+                        }
+                        else
+                        {
+                            this.drawUnit(bogg, 328, 1331, 183, 199, -1/2 * 183 * szx * this.alphaSize - this.xAdjustment, -1/2 * 199 * szx * this.alphaSize - this.yAdjustment, 183 * szx * this.alphaSize, 199 * szx * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume <= 1)
+                    {
+                        if (this.attacking)
+                        {
+                            if (this.estyle == "finisher")
+                            {
+                                this.drawUnit(bogg, 283, 2137, 218, 200, -1/2 * 218 * szx * this.alphaSize - this.xAdjustment, -1/2 * 200 * szx * this.alphaSize - this.yAdjustment, 218 * szx * this.alphaSize, 200 * szx * this.alphaSize);
+                            }
+                            else
+                            {
+                                this.drawUnit(bogg, 283, 2137, 218, 200, -1/2 * 218 * szx * this.alphaSize - this.xAdjustment, -1/2 * 200 * szx * this.alphaSize - this.yAdjustment, 218 * szx * this.alphaSize, 200 * szx * this.alphaSize);
+                            }
+                        }
+                        else
+                        {
+                            this.drawUnit(bogg, 328, 1506, 183, 199, -1/2 * 183 * szx * this.alphaSize - this.xAdjustment, -1/2 * 199 * szx * this.alphaSize - this.yAdjustment, 183 * szx * this.alphaSize, 199 * szx * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume <= 2)
+                    {
+                        if (this.attacking)
+                        {
+                            if (this.estyle == "finisher")
+                            {
+                                this.drawUnit(bogg, 525, 2184, 218, 200, -1/2 * 218 * szx * this.alphaSize - this.xAdjustment, -1/2 * 200 * szx * this.alphaSize - this.yAdjustment, 218 * szx * this.alphaSize, 200 * szx * this.alphaSize);
+                            }
+                            else
+                            {
+                                this.drawUnit(bogg, 525, 2184, 218, 200, -1/2 * 218 * szx * this.alphaSize - this.xAdjustment, -1/2 * 200 * szx * this.alphaSize - this.yAdjustment, 218 * szx * this.alphaSize, 200 * szx * this.alphaSize);
+                            }
+                        }
+                        else
+                        {
+                            this.drawUnit(bogg, 304, 1719, 183, 199, -1/2 * 183 * szx * this.alphaSize - this.xAdjustment, -1/2 * 199 * szx * this.alphaSize - this.yAdjustment, 183 * szx * this.alphaSize, 199 * szx * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume >= 3)
+                    {
+                        if (this.attacking)
+                        {
+                            if (theCostume <= 3)
+                            {
+                                if (this.estyle == "finisher")
+                                {
+                                    this.drawUnit(bogg, 523, 1974, 218, 200, -1/2 * 218 * szx * this.alphaSize - this.xAdjustment, -1/2 * 200 * szx * this.alphaSize - this.yAdjustment, 218 * szx * this.alphaSize, 200 * szx * this.alphaSize);
+                                }
+                                else
+                                {
+                                    this.drawUnit(bogg, 0, 1583, 218, 200, -1/2 * 218 * szx * this.alphaSize - this.xAdjustment, -1/2 * 200 * szx * this.alphaSize - this.yAdjustment, 218 * szx * this.alphaSize, 200 * szx * this.alphaSize);
+                                }
+                            }
+                            else if (theCostume <= 4)
+                            {
+                                if (this.estyle == "finisher")
+                                {
+                                    this.damageDealt = false;
+                                    this.drawUnit(bogg, 520, 1792, 218, 200, -1/2 * 218 * szx * this.alphaSize - this.xAdjustment, -1/2 * 200 * szx * this.alphaSize - this.yAdjustment, 218 * szx * this.alphaSize, 200 * szx * this.alphaSize);
+                                }
+                                else
+                                {
+                                    this.drawUnit(bogg, 0, 1583, 218, 200, -1/2 * 218 * szx * this.alphaSize - this.xAdjustment, -1/2 * 200 * szx * this.alphaSize - this.yAdjustment, 218 * szx * this.alphaSize, 200 * szx * this.alphaSize);
+                                }
+                            }
+                            else if (theCostume >= 5)
+                            {
+                                if (this.estyle == "finisher")
+                                {
+                                    if (theCostume >= 6)
+                                    {
+                                        if (this.target != "none")
+                                        {
+                                            if (this.damageDealt == false) // if the Unit has not yet dealt damage to its target then...
+                                            {
+                                                this.target.health = 0;
+                                                this.target.deleteBody = true;
+                                                this.target.killNotByPlayer = true;
+                                                swallowed.push(new Unit(999999999, 999999999, this.target.type, this.target.alpha, this.target.ID, this.target.ultra));
+                                                swallowed[0].alive = false;
+                                                swallowed[0].invisible = true;
+                                                swallowed[0].operation();
+                                                swallowed = [];
+                                                //ArtificialIntelligenceAccess.splice(ArtificialIntelligenceAccess.indexOf(this.target), 1);
+                                                this.alphaSize += 0.2;
+                                                this.healthMAX = 4 + (24 * this.alphaSize * Math.max(1, Math.floor(this.alphaSize + 0.1)));
+                                                this.health = this.healthMAX;
+                                                this.damageDealt = true; //tell the loop that the Unit has already dealt the damage for this attack.
+                                            }
+                                        }
+                                        this.drawUnit(bogg, 378, 1170, 219, 141, -1/2 * 219 * szx * this.alphaSize - this.xAdjustment, -1/2 * 141 * szx * this.alphaSize - this.yAdjustment, 219 * szx * this.alphaSize, 141 * szx * this.alphaSize);
+                                    }
+                                    else
+                                    {
+                                        this.drawUnit(bogg, 378, 1170, 219, 141, -1/2 * 219 * szx * this.alphaSize - this.xAdjustment, -1/2 * 141 * szx * this.alphaSize - this.yAdjustment, 219 * szx * this.alphaSize, 141 * szx * this.alphaSize);
+                                    }
+                                }
+                                else
+                                {
+                                    this.drawUnit(bogg, 0, 1583, 218, 200, -1/2 * 218 * szx * this.alphaSize - this.xAdjustment, -1/2 * 200 * szx * this.alphaSize - this.yAdjustment, 218 * szx * this.alphaSize, 200 * szx * this.alphaSize);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            this.drawUnit(bogg, 311, 1908, 183, 199, -1/2 * 183 * szx * this.alphaSize - this.xAdjustment, -1/2 * 199 * szx * this.alphaSize - this.yAdjustment, 183 * szx * this.alphaSize, 199 * szx * this.alphaSize);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                this.drawUnit(bogg, 24, 1812, 218, 200, -1/2 * 218 * szx * this.alphaSize - this.xAdjustment, -1/2 * 200 * szx * this.alphaSize - this.yAdjustment, 218 * szx * this.alphaSize, 200 * szx * this.alphaSize);
             }
         }
         //VARN
@@ -38949,9 +39373,37 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 this.drops = [[new Item("coins", this.X, this.Y), 115]];
             }
+            else if (this.ID == "Mechelo the Steward")
+            {
+                this.drops = [[new Item("coins", this.X, this.Y), 215]];
+            }
+            else if (this.ID == "Libo the Servant Boy")
+            {
+                if (quests.aFeastForFewerQuest == true)
+                {
+                    this.drops = [[new Item("coins", this.X, this.Y), 80]];
+                }
+                else
+                {
+                    this.drops = [];
+                }
+
+            }
+            else if (this.ID == "Marta the Cook")
+            {
+                this.drops = [[new Item("rawSalmon", this.X, this.Y), 1]];
+            }
             else if (this.ID == "Bishop Emmanuel")
             {
                 this.drops = [[new Item("nirwadenPriestRobes", this.X, this.Y), 1]];
+            }
+            else if (this.ID == "High Lord Basilio Altezor")
+            {
+                this.drops = [[new Item("nirwadenNobleOutfit", this.X, this.Y), 1], [new Item("coins", this.X, this.Y), 5500]];
+            }
+            else if (this.ID == "High Dame Emylia Altezor")
+            {
+                this.drops = [[new Item("nirwadenNobleDress", this.X, this.Y), 1]];
             }
             else if (this.ID == "Vela the Baker")
             {
@@ -39400,7 +39852,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     {
                         if (this.killNotByPlayer == false || this.killByPlayerTeam)
                         {
-                            player.estolgangFaction -= 25;
+                            player.sylkeemRepublicansFaction -= 25;
                         }
                     }
 
@@ -39693,12 +40145,88 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             player.freynorFaction -= 14;
                         }
                     }
+                    else if (this.ID == "Mechelo the Steward")
+                    {
+                        uniqueChars.mecheloLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.nirwadenFaction -= 85;
+                        }
+                    }
+                    else if (this.ID == "Suspected Regicide" || this.ID == "Off Duty Altezor Soldier" && this.ultra.faction == "EstolGang")
+                    {
+                        uniqueChars.altezorInfiltratorLDS = false;
+
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.estolgangFaction += 30;
+                        }
+                    }
+                    if (this.ID == "Ser Belgos of Atalin" || this.ID == "Belgos" || this.ID == "Belgos the Disgraced" || this.ID == "Belgos the Disgraced One" || this.ID == "Belgos of Atalin")
+                    {
+                        uniqueChars.belgosLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            if (this.ID == "Belgos the Disgraced" || this.ID == "Belgos the Disgraced One")
+                            {
+                                player.nirwadenFaction -= 50;
+                            }
+                            else if (this.ID == "Belgos")
+                            {
+                                player.nirwadenFaction -= 100;
+                            }
+                            else
+                            {
+                                player.nirwadenFaction -= 150;
+                            }
+                        }
+                    }
+                    else if (this.ID == "Libo the Servant Boy")
+                    {
+                        uniqueChars.liboLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.nirwadenFaction -= 0;
+                        }
+                    }
+                    else if (this.ID == "Marta the Cook")
+                    {
+                        uniqueChars.martaLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.nirwadenFaction -= 3;
+                        }
+                    }
                     else if (this.ID == "Bishop Emmanuel")
                     {
                         uniqueChars.emmanuelLDS = false;
                         if (this.killNotByPlayer == false || this.killByPlayerTeam)
                         {
                             player.nirwadenFaction -= 275;
+                        }
+                    }
+                    else if (this.ID == "High Lord Basilio Altezor")
+                    {
+                        uniqueChars.basilioAltezorLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.nirwadenFaction -= 1475;
+                        }
+                    }
+                    else if (this.ID == "High Dame Emylia Altezor")
+                    {
+                        uniqueChars.emyliaLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.nirwadenFaction -= 475;
+                        }
+                    }
+                    else if (this.ID == "Lailiona")
+                    {
+                        uniqueChars.lailionaLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.nirwadenFaction -= 475;
                         }
                     }
                     else if (this.ID == "Vela the Baker")
@@ -40094,6 +40622,9 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         }
                     }
                 }
+
+                this.drawHumanOutfitBelow(this.outfit, false);
+
                 //draw some weapons underneath the body
                 if (this.wepLayer == "under" || this.weapon == "swimming" || this.weapon == "freydicSword" || this.weapon == "longbow" || this.weapon == "crossbow" || this.weapon == "kellishClaymore" || this.weapon == "estoc" || this.weapon == "vardanianHalberd" || this.weapon == "shotgun" || this.weapon == "m16Carbine")
                 {
@@ -40581,14 +41112,20 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     this.rangeOfSightCalculator(800, true);
 
                     //All of this factions guards drop this:
-                    if (this.ID == "Lord Leoneidus Altezor")
+                    if (this.ID == "Emporer Leoneidus") //emporer of Nirwaden Empire
                     {
-                        this.drops = [[new Item("coins", this.X, this.Y), 1150], [new Item("nirwadenNobleOutfit)", this.X, this.Y), 1]];
+                        this.drops = [[new Item("coins", this.X, this.Y), 53150], [new Item("nirwadenNobleOutfit)", this.X, this.Y), 1]];
                         //this.switchToRanged("crossbow");
                     }
                     else if (this.ID == "Leon the Toll Master")
                     {
                         this.drops = [[new Item("coins", this.X, this.Y), 150], [new Item("nirwadenPlateArmour)", this.X, this.Y), 1], [new Item("nirineseSabre", this.X, this.Y), 1]];
+                        this.switchToRanged("crossbow");
+                        lights.push({X:this.X, Y: this.Y, size: 250, extraStops: true, GRD: 0.8, Alpha: 0.82, showMe: false});
+                    }
+                    else if (this.ID == "Ser Belgos of Atalin")
+                    {
+                        this.drops = [[new Item("coins", this.X, this.Y), 340], [new Item("nirwadenPlateArmour)", this.X, this.Y), 1], [new Item("estoc", this.X, this.Y), 1]];
                         this.switchToRanged("crossbow");
                         lights.push({X:this.X, Y: this.Y, size: 250, extraStops: true, GRD: 0.8, Alpha: 0.82, showMe: false});
                     }
@@ -40767,6 +41304,18 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             this.callForNearbyHelpFromType(this.rangeOfSight, "Soldier");
                         }
                     }
+                    else if (this.ID == "Suspected Regicide" || this.ID == "Off Duty Altezor Soldier" && this.ultra.faction == "EstolGang")
+                    {
+                        //RANGE OF SIGHT (anything related to range of sight)
+                        this.rangeOfSightCalculator(700, false);
+
+                        this.drops = [[new Item("nirineseSabre", this.X, this.Y), 1], [new Item("estolPoisoningOrders", this.X, this.Y), 1]];
+
+                        if (this.disturbed == true)
+                        {
+                            this.callForNearbyHelpFromType(this.rangeOfSight, "Soldier");
+                        }
+                    }
                     else
                     {
 
@@ -40774,7 +41323,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 }
                 else if (this.ultra.faction == "Sylkeem")
                 {
-                    if (player.sylkeemFaction <= -50)
+                    if (player.sylkeemRepublicansFaction <= -50)
                     {
                         this.disturbed = true;
                     }
@@ -41228,7 +41777,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     {
                         if (this.killNotByPlayer == false || this.killByPlayerTeam)
                         {
-                            player.sylkeemFaction -= 50;
+                            player.sylkeemRepublicansFaction -= 50;
                         }
                     }
 
@@ -41265,6 +41814,25 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             player.nirwadenFaction -= 65;
                         }
                     }
+                    if (this.ID == "Ser Belgos of Atalin" || this.ID == "Belgos" || this.ID == "Belgos the Disgraced" || this.ID == "Belgos the Disgraced One" || this.ID == "Belgos of Atalin")
+                    {
+                        uniqueChars.belgosLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            if (this.ID == "Belgos the Disgraced" || this.ID == "Belgos the Disgraced One")
+                            {
+                                player.nirwadenFaction -= 50;
+                            }
+                            else if (this.ID == "Belgos")
+                            {
+                                player.nirwadenFaction -= 100;
+                            }
+                            else
+                            {
+                                player.nirwadenFaction -= 150;
+                            }
+                        }
+                    }
                     if (this.ID == "Matilda")
                     {
                         uniqueChars.matildaLDS = false;
@@ -41284,6 +41852,15 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         if (this.killNotByPlayer == false || this.killByPlayerTeam)
                         {
                             player.estolgangFaction -= 17;
+                        }
+                    }
+                    else if (this.ID == "Suspected Regicide" || this.ID == "Off Duty Altezor Soldier" && this.ultra.faction == "EstolGang")
+                    {
+                        uniqueChars.altezorInfiltratorLDS = false;
+
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.estolgangFaction += 30;
                         }
                     }
                     else if (this.ID == "Lo") //the estolgang boss's girlfriend

@@ -24029,6 +24029,17 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.friendDecider();
                 this.targeting();
 
+                if (this.ID == "Lezar") //lezar is friends with lelaila and thusly will not eat her.
+                {
+                    if (this.target != "none" && this.target != player)
+                    {
+                        if (this.target.ID == "Lelaila")
+                        {
+                            this.target = player;
+                        }
+                    }
+                }
+
                 if (this.target == player)
                 {
                     this.offended = false;
@@ -24090,6 +24101,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     }
                 }
 
+            }
+            else if (this.doOnDeathOnce)
+            {
+                this.doOnDeathOnce = false;
+                if (this.ID == "Lezar")
+                {
+                    uniqueChars.boggartLezarLDS = false;
+                }
             }
 
             //ANIMATIONS
@@ -39373,6 +39392,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 this.drops = [[new Item("coins", this.X, this.Y), 115]];
             }
+            else if (this.ID == "Hidalgo Lucelius")
+            {
+                this.drops = [[new Item("coins", this.X, this.Y), 319]];
+            }
             else if (this.ID == "Mechelo the Steward")
             {
                 this.drops = [[new Item("coins", this.X, this.Y), 215]];
@@ -40143,6 +40166,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         if (this.killNotByPlayer == false || this.killByPlayerTeam)
                         {
                             player.freynorFaction -= 14;
+                        }
+                    }
+                    else if (this.ID == "Hidalgo Lucelius")
+                    {
+                        uniqueChars.luceliusLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.nirwadenFaction -= 75;
                         }
                     }
                     else if (this.ID == "Mechelo the Steward")

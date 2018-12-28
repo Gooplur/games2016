@@ -13990,7 +13990,7 @@ function buildMaster()
                 scenicList.push(new Scenery("stove", -44212, -2992, Math.PI, "lit"));
                 //Marketside Lodge (player ownable home)
                 scenicList.push(new Scenery("event", -44732, -2239, 0, "atalinDuendeHouse"));
-                if (quests.atalinHomeOwned)
+                if (quests.atalinHomeOwned == true)
                 {
                     scenicList.push(new Scenery("stove", -44777, -2362, Math.PI, true));
                     scenicList.push(new Scenery("fineBed", -44670, -2135, 1/2 * Math.PI, true, 2)); //blue
@@ -14022,7 +14022,10 @@ function buildMaster()
                     scenicList.push(new Scenery("nirwadenMueble", -44966, -2336, 1 * Math.PI, 2)); //sqrtable
                     scenicList.push(new Scenery("nirwadenMueble", -44927, -2336, 1.078 * Math.PI, 6)); //stool
                     scenicList.push(new Scenery("nirwadenMueble", -44970, -2298, 0.97 * Math.PI, 6)); //stool
-                    scenicList.push(new Scenery("sign", -44917, -2381, 0, 3, "Sale Postponed - until further notice"));
+                    if (quests.duendeInfestationCompletionStyle != "royalException")
+                    {
+                        scenicList.push(new Scenery("sign", -44917, -2381, 0, 3, "Sale Postponed - until further notice"));
+                    }
                 }
 
 
@@ -14507,6 +14510,12 @@ function buildMaster()
                     }
                 }
 
+                if (quests.duendeInfestationCompletionStyle == "royalException")
+                {
+                    scenicList.push(new Scenery("skeleton", -44696, -2241, 3.45, 1.55));
+                    scenicList.push(new Scenery("skeleton", -44776, -2266, 1.1, 0.91));
+                }
+
                 change = "e4";
             }
         }
@@ -14578,8 +14587,25 @@ function buildMaster()
                     ArtificialIntelligenceAccess.push(new Unit(-44858, -2195, "Duende", true, "arena2"));
                 }
 
-                ArtificialIntelligenceAccess.push(new Unit(-46191, -1284, "Boggart", true, "Lezar"));//boggart
-
+                if (quests.imaginaryFriendQuest == true)
+                {
+                    if (uniqueChars.boggartLezarLDS)
+                    {
+                        var hits = 0;
+                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                        {
+                            if (ArtificialIntelligenceAccess[i].ID == "Lezar" && ArtificialIntelligenceAccess[i].type == "Boggart")
+                            {
+                                hits += 1;
+                                break;
+                            }
+                        }
+                        if (hits == 0)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(-46191, -1284, "Boggart", true, "Lezar"));//boggart
+                        }
+                    }
+                }
 
                 if (player.raceName != "Nirwaden" || player.title != "Nobility" && player.title != "Royalty")
                 {
@@ -15302,7 +15328,7 @@ function buildMaster()
                 scenicList.push(new Scenery("stove", -44212, -2992, Math.PI, "lit"));
                 //Marketside Lodge (player ownable home)
                 scenicList.push(new Scenery("event", -44732, -2239, 0, "atalinDuendeHouse"));
-                if (quests.atalinHomeOwned)
+                if (quests.atalinHomeOwned == true)
                 {
                     scenicList.push(new Scenery("stove", -44777, -2362, Math.PI, true));
                     scenicList.push(new Scenery("fineBed", -44670, -2135, 1/2 * Math.PI, true, 2)); //blue
@@ -15334,7 +15360,10 @@ function buildMaster()
                     scenicList.push(new Scenery("nirwadenMueble", -44966, -2336, 1 * Math.PI, 2)); //sqrtable
                     scenicList.push(new Scenery("nirwadenMueble", -44927, -2336, 1.078 * Math.PI, 6)); //stool
                     scenicList.push(new Scenery("nirwadenMueble", -44970, -2298, 0.97 * Math.PI, 6)); //stool
-                    scenicList.push(new Scenery("sign", -44917, -2381, 0, 3, "Sale Postponed - until further notice"));
+                    if (quests.duendeInfestationCompletionStyle != "royalException")
+                    {
+                        scenicList.push(new Scenery("sign", -44917, -2381, 0, 3, "Sale Postponed - until further notice"));
+                    }
                 }
 
                 //
@@ -15540,6 +15569,13 @@ function buildMaster()
                         ArtificialIntelligenceAccess.push(new Unit(-45906, 41, "Person", false, "Ser Belgos of Atalin", {race: "Nirwaden", faction: "Nirwaden", personality: "violent", outfit: ["none", 0], weapon: ["none", [0.7, 0.5], 0, 0, 1], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45708, 1335]]}));
                     }
                 }
+                else if (quests.pireVictim == "Lelaila")
+                {
+                    if (uniqueChars.lelailaLDS == true)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-45906, 41, "Person", false, "Lelaila", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.015, 0.015], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45708, 1335]]}));
+                    }
+                }
 
                 if (uniqueChars.francilLDS)
                 {
@@ -15698,7 +15734,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-47207, 1318, "Person", false, "Master Blacksmith Quixote", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingM", 0], weapon: ["hammer", [4, 3], 2.5, 10, 1.5], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-47164, 1319]], merchant: true, merchandise: [[new Item("coins", false, false), 150], [new Item("nirineseSabre", false, false), 8], [new Item("crossbow", false, false), 6], [new Item("steelBolt", false, false), 110], [new Item("estoc", false, false), 2], [new Item("nirineseSpear", false, false), 5], [new Item("mace", false, false), 2], [new Item("hammer", false, false), 2], [new Item("timberAxe", false, false), 1], [new Item("spade", false, false), 3], [new Item("pickaxe", false, false), 4], [new Item("nirwadenLance", false, false), 1], [new Item("chainArmour", false, false), 2], [new Item("nirwadenMorionArmour", false, false), 6], [new Item("nirwadenPlateArmour", false, false), 3]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-47207, 1318, "Person", false, "Master Blacksmith Quixote", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingM", 0], weapon: ["hammer", [4, 3], 2.5, 10, 1.5], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-47164, 1319]], merchant: true, merchandise: [[new Item("coins", false, false), 150], [new Item("nirineseSabre", false, false), 8], [new Item("crossbow", false, false), 6], [new Item("steelBolt", false, false), 110], [new Item("estoc", false, false), 2], [new Item("nirineseSpear", false, false), 5], [new Item("mace", false, false), 2], [new Item("sickle", false, false), 3], [new Item("hammer", false, false), 2], [new Item("timberAxe", false, false), 1], [new Item("spade", false, false), 3], [new Item("pickaxe", false, false), 4], [new Item("nirwadenLance", false, false), 1], [new Item("chainArmour", false, false), 2], [new Item("nirwadenMorionArmour", false, false), 6], [new Item("nirwadenPlateArmour", false, false), 3]]}));
                     }
                 }
 
@@ -15716,6 +15752,23 @@ function buildMaster()
                     if (hits == 0)
                     {
                         ArtificialIntelligenceAccess.push(new Unit(-46807, -946, "Person", false, "Cristobal the Innkeeper", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.4], 0, 0, 1.25], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46802, -960]], merchant: true, merchandise: [[new Item("coins", false, false), 83], [new Item("santhAle", false, false), 72], [new Item("harstAle", false, false), 19], [new Item("erguerWine", false, false), 3], [new Item("searedFalder", false, false), 6], [new Item("searedSalmon", false, false), 4], [new Item("garlicTialoPork", false, false), 2], [new Item("butteredSanthBread", false, false), 1], [new Item("santhBread", false, false), 2], [new Item("butteredHarstBread", false, false), 1], [new Item("harstBread", false, false), 1]]}));
+                    }
+                }
+
+                if (uniqueChars.luceliusLDS)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Hidalgo Lucelius")
+                        {
+                            hits += 1;
+                            break;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-46936, -1065, "Person", false, "Hidalgo Lucelius", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.45, 0.4], 0, 0, 1.15], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-46802, -960]]}));
                     }
                 }
 
@@ -15738,12 +15791,19 @@ function buildMaster()
                         }
                         else
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(-46028, -1303, "Person", false, "Vela the Baker", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.2, 0.2], 0, 0, 1.5], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46028, -1239]], merchant: true, merchandise: [[new Item("coins", false, false), 1], [new Item("santhBread", false, false), 3], [new Item("harstBread", false, false), 2]]}));
+                            if (quests.imaginaryFriendCompletionStyle == "burntChild")
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(-46028, -1303, "Person", false, "Vela the Baker", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.2, 0.2], 0, 0, 1.5], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46028, -1239]]}));
+                            }
+                            else
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(-46028, -1303, "Person", false, "Vela the Baker", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.2, 0.2], 0, 0, 1.5], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46028, -1239]], merchant: true, merchandise: [[new Item("coins", false, false), 1], [new Item("santhBread", false, false), 3], [new Item("harstBread", false, false), 2]]}));
+                            }
                         }
                     }
                 }
 
-                if (uniqueChars.lelailaLDS)
+                if (uniqueChars.lelailaLDS && quests.pireVictim != "Lelaila")
                 {
                     var hits = 0;
                     for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
@@ -15756,7 +15816,14 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-45938, -1312, "Person", false, "Lelaila", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.05, 0.05], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45940, -1301]], kid: true}));
+                        if (quests.imaginaryFriendAdopted == true && player.title != "Nobility" || quests.imaginaryFriendAdopted == true && player.raceName != "Nirwaden")
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(-44926, -2264, "Person", false, "Lelaila", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.05, 0.05], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45940, -1301]], kid: true}));
+                        }
+                        else if (quests.imaginaryFriendAdopted == false)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(-45938, -1312, "Person", false, "Lelaila", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.05, 0.05], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45940, -1301]], kid: true}));
+                        }
                     }
                 }
 
@@ -16143,6 +16210,12 @@ function buildMaster()
                 else if (seasonOfYear == "Bright")
                 {
                     quests.atalinTournyHosted = true;
+                }
+
+                if (quests.duendeInfestationCompletionStyle == "royalException")
+                {
+                    scenicList.push(new Scenery("skeleton", -44696, -2241, 3.45, 1.55));
+                    scenicList.push(new Scenery("skeleton", -44776, -2266, 1.1, 0.91));
                 }
 
                 change = "e5";
@@ -16715,6 +16788,35 @@ function buildMaster()
                 else
                 {
 
+                }
+
+                if (uniqueChars.lelailaLDS && quests.imaginaryFriendAdopted == true && player.title == "Nobility" && player.raceName == "Nirwaden")
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Lelaila")
+                        {
+                            hits += 1;
+                            break;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        var randbutt = Math.random();
+                        if (randbutt > 0.7)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(-44738, 9319, "Person", false, "Lelaila", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["basketDark", [0.05, 0.05], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[], kid: true}));
+                        }
+                        else if (randbutt > 0.4)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(-44700, 8449, "Person", false, "Lelaila", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["basketLight", [0.05, 0.05], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[], kid: true}));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(-44771, 9141, "Person", false, "Lelaila", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.05, 0.05], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 5, patrolLoop: true, route:[[-44771, 9141], [-44774, 8877], [-45240, 8875], [-45253, 8673], [-44814, 8867]], kid: true}));
+                        }
+                    }
                 }
 
                 scenicList.push(new Scenery("nirwadenMueble", -44750, 8576, 1 * Math.PI, 1));

@@ -3344,7 +3344,8 @@ function theLegend()
         marta: ["Marta", 0],
         libo: ["Libo", 0],
         suspReg: ["SuspectedRegicide", 0],
-        mechelo: ["Mechelo", 0]
+        mechelo: ["Mechelo", 0],
+        lucelius: ["Lucelius", 0]
     };
 
 //time Tracker Variables
@@ -3522,7 +3523,9 @@ function theLegend()
         martaLDS: true,
         liboLDS: true,
         altezorInfiltratorLDS: true,
-        mecheloLDS: true
+        mecheloLDS: true,
+        luceliusLDS: true,
+        boggartLezarLDS: true
     };
 //QUESTS
     quests =
@@ -3600,6 +3603,11 @@ function theLegend()
         atalinSisterJarl: false, //your sister is the obvious choice to be the dame of Teshir.
         teshirConverted: false, //is teshir converted to the faith of the everlasting spirit (do they had a church and a pyre built?)
 
+        //FACTION MEMBERSHIP PROGRESS
+        theOrderOfTheInquisition: 0,
+        theEstolGang: 0,
+        theBalgurMercenaries: 0,
+
         //PLAYER CHILDREN SPAWN
         hilmundChild: false,
         hilmundChildName: "Boki",
@@ -3626,12 +3634,17 @@ function theLegend()
         //QUEST: Imaginary Friend ---- given by Vela the Baker
         imaginaryFriendQuest: false,
         imaginaryFriendCompletionStyle: false,
+        imaginaryFriendMentioned: false,
+        imaginaryFriendAdopted: false,
+        imaginaryFriendBreadTime: 0,
 
         //QUEST: Duende Infestation ---- given by
         duendeInfestationQuest: false,
         duendeInfestationCompletionStyle: false,
         duendeInfestationKillCount: 0,
         duendeInfestationDuendeLoad: 0,
+        duendeInfestationKindness: false,
+        duendeInfestationPay: 0,
 
         //QUEST: Inventor's Feud ---- given by Hugo the Inventor or Ernesto the Engineer
         inventorsFeudQuest: false,

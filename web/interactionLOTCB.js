@@ -1617,6 +1617,2073 @@ function interaction(me)
                         }
                     }
 
+                    if (self.ID == "Vela the Baker" || conversationID[0] == "Vela")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Vela";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                if (quests.imaginaryFriendCompletionStyle == "childBurnt")
+                                {
+                                    player.dialogueOptions = [["Hello.", false, "a"]];
+                                }
+                                else
+                                {
+                                    player.dialogueOptions = [["Greetings.", false, "a"], ["Mmmm the bread smells great!", false, "e"], ["How are you doing?", false, "b"], ["How's business?", false, "d"]];
+
+                                    if (quests.imaginaryFriendQuest == true && uniqueChars.lelailaLDS == true)
+                                    {
+                                        player.dialogueOptions.push(["Have you noticed anything unusual going on around here?", false, "c"]);
+                                    }
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            if (quests.imaginaryFriendCompletionStyle == "childBurnt")
+                            {
+                                setMsg("Leave my shop this instant!!!! I don't care who you are; you killed my daughter!!!!");
+                            }
+                            else
+                            {
+                                if (player.title == "Royalty")
+                                {
+                                    setMsg("Your excellency, what a pleasant surprise to see you here today!");
+                                }
+                                else if (player.title == "Nobility")
+                                {
+                                    if (player.gender == "Female" && player.raceName == "Nirwaden")
+                                    {
+                                        setMsg("My dame, what a profound honour it is to have you here in my bakery!");
+                                    }
+                                    if (player.gender == "Male" && player.raceName == "Nirwaden")
+                                    {
+                                        setMsg("My lord, what a delight it is to have you grace my bakery with your presence!");
+                                    }
+                                    else if (player.gender == "Female")
+                                    {
+                                        setMsg("Hello, your ladyship.");
+                                    }
+                                    else
+                                    {
+                                        setMsg("Hello, your lordship.");
+                                    }
+                                }
+                                else if (player.inquisitionRank != "none" && player.inquisitionRank != "Initiate")
+                                {
+                                    setMsg("Hello, Inquisitor... is there something you need?");
+                                }
+                                else if (player.title == "Highfolk")
+                                {
+                                    setMsg("Hello, hidalgo, can I get you something, bread perhaps?");
+                                }
+                                else
+                                {
+                                    setMsg("Welcome to my bakery!");
+                                }
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            if (uniqueChars.lelailaLDS == true)
+                            {
+                                if (quests.imaginaryFriendQuest != "complete")
+                                {
+                                    setMsg("Not too well, the strangest things have been going on... I've misplaced my pastry knife and it's been several times that I've had to throw away good dough because I found it trampled on the floor. Also If I don't keep an eye on the bread even for the slightest moment while it is in the stove it will be burnt black when I turn back around. What's going on here is not natural I tell you...");
+                                }
+                                else
+                                {
+                                    setMsg("I'm doing great, my daughter's well, and nothing weird is going on around here anymore, thanks to you!");
+                                }
+                            }
+                            else
+                            {
+                                setMsg("Not well at all, I feel so lost... Why should I live when my sweet poor innocent daughter is dead!? [tears well in her eyes but she quickly wipes them away]");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            setMsg("Have I ever! YES!!! I can't stand it. Things are strewn about the bakery and bread gets burnt in a matter of seconds if I don't watch it... I've been cleaning up messes almost nonstop so that the bakery would look as good as it does right now. Also when I come in to bake late at night I sometimes hear bustling as if something is in the bakery with me. To make matters worse my daughter has been acting frightening, she says horrid and frightening things that make me shudder. Little Lelaila could be behind some of the messes, but some of this stuff... sometimes I feel like my bakery is haunted or something.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            if (uniqueChars.lelailaLDS == true)
+                            {
+                                if (quests.imaginaryFriendQuest != "complete")
+                                {
+                                    setMsg("I'm actually losing money some days... so in other words horrible, when almost half of the dough you make is ruined almost everyday... well it is hard to make any money... I suspect my daughter is behind it. She hasn't been herself recently.");
+                                }
+                                else
+                                {
+                                    setMsg("Very well!");
+                                }
+                            }
+                            else
+                            {
+                                setMsg("To tell you the truth... I've been depressed and I just haven't been baking as much as I used to. It is so hard for me here, without my daughter.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            //text dialogue
+                            if (quests.imaginaryFriendCompletionStyle == "savedChild" && uniqueChars.lelailaLDS == true && new Date().getTime() - quests.imaginaryFriendBreadTime > 1000 * 60 * 24)
+                            {
+                                if (quests.imaginaryFriendBreadTime == 0)
+                                {
+                                    setMsg("Here, please take a free loaf... it is the least I can do to repay you for ridding my bakery of that horrible demon!");
+                                }
+                                else
+                                {
+                                    setMsg("Here, please let me gift you another loaf of bread. I am ever so grateful that you saved my daughter from that terrible demon's corruption.");
+                                }
+                            }
+                            else
+                            {
+                                setMsg("Thank you, I bake my bread fresh everyday!");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+                                if (quests.imaginaryFriendCompletionStyle == "savedChild" && new Date().getTime() - quests.imaginaryFriendBreadTime > 1000 * 60 * 24)
+                                {
+                                    quests.imaginaryFriendBreadTime = new Date().getTime();
+                                    var freeLunch = -1;
+                                    for (var i = 0; i < Inventory.length; i++)
+                                    {
+                                        if (Inventory[i].type == "santhBread")
+                                        {
+                                            freeLunch = i;
+                                            break;
+                                        }
+                                    }
+
+                                    if (freeLunch > -1)
+                                    {
+                                        Inventory[freeLunch][1] += 1;
+                                    }
+                                    else
+                                    {
+                                        Inventory.push([new Item("santhBread", false, false), 1]);
+                                    }
+                                }
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Lelaila" || conversationID[0] == "Lelaila")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Lelaila";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Hi there.", false, "a"], ["Hello", false, "a"], ["What do you do here?", false, "b"], ["How are you doing little one?", false, "d"]];
+
+                                if (quests.imaginaryFriendAdopted == true)
+                                {
+                                    player.dialogueOptions.unshift(["Hi there sweetheart!", false, "a"])
+                                }
+
+                                if (quests.imaginaryFriendMentioned == true && uniqueChars.boggartLezarLDS == true)
+                                {
+                                    player.dialogueOptions.push(["Tell me more about this imaginary friend of yours...", false, "c"]);
+                                }
+                                if (quests.imaginaryFriendQuest == true)
+                                {
+                                    if (player.inquisitionRank != "none")
+                                    {
+                                        if (uniqueChars.boggartLezarLDS == true)
+                                        {
+                                            player.dialogueOptions.push(["You have given yourself unto evil and madness and will thus be cleansed at the pyre before the light of the Spirit Everlasting.", false, "e"]);
+                                        }
+                                        else
+                                        {
+                                            player.dialogueOptions.push(["For consorting with demons and even stooping so low as to adopt one, you shall be burnt at the pyre. Only the Eternal Spirit can save you from the corruption in your heart.", false, "f"]);
+                                        }
+                                    }
+
+                                    if (uniqueChars.boggartLezarLDS == false)
+                                    {
+                                        player.dialogueOptions.push(["Lezar won't be around to corrupt you any longer...", false, "g"]);
+                                    }
+                                }
+                                else if (quests.imaginaryFriendQuest == "complete")
+                                {
+                                    if (uniqueChars.velaLDS == false)
+                                    {
+                                        if (player.raceName == "Nirwaden" && player.title == "Nobility" || quests.atalinHomeOwned == true)
+                                        {
+                                            if (quests.imaginaryFriendAdopted == false)
+                                            {
+                                                player.dialogueOptions.push(["Come live with me. I will take care of you now.", false, "h"]);
+                                            }
+                                        }
+                                    }
+                                }
+                                if (quests.imaginaryFriendAdopted == true)
+                                {
+                                    var treatsy = -1;
+                                    for (var i = 0; i < Inventory.length; i++)
+                                    {
+                                        if (Inventory[i].type == "iemaTart" || Inventory[i].type == "chonaTart" || Inventory[i].type == "polyapaTart")
+                                        {
+                                            treatsy = i;
+                                        }
+                                    }
+                                    if (treatsy > -1)
+                                    {
+                                        player.dialogueOptions.unshift(["I brought you a treat! [give fruit tart]", false, "i"]);
+                                    }
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "f")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0f";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "g")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0g";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "h")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0h";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "i")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0i";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            setMsg("Hi.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            var mentionz = false;
+                            if (uniqueChars.boggartLezarLDS == true)
+                            {
+                                if (uniqueChars.velaLDS == false)
+                                {
+                                    setMsg("My mom's dead so I don't have to do my chores anymore... I am glad she is dead, chores suck. Lezar told me that moms are a waste of flesh and blood and that I should rely on nobody but myself. I think he's right, if my mom ever really cared about me she would just go and die. She would keep living. Lezar is the only one I can really count on.");
+                                }
+                                else
+                                {
+                                    setMsg("I help my mom with the baking and play with my friend Lezar who has four arms, he asked me to give him a name so I called him Lezar...");
+                                    mentionz = true;
+                                }
+                            }
+                            else
+                            {
+                                if (uniqueChars.velaLDS == false)
+                                {
+                                    if (quests.imaginaryFriendAdopted == true)
+                                    {
+                                        if (player.raceName == "Nirwaden" && player.title == "Nobility")
+                                        {
+                                            if (uniqueChars.liboLDS)
+                                            {
+                                                setMsg("I do chores and sometimes play make believe with Libo.");
+                                            }
+                                            else
+                                            {
+                                                setMsg("I do chores mostly, but sometimes I walk around the courtyard and sing to myself.");
+                                            }
+                                        }
+                                        else
+                                        {
+                                            if (quests.duendeInfestationKillCount < 9)
+                                            {
+                                                setMsg("I mostly play with the duendes, people say they're dangerous, but they are scared to death of me... so... I just chase them around and stuff.");
+                                            }
+                                            else
+                                            {
+                                                setMsg("I mostly just stay inside and sing songs to myself... Sometimes I open and close the drawers for fun. I don't touch your things though, it's just fun to open and close them is all.");
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        setMsg("I don't do anything anymore now that mom is dead and Lezar is gone...");
+                                    }
+                                }
+                                else
+                                {
+                                    setMsg("I help my mom with the baking... I don't play with Lezar anymore, he's gone.");
+                                }
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                if (mentionz == true)
+                                {
+                                    quests.imaginaryFriendMentioned = true;
+                                }
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            setMsg("Oh, you mean Lezar? Lezar is not imaginary, he is just my friend... he tells me secrets that the grown ups don't like to talk about to kids. If I get mad at someone who is mean, Lezar says that I can cut them up and put them into the bread. I told him that he was just being silly though... Lezar likes to joke a lot. Oooh one time he told me to climb into the oven... I didn't do it though because he was just trying to play a prank on me.            I don't fall for pranks...");
+
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                change = "imaginaryFriend";
+                                quests.imaginaryFriendQuest = true;
+                                quests.activeQuests.push({name: "Imaginary Friend", description: "A little girl named Lelaila has an imaginary friend that sounds completely evil."});
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            if (uniqueChars.boggartLezarLDS == true)
+                            {
+                                setMsg("You won't think I'm so little when I chop off your legs, we'll see who's little then... [she mutters under her breath]             ...I'm good. [she says more audibly]");
+                            }
+                            else
+                            {
+                                if (uniqueChars.velaLDS == false)
+                                {
+                                    if (quests.imaginaryFriendAdopted == true)
+                                    {
+                                        if (player.raceName == "Nirwaden" && player.title == "Nobility")
+                                        {
+                                            if (uniqueChars.liboLDS)
+                                            {
+                                                setMsg("Thanks to you and am well fed, living in a castle, and have a new friend that doesn't tell me to do evil things or try to lock me in an oven... I'm doing good...");
+                                            }
+                                            else
+                                            {
+                                                setMsg("Thanks to you and am well fed, and I'm living in a castle... I'm doing alright, I guess.");
+                                            }
+                                        }
+                                        else
+                                        {
+                                            if (quests.duendeInfestationKillCount < 9)
+                                            {
+                                                setMsg("I'm doing alright, I guess... at least my new duende friends don't try to trick me into the oven. They're too scared of me to do that...");
+                                            }
+                                            else
+                                            {
+                                                setMsg("I feel sort of lonely here... There is no one to play with. But, I guess its better to play with nobody at all than to play with an evil boggart...");
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        setMsg("I miss my mom... I can't believe that Lezar made me think that I didn't need her.");
+                                    }
+                                }
+                                else
+                                {
+                                    setMsg("I finally feel free now, Lezar made me feel so hateful...");
+                                }
+                            }
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            //text dialogue
+                            if (player.gender == "Male")
+                            {
+                                setMsg("Lezar!!! Help me! Help me!!! This ugly flesh bag is trying to take me away... kill him!!!");
+                            }
+                            else
+                            {
+                                setMsg("Lezar!!! Help me! Help me!!! This ugly flesh bag is trying to take me away... kill her!!!");
+                            }
+                            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                            {
+                                if (ArtificialIntelligenceAccess[i].type == "Boggart" && ArtificialIntelligenceAccess[i].ID == "Lezar")
+                                {
+                                    ArtificialIntelligenceAccess[i].X = X;
+                                    ArtificialIntelligenceAccess[i].Y = Y;
+                                    ArtificialIntelligenceAccess[i].disturbed = true;
+                                    ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                }
+                            }
+
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0f")
+                        {
+                            //text dialogue
+                            setMsg("Please, no!! I dont want to die! I didn't mean it, I didn't mean any of it!!! It was Lezar all along, you have to believe me!!!");
+
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                dialogueReset(self);
+
+                                change = "pireGathering";
+                                quests.doPire = true;
+                                player.blinded = true;
+                                player.blindedStoreTime = new Date().getTime();
+                                player.blindedTime = 1;
+                                X = -46299;
+                                Y = 34;
+                                quests.pireVictim = "Lelaila";
+
+                                quests.imaginaryFriendCompletionStyle = "burntChild";
+                                quests.imaginaryFriendQuest = "complete";
+                                quests.completeQuests.push({name: "Imaginary Friend", description: "You slayed the Boggart and cleansed the little girl who befriended it."});
+                                player.nirwadenFaction += 15;
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                {
+                                    player.magicalExperience += 85;
+                                }
+                                else
+                                {
+                                    player.magicalExperience += 21;
+                                    player.experience += 135;
+                                }
+                                player.fame += 1;
+                                if (player.inquisitionRank != "none")
+                                {
+                                    quests.theOrderOfTheInquisition += 1; //the inquisition guild cares about this quest and will recognize its members for completing it.
+                                }
+
+                                for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--)
+                                {
+                                    if (ArtificialIntelligenceAccess[i].ID == "Lelaila")
+                                    {
+                                        ArtificialIntelligenceAccess.splice(i, 1);
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0g")
+                        {
+                            //text dialogue
+                            setMsg("You saved me!! Thank you! I feel free again, Lezar was always watching me... always watching, he would whisper things to me... he made me think thoughts that weren't mine, and say things that he wanted to say, that I would never say. He made me hate everyone... but now that Lezar is gone I can finally be me again!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.imaginaryFriendCompletionStyle = "savedChild";
+                                quests.imaginaryFriendQuest = "complete";
+                                quests.completeQuests.push({name: "Imaginary Friend", description: "You slayed the bakery Boggart and in doing so saved a little girl from its corrupting influence."});
+                                player.nirwadenFaction += 25;
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                {
+                                    player.magicalExperience += 75;
+                                }
+                                else
+                                {
+                                    player.magicalExperience += 16;
+                                    player.experience += 120;
+                                }
+                                player.fame += 1;
+                                if (player.inquisitionRank != "none")
+                                {
+                                    quests.theOrderOfTheInquisition += 1; //the inquisition guild cares about this quest and will recognize its members for completing it.
+                                }
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0h")
+                        {
+                            //text dialogue
+                            setMsg("Okay, I guess I'll live with you... Thank you.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.imaginaryFriendAdopted = true;
+                                player.blinded = true;
+                                player.blindedStoreTime = new Date().getTime();
+                                player.blindedTime = 1;
+                                for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--)
+                                {
+                                    if (ArtificialIntelligenceAccess[i].ID == "Lelaila")
+                                    {
+                                        ArtificialIntelligenceAccess.splice(i, 1);
+                                        break;
+                                    }
+                                }
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0i")
+                        {
+                            //text dialogue
+                            setMsg("Yay, I love pastry tarts!!! Thank you so much! ");
+
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                var treatsy = -1;
+                                for (var i = 0; i < Inventory.length; i++)
+                                {
+                                    if (Inventory[i].type == "iemaTart" || Inventory[i].type == "chonaTart" || Inventory[i].type == "polyapaTart")
+                                    {
+                                        treatsy = i;
+                                    }
+                                }
+                                if (treatsy > -1)
+                                {
+                                    if (Inventory[treatsy][1] > 1)
+                                    {
+                                        Inventory[treatsy][1] -= 1;
+                                    }
+                                    else
+                                    {
+                                        Inventory.splice(treatsy, 1);
+                                    }
+                                }
+
+                                quests.imaginaryFriendAdopted = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Hidalgo Lucelius" || conversationID[0] == "Lucelius")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Lucelius";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Good day.", false, "a"], ["What does your title Hidalgo mean?", false, "b"]];
+
+                                if (quests.duendeInfestationQuest == false)
+                                {
+                                    if (timeOfDay == "Night" || timeOfDay == "Dusk")
+                                    {
+                                        player.dialogueOptions.push(["What brings you out drinking this night?", false, "c"]);
+                                    }
+                                    else
+                                    {
+                                        player.dialogueOptions.push(["What brings you out drinking today?", false, "c"]);
+                                    }
+                                }
+                                if (quests.duendeInfestationQuest == false || quests.duendeInfestationQuest == "complete")
+                                {
+                                    if (quests.atalinHomeOwned == false && quests.duendeInfestationKillCount >= 9)
+                                    {
+                                        player.dialogueOptions.push(["Can I buy the house you put up for sale?", false, "d"]);
+                                    }
+                                }
+                                if (quests.duendeInfestationKillCount >= 9 && quests.atalinHomeOwned == false && quests.duendeInfestationQuest == true)
+                                {
+                                    player.dialogueOptions.push(["I have slain the duendes that were infesting your house...", false, "e"]);
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            if (quests.duendeInfestationQuest == false)
+                            {
+                                setMsg("Not for me it's not.");
+                            }
+                            else
+                            {
+                                setMsg("It is, a wonderful day I might add!");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                if (quests.duendeInfestationQuest == false)
+                                {
+                                    conversationID[1] = 1;
+                                }
+                                else
+                                {
+                                    conversationID[1] = 0;
+                                }
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            setMsg("It is a rank of nobility in the Nirwaden Empire... I am more important than an ordinary person, but less important than a lord. And I definitely don't compare in stature whatsoever to a high lord or the Empress.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            setMsg("I shouldn't waste your time with my troubles.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 2;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            setMsg("Why of course you can. I will part with it for 18000 coins, which is not a negotiable price... Mine is one of the best homes in the city. Besides Altezor Castle, that is.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 6;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            //text dialogue
+                            if (quests.duendeInfestationPay > 0)
+                            {
+                                setMsg("Good work, here is the coin we agreed upon.");
+                            }
+                            else
+                            {
+                                setMsg("That is excellent news! Thank you so much!");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                if (quests.duendeInfestationPay > 0)
+                                {
+                                    var coinzHit = -1;
+                                    for (var i = 0; i < Inventory.length; i++)
+                                    {
+                                        if (Inventory[i][0].type == "coins")
+                                        {
+                                            coinzHit = i;
+                                            break;
+                                        }
+                                    }
+
+                                    if (coinzHit > -1)
+                                    {
+                                        Inventory[coinzHit][1] += quests.duendeInfestationPay;
+                                    }
+                                    else
+                                    {
+                                        Inventory.unshift([new Item("coins", false, false), quests.duendeInfestationPay])
+                                    }
+                                    quests.duendeInfestationCompletionStyle = "payed";
+                                }
+                                else
+                                {
+                                    quests.duendeInfestationCompletionStyle = "free";
+                                }
+
+                                quests.duendeInfestationQuest = "complete";
+                                if (quests.duendeInfestationCompletionStyle == "payed")
+                                {
+                                    quests.completeQuests.push({name: "Duende Infestation", description: "You killed the duendes that were infesting the hidalgo's home as a contracted job paid in coin of gold."});
+                                }
+                                else
+                                {
+                                    quests.completeQuests.push({name: "Duende Infestation", description: "You killed the duendes that were infesting the hidalgo's home out of the sheer goodness of your heart."});
+                                }
+                                player.nirwadenFaction += 30;
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                {
+                                    player.magicalExperience += 120;
+                                }
+                                else
+                                {
+                                    player.magicalExperience += 30;
+                                    player.experience += 170;
+                                }
+                                player.fame += 1;
+                                if (player.inquisitionRank != "none")
+                                {
+                                    quests.theOrderOfTheInquisition += 1; //the inquisition guild cares about this quest and will recognize its members for completing it.
+                                }
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 1)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["What's wrong?", false, "a"]];
+                                var hasBeer = -1;
+                                for (var i = 0; i < Inventory.length; i++)
+                                {
+                                    if (Inventory[i][0].type == "santhAle")
+                                    {
+                                        hasBeer = i;
+                                    }
+                                }
+                                if (hasBeer != -1)
+                                {
+                                    player.dialogueOptions.push(["I know what will cheer you up! An ice cold glass of Santh Ale... [give 1 santh ale]", false, "b"]);
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1a";
+                                        }
+                                        if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1b";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1a")
+                        {
+                            //text dialogue
+                            setMsg("I shouldn't waste your time with my troubles.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 2;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1b")
+                        {
+                            //text dialogue
+                            setMsg("Wow, thanks! It's not everyday a total stranger buys you beer. However, my troubles are economic in nature and what is at stake for me is much more than the cost of a beer. I've been trying to sell my house, but royal policy requires that I tell all potential buyers that my house is infested with duendes, they usually turn tail after hearing that.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                var hasBeer = -1;
+                                for (var i = 0; i < Inventory.length; i++)
+                                {
+                                    if (Inventory[i][0].type == "santhAle")
+                                    {
+                                        hasBeer = i;
+                                    }
+                                }
+                                if (hasBeer != -1)
+                                {
+                                    if (Inventory[hasBeer][1] > 1)
+                                    {
+                                        Inventory[hasBeer][1] -= 1;
+                                    }
+                                    else
+                                    {
+                                        Inventory.splice(hasBeer, 1);
+                                    }
+                                    quests.duendeInfestationKindness = true;
+                                }
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 3;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 2)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Good man!", false, "a"], ["You're right, I wasn't actually that interested in hearing about other people's problems.", false, "a"], ["I want to know...", false, "b"], ["I'm here for you, tell me what's on your mind.", false, "b"], ["Tell me, my interest is peaked.", false, "b"], ["You make a good point! Drinking is for drowning out our problems, not dumping them on strangers...", false, "a"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "2a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "2b";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "2a")
+                        {
+                            //text dialogue
+                            setMsg("[...]");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "2b")
+                        {
+                            //text dialogue
+                            setMsg("I've been trying to sell my house, but royal policy requires that I tell all potential buyers that my house is infested with duendes, they usually turn tail after hearing that.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 3;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 3)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Wow, that's too bad.", false, "b"], ["What are duendes?", false, "a"], ["I will buy the house off you, for a discount price of course...", false, "e"]];
+
+                                if (player.raceName == "Nirwaden" && player.title == "Nobility" || player.raceName == "Nirwaden" && player.title == "Royalty")
+                                {
+                                    player.dialogueOptions.unshift(["I could send some of the city guard to clear out the house for you.", false, "c"]);
+                                    if (player.title == "Royalty")
+                                    {
+                                        player.dialogueOptions.push(["I could grant you an exception this once good sir: I hearby grant you permission to sell your house without telling the buyer about the duende infestation.", false, "f"]);
+                                    }
+                                }
+                                player.dialogueOptions.push(["Perhaps I could kill the duendes for you.", false, "d"]);
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "3a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "3b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "3c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "3d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "3e";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "f")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "3f";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "3a")
+                        {
+                            //text dialogue
+                            setMsg("They are a fowl type of fairy that infests people's homes. They are violent and rather dangerous as well, you see, it is genuinely unsafe for the buyer to purchase the estate.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 3;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "3b")
+                        {
+                            //text dialogue
+                            setMsg("It really is... The house is worth 18000 coins and I can neither live in it nor sell it. I am ruined...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "3c")
+                        {
+                            //text dialogue
+                            if (player.title == "Royalty")
+                            {
+                                setMsg("You are too kind, your majesty. Thank you so much!");
+                            }
+                            else
+                            {
+                                if (player.gender == "Male")
+                                {
+                                    setMsg("You are too kind, my lord. Thank you so much!");
+                                }
+                                else
+                                {
+                                    setMsg("You are too kind, my dame. Thank you so much!");
+                                }
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                quests.duendeInfestationCompletionStyle = "guards";
+                                quests.duendeInfestationQuest = "complete";
+                                quests.duendeInfestationKillCount = 9;
+
+                                quests.completeQuests.push({name: "Duende Infestation", description: "You ordered some soldiers to deal with a duende infestation in the home of a local Hidalgo."});
+
+                                player.nirwadenFaction += 20;
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                {
+                                    player.magicalExperience += 10;
+                                    player.experience += 25;
+                                }
+                                else
+                                {
+                                    player.experience += 50;
+                                }
+
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "3d")
+                        {
+                            //text dialogue
+                            setMsg("Are you serious, you would really do that for me?");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 4;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "3e")
+                        {
+                            //text dialogue
+                            setMsg("You will!? You would risk your life for a discount?! Alright then, how does 14000 coins sound to you? I would normally be selling it for 18000 so I would say that that's a pretty good deal.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 7;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "3f")
+                        {
+                            //text dialogue
+                            setMsg("Thank you, your majesty, I am in your debt!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.duendeInfestationCompletionStyle = "royalException";
+                                quests.duendeInfestationQuest = "complete";
+                                quests.completeQuests.push({name: "Duende Infestation", description: "You gave the hidalgo whose home was infested, permission to sell it anyway."});
+                                quests.atalinHomeOwned = "aiPurchased";
+                                player.nirwadenFaction += 5;
+                                player.experience += 10;
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 4)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Provided that you pay me, yes.", false, "a"], ["Of course, just tell me where your house is...", false, "b"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "4a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "4b";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "4a")
+                        {
+                            //text dialogue
+                            setMsg("Oh, eh, how does 110 coins sound to you?");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 5;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "4b")
+                        {
+                            //text dialogue
+                            setMsg("Its just southwest of here. It is the only house for sale right now so it shouldn't be too hard for you to find.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.duendeInfestationQuest = true;
+                                quests.activeQuests.push({name: "Duende Infestation", description: "A Hidalgo's home in Átalin City has been infested by duendes, you offered to help clear them out."});
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 5)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Sounds good to me.", false, "a"]];
+
+                                if (player.inquisitionRank != "none")
+                                {
+                                    player.dialogueOptions.push(["I am of the order of the inquisition, do not insult me with such a pathetic offer, I will work for no less than 250 coins.", false, "b"]);
+                                }
+
+                                if (player.getCharisma() >= 20)
+                                {
+                                    player.dialogueOptions.push(["Your house will make a you a fat bag of gold when you sell it, pay me 300 coins and I'll make that posssible.", false, "d"]);
+                                }
+                                else if (quests.duendeInfestationKindness || player.getCharisma() >= 10)
+                                {
+                                    player.dialogueOptions.push(["make it 170 and you got yourself a deal", false, "c"]);
+                                }
+
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "5a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "5b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "5c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "5d";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "5a")
+                        {
+                            //text dialogue
+                            setMsg("Then we have a deal!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.duendeInfestationPay = 110;
+                                quests.duendeInfestationQuest = true;
+                                quests.activeQuests.push({name: "Duende Infestation", description: "A Hidalgo's home in Átalin City has been infested by duendes, you offered to clear them out for a fee."});
+
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "5b")
+                        {
+                            //text dialogue
+                            setMsg("I didn't mean to offend... Of course that sounds reasonable!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.duendeInfestationPay = 250;
+                                quests.duendeInfestationQuest = true;
+                                quests.activeQuests.push({name: "Duende Infestation", description: "A Hidalgo's home in Átalin City has been infested by duendes, you offered to clear them out for a fee."});
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "5c")
+                        {
+                            //text dialogue
+                            setMsg("Its a deal.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.duendeInfestationPay = 170;
+                                quests.duendeInfestationQuest = true;
+                                quests.activeQuests.push({name: "Duende Infestation", description: "A Hidalgo's home in Átalin City has been infested by duendes, you offered to clear them out for a fee."});
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "5d")
+                        {
+                            //text dialogue
+                            setMsg("Fine, I'll pay you 300.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.duendeInfestationPay = 300;
+                                quests.duendeInfestationQuest = true;
+                                quests.activeQuests.push({name: "Duende Infestation", description: "A Hidalgo's home in Átalin City has been infested by duendes, you offered to clear them out for a fee."});
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 6)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Nevermind.", false, "b"]];
+
+                                var coinzHit = -1;
+                                for (var i = 0; i < Inventory.length; i++)
+                                {
+                                    if (Inventory[i][0].type == "coins" && Inventory[i][1] >= 18000)
+                                    {
+                                        coinzHit = i;
+                                    }
+                                }
+                                if (coinzHit > -1)
+                                {
+                                    player.dialogueOptions.unshift(["I'll take it!", false, "a"]);
+                                }
+                                else
+                                {
+                                    player.dialogueOptions.unshift(["I can't afford that right now, maybe later.", false, "b"]);
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "6a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "6b";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "6a")
+                        {
+                            //text dialogue
+                            setMsg("Excellent!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                var coinzHit = -1;
+                                for (var i = 0; i < Inventory.length; i++)
+                                {
+                                    if (Inventory[i][0].type == "coins" && Inventory[i][1] >= 18000)
+                                    {
+                                        coinzHit = i;
+                                    }
+                                }
+                                if (coinzHit > -1)
+                                {
+                                    if (Inventory[coinzHit][1] == 18000)
+                                    {
+                                        Inventory.splice(coinzHit, 1);
+                                    }
+                                    else
+                                    {
+                                        Inventory[coinzHit][1] -= 18000;
+                                    }
+                                    quests.atalinHomeOwned = true;
+                                }
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "6b")
+                        {
+                            //text dialogue
+                            setMsg("I'll be here...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 7)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Nevermind", false, "c"]];
+
+                                var coinzHit = -1;
+                                for (var i = 0; i < Inventory.length; i++)
+                                {
+                                    if (Inventory[i][0].type == "coins" && Inventory[i][1] >= 13000)
+                                    {
+                                        coinzHit = i;
+                                    }
+                                }
+                                if (coinzHit > -1)
+                                {
+                                    if (player.getCharisma() >= 25)
+                                    {
+
+                                    }
+                                    else if ((player.getCharisma() >= 5))
+                                    {
+                                        player.dialogueOptions.unshift(["As you said, I am risking in purchasing your house, so you ought to sell me it for 13000 coins.", false, "d"]);
+                                    }
+                                }
+
+                                var coinzHit = -1;
+                                for (var i = 0; i < Inventory.length; i++)
+                                {
+                                    if (Inventory[i][0].type == "coins" && Inventory[i][1] >= 11000)
+                                    {
+                                        coinzHit = i;
+                                    }
+                                }
+                                if (coinzHit > -1)
+                                {
+                                    if (player.getCharisma() >= 25)
+                                    {
+                                        player.dialogueOptions.unshift(["As you said, I am risking my life making the generous gesture of buying your house, so how about you sell me it for 11000 coins.", false, "b"]);
+                                    }
+                                    else if ((player.getCharisma() >= 5))
+                                    {
+
+                                    }
+                                }
+
+                                var coinzHit = -1;
+                                for (var i = 0; i < Inventory.length; i++)
+                                {
+                                    if (Inventory[i][0].type == "coins" && Inventory[i][1] >= 14000)
+                                    {
+                                        coinzHit = i;
+                                    }
+                                }
+                                if (coinzHit > -1)
+                                {
+                                    player.dialogueOptions.unshift(["I'll take it!", false, "a"]);
+                                }
+                                else
+                                {
+                                    player.dialogueOptions.unshift(["I can't afford that right now, maybe later.", false, "c"]);
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "7a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "7b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "7c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "7d";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "7a")
+                        {
+                            //text dialogue
+                            setMsg("A pleasure doing business with you!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                var coinzHit = -1;
+                                for (var i = 0; i < Inventory.length; i++)
+                                {
+                                    if (Inventory[i][0].type == "coins" && Inventory[i][1] >= 14000)
+                                    {
+                                        coinzHit = i;
+                                    }
+                                }
+                                if (coinzHit > -1)
+                                {
+                                    if (Inventory[coinzHit][1] == 14000)
+                                    {
+                                        Inventory.splice(coinzHit, 1);
+                                    }
+                                    else
+                                    {
+                                        Inventory[coinzHit][1] -= 14000;
+                                    }
+                                    quests.atalinHomeOwned = true;
+
+                                    quests.duendeInfestationCompletionStyle = "purchasedHouse";
+                                    quests.duendeInfestationQuest = "complete";
+                                    quests.completeQuests.push({name: "Duende Infestation", description: "You purchased the duende infested house at a discount price. Now it's your problem."});
+
+                                    player.nirwadenFaction += 10;
+                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                    {
+                                        player.magicalExperience += 20;
+                                    }
+                                    else
+                                    {
+                                        player.experience += 60;
+                                    }
+                                }
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "7b")
+                        {
+                            //text dialogue
+                            setMsg("A pleasure doing business with you!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                var coinzHit = -1;
+                                for (var i = 0; i < Inventory.length; i++)
+                                {
+                                    if (Inventory[i][0].type == "coins" && Inventory[i][1] >= 11000)
+                                    {
+                                        coinzHit = i;
+                                    }
+                                }
+                                if (coinzHit > -1)
+                                {
+                                    if (Inventory[coinzHit][1] == 11000)
+                                    {
+                                        Inventory.splice(coinzHit, 1);
+                                    }
+                                    else
+                                    {
+                                        Inventory[coinzHit][1] -= 11000;
+                                    }
+                                    quests.atalinHomeOwned = true;
+
+                                    quests.duendeInfestationCompletionStyle = "purchasedHouse";
+                                    quests.duendeInfestationQuest = "complete";
+                                    quests.completeQuests.push({name: "Duende Infestation", description: "You purchased the duende infested house at a discount price. Now it's your problem."});
+
+                                    player.nirwadenFaction += 10;
+                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                    {
+                                        player.magicalExperience += 20;
+                                    }
+                                    else
+                                    {
+                                        player.experience += 60;
+                                    }
+                                }
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "7c")
+                        {
+                            //text dialogue
+                            setMsg("I'll be here...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "7d")
+                        {
+                            //text dialogue
+                            setMsg("A pleasure doing business with you!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                var coinzHit = -1;
+                                for (var i = 0; i < Inventory.length; i++)
+                                {
+                                    if (Inventory[i][0].type == "coins" && Inventory[i][1] >= 13000)
+                                    {
+                                        coinzHit = i;
+                                    }
+                                }
+                                if (coinzHit > -1)
+                                {
+                                    if (Inventory[coinzHit][1] == 13000)
+                                    {
+                                        Inventory.splice(coinzHit, 1);
+                                    }
+                                    else
+                                    {
+                                        Inventory[coinzHit][1] -= 13000;
+                                    }
+                                    quests.atalinHomeOwned = true;
+
+                                    quests.duendeInfestationCompletionStyle = "purchasedHouse";
+                                    quests.duendeInfestationQuest = "complete";
+                                    quests.completeQuests.push({name: "Duende Infestation", description: "You purchased the duende infested house at a discount price. Now it's your problem."});
+
+                                    player.nirwadenFaction += 10;
+                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                    {
+                                        player.magicalExperience += 20;
+                                    }
+                                    else
+                                    {
+                                        player.experience += 60;
+                                    }
+                                }
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
                     if (self.ID == "High Dame Emylia Altezor" || conversationID[0] == "Emylia")
                     {
                         lowBar = "dialogue";

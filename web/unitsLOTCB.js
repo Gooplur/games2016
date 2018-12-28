@@ -832,13 +832,19 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.allys.push("neutral2");
         }
 
-        if (this.team != "arena1" && this.team != "arena2" && this.team != "arena3")
+        if (this.team == "arena4")
+        {
+            this.allys.splice(0, 1);
+        }
+
+        if (this.team != "arena1" && this.team != "arena2" && this.team != "arena3" && this.team != "arena4" && this.team != "arena5")
         {
             this.allys.push("arena1");
             this.allys.push("arena2");
             if (this.team != "player")
             {
                 this.allys.push("arena3");
+                this.allys.push("arena4");
             }
         }
 
@@ -890,9 +896,9 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.allys.push("Sylkeem");
             }
         }
-        if (this.team == "arena1" || this.team == "arena2" || this.team == "arena3")
+        if (this.team == "arena1" || this.team == "arena2" || this.team == "arena3" || this.team == "arena4" || this.team == "arena5")
         {
-            if (this.team != "arena3")
+            if (this.team != "arena3" && this.team != "arena4" && this.team != "arena5")
             {
                 this.allys.push("player");
             }
@@ -42309,7 +42315,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.teamByID = false;
             this.setTeamByID();
         }
-        if (this.baseTeam == "arena3")
+        if (this.baseTeam == "arena3" || this.baseTeam == "arena4" || this.baseTeam == "arena5")
         {
             this.disturbedTime = new Date().getTime();
         }

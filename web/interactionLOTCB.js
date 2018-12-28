@@ -9628,22 +9628,22 @@ function interaction(me)
                             {
                                 if (player.title == "Royalty" || player.title == "Nobility" || player.title == "Highfolk")
                                 {
-                                    setMsg("Gud day, mi lord.");
+                                    setMsg("Good day, me lord.");
                                 }
                                 else
                                 {
-                                    setMsg("Gud day, mister.");
+                                    setMsg("Good day, mister.");
                                 }
                             }
                             else
                             {
                                 if (player.title == "Royalty" || player.title == "Nobility" || player.title == "Highfolk")
                                 {
-                                    setMsg("Gud day, mi lady.");
+                                    setMsg("Good day, me dame.");
                                 }
                                 else
                                 {
-                                    setMsg("Gud day, miss.");
+                                    setMsg("Good day, miss.");
                                 }
                             }
 
@@ -9667,18 +9667,18 @@ function interaction(me)
                             //text dialogue
                             if (player.title == "Royalty" || player.title == "Nobility" || player.title == "Highfolk" || player.getCharisma() < 6)
                             {
-                                setMsg("I don gossip...");
+                                setMsg("I don't gossip...");
                             }
                             else
                             {
                                 if (uniqueChars.matildaLDS == true)
                                 {
-                                    setMsg("I 'erd dat ol' lady Matilda es a witch... I always knew der was sometin' odd about 'er.");
+                                    setMsg("I heard that Old Lady Matilda is a witch, I always knew there was something odd about her.");
                                 }
                                 else
                                 {
 
-                                    setMsg("I 'erd dat a picaro e'stole some fruit fron da orchar'. They caught 'im and purified 'im, doh. I would 'av been to da burnin', but I was too busy sewin'.");
+                                    setMsg("I heard that a thief stole some fruit from the orchard... They caught him and purified him, though. I would have gone to the burning, but I was too busy sewing...");
                                 }
                             }
 
@@ -9700,7 +9700,7 @@ function interaction(me)
                         else if (conversationID[1] == "0c")
                         {
                             //text dialogue
-                            setMsg("Business es gud, t'anks for askin'.");
+                            setMsg("Business is good, thanks for asking.");
 
                             //on ended text dialogue
                             if (tellMessage == "reset")
@@ -9720,7 +9720,7 @@ function interaction(me)
                         else if (conversationID[1] == "0d")
                         {
                             //text dialogue
-                            setMsg("Does et matter? Work es work, bes' not complain about et...");
+                            setMsg("Does it matter? Work is work, best not complain about it.");
 
                             //on ended text dialogue
                             if (tellMessage == "reset")
@@ -9774,10 +9774,13 @@ function interaction(me)
                                 }
                                 else if (quests.atalinWitchHuntQuest == true)
                                 {
-                                    player.dialogueOptions.push(["By the order of the Inquisition you are to be purified at the pire... If you resist I will kill you where you stand.", false, "e"]);
+                                    if (player.inquisitionRank != "none")
+                                    {
+                                        player.dialogueOptions.push(["By the order of the Inquisition you are to be purified at the pire... If you resist I will kill you where you stand.", false, "e"]);
+                                    }
                                 }
 
-                                if (player.raceName == "Nirwaden" && player.title != "Royalty")
+                                if (player.raceName == "Nirwaden")
                                 {
                                     player.dialogueOptions.push(["Foul hag!", false, "d"]);
                                 }
@@ -9828,24 +9831,24 @@ function interaction(me)
                             //text dialogue
                             if (player.gender == "Male")
                             {
-                                if (player.title == "Royalty")
+                                if (player.title == "Royalty" || player.title == "Nobility" || player.title == "Highfolk")
                                 {
-                                    setMsg("I am fine, jor grace.");
+                                    setMsg("I am fine, your grace.");
                                 }
                                 else
                                 {
-                                    setMsg("Not well, I sense dat any day now da inquisition will be knocking on mi door...");
+                                    setMsg("Not well, I sense that any day now the inquisition will be knocking on my door...");
                                 }
                             }
                             else
                             {
-                                if (player.title == "Royalty")
+                                if (player.title == "Royalty" || player.title == "Nobility" || player.title == "Highfolk")
                                 {
-                                    setMsg("I am fine, jor 'ighness.");
+                                    setMsg("I am fine, your highness.");
                                 }
                                 else
                                 {
-                                    setMsg("Not well, I sense dat any day now da inquisition will be knocking on mi door...");
+                                    setMsg("Not well, I sense that any day now the inquisition will be knocking on my door...");
                                 }
                             }
 
@@ -9867,41 +9870,45 @@ function interaction(me)
                         else if (conversationID[1] == "0b")
                         {
                             //text dialogue
-                            if (player.raceName == "Freynor")
+                            if (player.inquisitionRank != "none")
                             {
-                                setMsg("A life long frozen over will soon t'aw, ju will do great t'ings. Riches and glory will be en jor future...");
+                                setMsg("...I see an old lady's blood on your hands. You will travel blindly into the dark haze of your future imagining that you walk the path of the light, but you will leave suffering in your wake.");
+                            }
+                            else if (player.raceName == "Freynor")
+                            {
+                                setMsg("A life long frozen over will soon thaw, you will do great things. Riches and glory will be in your future...");
                             }
                             else if (player.raceName == "Nirwaden")
                             {
-                                setMsg("Jor highness, jor future es to lead dis empire, not'ing will get en jor way and ju will be great an' mighty...");
+                                setMsg("Your future will be full of riches and power... but you will die before your time...");
                             }
                             else if (player.raceName == "Vardan")
                             {
-                                setMsg("Ju 'ab trabeled a long way to come to where ju are now, and ju will trabel farder e'still, but et will be all for not. Ju will be camping one night and en jor sleep ju will be devoured by a pack of ravenous friches... I'm sorry...");
+                                setMsg("You have traveled a long way to where you are now, and you will travel fartherer still, but it will be all for not. You will be camping one night and en your sleep you will be devoured by a pack of ravenous friches... I'm sorry...");
                             }
                             else if (player.raceName == "Aldrek")
                             {
-                                setMsg("Jor people are cursed... ju are cursed... ju will die en battle, soon...");
+                                setMsg("Your people are cursed... you are cursed... you will die in battle, soon.");
                             }
                             else if (player.raceName == "Orgell")
                             {
-                                setMsg("Jor goin' to 'ab some difficulties en jor future, but dey will be wert' da reward of perseverence, for ju will be a proud parent and people will tell tales of your glorious exploits...");
+                                setMsg("You're going to have some difficulties in your future, but they will be worth the reward of your perseverence, for you will be a proud parent and people will tell tales of your glorious exploits...");
                             }
                             else if (player.raceName == "Kel")
                             {
-                                setMsg("Jor lan's will all be conquered an' jor people will lib as slabes swallowed by eas' an' wes' alike. Ju will be an outcas' where ever ju go, but ju will fin' passion wort' fightin' for...");
+                                setMsg("Your lands will all be conquered and your people will live as slaves swallowed by east and west alike. You will be an outcast where ever you go, but you will find passion worth fighting for...");
                             }
                             else if (player.raceName == "Cephrite")
                             {
-                                setMsg("Ju will grow e'strong an' jor power will engulf da worl'... Ju will do great t'ings, vile t'ings, an' en da en' ju will not recognize jorselv...");
+                                setMsg("You will grow strong and powerful and engulf the world... You will do great things, vile things, and in the end you will no longer recognize yourself...");
                             }
                             else if (player.raceName == "Thengar")
                             {
-                                setMsg("Ju will grow e'strong an' dominate da weak. Dat es jor destiny...");
+                                setMsg("You will grow strong and dominate the weak. That is your destiny...");
                             }
                             else
                             {
-                                setMsg("Ju will wander... ju will feel los' and wit'out purpose... but den love will fin' ju and ju will understan' why ju do what ju do.");
+                                setMsg("You will wander... you will feel lost and without purpose... but then love will find you and you will understand why you do what you do.");
                             }
 
                             //on ended text dialogue
@@ -9946,7 +9953,7 @@ function interaction(me)
                         else if (conversationID[1] == "0c")
                         {
                             //text dialogue
-                            setMsg("En order to access jor true selv ju mus' calm jor min' an' open jor soul. Da e'spirit es en eberyone, more so dan da church would 'ab ju believe... ju mus' meditate an' tap ento jor enner potential...");
+                            setMsg("In order to access your true self you must calm your mind and open your soul. The Everlasting Spirit is in everyone, more so than the church would have you believe... you must meditate and tap into your inner potential...");
 
                             //on ended text dialogue
                             if (tellMessage == "reset")
@@ -10427,7 +10434,7 @@ function interaction(me)
                             if (player.gender == "Female" && player.title == "Highfolk" && player.raceName == "Nirwaden" || player.gender == "Female" && player.title == "Nobility" || player.gender == "Female" && player.title == "Royalty")
                             {
                                 //text dialogue
-                                setMsg("Welcon mi lady.");
+                                setMsg("Welcome, my dame.");
 
                                 //on ended text dialogue
                                 if (tellMessage == "reset")
@@ -10447,7 +10454,7 @@ function interaction(me)
                             else if (player.title == "Highfolk" && player.raceName == "Nirwaden" || player.title == "Nobility" || player.title == "Royalty")
                             {
                                 //text dialogue
-                                setMsg("Welcon mi liege.");
+                                setMsg("Welcome, my liege.");
 
                                 //on ended text dialogue
                                 if (tellMessage == "reset")
@@ -10467,7 +10474,7 @@ function interaction(me)
                             else
                             {
                                 //text dialogue
-                                setMsg("Alt! Ju mus pay a ten cwen toll ef ju wich to cross!");
+                                setMsg("Halt! You must pay a ten coin toll if you wish to cross!");
 
                                 //on ended text dialogue
                                 if (tellMessage == "reset")
@@ -10522,7 +10529,7 @@ function interaction(me)
                         else if (conversationID[1] == "1a")
                         {
                             //text dialogue
-                            setMsg("T'anks, ab a gud day...");
+                            setMsg("Thanks, have a good day...");
 
                             //on ended text dialogue
                             if (tellMessage == "reset")
@@ -10555,7 +10562,7 @@ function interaction(me)
                         else if (conversationID[1] == "1b")
                         {
                             //text dialogue
-                            setMsg("Ef ju don pay, ju don cross.");
+                            setMsg("If you don't pay, you don't cross.");
 
                             //on ended text dialogue
                             if (tellMessage == "reset")

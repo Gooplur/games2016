@@ -179,6 +179,10 @@ function cheats()
                 player.willpower = 1;
             }
         }
+        else if (cheatcode == "wobéame" || cheatcode == "wobeame")
+        {
+            scenicList.push(new Scenery("wobeaPlant", X + 200, Y, Math.random() * 2 * Math.PI, true));
+        }
         else if (cheatcode == "8675309")
         {
             magicList.push(new Magic({ID: "chasingLights", CNX: 50}, true, [true]));

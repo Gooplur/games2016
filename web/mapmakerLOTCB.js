@@ -12842,7 +12842,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-41296, 2415, "Person", false, "Agustin the Doctor", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["doctorOutfit", 0], weapon: ["none", [0.1, 0.4], 0, 0, 1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[-41296, 2444]], merchant: true, merchandise: [[new Item("coins", false, false), 100], [new Item("culprisBandage", false, false), 18], [new Item("healingSalve", false, false), 3], [new Item("wyrExtract", false, false), 2]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-41296, 2415, "Person", false, "Agustin the Doctor", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["doctorOutfit", 0], weapon: ["none", [0.1, 0.4], 0, 0, 1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[-41296, 2444]], merchant: true, merchandise: [[new Item("coins", false, false), 100], [new Item("culprisBandage", false, false), 18], [new Item("healingSalve", false, false), 3], [new Item("wyrExtract", false, false), 2], [new Item("wobeaExtract", false, false), 5]]}));
                     }
                 }
 

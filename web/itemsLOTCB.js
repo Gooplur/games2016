@@ -9252,6 +9252,78 @@ function Item(type, x, y)
             this.buyValue = 3 - Math.floor(player.getCharisma() / 50); // at max, buy for 2.
             this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
         }
+        else if (this.type == "wobeaNeedles")
+        {
+            //For All Items
+            this.identity = "Wobea Needles";
+            this.weight = 0.06;
+            this.size = 8;
+            this.description = "The thin needles of the wobea plant.";
+            this.intForDes = 18;
+            this.intDescription = "These can be made into an extract that is used as medical anesthesia";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 9;
+            this.ingredients = [["Wobea Leaf", 1]];
+            this.biproducts = [[new Item("wobeaFlesh", false), 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5; // at max, buy for 5.
+            this.sellValue = 3 + Math.floor(player.getCharisma() / 25); // at max, sell for 5.
+        }
+        else if (this.type == "wobeaFlesh")
+        {
+            //For All Items
+            this.identity = "Wobea Flesh";
+            this.weight = 1.54;
+            this.size = 9;
+            this.description = "The viscous sap and the stringy mess of fibrous wobea rib that is left after removing all of the needles from a wobea leaf.";
+            this.intForDes = 9;
+            this.intDescription = "This can be used in alchemy as a changer.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 9;
+            this.ingredients = [["Wobea Leaf", 1]];
+            this.biproducts = [[new Item("wobeaNeedles", false), 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "wobeaLeaf")
+        {
+            //For All Items
+            this.identity = "Wobea Leaf";
+            this.weight = 1.6;
+            this.size = 10;
+            this.description = "A long, porus, and very thick rib of the wobea plant.";
+            this.intForDes = 9;
+            this.intDescription = "The needles embedded in this leaf can be extracted for use in alchemy...";
+
+            //Define Utility
+            this.utility = "Material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 4; // at max, buy for 4.
+            this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+        }
         else if (this.type == "blilArm")
         {
             //For All Items
@@ -13193,6 +13265,43 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 925 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 725.
             this.sellValue = 495 + Math.floor(player.getCharisma() / 0.25); // at max, sell for 695.
+        }
+        else if (this.type == "wobeaExtract")
+        {
+            //For All Items
+            this.identity = "Wobea Extract";
+            this.weight = 0.5;
+            this.size = 5;
+            this.description = "A light coloured liquid that is extremely bitter.";
+            this.intForDes = 2;
+            this.intDescription = "This is used as anesthesia. In other words it enhances the effect of things that restore your health, and also puts you to sleep.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["potionGlass", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 10; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -60; //recoops lost energy.
+            this.replenish = 1; //restores will.
+            this.wake = 30;
+
+            //ability
+            this.ability = "wobeaNumbIII";
+
+            //Crafting
+            this.yield = 2;
+            this.intForCraft = 18;
+            this.ingredients = [["Vial of Water", 2], ["Wobea Needles", 21]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 65 - Math.floor(player.getCharisma() / 10); // at max, buy for 60.
+            this.sellValue = 55 + Math.floor(player.getCharisma() / 10); // at max, sell for 60.
         }
         else if (this.type == "energyPotionI")
         {
@@ -17612,6 +17721,71 @@ function Item(type, x, y)
             this.buyValue = 5 - Math.floor(player.getCharisma() / 50); // at max, buy for 4.
             this.sellValue = 2 + Math.floor(player.getCharisma() / 50); // at max, sell for 3.
         }
+        else if (this.type == "wobeaFruit")
+        {
+            //For All Items
+            this.identity = "Wobea";
+            this.weight = 1.3;
+            this.size = 13;
+            this.description = "The tender pinkish orange jello-like fruit inside can be slurped out if you puncture the wobea fruit's shell.";
+            this.intForDes = 5;
+            this.intDescription = "Wobea fruit can be used during surgery as a form of anesthesia.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = true; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1; //satisfies hunger.
+            this.thirst = -3; //quenches thirst.
+            this.warmth = 6; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -15.5; //recoops lost energy.
+            this.replenish = 0.75; //restores will.
+            this.wake = 3;
+
+            //ability
+            this.ability = "wobeaNumbII";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 10; // at max, buy for 10.
+            this.sellValue = 3 + Math.floor(player.getCharisma() / 8); // at max, sell for 9.
+        }
+        else if (this.type == "wobeaSlice")
+        {
+            //For All Items
+            this.identity = "Wobea Slice";
+            this.weight = 0.1;
+            this.size = 13;
+            this.description = "A slice of wobea fruit; it has a light orangish pink colour and is numbs your entire body after you bite into it.";
+            this.intForDes = 0;
+            this.intDescription = "It tastes salty and mildly bitter, it is tender and soft with a fluid jello-like wigglyness.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1; //satisfies hunger.
+            this.thirst = -1; //quenches thirst.
+            this.warmth = 2; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -5; //recoops lost energy.
+            this.replenish = 0.25; //restores will.
+            this.wake = 1;
+
+            //ability
+            this.ability = "wobeaNumbI";
+
+            //Crafting
+            this.yield = 3;
+            this.intForCraft = 1;
+            this.ingredients = [["Wobea", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 4; // at max, buy for 4.
+            this.sellValue = 1 + Math.floor(player.getCharisma() / 25); // at max, sell for 3.
+        }
         else if (this.type == "naapricha")
         {
             //For All Items
@@ -17924,7 +18098,7 @@ function Item(type, x, y)
             //Crafting
             this.yield = 30;
             this.intForCraft = 27;
-            this.ingredients = [["Desert Poppy", 6], ["Cirmusidic compound", 2], ["Bloch Extract", 1]];
+            this.ingredients = [["Desert Poppy", 6], ["Cirmusidic Compound", 2], ["Bloch Extract", 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             if (shopkeeper != "none")
@@ -24040,7 +24214,7 @@ function Item(type, x, y)
             this.toughnessRequirement = 40;
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
-            this.warmthRetention = 0;
+            this.warmthRetention = 2;
             this.thirstRetention = 0;
             this.shockResist = -10;
             //Main Stat Bonuses
@@ -24136,6 +24310,64 @@ function Item(type, x, y)
             this.buyValue = 95 - Math.floor(player.getCharisma() / 3); // at max, buy for 80.
             this.sellValue = 65 + Math.floor(player.getCharisma() / 3); // at max, sell for 80.
         }
+        else if (this.type == "boarArmour")
+        {
+            //For All Items
+            this.identity = "Boar Armour";
+            this.weight = 15;
+            this.size = 26;
+            this.description = "A specially made gambeson of boar pelt, armoured with a ragged coat of plates.";
+            this.intForDes = 3;
+            this.intDescription = "This armour is often used by sellswords or bandits in the northern kingdom of the Nirwaden Empire.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "armour";
+            //Utility Focused
+            //protections
+            this.protection = 6.5 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 5;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 1.9;
+            this.thirstRetention = 0;
+            this.shockResist = -1;
+            //Main Stat Bonuses
+            this.strengthBonus = 1;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 0;
+            this.rangedBonus = 1;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 10;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting //boar pelt does not exist as an item in game...
+            //this.yield = 1;
+            //this.intForCraft = 25;
+            //this.ingredients = [["Boar Pelt", 2], ["Iron", 3]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 88 - Math.floor(player.getCharisma() / 3); // at max, buy for 73.
+            this.sellValue = 60 + Math.floor(player.getCharisma() / 8); // at max, sell for 66.
+        }
         else if (this.type == "thenganPlateArmour")
         {
             //For All Items
@@ -24156,7 +24388,7 @@ function Item(type, x, y)
             this.toughnessRequirement = 15;
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
-            this.warmthRetention = 0;
+            this.warmthRetention = 1;
             this.thirstRetention = 0;
             this.shockResist = -8;
             //Main Stat Bonuses
@@ -24342,6 +24574,70 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 1300 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 1100.
             this.sellValue = 900 + Math.floor(player.getCharisma() / 0.25); // at max, sell for 1100.
+        }
+        else if (this.type == "barracoPlateArmour")
+        {
+            //For All Items
+            this.identity = "Ser Barraco Kein's Tusked Plate Armour";
+            this.weight = 75;
+            this.size = 28;
+            this.description = "The custom made set of armour once belonged to Ser Barraco Kein, whose band would mostly steal from the rich and would often give some of their spoils to the poor.";
+            this.intForDes = 5;
+            this.intDescription = "Everyone in Nirwaden's north country know of him. He was exiled after he could no longer stand serving the rich who lived extravegently at the expense of the poor.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "armour";
+            //Utility Focused
+            //protections
+            this.protection = 17 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 17;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 1.6;
+            this.thirstRetention = 0;
+            this.shockResist = -9;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 1;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 28;
+            this.rangedBonus = -20;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 1;
+            this.dexterityBonus = -32;
+            this.survivalismBonus = -50;
+            //Extra Stat Bonuses
+            this.sleepBonus = 1;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 8;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            if (player.strength >= 30 && player.dexterity >= 15)
+            {
+                this.ability = "none";
+            }
+            else if (player.strength >= 20 && player.dexterity >= 10)
+            {
+                this.ability = "hefty";
+            }
+            else
+            {
+                this.ability = "heavy";
+            }
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1800 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 1600.
+            this.sellValue = 1400 + Math.floor(player.getCharisma() / 0.25); // at max, sell for 1600.
         }
         else if (this.type == "mrbTacticalArmour")
         {
@@ -25226,6 +25522,63 @@ function Item(type, x, y)
             this.buyValue = 8950 - Math.floor(player.getCharisma() / 0.0625); // at max, buy for 8150.
             this.sellValue = 6925 + Math.floor(player.getCharisma() / 0.0625); // at max, sell for 7725.
         }
+        else if (this.type == "matadorOutfit")
+        {
+            //For All Items
+            this.identity = "Matador Outfit";
+            this.weight = 3;
+            this.size = 26;
+            this.description = "A fine outfit sewn from cloth and silk and embroidered with gold. It is topped off with golden shoulder coverings and a large decorative hat.";
+            this.intForDes = 1;
+            this.intDescription = "Boar fighting is a time honoured tradition in the northern most kingdom in the Nirwaden Empire.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0.25;
+            this.thirstRetention = 0.65;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 25;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 39;
+            this.ingredients = [["Silk", 5], ["Cloth", 7], ["Gold", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1000; // at max, buy for 1000.
+            this.sellValue = 900 + Math.floor(player.getCharisma() / 0.5); // at max, sell for 1000.
+        }
         else if (this.type == "nirwadenNobleOutfit")
         {
             //For All Items
@@ -25467,9 +25820,9 @@ function Item(type, x, y)
             this.identity = "Witch Hunter Outfit";
             this.weight = 2;
             this.size = 27;
-            this.description = "The standard garb of The Order of the Inquisition";
+            this.description = "The standard garb of The Royal Order of the Inquisition.";
             this.intForDes = 0;
-            this.intDescription = "The Order of the Inquisition is a royally sanctioned guild of witch hunters that is tasked with eliminating the uncanny supernatural.";
+            this.intDescription = "The Order of the Inquisition is a royally sanctioned guild of witch hunters that is tasked with eliminating the uncanny and the supernatural.";
 
             //Define Utility
             this.utility = "worn";
@@ -25748,6 +26101,63 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 14 - Math.floor(player.getCharisma() / 10); // at max, buy for 9.
             this.sellValue = 5 + Math.floor(player.getCharisma() / 12); // at max, sell for 9.
+        }
+        else if (this.type == "orgishClothing")
+        {
+            //For All Items
+            this.identity = "Orgish Clothing";
+            this.weight = 1;
+            this.size = 26;
+            this.description = "A basic cloth outfit and a straw hat, in the style of the orgish people of the southwest.";
+            this.intForDes = 1;
+            this.intDescription = "The hat protects against the sun....";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0.1;
+            this.thirstRetention = 0.75;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 0;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 11;
+            this.ingredients = [["Cloth", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 15 - Math.floor(player.getCharisma() / 15); // at max, buy for 12.
+            this.sellValue = 9 + Math.floor(player.getCharisma() / 15); // at max, sell for 12.
         }
         else if (this.type == "nirwadenClothingM")
         {
@@ -29797,6 +30207,51 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(candlewic, 60, 167, 27, 29, X - this.X + (1/2 * CCC.width) - (1/2 * 27 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 29 * 1.5), 27 * 1.5, 29 * 1.5);
         }
+        else if (this.type == "wobeaFruit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(chupa, 164, 9, 14, 13, X - this.X + (1/2 * CCC.width) - (1/2 * 14 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 13 * 2), 14 * 2, 13 * 2);
+        }
+        else if (this.type == "wobeaSlice")
+        {
+            XXX.beginPath();
+            XXX.drawImage(chupa, 188, 11, 14, 13, X - this.X + (1/2 * CCC.width) - (1/2 * 14 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 13 * 2), 14 * 2, 13 * 2);
+        }
+        else if (this.type == "wobeaLeaf")
+        {
+            XXX.beginPath();
+            XXX.drawImage(chupa, 53, 5, 28, 13, X - this.X + (1/2 * CCC.width) - (1/2 * 28 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 13 * 2), 28 * 2, 13 * 2);
+        }
+        else if (this.type == "wobeaFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(chupa, 208, 8, 14, 13, X - this.X + (1/2 * CCC.width) - (1/2 * 21 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 13 * 2), 21 * 2, 13 * 2);
+        }
+        else if (this.type == "wobeaNeedles")
+        {
+            XXX.beginPath();
+            XXX.drawImage(chupa, 49, 63, 24, 25, X - this.X + (1/2 * CCC.width) - (1/2 * 24 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 25 * 2), 24 * 2, 25 * 2);
+        }
+        else if (this.type == "orgishClothing")
+        {
+            XXX.beginPath();
+            XXX.drawImage(chupa, 121, 494, 57, 117, X - this.X + (1/2 * CCC.width) - (1/2 * 57 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 117 * 1), 57 * 1, 117 * 1);
+        }
+        else if (this.type == "matadorOutfit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(chupa, 93, 10, 59, 130, X - this.X + (1/2 * CCC.width) - (1/2 * 59 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 130 * 1), 59 * 1, 130 * 1);
+        }
+        else if (this.type == "boarArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(chupa, 41, 635, 68, 120, X - this.X + (1/2 * CCC.width) - (1/2 * 68 * 0.9), Y - this.Y + (1/2 * CCC.height) - (1/2 * 120 * 0.9), 68 * 0.9, 120 * 0.9);
+        }
+        else if (this.type == "barracoPlateArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(chupa, 244, 238, 91, 123, X - this.X + (1/2 * CCC.width) - (1/2 * 91 * 0.95), Y - this.Y + (1/2 * CCC.height) - (1/2 * 123 * 0.95), 91 * 0.95, 123 * 0.95);
+        }
         else if (this.type == "sickle")
         {
             XXX.beginPath();
@@ -33087,7 +33542,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(verse, 86, 134, 10, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 10), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17), 10, 17);
         }
-        else if (this.type == "cleansingPotion")
+        else if (this.type == "cleansingPotion" || this.type == "wobeaExtract")
         {
             XXX.beginPath();
             XXX.drawImage(verse, 35, 134, 11, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 11), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19), 11, 19);
@@ -33659,6 +34114,51 @@ function Item(type, x, y)
         {
             LXX.beginPath();
             LXX.drawImage(candlewic, 61, 201, 27, 29, this.invX - (1/2 * 27 * 1.5), this.invY - (1/2 * 29 * 1.5), 27 * 1.5, 29 * 1.5);
+        }
+        else if (this.type == "wobeaFruit")
+        {
+            LXX.beginPath();
+            LXX.drawImage(chupa, 164, 9, 14, 13, this.invX - (1/2 * 14 * 2), this.invY - (1/2 * 13 * 2), 14 * 2, 13 * 2);
+        }
+        else if (this.type == "wobeaSlice")
+        {
+            LXX.beginPath();
+            LXX.drawImage(chupa, 188, 11, 14, 13, this.invX - (1/2 * 14 * 2), this.invY - (1/2 * 13 * 2), 14 * 2, 13 * 2);
+        }
+        else if (this.type == "wobeaLeaf")
+        {
+            LXX.beginPath();
+            LXX.drawImage(chupa, 53, 5, 28, 13, this.invX - (1/2 * 28 * 2), this.invY - (1/2 * 13 * 2), 28 * 2, 13 * 2);
+        }
+        else if (this.type == "wobeaFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(chupa, 208, 8, 14, 13, this.invX - (1/2 * 21 * 2), this.invY - (1/2 * 13 * 2), 21 * 2, 13 * 2);
+        }
+        else if (this.type == "wobeaNeedles")
+        {
+            LXX.beginPath();
+            LXX.drawImage(chupa, 49, 63, 24, 25, this.invX - (1/2 * 24 * 2), this.invY - (1/2 * 25 * 2), 24 * 2, 25 * 2);
+        }
+        else if (this.type == "orgishClothing")
+        {
+            LXX.beginPath();
+            LXX.drawImage(chupa, 121, 494, 57, 117, this.invX - (1/2 * 57 * 0.65), this.invY - (1/2 * 117 * 0.65), 57 * 0.65, 117 * 0.65);
+        }
+        else if (this.type == "matadorOutfit")
+        {
+            LXX.beginPath();
+            LXX.drawImage(chupa, 93, 10, 59, 130, this.invX - (1/2 * 59 * 0.65), this.invY - (1/2 * 130 * 0.65), 59 * 0.65, 130 * 0.65);
+        }
+        else if (this.type == "boarArmour")
+        {
+            LXX.beginPath();
+            LXX.drawImage(chupa, 41, 635, 68, 120, this.invX - (1/2 * 68 * 0.55), this.invY - (1/2 * 120 * 0.55), 68 * 0.55, 120 * 0.55);
+        }
+        else if (this.type == "barracoPlateArmour")
+        {
+            LXX.beginPath();
+            LXX.drawImage(chupa, 244, 238, 91, 123, this.invX - (1/2 * 91 * 0.6), this.invY - (1/2 * 123 * 0.6), 91 * 0.6, 123 * 0.6);
         }
         else if (this.type == "sickle")
         {
@@ -36956,7 +37456,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(verse, 86, 134, 10, 17, this.invX - (1/2 * 10), this.invY - (1/2 * 17), 10, 17);
         }
-        else if (this.type == "cleansingPotion")
+        else if (this.type == "cleansingPotion" || this.type == "wobeaExtract")
         {
             LXX.beginPath();
             LXX.drawImage(verse, 35, 134, 11, 19, this.invX - (1/2 * 11), this.invY - (1/2 * 19), 11, 19);
@@ -37497,6 +37997,51 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(candlewic, 61, 201, 27, 29, this.invX - (1/2 * 27 * 1.5), this.invY - (1/2 * 29 * 1.5), 27 * 1.5, 29 * 1.5);
+        }
+        else if (this.type == "wobeaFruit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(chupa, 164, 9, 14, 13, this.invX - (1/2 * 14 * 2), this.invY - (1/2 * 13 * 2), 14 * 2, 13 * 2);
+        }
+        else if (this.type == "wobeaSlice")
+        {
+            XXX.beginPath();
+            XXX.drawImage(chupa, 188, 11, 14, 13, this.invX - (1/2 * 14 * 2), this.invY - (1/2 * 13 * 2), 14 * 2, 13 * 2);
+        }
+        else if (this.type == "wobeaLeaf")
+        {
+            XXX.beginPath();
+            XXX.drawImage(chupa, 53, 5, 28, 13, this.invX - (1/2 * 28 * 2), this.invY - (1/2 * 13 * 2), 28 * 2, 13 * 2);
+        }
+        else if (this.type == "wobeaFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(chupa, 208, 8, 14, 13, this.invX - (1/2 * 21 * 2), this.invY - (1/2 * 13 * 2), 21 * 2, 13 * 2);
+        }
+        else if (this.type == "wobeaNeedles")
+        {
+            XXX.beginPath();
+            XXX.drawImage(chupa, 49, 63, 24, 25, this.invX - (1/2 * 24 * 2), this.invY - (1/2 * 25 * 2), 24 * 2, 25 * 2);
+        }
+        else if (this.type == "orgishClothing")
+        {
+            XXX.beginPath();
+            XXX.drawImage(chupa, 121, 494, 57, 117, this.invX - (1/2 * 57 * 0.65), this.invY - (1/2 * 117 * 0.65), 57 * 0.65, 117 * 0.65);
+        }
+        else if (this.type == "matadorOutfit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(chupa, 93, 10, 59, 130, this.invX - (1/2 * 59 * 0.65), this.invY - (1/2 * 130 * 0.65), 59 * 0.65, 130 * 0.65);
+        }
+        else if (this.type == "boarArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(chupa, 41, 635, 68, 120, this.invX - (1/2 * 68 * 0.55), this.invY - (1/2 * 120 * 0.55), 68 * 0.55, 120 * 0.55);
+        }
+        else if (this.type == "barracoPlateArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(chupa, 244, 238, 91, 123, this.invX - (1/2 * 91 * 0.6), this.invY - (1/2 * 123 * 0.6), 91 * 0.6, 123 * 0.6);
         }
         else if (this.type == "sickle")
         {
@@ -40788,7 +41333,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(verse, 86, 134, 10, 17, this.invX - (1/2 * 10), this.invY - (1/2 * 17), 10, 17);
         }
-        else if (this.type == "cleansingPotion")
+        else if (this.type == "cleansingPotion" || this.type == "wobeaExtract")
         {
             XXX.beginPath();
             XXX.drawImage(verse, 35, 134, 11, 19, this.invX - (1/2 * 11), this.invY - (1/2 * 19), 11, 19);

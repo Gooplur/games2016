@@ -12214,6 +12214,133 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 }
             }
         }
+        else if (this.type == "wobeaPlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.nectar(1);
+            this.solid = false;
+            this.interactionRange = 70;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                if (timeOfDay == "Day")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(chupa, 50, 341, 67, 64, -(1/2 * 67 * 2), -(1/2 * 64 * 2), 67 * 2, 64 * 2);
+                    XXX.restore();
+                }
+                else
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(chupa, 49, 494, 67, 64, -(1/2 * 67 * 2), -(1/2 * 64 * 2), 67 * 2, 64 * 2);
+                    XXX.restore();
+                }
+            }
+            else if (this.phase == 1)
+            {
+                if (timeOfDay == "Day")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(chupa, 50, 261, 67, 64, -(1/2 * 67 * 2), -(1/2 * 64 * 2), 67 * 2, 64 * 2);
+                    XXX.restore();
+                }
+                else
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(chupa, 48, 186, 67, 64, -(1/2 * 67 * 2), -(1/2 * 64 * 2), 67 * 2, 64 * 2);
+                    XXX.restore();
+                }
+            }
+            else if (this.phase == "picked")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(chupa, 49, 413, 67, 64, -(1/2 * 67 * 2), -(1/2 * 64 * 2), 67 * 2, 64 * 2);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 52;
+
+            if (player.stunnedIII == false && player.armourTotal < 0.8 && timeOfDay == "Day")
+            {
+                if (((X - this.X) * (X - this.X) + (Y - this.Y) * (Y - this.Y)) <= this.radius * this.radius)
+                {
+                    player.stunnedIII = true;
+                    player.stunnedTime = 9;
+                }
+            }
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+                if (this.phase == 0)
+                {
+                    this.phase = 1;
+                    if (player.glovesEquipped == "none" && timeOfDay == "Day")
+                    {
+                        player.stunnedII = true;
+                        player.stunnedTime = 4;
+                    }
+
+                    var hits = 0;
+                    for (var i = 0; i < Inventory.length; i ++)
+                    {
+                        if (Inventory[i][0].type == "wobeaFruit")
+                        {
+                            Inventory[i][1] += 1;
+                            break;
+                        }
+                        else
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == Inventory.length)
+                    {
+                        Inventory.push([new Item("wobeaFruit", false, false), 1]);
+                    }
+                }
+                else if (this.phase == 1)
+                {
+                    this.phase = "picked";
+                    if (player.glovesEquipped == "none" && timeOfDay == "Day")
+                    {
+                        player.stunnedII = true;
+                        player.stunnedTime = 4;
+                    }
+                    var hits = 0;
+                    for (var i = 0; i < Inventory.length; i ++)
+                    {
+                        if (Inventory[i][0].type == "wobeaLeaf")
+                        {
+                            Inventory[i][1] += Math.floor(1 + Math.random() * 8);
+                            break;
+                        }
+                        else
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == Inventory.length)
+                    {
+                        Inventory.push([new Item("wobeaLeaf", false, false), Math.floor(1 + Math.random() * 8)]);
+                    }
+                }
+            }
+        }
         else if (this.type == "tialoPlant")
         {
             //TRAITS

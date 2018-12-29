@@ -8595,7 +8595,12 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         }
         for (var i = 0; i < scenicList.length; i++)
         {
-            if (scenicList[i].solid == true || scenicList[i].type == "campFire" && scenicList[i].lit == true && this.X > scenicList[i].X - scenicList[i].radius && this.X < scenicList[i].X + scenicList[i].radius && this.Y > scenicList[i].Y - scenicList[i].radius && this.Y < scenicList[i].Y + scenicList[i].radius || scenicList[i].type == "yeolCampFire" && scenicList[i].lit == true && this.X > scenicList[i].X - scenicList[i].radius && this.X < scenicList[i].X + scenicList[i].radius && this.Y > scenicList[i].Y - scenicList[i].radius && this.Y < scenicList[i].Y + scenicList[i].radius || scenicList[i].type == "pire" && scenicList[i].lit != "burnt" && this.X > scenicList[i].X - scenicList[i].radius && this.X < scenicList[i].X + scenicList[i].radius && this.Y > scenicList[i].Y - scenicList[i].radius && this.Y < scenicList[i].Y + scenicList[i].radius)
+            var scnCrds = false;
+            if (x > scenicList[i].X - scenicList[i].radius && x < scenicList[i].X + scenicList[i].radius && y > scenicList[i].Y - scenicList[i].radius && y < scenicList[i].Y + scenicList[i].radius)
+            {
+                scnCrds = true;
+            }
+            if (scenicList[i].solid == true || scenicList[i].type == "campFire" && scenicList[i].lit == true && scnCrds || scenicList[i].type == "yeolCampFire" && scenicList[i].lit == true && scnCrds || scenicList[i].type == "pire" && scenicList[i].lit != "burnt" && scnCrds || scenicList[i].type == "wobeaPlant" && scnCrds)
             {
                 var focusObject = scenicList[i]; //This is the current unit focused on other than this unit.
                 var x1 = focusObject.X; //the focus unit's X position.
@@ -10564,6 +10569,46 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 }
                 XXX.rotate(this.rotation + 1 / 2 * Math.PI);
                 XXX.drawImage(verse, 2140, 29, 25, 20, -(1 / 2 * 25) - 1.75, -(1 / 2 * 20) - 4, 31, 27.2);
+            }
+            else if (outfit == "boarArmour")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation - 1 / 2 * Math.PI);
+                XXX.drawImage(chupa, 55, 575, 45, 42, -1/2 * 45 * 1.5 + 0, -1/2 * 42 * 1.6 - 3, 45 * 1.5, 42 * 1.6);
+            }
+            else if (outfit == "barracoPlateArmour")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation - 1 / 2 * Math.PI);
+                XXX.drawImage(chupa, 162, 220, 78, 99, -1/2 * 78 * 0.55 + 0, -1/2 * 99 * 0.55 - 0, 78 * 0.55, 99 * 0.55);
+            }
+            else if (outfit == "orgishClothing")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation - 1 / 2 * Math.PI);
+                XXX.drawImage(chupa, 51, 24, 28, 39, -1/2 * 28 * 1.61 - 1.5, -1/2 * 39 * 1.61 + 4.4, 28 * 1.61, 39 * 1.61);
+            }
+            else if (outfit == "matadorOutfit")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation - 1 / 2 * Math.PI);
+                XXX.drawImage(chupa, 172, 38, 34, 39, -1/2 * 34 * 1.5 + 0, -1/2 * 39 * 1.5 - 3, 34 * 1.5, 39 * 1.5);
             }
             else if (outfit == "nirwadenMorionArmour")
             {

@@ -389,6 +389,7 @@ function Adventurer()
     this.stunnedII = false;
     this.stunnedIII = false;
     this.stunnedTime = 0;
+    this.wobea = false;
     this.stunTimer = new Date().getTime();
     this.fleshMites = false;
     this.timeSinceLastFleshFeast = new Date().getTime();
@@ -2518,12 +2519,19 @@ function Adventurer()
 
         this.bandagedTimer = function()
         {
-            if (this.bandagedTime >= 1)
+            if (this.bandagedTime > 0)
             {
                 if (new Date().getTime() - this.bandagedStoreTime >= 1000)
                 {
                     this.bandagedStoreTime = new Date().getTime();
-                    this.bandagedTime -= 1;
+                    if (this.wobea == true)
+                    {
+                        this.bandagedTime -= 0.25;
+                    }
+                    else
+                    {
+                        this.bandagedTime -= 1;
+                    }
                 }
             }
             if (this.bandagedTime > 0)
@@ -2532,6 +2540,7 @@ function Adventurer()
             }
             else
             {
+                this.bandagedTime = 0;
                 this.bandaged = false;
             }
         };
@@ -2551,6 +2560,7 @@ function Adventurer()
                 this.stunnedI = false;
                 this.stunnedII = false;
                 this.stunnedIII = false;
+                this.wobea = false;
             }
         };
 
@@ -2607,49 +2617,46 @@ function Adventurer()
             //This section covers all five ranks of the basic type of health regeneration.
             if (this.recoveryTime > 0)
             {
-                if (this.recoverV == true && new Date().getTime() - this.timeSinceLastRecovery > 50)
+                if (new Date().getTime() - this.timeSinceLastRecovery > 50)
                 {
-                    //reset the timer for the poison.
-                    this.timeSinceLastRecovery = new Date().getTime();
-                    //Take away health
-                    this.health = Math.min(this.healthMAX, this.health + (2 / 10));
-                    this.recoveryTime -= 1;
-                }
-                else if (this.recoverIV == true && new Date().getTime() - this.timeSinceLastRecovery > 50)
-                {
-                    //reset the timer for the poison.
-                    this.timeSinceLastRecovery = new Date().getTime();
-                    //Take away health
-                    this.health = Math.min(this.healthMAX, this.health + (2 / 20));
-                    this.recoveryTime -= 1;
-                }
-                else if (this.recoverIII == true && new Date().getTime() - this.timeSinceLastRecovery > 50)
-                {
-                    //reset the timer for the poison.
-                    this.timeSinceLastRecovery = new Date().getTime();
-                    //Take away health
-                    this.health = Math.min(this.healthMAX, this.health + (2 / 30));
-                    this.recoveryTime -= 1;
-                }
-                if (this.recoverII == true && new Date().getTime() - this.timeSinceLastRecovery > 50)
-                {
-                    //reset the timer for the poison.
-                    this.timeSinceLastRecovery = new Date().getTime();
-                    //Take away health
-                    this.health = Math.min(this.healthMAX, this.health + (2 / 40));
-                    this.recoveryTime -= 1;
-                }
-                else if (this.recoverI == true && new Date().getTime() - this.timeSinceLastRecovery > 50)
-                {
-                    //reset the timer for the poison.
-                    this.timeSinceLastRecovery = new Date().getTime();
-                    //Take away health
-                    this.health = Math.min(this.healthMAX, this.health + (2 / 50));
-                    this.recoveryTime -= 1;
+                    if (this.recoverI == true || this.recoverII == true || this.recoverIII == true || this.recoverIV == true || this.recoverV == true)
+                    {
+                        this.timeSinceLastRecovery = new Date().getTime();
+                        if (this.wobea == true) //wobea quadruples the recovery time gained.
+                        {
+                            this.recoveryTime -= 0.25;
+                        }
+                        else
+                        {
+                            this.recoveryTime -= 1;
+                        }
+                    }
+
+                    if (this.recoverV == true)
+                    {
+                        this.health = Math.min(this.healthMAX, this.health + (2 / 10));
+                    }
+                    else if (this.recoverIV == true)
+                    {
+                        this.health = Math.min(this.healthMAX, this.health + (2 / 20));
+                    }
+                    else if (this.recoverIII == true)
+                    {
+                        this.health = Math.min(this.healthMAX, this.health + (2 / 30));
+                    }
+                    if (this.recoverII == true)
+                    {
+                        this.health = Math.min(this.healthMAX, this.health + (2 / 40));
+                    }
+                    else if (this.recoverI == true)
+                    {
+                        this.health = Math.min(this.healthMAX, this.health + (2 / 50));
+                    }
                 }
             }
             else
             {
+                this.recoveryTime = 0;
                 this.recoverI = false;
                 this.recoverII = false;
                 this.recoverIII = false;
@@ -6223,6 +6230,22 @@ function Adventurer()
         {
             outfit = allWorn[98];
         }
+        else if (this.outfitEquipped == "orgishClothing")
+        {
+            outfit = allWorn[99];
+        }
+        else if (this.outfitEquipped == "matadorOutfit")
+        {
+            outfit = allWorn[100];
+        }
+        else if (this.outfitEquipped == "boarArmour")
+        {
+            outfit = allWorn[101];
+        }
+        else if (this.outfitEquipped == "barracoPlateArmour")
+        {
+            outfit = allWorn[102];
+        }
         else
         {
             outfit = allWorn[0];
@@ -6412,6 +6435,58 @@ function Adventurer()
                 XXX.globalAlpha = 0.4;
             }
             XXX.drawImage(atal, 810, 2407, 89, 47, -(1 / 2 * 89 * 0.7) + 0, -(1 / 2 * 47 * 0.7) - 0, 89 * 0.7, 47 * 0.7);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "matadorOutfit")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(chupa, 172, 38, 34, 39, -1/2 * 34 * 1.5 + 0, -1/2 * 39 * 1.5 - 3, 34 * 1.5, 39 * 1.5);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "boarArmour")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(chupa, 55, 575, 45, 42, -1/2 * 45 * 1.5 + 0, -1/2 * 42 * 1.6 - 3, 45 * 1.5, 42 * 1.6);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "orgishClothing")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(chupa, 51, 24, 28, 39, -1/2 * 28 * 1.61 - 1.5, -1/2 * 39 * 1.61 + 4.4, 28 * 1.61, 39 * 1.61);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "barracoPlateArmour")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(chupa, 162, 220, 78, 99, -1/2 * 78 * 0.55 + 0, -1/2 * 99 * 0.55 - 0, 78 * 0.55, 99 * 0.55);
             XXX.restore();
         }
         else if (this.outfitEquipped == "gulfreyShellArmour")
@@ -28863,6 +28938,27 @@ function Adventurer()
                                 this.watered = true;
                                 this.fed = true;
                             }
+                            else if (Inventory[i][0].ability == "wobeaNumbI") //Stuns the player for 6 seconds of stunI
+                            {
+                                this.stunnedI = true;
+                                this.stunnedTime = 6;
+                                this.wobea= true;
+                            }
+                            else if (Inventory[i][0].ability == "wobeaNumbII") //stuns the player for 8 seconds of stunII
+                            {
+                                this.stunnedII = true;
+                                this.stunnedTime = 8;
+                                this.wobea = true;
+                            }
+                            else if (Inventory[i][0].ability == "wobeaNumbIII") //stuns the player for 8 seconds of stunII
+                            {
+                                this.wobea = true;
+                                this.stunnedIII = true;
+                                this.stunnedTime = 62;
+                                this.blinded = true;
+                                this.blindedStoreTime = new Date().getTime();
+                                this.blindedTime = Math.max(player.blindedTime, 20);
+                            }
                             else if (Inventory[i][0].ability == "quarterToxicity" || Inventory[i][0].ability == "quarterToxic") //This toxifies the player and makes them puke.
                             {
                                 if (Inventory[i][0].ability == "quarterToxicity")
@@ -30971,7 +31067,7 @@ function Adventurer()
     {
         if (!this.drowned && this.form != "werewolf")
         {
-            if (this.movingType == 4 && this.inCombat == false && spaceKey == false && this.attacking == false && this.health < this.healthMAX && this.health > (this.healthMAX * 1/5) && this.energy >= 1/3 * this.energyMAX && this.hunger >= (3/10 * this.hungerMAX) && this.thirst >= (3/10 * this.thirstMAX) && this.fleshMites == false && this.bandaged || this.movingType == 1 && this.inCombat == false && spaceKey == false && this.attacking == false && this.health < this.healthMAX && this.health > (this.healthMAX * 1/5) && this.energy >= 1/3 * this.energyMAX && this.hunger >= (3/10 * this.hungerMAX) && this.thirst >= (3/10 * this.thirstMAX) && this.fleshMites == false && this.bandaged || this.movingType == 0 && this.inCombat == false && spaceKey == false && this.attacking == false && this.health < this.healthMAX && this.health > (this.healthMAX * 1/5) && this.energy >= 1/3 * this.energyMAX && this.hunger >= (3/10 * this.hungerMAX) && this.thirst >= (3/10 * this.thirstMAX) && this.fleshMites == false && this.bandaged) //Restore health faster if not in combat and not moving and well watered and fed, and only if above 3/5 health and full energy: A bandage must be used.
+            if (this.movingType == 4 && this.inCombat == false && spaceKey == false && this.attacking == false && this.health < this.healthMAX && this.health > (this.healthMAX * 1/5) && this.energy >= 1/3 * this.energyMAX && this.hunger >= (3/10 * this.hungerMAX) && this.thirst >= (3/10 * this.thirstMAX) && this.fleshMites == false && this.bandaged || this.movingType == 1 && this.inCombat == false && spaceKey == false && this.attacking == false && this.health < this.healthMAX && this.health > (this.healthMAX * 1/5) && this.energy >= 1/3 * this.energyMAX && this.hunger >= (3/10 * this.hungerMAX) && this.thirst >= (3/10 * this.thirstMAX) && this.fleshMites == false && this.bandaged || this.movingType == 0 && this.inCombat == false && spaceKey == false && this.attacking == false && this.health < this.healthMAX && this.health > (this.healthMAX * 1/5) && this.energy >= 1/3 * this.energyMAX && this.hunger >= (3/10 * this.hungerMAX) && this.thirst >= (3/10 * this.thirstMAX) && this.fleshMites == false && this.bandaged || this.wobea == true && this.bandaged) //Restore health faster if not in combat and not moving and well watered and fed, and only if above 3/5 health and full energy: A bandage must be used.
             {
                 this.health += 6 * (TTD / (45000 - 420 * Math.min(58.333, this.getEndurance()) * 2));
             }

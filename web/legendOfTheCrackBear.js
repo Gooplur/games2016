@@ -3997,6 +3997,10 @@ function theLegend()
     allWorn.push(new Item("aldrekiiHijab", false)); //96
     allWorn.push(new Item("aldrekiiTurbanRed", false)); //97
     allWorn.push(new Item("aldrekiiTurbanPurple", false)); //98
+    allWorn.push(new Item("orgishClothing", false)); //99
+    allWorn.push(new Item("matadorOutfit", false)); //100
+    allWorn.push(new Item("boarArmour", false)); //101
+    allWorn.push(new Item("barracoPlateArmour", false)); //102
 
     scenicList = [];
 
@@ -4297,6 +4301,7 @@ function theLegend()
     tailoring.push(new Item("drileLeatherArmour", false));
     tailoring.push(new Item("drileLeatherBoots", false));
     tailoring.push(new Item("drileLeatherGloves", false));
+    tailoring.push(new Item("matadorOutfit", false));
     tailoring.push(new Item("nirwadenNobleOutfit", false));
     tailoring.push(new Item("nirwadenNobleDress", false));
     tailoring.push(new Item("nirwadenPriestRobes", false));
@@ -4307,6 +4312,7 @@ function theLegend()
     tailoring.push(new Item("aldrekiiHijab", false));
     tailoring.push(new Item("aldrekiiTurbanRed", false));
     tailoring.push(new Item("aldrekiiTurbanPurple", false));
+    tailoring.push(new Item("orgishClothing", false));
 
 //Jewelry (Items crafted at a jewler's station, rings, necklaces, cutting gems, glassblowing etc.)
     jewelry = [];
@@ -4363,6 +4369,9 @@ function theLegend()
     alchemy.push(new Item("kolumPowder", false));
     alchemy.push(new Item("adhesive", false));
     alchemy.push(new Item("vialOfGojiiPoison", false));
+    alchemy.push(new Item("wobeaExtract", false));
+    alchemy.push(new Item("wobeaNeedles", false));
+    alchemy.push(new Item("wobeaFlesh", false));
 
 //Brewing (alcohols, liquid fermentation, etc.)
     brewing = [];
@@ -4403,6 +4412,7 @@ function theLegend()
     handcrafted.push(new Item("darkRoseBoquet", false));
     handcrafted.push(new Item("roseBoquet", false));
     handcrafted.push(new Item("suuliMelonSlice", false));
+    handcrafted.push(new Item("wobeaSlice", false));
     handcrafted.push(new Item("naapridButter", false));
     handcrafted.push(new Item("waantiButter", false));
     handcrafted.push(new Item("butteredHarstBread", false));

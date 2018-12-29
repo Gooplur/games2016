@@ -1891,6 +1891,18 @@ function boggartPack()
 
     bogg.onload = function()
     {
+        chupaPack();
+    };
+}
+
+function chupaPack()
+{
+    var chupa = new Image();
+    chupa.src = ("images/chupa.png");
+    window.chupa = chupa;
+
+    chupa.onload = function()
+    {
         tombPack();
     };
 }

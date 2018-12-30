@@ -10296,6 +10296,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     player.experience += Math.max(0, this.experience - this.lessEXP);
                 }
 
+                var chanced = false;
                 if (this.killNotByPlayer == false && this.muzzle == false || this.killedByCompanion && this.muzzle == false)
                 {
                     if (!this.water || this.flotation || this.land) //items are lost to the water unless the creature can float
@@ -10304,6 +10305,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         {
                             if (this.revived != true)
                             {
+                                chanced = true;
                                 for (var i = 0; i < this.drops.length; i++)
                                 {
                                     worldItems.push([this.drops[i][0], this.drops[i][1]]);

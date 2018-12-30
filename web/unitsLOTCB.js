@@ -24818,7 +24818,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         if (worldItems[i].dmx == this.dmx)
                         {
                             var isIron = false;
-                            if (worldItems.type == "iron" || worldItems.type == "ironOre" || worldItems.type == "itlinBranch")
+                            if (worldItems[i].type == "iron" || worldItems[i].type == "ironOre" || worldItems[i].type == "itlinBranch")
                             {
                                 isIron = true;
                             }
@@ -24849,7 +24849,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
                     if (ironThreat == false)
                     {
-                        if (this.target == player)
+                        if (this.target == player && this.changelingChanging == false)
                         {
                             if (player.spell == "none" && player.weaponEquipped == "none" && dtpp < 230 && this.health > 1/3 * this.healthMAX) //attack the player if provoked
                             {
@@ -24868,7 +24868,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                                 this.moveInRelationToPlayer();
                             }
                         }
-                        else if (this.target != "none")
+                        else if (this.target != "none" && this.changelingChanging == false)
                         {
                             if (typeof(this.target.ultra) != "undefined")
                             {
@@ -25176,7 +25176,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 {
                     if (this.changelingChanging == true)
                     {
-                        this.costumeEngine(8, 0.12, true);
+                        this.costumeEngine(8, 0.05, true);
                     }
                     else if (this.moving && !this.attacking) //If moving and not attacking initiate moving animation...
                     {
@@ -25186,7 +25186,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     {
                         if (new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000 / timeSpeed * this.timeResistance))
                         {
-                            this.costumeEngine(8, 0.18, true);
+                            this.costumeEngine(8, 0.14, true);
                         }
                     }
 

@@ -13620,7 +13620,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.engagementRadius = 40;
             this.sizeRadius = 16;
             this.negateArmour = 0;
-            this.attackWait = 0.45;
+            this.attackWait = 0.6;
 
             this.changelingChanging = false;
             this.childing = false;
@@ -24857,7 +24857,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
                                 this.moveInRelationToPlayer();
                             }
-                            else if (dtpp > 170 && this.disturbed != true || dtpp > 170 && this.health > 1/3 * this.healthMAX) //follow the player if not angry or if this's health isn't too low
+                            else if (shiftKey == false && dtpp > 170 && this.disturbed != true || shiftKey == false && dtpp > 170 && this.health > 1/3 * this.healthMAX) //follow the player if not angry or if this's health isn't too low
                             {
                                 this.pointTowardsPlayer();
                                 this.moveInRelationToPlayer();
@@ -24903,10 +24903,13 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             //steal child
                             if (((this.engagementRadius + 10) * (this.engagementRadius + 10)) >= ((this.target.X - this.X)*(this.target.X - this.X) + (this.target.Y - this.Y)*(this.target.Y - this.Y)))
                             {
-                                this.changelingChanging = true;
-                                this.ultra = this.target.ultra;
-                                this.ID = this.target.ID
-                                this.target.dmx = this.barcode;
+                                if (this.target.dmx == this.dmx)
+                                {
+                                    this.changelingChanging = true;
+                                    this.ultra = this.target.ultra;
+                                    this.ID = this.target.ID;
+                                    this.target.dmx = this.barcode;
+                                }
                             }
                         }
                     }
@@ -25183,7 +25186,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     {
                         if (new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000 / timeSpeed * this.timeResistance))
                         {
-                            this.costumeEngine(8, 0.26, true);
+                            this.costumeEngine(8, 0.19, true);
                         }
                     }
 

@@ -526,7 +526,7 @@ function cheats()
         }
         else if (cheatcode == "sustituido") //changeling cheat
         {
-            ArtificialIntelligenceAccess.push(new Unit(X - 70, Y - 70, "Changeling", true, "Young Kellish Girl", {race: "Kel", faction: "Kel", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.05, 0.05], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: false, route:[[0, 0]]}));
+            ArtificialIntelligenceAccess.push(new Unit(X - 70, Y - 70, "Changeling", true, "Young Kellish Girl", {race: "Kel", faction: "Kel", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.05, 0.05], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: false, route:[[0, 0]], kid: true}));
         }
         else if (cheatcode == "drugsaregoodandifyoudothempeoplethinkthatyou'recool")
         {

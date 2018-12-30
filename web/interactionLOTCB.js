@@ -172,7 +172,7 @@ function interaction(me)
         {
             var dtm = self.DTM();
 
-            if (self.type == "Person" && !self.petrified || self.type == "Soldier" && !self.petrified || self.interactable && !self.petrified)
+            if (self.type == "Person" && !self.petrified || self.type == "Soldier" && !self.petrified || self.interactable && !self.petrified || self.type == "Changeling" && self.childForm == true && !self.petrified)
             {
                 //CONVERSATION AND SOCIAL INTERACTIONS WITH AI CHARACTERS
                 if (!dialogueActive && clickReleased == true && dtm < self.sizeRadius && dtp < 55 && self.disturbed == false && self.offended == false && self.dmx == player.dmx || dialogueActive && conversationID[0] != "none" && dtp < 55 && self.disturbed == false && self.offended == false && self.engagedInDialogue && self.dmx == player.dmx) //|| playersTurnToSpeak == false

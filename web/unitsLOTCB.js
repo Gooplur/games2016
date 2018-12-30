@@ -13616,7 +13616,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.armour = 0;
             this.speed = 2.2 + (Math.floor(Math.random() * 3) / 10);
             this.rangeOfSight = 800; //This is just to set the variable initially. The rest is variable.
-            this.rotationSpeed = 0.1;
+            this.rotationSpeed = 0.5;
             this.engagementRadius = 40;
             this.sizeRadius = 16;
             this.negateArmour = 0;
@@ -13641,7 +13641,6 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
             if (this.alpha == true)
             {
-                console.log("yep.")
                 this.childForm = true;
                 this.changelingForm = false;
             }
@@ -24681,9 +24680,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.other = true;
                 if (this.childForm == true)
                 {
-                    console.log(this);
                     this.designUnits();
-                    console.log(this);
                 }
             }
             //Set Drops and experience
@@ -24699,21 +24696,20 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
             this.drops = [[new Item("changelingSkull", this.X, this.Y), 1], [new Item("changelingHeart", this.X, this.Y), 1], [new Item("changelingFur", this.X, this.Y), 1]];
 
-
-            var dtp = this.DTP();
+            var dtpp = this.DTP();
             //RANGE OF SIGHT (anything related to range of sight)
             this.rangeOfSightCalculator(800, "mildly");
 
             //AI
             if (this.alive == true)
             {
-                if (this.changelingForm == true && this.offended == true || this.changelingForm == true && this.attacking == true || this.changelingForm == true && this.target == player && this.health > 1/3 * this.healthMAX && this.disturbed == true && player.spell == "none" && player.weaponEquipped == "none" || this.changelingForm == true && this.target == player && this.health > 1/3 * this.healthMAX && this.disturbed == true && dtp > 150 && dtp < 220 || this.changelingChanging == true || this.childing == true)
+                if (this.changelingForm == true && this.offended == true || this.changelingForm == true && this.attacking == true || this.changelingForm == true && this.target == player && this.health > 1/3 * this.healthMAX && player.spell == "none" && player.weaponEquipped == "none" || this.changelingForm == true && this.target == player && this.health > 1/3 * this.healthMAX && dtpp > 150 && dtpp < 220 || this.changelingChanging == true || this.childing == true)
                 {
-                    this.team = "docile";
+                    this.baseTeam = "docile";
                 }
                 else if (this.changelingForm == true)
                 {
-                    this.team = "neutral";
+                    this.baseTeam = "neutral";
                     this.flying = true;
                 }
 
@@ -24723,7 +24719,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     {
                         if (((playerProjectiles[i].X - this.X)*(playerProjectiles[i].X - this.X)+(playerProjectiles[i].Y - this.Y)*(playerProjectiles[i].Y - this.Y)) <= 70 * 70)
                         {
-                            if (changelingTampered != this.barcode)
+                            if (playerProjectiles[i].changelingTampered != this.barcode)
                             {
                                 playerProjectiles[i].changelingTampered = this.barcode;
 
@@ -24745,7 +24741,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     {
                         if (((unitProjectiles[i].X - this.X)*(unitProjectiles[i].X - this.X)+(unitProjectiles[i].Y - this.Y)*(unitProjectiles[i].Y - this.Y)) <= 70 * 70)
                         {
-                            if (changelingTampered != this.barcode)
+                            if (unitProjectiles[i].changelingTampered != this.barcode)
                             {
                                 unitProjectiles[i].changelingTampered = this.barcode;
 
@@ -24855,12 +24851,13 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     {
                         if (this.target == player)
                         {
-                            if (this.disturbed == true && player.spell == "none" && player.weaponEquipped == "none" && dtp < 230 && this.health > 1/3 * this.healthMAX) //attack the player if provoked
+                            if (player.spell == "none" && player.weaponEquipped == "none" && dtpp < 230 && this.health > 1/3 * this.healthMAX) //attack the player if provoked
                             {
                                 this.pointTowardsPlayer();
+
                                 this.moveInRelationToPlayer();
                             }
-                            else if (dtp > 170 && this.disturbed != true || dtp > 170 && this.health > 1/3 * this.healthMAX) //follow the player if not angry or if this's health isn't too low
+                            else if (dtpp > 170 && this.disturbed != true || dtpp > 170 && this.health > 1/3 * this.healthMAX) //follow the player if not angry or if this's health isn't too low
                             {
                                 this.pointTowardsPlayer();
                                 this.moveInRelationToPlayer();
@@ -25123,7 +25120,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     if (deadMe > -1)
                     {
                         scenicList.push(new Scenery("blood", this.X, this.Y, -1/2 * Math.PI, 3, 1.1));
-                        this.health = healthMAX;
+                        this.health = this.healthMAX;
                         this.ultra = {};
                         this.childForm = false;
                         this.changelingForm = true;
@@ -25137,7 +25134,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     else
                     {
                         scenicList.push(new Scenery("blood", this.X, this.Y, -1/2 * Math.PI, 3, 1.1));
-                        this.health = healthMAX;
+                        this.health = this.healthMAX;
                         this.ultra = {};
                         this.childForm = false;
                         this.changelingForm = true;
@@ -25180,7 +25177,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     }
                     else if (this.attacking) //otherwise if it is attacking then initiate attacking animation, and if neither...
                     {
-                        if(new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000 / timeSpeed * this.timeResistance))
+                        if (new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000 / timeSpeed * this.timeResistance))
                         {
                             this.costumeEngine(8, 0.26, true);
                         }
@@ -25188,15 +25185,15 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
                     // the frames/stages/costumes of the animation.
                     var theCostume = Math.floor( this.costume ); //This rounds this.costume down to the nearest whole number.
-
-                    if (this.changelingForm == true && this.offended == true || this.changelingForm == true && this.attacking == true || this.changelingForm == true && this.target == player && this.health > 1/3 * this.healthMAX && this.disturbed == true && player.spell == "none" && player.weaponEquipped == "none" || this.changelingForm == true && this.target == player && this.health > 1/3 * this.healthMAX && this.disturbed == true && dtp > 150 && dtp < 220 || this.changelingChanging == true)
+                    console.log(this.team == "docile");
+                    if (this.team == "docile" || this.changelingForm == true && this.offended == true || this.changelingForm == true && this.attacking == true || this.changelingForm == true && this.target == player && this.health > 1/3 * this.healthMAX && player.spell == "none" && player.weaponEquipped == "none" || this.changelingForm == true && this.target == player && this.health > 1/3 * this.healthMAX && dtpp > 150 && dtpp < 220 || this.changelingChanging == true)
                     {
                         if (!this.water)
                         {
                             if (this.X != this.plantedX && this.Y != this.plantedY)
                             {
                                 var szx = 1;
-                                this.flashAnimate(550 / this.speed, this.rotation, 1, [{image: chupa, imgX: 53, imgY: 855, portionW: 70, portionH: 38, adjX: -1/2 * 70 * szx * this.alphaSize, adjY: -1/2 * 38 * szx * this.alphaSize, width: 70 * szx * this.alphaSize, height: 38 * szx * this.alphaSize}, {image: chupa, imgX: 51, imgY: 793, portionW: 70, portionH: 38, adjX: -1/2 * 70 * szx * this.alphaSize, adjY: -1/2 * 38 * szx * this.alphaSize, width: 70 * szx * this.alphaSize, height: 38 * szx * this.alphaSize}, {image: chupa, imgX: 53, imgY: 855, portionW: 70, portionH: 38, adjX: -1/2 * 70 * szx * this.alphaSize, adjY: -1/2 * 38 * szx * this.alphaSize, width: 70 * szx * this.alphaSize, height: 38 * szx * this.alphaSize}, {image: chupa, imgX: 52, imgY: 823, portionW: 70, portionH: 38, adjX: -1/2 * 70 * szx * this.alphaSize, adjY: -1/2 * 38 * szx * this.alphaSize, width: 70 * szx * this.alphaSize, height: 38 * szx * this.alphaSize}, {image: chupa, imgX: 53, imgY: 760, portionW: 70, portionH: 38, adjX: -1/2 * 70 * szx * this.alphaSize, adjY: -1/2 * 38 * szx * this.alphaSize, width: 70 * szx * this.alphaSize, height: 38 * szx * this.alphaSize}, {image: chupa, imgX: 52, imgY: 824, portionW: 70, portionH: 38, adjX: -1/2 * 70 * szx * this.alphaSize, adjY: -1/2 * 38 * szx * this.alphaSize, width: 70 * szx * this.alphaSize, height: 38 * szx * this.alphaSize}])
+                                this.flashAnimate(220 / this.speed, this.rotation, 1, [{image: chupa, imgX: 53, imgY: 855, portionW: 70, portionH: 38, adjX: -1/2 * 70 * szx * this.alphaSize, adjY: -1/2 * 38 * szx * this.alphaSize, width: 70 * szx * this.alphaSize, height: 38 * szx * this.alphaSize}, {image: chupa, imgX: 51, imgY: 793, portionW: 70, portionH: 38, adjX: -1/2 * 70 * szx * this.alphaSize, adjY: -1/2 * 38 * szx * this.alphaSize, width: 70 * szx * this.alphaSize, height: 38 * szx * this.alphaSize}, {image: chupa, imgX: 53, imgY: 855, portionW: 70, portionH: 38, adjX: -1/2 * 70 * szx * this.alphaSize, adjY: -1/2 * 38 * szx * this.alphaSize, width: 70 * szx * this.alphaSize, height: 38 * szx * this.alphaSize}, {image: chupa, imgX: 52, imgY: 823, portionW: 70, portionH: 38, adjX: -1/2 * 70 * szx * this.alphaSize, adjY: -1/2 * 38 * szx * this.alphaSize, width: 70 * szx * this.alphaSize, height: 38 * szx * this.alphaSize}, {image: chupa, imgX: 53, imgY: 760, portionW: 70, portionH: 38, adjX: -1/2 * 70 * szx * this.alphaSize, adjY: -1/2 * 38 * szx * this.alphaSize, width: 70 * szx * this.alphaSize, height: 38 * szx * this.alphaSize}, {image: chupa, imgX: 52, imgY: 824, portionW: 70, portionH: 38, adjX: -1/2 * 70 * szx * this.alphaSize, adjY: -1/2 * 38 * szx * this.alphaSize, width: 70 * szx * this.alphaSize, height: 38 * szx * this.alphaSize}])
                             }
                             this.plantedX = this.X;
                             this.plantedY = this.Y;

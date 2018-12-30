@@ -25176,7 +25176,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 {
                     if (this.changelingChanging == true)
                     {
-                        this.costumeEngine(7, 0.19, true);
+                        this.costumeEngine(8, 0.19, true);
                     }
                     else if (this.moving && !this.attacking) //If moving and not attacking initiate moving animation...
                     {

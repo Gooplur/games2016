@@ -24753,7 +24753,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                                 {
                                     unitProjectiles[i].rotation -= 1/2 * Math.PI + 1/2 * Math.PI * Math.random();
                                 }
-                                unitProjectiles.push(playerProjectiles[i]);
+                                playerProjectiles.push(unitProjectiles[i]);
                                 unitProjectiles.splice(i, 1);
                             }
                         }

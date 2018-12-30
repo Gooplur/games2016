@@ -170,7 +170,8 @@ function Adventurer()
     this.warmthMAX = 50 + (1 * this.endurance) + (4 * this.toughness); //This is how warm you are... if it goes to 0 or below then the player will start losing health at an average rate but also their speed will be massively decreased. [It only goes down in cold climates](freezing to death)
     this.warmth = this.warmthMAX; //This is the players current warmth.
     this.timeSinceLastWarmthChange = new Date().getTime(); //This is the time since the last change in the player's warmth.
-    this.heatResistance = 0; //this is the amount of resistance from thirst depriving conditions and heat related effects the player has.
+    this.heatResistance = 0; //this is the players resistance to flames and fire and the sort.
+    this.thirstProtection = 0; //this is the amount of resistance from thirst depriving conditions and heat related effects the player has.
     this.warmthProtection = 0; //this is the amount of protection against the cold the player has.
     this.timeSinceLastColdRush = new Date().getTime(); //this is the time that has passed since the last time the player was hurt from being frozen.
     this.baseWarmthProtection = 0;
@@ -536,6 +537,7 @@ function Adventurer()
     this.vampDead = false;
     this.silvered = false;
     this.seeInDark = false;
+    this.weaponFireResBonus = 0;
 
     //faction variables
     this.factionToggle = false;
@@ -6373,7 +6375,8 @@ function Adventurer()
         this.armour = outfit.protection + gloves.protection + necklace.protection + ring.protection + boots.protection;
         this.magicalResistance = outfit.magicalProtection + gloves.magicalProtection + necklace.magicalProtection + ring.magicalProtection + boots.magicalProtection;
         this.warmthProtection = this.baseWarmthProtection + outfit.warmthRetention + gloves.warmthRetention + necklace.warmthRetention + ring.warmthRetention + boots.warmthRetention;
-        this.heatResistance = this.baseHeatResistance + outfit.thirstRetention + gloves.thirstRetention + necklace.thirstRetention + ring.thirstRetention + boots.thirstRetention;
+        this.thirstProtection = outfit.thirstRetention + gloves.thirstRetention + necklace.thirstRetention + ring.thirstRetention + boots.thirstRetention;
+        this.heatResistance = this.baseHeatResistance + this.weaponFireResBonus + outfit.fireProofing + gloves.fireProofing + necklace.fireProofing + ring.fireProofing + boots.fireProofing;
         this.AdShockResist = outfit.shockResist + gloves.shockResist + necklace.shockResist + ring.shockResist + boots.shockResist;
         //Main Stat Bonuses
         this.AdStrength = outfit.strengthBonus + gloves.strengthBonus + necklace.strengthBonus + ring.strengthBonus + boots.strengthBonus;
@@ -7809,11 +7812,20 @@ function Adventurer()
         //BLOCK INITIATOR
         if (qKey == true)
         {
-            if (this.weapon.subUtility == "shield" && this.blocking == false)
+            if (this.weapon.subUtility == "shield" && this.blocking == false || this.weapon.subUtility == "alternate" && this.blocking == false)
             {
-                if (this.weapon.blockCost <= this.energy && this.attacking == false && spaceKey == false)
+                console.log(this.weapon.subUtility);
+                if (this.weapon.subUtility == "shield" && this.weapon.blockCost <= this.energy && this.attacking == false && spaceKey == false || this.weapon.subUtility == "alternate" && this.weapon.altCost <= this.energy && this.attacking == false && spaceKey == false)
                 {
-                    this.energy -= this.weapon.blockCost;
+                    if (this.weapon.subUtility == "shield")
+                    {
+                        this.energy -= this.weapon.blockCost;
+                    }
+                    else
+                    {
+                        this.energy -= this.weapon.altCost;
+                    }
+
                     this.block = true;
                 }
             }
@@ -7959,8 +7971,14 @@ function Adventurer()
                         }
                         else if (bothwaysBool == true) //but if it is two directional it swings back to frame zero.
                         {
-                            self.finalAttackStage = true;
-                            self.attackCooldown = new Date().getTime();
+                            if (this.weaponEquipped != "flail" && this.weaponEquipped != "vardanianHalberd" && this.weaponEquipped != "aldrekiiClaws" && this.weaponEquipped != "theUndyingEdge" && this.weaponEquipped != "cero" && this.weaponEquipped != "werewolf" && this.weaponEquipped != "vampire")
+                            {
+                                if (this.frameOrder == "positive")
+                                {
+                                    self.finalAttackStage = true;
+                                    self.attackCooldown = new Date().getTime();
+                                }
+                            }
                             this.frameOrder = "negative";
                         }
                     }
@@ -14848,6 +14866,133 @@ function Adventurer()
                 XXX.restore();
             }
         }
+        //NIRWADEN SABRE AND SHIELD
+        if (this.weaponEquipped == "nirwadenSabreAndShield")
+        {
+            this.stageEngine(10, 0.33, false); //This cycles through the stages of the attack for four stages (ending at five) and at a rate of 4 * 16.75 miliseconds
+
+            //ATTACK
+            if (Math.floor(this.stage) <= 0)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(chupa, 202, 365, 140, 144, -1/2 * 140, -1/2 * 144, 140, 144);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 1)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(chupa, 349, 364, 140, 144, -1/2 * 140, -1/2 * 144, 140, 144);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 2)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(chupa, 506, 349, 140, 144, -1/2 * 140, -1/2 * 144 - 15, 140, 144);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(chupa, 663, 347, 140, 144, -1/2 * 140, -1/2 * 144 - 16, 140, 144);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 4)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(chupa, 839, 363, 140, 144, -1/2 * 140, -1/2 * 144, 140, 144);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 5)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(chupa, 211, 488, 140, 144, -1/2 * 140, -1/2 * 144, 140, 144);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 6)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(chupa, 378, 489, 140, 144, -1/2 * 140, -1/2 * 144, 140, 144);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 7)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(chupa, 549, 488, 140, 144, -1/2 * 140, -1/2 * 144, 140, 144);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 8)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(chupa, 714, 488, 140, 144, -1/2 * 140, -1/2 * 144, 140, 144);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) >= 9)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(chupa, 868, 489, 140, 144, -1/2 * 140, -1/2 * 144, 140, 144);
+                XXX.restore();
+            }
+        }
         //THENGAN WARHAMMER
         if (this.weaponEquipped == "thenganWarhammer")
         {
@@ -15176,6 +15321,199 @@ function Adventurer()
                         XXX.globalAlpha = 0.4;
                     }
                     XXX.drawImage(verse, 3626, 365, 110, 85, -49, -52, 121, 93.5);
+                    XXX.restore();
+                }
+            }
+        }
+        //Silk AND DAGGER
+        if (this.weaponEquipped == "silkAndDagger")
+        {
+            if (this.attacking == true)
+            {
+                this.stageEngine(5, 0.21, true);
+            }
+            else if (this.blocking == true)
+            {
+                this.stageEngine(8, 0.22, true);
+            }
+
+            if (Math.floor(this.stage) <= 0)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(chupa, 586, 35, 131, 105, -1/2 * 131 + 0, -1/2 * 105 + 0, 131, 105);
+                XXX.restore();
+
+                if (this.attacking == false && this.blocking == false)
+                {
+                    this.weaponFireResBonus = 15;
+                }
+            }
+
+            if (this.attacking == true)
+            {
+                //this.stage = 1;
+                //ATTACK
+                if (Math.floor(this.stage) <= 1)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(chupa, 587, 135, 131, 105, -1/2 * 131 + 0, -1/2 * 105 + 0, 131, 105);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 2)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(chupa, 750, 134, 131, 105, -1/2 * 131 + 0, -1/2 * 105 -4, 131, 105);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) >= 3)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(chupa, 750, 134, 131, 105, -1/2 * 131 + 0, -1/2 * 105 -4, 131, 105);
+                    XXX.restore();
+                }
+            }
+
+            if (this.blocking == true)
+            {
+                //BLOCK
+                if (Math.floor(this.stage) <= 1)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(chupa, 312, 139, 131, 105, -1/2 * 131 + 10, -1/2 * 105 -2, 131, 105);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 2)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(chupa, 205, 38, 131, 105, -1/2 * 131 + 0, -1/2 * 105 + 0, 131, 105);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 3)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(chupa, 204, 138, 131, 105, -1/2 * 131 + 0, -1/2 * 105 -1, 131, 105);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 4) //
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(chupa, 319, 36, 131, 105, -1/2 * 131 + 0, -1/2 * 105 + 0, 131, 105);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 5)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(chupa, 447, 35, 131, 105, -1/2 * 131 + 0, -1/2 * 105 + 0, 131, 105);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 6)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(chupa, 446, 137, 131, 105, -1/2 * 131 + 0, -1/2 * 105 + 0, 131, 105);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) >= 7) //
+                {
+                    if (qKey) //maintains the secondary move
+                    {
+                        this.stage = 7;
+                        for (var bbb = 0; bbb < ArtificialIntelligenceAccess.length; bbb++)
+                        {
+                            if (ArtificialIntelligenceAccess[bbb].type == "Naaprid" &&  ArtificialIntelligenceAccess[bbb].alpha == true || ArtificialIntelligenceAccess[bbb].type == "Boar")
+                            {
+                                if (this.mySize * this.mySize <= ((X - ArtificialIntelligenceAccess[bbb].X) * (X - ArtificialIntelligenceAccess[bbb].X) + (Y - ArtificialIntelligenceAccess[bbb].Y) * (Y - ArtificialIntelligenceAccess[bbb].Y)))
+                                {
+                                    if (ArtificialIntelligenceAccess[bbb].target != "none")
+                                    {
+                                        if (ArtificialIntelligenceAccess[bbb].target == player || ArtificialIntelligenceAccess[bbb].target.ID == "matadorLure")
+                                        {
+                                            var lure;
+                                            if (100 * 100 <= ((X - ArtificialIntelligenceAccess[bbb].X) * (X - ArtificialIntelligenceAccess[bbb].X) + (Y - ArtificialIntelligenceAccess[bbb].Y) * (Y - ArtificialIntelligenceAccess[bbb].Y)) || ArtificialIntelligenceAccess[bbb].type == "Boar")
+                                            {
+                                                lure = new Unit(X + Math.cos(this.rotation) * 35, Y + Math.sin(this.rotation) * 35, "Soldier", false, "matadorLure", {race: "none", faction: "lure" + Math.random(), con: 2000, speed: 0, outfit: ["none", 0], weapon: ["none", [0, 0], 0, 0, 10], ranged: [false, "steelBolt", 14, 2200, 17, 16, 0, "none", 3.35], patrolStops: 0, patrolLoop: false, route:[[0, 0]]});
+                                            }
+                                            else
+                                            {
+                                                lure = new Unit((X + Math.cos(this.rotation) * 35) + Math.cos(this.rotation - 1/2 * Math.PI) * 200, (Y + Math.sin(this.rotation) * 35) + Math.sin(this.rotation - 1/2 * Math.PI) * 200, "Soldier", false, "matadorLure", {race: "none", faction: "none", con: 2000, speed: 0, outfit: ["none", 0], weapon: ["none", [0, 0], 0, 0, 10], ranged: [false, "steelBolt", 14, 2200, 17, 16, 0, "none", 3.35], patrolStops: 0, patrolLoop: false, route:[[0, 0]]});
+                                            }
+                                            lure.designUnits();
+
+                                            ArtificialIntelligenceAccess[bbb].target = lure;
+                                            ArtificialIntelligenceAccess[bbb].targetingHold = true;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(chupa, 319, 36, 131, 105, -1/2 * 131 + 0, -1/2 * 105 + 0, 131, 105);
                     XXX.restore();
                 }
             }
@@ -15742,7 +16080,8 @@ function Adventurer()
                 {
                     this.attackManual = true;
                     this.finalAttackStage = true;
-                    this.attackCooldown = new Date().getTime();
+                    this.attackPause = 0;
+                    this.attack();
                 }
 
                 XXX.save();
@@ -15823,6 +16162,7 @@ function Adventurer()
                     this.attackManual = true;
                     this.finalAttackStage = true;
                     this.attackCooldown = new Date().getTime();
+                    this.attackPause = 0;
                 }
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
@@ -19903,6 +20243,22 @@ function Adventurer()
             this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.55 / 5 * Math.PI) * (this.mySize + 18);
             this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.55 / 5 * Math.PI) * (this.mySize + 18);
         }
+        else if (this.weaponEquipped == "silkAndDagger")
+        {
+            this.weapon = allWeapons[82];
+
+            //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+            this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.55 / 5 * Math.PI) * (this.mySize + 37);
+            this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.55 / 5 * Math.PI) * (this.mySize + 37);
+        }
+        else if (this.weaponEquipped == "nirwadenSabreAndShield")
+        {
+            this.weapon = allWeapons[83];
+
+            //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+            this.bubbleOfDamageX = X - Math.cos(this.rotation - 2 / 5 * Math.PI) * (this.mySize + 19);
+            this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2 / 5 * Math.PI) * (this.mySize + 19);
+        }
     };
 
     //BLOCKING FUNCTION
@@ -19910,11 +20266,22 @@ function Adventurer()
     {
         if (this.blocking == true)
         {
-            this.shielding = this.weapon.blocking;
+            if (this.weapon.subUtility == "shield")
+            {
+                this.shielding = this.weapon.blocking;
+            }
         }
-        else
+
+        //some weapons block from a standby position
+        if (this.attacking == false)
         {
-            this.shielding = 0;
+            if (wKey == false || altKey)
+            {
+                if (this.weaponEquipped == "nirwadenSabreAndShield")
+                {
+                    this.shielding = 25 + (this.getToughness() / 5);
+                }
+            }
         }
     };
 
@@ -31432,6 +31799,7 @@ function Adventurer()
         if (zindex == this.zIndex)
         {
             this.cutcut = false; //just in case their was no scenery object available to turn it off it will be turned off after all have had the opportunity to register its on-ness.
+            this.defend();
             //this sets the players stats and is in charge of leveling for normal skills and magical ones.
             this.skillOperations();
             this.formChanger();
@@ -32434,7 +32802,6 @@ function Adventurer()
                 //This enables the players weapons and attacking
                 this.weaponSetup();
                 this.attack();
-                this.defend();
             }
 
             if (zindex == 5)

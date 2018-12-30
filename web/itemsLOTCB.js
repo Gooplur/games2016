@@ -18,6 +18,8 @@ function Item(type, x, y)
     this.aqua = false; //this determines if the item can be dropped or used while in water
     this.barcode = this.type + (Math.random() * Math.random());
     this.questy = false;
+    this.fireProofing = 0;
+    this.ingredients = [];
 
     this.turn = 0;
     this.flashFrame = 0;
@@ -14432,6 +14434,86 @@ function Item(type, x, y)
             this.buyValue = 9 - Math.floor(player.getCharisma() / 25); // at max, buy for 7.
             this.sellValue = 5 + Math.floor(player.getCharisma() / 25); // at max, sell for 7.
         }
+        else if (this.type == "chupacabrasHead")
+        {
+            //For All Items
+            this.identity = "Chupacabras Head";
+            this.weight = 8;
+            this.size = 12;
+            this.description = "The severed head of a chupacabras.";
+            this.intForDes = 0;
+            this.intDescription = "This trophy is a testimate to having slain the feresome chupacabras.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 33; // at max, buy for 33.
+            this.sellValue = 33; // at max, sell for 33.
+        }
+        else if (this.type == "changelingSkull")
+        {
+            //For All Items
+            this.identity = "Changling Skull";
+            this.weight = 1.55;
+            this.size = 12;
+            this.description = "The skull of a changeling.";
+            this.intForDes = 0;
+            this.intDescription = "This is nothing more than a trophy...";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 9; // at max, buy for 9.
+            this.sellValue = 9; // at max, sell for 9.
+        }
+        else if (this.type == "changelingHeart")
+        {
+            //For All Items
+            this.identity = "Changling Heart";
+            this.weight = 1.55;
+            this.size = 12;
+            this.description = "The tightly clenched, but still beating, heart of a changling... the beat is faint, but it is clear that the changeling's essence is still linked to it.";
+            this.intForDes = 12;
+            this.intDescription = "This is a former in alchemy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 50; // at max, buy for 50.
+            this.sellValue = 50; // at max, sell for 50.
+        }
+        else if (this.type == "changelingFur")
+        {
+            //For All Items
+            this.identity = "Changling Fur";
+            this.weight = 1.55;
+            this.size = 12;
+            this.description = "The fur is thin and soft, yet with a somewhat bristly texture.";
+            this.intForDes = 12;
+            this.intDescription = "This can be used to make clothing, but it does not have any special properties...";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5; // at max, buy for 5.
+            this.sellValue = 5; // at max, sell for 5.
+        }
         else if (this.type == "horseHair")
         {
             //For All Items
@@ -27340,11 +27422,11 @@ function Item(type, x, y)
             this.warmthRetention = -0.2;
             if (player.getEminence() >= 2)
             {
-                this.thirstRetention = 5;
+                this.fireProofing = 5;
             }
             else
             {
-                this.thirstRetention = 0.25;
+                this.fireProofing = 0.25;
             }
             this.shockResist = 0;
             //Main Stat Bonuses
@@ -28575,7 +28657,7 @@ function Item(type, x, y)
             this.damage = (6 - this.damageHandicap) * (this.leveledDamageMultiple / 25) + ((1/25) * player.getStrength());
             this.magicalDamage = 0;
             this.negateArmour = 0;
-            this.blocking = 19 + (player.getToughness() / 5);
+            this.blocking = 18 + (player.getToughness() / 5);
             this.blockCost = 3;
 
             //ability
@@ -28734,7 +28816,7 @@ function Item(type, x, y)
             this.identity = "Nirinese Sabre";
             this.weight = 4;
             this.size = 30;
-            this.description = "A deadly Nirwaden sabre made from hardened thrice forged steel.";
+            this.description = "A deadly Nirwaden sabre made from hardened twice forged steel.";
             this.intForDes = 3;
             this.intDescription = "The sabre is one of the most frequently used weapons by the Nirinese.";
 
@@ -28762,11 +28844,86 @@ function Item(type, x, y)
 
             this.yield = 1;
             this.intForCraft = 35;
-            this.ingredients = [["Thrice Forged Steel", 1]];
+            this.ingredients = [["Twice Forged Steel", 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 67 - Math.floor(player.getCharisma() / 5); // at max, buy for 57.
             this.sellValue = 32 + Math.floor(player.getCharisma() / 2); // at max, sell for 57.
+        }
+        else if (this.type == "nirwadenSabreAndShield")
+        {
+            //For All Items
+            this.identity = "Nirwaden Sabre and Shield";
+            this.weight = 21;
+            this.size = 30;
+            this.description = "A finely crafted Nirwaden sabre made from hardened thrice forged steel with a shield of the same quality.";
+            this.intForDes = 4;
+            this.intDescription = "This weapon is most commonly used by knights of the Nirwaden Empire.";
+
+            //Define Utility
+            this.utility = "weapon";
+
+            //Utility Focused
+            this.energyCost = 8;
+            this.distance = 19 + (this.range * 7);
+            this.range = 5.4;
+            this.rate = 90;
+            if (player.getDexterity() < 4)
+            {
+                this.damage = 8 * (this.leveledDamageMultiple / 25) + ((5/50) * player.getStrength());
+            }
+            else
+            {
+                this.damage = 10 * (this.leveledDamageMultiple / 25) + ((6/50) * player.getStrength());
+            }
+            this.magicalDamage = 0;
+            this.negateArmour = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 43;
+            this.ingredients = [["Thrice Forged Steel", 9]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 249 - Math.floor(player.getCharisma() / 1); // at max, buy for 199.
+            this.sellValue = 149 + Math.floor(player.getCharisma() / 1); // at max, sell for 199.
+        }
+        else if (this.type == "silkAndDagger")
+        {
+            //For All Items
+            this.identity = "Matador Silk and Dagger";
+            this.weight = 1.55;
+            this.size = 30;
+            this.description = "A nirwaden blade of steel and silver with a gold pommel, paired with a gold embroidered red silken lure made from pyromoth silk.";
+            this.intForDes = 15;
+            this.intDescription = "The silken lure can be used to shield its weilder against flames...";
+
+            //Define Utility
+            this.utility = "weapon";
+            this.subUtility = "alternate"; //this allows a non shield 'q' ability to be used
+
+            //Utility Focused
+            this.energyCost = 3;
+            this.altCost = 0;
+            this.distance = 37 + (this.range * 7);
+            this.range = 1 + 6/7;
+            this.rate = 85;
+            this.damage = (3 - this.damageHandicap) * (this.leveledDamageMultiple / 25) + ((4/50) * player.getDexterity()) * (1 + this.superStealthNum(2));
+            this.magicalDamage = 0;
+            this.negateArmour = 0 + this.superStealthNum(10);
+
+            //ability
+            this.ability = "silvered";
+
+            this.yield = 3;
+            this.intForCraft = 37;
+            this.ingredients = [["Thrice Forged Steel", 3], ["Silver", 1], ["Gold", 1], ["Pyromoth Silk", 3], ["Red Dye", 2]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 125 - Math.floor(player.getCharisma() / 10); // at max, buy for 120.
+            this.sellValue = 115 + Math.floor(player.getCharisma() / 10); // at max, sell for 120.
         }
         else if (this.type == "blueBlade")
         {
@@ -30206,6 +30363,36 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(candlewic, 60, 167, 27, 29, X - this.X + (1/2 * CCC.width) - (1/2 * 27 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 29 * 1.5), 27 * 1.5, 29 * 1.5);
+        }
+        else if (this.type == "nirwadenSabreAndShield")
+        {
+            XXX.beginPath();
+            XXX.drawImage(chupa, 376, 249, 48, 66, X - this.X + (1/2 * CCC.width) - (1/2 * 48 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 66 * 1), 48 * 1, 66 * 1);
+        }
+        else if (this.type == "silkAndDagger")
+        {
+            XXX.beginPath();
+            XXX.drawImage(chupa, 169, 88, 28, 53, X - this.X + (1/2 * CCC.width) - (1/2 * 28 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 53 * 1), 28 * 1, 53 * 1);
+        }
+        else if (this.type == "chupacabrassHead")
+        {
+            XXX.beginPath();
+            XXX.drawImage(chupa, 224, 738, 65, 63, X - this.X + (1/2 * CCC.width) - (1/2 * 65 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 63 * 1), 65 * 1, 63 * 1);
+        }
+        else if (this.type == "changelingSkull")
+        {
+            XXX.beginPath();
+            XXX.drawImage(chupa, 157, 673, 21, 28, X - this.X + (1/2 * CCC.width) - (1/2 * 21 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 28 * 1), 21 * 1, 28 * 1);
+        }
+        else if (this.type == "changelingFur")
+        {
+            XXX.beginPath();
+            XXX.drawImage(chupa, 126, 715, 21, 28, X - this.X + (1/2 * CCC.width) - (1/2 * 21 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 28 * 1), 21 * 1, 28 * 1);
+        }
+        else if (this.type == "changelingHeart")
+        {
+            XXX.beginPath();
+            XXX.drawImage(chupa, 152, 716, 21, 28, X - this.X + (1/2 * CCC.width) - (1/2 * 21 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 28 * 1), 21 * 1, 28 * 1);
         }
         else if (this.type == "wobeaFruit")
         {
@@ -34115,6 +34302,36 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(candlewic, 61, 201, 27, 29, this.invX - (1/2 * 27 * 1.5), this.invY - (1/2 * 29 * 1.5), 27 * 1.5, 29 * 1.5);
         }
+        else if (this.type == "nirwadenSabreAndShield")
+        {
+            LXX.beginPath();
+            LXX.drawImage(chupa, 376, 249, 48, 66, this.invX  - (1/2 * 48 * 1), this.invY - (1/2 * 66 * 1), 48 * 1, 66 * 1);
+        }
+        else if (this.type == "silkAndDagger")
+        {
+            LXX.beginPath();
+            LXX.drawImage(chupa, 169, 88, 28, 53, this.invX - (1/2 * 28 * 1), this.invY - (1/2 * 53 * 1), 28 * 1, 53 * 1);
+        }
+        else if (this.type == "chupacabrassHead")
+        {
+            LXX.beginPath();
+            LXX.drawImage(chupa, 224, 738, 65, 63, this.invX - (1/2 * 65 * 1), this.invY - (1/2 * 63 * 1), 65 * 1, 63 * 1);
+        }
+        else if (this.type == "changelingSkull")
+        {
+            LXX.beginPath();
+            LXX.drawImage(chupa, 157, 673, 21, 28, this.invX - (1/2 * 21 * 1), this.invY - (1/2 * 28 * 1), 21 * 1, 28 * 1);
+        }
+        else if (this.type == "changelingFur")
+        {
+            LXX.beginPath();
+            LXX.drawImage(chupa, 126, 715, 21, 28, this.invX - (1/2 * 21 * 1), this.invY - (1/2 * 28 * 1), 21 * 1, 28 * 1);
+        }
+        else if (this.type == "changelingHeart")
+        {
+            LXX.beginPath();
+            LXX.drawImage(chupa, 152, 716, 21, 28, this.invX - (1/2 * 21 * 1), this.invY - (1/2 * 28 * 1), 21 * 1, 28 * 1);
+        }
         else if (this.type == "wobeaFruit")
         {
             LXX.beginPath();
@@ -37997,6 +38214,36 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(candlewic, 61, 201, 27, 29, this.invX - (1/2 * 27 * 1.5), this.invY - (1/2 * 29 * 1.5), 27 * 1.5, 29 * 1.5);
+        }
+        else if (this.type == "nirwadenSabreAndShield")
+        {
+            XXX.beginPath();
+            XXX.drawImage(chupa, 376, 249, 48, 66, this.invX  - (1/2 * 48 * 1), this.invY - (1/2 * 66 * 1), 48 * 1, 66 * 1);
+        }
+        else if (this.type == "silkAndDagger")
+        {
+            XXX.beginPath();
+            XXX.drawImage(chupa, 169, 88, 28, 53, this.invX - (1/2 * 28 * 1), this.invY - (1/2 * 53 * 1), 28 * 1, 53 * 1);
+        }
+        else if (this.type == "chupacabrassHead")
+        {
+            XXX.beginPath();
+            XXX.drawImage(chupa, 224, 738, 65, 63, this.invX - (1/2 * 65 * 1), this.invY - (1/2 * 63 * 1), 65 * 1, 63 * 1);
+        }
+        else if (this.type == "changelingSkull")
+        {
+            XXX.beginPath();
+            XXX.drawImage(chupa, 157, 673, 21, 28, this.invX - (1/2 * 21 * 1), this.invY - (1/2 * 28 * 1), 21 * 1, 28 * 1);
+        }
+        else if (this.type == "changelingFur")
+        {
+            XXX.beginPath();
+            XXX.drawImage(chupa, 126, 715, 21, 28, this.invX - (1/2 * 21 * 1), this.invY - (1/2 * 28 * 1), 21 * 1, 28 * 1);
+        }
+        else if (this.type == "changelingHeart")
+        {
+            XXX.beginPath();
+            XXX.drawImage(chupa, 152, 716, 21, 28, this.invX - (1/2 * 21 * 1), this.invY - (1/2 * 28 * 1), 21 * 1, 28 * 1);
         }
         else if (this.type == "wobeaFruit")
         {

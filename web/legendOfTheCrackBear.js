@@ -3893,6 +3893,8 @@ function theLegend()
     allWeapons.push(new Item("vampire", false)); //79 //FORM
     allWeapons.push(new Item("selkieSkin"));//80 //FORM
     allWeapons.push(new Item("sickle"));//81
+    allWeapons.push(new Item("silkAndDagger"));//82
+    allWeapons.push(new Item("nirwadenSabreAndShield"));//83
 
 
 
@@ -4114,6 +4116,8 @@ function theLegend()
     smithing.push(new Item("nechrovitePlateArmour", false));
     smithing.push(new Item("nechrovitePlateArmourBlackPlume", false));
     smithing.push(new Item("nechrovitePlateArmourRedPlume", false));
+    smithing.push(new Item("silkAndDagger", false));
+    smithing.push(new Item("nirwadenSabreAndShield", false));
 
 
 //Foods (Items cooked at either a stove, an oven, or a campfire)

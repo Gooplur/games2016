@@ -134,6 +134,8 @@ function gameloopOfDestiny(time)
     player.freeze = 1;
     wornAbilities();
     player.obscurity = true; //ability to be invisible is reset at the end of every loop.
+    player.weaponFireResBonus = 0; //fire resistance from weapons wears off at the end of each loop.
+    player.shielding = 0; //shielding is set to 0 once per game loop
 
     //set certain AI variables. (Final AI Reset)
     for (var k = 0; k < ArtificialIntelligenceAccess.length; k++)

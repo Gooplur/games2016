@@ -23,6 +23,8 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
     this.flameFrame = 0;
     this.flameTic = 0;
     this.canLight = false;
+    //random external variables
+    this.changelingTampered = false;
 
     //PROJECTILE AI
     //TODO this is where unique projectile AI like target following would be added.

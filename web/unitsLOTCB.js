@@ -781,7 +781,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     {
                         if (this.allys[j] == ArtificialIntelligenceAccess[i].team || ArtificialIntelligenceAccess[i].dmx != this.dmx || ArtificialIntelligenceAccess[i].petrified && this.type != "Basilisk" || ArtificialIntelligenceAccess[i].petrified && ArtificialIntelligenceAccess[i].health <= 0 && this.type == "Basilisk" || ArtificialIntelligenceAccess[i].insect == true && this.insect == false && this.bugger == false)
                         {
-                            if (ArtificialIntelligenceAccess[i].disdained == true && ArtificialIntelligenceAccess[i].disturbed == false || ArtificialIntelligenceAccess[i].disdained == false || player.title != "Highfolk" && player.title != "Nobility" && player.title != "Royalty" && player.raceName == "Nirwaden" || player.title != "Nobility" && player.title != "Royalty" && player.raceName != "Nirwaden" || this.disdained)
+                            if (ArtificialIntelligenceAccess[i].disdained == true && ArtificialIntelligenceAccess[i].disturbed == false || ArtificialIntelligenceAccess[i].disdained == false || player.title != "Highfolk" && player.title != "Nobility" && player.title != "Royalty" && player.raceName == "Nirwaden" || player.title != "Nobility" && player.title != "Royalty" && player.raceName != "Nirwaden" || this.disdained || ArtificialIntelligenceAccess[i].type == "Changeling" && this.type == "Changeling")
                             {
                                 swtchTrgt = true;
                                 break;
@@ -25128,6 +25128,8 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         this.X = this.X + 1100 - 2200 * Math.random();
                         this.Y = this.Y + 1100 - 2200 * Math.random();
                         this.alive = true;
+                        this.kid = true;
+                        this.kidSize = 1;
                         ArtificialIntelligenceAccess.push(deadAIList[deadMe]);
                         deadAIList.splice(deadMe, 1);
                     }
@@ -25142,6 +25144,8 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         this.X = this.X + 1100 - 2200 * Math.random();
                         this.Y = this.Y + 1100 - 2200 * Math.random();
                         this.alive = true;
+                        this.kid = true;
+                        this.kidSize = 1;
                     }
                 }
                 else

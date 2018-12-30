@@ -24840,8 +24840,8 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                                 if (((this.X - worldItems[i].X)*(this.X - worldItems[i].X)+(this.Y - worldItems[i].Y)*(this.Y - worldItems[i].Y)) <= 90*90)
                                 {
                                     ironThreat = true;
-                                    this.pointAway(worldItems[i]);
-                                    this.moveInRelationToThing(worldItems[i]);
+                                    this.pointAway({X: worldItems[i].X, Y: worldItems[i].Y});
+                                    this.moveInRelationToThing({X: worldItems[i].X, Y: worldItems[i].Y});
                                 }
                             }
                         }

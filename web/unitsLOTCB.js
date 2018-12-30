@@ -260,6 +260,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     this.leechTime = 0;
     this.keepHeatRes = 0;
     this.doKeepHeatRes = true; //this allows heat resistance to be stored in a keep variable when true.
+    this.childForm = false; //for changelings only
 
     //Artificial Intelligence
     this.setTeamByID = function()
@@ -13599,7 +13600,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
             this.swimSpeed = this.speed * 0.8;
         }
-        else if (this.type == "Changeling")
+        else if (this.type == "Changeling" && this.childForm == false)
         {
             this.damageFrame = "automatic";
             this.team = "docile";
@@ -13621,17 +13622,6 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.negateArmour = 0;
             this.attackWait = 0.45;
 
-            if (this.alpha == true)
-            {
-                this.childForm = true;
-                this.changelingForm = false;
-            }
-            else
-            {
-                this.childForm = false;
-                this.changelingForm = true;
-            }
-
             this.changelingChanging = false;
             this.childing = false;
 
@@ -13648,6 +13638,18 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.xAdjustment = 0;
 
             this.swimSpeed = this.speed * 0.7;
+
+            if (this.alpha == true)
+            {
+                console.log("yep.")
+                this.childForm = true;
+                this.changelingForm = false;
+            }
+            else
+            {
+                this.childForm = false;
+                this.changelingForm = true;
+            }
         }
         else if (this.type == "Boggart")
         {
@@ -17437,7 +17439,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.ultra.ranged[8] = player.weapon.rate;
             }
         }
-        else if (this.type == "Person")
+        else if (this.type == "Person" || this.type == "Changeling" && this.childForm == true)
         {
             this.damageFrame = "automatic";
             this.customEXP = false;
@@ -17460,10 +17462,6 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
 
             //STATS (non-variable)
-            if (typeof(this.ultra.rot) != "undefined")
-            {
-                this.rotation = this.ultra.rot;
-            }
             this.ranged = this.ultra.ranged[0];
             this.outfit = this.ultra.outfit[0];
             this.weapon = this.ultra.weapon[0];
@@ -17471,8 +17469,15 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.heatResistance = 0;
             this.attackStyle = "chunked";
             this.attackRate = 0;  //this is for rapid style combat only.
-            this.healthMAX = (Math.floor(Math.random() * 4) * 4) + 0.1;
-            this.health = this.healthMAX;
+            if (this.type != "Changeling")
+            {
+                if (typeof(this.ultra.rot) != "undefined")
+                {
+                    this.rotation = this.ultra.rot;
+                }
+                this.healthMAX = (Math.floor(Math.random() * 4) * 4) + 0.1;
+                this.health = this.healthMAX;
+            }
             this.armour = this.ultra.outfit[1];
             this.speed = 0.65 + (Math.floor(Math.random() * 12) / 10);
             this.rangeOfSight = 500; //This is just to set the variable initially. The rest is variable.
@@ -24671,6 +24676,16 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         //CHANGELING
         if (this.type == "Changeling")
         {
+            if (this.other == false)
+            {
+                this.other = true;
+                if (this.childForm == true)
+                {
+                    console.log(this);
+                    this.designUnits();
+                    console.log(this);
+                }
+            }
             //Set Drops and experience
 
             if (Math.max(0, 7 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
@@ -25300,6 +25315,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                                 this.changelingForm = false;
                                 this.childForm = true;
                                 this.changelingChanging = false;
+                                this.designUnits();
                             }
                             else if (this.attacking)
                             {

@@ -25176,7 +25176,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 {
                     if (this.changelingChanging == true)
                     {
-                        this.costumeEngine(8, 0.19, true);
+                        this.costumeEngine(8, 0.12, true);
                     }
                     else if (this.moving && !this.attacking) //If moving and not attacking initiate moving animation...
                     {
@@ -25186,7 +25186,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     {
                         if (new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000 / timeSpeed * this.timeResistance))
                         {
-                            this.costumeEngine(8, 0.19, true);
+                            this.costumeEngine(8, 0.18, true);
                         }
                     }
 
@@ -25319,6 +25319,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                                 this.changelingForm = false;
                                 this.childForm = true;
                                 this.changelingChanging = false;
+                                this.kidSize = 0.72;
                                 this.designUnits();
                             }
                             else if (this.attacking)

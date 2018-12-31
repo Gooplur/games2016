@@ -284,6 +284,18 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.baseTeam = "arena3";
             this.team = "arena3";
         }
+        else if (this.ID == "arena4")
+        {
+            this.muzzle = false;
+            this.baseTeam = "arena4";
+            this.team = "arena4";
+        }
+        else if (this.ID == "arena5")
+        {
+            this.muzzle = false;
+            this.baseTeam = "arena5";
+            this.team = "arena5";
+        }
     };
 
     this.removeSelfFromCompanionList = function()
@@ -896,6 +908,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 this.allys.push("EstolGang");
                 this.allys.push("EstolGang2");
+                this.allys.push("EstolGang3");
             }
             if (player.sylkeemPeace)
             {
@@ -1082,6 +1095,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.allys.push("Cephrite");
             this.allys.push("clamia");
             this.allys.push("EstolGang");
+            if (this.type == "Person")
+            {
+                this.allys.push("EstolGang3");
+            }
         }
         if (this.team == "TheBalgurMercenaries")
         {
@@ -1119,6 +1136,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.allys.push("Nirwaden");
             this.allys.push("clamia");
             this.allys.push("EstolGang2");
+            this.allys.push("EstolGang3");
             this.allys.push("Sylkeem");
         }
         if (this.team == "EstolGang2")
@@ -1131,6 +1149,27 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.allys.push("herdia");
             this.allys.push("clamia");
             this.allys.push("EstolGang");
+            this.allys.push("EstolGang3");
+        }
+        if (this.team == "EstolGang3")
+        {
+            if (player.estolGangPeace && player.estolgangFaction > -1)
+            {
+                this.allys.push("player");
+            }
+
+            this.allys.push("herdia");
+            this.allys.push("clamia");
+            this.allys.push("EstolGang");
+            this.allys.push("EstolGang2");
+
+            if (this.target != "none" && this.target != player)
+            {
+                if (this.target.type == "Person")
+                {
+                    this.allys.push("Nirwaden");
+                }
+            }
         }
         if (this.team == "Sylkeem")
         {
@@ -8770,6 +8809,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 this.costumeEngine(5, 0.21, true);
             }
+            else if (this.weapon == "sickle")
+            {
+                this.costumeEngine(7, 0.25, true);
+            }
         }
     };
 
@@ -9405,6 +9448,38 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             else if (theCostume >= 5)
             {
                 this.drawUnit(dolls, 21, 453, 80, 95, -1/2 * 80 + 5.6, -1/2 * 95 + -5, 80, 95, 1 / 2 * Math.PI);
+            }
+        }
+        else if (this.weapon == "sickle")
+        {
+            this.damageFrame = "automatic";
+            if (theCostume <= 0)
+            {
+                this.drawUnit(bogg, 2, 890, 105, 81, -1/2 * 105 * 1.35, -1/2 * 81 * 1.35, 105 * 1.35 - 3, 81 * 1.35 -1, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 1)
+            {
+                this.drawUnit(bogg, 114, 902, 105, 81, -1/2 * 105 * 1.35, -1/2 * 81 * 1.35, 105 * 1.35 - 3, 81 * 1.35 -1, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 2)
+            {
+                this.drawUnit(bogg, 222, 910, 105, 69, -1/2 * 105 * 1.35, -1/2 * 69 * 1.35, 105 * 1.35 - 0, 69 * 1.35 -1, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 3)
+            {
+                this.drawUnit(bogg, 313, 896, 105, 87, -1/2 * 105 * 1.35, -1/2 * 87 * 1.35, 105 * 1.35 - 0, 87 * 1.35 - 1.5, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 4)
+            {
+                this.drawUnit(bogg, 396, 894, 105, 87, -1/2 * 105 * 1.35, -1/2 * 87 * 1.35, 105 * 1.35 - 4.5, 87 * 1.35 - 9, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 5)
+            {
+                this.drawUnit(bogg, 485, 898, 105, 87, -1/2 * 105 * 1.35, -1/2 * 87 * 1.35, 105 * 1.35 - 0, 87 * 1.35 - 1.5, 1 / 2 * Math.PI);
+            }
+            else if (theCostume >= 6)
+            {
+                this.drawUnit(bogg, 574, 898, 105, 87, -1/2 * 105 * 1.35, -1/2 * 87 * 1.35, 105 * 1.35 - 0, 87 * 1.35 - 1.5, 1 / 2 * Math.PI);
             }
         }
         else if (this.weapon == "freydicSpear")
@@ -40963,7 +41038,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             player.theBalgurMercenariesFaction -= 25;
                         }
                     }
-                    if (this.ultra.faction == "EstolGang")
+                    if (this.ultra.faction == "EstolGang" || this.ultra.faction == "EstolGang2" || this.ultra.faction == "EstolGang3")
                     {
                         if (this.killNotByPlayer == false || this.killByPlayerTeam)
                         {
@@ -41298,7 +41373,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         {
                             if (quests.aFairyInBoysClothingQuest == true)
                             {
-                                player.nirwadenFaction += 25;
+                                player.nirwadenFaction -= 0;
                             }
                             else
                             {
@@ -41895,7 +41970,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 else if (this.ID == "Sellsword")
                 {
                     //if the sellsword is actually a member of the estolgang
-                    if (this.ultra.faction == "EstolGang" || this.ultra.faction == "EstolGang2")
+                    if (this.ultra.faction == "EstolGang" || this.ultra.faction == "EstolGang2" || this.ultra.faction == "EstolGang3")
                     {
                         if (player.estolgangFaction <= -50)
                         {
@@ -42320,7 +42395,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         }
                     }
                 }
-                else if (this.ultra.faction == "EstolGang" || this.ultra.faction == "EstolGang2")
+                else if (this.ultra.faction == "EstolGang" || this.ultra.faction == "EstolGang2" || this.ultra.faction == "EstolGang3")
                 {
                     if (player.estolgangFaction <= -50)
                     {
@@ -42813,7 +42888,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             player.theBalgurMercenariesFaction -= 50;
                         }
                     }
-                    if (this.ultra.faction == "EstolGang")
+                    if (this.ultra.faction == "EstolGang" || this.ultra.faction == "EstolGang2" || this.ultra.faction == "EstolGang3")
                     {
                         if (this.killNotByPlayer == false || this.killByPlayerTeam)
                         {

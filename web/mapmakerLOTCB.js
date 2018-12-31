@@ -14701,6 +14701,100 @@ function buildMaster()
                     }
                 }
 
+                //muggers
+                if (Math.random() > 0.8)
+                {
+                    if (timeOfDay == "Dusk" || timeOfDay == "Night" || timeOfDay == "Dawn")
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-42125, -2733, "Person", false, "Mugger", {race: "Nirwaden", faction: "arena4", personality: "violent", outfit: ["frichFurClothing", 0], weapon: ["sickle", [3.5, 1.5], 0, 23, 1.25], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-42110, -1694]]}));
+                    }
+                }
+                if (Math.random() < 0.2)
+                {
+                    if (Math.random() > 0.46)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-42031, -2392, "Person", false, "Mugger", {race: "Nirwaden", faction: "arena4", personality: "violent", outfit: ["none", 0], weapon: ["sickle", [2, 2], 0, 22, 1], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-42823, -2748]]}));
+                    }
+                    else
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-42031, -2392, "Person", false, "Mugger", {race: "Nirwaden", faction: "arena4", personality: "violent", outfit: ["frichFurClothing", 0], weapon: ["sickle", [3, 2], 0, 22, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-42823, -2748]]}));
+                    }
+
+                }
+                if (Math.random() < 0.2)
+                {
+                    if (timeOfDay == "Dusk" || timeOfDay == "Night" || timeOfDay == "Dawn")
+                    {
+                        if (Math.random() > 0.4)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(-41065, -2940, "Person", false, "Mugger", {race: "Nirwaden", faction: "arena4", personality: "violent", outfit: ["none", 0], weapon: ["sickle", [4, 3], 0, 22, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-42823, -2748]]}));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(-41065, -2940, "Person", false, "Mugger", {race: "Nirwaden", faction: "arena4", personality: "violent", outfit: ["none", 0], weapon: ["timberAxe", [6, 5], 0, 28, 2.1], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-42823, -2748]]}));
+                        }
+
+                    }
+                }
+                if (Math.random() < 0.2) //
+                {
+                    if (timeOfDay == "Dusk" || timeOfDay == "Day" || timeOfDay == "Dawn")
+                    {
+                        if (Math.random() > 0.4)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(-42430, -1461, "Person", false, "Mugger", {race: "Nirwaden", faction: "arena4", personality: "violent", outfit: ["none", 0], weapon: ["sickle", [5, 2], 0, 22, 1.26], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-42823, -2748]]}));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(-41863, -1312, "Person", false, "Mugger", {race: "Nirwaden", faction: "arena4", personality: "violent", outfit: ["frichFurClothing", 0], weapon: ["sickle", [4, 4], 0, 21, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-42823, -2748]]}));
+                        }
+
+                    }
+                }
+                if (Math.random() < 0.2)
+                {
+                    if (timeOfDay == "Dusk" || timeOfDay == "Night" || timeOfDay == "Dawn")
+                    {
+                        if (Math.random() > 0.55)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(-42052, -2970, "Person", false, "Mugger", {race: "Nirwaden", faction: "arena4", personality: "violent", outfit: ["frichFurClothing", 0], weapon: ["longbow", [3, 3], 0, 24, 1.15], ranged: [true, "arrow", 5.5, 900, 4, 6, 0, "none", 1.92], patrolStops: 1, patrolLoop: false, route:[[-42054, -2950]]}));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(-42052, -2970, "Person", false, "Mugger", {race: "Nirwaden", faction: "arena4", personality: "violent", outfit: ["frichFurClothing", 0], weapon: ["sickle", [3, 3], 0, 24, 1.15], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-42054, -2950]]}));
+                        }
+                    }
+                }
+
+                if (Math.random() < 0.2)
+                {
+                    if (timeOfDay == "Dusk" || timeOfDay == "Night" || timeOfDay == "Day")
+                    {
+                        if (Math.random() > 0.7)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(-41704, -2958, "Soldier", false, "Estol Thug", {race: "Nirwaden", faction: "EstolGang3", con: 5, speed: 1, outfit: ["none", 0], weapon: ["nirineseSabre", [5, 5], 0, 26, 0.8], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-41704, -2958], [-41700, -2955]]}));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(-41700, -2955, "Soldier", false, "Estol Thug", {race: "Nirwaden", faction: "EstolGang3", con: 8, speed: 1, outfit: ["boarArmour", 4.5], weapon: ["nirineseSabre", [8, 6], 0, 25, 0.9], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 2, patrolLoop: true, route:[[-42381, -2951], [-41700, -2955]]}));
+                        }
+                    }
+                }
+                if (Math.random() < 0.2)
+                {
+                    if (timeOfDay == "Dawn" || timeOfDay == "Night" || timeOfDay == "Day")
+                    {
+                        if (Math.random() > 0.46)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(-41609, -2710, "Soldier", false, "Estol Thug", {race: "Nirwaden", faction: "EstolGang3", con: 2, speed: 1.2, outfit: ["nirwadenGambeson", 2.5], weapon: ["nirineseSabre", [7, 5.5], 0, 24, 0.95], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-41610, -2697]]}));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(-41676, -2807, "Soldier", false, "Estol Thug", {race: "Nirwaden", faction: "EstolGang3", con: 2.5, speed: 1.2, outfit: ["nirwadenGambeson", 2], weapon: ["nirineseSabre", [9, 4.5], 0, 22, 1.1], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-41683, -2807]]}));
+                        }
+                    }
+                }
+
                 var vendorName = "Shady Vendor";
                 if (player.title == "Nobility" || player.title == "Royalty" || player.title == "Highfolk") //rich folks don't have the street smarts to spot gang members on the street
                 {

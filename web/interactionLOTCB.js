@@ -1935,7 +1935,7 @@ function interaction(me)
                             if (player.dialogueChoiceMade == false)
                             {
                                 player.dialogueOptions = [["Good day.", false, "a"], ["Tell me about Átalin", false, "b"]];
-                                if (quests.aFairyInBoysClothingNatalia == true)
+                                if (quests.aFairyInBoysClothingNatalia == true && quests.aFairyInBoysClothingQuest == true)
                                 {
                                     if (player.inquisitionRank != "none")
                                     {
@@ -2723,7 +2723,7 @@ function interaction(me)
                         else if (conversationID[1] == "2a")
                         {
                             //text dialogue
-                            setMsg("I've been having bad dreams ever since my son was snatched by that changeling... that thing... that beast... it ate my boy, my poor boy... I just can't take it anymore! Ebaro's been acting strange for a while now, just a bit ago he was cradling himself before the wood stove rocking back and forth whispering cryptic gibberish to himself.    I know what you're going to say, why don't you just kill it and be done with it... but, I just can't bring myself to kill him, it looks too much like my poor little Ebaro. I know it's a lot to ask, but if you could kill the changeling living in my son's skin I would be ever grateful.");
+                            setMsg("I've been having bad dreams ever since my son was snatched by that changeling... that thing... that beast... it ate my boy, my poor boy... I just can't take it anymore! Ebaro's been acting strange for a while now, just a bit ago he was cradling himself before the wood stove rocking back and forth whispering cryptic gibberish to himself. I know what you're going to say, why don't you just kill it and be done with it... but, I just can't bring myself to kill him, it looks too much like my poor little Ebaro. I know it's a lot to ask, but if you could kill the changeling living in my son's skin I would be ever grateful.");
 
                             //on ended text dialogue
                             if (tellMessage == "reset")

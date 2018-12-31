@@ -13621,6 +13621,8 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.sizeRadius = 16;
             this.negateArmour = 0;
             this.attackWait = 0.6;
+            this.kidSize = 1;
+            this.kid = true;
 
             this.changelingChanging = false;
             this.childing = false;
@@ -24765,7 +24767,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 {
                     this.callForNearbyHelpFromType(1200, "Soldier");
                 }
-                else if (this.childing != true)
+                else if (this.childing != true && this.changelingChanging == false)
                 {
                     this.Attack(5, 1);
                 }
@@ -24811,25 +24813,35 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
                 //scared of iron or anything that has iron in it.
                 var ironThreat = false;
+                var isIron = false;
+
                 if (this.changelingForm == true)
                 {
                     for (var i = 0; i < worldItems.length; i++)
                     {
-                        if (worldItems[i].dmx == this.dmx)
+                        if (worldItems[i][0].dmx == this.dmx)
                         {
-                            var isIron = false;
-                            if (worldItems[i].type == "iron" || worldItems[i].type == "ironOre" || worldItems[i].type == "itlinBranch")
+                            isIron = false;
+                            if (worldItems[i][0].type == "iron" || worldItems[i][0].type == "ironOre" || worldItems[i][0].type == "itlinBranch")
                             {
                                 isIron = true;
                             }
                             else
                             {
-                                for (var j = 0; j < worldItems[i].ingredients.length; j++)
+                                for (var j = 0; j < worldItems[i][0].ingredients.length; j++)
                                 {
-                                    if (worldItems[i].ingredients[j][0] == "Iron" || worldItems[i].ingredients[j][0] == "Iron Ore" || worldItems[i].ingredients[j][0] == "Itlin Branch")
+                                    if (worldItems[i][0].ingredients[j][0] == "Iron" || worldItems[i][0].ingredients[j][0] == "Iron Ore" || worldItems[i][0].ingredients[j][0] == "Itlin Branch")
                                     {
-                                        isIron = true;
-                                        break;
+                                        if (worldItems[i][0].ingredients[j][1] >= worldItems[i][0].ingredients[j][0].yield / 2 && worldItems[i][0].ingredients[j][0] != "Itlin Branch") //if item's iron content is 0.5 +
+                                        {
+                                            isIron = true;
+                                            break;
+                                        }
+                                        else if (worldItems[i][0].ingredients[j][1] >= worldItems[i][0].ingredients[j][0].yield / 5 && worldItems[i][0].ingredients[j][0] == "Itlin Branch") //if itlinBranch makeup is 0.2 +
+                                        {
+                                            isIron = true;
+                                            break;
+                                        }
                                     }
                                 }
                             }
@@ -24837,11 +24849,12 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
                             if (isIron == true)
                             {
-                                if (((this.X - worldItems[i].X)*(this.X - worldItems[i].X)+(this.Y - worldItems[i].Y)*(this.Y - worldItems[i].Y)) <= 90*90)
+                                if (((this.X - worldItems[i][0].X)*(this.X - worldItems[i][0].X)+(this.Y - worldItems[i][0].Y)*(this.Y - worldItems[i][0].Y)) <= 56*56)
                                 {
                                     ironThreat = true;
-                                    this.pointAway({X: worldItems[i].X, Y: worldItems[i].Y});
-                                    this.moveInRelationToThing({X: worldItems[i].X, Y: worldItems[i].Y});
+                                    //this.pointTowards({X: worldItems[i][0].X, Y: worldItems[i][0].Y});
+                                    this.rotation = Math.atan2(worldItems[i][0].Y - this.Y, worldItems[i][0].X) + ((1/5 * Math.PI) - (3/5 * Math.PI * Math.random()));
+                                    this.moveInRelationToThing({X: worldItems[i][0].X, Y: worldItems[i][0].Y});
                                 }
                             }
                         }
@@ -24854,7 +24867,6 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             if (player.spell == "none" && player.weaponEquipped == "none" && dtpp < 230 && this.health > 1/3 * this.healthMAX) //attack the player if provoked
                             {
                                 this.pointTowardsPlayer();
-
                                 this.moveInRelationToPlayer();
                             }
                             else if (shiftKey == false && dtpp > 170 && this.disturbed != true || shiftKey == false && dtpp > 170 && this.health > 1/3 * this.healthMAX) //follow the player if not angry or if this's health isn't too low
@@ -24864,8 +24876,23 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             }
                             else //run away
                             {
-                                this.pointAwayFromPlayer();
-                                this.moveInRelationToPlayer();
+                                if (dtpp < 590)
+                                {
+                                    if (shiftKey == true)
+                                    {
+                                        this.pointAwayFromPlayer();
+                                    }
+                                    this.pointAwayFromPlayer();
+                                    this.moveInRelationToPlayer();
+                                    if (shiftKey == true || wKey)
+                                    {
+                                        this.moveInRelationToPlayer();
+                                    }
+                                    if (spaceKey && dtpp < 110 || eKey && dtpp < 110)
+                                    {
+                                        this.moveInRelationToPlayer();
+                                    }
+                                }
                             }
                         }
                         else if (this.target != "none" && this.changelingChanging == false)
@@ -25126,6 +25153,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         this.health = this.healthMAX;
                         this.ultra = {};
                         this.childForm = false;
+                        this.alpha = false;
                         this.changelingForm = true;
                         this.changelingChanging = false;
                         this.X = this.X + 1100 - 2200 * Math.random();
@@ -25133,6 +25161,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         this.alive = true;
                         this.kid = true;
                         this.kidSize = 1;
+                        this.designUnits();
                         ArtificialIntelligenceAccess.push(deadAIList[deadMe]);
                         deadAIList.splice(deadMe, 1);
                     }
@@ -25142,6 +25171,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         this.health = this.healthMAX;
                         this.ultra = {};
                         this.childForm = false;
+                        this.alpha = false;
                         this.changelingForm = true;
                         this.changelingChanging = false;
                         this.X = this.X + 1100 - 2200 * Math.random();
@@ -25149,6 +25179,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         this.alive = true;
                         this.kid = true;
                         this.kidSize = 1;
+                        this.designUnits();
                     }
                 }
                 else
@@ -25176,7 +25207,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 {
                     if (this.changelingChanging == true)
                     {
-                        this.costumeEngine(8, 0.05, true);
+                        this.costumeEngine(8, 0.08, true);
                     }
                     else if (this.moving && !this.attacking) //If moving and not attacking initiate moving animation...
                     {
@@ -25195,6 +25226,12 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     console.log(this.team == "docile");
                     if (this.team == "docile" || this.changelingForm == true && this.offended == true || this.changelingForm == true && this.attacking == true || this.changelingForm == true && this.target == player && this.health > 1/3 * this.healthMAX && player.spell == "none" && player.weaponEquipped == "none" || this.changelingForm == true && this.target == player && this.health > 1/3 * this.healthMAX && dtpp > 150 && dtpp < 220 || this.changelingChanging == true)
                     {
+                        if (this.childForm != true)
+                        {
+                            this.kid = true;
+                            this.kidSize = 1;
+                        }
+
                         if (!this.water)
                         {
                             if (this.X != this.plantedX && this.Y != this.plantedY)

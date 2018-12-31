@@ -3357,7 +3357,11 @@ function theLegend()
         libo: ["Libo", 0],
         suspReg: ["SuspectedRegicide", 0],
         mechelo: ["Mechelo", 0],
-        lucelius: ["Lucelius", 0]
+        lucelius: ["Lucelius", 0],
+        elma: ["Elma", 0],
+        natalia: ["Natalia", 0],
+        giomardo: ["Giomardo", 0],
+        ebaro: ["Ebaro", 0]
     };
 
 //time Tracker Variables
@@ -3537,7 +3541,11 @@ function theLegend()
         altezorInfiltratorLDS: true,
         mecheloLDS: true,
         luceliusLDS: true,
-        boggartLezarLDS: true
+        boggartLezarLDS: true,
+        elmaLDS: true,
+        ebaroLDS: true,
+        giomardoLDS: true,
+        nataliaLDS: true
     };
 //QUESTS
     quests =
@@ -3629,9 +3637,18 @@ function theLegend()
         rannukChild: false,
         rannukChildName: "Espen",
 
-        //QUEST: A Feast for Few ---- given by note
+        //QUEST: The Estol Conspiracy ---- given by note
         theEstolConspiracyQuest: false,
         theEstolConspiracyCompletionStyle: false,
+
+        //QUEST: A Fairy in Boy's Clothing ---- given by Elma
+        aFairyInBoysClothingQuest: false,
+        aFairyInBoysClothingCompletionStyle: false,
+        aFairyInBoysClothingFall: false,
+        aFairyInBoysClothingRude: false,
+        aFairyInBoysClothingPayed: false,
+        aFairyInBoysClothingNatalia: false,
+        aFairyInBoysClothingEvid: false,
 
         //QUEST: A Feast for Few ---- given by (onStart || fame)
         aFeastForFewerQuest: false,
@@ -3667,7 +3684,7 @@ function theLegend()
         matrimonyTorStambjordQuest: false,
         matrimonyTorStambjordCompletionStyle: false,
 
-        //QUEST: AtalinWitchHunt:
+        //QUEST: AtalinWitchHunt ---- *
         atalinWitchHuntQuest: false,
         atalinWitchHuntCompletionStyle: false,
         atalinWitchHuntWaysTaught: false,

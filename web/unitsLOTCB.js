@@ -40480,6 +40480,17 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 this.drops = [[new Item("coins", this.X, this.Y), 115]];
             }
+            else if (this.ID == "Ebaro")
+            {
+                if (quests.aFairyInBoysClothingQuest == true)
+                {
+                    this.disdained = true;
+                }
+                else
+                {
+                    this.disdained = false;
+                }
+            }
             else if (this.ID == "Hidalgo Lucelius")
             {
                 this.drops = [[new Item("coins", this.X, this.Y), 319]];
@@ -41254,6 +41265,45 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         if (this.killNotByPlayer == false || this.killByPlayerTeam)
                         {
                             player.freynorFaction -= 14;
+                        }
+                    }
+                    else if (this.ID == "Elma")
+                    {
+                        uniqueChars.elmaLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.nirwadenFaction -= 0;
+                        }
+                    }
+                    else if (this.ID == "Natalia")
+                    {
+                        uniqueChars.nataliaLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.nirwadenFaction -= 0;
+                        }
+                    }
+                    else if (this.ID == "Giomardo")
+                    {
+                        uniqueChars.giomardoLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.nirwadenFaction -= 0;
+                        }
+                    }
+                    else if (this.ID == "Ebaro")
+                    {
+                        uniqueChars.ebaroLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            if (quests.aFairyInBoysClothingQuest == true)
+                            {
+                                player.nirwadenFaction += 25;
+                            }
+                            else
+                            {
+                                player.nirwadenFaction -= 0;
+                            }
                         }
                     }
                     else if (this.ID == "Hidalgo Lucelius")

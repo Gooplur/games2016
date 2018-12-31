@@ -1617,6 +1617,1617 @@ function interaction(me)
                         }
                     }
 
+                    if (self.ID == "Ebaro" || conversationID[0] == "Ebaro")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Ebaro";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Hi there...", false, "a"], ["What are you up to?", false, "a"], ["Are you okay?", false, "a"]];
+                                if (quests.aFairyInBoysClothingQuest == true)
+                                {
+                                    player.dialogueOptions.unshift(["Begone changeling! Leave this boy's corpse and return to the terrible void from which you came!!!", false, "a"]);
+                                }
+                                if (quests.aFairyInBoysClothingNatalia == true)
+                                {
+                                    player.dialogueOptions.push(["[inspect his head]", false, "b"])
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            setMsg("[unintelligible muttering]");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            setMsg("(You notice a large scar running across the back of his head)");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.aFairyInBoysClothingEvid = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Natalia" || conversationID[0] == "Natalia")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Natalia";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Hello.", false, "a"], ["What are you up to?", false, "b"]];
+
+                                if (quests.aFairyInBoysClothingQuest == true)
+                                {
+                                    player.dialogueOptions.push(["I heard you were with Ebaro before he started to change, what happened?", false, "c"])
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            setMsg("Hi.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            setMsg("Nothing, just playing by myself... I haven't had anyone to play with since my friend Ebaro stopped coming out to play.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            setMsg("We were running about, and playing as we normally would... but then Ebaro tripped on a rock and hit his head on the road really hard. I held his hand and helped him get home.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 1)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Tell me the truth, were you actually playing in the woods?", false, "a"], ["Did anybody else see Ebaro fall?", false, "c"], ["How do I know you are not lying to me?", false, "b"], ["You liar, tell me the truth!!", false, "b"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1c";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1a")
+                        {
+                            //text dialogue
+                            setMsg("No, I swear we didn't go there...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1b")
+                        {
+                            //text dialogue
+                            setMsg("I'm not a liar... If you don't believe me, go ask my dad.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.aFairyInBoysClothingNatalia = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1c")
+                        {
+                            //text dialogue
+                            setMsg("My dad was there, he saw it happen too.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.aFairyInBoysClothingNatalia = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+
+                    }
+
+                    if (self.ID == "Giomardo" || conversationID[0] == "Giomardo")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Giomardo";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Good day.", false, "a"], ["Tell me about Átalin", false, "b"]];
+                                if (quests.aFairyInBoysClothingNatalia == true)
+                                {
+                                    if (player.inquisitionRank != "none")
+                                    {
+                                        player.dialogueOptions.unshift(["I need to speak with you regarding your daughter, Natalia.", false, "c"]);
+                                    }
+                                    else
+                                    {
+                                        player.dialogueOptions.unshift(["Your daughter told me that you saw her friend fall and hit his head, is this true?", false, "c"]);
+                                    }
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            setMsg("Good day.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            if (player.raceName != "Nirwaden")
+                            {
+                                if (quests.atalinArmyEnhanced == true)
+                                {
+                                    setMsg("Your excellency, I am glad that you asked... you have done a perfect job solving the city's crime problem. Crime is like a thing of the past, now.");
+                                }
+                                else
+                                {
+                                    setMsg("Átalin is a wonder, so long as you stay out of the slums... You didn't hear it from me, but, Atalin is sort of a dangerous place to live if you don't have much in the way of coin. It is hard to raise a daughter here... I worry for her every day.");
+                                }
+                            }
+                            else
+                            {
+                                setMsg("Átalin is a wonder, so long as you stay out of the slums... You didn't hear it from me, but, Atalin is sort of a dangerous place to live if you don't have much in the way of coin. It is hard to raise a daughter here... I worry for her every day.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            if (player.inquisitionRank == "none")
+                            {
+                                setMsg("Yeah, I saw him fall. I was bringing the kids something to drink when it happened. He got back up afterwards though so I thought he was probably okay.");
+                            }
+                            else
+                            {
+                                setMsg("She's not in trouble is she, Inquisitor?");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                if (player.inquisitionRank == "none")
+                                {
+                                    quests.aFairyInBoysClothingFall = true;
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 1;
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 1)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["No, she is not. Now, tell me, did you see your daughter's friend fall and hit his head when they were playing some time ago?", false, "a"], ["Your daughter claims that, you saw her friend fall and hit his head when they were playing. Is this the truth?", false, "a"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1b";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1a")
+                        {
+                            //text dialogue
+                            setMsg("Yes, I was there at the time. They were close to home and I went out to get them some water to drink when I saw the boy tripped - The children were running about carelessly, you see - It looked like it hurt; his head was bleeding a little bit... but boys have to be able to tough things out if they want to be strong men when they grow up.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.aFairyInBoysClothingFall = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Elma" || conversationID[0] == "Elma")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Elma";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                if (quests.aFairyInBoysClothingRude == false)
+                                {
+                                    player.dialogueOptions = [["Hello.", false, "a"]];
+                                    if (quests.aFairyInBoysClothingPayed == true && uniqueChars.ebaroLDS == false)
+                                    {
+                                        player.dialogueOptions.push(["The changling is dealt with, that will be 20 coins.", false, "b"]);
+                                    }
+                                    else if (quests.aFairyInBoysClothingPayed == false && uniqueChars.ebaroLDS == false)
+                                    {
+                                        player.dialogueOptions.push(["The changling that stole your son's corpse is dead now, I killed it...", false, "c"]);
+                                    }
+
+                                    if (quests.aFairyInBoysClothingFall == true && uniqueChars.ebaroLDS == true || uniqueChars.ebaroLDS == true && quests.aFairyInBoysClothingEvid == true && quests.aFairyInBoysClothingNatalia == true)
+                                    {
+                                        player.dialogueOptions.push(["Your son is not a changeling...", false, "d"]);
+                                    }
+                                    if (quests.aFairyInBoysClothingFall == true && uniqueChars.ebaroLDS == false && quests.aFairyInBoysClothingPayed == true)
+                                    {
+                                        player.dialogueOptions.push(["Your son wasn't a changeling, he just fell and hit his head. But you hired me to kill him, so I did. Now give me the coin you promised and I will be on my way...", false, "e"]);
+                                    }
+                                    if (quests.aFairyInBoysClothingFall == true && uniqueChars.ebaroLDS == false && quests.aFairyInBoysClothingPayed == false)
+                                    {
+                                        player.dialogueOptions.push(["Your son wasn't a changeling, he just fell and hit his head. But you asked me to kill him, so I did.", false, "f"]);
+                                    }
+                                }
+                                else
+                                {
+                                    player.dialogueOptions = [["Hello.", false, "a"]];
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "f")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0f";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            if (quests.aFairyInBoysClothingQuest == "complete" || quests.aFairyInBoysClothingQuest == true || quests.aFairyInBoysClothingRude == true)
+                            {
+                                if (quests.aFairyInBoysClothingRude == true)
+                                {
+                                    setMsg("Don't speak to me!");
+                                }
+                                else if (quests.aFairyInBoysClothingQuest == true && uniqueChars.ebaroLDS == true)
+                                {
+                                    setMsg("I can count on you, right?");
+                                }
+                                else
+                                {
+                                    setMsg("My poor boy... my poor poor boy... [crying]");
+                                }
+                            }
+                            else if (uniqueChars.ebaroLDS == true)
+                            {
+                                if (quests.imaginaryFriendCompletionStyle == "savedChild")
+                                {
+                                    setMsg("Hey, you're the one who saved the baker's girl from a demon! Can you help me with something, I really need your help, please!!");
+                                }
+                                else if (player.inquisitionRank != "none")
+                                {
+                                    setMsg("You're of the order of the inquisition aren't you... I have a matter that you will find urgent, help me please!");
+                                }
+                                else if (player.fame >= 9)
+                                {
+                                    setMsg("I think I've heard of you before... You're good at getting hard jobs done...    I need someone like you to help me! please! I beg of you, help me!");
+                                }
+                                else
+                                {
+                                    setMsg("...Hello, I... It's... eerr... sorry, I've not slept for a while... It's hard to interact properly with people when you are this tired.");
+                                }
+                            }
+                            else
+                            {
+                                setMsg("...go away!");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                if (quests.aFairyInBoysClothingQuest == "complete" || quests.aFairyInBoysClothingQuest == true || quests.aFairyInBoysClothingRude == true)
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else if (quests.imaginaryFriendCompletionStyle == "savedChild" || player.inquisitionRank != "none" || player.fame >= 9)
+                                {
+                                    if (uniqueChars.ebaroLDS == true)
+                                    {
+                                        msgReset();
+
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 1;
+                                        self.SC();
+                                    }
+                                    else
+                                    {
+                                        msgReset();
+
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                }
+                                else
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 2;
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            if (player.inquisitionRank != "none")
+                            {
+                                setMsg("yours is a noble profession, Inquisitor, here is your pay. Thank you... I don't know if I could've stood to live with that beast's wretched muttering any longer.");
+                            }
+                            else
+                            {
+                                setMsg("Here is the coin I promised you... Thank you for your work. If not for you I don't no if I would have retained my sanity living with that fowl creature.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                var coinzHit = -1;
+                                for (var i = 0; i < Inventory.length; i++)
+                                {
+                                    if (Inventory[i][0].type == "coins")
+                                    {
+                                        coinzHit = i;
+                                        break;
+                                    }
+                                }
+
+                                if (coinzHit > -1)
+                                {
+                                    Inventory[coinzHit][1] += 20;
+                                }
+                                else
+                                {
+                                    Inventory.unshift([new Item("coins", false, false), 20])
+                                }
+
+                                quests.aFairyInBoysClothingQuest = "complete";
+                                if (quests.aFairyInBoysClothingFall || quests.aFairyInBoysClothingEvid == true && quests.aFairyInBoysClothingNatalia == true)
+                                {
+                                    quests.aFairyInBoysClothingCompletionStyle = "skepticalKillPay";
+                                }
+                                else
+                                {
+                                    quests.aFairyInBoysClothingCompletionStyle = "killPay";
+                                }
+
+                                if (quests.duendeInfestationCompletionStyle == "skepticalKillPay")
+                                {
+                                    quests.completeQuests.push({name: "A Fairy in Boy's Clothing", description: "You killed the boy for pay, despite learning that the boy had had a head injury... Better not to risk leaving a changeling alive?"});
+                                }
+                                else
+                                {
+                                    quests.completeQuests.push({name: "A Fairy in Boy's Clothing", description: "You killed the changeling... for a fee, of course."});
+                                }
+                                player.nirwadenFaction += 18;
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                {
+                                    player.magicalExperience += 9;
+                                }
+                                else
+                                {
+                                    //player.magicalExperience += 0;
+                                    player.experience += 85;
+                                }
+                                player.fame += 1;
+                                if (player.inquisitionRank != "none")
+                                {
+                                    quests.theOrderOfTheInquisition += 1; //the inquisition guild cares about this quest and will recognize its members for completing it.
+                                }
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            setMsg("[cries] Bless you... you are a brave and noble soul. [sobs] ...thank you!!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.aFairyInBoysClothingQuest = "complete";
+                                if (quests.aFairyInBoysClothingFall || quests.aFairyInBoysClothingEvid == true && quests.aFairyInBoysClothingNatalia == true)
+                                {
+                                    quests.aFairyInBoysClothingCompletionStyle = "skepticalKill";
+                                }
+                                else
+                                {
+                                    quests.aFairyInBoysClothingCompletionStyle = "kill";
+                                }
+
+                                if (quests.duendeInfestationCompletionStyle == "skepticalKillPay")
+                                {
+                                    quests.completeQuests.push({name: "A Fairy in Boy's Clothing", description: "You killed the boy, despite learning that the boy had had a head injury... Better not to risk leaving a changeling alive?"});
+                                }
+                                else
+                                {
+                                    quests.completeQuests.push({name: "A Fairy in Boy's Clothing", description: "You killed the changeling."});
+                                }
+                                player.nirwadenFaction += 22;
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                {
+                                    player.magicalExperience += 20;
+                                }
+                                else
+                                {
+                                    player.magicalExperience += 1;
+                                    player.experience += 100;
+                                }
+                                player.fame += 1;
+                                if (player.inquisitionRank != "none")
+                                {
+                                    quests.theOrderOfTheInquisition += 1; //the inquisition guild cares about this quest and will recognize its members for completing it.
+                                }
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            setMsg("That creature is a changling, how else do you explain his unhuman behavior!?");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 5;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            //text dialogue
+                            setMsg("I would thank you for your services, but it is clear to me that you are demented. I know what I saw. That wasn't my son, it was a changeling. Take your your pay and never come back!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                var coinzHit = -1;
+                                for (var i = 0; i < Inventory.length; i++)
+                                {
+                                    if (Inventory[i][0].type == "coins")
+                                    {
+                                        coinzHit = i;
+                                        break;
+                                    }
+                                }
+
+                                if (coinzHit > -1)
+                                {
+                                    Inventory[coinzHit][1] += 20;
+                                }
+                                else
+                                {
+                                    Inventory.unshift([new Item("coins", false, false), 20])
+                                }
+
+                                quests.aFairyInBoysClothingRude = true;
+                                quests.aFairyInBoysClothingQuest = "complete";
+                                quests.aFairyInBoysClothingCompletionStyle = "dementedPay";
+                                quests.completeQuests.push({name: "A Fairy in Boy's Clothing", description: "You killed the boy, despite learning that the boy's behavior was caused by a head injury, and not supernatural forces."});
+
+                                player.nirwadenFaction -= 5;
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                {
+                                    player.magicalExperience += 8;
+                                }
+                                else
+                                {
+                                    //player.magicalExperience += 0;
+                                    player.experience += 70;
+                                }
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0f")
+                        {
+                            //text dialogue
+                            setMsg("I would thank you for your help, but it is clear to me that you are demented. I know what I saw. That wasn't my son, it was a changeling. Leave here and never come back!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.aFairyInBoysClothingRude = true;
+                                quests.aFairyInBoysClothingQuest = "complete";
+                                quests.aFairyInBoysClothingCompletionStyle = "demented";
+                                quests.completeQuests.push({name: "A Fairy in Boy's Clothing", description: "You killed the boy, despite learning that the boy's behavior was caused by a head injury, and not supernatural forces."});
+
+                                player.nirwadenFaction -= 8;
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                {
+                                    player.magicalExperience += 10;
+                                }
+                                else
+                                {
+                                    //player.magicalExperience += 0;
+                                    player.experience += 75;
+                                }
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 1)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["What is the matter?", false, "a"], ["I'm sorry, but I can't.", false, "b"], ["Not at the moment, I am busy.", false, "b"], ["Me, help you!? Don't be preposterous.", false, "c"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1c";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1a")
+                        {
+                            //text dialogue
+                            setMsg("My son has been snatched by a changeling... that thing... that beast... he ate my boy, my poor boy... I just can't take it anymore!  I know that's not my boy. Ebaro's been acting strange for a while now, just a bit ago he was cradling himself before the wood stove rocking back and forth whispering cryptic gibberish to himself. Plus i've had nothing but bad sleep and bad dreams ever since he started acting like this... I can't bring myself to kill it, it looks too much like my poor little Ebaro. If you would be so noble as to slay it, I would be ever grateful.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.aFairyInBoysClothingQuest = true;
+                                quests.activeQuests.push({name: "A Fairy in Boy's Clothing", description: "A distressed mother claims that her son has been devoured and replaced by a changeling."});
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 3;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1b")
+                        {
+                            //text dialogue
+                            setMsg("I... for a moment I had hope that I could escape this wretched curse...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1c")
+                        {
+                            //text dialogue
+                            if (player.title != "Royalty" && player.title != "Nobility" && player.title != "Highfolk")
+                            {
+                                setMsg("You are no greater than I am you arrogant fool! Get out!");
+                            }
+                            else
+                            {
+                                if (player.title == "Royalty")
+                                {
+                                    setMsg("I apologize, I've not slept well, forgive me, your excellency.");
+                                }
+                                else if (player.title == "Nobility")
+                                {
+                                    if (player.gender == "Male")
+                                    {
+                                        setMsg("I apologize, I've not slept well, forgive me, my lord.");
+                                    }
+                                    else
+                                    {
+                                        setMsg("I apologize, I've not slept well, forgive me, my dame.");
+                                    }
+                                }
+                                else if (player.raceName == "Niraden")
+                                {
+                                    setMsg("I apologize, I've not slept well, forgive me, your hidalgoship.");
+                                }
+                                else
+                                {
+                                    if (player.gender == "Female")
+                                    {
+                                        setMsg("I apologize, I've not slept well, forgive me, miss.");
+                                    }
+                                    else
+                                    {
+                                        setMsg("I apologize, I've not slept well, forgive me, sir.");
+                                    }
+                                }
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                if (player.title != "Royalty" && player.title != "Nobility" && player.title != "Highfolk")
+                                {
+                                    quests.aFairyInBoysClothingRude = true;
+                                }
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 2)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Why have you been losing sleep?", false, "a"], ["If I might inquire, why is it that you have been losing sleep?", false, "a"], ["Go to sleep, then.", false, "b"], ["I don't have time to talk.", false, "c"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "2a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "2b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "2c";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "2a")
+                        {
+                            //text dialogue
+                            setMsg("I've been having bad dreams ever since my son was snatched by that changeling... that thing... that beast... it ate my boy, my poor boy... I just can't take it anymore! Ebaro's been acting strange for a while now, just a bit ago he was cradling himself before the wood stove rocking back and forth whispering cryptic gibberish to himself.    I know what you're going to say, why don't you just kill it and be done with it... but, I just can't bring myself to kill him, it looks too much like my poor little Ebaro. I know it's a lot to ask, but if you could kill the changeling living in my son's skin I would be ever grateful.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.aFairyInBoysClothingQuest = true;
+                                quests.activeQuests.push({name: "A Fairy in Boy's Clothing", description: "A distressed mother claims that her son has been devoured and replaced by a changeling."});
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 3;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "2b")
+                        {
+                            //text dialogue
+                            setMsg("The bad dreams keep me up...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "2c")
+                        {
+                            //text dialogue
+                            setMsg("I'm sorry... look at me, wasting a total stranger's time with my problems...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 3)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["You are brave to seek help to rid your household of this changeling. I imagine it must be difficult for you to ask me to do this.", false, "a"], ["Slow down, tell me more. When did you first start to notice these changes?", false, "c"], ["I will kill the changling for 20 coins.", false, "f"], ["I would never harm a child.", false, "d"], ["Tell me, were you there when your son was 'eaten' as you say?", false, "e"], ["I'll look into it", false, "b"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "3a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "3b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "3c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "3d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "3e";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "f")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "3f";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "3a")
+                        {
+                            //text dialogue
+                            setMsg("It is, but it must be done. This monster killed my boy... kill it, please.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "3b")
+                        {
+                            //text dialogue
+                            setMsg("Thank You!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "3c")
+                        {
+                            //text dialogue
+                            setMsg("Ebaro was playing with his friend, Natalia, who lives down the road, and when he came back home he was different. I told him not to play in the woods, but the stubborn boy never did listen.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 3;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "3d")
+                        {
+                            //text dialogue
+                            setMsg("I understand your reservations, I too felt that way at first, but now I see it for what it is, it is a monster and it ate my son.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 4;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "3e")
+                        {
+                            //text dialogue
+                            setMsg("Are you accusing me of making this up!? I wish I were wrong about this... I really do, but I know a changeling when I see one. My boy probably was eaten when he was out playing with his friend, Natalia, that poor little rascal would always go out farther than he was allowed. I suspect they both got replaced by changelings while playing in the woods. I caught my boy playing in the woods before, so I know that they go out there... Natalia was such a bad influence on him. She will lie to you if you ask her... I already asked her about where they were playing... Changelings speak with a demon's tongue and they breath lies... Their entire purpose is to decieve.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 3;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "3f")
+                        {
+                            //text dialogue
+                            setMsg("Fine, I'll pay you... just kill it. Please!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.aFairyInBoysClothingPayed = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 4)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["I repeat, I will never harm a child.", false, "a"], ["When you put it that way, I guess...", false, "b"], ["I refuse to harm a child.", false, "a"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "4a";
+                                        }
+                                        if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "4b";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "4a")
+                        {
+                            //text dialogue
+                            setMsg("You stubborn oaf, don't you have eyes!? Can't you see, that isn't a child! It's a beast!!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.aFairyInBoysClothingQuest = "complete";
+                                quests.aFairyInBoysClothingCompletionStyle = "refusal";
+                                quests.completeQuests.push({name: "A Fairy in Boy's Clothing", description: "You refused to even consider the possibility that the boy was actually a changeling, a fairy that kidnaps then takes the form of a child."});
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "4b")
+                        {
+                            //text dialogue
+                            setMsg("...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 3;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 5)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [];
+
+                                if (quests.aFairyInBoysClothingEvid == true)
+                                {
+                                    player.dialogueOptions.push(["There is a scar on your son's head that matches the type of injury Natalia claimed he got from falling.", false, "b"]);
+                                }
+                                if (quests.aFairyInBoysClothingFall == true)
+                                {
+                                    player.dialogueOptions.unshift(["Your son fell and hit his head when he was playing with his friend in the street. Natalia's father told me he saw your boy fall and hit his head.", false, "a"]);
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "5a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "5b";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "5a")
+                        {
+                            //text dialogue
+                            setMsg("If Giomardo attests that he saw this happen I believe it... Giomardo is a good man. My poor boy, he's not a changling after all. I almost... I asked you to kill him... and you... you saved my boy. You saved my boy's life! Take this, its not much but its all I have to spare.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 6;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "5b")
+                        {
+                            //text dialogue
+                            setMsg("First of all Natalia is probably a changeling herself and thus lying, and second of all it is common knowledge that changelings often have strange deformities... Your findings could just as easily prove that he is a changeling. [bothered] Are you going to quit wasting my time with false tales of hope, or are you going to help me!?");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 6)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["[take 27 coins] Of course!", false, "a"], ["Keep your money, I'm just glad I could help.", false, "b"], ["[take 27 coins] I'm just doing my job...", false, "a"], ["[take 27 coins] I'm happy to help.", false, "a"], ["[take 27 coins] I'm just here to help... of course, I'll be taking the coins still.", false, "a"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "6a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "6b";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "6a")
+                        {
+                            //text dialogue
+                            setMsg("...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                var coinzHit = -1;
+                                for (var i = 0; i < Inventory.length; i++)
+                                {
+                                    if (Inventory[i][0].type == "coins")
+                                    {
+                                        coinzHit = i;
+                                        break;
+                                    }
+                                }
+
+                                if (coinzHit > -1)
+                                {
+                                    Inventory[coinzHit][1] += 27;
+                                }
+                                else
+                                {
+                                    Inventory.unshift([new Item("coins", false, false), 27])
+                                }
+
+                                quests.aFairyInBoysClothingQuest = "complete";
+                                quests.aFairyInBoysClothingCompletionStyle = "subGrace";
+                                quests.completeQuests.push({name: "A Fairy in Boy's Clothing", description: "You discovered that the boy's strange behavior was due to a head injury and convinced his mother that that was the case."});
+                                player.nirwadenFaction += 26;
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                {
+                                    player.magicalExperience += 45;
+                                }
+                                else
+                                {
+                                    //player.magicalExperience += 0;
+                                    player.experience += 97;
+                                }
+                                player.fame += 1;
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "6b")
+                        {
+                            //text dialogue
+                            setMsg("May the spirit everlasting bless your kind heart!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.aFairyInBoysClothingQuest = "complete";
+                                quests.aFairyInBoysClothingCompletionStyle = "grace";
+                                quests.completeQuests.push({name: "A Fairy in Boy's Clothing", description: "You discovered that the boy's strange behavior was due to a head injury and convinced his mother that that was the case."});
+                                player.nirwadenFaction += 29;
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                {
+                                    player.magicalExperience += 50;
+                                }
+                                else
+                                {
+                                    //player.magicalExperience += 0;
+                                    player.experience += 100;
+                                }
+                                player.fame += 1;
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
                     if (self.ID == "Vela the Baker" || conversationID[0] == "Vela")
                     {
                         lowBar = "dialogue";
@@ -8747,7 +10358,7 @@ function interaction(me)
                                     }
                                     else if (quests.inventorsFeudStage == "angry")
                                     {
-                                        player.dialogueOptions.unshift(["You lyer! How dare you manipulate me into sabotaging your competition!", false, "f"]);
+                                        player.dialogueOptions.unshift(["You liar! How dare you manipulate me into sabotaging your competition!", false, "f"]);
                                     }
                                     else if (quests.inventorsFeudStage == "angry2")
                                     {

@@ -14620,6 +14620,71 @@ function buildMaster()
                     scenicList.push(new Scenery("item", -41160, -2726, 0, false, ["glassJar", 3, 0, "Matilda"]));
                 }
 
+                if (uniqueChars.giomardoLDS == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Giomardo")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-42562, -2979, "Person", false, "Giomardo", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["varnFurClothing", 0], weapon: ["none", [0.3, 0.35], 0, 0, 1.225], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-42579, -2960]]}));
+                    }
+                }
+
+                if (uniqueChars.elmaLDS == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Elma")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-42826, -2733, "Person", false, "Elma", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["frichFurClothing", 0], weapon: ["none", [0.2, 0.25], 0, 0, 1.225], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-42823, -2748]]}));
+                    }
+                }
+
+                if (uniqueChars.nataliaLDS == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Natalia")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-42755, -2956, "Person", false, "Natalia", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["varnFurClothing", 0], weapon: ["none", [0.015, 0.015], 0, 0, 1.1], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 2, patrolLoop: true, route:[[-42755, -2970], [-42702, -2934]], kid: true}));
+                    }
+                }
+                scenicList.push(new Scenery("stove", -42968, -2880, 1/2 * Math.PI, "lit"));
+
+                if (uniqueChars.ebaroLDS == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Ebaro")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-42914, -2882, "Person", false, "Ebaro", {race: "Nirwaden", faction: "Nirwaden", personality: "none", outfit: ["none", 0], weapon: ["none", [0.005, 0.005], 0, 0, 80], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-42939, -2882]], kid: true}));
+                    }
+                }
+
                 if (uniqueChars.matildaLDS == true)
                 {
                     var hits = 0;

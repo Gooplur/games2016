@@ -524,6 +524,10 @@ function cheats()
         {
             ArtificialIntelligenceAccess.push(new Unit(X - 60, Y - 60, "Changeling", false, "changeling"));
         }
+        else if (cheatcode == "sustituida") //changeling cheat
+        {
+            ArtificialIntelligenceAccess.push(new Unit(X - 70, Y - 70, "Changeling", true, "Young Kellish Slave Girl", {race: "Kel", faction: "player", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.05, 0.05], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: false, route:[[0, 0]], kid: true}));
+        }
         else if (cheatcode == "sustituido") //changeling cheat
         {
             ArtificialIntelligenceAccess.push(new Unit(X - 70, Y - 70, "Changeling", true, "Young Kellish Girl", {race: "Kel", faction: "Kel", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.05, 0.05], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: false, route:[[0, 0]], kid: true}));
@@ -531,6 +535,18 @@ function cheats()
         else if (cheatcode == "sustituible") //changeling cheat
         {
             ArtificialIntelligenceAccess.push(new Unit(X - 70, Y - 70, "Person", true, "Sue", {race: "Kel", faction: "Kel", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.05, 0.05], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: false, route:[[0, 0]], kid: true}));
+        }
+        else if (cheatcode == "sustituir") //changeling cheat
+        {
+            ArtificialIntelligenceAccess.push(new Unit(X - 70, Y - 70, "Person", true, "Young Kellish Slave Girl", {race: "Kel", faction: "player", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.05, 0.05], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: false, route:[[0, 0]], kid: true}));
+        }
+        else if (cheatcode == "magzSustituir") //changeling cheat
+        {
+            ArtificialIntelligenceAccess.push(new Unit(X - 70, Y - 70, "Person", true, "Little Maggy", {race: "Freynor", faction: "player", personality: "scared", outfit: ["frichFurClothing", 0], weapon: ["none", [0.05, 0.05], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: false, route:[[0, 0]], kid: true}));
+        }
+        else if (cheatcode == "tailorSustituir") //changeling cheat
+        {
+            ArtificialIntelligenceAccess.push(new Unit(X - 70, Y - 70, "Person", true, "Maggy the Tailor", {race: "Freynor", faction: "player", personality: "scared", outfit: ["frichFurClothing", 0], weapon: ["none", [0.05, 0.05], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: false, route:[[0, 0]], kid: true}));
         }
         else if (cheatcode == "drugsaregoodandifyoudothempeoplethinkthatyou'recool")
         {

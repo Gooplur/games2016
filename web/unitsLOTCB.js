@@ -13621,8 +13621,6 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.sizeRadius = 16;
             this.negateArmour = 0;
             this.attackWait = 0.6;
-            this.kidSize = 1;
-            this.kid = true;
 
             this.changelingChanging = false;
             this.childing = false;
@@ -13650,6 +13648,8 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 this.childForm = false;
                 this.changelingForm = true;
+                this.kidSize = 1;
+                this.kid = true;
             }
         }
         else if (this.type == "Boggart")
@@ -24763,11 +24763,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 }
                 this.offended = false;
 
-                if (this.childForm == true)
-                {
-                    this.callForNearbyHelpFromType(1200, "Soldier");
-                }
-                else if (this.childing != true && this.changelingChanging == false)
+                if (this.childForm == false && this.childing != true && this.changelingChanging == false)
                 {
                     this.Attack(5, 1);
                 }
@@ -24943,16 +24939,32 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 }
                 else if (this.childForm == true)
                 {
-                    if (this.disturbed == true || this.DTU(this.target) <= this.baseSight)
+
+                    if (this.alive)
                     {
-                        if (this.disturbed == true)
+                        this.friendDecider();
+                        this.targeting();
+
+                        if (this.team == "player")
+                        {
+                            this.follower = true;
+                        }
+                        else
+                        {
+                            this.follower = false;
+                        }
+                    }
+
+                    if (this.disturbed == true || this.DTU(this.target) <= this.baseSight || this.follower == true)
+                    {
+                        if (this.disturbed == true && this.team != "player")
                         {
                             this.hostile = true; //let the games animation know to display the person's name in red.
                         }
 
                         if (this.ultra.personality == "violent")
                         {
-                            if (this.target == player && this.disturbed || this.target == player && this.follower)
+                            if (this.target == player && this.disturbed || this.target == player && this.follower == true)
                             {
                                 this.pointTowardsPlayer();
                                 this.moveInRelationToPlayer();
@@ -25000,7 +25012,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                                 this.fleeing = false;
                                 this.ranged = this.ultra.ranged[0];
 
-                                if (this.target == player && this.disturbed || this.target == player && this.follower)
+                                if (this.target == player && this.disturbed || this.target == player && this.follower == true)
                                 {
                                     this.pointTowardsPlayer();
                                     this.moveInRelationToPlayer();
@@ -25045,7 +25057,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             {
                                 this.ranged = false;
                                 this.attacking = false;
-                                if (this.target == player && this.disturbed || this.target == player && this.follower)
+                                if (this.target == player && this.disturbed || this.target == player && this.follower == true)
                                 {
                                     this.moveInRelationToPlayer();
                                     this.pointAwayFromPlayer();
@@ -25082,7 +25094,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         else if (this.ultra.personality == "scared")
                         {
                             this.ranged = false;
-                            if (this.target == player && this.disturbed)
+                            if (this.target == player && this.disturbed || this.target == player && this.follower == true)
                             {
                                 this.moveInRelationToPlayer();
                                 this.pointAwayFromPlayer();
@@ -25156,8 +25168,8 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         this.alpha = false;
                         this.changelingForm = true;
                         this.changelingChanging = false;
-                        this.X = this.X + 1100 - 2200 * Math.random();
-                        this.Y = this.Y + 1100 - 2200 * Math.random();
+                        this.X = this.X + 690 - 1380 * Math.random();
+                        this.Y = this.Y + 690 - 1380 * Math.random();
                         this.alive = true;
                         this.kid = true;
                         this.kidSize = 1;
@@ -25174,8 +25186,8 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         this.alpha = false;
                         this.changelingForm = true;
                         this.changelingChanging = false;
-                        this.X = this.X + 1100 - 2200 * Math.random();
-                        this.Y = this.Y + 1100 - 2200 * Math.random();
+                        this.X = this.X + 690 - 1380 * Math.random();
+                        this.Y = this.Y + 690 - 1380 * Math.random();
                         this.alive = true;
                         this.kid = true;
                         this.kidSize = 1;
@@ -40668,7 +40680,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             if (this.alive == true)
             {
 
-                if (this.disturbed == true || this.DTU(this.target) <= this.baseSight)
+                if (this.disturbed == true || this.DTU(this.target) <= this.baseSight || this.follower == true)
                 {
                     if (this.disturbed == true)
                     {
@@ -40677,7 +40689,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
                     if (this.ultra.personality == "violent")
                     {
-                        if (this.target == player && this.disturbed || this.target == player && this.follower)
+                        if (this.target == player && this.disturbed || this.target == player && this.follower == true)
                         {
                             this.pointTowardsPlayer();
                             this.moveInRelationToPlayer();
@@ -40725,7 +40737,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             this.fleeing = false;
                             this.ranged = this.ultra.ranged[0];
 
-                            if (this.target == player && this.disturbed || this.target == player && this.follower)
+                            if (this.target == player && this.disturbed || this.target == player && this.follower == true)
                             {
                                 this.pointTowardsPlayer();
                                 this.moveInRelationToPlayer();
@@ -40770,7 +40782,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         {
                             this.ranged = false;
                             this.attacking = false;
-                            if (this.target == player && this.disturbed || this.target == player && this.follower)
+                            if (this.target == player && this.disturbed || this.target == player && this.follower == true)
                             {
                                 this.moveInRelationToPlayer();
                                 this.pointAwayFromPlayer();
@@ -40807,7 +40819,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     else if (this.ultra.personality == "scared")
                     {
                         this.ranged = false;
-                        if (this.target == player && this.disturbed)
+                        if (this.target == player && this.disturbed || this.target == player && this.follower == true)
                         {
                             this.moveInRelationToPlayer();
                             this.pointAwayFromPlayer();

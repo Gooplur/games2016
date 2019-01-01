@@ -379,6 +379,16 @@ function worldBuilder()
             outlineBuilder( 5, 1, "brickRoad", -205, 30);
             outlineBuilder( 1, 20, "brickRoad", -224, 35);
         }
+        //mapS1E4 Loroka Woods
+        if (Y > -14144 && Y < -3328 && X < -33084 && X > -44714) //X4
+        {
+            elevation = 0;
+            region = "s1e4";
+            //outlineBuilder( 34, 34, "outline", 116, 14);
+            outlineBuilder( 34, 8, "greenGrass", 116, 14);
+            outlineBuilder( 34, 12, "forest", 138, 14);
+            outlineBuilder( 34, 14, "sea", 124, 14);
+        }
         //Layer 0 (cold region): elev 0
         //mapE5 //Atalin City
         if (Y > -3919 && Y < 6870 && X < -42678 && X > -54937) //X5
@@ -420,9 +430,15 @@ function worldBuilder()
             elevation = 0;
             region = "e4";
             //outlineBuilder( 34, 34, "outline", 116, -20);
-            outlineBuilder( 34, 8, "brightGrass", 116, -20); //forest
+            outlineBuilder( 34, 8, "forest", 116, -20);
             outlineBuilder( 34, 12, "brightGrass", 138, -20);
             outlineBuilder( 34, 14, "sea", 124, -20);
+
+            outlineBuilder( 1, 1, "sea", 123, -20);
+            outlineBuilder( 1, 1, "seaCornerBL", 122, -20);
+            outlineBuilder( 1, 1, "seaCornerBL", 123, -19);
+
+            outlineBuilder( 1, 1, "seaCornerBR", 138, -20);
 
             outlineBuilder( 1, 2, "nirDockH", 136, -5);
             outlineBuilder( 1, 2, "nirDockH", 136, -7);
@@ -601,8 +617,18 @@ function worldBuilder()
             outlineBuilder(1, 2, "greenGrass", 10, -22);
             outlineBuilder(34, 1, "stonePath", -3, -54);
         }
+        //mapN1E4
+        if (Y > 6290 && Y < 17073 && X < -33084 && X > -44714) //X4
+        {
+            elevation = 0;
+            region = "n1e4";
+            outlineBuilder( 20, 34, "snow", 116, -54);
+            outlineBuilder( 14, 34, "brightGrass", 116, -34);
+            //outlineBuilder( 34, 34, "outline", 116, -54);
+            outlineBuilder( 34, 17, "sea", 122, -54);
+        }
         //mapN1E5 //Atalin City (castle)
-        if (Y > 6290 && Y < 17073 && X < -42678 && X > -54937) //X5
+        if (Y > 6290 && Y < 17073 && X < -43292 && X > -54937) //X5
         {
             elevation = 0;
             region = "n1e5";

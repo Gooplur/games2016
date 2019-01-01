@@ -646,6 +646,49 @@ function cheats()
         {
             player.sleep -= 14;
         }
+        else if (cheatcode == "unitList")
+        {
+            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+            {
+                console.log(ArtificialIntelligenceAccess[i]);
+            }
+        }
+        else if (cheatcode == "isThere")
+        {
+            var unttNme = prompt("Enter the type of unit you are seeking");
+            var isDere = false;
+            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+            {
+                if (ArtificialIntelligenceAccess[i].type == unttNme)
+                {
+                    alert("Yes, there is. At coords (" + ArtificialIntelligenceAccess[i].X + ", " + ArtificialIntelligenceAccess[i].Y + ")");
+                    isDere = true;
+                    break;
+                }
+            }
+            if (isDere == false)
+            {
+                alert("No, there is not.");
+            }
+        }
+        else if (cheatcode == "hay")
+        {
+            var unttNme = prompt("Ingresa el tipo del objeto decorativo que buscas.");
+            var isDere = false;
+            for (var i = 0; i < scenicList.length; i++)
+            {
+                if (scenicList[i].type == unttNme)
+                {
+                    isDere = true;
+                    alert("Yes, there is. At coords (" + scenicList[i].X + ", " + scenicList[i].Y + ")");
+                    break;
+                }
+            }
+            if (isDere == false)
+            {
+                alert("No, there is not.");
+            }
+        }
         else if (cheatcode.toLowerCase() == "peter")
         {
             var crrPrompt;

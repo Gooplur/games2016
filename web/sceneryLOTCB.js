@@ -79,6 +79,8 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
     this.angryDuendes = false;
     //Building Variables
     this.putBarriers = true;
+    //map edit variables
+    this.savified = false; //this determines if a scenery object can resist a safe map edit from cropper or trimmer functions
 
     //Scenery Item
 

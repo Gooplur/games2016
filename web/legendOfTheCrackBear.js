@@ -125,6 +125,8 @@
 
 function legendaryPrerequisites()
 {
+    //establish a seedable math.random
+
     //songs
 
     var theme = new Audio("sounds/polyLandTheme.wav");
@@ -2288,6 +2290,7 @@ var elevation;
 var change;
 var X;
 var Y;
+var seed = 6;
 var spawnX;
 var spawnY;
 var timePlayed;

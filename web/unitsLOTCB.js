@@ -193,6 +193,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     this.ghost = false; //this determines if a unit is a ghost (it makes it fade out to only 30% opacity
     this.shortSighted = false;
     this.disdained = false; // in some factions people who are generally hated within the faction will not be protected by other members of the faction and they will not rush to their own faction's aid.
+    this.savified = false; //this determines if a unit can resist a safe map edit from cropper or trimmer functions
 
     //Sound variables
     this.voicedSounds = [];
@@ -28294,10 +28295,13 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 {
                     if (this.attacking)
                     {
-                        if (player.halfAcid != true)
+                        if (this.target == player)
                         {
-                            player.stunnedTime = 1;
-                            player.stunnedIII = true;
+                            if (player.halfAcid != true)
+                            {
+                                player.stunnedTime = 1;
+                                player.stunnedIII = true;
+                            }
                         }
                         this.drawUnit(molte, 309, 117, 102, 72, -1/2 * 102 * this.alphaSize * szx - this.xAdjustment, -1/2 * 72 * this.alphaSize * szx - this.yAdjustment, 102 * this.alphaSize * szx, 72 * this.alphaSize * szx);
                     }
@@ -43295,6 +43299,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         //Reset Certain Variables
         this.targetingHold = false;
         this.scared = false;
+        this.savified = false;
 
         if (this.doKeepHeatRes == false)
         {

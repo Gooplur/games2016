@@ -29309,7 +29309,7 @@ function Adventurer()
                             {
                                 this.stunnedI = true;
                                 this.stunnedTime = 6;
-                                this.wobea= true;
+                                this.wobea = true;
                             }
                             else if (Inventory[i][0].ability == "wobeaNumbII") //stuns the player for 8 seconds of stunII
                             {

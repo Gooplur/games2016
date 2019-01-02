@@ -431,7 +431,9 @@ function worldBuilder()
             region = "e4";
             //outlineBuilder( 34, 34, "outline", 116, -20);
             outlineBuilder( 34, 8, "forest", 116, -20);
-            outlineBuilder( 34, 12, "brightGrass", 138, -20);
+            outlineBuilder( 33, 12, "brightGrass", 138, -20);
+            outlineBuilder( 1, 12, "forest", 138, 13);
+            outlineBuilder( 1, 10, "forest", 140, 12);
             outlineBuilder( 34, 14, "sea", 124, -20);
 
             outlineBuilder( 1, 1, "sea", 123, -20);
@@ -622,18 +624,33 @@ function worldBuilder()
         {
             elevation = 0;
             region = "n1e4";
-            outlineBuilder( 20, 34, "snow", 116, -54);
-            outlineBuilder( 14, 34, "brightGrass", 116, -34);
+            outlineBuilder( 20, 6, "snow", 116, -54);
+            outlineBuilder( 18, 11, "snow", 139, -54);
+
+            outlineBuilder( 14, 6, "frost", 116, -34);
+            outlineBuilder( 16, 11, "brightGrass", 139, -36);
+
+            outlineBuilder( 1, 11, "frost", 139, -36);
+            outlineBuilder( 2, 10, "frost", 139, -35);
+            outlineBuilder( 2, 8, "frost", 140, -33);
+            outlineBuilder( 1, 5, "frost", 142, -31);
+            outlineBuilder( 1, 2, "frost", 144, -30);
             //outlineBuilder( 34, 34, "outline", 116, -54);
             outlineBuilder( 34, 17, "sea", 122, -54);
+            outlineBuilder( 1, 5, "forest", 117, -21);
+            outlineBuilder( 1, 2, "forest", 119, -22);
         }
         //mapN1E5 //Atalin City (castle)
         if (Y > 6290 && Y < 17073 && X < -43292 && X > -54937) //X5
         {
             elevation = 0;
             region = "n1e5";
-            outlineBuilder( 20, 34, "snow", 150, -54);
+            outlineBuilder( 18, 34, "snow", 150, -54);
             outlineBuilder( 14, 34, "brightGrass", 150, -34);
+            outlineBuilder( 2, 34, "frost", 150, -36);
+            outlineBuilder( 1, 27, "frost", 155, -34);
+            outlineBuilder( 1, 3, "frost", 160, -33);
+            outlineBuilder( 1, 1, "frost", 168, -33);
             //outlineBuilder( 34, 34, "outline", 150, -54);
 
             outlineBuilder( 8, 7, "nirRoad", 150, -31); //castle plaza

@@ -3364,7 +3364,9 @@ function theLegend()
         elma: ["Elma", 0],
         natalia: ["Natalia", 0],
         giomardo: ["Giomardo", 0],
-        ebaro: ["Ebaro", 0]
+        ebaro: ["Ebaro", 0],
+        eduardo: ["Eduerdo", 0],
+        barraco: ["Barraco", 0]
     };
 
 //time Tracker Variables
@@ -3548,7 +3550,9 @@ function theLegend()
         elmaLDS: true,
         ebaroLDS: true,
         giomardoLDS: true,
-        nataliaLDS: true
+        nataliaLDS: true,
+        eduardoLDS: true,
+        barracoLDS: true
     };
 //QUESTS
     quests =
@@ -3639,6 +3643,11 @@ function theLegend()
         cherylChildAccompany: false,
         rannukChild: false,
         rannukChildName: "Espen",
+
+        //QUEST: Man of the People ---- given by Hidalgo Eduardo the Commissioner
+        manOfThePeopleQuest: false,
+        manOfThePeopleCompletionStyle: false,
+        manOfThePeopleSlain: 0,
 
         //QUEST: The Estol Conspiracy ---- given by note
         theEstolConspiracyQuest: false,

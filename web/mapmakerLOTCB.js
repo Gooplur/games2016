@@ -8528,17 +8528,16 @@ function buildMaster()
                 barrierList = [];
 
                 generator(562319, 545, 54153, 8432503, 3231101, 2, -34023, 16529);
+                cropper(-40729, 10759, -43972, 7515, true, true);
 
-                //REGION CREATION
-                //Build AI Units
+                scenicList.push(new Scenery("pineTree", -34992 , 6702, 6, true));
+                scenicList.push(new Scenery("pineTree", -34384, 6421, 5.3, true));
 
+                scenicList.push(new Scenery("erguerPlant", -41418, 8998, 4, true));
+                scenicList.push(new Scenery("techiPlant", -41417, 6952, 1, true));
 
-                //creatures
-                //ArtificialIntelligenceAccess.push(new Unit(808, -11538, "Naaprid", false, "Hueso"));
-
-
-                //Scenery
-                //scenicList.push(new Scenery("techiPlant", 2702 , -12061, -8.5, true));
+                ArtificialIntelligenceAccess.push(new Unit(-41598, 8028, "Frich", false, "fuzzball"));
+                ArtificialIntelligenceAccess.push(new Unit(-41211, 8832, "Frich", false, "fuzzball"));
 
                 //e-3 trees (SouthWest)
                 scenicList.push(new Scenery("pineTree", -24463 , 5090, 5.3, true));
@@ -12730,6 +12729,10 @@ function buildMaster()
                     }
                 }
 
+                //n-1 e-4 trees
+                scenicList.push(new Scenery("pineTree", -34992 , 6702, 6, true));
+                scenicList.push(new Scenery("pineTree", -34384, 6421, 5.3, true));
+
                 change = "e3";
             }
         }
@@ -12874,6 +12877,10 @@ function buildMaster()
                 scenicList.push(new Scenery("pineTree", -33795 , 3727, -5, true));
                 scenicList.push(new Scenery("pineTree", -33381 , 3837, -1, true));
                 cropper(-33450, 6570, -34189, -3636, true, true);
+
+                //n-1 e-4 trees
+                scenicList.push(new Scenery("pineTree", -34992 , 6702, 6, true));
+                scenicList.push(new Scenery("pineTree", -34384, 6421, 5.3, true));
 
                 //REGION CREATION
                 //Build AI Units
@@ -15628,6 +15635,295 @@ function buildMaster()
                     }
                 }
 
+                var hits = -1;
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    if (ArtificialIntelligenceAccess[i].type == "Peacock" && ArtificialIntelligenceAccess[i].ID == "flagabili")
+                    {
+                        hits = i;
+                    }
+                }
+                if (hits == -1)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(-44458, 3242, "Peacock", false, "flagabili"));
+                }
+
+                var hits = 0;
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    if (ArtificialIntelligenceAccess[i].ID == "Nirwaden Villager")
+                    {
+                        if (typeof(ArtificialIntelligenceAccess[i].ultra.altID) != "undefined")
+                        {
+                            if (ArtificialIntelligenceAccess[i].ultra.altID == "atalinPed1")
+                            {
+                                hits += 1;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (hits == 0)
+                {
+                    if (timeOfDay == "Day")
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-45095, 3156, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 7, patrolLoop: true, route:[[-45118, 4266], [-45349, 4695], [-45108, 5059], [-44645, 4819], [-44983, 4187], [-44977, 3183], [-45095, 3156]], altID: "atalinPed1"}));
+                    }
+                }
+
+                //boar fight viewers
+                var hits = 0;
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    if (ArtificialIntelligenceAccess[i].ID == "Nirwaden Villager")
+                    {
+                        if (typeof(ArtificialIntelligenceAccess[i].ultra.altID) != "undefined")
+                        {
+                            if (ArtificialIntelligenceAccess[i].ultra.altID == "atalinBF1")
+                            {
+                                hits += 1;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (hits == 0)
+                {
+                    if (timeOfDay == "Day" || timeOfDay == "Dawn")
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-44390, 2537, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44393, 2537]], altID: "atalinBF1"}));
+                    }
+                }
+                var hits = 0;
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    if (ArtificialIntelligenceAccess[i].ID == "Nirwaden Villager")
+                    {
+                        if (typeof(ArtificialIntelligenceAccess[i].ultra.altID) != "undefined")
+                        {
+                            if (ArtificialIntelligenceAccess[i].ultra.altID == "atalinBF2")
+                            {
+                                hits += 1;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (hits == 0)
+                {
+                    if (timeOfDay == "Day" || timeOfDay == "Dawn")
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-44307, 2693, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44334, 2689]], altID: "atalinBF2"}));
+                    }
+                }
+                var hits = 0;
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    if (ArtificialIntelligenceAccess[i].ID == "Nirwaden Villager")
+                    {
+                        if (typeof(ArtificialIntelligenceAccess[i].ultra.altID) != "undefined")
+                        {
+                            if (ArtificialIntelligenceAccess[i].ultra.altID == "atalinBF3")
+                            {
+                                hits += 1;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (hits == 0)
+                {
+                    if (timeOfDay == "Day" || timeOfDay == "Dawn")
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-44777, 2107, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44778, 2144]], altID: "atalinBF3"}));
+                    }
+                }
+                var hits = 0;
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    if (ArtificialIntelligenceAccess[i].ID == "Nirwaden Villager")
+                    {
+                        if (typeof(ArtificialIntelligenceAccess[i].ultra.altID) != "undefined")
+                        {
+                            if (ArtificialIntelligenceAccess[i].ultra.altID == "atalinBF4")
+                            {
+                                hits += 1;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (hits == 0)
+                {
+                    if (timeOfDay == "Day" || timeOfDay == "Dawn")
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-44875, 2057, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44877, 2086]], altID: "atalinBF4"}));
+                    }
+                }
+                var hits = 0;
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    if (ArtificialIntelligenceAccess[i].ID == "Nirwaden Villager")
+                    {
+                        if (typeof(ArtificialIntelligenceAccess[i].ultra.altID) != "undefined")
+                        {
+                            if (ArtificialIntelligenceAccess[i].ultra.altID == "atalinBF5")
+                            {
+                                hits += 1;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (hits == 0)
+                {
+                    if (timeOfDay == "Day" || timeOfDay == "Dawn")
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-45600, 2052, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45583, 2092]], altID: "atalinBF5"}));
+                    }
+                }
+                var hits = 0;
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    if (ArtificialIntelligenceAccess[i].ID == "Nirwaden Villager")
+                    {
+                        if (typeof(ArtificialIntelligenceAccess[i].ultra.altID) != "undefined")
+                        {
+                            if (ArtificialIntelligenceAccess[i].ultra.altID == "atalinBF6")
+                            {
+                                hits += 1;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (hits == 0)
+                {
+                    if (timeOfDay == "Day" || timeOfDay == "Dawn")
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-45747, 2421, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45716, 2433]], altID: "atalinBF6"}));
+                    }
+                }
+
+                if (uniqueChars.eduardoLDS)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Hidalgo Eduardo the Commissioner")
+                        {
+                            hits += 1;
+                            break;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-45111, 2079, "Soldier", false, "Hidalgo Eduardo the Commissioner", {race: "Nirwaden", faction: "Nirwaden", con: 20, speed: 1.15, outfit: ["matadorOutfit", 0], weapon: ["nirineseSabre", [12, 11], 0, 25, 1.25], ranged: [false, "steelBolt", 14, 2200, 17, 16, 0, "none", 3.35], patrolStops: 1, patrolLoop: false, route:[[-45101, 2053]]}));
+                    }
+                }
+
+                var hits = 0;
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    if (ArtificialIntelligenceAccess[i].ID == "Nirwaden Villager")
+                    {
+                        if (typeof(ArtificialIntelligenceAccess[i].ultra.altID) != "undefined")
+                        {
+                            if (ArtificialIntelligenceAccess[i].ultra.altID == "atalinPed2")
+                            {
+                                hits += 1;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (hits == 0)
+                {
+                    if (timeOfDay == "Day" || timeOfDay == "Dusk" || timeOfDay == "Dawn")
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-44124, 1351, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 13, patrolLoop: true, route:[[-45046, 1341], [-45072, 527], [-46096, 498], [-46110, 1414], [-47019, 1410], [-47028, 1131], [-47250, 1122], [-47245, 272], [-47361, 260], [-44337, 245], [-44351, 487], [-44176, 495], [-44124, 1351]], altID: "atalinPed2"}));
+                    }
+                }
+
+                var hits = 0;
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    if (ArtificialIntelligenceAccess[i].ID == "Altezor Soldier")
+                    {
+                        if (typeof(ArtificialIntelligenceAccess[i].ultra.altID) != "undefined")
+                        {
+                            if (ArtificialIntelligenceAccess[i].ultra.altID == "gardenGuard2")
+                            {
+                                hits += 1;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (hits == 0)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(-44140, 7902, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 9, speed: 1.34, outfit: ["nirwadenMorionArmour", 12], weapon: ["nirineseSabre", [9, 9], 0, 22, 1], ranged: [false, "steelBolt", 14, 2200, 15, 16, 0, "none", 3], patrolStops: 2, patrolLoop: true, route:[[-44140, 3009], [-44140, 7902]], altID: "gardenGuard2"}));
+                }
+
+                var hits = 0;
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    if (ArtificialIntelligenceAccess[i].ID == "Altezor Soldier")
+                    {
+                        if (typeof(ArtificialIntelligenceAccess[i].ultra.altID) != "undefined")
+                        {
+                            if (ArtificialIntelligenceAccess[i].ultra.altID == "centreGuard2")
+                            {
+                                hits += 1;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (hits == 0)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(-45144, 1067, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 8, speed: 1.2, outfit: ["nirwadenMorionArmour", 11], weapon: ["nirineseSabre", [10, 10], 0, 23, 1.2], ranged: [false, "steelBolt", 16, 2250, 16, 17, 0, "none", 3], patrolStops: 5, patrolLoop: true, route:[[-46043, 1056], [-45964, 2756], [-45964, 459], [-45144, 459], [-45144, 1067]], altID: "centreGuard2"}));
+                }
+
+                var hits = 0;
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    if (ArtificialIntelligenceAccess[i].ID == "Altezor Soldier")
+                    {
+                        if (typeof(ArtificialIntelligenceAccess[i].ultra.altID) != "undefined")
+                        {
+                            if (ArtificialIntelligenceAccess[i].ultra.altID == "centreGuard3")
+                            {
+                                hits += 1;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (hits == 0)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(-44058, -715, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 9, speed: 1.3, outfit: ["nirwadenMorionArmour", 12], weapon: ["nirineseSabre", [9, 9], 0, 25, 1.25], ranged: [false, "steelBolt", 14, 2250, 19, 18, 0, "none", 3], patrolStops: 0, patrolLoop: false, route:[[-45458, -1070]], altID: "centreGuard3"}));
+                }
+                var hits = 0;
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    if (ArtificialIntelligenceAccess[i].ID == "Altezor Soldier")
+                    {
+                        if (typeof(ArtificialIntelligenceAccess[i].ultra.altID) != "undefined")
+                        {
+                            if (ArtificialIntelligenceAccess[i].ultra.altID == "woodsGuard1")
+                            {
+                                hits += 1;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (hits == 0)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(-43227, -2825, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 8, speed: 1.25, outfit: ["nirwadenMorionArmour", 11], weapon: ["nirineseSabre", [9, 9], 0, 24, 1.3], ranged: [false, "steelBolt", 15, 2250, 17, 17, 0, "none", 3.15], patrolStops: 2, patrolLoop: true, route:[[-44081, -1070], [-43227, -2825]], altID: "woodsGuard1"}));
+                }
+
 
                 change = "e4";
             }
@@ -17331,6 +17627,483 @@ function buildMaster()
                     scenicList.push(new Scenery("skeleton", -44776, -2266, 1.1, 0.91));
                 }
 
+                //birds in the garden
+                var hits = -1;
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    if (ArtificialIntelligenceAccess[i].type == "Peacock" && ArtificialIntelligenceAccess[i].ID == "flagabili")
+                    {
+                        hits = i;
+                    }
+                }
+                if (hits == -1)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(-44458, 3242, "Peacock", false, "flagabili"));
+                }
+
+                var hits = 0;
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    if (ArtificialIntelligenceAccess[i].ID == "Nirwaden Villager")
+                    {
+                        if (typeof(ArtificialIntelligenceAccess[i].ultra.altID) != "undefined")
+                        {
+                            if (ArtificialIntelligenceAccess[i].ultra.altID == "atalinPed1")
+                            {
+                                hits += 1;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (hits == 0)
+                {
+                    if (timeOfDay == "Day")
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-45095, 3156, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 7, patrolLoop: true, route:[[-45118, 4266], [-45349, 4695], [-45108, 5059], [-44645, 4819], [-44983, 4187], [-44977, 3183], [-45095, 3156]], altID: "atalinPed1"}));
+                    }
+                }
+
+                //boar fight viewers
+                var hits = 0;
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    if (ArtificialIntelligenceAccess[i].ID == "Nirwaden Villager")
+                    {
+                        if (typeof(ArtificialIntelligenceAccess[i].ultra.altID) != "undefined")
+                        {
+                            if (ArtificialIntelligenceAccess[i].ultra.altID == "atalinBF1")
+                            {
+                                hits += 1;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (hits == 0)
+                {
+                    if (timeOfDay == "Day" || timeOfDay == "Dawn")
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-44390, 2537, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44393, 2537]], altID: "atalinBF1"}));
+                    }
+                }
+                var hits = 0;
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    if (ArtificialIntelligenceAccess[i].ID == "Nirwaden Villager")
+                    {
+                        if (typeof(ArtificialIntelligenceAccess[i].ultra.altID) != "undefined")
+                        {
+                            if (ArtificialIntelligenceAccess[i].ultra.altID == "atalinBF2")
+                            {
+                                hits += 1;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (hits == 0)
+                {
+                    if (timeOfDay == "Day" || timeOfDay == "Dawn")
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-44307, 2693, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44334, 2689]], altID: "atalinBF2"}));
+                    }
+                }
+                var hits = 0;
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    if (ArtificialIntelligenceAccess[i].ID == "Nirwaden Villager")
+                    {
+                        if (typeof(ArtificialIntelligenceAccess[i].ultra.altID) != "undefined")
+                        {
+                            if (ArtificialIntelligenceAccess[i].ultra.altID == "atalinBF3")
+                            {
+                                hits += 1;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (hits == 0)
+                {
+                    if (timeOfDay == "Day" || timeOfDay == "Dawn")
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-44777, 2107, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44778, 2144]], altID: "atalinBF3"}));
+                    }
+                }
+                var hits = 0;
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    if (ArtificialIntelligenceAccess[i].ID == "Nirwaden Villager")
+                    {
+                        if (typeof(ArtificialIntelligenceAccess[i].ultra.altID) != "undefined")
+                        {
+                            if (ArtificialIntelligenceAccess[i].ultra.altID == "atalinBF4")
+                            {
+                                hits += 1;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (hits == 0)
+                {
+                    if (timeOfDay == "Day" || timeOfDay == "Dawn")
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-44875, 2057, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44877, 2086]], altID: "atalinBF4"}));
+                    }
+                }
+                var hits = 0;
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    if (ArtificialIntelligenceAccess[i].ID == "Nirwaden Villager")
+                    {
+                        if (typeof(ArtificialIntelligenceAccess[i].ultra.altID) != "undefined")
+                        {
+                            if (ArtificialIntelligenceAccess[i].ultra.altID == "atalinBF5")
+                            {
+                                hits += 1;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (hits == 0)
+                {
+                    if (timeOfDay == "Day" || timeOfDay == "Dawn")
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-45600, 2052, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45583, 2092]], altID: "atalinBF5"}));
+                    }
+                }
+                var hits = 0;
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    if (ArtificialIntelligenceAccess[i].ID == "Nirwaden Villager")
+                    {
+                        if (typeof(ArtificialIntelligenceAccess[i].ultra.altID) != "undefined")
+                        {
+                            if (ArtificialIntelligenceAccess[i].ultra.altID == "atalinBF6")
+                            {
+                                hits += 1;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (hits == 0)
+                {
+                    if (timeOfDay == "Day" || timeOfDay == "Dawn")
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-45747, 2421, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45716, 2433]], altID: "atalinBF6"}));
+                    }
+                }
+
+                if (uniqueChars.eduardoLDS)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Hidalgo Eduardo the Commissioner")
+                        {
+                            hits += 1;
+                            break;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-45111, 2079, "Soldier", false, "Hidalgo Eduardo the Commissioner", {race: "Nirwaden", faction: "Nirwaden", con: 20, speed: 1.15, outfit: ["matadorOutfit", 0], weapon: ["nirineseSabre", [12, 11], 0, 25, 1.25], ranged: [false, "steelBolt", 14, 2200, 17, 16, 0, "none", 3.35], patrolStops: 1, patrolLoop: false, route:[[-45101, 2053]]}));
+                    }
+                }
+
+                if (change == "matador")
+                {
+                    var matadorNumRand = Math.random();
+
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Matador")
+                        {
+                            if (typeof(ArtificialIntelligenceAccess[i].ultra.altID) != "undefined")
+                            {
+                                if (ArtificialIntelligenceAccess[i].ultra.altID == "atalinMatador")
+                                {
+                                    hits += 1;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        if (timeOfDay == "Day" || timeOfDay == "Dawn")
+                        {
+                            if (matadorNumRand > 0.5)
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(-44849, 2498, "Soldier", false, "Matador", {race: "Nirwaden", faction: "Nirwaden", con: 20, speed: 1.15, outfit: ["matadorOutfit", 0], weapon: ["silkAndDagger", [7, 7], 0, 19, 1], ranged: [false, "steelBolt", 14, 2200, 17, 16, 0, "none", 3.35], patrolStops: 0, patrolLoop: false, route:[[0, 0]], altID: "atalinMatador"}));
+                            }
+                            else
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(-45348, 2480, "Soldier", false, "Matador", {race: "Nirwaden", faction: "Nirwaden", con: 20, speed: 1.15, outfit: ["matadorOutfit", 0], weapon: ["silkAndDagger", [7, 7], 0, 19, 1], ranged: [false, "steelBolt", 14, 2200, 17, 16, 0, "none", 3.35], patrolStops: 1, patrolLoop: false, route:[[-45305, 2481]], altID: "atalinMatador"}));
+                            }
+                        }
+                    }
+
+                    //boar fight
+                    //naaprid fight
+
+                    if (matadorNumRand > 0.5)
+                    {
+                        if (Math.random())
+                        {
+                            if (Math.random())
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(-45309, 2438, "Boar", true, "matado"));
+                            }
+                            else
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(-45385, 2452, "Boar", true, "matado"));
+                            }
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(-45348, 2510, "Naaprid", true, "matado"));
+                        }
+                    }
+                    else
+                    {
+                        if (Math.random())
+                        {
+                            if (Math.random())
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(-44654, 2347, "Boar", true, "matado"));
+                            }
+                            else
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(-44576, 2508, "Boar", true, "matado"));
+                            }
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(-44737, 2443, "Naaprid", true, "matado"));
+                        }
+                    }
+                }
+
+                if (change == "matar")
+                {
+                    for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "matado" || ArtificialIntelligenceAccess[i].ID == "Matador")
+                        {
+                            ArtificialIntelligenceAccess.splice(i, 1);
+                        }
+                    }
+
+                    var matadorNumRand = Math.random();
+
+
+                        if (timeOfDay == "Day" || timeOfDay == "Dawn")
+                        {
+                            player.blinded = true;
+                            player.blindedStoreTime = new Date().getTime();
+                            player.blindedTime = 1;
+                            if (matadorNumRand > 0.5)
+                            {
+                                X = -44849;
+                                Y = 2498;
+                            }
+                            else
+                            {
+                                X = -45305;
+                                Y = 2481;
+                            }
+                        }
+
+                    //boar fight
+                    //naaprid fight
+
+                    if (matadorNumRand > 0.5)
+                    {
+                        if (Math.random())
+                        {
+                            if (Math.random())
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(-45309, 2438, "Boar", true, "arena5"));
+                            }
+                            else
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(-45385, 2452, "Boar", true, "arena5"));
+                            }
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(-45348, 2510, "Naaprid", true, "arena5"));
+                        }
+                    }
+                    else
+                    {
+                        if (Math.random())
+                        {
+                            if (Math.random())
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(-44654, 2347, "Boar", true, "arena5"));
+                            }
+                            else
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(-44576, 2508, "Boar", true, "arena5"));
+                            }
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(-44737, 2443, "Naaprid", true, "arena5"));
+                        }
+                    }
+                }
+
+                var hits = 0;
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    if (ArtificialIntelligenceAccess[i].ID == "Nirwaden Villager")
+                    {
+                        if (typeof(ArtificialIntelligenceAccess[i].ultra.altID) != "undefined")
+                        {
+                            if (ArtificialIntelligenceAccess[i].ultra.altID == "atalinPed2")
+                            {
+                                hits += 1;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (hits == 0)
+                {
+                    if (timeOfDay == "Day" || timeOfDay == "Dusk" || timeOfDay == "Dawn")
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-44124, 1351, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 13, patrolLoop: true, route:[[-45046, 1341], [-45072, 527], [-46096, 498], [-46110, 1414], [-47019, 1410], [-47028, 1131], [-47250, 1122], [-47245, 272], [-47361, 260], [-44337, 245], [-44351, 487], [-44176, 495], [-44124, 1351]], altID: "atalinPed2"}));
+                    }
+                }
+
+                var hits = 0;
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    if (ArtificialIntelligenceAccess[i].ID == "Altezor Soldier")
+                    {
+                        if (typeof(ArtificialIntelligenceAccess[i].ultra.altID) != "undefined")
+                        {
+                            if (ArtificialIntelligenceAccess[i].ultra.altID == "centreGuard1")
+                            {
+                                hits += 1;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (hits == 0)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(-46636, -1010, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 7, speed: 1.4, outfit: ["nirwadenMorionArmour", 11], weapon: ["nirineseSabre", [9, 10], 0, 21, 1.3], ranged: [false, "steelBolt", 14, 2200, 15, 16, 0, "none", 3], patrolStops: 13, patrolLoop: true, route:[[-45458, -1070], [-45421, -289], [-45035, -352], [-45036, -952], [-44367, -1000], [-44364, -1737], [-44858, -1738], [-44865, -1863], [-45757, -1846], [-45735, -1469], [-46417, -1470], [-46420, -1007], [-46636, -1010]], altID: "centreGuard1"}));
+                }
+
+                var hits = 0;
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    if (ArtificialIntelligenceAccess[i].ID == "Altezor Soldier")
+                    {
+                        if (typeof(ArtificialIntelligenceAccess[i].ultra.altID) != "undefined")
+                        {
+                            if (ArtificialIntelligenceAccess[i].ultra.altID == "centreGuard2")
+                            {
+                                hits += 1;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (hits == 0)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(-45144, 1067, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 8, speed: 1.2, outfit: ["nirwadenMorionArmour", 11], weapon: ["nirineseSabre", [10, 10], 0, 23, 1.2], ranged: [false, "steelBolt", 16, 2250, 16, 17, 0, "none", 3], patrolStops: 5, patrolLoop: true, route:[[-46043, 1056], [-45964, 2756], [-45964, 459], [-45144, 459], [-45144, 1067]], altID: "centreGuard2"}));
+                }
+
+                var hits = 0;
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    if (ArtificialIntelligenceAccess[i].ID == "Altezor Soldier")
+                    {
+                        if (typeof(ArtificialIntelligenceAccess[i].ultra.altID) != "undefined")
+                        {
+                            if (ArtificialIntelligenceAccess[i].ultra.altID == "centreGuard3")
+                            {
+                                hits += 1;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (hits == 0)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(-44058, -715, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 9, speed: 1.3, outfit: ["nirwadenMorionArmour", 12], weapon: ["nirineseSabre", [9, 9], 0, 25, 1.25], ranged: [false, "steelBolt", 14, 2250, 19, 18, 0, "none", 3], patrolStops: 0, patrolLoop: false, route:[[-45458, -1070]], altID: "centreGuard3"}));
+                }
+
+                var hits = 0;
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    if (ArtificialIntelligenceAccess[i].ID == "Altezor Soldier")
+                    {
+                        if (typeof(ArtificialIntelligenceAccess[i].ultra.altID) != "undefined")
+                        {
+                            if (ArtificialIntelligenceAccess[i].ultra.altID == "gardenGuard1")
+                            {
+                                hits += 1;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (hits == 0)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(-45952, 3009, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 8, speed: 1.4, outfit: ["nirwadenMorionArmour", 10], weapon: ["nirineseSabre", [10, 10], 0, 23, 1.2], ranged: [false, "steelBolt", 16, 2200, 19, 17, 0, "none", 3.6], patrolStops: 2, patrolLoop: true, route:[[-45952, 7902], [-45952, 3009]], altID: "gardenGuard1"}));
+                }
+
+                var hits = 0;
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    if (ArtificialIntelligenceAccess[i].ID == "Altezor Soldier")
+                    {
+                        if (typeof(ArtificialIntelligenceAccess[i].ultra.altID) != "undefined")
+                        {
+                            if (ArtificialIntelligenceAccess[i].ultra.altID == "gardenGuard2")
+                            {
+                                hits += 1;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (hits == 0)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(-44140, 7902, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 9, speed: 1.34, outfit: ["nirwadenMorionArmour", 12], weapon: ["nirineseSabre", [9, 9], 0, 22, 1], ranged: [false, "steelBolt", 14, 2200, 15, 16, 0, "none", 3], patrolStops: 2, patrolLoop: true, route:[[-44140, 3009], [-44140, 7902]], altID: "gardenGuard2"}));
+                }
+
+                var hits = 0;
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    if (ArtificialIntelligenceAccess[i].ID == "Altezor Soldier")
+                    {
+                        if (typeof(ArtificialIntelligenceAccess[i].ultra.altID) != "undefined")
+                        {
+                            if (ArtificialIntelligenceAccess[i].ultra.altID == "woodsGuard1")
+                            {
+                                hits += 1;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (hits == 0)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(-43227, -2825, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 8, speed: 1.25, outfit: ["nirwadenMorionArmour", 11], weapon: ["nirineseSabre", [9, 9], 0, 24, 1.3], ranged: [false, "steelBolt", 15, 2250, 17, 17, 0, "none", 3.15], patrolStops: 2, patrolLoop: true, route:[[-44081, -1070], [-43227, -2825]], altID: "woodsGuard1"}));
+                }
+
                 change = "e5";
             }
         }
@@ -17367,7 +18140,11 @@ function buildMaster()
                 //Delete All Barriers
                 barrierList = [];
 
-                //generator(998194838973478567290593490753765777, 893156183774189889999927462711, 212646126477828899823923656415326758196327583974281, 6688395285999999892194291914929422375482332503, 1111111111009836537010101010010100000011110010 , 1, -44194, 6496);
+                generator(77, 893156183774189889999927462711, 54, 6688395285999999892194291914929422375482332503, 11 , 2, -47555, 9583);
+                cropper(-47555, 9583, -53158, 7506, true, true);
+                scenicList.push(new Scenery("wobeaPlant", -48954, 9749, 5.9, true));
+                ArtificialIntelligenceAccess.push(new Unit(-47725, 9724, "Frich", true, "Flioo"));
+                ArtificialIntelligenceAccess.push(new Unit(-52909, 9881, "Peacock", false, "flagoo"));
 
                 //REGION CREATION
                 //Build AI Units
@@ -17387,6 +18164,17 @@ function buildMaster()
                 //ArtificialIntelligenceAccess.push(new Unit(-16247, 3330, "Boar", true, "Tambor"));
                 //ArtificialIntelligenceAccess.push(new Unit(-14353, 3844, "Shehid", true, "sheta"));
                 //scenicList.push(new Scenery("beeHive", -15375 , -2055, 4.5, true));
+
+                //birds in the garden
+                if (Math.random())
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(-45519 + spacer(190), 7037 + spacer(86), "Peacock", true, "nirwaden"));
+                    ArtificialIntelligenceAccess.push(new Unit(-44768 + spacer(60), 6800 + spacer(50), "Peacock", false, "nirwaden"));
+                }
+                else
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(-45695 + spacer(40), 7253 + spacer(40), "Peacock", false, "nirwaden"));
+                }
 
                 if (quests.aFeastForFewerQuest == false && player.fame >= 11 || quests.aFeastForFewerQuest == false && player.nirwadenFaction >= 500)
                 {
@@ -17964,6 +18752,46 @@ function buildMaster()
                 //scenicList.push(new Scenery("ogardPlant", -16292 , -2231, 0, true));
                 //scenicList.push(new Scenery("wyrPlant", -15134 , 2399, 2.8, true));
                 //scenicList.push(new Scenery("cyrinthilimPlant", -21038 , -2478, 4, true));
+
+                var hits = 0;
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    if (ArtificialIntelligenceAccess[i].ID == "Altezor Soldier")
+                    {
+                        if (typeof(ArtificialIntelligenceAccess[i].ultra.altID) != "undefined")
+                        {
+                            if (ArtificialIntelligenceAccess[i].ultra.altID == "gardenGuard1")
+                            {
+                                hits += 1;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (hits == 0)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(-45952, 3009, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 8, speed: 1.4, outfit: ["nirwadenMorionArmour", 10], weapon: ["nirineseSabre", [10, 10], 0, 23, 1.2], ranged: [false, "steelBolt", 16, 2200, 19, 17, 0, "none", 3.6], patrolStops: 2, patrolLoop: true, route:[[-45952, 7902], [-45952, 3009]], altID: "gardenGuard1"}));
+                }
+
+                var hits = 0;
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    if (ArtificialIntelligenceAccess[i].ID == "Altezor Soldier")
+                    {
+                        if (typeof(ArtificialIntelligenceAccess[i].ultra.altID) != "undefined")
+                        {
+                            if (ArtificialIntelligenceAccess[i].ultra.altID == "gardenGuard2")
+                            {
+                                hits += 1;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (hits == 0)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(-44140, 7902, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 9, speed: 1.34, outfit: ["nirwadenMorionArmour", 12], weapon: ["nirineseSabre", [9, 9], 0, 22, 1], ranged: [false, "steelBolt", 14, 2200, 15, 16, 0, "none", 3], patrolStops: 2, patrolLoop: true, route:[[-44140, 3009], [-44140, 7902]], altID: "gardenGuard2"}));
+                }
 
                 change = "n1e5";
             }
@@ -20475,6 +21303,35 @@ function generator(seedA, seedB, seedC, seedD, seedE, biome, xSt, ySt, dontInclu
                 }
             }
         }
+
+        if (map != "n1e4" && map != "n1e5")
+        {
+            for (var i = 0; i < Math.floor(seededD * 2); i++) //horse
+            {
+                seeded2 = seeder(seedD + seedE * i);
+                seeded3 = seeder(seedB + seedA / (i + 1));
+
+                if (seeder(seedC + 89 + (seedC * 2 * i)) >= 0.5)
+                {
+                    for (var j = 0; j < Math.floor(seeder(seededA * (seedD + seededB)) * 19); j++)
+                    {
+                        var rando = seeder(seedE * i + 45 * 22 + 67645 * j * seedB);
+                        if (rando > 0.75)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(xSt - seeded2 * mapSz + spacer(320), ySt - seeded3 * mapSz + spacer(320), "Horse", true, genID));
+                        }
+                        else if (rando > 0.25)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(xSt - seeded2 * mapSz + spacer(250), ySt - seeded3 * mapSz + spacer(250), "Horse", false, genID));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(xSt - seeded2 * mapSz + spacer(200), ySt - seeded3 * mapSz + spacer(200), "Horse", "baby", genID));
+                        }
+                    }
+                }
+            }
+        }
         for (var i = 0; i < Math.floor(seededC * 4.85); i++) //Wobea Plant
         {
             seeded2 = seeder(seedA + seedB * i);
@@ -20625,7 +21482,7 @@ function generator(seedA, seedB, seedC, seedD, seedE, biome, xSt, ySt, dontInclu
     {
         for (var trimm = ArtificialIntelligenceAccess.length - 1; trimm >= 0; trimm--)
         {
-            if (ArtificialIntelligenceAccess[i].ID == genID && !ArtificialIntelligenceAccess[i].guarantee)
+            if (ArtificialIntelligenceAccess[trimm].ID == genID && !ArtificialIntelligenceAccess[trimm].guarantee)
             {
                 ArtificialIntelligenceAccess.splice(trimm, 1);
             }

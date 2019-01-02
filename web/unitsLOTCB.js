@@ -297,6 +297,12 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.baseTeam = "arena5";
             this.team = "arena5";
         }
+        else if (this.ID == "matado")
+        {
+            this.muzzle = true;
+            this.baseTeam = "matado";
+            this.team = "matado";
+        }
     };
 
     this.removeSelfFromCompanionList = function()
@@ -792,7 +798,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     var swtchTrgt = false;
                     for (var j = 0; j < this.allys.length; j++)
                     {
-                        if (this.allys[j] == ArtificialIntelligenceAccess[i].team || ArtificialIntelligenceAccess[i].dmx != this.dmx || ArtificialIntelligenceAccess[i].petrified && this.type != "Basilisk" || ArtificialIntelligenceAccess[i].petrified && ArtificialIntelligenceAccess[i].health <= 0 && this.type == "Basilisk" || ArtificialIntelligenceAccess[i].insect == true && this.insect == false && this.bugger == false || ArtificialIntelligenceAccess[i].type == "Changeling" && this.type == "Changeling")
+                        if (this.allys[j] == ArtificialIntelligenceAccess[i].team || ArtificialIntelligenceAccess[i].dmx != this.dmx || ArtificialIntelligenceAccess[i].petrified && this.type != "Basilisk" || ArtificialIntelligenceAccess[i].petrified && ArtificialIntelligenceAccess[i].health <= 0 && this.type == "Basilisk" || ArtificialIntelligenceAccess[i].insect == true && this.insect == false && this.bugger == false || ArtificialIntelligenceAccess[i].type == "Changeling" && this.type == "Changeling" || this.team == "matado" && ArtificialIntelligenceAccess[i].ID != "Matador")
                         {
                             if (ArtificialIntelligenceAccess[i].disdained == true && ArtificialIntelligenceAccess[i].disturbed == false || ArtificialIntelligenceAccess[i].disdained == false || player.title != "Highfolk" && player.title != "Nobility" && player.title != "Royalty" && player.raceName == "Nirwaden" || player.title != "Nobility" && player.title != "Royalty" && player.raceName != "Nirwaden" || this.disdained)
                             {
@@ -856,7 +862,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.allys.splice(0, 1);
         }
 
-        if (this.team != "arena1" && this.team != "arena2" && this.team != "arena3" && this.team != "arena4" && this.team != "arena5")
+        if (this.team != "arena1" && this.team != "arena2" && this.team != "arena3" && this.team != "arena4" && this.team != "arena5" && this.team != "EstolGang3")
         {
             this.allys.push("arena1");
             this.allys.push("arena2");
@@ -916,9 +922,25 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.allys.push("Sylkeem");
             }
         }
+        if (this.team == "matado")
+        {
+            this.allys.push("player");
+            this.allys.push("herdia");
+            this.allys.push("TheBalgurMercenaries");
+            this.allys.push("Thengar");
+            this.allys.push("Kel");
+            this.allys.push("Freynor");
+            this.allys.push("Aldrek");
+            this.allys.push("Orgell");
+            this.allys.push("Vardan");
+            this.allys.push("Cephrite");
+            this.allys.push("clamia");
+            this.allys.push("EstolGang");
+            this.allys.push("Sylkeem");
+        }
         if (this.team == "arena1" || this.team == "arena2" || this.team == "arena3" || this.team == "arena4" || this.team == "arena5")
         {
-            if (this.team != "arena3" && this.team != "arena4" && this.team != "arena5")
+            if (this.team != "arena3" && this.team != "arena4")
             {
                 this.allys.push("player");
             }
@@ -1100,6 +1122,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 this.allys.push("EstolGang3");
             }
+            if (this.ID != "Matador")
+            {
+                this.allys.push("matado");
+            }
         }
         if (this.team == "TheBalgurMercenaries")
         {
@@ -1154,6 +1180,13 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         }
         if (this.team == "EstolGang3")
         {
+            for (var ii = this.allys.length -1; ii >= 0; ii--)
+            {
+                if (this.allys[ii] == "arena4")
+                {
+                    this.allys.splice[ii, 1];
+                }
+            }
             if (player.estolGangPeace && player.estolgangFaction > -1)
             {
                 this.allys.push("player");
@@ -7577,6 +7610,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                                 {
                                     player.etnaVenTime = new Date().getTime();
                                 }
+                                else if (this.effect == "silvered" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
+                                {
+                                    player.silvered = true;
+                                }
                                 else if (this.effect == "freezingStun")
                                 {
                                     player.stunnedIII = true;
@@ -7905,6 +7942,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             else if (this.effect == "fire" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
                             {
                                 this.target.burningTime = new Date().getTime();
+                            }
+                            else if (this.effect == "silvered" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
+                            {
+                                this.target.silvered = true;
                             }
                             else if (this.effect == "blindingI" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
                             {
@@ -8808,6 +8849,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
             else if (this.weapon == "silkAndDagger")
             {
+                this.effect = "silvered";
                 this.costumeEngine(5, 0.21, true);
             }
             else if (this.weapon == "sickle")
@@ -14791,7 +14833,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.yAdjustment = 0;
             this.xAdjustment = 0;
         }
-        else if (this.type == "Balkur") //balkbalk
+        else if (this.type == "Balkur") //balkbalk //balkurbalkur
         {
             this.damageFrame = "automatic";
             this.team = "balkuria";
@@ -25535,7 +25577,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         this.humanATK(); //do the attack for the human arms
                     }
                     //draw some weapons underneath the body
-                    if (this.wepLayer == "under" || this.weapon == "freydicSword" || this.weapon == "longbow" || this.weapon == "crossbow" || this.weapon == "kellishClaymore" || this.weapon == "estoc" || this.weapon == "vardanianHalberd" || this.weapon == "shotgun" || this.weapon == "m16Carbine")
+                    if (this.wepLayer == "under" || this.weapon == "freydicSword" || this.weapon == "longbow" || this.weapon == "crossbow" || this.weapon == "kellishClaymore" || this.weapon == "estoc" || this.weapon == "vardanianHalberd" || this.weapon == "shotgun" || this.weapon == "m16Carbine" || this.weapon == "sickle")
                     {
                         this.drawHumanArms();
                     }
@@ -25544,7 +25586,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     this.drawHuman();
 
                     //draw the others over it.
-                    if (this.wepLayer == "standard" || this.weapon != "freydicSword" && this.weapon != "longbow" && this.weapon != "crossbow" && this.weapon != "longSpikedMorningStar" && this.weapon != "kellishClaymore" && this.weapon != "estoc" && this.weapon != "vardanianHalberd" && this.weapon != "shotgun" && this.weapon != "m16Carbine")
+                    if (this.wepLayer == "standard" || this.weapon != "freydicSword" && this.weapon != "longbow" && this.weapon != "crossbow" && this.weapon != "longSpikedMorningStar" && this.weapon != "kellishClaymore" && this.weapon != "estoc" && this.weapon != "vardanianHalberd" && this.weapon != "shotgun" && this.weapon != "m16Carbine" && this.weapon != "sickle")
                     {
                         this.drawHumanArms();
                     }
@@ -25741,6 +25783,25 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     }
                 }
 
+            }
+            else if (this.doOnDeathOnce)
+            {
+                this.doOnDeathOnce = false;
+
+                if (player.title != "Highfolk" && player.title != "Nobility" && player.title != "Royalty")
+                {
+                    if (this.ID == "nirwaden" || X < -36219)
+                    {
+                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                        {
+                            if (ArtificialIntelligenceAccess[i].playerSeen == true && ArtificialIntelligenceAccess[i].team == "Nirwaden")
+                            {
+                                player.nirwadenFaction -= 20;
+                                break;
+                            }
+                        }
+                    }
+                }
             }
 
             //ANIMATIONS
@@ -41752,7 +41813,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.drawHumanOutfitBelow(this.outfit, false);
 
                 //draw some weapons underneath the body
-                if (this.wepLayer == "under" || this.weapon == "swimming" || this.weapon == "freydicSword" || this.weapon == "longbow" || this.weapon == "crossbow" || this.weapon == "kellishClaymore" || this.weapon == "estoc" || this.weapon == "vardanianHalberd" || this.weapon == "shotgun" || this.weapon == "m16Carbine")
+                if (this.wepLayer == "under" || this.weapon == "swimming" || this.weapon == "freydicSword" || this.weapon == "longbow" || this.weapon == "crossbow" || this.weapon == "kellishClaymore" || this.weapon == "estoc" || this.weapon == "vardanianHalberd" || this.weapon == "shotgun" || this.weapon == "m16Carbine" || this.weapon == "sickle")
                 {
                     this.drawHumanArms();
                 }
@@ -41761,7 +41822,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.drawHuman();
 
                 //draw the others over it.
-                if (this.wepLayer == "standard" || this.weapon == "swimming" || this.weapon != "freydicSword" && this.weapon != "longbow" && this.weapon != "crossbow" && this.weapon != "longSpikedMorningStar" && this.weapon != "kellishClaymore" && this.weapon != "estoc" && this.weapon != "vardanianHalberd" && this.weapon != "shotgun" && this.weapon != "m16Carbine")
+                if (this.wepLayer == "standard" || this.weapon == "swimming" || this.weapon != "freydicSword" && this.weapon != "longbow" && this.weapon != "crossbow" && this.weapon != "longSpikedMorningStar" && this.weapon != "kellishClaymore" && this.weapon != "estoc" && this.weapon != "vardanianHalberd" && this.weapon != "shotgun" && this.weapon != "m16Carbine" && this.weapon != "sickle")
                 {
                     this.drawHumanArms();
                 }
@@ -41800,6 +41861,26 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 this.friendDecider();
                 this.targeting();
+
+                //Matadores have a different targeting that prioritizes their challenge...
+                if (this.ID == "Matador")
+                {
+                    var nearest = 100000;
+                    var nearness = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "matado")
+                        {
+                            nearness = ((ArtificialIntelligenceAccess[i].X - this.X)*(ArtificialIntelligenceAccess[i].X - this.X) + (ArtificialIntelligenceAccess[i].Y - this.Y)*(ArtificialIntelligenceAccess[i].Y - this.Y));
+                            if (nearness < (nearest * nearest))
+                            {
+                                nearest = nearness;
+                                this.target = ArtificialIntelligenceAccess[i];
+                            }
+                        }
+                    }
+                }
+
                 //Soldiers under your control will follow you without wanting to kill you.
                 if (this.team == "player")
                 {
@@ -42238,7 +42319,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     this.rangeOfSightCalculator(800, true);
 
                     //All of this factions guards drop this:
-                    if (this.ID == "Emporer Leoneidus") //emporer of Nirwaden Empire
+                    if (this.ID == "Emperor Consort Leoneidus") //emporer consort of the Nirwaden Empire
                     {
                         this.drops = [[new Item("coins", this.X, this.Y), 53150], [new Item("nirwadenNobleOutfit)", this.X, this.Y), 1]];
                         //this.switchToRanged("crossbow");
@@ -42272,6 +42353,27 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         this.drops = [[new Item("coins", this.X, this.Y), 38 + (Math.floor(Math.random() * 51))]];
                         this.switchToRanged("crossbow");
                         lights.push({X:this.X, Y: this.Y, size: 250, extraStops: true, GRD: 0.8, Alpha: 0.82, showMe: false});
+                    }
+                    else if (this.ID == "Matador")
+                    {
+                        if (this.target != "none" && this.target != player)
+                        {
+                            var nearest = 100000;
+                            var nearness = 0;
+                            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                            {
+                                if (ArtificialIntelligenceAccess[i].ID == "matado")
+                                {
+                                    nearness = ((ArtificialIntelligenceAccess[i].X - this.X)*(ArtificialIntelligenceAccess[i].X - this.X) + (ArtificialIntelligenceAccess[i].Y - this.Y)*(ArtificialIntelligenceAccess[i].Y - this.Y));
+                                    if (nearness < (nearest * nearest))
+                                    {
+                                        nearest = nearness;
+                                        this.target = ArtificialIntelligenceAccess[i];
+                                    }
+                                }
+                            }
+                        }
+                        this.drops = [[new Item("silkAndDagger", this.X, this.Y), 1], [new Item("matadorOutfit", this.X, this.Y), 1], [new Item("coins", this.X, this.Y), 52 + (Math.floor(Math.random() * 51))]];
                     }
                     else if (this.ID == "Matilda")
                     {
@@ -42932,7 +43034,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             player.theBalgurMercenariesFaction -= 75;
                         }
                     }
-                    if (this.ID == "Leon the Toll Master")
+                    else if (this.ID == "Leon the Toll Master")
                     {
                         uniqueChars.leonLDS = false;
                         if (this.killNotByPlayer == false || this.killByPlayerTeam)
@@ -42940,7 +43042,22 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             player.nirwadenFaction -= 65;
                         }
                     }
-                    if (this.ID == "Ser Belgos of Atalin" || this.ID == "Belgos" || this.ID == "Belgos the Disgraced" || this.ID == "Belgos the Disgraced One" || this.ID == "Belgos of Atalin")
+                    else if (this.ID == "Matador")
+                    {
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.nirwadenFaction -= 90;
+                        }
+                    }
+                    else if (this.ID == "Hidalgo Eduardo the Commissioner")
+                    {
+                        uniqueChars.eduerdoLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.nirwadenFaction -= 110;
+                        }
+                    }
+                    else if (this.ID == "Ser Belgos of Atalin" || this.ID == "Belgos" || this.ID == "Belgos the Disgraced" || this.ID == "Belgos the Disgraced One" || this.ID == "Belgos of Atalin")
                     {
                         uniqueChars.belgosLDS = false;
                         if (this.killNotByPlayer == false || this.killByPlayerTeam)
@@ -42959,7 +43076,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             }
                         }
                     }
-                    if (this.ID == "Matilda")
+                    else if (this.ID == "Matilda")
                     {
                         uniqueChars.matildaLDS = false;
                         if (this.killNotByPlayer == false || this.killByPlayerTeam)
@@ -43197,7 +43314,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     this.humanATK(); //do the attack for the human arms
                 }
                 //draw some weapons underneath the body
-                if (this.wepLayer == "under" || this.weapon == "freydicSword" || this.weapon == "longbow" || this.weapon == "crossbow" || this.weapon == "kellishClaymore" || this.weapon == "estoc" || this.weapon == "vardanianHalberd" || this.weapon == "shotgun" || this.weapon == "m16Carbine")
+                if (this.wepLayer == "under" || this.weapon == "freydicSword" || this.weapon == "longbow" || this.weapon == "crossbow" || this.weapon == "kellishClaymore" || this.weapon == "estoc" || this.weapon == "vardanianHalberd" || this.weapon == "shotgun" || this.weapon == "m16Carbine" || this.weapon == "sickle")
                 {
                     this.drawHumanArms();
                 }
@@ -43206,7 +43323,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.drawHuman();
 
                 //draw the others over it.
-                if (this.wepLayer == "standard" || this.weapon != "freydicSword" && this.weapon != "longbow" && this.weapon != "crossbow" && this.weapon != "longSpikedMorningStar" && this.weapon != "kellishClaymore" && this.weapon != "estoc" && this.weapon != "vardanianHalberd" && this.weapon != "shotgun" && this.weapon != "m16Carbine")
+                if (this.wepLayer == "standard" || this.weapon != "freydicSword" && this.weapon != "longbow" && this.weapon != "crossbow" && this.weapon != "longSpikedMorningStar" && this.weapon != "kellishClaymore" && this.weapon != "estoc" && this.weapon != "vardanianHalberd" && this.weapon != "shotgun" && this.weapon != "m16Carbine" && this.weapon != "sickle")
                 {
                     this.drawHumanArms();
                 }

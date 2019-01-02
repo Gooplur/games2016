@@ -1617,6 +1617,444 @@ function interaction(me)
                         }
                     }
 
+                    if (self.ID == "Hidalgo Eduardo the Commissioner" || conversationID[0] == "Eduardo")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Eduardo";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Hello, Hidalgo.", false, "a"], ["Are there any active bounties?", false, "b"], ["When will the next matador show be?", false, "c"], ["I would like to test my brawn in the arena as a matador.", false, "d"]];
+                                if (quests.manOfThePeopleQuest == true && uniqueChars.barracoLDS == true)
+                                {
+                                    player.dialogueOptions.unshift(["Where can I find this brigand you call Barraco Kein?", false, "e"]);
+                                }
+                                if (quests.manOfThePeopleQuest == true && uniqueChars.barracoLDS == false)
+                                {
+                                    player.dialogueOptions.unshift(["I have slain the infamous bandit chieftan Barraco Kein.", false, "f"]);
+                                }
+                                if (quests.manOfThePeopleQuest == true && quests.manOfThePeopleSlain >= 1)
+                                {
+                                    player.dialogueOptions.unshift(["I killed " + quests.manOfThePeopleSlain + " of Barraco Kein's men.", false, "g"]);
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "f")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0f";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "g")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0g";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            if (quests.manOfThePeopleQuest == "complete" && quests.manOfThePeopleCompletionStyle == "killedKein")
+                            {
+                                setMsg("I am glad to see you. I can not thank you enough for killing that scum Barraco Kein... May my sister rest easier in eternity knowing that her vile monster of a husband is dead.");
+                            }
+                            else
+                            {
+                                setMsg("Be direct. Tell me what you need.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            if (quests.manOfThePeopleQuest == true)
+                            {
+
+                            }
+                            else if (quests.manOfThePeopleQuest == "complete")
+                            {
+
+                            }
+                            else
+                            {
+                                setMsg("Only one. A former knight named Barraco Kein turned against the crown and decided to start up a gang. He raids wealthy merchants and nobles as they travel north to Atalin... So, if you are going to hunt this one down I must warn you, the reason this bounty is still active is because Barraco slew the entire squadron of soldiers we sent to aprehend him. He is a beast, not a man... I have to admit I want him dead more than anyone else. I knew that fool before he betrayed the imperial crown. He was married to my sister... but now... now because of him she was burnt at the pyre... They would have spared her if that beast had turned himself in. As I see it... That brigand Barraco Kein killed her himself. So... if you take on this bounty... and live, I will pay you double. Half from my own expense.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                if (quests.manOfThePeopleQuest == true)
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else if (quests.manOfThePeopleQuest == "complete")
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 1;
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            if (timeOfDay == "Day" || timeOfDay == "Dawn")
+                            {
+                                setMsg("There is one starting just now.");
+                            }
+                            else
+                            {
+                                setMsg("The next show will start on the morrow.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                if (timeOfDay == "Day" || timeOfDay == "Dawn")
+                                {
+                                    dialogueReset(self);
+                                    player.blinded = true;
+                                    player.blindedStoreTime = new Date().getTime();
+                                    player.blindedTime = 1;
+                                    change = "matador";
+                                    if (player.title == "Royalty" && player.raceName == "Nirwaden" || player.raceName == "Nirwaden" && player.title == "Nobility")
+                                    {
+                                        X = -45048;
+                                        Y = 2754;
+                                    }
+                                    else
+                                    {
+                                        X = -45210;
+                                        Y = 2189;
+                                    }
+                                }
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            if (player.nirwadenFaction >= 225 || player.title == "Nobility" || player.title == "Highfolk" || player.title == "Royalty")
+                            {
+                                if (timeOfDay == "Day" || timeOfDay == "Dawn")
+                                {
+                                    setMsg("Of course! Enter, brave challenger!");
+                                }
+                                else
+                                {
+                                    setMsg("I'm afraid you can not, not until tommorrow that is.");
+                                }
+                            }
+                            else
+                            {
+                                setMsg("Not just anyone is allowed to fight in the arena... You have to earn recognition in the Nirwaden Empire, and clearly you have not...");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                if (player.nirwadenFaction >= 225 || player.title == "Nobility" || player.title == "Highfolk" || player.title == "Royalty")
+                                {
+                                    if (timeOfDay == "Day" || timeOfDay == "Dawn")
+                                    {
+                                        player.blinded = true;
+                                        player.blindedStoreTime = new Date().getTime();
+                                        player.blindedTime = 1;
+                                        change = "matar";
+                                        dialogueReset(self);
+                                    }
+                                }
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            //text dialogue
+                            setMsg("The last I heard from scouts was that he and his men are camped south of here. Be careful, he is a ruthless one that Kein...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0f")
+                        {
+                            //text dialogue
+                            setMsg("You actually did it... you are a force to be reckoned with! Wow! I can't believe it... you have brought my sister's murderer to justice. As I promised here are the 300 coins from the bounty, the 10 coins owed for each of his men, and 300 more from my own savings. This is worth it. I hope to see you around.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                var coinzHit = -1;
+                                for (var i = 0; i < Inventory.length; i++)
+                                {
+                                    if (Inventory[i][0].type == "coins")
+                                    {
+                                        coinzHit = i;
+                                        break;
+                                    }
+                                }
+
+                                if (coinzHit > -1)
+                                {
+                                    Inventory[coinzHit][1] += 600 + 10 * quests.manOfThePeopleSlain;
+                                }
+                                else
+                                {
+                                    Inventory.unshift([new Item("coins", false, false), 600 + 10 * quests.manOfThePeopleSlain])
+                                }
+                                player.nirwadenFaction += quests.manOfThePeopleSlain;
+                                quests.manOfThePeopleSlain = 0;
+
+                                quests.manOfThePeopleCompletionStyle = "killedKein";
+                                quests.manOfThePeopleQuest = "complete";
+                                quests.completeQuests.push({name: "Man of the People", description: "You slayed Ser Barraco Kein, the knightly leader of a band of outlaws that stole from the rich and gave to the poor... more or less."});
+                                player.nirwadenFaction += 40;
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                {
+                                    player.magicalExperience += 150;
+                                }
+                                else
+                                {
+                                    player.experience += 225;
+                                }
+                                player.fame += 1;
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0g")
+                        {
+                            //text dialogue
+                            setMsg("You killed, " + quests.manOfThePeopleSlain + " of Barraco Kein's men, and I will pay you the listed price at 10 coins a head, which makes " + (quests.manOfThePeopleSlain * 10) + " coins.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                var coinzHit = -1;
+                                for (var i = 0; i < Inventory.length; i++)
+                                {
+                                    if (Inventory[i][0].type == "coins")
+                                    {
+                                        coinzHit = i;
+                                        break;
+                                    }
+                                }
+
+                                if (coinzHit > -1)
+                                {
+                                    Inventory[coinzHit][1] += 10 * quests.manOfThePeopleSlain;
+                                }
+                                else
+                                {
+                                    Inventory.unshift([new Item("coins", false, false), 10 * quests.manOfThePeopleSlain])
+                                }
+                                player.nirwadenFaction += quests.manOfThePeopleSlain;
+                                quests.manOfThePeopleSlain = 0;
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 1)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["This bounty sounds too difficult...", false, "a"], ["I'll do it... [BOUNTY: Barraco Kein, 300 coins, wanted dead, will pay 10 coins for each of his men] (you will get 600 coins for killing Kein)", false, "b"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1b";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1a")
+                        {
+                            //text dialogue
+                            setMsg("That's what I thought... No one in their right mind would choose to cross blades with that demon.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1b")
+                        {
+                            //text dialogue
+                            setMsg("Remember, I will pay you double, that means you will get 600 coins if you can kill Barraco Kein. If you have anymore questions feel free to ask... Also, keep in mind, if you find Barraco too much trouble you can always just start by killing his men. I wish you the best of luck! May the spirit everlasting give you the strength to put this coward in the dirt once and for all.");
+                            quests.manOfThePeopleQuest = true;
+                            quests.activeQuests.push({name: "Man of the People", description: "You took a bounty out to kill a one Barraco Kein and his men. He is said to be extremely dangerous..."});
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
                     if (self.ID == "Ebaro" || conversationID[0] == "Ebaro")
                     {
                         lowBar = "dialogue";

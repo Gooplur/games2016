@@ -25879,7 +25879,40 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     }
 
                     //Draw the Person's body
+                    var tweek = false;
+                    for (var jj = 0; jj < Inventory.length; jj++)
+                    {
+                        if (Inventory[jj][0].type == "itlinBranch")
+                        {
+                            if (dtpp <= 55)
+                            {
+                                tweek = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (tweek == false)
+                    {
+                        for (var jj = 0; jj < worldItems.length; jj++)
+                        {
+                            if (worldItems[jj][0].type == "itlinBranch")
+                            {
+                                if (((worldItems[jj][0].X - this.X)*(worldItems[jj][0].X - this.X) + (worldItems[jj][0].Y - this.Y)*(worldItems[jj][0].Y - this.Y)) <= 55 * 55)
+                                {
+                                    tweek = true;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
                     this.drawHuman();
+
+                    //the changeling will tweek out a little bit exposing its true self... if it is near an itlin branch.
+                    if (tweek && Math.round(Math.random()))
+                    {
+                        this.drawUnit(chupa, 843, 617, 78, 77, -1/2 * 78 * this.alphaSize - this.xAdjustment, -1/2 * 77 * this.alphaSize - this.yAdjustment, 78 * this.alphaSize, 77 * this.alphaSize);
+                    }
 
                     //draw the others over it.
                     if (this.wepLayer == "standard" || this.weapon != "freydicSword" && this.weapon != "longbow" && this.weapon != "crossbow" && this.weapon != "longSpikedMorningStar" && this.weapon != "kellishClaymore" && this.weapon != "estoc" && this.weapon != "vardanianHalberd" && this.weapon != "shotgun" && this.weapon != "m16Carbine" && this.weapon != "sickle" && this.weapon != "nirineseSpear")

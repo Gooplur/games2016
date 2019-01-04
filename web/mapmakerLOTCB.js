@@ -18473,7 +18473,14 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-46829, 687, "Soldier", false, "Inquisitor Gavilio", {race: "Nirwaden", faction: "Nirwaden", con: 8, speed: 1.5, outfit: ["inquisitionOutfit", 2.5], weapon: ["nirineseSabre", [8, 8], 0, 22, 1], ranged: [false, "steelBolt", 20, 2200, 20, 20, 0, "none", 2.5], patrolStops: 1, patrolLoop: false, route:[[-46834, 707]], merchant: true, merchandise: []}));
+                        if (player.inquisitionRank != "none" && player.inquisitionRank != "Initiate")
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(-46829, 687, "Soldier", false, "Inquisitor Gavilio", {race: "Nirwaden", faction: "Nirwaden", con: 8, speed: 1.5, outfit: ["inquisitionOutfit", 2.5], weapon: ["nirineseSabre", [8, 8], 0, 22, 1], ranged: [false, "steelBolt", 20, 2200, 20, 20, 0, "none", 2.5], patrolStops: 1, patrolLoop: false, route:[[-46834, 707]], merchant: true, merchandise: [[new Item("iron", false, false), 25]]}));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(-46829, 687, "Soldier", false, "Inquisitor Gavilio", {race: "Nirwaden", faction: "Nirwaden", con: 8, speed: 1.5, outfit: ["inquisitionOutfit", 2.5], weapon: ["nirineseSabre", [8, 8], 0, 22, 1], ranged: [false, "steelBolt", 20, 2200, 20, 20, 0, "none", 2.5], patrolStops: 1, patrolLoop: false, route:[[-46834, 707]], merchant: false, merchandise: []}));
+                        }
                     }
                 }
 
@@ -19233,6 +19240,63 @@ function buildMaster()
                 {
                     ArtificialIntelligenceAccess.push(new Unit(-44140, 7902, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 9, speed: 1.34, outfit: ["nirwadenMorionArmour", 12], weapon: ["nirineseSabre", [9, 9], 0, 22, 1], ranged: [false, "steelBolt", 14, 2200, 15, 16, 0, "none", 3], patrolStops: 2, patrolLoop: true, route:[[-44140, 3009], [-44140, 7902]], altID: "gardenGuard2"}));
                 }
+
+                if (player.title == "Nobility" && player.raceName == "Nirwaden")
+                {
+                    scenicList.push(new Scenery("furRug", -44950, 8655, 3.5, 2.4, 0));
+                    scenicList.push(new Scenery("furRug", -44772, 8712, 3.5 + Math.PI, 1.67, 0));
+                    scenicList.push(new Scenery("fineBed", -44929, 8766, -1/2 * Math.PI, true, 0)); //black
+                    scenicList.push(new Scenery("drawerA", -45015, 8785, 1/2 * Math.PI, 3, [2.4, "atalinNobleDrawer1", 20, [], false, 0])); //light
+                    scenicList.push(new Scenery("nirwadenMueble", -44929, 8558, 0 * Math.PI, 0)); //long bench
+                    scenicList.push(new Scenery("nirwadenMueble", -45006, 8558, 0 * Math.PI, 0)); //long bench
+                    scenicList.push(new Scenery("nirwadenMueble", -45045, 8621, 1/2 * Math.PI, 0)); //long bench
+
+                    scenicList.push(new Scenery("nirwadenMueble", -44813, 8623, 1 * Math.PI, 1)); //bench
+                    scenicList.push(new Scenery("nirwadenMueble", -44760, 8623, 1 * Math.PI, 1)); //bench
+                    scenicList.push(new Scenery("nirwadenMueble", -44710, 8623, 1 * Math.PI, 1)); //bench
+
+                    scenicList.push(new Scenery("nirwadenMueble", -44707, 8639, -1/2 * Math.PI, 2)); //sqr tbl
+
+                    if (player.gender == "Male")
+                    {
+                        scenicList.push(new Scenery("drawerA", -44700, 8770, 0 * Math.PI, 3, [1.6, "atalinNobleDrawer2", 7, [], false, 0])); //light
+                        scenicList.push(new Scenery("hearth", -44698, 8704, -1/2 * Math.PI, "flame"));
+                    }
+                    else
+                    {
+                        scenicList.push(new Scenery("loom", -44711, 8769, -1/4 * Math.PI, true));
+                        scenicList.push(new Scenery("drawerA", -44865.54, 8621, 0 * Math.PI, 3, [1.6, "atalinNobleDrawer2", 7, [], false, 0])); //light
+                        scenicList.push(new Scenery("hearth", -45065, 8723, 1/2 * Math.PI, "flame"));
+                    }
+                }
+                else
+                {
+                    scenicList.push(new Scenery("furRug", -44950, 8655, 3.5, 2.4, 0));
+                    scenicList.push(new Scenery("furRug", -44772, 8712, 3.5 + Math.PI, 1.67, 0));
+                    scenicList.push(new Scenery("fineBed", -44929, 8766, -1/2 * Math.PI, false, 0)); //black
+                    scenicList.push(new Scenery("drawerA", -45015, 8785, 1/2 * Math.PI, 1, [2.4])); //light
+                    scenicList.push(new Scenery("nirwadenMueble", -44929, 8558, 0 * Math.PI, 0)); //long bench
+                    scenicList.push(new Scenery("nirwadenMueble", -45006, 8558, 0 * Math.PI, 0)); //long bench
+                    scenicList.push(new Scenery("nirwadenMueble", -45045, 8621, 1/2 * Math.PI, 0)); //long bench
+
+                    scenicList.push(new Scenery("nirwadenMueble", -44813, 8623, 1 * Math.PI, 1)); //bench
+                    scenicList.push(new Scenery("nirwadenMueble", -44760, 8623, 1 * Math.PI, 1)); //bench
+                    scenicList.push(new Scenery("nirwadenMueble", -44710, 8623, 1 * Math.PI, 1)); //bench
+
+                    scenicList.push(new Scenery("nirwadenMueble", -44707, 8639, -1/2 * Math.PI, 2)); //sqr tbl
+
+                    scenicList.push(new Scenery("drawerA", -44700, 8770, 0 * Math.PI, 1, [1.6])); //light
+                }
+
+                scenicList.push(new Scenery("bed", -45273, 8540, 0 * Math.PI, 1));
+                scenicList.push(new Scenery("bed", -45397, 8540, 1 * Math.PI, 1));
+                scenicList.push(new Scenery("bed", -45301, 8366, -1/2 * Math.PI, 1));
+
+                scenicList.push(new Scenery("nirwadenMueble", -45399, 8418, 1.54 * Math.PI, 6)); //stool
+
+                scenicList.push(new Scenery("nirwadenMueble", -45398, 8370, 1/2 * Math.PI, 2)); //sqr tbl
+
+                scenicList.push(new Scenery("nirwadenMueble", -45334.54, 8578, 0 * Math.PI, 1)); //bench
 
                 change = "n1e5";
             }
@@ -22010,6 +22074,1042 @@ function generator2(seedA, seedB, seedC, seedD, seedE, biome, xSt, ySt, dontIncl
                 seeded3 = seeder(seedD + seedA * 5555 * i);
 
                 var rando = seeder(seedD + seedD + 999 * i + 99 * seedB);
+                if (rando > 0.99)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(xSt - seeded3 * mapSz, ySt - seeded2 * mapSz, "Griffin", true, genID));
+                }
+                else if (rando <= 0.05)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(xSt - seeded3 * mapSz, ySt - seeded2 * mapSz, "Griffin", false, genID));
+                }
+            }
+        }
+
+    }
+    //console.log(scenicList);
+
+    if (dontIncludeUnits == true)
+    {
+        for (var trimm = ArtificialIntelligenceAccess.length - 1; trimm >= 0; trimm--)
+        {
+            if (ArtificialIntelligenceAccess[trimm].ID == genID && !ArtificialIntelligenceAccess[trimm].guarantee)
+            {
+                ArtificialIntelligenceAccess.splice(trimm, 1);
+            }
+        }
+    }
+}
+
+function generator(seedA, seedB, seedC, seedD, seedE, biome, xSt, ySt, dontIncludeUnits) //the maps will be generated starting in the top left corner --> down and to the right
+{
+    var genID = "generated-" + (seeded((seedA + seedB + seedC + seedD + seedE) * (biome + 1)) + Math.random())
+    var mapSz = 9750; //this is the aproximate pixle length of a map
+    var seededE = seeded(seedE);
+    var seededD = seeded(seedD);
+    var seededC = seeded(seedC);
+    var seededB = seeded(seedB);
+    var seededA = seeded(seedA);
+    var seeded1;
+    var seeded2;
+    var seeded3;
+    var seeded4;
+    var seeded5;
+
+    if (biome == 0) //Kellish Grasslands
+    {
+        for (var i = 0; i < Math.floor(seededB * 8); i++) //avraks
+        {
+            seeded2 = seeded(seedA + seedA * i);
+            seeded3 = seeded(seedA + seedA / (i + 1));
+
+            ArtificialIntelligenceAccess.push(new Unit(xSt - seeded2 * mapSz, ySt - seeded3 * mapSz, "Avrak", false, "generated"));
+        }
+        for (var i = 0; i < Math.floor(seededE * 2.15); i++) //anterhills
+        {
+            seeded2 = seeded(seedB + seedB * i);
+            seeded3 = seeded(seedB + seedB / (i + 1));
+
+            scenicList.push(new Scenery("anterHill", xSt - seeded2 * mapSz, ySt - seeded3 * mapSz, 2*Math.PI * Math.random(), true));
+        }
+        for (var i = 0; i < Math.floor(seededD * 19); i++) //Itlin bushes
+        {
+            seeded2 = seeded(seedA + seedE * i);
+            seeded3 = seeded(seedE + seedC / (i + 1));
+
+            if (seeded(seededB + 89910 * i) > 0.44)
+            {
+                scenicList.push(new Scenery("itlinPlant", xSt - seeded2 * mapSz, ySt - seeded3 * mapSz, 2*Math.PI * Math.random(), true));
+            }
+            else
+            {
+                scenicList.push(new Scenery("ishPlant", xSt - seeded2 * mapSz, ySt - seeded3 * mapSz, 2*Math.PI * Math.random(), true));
+            }
+        }
+        for (var i = 0; i < Math.floor(seededE * 16); i++) //muf plants
+        {
+            seeded1 = seeded(seedC + seedA * i * 6800);
+            seeded5 = seeded(seedB + seedD / (i + 190));
+
+
+            scenicList.push(new Scenery("mufPlant", xSt - seeded5 * mapSz, ySt - seeded1 * mapSz, 2*Math.PI * Math.random(), true));
+        }
+        for (var i = 0; i < Math.floor(seededB * 16); i++) //luuf plants
+        {
+            seeded1 = seeded(seedA + seedD * i * 17890);
+            seeded5 = seeded(seedE + seedA * (i + 19560));
+
+            scenicList.push(new Scenery("luufPlant", xSt - seeded1 * mapSz, ySt - seeded5 * mapSz, 2*Math.PI * Math.random(), true));
+        }
+        for (var i = 0; i < Math.floor(((seededB + seededA) / 2) * 22); i++) //palnt plants
+        {
+            seeded1 = seeded(seedD + seedE * i * 17890);
+            seeded5 = seeded(seedE + seedC * (i + 19560));
+
+            scenicList.push(new Scenery("palntPlant", xSt - seeded1 * mapSz, ySt - seeded5 * mapSz, 2*Math.PI * Math.random(), true));
+        }
+        for (var i = 0; i < Math.floor(((seededC + seededD + seededE) / 3) * 11); i++) //buttermellow plants
+        {
+            seeded1 = seeded(seedE + seedE * i);
+            seeded5 = seeded(seedD + seedD / (i + 1));
+
+
+            scenicList.push(new Scenery("butterMellowPlant", xSt - seeded1 * mapSz, ySt - seeded5 * mapSz, 2*Math.PI * Math.random(), true));
+        }
+        for (var i = 0; i < Math.floor(seededA * 20); i++) //techi plants
+        {
+            seeded1 = seeded(seedC + seedC * i * 23000);
+            seeded5 = seeded(seedC + 100 + seedC * 56 * i * i);
+
+
+            scenicList.push(new Scenery("techiPlant", xSt - seeded5 * mapSz, ySt - seeded1 * mapSz, 2*Math.PI * Math.random(), true));
+        }
+
+        if (elevation == -2 || elevation == -1)
+        {
+            for (var i = 0; i < (Math.floor(seededD * 9) + 1); i++) //techi plants
+            {
+                seeded5 = seeded(seedC + seedE * i * 19191);
+                seeded1 = seeded(seedE + 19 + seedC * 19 * i);
+
+                if (seeded(seedB + 900 * i) > 0.495)
+                {
+                    scenicList.push(new Scenery("corneliusPlant", xSt - seeded5 * mapSz, ySt - seeded1 * mapSz, 2*Math.PI * Math.random(), true));
+                }
+                else
+                {
+                    scenicList.push(new Scenery("rilthasiaPlant", xSt - seeded5 * mapSz, ySt - seeded1 * mapSz, 2*Math.PI * Math.random(), true));
+                }
+            }
+        }
+
+        if (elevation == 0)
+        {
+            for (var i = 0; i < Math.floor(seededC * 11); i++) //ardils
+            {
+                seeded1 = seeded(seedB + seedB * 90000 * i);
+                seeded4 = seeded(seedA + seedD * 110201 * i);
+
+                if (seeded(seedE + 88888 * i) > 0.5)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(xSt - seeded1 * mapSz, ySt - seeded4 * mapSz, "Ardil", true, genID));
+                }
+                else
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(xSt - seeded1 * mapSz, ySt - seeded4 * mapSz, "Ardil", false, genID));
+                }
+            }
+        }
+        else
+        {
+            for (var i = 0; i < Math.floor(seededC * 5); i++) //ardils
+            {
+                seeded1 = seeded(seedB + seedB * 90000 * i);
+                seeded4 = seeded(seedA + seedD * 110201 * i);
+
+                if (seeded(seedE + 999992 * i) > 0.5)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(xSt - seeded1 * mapSz, ySt - seeded4 * mapSz, "Ardil", true, genID));
+                }
+                else
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(xSt - seeded1 * mapSz, ySt - seeded4 * mapSz, "Ardil", false, genID));
+                }
+            }
+        }
+
+        for (var i = 0; i < Math.floor(seededA * 8); i++) //evraks
+        {
+            seeded2 = seeded(seedA + seedA * 12012 * i);
+            seeded3 = seeded(seedD + seedA * 5555 * i);
+
+            ArtificialIntelligenceAccess.push(new Unit(xSt - seeded3 * mapSz, ySt - seeded2 * mapSz, "Evrak", false, genID));
+        }
+
+        if (elevation == 0)
+        {
+            for (var i = 0; i < Math.floor(seededA * 9); i++) //friches / frich packs
+            {
+                seeded2 = seeded(seedD + seedD * 12012 * i);
+                seeded3 = seeded(seedD + seedD * 5555 * i);
+
+                for (var j = 0; j < Math.floor(seededE * 6); j++)
+                {
+                    if (seeded(seedB + 76823 * j) > 0.615)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(xSt - seeded2 * mapSz + spacer(35), ySt - seeded3 * mapSz + spacer(35), "Frich", true, genID));
+                    }
+                    else
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(xSt - seeded2 * mapSz + spacer(35), ySt - seeded3 * mapSz + spacer(35), "Frich", false, genID));
+                    }
+                }
+            }
+        }
+
+        for (var i = 0; i < Math.floor(seededE * 6); i++) //Naaprid herds
+        {
+            seeded1 = seeded(seedB + seedA * 222 * i);
+            seeded2 = seeded(seedD + seedC * 1119 * i);
+
+            for (var j = 0; j < Math.floor(seededE * 9); j++)
+            {
+                var seeded5 = seeded(seedB + seedD * Math.ceil(76823 / j));
+
+                if (seeded5 < 0.4)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(xSt - seeded1 * mapSz + spacer(130), ySt - seeded2 * mapSz + spacer(130), "Naaprid", true, genID));
+                }
+                else if (seeded5 < 0.81)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(xSt - seeded1 * mapSz + spacer(130), ySt - seeded2 * mapSz + spacer(130), "Naaprid", false, genID));
+                }
+                else
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(xSt - seeded1 * mapSz + spacer(130), ySt - seeded2 * mapSz + spacer(130), "Naaprid", "baby", genID));
+                }
+            }
+        }
+
+        for (var i = 0; i < Math.floor(((seededA + seededB) / 2) * 17); i++) //tunsk mounds
+        {
+            seeded1 = seeded(seedC + seedC * 12 * i);
+            seeded2 = seeded(seedB + seedB / (39 * i + 5));
+
+            scenicList.push(new Scenery("tunskMound", xSt - seeded2 * mapSz, ySt - seeded1 * mapSz, 2*Math.PI * Math.random(), true));
+        }
+        for (var i = 0; i < Math.floor(seededC * 14); i++) //grushes / grushweed patches
+        {
+            seeded1 = seeded(seedB + seedA * 17 * i);
+            seeded2 = seeded(seedA + seedB / (5 * i + 3));
+
+            seeded3 = seeded(i * seedA);
+            for (var j = 0; j < Math.floor(seeded3 * 7); j++)
+            {
+                seeded4 = seeded(seedC + seedB * 5 * j);
+                seeded5 = seeded(seedA + seedC * 19 * j);
+
+                if (Math.random() <= 0.29)
+                {
+                    var rand = Math.random();
+                    if (rand < 0.2)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(xSt - seeded1 * mapSz + (Math.floor(seeded4 * 50) + 39) * j, ySt - seeded2 * mapSz + (Math.floor(seeded5 * 50) + 39) * j, "Grush", true, genID));
+                    }
+                    else if (rand < 0.5)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(xSt - seeded1 * mapSz + (Math.floor(seeded4 * 50) + 16) * j, ySt - seeded2 * mapSz + (Math.floor(seeded5 * 50) + 16) * j, "Grush", "baby", genID));
+                    }
+                    else
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(xSt - seeded1 * mapSz + (Math.floor(seeded4 * 50) + 25) * j, ySt - seeded2 * mapSz + (Math.floor(seeded5 * 50) + 25) * j, "Grush", false, genID));
+                    }
+                }
+                else
+                {
+                    var rand = Math.random();
+                    if (rand < 0.2)
+                    {
+                        scenicList.push(new Scenery("grushweedPlant", xSt - seeded1 * mapSz + (Math.floor(seeded4 * 50) + 39) * j, ySt - seeded2 * mapSz + (Math.floor(seeded5 * 50) + 39) * j, 2*Math.PI * Math.random(), seeded(seedC + 99 * i + 38 * j) + 0.65));
+                    }
+                    else if (rand < 0.5)
+                    {
+                        scenicList.push(new Scenery("grushweedPlant", xSt - seeded1 * mapSz + (Math.floor(seeded4 * 50) + 16) * j, ySt - seeded2 * mapSz + (Math.floor(seeded5 * 50) + 16) * j, 2*Math.PI * Math.random(), seeded(seedB + 99 * i + 49 * j) + 0.05));
+                    }
+                    else
+                    {
+                        scenicList.push(new Scenery("grushweedPlant", xSt - seeded1 * mapSz + (Math.floor(seeded4 * 50) + 25) * j, ySt - seeded2 * mapSz + (Math.floor(seeded5 * 50) + 25) * j, 2*Math.PI * Math.random(), seeded(seedA + 99 * i + 27 * j) + 0.25));
+                    }
+                }
+            }
+        }
+
+        for (var i = 0; i < Math.floor(((seededB + seededA) / 2) * 9); i++) //mofus and mofu nests
+        {
+            seeded1 = seeded(seedD + seedC * 17 * i);
+            seeded2 = seeded(seedA + seedA / (5 * i + 3));
+
+            seeded3 = seeded(i * seedA);
+            for (var j = 0; j < Math.floor(seeded3 * 11); j++)
+            {
+                seeded4 = seeded(seedB + seedB * 60 * j);
+                seeded5 = seeded(seedC + seedC * 390 * j);
+
+                var rand = Math.random();
+                if (rand < 0.4)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(xSt - seeded1 * mapSz + (Math.floor(seeded4 * 70) + 39) * j, ySt - seeded2 * mapSz + (Math.floor(seeded5 * 50) + 39) * j, "Mofu", true, genID));
+                }
+                else if (rand < 0.5)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(xSt - seeded1 * mapSz + (Math.floor(seeded4 * 50) + 16) * j, ySt - seeded2 * mapSz + (Math.floor(seeded5 * 50) + 16) * j, "Mofu", "baby", genID));
+                }
+                else
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(xSt - seeded1 * mapSz + (Math.floor(seeded4 * 60) + 25) * j, ySt - seeded2 * mapSz + (Math.floor(seeded5 * 50) + 25) * j, "Mofu", false, genID));
+                }
+
+                if (Math.random() <= 0.84)
+                {
+                    if (rand < 0.4)
+                    {
+                        scenicList.push(new Scenery("mofuNest", xSt - seeded1 * mapSz + (Math.floor(seeded4 * 70) + 39) * j, ySt - seeded2 * mapSz + (Math.floor(seeded5 * 50) + 39) * j, 2 * Math.PI * Math.random(), seeded(seedC + 99 * i + 38 * j) + 0.65));
+                    }
+                    else if (rand >= 0.5)
+                    {
+                        scenicList.push(new Scenery("mofuNest", xSt - seeded1 * mapSz + (Math.floor(seeded4 * 60) + 25) * j, ySt - seeded2 * mapSz + (Math.floor(seeded5 * 50) + 25) * j, 2 * Math.PI * Math.random(), seeded(seedA + 99 * i + 27 * j) + 0.25));
+                    }
+                }
+            }
+        }
+    }
+    else if (biome == 1) //nordic woods
+    {
+        for (var i = 0; i < Math.floor(261 + seeded(seededE * 9887 + seedA / 100) * 300); i++) //trees
+        {
+            seeded2 = seeded((seedE + seedD + 87989) * (i + 50));
+            seeded3 = seeded(i * ((seedA + 897) + seedC) * 54 + 96 * seedB * (i + 19));
+
+            scenicList.push(new Scenery("pineTree", xSt - seeded2 * mapSz, ySt - seeded3 * mapSz, 2 * Math.PI * Math.random(), true));
+        }
+        for (var i = 0; i < Math.floor(seededD * 26); i++) //lizard
+        {
+            seeded2 = seeded(seedB + seedD * i * 23252);
+            seeded5 = seeded(seedC + seedC * (i + 4343556));
+            seeded3 = seeded(seedA + seedE * (i + 79214956));
+            seeded4 = seeded(seedC + seedD * (i + 897462));
+
+            var rnd = seeded(seedD + 208721864 * i);
+            if (rnd > 0.3) {
+                ArtificialIntelligenceAccess.push(new Unit(xSt - seeded3 * mapSz, ySt - seeded5 * mapSz, "Lizard", false, genID));
+            }
+            else {
+                ArtificialIntelligenceAccess.push(new Unit(xSt - seeded2 * mapSz, ySt - seeded4 * mapSz, "Lizard", true, genID));
+            }
+        }
+        for (var i = 0; i < Math.floor(seededC * 16); i++) //bear
+        {
+            seeded2 = seeded(seedA + seedD * i * 899122);
+            seeded5 = seeded(seedD + seedC * (i + 4826));
+            seeded3 = seeded(seedB + seedA * (i + 12222));
+            seeded4 = seeded(seedE + seedE * (i + 3222562));
+
+            var rnd = seeded(seedC + 99829761 * i);
+            if (rnd > 0.8)
+            {
+                ArtificialIntelligenceAccess.push(new Unit(xSt - seeded5 * mapSz, ySt - seeded2 * mapSz, "BlackBear", true, genID));
+            }
+            else if (rnd > 0.6)
+            {
+                ArtificialIntelligenceAccess.push(new Unit(xSt - seeded5 * mapSz + spacer(25), ySt - seeded4 * mapSz + spacer(25), "BlackBear", true, genID));
+                ArtificialIntelligenceAccess.push(new Unit(xSt - seeded5 * mapSz + spacer(100),ySt - seeded4 * mapSz + spacer(100), "BlackBear", false, genID));
+            }
+            else
+            {
+                ArtificialIntelligenceAccess.push(new Unit(xSt - seeded4 * mapSz, ySt - seeded3 * mapSz, "BlackBear", false, genID));
+            }
+        }
+
+        if (X > 47082) //in Thengaria only (WEST)
+        {
+            for (var i = 0; i < Math.floor(seededC * 26); i++) //kofke
+            {
+                seeded1 = seeded(seedA + seedD * i * 17890);
+                seeded5 = seeded(seedE + seedA * (i + 19560));
+
+                scenicList.push(new Scenery("kofkePlant", xSt - seeded1 * mapSz, ySt - seeded5 * mapSz, 2 * Math.PI * Math.random(), true));
+            }
+            for (var i = 0; i < Math.floor(seededE * 7); i++) //steugiurne
+            {
+                seeded1 = seeded(seedA + seedD * i * 900 + 300 * seedB);
+                seeded5 = seeded(seedB + seedD * (i + 283));
+
+                scenicList.push(new Scenery("steugiurnePlant", xSt - seeded1 * mapSz, ySt - seeded5 * mapSz, 2 * Math.PI * Math.random(), true));
+            }
+            for (var i = 0; i < Math.floor(seededE * 5); i++) //thalis
+            {
+                seeded1 = seeded(seedC + seedC * i * 89651239283);
+                seeded5 = seeded(seedB + seedB * (i + 48627881));
+
+                scenicList.push(new Scenery("thalisPlant", xSt - seeded1 * mapSz, ySt - seeded5 * mapSz, 2 * Math.PI * Math.random(), true));
+            }
+            for (var i = 0; i < Math.floor(seededE * 19); i++) //callop
+            {
+                seeded1 = seeded(seedA + seedD * i * 900 + 300 * seedB);
+                seeded5 = seeded(seedB + seedD * (i + 283));
+
+                scenicList.push(new Scenery("callopPlant", xSt - seeded1 * mapSz, ySt - seeded5 * mapSz, 2 * Math.PI * Math.random(), true));
+            }
+            for (var i = 0; i < Math.floor(seededE * 19); i++) //darb
+            {
+                seeded1 = seeded(seedC + seedC * i * 700 + 100 * seedA);
+                seeded2 = seeded(seedA + seedB * (i + 90022343));
+
+                scenicList.push(new Scenery("darbPlant", xSt - seeded1 * mapSz, ySt - seeded2 * mapSz, 2 * Math.PI * Math.random(), true));
+            }
+            if (seeded(seedE + 9993714638717) > 0.7) {
+                for (var i = 0; i < Math.floor(seededA * 2); i++) //brightbloom
+                {
+                    seeded1 = seeded(seedB + seedA * i * 855 + 366 * seedC);
+                    seeded2 = seeded(seedC + seedB * (i + 334456));
+
+                    scenicList.push(new Scenery("brightbloomPlant", xSt - seeded1 * mapSz, ySt - seeded2 * mapSz, 2 * Math.PI * Math.random(), true));
+                }
+            }
+            for (var i = 0; i < Math.floor(seededA * 20); i++) //fletter
+            {
+                seeded1 = seeded((seedB + seedA) * i * 1225 + 399726 * seedB);
+                seeded2 = seeded(seedC + seedE * (i + 33523536));
+
+                var rnd = seeded(seedD + 3259876121 * i);
+                if (rnd > 0.6) {
+                    ArtificialIntelligenceAccess.push(new Unit(xSt - seeded1 * mapSz, ySt - seeded4 * mapSz, "Fletter", true, genID));
+                }
+                else {
+                    ArtificialIntelligenceAccess.push(new Unit(xSt - seeded1 * mapSz, ySt - seeded4 * mapSz, "Fletter", false, genID));
+                }
+            }
+            for (var i = 0; i < Math.floor(seededB * 18); i++) //skol
+            {
+                seeded1 = seeded(seedA + seedD * i * 198790);
+                seeded2 = seeded(seedA + seedA * i * 5555);
+                seeded4 = seeded(seedE + seedA * (i + 983820));
+                seeded3 = seeded(seedC + seedC * (i + 6880));
+
+                var rnd = seeded(seedB + 98568761 * i);
+                if (rnd > 0.9) {
+                    ArtificialIntelligenceAccess.push(new Unit(xSt - seeded1 * mapSz, ySt - seeded4 * mapSz, "Skol", true, genID));
+                }
+                else if (rnd > 0.8) {
+                    ArtificialIntelligenceAccess.push(new Unit(xSt - seeded3 * mapSz, ySt - seeded4 * mapSz, "Skol", false, genID));
+                }
+                else if (rnd > 0.4) {
+                    ArtificialIntelligenceAccess.push(new Unit(xSt - seeded2 * mapSz, ySt - seeded4 * mapSz, "Skol", false, genID));
+                    ArtificialIntelligenceAccess.push(new Unit(60 + xSt - seeded2 * mapSz, 190 + ySt - seeded4 * mapSz, "Skol", false, genID));
+                    ArtificialIntelligenceAccess.push(new Unit(200 + xSt - seeded2 * mapSz, -150 + ySt - seeded4 * mapSz, "Skol", false, genID));
+                    ArtificialIntelligenceAccess.push(new Unit(110 + xSt - seeded2 * mapSz, 110 + ySt - seeded4 * mapSz, "Skol", false, genID));
+                    ArtificialIntelligenceAccess.push(new Unit(300 + xSt - seeded2 * mapSz, -55 + ySt - seeded4 * mapSz, "Skol", true, genID));
+                }
+                else {
+                    ArtificialIntelligenceAccess.push(new Unit(xSt - seeded1 * mapSz, ySt - seeded3 * mapSz, "Skol", false, genID));
+                    ArtificialIntelligenceAccess.push(new Unit(60 + xSt - seeded1 * mapSz, 190 + ySt - seeded3 * mapSz, "Skol", false, genID));
+                    ArtificialIntelligenceAccess.push(new Unit(200 + xSt - seeded1 * mapSz, -150 + ySt - seeded3 * mapSz, "Skol", false, genID));
+                    ArtificialIntelligenceAccess.push(new Unit(110 + xSt - seeded1 * mapSz, 110 + ySt - seeded3 * mapSz, "Skol", false, genID));
+                    ArtificialIntelligenceAccess.push(new Unit(300 + xSt - seeded1 * mapSz, -55 + ySt - seeded3 * mapSz, "Skol", false, genID));
+                }
+            }
+            for (var i = 0; i < Math.floor(seededC * 29); i++) //hoffalgre
+            {
+                seeded2 = seeded(seedD + seedD * i * 9984722);
+                seeded5 = seeded(seedD + seedC * (i + 5343556));
+                seeded3 = seeded(seedB + seedE * (i + 89214956));
+                seeded4 = seeded(seedB + seedE * (i + 112462));
+
+                var rnd = seeded(seedE + 99829761 * i);
+                if (rnd > 0.625) {
+                    ArtificialIntelligenceAccess.push(new Unit(xSt - seeded5 * mapSz, ySt - seeded2 * mapSz, "Hoffalgre", false, genID));
+                }
+                else if (rnd > 0.39) {
+                    ArtificialIntelligenceAccess.push(new Unit(xSt - seeded5 * mapSz + spacer(30), ySt - seeded4 * mapSz + spacer(30), "Hoffalgre", true, genID));
+                    ArtificialIntelligenceAccess.push(new Unit(xSt - seeded5 * mapSz + spacer(30), ySt - seeded4 * mapSz + spacer(30), "Hoffalgre", true, genID));
+                }
+                else {
+                    ArtificialIntelligenceAccess.push(new Unit(xSt - seeded4 * mapSz, ySt - seeded3 * mapSz, "Hoffalgre", true, genID));
+                }
+            }
+        }
+        else {
+            if (Y < -13476) //SOUTH
+            {
+                for (var i = 0; i < Math.floor(seeded(seedE + seedD + 12312378265) * 12); i++) //viper
+                {
+                    seeded2 = seeded((seedE + seedB) * (4 + i * 749));
+                    seeded5 = seeded((seedB + seedA) * (i + 8527));
+                    seeded3 = seeded((seedD + seedA) * (i + 12986));
+                    seeded4 = seeded((seedB + seedC) * (i + 297864));
+
+                    var rnd = seeded((seedA * seedE / 10980) * i * seedC);
+                    if (rnd > 0.65)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(xSt - seeded3 * mapSz, ySt - seeded5 * mapSz, "Viper", true, genID));
+                    }
+                    else
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(xSt - seeded2 * mapSz, ySt - seeded4 * mapSz, "Viper", false, genID));
+                    }
+                }
+                for (var i = 0; i < Math.floor(seeded(seedE + seedD + 782765737825) * 8); i++) //bequon
+                {
+                    seeded2 = seeded((seedD + seedB) * (5 + i * 7465));
+                    seeded5 = seeded((seedA + seedC) * (i + 8234));
+                    seeded3 = seeded((seedE + seedC) * (i + 21486));
+                    seeded4 = seeded((seedB + seedD) * (i + 2354));
+
+                    scenicList.push(new Scenery("bequonPlant", xSt - seeded3 * mapSz, ySt - seeded3 * mapSz, 2 * Math.PI * Math.random(), true));
+                }
+                for (var i = 0; i < Math.floor(seeded(seedB + seedC + 58637825) * 28); i++) //Teppreklia
+                {
+                    seeded2 = seeded((seedE + seedB) * (5 + i * 338965));
+                    seeded5 = seeded((seedA + seedD) * (i + 1434));
+                    seeded3 = seeded((seedB + seedE) * (i + 9823686));
+                    seeded4 = seeded((seedC + seedB) * (i + 4284));
+
+                    scenicList.push(new Scenery("tepprekliaPlant", xSt - seeded3 * mapSz, ySt - seeded3 * mapSz, 2 * Math.PI * Math.random(), true));
+                }
+            }
+            else {
+                for (var i = 0; i < Math.floor(seededB * 4); i++) //viper
+                {
+                    seeded2 = seeded((seedE + seedB) * (1 + i * 899));
+                    seeded5 = seeded((seedB + seedA) * (i + 214096));
+                    seeded3 = seeded((seedC + seedA) * (i + 387326));
+                    seeded4 = seeded((seedB + seedE) * (i + 21680004));
+
+                    var rnd = seeded((seedA * seedE / 10980) * i * seedC);
+                    if (rnd > 0.9)
+                    {
+                        //ArtificialIntelligenceAccess.push(new Unit(xSt - seeded3 * mapSz, ySt - seeded5 * mapSz, "Viper", true, genID));
+                    }
+                    else
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(xSt - seeded2 * mapSz, ySt - seeded4 * mapSz, "Viper", false, genID));
+                    }
+                }
+                if (seeded(seedA * 55555) < 0.22) {
+                    for (var i = 0; i < Math.floor(seededB * 2); i++) //halcif
+                    {
+                        seeded1 = seeded((seedE + seedE) * i * 65524);
+                        seeded5 = seeded(seedD * seedB * (i + 4947));
+
+                        scenicList.push(new Scenery("halcifPlant", xSt - seeded5 * mapSz, ySt - seeded1 * mapSz, 2 * Math.PI * Math.random(), true));
+                    }
+                }
+                for (var i = 0; i < Math.floor(seededE * 4); i++) //cyrinthilim
+                {
+                    seeded1 = seeded((seedE + seedD) * i * 65524);
+                    seeded5 = seeded(seedC * seedA * (i + 4947));
+
+                    if (seeded(seedA * seedD * 5782 + seedB * 9875122) < 0.6) {
+                        scenicList.push(new Scenery("cyrinthilimPlant", xSt - seeded5 * mapSz, ySt - seeded1 * mapSz, 2 * Math.PI * Math.random(), true));
+                    }
+                }
+                for (var i = 0; i < Math.floor(seededB * 34); i++) //shehid
+                {
+                    seeded2 = seeded((seedC + seedD) * i * 987106124);
+                    seeded5 = seeded((seedE + seedE) * (i + 72746));
+                    seeded3 = seeded((seedC + seedA) * (i + 356));
+                    seeded4 = seeded((seedA + seedA) * (i + 214));
+
+                    var rnd = seeded((seedA * seedE / 10980) * i * seedC);
+                    if (rnd > 0.8) {
+                        ArtificialIntelligenceAccess.push(new Unit(xSt - seeded3 * mapSz, ySt - seeded5 * mapSz, "Shehid", true, genID));
+                    }
+                    else {
+                        ArtificialIntelligenceAccess.push(new Unit(xSt - seeded2 * mapSz, ySt - seeded4 * mapSz, "Shehid", false, genID));
+                    }
+                }
+                for (var i = 0; i < Math.floor(seeded((seededB + 88632755517832) / seededA) * 20); i++) //glin
+                {
+                    seeded1 = seeded((seedE + seedD) * i * 948877);
+                    seeded5 = seeded(seedC * 787811012 + 3 * seedB * (i + 85215));
+
+                    scenicList.push(new Scenery("glinPlant", xSt - seeded5 * mapSz, ySt - seeded1 * mapSz, 2 * Math.PI * Math.random(), true));
+                }
+            }
+
+
+            for (var i = 0; i < Math.floor(seededE * 9); i++) //varn
+            {
+                seeded2 = seeded(seedC + seedB * i * 1211202);
+                seeded5 = seeded(seedC + seedA * (i + 346));
+                seeded3 = seeded(seedB + seedB * (i + 98172));
+                seeded4 = seeded(seedB + seedB * (i + 79822));
+
+                var rnd = seeded(seedC + 99829761 * i);
+                if (rnd > 0.85) {
+                    if (Math.random() < 0.5) {
+                        ArtificialIntelligenceAccess.push(new Unit(xSt - seeded5 * mapSz, ySt - seeded2 * mapSz, "Varn", true, genID));
+                    }
+                    else {
+                        ArtificialIntelligenceAccess.push(new Unit(xSt - seeded5 * mapSz, ySt - seeded2 * mapSz, "Varn", false, genID));
+                    }
+                }
+                else if (rnd > 0.4) {
+                    if (Math.random() < 0.5) {
+                        ArtificialIntelligenceAccess.push(new Unit(xSt - seeded5 * mapSz + spacer(90), ySt - seeded4 * mapSz + spacer(90), "Varn", false, genID));
+                        ArtificialIntelligenceAccess.push(new Unit(-90 + xSt - seeded5 * mapSz + spacer(90), 75 + ySt - seeded4 * mapSz + spacer(90), "Varn", false, genID));
+                        ArtificialIntelligenceAccess.push(new Unit(xSt - seeded5 * mapSz + spacer(30), ySt - seeded4 * mapSz + spacer(30), "Varn", false, genID));
+                        ArtificialIntelligenceAccess.push(new Unit(-90 + xSt - seeded5 * mapSz + spacer(30), 75 + ySt - seeded4 * mapSz + spacer(30), "Varn", false, genID));
+                        ArtificialIntelligenceAccess.push(new Unit(xSt - seeded5 * mapSz + spacer(30), ySt - seeded4 * mapSz + spacer(30), "Varn", false, genID));
+                        ArtificialIntelligenceAccess.push(new Unit(-90 + xSt - seeded5 * mapSz + spacer(100), 75 + ySt - seeded4 * mapSz + spacer(100), "Varn", false, genID));
+                    }
+                    else {
+                        ArtificialIntelligenceAccess.push(new Unit(xSt - seeded5 * mapSz + spacer(30), ySt - seeded4 * mapSz + spacer(30), "Varn", true, genID));
+                        ArtificialIntelligenceAccess.push(new Unit(-90 + xSt - seeded5 * mapSz + spacer(90), 75 + ySt - seeded4 * mapSz + spacer(90), "Varn", false, genID));
+                        ArtificialIntelligenceAccess.push(new Unit(xSt - seeded5 * mapSz + spacer(90), ySt - seeded4 * mapSz + spacer(90), "Varn", false, genID));
+                        ArtificialIntelligenceAccess.push(new Unit(-90 + xSt - seeded5 * mapSz + spacer(80), 75 + ySt - seeded4 * mapSz + spacer(80), "Varn", true, genID));
+                        ArtificialIntelligenceAccess.push(new Unit(xSt - seeded5 * mapSz + spacer(40), ySt - seeded4 * mapSz + spacer(50), "Varn", true, genID));
+                        ArtificialIntelligenceAccess.push(new Unit(-90 + xSt - seeded5 * mapSz + spacer(30), 75 + ySt - seeded4 * mapSz + spacer(30), "Varn", false, genID));
+                    }
+                }
+                else {
+                    if (Math.random() < 0.5) {
+                        ArtificialIntelligenceAccess.push(new Unit(xSt - seeded5 * mapSz + spacer(50), ySt - seeded4 * mapSz + spacer(50), "Varn", false, genID));
+                        ArtificialIntelligenceAccess.push(new Unit(-90 + xSt - seeded5 * mapSz + spacer(80), 75 + ySt - seeded4 * mapSz + spacer(80), "Varn", true, genID));
+                        ArtificialIntelligenceAccess.push(new Unit(xSt - seeded5 * mapSz + spacer(30), ySt - seeded4 * mapSz + spacer(30), "Varn", false, genID));
+                        ArtificialIntelligenceAccess.push(new Unit(-90 + xSt - seeded5 * mapSz + spacer(30), 75 + ySt - seeded4 * mapSz + spacer(30), "Varn", false, genID));
+                        ArtificialIntelligenceAccess.push(new Unit(xSt - seeded5 * mapSz + spacer(40), ySt - seeded4 * mapSz + spacer(40), "Varn", false, genID));
+                        ArtificialIntelligenceAccess.push(new Unit(-90 + xSt - seeded5 * mapSz + spacer(55), 75 + ySt - seeded4 * mapSz + spacer(55), "Varn", false, genID));
+                        ArtificialIntelligenceAccess.push(new Unit(xSt - seeded5 * mapSz + spacer(105), ySt - seeded4 * mapSz + spacer(70), "Varn", false, genID));
+                        ArtificialIntelligenceAccess.push(new Unit(-90 + xSt - seeded5 * mapSz + spacer(45), 75 + ySt - seeded4 * mapSz + spacer(60), "Varn", true, genID));
+                    }
+                    else {
+                        ArtificialIntelligenceAccess.push(new Unit(xSt - seeded5 * mapSz + spacer(40), ySt - seeded4 * mapSz + spacer(40), "Varn", true, genID));
+                        ArtificialIntelligenceAccess.push(new Unit(-90 + xSt - seeded5 * mapSz + spacer(40), 75 + ySt - seeded4 * mapSz + spacer(40), "Varn", false, genID));
+                        ArtificialIntelligenceAccess.push(new Unit(xSt - seeded5 * mapSz + spacer(40), ySt - seeded4 * mapSz + spacer(40), "Varn", false, genID));
+                        ArtificialIntelligenceAccess.push(new Unit(-90 + xSt - seeded5 * mapSz + spacer(40), 75 + ySt - seeded4 * mapSz + spacer(40), "Varn", true, genID));
+                        ArtificialIntelligenceAccess.push(new Unit(xSt - seeded5 * mapSz + spacer(40), ySt - seeded4 * mapSz + spacer(40), "Varn", true, genID));
+                        ArtificialIntelligenceAccess.push(new Unit(-90 + xSt - seeded5 * mapSz + spacer(40), 75 + ySt - seeded4 * mapSz + spacer(40), "Varn", false, genID));
+                        ArtificialIntelligenceAccess.push(new Unit(xSt - seeded5 * mapSz + spacer(40), ySt - seeded4 * mapSz + spacer(40), "Varn", false, genID));
+                        ArtificialIntelligenceAccess.push(new Unit(-90 + xSt - seeded5 * mapSz + spacer(40), 75 + ySt - seeded4 * mapSz + spacer(40), "Varn", true, genID));
+                    }
+                }
+            }
+            for (var i = 0; i < Math.floor(seeded(seededB + seedA + seedD) * 3); i++) //beehives
+            {
+                seeded2 = seeded(seedB + seedB * i);
+                seeded3 = seeded(seedB + seedB / (i + 1));
+
+                scenicList.push(new Scenery("beehive", xSt - seeded2 * mapSz, ySt - seeded3 * mapSz, 2 * Math.PI * Math.random(), true));
+            }
+            for (var i = 0; i < Math.floor(seeded(seededA + 99 * seedB) * 14); i++) //stomwik
+            {
+                seeded2 = seeded(seedC + seedE * i * 69895);
+                seeded4 = seeded(seedE + seedA / (i + 32874914289));
+
+                scenicList.push(new Scenery("stomwikPlant", xSt - seeded4 * mapSz, ySt - seeded2 * mapSz, 2 * Math.PI * Math.random(), true));
+            }
+            for (var i = 0; i < Math.floor(seeded(seededC + 564341 * seedA) * 25); i++) //neprilne
+            {
+                seeded2 = seeded(seedA + seedC * i * 5985);
+                seeded4 = seeded((seedE * i + seedA) + 2459 * (i + 867));
+
+                scenicList.push(new Scenery("neprilnePlant", xSt - seeded4 * mapSz, ySt - seeded2 * mapSz, 2 * Math.PI * Math.random(), true));
+            }
+            for (var i = 0; i < Math.floor(seeded(seededD + 7989747231) * 16); i++) //common berry bushes
+            {
+                seeded2 = seeded(seedA + seedE * i);
+                seeded3 = seeded(seedE + seedC / (i + 1));
+
+                if (seeded(seededB + 89910 * i) > 0.34) {
+                    scenicList.push(new Scenery("akerPlant", xSt - seeded3 * mapSz, ySt - seeded3 * mapSz, 2 * Math.PI * Math.random(), true));
+                }
+                else {
+                    scenicList.push(new Scenery("pluttPlant", xSt - seeded2 * mapSz, ySt - seeded1 * mapSz, 2 * Math.PI * Math.random(), true));
+                }
+            }
+            for (var i = 0; i < Math.floor(seededE * 18); i++) //culpris
+            {
+                seeded1 = seeded(seedB + seedD * i * 6800);
+                seeded5 = seeded(seedD + seedC / (i + 190));
+
+                scenicList.push(new Scenery("culprisPlant", xSt - seeded5 * mapSz, ySt - seeded1 * mapSz, 2 * Math.PI * Math.random(), true));
+            }
+
+            if (X < -30000 && Y < 6278) //in Nirwaden only (EAST)
+            {
+                for (var i = 0; i < Math.floor(seeded(seedE + seedB + 6879372675365) * 3); i++) //changeling
+                {
+                    seeded2 = seeded((seedD + seedA) * (5 + i * 666));
+                    seeded5 = seeded((seedB + seedC) * (i + 9087827));
+                    seeded3 = seeded((seedD + seedA) * (i + 232986));
+                    seeded4 = seeded((seedC + seedE) * (i + 280987864));
+
+                    var rnd = seeded((seedC * seedE / 10980) * i * (seedD + seedA));
+                    if (rnd > 0.55)
+                    {
+                        if (Math.random() >= 0.55)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(xSt - seeded3 * mapSz, ySt - seeded5 * mapSz, "Changeling", false, genID));
+                        }
+                    }
+                }
+                for (var i = 0; i < Math.floor(seeded((seededC + 99761242) / seededA) * 21); i++) //halgom
+                {
+                    seeded1 = seeded((seedC + seedB) * i * 661727);
+                    seeded5 = seeded(seedA * 78652382 + 3 * seedD * (i + 581738765));
+
+                    scenicList.push(new Scenery("halgomPlant", xSt - seeded5 * mapSz, ySt - seeded1 * mapSz, 2 * Math.PI * Math.random(), true));
+                }
+
+                for (var i = 0; i < Math.floor(seeded((seededE + 3214576122534)) * 18); i++) //halgom
+                {
+                    seeded1 = seeded((seedB + seedE) * i * 661727);
+                    seeded5 = seeded(seedC * 78652382 + 3 * seedA * (i + 47886865));
+
+                    scenicList.push(new Scenery("iemaPlant", xSt - seeded5 * mapSz, ySt - seeded1 * mapSz, 2 * Math.PI * Math.random(), true));
+                }
+
+                for (var i = 0; i < Math.floor(seededB * 10); i++) //boar
+                {
+                    seeded1 = seeded(seedA + seedD * i * 17890);
+                    seeded5 = seeded(seedE + seedA * (i + 19560));
+
+                    var rnd = seeded(seedB + 98568761 * i);
+                    if (rnd > 0.7) {
+                        ArtificialIntelligenceAccess.push(new Unit(xSt - seeded1 * mapSz, ySt - seeded4 * mapSz, "Boar", true, genID));
+                    }
+                    else if (rnd > 0.4) {
+                        ArtificialIntelligenceAccess.push(new Unit(xSt - seeded3 * mapSz, ySt - seeded4 * mapSz, "Boar", false, genID));
+                    }
+                    else if (rnd > 0.2) {
+                        ArtificialIntelligenceAccess.push(new Unit(xSt - seeded3 * mapSz, ySt - seeded2 * mapSz, "Boar", false, genID));
+                        ArtificialIntelligenceAccess.push(new Unit(xSt - seeded3 * mapSz + spacer(110), ySt - seeded2 * mapSz + spacer(110), "Boar", false, genID));
+                    }
+                    else if (rnd > 0.1) {
+                        ArtificialIntelligenceAccess.push(new Unit(xSt - seeded1 * mapSz, ySt - seeded4 * mapSz, "Boar", true, genID));
+                        ArtificialIntelligenceAccess.push(new Unit(xSt - seeded1 * mapSz + spacer(110), ySt - seeded4 * mapSz + spacer(110), "Boar", false, genID));
+                    }
+                    else {
+                        ArtificialIntelligenceAccess.push(new Unit(xSt - seeded1 * mapSz, ySt - seeded4 * mapSz, "Boar", false, genID));
+                        ArtificialIntelligenceAccess.push(new Unit(xSt - seeded1 * mapSz + spacer(110),ySt - seeded4 * mapSz + spacer(110), "Boar", false, genID));
+                        ArtificialIntelligenceAccess.push(new Unit(xSt - seeded1 * mapSz + spacer(180),ySt - seeded4 * mapSz + spacer(130), "Boar", false, genID));
+                    }
+                }
+                for (var i = 0; i < Math.floor(seeded(18 + seededB) * 8); i++) //molte
+                {
+                    seeded2 = seeded(seedA + seedD * i * 27758);
+                    seeded5 = seeded(seedE + seedC * (i + 1234556));
+                    seeded3 = seeded(seedE + seedA * (i + 8645656));
+                    seeded4 = seeded(seedC + seedB * (i + 3532));
+
+                    var rnd = seeded(seedB + 99829761 * i);
+                    if (rnd > 0.4) {
+                        ArtificialIntelligenceAccess.push(new Unit(xSt - seeded3 * mapSz, ySt - seeded5 * mapSz, "Molte", false, genID));
+                    }
+                    else {
+                        ArtificialIntelligenceAccess.push(new Unit(xSt - seeded2 * mapSz, ySt - seeded4 * mapSz, "Molte", true, genID));
+                    }
+                }
+                for (var i = 0; i < Math.floor(seeded(seededB * 978987 + seedA * 35) * 9); i++) //BorbBeetle
+                {
+                    seeded2 = seeded(seedE + seedD * i * 27758);
+                    seeded5 = seeded(seedE + seedA * (i + 1234556));
+                    seeded3 = seeded(seedC + seedA * (i + 8645656));
+                    seeded4 = seeded(seedC + seedE * (i + 3532));
+
+                    var rnd = seeded(seedB + 99829761 * i);
+                    if (rnd > 0.41) {
+                        ArtificialIntelligenceAccess.push(new Unit(xSt - seeded3 * mapSz, ySt - seeded5 * mapSz, "BorbBeetle", false, genID));
+                    }
+                    else {
+                        ArtificialIntelligenceAccess.push(new Unit(xSt - seeded2 * mapSz, ySt - seeded4 * mapSz, "BorbBeetle", true, genID));
+                    }
+                }
+            }
+            else {
+                for (var i = 15; i < Math.floor(seeded(seededD + 798974723111241111) * 31); i++) //common berry bushes
+                {
+                    seeded2 = seeded(seedA * 656412 + seedC * i);
+                    seeded3 = seeded(seedB + seedA / (i + 1));
+
+                    if (seeded(seededB + 27856120 * i) > 0.34) {
+                        scenicList.push(new Scenery("akerPlant", xSt - seeded3 * mapSz, ySt - seeded3 * mapSz, 2 * Math.PI * Math.random(), true));
+                    }
+                    else {
+                        scenicList.push(new Scenery("pluttPlant", xSt - seeded2 * mapSz, ySt - seeded1 * mapSz, 2 * Math.PI * Math.random(), true));
+                    }
+                }
+                for (var i = 0; i < Math.floor(seededB * 13); i++) //wyr
+                {
+                    seeded1 = seeded(seedC + seedA * i * 6677278431124);
+                    seeded5 = seeded(seedD + seedC / (i + 87637677776));
+
+                    scenicList.push(new Scenery("wyrPlant", xSt - seeded5 * mapSz, ySt - seeded1 * mapSz, 2 * Math.PI * Math.random(), true));
+                }
+                if (seeded(seedC + 7899) > 0.65) {
+                    for (var i = 0; i < Math.floor(seededD * 2); i++) //tylun
+                    {
+                        seeded1 = seeded(seedE * seedB * i * 855524);
+                        seeded5 = seeded(seedB * seedA / (i + 2894677));
+
+                        scenicList.push(new Scenery("tylunPlant", xSt - seeded5 * mapSz, ySt - seeded1 * mapSz, 2 * Math.PI * Math.random(), true));
+                    }
+                }
+                if (seeded(seedB * 31991) > 0.7) {
+                    for (var i = 0; i < Math.floor(seededE * 2); i++) //ogard
+                    {
+                        seeded1 = seeded((seedE + seedD) * i * 65524);
+                        seeded5 = seeded(seedC * seedA * (i + 4947));
+
+                        scenicList.push(new Scenery("ogardPlant", xSt - seeded5 * mapSz, ySt - seeded1 * mapSz, 2 * Math.PI * Math.random(), true));
+                    }
+                }
+                for (var i = 0; i < Math.floor(seeded(seededE + 9874 + ((34 + seedA) * seedD)) * 17); i++) //grib
+                {
+                    seeded2 = seeded(seedB + seedD * i * 1089765602);
+                    seeded5 = seeded(seedC + seedB * (i + 332525));
+                    seeded3 = seeded(seedB + seedE * (i + 234122));
+                    seeded4 = seeded(seedE + seedB * (i + 78623522));
+
+                    var rnd = seeded(seedC + 99829761 * i);
+                    if (rnd > 0.65) {
+                        ArtificialIntelligenceAccess.push(new Unit(xSt - seeded5 * mapSz, ySt - seeded2 * mapSz, "Grib", true, genID));
+                    }
+                    else if (rnd > 0.5) {
+                        ArtificialIntelligenceAccess.push(new Unit(xSt - seeded5 * mapSz, ySt - seeded4 * mapSz, "Grib", false, genID));
+                        ArtificialIntelligenceAccess.push(new Unit(xSt - seeded5 * mapSz + spacer(90), ySt - seeded4 * mapSz + spacer(75), "Grib", false, genID));
+                    }
+                    else {
+                        ArtificialIntelligenceAccess.push(new Unit(xSt - seeded4 * mapSz, ySt - seeded3 * mapSz, "Grib", false, genID));
+                    }
+                }
+                for (var i = 0; i < Math.floor(seeded(seededC + 8976721453687 / (seedE + seedC)) * 26); i++) //narthwarp
+                {
+                    seeded2 = seeded((seedD + seedB) * (787 + i * 88976729));
+                    seeded5 = seeded((seedB + seedD) * (i + 5843796));
+                    seeded3 = seeded((seedB + seedA) * (i + 7867326));
+                    seeded4 = seeded((seedD + seedE) * (i + 478398004));
+
+                    var rnd = seeded((seedC * seedA / 277910808) * i * seedD);
+                    if (rnd > 0.91)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(xSt - seeded3 * mapSz, ySt - seeded5 * mapSz, "Narthwarp", true, genID));
+                    }
+                    else
+                    {
+                        rnd = seeded((seedB * seedA / 2778657238) * i * seedD);
+                        if (rnd > 0.91)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(xSt - seeded3 * mapSz, ySt - seeded5 * mapSz, "Narthwarp", false, genID));
+                        }
+                        else
+                        {
+                            rnd = seeded((seedC * seedD / 19757491111) * i * seedA);
+                            if (rnd > 0.5)
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(xSt - seeded3 * mapSz + spacer(20), ySt - seeded5 * mapSz + spacer(20), "Narthwarp", false, genID));
+                                ArtificialIntelligenceAccess.push(new Unit(xSt - seeded2 * mapSz + spacer(20), ySt - seeded4 * mapSz + spacer(20), "Narthwarp", false, genID));
+                            }
+                            else
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(xSt - seeded2 * mapSz + spacer(65), ySt - seeded4 * mapSz + spacer(65), "Narthwarp", false, genID));
+                                ArtificialIntelligenceAccess.push(new Unit(xSt - seeded3 * mapSz + spacer(65), ySt - seeded5 * mapSz + spacer(65), "Narthwarp", false, genID));
+                                ArtificialIntelligenceAccess.push(new Unit(xSt - seeded2 * mapSz + spacer(65), ySt - seeded4 * mapSz + spacer(65), "Narthwarp", false, genID));
+                                ArtificialIntelligenceAccess.push(new Unit(xSt - seeded3 * mapSz + spacer(65), ySt - seeded5 * mapSz + spacer(65), "Narthwarp", false, genID));
+                                ArtificialIntelligenceAccess.push(new Unit(xSt - seeded2 * mapSz + spacer(65), ySt - seeded4 * mapSz + spacer(65), "Narthwarp", false, genID));
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    else if (biome == 2) //Nirwaden Grasslands
+    {
+        for (var i = 0; i < Math.floor(seededB * 6); i++) //naaprid
+        {
+            seeded2 = seeded(seedD + seedA * i);
+            seeded3 = seeded(seedC + seedE / (i + 1));
+
+
+            for (var j = 0; j < Math.floor(seeded(seededE * (seedD + seededE)) * 8); j++)
+            {
+                var rando = seeded(seedD * i + 6 * 62 + 1284298 * j * seedA);
+                if (rando > 0.75)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(xSt - seeded2 * mapSz + spacer(120), ySt - seeded3 * mapSz + spacer(120), "Naaprid", true, genID));
+                }
+                else if (rando > 0.25)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(xSt - seeded2 * mapSz + spacer(120), ySt - seeded3 * mapSz + spacer(120), "Naaprid", false, genID));
+                }
+                else
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(xSt - seeded2 * mapSz + spacer(120), ySt - seeded3 * mapSz + spacer(120), "Naaprid", "baby", genID));
+                }
+            }
+        }
+
+        if (map != "n1e4" && map != "n1e5")
+        {
+            for (var i = 0; i < Math.floor(seededD * 2); i++) //horse
+            {
+                seeded2 = seeded(seedD + seedE * i);
+                seeded3 = seeded(seedB + seedA / (i + 1));
+
+                if (seeded(seedC + 89 + (seedC * 2 * i)) >= 0.5)
+                {
+                    for (var j = 0; j < Math.floor(seeded(seededA * (seedD + seededB)) * 19); j++)
+                    {
+                        var rando = seeded(seedE * i + 45 * 22 + 67645 * j * seedB);
+                        if (rando > 0.75)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(xSt - seeded2 * mapSz + spacer(320), ySt - seeded3 * mapSz + spacer(320), "Horse", true, genID));
+                        }
+                        else if (rando > 0.25)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(xSt - seeded2 * mapSz + spacer(250), ySt - seeded3 * mapSz + spacer(250), "Horse", false, genID));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(xSt - seeded2 * mapSz + spacer(200), ySt - seeded3 * mapSz + spacer(200), "Horse", "baby", genID));
+                        }
+                    }
+                }
+            }
+        }
+        for (var i = 0; i < Math.floor(seededC * 4.85); i++) //Wobea Plant
+        {
+            seeded2 = seeded(seedA + seedB * i);
+            seeded3 = seeded(seedB + seedE * (i + 1));
+
+            scenicList.push(new Scenery("wobeaPlant", xSt - seeded2 * mapSz, ySt - seeded3 * mapSz, 2*Math.PI * Math.random(), true));
+        }
+        for (var i = 0; i < Math.floor(((seededA + seededB) / 2) * 21); i++) //Erguer flowers
+        {
+            seeded2 = seeded(seedB + seedE * i);
+            seeded3 = seeded(seedD * i + seedC * i + 1);
+
+
+            scenicList.push(new Scenery("erguerPlant", xSt - seeded2 * mapSz, ySt - seeded3 * mapSz, 2*Math.PI * Math.random(), true));
+        }
+        for (var i = 0; i < Math.floor(seededE * 16); i++) //Chona and polyapa trees
+        {
+            seeded2 = seeded(seedB * i + seedD + 77 * i);
+            seeded3 = seeded(seedC + i * seedC);
+
+            if (seeded(seedB * i + seedD * seedA + 575757578 * i) > 0.49)
+            {
+                scenicList.push(new Scenery("chonaTree", xSt - seeded2 * mapSz, ySt - seeded3 * mapSz, 2*Math.PI * Math.random(), true));
+            }
+            else
+            {
+                scenicList.push(new Scenery("polyapaTree", xSt - seeded2 * mapSz, ySt - seeded3 * mapSz, 2*Math.PI * Math.random(), true));
+            }
+        }
+        for (var i = 0; i < Math.floor(seededB * 18); i++) //techi plants
+        {
+            seeded1 = seeded(seedA + seedA * i * 23000);
+            seeded5 = seeded(seedA * i + 100 + seedD * 56 * i);
+
+
+            scenicList.push(new Scenery("techiPlant", xSt - seeded5 * mapSz, ySt - seeded1 * mapSz, 2*Math.PI * Math.random(), true));
+        }
+
+
+        for (var i = 0; i < Math.floor(seededC * 3); i++) //ardils
+        {
+            seeded1 = seeded(seedC + seedD * 7854500 * i);
+            seeded4 = seeded(seedA + seedA * 11078651 * i);
+
+            if (seeded(seedE + 88888 * i) > 0.5)
+            {
+                ArtificialIntelligenceAccess.push(new Unit(xSt - seeded1 * mapSz, ySt - seeded4 * mapSz, "Ardil", true, genID));
+            }
+            else
+            {
+                ArtificialIntelligenceAccess.push(new Unit(xSt - seeded1 * mapSz, ySt - seeded4 * mapSz, "Ardil", false, genID));
+            }
+        }
+
+        for (var i = 0; i < Math.floor(seededB * 15); i++) //peacocks
+        {
+            seeded2 = seeded(seedB + seedA + seedA * 12012 * i);
+            seeded3 = seeded(seedD + seedA * 5555 * i);
+
+            if (seeded(seedD + seedE + 999 * i) > 0.55)
+            {
+                ArtificialIntelligenceAccess.push(new Unit(xSt - seeded3 * mapSz, ySt - seeded2 * mapSz, "Peacock", true, genID));
+            }
+            else
+            {
+                ArtificialIntelligenceAccess.push(new Unit(xSt - seeded3 * mapSz, ySt - seeded2 * mapSz, "Peacock", false, genID));
+            }
+        }
+
+        for (var i = 0; i < Math.floor(seededE * 11); i++) //friches / frich packs
+        {
+            seeded2 = seeded(seedB + seedC * 12012 * i);
+            seeded3 = seeded(seedA + seedD * 5555 * i);
+
+            for (var j = 0; j < Math.floor(seeded(seededA * 39 + 0.5 * i) * 6); j++)
+            {
+                var rando = seeded(seedC * 98754673 * j + i * seedA + 30);
+                if (rando > 0.94)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(xSt - seeded2 * mapSz + spacer(100), ySt - seeded3 * mapSz + spacer(100), "Frich", "massive", genID));
+                }
+                else if (rando > 0.22)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(xSt - seeded2 * mapSz + spacer(75), ySt - seeded3 * mapSz + spacer(75), "Frich", true, genID));
+                }
+                else
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(xSt - seeded2 * mapSz + spacer(90), ySt - seeded3 * mapSz + spacer(90), "Frich", false, genID));
+                }
+            }
+        }
+
+        if (Y < -13813)
+        {
+            for (var i = 0; i < Math.floor(((seededB + seededA) / 2) * 7); i++) //palnt plants
+            {
+                seeded1 = seeded(seedD + seedE * i * 17890);
+                seeded5 = seeded(seedE + seedC * (i + 19560));
+
+                scenicList.push(new Scenery("palntPlant", xSt - seeded1 * mapSz, ySt - seeded5 * mapSz, 2*Math.PI * Math.random(), true));
+            }
+            for (var i = 0; i < Math.floor(((seededA + seededB) / 2) * 8); i++) //tunsk mounds
+            {
+                seeded1 = seeded(seedC + seedC * 14.5 * i);
+                seeded2 = seeded(seedB + seedB / (82 * i + 16));
+
+                scenicList.push(new Scenery("tunskMound", xSt - seeded2 * mapSz, ySt - seeded1 * mapSz, 2*Math.PI * Math.random(), true));
+            }
+            for (var i = 0; i < Math.floor(((seededD + seededC) / 2) * 3); i++) //chupacabras
+            {
+                seeded1 = seeded(seedE + seedC * 13 * i);
+                seeded2 = seeded(seedA + seedD / (46 * i + 51));
+
+                var rando = seeded(seedD + seedD + 999 * i + 99 * seedB);
+                if (rando > 0.94)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(xSt - seeded3 * mapSz, ySt - seeded2 * mapSz, "Chupacabras", true, genID));
+                }
+                else if (rando < 0.11)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(xSt - seeded3 * mapSz, ySt - seeded2 * mapSz, "Chupacabras", false, genID));
+                }
+            }
+        }
+        if (elevation < 0)
+        {
+            for (var i = 0; i < Math.floor(seededB * 2); i++)
+            {
+                seeded2 = seeded(seedA + seedA * 12012 * i);
+                seeded3 = seeded(seedD + seedA * 5555 * i);
+
+                var rando = seeded(seedD + seedD + 999 * i + 99 * seedB);
                 if (rando > 0.99)
                 {
                     ArtificialIntelligenceAccess.push(new Unit(xSt - seeded3 * mapSz, ySt - seeded2 * mapSz, "Griffin", true, genID));

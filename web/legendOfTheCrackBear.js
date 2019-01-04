@@ -3594,6 +3594,7 @@ function theLegend()
         taxTime: new Date().getTime(),
         //taxes cover Atalin and surrounding hamlets
         atalinTaxes: 0,
+        teshirTaxes: 0,
 
         //LOGGED PLAYER ACTIONS
         flamingBones: [],

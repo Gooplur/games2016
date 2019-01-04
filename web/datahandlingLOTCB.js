@@ -239,24 +239,26 @@ function save()
     else if (saveType == "download")
     {
         //Code that I took off the Internet in order to download a string as a file
-        var csvString = saveFile;
-        var fileName = player.name;
+        //var csvString = saveFile;
+        //var fileName = player.name;
+        //
+        //if (window.navigator.msSaveOrOpenBlob)
+        //{
+        //    var blob = new Blob([csvString]);
+        //    window.navigator.msSaveOrOpenBlob(blob, fileName + ".txt");
+        //}
+        //else
+        //{
+        //    var a = document.createElement('a');
+        //    a.href = 'data:attachment/txt,' +  encodeURIComponent(csvString);
+        //    //a.href = "data:text/plain;base64," + btoa(encodeURIComponent(csvString)); fix that breaks this whole system...
+        //    a.target = '_blank';
+        //    a.download = fileName + ".txt"; //csv
+        //    document.body.appendChild(a);
+        //    a.click();
+        //}
 
-        if (window.navigator.msSaveOrOpenBlob)
-        {
-            var blob = new Blob([csvString]);
-            window.navigator.msSaveOrOpenBlob(blob, fileName + ".txt");
-        }
-        else
-        {
-            var a = document.createElement('a');
-            a.href = 'data:attachment/txt,' +  encodeURIComponent(csvString);
-            //a.href = "data:text/plain;base64," + btoa(encodeURIComponent(csvString)); fix that breaks this whole system...
-            a.target = '_blank';
-            a.download = fileName + ".txt"; //csv
-            document.body.appendChild(a);
-            a.click();
-        }
+        download(saveFile, player.name + ".txt", "text/plain");
     }
 
 

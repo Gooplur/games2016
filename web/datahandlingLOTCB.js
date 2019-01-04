@@ -250,7 +250,8 @@ function save()
         else
         {
             var a = document.createElement('a');
-            a.href = 'data:attachment/txt,' +  encodeURIComponent(csvString);
+            //a.href = 'data:attachment/txt,' +  encodeURIComponent(csvString);
+            a.href = "data:text/plain;base64," + btoa(csvString);
             a.target = '_blank';
             a.download = fileName + ".txt"; //csv
             document.body.appendChild(a);

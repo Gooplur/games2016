@@ -865,6 +865,10 @@ function applySelectionsButton()
             {
                 if (player.gender == "Male")
                 {
+                    if (player.title == "Highfolk")
+                    {
+                        Inventory.push([new Item("matadorOutfit", false, false), 1]);
+                    }
                     Inventory.push([new Item("nirwadenClothingM", false, false), 1]);
                 }
                 else

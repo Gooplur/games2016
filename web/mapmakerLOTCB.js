@@ -889,6 +889,58 @@ function buildMaster()
                 scenicList.push(new Scenery("stumpStoolSml", 2716, 1916, -4, 0));
                 scenicList.push(new Scenery("stumpStoolSml", 2642, 1912, 1, 0));
 
+                if (quests.teshirConverted == true)
+                {
+                    scenicList.push(new Scenery("nirwadenBuilding5", 500, 2533, 0, true));
+                    if (uniqueChars.OrjovTorLDS == false)
+                    {
+                        scenicList.push(new Scenery("pyre", 562, 2224, 0, false));
+                    }
+                    if (uniqueChars.bernardoLDS)
+                    {
+                        var hits = 0;
+                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                        {
+                            if (ArtificialIntelligenceAccess[i].ID == "Bishop Bernardo")
+                            {
+                                hits += 1;
+                                break;
+                            }
+                        }
+                        if (hits == 0)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(333, 2538, "Person", false, "Bishop Bernardo", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenPriestRobes", 0], weapon: ["none", [0.04, 0.05], 0, 0, 1.6], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[368, 2538]]}));
+                        }
+                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                        {
+                            if (ArtificialIntelligenceAccess[i].ID == "Bishop Bernardo")
+                            {
+                                ArtificialIntelligenceAccess[i].healthMAX = 19;
+                                ArtificialIntelligenceAccess[i].health = 19;
+                                ArtificialIntelligenceAccess[i].magicalResistance = 6;
+                                break;
+                            }
+                        }
+                    }
+                    if (uniqueChars.aavaiLDS)
+                    {
+                        var hits = 0;
+                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                        {
+                            if (ArtificialIntelligenceAccess[i].ID == "Aavai the Reformed Northern Bandit")
+                            {
+                                hits += 1;
+                                break;
+                            }
+                        }
+                        if (hits == 0)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(531, 2438, "Soldier", false, "Aavai the Reformed Northern Bandit", {race: "Freynor", faction: "Freynor", con: 5, speed: 0.90, outfit: ["none", 1], weapon: ["none", [0.4, 0.4], 0, 0, 0.95], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: true, route:[[0, 0]]}));
+                        }
+                    }
+                    ArtificialIntelligenceAccess.push(new Unit(480, 2623, "Person", false, "Freynor Villager", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["frichFurClothing", 0], weapon: ["none", [0.25, 0.6], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: false, route:[[2348, 1978]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(589, 2475, "Person", false, "Freynor Villager", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["frichFurClothing", 0], weapon: ["none", [0.3, 0.5], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: false, route:[[2289, 1710]]}));
+                }
                 //The Jarl's Estate
                 scenicList.push(new Scenery("freydicBuilding6", -102, 474, 0, true));
                 scenicList.push(new Scenery("freydicBuilding7", -338, 127, 0, true));
@@ -8527,7 +8579,7 @@ function buildMaster()
                 //Delete All Barriers
                 barrierList = [];
 
-                generator(562319, 545, 54153, 8432503, 3231101, 2, -34023, 16529);
+                generator2(562319, 545, 54153, 8432503, 3231101, 2, -34023, 16529);
                 cropper(-40729, 10759, -43972, 7515, true, true);
 
                 scenicList.push(new Scenery("pineTree", -34992 , 6702, 6, true));
@@ -8598,11 +8650,32 @@ function buildMaster()
 
                 //Delete All Barriers
                 barrierList = [];
-                generator(194838973478567290593490753765777, 874189889999927462711, 21264612647782889982392365641534281, 4291914929422375482332503, 3339769, 1, -40882, 3192, true);
+
+                //e-5
+                generator2(897, 27418911, 421534281, 8548903, 119, 1, -44150, -3266, true);
+                cropper(-44150, -3266, -45175, -3598, true, true);
+
+                for (var i = scenicList.length -1; i >= 0; i--)
+                {
+                    if (scenicList[i].type != "pineTree")
+                    {
+                        scenicList.splice(i, 1);
+                    }
+                }
+
+                //e-4
+                generator2(194838973478567290593490753765777, 874189889999927462711, 21264612647782889982392365641534281, 4291914929422375482332503, 3339769, 1, -40882, 3192, true);
                 cropper(-40882, -3192, -44012, -3634, true, true);
 
-                generator(53765777, 99, 213974281, 332503, 100101000, 1, -33959, -3720);
+                //s-1-e-4
+                generator2(53765777, 99, 213974281, 332503, 100101000, 1, -33959, -3720);
                 cropper(-40435, -3624, -44055, -13911, true, true);
+
+                //s-1-e-5
+                generator2(789678567456345678, 87675674567589, 23453467578, 87967857598607, 775764427, 1, -44316, -3916, true);
+                cropper(-44316, -3916, -46384, -13818, true, true);
+
+                scenicList.push(new Scenery("pineTree", -44213, -12679, -2.7, true));
 
                 //REGION CREATION
                 //Build AI Units
@@ -8618,6 +8691,165 @@ function buildMaster()
 
 
                 change = "s1e4";
+            }
+        }
+        else if (region == "s1e5")
+        {
+            if (change != "s1e5")
+            {
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
+                //Delete All Non-native AI Units
+                for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Structures
+                //todo when structures are created add their list's refresh sequence here.
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
+                //e-5
+                generator2(897, 27418911, 421534281, 8548903, 119, 1, -44150, -3266, true);
+                cropper(-44150, -3266, -45175, -3598, true, true);
+
+                for (var i = scenicList.length -1; i >= 0; i--)
+                {
+                    if (scenicList[i].type != "pineTree")
+                    {
+                        scenicList.splice(i, 1);
+                    }
+                }
+
+                //s-1-e-5
+                generator2(789678567456345678, 87675674567589, 23453467578, 87967857598607, 775764427, 1, -44316, -3916);
+                cropper(-44316, -3916, -46384, -13818, true, true);
+
+                generator2(194838973478567290593490753765777, 874189889999927462711, 21264612647782889982392365641534281, 4291914929422375482332503, 3339769, 1, -40882, 3192, true);
+                cropper(-40882, -3192, -44012, -3634, true, true);
+
+                generator2(53765777, 99, 213974281, 332503, 100101000, 1, -33959, -3720, true);
+                cropper(-40435, -3624, -44055, -13911, true, true);
+
+                for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--)
+                {
+                    if (ArtificialIntelligenceAccess[i].X < -45609 && ArtificialIntelligenceAccess[i].type != "Shehid" && ArtificialIntelligenceAccess[i].type != "Lizard")
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                    }
+                }
+
+
+                scenicList.push(new Scenery("pineTree", -44438 , -5347, 1, true));
+                scenicList.push(new Scenery("pineTree", -46167 , -4835, 5.2, true));
+                scenicList.push(new Scenery("pineTree", -46035 , -6130, 3.8, true));
+
+                scenicList.push(new Scenery("pineTree", -44213, -12679, -2.7, true));
+
+
+                scenicList.push(new Scenery("pineTree", -43731 , -8082, 2.1, true));
+                scenicList.push(new Scenery("pineTree", -43838 , -8498, -4, true));
+                scenicList.push(new Scenery("pineTree", -44032 , -8311, 5.5, true));
+
+                if (uniqueChars.barracoLDS == true)
+                {
+                    scenicList.push(new Scenery("tent", -44405, -7140, (0.25 * Math.PI), true));
+                    scenicList.push(new Scenery("tent", -43694, -7307, (-0.25 * Math.PI), true));
+                    scenicList.push(new Scenery("tent", -43393, -7708, (-0.75 * Math.PI), true));
+                    scenicList.push(new Scenery("tent", -43777, -7927, (1 * Math.PI), true));
+                    scenicList.push(new Scenery("tent", -44142, -8177, (1.1 * Math.PI), true));
+                    scenicList.push(new Scenery("tent", -44600, -8088, (-1.25 * Math.PI), true));
+                    scenicList.push(new Scenery("tent", -44632, -7616, (0.25 * Math.PI), true));
+                    scenicList.push(new Scenery("tent", -44414, -7455, (0.38 * Math.PI), true));
+
+                    ArtificialIntelligenceAccess.push(new Unit(-44372, -7184, "Soldier", false, "Ser Barraco Kein the Bandit Chieftain", {race: "Nirwaden", faction: "none", con: 30, speed: 1.05, outfit: ["barracoPlateArmour", 20], weapon: ["estoc", [4, 12], 34, 17, 3.25], ranged: [false, "steelBolt", 15, 2200, 18, 16, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-44347, -7199]]}));
+
+                    if (quests.manOfThePeopleMen > 0)
+                    {
+                        if (quests.manOfThePeopleMen == 1)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(-44265, -7013, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 5, speed: 1.1, outfit: ["boarArmour", 4], weapon: ["crossbow", [0, 0], 0, 21, 3.4], ranged: [true, "steelBolt", 17, 2200, 19, 18, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-44239, -7057]]}));
+                        }
+                        else if (quests.manOfThePeopleMen == 2)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(-44564, -7548, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 5, speed: 1.1, outfit: ["boarArmour", 4], weapon: ["crossbow", [0, 0], 0, 21, 3.4], ranged: [true, "steelBolt", 17, 2200, 19, 18, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-44498, -7556]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-43473, -7641, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 6, speed: 1.1, outfit: ["boarArmour", 5], weapon: ["crossbow", [0, 0], 0, 21, 3.4], ranged: [true, "steelBolt", 18, 2200, 18, 17, 0, "none", 3.5], patrolStops: 1, patrolLoop: false, route:[[-43486, -7613]]}));
+                        }
+                        else if (quests.manOfThePeopleMen == 3)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(-43679, -7648, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 2, speed: 1.28, outfit: ["nirwadenGambeson", 1], weapon: ["sickle", [2, 2], 0, 21, 1.15], ranged: [false, "steelBolt", 15, 2200, 18, 16, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-43718, -7645]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-44564, -7548, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 5, speed: 1.1, outfit: ["boarArmour", 4], weapon: ["crossbow", [0, 0], 0, 21, 3.4], ranged: [true, "steelBolt", 17, 2200, 19, 18, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-44498, -7556]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-43473, -7641, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 6, speed: 1.1, outfit: ["boarArmour", 5], weapon: ["crossbow", [0, 0], 0, 21, 3.4], ranged: [true, "steelBolt", 18, 2200, 18, 17, 0, "none", 3.5], patrolStops: 1, patrolLoop: false, route:[[-43486, -7613]]}));
+                        }
+                        else if (quests.manOfThePeopleMen == 4)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(-43770, -7219, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 4, speed: 1.19, outfit: ["nirwadenGambeson", 1], weapon: ["nirineseSabre", [6, 4], 0, 24, 1.27], ranged: [false, "steelBolt", 15, 2200, 18, 16, 0, "none", 3], patrolStops: 0, patrolLoop: false, route:[[-43718, -7645]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-43679, -7648, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 2, speed: 1.28, outfit: ["nirwadenGambeson", 1], weapon: ["sickle", [2, 2], 0, 21, 1.15], ranged: [false, "steelBolt", 15, 2200, 18, 16, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-43718, -7645]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-44564, -7548, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 5, speed: 1.1, outfit: ["boarArmour", 4], weapon: ["crossbow", [0, 0], 0, 21, 3.4], ranged: [true, "steelBolt", 17, 2200, 19, 18, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-44498, -7556]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-43473, -7641, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 6, speed: 1.1, outfit: ["boarArmour", 5], weapon: ["crossbow", [0, 0], 0, 21, 3.4], ranged: [true, "steelBolt", 18, 2200, 18, 17, 0, "none", 3.5], patrolStops: 1, patrolLoop: false, route:[[-43486, -7613]]}));
+                        }
+                        else if (quests.manOfThePeopleMen == 5)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(-43770, -7219, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 4, speed: 1.19, outfit: ["nirwadenGambeson", 1], weapon: ["nirineseSabre", [6, 4], 0, 24, 1.27], ranged: [false, "steelBolt", 15, 2200, 18, 16, 0, "none", 3], patrolStops: 0, patrolLoop: false, route:[[-43718, -7645]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-43679, -7648, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 2, speed: 1.28, outfit: ["nirwadenGambeson", 1], weapon: ["sickle", [2, 2], 0, 21, 1.15], ranged: [false, "steelBolt", 15, 2200, 18, 16, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-43718, -7645]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-44564, -7548, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 5, speed: 1.1, outfit: ["boarArmour", 4], weapon: ["crossbow", [0, 0], 0, 21, 3.4], ranged: [true, "steelBolt", 17, 2200, 19, 18, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-44498, -7556]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-43473, -7641, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 6, speed: 1.1, outfit: ["boarArmour", 5], weapon: ["crossbow", [0, 0], 0, 21, 3.4], ranged: [true, "steelBolt", 18, 2200, 18, 17, 0, "none", 3.5], patrolStops: 1, patrolLoop: false, route:[[-43486, -7613]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-44434, -7321, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 6, speed: 1.1, outfit: ["boarArmour", 4.5], weapon: ["crossbow", [0, 0], 0, 21, 3.4], ranged: [true, "steelBolt", 16, 2200, 17, 16, 0, "none", 4.1], patrolStops: 1, patrolLoop: false, route:[[-44353, -7333]]}));
+                        }
+                        else if (quests.manOfThePeopleMen == 6)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(-43770, -7219, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 4, speed: 1.19, outfit: ["nirwadenGambeson", 1], weapon: ["nirineseSabre", [6, 4], 0, 24, 1.27], ranged: [false, "steelBolt", 15, 2200, 18, 16, 0, "none", 3], patrolStops: 0, patrolLoop: false, route:[[-43718, -7645]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-44720, -7729, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 3, speed: 1.28, outfit: ["nirwadenGambeson", 1.5], weapon: ["nirineseSpear", [3, 4], 10, 37, 1.4], ranged: [false, "steelBolt", 15, 2200, 18, 16, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-44810, -7728]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-43679, -7648, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 2, speed: 1.28, outfit: ["nirwadenGambeson", 1], weapon: ["sickle", [2, 2], 0, 21, 1.15], ranged: [false, "steelBolt", 15, 2200, 18, 16, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-43718, -7645]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-44564, -7548, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 5, speed: 1.1, outfit: ["boarArmour", 4], weapon: ["crossbow", [0, 0], 0, 21, 3.4], ranged: [true, "steelBolt", 17, 2200, 19, 18, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-44498, -7556]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-43473, -7641, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 6, speed: 1.1, outfit: ["boarArmour", 5], weapon: ["crossbow", [0, 0], 0, 21, 3.4], ranged: [true, "steelBolt", 18, 2200, 18, 17, 0, "none", 3.5], patrolStops: 1, patrolLoop: false, route:[[-43486, -7613]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-44434, -7321, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 6, speed: 1.1, outfit: ["boarArmour", 4.5], weapon: ["crossbow", [0, 0], 0, 21, 3.4], ranged: [true, "steelBolt", 16, 2200, 17, 16, 0, "none", 4.1], patrolStops: 1, patrolLoop: false, route:[[-44353, -7333]]}));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(-43770, -7219, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 4, speed: 1.19, outfit: ["nirwadenGambeson", 1], weapon: ["nirineseSabre", [6, 4], 0, 24, 1.27], ranged: [false, "steelBolt", 15, 2200, 18, 16, 0, "none", 3], patrolStops: 0, patrolLoop: false, route:[[-43718, -7645]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-44720, -7729, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 3, speed: 1.28, outfit: ["nirwadenGambeson", 1.5], weapon: ["nirineseSpear", [3, 4], 10, 37, 1.4], ranged: [false, "steelBolt", 15, 2200, 18, 16, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-44810, -7728]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-43870, -8044, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 3, speed: 1.28, outfit: ["nirwadenGambeson", 1.5], weapon: ["nirineseSpear", [3, 4], 10, 37, 1.4], ranged: [false, "steelBolt", 15, 2200, 18, 16, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-43899, -8049]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-43679, -7648, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 2, speed: 1.28, outfit: ["nirwadenGambeson", 1], weapon: ["sickle", [2, 2], 0, 21, 1.15], ranged: [false, "steelBolt", 15, 2200, 18, 16, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-43718, -7645]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-44564, -7548, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 5, speed: 1.1, outfit: ["boarArmour", 4], weapon: ["crossbow", [0, 0], 0, 21, 3.4], ranged: [true, "steelBolt", 17, 2200, 19, 18, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-44498, -7556]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-43473, -7641, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 6, speed: 1.1, outfit: ["boarArmour", 5], weapon: ["crossbow", [0, 0], 0, 21, 3.4], ranged: [true, "steelBolt", 18, 2200, 18, 17, 0, "none", 3.5], patrolStops: 1, patrolLoop: false, route:[[-43486, -7613]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-44434, -7321, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 6, speed: 1.1, outfit: ["boarArmour", 4.5], weapon: ["crossbow", [0, 0], 0, 21, 3.4], ranged: [true, "steelBolt", 16, 2200, 17, 16, 0, "none", 4.1], patrolStops: 1, patrolLoop: false, route:[[-44353, -7333]]}));
+                        }
+                    }
+                }
+
+                if (quests.breakawaysQuest == true && uniqueChars.raldoLDS == true)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(-45614, -9536, "Soldier", false, "Raldo the Long", {race: "Nirwaden", faction: "hostile", con: 7, speed: 1.34, outfit: ["boarArmour", 4.5], weapon: ["nirineseSpear", [5, 4], 11, 38, 1.3], ranged: [false, "steelBolt", 15, 2200, 18, 16, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-45625, -9552]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(-46118, -9720, "Soldier", false, "Breakaway Bandit", {race: "Nirwaden", faction: "hostile", con: 2, speed: 1, outfit: ["boarArmour", 4], weapon: ["crossbow", [0, 0], 0, 21, 3.4], ranged: [true, "steelBolt", 15, 2200, 17, 16, 0, "none", 4], patrolStops: 0, patrolLoop: false, route:[[-44498, -7556]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(-45586, -9803, "Soldier", false, "Breakaway Bandit", {race: "Nirwaden", faction: "hostile", con: 4, speed: 1.15, outfit: ["nirwadenGambeson", 1.5], weapon: ["sickle", [3, 3], 0, 23, 1.2], ranged: [false, "steelBolt", 15, 2200, 18, 16, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-45576, -9824]]}));
+                    scenicList.push(new Scenery("tent", -45572, -9451, (-0.25 * Math.PI), true));
+                    scenicList.push(new Scenery("tent", -45537, -9600, (-0.5 * Math.PI), true));
+                    scenicList.push(new Scenery("tent", -45754, -9749, (0.5 * Math.PI), true));
+                }
+
+                scenicList.push(new Scenery("cave", -47307, -8789, 0, [854, 297], "arcusMine"));
+                scenicList.push(new Scenery("sign", -47221, -8821,  2 / Math.PI - 0.6, 1, "Arcus Co. Mine"));
+
+
+                change = "s1e5";
             }
         }
         else if (region == "s1") //Y > 6290 && Y < 32370
@@ -10147,18 +10379,18 @@ function buildMaster()
                     var hits = 0;
                     for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
                     {
-                        if (ArtificialIntelligenceAccess[i].ID == "Chieftan Schuylar")
+                        if (ArtificialIntelligenceAccess[i].ID == "Chieftain Schuylar")
                         {
                             hits += 1;
                         }
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-1281, -30842, "Person", false, "Chieftan Schuylar", {race: "Kel", faction: "Kel", personality: "violent", outfit: ["naapridLeatherArmour", 6], weapon: ["kellishClaymore", [25, 1], 0, 50, 2], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 492], [new Item("naapridDrinkinghornFull", false, false), 19], [new Item("naapridMilkhornFull", false, false), 14], [new Item("kellishClayPotOfNaapridMilk", false, false), 6], [new Item("naapridButter", false, false), 5], [new Item("kellishClayPotOfMushroomStew", false, false), 1], [new Item("kellishClayPotOfWater", false, false), 8], [new Item("kellishClayPot", false, false), 9], [new Item("santhBread", false, false), 1], [new Item("kellishSanthDough", false, false), 2], [new Item("rawNaapridFlesh", false, false), 4], [new Item("naapridMeat", false, false), 2], [new Item("pumpkin", false, false), 2], [new Item("jackOLanternEmpty", false, false), 3], [new Item("beesWax", false, false), 4], [new Item("candle", false, false), 6], [new Item("fireStarter", false, false), 2]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-1281, -30842, "Person", false, "Chieftain Schuylar", {race: "Kel", faction: "Kel", personality: "violent", outfit: ["naapridLeatherArmour", 6], weapon: ["kellishClaymore", [25, 1], 0, 50, 2], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 492], [new Item("naapridDrinkinghornFull", false, false), 19], [new Item("naapridMilkhornFull", false, false), 14], [new Item("kellishClayPotOfNaapridMilk", false, false), 6], [new Item("naapridButter", false, false), 5], [new Item("kellishClayPotOfMushroomStew", false, false), 1], [new Item("kellishClayPotOfWater", false, false), 8], [new Item("kellishClayPot", false, false), 9], [new Item("santhBread", false, false), 1], [new Item("kellishSanthDough", false, false), 2], [new Item("rawNaapridFlesh", false, false), 4], [new Item("naapridMeat", false, false), 2], [new Item("pumpkin", false, false), 2], [new Item("jackOLanternEmpty", false, false), 3], [new Item("beesWax", false, false), 4], [new Item("candle", false, false), 6], [new Item("fireStarter", false, false), 2]]}));
 
                         for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
                         {
-                            if (ArtificialIntelligenceAccess[i].ID == "Chieftan Schuylar")
+                            if (ArtificialIntelligenceAccess[i].ID == "Chieftain Schuylar")
                             {
                                 ArtificialIntelligenceAccess[i].healthMAX = 32;
                                 ArtificialIntelligenceAccess[i].health = 32;
@@ -11797,11 +12029,11 @@ function buildMaster()
                 //Delete All Barriers
                 barrierList = [];
 
-                //e4 forest edge
-                generator(9786217, 193249, 242531, 33632203, 8967556824000, 1, -33912, 6507, true);
+                //e-4 forest edge
+                generator2(9786217, 193249, 242531, 33632203, 8967556824000, 1, -33912, 6507, true);
                 cropper(-33912, 6507, -35953, 1571, true, true);
 
-                generator(2436217, 56679, 21, 3, 894000, 1, -33923, 1056, true);
+                generator2(2436217, 56679, 21, 3, 894000, 1, -33923, 1056, true);
                 cropper(-33923, 1056, -35952, -3576, true, true);
 
                 for (var i = scenicList.length -1; i >= 0; i--)
@@ -11811,6 +12043,7 @@ function buildMaster()
                         scenicList.splice(i, 1);
                     }
                 }
+
                 //-/
 
                 //REGION CREATION
@@ -12769,11 +13002,14 @@ function buildMaster()
                 //Delete All Barriers
                 barrierList = [];
 
-                generator(9786217, 193249, 242531, 33632203, 8967556824000, 1, -33912, 6507, true);
+                generator2(9786217, 193249, 242531, 33632203, 8967556824000, 1, -33912, 6507, true);
                 cropper(-33912, 6507, -35953, 1571, true, true);
 
-                generator(2436217, 56679, 21, 3, 894000, 1, -33923, 1056, true);
+                generator2(2436217, 56679, 21, 3, 894000, 1, -33923, 1056, true);
                 cropper(-33923, 1056, -35952, -3576, true, true);
+
+                generator2(897, 27418911, 421534281, 8548903, 119, 1, -44150, -3266, true);
+                cropper(-44150, -3266, -45175, -3598, true, true);
 
                 for (var i = scenicList.length -1; i >= 0; i--)
                 {
@@ -12783,11 +13019,15 @@ function buildMaster()
                     }
                 }
 
-                generator(194838973478567290593490753765777, 874189889999927462711, 21264612647782889982392365641534281, 4291914929422375482332503, 3339769, 1, -40882, 3192, true);
+                generator2(194838973478567290593490753765777, 874189889999927462711, 21264612647782889982392365641534281, 4291914929422375482332503, 3339769, 1, -40882, 3192, true);
                 cropper(-40882, -3192, -44012, -3634, true, true);
 
-                generator(53765777, 99, 213974281, 332503, 100101000, 1, -33959, -3720, true);
+                generator2(53765777, 99, 213974281, 332503, 100101000, 1, -33959, -3720, true);
                 cropper(-40435, -3624, -44055, -4521, true, true);
+
+                //s-1-e-5
+                generator2(789678567456345678, 87675674567589, 23453467578, 87967857598607, 775764427, 1, -44316, -3916, true);
+                cropper(-44316, -3916, -44316 - 800, -3916 - 800, true, true); //shortened
 
                 //e-3 trees (west)
                 scenicList.push(new Scenery("pineTree", -32545 , -2522, 1, true));
@@ -15921,7 +16161,27 @@ function buildMaster()
                 }
                 if (hits == 0)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-43227, -2825, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 8, speed: 1.25, outfit: ["nirwadenMorionArmour", 11], weapon: ["nirineseSabre", [9, 9], 0, 24, 1.3], ranged: [false, "steelBolt", 15, 2250, 17, 17, 0, "none", 3.15], patrolStops: 2, patrolLoop: true, route:[[-44081, -1070], [-43227, -2825]], altID: "woodsGuard1"}));
+                    ArtificialIntelligenceAccess.push(new Unit(-43227, -2825, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 8, speed: 1.25, outfit: ["nirwadenMorionArmour", 11], weapon: ["nirineseSabre", [9, 9], 0, 24, 1.3], ranged: [false, "steelBolt", 15, 2250, 17, 17, 0, "none", 3.15], patrolStops: 2, patrolLoop: true, route:[[-44081, -2825], [-43227, -2825]], altID: "woodsGuard1"}));
+                }
+
+                var hits = 0;
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    if (ArtificialIntelligenceAccess[i].ID == "Altezor Soldier")
+                    {
+                        if (typeof(ArtificialIntelligenceAccess[i].ultra.altID) != "undefined")
+                        {
+                            if (ArtificialIntelligenceAccess[i].ultra.altID == "orchardGuard1")
+                            {
+                                hits += 1;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (hits == 0)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(-41770, 2839, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 6, speed: 1.15, outfit: ["nirwadenMorionArmour", 10], weapon: ["nirineseSabre", [8, 8], 0, 24, 1.35], ranged: [false, "steelBolt", 15, 2250, 17, 17, 0, "none", 3.15], patrolStops: 4, patrolLoop: true, route:[[-44177, 2826], [-44128, 1311], [-41736, 1321], [-41770, 2839]], altID: "orchardGuard1"}));
                 }
 
 
@@ -15960,6 +16220,27 @@ function buildMaster()
 
                 //Delete All Barriers
                 barrierList = [];
+
+                generator2(897, 27418911, 421534281, 8548903, 119, 1, -44150, -3266, true);
+                cropper(-44150, -3266, -45175, -3598, true, true);
+
+                for (var i = scenicList.length -1; i >= 0; i--)
+                {
+                    if (scenicList[i].type != "pineTree")
+                    {
+                        scenicList.splice(i, 1);
+                    }
+                }
+
+                //s-1-e-5
+                generator2(789678567456345678, 87675674567589, 23453467578, 87967857598607, 775764427, 1, -44316, -3916, true);
+                cropper(-44316, -3916, -46384, -13818, true, true);
+
+                generator2(194838973478567290593490753765777, 874189889999927462711, 21264612647782889982392365641534281, 4291914929422375482332503, 3339769, 1, -40882, 3192, true);
+                cropper(-40882, -3192, -44012, -3634, true, true);
+
+                generator2(53765777, 99, 213974281, 332503, 100101000, 1, -33959, -3720, true);
+                cropper(-40435, -3624, -44055, -13911, true, true);
 
                 //generator(998194838973478567290593490753765777, 893156183774189889999927462711, 212646126477828899823923656415326758196327583974281, 6688395285999999892194291914929422375482332503, 1111111111009836537010101010010100000011110010 , 1, -44194, 6496);
 
@@ -18101,8 +18382,168 @@ function buildMaster()
                 }
                 if (hits == 0)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-43227, -2825, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 8, speed: 1.25, outfit: ["nirwadenMorionArmour", 11], weapon: ["nirineseSabre", [9, 9], 0, 24, 1.3], ranged: [false, "steelBolt", 15, 2250, 17, 17, 0, "none", 3.15], patrolStops: 2, patrolLoop: true, route:[[-44081, -1070], [-43227, -2825]], altID: "woodsGuard1"}));
+                    ArtificialIntelligenceAccess.push(new Unit(-43227, -2825, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 8, speed: 1.25, outfit: ["nirwadenMorionArmour", 11], weapon: ["nirineseSabre", [9, 9], 0, 24, 1.3], ranged: [false, "steelBolt", 15, 2250, 17, 17, 0, "none", 3.15], patrolStops: 2, patrolLoop: true, route:[[-44081, -2825], [-43227, -2825]], altID: "woodsGuard1"}));
                 }
+
+                var hits = 0;
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    if (ArtificialIntelligenceAccess[i].ID == "Altezor Soldier")
+                    {
+                        if (typeof(ArtificialIntelligenceAccess[i].ultra.altID) != "undefined")
+                        {
+                            if (ArtificialIntelligenceAccess[i].ultra.altID == "orchardGuard1")
+                            {
+                                hits += 1;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (hits == 0)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(-41770, 2839, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 6, speed: 1.15, outfit: ["nirwadenMorionArmour", 10], weapon: ["nirineseSabre", [8, 8], 0, 24, 1.35], ranged: [false, "steelBolt", 15, 2250, 17, 17, 0, "none", 3.15], patrolStops: 4, patrolLoop: true, route:[[-44177, 2826], [-44128, 1311], [-41736, 1321], [-41770, 2839]], altID: "orchardGuard1"}));
+                }
+
+                if (uniqueChars.gesuldoLDS == true)
+                {
+                    if (quests.torturedSpiritQuest == true)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-48144, 130, "Phantom", true, "Gesuldo"));
+                        scenicList.push(new Scenery("grave", -48144, 130, 1/2 * Math.PI, 0, ["nirwaden", "Gesuldo"]));
+                    }
+                }
+                else
+                {
+                    scenicList.push(new Scenery("grave", -48144, 130, 1/2 * Math.PI, 6, ["nirwaden", "Gesuldo"]));
+                }
+
+                scenicList.push(new Scenery("grave", -47559, 14, 1/2 * Math.PI, 2, ["nirwaden", false]));
+                scenicList.push(new Scenery("grave", -47827, -401, 1/2 * Math.PI, 2, ["nirwaden", false]));
+                scenicList.push(new Scenery("grave", -48286, -437, 1/2 * Math.PI, 2, ["nirwaden", false]));
+                scenicList.push(new Scenery("grave", -48377, -254, 1/2 * Math.PI, 0, ["nirwaden", false]));
+                scenicList.push(new Scenery("grave", -48116, -25, 1/2 * Math.PI, 2, ["nirwaden", false]));
+                scenicList.push(new Scenery("grave", -48234, 245, 1/2 * Math.PI, 0, ["nirwaden", false]));
+                scenicList.push(new Scenery("grave", -47927, 293, 1/2 * Math.PI, 2, ["nirwaden", false]));
+
+                for (var i = 0; i < 19; i++)
+                {
+                    scenicList.push(new Scenery("tombstone", -47604 - 900 * seeded(1 + (i * 8.65) + 3.9), 356 - 900 * seeded(i * 2.69 + 8.9), 1/2 * Math.PI, Math.floor(seeded((Math.sin(i * i) + 1.7) * (i + 2.1) + 2) * 11), Math.max(1, seeded((Math.cos(i + 9) + 1) * 4.5) * 1.5)));
+                }
+                scenicList.push(new Scenery("tombstone", -47943, -399, 1/2 * Math.PI, Math.floor(seeded((Math.sin(30 * 30) + 1.7) * (30 + 2.1) + 2) * 11), Math.max(1, seeded((Math.cos(30 + 9) + 1) * 4.5) * 1.5)));
+
+                scenicList.push(new Scenery("furRug", -46532, 776, 0 * Math.PI, 5, 1));
+                scenicList.push(new Scenery("furRug", -46606, 777, 1 * Math.PI, 5, 1));
+
+                var hits = 0;
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    if (ArtificialIntelligenceAccess[i].ID == "Inquisition Emprendor")
+                    {
+                        hits = true;
+                        break;
+                    }
+                }
+                if (hits == 0)
+                {
+                    if (player.inquisitionRank == "none")
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-46403, 860, "Soldier", false, "Inquisition Emprendor", {race: "Nirwaden", faction: "Nirwaden", con: 8, speed: 1.4, outfit: ["inquisitionOutfit", 11], weapon: ["nirineseSabre", [8, 8], 0, 22, 1.15], ranged: [false, "steelBolt", 14, 2200, 15, 16, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-46409, 849]]}));
+                    }
+                    else if (player.inquisitionRank == "Initiate")
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-46403, 860, "Soldier", false, "Inquisition Emprendor", {race: "Nirwaden", faction: "Nirwaden", con: 8, speed: 1.4, outfit: ["inquisitionOutfit", 11], weapon: ["nirineseSabre", [8, 8], 0, 22, 1.15], ranged: [false, "steelBolt", 14, 2200, 15, 16, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-46409, 849]], merchant: true, merchandise: [[new Item("coins", false, false), 100], [new Item("witchHunterOutfit", false, false), 1]]}));
+                    }
+                    else if (player.inquisitionRank != "none")
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-46403, 860, "Soldier", false, "Inquisition Emprendor", {race: "Nirwaden", faction: "Nirwaden", con: 8, speed: 1.4, outfit: ["inquisitionOutfit", 11], weapon: ["nirineseSabre", [8, 8], 0, 22, 1.15], ranged: [false, "steelBolt", 14, 2200, 15, 16, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-46409, 849]], merchant: true, merchandise: [[new Item("coins", false, false), 200], [new Item("witchHunterOutfit", false, false), 1], [new Item("silkAndDagger", false, false), 1]]}));
+                    }
+                }
+
+                if (uniqueChars.gavilioLDS)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Inquisitor Gavilio")
+                        {
+                            hits = true;
+                            break;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-46829, 687, "Soldier", false, "Inquisitor Gavilio", {race: "Nirwaden", faction: "Nirwaden", con: 8, speed: 1.5, outfit: ["inquisitionOutfit", 2.5], weapon: ["nirineseSabre", [8, 8], 0, 22, 1], ranged: [false, "steelBolt", 20, 2200, 20, 20, 0, "none", 2.5], patrolStops: 1, patrolLoop: false, route:[[-46834, 707]], merchant: true, merchandise: []}));
+                    }
+                }
+
+                if (uniqueChars.voraelLDS)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Inquisitor Vorael")
+                        {
+                            hits = true;
+                            break;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-46659, 1024, "Soldier", false, "Inquisitor Vorael", {race: "Nirwaden", faction: "Nirwaden", con: 10, speed: 1.39, outfit: ["inquisitionOutfit", 2.5], weapon: ["silkAndDagger", [7, 6], 6, 20, 1.1], ranged: [false, "steelBolt", 20, 2200, 20, 20, 0, "none", 2.5], patrolStops: 0, patrolLoop: false, route:[[-46834, 707]], merchant: true, merchandise: []}));
+                    }
+                }
+
+                scenicList.push(new Scenery("furRug", -46862, 1001, 1/2 * Math.PI, 3, 1));
+                scenicList.push(new Scenery("furRug", -46862, 911, 1/2 * Math.PI, 3, 1));
+
+                scenicList.push(new Scenery("nirwadenMueble", -46700, 672, 0, 0));
+                scenicList.push(new Scenery("nirwadenMueble", -46397, 674, 0, 2));
+                scenicList.push(new Scenery("nirwadenMueble", -46439, 681, 3, 5));
+                scenicList.push(new Scenery("nirwadenMueble", -46396, 717, 2.1, 5));
+
+                scenicList.push(new Scenery("nirwadenMueble", -46749, 876, 1/2 * Math.PI, 2));
+
+                scenicList.push(new Scenery("nirwadenMueble", -46938, 722, -1/2 * Math.PI, 3));
+
+                scenicList.push(new Scenery("molteTrophy", -46861, 1129, 1/2 * Math.PI, 5));
+
+                scenicList.push(new Scenery("nirwadenMueble", -46700, 672, 0, 0));
+                scenicList.push(new Scenery("hyelingSkeleton", -46938, 714, 0.95, 0, 1.1));
+
+                scenicList.push(new Scenery("item", -46665, 672, 0, "nirwaden", ["changelingSkull", 1, -90]));
+                scenicList.push(new Scenery("item", -46691, 673, 0, "nirwaden", ["neevFur", 1, -90]));
+                scenicList.push(new Scenery("item", -46736.5, 672.5, 0, "nirwaden", ["peacockFeather", 1, -30]));
+                scenicList.push(new Scenery("item", -46747, 874, 0, "nirwaden", ["chupacabrasHead", 1, -90]));
+                scenicList.push(new Scenery("item", -46932, 773, 0, "nirwaden", ["hyelingClaws", 2, -50]));
+                scenicList.push(new Scenery("item", -46932, 666, 0, "nirwaden", ["mofuFeather", 3, -15]));
+                scenicList.push(new Scenery("item", -46649, 670, 0, "nirwaden", ["balkurFang", 2, -60]));
+
+                scenicList.push(new Scenery("oilLantern", -46388, 666, 9.17 * Math.PI, true, [1000, 2]));
+
+                scenicList.push(new Scenery("nirwadenMueble", -46602, 1080, 8, 5));
+                scenicList.push(new Scenery("nirwadenMueble", -47141, 855, 0.046, 5));
+                scenicList.push(new Scenery("nirwadenMueble", -47140, 941, -0.246, 5));
+
+                scenicList.push(new Scenery("nirwadenMueble", -46601, 1120, 1 * Math.PI, 2));
+
+
+                scenicList.push(new Scenery("nirwadenMueble", -47143, 900, 1/2 * Math.PI, 2));
+
+                scenicList.push(new Scenery("nirwadenMueble", -47037, 1025, 0, 0));
+
+                scenicList.push(new Scenery("item", -46589, 1129, 0, "nirwaden", ["berulnSkull", 1, -90]));
+                scenicList.push(new Scenery("item", -47007, 1026.5, 0, "nirwaden", ["utTentacle", 2, -40]));
+                scenicList.push(new Scenery("item", -47046, 1028, 0, "nirwaden", ["grushFur", 3, -40]));
+                scenicList.push(new Scenery("item", -47072, 1028, 0, "nirwaden", ["walrusTusks", 1, -90]));
+
+                scenicList.push(new Scenery("oilLantern", -46614, 1112, 8.15 * Math.PI, true, [1000, 2]));
+                scenicList.push(new Scenery("oilLantern", -47148, 902, -1.4 * Math.PI, true, [1000, 2]));
+
+                scenicList.push(new Scenery("hearth", -47047, 796, 1 * Math.PI, "lit"));
+
+                scenicList.push(new Scenery("crate", -46600, 949, 1.5, 1, [1.4]));
+
 
                 change = "e5";
             }
@@ -18140,7 +18581,7 @@ function buildMaster()
                 //Delete All Barriers
                 barrierList = [];
 
-                generator(77, 893156183774189889999927462711, 54, 6688395285999999892194291914929422375482332503, 11 , 2, -47555, 9583);
+                generator2(77, 893156183774189889999927462711, 54, 6688395285999999892194291914929422375482332503, 11 , 2, -47555, 9583);
                 cropper(-47555, 9583, -53158, 7506, true, true);
                 scenicList.push(new Scenery("wobeaPlant", -48954, 9749, 5.9, true));
                 ArtificialIntelligenceAccess.push(new Unit(-47725, 9724, "Frich", true, "Flioo"));
@@ -19118,7 +19559,7 @@ function buildMaster()
                 barrierList = [];
 
                 //REGION CREATION
-                generator(998194838973478567290593490753765777, 893156183774189889999927462711, 212646126477828899823923656415326758196327583974281, 6688395285999999892194291914929422375482332503, 1111111111009836537010101010010100000011110010 , 0, 6997, -34734);
+                generator2(998194838973478567290593490753765777, 893156183774189889999927462711, 212646126477828899823923656415326758196327583974281, 6688395285999999892194291914929422375482332503, 1111111111009836537010101010010100000011110010 , 0, 6997, -34734);
 
 
                 change = "s4";
@@ -19156,7 +19597,7 @@ function buildMaster()
                 barrierList = [];
 
                 //REGION CREATION
-                generator(5736809278362490038293, 918929, 2392365641532675817348289600124772911, 66897437318899912746321004929422375, 27138463725763667236888366664 , 0, 6712, -45024);
+                generator2(5736809278362490038293, 918929, 2392365641532675817348289600124772911, 66897437318899912746321004929422375, 27138463725763667236888366664 , 0, 6712, -45024);
 
 
                 change = "s5";
@@ -19194,7 +19635,7 @@ function buildMaster()
                 barrierList = [];
 
                 //REGION CREATION
-                generator(19298741243437438992, 9274652547777276453, 7428457849984359745, 66897439835628573277771, 37899910280830 , 0, 6703, -54922);
+                generator2(19298741243437438992, 9274652547777276453, 7428457849984359745, 66897439835628573277771, 37899910280830 , 0, 6703, -54922);
 
 
                 change = "s6";
@@ -19232,7 +19673,7 @@ function buildMaster()
                 barrierList = [];
 
                 //REGION CREATION
-                generator(29530258, 90, 72, 3258295, 102938219982, 0, 6702, -65155);
+                generator2(29530258, 90, 72, 3258295, 102938219982, 0, 6702, -65155);
 
 
                 change = "s7";
@@ -19270,7 +19711,7 @@ function buildMaster()
                 barrierList = [];
 
                 //REGION CREATION
-                generator(829427148172141, 920883248418247, 2733294217, 7420383218, 348919421, 0, 6702, -75322);
+                generator2(829427148172141, 920883248418247, 2733294217, 7420383218, 348919421, 0, 6702, -75322);
 
 
                 change = "s8";
@@ -19308,7 +19749,7 @@ function buildMaster()
                 barrierList = [];
 
                 //REGION CREATION
-                generator(232239741218412, 98124912914, 903814729794, 11829144012, 1213249, 0, 6589, -87613);
+                generator2(232239741218412, 98124912914, 903814729794, 11829144012, 1213249, 0, 6589, -87613);
 
 
                 change = "s9";
@@ -19346,7 +19787,7 @@ function buildMaster()
                 barrierList = [];
 
                 //REGION CREATION
-                generator(432492005292412, 232435923599384100, 128321492394420300012, 12314294993281923192, 3485124912, 0, 6775, -95695);
+                generator2(432492005292412, 232435923599384100, 128321492394420300012, 12314294993281923192, 3485124912, 0, 6775, -95695);
 
 
                 change = "s10";
@@ -19384,7 +19825,7 @@ function buildMaster()
                 barrierList = [];
 
                 //REGION CREATION
-                generator(3427925020108480120421, 22333339235043853496, 232389333858603333, 523323213198492334333334, 8333397129741365, 0, 6725, -105895);
+                generator2(3427925020108480120421, 22333339235043853496, 232389333858603333, 523323213198492334333334, 8333397129741365, 0, 6725, -105895);
 
                 for (var i = scenicList.length - 1; i >= 0; i--)
                 {
@@ -19430,7 +19871,7 @@ function buildMaster()
                 barrierList = [];
 
                 //REGION CREATION
-                generator(77216413742348524795734, 557765, 8412977777914721, 67763481412, 2937777349372358, 0, 6729, -116124);
+                generator2(77216413742348524795734, 557765, 8412977777914721, 67763481412, 2937777349372358, 0, 6729, -116124);
 
                 for (var i = scenicList.length - 1; i >= 0; i--)
                 {
@@ -19476,7 +19917,7 @@ function buildMaster()
                 barrierList = [];
 
                 //REGION CREATION
-                generator(41421321742348524795734, 523523685563431242342, 3341425464573235536241721, 745221412, 2836632675290991358, 0, 6692, -126326);
+                generator2(41421321742348524795734, 523523685563431242342, 3341425464573235536241721, 745221412, 2836632675290991358, 0, 6692, -126326);
 
                 for (var i = scenicList.length - 1; i >= 0; i--)
                 {
@@ -20056,6 +20497,106 @@ function buildMaster()
             }
         }
     }
+    else if (map == "arcusMine")
+    {
+        if (region == "arcusMine")
+        {
+            if (change != "arcusMine")
+            {
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
+                //Delete All Non-native AI Units
+                for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (!ArtificialIntelligenceAccess[i].guarantee)
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Structures
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
+
+                //barriers
+                barrierList.push(new Barrier(1000, 277, 300, 70, true));//left
+                barrierList.push(new Barrier(700, 207, 70, 370, true));//bototm
+                barrierList.push(new Barrier(630, 207, 1270, 70, true));//right
+
+                barrierList.push(new Barrier(630, 207 + 1270, 70, 370, true)); //b
+
+                barrierList.push(new Barrier(700 + 300, 207 + 300, 70, 370, true)); //b
+
+                barrierList.push(new Barrier(1000 - 70, 277 + 1200, 370, 70, true)); //l
+
+                barrierList.push(new Barrier(700 + 600, 277 + 300, 900, 70, true)); //ll
+
+                barrierList.push(new Barrier(700 + 600, 277 + 1200 - 70, 70, 1270, true)); //bb
+
+                barrierList.push(new Barrier(700 + 300, 277 + 1570 - 70, 70, 900, true)); //bb
+                barrierList.push(new Barrier(700 + 1800, 277 + 1200, 670, 70, true)); //ll
+
+                barrierList.push(new Barrier(700 + 1200, 277 + 1870 - 70, 70, 670, true)); //uu
+                barrierList.push(new Barrier(700 + 1130, 277 + 1570 - 70, 370, 70, true)); //ur
+
+                scenicList.push(new Scenery("alcaStone", 1072 , 608, 1.5, 2, 1));
+                scenicList.push(new Scenery("alcaStone", 1167 , 1091, 3, 1.5, 3));
+                scenicList.push(new Scenery("alcaStone", 718 , 1006, 6.75, 1, 3));
+                scenicList.push(new Scenery("alcaStone", 1054 , 1425, 0, 3, 2));
+                scenicList.push(new Scenery("alcaStone", 1720 , 1656, 1.24, 2.5, 1));
+                scenicList.push(new Scenery("alcaStone", 2316 , 1653, 8.9, 2, 2));
+                scenicList.push(new Scenery("alcaStone", 2339 , 1524, -5, 3, 2));
+                scenicList.push(new Scenery("alcaStone", 2451 , 2034, 11.5, 1.5, 3));
+                scenicList.push(new Scenery("alcaStone", 2022 , 1937, -16, 3, 1));
+
+
+                //scenery
+                scenicList.push(new Scenery("arcusExit", 856, 284, 1/2 * Math.PI, [-47261, -8859], "world"));
+
+                if (uniqueChars.gavorLDS == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Arcus Mining Co. Foreman Gavor")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(774, 598, "Person", false, "Arcus Mining Co. Foreman Gavor", {race: "Nirwaden", faction: "Nirwaden", personality: "violent", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.65, 0.45], 0, 0, 1.33], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[839, 397]]}));
+                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                        {
+                            if (ArtificialIntelligenceAccess[i].ID == "Toggin")
+                            {
+                                ArtificialIntelligenceAccess[i].healthMAX = 16;
+                                ArtificialIntelligenceAccess[i].health = 16;
+                            }
+                        }
+                    }
+                }
+
+                scenicList.push(new Scenery("oilLamp", 815, 442, 5.8678137818541137 * Math.PI, true, [1000, 2]));
+
+                change = "arcusMine";
+            }
+        }
+    }
     else if (map == "lethikCityPrison")
     {
         if (region == "lethikCityPrison")
@@ -20454,7 +20995,12 @@ function spacer(amt)
     return amt - (2 * amt) * Math.random();
 }
 
-function generator(seedA, seedB, seedC, seedD, seedE, biome, xSt, ySt, dontIncludeUnits) //the maps will be generated starting in the top left corner --> down and to the right
+function sSpacer(amt, seed)
+{
+    return amt - (2 * amt) * seeder(seed);
+}
+
+function generator2(seedA, seedB, seedC, seedD, seedE, biome, xSt, ySt, dontIncludeUnits) //the maps will be generated starting in the top left corner --> down and to the right
 {
     var genID = "generated-" + (seeder((seedA + seedB + seedC + seedD + seedE) * (biome + 1)) + Math.random())
     var mapSz = 9750; //this is the aproximate pixle length of a map
@@ -21609,6 +22155,24 @@ function seeder(seedNum)
     seed = seedNum;
     //console.log(seededRandom());
     return seededRandom();
+}
+
+function seeded(seedNum)
+{
+    //console.log(seededRandom());
+
+    /* Simple hash function. */
+    var a = 1, c = 0, h, o;
+    var s = "" + seedNum;
+    a = 0;
+    /*jshint plusplus:false bitwise:false*/
+    for (h = s.length - 1; h >= 0; h--) {
+        o = s.charCodeAt(h);
+        a = (a<<6&268435455) + o + (o<<14);
+        c = a & 266338304;
+        a = c!==0?a^c>>21:a;
+    }
+    return (a % 10000000) / 10000000;
 }
 
 function seededRandom()

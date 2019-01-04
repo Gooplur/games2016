@@ -389,6 +389,19 @@ function worldBuilder()
             outlineBuilder( 34, 12, "forest", 138, 14);
             outlineBuilder( 34, 14, "sea", 124, 14);
         }
+        //mapS1E5 Loroka Woods //nirwaden south road
+        if (Y > -14144 && Y < -3328 && X < -43290 && X > -54907) //X5
+        {
+            elevation = 0;
+            region = "s1e5";
+            outlineBuilder( 34, 26, "brightGrass", 150, 14);
+            outlineBuilder( 34, 8, "forest", 150, 14);
+            outlineBuilder( 30, 2, "forest", 150, 14);
+            outlineBuilder( 9, 1, "forest", 150, 20);
+            outlineBuilder( 5, 1, "forest", 150, 23);
+            outlineBuilder( 34, 1, "nirRoad", 158, 14);
+            //outlineBuilder( 34, 34, "outline", 150, 14);
+        }
         //Layer 0 (cold region): elev 0
         //mapE5 //Atalin City
         if (Y > -3919 && Y < 6870 && X < -42678 && X > -54937) //X5
@@ -397,6 +410,7 @@ function worldBuilder()
             region = "e5";
             outlineBuilder( 34, 34, "brightGrass", 150, -20);
             //outlineBuilder( 34, 34, "outline", 150, -20);
+            outlineBuilder( 3, 4, "forest", 150, 11);
             outlineBuilder( 1, 7, "nirRoad", 150, -3);
             outlineBuilder( 6, 7, "nirRoad", 150, 6);
 
@@ -408,6 +422,9 @@ function worldBuilder()
 
             outlineBuilder( 3, 7, "nirRoad", 150, -8);
             outlineBuilder( 10, 11, "nirRoad", 150, -3);
+
+            outlineBuilder( 1, 2, "nirRoad", 159, 7);
+            outlineBuilder( 7, 1, "nirRoad", 158, 7);
 
             outlineBuilder( 2, 1, "nirRoad", 150, -5);
             outlineBuilder( 2, 2, "lomita", 151, -5);
@@ -1147,6 +1164,19 @@ function worldBuilder()
         outlineBuilder( 3, 5, "rock", -20, -20);
         outlineBuilder( 2, 3, "rock", -23, -19);
         outlineBuilder( 3, 3, "rock", -15, -21);
+    }
+    else if (map == "arcusMine")
+    {
+        player.dmx = map;
+        player.underground = true;
+        elevation = -1; //underground temperatures are consistently -1 unless there is a certain closeness to magma...
+        region = "arcusMine";
+        //starting chamber
+        outlineBuilder( 6, 1, "rock", 0, 5);
+        outlineBuilder( 3, 2, "rock", -1, -3);
+        outlineBuilder( 1, 1, "rock", 0, 0);
+        outlineBuilder( 1, 4, "rock", -4, -4);
+        outlineBuilder( 2, 2, "rock", -5, -5);
     }
 }
 

@@ -137,6 +137,8 @@ function gameloopOfDestiny(time)
     player.weaponFireResBonus = 0; //fire resistance from weapons wears off at the end of each loop.
     player.shielding = 0; //shielding is set to 0 once per game loop
 
+    quests.flamingBones = [];
+
     //set certain AI variables. (Final AI Reset)
     for (var k = 0; k < ArtificialIntelligenceAccess.length; k++)
     {

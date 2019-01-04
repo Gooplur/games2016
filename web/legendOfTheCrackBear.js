@@ -22,7 +22,7 @@
 //No Man's Land Update (kellish v thengan warzone)
 //todo add the Houl Tribe for the kellish west -- they have wolf clothing and equippable war paints and serrated and spikey metal + bone weapons
 //todo add the tribe of King Har, the Yorken tribe -- the most established kellish tribe (even built a permanent city with stone paving)
-//todo quest idea, the houl tribe village has been conquered and their chieftan taken to be publicly executed -- rescue him with a band of kellish allies, OR stop the kells that mean to rescue him, OR bribe the warden and sneak him out of prison...
+//todo quest idea, the houl tribe village has been conquered and their chieftain taken to be publicly executed -- rescue him with a band of kellish allies, OR stop the kells that mean to rescue him, OR bribe the warden and sneak him out of prison...
 
 //Calcutt Patch
 //todo add roselin's quest
@@ -82,18 +82,18 @@
 //todo add the city Cranheim to the west of Lethik in Thengaria
 //todo add haunted foggy woods: it will be populated with sprites, cheshires, grey trolls, skols, wearwolfs + the usual herbivores...
 //todo add wearwolf quest
-//todo add wearwolf unit and add silver poisoning effect for both the unit and the player
+//todo add wearwolf unit
 //todo add a woodland grey troll
 
 //Vardania Update
 //todo add a boggy vardanian village to the far south west of Cranheim
+//todo add a vampire lord that can give you the gift of vamprism if you drink a goblet of his blood or something like that
 
 
 //Eschuttes Update
 //todo add another echlin tribe village called Eschuttes
 
 //Other
-//todo add vamprism
 //todo add Gargoyl cream - once consumed/used (it is assumed you rub it into your hands) the first creature you punch will be un-petrified and the disturbed flag for punching them will be canceled that once.
 //todo add the Colic symptom of sickness and add the effect 'colicAway' that eating 'aktaltlFrond' gives you.
 //todo add a witch trap house where the witch becomes a mutated magical beast and tries to kill you
@@ -107,7 +107,6 @@
 //todo add interesting and immersive options for player children interaction (like: feeding, arming, praising, getting to know about them, teaching them spells, punishment, loving comments)
 //todo add more alchemy stuff: potions, salves
 //todo finish adding sickness system //add Lodotos, a sickness that one can get in the kellish mud bog. //add sicknesses and symptons (dizziness, pox, fever, fatigue, etc.) ex: make dizziness spin the screen, make pox weaken players constitution etc., make fever decrease thirst.
-//todo add another bank system (Silver Keep) perhaps add loans from both banks.
 //todo add brain flies from 'poly' img.
 //todo the freydic capital city is called Tor-Ruhn-Tel
 //todo add hangover, and soarness effects as well as their mini notices.
@@ -3365,8 +3364,15 @@ function theLegend()
         natalia: ["Natalia", 0],
         giomardo: ["Giomardo", 0],
         ebaro: ["Ebaro", 0],
-        eduardo: ["Eduerdo", 0],
-        barraco: ["Barraco", 0]
+        eduardo: ["Eduardo", 0],
+        barraco: ["Barraco", 0],
+        raldo: ["Raldo", 0],
+        gavor: ["Gavor", 0],
+        bernardo: ["Bernardo", 0],
+        gavilio: ["Gavilio", 0],
+        inquisitionRecruiter: ["InquisitionRecruiter", 0],
+        vorael: ["Vorael", 0],
+        aavai: ["Aavai", 0]
     };
 
 //time Tracker Variables
@@ -3552,7 +3558,14 @@ function theLegend()
         giomardoLDS: true,
         nataliaLDS: true,
         eduardoLDS: true,
-        barracoLDS: true
+        barracoLDS: true,
+        raldoLDS: true,
+        gavorLDS: true,
+        gesuldoLDS: true,
+        bernardoLDS: true,
+        gavilioLDS: true,
+        voraelLDS: true,
+        aavaiLDS: true
     };
 //QUESTS
     quests =
@@ -3583,6 +3596,7 @@ function theLegend()
         atalinTaxes: 0,
 
         //LOGGED PLAYER ACTIONS
+        flamingBones: [],
         atalinStoragePurchased: false,
         venningStoragePurchased: false,
         orjovBeseeched: false,
@@ -3644,10 +3658,22 @@ function theLegend()
         rannukChild: false,
         rannukChildName: "Espen",
 
+        //QUEST: Neighborly Conversion ---- given by Bishop Emmanuel
+        neighborlyConversionQuest: false,
+        neighborlyConversionCompletionStyle: false,
+        neighborlyConversionJarlConvinced: false,
+
         //QUEST: Man of the People ---- given by Hidalgo Eduardo the Commissioner
         manOfThePeopleQuest: false,
         manOfThePeopleCompletionStyle: false,
         manOfThePeopleSlain: 0,
+        manOfThePeopleMen: 21,
+        manOfThePeoplePresented: false,
+        manOfThePeopleTrusted: 0,
+
+        //QUEST: Breakaways ---- given by Ser Barraco Kein the Bandit Chieftain
+        breakawaysQuest: false,
+        breakawaysCompletionStyle: false,
 
         //QUEST: The Estol Conspiracy ---- given by note
         theEstolConspiracyQuest: false,
@@ -3671,6 +3697,8 @@ function theLegend()
         //QUEST: Tortured Spirit ---- given by Bishop Emmanuel
         torturedSpiritQuest: false,
         torturedSpiritCompletionStyle: false,
+        torturedSpiritBishop: false,
+        torturedSpiritPhantom: false,
 
         //QUEST: Imaginary Friend ---- given by Vela the Baker
         imaginaryFriendQuest: false,

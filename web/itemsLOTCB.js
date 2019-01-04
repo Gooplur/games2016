@@ -24664,7 +24664,7 @@ function Item(type, x, y)
             this.weight = 75;
             this.size = 28;
             this.description = "The custom made set of armour once belonged to Ser Barraco Kein, whose band would mostly steal from the rich and would often give some of their spoils to the poor.";
-            this.intForDes = 5;
+            this.intForDes = 10000;
             this.intDescription = "Everyone in Nirwaden's north country know of him. He was exiled after he could no longer stand serving the rich who lived extravegently at the expense of the poor.";
 
             //Define Utility
@@ -30374,7 +30374,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(chupa, 169, 88, 28, 53, X - this.X + (1/2 * CCC.width) - (1/2 * 28 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 53 * 1), 28 * 1, 53 * 1);
         }
-        else if (this.type == "chupacabrassHead")
+        else if (this.type == "chupacabrasHead")
         {
             XXX.beginPath();
             XXX.drawImage(chupa, 224, 738, 65, 63, X - this.X + (1/2 * CCC.width) - (1/2 * 65 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 63 * 1), 65 * 1, 63 * 1);
@@ -34312,7 +34312,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(chupa, 169, 88, 28, 53, this.invX - (1/2 * 28 * 1), this.invY - (1/2 * 53 * 1), 28 * 1, 53 * 1);
         }
-        else if (this.type == "chupacabrassHead")
+        else if (this.type == "chupacabrasHead")
         {
             LXX.beginPath();
             LXX.drawImage(chupa, 224, 738, 65, 63, this.invX - (1/2 * 65 * 1), this.invY - (1/2 * 63 * 1), 65 * 1, 63 * 1);
@@ -38225,7 +38225,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(chupa, 169, 88, 28, 53, this.invX - (1/2 * 28 * 1), this.invY - (1/2 * 53 * 1), 28 * 1, 53 * 1);
         }
-        else if (this.type == "chupacabrassHead")
+        else if (this.type == "chupacabrasHead")
         {
             XXX.beginPath();
             XXX.drawImage(chupa, 224, 738, 65, 63, this.invX - (1/2 * 65 * 1), this.invY - (1/2 * 63 * 1), 65 * 1, 63 * 1);

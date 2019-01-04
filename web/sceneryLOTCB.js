@@ -3328,6 +3328,112 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 this.activate = false;
             }
         }
+        else if (this.type == "tombstone")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+
+            this.zIndex = 1;
+            if (this.temporary == 0) //mossy med dark
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(tomb, 979, 647, 49, 25, -(1/2 * 49 * this.information), -(1/2 * 25 * this.information), 49 * this.information, 25 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 1) //mossy med light
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(tomb, 1043, 645, 49, 25, -(1/2 * 49 * this.information), -(1/2 * 25 * this.information), 49 * this.information, 25 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 2) //dark square
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(tomb, 966, 681, 49, 45, -(1/2 * 49 * this.information), -(1/2 * 45 * this.information), 49 * this.information, 45 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 3) //circle
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(tomb, 1019, 672, 49, 45, -(1/2 * 49 * this.information), -(1/2 * 45 * this.information), 49 * this.information, 45 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 4) //large light rect
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(tomb, 1005, 719, 49, 45, -(1/2 * 49 * this.information), -(1/2 * 45 * this.information), 49 * this.information, 45 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 5) //large dark square
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(tomb, 1112, 652, 49, 25, -(1/2 * 49 * this.information), -(1/2 * 25 * this.information), 49 * this.information, 25 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 6) //mossy large
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(tomb, 1091, 707, 49, 45, -(1/2 * 49 * this.information), -(1/2 * 45 * this.information), 49 * this.information, 45 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 7) //skinny mossy light
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(tomb, 1180, 659, 49, 45, -(1/2 * 49 * this.information), -(1/2 * 45 * this.information), 49 * this.information, 45 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 8) //medlarge pillar
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(tomb, 1187, 710, 49, 45, -(1/2 * 49 * this.information), -(1/2 * 45 * this.information), 49 * this.information, 45 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 9) //large long rect
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(tomb, 1251, 657, 49, 45, -(1/2 * 49 * this.information), -(1/2 * 45 * this.information), 49 * this.information, 45 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 10) //long skinny light
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(tomb, 1251, 704, 49, 45, -(1/2 * 49 * this.information), -(1/2 * 45 * this.information), 49 * this.information, 45 * this.information);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 1;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
         else if (this.type == "smallTable")
         {
             //TRAITS
@@ -7278,6 +7384,108 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             //INTERACTION
             if (this.activate == true)
             {
+                this.activate = false;
+                X = this.temporary[0];
+                Y = this.temporary[1];
+                map = this.information;
+            }
+        }
+        else if (this.type == "arcusExit")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 60;
+
+            //DRAWSELF
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3.2), -(1/2 * 16 * 3.2) + 38, 18 * 3.2, 16 * 3.2);
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3.1), -(1/2 * 16 * 3.1) + 19, 18 * 3.1, 16 * 3.1);
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3.2), -(1/2 * 16 * 3.2) - 38, 18 * 3.2, 16 * 3.2);
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3.1), -(1/2 * 16 * 3.1) - 19, 18 * 3.1, 16 * 3.1);
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3), -(1/2 * 16 * 3), 18 * 3, 16 * 3);
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3.2), -(1/2 * 16 * 3.2) + 38, 18 * 3.2, 16 * 3.2);
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3.1), -(1/2 * 16 * 3.1) + 19, 18 * 3.1, 16 * 3.1);
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3.2), -(1/2 * 16 * 3.2) - 38, 18 * 3.2, 16 * 3.2);
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3.1), -(1/2 * 16 * 3.1) - 19, 18 * 3.1, 16 * 3.1);
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3), -(1/2 * 16 * 3), 18 * 3, 16 * 3);
+
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3.2) + 25, -(1/2 * 16 * 3.2) + 38, 18 * 3.2, 16 * 3.2);
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3.1) + 25, -(1/2 * 16 * 3.1) + 19, 18 * 3.1, 16 * 3.1);
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3.2) + 25, -(1/2 * 16 * 3.2) - 38, 18 * 3.2, 16 * 3.2);
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3.1) + 25, -(1/2 * 16 * 3.1) - 19, 18 * 3.1, 16 * 3.1);
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3) + 25, -(1/2 * 16 * 3), 18 * 3, 16 * 3);
+
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3.2) + 50, -(1/2 * 16 * 3.2) + 38, 18 * 3.2, 16 * 3.2);
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3.1) + 50, -(1/2 * 16 * 3.1) + 19, 18 * 3.1, 16 * 3.1);
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3.2) + 50, -(1/2 * 16 * 3.2) - 38, 18 * 3.2, 16 * 3.2);
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3.1) + 50, -(1/2 * 16 * 3.1) - 19, 18 * 3.1, 16 * 3.1);
+            XXX.drawImage(theng, 779, 780, 18, 16, -(1/2 * 18 * 3) + 50, -(1/2 * 16 * 3), 18 * 3, 16 * 3);
+            XXX.restore();
+
+            //produces light
+            lights.push({X:this.X, Y: this.Y, size: 170, extraStops: true, GRD: 0.20, Alpha: 0.80, showMe: false});
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 45;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                if (uniqueChars.gavorLDS == true)
+                {
+                    var arcusPay = 0;
+                    for (var i = Inventory.length -1; i >= 0; i--)
+                    {
+                        if (Inventory[i][0].type == "alcaStone")
+                        {
+                            arcusPay += Math.floor(0.5 * Inventory[i][1]);
+                            Inventory.splice(i, 1);
+                        }
+                        else if (Inventory[i][0].type == "ironOre")
+                        {
+                            arcusPay += Math.floor(5 * Inventory[i][1]);
+                            Inventory.splice(i, 1);
+                        }
+                        else if (Inventory[i][0].type == "copperOre")
+                        {
+                            arcusPay += Math.floor(4 * Inventory[i][1]);
+                            Inventory.splice(i, 1);
+                        }
+                        else if (Inventory[i][0].type == "rawGold")
+                        {
+                            arcusPay += Math.floor(92 * Inventory[i][1]);
+                            Inventory.splice(i, 1);
+                        }
+                        else if (Inventory[i][0].type == "coal")
+                        {
+                            arcusPay += Math.floor(2.5 * Inventory[i][1]);
+                            Inventory.splice(i, 1);
+                        }
+                    }
+
+                    if (arcusPay > 0)
+                    {
+                        var coinHitz = -1;
+                        for (var i = 0; i < Inventory.length; i++)
+                        {
+                            if (Inventory[i][0].type == "coins")
+                            {
+                                coinHitz = i;
+                            }
+                        }
+                        if (coinHitz > -1)
+                        {
+                            Inventory[coinHitz][1] += arcusPay;
+                        }
+                        else
+                        {
+                            Inventory.unshift([new Item("coins", false, false), arcusPay]);
+                        }
+                    }
+                }
+
                 this.activate = false;
                 X = this.temporary[0];
                 Y = this.temporary[1];
@@ -13966,6 +14174,600 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             if (this.activate == true)
             {
                 this.activate = false;
+            }
+        }
+        else if (this.type == "grave")
+        {
+            //TRAITS
+            this.owned = this.information[0];
+            this.zIndex = 1;
+            this.solid = false;
+            if (this.runOneTime)
+            {
+                this.runOneTime = false;
+                this.treeHealth = 5;
+                this.phase = 0;
+            }
+            this.interactionRange = 115;
+
+            var szx = 1.5;
+            var szz = 1.25;
+            var ticRate = 10/3;
+
+            //DRAWSELF
+            if (this.temporary == 0) //no coffin (interactive)
+            {
+                if (this.phase == 0)
+                {
+                    //don't draw anything
+                }
+                else if (this.phase == 1)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(tomb, 1734, 249, 89, 131, -(1/2 * 89 * szx), -(1/2 * 131 * szx), 89 * szx, 131 * szx);
+                    XXX.restore();
+                }
+                else if (this.phase == 2)
+                {
+                    if (this.lit == true)
+                    {
+                        if (this.tic < 10)
+                        {
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(tomb, 1351, 647, 76, 135, -(1/2 * 76 * szx + 0.5), -(1/2 * 135 * szx + 0.055), 76 * szx, 135 * szx);
+                            XXX.restore();
+                        }
+                        else if (this.tic < 20)
+                        {
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(tomb, 1478, 648, 76, 135, -(1/2 * 76 * szx - 1.2), -(1/2 * 135 * szx - 1.2), 76 * szx, 135 * szx);
+                            XXX.restore();
+                        }
+                        else if (this.tic < 30)
+                        {
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(tomb, 1603, 644, 76, 135, -(1/2 * 76 * szx - 2.5), -(1/2 * 135 * szx - 1), 76 * szx, 135 * szx);
+                            XXX.restore();
+                        }
+                        else
+                        {
+                            this.tic = 0;
+
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(tomb, 1603, 644, 76, 135, -(1/2 * 76 * szx - 2.5), -(1/2 * 135 * szx - 1), 76 * szx, 135 * szx);
+                            XXX.restore();
+                        }
+
+
+                        //if (zKey)
+                        //{
+                        //    zKey = false;
+                        //    this.tic += ticRate;
+                        //    console.log(this.tic);
+                        //}
+                        this.tic += ticRate;
+                    }
+                    else
+                    {
+                        this.tic = 0;
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(tomb, 1746, 570, 76, 135, -(1/2 * 76 * szx + 0), -(1/2 * 135 * szx + 0), 76 * szx, 135 * szx);
+                        XXX.restore();
+                    }
+                }
+            }
+            else if (this.temporary == 1) //no coffin empty (interactive)
+            {
+                if (this.phase == 0)
+                {
+                    //don't draw anything
+                }
+                else if (this.phase == 1)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(tomb, 1734, 249, 89, 131, -(1/2 * 89 * szx), -(1/2 * 131 * szx), 89 * szx, 131 * szx);
+                    XXX.restore();
+                }
+                else if (this.phase >= 2)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(tomb, 1735, 393, 89, 131, -(1/2 * 89 * szx), -(1/2 * 131 * szx), 89 * szx, 131 * szx);
+                    XXX.restore();
+                }
+            }
+            else if (this.temporary == 2) //with coffin (interactive)
+            {
+                if (this.phase == 0)
+                {
+                    //don't draw anything
+                }
+                else if (this.phase == 1)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(tomb, 1734, 249, 89, 131, -(1/2 * 89 * szx), -(1/2 * 131 * szx), 89 * szx, 131 * szx);
+                    XXX.restore();
+                }
+                else if (this.phase == 2)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(tomb, 1735, 393, 89, 131, -(1/2 * 89 * szx), -(1/2 * 131 * szx), 89 * szx, 131 * szx);
+                    XXX.restore();
+
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(tomb, 1628, 221, 74, 115, -(1/2 * 74 * szz), -(1/2 * 115 * szz), 74 * szz, 115 * szz);
+                    XXX.restore();
+                }
+                else if (this.phase == 3)
+                {
+                    if (this.lit == true)
+                    {
+                        if (this.tic < 10)
+                        {
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(tomb, 1735, 393, 89, 131, -(1/2 * 89 * szx), -(1/2 * 131 * szx), 89 * szx, 131 * szx);
+                            XXX.restore();
+
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(tomb, 1555, 111, 74, 115, -(1/2 * 74 * szz), -(1/2 * 115 * szz), 74 * szz, 115 * szz);
+                            XXX.restore();
+                        }
+                        else if (this.tic < 20)
+                        {
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(tomb, 1735, 393, 89, 131, -(1/2 * 89 * szx), -(1/2 * 131 * szx), 89 * szx, 131 * szx);
+                            XXX.restore();
+
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(tomb, 1555, 0, 74, 115, -(1/2 * 74 * szz), -(1/2 * 115 * szz), 74 * szz, 115 * szz);
+                            XXX.restore();
+                        }
+                        else if (this.tic < 30)
+                        {
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(tomb, 1735, 393, 89, 131, -(1/2 * 89 * szx), -(1/2 * 131 * szx), 89 * szx, 131 * szx);
+                            XXX.restore();
+
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(tomb, 1636, 0, 74, 115, -(1/2 * 74 * szz), -(1/2 * 115 * szz), 74 * szz, 115 * szz);
+                            XXX.restore();
+                        }
+                        else
+                        {
+                            this.tic = 0;
+
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(tomb, 1735, 393, 89, 131, -(1/2 * 89 * szx), -(1/2 * 131 * szx), 89 * szx, 131 * szx);
+                            XXX.restore();
+
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(tomb, 1636, 0, 74, 115, -(1/2 * 74 * szz), -(1/2 * 115 * szz), 74 * szz, 115 * szz);
+                            XXX.restore();
+                        }
+
+
+                        this.tic += ticRate;
+                    }
+                    else
+                    {
+                        this.tic = 0;
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(tomb, 1735, 393, 89, 131, -(1/2 * 89 * szx), -(1/2 * 131 * szx), 89 * szx, 131 * szx);
+                        XXX.restore();
+
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(tomb, 1632, 107, 74, 115, -(1/2 * 74 * szz), -(1/2 * 115 * szz), 74 * szz, 115 * szz);
+                        XXX.restore();
+                    }
+                }
+            }
+            else if (this.temporary == 3) //with coffin empty (interactive)
+            {
+                if (this.phase == 0)
+                {
+                    //don't draw anything
+                }
+                else if (this.phase == 1)
+                {
+
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(tomb, 1734, 249, 89, 131, -(1/2 * 89 * szx), -(1/2 * 131 * szx), 89 * szx, 131 * szx);
+                    XXX.restore();
+                }
+                else if (this.phase == 2)
+                {
+
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(tomb, 1735, 393, 89, 131, -(1/2 * 89 * szx), -(1/2 * 131 * szx), 89 * szx, 131 * szx);
+                    XXX.restore();
+
+
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(tomb, 1628, 221, 74, 115, -(1/2 * 74 * szz), -(1/2 * 115 * szz), 74 * szz, 115 * szz);
+                    XXX.restore();
+                }
+                else if (this.phase >= 3)
+                {
+                    this.tic = 0;
+
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(tomb, 1735, 393, 89, 131, -(1/2 * 89 * szx), -(1/2 * 131 * szx), 89 * szx, 131 * szx);
+                    XXX.restore();
+
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(tomb, 1567, 237, 74, 115, -(1/2 * 74 * szz), -(1/2 * 115 * szz), 74 * szz, 115 * szz);
+                    XXX.restore();
+                }
+            }
+            else if (this.temporary == 4) //coffin only (interactive)
+            {
+                if (this.phase == 0)
+                {
+
+                    this.phase = 1;
+                }
+                else if (this.phase == 1)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(tomb, 1628, 221, 74, 115, -(1/2 * 74 * szz), -(1/2 * 115 * szz), 74 * szz, 115 * szz);
+                    XXX.restore();
+                }
+                else if (this.phase == 2)
+                {
+                    if (this.lit == true)
+                    {
+                        if (this.tic < 10)
+                        {
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(tomb, 1555, 111, 74, 115, -(1/2 * 74 * szz), -(1/2 * 115 * szz), 74 * szz, 115 * szz);
+                            XXX.restore();
+                        }
+                        else if (this.tic < 20)
+                        {
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(tomb, 1555, 0, 74, 115, -(1/2 * 74 * szz), -(1/2 * 115 * szz), 74 * szz, 115 * szz);
+                            XXX.restore();
+                        }
+                        else if (this.tic < 30)
+                        {
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(tomb, 1636, 0, 74, 115, -(1/2 * 74 * szz), -(1/2 * 115 * szz), 74 * szz, 115 * szz);
+                            XXX.restore();
+                        }
+                        else
+                        {
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(tomb, 1636, 0, 74, 115, -(1/2 * 74 * szz), -(1/2 * 115 * szz), 74 * szz, 115 * szz);
+                            XXX.restore();
+                            this.tic = 0;
+                        }
+
+
+                        this.tic += ticRate;
+                    }
+                    else
+                    {
+                        this.tic = 0;
+
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(tomb, 1632, 107, 74, 115, -(1/2 * 74 * szz), -(1/2 * 115 * szz), 74 * szz, 115 * szz);
+                        XXX.restore();
+                    }
+                }
+            }
+            else if (this.temporary == 5) //coffin only empty (interactive)
+            {
+                this.interactionRange = 120;
+                var szz = 1.25;
+                if (this.phase == 0)
+                {
+
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(tomb, 1628, 221, 74, 115, -(1/2 * 74 * szz), -(1/2 * 115 * szz), 74 * szz, 115 * szz);
+                    XXX.restore();
+                }
+                else if (this.phase == 1)
+                {
+
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(tomb, 1567, 237, 74, 115, -(1/2 * 74 * szz), -(1/2 * 115 * szz), 74 * szz, 115 * szz);
+                    XXX.restore();
+                }
+            }
+            else if (this.temporary == 6) //dug up grave (decorative)
+            {
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(tomb, 1735, 393, 89, 131, -(1/2 * 89 * szx), -(1/2 * 131 * szx), 89 * szx, 131 * szx);
+                XXX.restore();
+            }
+            else if (this.temporary == 7) //open coffin (decorative)
+            {
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(tomb, 1567, 237, 74, 115, -(1/2 * 74 * szz), -(1/2 * 115 * szz), 74 * szz, 115 * szz);
+                XXX.restore();
+            }
+            else if (this.temporary == 8) //dug up empty coffin (decorative)
+            {
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(tomb, 1735, 393, 89, 131, -(1/2 * 89 * szx), -(1/2 * 131 * szx), 89 * szx, 131 * szx);
+                XXX.restore();
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(tomb, 1567, 237, 74, 115, -(1/2 * 74 * szz), -(1/2 * 115 * szz), 74 * szz, 115 * szz);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 33;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+
+                if (this.temporary == 0)
+                {
+                    if (this.phase == 2 && this.lit == false)
+                    {
+                        for (var i = 0; i < Inventory.length; i++)
+                        {
+                            if (Inventory[i][0].type == "fireStarter")
+                            {
+                                this.lit = true;
+                                break;
+                            }
+                        }
+                        if (this.lit == true)
+                        {
+                            dClick = true;
+                        }
+                    }
+                }
+                else if (this.temporary == 1)
+                {
+                    dClick = true;
+                }
+                else if (this.temporary == 2)
+                {
+                    if (this.phase == 2)
+                    {
+                        this.phase = 3;
+                    }
+                    else if (this.phase == 3)
+                    {
+                        var frstr = false;
+                        for (var i = 0; i < Inventory.length; i++)
+                        {
+                            if (Inventory[i][0].type == "fireStarter")
+                            {
+                                this.lit = true;
+                                frstr = true;
+                                break;
+                            }
+                        }
+                        if (frstr == false && this.lit == false)
+                        {
+                            this.phase = 2;
+                        }
+                        else if (this.lit == true)
+                        {
+                            dClick = true;
+                        }
+                    }
+                }
+                else if (this.temporary == 3)
+                {
+                    if (this.phase == 2)
+                    {
+                        this.phase = 3;
+                    }
+                    else if (this.phase == 3)
+                    {
+                        this.phase = 2;
+                    }
+                }
+                else if (this.temporary == 4)
+                {
+                    if (this.phase == 1)
+                    {
+                        this.phase = 2;
+                    }
+                    else if (this.phase == 2)
+                    {
+                        var frstr = false;
+                        for (var i = 0; i < Inventory.length; i++)
+                        {
+                            if (Inventory[i][0].type == "fireStarter")
+                            {
+                                this.lit = true;
+                                frstr = true;
+                                break;
+                            }
+                        }
+                        if (frstr == false && this.lit == false)
+                        {
+                            this.phase = 1;
+                        }
+                        else if (this.lit == true)
+                        {
+                            dClick = true;
+                        }
+                    }
+                }
+                else if (this.temporary == 5)
+                {
+                    if (this.phase == 0)
+                    {
+                        this.phase = 1;
+                    }
+                    else if (this.phase == 1)
+                    {
+                        this.phase = 0;
+                    }
+                }
+                else
+                {
+                    dClick = true;
+                }
+
+            }
+
+            if (this.temporary >= 0 && this.temporary < 4 && this.phase == 0 || this.temporary >= 0 && this.temporary < 4 && this.phase == 1) //if this tree is in its cut down phase.
+            {
+                //console.log(player.finalAttackStage);
+                if (player.weaponEquipped == "spade" && player.cutcut == true && this.playerer < 170)
+                {
+                    if (this.owned != "nirwaden" || player.inquisitionRank == "none")
+                    {
+                        if (this.owned != false)
+                        {
+                            if (player.noticed == true)
+                            {
+                                this.changeFactionRelation(-8);
+                            }
+                        }
+                    }
+                    var distFromCutCut = Math.sqrt((this.X - X)*(this.X - X) + (this.Y - Y)*(this.Y - Y));
+                    console.log(distFromCutCut);
+                    if (distFromCutCut <= player.weapon.range * 7 + 107)
+                    {
+                        this.treeHealth -= 1;
+                    }
+
+                    if (this.treeHealth <= 0)
+                    {
+                        this.treeHealth = 5;
+                        if (this.phase == 0)
+                        {
+                            this.phase = 1;
+                        }
+                        else if (this.phase <= 1)
+                        {
+                            this.phase = 2;
+                        }
+                    }
+                }
+            }
+
+            if (this.playerer <= this.radius && this.lit == true) //fire burns the player but heat resistance can reduce the damage it does.
+            {
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    if (this.dst(ArtificialIntelligenceAccess[i].X, ArtificialIntelligenceAccess[i].Y) < (this.radius * 9/10))
+                    {
+                        ArtificialIntelligenceAccess[i].burningTime = new Date().getTime();
+                    }
+                }
+                if (player.mageShield > 0)
+                {
+                    player.mageShield -= 0.125;
+                    player.warmth += Math.max(0, (1 - (player.heatResistance / 200)));
+                }
+                else
+                {
+                    player.health += player.mageShield;
+                    player.mageShield = 0;
+
+                    player.health -= Math.max(0, (0.125 - (player.heatResistance / 200)));
+                    player.warmth += Math.max(0, (1 - (player.heatResistance / 200)));
+                    player.burningTime = new Date().getTime();
+                }
+            }
+
+            if (this.lit == true)
+            {
+                if (this.information[1] != false)
+                {
+                    quests.flamingBones.push(this.information[1]);
+                }
+                //produce light
+                if (timeOfDay != "Day")
+                {
+                    lights.push({X:this.X, Y: this.Y, size: 190, extraStops: true, GRD: 0.15, Alpha: 0.65, showMe: false});
+                }
+                //produce heat
+                if (this.playerer <= 176)
+                {
+                    player.warmth += Math.max(0, (0.90 - (player.heatResistance / 200)));
+                }
             }
         }
         else if (this.type == "pineTree")

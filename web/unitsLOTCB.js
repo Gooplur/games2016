@@ -194,6 +194,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     this.shortSighted = false;
     this.disdained = false; // in some factions people who are generally hated within the faction will not be protected by other members of the faction and they will not rush to their own faction's aid.
     this.savified = false; //this determines if a unit can resist a safe map edit from cropper or trimmer functions
+    this.patrolPause = false; //this determines if the patrol function is paused or not. This unpauses at the end of every loop.
 
     //Sound variables
     this.voicedSounds = [];
@@ -302,6 +303,12 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.muzzle = true;
             this.baseTeam = "matado";
             this.team = "matado";
+        }
+        else if (this.ID == "Ser Barraco Kein the Bandit Chieftain" || this.ID == "Barracano")
+        {
+            this.muzzle = false;
+            this.baseTeam = "Barracano";
+            this.team = "Barracano";
         }
     };
 
@@ -798,7 +805,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     var swtchTrgt = false;
                     for (var j = 0; j < this.allys.length; j++)
                     {
-                        if (this.allys[j] == ArtificialIntelligenceAccess[i].team || ArtificialIntelligenceAccess[i].dmx != this.dmx || ArtificialIntelligenceAccess[i].petrified && this.type != "Basilisk" || ArtificialIntelligenceAccess[i].petrified && ArtificialIntelligenceAccess[i].health <= 0 && this.type == "Basilisk" || ArtificialIntelligenceAccess[i].insect == true && this.insect == false && this.bugger == false || ArtificialIntelligenceAccess[i].type == "Changeling" && this.type == "Changeling" || this.team == "matado" && ArtificialIntelligenceAccess[i].ID != "Matador")
+                        if (this.allys[j] == ArtificialIntelligenceAccess[i].team || ArtificialIntelligenceAccess[i].dmx != this.dmx || ArtificialIntelligenceAccess[i].petrified && this.type != "Basilisk" || ArtificialIntelligenceAccess[i].petrified && ArtificialIntelligenceAccess[i].health <= 0 && this.type == "Basilisk" || ArtificialIntelligenceAccess[i].insect == true && this.insect == false && this.bugger == false || ArtificialIntelligenceAccess[i].type == "Changeling" && this.type == "Changeling" || this.team == "matado" && ArtificialIntelligenceAccess[i].ID != "Matador" || this.team == "Barracano" && ArtificialIntelligenceAccess[i].team == "Nirwaden" && ArtificialIntelligenceAccess[i].type == "Person" || this.team == "EstolGang3" && ArtificialIntelligenceAccess[i].team == "Nirwaden" && ArtificialIntelligenceAccess[i].type == "Person")
                         {
                             if (ArtificialIntelligenceAccess[i].disdained == true && ArtificialIntelligenceAccess[i].disturbed == false || ArtificialIntelligenceAccess[i].disdained == false || player.title != "Highfolk" && player.title != "Nobility" && player.title != "Royalty" && player.raceName == "Nirwaden" || player.title != "Nobility" && player.title != "Royalty" && player.raceName != "Nirwaden" || this.disdained)
                             {
@@ -930,12 +937,75 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.allys.push("Thengar");
             this.allys.push("Kel");
             this.allys.push("Freynor");
-            this.allys.push("Aldrek");
             this.allys.push("Orgell");
             this.allys.push("Vardan");
             this.allys.push("Cephrite");
             this.allys.push("clamia");
             this.allys.push("EstolGang");
+            this.allys.push("Sylkeem");
+        }
+        if (this.team == "Barracano")
+        {
+            if (player.raceName != "Aldrek" && quests.manOfThePeopleMen >= 21)
+            {
+                if (quests.manOfThePeopleCompletionStyle == "barracano")
+                {
+                    console.log("pass");
+                    var costo = 0;
+                    for (var ij = 0; ij < Inventory.length; ij ++)
+                    {
+                        Inventory[ij][0].setItemID();
+                        if (typeof(Inventory[ij][0].buyValue) != "undefined" && Inventory[ij][0].subUtility != "armour" && Inventory[ij][0].utility != "weapon" && Inventory[ij][0].utility != "ranged" && Inventory[ij][0].utility != "spell")
+                        {
+                            costo += (Inventory[ij][0].buyValue * Inventory[ij][1]);
+                        }
+                    }
+                    if (costo < 230)
+                    {
+                        this.allys.push("player");
+                    }
+                    else
+                    {
+                        this.disturbed = true
+                    }
+                }
+                else
+                {
+                    var costo = 0;
+                    for (var ij = 0; ij < Inventory.length; ij ++)
+                    {
+                        Inventory[ij][0].setItemID();
+                        if (typeof(Inventory[ij][0].buyValue) != "undefined" && Inventory[ij][0].subUtility != "armour" && Inventory[ij][0].utility != "weapon" && Inventory[ij][0].utility != "ranged" && Inventory[ij][0].utility != "spell")
+                        {
+                            costo += (Inventory[ij][0].buyValue * Inventory[ij][1]);
+                        }
+                    }
+                    if (costo < 120)
+                    {
+                        if (this.health >= this.healthMAX)
+                        {
+                            this.disturbed = false;
+                        }
+                    }
+                    else
+                    {
+                        this.disturbed = true
+                    }
+                }
+            }
+            else
+            {
+                this.disturbed = true
+            }
+
+            this.allys.push("TheBalgurMercenaries");
+            this.allys.push("Thengar");
+            this.allys.push("Kel");
+            this.allys.push("Freynor");
+            this.allys.push("Orgell");
+            this.allys.push("Vardan");
+            this.allys.push("Cephrite");
+            this.allys.push("clamia");
             this.allys.push("Sylkeem");
         }
         if (this.team == "arena1" || this.team == "arena2" || this.team == "arena3" || this.team == "arena4" || this.team == "arena5")
@@ -1126,6 +1196,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 this.allys.push("matado");
             }
+            if (this.type == "Person")
+            {
+                this.allys.push("Barracano");
+            }
         }
         if (this.team == "TheBalgurMercenaries")
         {
@@ -1196,14 +1270,6 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.allys.push("clamia");
             this.allys.push("EstolGang");
             this.allys.push("EstolGang2");
-
-            if (this.target != "none" && this.target != player)
-            {
-                if (this.target.type == "Person")
-                {
-                    this.allys.push("Nirwaden");
-                }
-            }
         }
         if (this.team == "Sylkeem")
         {
@@ -6765,7 +6831,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
         if (numberOfStops != 0)
         {
-            if (!this.suspendConflictingPointSystems && !this.petrified)
+            if (!this.suspendConflictingPointSystems && !this.petrified && this.patrolPause == false)
             {
                 this.newRotation = Math.atan2(this.patrolDestinationY - this.Y, this.patrolDestinationX - this.X) + Math.PI; //Point toward the destination.
 
@@ -8856,6 +8922,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 this.costumeEngine(7, 0.25, true);
             }
+            else if (this.weapon == "nirineseSpear")
+            {
+                this.costumeEngine(7, 0.235, true);
+            }
         }
     };
 
@@ -9463,6 +9533,34 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             else if (theCostume >= 8)
             {
                 this.drawUnit(verse, 1085, 2, 90, 96, -49, -84, 90, 96, 1 / 2 * Math.PI);
+            }
+        }
+        else if (this.weapon == "nirineseSpear")
+        {
+            this.damageFrame = "automatic";
+            if (theCostume <= 0)
+            {
+                this.drawUnit(verse, 41, 1505, 42, 87, -9, -66.5, 50.4, 98.1, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 1)
+            {
+                this.drawUnit(verse, 82, 1507, 42, 87, -7, -68.5, 50.4, 98.1, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 2)
+            {
+                this.drawUnit(verse, 120, 1506, 42, 87, -6, -72, 50.4, 98.1, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 3)
+            {
+                this.drawUnit(verse, 159, 1501, 42, 87, -6, -76, 50.4, 98.1, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 4)
+            {
+                this.drawUnit(verse, 193, 1501, 42, 87, -14.5, -77, 50.4, 98.1, 1 / 2 * Math.PI);
+            }
+            else if (theCostume >= 5)
+            {
+                this.drawUnit(verse, 224, 1501, 42, 87, -17.5, -79, 50.4, 98.1, 1 / 2 * Math.PI);
             }
         }
         else if (this.weapon == "thenganDagger")
@@ -13717,6 +13815,41 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
             }
             this.swimSpeed = this.speed * 0.8;
+        }
+        else if (this.type == "Phantom")
+        {
+            this.damageFrame = "automatic";
+            this.team = "undead";
+            if (this.ID == "docile")
+            {
+                this.team = "docile";
+            }
+            this.baseTeam = this.team;
+            this.tamable = false;
+
+            this.magicalResistance = 10;
+            this.heatResistance = 10;
+            this.attackStyle = "chunked";
+            this.attackRate = 0;  //this is for rapid style combat only.
+            this.healthMAX = 9e19; //effectively infinite
+            this.health = this.healthMAX;
+            this.armour = 9e19; //effectively infinite
+            this.speed = 4 + (Math.floor(Math.random() * 8) / 10);
+            this.rangeOfSight = 600; //This is just to set the variable initially. The rest is variable.
+            this.rotationSpeed = 0.1;
+            this.engagementRadius = 37;
+            this.sizeRadius = 1;
+            this.negateArmour = 9e19;
+            this.attackWait = 2;
+            this.hauntX = this.X;
+            this.hauntY = this.Y;
+
+            this.alphaSize = 1;
+
+            this.yAdjustment = 0;
+            this.xAdjustment = 0;
+
+            this.swimSpeed = this.speed * 1;
         }
         else if (this.type == "Changeling" && this.childForm == false)
         {
@@ -24792,6 +24925,169 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.drawUnit(verse, 2929, 283, 54, 32, -35 - this.xAdjustment, -22 - this.yAdjustment, 54 * this.alphaSize, 32 * this.alphaSize);
             }
         }
+        //PHANTOM
+        if (this.type == "Phantom")
+        {
+            this.flying = true;
+            this.ghost = true;
+            this.deleteBody = true;
+
+            //kill phantom when its bones are set aflame
+            for (var i = 0; i < quests.flamingBones.length; i++)
+            {
+                if (quests.flamingBones[i] == this.ID)
+                {
+                    if (this.ID == "Gesuldo")
+                    {
+                        uniqueChars.gesuldoLDS = false;
+                        this.burningTime = new Date().getTime();
+                        this.heatResistance = -5;
+                        this.speed = 0;
+                        this.X = this.hauntX;
+                        this.Y = this.hauntY;
+                        this.sizeRadius = 55;
+                        this.engagementRadius = 1;
+                        this.healthMAX = 35;
+                        if (this.health > this.healthMAX)
+                        {
+                            this.health = this.healthMAX;
+                        }
+                    }
+                }
+            }
+
+
+            //Set Drops and experience
+            this.experience = 88 * ((player.getIntelligence() / 50) + 1);
+
+            this.drops = [[new Item("nechromanticDust", this.X, this.Y), 1]];
+
+            //RANGE OF SIGHT (anything related to range of sight)
+            this.rangeOfSightCalculator(666, true);
+
+
+            //AI
+            if (this.alive == true)
+            {
+                if (timeOfDay != "Day" && timeOfDay != "Dawn")
+                {
+                    this.Attack(36, 6);
+                }
+
+                //this.deathChecker();
+                this.disturbedTimer();
+                this.visibleSight();
+                this.friendDecider();
+                this.targeting();
+
+                if (this.target == player)
+                {
+                    var haunt = {X: this.hauntX, Y: this.hauntY};
+                    if (timeOfDay != "Day" && timeOfDay != "Dawn")
+                    {
+                        if (this.DTU(haunt) <= 666)
+                        {
+                            this.pointTowardsPlayer();
+                            this.moveInRelationToPlayer();
+                        }
+                        else
+                        {
+                            this.X = this.hauntX;
+                            this.Y = this.hauntY;
+                        }
+                    }
+                }
+                else if (this.target != "none")
+                {
+                    var haunt = {X: this.hauntX, Y: this.hauntY};
+                    if (timeOfDay != "Day" && timeOfDay != "Dawn")
+                    {
+                        if (this.DTU(haunt) <= 666)
+                        {
+                            this.pointTowards(this.target);
+                            this.moveInRelationToThing(this.target);
+                        }
+                        else
+                        {
+                            this.X = this.hauntX;
+                            this.Y = this.hauntY;
+                        }
+                    }
+                }
+
+            }
+
+            //ANIMATIONS
+
+            if (this.alive == true)
+            {
+                if (this.moving && !this.attacking) //If moving and not attacking initiate moving animation...
+                {
+                    this.costumeEngine(3, 0.085, false);
+                }
+                else if (this.attacking) //otherwise if it is attacking then initiate attacking animation, and if neither...
+                {
+                    if(new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000 / timeSpeed * this.timeResistance))
+                    {
+                        this.costumeEngine(8, 0.110, true);
+                    }
+                }
+
+                // the frames/stages/costumes of the animation.
+                var theCostume = Math.floor( this.costume ); //This rounds this.costume down to the nearest whole number.
+
+                if (theCostume <= 0)
+                {
+                    //draw nothing
+                }
+                else if (theCostume <= 1)
+                {
+                    if (this.attacking)
+                    {
+                        this.drawUnit(bogg, 692, 1197, 46, 48, -1/2 * 46 - this.xAdjustment, -1/2 * 48 - this.yAdjustment, 46 * this.alphaSize, 48 * this.alphaSize, -1/2 * Math.PI);
+                    }
+                }
+                else if (theCostume <= 2)
+                {
+                    if (this.attacking)
+                    {
+                        this.drawUnit(bogg, 684, 1245, 65, 61, -1/2 * 65 - this.xAdjustment, -1/2 * 61 - this.yAdjustment, 65 * this.alphaSize, 61 * this.alphaSize, -1/2 * Math.PI);
+                    }
+                }
+                else if (theCostume <= 3)
+                {
+                    if (this.attacking)
+                    {
+                        this.drawUnit(bogg, 656, 1303, 130, 80, -1/2 * 130 - this.xAdjustment, -1/2 * 80 - this.yAdjustment, 130 * this.alphaSize, 80 * this.alphaSize, -1/2 * Math.PI);
+                    }
+                }
+                else if (theCostume <= 4)
+                {
+                    if (this.attacking)
+                    {
+                        this.drawUnit(bogg, 663, 1385, 121, 118, -1/2 * 121 - this.xAdjustment, -1/2 * 118 - this.yAdjustment - 17, 121 * this.alphaSize, 118 * this.alphaSize, -1/2 * Math.PI);
+                    }
+                }
+                else if (theCostume <= 5)
+                {
+                    if (this.attacking)
+                    {
+                        this.drawUnit(bogg, 659, 1502, 121, 121, -1/2 * 121 - this.xAdjustment, -1/2 * 121 - this.yAdjustment - 16, 121 * this.alphaSize, 121 * this.alphaSize, -1/2 * Math.PI);
+                    }
+                }
+                else if (theCostume >= 6)
+                {
+                    if (this.attacking)
+                    {
+                        this.drawUnit(bogg, 651, 1616, 133, 134, -1/2 * 133 - this.xAdjustment, -1/2 * 134 - this.yAdjustment, 133 * this.alphaSize, 134 * this.alphaSize, -1/2 * Math.PI);
+                    }
+                }
+            }
+            else
+            {
+                //draw nothing
+            }
+        }
         //CHANGELING
         if (this.type == "Changeling")
         {
@@ -25577,7 +25873,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         this.humanATK(); //do the attack for the human arms
                     }
                     //draw some weapons underneath the body
-                    if (this.wepLayer == "under" || this.weapon == "freydicSword" || this.weapon == "longbow" || this.weapon == "crossbow" || this.weapon == "kellishClaymore" || this.weapon == "estoc" || this.weapon == "vardanianHalberd" || this.weapon == "shotgun" || this.weapon == "m16Carbine" || this.weapon == "sickle")
+                    if (this.wepLayer == "under" || this.weapon == "freydicSword" || this.weapon == "longbow" || this.weapon == "crossbow" || this.weapon == "kellishClaymore" || this.weapon == "estoc" || this.weapon == "vardanianHalberd" || this.weapon == "shotgun" || this.weapon == "m16Carbine" || this.weapon == "sickle" || this.weapon == "nirineseSpear")
                     {
                         this.drawHumanArms();
                     }
@@ -25586,7 +25882,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     this.drawHuman();
 
                     //draw the others over it.
-                    if (this.wepLayer == "standard" || this.weapon != "freydicSword" && this.weapon != "longbow" && this.weapon != "crossbow" && this.weapon != "longSpikedMorningStar" && this.weapon != "kellishClaymore" && this.weapon != "estoc" && this.weapon != "vardanianHalberd" && this.weapon != "shotgun" && this.weapon != "m16Carbine" && this.weapon != "sickle")
+                    if (this.wepLayer == "standard" || this.weapon != "freydicSword" && this.weapon != "longbow" && this.weapon != "crossbow" && this.weapon != "longSpikedMorningStar" && this.weapon != "kellishClaymore" && this.weapon != "estoc" && this.weapon != "vardanianHalberd" && this.weapon != "shotgun" && this.weapon != "m16Carbine" && this.weapon != "sickle" && this.weapon != "nirineseSpear")
                     {
                         this.drawHumanArms();
                     }
@@ -40659,6 +40955,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 this.drops = [[new Item("nirwadenPriestRobes", this.X, this.Y), 1]];
             }
+            else if (this.ID == "Bishop Bernardo")
+            {
+                this.drops = [[new Item("nirwadenPriestRobes", this.X, this.Y), 1]];
+            }
             else if (this.ID == "High Lord Basilio Altezor")
             {
                 this.drops = [[new Item("nirwadenNobleOutfit", this.X, this.Y), 1], [new Item("coins", this.X, this.Y), 5500]];
@@ -40790,7 +41090,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     this.drops = [[new Item("engineerOutfit", this.X, this.Y), 1], [new Item("copper", this.X, this.Y), 1], [new Item("inventionPlans", this.X, this.Y), 1]];
                 }
             }
-            else if (this.ID == "Chieftan Schuylar")
+            else if (this.ID == "Chieftain Schuylar")
             {
                 this.drops = [[new Item("coins", this.X, this.Y), 97], [new Item("kellishClaymore", this.X, this.Y), 1]];
                 this.customEXP = true;
@@ -41514,6 +41814,22 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             player.nirwadenFaction -= 275;
                         }
                     }
+                    else if (this.ID == "Bishop Bernardo")
+                    {
+                        uniqueChars.bernardoLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.nirwadenFaction -= 235;
+                        }
+                    }
+                    else if (this.ID == "Aavai the Reformed Northern Bandit")
+                    {
+                        uniqueChars.aavaiLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.freynorFaction -= 0;
+                        }
+                    }
                     else if (this.ID == "High Lord Basilio Altezor")
                     {
                         uniqueChars.basilioAltezorLDS = false;
@@ -41673,7 +41989,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             player.kelFaction -= 12;
                         }
                     }
-                    else if (this.ID == "Chieftan Schuylar")
+                    else if (this.ID == "Chieftain Schuylar")
                     {
                         uniqueChars.schuylarLDS = false;
                         if (this.killNotByPlayer == false || this.killByPlayerTeam)
@@ -41813,7 +42129,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.drawHumanOutfitBelow(this.outfit, false);
 
                 //draw some weapons underneath the body
-                if (this.wepLayer == "under" || this.weapon == "swimming" || this.weapon == "freydicSword" || this.weapon == "longbow" || this.weapon == "crossbow" || this.weapon == "kellishClaymore" || this.weapon == "estoc" || this.weapon == "vardanianHalberd" || this.weapon == "shotgun" || this.weapon == "m16Carbine" || this.weapon == "sickle")
+                if (this.wepLayer == "under" || this.weapon == "swimming" || this.weapon == "freydicSword" || this.weapon == "longbow" || this.weapon == "crossbow" || this.weapon == "kellishClaymore" || this.weapon == "estoc" || this.weapon == "vardanianHalberd" || this.weapon == "shotgun" || this.weapon == "m16Carbine" || this.weapon == "sickle" || this.weapon == "nirineseSpear")
                 {
                     this.drawHumanArms();
                 }
@@ -41822,7 +42138,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.drawHuman();
 
                 //draw the others over it.
-                if (this.wepLayer == "standard" || this.weapon == "swimming" || this.weapon != "freydicSword" && this.weapon != "longbow" && this.weapon != "crossbow" && this.weapon != "longSpikedMorningStar" && this.weapon != "kellishClaymore" && this.weapon != "estoc" && this.weapon != "vardanianHalberd" && this.weapon != "shotgun" && this.weapon != "m16Carbine" && this.weapon != "sickle")
+                if (this.wepLayer == "standard" || this.weapon == "swimming" || this.weapon != "freydicSword" && this.weapon != "longbow" && this.weapon != "crossbow" && this.weapon != "longSpikedMorningStar" && this.weapon != "kellishClaymore" && this.weapon != "estoc" && this.weapon != "vardanianHalberd" && this.weapon != "shotgun" && this.weapon != "m16Carbine" && this.weapon != "sickle" && this.weapon != "nirineseSpear")
                 {
                     this.drawHumanArms();
                 }
@@ -42330,6 +42646,16 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         this.switchToRanged("crossbow");
                         lights.push({X:this.X, Y: this.Y, size: 250, extraStops: true, GRD: 0.8, Alpha: 0.82, showMe: false});
                     }
+                    else if (this.ID == "Inquisitor Gavilio")
+                    {
+                        this.drops = [[new Item("coins", this.X, this.Y), 83], [new Item("nirineseSabre", this.X, this.Y), 1]];
+                        this.switchToRanged("crossbow");
+                    }
+                    else if (this.ID == "Inquisitor Vorael")
+                    {
+                        this.drops = [[new Item("coins", this.X, this.Y), 99], [new Item("silkAndDagger", this.X, this.Y), 1]];
+                        this.switchToRanged("crossbow");
+                    }
                     else if (this.ID == "Ser Belgos of Atalin")
                     {
                         this.drops = [[new Item("coins", this.X, this.Y), 340], [new Item("nirwadenPlateArmour)", this.X, this.Y), 1], [new Item("estoc", this.X, this.Y), 1]];
@@ -42665,6 +42991,34 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
                         this.switchToRanged("longbow");
                     }
+                    if (this.ID == "Raldo the Long")
+                    {
+                        //RANGE OF SIGHT (anything related to range of sight)
+                        this.rangeOfSightCalculator(400, false);
+
+                        this.drops = [[new Item("boarArmour", this.X, this.Y), 1], [new Item("nirineseSpear", this.X, this.Y), 1], [new Item("coins", this.X, this.Y), 87]];
+
+                        this.disturbed = true;
+
+                        if (this.disturbed == true)
+                        {
+                            this.callForNearbyHelpFromType(this.rangeOfSight, "Soldier");
+                        }
+                    }
+                    if (this.ID == "Breakaway Bandit")
+                    {
+                        //RANGE OF SIGHT (anything related to range of sight)
+                        this.rangeOfSightCalculator(300, false);
+
+                        this.drops = [[new Item("coins", this.X, this.Y), 13]];
+
+                        this.disturbed = true;
+
+                        if (this.disturbed == true)
+                        {
+                            this.callForNearbyHelpFromType(this.rangeOfSight, "Soldier");
+                        }
+                    }
                     if (this.ID == "Nelgref the Flayer")
                     {
                         //RANGE OF SIGHT (anything related to range of sight)
@@ -42778,6 +43132,129 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     {
                         this.rangeOfSightCalculator(250, false);
                         this.drops = [[new Item("slowTimeII", this.X, this.Y), 1], [new Item("fireHands", this.X, this.Y), 1]];
+                    }
+                    else if (this.ID == "Ser Barraco Kein the Bandit Chieftain")
+                    {
+                        this.rangeOfSightCalculator(900, false);
+                        this.drops = [[new Item("barracoPlateArmour", this.X, this.Y), 1], [new Item("estoc", this.X, this.Y), 1]];
+                    }
+                    else if (this.ID == "Barracano")
+                    {
+                        this.rangeOfSightCalculator(850, false);
+                        if (typeof(this.extraDrops) == "undefined")
+                        {
+                            this.extraDrops = [];
+                        }
+
+                        //they take whatever item is dropped near them
+                        if (quests.manOfThePeopleCompletionStyle != "barracano")
+                        {
+                            for (var jj = worldItems.length - 1; jj >= 0; jj--)
+                            {
+                                if (worldItems[jj][0].questy != true && worldItems[jj][0].utility != "questItem")
+                                {
+                                    var itemInQuestion = {X: worldItems[jj][0].X, Y: worldItems[jj][0].Y}
+                                    var distToItemInQuestion = this.DTU(itemInQuestion);
+                                    if (distToItemInQuestion < 290)
+                                    {
+                                        if (this.target == "none")
+                                        {
+                                            this.pointTowards(itemInQuestion);
+                                            this.moveInRelationToThing(itemInQuestion);
+                                            this.patrolPause = true;
+                                        }
+                                        else if (this.target == player)
+                                        {
+                                            if (this.DTP() > this.engagementRadius + 20)
+                                            {
+                                                this.pointTowards(itemInQuestion);
+                                                this.moveInRelationToThing(itemInQuestion);
+                                                this.patrolPause = true;
+
+                                            }
+                                        }
+                                        else if (this.target != "none")
+                                        {
+                                            if (this.DTU(this.target) > this.engagementRadius + 180)
+                                            {
+                                                this.pointTowards(itemInQuestion);
+                                                this.moveInRelationToThing(itemInQuestion);
+                                                this.patrolPause = true;
+                                            }
+                                        }
+
+                                        if (distToItemInQuestion <= this.engagementRadius + 10)
+                                        {
+                                            this.extraDrops.push(worldItems[jj]);
+                                            worldItems.splice(jj, 1);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (this.DTP() > 300)
+                        {
+                            for (var jj = worldItems.length - 1; jj >= 0; jj--)
+                            {
+                                if (worldItems[jj][0].questy != true && worldItems[jj][0].utility != "questItem")
+                                {
+                                    if (this.DTU({X: worldItems[jj][0].X, Y: worldItems[jj][0].Y}) < 290)
+                                    {
+                                        var itemInQuestion = {X: worldItems[jj][0].X, Y: worldItems[jj][0].Y}
+                                        var distToItemInQuestion = this.DTU(itemInQuestion);
+                                        if (distToItemInQuestion < 190)
+                                        {
+                                            if (this.target == "none")
+                                            {
+                                                this.pointTowards(itemInQuestion);
+                                                this.moveInRelationToThing(itemInQuestion);
+                                                this.patrolPause = true;
+                                            }
+                                            else if (this.target == player)
+                                            {
+                                                if (this.DTP() > this.engagementRadius + 20)
+                                                {
+                                                    this.pointTowards(itemInQuestion);
+                                                    this.moveInRelationToThing(itemInQuestion);
+                                                    this.patrolPause = true;
+                                                }
+                                            }
+                                            else if (this.target != "none")
+                                            {
+                                                if (this.DTU(this.target) > this.engagementRadius + 180)
+                                                {
+                                                    this.pointTowards(itemInQuestion);
+                                                    this.moveInRelationToThing(itemInQuestion);
+                                                    this.patrolPause = true;
+                                                }
+                                            }
+
+                                            if (distToItemInQuestion <= this.engagementRadius + 10)
+                                            {
+                                                this.extraDrops.push(worldItems[jj]);
+                                                worldItems.splice(jj, 1);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        if (quests.manOfThePeopleMen <= 2)
+                        {
+                            this.drops = [[new Item("boarArmour", this.X, this.Y), 1]];
+                        }
+                        else
+                        {
+                            this.drops = [];
+                        }
+
+                        for (var jj = 0; jj < this.extraDrops.length; jj++)
+                        {
+                            this.extraDrops[jj][0].X = this.X;
+                            this.extraDrops[jj][0].Y = this.Y;
+                            this.drops.push(this.extraDrops[jj]);
+                        }
                     }
                     else if (this.ID == "Assassin")
                     {
@@ -43018,6 +43495,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     {
                         uniqueChars.jalmariLDS = false;
                     }
+                    else if (this.ID == "Ser Barraco Kein the Bandit Chieftain")
+                    {
+                        uniqueChars.barracoLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.nirwadenFaction += 50;
+                        }
+                    }
                     else if (this.ID == "Mercenary Captain Kronheime")
                     {
                         uniqueChars.kronheimeLDS = false;
@@ -43042,6 +43527,26 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             player.nirwadenFaction -= 65;
                         }
                     }
+                    else if (this.ID == "Inquisitor Vorael")
+                    {
+                        uniqueChars.voraelLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.nirwadenFaction -= 135;
+                        }
+                    }
+                    else if (this.ID == "Inquisitor Gavilio")
+                    {
+                        uniqueChars.gavilioLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.nirwadenFaction -= 135;
+                        }
+                    }
+                    else if (this.ID == "Raldo the Long")
+                    {
+                        uniqueChars.raldoLDS = false;
+                    }
                     else if (this.ID == "Matador")
                     {
                         if (this.killNotByPlayer == false || this.killByPlayerTeam)
@@ -43051,10 +43556,18 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     }
                     else if (this.ID == "Hidalgo Eduardo the Commissioner")
                     {
-                        uniqueChars.eduerdoLDS = false;
+                        uniqueChars.eduardoLDS = false;
                         if (this.killNotByPlayer == false || this.killByPlayerTeam)
                         {
                             player.nirwadenFaction -= 110;
+                        }
+                    }
+                    else if (this.ID == "Arcus Mining Co. Foreman Gavor")
+                    {
+                        uniqueChars.gavorLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.nirwadenFaction -= 10;
                         }
                     }
                     else if (this.ID == "Ser Belgos of Atalin" || this.ID == "Belgos" || this.ID == "Belgos the Disgraced" || this.ID == "Belgos the Disgraced One" || this.ID == "Belgos of Atalin")
@@ -43221,6 +43734,19 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
                     //track Deaths Of Certain Non-Unique Units During Certain Quests
 
+                    //s-1-e-5 bandit faction (robinhood-like)
+                    if (this.ID == "Barracano")
+                    {
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            quests.manOfThePeopleMen -= 1;
+                            if (quests.manOfThePeopleQuest == true)
+                            {
+                                quests.manOfThePeopleSlain += 1;
+                            }
+                        }
+                    }
+
                     //during the TeshirNorthRoadQuest the number of bandits you kill is tracked.
                     if (quests.teshirNorthRoadQuest == true)
                     {
@@ -43314,7 +43840,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     this.humanATK(); //do the attack for the human arms
                 }
                 //draw some weapons underneath the body
-                if (this.wepLayer == "under" || this.weapon == "freydicSword" || this.weapon == "longbow" || this.weapon == "crossbow" || this.weapon == "kellishClaymore" || this.weapon == "estoc" || this.weapon == "vardanianHalberd" || this.weapon == "shotgun" || this.weapon == "m16Carbine" || this.weapon == "sickle")
+                if (this.wepLayer == "under" || this.weapon == "freydicSword" || this.weapon == "longbow" || this.weapon == "crossbow" || this.weapon == "kellishClaymore" || this.weapon == "estoc" || this.weapon == "vardanianHalberd" || this.weapon == "shotgun" || this.weapon == "m16Carbine" || this.weapon == "sickle" || this.weapon == "nirineseSpear")
                 {
                     this.drawHumanArms();
                 }
@@ -43323,7 +43849,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.drawHuman();
 
                 //draw the others over it.
-                if (this.wepLayer == "standard" || this.weapon != "freydicSword" && this.weapon != "longbow" && this.weapon != "crossbow" && this.weapon != "longSpikedMorningStar" && this.weapon != "kellishClaymore" && this.weapon != "estoc" && this.weapon != "vardanianHalberd" && this.weapon != "shotgun" && this.weapon != "m16Carbine" && this.weapon != "sickle")
+                if (this.wepLayer == "standard" || this.weapon != "freydicSword" && this.weapon != "longbow" && this.weapon != "crossbow" && this.weapon != "longSpikedMorningStar" && this.weapon != "kellishClaymore" && this.weapon != "estoc" && this.weapon != "vardanianHalberd" && this.weapon != "shotgun" && this.weapon != "m16Carbine" && this.weapon != "sickle" && this.weapon != "nirineseSpear")
                 {
                     this.drawHumanArms();
                 }
@@ -43417,6 +43943,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         this.targetingHold = false;
         this.scared = false;
         this.savified = false;
+        this.patrolPause = false;
 
         if (this.doKeepHeatRes == false)
         {

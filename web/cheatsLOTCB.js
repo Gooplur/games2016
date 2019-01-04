@@ -689,6 +689,10 @@ function cheats()
                 alert("No, there is not.");
             }
         }
+        else if (cheatcode == "bones")
+        {
+            console.log(quests.flamingBones);
+        }
         else if (cheatcode.toLowerCase() == "peter")
         {
             var crrPrompt;

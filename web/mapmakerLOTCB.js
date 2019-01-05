@@ -415,7 +415,7 @@ function buildMaster()
 
                 if (quests.atalinSisterJarl == true)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-514, 277, "Soldier", false, "Nirwaden Knight", {race: "Nirwaden", faction: "Nirwaden", con: 15, speed: 1.3, outfit: ["nirwadenPlateArmour", 19], weapon: ["nirineseSabre", [9, 8], 0, 0, 1.25], ranged: [false, "steelBolt", 13, 2200, 16, 15, 0, "none", 3.55], patrolStops: 2, patrolLoop: true, route:[[-514, 277], [-514, 277]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(-514, 277, "Soldier", false, "Nirwaden Knight", {race: "Nirwaden", faction: "Nirwaden", con: 15, speed: 1.3, outfit: ["nirwadenPlateArmour", 19], weapon: ["nirineseSabre", [9, 8], 0, 0, 1.25], ranged: [false, "steelBolt", 13, 2200, 16, 15 /3, 0, "none", 3.55], patrolStops: 2, patrolLoop: true, route:[[-514, 277], [-514, 277]]}));
                 }
 
                 if (uniqueChars.lailionaLDS && quests.atalinSisterJarl == true)
@@ -431,7 +431,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-344, -48, "Person", false, "Lailiona", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenNobleDress", 0], weapon: ["none", [0.04, 0.05], 0, 0, 2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-341, -24]], kid: true}));
+                        ArtificialIntelligenceAccess.push(new Unit(-344, -48, "Person", false, "Lailiona", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenNobleDress", 0], weapon: ["none", [0.04, 0.05], 0, 0, 2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-341, -24]], kid: true}));
                     }
                 }
 
@@ -448,7 +448,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-380, -54, "Person", false, "High Dame Emylia Altezor", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenLadyPointyCap", 0], weapon: ["none", [0.15, 0.15], 0, 0, 2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-375, -22]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-380, -54, "Person", false, "High Dame Emylia Altezor", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenLadyPointyCap", 0], weapon: ["none", [0.15, 0.15], 0, 0, 2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-375, -22]]}));
                     }
                 }
 
@@ -698,7 +698,7 @@ function buildMaster()
                 //Bandits and bandit chief (Bandidos Nortenos)
                 if (quests.teshirNorthRoadBandits == true)
                 {
-                    //ArtificialIntelligenceAccess.push(new Unit(1663, 5750, "Soldier", false, "Northern Bandit", {race: "Freynor", faction: "hostile", con: 5, speed: 1.10, outfit: ["walrusLeatherArmour", 4], weapon: ["crossbow", [0.1, 0.4], 0, 16, 1], ranged: [true, "steelBolt", 10, 2000, 12, 23, 0, "none", 2.2], patrolStops: 1, patrolLoop: false, route:[[586, 6301]]}));
+                    //ArtificialIntelligenceAccess.push(new Unit(1663, 5750, "Soldier", false, "Northern Bandit", {race: "Freynor", faction: "hostile", con: 5, speed: 1.10, outfit: ["walrusLeatherArmour", 4], weapon: ["crossbow", [0.1, 0.4], 0, 16, 1], ranged: [true, "steelBolt", 10, 2000, 12, 23 /3, 0, "none", 2.2], patrolStops: 1, patrolLoop: false, route:[[586, 6301]]}));
                     ArtificialIntelligenceAccess.push(new Unit(1563, 5864, "Soldier", false, "Northern Bandit", {race: "Freynor", faction: "hostile", con: 2, speed: 1.05, outfit: ["walrusLeatherArmour", 4], weapon: ["freydicSword", [4, 4], 0, 16, 1], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 4, patrolLoop: true, route:[[506, 6152], [1042, 6325], [1551, 6202], [1563, 5864]]}));
                     ArtificialIntelligenceAccess.push(new Unit(1941, 5902, "Soldier", false, "Northern Bandit", {race: "Freynor", faction: "hostile", con: 4, speed: 1.15, outfit: ["none", 0], weapon: ["longbow", [0.1, 0.4], 0, 0, 0.85], ranged: [true, "arrow", 6, 1750, 1, 4, 0, "none", 1.4], patrolStops: 3, patrolLoop: true, route:[[1941, 5902], [2384, 5809], [1926, 6003]]}));
                     ArtificialIntelligenceAccess.push(new Unit(435 - 750, 5563, "Soldier", false, "Northern Bandit", {race: "Freynor", faction: "hostile", con: 3, speed: 1.05, outfit: ["walrusLeatherArmour", 4], weapon: ["longbow", [0.1, 0.4], 0, 16, 1], ranged: [true, "arrow", 7, 1900, 1, 4, 0, "none", 1.5], patrolStops: 4, patrolLoop: true, route:[[435 - 750, 5563], [400 - 750, 5668], [636 - 750, 5860], [827 - 750, 5357]]}));
@@ -909,7 +909,7 @@ function buildMaster()
                         }
                         if (hits == 0)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(333, 2538, "Person", false, "Bishop Bernardo", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenPriestRobes", 0], weapon: ["none", [0.04, 0.05], 0, 0, 1.6], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[368, 2538]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(333, 2538, "Person", false, "Bishop Bernardo", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenPriestRobes", 0], weapon: ["none", [0.04, 0.05], 0, 0, 1.6], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[368, 2538]]}));
                         }
                         for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
                         {
@@ -8779,67 +8779,67 @@ function buildMaster()
                     scenicList.push(new Scenery("tent", -44632, -7616, (0.25 * Math.PI), true));
                     scenicList.push(new Scenery("tent", -44414, -7455, (0.38 * Math.PI), true));
 
-                    ArtificialIntelligenceAccess.push(new Unit(-44372, -7184, "Soldier", false, "Ser Barraco Kein the Bandit Chieftain", {race: "Nirwaden", faction: "none", con: 30, speed: 1.05, outfit: ["barracoPlateArmour", 20], weapon: ["estoc", [4, 12], 34, 17, 3.25], ranged: [false, "steelBolt", 15, 2200, 18, 16, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-44347, -7199]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(-44372, -7184, "Soldier", false, "Ser Barraco Kein the Bandit Chieftain", {race: "Nirwaden", faction: "none", con: 30, speed: 1.05, outfit: ["barracoPlateArmour", 20], weapon: ["estoc", [4, 12], 34, 17, 3.25], ranged: [false, "steelBolt", 15, 2200, 18, 16 /3, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-44347, -7199]]}));
 
                     if (quests.manOfThePeopleMen > 0)
                     {
                         if (quests.manOfThePeopleMen == 1)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(-44265, -7013, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 5, speed: 1.1, outfit: ["boarArmour", 4], weapon: ["crossbow", [0, 0], 0, 21, 3.4], ranged: [true, "steelBolt", 17, 2200, 19, 18, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-44239, -7057]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-44265, -7013, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 5, speed: 1.1, outfit: ["boarArmour", 4], weapon: ["crossbow", [0, 0], 0, 21, 3.4], ranged: [true, "steelBolt", 17, 2200, 19, 18 /3, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-44239, -7057]]}));
                         }
                         else if (quests.manOfThePeopleMen == 2)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(-44564, -7548, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 5, speed: 1.1, outfit: ["boarArmour", 4], weapon: ["crossbow", [0, 0], 0, 21, 3.4], ranged: [true, "steelBolt", 17, 2200, 19, 18, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-44498, -7556]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-43473, -7641, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 6, speed: 1.1, outfit: ["boarArmour", 5], weapon: ["crossbow", [0, 0], 0, 21, 3.4], ranged: [true, "steelBolt", 18, 2200, 18, 17, 0, "none", 3.5], patrolStops: 1, patrolLoop: false, route:[[-43486, -7613]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-44564, -7548, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 5, speed: 1.1, outfit: ["boarArmour", 4], weapon: ["crossbow", [0, 0], 0, 21, 3.4], ranged: [true, "steelBolt", 17, 2200, 19, 18 /3, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-44498, -7556]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-43473, -7641, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 6, speed: 1.1, outfit: ["boarArmour", 5], weapon: ["crossbow", [0, 0], 0, 21, 3.4], ranged: [true, "steelBolt", 18, 2200, 18, 17 /3, 0, "none", 3.5], patrolStops: 1, patrolLoop: false, route:[[-43486, -7613]]}));
                         }
                         else if (quests.manOfThePeopleMen == 3)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(-43679, -7648, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 2, speed: 1.28, outfit: ["nirwadenGambeson", 1], weapon: ["sickle", [2, 2], 0, 21, 1.15], ranged: [false, "steelBolt", 15, 2200, 18, 16, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-43718, -7645]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-44564, -7548, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 5, speed: 1.1, outfit: ["boarArmour", 4], weapon: ["crossbow", [0, 0], 0, 21, 3.4], ranged: [true, "steelBolt", 17, 2200, 19, 18, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-44498, -7556]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-43473, -7641, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 6, speed: 1.1, outfit: ["boarArmour", 5], weapon: ["crossbow", [0, 0], 0, 21, 3.4], ranged: [true, "steelBolt", 18, 2200, 18, 17, 0, "none", 3.5], patrolStops: 1, patrolLoop: false, route:[[-43486, -7613]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-43679, -7648, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 2, speed: 1.28, outfit: ["nirwadenGambeson", 1], weapon: ["sickle", [2, 2], 0, 21, 1.15], ranged: [false, "steelBolt", 15, 2200, 18, 16 /3, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-43718, -7645]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-44564, -7548, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 5, speed: 1.1, outfit: ["boarArmour", 4], weapon: ["crossbow", [0, 0], 0, 21, 3.4], ranged: [true, "steelBolt", 17, 2200, 19, 18 /3, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-44498, -7556]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-43473, -7641, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 6, speed: 1.1, outfit: ["boarArmour", 5], weapon: ["crossbow", [0, 0], 0, 21, 3.4], ranged: [true, "steelBolt", 18, 2200, 18, 17 /3, 0, "none", 3.5], patrolStops: 1, patrolLoop: false, route:[[-43486, -7613]]}));
                         }
                         else if (quests.manOfThePeopleMen == 4)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(-43770, -7219, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 4, speed: 1.19, outfit: ["nirwadenGambeson", 1], weapon: ["nirineseSabre", [6, 4], 0, 24, 1.27], ranged: [false, "steelBolt", 15, 2200, 18, 16, 0, "none", 3], patrolStops: 0, patrolLoop: false, route:[[-43718, -7645]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-43679, -7648, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 2, speed: 1.28, outfit: ["nirwadenGambeson", 1], weapon: ["sickle", [2, 2], 0, 21, 1.15], ranged: [false, "steelBolt", 15, 2200, 18, 16, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-43718, -7645]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-44564, -7548, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 5, speed: 1.1, outfit: ["boarArmour", 4], weapon: ["crossbow", [0, 0], 0, 21, 3.4], ranged: [true, "steelBolt", 17, 2200, 19, 18, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-44498, -7556]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-43473, -7641, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 6, speed: 1.1, outfit: ["boarArmour", 5], weapon: ["crossbow", [0, 0], 0, 21, 3.4], ranged: [true, "steelBolt", 18, 2200, 18, 17, 0, "none", 3.5], patrolStops: 1, patrolLoop: false, route:[[-43486, -7613]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-43770, -7219, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 4, speed: 1.19, outfit: ["nirwadenGambeson", 1], weapon: ["nirineseSabre", [6, 4], 0, 24, 1.27], ranged: [false, "steelBolt", 15, 2200, 18, 16 /3, 0, "none", 3], patrolStops: 0, patrolLoop: false, route:[[-43718, -7645]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-43679, -7648, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 2, speed: 1.28, outfit: ["nirwadenGambeson", 1], weapon: ["sickle", [2, 2], 0, 21, 1.15], ranged: [false, "steelBolt", 15, 2200, 18, 16 /3, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-43718, -7645]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-44564, -7548, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 5, speed: 1.1, outfit: ["boarArmour", 4], weapon: ["crossbow", [0, 0], 0, 21, 3.4], ranged: [true, "steelBolt", 17, 2200, 19, 18 /3, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-44498, -7556]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-43473, -7641, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 6, speed: 1.1, outfit: ["boarArmour", 5], weapon: ["crossbow", [0, 0], 0, 21, 3.4], ranged: [true, "steelBolt", 18, 2200, 18, 17 /3, 0, "none", 3.5], patrolStops: 1, patrolLoop: false, route:[[-43486, -7613]]}));
                         }
                         else if (quests.manOfThePeopleMen == 5)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(-43770, -7219, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 4, speed: 1.19, outfit: ["nirwadenGambeson", 1], weapon: ["nirineseSabre", [6, 4], 0, 24, 1.27], ranged: [false, "steelBolt", 15, 2200, 18, 16, 0, "none", 3], patrolStops: 0, patrolLoop: false, route:[[-43718, -7645]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-43679, -7648, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 2, speed: 1.28, outfit: ["nirwadenGambeson", 1], weapon: ["sickle", [2, 2], 0, 21, 1.15], ranged: [false, "steelBolt", 15, 2200, 18, 16, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-43718, -7645]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-44564, -7548, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 5, speed: 1.1, outfit: ["boarArmour", 4], weapon: ["crossbow", [0, 0], 0, 21, 3.4], ranged: [true, "steelBolt", 17, 2200, 19, 18, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-44498, -7556]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-43473, -7641, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 6, speed: 1.1, outfit: ["boarArmour", 5], weapon: ["crossbow", [0, 0], 0, 21, 3.4], ranged: [true, "steelBolt", 18, 2200, 18, 17, 0, "none", 3.5], patrolStops: 1, patrolLoop: false, route:[[-43486, -7613]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-44434, -7321, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 6, speed: 1.1, outfit: ["boarArmour", 4.5], weapon: ["crossbow", [0, 0], 0, 21, 3.4], ranged: [true, "steelBolt", 16, 2200, 17, 16, 0, "none", 4.1], patrolStops: 1, patrolLoop: false, route:[[-44353, -7333]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-43770, -7219, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 4, speed: 1.19, outfit: ["nirwadenGambeson", 1], weapon: ["nirineseSabre", [6, 4], 0, 24, 1.27], ranged: [false, "steelBolt", 15, 2200, 18, 16 /3, 0, "none", 3], patrolStops: 0, patrolLoop: false, route:[[-43718, -7645]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-43679, -7648, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 2, speed: 1.28, outfit: ["nirwadenGambeson", 1], weapon: ["sickle", [2, 2], 0, 21, 1.15], ranged: [false, "steelBolt", 15, 2200, 18, 16 /3, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-43718, -7645]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-44564, -7548, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 5, speed: 1.1, outfit: ["boarArmour", 4], weapon: ["crossbow", [0, 0], 0, 21, 3.4], ranged: [true, "steelBolt", 17, 2200, 19, 18 /3, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-44498, -7556]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-43473, -7641, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 6, speed: 1.1, outfit: ["boarArmour", 5], weapon: ["crossbow", [0, 0], 0, 21, 3.4], ranged: [true, "steelBolt", 18, 2200, 18, 17 /3, 0, "none", 3.5], patrolStops: 1, patrolLoop: false, route:[[-43486, -7613]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-44434, -7321, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 6, speed: 1.1, outfit: ["boarArmour", 4.5], weapon: ["crossbow", [0, 0], 0, 21, 3.4], ranged: [true, "steelBolt", 16, 2200, 17, 16 /3, 0, "none", 4.1], patrolStops: 1, patrolLoop: false, route:[[-44353, -7333]]}));
                         }
                         else if (quests.manOfThePeopleMen == 6)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(-43770, -7219, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 4, speed: 1.19, outfit: ["nirwadenGambeson", 1], weapon: ["nirineseSabre", [6, 4], 0, 24, 1.27], ranged: [false, "steelBolt", 15, 2200, 18, 16, 0, "none", 3], patrolStops: 0, patrolLoop: false, route:[[-43718, -7645]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-44720, -7729, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 3, speed: 1.28, outfit: ["nirwadenGambeson", 1.5], weapon: ["nirineseSpear", [3, 4], 10, 37, 1.4], ranged: [false, "steelBolt", 15, 2200, 18, 16, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-44810, -7728]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-43679, -7648, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 2, speed: 1.28, outfit: ["nirwadenGambeson", 1], weapon: ["sickle", [2, 2], 0, 21, 1.15], ranged: [false, "steelBolt", 15, 2200, 18, 16, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-43718, -7645]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-44564, -7548, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 5, speed: 1.1, outfit: ["boarArmour", 4], weapon: ["crossbow", [0, 0], 0, 21, 3.4], ranged: [true, "steelBolt", 17, 2200, 19, 18, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-44498, -7556]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-43473, -7641, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 6, speed: 1.1, outfit: ["boarArmour", 5], weapon: ["crossbow", [0, 0], 0, 21, 3.4], ranged: [true, "steelBolt", 18, 2200, 18, 17, 0, "none", 3.5], patrolStops: 1, patrolLoop: false, route:[[-43486, -7613]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-44434, -7321, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 6, speed: 1.1, outfit: ["boarArmour", 4.5], weapon: ["crossbow", [0, 0], 0, 21, 3.4], ranged: [true, "steelBolt", 16, 2200, 17, 16, 0, "none", 4.1], patrolStops: 1, patrolLoop: false, route:[[-44353, -7333]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-43770, -7219, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 4, speed: 1.19, outfit: ["nirwadenGambeson", 1], weapon: ["nirineseSabre", [6, 4], 0, 24, 1.27], ranged: [false, "steelBolt", 15, 2200, 18, 16 /3, 0, "none", 3], patrolStops: 0, patrolLoop: false, route:[[-43718, -7645]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-44720, -7729, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 3, speed: 1.28, outfit: ["nirwadenGambeson", 1.5], weapon: ["nirineseSpear", [3, 4], 10, 37, 1.4], ranged: [false, "steelBolt", 15, 2200, 18, 16 /3, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-44810, -7728]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-43679, -7648, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 2, speed: 1.28, outfit: ["nirwadenGambeson", 1], weapon: ["sickle", [2, 2], 0, 21, 1.15], ranged: [false, "steelBolt", 15, 2200, 18, 16 /3, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-43718, -7645]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-44564, -7548, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 5, speed: 1.1, outfit: ["boarArmour", 4], weapon: ["crossbow", [0, 0], 0, 21, 3.4], ranged: [true, "steelBolt", 17, 2200, 19, 18 /3, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-44498, -7556]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-43473, -7641, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 6, speed: 1.1, outfit: ["boarArmour", 5], weapon: ["crossbow", [0, 0], 0, 21, 3.4], ranged: [true, "steelBolt", 18, 2200, 18, 17 /3, 0, "none", 3.5], patrolStops: 1, patrolLoop: false, route:[[-43486, -7613]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-44434, -7321, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 6, speed: 1.1, outfit: ["boarArmour", 4.5], weapon: ["crossbow", [0, 0], 0, 21, 3.4], ranged: [true, "steelBolt", 16, 2200, 17, 16 /3, 0, "none", 4.1], patrolStops: 1, patrolLoop: false, route:[[-44353, -7333]]}));
                         }
                         else
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(-43770, -7219, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 4, speed: 1.19, outfit: ["nirwadenGambeson", 1], weapon: ["nirineseSabre", [6, 4], 0, 24, 1.27], ranged: [false, "steelBolt", 15, 2200, 18, 16, 0, "none", 3], patrolStops: 0, patrolLoop: false, route:[[-43718, -7645]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-44720, -7729, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 3, speed: 1.28, outfit: ["nirwadenGambeson", 1.5], weapon: ["nirineseSpear", [3, 4], 10, 37, 1.4], ranged: [false, "steelBolt", 15, 2200, 18, 16, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-44810, -7728]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-43870, -8044, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 3, speed: 1.28, outfit: ["nirwadenGambeson", 1.5], weapon: ["nirineseSpear", [3, 4], 10, 37, 1.4], ranged: [false, "steelBolt", 15, 2200, 18, 16, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-43899, -8049]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-43679, -7648, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 2, speed: 1.28, outfit: ["nirwadenGambeson", 1], weapon: ["sickle", [2, 2], 0, 21, 1.15], ranged: [false, "steelBolt", 15, 2200, 18, 16, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-43718, -7645]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-44564, -7548, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 5, speed: 1.1, outfit: ["boarArmour", 4], weapon: ["crossbow", [0, 0], 0, 21, 3.4], ranged: [true, "steelBolt", 17, 2200, 19, 18, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-44498, -7556]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-43473, -7641, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 6, speed: 1.1, outfit: ["boarArmour", 5], weapon: ["crossbow", [0, 0], 0, 21, 3.4], ranged: [true, "steelBolt", 18, 2200, 18, 17, 0, "none", 3.5], patrolStops: 1, patrolLoop: false, route:[[-43486, -7613]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-44434, -7321, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 6, speed: 1.1, outfit: ["boarArmour", 4.5], weapon: ["crossbow", [0, 0], 0, 21, 3.4], ranged: [true, "steelBolt", 16, 2200, 17, 16, 0, "none", 4.1], patrolStops: 1, patrolLoop: false, route:[[-44353, -7333]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-43770, -7219, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 4, speed: 1.19, outfit: ["nirwadenGambeson", 1], weapon: ["nirineseSabre", [6, 4], 0, 24, 1.27], ranged: [false, "steelBolt", 15, 2200, 18, 16 /3, 0, "none", 3], patrolStops: 0, patrolLoop: false, route:[[-43718, -7645]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-44720, -7729, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 3, speed: 1.28, outfit: ["nirwadenGambeson", 1.5], weapon: ["nirineseSpear", [3, 4], 10, 37, 1.4], ranged: [false, "steelBolt", 15, 2200, 18, 16 /3, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-44810, -7728]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-43870, -8044, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 3, speed: 1.28, outfit: ["nirwadenGambeson", 1.5], weapon: ["nirineseSpear", [3, 4], 10, 37, 1.4], ranged: [false, "steelBolt", 15, 2200, 18, 16 /3, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-43899, -8049]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-43679, -7648, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 2, speed: 1.28, outfit: ["nirwadenGambeson", 1], weapon: ["sickle", [2, 2], 0, 21, 1.15], ranged: [false, "steelBolt", 15, 2200, 18, 16 /3, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-43718, -7645]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-44564, -7548, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 5, speed: 1.1, outfit: ["boarArmour", 4], weapon: ["crossbow", [0, 0], 0, 21, 3.4], ranged: [true, "steelBolt", 17, 2200, 19, 18 /3, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-44498, -7556]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-43473, -7641, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 6, speed: 1.1, outfit: ["boarArmour", 5], weapon: ["crossbow", [0, 0], 0, 21, 3.4], ranged: [true, "steelBolt", 18, 2200, 18, 17 /3, 0, "none", 3.5], patrolStops: 1, patrolLoop: false, route:[[-43486, -7613]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-44434, -7321, "Soldier", false, "Barracano", {race: "Nirwaden", faction: "none", con: 6, speed: 1.1, outfit: ["boarArmour", 4.5], weapon: ["crossbow", [0, 0], 0, 21, 3.4], ranged: [true, "steelBolt", 16, 2200, 17, 16 /3, 0, "none", 4.1], patrolStops: 1, patrolLoop: false, route:[[-44353, -7333]]}));
                         }
                     }
                 }
 
                 if (quests.breakawaysQuest == true && uniqueChars.raldoLDS == true)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-45614, -9536, "Soldier", false, "Raldo the Long", {race: "Nirwaden", faction: "hostile", con: 7, speed: 1.34, outfit: ["boarArmour", 4.5], weapon: ["nirineseSpear", [5, 4], 11, 38, 1.3], ranged: [false, "steelBolt", 15, 2200, 18, 16, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-45625, -9552]]}));
-                    ArtificialIntelligenceAccess.push(new Unit(-46118, -9720, "Soldier", false, "Breakaway Bandit", {race: "Nirwaden", faction: "hostile", con: 2, speed: 1, outfit: ["boarArmour", 4], weapon: ["crossbow", [0, 0], 0, 21, 3.4], ranged: [true, "steelBolt", 15, 2200, 17, 16, 0, "none", 4], patrolStops: 0, patrolLoop: false, route:[[-44498, -7556]]}));
-                    ArtificialIntelligenceAccess.push(new Unit(-45586, -9803, "Soldier", false, "Breakaway Bandit", {race: "Nirwaden", faction: "hostile", con: 4, speed: 1.15, outfit: ["nirwadenGambeson", 1.5], weapon: ["sickle", [3, 3], 0, 23, 1.2], ranged: [false, "steelBolt", 15, 2200, 18, 16, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-45576, -9824]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(-45614, -9536, "Soldier", false, "Raldo the Long", {race: "Nirwaden", faction: "hostile", con: 7, speed: 1.34, outfit: ["boarArmour", 4.5], weapon: ["nirineseSpear", [5, 4], 11, 38, 1.3], ranged: [false, "steelBolt", 15, 2200, 18, 16 /3, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-45625, -9552]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(-46118, -9720, "Soldier", false, "Breakaway Bandit", {race: "Nirwaden", faction: "hostile", con: 2, speed: 1, outfit: ["boarArmour", 4], weapon: ["crossbow", [0, 0], 0, 21, 3.4], ranged: [true, "steelBolt", 15, 2200, 17, 16 /3, 0, "none", 4], patrolStops: 0, patrolLoop: false, route:[[-44498, -7556]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(-45586, -9803, "Soldier", false, "Breakaway Bandit", {race: "Nirwaden", faction: "hostile", con: 4, speed: 1.15, outfit: ["nirwadenGambeson", 1.5], weapon: ["sickle", [3, 3], 0, 23, 1.2], ranged: [false, "steelBolt", 15, 2200, 18, 16 /3, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-45576, -9824]]}));
                     scenicList.push(new Scenery("tent", -45572, -9451, (-0.25 * Math.PI), true));
                     scenicList.push(new Scenery("tent", -45537, -9600, (-0.5 * Math.PI), true));
                     scenicList.push(new Scenery("tent", -45754, -9749, (0.5 * Math.PI), true));
@@ -11119,10 +11119,10 @@ function buildMaster()
                     ArtificialIntelligenceAccess.push(new Unit(-19065, 5180, "Soldier", false, "Nelgref's Pet Bandit", {race: "Freynor", faction: "hostile", con: 2, speed: 0, outfit: ["blackBearLeatherArmour", 3.5], weapon: ["longbow", [7, 5], 0, 17, 1.5], ranged: [true, "steelArrow", 10, 2200, 2, 13, 0, "none", 1.65], patrolStops: 0, patrolLoop: true, route:[[3071, 314]]}));
                     ArtificialIntelligenceAccess.push(new Unit(-19488, 4727, "Soldier", false, "Nelgref's Pet Bandit", {race: "Freynor", faction: "hostile", con: 3, speed: 0, outfit: ["blackBearLeatherArmour", 3.75], weapon: ["longbow", [7, 5], 0, 17, 1.5], ranged: [true, "arrow", 8, 2100, 1, 7, 0, "none", 2], patrolStops: 0, patrolLoop: true, route:[[3071, 314]]}));
                     ArtificialIntelligenceAccess.push(new Unit(-19304, 4578, "Soldier", false, "Nelgref's Pet Bandit", {race: "Freynor", faction: "hostile", con: 4, speed: 0, outfit: ["blackBearLeatherArmour", 3.5], weapon: ["longbow", [7, 5], 0, 17, 1.5], ranged: [true, "arrow", 9, 2000, 1, 8, 0, "none", 1], patrolStops: 0, patrolLoop: true, route:[[3071, 314]]}));
-                    ArtificialIntelligenceAccess.push(new Unit(-18944, 4663, "Soldier", false, "Nelgref's Pet Bandit", {race: "Freynor", faction: "hostile", con: 4, speed: 0, outfit: ["blackBearLeatherArmour", 3.5], weapon: ["crossbow", [7, 5], 0, 17, 1.5], ranged: [true, "steelBolt", 11, 2250, 18, 40, 0, "none", 7], patrolStops: 0, patrolLoop: true, route:[[3071, 314]]}));
-                    ArtificialIntelligenceAccess.push(new Unit(-19037, 4844, "Soldier", false, "Nelgref's Pet Bandit", {race: "Freynor", faction: "hostile", con: 7, speed: 2, outfit: ["blackBearLeatherArmour", 4], weapon: ["freydicSword", [7, 5], 0, 17, 1.5], ranged: [false, "steelBolt", 11, 2250, 18, 40, 0, "none", 7], patrolStops: 0, patrolLoop: true, route:[[3071, 314]]}));
-                    ArtificialIntelligenceAccess.push(new Unit(-19102, 5055, "Soldier", false, "Nelgref's Pet Bandit", {race: "Freynor", faction: "hostile", con: 6, speed: 1.89, outfit: ["blackBearLeatherArmour", 4], weapon: ["freydicSword", [9, 4], 0, 17, 1.4], ranged: [false, "steelBolt", 11, 2250, 18, 40, 0, "none", 7], patrolStops: 0, patrolLoop: true, route:[[3071, 314]]}));
-                    ArtificialIntelligenceAccess.push(new Unit(-18829, 4944, "Soldier", false, "Nelgref's Pet Bandit", {race: "Freynor", faction: "hostile", con: 5, speed: 1.95, outfit: ["blackBearLeatherArmour", 4.5], weapon: ["freydicSword", [8, 5], 0, 17, 1.65], ranged: [false, "steelBolt", 11, 2250, 18, 40, 0, "none", 7], patrolStops: 0, patrolLoop: true, route:[[3071, 314]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(-18944, 4663, "Soldier", false, "Nelgref's Pet Bandit", {race: "Freynor", faction: "hostile", con: 4, speed: 0, outfit: ["blackBearLeatherArmour", 3.5], weapon: ["crossbow", [7, 5], 0, 17, 1.5], ranged: [true, "steelBolt", 11, 2250, 18, 40 /3, 0, "none", 7], patrolStops: 0, patrolLoop: true, route:[[3071, 314]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(-19037, 4844, "Soldier", false, "Nelgref's Pet Bandit", {race: "Freynor", faction: "hostile", con: 7, speed: 2, outfit: ["blackBearLeatherArmour", 4], weapon: ["freydicSword", [7, 5], 0, 17, 1.5], ranged: [false, "steelBolt", 11, 2250, 18, 40 /3, 0, "none", 7], patrolStops: 0, patrolLoop: true, route:[[3071, 314]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(-19102, 5055, "Soldier", false, "Nelgref's Pet Bandit", {race: "Freynor", faction: "hostile", con: 6, speed: 1.89, outfit: ["blackBearLeatherArmour", 4], weapon: ["freydicSword", [9, 4], 0, 17, 1.4], ranged: [false, "steelBolt", 11, 2250, 18, 40 /3, 0, "none", 7], patrolStops: 0, patrolLoop: true, route:[[3071, 314]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(-18829, 4944, "Soldier", false, "Nelgref's Pet Bandit", {race: "Freynor", faction: "hostile", con: 5, speed: 1.95, outfit: ["blackBearLeatherArmour", 4.5], weapon: ["freydicSword", [8, 5], 0, 17, 1.65], ranged: [false, "steelBolt", 11, 2250, 18, 40 /3, 0, "none", 7], patrolStops: 0, patrolLoop: true, route:[[3071, 314]]}));
                 }
                 else if (uniqueChars.nelgrefLDS == false)
                 {
@@ -12951,13 +12951,13 @@ function buildMaster()
                         if (Math.random() > 0.495)
                         {
 
-                            ArtificialIntelligenceAccess.push(new Unit(-30777, 1321, "Soldier", false, "Nelgref Bandit Scout", {race: "Freynor", faction: "hostile", con: 6, speed: 1.9, outfit: ["blackBearLeatherArmour", 4.25], weapon: ["freydicSword", [9, 4], 0, 17, 1.4], ranged: [false, "steelBolt", 11, 2250, 18, 40, 0, "none", 7], patrolStops: 0, patrolLoop: true, route:[[3071, 314]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-30697, 1242, "Soldier", false, "Nelgref Bandit Scout", {race: "Freynor", faction: "hostile", con: 5, speed: 1.96, outfit: ["blackBearLeatherArmour", 4.4], weapon: ["freydicSword", [8, 5], 0, 17, 1.65], ranged: [false, "steelBolt", 11, 2250, 18, 40, 0, "none", 7], patrolStops: 1, patrolLoop: true, route:[[-30591, 1235]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-30777, 1321, "Soldier", false, "Nelgref Bandit Scout", {race: "Freynor", faction: "hostile", con: 6, speed: 1.9, outfit: ["blackBearLeatherArmour", 4.25], weapon: ["freydicSword", [9, 4], 0, 17, 1.4], ranged: [false, "steelBolt", 11, 2250, 18, 40 /3, 0, "none", 7], patrolStops: 0, patrolLoop: true, route:[[3071, 314]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-30697, 1242, "Soldier", false, "Nelgref Bandit Scout", {race: "Freynor", faction: "hostile", con: 5, speed: 1.96, outfit: ["blackBearLeatherArmour", 4.4], weapon: ["freydicSword", [8, 5], 0, 17, 1.65], ranged: [false, "steelBolt", 11, 2250, 18, 40 /3, 0, "none", 7], patrolStops: 1, patrolLoop: true, route:[[-30591, 1235]]}));
                         }
                         else
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(-31602, 1937, "Soldier", false, "Nelgref Bandit Scout", {race: "Freynor", faction: "hostile", con: 6, speed: 1.9, outfit: ["blackBearLeatherArmour", 4.25], weapon: ["freydicSword", [9, 4], 0, 17, 1.4], ranged: [false, "steelBolt", 11, 2250, 18, 40, 0, "none", 7], patrolStops: 1, patrolLoop: true, route:[[-31577, 1902]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-24976, 864, "Soldier", false, "Nelgref Bandit Scout", {race: "Freynor", faction: "hostile", con: 5, speed: 1.96, outfit: ["blackBearLeatherArmour", 4.4], weapon: ["freydicSword", [8, 5], 0, 17, 1.65], ranged: [false, "steelBolt", 11, 2250, 18, 40, 0, "none", 7], patrolStops: 1, patrolLoop: true, route:[[-24973, 891]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-31602, 1937, "Soldier", false, "Nelgref Bandit Scout", {race: "Freynor", faction: "hostile", con: 6, speed: 1.9, outfit: ["blackBearLeatherArmour", 4.25], weapon: ["freydicSword", [9, 4], 0, 17, 1.4], ranged: [false, "steelBolt", 11, 2250, 18, 40 /3, 0, "none", 7], patrolStops: 1, patrolLoop: true, route:[[-31577, 1902]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-24976, 864, "Soldier", false, "Nelgref Bandit Scout", {race: "Freynor", faction: "hostile", con: 5, speed: 1.96, outfit: ["blackBearLeatherArmour", 4.4], weapon: ["freydicSword", [8, 5], 0, 17, 1.65], ranged: [false, "steelBolt", 11, 2250, 18, 40 /3, 0, "none", 7], patrolStops: 1, patrolLoop: true, route:[[-24973, 891]]}));
                         }
                     }
                 }
@@ -13376,17 +13376,17 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-36100, 1334, "Soldier", false, "Leon the Toll Master", {race: "Nirwaden", faction: "Nirwaden", con: 12, speed: 1.2, outfit: ["nirwadenPlateArmour", 17.5], weapon: ["nirineseSabre", [11, 11], 0, 22, 1.25], ranged: [false, "steelBolt", 17, 2350, 20, 17, 0, "none", 2.75], patrolStops: 1, patrolLoop: true, route:[[-36090, 1334]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-36100, 1334, "Soldier", false, "Leon the Toll Master", {race: "Nirwaden", faction: "Nirwaden", con: 12, speed: 1.2, outfit: ["nirwadenPlateArmour", 17.5], weapon: ["nirineseSabre", [11, 11], 0, 22, 1.25], ranged: [false, "steelBolt", 17, 2350, 20, 17 /3, 0, "none", 2.75], patrolStops: 1, patrolLoop: true, route:[[-36090, 1334]]}));
                     }
                 }
 
                 //soldiers
-                ArtificialIntelligenceAccess.push(new Unit(-41075, 1693, "Soldier", false, "Prison Guard", {race: "Nirwaden", faction: "Nirwaden", con: 6, speed: 1.5, outfit: ["nirwadenGambeson", 1.5], weapon: ["nirineseSabre", [7, 6], 0, 19, 1.2], ranged: [false, "steelBolt", 15, 2200, 18, 16, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-41065, 1693]]}));
-                ArtificialIntelligenceAccess.push(new Unit(-36237, 1449, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 6, speed: 1.5, outfit: ["nirwadenMorionArmour", 12.5], weapon: ["nirineseSabre", [9, 9], 0, 21, 1.2], ranged: [false, "steelBolt", 15, 2200, 18, 16, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-36206, 1444]]}));
-                ArtificialIntelligenceAccess.push(new Unit(-36241, 1195, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 8, speed: 1.3, outfit: ["nirwadenMorionArmour", 13], weapon: ["nirineseSabre", [9, 10], 0, 21, 1.2], ranged: [false, "steelBolt", 16, 2200, 18, 16, 0, "none", 3.5], patrolStops: 1, patrolLoop: false, route:[[-36206, 1195]]}));
+                ArtificialIntelligenceAccess.push(new Unit(-41075, 1693, "Soldier", false, "Prison Guard", {race: "Nirwaden", faction: "Nirwaden", con: 6, speed: 1.5, outfit: ["nirwadenGambeson", 1.5], weapon: ["nirineseSabre", [7, 6], 0, 19, 1.2], ranged: [false, "steelBolt", 15, 2200, 18, 16 /3, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-41065, 1693]]}));
+                ArtificialIntelligenceAccess.push(new Unit(-36237, 1449, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 6, speed: 1.5, outfit: ["nirwadenMorionArmour", 12.5], weapon: ["nirineseSabre", [9, 9], 0, 21, 1.2], ranged: [false, "steelBolt", 15, 2200, 18, 16 /3, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-36206, 1444]]}));
+                ArtificialIntelligenceAccess.push(new Unit(-36241, 1195, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 8, speed: 1.3, outfit: ["nirwadenMorionArmour", 13], weapon: ["nirineseSabre", [9, 10], 0, 21, 1.2], ranged: [false, "steelBolt", 16, 2200, 18, 16 /3, 0, "none", 3.5], patrolStops: 1, patrolLoop: false, route:[[-36206, 1195]]}));
 
-                ArtificialIntelligenceAccess.push(new Unit(-40371, 1452, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 6, speed: 1.5, outfit: ["nirwadenMorionArmour", 12.5], weapon: ["nirineseSabre", [10, 10], 0, 21, 1.2], ranged: [false, "steelBolt", 15.5, 2200, 19, 16, 0, "none", 3.25], patrolStops: 1, patrolLoop: false, route:[[-40371, 1441]]}));
-                ArtificialIntelligenceAccess.push(new Unit(-40371, 1177, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 8, speed: 1.3, outfit: ["nirwadenMorionArmour", 13], weapon: ["nirineseSabre", [9, 11], 0, 21, 1.2], ranged: [false, "steelBolt", 14, 2200, 17, 16, 0, "none", 3.35], patrolStops: 1, patrolLoop: false, route:[[-40371, 1195]]}));
+                ArtificialIntelligenceAccess.push(new Unit(-40371, 1452, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 6, speed: 1.5, outfit: ["nirwadenMorionArmour", 12.5], weapon: ["nirineseSabre", [10, 10], 0, 21, 1.2], ranged: [false, "steelBolt", 15.5, 2200, 19, 16 /3, 0, "none", 3.25], patrolStops: 1, patrolLoop: false, route:[[-40371, 1441]]}));
+                ArtificialIntelligenceAccess.push(new Unit(-40371, 1177, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 8, speed: 1.3, outfit: ["nirwadenMorionArmour", 13], weapon: ["nirineseSabre", [9, 11], 0, 21, 1.2], ranged: [false, "steelBolt", 14, 2200, 17, 16 /3, 0, "none", 3.35], patrolStops: 1, patrolLoop: false, route:[[-40371, 1195]]}));
 
                 //civvies
                 ArtificialIntelligenceAccess.push(new Unit(-40509, 2891, "Person", false, "Nirwaden Fisherman", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["frichFurClothing", 0], weapon: ["none", [0.15, 0.3], 0, 0, 0.5 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[-40504, 2891]]}));
@@ -14166,7 +14166,7 @@ function buildMaster()
                 }
                 if (hits == 0)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-44655, -1862, "Person", false, "Trap Vendor", {race: "Nirwaden", faction: "Nirwaden", personality: "violent", outfit: ["blackBearFurClothing", 0.25], weapon: ["crossbow", [0.1, 0.3], 0, 0, 13], ranged: [true, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44655, -1850]], merchant: true, merchandise: [[new Item("coins", false, false), 18], [new Item("jacks", false, false), 13], [new Item("beartrap", false, false), 3]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(-44655, -1862, "Person", false, "Trap Vendor", {race: "Nirwaden", faction: "Nirwaden", personality: "violent", outfit: ["blackBearFurClothing", 0.25], weapon: ["crossbow", [0.1, 0.3], 0, 0, 13], ranged: [true, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44655, -1850]], merchant: true, merchandise: [[new Item("coins", false, false), 18], [new Item("jacks", false, false), 13], [new Item("beartrap", false, false), 3]]}));
                     for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
                     {
                         if (ArtificialIntelligenceAccess[i].ID == "Trap Vendor")
@@ -14264,7 +14264,7 @@ function buildMaster()
                 }
                 if (hits == 0)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-44083, -1636, "Person", false, "Fabric Vendor", {race: "Nirwaden", faction: "Nirwaden", personality: "violent", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.1, 0.1], 0, 0, 2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-44655, -1850]], merchant: true, merchandise: [[new Item("coins", false, false), 24], [new Item("cloth", false, false), 33], [new Item("horseHair", false, false), 19]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(-44083, -1636, "Person", false, "Fabric Vendor", {race: "Nirwaden", faction: "Nirwaden", personality: "violent", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.1, 0.1], 0, 0, 2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-44655, -1850]], merchant: true, merchandise: [[new Item("coins", false, false), 24], [new Item("cloth", false, false), 33], [new Item("horseHair", false, false), 19]]}));
                 }
                     //grain stand
                 scenicList.push(new Scenery("item", -44463, -1566, 0, "nirwaden", ["bagOfHarstFlour", 1, -19]));
@@ -14285,7 +14285,7 @@ function buildMaster()
                 }
                 if (hits == 0)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-44520, -1548, "Person", false, "Flour and Grain Vendor", {race: "Nirwaden", faction: "Nirwaden", personality: "violent", outfit: ["none", 0], weapon: ["none", [0.125, 0.15], 0, 0, 0.9], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44519, -1584]], merchant: true, merchandise: [[new Item("coins", false, false), 40], [new Item("bagOfHarstFlour", false, false), 5], [new Item("bagOfSanthFlour", false, false), 2], [new Item("harstGrain", false, false), 46], [new Item("santhGrain", false, false), 19]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(-44520, -1548, "Person", false, "Flour and Grain Vendor", {race: "Nirwaden", faction: "Nirwaden", personality: "violent", outfit: ["none", 0], weapon: ["none", [0.125, 0.15], 0, 0, 0.9], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44519, -1584]], merchant: true, merchandise: [[new Item("coins", false, false), 40], [new Item("bagOfHarstFlour", false, false), 5], [new Item("bagOfSanthFlour", false, false), 2], [new Item("harstGrain", false, false), 46], [new Item("santhGrain", false, false), 19]]}));
                 }
                     //pork stand
                 scenicList.push(new Scenery("nirwadenMueble", -44686, -1298, -1/2 * Math.PI, 1)); //bench
@@ -14306,7 +14306,7 @@ function buildMaster()
                 }
                 if (hits == 0)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-44735, -1298, "Person", false, "Cured Pork Vendor", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.6, 0.35], 0, 0, 1.24], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44718, -1297]], merchant: true, merchandise: [[new Item("coins", false, false), 95], [new Item("boarMeat", false, false), 3], [new Item("curedPork", false, false), 24]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(-44735, -1298, "Person", false, "Cured Pork Vendor", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.6, 0.35], 0, 0, 1.24], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44718, -1297]], merchant: true, merchandise: [[new Item("coins", false, false), 95], [new Item("boarMeat", false, false), 3], [new Item("curedPork", false, false), 24]]}));
                 }
                     //fish stand
                 scenicList.push(new Scenery("nirwadenMueble", -44792, -1148, 1.02 * Math.PI, 1)); //bench
@@ -14333,7 +14333,7 @@ function buildMaster()
                 }
                 if (hits == 0)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-44802, -1207, "Person", false, "Fish Vendor", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.4, 0.4], 0, 0, 1.22], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44786, -1174]], merchant: true, merchandise: [[new Item("coins", false, false), 34], [new Item("rawRedBelliedFalder", false, false), 5], [new Item("rawSlol", false, false), 3], [new Item("rawSalmon", false, false), 2], [new Item("crawdid", false, false), 7], [new Item("rawDuskfish", false, false), 4]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(-44802, -1207, "Person", false, "Fish Vendor", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.4, 0.4], 0, 0, 1.22], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44786, -1174]], merchant: true, merchandise: [[new Item("coins", false, false), 34], [new Item("rawRedBelliedFalder", false, false), 5], [new Item("rawSlol", false, false), 3], [new Item("rawSalmon", false, false), 2], [new Item("crawdid", false, false), 7], [new Item("rawDuskfish", false, false), 4]]}));
                 }
 
                 //marketgoers
@@ -14355,7 +14355,7 @@ function buildMaster()
                 }
                 if (hits == 0)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-44120, -1292, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.4, 0.4], 0, 0, 1.22], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 13, patrolLoop: true, route:[[-44247, -1635], [-44150, -1624], [-44260, -1991], [-44909, -1987], [-45061, -1853], [-45727, -1845], [-45726, -1409], [-45446, -1402], [-45449, -1453], [-45645, -1215], [-44880, -1302], [-44893, -1725], [-44207, -1701]], altID: "atalinMarketGoer1"}));
+                    ArtificialIntelligenceAccess.push(new Unit(-44120, -1292, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.4, 0.4], 0, 0, 1.22], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 13, patrolLoop: true, route:[[-44247, -1635], [-44150, -1624], [-44260, -1991], [-44909, -1987], [-45061, -1853], [-45727, -1845], [-45726, -1409], [-45446, -1402], [-45449, -1453], [-45645, -1215], [-44880, -1302], [-44893, -1725], [-44207, -1701]], altID: "atalinMarketGoer1"}));
                 }
                     //
                 var hits = 0;
@@ -14375,7 +14375,7 @@ function buildMaster()
                 }
                 if (hits == 0)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-45278, -729, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.4, 0.4], 0, 0, 1.22], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 13, patrolLoop: true, route:[[-44536, -942], [-44534, -829], [-44412, -945], [-44167, -931], [-44127, -572], [-44136, -646], [-44447, -653], [-44404, -474], [-45194, -497], [-45074, -522], [-45063, -806], [-45265, -803], [-45278, -729]], altID: "atalinMarketGoer2"}));
+                    ArtificialIntelligenceAccess.push(new Unit(-45278, -729, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.4, 0.4], 0, 0, 1.22], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 13, patrolLoop: true, route:[[-44536, -942], [-44534, -829], [-44412, -945], [-44167, -931], [-44127, -572], [-44136, -646], [-44447, -653], [-44404, -474], [-45194, -497], [-45074, -522], [-45063, -806], [-45265, -803], [-45278, -729]], altID: "atalinMarketGoer2"}));
                 }
                     //
                 var hits = 0;
@@ -14395,7 +14395,7 @@ function buildMaster()
                 }
                 if (hits == 0)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-44732, -536, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.4, 0.4], 0, 0, 1.22], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 10, patrolLoop: true, route:[[-44732, -536], [-44730, -428], [-44712, -465], [-44274, -441], [-44280, -285], [-44097, -283], [-44099, -364], [-44804, -579], [-44274, -441], [-44801, -797]], altID: "atalinMarketGoer3"}));
+                    ArtificialIntelligenceAccess.push(new Unit(-44732, -536, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.4, 0.4], 0, 0, 1.22], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 10, patrolLoop: true, route:[[-44732, -536], [-44730, -428], [-44712, -465], [-44274, -441], [-44280, -285], [-44097, -283], [-44099, -364], [-44804, -579], [-44274, -441], [-44801, -797]], altID: "atalinMarketGoer3"}));
                 }
                     //
                 var hits = 0;
@@ -14415,7 +14415,7 @@ function buildMaster()
                 }
                 if (hits == 0)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-45120, -2689, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.2, 0.25], 0, 0, 1.22], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 19, patrolLoop: true, route:[[-45120, -2700], [-45120, -2689], [-45050, -2689], [-45053, -2287], [-45349, -2293], [-45354, -2589], [-45670, -2588], [-45668, -2238], [-46003, -2231], [-46017, -1862], [-45797, -1851], [-45810, -1418], [-45554, -1409], [-45556, -1237], [-44989, -1197], [-44524, -1785], [-44477, -2028], [-44460, -2692], [-45120, -2689]], altID: "atalinMarketGoer4"}));
+                    ArtificialIntelligenceAccess.push(new Unit(-45120, -2689, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.2, 0.25], 0, 0, 1.22], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 19, patrolLoop: true, route:[[-45120, -2700], [-45120, -2689], [-45050, -2689], [-45053, -2287], [-45349, -2293], [-45354, -2589], [-45670, -2588], [-45668, -2238], [-46003, -2231], [-46017, -1862], [-45797, -1851], [-45810, -1418], [-45554, -1409], [-45556, -1237], [-44989, -1197], [-44524, -1785], [-44477, -2028], [-44460, -2692], [-45120, -2689]], altID: "atalinMarketGoer4"}));
                 }
                     //
                 var hits = 0;
@@ -14435,7 +14435,7 @@ function buildMaster()
                 }
                 if (hits == 0)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-44675, -1780, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.4, 0.4], 0, 0, 1.22], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 12, patrolLoop: true, route:[[-44522, -1623], [-44519, -1950], [-44172, -1943], [-44162, -1635], [-44144, -1633], [-44162, -1635], [-44269, -448], [-45064, -447], [-45043, -1460], [-44342, -1459], [-44334, -1780], [-44675, -1780]], altID: "atalinMarketGoer5"}));
+                    ArtificialIntelligenceAccess.push(new Unit(-44675, -1780, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.4, 0.4], 0, 0, 1.22], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 12, patrolLoop: true, route:[[-44522, -1623], [-44519, -1950], [-44172, -1943], [-44162, -1635], [-44144, -1633], [-44162, -1635], [-44269, -448], [-45064, -447], [-45043, -1460], [-44342, -1459], [-44334, -1780], [-44675, -1780]], altID: "atalinMarketGoer5"}));
                 }
                     //
                 var hits = 0;
@@ -14455,7 +14455,7 @@ function buildMaster()
                 }
                 if (hits == 0)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-44801, -2864, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.5, 0.4], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 35, patrolLoop: true, route:[[-44809, -2693], [-44442, -2676], [-44431, -2980], [-44599, -2987], [-44431, -2980], [-44583, -2705], [-44453, -2690], [-44465, -2484], [-44465, -2033], [-44555, -1715], [-45237, -1223], [-45241, -1141], [-45236, -1284], [-45423, -1288], [-45434, -829], [-45048, -817], [-45018, -669], [-44952, -667], [-45000, -671], [-44985, -483], [-44693, -492], [-44683, -1010], [-44363, -1288], [-44892, -1709], [-44879, -1849], [-45275, -1857], [-45275, -2291], [-45349, -2298], [-45349, -2582], [-45438, -2582], [-45433, -2959], [-45110, -2939], [-45110, -2682], [-44806, -2682], [-44801, -2864]], altID: "atalinMarketGoer6"}));
+                    ArtificialIntelligenceAccess.push(new Unit(-44801, -2864, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.5, 0.4], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 35, patrolLoop: true, route:[[-44809, -2693], [-44442, -2676], [-44431, -2980], [-44599, -2987], [-44431, -2980], [-44583, -2705], [-44453, -2690], [-44465, -2484], [-44465, -2033], [-44555, -1715], [-45237, -1223], [-45241, -1141], [-45236, -1284], [-45423, -1288], [-45434, -829], [-45048, -817], [-45018, -669], [-44952, -667], [-45000, -671], [-44985, -483], [-44693, -492], [-44683, -1010], [-44363, -1288], [-44892, -1709], [-44879, -1849], [-45275, -1857], [-45275, -2291], [-45349, -2298], [-45349, -2582], [-45438, -2582], [-45433, -2959], [-45110, -2939], [-45110, -2682], [-44806, -2682], [-44801, -2864]], altID: "atalinMarketGoer6"}));
                 }
 
                 //midclass housing (interior)
@@ -14557,7 +14557,7 @@ function buildMaster()
                 }
                 if (hits == 0)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-40958, 2478, "Person", false, "Homeless Squatter", {race: "Nirwaden", faction: "Nirwaden", personality: "violent", outfit: ["frichFurClothing", 0], weapon: ["none", [0.5, 0.4], 0, 0, 0.75], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-40942, 2251]], altID: "atalinHomeless1"}));
+                    ArtificialIntelligenceAccess.push(new Unit(-40958, 2478, "Person", false, "Homeless Squatter", {race: "Nirwaden", faction: "Nirwaden", personality: "violent", outfit: ["frichFurClothing", 0], weapon: ["none", [0.5, 0.4], 0, 0, 0.75], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-40942, 2251]], altID: "atalinHomeless1"}));
                     for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
                     {
                         if (ArtificialIntelligenceAccess[i].ID == "Homeless Squatter")
@@ -14590,7 +14590,7 @@ function buildMaster()
                 }
                 if (hits == 0)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-41094, 2481, "Person", false, "Homeless Squatter", {race: "Nirwaden", faction: "Nirwaden", personality: "violent", outfit: ["frichFurClothing", 0], weapon: ["none", [0.5, 0.4], 0, 0, 0.7], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-41075, 2478]], altID: "atalinHomeless2"}));
+                    ArtificialIntelligenceAccess.push(new Unit(-41094, 2481, "Person", false, "Homeless Squatter", {race: "Nirwaden", faction: "Nirwaden", personality: "violent", outfit: ["frichFurClothing", 0], weapon: ["none", [0.5, 0.4], 0, 0, 0.7], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-41075, 2478]], altID: "atalinHomeless2"}));
                     for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
                     {
                         if (ArtificialIntelligenceAccess[i].ID == "Homeless Squatter")
@@ -14623,7 +14623,7 @@ function buildMaster()
                 }
                 if (hits == 0)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-41084, 2280, "Person", false, "Homeless Squatter", {race: "Nirwaden", faction: "Nirwaden", personality: "violent", outfit: ["frichFurClothing", 0], weapon: ["none", [0.5, 0.4], 0, 0, 0.7], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-41076, 2307]], altID: "atalinHomeless3"}));
+                    ArtificialIntelligenceAccess.push(new Unit(-41084, 2280, "Person", false, "Homeless Squatter", {race: "Nirwaden", faction: "Nirwaden", personality: "violent", outfit: ["frichFurClothing", 0], weapon: ["none", [0.5, 0.4], 0, 0, 0.7], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-41076, 2307]], altID: "atalinHomeless3"}));
                     for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
                     {
                         if (ArtificialIntelligenceAccess[i].ID == "Homeless Squatter")
@@ -14783,7 +14783,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-44910, 444, "Person", false, "Shopkeeper", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44897, 444]], altID: "atalinPlayerShopkeeper"}));
+                        ArtificialIntelligenceAccess.push(new Unit(-44910, 444, "Person", false, "Shopkeeper", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44897, 444]], altID: "atalinPlayerShopkeeper"}));
                     }
                 }
                 else
@@ -14807,7 +14807,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-44646, 702, "Person", false, "Guild Master Manolo", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44649, 722]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-44646, 702, "Person", false, "Guild Master Manolo", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44649, 722]]}));
                     }
                 }
                 scenicList.push(new Scenery("nirwadenGoods", -44584, 713, -4.56, 9));
@@ -14844,7 +14844,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-44565, 1145, "Person", false, "Merchant's Guild Accountant", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.45], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44511, 1146]], altID: "merchGuild1"}));
+                        ArtificialIntelligenceAccess.push(new Unit(-44565, 1145, "Person", false, "Merchant's Guild Accountant", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.45], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44511, 1146]], altID: "merchGuild1"}));
                     }
                     var hits = 0;
                     for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
@@ -14863,7 +14863,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-44585, 1006, "Person", false, "Merchant's Guild Accountant", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.45], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44511, 1010]], altID: "merchGuild2"}));
+                        ArtificialIntelligenceAccess.push(new Unit(-44585, 1006, "Person", false, "Merchant's Guild Accountant", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.45], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44511, 1010]], altID: "merchGuild2"}));
                     }
                     var hits = 0;
                     for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
@@ -14882,7 +14882,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-44464, 806, "Person", false, "Merchant's Guild Member", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.35], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44436, 805]], altID: "merchGuild3"}));
+                        ArtificialIntelligenceAccess.push(new Unit(-44464, 806, "Person", false, "Merchant's Guild Member", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.35], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44436, 805]], altID: "merchGuild3"}));
                     }
                 }
                 scenicList.push(new Scenery("nirwadenMueble", -44353, 909, -1/2 * Math.PI, 2)); //sqr table
@@ -15132,7 +15132,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-42562, -2979, "Person", false, "Giomardo", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["varnFurClothing", 0], weapon: ["none", [0.3, 0.35], 0, 0, 1.225], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-42579, -2960]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-42562, -2979, "Person", false, "Giomardo", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["varnFurClothing", 0], weapon: ["none", [0.3, 0.35], 0, 0, 1.225], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-42579, -2960]]}));
                     }
                 }
 
@@ -15148,7 +15148,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-42826, -2733, "Person", false, "Elma", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["frichFurClothing", 0], weapon: ["none", [0.2, 0.25], 0, 0, 1.225], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-42823, -2748]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-42826, -2733, "Person", false, "Elma", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["frichFurClothing", 0], weapon: ["none", [0.2, 0.25], 0, 0, 1.225], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-42823, -2748]]}));
                     }
                 }
 
@@ -15164,7 +15164,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-42755, -2956, "Person", false, "Natalia", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["varnFurClothing", 0], weapon: ["none", [0.015, 0.015], 0, 0, 1.1], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 2, patrolLoop: true, route:[[-42755, -2970], [-42702, -2934]], kid: true}));
+                        ArtificialIntelligenceAccess.push(new Unit(-42755, -2956, "Person", false, "Natalia", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["varnFurClothing", 0], weapon: ["none", [0.015, 0.015], 0, 0, 1.1], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 2, patrolLoop: true, route:[[-42755, -2970], [-42702, -2934]], kid: true}));
                     }
                 }
                 scenicList.push(new Scenery("stove", -42968, -2880, 1/2 * Math.PI, "lit"));
@@ -15181,7 +15181,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-42914, -2882, "Person", false, "Ebaro", {race: "Nirwaden", faction: "Nirwaden", personality: "none", outfit: ["none", 0], weapon: ["none", [0.005, 0.005], 0, 0, 80], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-42939, -2882]], kid: true}));
+                        ArtificialIntelligenceAccess.push(new Unit(-42914, -2882, "Person", false, "Ebaro", {race: "Nirwaden", faction: "Nirwaden", personality: "none", outfit: ["none", 0], weapon: ["none", [0.005, 0.005], 0, 0, 80], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-42939, -2882]], kid: true}));
                     }
                 }
 
@@ -15206,18 +15206,18 @@ function buildMaster()
                 {
                     if (timeOfDay == "Dusk" || timeOfDay == "Night" || timeOfDay == "Dawn")
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-42125, -2733, "Person", false, "Mugger", {race: "Nirwaden", faction: "arena4", personality: "violent", outfit: ["frichFurClothing", 0], weapon: ["sickle", [3.5, 1.5], 0, 23, 1.25], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-42110, -1694]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-42125, -2733, "Person", false, "Mugger", {race: "Nirwaden", faction: "arena4", personality: "violent", outfit: ["frichFurClothing", 0], weapon: ["sickle", [3.5, 1.5], 0, 23, 1.25], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-42110, -1694]]}));
                     }
                 }
                 if (Math.random() < 0.2)
                 {
                     if (Math.random() > 0.46)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-42031, -2392, "Person", false, "Mugger", {race: "Nirwaden", faction: "arena4", personality: "violent", outfit: ["none", 0], weapon: ["sickle", [2, 2], 0, 22, 1], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-42823, -2748]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-42031, -2392, "Person", false, "Mugger", {race: "Nirwaden", faction: "arena4", personality: "violent", outfit: ["none", 0], weapon: ["sickle", [2, 2], 0, 22, 1], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-42823, -2748]]}));
                     }
                     else
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-42031, -2392, "Person", false, "Mugger", {race: "Nirwaden", faction: "arena4", personality: "violent", outfit: ["frichFurClothing", 0], weapon: ["sickle", [3, 2], 0, 22, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-42823, -2748]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-42031, -2392, "Person", false, "Mugger", {race: "Nirwaden", faction: "arena4", personality: "violent", outfit: ["frichFurClothing", 0], weapon: ["sickle", [3, 2], 0, 22, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-42823, -2748]]}));
                     }
 
                 }
@@ -15227,11 +15227,11 @@ function buildMaster()
                     {
                         if (Math.random() > 0.4)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(-41065, -2940, "Person", false, "Mugger", {race: "Nirwaden", faction: "arena4", personality: "violent", outfit: ["none", 0], weapon: ["sickle", [4, 3], 0, 22, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-42823, -2748]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-41065, -2940, "Person", false, "Mugger", {race: "Nirwaden", faction: "arena4", personality: "violent", outfit: ["none", 0], weapon: ["sickle", [4, 3], 0, 22, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-42823, -2748]]}));
                         }
                         else
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(-41065, -2940, "Person", false, "Mugger", {race: "Nirwaden", faction: "arena4", personality: "violent", outfit: ["none", 0], weapon: ["timberAxe", [6, 5], 0, 28, 2.1], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-42823, -2748]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-41065, -2940, "Person", false, "Mugger", {race: "Nirwaden", faction: "arena4", personality: "violent", outfit: ["none", 0], weapon: ["timberAxe", [6, 5], 0, 28, 2.1], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-42823, -2748]]}));
                         }
 
                     }
@@ -15242,11 +15242,11 @@ function buildMaster()
                     {
                         if (Math.random() > 0.4)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(-42430, -1461, "Person", false, "Mugger", {race: "Nirwaden", faction: "arena4", personality: "violent", outfit: ["none", 0], weapon: ["sickle", [5, 2], 0, 22, 1.26], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-42823, -2748]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-42430, -1461, "Person", false, "Mugger", {race: "Nirwaden", faction: "arena4", personality: "violent", outfit: ["none", 0], weapon: ["sickle", [5, 2], 0, 22, 1.26], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-42823, -2748]]}));
                         }
                         else
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(-41863, -1312, "Person", false, "Mugger", {race: "Nirwaden", faction: "arena4", personality: "violent", outfit: ["frichFurClothing", 0], weapon: ["sickle", [4, 4], 0, 21, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-42823, -2748]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-41863, -1312, "Person", false, "Mugger", {race: "Nirwaden", faction: "arena4", personality: "violent", outfit: ["frichFurClothing", 0], weapon: ["sickle", [4, 4], 0, 21, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-42823, -2748]]}));
                         }
 
                     }
@@ -15261,7 +15261,7 @@ function buildMaster()
                         }
                         else
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(-42052, -2970, "Person", false, "Mugger", {race: "Nirwaden", faction: "arena4", personality: "violent", outfit: ["frichFurClothing", 0], weapon: ["sickle", [3, 3], 0, 24, 1.15], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-42054, -2950]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-42052, -2970, "Person", false, "Mugger", {race: "Nirwaden", faction: "arena4", personality: "violent", outfit: ["frichFurClothing", 0], weapon: ["sickle", [3, 3], 0, 24, 1.15], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-42054, -2950]]}));
                         }
                     }
                 }
@@ -15272,11 +15272,11 @@ function buildMaster()
                     {
                         if (Math.random() > 0.7)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(-41704, -2958, "Soldier", false, "Estol Thug", {race: "Nirwaden", faction: "EstolGang3", con: 5, speed: 1, outfit: ["none", 0], weapon: ["nirineseSabre", [5, 5], 0, 26, 0.8], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-41704, -2958], [-41700, -2955]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-41704, -2958, "Soldier", false, "Estol Thug", {race: "Nirwaden", faction: "EstolGang3", con: 5, speed: 1, outfit: ["none", 0], weapon: ["nirineseSabre", [5, 5], 0, 26, 0.8], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-41704, -2958], [-41700, -2955]]}));
                         }
                         else
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(-41700, -2955, "Soldier", false, "Estol Thug", {race: "Nirwaden", faction: "EstolGang3", con: 8, speed: 1, outfit: ["boarArmour", 4.5], weapon: ["nirineseSabre", [8, 6], 0, 25, 0.9], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 2, patrolLoop: true, route:[[-42381, -2951], [-41700, -2955]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-41700, -2955, "Soldier", false, "Estol Thug", {race: "Nirwaden", faction: "EstolGang3", con: 8, speed: 1, outfit: ["boarArmour", 4.5], weapon: ["nirineseSabre", [8, 6], 0, 25, 0.9], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 2, patrolLoop: true, route:[[-42381, -2951], [-41700, -2955]]}));
                         }
                     }
                 }
@@ -15286,11 +15286,11 @@ function buildMaster()
                     {
                         if (Math.random() > 0.46)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(-41609, -2710, "Soldier", false, "Estol Thug", {race: "Nirwaden", faction: "EstolGang3", con: 2, speed: 1.2, outfit: ["nirwadenGambeson", 2.5], weapon: ["nirineseSabre", [7, 5.5], 0, 24, 0.95], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-41610, -2697]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-41609, -2710, "Soldier", false, "Estol Thug", {race: "Nirwaden", faction: "EstolGang3", con: 2, speed: 1.2, outfit: ["nirwadenGambeson", 2.5], weapon: ["nirineseSabre", [7, 5.5], 0, 24, 0.95], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-41610, -2697]]}));
                         }
                         else
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(-41676, -2807, "Soldier", false, "Estol Thug", {race: "Nirwaden", faction: "EstolGang3", con: 2.5, speed: 1.2, outfit: ["nirwadenGambeson", 2], weapon: ["nirineseSabre", [9, 4.5], 0, 22, 1.1], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-41683, -2807]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-41676, -2807, "Soldier", false, "Estol Thug", {race: "Nirwaden", faction: "EstolGang3", con: 2.5, speed: 1.2, outfit: ["nirwadenGambeson", 2], weapon: ["nirineseSabre", [9, 4.5], 0, 22, 1.1], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-41683, -2807]]}));
                         }
                     }
                 }
@@ -15333,7 +15333,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-42574, -1311, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["frichFurClothing", 0], weapon: ["none", [0.4, 0.45], 0, 0, 1.25], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-42761, -1709]], kid: true, altID: "slums18"}));
+                        ArtificialIntelligenceAccess.push(new Unit(-42574, -1311, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["frichFurClothing", 0], weapon: ["none", [0.4, 0.45], 0, 0, 1.25], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-42761, -1709]], kid: true, altID: "slums18"}));
                     }
 
                     //
@@ -15354,7 +15354,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-42619, -1437, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["frichFurClothing", 0], weapon: ["none", [0.4, 0.45], 0, 0, 1.25], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-42595, -1415]], altID: "slums17"}));
+                        ArtificialIntelligenceAccess.push(new Unit(-42619, -1437, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["frichFurClothing", 0], weapon: ["none", [0.4, 0.45], 0, 0, 1.25], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-42595, -1415]], altID: "slums17"}));
                     }
                 }
 
@@ -15378,7 +15378,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-42458, -1667, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "violent", outfit: ["none", 0], weapon: ["none", [0.35, 0.75], 0, 0, 1.15], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-42761, -1709]], altID: "slums16"}));
+                        ArtificialIntelligenceAccess.push(new Unit(-42458, -1667, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "violent", outfit: ["none", 0], weapon: ["none", [0.35, 0.75], 0, 0, 1.15], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-42761, -1709]], altID: "slums16"}));
                     }
                 }
 
@@ -15402,7 +15402,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-42789, -1695, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.25, 0.25], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-42761, -1709]], altID: "slums15"}));
+                        ArtificialIntelligenceAccess.push(new Unit(-42789, -1695, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.25, 0.25], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-42761, -1709]], altID: "slums15"}));
                     }
                 }
 
@@ -15426,7 +15426,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-42025, -1855, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.15, 0.15], 0, 0, 1.1], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-41509, -1356]], altID: "slums14"}));
+                        ArtificialIntelligenceAccess.push(new Unit(-42025, -1855, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.15, 0.15], 0, 0, 1.1], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-41509, -1356]], altID: "slums14"}));
                     }
                 }
 
@@ -15492,7 +15492,7 @@ function buildMaster()
                         }
                         if (hits == 0)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(-42509, -1932, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["frichFurClothing", 0], weapon: ["none", [0.4, 0.4], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-42508, -1946]], altID: "slums13"}));
+                            ArtificialIntelligenceAccess.push(new Unit(-42509, -1932, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["frichFurClothing", 0], weapon: ["none", [0.4, 0.4], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-42508, -1946]], altID: "slums13"}));
                         }
                     }
                     else
@@ -15514,7 +15514,7 @@ function buildMaster()
                         }
                         if (hits == 0)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(-42530, -1846, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["frichFurClothing", 0], weapon: ["none", [0.4, 0.4], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-42511, -1867]], altID: "slums13"}));
+                            ArtificialIntelligenceAccess.push(new Unit(-42530, -1846, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["frichFurClothing", 0], weapon: ["none", [0.4, 0.4], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-42511, -1867]], altID: "slums13"}));
                         }
                     }
                 }
@@ -15539,7 +15539,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-41540, -1327, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.4, 0.4], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-41509, -1356]], altID: "slums12"}));
+                        ArtificialIntelligenceAccess.push(new Unit(-41540, -1327, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.4, 0.4], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-41509, -1356]], altID: "slums12"}));
                     }
                 }
 
@@ -15563,7 +15563,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-41060, -2024, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.4, 0.4], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-41741, -2126]], altID: "slums11"}));
+                        ArtificialIntelligenceAccess.push(new Unit(-41060, -2024, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.4, 0.4], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-41741, -2126]], altID: "slums11"}));
                     }
                 }
 
@@ -15593,7 +15593,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-41740, -2089, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "violent", outfit: ["frichFurClothing", 0], weapon: ["none", [0.4, 0.4], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-41741, -2126]], altID: "slums10"}));
+                        ArtificialIntelligenceAccess.push(new Unit(-41740, -2089, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "violent", outfit: ["frichFurClothing", 0], weapon: ["none", [0.4, 0.4], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-41741, -2126]], altID: "slums10"}));
                     }
                 }
 
@@ -15619,7 +15619,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-41812, -2598, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "violent", outfit: ["frichFurClothing", 0], weapon: ["none", [0.4, 0.4], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-41812, -2580]], kid: true, altID: "slums9"}));
+                        ArtificialIntelligenceAccess.push(new Unit(-41812, -2598, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "violent", outfit: ["frichFurClothing", 0], weapon: ["none", [0.4, 0.4], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-41812, -2580]], kid: true, altID: "slums9"}));
                     }
 
                     //
@@ -15640,7 +15640,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-41906, -2524, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "violent", outfit: ["none", 0], weapon: ["none", [0.4, 0.4], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-41611, -2578]], altID: "slums8"}));
+                        ArtificialIntelligenceAccess.push(new Unit(-41906, -2524, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "violent", outfit: ["none", 0], weapon: ["none", [0.4, 0.4], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-41611, -2578]], altID: "slums8"}));
                     }
                 }
 
@@ -15666,7 +15666,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-41611, -2591, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "violent", outfit: ["frichFurClothing", 0], weapon: ["none", [0.4, 0.4], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-41611, -2578]], altID: "slums7"}));
+                        ArtificialIntelligenceAccess.push(new Unit(-41611, -2591, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "violent", outfit: ["frichFurClothing", 0], weapon: ["none", [0.4, 0.4], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-41611, -2578]], altID: "slums7"}));
                     }
                 }
 
@@ -15692,7 +15692,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-41890, -2839, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "violent", outfit: ["varnFurClothing", 0], weapon: ["none", [0.4, 0.4], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-41875, -2842]], altID: "slums6"}));
+                        ArtificialIntelligenceAccess.push(new Unit(-41890, -2839, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "violent", outfit: ["varnFurClothing", 0], weapon: ["none", [0.4, 0.4], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-41875, -2842]], altID: "slums6"}));
                     }
                 }
                 if (Math.random() > 0.25)
@@ -15717,7 +15717,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-41611, -2591, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "violent", outfit: ["frichFurClothing", 0], weapon: ["none", [0.4, 0.4], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-41611, -2578]], altID: "slums7"}));
+                        ArtificialIntelligenceAccess.push(new Unit(-41611, -2591, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "violent", outfit: ["frichFurClothing", 0], weapon: ["none", [0.4, 0.4], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-41611, -2578]], altID: "slums7"}));
                     }
                 }
 
@@ -15743,7 +15743,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-41890, -2839, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "violent", outfit: ["varnFurClothing", 0], weapon: ["none", [0.4, 0.4], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-41875, -2842]], altID: "slums6"}));
+                        ArtificialIntelligenceAccess.push(new Unit(-41890, -2839, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "violent", outfit: ["varnFurClothing", 0], weapon: ["none", [0.4, 0.4], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-41875, -2842]], altID: "slums6"}));
                     }
                 }
                 if (Math.random() > 0.75)
@@ -15767,7 +15767,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-42619, -2572, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "violent", outfit: ["frichFurClothing", 0], weapon: ["none", [0.4, 0.4], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-42595, -2585]], altID: "slums5"}));
+                        ArtificialIntelligenceAccess.push(new Unit(-42619, -2572, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "violent", outfit: ["frichFurClothing", 0], weapon: ["none", [0.4, 0.4], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-42595, -2585]], altID: "slums5"}));
                     }
                 }
                 if (Math.random() > 0.15)
@@ -15798,7 +15798,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-41845, -2230, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "violent", outfit: ["frichFurClothing", 0], weapon: ["none", [0.4, 0.4], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-41845, -2205]], altID: "slums4"}));
+                        ArtificialIntelligenceAccess.push(new Unit(-41845, -2230, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "violent", outfit: ["frichFurClothing", 0], weapon: ["none", [0.4, 0.4], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-41845, -2205]], altID: "slums4"}));
                     }
                 }
 
@@ -15824,7 +15824,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-42388, -2510, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "violent", outfit: ["varnFurClothing", 0], weapon: ["none", [0.4, 0.4], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-42388, -2528]], altID: "slums3"}));
+                        ArtificialIntelligenceAccess.push(new Unit(-42388, -2510, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "violent", outfit: ["varnFurClothing", 0], weapon: ["none", [0.4, 0.4], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-42388, -2528]], altID: "slums3"}));
                     }
                 }
 
@@ -15849,7 +15849,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-42882, -2607, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "violent", outfit: ["frichFurClothing", 0], weapon: ["none", [0.4, 0.4], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-44809, -2693]], altID: "slums1"}));
+                        ArtificialIntelligenceAccess.push(new Unit(-42882, -2607, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "violent", outfit: ["frichFurClothing", 0], weapon: ["none", [0.4, 0.4], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-44809, -2693]], altID: "slums1"}));
                     }
                 }
                 if (Math.random() > 0.2)
@@ -15871,7 +15871,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-42331, -2127, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "violent", outfit: ["frichFurClothing", 0], weapon: ["none", [0.4, 0.4], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-44809, -2693]], altID: "slums2"}));
+                        ArtificialIntelligenceAccess.push(new Unit(-42331, -2127, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "violent", outfit: ["frichFurClothing", 0], weapon: ["none", [0.4, 0.4], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-44809, -2693]], altID: "slums2"}));
                     }
                 }
 
@@ -15907,7 +15907,7 @@ function buildMaster()
                 {
                     if (timeOfDay == "Day")
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-45095, 3156, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 7, patrolLoop: true, route:[[-45118, 4266], [-45349, 4695], [-45108, 5059], [-44645, 4819], [-44983, 4187], [-44977, 3183], [-45095, 3156]], altID: "atalinPed1"}));
+                        ArtificialIntelligenceAccess.push(new Unit(-45095, 3156, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 7, patrolLoop: true, route:[[-45118, 4266], [-45349, 4695], [-45108, 5059], [-44645, 4819], [-44983, 4187], [-44977, 3183], [-45095, 3156]], altID: "atalinPed1"}));
                     }
                 }
 
@@ -15931,7 +15931,7 @@ function buildMaster()
                 {
                     if (timeOfDay == "Day" || timeOfDay == "Dawn")
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-44390, 2537, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44393, 2537]], altID: "atalinBF1"}));
+                        ArtificialIntelligenceAccess.push(new Unit(-44390, 2537, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44393, 2537]], altID: "atalinBF1"}));
                     }
                 }
                 var hits = 0;
@@ -15953,7 +15953,7 @@ function buildMaster()
                 {
                     if (timeOfDay == "Day" || timeOfDay == "Dawn")
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-44307, 2693, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44334, 2689]], altID: "atalinBF2"}));
+                        ArtificialIntelligenceAccess.push(new Unit(-44307, 2693, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44334, 2689]], altID: "atalinBF2"}));
                     }
                 }
                 var hits = 0;
@@ -15975,7 +15975,7 @@ function buildMaster()
                 {
                     if (timeOfDay == "Day" || timeOfDay == "Dawn")
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-44777, 2107, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44778, 2144]], altID: "atalinBF3"}));
+                        ArtificialIntelligenceAccess.push(new Unit(-44777, 2107, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44778, 2144]], altID: "atalinBF3"}));
                     }
                 }
                 var hits = 0;
@@ -15997,7 +15997,7 @@ function buildMaster()
                 {
                     if (timeOfDay == "Day" || timeOfDay == "Dawn")
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-44875, 2057, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44877, 2086]], altID: "atalinBF4"}));
+                        ArtificialIntelligenceAccess.push(new Unit(-44875, 2057, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44877, 2086]], altID: "atalinBF4"}));
                     }
                 }
                 var hits = 0;
@@ -16019,7 +16019,7 @@ function buildMaster()
                 {
                     if (timeOfDay == "Day" || timeOfDay == "Dawn")
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-45600, 2052, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45583, 2092]], altID: "atalinBF5"}));
+                        ArtificialIntelligenceAccess.push(new Unit(-45600, 2052, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45583, 2092]], altID: "atalinBF5"}));
                     }
                 }
                 var hits = 0;
@@ -16041,7 +16041,7 @@ function buildMaster()
                 {
                     if (timeOfDay == "Day" || timeOfDay == "Dawn")
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-45747, 2421, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45716, 2433]], altID: "atalinBF6"}));
+                        ArtificialIntelligenceAccess.push(new Unit(-45747, 2421, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45716, 2433]], altID: "atalinBF6"}));
                     }
                 }
 
@@ -16058,7 +16058,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-45111, 2079, "Soldier", false, "Hidalgo Eduardo the Commissioner", {race: "Nirwaden", faction: "Nirwaden", con: 20, speed: 1.15, outfit: ["matadorOutfit", 0], weapon: ["nirineseSabre", [12, 11], 0, 25, 1.25], ranged: [false, "steelBolt", 14, 2200, 17, 16, 0, "none", 3.35], patrolStops: 1, patrolLoop: false, route:[[-45101, 2053]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-45111, 2079, "Soldier", false, "Hidalgo Eduardo the Commissioner", {race: "Nirwaden", faction: "Nirwaden", con: 20, speed: 1.15, outfit: ["matadorOutfit", 0], weapon: ["nirineseSabre", [12, 11], 0, 25, 1.25], ranged: [false, "steelBolt", 14, 2200, 17, 16 /3, 0, "none", 3.35], patrolStops: 1, patrolLoop: false, route:[[-45101, 2053]]}));
                     }
                 }
 
@@ -16081,7 +16081,7 @@ function buildMaster()
                 {
                     if (timeOfDay == "Day" || timeOfDay == "Dusk" || timeOfDay == "Dawn")
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-44124, 1351, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 13, patrolLoop: true, route:[[-45046, 1341], [-45072, 527], [-46096, 498], [-46110, 1414], [-47019, 1410], [-47028, 1131], [-47250, 1122], [-47245, 272], [-47361, 260], [-44337, 245], [-44351, 487], [-44176, 495], [-44124, 1351]], altID: "atalinPed2"}));
+                        ArtificialIntelligenceAccess.push(new Unit(-44124, 1351, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 13, patrolLoop: true, route:[[-45046, 1341], [-45072, 527], [-46096, 498], [-46110, 1414], [-47019, 1410], [-47028, 1131], [-47250, 1122], [-47245, 272], [-47361, 260], [-44337, 245], [-44351, 487], [-44176, 495], [-44124, 1351]], altID: "atalinPed2"}));
                     }
                 }
 
@@ -16102,7 +16102,7 @@ function buildMaster()
                 }
                 if (hits == 0)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-44140, 7902, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 9, speed: 1.34, outfit: ["nirwadenMorionArmour", 12], weapon: ["nirineseSabre", [9, 9], 0, 22, 1], ranged: [false, "steelBolt", 14, 2200, 15, 16, 0, "none", 3], patrolStops: 2, patrolLoop: true, route:[[-44140, 3009], [-44140, 7902]], altID: "gardenGuard2"}));
+                    ArtificialIntelligenceAccess.push(new Unit(-44140, 7902, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 9, speed: 1.34, outfit: ["nirwadenMorionArmour", 12], weapon: ["nirineseSabre", [9, 9], 0, 22, 1], ranged: [false, "steelBolt", 14, 2200, 15, 16 /3, 0, "none", 3], patrolStops: 2, patrolLoop: true, route:[[-44140, 3009], [-44140, 7902]], altID: "gardenGuard2"}));
                 }
 
                 var hits = 0;
@@ -16122,7 +16122,7 @@ function buildMaster()
                 }
                 if (hits == 0)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-45144, 1067, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 8, speed: 1.2, outfit: ["nirwadenMorionArmour", 11], weapon: ["nirineseSabre", [10, 10], 0, 23, 1.2], ranged: [false, "steelBolt", 16, 2250, 16, 17, 0, "none", 3], patrolStops: 5, patrolLoop: true, route:[[-46043, 1056], [-45964, 2756], [-45964, 459], [-45144, 459], [-45144, 1067]], altID: "centreGuard2"}));
+                    ArtificialIntelligenceAccess.push(new Unit(-45144, 1067, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 8, speed: 1.2, outfit: ["nirwadenMorionArmour", 11], weapon: ["nirineseSabre", [10, 10], 0, 23, 1.2], ranged: [false, "steelBolt", 16, 2250, 16, 17 /3, 0, "none", 3], patrolStops: 5, patrolLoop: true, route:[[-46043, 1056], [-45964, 2756], [-45964, 459], [-45144, 459], [-45144, 1067]], altID: "centreGuard2"}));
                 }
 
                 var hits = 0;
@@ -16142,7 +16142,7 @@ function buildMaster()
                 }
                 if (hits == 0)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-44058, -715, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 9, speed: 1.3, outfit: ["nirwadenMorionArmour", 12], weapon: ["nirineseSabre", [9, 9], 0, 25, 1.25], ranged: [false, "steelBolt", 14, 2250, 19, 18, 0, "none", 3], patrolStops: 0, patrolLoop: false, route:[[-45458, -1070]], altID: "centreGuard3"}));
+                    ArtificialIntelligenceAccess.push(new Unit(-44058, -715, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 9, speed: 1.3, outfit: ["nirwadenMorionArmour", 12], weapon: ["nirineseSabre", [9, 9], 0, 25, 1.25], ranged: [false, "steelBolt", 14, 2250, 19, 18 /3, 0, "none", 3], patrolStops: 0, patrolLoop: false, route:[[-45458, -1070]], altID: "centreGuard3"}));
                 }
                 var hits = 0;
                 for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
@@ -16161,7 +16161,7 @@ function buildMaster()
                 }
                 if (hits == 0)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-43227, -2825, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 8, speed: 1.25, outfit: ["nirwadenMorionArmour", 11], weapon: ["nirineseSabre", [9, 9], 0, 24, 1.3], ranged: [false, "steelBolt", 15, 2250, 17, 17, 0, "none", 3.15], patrolStops: 2, patrolLoop: true, route:[[-44081, -2825], [-43227, -2825]], altID: "woodsGuard1"}));
+                    ArtificialIntelligenceAccess.push(new Unit(-43227, -2825, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 8, speed: 1.25, outfit: ["nirwadenMorionArmour", 11], weapon: ["nirineseSabre", [9, 9], 0, 24, 1.3], ranged: [false, "steelBolt", 15, 2250, 17, 17 /3, 0, "none", 3.15], patrolStops: 2, patrolLoop: true, route:[[-44081, -2825], [-43227, -2825]], altID: "woodsGuard1"}));
                 }
 
                 var hits = 0;
@@ -16181,7 +16181,7 @@ function buildMaster()
                 }
                 if (hits == 0)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-41770, 2839, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 6, speed: 1.15, outfit: ["nirwadenMorionArmour", 10], weapon: ["nirineseSabre", [8, 8], 0, 24, 1.35], ranged: [false, "steelBolt", 15, 2250, 17, 17, 0, "none", 3.15], patrolStops: 4, patrolLoop: true, route:[[-44177, 2826], [-44128, 1311], [-41736, 1321], [-41770, 2839]], altID: "orchardGuard1"}));
+                    ArtificialIntelligenceAccess.push(new Unit(-41770, 2839, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 6, speed: 1.15, outfit: ["nirwadenMorionArmour", 10], weapon: ["nirineseSabre", [8, 8], 0, 24, 1.35], ranged: [false, "steelBolt", 15, 2250, 17, 17 /3, 0, "none", 3.15], patrolStops: 4, patrolLoop: true, route:[[-44177, 2826], [-44128, 1311], [-41736, 1321], [-41770, 2839]], altID: "orchardGuard1"}));
                 }
 
 
@@ -16642,7 +16642,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-44996, -2129, "Soldier", false, "Sellsword", {race: "Nirwaden", faction: "EstolGang", con: 3, speed: 1.435, outfit: ["varnFurClothing", 0], weapon: ["crossbow", [0.1, 0.3], 0, 0, 11], ranged: [true, "steelBolt", 17, 2330, 18, 11, 0, "none", 11], patrolStops: 1, patrolLoop: true, route:[[-44979, -2106]], sellswordID: "David", sightRadius: 1150, hirePrice: 174}));
+                        ArtificialIntelligenceAccess.push(new Unit(-44996, -2129, "Soldier", false, "Sellsword", {race: "Nirwaden", faction: "EstolGang", con: 3, speed: 1.435, outfit: ["varnFurClothing", 0], weapon: ["crossbow", [0.1, 0.3], 0, 0, 11], ranged: [true, "steelBolt", 17, 2330, 18, 11 /3, 0, "none", 11], patrolStops: 1, patrolLoop: true, route:[[-44979, -2106]], sellswordID: "David", sightRadius: 1150, hirePrice: 174}));
                     }
                 }
                     //trapping stand
@@ -16664,7 +16664,7 @@ function buildMaster()
                 }
                 if (hits == 0)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-44655, -1862, "Person", false, "Trap Vendor", {race: "Nirwaden", faction: "Nirwaden", personality: "violent", outfit: ["blackBearFurClothing", 0.25], weapon: ["crossbow", [0.1, 0.3], 0, 0, 13], ranged: [true, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44655, -1850]], merchant: true, merchandise: [[new Item("coins", false, false), 18], [new Item("jacks", false, false), 13], [new Item("beartrap", false, false), 3]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(-44655, -1862, "Person", false, "Trap Vendor", {race: "Nirwaden", faction: "Nirwaden", personality: "violent", outfit: ["blackBearFurClothing", 0.25], weapon: ["crossbow", [0.1, 0.3], 0, 0, 13], ranged: [true, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44655, -1850]], merchant: true, merchandise: [[new Item("coins", false, false), 18], [new Item("jacks", false, false), 13], [new Item("beartrap", false, false), 3]]}));
                     for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
                     {
                         if (ArtificialIntelligenceAccess[i].ID == "Trap Vendor")
@@ -16693,7 +16693,7 @@ function buildMaster()
                 }
                 if (hits == 0)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-45390, -1413, "Person", false, "Pastry Vendor", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.125, 0.15], 0, 0, 0.9], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-44655, -1850]], merchant: true, merchandise: [[new Item("coins", false, false), 56], [new Item("iemaTart", false, false), 9], [new Item("polyapaTart", false, false), 16], [new Item("chonaTart", false, false), 18]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(-45390, -1413, "Person", false, "Pastry Vendor", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.125, 0.15], 0, 0, 0.9], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-44655, -1850]], merchant: true, merchandise: [[new Item("coins", false, false), 56], [new Item("iemaTart", false, false), 9], [new Item("polyapaTart", false, false), 16], [new Item("chonaTart", false, false), 18]]}));
                     for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
                     {
                         if (ArtificialIntelligenceAccess[i].ID == "Pastry Vendor")
@@ -16726,7 +16726,7 @@ function buildMaster()
                 }
                 if (hits == 0)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-45327, -1410, "Person", false, "Flower Vendor", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.125, 0.15], 0, 0, 0.9], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45286, -1408]], merchant: true, merchandise: [[new Item("coins", false, false), 10], [new Item("rilthasiaFlower", false, false), 6], [new Item("volaFlowers", false, false), 3], [new Item("galloshFlower", false, false), 4], [new Item("erguerFlower", false, false), 22]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(-45327, -1410, "Person", false, "Flower Vendor", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.125, 0.15], 0, 0, 0.9], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45286, -1408]], merchant: true, merchandise: [[new Item("coins", false, false), 10], [new Item("rilthasiaFlower", false, false), 6], [new Item("volaFlowers", false, false), 3], [new Item("galloshFlower", false, false), 4], [new Item("erguerFlower", false, false), 22]]}));
                 }
 
                     //hides and pelts stand
@@ -16752,7 +16752,7 @@ function buildMaster()
                 }
                 if (hits == 0)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-45017, -1659, "Person", false, "Furs Vendor", {race: "Nirwaden", faction: "Nirwaden", personality: "violent", outfit: ["none", 0], weapon: ["none", [0.125, 0.15], 0, 0, 0.9], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44986, -1658]], merchant: true, merchandise: [[new Item("coins", false, false), 37], [new Item("molteHide", false, false), 3], [new Item("medBlackBearPelt", false, false), 4], [new Item("varnPelt", false, false), 7], [new Item("frichPelt", false, false), 5], [new Item("ardilPelt", false, false), 2]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(-45017, -1659, "Person", false, "Furs Vendor", {race: "Nirwaden", faction: "Nirwaden", personality: "violent", outfit: ["none", 0], weapon: ["none", [0.125, 0.15], 0, 0, 0.9], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44986, -1658]], merchant: true, merchandise: [[new Item("coins", false, false), 37], [new Item("molteHide", false, false), 3], [new Item("medBlackBearPelt", false, false), 4], [new Item("varnPelt", false, false), 7], [new Item("frichPelt", false, false), 5], [new Item("ardilPelt", false, false), 2]]}));
                 }
                     //root vegetable stand
                 scenicList.push(new Scenery("nirwadenMueble", -45242, -1113, Math.PI, 1)); //bench
@@ -16775,7 +16775,7 @@ function buildMaster()
                 }
                 if (hits == 0)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-45242, -1059, "Person", false, "Vegetable Vendor", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.45], 0, 0, 1.06], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45234, -1085]], merchant: true, merchandise: [[new Item("coins", false, false), 25], [new Item("carrot", false, false), 20], [new Item("palntRoot", false, false), 19], [new Item("potato", false, false), 14]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(-45242, -1059, "Person", false, "Vegetable Vendor", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.45], 0, 0, 1.06], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45234, -1085]], merchant: true, merchandise: [[new Item("coins", false, false), 25], [new Item("carrot", false, false), 20], [new Item("palntRoot", false, false), 19], [new Item("potato", false, false), 14]]}));
                 }
                     //homeware stand
                 scenicList.push(new Scenery("nirwadenMueble", -45235, -977, 0, 1)); //bench
@@ -16803,7 +16803,7 @@ function buildMaster()
                 }
                 if (hits == 0)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-45229, -1032, "Person", false, "Homeware Vendor", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.1, 0.1], 0, 0, 1.14], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45236, -998]], merchant: true, merchandise: [[new Item("coins", false, false), 69], [new Item("barrel", false, false), 2], [new Item("bucket", false, false), 6], [new Item("glassBottle", false, false), 10], [new Item("pintGlass", false, false), 26], [new Item("woodenBowl", false, false), 19]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(-45229, -1032, "Person", false, "Homeware Vendor", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.1, 0.1], 0, 0, 1.14], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45236, -998]], merchant: true, merchandise: [[new Item("coins", false, false), 69], [new Item("barrel", false, false), 2], [new Item("bucket", false, false), 6], [new Item("glassBottle", false, false), 10], [new Item("pintGlass", false, false), 26], [new Item("woodenBowl", false, false), 19]]}));
                 }
                     //meat stand
                 scenicList.push(new Scenery("nirwadenMueble", -44686, -1298, -1/2 * Math.PI, 1)); //bench
@@ -16824,7 +16824,7 @@ function buildMaster()
                 }
                 if (hits == 0)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-44735, -1298, "Person", false, "Cured Pork Vendor", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.6, 0.35], 0, 0, 1.24], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44718, -1297]], merchant: true, merchandise: [[new Item("coins", false, false), 95], [new Item("boarMeat", false, false), 3], [new Item("curedPork", false, false), 24]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(-44735, -1298, "Person", false, "Cured Pork Vendor", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.6, 0.35], 0, 0, 1.24], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44718, -1297]], merchant: true, merchandise: [[new Item("coins", false, false), 95], [new Item("boarMeat", false, false), 3], [new Item("curedPork", false, false), 24]]}));
                 }
                 //meat stand
                 scenicList.push(new Scenery("nirwadenMueble", -44817, -1303, 0.511 * Math.PI, 1)); //bench
@@ -16849,7 +16849,7 @@ function buildMaster()
                 }
                 if (hits == 0)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-44769, -1293, "Person", false, "Meat Vendor", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.4, 0.4], 0, 0, 1.22], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44789, -1292]], merchant: true, merchandise: [[new Item("coins", false, false), 73], [new Item("rawBoarFlesh", false, false), 2], [new Item("rawBoarChunks", false, false), 2], [new Item("rawBoarChunksSmall", false, false), 4], [new Item("rawPorkbelly", false, false), 1], [new Item("rawNaapridFlesh", false, false), 6], [new Item("rawBearFlesh", false, false), 5], [new Item("rawVarnFlesh", false, false), 8]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(-44769, -1293, "Person", false, "Meat Vendor", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.4, 0.4], 0, 0, 1.22], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44789, -1292]], merchant: true, merchandise: [[new Item("coins", false, false), 73], [new Item("rawBoarFlesh", false, false), 2], [new Item("rawBoarChunks", false, false), 2], [new Item("rawBoarChunksSmall", false, false), 4], [new Item("rawPorkbelly", false, false), 1], [new Item("rawNaapridFlesh", false, false), 6], [new Item("rawBearFlesh", false, false), 5], [new Item("rawVarnFlesh", false, false), 8]]}));
                 }
                 //fish stand
                 scenicList.push(new Scenery("nirwadenMueble", -44792, -1148, 1.02 * Math.PI, 1)); //bench
@@ -16876,7 +16876,7 @@ function buildMaster()
                 }
                 if (hits == 0)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-44802, -1207, "Person", false, "Fish Vendor", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.4, 0.4], 0, 0, 1.22], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44786, -1174]], merchant: true, merchandise: [[new Item("coins", false, false), 34], [new Item("rawRedBelliedFalder", false, false), 5], [new Item("rawSlol", false, false), 3], [new Item("rawSalmon", false, false), 2], [new Item("crawdid", false, false), 7], [new Item("rawDuskfish", false, false), 4]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(-44802, -1207, "Person", false, "Fish Vendor", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.4, 0.4], 0, 0, 1.22], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44786, -1174]], merchant: true, merchandise: [[new Item("coins", false, false), 34], [new Item("rawRedBelliedFalder", false, false), 5], [new Item("rawSlol", false, false), 3], [new Item("rawSalmon", false, false), 2], [new Item("crawdid", false, false), 7], [new Item("rawDuskfish", false, false), 4]]}));
                 }
 
                 //marketgoers
@@ -16898,7 +16898,7 @@ function buildMaster()
                 }
                 if (hits == 0)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-44120, -1292, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.4, 0.4], 0, 0, 1.22], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 13, patrolLoop: true, route:[[-44247, -1635], [-44150, -1624], [-44260, -1991], [-44909, -1987], [-45061, -1853], [-45727, -1845], [-45726, -1409], [-45446, -1402], [-45449, -1453], [-45645, -1215], [-44880, -1302], [-44893, -1725], [-44207, -1701]], altID: "atalinMarketGoer1"}));
+                    ArtificialIntelligenceAccess.push(new Unit(-44120, -1292, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.4, 0.4], 0, 0, 1.22], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 13, patrolLoop: true, route:[[-44247, -1635], [-44150, -1624], [-44260, -1991], [-44909, -1987], [-45061, -1853], [-45727, -1845], [-45726, -1409], [-45446, -1402], [-45449, -1453], [-45645, -1215], [-44880, -1302], [-44893, -1725], [-44207, -1701]], altID: "atalinMarketGoer1"}));
                 }
                 //
                 var hits = 0;
@@ -16918,7 +16918,7 @@ function buildMaster()
                 }
                 if (hits == 0)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-45278, -729, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.4, 0.4], 0, 0, 1.22], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 13, patrolLoop: true, route:[[-44536, -942], [-44534, -829], [-44412, -945], [-44167, -931], [-44127, -572], [-44136, -646], [-44447, -653], [-44404, -474], [-45194, -497], [-45074, -522], [-45063, -806], [-45265, -803], [-45278, -729]], altID: "atalinMarketGoer2"}));
+                    ArtificialIntelligenceAccess.push(new Unit(-45278, -729, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.4, 0.4], 0, 0, 1.22], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 13, patrolLoop: true, route:[[-44536, -942], [-44534, -829], [-44412, -945], [-44167, -931], [-44127, -572], [-44136, -646], [-44447, -653], [-44404, -474], [-45194, -497], [-45074, -522], [-45063, -806], [-45265, -803], [-45278, -729]], altID: "atalinMarketGoer2"}));
                 }
                 //
                 var hits = 0;
@@ -16938,7 +16938,7 @@ function buildMaster()
                 }
                 if (hits == 0)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-44732, -536, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.4, 0.4], 0, 0, 1.22], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 10, patrolLoop: true, route:[[-44732, -536], [-44730, -428], [-44712, -465], [-44274, -441], [-44280, -285], [-44097, -283], [-44099, -364], [-44804, -579], [-44274, -441], [-44801, -797]], altID: "atalinMarketGoer3"}));
+                    ArtificialIntelligenceAccess.push(new Unit(-44732, -536, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.4, 0.4], 0, 0, 1.22], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 10, patrolLoop: true, route:[[-44732, -536], [-44730, -428], [-44712, -465], [-44274, -441], [-44280, -285], [-44097, -283], [-44099, -364], [-44804, -579], [-44274, -441], [-44801, -797]], altID: "atalinMarketGoer3"}));
                 }
                 //
                 var hits = 0;
@@ -16958,7 +16958,7 @@ function buildMaster()
                 }
                 if (hits == 0)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-45120, -2689, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.2, 0.25], 0, 0, 1.22], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 19, patrolLoop: true, route:[[-45120, -2700], [-45120, -2689], [-45050, -2689], [-45053, -2287], [-45349, -2293], [-45354, -2589], [-45670, -2588], [-45668, -2238], [-46003, -2231], [-46017, -1862], [-45797, -1851], [-45810, -1418], [-45554, -1409], [-45556, -1237], [-44989, -1197], [-44524, -1785], [-44477, -2028], [-44460, -2692], [-45120, -2689]], altID: "atalinMarketGoer4"}));
+                    ArtificialIntelligenceAccess.push(new Unit(-45120, -2689, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.2, 0.25], 0, 0, 1.22], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 19, patrolLoop: true, route:[[-45120, -2700], [-45120, -2689], [-45050, -2689], [-45053, -2287], [-45349, -2293], [-45354, -2589], [-45670, -2588], [-45668, -2238], [-46003, -2231], [-46017, -1862], [-45797, -1851], [-45810, -1418], [-45554, -1409], [-45556, -1237], [-44989, -1197], [-44524, -1785], [-44477, -2028], [-44460, -2692], [-45120, -2689]], altID: "atalinMarketGoer4"}));
                 }
                 //
                 var hits = 0;
@@ -16978,7 +16978,7 @@ function buildMaster()
                 }
                 if (hits == 0)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-44675, -1780, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.4, 0.4], 0, 0, 1.25], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 12, patrolLoop: true, route:[[-44522, -1623], [-44519, -1950], [-44172, -1943], [-44162, -1635], [-44144, -1633], [-44162, -1635], [-44269, -448], [-45064, -447], [-45043, -1460], [-44342, -1459], [-44334, -1780], [-44675, -1780]], altID: "atalinMarketGoer5"}));
+                    ArtificialIntelligenceAccess.push(new Unit(-44675, -1780, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.4, 0.4], 0, 0, 1.25], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 12, patrolLoop: true, route:[[-44522, -1623], [-44519, -1950], [-44172, -1943], [-44162, -1635], [-44144, -1633], [-44162, -1635], [-44269, -448], [-45064, -447], [-45043, -1460], [-44342, -1459], [-44334, -1780], [-44675, -1780]], altID: "atalinMarketGoer5"}));
                 }
                 //
                 var hits = 0;
@@ -16998,7 +16998,7 @@ function buildMaster()
                 }
                 if (hits == 0)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-44801, -2864, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.5, 0.4], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 35, patrolLoop: true, route:[[-44809, -2693], [-44442, -2676], [-44431, -2980], [-44599, -2987], [-44431, -2980], [-44583, -2705], [-44453, -2690], [-44465, -2484], [-44465, -2033], [-44555, -1715], [-45237, -1223], [-45241, -1141], [-45236, -1284], [-45423, -1288], [-45434, -829], [-45048, -817], [-45018, -669], [-44952, -667], [-45000, -671], [-44985, -483], [-44693, -492], [-44683, -1010], [-44363, -1288], [-44892, -1709], [-44879, -1849], [-45275, -1857], [-45275, -2291], [-45349, -2298], [-45349, -2582], [-45438, -2582], [-45433, -2959], [-45110, -2939], [-45110, -2682], [-44806, -2682], [-44801, -2864]], altID: "atalinMarketGoer6"}));
+                    ArtificialIntelligenceAccess.push(new Unit(-44801, -2864, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.5, 0.4], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 35, patrolLoop: true, route:[[-44809, -2693], [-44442, -2676], [-44431, -2980], [-44599, -2987], [-44431, -2980], [-44583, -2705], [-44453, -2690], [-44465, -2484], [-44465, -2033], [-44555, -1715], [-45237, -1223], [-45241, -1141], [-45236, -1284], [-45423, -1288], [-45434, -829], [-45048, -817], [-45018, -669], [-44952, -667], [-45000, -671], [-44985, -483], [-44693, -492], [-44683, -1010], [-44363, -1288], [-44892, -1709], [-44879, -1849], [-45275, -1857], [-45275, -2291], [-45349, -2298], [-45349, -2582], [-45438, -2582], [-45433, -2959], [-45110, -2939], [-45110, -2682], [-44806, -2682], [-44801, -2864]], altID: "atalinMarketGoer6"}));
                 }
 
                 //midclass housing (interior)
@@ -17074,7 +17074,7 @@ function buildMaster()
                 }
                 if (hits == 0)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-45200, -2463, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.2, 0.1], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45182, -2506]], altID: "atalinMidClass1"}));
+                    ArtificialIntelligenceAccess.push(new Unit(-45200, -2463, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.2, 0.1], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45182, -2506]], altID: "atalinMidClass1"}));
                 }
                 var hits = 0;
                 for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
@@ -17093,7 +17093,7 @@ function buildMaster()
                 }
                 if (hits == 0)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-45827, -2771, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.5, 0.4], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45829, -2742]], altID: "atalinMidClass2"}));
+                    ArtificialIntelligenceAccess.push(new Unit(-45827, -2771, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.5, 0.4], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45829, -2742]], altID: "atalinMidClass2"}));
                 }
 
 
@@ -17218,11 +17218,11 @@ function buildMaster()
                     {
                         if (quests.pireVictim == "Tirbutin the Tax Officiator")
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(-45906, 41, "Person", false, "Tirbutin the Tax Officiator", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.5, 0.4], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45708, 1335]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-45906, 41, "Person", false, "Tirbutin the Tax Officiator", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.5, 0.4], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45708, 1335]]}));
                         }
                         else
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(-45666, 1337, "Person", false, "Tirbutin the Tax Officiator", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.5, 0.4], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45708, 1335]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-45666, 1337, "Person", false, "Tirbutin the Tax Officiator", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.5, 0.4], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45708, 1335]]}));
                         }
                     }
                 }
@@ -17230,11 +17230,11 @@ function buildMaster()
                 {
                     if (player.gender == "Female" && player.title == "Nobility" && player.raceName == "Nirwaden")
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-45666, 1337, "Person", false, "Atalin Tax Officiator", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.5, 0.4], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45708, 1335]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-45666, 1337, "Person", false, "Atalin Tax Officiator", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.5, 0.4], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45708, 1335]]}));
                     }
                     else
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-45666, 1337, "Person", false, "Atalin Tax Officiator", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.5, 0.4], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45708, 1335]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-45666, 1337, "Person", false, "Atalin Tax Officiator", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.5, 0.4], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45708, 1335]]}));
                     }
                 }
 
@@ -17242,28 +17242,28 @@ function buildMaster()
                 {
                     if (uniqueChars.martaLDS == true)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-45906, 41, "Person", false, "Marta the Cook", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.2, 0.2], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45708, 1335]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-45906, 41, "Person", false, "Marta the Cook", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.2, 0.2], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45708, 1335]]}));
                     }
                 }
                 else if (quests.pireVictim == "Suspected Regicide")
                 {
                     if (uniqueChars.altezorInfiltratorLDS == true)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-45906, 41, "Person", false, "Suspected Regicide", {race: "Nirwaden", faction: "EstolGang", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.7, 0.5], 0, 0, 1], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45708, 1335]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-45906, 41, "Person", false, "Suspected Regicide", {race: "Nirwaden", faction: "EstolGang", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.7, 0.5], 0, 0, 1], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45708, 1335]]}));
                     }
                 }
                 else if (quests.pireVictim == "Belgos")
                 {
                     if (uniqueChars.belgosLDS == true)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-45906, 41, "Person", false, "Ser Belgos of Atalin", {race: "Nirwaden", faction: "Nirwaden", personality: "violent", outfit: ["none", 0], weapon: ["none", [0.7, 0.5], 0, 0, 1], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45708, 1335]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-45906, 41, "Person", false, "Ser Belgos of Atalin", {race: "Nirwaden", faction: "Nirwaden", personality: "violent", outfit: ["none", 0], weapon: ["none", [0.7, 0.5], 0, 0, 1], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45708, 1335]]}));
                     }
                 }
                 else if (quests.pireVictim == "Lelaila")
                 {
                     if (uniqueChars.lelailaLDS == true)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-45906, 41, "Person", false, "Lelaila", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.015, 0.015], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45708, 1335]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-45906, 41, "Person", false, "Lelaila", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.015, 0.015], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45708, 1335]]}));
                     }
                 }
 
@@ -17280,7 +17280,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-46436, 1502, "Person", false, "Francil the Stablemaster", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.4, 0.4], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45708, 1335]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-46436, 1502, "Person", false, "Francil the Stablemaster", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.4, 0.4], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45708, 1335]]}));
                     }
                 }
 
@@ -17328,7 +17328,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-44910, 444, "Person", false, "Shopkeeper", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44897, 444]], altID: "atalinPlayerShopkeeper"}));
+                        ArtificialIntelligenceAccess.push(new Unit(-44910, 444, "Person", false, "Shopkeeper", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44897, 444]], altID: "atalinPlayerShopkeeper"}));
                     }
                 }
                 else
@@ -17353,7 +17353,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-44646, 702, "Person", false, "Guild Master Manolo", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44649, 722]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-44646, 702, "Person", false, "Guild Master Manolo", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44649, 722]]}));
                     }
                 }
                 scenicList.push(new Scenery("nirwadenGoods", -44584, 713, -4.56, 9));
@@ -17379,7 +17379,7 @@ function buildMaster()
                 }
                 if (hits == 0)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-45668, 810, "Person", false, "Silver Keep Banker", {race: "Orgell", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.5, 0.4], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45668, 771]], altID: "skBanker1"}));
+                    ArtificialIntelligenceAccess.push(new Unit(-45668, 810, "Person", false, "Silver Keep Banker", {race: "Orgell", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.5, 0.4], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45668, 771]], altID: "skBanker1"}));
                 }
 
                 scenicList.push(new Scenery("nirwadenMueble", -45668, 747, 1 * Math.PI, 1)); //bench
@@ -17424,7 +17424,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-47207, 1318, "Person", false, "Master Blacksmith Quixote", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingM", 0], weapon: ["hammer", [4, 3], 2.5, 10, 1.5], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-47164, 1319]], merchant: true, merchandise: [[new Item("coins", false, false), 150], [new Item("nirineseSabre", false, false), 8], [new Item("crossbow", false, false), 6], [new Item("steelBolt", false, false), 110], [new Item("estoc", false, false), 2], [new Item("nirwadenSabreAndShield", false, false), 1], [new Item("nirineseSpear", false, false), 5], [new Item("mace", false, false), 2], [new Item("sickle", false, false), 3], [new Item("hammer", false, false), 2], [new Item("timberAxe", false, false), 1], [new Item("spade", false, false), 3], [new Item("pickaxe", false, false), 4], [new Item("nirwadenLance", false, false), 1], [new Item("chainArmour", false, false), 2], [new Item("nirwadenMorionArmour", false, false), 6], [new Item("nirwadenPlateArmour", false, false), 3]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-47207, 1318, "Person", false, "Master Blacksmith Quixote", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingM", 0], weapon: ["hammer", [4, 3], 2.5, 10, 1.5], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-47164, 1319]], merchant: true, merchandise: [[new Item("coins", false, false), 150], [new Item("nirineseSabre", false, false), 8], [new Item("crossbow", false, false), 6], [new Item("steelBolt", false, false), 110], [new Item("estoc", false, false), 2], [new Item("nirwadenSabreAndShield", false, false), 1], [new Item("nirineseSpear", false, false), 5], [new Item("mace", false, false), 2], [new Item("sickle", false, false), 3], [new Item("hammer", false, false), 2], [new Item("timberAxe", false, false), 1], [new Item("spade", false, false), 3], [new Item("pickaxe", false, false), 4], [new Item("nirwadenLance", false, false), 1], [new Item("chainArmour", false, false), 2], [new Item("nirwadenMorionArmour", false, false), 6], [new Item("nirwadenPlateArmour", false, false), 3]]}));
                     }
                 }
 
@@ -17441,7 +17441,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-46807, -946, "Person", false, "Cristobal the Innkeeper", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.4], 0, 0, 1.25], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46802, -960]], merchant: true, merchandise: [[new Item("coins", false, false), 83], [new Item("santhAle", false, false), 72], [new Item("harstAle", false, false), 19], [new Item("erguerWine", false, false), 3], [new Item("searedFalder", false, false), 6], [new Item("searedSalmon", false, false), 4], [new Item("garlicTialoPork", false, false), 2], [new Item("butteredSanthBread", false, false), 1], [new Item("santhBread", false, false), 2], [new Item("butteredHarstBread", false, false), 1], [new Item("harstBread", false, false), 1]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-46807, -946, "Person", false, "Cristobal the Innkeeper", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.4], 0, 0, 1.25], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46802, -960]], merchant: true, merchandise: [[new Item("coins", false, false), 83], [new Item("santhAle", false, false), 72], [new Item("harstAle", false, false), 19], [new Item("erguerWine", false, false), 3], [new Item("searedFalder", false, false), 6], [new Item("searedSalmon", false, false), 4], [new Item("garlicTialoPork", false, false), 2], [new Item("butteredSanthBread", false, false), 1], [new Item("santhBread", false, false), 2], [new Item("butteredHarstBread", false, false), 1], [new Item("harstBread", false, false), 1]]}));
                     }
                 }
 
@@ -17458,7 +17458,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-46936, -1065, "Person", false, "Hidalgo Lucelius", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.45, 0.4], 0, 0, 1.15], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-46802, -960]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-46936, -1065, "Person", false, "Hidalgo Lucelius", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.45, 0.4], 0, 0, 1.15], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-46802, -960]]}));
                     }
                 }
 
@@ -17477,17 +17477,17 @@ function buildMaster()
                     {
                         if (uniqueChars.lelailaLDS)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(-46028, -1303, "Person", false, "Vela the Baker", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.2, 0.2], 0, 0, 1.5], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46028, -1239]], merchant: true, merchandise: [[new Item("coins", false, false), 16], [new Item("santhBread", false, false), 7], [new Item("harstBread", false, false), 5]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-46028, -1303, "Person", false, "Vela the Baker", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.2, 0.2], 0, 0, 1.5], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46028, -1239]], merchant: true, merchandise: [[new Item("coins", false, false), 16], [new Item("santhBread", false, false), 7], [new Item("harstBread", false, false), 5]]}));
                         }
                         else
                         {
                             if (quests.imaginaryFriendCompletionStyle == "burntChild")
                             {
-                                ArtificialIntelligenceAccess.push(new Unit(-46028, -1303, "Person", false, "Vela the Baker", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.2, 0.2], 0, 0, 1.5], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46028, -1239]]}));
+                                ArtificialIntelligenceAccess.push(new Unit(-46028, -1303, "Person", false, "Vela the Baker", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.2, 0.2], 0, 0, 1.5], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46028, -1239]]}));
                             }
                             else
                             {
-                                ArtificialIntelligenceAccess.push(new Unit(-46028, -1303, "Person", false, "Vela the Baker", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.2, 0.2], 0, 0, 1.5], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46028, -1239]], merchant: true, merchandise: [[new Item("coins", false, false), 1], [new Item("santhBread", false, false), 3], [new Item("harstBread", false, false), 2]]}));
+                                ArtificialIntelligenceAccess.push(new Unit(-46028, -1303, "Person", false, "Vela the Baker", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.2, 0.2], 0, 0, 1.5], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46028, -1239]], merchant: true, merchandise: [[new Item("coins", false, false), 1], [new Item("santhBread", false, false), 3], [new Item("harstBread", false, false), 2]]}));
                             }
                         }
                     }
@@ -17508,11 +17508,11 @@ function buildMaster()
                     {
                         if (quests.imaginaryFriendAdopted == true && player.title != "Nobility" || quests.imaginaryFriendAdopted == true && player.raceName != "Nirwaden")
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(-44926, -2264, "Person", false, "Lelaila", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.05, 0.05], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45940, -1301]], kid: true}));
+                            ArtificialIntelligenceAccess.push(new Unit(-44926, -2264, "Person", false, "Lelaila", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.05, 0.05], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45940, -1301]], kid: true}));
                         }
                         else if (quests.imaginaryFriendAdopted == false)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(-45938, -1312, "Person", false, "Lelaila", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.05, 0.05], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45940, -1301]], kid: true}));
+                            ArtificialIntelligenceAccess.push(new Unit(-45938, -1312, "Person", false, "Lelaila", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.05, 0.05], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45940, -1301]], kid: true}));
                         }
                     }
                 }
@@ -17530,7 +17530,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-47260, 41, "Person", false, "Bishop Emmanuel", {race: "Nirwaden", faction: "Nirwaden", personality: "violent", outfit: ["nirwadenPriestRobes", 0], weapon: ["none", [0.06, 0.06], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-47220, 45]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-47260, 41, "Person", false, "Bishop Emmanuel", {race: "Nirwaden", faction: "Nirwaden", personality: "violent", outfit: ["nirwadenPriestRobes", 0], weapon: ["none", [0.06, 0.06], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-47220, 45]]}));
                     }
                     for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
                     {
@@ -17635,8 +17635,8 @@ function buildMaster()
 
                 if (Math.random() > 0.21)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-46779, -1127, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-46149, -151]]}));
-                    ArtificialIntelligenceAccess.push(new Unit(-46784, -1203, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-46149, -151]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(-46779, -1127, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-46149, -151]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(-46784, -1203, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-46149, -151]]}));
 
                     if (Math.random() > 0.52)
                     {
@@ -17661,9 +17661,9 @@ function buildMaster()
                 {
                     if (Math.random() > 0.18)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-46779, -1100, "Person", false, "Nirwaden Villager", {race: "Orgell", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-46149, -151]]}));
-                        ArtificialIntelligenceAccess.push(new Unit(-46779, -1127, "Person", false, "Nirwaden Villager", {race: "Orgell", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-46149, -151]], kid: true}));
-                        ArtificialIntelligenceAccess.push(new Unit(-46784, -1203, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-46149, -151]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-46779, -1100, "Person", false, "Nirwaden Villager", {race: "Orgell", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-46149, -151]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-46779, -1127, "Person", false, "Nirwaden Villager", {race: "Orgell", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-46149, -151]], kid: true}));
+                        ArtificialIntelligenceAccess.push(new Unit(-46784, -1203, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-46149, -151]]}));
 
                         scenicList.push(new Scenery("nirwadenGoods", -46804, -1098, 0, 8)); //placemat light
                         scenicList.push(new Scenery("item", -46804, -1098, 0, "nirwaden", ["searedSalmon", 1, -9]));
@@ -17673,42 +17673,42 @@ function buildMaster()
 
                 if (Math.random() > 0.2)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-46936, -1274, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-46149, -151]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(-46936, -1274, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-46149, -151]]}));
                 }
 
                 if (Math.random() > 0.35)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-46974, -1135, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46977, -1101]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(-46974, -1135, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46977, -1101]]}));
                 }
                 if (Math.random() > 0.7)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-46913, -1197, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46853, -1198]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(-46913, -1197, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46853, -1198]]}));
                 }
 
                 if (Math.random() > 0.41)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-46839, -1064, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46840, -1010]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(-46839, -1064, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46840, -1010]]}));
                 }
 
                 if (Math.random() > 0.9)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-46810, -1072, "Person", false, "Traveler", {race: "Freynor", faction: "Freynor", personality: "scared", outfit: ["northernClothing", 0], weapon: ["none", [0.55, 0.45], 0, 0, 1.15], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46813, -1010]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(-46810, -1072, "Person", false, "Traveler", {race: "Freynor", faction: "Freynor", personality: "scared", outfit: ["northernClothing", 0], weapon: ["none", [0.55, 0.45], 0, 0, 1.15], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46813, -1010]]}));
                 }
                 else
                 {
                     if (Math.random() > 0.25)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-46970, -990, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46974, -1030]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-46970, -990, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46974, -1030]]}));
                     }
                 }
 
                 if (Math.random() > 0.2)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-46912, -1149, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46857, -1151]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(-46912, -1149, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46857, -1151]]}));
                 }
                 else
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-46912, -1149, "Person", false, "Vardanian Refugee", {race: "Vardan", faction: "arena2", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46857, -1151]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(-46912, -1149, "Person", false, "Vardanian Refugee", {race: "Vardan", faction: "arena2", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46857, -1151]]}));
                 }
                 if (Math.random() > 0.15)
                 {
@@ -17725,7 +17725,7 @@ function buildMaster()
                             scenicList.push(new Scenery("item", -46777, -986, 0, "nirwaden", ["searedFalder", 1, -6]));
                         }
                     }
-                    ArtificialIntelligenceAccess.push(new Unit(-46775, -1065, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46780, -1011]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(-46775, -1065, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46780, -1011]]}));
                 }
 
 
@@ -17751,35 +17751,35 @@ function buildMaster()
                     {
                         if (Math.random() >= 0.5)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(-46195, -180, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46149, -151]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-46118, -307, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46029, -147]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-45972, -367, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45935, -233]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-45703, -343, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45813, -149]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-45547, -119, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45603, -94]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-45518, 16, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45724, 20]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-45605, 192, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45709, 139]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-45768, 366, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45798, 282]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-45900, 408, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45895, 221]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-46186, 265, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46099, 193]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-46181, -56, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46142, -41]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-46503, 211, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46201, 116]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-46080, 409, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45982, 162]], kid: true}));
+                            ArtificialIntelligenceAccess.push(new Unit(-46195, -180, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46149, -151]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-46118, -307, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46029, -147]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-45972, -367, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45935, -233]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-45703, -343, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45813, -149]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-45547, -119, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45603, -94]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-45518, 16, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45724, 20]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-45605, 192, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45709, 139]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-45768, 366, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45798, 282]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-45900, 408, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45895, 221]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-46186, 265, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46099, 193]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-46181, -56, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46142, -41]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-46503, 211, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46201, 116]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-46080, 409, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45982, 162]], kid: true}));
                         }
                         else
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(-46195, -180, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46149, -151]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-46118, -307, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46029, -147]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-45972, -367, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45935, -233]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-45703, -343, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45813, -149]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-45547, -119, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45603, -94]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-45518, 16, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45724, 20]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-45605, 192, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45709, 139]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-45768, 366, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45798, 282]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-45900, 408, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45895, 221]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-46186, 265, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46099, 193]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-46181, -56, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46142, -41]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-46503, 211, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46201, 116]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-46080, 409, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45982, 162]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-46195, -180, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46149, -151]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-46118, -307, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46029, -147]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-45972, -367, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45935, -233]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-45703, -343, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45813, -149]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-45547, -119, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45603, -94]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-45518, 16, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45724, 20]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-45605, 192, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45709, 139]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-45768, 366, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45798, 282]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-45900, 408, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45895, 221]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-46186, 265, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46099, 193]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-46181, -56, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46142, -41]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-46503, 211, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46201, 116]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-46080, 409, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45982, 162]]}));
 
                         }
                     }
@@ -17787,35 +17787,35 @@ function buildMaster()
                     {
                         if (Math.random() >= 0.5)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(-46195, -180, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46149, -151]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-46118, -307, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46029, -147]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-45972, -367, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45935, -233]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-45703, -343, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45813, -149]], kid: true}));
-                            ArtificialIntelligenceAccess.push(new Unit(-45547, -119, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45603, -94]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-45518, 16, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45724, 20]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-45605, 192, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45709, 139]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-45768, 366, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45798, 282]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-45900, 408, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45895, 221]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-46186, 265, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46099, 193]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-46181, -56, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46142, -41]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-46503, 211, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46201, 116]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-46080, 409, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45982, 162]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-46195, -180, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46149, -151]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-46118, -307, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46029, -147]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-45972, -367, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45935, -233]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-45703, -343, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45813, -149]], kid: true}));
+                            ArtificialIntelligenceAccess.push(new Unit(-45547, -119, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45603, -94]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-45518, 16, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45724, 20]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-45605, 192, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45709, 139]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-45768, 366, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45798, 282]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-45900, 408, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45895, 221]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-46186, 265, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46099, 193]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-46181, -56, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46142, -41]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-46503, 211, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46201, 116]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-46080, 409, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45982, 162]]}));
                         }
                         else
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(-46195, -180, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46149, -151]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-46118, -307, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46029, -147]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-45972, -367, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45935, -233]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-45703, -343, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45813, -149]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-45547, -119, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45603, -94]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-45518, 16, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45724, 20]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-45605, 192, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45709, 139]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-45768, 366, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45798, 282]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-45900, 408, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45895, 221]], kid: true}));
-                            ArtificialIntelligenceAccess.push(new Unit(-46186, 265, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46099, 193]], kid: true}));
-                            ArtificialIntelligenceAccess.push(new Unit(-46181, -56, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46142, -41]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-46503, 211, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46201, 116]]}));
-                            ArtificialIntelligenceAccess.push(new Unit(-46080, 409, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45982, 162]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-46195, -180, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46149, -151]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-46118, -307, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46029, -147]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-45972, -367, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45935, -233]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-45703, -343, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45813, -149]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-45547, -119, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45603, -94]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-45518, 16, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45724, 20]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-45605, 192, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45709, 139]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-45768, 366, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45798, 282]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-45900, 408, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45895, 221]], kid: true}));
+                            ArtificialIntelligenceAccess.push(new Unit(-46186, 265, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46099, 193]], kid: true}));
+                            ArtificialIntelligenceAccess.push(new Unit(-46181, -56, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46142, -41]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-46503, 211, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-46201, 116]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-46080, 409, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45982, 162]]}));
                         }
                     }
                 }
@@ -17823,36 +17823,36 @@ function buildMaster()
                 {
                     if (Math.random() >= 0.5)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-46937, 130, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-46149, -151]], kid: true}));
-                        ArtificialIntelligenceAccess.push(new Unit(-46940, 97, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-46029, -147]]}));
-                        ArtificialIntelligenceAccess.push(new Unit(-46940, -16, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45935, -233]]}));
-                        ArtificialIntelligenceAccess.push(new Unit(-46941, -53, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45813, -149]]}));
-                        ArtificialIntelligenceAccess.push(new Unit(-46996, -18, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45603, -94]]}));
-                        ArtificialIntelligenceAccess.push(new Unit(-47002, 129, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45724, 20]]}));
-                        ArtificialIntelligenceAccess.push(new Unit(-47004, 102, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45709, 139]]}));
-                        ArtificialIntelligenceAccess.push(new Unit(-47058, 124, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45798, 282]]}));
-                        ArtificialIntelligenceAccess.push(new Unit(-47108, 96, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-46142, -41]]}));
-                        ArtificialIntelligenceAccess.push(new Unit(-47109, 129, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45982, 162]]}));
-                        ArtificialIntelligenceAccess.push(new Unit(-47114, -10, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-46201, 116]]}));
-                        ArtificialIntelligenceAccess.push(new Unit(-47112, -54, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45813, -149]]}));
-                        ArtificialIntelligenceAccess.push(new Unit(-47057, -55, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45813, -149]]}));
-                        ArtificialIntelligenceAccess.push(new Unit(-47057, 97, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45724, 20]], kid: true}));
+                        ArtificialIntelligenceAccess.push(new Unit(-46937, 130, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-46149, -151]], kid: true}));
+                        ArtificialIntelligenceAccess.push(new Unit(-46940, 97, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-46029, -147]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-46940, -16, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45935, -233]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-46941, -53, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45813, -149]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-46996, -18, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45603, -94]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-47002, 129, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45724, 20]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-47004, 102, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45709, 139]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-47058, 124, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45798, 282]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-47108, 96, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-46142, -41]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-47109, 129, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45982, 162]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-47114, -10, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-46201, 116]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-47112, -54, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45813, -149]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-47057, -55, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45813, -149]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-47057, 97, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45724, 20]], kid: true}));
                     }
                     else
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-46937, 130, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-46149, -151]]}));
-                        ArtificialIntelligenceAccess.push(new Unit(-46940, 97, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-46029, -147]]}));
-                        ArtificialIntelligenceAccess.push(new Unit(-46940, -16, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45935, -233]]}));
-                        ArtificialIntelligenceAccess.push(new Unit(-46941, -53, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45813, -149]]}));
-                        ArtificialIntelligenceAccess.push(new Unit(-46996, -18, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45603, -94]]}));
-                        ArtificialIntelligenceAccess.push(new Unit(-47002, 129, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45724, 20]]}));
-                        ArtificialIntelligenceAccess.push(new Unit(-47004, 102, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45709, 139]]}));
-                        ArtificialIntelligenceAccess.push(new Unit(-47058, 124, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45798, 282]]}));
-                        ArtificialIntelligenceAccess.push(new Unit(-47111, -38, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45895, 221]], kid: true}));
-                        ArtificialIntelligenceAccess.push(new Unit(-47112, -58, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-46099, 193]], kid: true}));
-                        ArtificialIntelligenceAccess.push(new Unit(-47108, 96, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-46142, -41]]}));
-                        ArtificialIntelligenceAccess.push(new Unit(-47109, 129, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45982, 162]]}));
-                        ArtificialIntelligenceAccess.push(new Unit(-47114, -10, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-46201, 116]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-46937, 130, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-46149, -151]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-46940, 97, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-46029, -147]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-46940, -16, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45935, -233]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-46941, -53, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45813, -149]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-46996, -18, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45603, -94]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-47002, 129, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45724, 20]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-47004, 102, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45709, 139]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-47058, 124, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45798, 282]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-47111, -38, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45895, 221]], kid: true}));
+                        ArtificialIntelligenceAccess.push(new Unit(-47112, -58, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-46099, 193]], kid: true}));
+                        ArtificialIntelligenceAccess.push(new Unit(-47108, 96, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-46142, -41]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-47109, 129, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45982, 162]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-47114, -10, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-46201, 116]]}));
 
                     }
                 }
@@ -17872,11 +17872,11 @@ function buildMaster()
                     {
                         if (quests.aFeastForFewerBelgos == "disgraced")
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(-47221, 134, "Person", false, "Belgos the Disgraced", {race: "Nirwaden", faction: "Nirwaden", personality: "violent", outfit: ["nirwadenPriestRobes", 0], weapon: ["none", [0.75, 0.75], 0, 0, 0.9], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-47205, 131]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-47221, 134, "Person", false, "Belgos the Disgraced", {race: "Nirwaden", faction: "Nirwaden", personality: "violent", outfit: ["nirwadenPriestRobes", 0], weapon: ["none", [0.75, 0.75], 0, 0, 0.9], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-47205, 131]]}));
                         }
                         else
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(-47221, 134, "Person", false, "Belgos", {race: "Nirwaden", faction: "Nirwaden", personality: "violent", outfit: ["nirwadenPriestRobes", 0], weapon: ["none", [0.75, 0.75], 0, 0, 0.9], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-47205, 131]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-47221, 134, "Person", false, "Belgos", {race: "Nirwaden", faction: "Nirwaden", personality: "violent", outfit: ["nirwadenPriestRobes", 0], weapon: ["none", [0.75, 0.75], 0, 0, 0.9], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-47205, 131]]}));
                         }
                     }
                 }
@@ -17941,7 +17941,7 @@ function buildMaster()
                 {
                     if (timeOfDay == "Day")
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-45095, 3156, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 7, patrolLoop: true, route:[[-45118, 4266], [-45349, 4695], [-45108, 5059], [-44645, 4819], [-44983, 4187], [-44977, 3183], [-45095, 3156]], altID: "atalinPed1"}));
+                        ArtificialIntelligenceAccess.push(new Unit(-45095, 3156, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 7, patrolLoop: true, route:[[-45118, 4266], [-45349, 4695], [-45108, 5059], [-44645, 4819], [-44983, 4187], [-44977, 3183], [-45095, 3156]], altID: "atalinPed1"}));
                     }
                 }
 
@@ -17965,7 +17965,7 @@ function buildMaster()
                 {
                     if (timeOfDay == "Day" || timeOfDay == "Dawn")
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-44390, 2537, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44393, 2537]], altID: "atalinBF1"}));
+                        ArtificialIntelligenceAccess.push(new Unit(-44390, 2537, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44393, 2537]], altID: "atalinBF1"}));
                     }
                 }
                 var hits = 0;
@@ -17987,7 +17987,7 @@ function buildMaster()
                 {
                     if (timeOfDay == "Day" || timeOfDay == "Dawn")
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-44307, 2693, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44334, 2689]], altID: "atalinBF2"}));
+                        ArtificialIntelligenceAccess.push(new Unit(-44307, 2693, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44334, 2689]], altID: "atalinBF2"}));
                     }
                 }
                 var hits = 0;
@@ -18009,7 +18009,7 @@ function buildMaster()
                 {
                     if (timeOfDay == "Day" || timeOfDay == "Dawn")
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-44777, 2107, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44778, 2144]], altID: "atalinBF3"}));
+                        ArtificialIntelligenceAccess.push(new Unit(-44777, 2107, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44778, 2144]], altID: "atalinBF3"}));
                     }
                 }
                 var hits = 0;
@@ -18031,7 +18031,7 @@ function buildMaster()
                 {
                     if (timeOfDay == "Day" || timeOfDay == "Dawn")
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-44875, 2057, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44877, 2086]], altID: "atalinBF4"}));
+                        ArtificialIntelligenceAccess.push(new Unit(-44875, 2057, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44877, 2086]], altID: "atalinBF4"}));
                     }
                 }
                 var hits = 0;
@@ -18053,7 +18053,7 @@ function buildMaster()
                 {
                     if (timeOfDay == "Day" || timeOfDay == "Dawn")
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-45600, 2052, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45583, 2092]], altID: "atalinBF5"}));
+                        ArtificialIntelligenceAccess.push(new Unit(-45600, 2052, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45583, 2092]], altID: "atalinBF5"}));
                     }
                 }
                 var hits = 0;
@@ -18075,7 +18075,7 @@ function buildMaster()
                 {
                     if (timeOfDay == "Day" || timeOfDay == "Dawn")
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-45747, 2421, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45716, 2433]], altID: "atalinBF6"}));
+                        ArtificialIntelligenceAccess.push(new Unit(-45747, 2421, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45716, 2433]], altID: "atalinBF6"}));
                     }
                 }
 
@@ -18092,7 +18092,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-45111, 2079, "Soldier", false, "Hidalgo Eduardo the Commissioner", {race: "Nirwaden", faction: "Nirwaden", con: 20, speed: 1.15, outfit: ["matadorOutfit", 0], weapon: ["nirineseSabre", [12, 11], 0, 25, 1.25], ranged: [false, "steelBolt", 14, 2200, 17, 16, 0, "none", 3.35], patrolStops: 1, patrolLoop: false, route:[[-45101, 2053]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-45111, 2079, "Soldier", false, "Hidalgo Eduardo the Commissioner", {race: "Nirwaden", faction: "Nirwaden", con: 20, speed: 1.15, outfit: ["matadorOutfit", 0], weapon: ["nirineseSabre", [12, 11], 0, 25, 1.25], ranged: [false, "steelBolt", 14, 2200, 17, 16 /3, 0, "none", 3.35], patrolStops: 1, patrolLoop: false, route:[[-45101, 2053]]}));
                     }
                 }
 
@@ -18121,11 +18121,11 @@ function buildMaster()
                         {
                             if (matadorNumRand > 0.5)
                             {
-                                ArtificialIntelligenceAccess.push(new Unit(-44849, 2498, "Soldier", false, "Matador", {race: "Nirwaden", faction: "Nirwaden", con: 20, speed: 1.15, outfit: ["matadorOutfit", 0], weapon: ["silkAndDagger", [7, 7], 0, 19, 1], ranged: [false, "steelBolt", 14, 2200, 17, 16, 0, "none", 3.35], patrolStops: 0, patrolLoop: false, route:[[0, 0]], altID: "atalinMatador"}));
+                                ArtificialIntelligenceAccess.push(new Unit(-44849, 2498, "Soldier", false, "Matador", {race: "Nirwaden", faction: "Nirwaden", con: 20, speed: 1.15, outfit: ["matadorOutfit", 0], weapon: ["silkAndDagger", [7, 7], 0, 19, 1], ranged: [false, "steelBolt", 14, 2200, 17, 16 /3, 0, "none", 3.35], patrolStops: 0, patrolLoop: false, route:[[0, 0]], altID: "atalinMatador"}));
                             }
                             else
                             {
-                                ArtificialIntelligenceAccess.push(new Unit(-45348, 2480, "Soldier", false, "Matador", {race: "Nirwaden", faction: "Nirwaden", con: 20, speed: 1.15, outfit: ["matadorOutfit", 0], weapon: ["silkAndDagger", [7, 7], 0, 19, 1], ranged: [false, "steelBolt", 14, 2200, 17, 16, 0, "none", 3.35], patrolStops: 1, patrolLoop: false, route:[[-45305, 2481]], altID: "atalinMatador"}));
+                                ArtificialIntelligenceAccess.push(new Unit(-45348, 2480, "Soldier", false, "Matador", {race: "Nirwaden", faction: "Nirwaden", con: 20, speed: 1.15, outfit: ["matadorOutfit", 0], weapon: ["silkAndDagger", [7, 7], 0, 19, 1], ranged: [false, "steelBolt", 14, 2200, 17, 16 /3, 0, "none", 3.35], patrolStops: 1, patrolLoop: false, route:[[-45305, 2481]], altID: "atalinMatador"}));
                             }
                         }
                     }
@@ -18261,7 +18261,7 @@ function buildMaster()
                 {
                     if (timeOfDay == "Day" || timeOfDay == "Dusk" || timeOfDay == "Dawn")
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-44124, 1351, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 13, patrolLoop: true, route:[[-45046, 1341], [-45072, 527], [-46096, 498], [-46110, 1414], [-47019, 1410], [-47028, 1131], [-47250, 1122], [-47245, 272], [-47361, 260], [-44337, 245], [-44351, 487], [-44176, 495], [-44124, 1351]], altID: "atalinPed2"}));
+                        ArtificialIntelligenceAccess.push(new Unit(-44124, 1351, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingM", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 13, patrolLoop: true, route:[[-45046, 1341], [-45072, 527], [-46096, 498], [-46110, 1414], [-47019, 1410], [-47028, 1131], [-47250, 1122], [-47245, 272], [-47361, 260], [-44337, 245], [-44351, 487], [-44176, 495], [-44124, 1351]], altID: "atalinPed2"}));
                     }
                 }
 
@@ -18282,7 +18282,7 @@ function buildMaster()
                 }
                 if (hits == 0)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-46636, -1010, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 7, speed: 1.4, outfit: ["nirwadenMorionArmour", 11], weapon: ["nirineseSabre", [9, 10], 0, 21, 1.3], ranged: [false, "steelBolt", 14, 2200, 15, 16, 0, "none", 3], patrolStops: 13, patrolLoop: true, route:[[-45458, -1070], [-45421, -289], [-45035, -352], [-45036, -952], [-44367, -1000], [-44364, -1737], [-44858, -1738], [-44865, -1863], [-45757, -1846], [-45735, -1469], [-46417, -1470], [-46420, -1007], [-46636, -1010]], altID: "centreGuard1"}));
+                    ArtificialIntelligenceAccess.push(new Unit(-46636, -1010, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 7, speed: 1.4, outfit: ["nirwadenMorionArmour", 11], weapon: ["nirineseSabre", [9, 10], 0, 21, 1.3], ranged: [false, "steelBolt", 14, 2200, 15, 16 /3, 0, "none", 3], patrolStops: 13, patrolLoop: true, route:[[-45458, -1070], [-45421, -289], [-45035, -352], [-45036, -952], [-44367, -1000], [-44364, -1737], [-44858, -1738], [-44865, -1863], [-45757, -1846], [-45735, -1469], [-46417, -1470], [-46420, -1007], [-46636, -1010]], altID: "centreGuard1"}));
                 }
 
                 var hits = 0;
@@ -18302,7 +18302,7 @@ function buildMaster()
                 }
                 if (hits == 0)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-45144, 1067, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 8, speed: 1.2, outfit: ["nirwadenMorionArmour", 11], weapon: ["nirineseSabre", [10, 10], 0, 23, 1.2], ranged: [false, "steelBolt", 16, 2250, 16, 17, 0, "none", 3], patrolStops: 5, patrolLoop: true, route:[[-46043, 1056], [-45964, 2756], [-45964, 459], [-45144, 459], [-45144, 1067]], altID: "centreGuard2"}));
+                    ArtificialIntelligenceAccess.push(new Unit(-45144, 1067, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 8, speed: 1.2, outfit: ["nirwadenMorionArmour", 11], weapon: ["nirineseSabre", [10, 10], 0, 23, 1.2], ranged: [false, "steelBolt", 16, 2250, 16, 17 /3, 0, "none", 3], patrolStops: 5, patrolLoop: true, route:[[-46043, 1056], [-45964, 2756], [-45964, 459], [-45144, 459], [-45144, 1067]], altID: "centreGuard2"}));
                 }
 
                 var hits = 0;
@@ -18322,7 +18322,7 @@ function buildMaster()
                 }
                 if (hits == 0)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-44058, -715, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 9, speed: 1.3, outfit: ["nirwadenMorionArmour", 12], weapon: ["nirineseSabre", [9, 9], 0, 25, 1.25], ranged: [false, "steelBolt", 14, 2250, 19, 18, 0, "none", 3], patrolStops: 0, patrolLoop: false, route:[[-45458, -1070]], altID: "centreGuard3"}));
+                    ArtificialIntelligenceAccess.push(new Unit(-44058, -715, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 9, speed: 1.3, outfit: ["nirwadenMorionArmour", 12], weapon: ["nirineseSabre", [9, 9], 0, 25, 1.25], ranged: [false, "steelBolt", 14, 2250, 19, 18 /3, 0, "none", 3], patrolStops: 0, patrolLoop: false, route:[[-45458, -1070]], altID: "centreGuard3"}));
                 }
 
                 var hits = 0;
@@ -18342,7 +18342,7 @@ function buildMaster()
                 }
                 if (hits == 0)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-45952, 3009, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 8, speed: 1.4, outfit: ["nirwadenMorionArmour", 10], weapon: ["nirineseSabre", [10, 10], 0, 23, 1.2], ranged: [false, "steelBolt", 16, 2200, 19, 17, 0, "none", 3.6], patrolStops: 2, patrolLoop: true, route:[[-45952, 7902], [-45952, 3009]], altID: "gardenGuard1"}));
+                    ArtificialIntelligenceAccess.push(new Unit(-45952, 3009, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 8, speed: 1.4, outfit: ["nirwadenMorionArmour", 10], weapon: ["nirineseSabre", [10, 10], 0, 23, 1.2], ranged: [false, "steelBolt", 16, 2200, 19, 17 /3, 0, "none", 3.6], patrolStops: 2, patrolLoop: true, route:[[-45952, 7902], [-45952, 3009]], altID: "gardenGuard1"}));
                 }
 
                 var hits = 0;
@@ -18362,7 +18362,7 @@ function buildMaster()
                 }
                 if (hits == 0)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-44140, 7902, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 9, speed: 1.34, outfit: ["nirwadenMorionArmour", 12], weapon: ["nirineseSabre", [9, 9], 0, 22, 1], ranged: [false, "steelBolt", 14, 2200, 15, 16, 0, "none", 3], patrolStops: 2, patrolLoop: true, route:[[-44140, 3009], [-44140, 7902]], altID: "gardenGuard2"}));
+                    ArtificialIntelligenceAccess.push(new Unit(-44140, 7902, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 9, speed: 1.34, outfit: ["nirwadenMorionArmour", 12], weapon: ["nirineseSabre", [9, 9], 0, 22, 1], ranged: [false, "steelBolt", 14, 2200, 15, 16 /3, 0, "none", 3], patrolStops: 2, patrolLoop: true, route:[[-44140, 3009], [-44140, 7902]], altID: "gardenGuard2"}));
                 }
 
                 var hits = 0;
@@ -18382,7 +18382,7 @@ function buildMaster()
                 }
                 if (hits == 0)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-43227, -2825, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 8, speed: 1.25, outfit: ["nirwadenMorionArmour", 11], weapon: ["nirineseSabre", [9, 9], 0, 24, 1.3], ranged: [false, "steelBolt", 15, 2250, 17, 17, 0, "none", 3.15], patrolStops: 2, patrolLoop: true, route:[[-44081, -2825], [-43227, -2825]], altID: "woodsGuard1"}));
+                    ArtificialIntelligenceAccess.push(new Unit(-43227, -2825, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 8, speed: 1.25, outfit: ["nirwadenMorionArmour", 11], weapon: ["nirineseSabre", [9, 9], 0, 24, 1.3], ranged: [false, "steelBolt", 15, 2250, 17, 17 /3, 0, "none", 3.15], patrolStops: 2, patrolLoop: true, route:[[-44081, -2825], [-43227, -2825]], altID: "woodsGuard1"}));
                 }
 
                 var hits = 0;
@@ -18402,7 +18402,7 @@ function buildMaster()
                 }
                 if (hits == 0)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-41770, 2839, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 6, speed: 1.15, outfit: ["nirwadenMorionArmour", 10], weapon: ["nirineseSabre", [8, 8], 0, 24, 1.35], ranged: [false, "steelBolt", 15, 2250, 17, 17, 0, "none", 3.15], patrolStops: 4, patrolLoop: true, route:[[-44177, 2826], [-44128, 1311], [-41736, 1321], [-41770, 2839]], altID: "orchardGuard1"}));
+                    ArtificialIntelligenceAccess.push(new Unit(-41770, 2839, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 6, speed: 1.15, outfit: ["nirwadenMorionArmour", 10], weapon: ["nirineseSabre", [8, 8], 0, 24, 1.35], ranged: [false, "steelBolt", 15, 2250, 17, 17 /3, 0, "none", 3.15], patrolStops: 4, patrolLoop: true, route:[[-44177, 2826], [-44128, 1311], [-41736, 1321], [-41770, 2839]], altID: "orchardGuard1"}));
                 }
 
                 if (uniqueChars.gesuldoLDS == true)
@@ -18448,15 +18448,15 @@ function buildMaster()
                 {
                     if (player.inquisitionRank == "none")
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-46403, 860, "Soldier", false, "Inquisition Emprendor", {race: "Nirwaden", faction: "Nirwaden", con: 8, speed: 1.4, outfit: ["inquisitionOutfit", 11], weapon: ["nirineseSabre", [8, 8], 0, 22, 1.15], ranged: [false, "steelBolt", 14, 2200, 15, 16, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-46409, 849]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-46403, 860, "Soldier", false, "Inquisition Emprendor", {race: "Nirwaden", faction: "Nirwaden", con: 8, speed: 1.4, outfit: ["inquisitionOutfit", 11], weapon: ["nirineseSabre", [8, 8], 0, 22, 1.15], ranged: [false, "steelBolt", 14, 2200, 15, 16 /3, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-46409, 849]]}));
                     }
                     else if (player.inquisitionRank == "Initiate")
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-46403, 860, "Soldier", false, "Inquisition Emprendor", {race: "Nirwaden", faction: "Nirwaden", con: 8, speed: 1.4, outfit: ["inquisitionOutfit", 11], weapon: ["nirineseSabre", [8, 8], 0, 22, 1.15], ranged: [false, "steelBolt", 14, 2200, 15, 16, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-46409, 849]], merchant: true, merchandise: [[new Item("coins", false, false), 100], [new Item("witchHunterOutfit", false, false), 1]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-46403, 860, "Soldier", false, "Inquisition Emprendor", {race: "Nirwaden", faction: "Nirwaden", con: 8, speed: 1.4, outfit: ["inquisitionOutfit", 11], weapon: ["nirineseSabre", [8, 8], 0, 22, 1.15], ranged: [false, "steelBolt", 14, 2200, 15, 16 /3, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-46409, 849]], merchant: true, merchandise: [[new Item("coins", false, false), 100], [new Item("witchHunterOutfit", false, false), 1]]}));
                     }
                     else if (player.inquisitionRank != "none")
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-46403, 860, "Soldier", false, "Inquisition Emprendor", {race: "Nirwaden", faction: "Nirwaden", con: 8, speed: 1.4, outfit: ["inquisitionOutfit", 11], weapon: ["nirineseSabre", [8, 8], 0, 22, 1.15], ranged: [false, "steelBolt", 14, 2200, 15, 16, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-46409, 849]], merchant: true, merchandise: [[new Item("coins", false, false), 200], [new Item("witchHunterOutfit", false, false), 1], [new Item("silkAndDagger", false, false), 1]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-46403, 860, "Soldier", false, "Inquisition Emprendor", {race: "Nirwaden", faction: "Nirwaden", con: 8, speed: 1.4, outfit: ["inquisitionOutfit", 11], weapon: ["nirineseSabre", [8, 8], 0, 22, 1.15], ranged: [false, "steelBolt", 14, 2200, 15, 16 /3, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-46409, 849]], merchant: true, merchandise: [[new Item("coins", false, false), 200], [new Item("witchHunterOutfit", false, false), 1], [new Item("silkAndDagger", false, false), 1]]}));
                     }
                 }
 
@@ -18475,11 +18475,11 @@ function buildMaster()
                     {
                         if (player.inquisitionRank != "none" && player.inquisitionRank != "Initiate")
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(-46829, 687, "Soldier", false, "Inquisitor Gavilio", {race: "Nirwaden", faction: "Nirwaden", con: 8, speed: 1.5, outfit: ["inquisitionOutfit", 2.5], weapon: ["nirineseSabre", [8, 8], 0, 22, 1], ranged: [false, "steelBolt", 20, 2200, 20, 20, 0, "none", 2.5], patrolStops: 1, patrolLoop: false, route:[[-46834, 707]], merchant: true, merchandise: [[new Item("iron", false, false), 25]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-46829, 687, "Soldier", false, "Inquisitor Gavilio", {race: "Nirwaden", faction: "Nirwaden", con: 8, speed: 1.5, outfit: ["inquisitionOutfit", 2.5], weapon: ["nirineseSabre", [8, 8], 0, 22, 1], ranged: [false, "steelBolt", 20, 2200, 20, 20 /3, 0, "none", 2.5], patrolStops: 1, patrolLoop: false, route:[[-46834, 707]], merchant: true, merchandise: [[new Item("iron", false, false), 25]]}));
                         }
                         else
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(-46829, 687, "Soldier", false, "Inquisitor Gavilio", {race: "Nirwaden", faction: "Nirwaden", con: 8, speed: 1.5, outfit: ["inquisitionOutfit", 2.5], weapon: ["nirineseSabre", [8, 8], 0, 22, 1], ranged: [false, "steelBolt", 20, 2200, 20, 20, 0, "none", 2.5], patrolStops: 1, patrolLoop: false, route:[[-46834, 707]], merchant: false, merchandise: []}));
+                            ArtificialIntelligenceAccess.push(new Unit(-46829, 687, "Soldier", false, "Inquisitor Gavilio", {race: "Nirwaden", faction: "Nirwaden", con: 8, speed: 1.5, outfit: ["inquisitionOutfit", 2.5], weapon: ["nirineseSabre", [8, 8], 0, 22, 1], ranged: [false, "steelBolt", 20, 2200, 20, 20 /3, 0, "none", 2.5], patrolStops: 1, patrolLoop: false, route:[[-46834, 707]], merchant: false, merchandise: []}));
                         }
                     }
                 }
@@ -18497,7 +18497,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-46659, 1024, "Soldier", false, "Inquisitor Vorael", {race: "Nirwaden", faction: "Nirwaden", con: 10, speed: 1.39, outfit: ["inquisitionOutfit", 2.5], weapon: ["silkAndDagger", [7, 6], 6, 20, 1.1], ranged: [false, "steelBolt", 20, 2200, 20, 20, 0, "none", 2.5], patrolStops: 0, patrolLoop: false, route:[[-46834, 707]], merchant: true, merchandise: []}));
+                        ArtificialIntelligenceAccess.push(new Unit(-46659, 1024, "Soldier", false, "Inquisitor Vorael", {race: "Nirwaden", faction: "Nirwaden", con: 10, speed: 1.39, outfit: ["inquisitionOutfit", 2.5], weapon: ["silkAndDagger", [7, 6], 6, 20, 1.1], ranged: [false, "steelBolt", 20, 2200, 20, 20 /3, 0, "none", 2.5], patrolStops: 0, patrolLoop: false, route:[[-46834, 707]], merchant: true, merchandise: []}));
                     }
                 }
 
@@ -18549,7 +18549,7 @@ function buildMaster()
 
                 scenicList.push(new Scenery("hearth", -47047, 796, 1 * Math.PI, "lit"));
 
-                scenicList.push(new Scenery("crate", -46600, 949, 1.5, 1, [1.4]));
+                scenicList.push(new Scenery("crate", -46600, 949, 1.5, 3, [1.4, "trash", 1, [], false, 0])); //trash crate for magical items
 
 
                 change = "e5";
@@ -18710,20 +18710,20 @@ function buildMaster()
                 {
                     if (quests.aFeastForFewerQuest == true)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-45112, 9472, "Soldier", false, "Nirwaden Knight", {race: "Nirwaden", faction: "Nirwaden", con: 14, speed: 1.25, outfit: ["nirwadenPlateArmour", 18], weapon: ["none", [0.6, 0.6], 0, 0, 1.16], ranged: [false, "steelBolt", 13, 2200, 16, 15, 0, "none", 3.55], patrolStops: 1, patrolLoop: false, route:[[-45082, 9472]]}));
-                        ArtificialIntelligenceAccess.push(new Unit(-44825, 9330, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 8, speed: 1.37, outfit: ["nirwadenMorionArmour", 12], weapon: ["nirineseSabre", [10, 9], 0, 22, 1.25], ranged: [false, "steelBolt", 14, 2200, 17, 16, 0, "none", 3.35], patrolStops: 1, patrolLoop: false, route:[[-44886, 9377]]}));
-                        ArtificialIntelligenceAccess.push(new Unit(-45335, 9400, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 7, speed: 1.42, outfit: ["nirwadenMorionArmour", 13.5], weapon: ["nirineseSabre", [12, 9], 0, 22, 1.25], ranged: [false, "steelBolt", 13, 2200, 14, 14, 0, "none", 3.25], patrolStops: 1, patrolLoop: false, route:[[-45209, 9436]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-45112, 9472, "Soldier", false, "Nirwaden Knight", {race: "Nirwaden", faction: "Nirwaden", con: 14, speed: 1.25, outfit: ["nirwadenPlateArmour", 18], weapon: ["none", [0.6, 0.6], 0, 0, 1.16], ranged: [false, "steelBolt", 13, 2200, 16, 15 /3, 0, "none", 3.55], patrolStops: 1, patrolLoop: false, route:[[-45082, 9472]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-44825, 9330, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 8, speed: 1.37, outfit: ["nirwadenMorionArmour", 12], weapon: ["nirineseSabre", [10, 9], 0, 22, 1.25], ranged: [false, "steelBolt", 14, 2200, 17, 16 /3, 0, "none", 3.35], patrolStops: 1, patrolLoop: false, route:[[-44886, 9377]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-45335, 9400, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 7, speed: 1.42, outfit: ["nirwadenMorionArmour", 13.5], weapon: ["nirineseSabre", [12, 9], 0, 22, 1.25], ranged: [false, "steelBolt", 13, 2200, 14, 14 /3, 0, "none", 3.25], patrolStops: 1, patrolLoop: false, route:[[-45209, 9436]]}));
                     }
                     else
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-45282, 9397, "Soldier", false, "Nirwaden Knight", {race: "Nirwaden", faction: "Nirwaden", con: 14, speed: 1.25, outfit: ["nirwadenPlateArmour", 18], weapon: ["nirineseSabre", [10, 10], 0, 22, 1.3], ranged: [false, "steelBolt", 13, 2200, 16, 15, 0, "none", 3.55], patrolStops: 1, patrolLoop: false, route:[[-45235, 9343]]}));
-                        ArtificialIntelligenceAccess.push(new Unit(-45243, 9031, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 8, speed: 1.37, outfit: ["nirwadenMorionArmour", 12], weapon: ["nirineseSabre", [10, 9], 0, 22, 1.25], ranged: [false, "steelBolt", 14, 2200, 17, 16, 0, "none", 3.35], patrolStops: 1, patrolLoop: false, route:[[-45233, 9030]]}));
-                        ArtificialIntelligenceAccess.push(new Unit(-44911, 9031, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 7, speed: 1.42, outfit: ["nirwadenMorionArmour", 13.5], weapon: ["nirineseSabre", [12, 9], 0, 22, 1.25], ranged: [false, "steelBolt", 13, 2200, 14, 14, 0, "none", 3.25], patrolStops: 1, patrolLoop: false, route:[[-44929, 9031]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-45282, 9397, "Soldier", false, "Nirwaden Knight", {race: "Nirwaden", faction: "Nirwaden", con: 14, speed: 1.25, outfit: ["nirwadenPlateArmour", 18], weapon: ["nirineseSabre", [10, 10], 0, 22, 1.3], ranged: [false, "steelBolt", 13, 2200, 16, 15 /3, 0, "none", 3.55], patrolStops: 1, patrolLoop: false, route:[[-45235, 9343]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-45243, 9031, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 8, speed: 1.37, outfit: ["nirwadenMorionArmour", 12], weapon: ["nirineseSabre", [10, 9], 0, 22, 1.25], ranged: [false, "steelBolt", 14, 2200, 17, 16 /3, 0, "none", 3.35], patrolStops: 1, patrolLoop: false, route:[[-45233, 9030]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-44911, 9031, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 7, speed: 1.42, outfit: ["nirwadenMorionArmour", 13.5], weapon: ["nirineseSabre", [12, 9], 0, 22, 1.25], ranged: [false, "steelBolt", 13, 2200, 14, 14 /3, 0, "none", 3.25], patrolStops: 1, patrolLoop: false, route:[[-44929, 9031]]}));
                     }
 
-                    ArtificialIntelligenceAccess.push(new Unit(-44516, 8126, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 11, speed: 1.25, outfit: ["nirwadenMorionArmour", 13], weapon: ["nirineseSabre", [11, 11], 0, 21, 1.25], ranged: [false, "steelBolt", 14, 2200, 17, 16, 0, "none", 3.35], patrolStops: 4, patrolLoop: true, route:[[-45603, 8126], [-45600, 9692], [-44494, 9697], [-44516, 8126]]}));
-                    ArtificialIntelligenceAccess.push(new Unit(-45189, 7856, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 9, speed: 1.34, outfit: ["nirwadenMorionArmour", 13], weapon: ["nirineseSabre", [10, 10], 0, 21, 1.15], ranged: [false, "steelBolt", 14, 2200, 17, 16, 0, "none", 3.35], patrolStops: 1, patrolLoop: false, route:[[-45189, 7846]]}));
-                    ArtificialIntelligenceAccess.push(new Unit(-44907, 7856, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 9, speed: 1.34, outfit: ["nirwadenMorionArmour", 13], weapon: ["nirineseSabre", [10, 10], 0, 21, 1.15], ranged: [false, "steelBolt", 14, 2200, 17, 16, 0, "none", 3.35], patrolStops: 1, patrolLoop: false, route:[[-44907, 7846]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(-44516, 8126, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 11, speed: 1.25, outfit: ["nirwadenMorionArmour", 13], weapon: ["nirineseSabre", [11, 11], 0, 21, 1.25], ranged: [false, "steelBolt", 14, 2200, 17, 16 /3, 0, "none", 3.35], patrolStops: 4, patrolLoop: true, route:[[-45603, 8126], [-45600, 9692], [-44494, 9697], [-44516, 8126]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(-45189, 7856, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 9, speed: 1.34, outfit: ["nirwadenMorionArmour", 13], weapon: ["nirineseSabre", [10, 10], 0, 21, 1.15], ranged: [false, "steelBolt", 14, 2200, 17, 16 /3, 0, "none", 3.35], patrolStops: 1, patrolLoop: false, route:[[-45189, 7846]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(-44907, 7856, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 9, speed: 1.34, outfit: ["nirwadenMorionArmour", 13], weapon: ["nirineseSabre", [10, 10], 0, 21, 1.15], ranged: [false, "steelBolt", 14, 2200, 17, 16 /3, 0, "none", 3.35], patrolStops: 1, patrolLoop: false, route:[[-44907, 7846]]}));
                 }
 
                 if (quests.aFeastForFewerQuest == true)
@@ -18744,7 +18744,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-45064, 9476, "Person", false, "High Lord Basilio Altezor", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenNobleOutfit", 0], weapon: ["none", [0.6, 0.5], 0, 2, 1], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45065, 9451]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-45064, 9476, "Person", false, "High Lord Basilio Altezor", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenNobleOutfit", 0], weapon: ["none", [0.6, 0.5], 0, 2, 1], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45065, 9451]]}));
                     }
                     for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
                     {
@@ -18772,11 +18772,11 @@ function buildMaster()
                     {
                         if (quests.aFeastForFewerQuest == true)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(-44916, 9437, "Person", false, "Mechelo the Steward", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.3, 0.35], 0, 0, 1.5], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45065, 9451]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-44916, 9437, "Person", false, "Mechelo the Steward", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.3, 0.35], 0, 0, 1.5], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45065, 9451]]}));
                         }
                         else
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(-44761, 9276, "Person", false, "Mechelo the Steward", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.3, 0.35], 0, 0, 1.5], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45065, 9451]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-44761, 9276, "Person", false, "Mechelo the Steward", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.3, 0.35], 0, 0, 1.5], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-45065, 9451]]}));
                         }
                     }
                 }
@@ -18796,11 +18796,11 @@ function buildMaster()
                     {
                         if (quests.aFeastForFewerQuest == true)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(-45009, 9481, "Soldier", false, "Ser Belgos of Atalin", {race: "Nirwaden", faction: "Nirwaden", con: 20, speed: 1.2, outfit: ["nirwadenPlateArmour", 21], weapon: ["none", [0.7, 0.6], 0, 0, 1.09], ranged: [false, "steelBolt", 14, 2200, 17, 16, 0, "none", 3.35], patrolStops: 0, patrolLoop: false, route:[[-45138, 9448]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-45009, 9481, "Soldier", false, "Ser Belgos of Atalin", {race: "Nirwaden", faction: "Nirwaden", con: 20, speed: 1.2, outfit: ["nirwadenPlateArmour", 21], weapon: ["none", [0.7, 0.6], 0, 0, 1.09], ranged: [false, "steelBolt", 14, 2200, 17, 16 /3, 0, "none", 3.35], patrolStops: 0, patrolLoop: false, route:[[-45138, 9448]]}));
                         }
                         else
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(-44838, 9375, "Soldier", false, "Ser Belgos of Atalin", {race: "Nirwaden", faction: "Nirwaden", con: 20, speed: 1.2, outfit: ["nirwadenPlateArmour", 21], weapon: ["estoc", [8, 9], 20, 19, 1.9], ranged: [false, "steelBolt", 14, 2200, 17, 16, 0, "none", 3.35], patrolStops: 1, patrolLoop: false, route:[[-44900, 9335]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-44838, 9375, "Soldier", false, "Ser Belgos of Atalin", {race: "Nirwaden", faction: "Nirwaden", con: 20, speed: 1.2, outfit: ["nirwadenPlateArmour", 21], weapon: ["estoc", [8, 9], 20, 19, 1.9], ranged: [false, "steelBolt", 14, 2200, 17, 16 /3, 0, "none", 3.35], patrolStops: 1, patrolLoop: false, route:[[-44900, 9335]]}));
                         }
                     }
                 }
@@ -18817,7 +18817,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-45141, 9476, "Person", false, "High Dame Emylia Altezor", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenLadyPointyCap", 0], weapon: ["none", [0.15, 0.15], 0, 0, 2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45138, 9448]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-45141, 9476, "Person", false, "High Dame Emylia Altezor", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenLadyPointyCap", 0], weapon: ["none", [0.15, 0.15], 0, 0, 2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45138, 9448]]}));
                     }
                 }
                 if (uniqueChars.lailionaLDS && quests.atalinSisterJarl == false)
@@ -18833,7 +18833,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-45175, 9486, "Person", false, "Lailiona", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenLadyPointyCap", 0], weapon: ["none", [0.04, 0.05], 0, 0, 2], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45168, 9449]], kid: true}));
+                        ArtificialIntelligenceAccess.push(new Unit(-45175, 9486, "Person", false, "Lailiona", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenLadyPointyCap", 0], weapon: ["none", [0.04, 0.05], 0, 0, 2], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-45168, 9449]], kid: true}));
                     }
                 }
                 if (uniqueChars.liboLDS)
@@ -18849,7 +18849,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-44732, 8535, "Person", false, "Libo the Servant Boy", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["frichFurClothing", 0], weapon: ["none", [0.06, 0.06], 0, 0, 1.1], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44735, 8551]], kid: true}));
+                        ArtificialIntelligenceAccess.push(new Unit(-44732, 8535, "Person", false, "Libo the Servant Boy", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["frichFurClothing", 0], weapon: ["none", [0.06, 0.06], 0, 0, 1.1], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-44735, 8551]], kid: true}));
                     }
                 }
                 if (uniqueChars.martaLDS)
@@ -18865,7 +18865,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-44792, 8372, "Person", false, "Marta the Cook", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.16, 0.16], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-44735, 8551]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-44792, 8372, "Person", false, "Marta the Cook", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.16, 0.16], 0, 0, 1.3], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[[-44735, 8551]]}));
                     }
                 }
                 if (quests.aFeastForFewerQuest == true)
@@ -18885,11 +18885,11 @@ function buildMaster()
                         {
                             if (quests.aFeastForFewerInfiltrator == true)
                             {
-                                ArtificialIntelligenceAccess.push(new Unit(-44430, 8096, "Soldier", false, "Suspected Regicide", {race: "Nirwaden", faction: "EstolGang", con: 6, speed: 1.22, outfit: ["nirwadenMorionArmour", 11], weapon: ["nirineseSabre", [9, 9], 0, 21, 1.2], ranged: [false, "steelBolt", 14, 2200, 17, 16, 0, "none", 3.35], patrolStops: 1, patrolLoop: false, route:[[-44441, 8112]]}));
+                                ArtificialIntelligenceAccess.push(new Unit(-44430, 8096, "Soldier", false, "Suspected Regicide", {race: "Nirwaden", faction: "EstolGang", con: 6, speed: 1.22, outfit: ["nirwadenMorionArmour", 11], weapon: ["nirineseSabre", [9, 9], 0, 21, 1.2], ranged: [false, "steelBolt", 14, 2200, 17, 16 /3, 0, "none", 3.35], patrolStops: 1, patrolLoop: false, route:[[-44441, 8112]]}));
                             }
                             else
                             {
-                                ArtificialIntelligenceAccess.push(new Unit(-44430, 8096, "Soldier", false, "Off Duty Altezor Soldier", {race: "Nirwaden", faction: "EstolGang", con: 6, speed: 1.22, outfit: ["nirwadenMorionArmour", 11], weapon: ["nirineseSabre", [9, 9], 0, 21, 1.2], ranged: [false, "steelBolt", 14, 2200, 17, 16, 0, "none", 3.35], patrolStops: 1, patrolLoop: false, route:[[-44441, 8112]]}));
+                                ArtificialIntelligenceAccess.push(new Unit(-44430, 8096, "Soldier", false, "Off Duty Altezor Soldier", {race: "Nirwaden", faction: "EstolGang", con: 6, speed: 1.22, outfit: ["nirwadenMorionArmour", 11], weapon: ["nirineseSabre", [9, 9], 0, 21, 1.2], ranged: [false, "steelBolt", 14, 2200, 17, 16 /3, 0, "none", 3.35], patrolStops: 1, patrolLoop: false, route:[[-44441, 8112]]}));
                             }
                         }
                     }
@@ -19155,15 +19155,15 @@ function buildMaster()
                         var randbutt = Math.random();
                         if (randbutt > 0.7)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(-44738, 9319, "Person", false, "Lelaila", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["basketDark", [0.05, 0.05], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[], kid: true}));
+                            ArtificialIntelligenceAccess.push(new Unit(-44738, 9319, "Person", false, "Lelaila", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["basketDark", [0.05, 0.05], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[], kid: true}));
                         }
                         else if (randbutt > 0.4)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(-44700, 8449, "Person", false, "Lelaila", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["basketLight", [0.05, 0.05], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[], kid: true}));
+                            ArtificialIntelligenceAccess.push(new Unit(-44700, 8449, "Person", false, "Lelaila", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["basketLight", [0.05, 0.05], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 0, patrolLoop: false, route:[], kid: true}));
                         }
                         else
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(-44771, 9141, "Person", false, "Lelaila", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.05, 0.05], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10, 0, "none", 13], patrolStops: 5, patrolLoop: true, route:[[-44771, 9141], [-44774, 8877], [-45240, 8875], [-45253, 8673], [-44814, 8867]], kid: true}));
+                            ArtificialIntelligenceAccess.push(new Unit(-44771, 9141, "Person", false, "Lelaila", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["nirwadenClothingF", 0], weapon: ["none", [0.05, 0.05], 0, 0, 1.4], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 5, patrolLoop: true, route:[[-44771, 9141], [-44774, 8877], [-45240, 8875], [-45253, 8673], [-44814, 8867]], kid: true}));
                         }
                     }
                 }
@@ -19218,7 +19218,7 @@ function buildMaster()
                 }
                 if (hits == 0)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-45952, 3009, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 8, speed: 1.4, outfit: ["nirwadenMorionArmour", 10], weapon: ["nirineseSabre", [10, 10], 0, 23, 1.2], ranged: [false, "steelBolt", 16, 2200, 19, 17, 0, "none", 3.6], patrolStops: 2, patrolLoop: true, route:[[-45952, 7902], [-45952, 3009]], altID: "gardenGuard1"}));
+                    ArtificialIntelligenceAccess.push(new Unit(-45952, 3009, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 8, speed: 1.4, outfit: ["nirwadenMorionArmour", 10], weapon: ["nirineseSabre", [10, 10], 0, 23, 1.2], ranged: [false, "steelBolt", 16, 2200, 19, 17 /3, 0, "none", 3.6], patrolStops: 2, patrolLoop: true, route:[[-45952, 7902], [-45952, 3009]], altID: "gardenGuard1"}));
                 }
 
                 var hits = 0;
@@ -19238,7 +19238,7 @@ function buildMaster()
                 }
                 if (hits == 0)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-44140, 7902, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 9, speed: 1.34, outfit: ["nirwadenMorionArmour", 12], weapon: ["nirineseSabre", [9, 9], 0, 22, 1], ranged: [false, "steelBolt", 14, 2200, 15, 16, 0, "none", 3], patrolStops: 2, patrolLoop: true, route:[[-44140, 3009], [-44140, 7902]], altID: "gardenGuard2"}));
+                    ArtificialIntelligenceAccess.push(new Unit(-44140, 7902, "Soldier", false, "Altezor Soldier", {race: "Nirwaden", faction: "Nirwaden", con: 9, speed: 1.34, outfit: ["nirwadenMorionArmour", 12], weapon: ["nirineseSabre", [9, 9], 0, 22, 1], ranged: [false, "steelBolt", 14, 2200, 15, 16 /3, 0, "none", 3], patrolStops: 2, patrolLoop: true, route:[[-44140, 3009], [-44140, 7902]], altID: "gardenGuard2"}));
                 }
 
                 if (player.title == "Nobility" && player.raceName == "Nirwaden")

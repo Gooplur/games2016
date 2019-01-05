@@ -43636,7 +43636,15 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             {
                                 player.magicalExperience += 35;
                             }
-                            player.nirwadenFaction += 5;
+
+                            if (quests.atalinWitchHuntQuest == true)
+                            {
+                                player.nirwadenFaction += 30;
+                            }
+                            else
+                            {
+                                player.nirwadenFaction += 5;
+                            }
                         }
                     }
                     else if (this.ID == "Jorge the Killer")

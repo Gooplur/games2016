@@ -753,6 +753,10 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
                 this.setStats();
                 this.shoot();
                 this.impact();
+                this.shoot();
+                this.impact();
+                this.shoot();
+                this.impact();
 
                 //HOW IT WILL DRAW...
                 XXX.save();

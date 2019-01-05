@@ -25329,6 +25329,11 @@ function Adventurer()
                         XXX.textAlign="right";
                         XXX.fillText("W:" + stored[i][0].weight, bankScroll + 20.5 + (79 * i) + (1/2 * 79) + 37, (39/40 * 79));
                         XXX.textAlign="left"; // this is to reset it back to standard for those oldies out there...
+
+                        if (storedID == "trash")
+                        {
+                            stored.splice(i, 1);
+                        }
                     }
                 }
 

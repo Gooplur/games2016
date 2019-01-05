@@ -21827,7 +21827,7 @@ function Item(type, x, y)
             //Utility Focused
             this.range = 2500 + (500 * player.getRanged() / 50);
             //this.rate = Math.max(0.1, 35 - (34 * player.getRanged() / 50));
-            this.speed = 14 + (2 * player.getRanged() / 50);
+            this.speed = 5 + (2 * player.getRanged() / 50);
             this.negateArmour = 13 + (5 * player.getRanged() / 50);
 
             //ability

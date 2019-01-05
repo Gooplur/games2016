@@ -2464,6 +2464,10 @@ function interaction(me)
                                 if (quests.torturedSpiritQuest == true)
                                 {
                                     player.dialogueOptions.unshift(["Tell me, father, have you noticed anything unusual about the graveyard as of late?", false, "f"])
+                                    if (quests.torturedSpiritBishop == true)
+                                    {
+                                        player.dialogueOptions.unshift(["Where was this poor man buried, Bishop?", false, "h"])
+                                    }
                                 }
                                 if (player.raceName != "Nirwaden")
                                 {
@@ -2518,6 +2522,12 @@ function interaction(me)
                                             tellMessage = false;
                                             playersTurnToSpeak = false;
                                             conversationID[1] = "0g";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "h")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0h";
                                         }
                                     }
                                 }
@@ -2678,6 +2688,26 @@ function interaction(me)
                                 msgReset();
 
                                 quests.neighborlyConversionCompletionStyle = "failed";
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0h")
+                        {
+                            //text dialogue
+                            setMsg("I believe he was buried near the back, with his family. His family tombstone has moss on it if that helps at all. Please... be careful...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
                                 playersTurnToSpeak = true;
                                 player.dialoguePosition = 0;
                                 conversationID[1] = 0;

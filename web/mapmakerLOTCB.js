@@ -16242,6 +16242,18 @@ function buildMaster()
                 generator2(53765777, 99, 213974281, 332503, 100101000, 1, -33959, -3720, true);
                 cropper(-40435, -3624, -44055, -13911, true, true);
 
+                //e - 5 east plains
+                generator(865, 32636879, 341351, 76543332, 327689, 2, -47650, 6003); //eastern grasslands in map e-5
+                cropper(-47650, 6003, -53392, -3104, true, true);
+
+                for (var i = ArtificialIntelligenceAccess.length -1; i >= 0; i--)
+                {
+                    if (ArtificialIntelligenceAccess[i].type == "Peacock")
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                    }
+                }
+
                 //generator(998194838973478567290593490753765777, 893156183774189889999927462711, 212646126477828899823923656415326758196327583974281, 6688395285999999892194291914929422375482332503, 1111111111009836537010101010010100000011110010 , 1, -44194, 6496);
 
                 //REGION CREATION
@@ -18551,7 +18563,6 @@ function buildMaster()
 
                 scenicList.push(new Scenery("crate", -46600, 949, 1.5, 3, [1.4, "trash", 1, [], false, 0])); //trash crate for magical items
 
-
                 change = "e5";
             }
         }
@@ -18592,7 +18603,7 @@ function buildMaster()
                 cropper(-47555, 9583, -53158, 7506, true, true);
                 scenicList.push(new Scenery("wobeaPlant", -48954, 9749, 5.9, true));
                 ArtificialIntelligenceAccess.push(new Unit(-47725, 9724, "Frich", true, "Flioo"));
-                ArtificialIntelligenceAccess.push(new Unit(-52909, 9881, "Peacock", false, "flagoo"));
+                ArtificialIntelligenceAccess.push(new Unit(-52909, 9881, "Peacock", false, "nirwaden"));
 
                 //REGION CREATION
                 //Build AI Units
@@ -18616,12 +18627,12 @@ function buildMaster()
                 //birds in the garden
                 if (Math.random())
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-45519 + spacer(190), 7037 + spacer(86), "Peacock", true, "nirwaden"));
-                    ArtificialIntelligenceAccess.push(new Unit(-44768 + spacer(60), 6800 + spacer(50), "Peacock", false, "nirwaden"));
+                    ArtificialIntelligenceAccess.push(new Unit(-45519 + spacer(190), 7037 + spacer(86), "Peacock", true, "altezor"));
+                    ArtificialIntelligenceAccess.push(new Unit(-44768 + spacer(60), 6800 + spacer(50), "Peacock", false, "altezor"));
                 }
                 else
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-45695 + spacer(40), 7253 + spacer(40), "Peacock", false, "nirwaden"));
+                    ArtificialIntelligenceAccess.push(new Unit(-45695 + spacer(40), 7253 + spacer(40), "Peacock", false, "altezor"));
                 }
 
                 if (quests.aFeastForFewerQuest == false && player.fame >= 11 || quests.aFeastForFewerQuest == false && player.nirwadenFaction >= 500)

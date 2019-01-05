@@ -26117,15 +26117,22 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 this.doOnDeathOnce = false;
 
-                if (player.title != "Highfolk" && player.title != "Nobility" && player.title != "Royalty")
+                if (this.ID != "altezor" && this.ID != "flagabili" && player.title != "Highfolk" && player.title != "Nobility" && player.title != "Royalty" || player.title != "Nobility" && player.title != "Royalty")
                 {
-                    if (this.ID == "nirwaden" || X < -36219)
+                    if (this.ID == "nirwaden" || X < -36219 || this.ID == "altezor" || this.ID == "flagabili")
                     {
                         for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
                         {
                             if (ArtificialIntelligenceAccess[i].playerSeen == true && ArtificialIntelligenceAccess[i].team == "Nirwaden")
                             {
-                                player.nirwadenFaction -= 20;
+                                if (this.ID == "altezor" || this.ID == "flagabili") //the peacock belongs directly to the high regent and inhabits the garden of Átalin
+                                {
+                                    player.nirwadenFaction -= 35;
+                                }
+                                else
+                                {
+                                    player.nirwadenFaction -= 20;
+                                }
                                 break;
                             }
                         }

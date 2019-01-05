@@ -3309,6 +3309,7 @@ function theLegend()
         killedStambjordHeir: false,
         rannukThreatened: false,
         atalinToll: false,
+        inquisitionOutfitGiven: false,
 
         //PLAYER PROPERTY
         teshirHomeOwned: false,

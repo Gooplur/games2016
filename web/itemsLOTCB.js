@@ -21867,12 +21867,12 @@ function Item(type, x, y)
 
             //Crafting
             this.yield = 5;
-            this.intForCraft = 45;
+            this.intForCraft = 27;
             this.ingredients = [["Steel", 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
-            this.buyValue = 22 - Math.floor(player.getCharisma() / 5); // at max, buy for 12.
-            this.sellValue = 8 + Math.floor(player.getCharisma() / 12); // at max, sell for 12.
+            this.buyValue = 8 - Math.floor(player.getCharisma() / 50); // at max, buy for 7.
+            this.sellValue = 5 + Math.floor(player.getCharisma() / 25); // at max, sell for 7.
         }
         else if (this.type == "longbow")
         {

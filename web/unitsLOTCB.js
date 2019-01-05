@@ -40949,6 +40949,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 this.drops = [[new Item("coins", this.X, this.Y), 115]];
             }
+            else if (this.ID == "Agustin the Doctor")
+            {
+                this.drops = [[new Item("coins", this.X, this.Y), 100], [new Item("doctorOutfit", this.X, this.Y), 1]];
+            }
             else if (this.ID == "Ebaro")
             {
                 if (quests.aFairyInBoysClothingQuest == true)

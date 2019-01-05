@@ -1941,6 +1941,10 @@ function interaction(me)
                                 }
                                 else
                                 {
+                                    if (quests.inquisitionOutfitGiven == false)
+                                    {
+                                        player.dialogueOptions.push(["Do I get an inquisitor's outfit Now that I am a member?", false, "e"]);
+                                    }
                                     player.dialogueOptions.push(["Remind me, what is my rank in the Inquisition?", false, "c"]);
                                     if (player.inquisitionRank == "Initiate" && quests.theOrderOfTheInquisition >= 3)
                                     {
@@ -1986,6 +1990,12 @@ function interaction(me)
                                             tellMessage = false;
                                             playersTurnToSpeak = false;
                                             conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
                                         }
                                     }
                                 }
@@ -2134,6 +2144,28 @@ function interaction(me)
                                     quests.theOrderOfTheInquisition -= 11;
                                 }
 
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            //text dialogue
+                            setMsg("Of course! But you only get one...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                worldItems.push([new Item("witchHunterOutfit", X, Y), 1]);
+                                quests.inquisitionOutfitGiven = true;
                                 playersTurnToSpeak = true;
                                 player.dialoguePosition = 0;
                                 conversationID[1] = 0;

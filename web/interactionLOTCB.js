@@ -12738,7 +12738,7 @@ function interaction(me)
                             if (tellMessage == "reset")
                             {
                                 msgReset();
-                                quests.inventorsFeudStage == "hugoMid";
+                                quests.inventorsFeudStage = "hugoMid";
                                 playersTurnToSpeak = true;
                                 player.dialoguePosition = 0;
                                 conversationID[1] = 0;

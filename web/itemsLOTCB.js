@@ -15414,14 +15414,14 @@ function Item(type, x, y)
             this.ability = "none";
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
-            if (player.title == "Nobility" || player.title == "Royalty" || player.title == "Highfolk")
+            if (player.title == "Nobility" || player.title == "Royalty" || player.title == "Highfolk" || shopkeeper.ultra.faction != "Nirwaden" && shopkeeper.ultra.faction != "EstolGang")
             {
                 this.buyValue = 20; // at max, buy for 20.
                 this.sellValue = 20; // at max, sell for 20.
             }
             else
             {
-                this.buyValue = 445 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 245.
+                this.buyValue = 20; // at max, buy for 20.
                 this.sellValue = 0; // at max, sell for 0.
             }
         }

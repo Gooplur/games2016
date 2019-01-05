@@ -8756,6 +8756,18 @@ function buildMaster()
                     }
                 }
 
+                //s - 1 - e - 5 east plains
+                generator(768528794, 3465768798, 8976875, 123, 222, 2, -47147, -4369); //eastern grasslands in map s-1-e-5
+                cropper(-47147, -4369, -50955, -13249, true, true);
+
+                for (var i = ArtificialIntelligenceAccess.length -1; i >= 0; i--)
+                {
+                    if (ArtificialIntelligenceAccess[i].type == "Peacock")
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                    }
+                }
+
 
                 scenicList.push(new Scenery("pineTree", -44438 , -5347, 1, true));
                 scenicList.push(new Scenery("pineTree", -46167 , -4835, 5.2, true));

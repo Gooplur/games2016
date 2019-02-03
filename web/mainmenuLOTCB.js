@@ -1309,6 +1309,10 @@ function applySelectionsButton()
             player.interestRate = 0.26;
         }
 
+        //respawnStyleDeath
+        player.spawnX = X;
+        player.spawnY = Y;
+
         //Actually start the game here.
         theme.pause();
         gameState = "active";

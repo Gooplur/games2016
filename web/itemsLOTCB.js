@@ -2332,6 +2332,50 @@ function Item(type, x, y)
             this.spellKnowledgeRequirement = 1;
             this.spellRange = "Near";
         }
+        else if (this.type == "shadowSwitch")
+        {
+            //For All Items
+            if (player.getKnowledge() >= 6)
+            {
+                this.identity = "Scroll of Shadow Switch";
+                this.description = "Studying this scroll will teach you how to cast a bolt of shadow energy that decays the foe's essence.";
+                this.intForDes = 0;
+                this.intDescription = "The second part of the spell switches the caster and the foe's positions.";
+                this.buyValue = 900 - Math.floor(player.getCharisma() / 1); // at max, buy for 850.
+                this.sellValue = 800 + Math.floor(player.getCharisma() / 1); // at max, sell for 850.
+            }
+            else
+            {
+                this.identity = "Scroll";
+                this.description = "The markings on this scroll are incomprehensible; what a waste of paper!";
+                this.intForDes = 2;
+                this.intDescription = "Scrolls are supposed to be used for storing knowledge or sending messages, it looks like this one wasn't used for either.";
+                this.buyValue = 900 - Math.floor(player.getCharisma() / 1); // at max, buy for 850.
+                this.sellValue = 1; // at max, sell for 1.
+            }
+            this.weight = 0.02;
+            this.size = 12;
+
+            //Define Utility
+            this.utility = "spell";
+
+            //ability
+            this.ability = "none";
+
+            //Utility Focused
+            this.damages = true;
+            this.spellCost = Math.max(1, 5 + (3 / 50) * player.getConcentration() - (5 / 50) * player.getEminence());
+            this.spellGroup = "Form";
+            this.spellGenre = "Nechromancy";
+            this.spellName = "Shadow Switch";
+            this.spellID = "shadowSwitch";
+            this.spellDamage = 6 + (0.4 * player.getConcentration());
+            this.spellEXP = 19 * ((50 + player.getMemory()) / 50);
+            this.spellCooldown = Math.max(0.5, 6 + (8/50) * player.getConcentration() - (10/50) * player.getEminence());
+            this.spellDescription = "A shadowy bolt that switches the caster and the foe while decaying the foe's essence.";
+            this.spellKnowledgeRequirement = 6;
+            this.spellRange = "Medium";
+        }
         else if (this.type == "fireballI")
         {
             //For All Items
@@ -6629,6 +6673,69 @@ function Item(type, x, y)
 
             //ability
             this.ability = "gutWorms";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3; // at max, buy for 3.
+            this.sellValue = 2 + Math.floor(player.getCharisma() / 50); // at max, sell for 3.
+        }
+        else if (this.type == "rawCheshireFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Cheshire Flesh";
+            this.weight = 1;
+            this.size = 12;
+            this.description = "The raw flesh from a cheshire.";
+            this.intForDes = 6;
+            this.intDescription = "The meat may have flesh mites, so it is best not to eat it raw.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 2; //satisfies hunger.
+            this.thirst = 0.1; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "fleshmites";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+        }
+        else if (this.type == "cheshireMeat")
+        {
+            //For All Items
+            this.identity = "Cheshire Meat";
+            this.weight = 1;
+            this.size = 12;
+            this.description = "The cooked meat of a cheshire.";
+            this.intForDes = 0;
+            this.intDescription = "The meat has a slightly sour bile flavour mixed with a strong and sharp savory flavour...";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 6; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 1; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -2; //recoops lost energy.
+            this.replenish = -2; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 6;
+            this.ingredients = [["Raw Cheshire Flesh", 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 3; // at max, buy for 3.
@@ -13232,6 +13339,42 @@ function Item(type, x, y)
             this.buyValue = 34 - Math.floor(player.getCharisma() / 6); // at max, buy for 26.
             this.sellValue = 20 + Math.floor(player.getCharisma() / 8); // at max, sell for 26.
         }
+        else if (this.type == "ameloyPerfume")
+        {
+            //For All Items
+            this.identity = "Ameloy Perfume";
+            this.weight = 1;
+            this.size = 5;
+            this.description = "A liquid perfume with the scent of sweet ameloy blossoms.";
+            this.intForDes = 0;
+            this.intDescription = "It smells sweet, soothing, and floral.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["potionGlass", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "ogardPerfume";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 16;
+            this.ingredients = [["Vial of Water", 1], ["Ameloy Flower", 18]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 40 - Math.floor(player.getCharisma() / 8); // at max, buy for 34.
+            this.sellValue = 28 + Math.floor(player.getCharisma() / 8); // at max, sell for 34.
+        }
         else if (this.type == "cleansingPotion")
         {
             //For All Items
@@ -15444,6 +15587,186 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 8 - Math.floor(player.getCharisma() / 15); // at max, buy for 5.
             this.sellValue = 3 + Math.floor(player.getCharisma() / 25); // at max, sell for 5.
+        }
+        else if (this.type == "thadineBranch")
+        {
+            //For All Items
+            this.identity = "Thadine branch";
+            this.weight = 0.9;
+            this.size = 11;
+            this.description = "A branch from a thadine bush covered in its numerous black leaves.";
+            this.intForDes = 17;
+            this.intDescription = "It can be used to stabilize a volitile mixture in alchemy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "ameloyFlower")
+        {
+            //For All Items
+            this.identity = "Ameloy Flower";
+            this.weight = 0.04;
+            this.size = 3;
+            this.description = "A small white and black flower that has a sweet and soothing aroma.";
+            this.intForDes = 6;
+            this.intDescription = "It can be used to make a desirable perfume.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "varonoiFeather")
+        {
+            //For All Items
+            this.identity = "Varonoi Feather";
+            this.weight = 0.06;
+            this.size = 9;
+            this.description = "A feather from a varonoi bird.";
+            this.intForDes = 7;
+            this.intDescription = "The feather of a varonoi can be used as a former in alchemy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 9 - Math.floor(player.getCharisma() / 15); // at max, buy for 6.
+            this.sellValue = 2 + Math.floor(player.getCharisma() / 12); // at max, sell for 6.
+        }
+        else if (this.type == "thegolThornSml")
+        {
+            //For All Items
+            this.identity = "Thegol Thorn";
+            this.weight = 2.6;
+            this.size = 9;
+            this.description = "The thorny stalk and acidic blue flower of a thegolthorn plant.";
+            this.intForDes = 12;
+            this.intDescription = "This can be used as a changer in alchemy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 20 - Math.floor(player.getCharisma() / 8); // at max, buy for 14.
+            this.sellValue = 12 + Math.floor(player.getCharisma() / 25); // at max, sell for 14.
+        }
+        else if (this.type == "thegolThornLrg")
+        {
+            //For All Items
+            this.identity = "Thegol Thorn";
+            this.weight = 3.7;
+            this.size = 14;
+            this.description = "The thorny stalk and acidic blue flower of a thegolthorn plant.";
+            this.intForDes = 12;
+            this.intDescription = "This can be used as a changer in alchemy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 23 - Math.floor(player.getCharisma() / 8); // at max, buy for 17.
+            this.sellValue = 15 + Math.floor(player.getCharisma() / 25); // at max, sell for 17.
+        }
+        else if (this.type == "cheshirePelt")
+        {
+            //For All Items
+            this.identity = "Cheshire Pelt";
+            this.weight = 1.7;
+            this.size = 17;
+            this.description = "The long haired black and white striped pelt of a cheshire.";
+            this.intForDes = 2;
+            this.intDescription = "This can be used to make clothing and other such tailored accessories.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 28 - Math.floor(player.getCharisma() / 8); // at max, buy for 22.
+            this.sellValue = 14 + Math.floor(player.getCharisma() / 6); // at max, sell for 22.
+        }
+        else if (this.type == "cheshirePaw")
+        {
+            //For All Items
+            this.identity = "Cheshire Paw";
+            this.weight = 0.9;
+            this.size = 10;
+            this.description = "The severed paw of a cheshire.";
+            this.intForDes = 0;
+            this.intDescription = "This trophy is a testimate to the might of the one who slayed the cheshire it once belonged to.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3; // at max, buy for 3.
+            this.sellValue = 3; // at max, sell for 3.
+        }
+        else if (this.type == "cheshireTongue")
+        {
+            //For All Items
+            this.identity = "Cheshire Tongue";
+            this.weight = 0.6;
+            this.size = 6;
+            this.description = "The thin, course tongue of a cheshire.";
+            this.intForDes = 8;
+            this.intDescription = "Cheshire tongue acts as a changer in alchemy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5; // at max, buy for 5.
+            this.sellValue = 5; // at max, sell for 5.
+        }
+        else if (this.type == "batWing")
+        {
+            //For All Items
+            this.identity = "Bat Wing";
+            this.weight = 0.25;
+            this.size = 4;
+            this.description = "The thin fleshy webbed wing of a bat.";
+            this.intForDes = 3;
+            this.intDescription = "Wing of bat acts as a weak amplifier in alchemy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
         }
         else if (this.type == "mofuEgg")
         {
@@ -19253,6 +19576,46 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 59 - Math.floor(player.getCharisma() / 2); // at max, buy for 34.
             this.sellValue = 8 + Math.floor(player.getCharisma() / 5); // at max, sell for 18.
+        }
+        else if (this.type == "kerShell")
+        {
+            //For All Items
+            this.identity = "Ker Shell";
+            this.weight = 7;
+            this.size = 20;
+            this.description = "A portion of the shell of a ker.";
+            this.intForDes = 6;
+            this.intDescription = "Ker are a white shelled lobster-like creature that lives in the Vardanian swamps.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 19 - Math.floor(player.getCharisma() / 12.5); // at max, buy for 15.
+            this.sellValue = 9 + Math.floor(player.getCharisma() / 8); // at max, sell for 15.
+        }
+        else if (this.type == "kerClaw")
+        {
+            //For All Items
+            this.identity = "Ker Claw";
+            this.weight = 5.5;
+            this.size = 20;
+            this.description = "a hollowed claw from a ker.";
+            this.intForDes = 6;
+            this.intDescription = "This is a trophy that shows that one has bested a ker.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 24 - Math.floor(player.getCharisma() / 12.5); // at max, buy for 20.
+            this.sellValue = 14 + Math.floor(player.getCharisma() / 8); // at max, sell for 20.
         }
         else if (this.type == "gulfreyMandibles")
         {
@@ -30364,6 +30727,71 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(candlewic, 60, 167, 27, 29, X - this.X + (1/2 * CCC.width) - (1/2 * 27 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 29 * 1.5), 27 * 1.5, 29 * 1.5);
         }
+        else if (this.type == "rawCheshireFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(tomb, 460, 534, 31, 34, X - this.X + (1/2 * CCC.width) - (1/2 * 31 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 34 * 1), 31 * 1, 34 * 1);
+        }
+        else if (this.type == "cheshireMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(tomb, 428, 532, 31, 34, X - this.X + (1/2 * CCC.width) - (1/2 * 31 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 34 * 1), 31 * 1, 34 * 1);
+        }
+        else if (this.type == "cheshireTongue")
+        {
+            XXX.beginPath();
+            XXX.drawImage(tomb, 491, 534, 31, 34, X - this.X + (1/2 * CCC.width) - (1/2 * 31 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 34 * 1), 31 * 1, 34 * 1);
+        }
+        else if (this.type == "batWing")
+        {
+            XXX.beginPath();
+            XXX.drawImage(tomb, 666, 9, 17, 13, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 13 * 1), 17 * 1, 13 * 1);
+        }
+        else if (this.type == "cheshirePelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(tomb, 530, 538, 43, 36, X - this.X + (1/2 * CCC.width) - (1/2 * 43 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 36 * 1), 43 * 1, 36 * 1);
+        }
+        else if (this.type == "ameloyPerfume")
+        {
+            XXX.beginPath();
+            XXX.drawImage(oldverse, 1735, 201, 10, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 10 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 15 * 1), 10 * 1, 15 * 1);
+        }
+        else if (this.type == "thadineBranch")
+        {
+            XXX.beginPath();
+            XXX.drawImage(milk, 101, 106, 68, 70, X - this.X + (1/2 * CCC.width) - (1/2 * 68 * 0.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 70 * 0.4), 68 * 0.4, 70 * 0.4);
+        }
+        else if (this.type == "ameloyFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(milk, 178, 9, 82, 87, X - this.X + (1/2 * CCC.width) - (1/2 * 82 * 0.19), Y - this.Y + (1/2 * CCC.height) - (1/2 * 87 * 0.19), 82 * 0.19, 87 * 0.19);
+        }
+        else if (this.type == "thegolThornSml")
+        {
+            XXX.beginPath();
+            XXX.drawImage(milk, 424, 9, 43, 57, X - this.X + (1/2 * CCC.width) - (1/2 * 43 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 57 * 1), 43 * 1, 57 * 1);
+        }
+        else if (this.type == "thegolThornLrg")
+        {
+            XXX.beginPath();
+            XXX.drawImage(milk, 424, 9, 43, 57, X - this.X + (1/2 * CCC.width) - (1/2 * 43 * 1.17), Y - this.Y + (1/2 * CCC.height) - (1/2 * 57 * 1.17), 43 * 1.17, 57 * 1.17);
+        }
+        else if (this.type == "varonoiFeather")
+        {
+            XXX.beginPath();
+            XXX.drawImage(milk, 244, 552, 53, 26, X - this.X + (1/2 * CCC.width) - (1/2 * 53 * 0.25), Y - this.Y + (1/2 * CCC.height) - (1/2 * 26 * 0.25), 53 * 0.25, 26 * 0.25);
+        }
+        else if (this.type == "kerShell")
+        {
+            XXX.beginPath();
+            XXX.drawImage(milk, 686, 25, 40, 41, X - this.X + (1/2 * CCC.width) - (1/2 * 40 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 41 * 1), 40 * 1, 41 * 1);
+        }
+        else if (this.type == "kerClaw")
+        {
+            XXX.beginPath();
+            XXX.drawImage(milk, 586, 21, 64, 42, X - this.X + (1/2 * CCC.width) - (1/2 * 64 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 42 * 1), 64 * 1, 42 * 1);
+        }
         else if (this.type == "nirwadenSabreAndShield")
         {
             XXX.beginPath();
@@ -33184,7 +33612,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 1967, 67, 33, 26, X - this.X + (1/2 * CCC.width) - (1/2 * 33), Y - this.Y + (1/2 * CCC.height) - (1/2 * 26), 33, 26);
         }
-        else if (this.type == "repel" || this.type == "minorVortex" || this.type == "lifeTap" || this.type == "electricBolt" || this.type == "chargedTouch" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "summonFrich")
+        else if (this.type == "repel" || this.type == "minorVortex" || this.type == "lifeTap" || this.type == "electricBolt" || this.type == "chargedTouch" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "summonFrich" || this.type == "shadowSwitch")
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1922, 4, 23, 32, X - this.X + (1/2 * CCC.width) - (1/2 * 23), Y - this.Y + (1/2 * CCC.height) - (1/2 * 32), 23, 32);
@@ -34301,6 +34729,71 @@ function Item(type, x, y)
         {
             LXX.beginPath();
             LXX.drawImage(candlewic, 61, 201, 27, 29, this.invX - (1/2 * 27 * 1.5), this.invY - (1/2 * 29 * 1.5), 27 * 1.5, 29 * 1.5);
+        }
+        else if (this.type == "rawCheshireFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(tomb, 460, 534, 31, 34, this.invX - (1/2 * 31 * 1), this.invY - (1/2 * 34 * 1), 31 * 1, 34 * 1);
+        }
+        else if (this.type == "cheshireMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(tomb, 428, 532, 31, 34, this.invX - (1/2 * 31 * 1), this.invY - (1/2 * 34 * 1), 31 * 1, 34 * 1);
+        }
+        else if (this.type == "cheshireTongue")
+        {
+            LXX.beginPath();
+            LXX.drawImage(tomb, 491, 534, 31, 34, this.invX - (1/2 * 31 * 1), this.invY - (1/2 * 34 * 1), 31 * 1, 34 * 1);
+        }
+        else if (this.type == "batWing")
+        {
+            LXX.beginPath();
+            LXX.drawImage(tomb, 666, 9, 17, 13, this.invX - (1/2 * 17 * 1), this.invY - (1/2 * 13 * 1), 17 * 1, 13 * 1);
+        }
+        else if (this.type == "cheshirePelt")
+        {
+            LXX.beginPath();
+            LXX.drawImage(tomb, 530, 538, 43, 36, this.invX - (1/2 * 43 * 1), this.invY - (1/2 * 36 * 1), 43 * 1, 36 * 1);
+        }
+        else if (this.type == "ameloyPerfume")
+        {
+            LXX.beginPath();
+            LXX.drawImage(oldverse, 1735, 201, 10, 15, this.invX - (1/2 * 10 * 1), this.invY - (1/2 * 15 * 1), 10 * 1, 15 * 1);
+        }
+        else if (this.type == "thadineBranch")
+        {
+            LXX.beginPath();
+            LXX.drawImage(milk, 101, 106, 68, 70, this.invX - (1/2 * 68 * 0.4), this.invY - (1/2 * 70 * 0.4), 68 * 0.4, 70 * 0.4);
+        }
+        else if (this.type == "ameloyFlower")
+        {
+            LXX.beginPath();
+            LXX.drawImage(milk, 178, 9, 82, 87, this.invX - (1/2 * 82 * 0.3), this.invY - (1/2 * 87 * 0.3), 82 * 0.3, 87 * 0.3);
+        }
+        else if (this.type == "thegolThornSml")
+        {
+            LXX.beginPath();
+            LXX.drawImage(milk, 424, 9, 43, 57, this.invX - (1/2 * 43 * 1), this.invY - (1/2 * 57 * 1), 43 * 1, 57 * 1);
+        }
+        else if (this.type == "thegolThornLrg")
+        {
+            LXX.beginPath();
+            LXX.drawImage(milk, 424, 9, 43, 57, this.invX - (1/2 * 43 * 1.17), this.invY - (1/2 * 57 * 1.17), 43 * 1.17, 57 * 1.17);
+        }
+        else if (this.type == "varonoiFeather")
+        {
+            LXX.beginPath();
+            LXX.drawImage(milk, 244, 552, 53, 26, this.invX - (1/2 * 53 * 0.6), this.invY - (1/2 * 26 * 0.6), 53 * 0.6, 26 * 0.6);
+        }
+        else if (this.type == "kerShell")
+        {
+            LXX.beginPath();
+            LXX.drawImage(milk, 686, 25, 40, 41, this.invX - (1/2 * 40 * 1), this.invY - (1/2 * 41 * 1), 40 * 1, 41 * 1);
+        }
+        else if (this.type == "kerClaw")
+        {
+            LXX.beginPath();
+            LXX.drawImage(milk, 586, 21, 64, 42, this.invX - (1/2 * 64 * 0.9), this.invY - (1/2 * 42 * 0.9), 64 * 0.9, 42 * 0.9);
         }
         else if (this.type == "nirwadenSabreAndShield")
         {
@@ -37198,7 +37691,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(polypol, 1859, 36, 22, 27, this.invX - (1/2 * 22), this.invY - (1/2 * 27), 22, 27);
         }
-        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind" || this.type == "iceBlast" || this.type == "healingPsalms" || this.type == "summonGriffin" || this.type == "summonDemon" || this.type == "slowTimeI" || this.type == "slowTimeII" || this.type == "slowTimeIII" || this.type == "slowTimeIV" || this.type == "slowTimeV" || this.type == "slowTimeVI" || this.type == "doppelganger")
+        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind" || this.type == "iceBlast" || this.type == "healingPsalms" || this.type == "summonGriffin" || this.type == "summonDemon" || this.type == "slowTimeI" || this.type == "slowTimeII" || this.type == "slowTimeIII" || this.type == "slowTimeIV" || this.type == "slowTimeV" || this.type == "slowTimeVI" || this.type == "doppelganger" || this.type == "shadowSwitch")
         {
             LXX.beginPath();
             LXX.drawImage(polypol, 1738, 4, 33, 26, this.invX - (1/2 * 33), this.invY - (1/2 * 26), 33, 26);
@@ -38214,6 +38707,71 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(candlewic, 61, 201, 27, 29, this.invX - (1/2 * 27 * 1.5), this.invY - (1/2 * 29 * 1.5), 27 * 1.5, 29 * 1.5);
+        }
+        else if (this.type == "rawCheshireFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(tomb, 460, 534, 31, 34, this.invX - (1/2 * 31 * 1), this.invY - (1/2 * 34 * 1), 31 * 1, 34 * 1);
+        }
+        else if (this.type == "cheshireMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(tomb, 428, 532, 31, 34, this.invX - (1/2 * 31 * 1), this.invY - (1/2 * 34 * 1), 31 * 1, 34 * 1);
+        }
+        else if (this.type == "cheshireTongue")
+        {
+            XXX.beginPath();
+            XXX.drawImage(tomb, 491, 534, 31, 34, this.invX - (1/2 * 31 * 1), this.invY - (1/2 * 34 * 1), 31 * 1, 34 * 1);
+        }
+        else if (this.type == "batWing")
+        {
+            XXX.beginPath();
+            XXX.drawImage(tomb, 666, 9, 17, 13, this.invX - (1/2 * 17 * 1), this.invY - (1/2 * 13 * 1), 17 * 1, 13 * 1);
+        }
+        else if (this.type == "cheshirePelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(tomb, 530, 538, 43, 36, this.invX - (1/2 * 43 * 1), this.invY - (1/2 * 36 * 1), 43 * 1, 36 * 1);
+        }
+        else if (this.type == "ameloyPerfume")
+        {
+            XXX.beginPath();
+            XXX.drawImage(oldverse, 1735, 201, 10, 15, this.invX - (1/2 * 10 * 1), this.invY - (1/2 * 15 * 1), 10 * 1, 15 * 1);
+        }
+        else if (this.type == "thadineBranch")
+        {
+            XXX.beginPath();
+            XXX.drawImage(milk, 101, 106, 68, 70, this.invX - (1/2 * 68 * 0.4), this.invY - (1/2 * 70 * 0.4), 68 * 0.4, 70 * 0.4);
+        }
+        else if (this.type == "ameloyFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(milk, 178, 9, 82, 87, this.invX - (1/2 * 82 * 0.3), this.invY - (1/2 * 87 * 0.3), 82 * 0.3, 87 * 0.3);
+        }
+        else if (this.type == "thegolThornSml")
+        {
+            XXX.beginPath();
+            XXX.drawImage(milk, 424, 9, 43, 57, this.invX - (1/2 * 43 * 1), this.invY - (1/2 * 57 * 1), 43 * 1, 57 * 1);
+        }
+        else if (this.type == "thegolThornLrg")
+        {
+            XXX.beginPath();
+            XXX.drawImage(milk, 424, 9, 43, 57, this.invX - (1/2 * 43 * 1.17), this.invY - (1/2 * 57 * 1.17), 43 * 1.17, 57 * 1.17);
+        }
+        else if (this.type == "varonoiFeather")
+        {
+            XXX.beginPath();
+            XXX.drawImage(milk, 244, 552, 53, 26, this.invX - (1/2 * 53 * 0.6), this.invY - (1/2 * 26 * 0.6), 53 * 0.6, 26 * 0.6);
+        }
+        else if (this.type == "kerShell")
+        {
+            XXX.beginPath();
+            XXX.drawImage(milk, 686, 25, 40, 41, this.invX - (1/2 * 40 * 1), this.invY - (1/2 * 41 * 1), 40 * 1, 41 * 1);
+        }
+        else if (this.type == "kerClaw")
+        {
+            XXX.beginPath();
+            XXX.drawImage(milk, 586, 21, 64, 42, this.invX - (1/2 * 64 * 0.9), this.invY - (1/2 * 42 * 0.9), 64 * 0.9, 42 * 0.9);
         }
         else if (this.type == "nirwadenSabreAndShield")
         {
@@ -41109,7 +41667,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 1859, 36, 22, 27, this.invX - (1/2 * 22), this.invY - (1/2 * 27), 22, 27);
         }
-        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind" || this.type == "iceBlast" || this.type == "healingPsalms" || this.type == "summonGriffin" || this.type == "summonDemon" || this.type == "slowTimeI" || this.type == "slowTimeII" || this.type == "slowTimeIII" || this.type == "slowTimeIV" || this.type == "slowTimeV" || this.type == "slowTimeVI" || this.type == "doppelganger")
+        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind" || this.type == "iceBlast" || this.type == "healingPsalms" || this.type == "summonGriffin" || this.type == "summonDemon" || this.type == "slowTimeI" || this.type == "slowTimeII" || this.type == "slowTimeIII" || this.type == "slowTimeIV" || this.type == "slowTimeV" || this.type == "slowTimeVI" || this.type == "doppelganger" || this.type == "shadowSwitch")
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1738, 4, 33, 26, this.invX - (1/2 * 33), this.invY - (1/2 * 26), 33, 26);

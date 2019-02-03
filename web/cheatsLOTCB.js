@@ -4,6 +4,19 @@
 //this function contains cheat methods that rely on the gameLoop.
 function cheats()
 {
+
+    //kids mode silliness
+    if (player.gamemode == "protagonist")
+    {
+        for (var iiii = scenicList.length - 1; iiii >= 0; iiii--)
+        {
+            if (scenicList[iiii].type == "blood" || scenicList[iiii].type == "deadBody" || scenicList[iiii].type == "skeleton" || scenicList[iiii].type == "hyelingSkeleton" || scenicList[iiii].type == "deadNaaprid" || scenicList[iiii].type == "deadHorse")
+            {
+                scenicList.splice(iiii, 1);
+            }
+        }
+    }
+
     if (player.raceName == "Goop" && player.name == "Gooplur")
     {
         player.recoveryTime = 10;

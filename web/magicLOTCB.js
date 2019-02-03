@@ -562,6 +562,20 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                             ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
                             ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
                         }
+                        else if (whatDoIDo == "switch")
+                        {
+                            ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].magicalResistance));
+                            ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
+                            ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+
+                            if (Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].magicalResistance)) > 0)
+                            {
+                                ArtificialIntelligenceAccess[i].X = X;
+                                ArtificialIntelligenceAccess[i].Y = Y;
+                                X = this.X;
+                                Y = this.Y;
+                            }
+                        }
                         else if (whatDoIDo == "iceSpike")
                         {
                             ArtificialIntelligenceAccess[i].health -= Math.max(0, 4 + (4/50 * this.cnx) - Math.max(0, ArtificialIntelligenceAccess[i].armour - Math.max(0, 100 - 19 * ArtificialIntelligenceAccess[i].magicalResistance)));
@@ -1262,6 +1276,11 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
         {
             this.orientToCaster(23, 1 / 2 * Math.PI);
             this.drawWithRotation(polypol, 1691, 184, 24, 23, 29, 26, player.rotation, -1 / 2 * 24, -1 / 2 * 23);
+        }
+        //SHADOW SWITCH
+        if (this.spellType == "shadowSwitch")
+        {
+            this.orientToCaster(46, 1 / 2 * Math.PI);
         }
         //ELECTRIC BOLT
         if (this.spellType == "electricBolt")
@@ -3091,6 +3110,20 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                         this.project(this.unitRotation, 450 + ((250 * this.cnx) / 50), 7 + 2 * (this.cnx / 50), true);
                     }
                     lights.push({X: this.X, Y: this.Y, size: 18, extraStops: true, GRD: 0.75, Alpha: 0.8, showMe: false});
+                }
+            }
+
+            if (this.spellType == "shadowSwitch")
+            {
+                if (caster)
+                {
+                    this.damageThenGoAway(19, "switch",6 + 0.4 * this.cnx, 0, false);
+                    this.flashAnimate(90, this.playerRotation - 1/2 * Math.PI + 0.2, 0.66, [{image: tomb, imgX: 419, imgY: 362, portionW: 93, portionH: 71, adjX: -1 / 2 * 93, adjY: -1 / 2 * 71, width: 93, height: 71}, {image: tomb, imgX: 535, imgY: 358, portionW: 93, portionH: 71, adjX: -1 / 2 * 93, adjY: -1 / 2 * 71, width: 93, height: 71}]);
+                    this.project(this.playerRotation + 1/2 * Math.PI, 410 + ((100 * this.cnx) / 50), 9 + 3 * (this.cnx / 50), true);
+                }
+                else
+                {
+
                 }
             }
 

@@ -4,3 +4,4 @@ In Poly Land's alchemy system there are several categories for alchemical ingred
 * Changer: A substance that on its own has no significance alchemically but is used because it can alter the affects of a Former.
 * Catalyst: A catalyst can range from a powerful chemical agent to heat, it is responsible for starting a reaction that already has all of the required ingredients present. Many alchemical recipes do not require a special catalyst because they fuse with one another naturally.
 * Base (medium): The substance in which all of the ingredients are combined. Weaker bases cannot support the mixture of higher potency Formers or Amplifiers and thus stronger bases must be used for stronger alchemical creations.
+* Stabilizer: A substance that prevents otherwise volatile reactants from reacting with each other.

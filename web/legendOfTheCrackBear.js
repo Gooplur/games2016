@@ -1515,6 +1515,10 @@ function envPack()
     lomita.src = ("images/lomita.jpg");
     window.lomita = lomita;
 
+    var rainbowSparkles = new Image();
+    rainbowSparkles.src = ("images/rainbowSparkles.png");
+    window.rainbowSparkles = rainbowSparkles;
+
     var nirDockH = new Image();
     nirDockH.src = ("images/nirDockH.jpg");
     window.nirDockH = nirDockH;
@@ -1584,6 +1588,18 @@ function gargPack()
     window.garg = garg;
 
     garg.onload = function()
+    {
+        mimikPack();
+    };
+}
+
+function mimikPack()
+{
+    var mimi = new Image();
+    mimi.src = ("images/mimi.png");
+    window.mimi = mimi;
+
+    mimi.onload = function()
     {
         boggartPack();
     };
@@ -2357,7 +2373,29 @@ function deadAIOperationsManagement()
     {
         if (deadAIList[i].dmx == map)
         {
-            deadAIList[i].operation();
+            if (player.gamemode == "protagonist")
+            {
+                deadAIList[i].kidModePoofTime += 1;
+                deadAIList[i].rotation += 0.5;
+
+                XXX.save();
+                XXX.translate(X - deadAIList[i].X + 1/2 * CCC.width, Y - deadAIList[i].Y + 1/2 * CCC.height);
+                XXX.scale(0.25, 0.25);
+                XXX.rotate(deadAIList[i].rotation);
+                XXX.drawImage(rainbowSparkles, 0, 0, 300, 225, -1/2 * 300, -1/2 * 225, 300, 225);
+                XXX.restore();
+
+                if (deadAIList[i].kidModePoofTime > 24)
+                {
+                    worldItems.push([new Item("coins", deadAIList[i].X, deadAIList[i].Y), 5 + Math.floor(25 * Math.random())]);
+                    deadAIList.splice(i, 1);
+                }
+
+            }
+            else
+            {
+                deadAIList[i].operation();
+            }
         }
     }
 }
@@ -3896,6 +3934,7 @@ function theLegend()
     foods.push(new Item("trollMeat", false));
     foods.push(new Item("walrusMeat", false));
     foods.push(new Item("sealMeat", false));
+    foods.push(new Item("cheshireMeat", false));
     foods.push(new Item("frichMeat", false));
     foods.push(new Item("mountainFrichMeat", false));
     foods.push(new Item("youngNaapridMeat", false));
@@ -4140,6 +4179,7 @@ function theLegend()
     alchemy.push(new Item("wobeaExtract", false));
     alchemy.push(new Item("wobeaNeedles", false));
     alchemy.push(new Item("wobeaFlesh", false));
+    alchemy.push(new Item("ameloyPerfume", false));
 
 //Brewing (alcohols, liquid fermentation, etc.)
     brewing = [];

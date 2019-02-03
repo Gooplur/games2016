@@ -49,6 +49,12 @@ function buildMaster()
                 //ArtificialIntelligenceAccess.push(new Unit(3000, 1400, "Peacock", true, "Deriere"));
                 //ArtificialIntelligenceAccess.push(new Unit(3000, 1500, "Horse", true, "player"));
                 //ArtificialIntelligenceAccess.push(new Unit(3050, 1650, "Boar", true, "Deedee"));
+                //scenicList.push(new Scenery("thegolthornPlant", 3000, 1500, 0.1, true));
+                //ArtificialIntelligenceAccess.push(new Unit(3000, 1500, "ThegolThorn", true, "pugil"));
+                //ArtificialIntelligenceAccess.push(new Unit(3000, 1500, "Bat", false, "ifi"));
+                //ArtificialIntelligenceAccess.push(new Unit(3000, 1500, "Cheshire", true, "Faxic"));
+
+                ArtificialIntelligenceAccess.push(new Unit(3000, 1500, "Person", false, "Dave the Wolf", {race: "Freynor", faction: "arena2", personality: "violent", outfit: ["northernClothing", 0], weapon: ["none", [0.1, 0.4], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[2102, 2077]], lycan: true}));
 
                 //Friches in the plains
                 ArtificialIntelligenceAccess.push(new Unit(2921, -1125, "Frich", false, "Fuzzy Wuzzy"));

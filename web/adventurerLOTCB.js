@@ -538,6 +538,9 @@ function Adventurer()
     this.silvered = false;
     this.seeInDark = false;
     this.weaponFireResBonus = 0;
+    this.spawnX = 0;
+    this.spawnY = 0;
+    this.lycanthropyTime = 0;
 
     //faction variables
     this.factionToggle = false;
@@ -1689,6 +1692,10 @@ function Adventurer()
                         if (this.perfume == "ogard")
                         {
                             this.perfumeCHA = 4;
+                        }
+                        else if (this.perfume == "ameloy")
+                        {
+                            this.perfumeCHA = 6;
                         }
                     }
                 }
@@ -3345,6 +3352,12 @@ function Adventurer()
 
         this.poison = function ()
         {
+            if (new Date().getTime() - this.lycanthropyTime > 180 * 1000 && new Date().getTime() - this.lycanthropyTime < 200 * 1000)
+            {
+                this.lycanthropy = true;
+                this.lycanthropyTime = 0;
+            }
+
             //This enables the poisoned mini notice if any type of any category of poison is in effect.
             if (this.poisonI == true || this.poisonII == true || this.poisonIII == true || this.poisonIV == true || this.poisonV == true || this.poisonVI == true)
             {
@@ -10747,6 +10760,107 @@ function Adventurer()
                     XXX.globalAlpha = 0.4;
                 }
                 XXX.drawImage(mofu, 461, 267, 32, 30, -21, -33, 32 * 1.25, 30 * 1.25);
+                XXX.restore();
+                this.castingCooldown = new Date().getTime();
+            }
+        }
+
+        //Shadow Switch Form
+        if (this.spell.ID == "shadowSwitch")
+        {
+            this.stageEngine(7, 0.2, false);
+
+            //ATTACK
+            if (Math.floor(this.stage) <= 0)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(tomb, 1551, 422, 73, 57, -1/2 * 73 * 0.9, -1/2 * 57 * 0.9, 73 * 0.9, 57 * 0.9);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 1)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(tomb, 1478, 421, 73, 57, -1/2 * 73 * 0.9, -1/2 * 57 * 0.9, 73 * 0.9, 57 * 0.9);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 2)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(tomb, 1389, 418, 73, 57, -1/2 * 73 * 0.9, -1/2 * 57 * 0.9 - 1.2, 73 * 0.9, 57 * 0.9);
+                XXX.restore();
+                this.doMagic = true;
+            }
+            else if (Math.floor(this.stage) <= 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(tomb, 1626, 424, 73, 57, -1/2 * 73 * 0.9, -1/2 * 57 * 0.9, 73 * 0.9, 57 * 0.9);
+                XXX.restore();
+                this.doMagic = true;
+            }
+            else if (Math.floor(this.stage) <= 4)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(tomb, 1627, 364, 73, 57, -1/2 * 73 * 0.9, -1/2 * 57 * 0.9, 73 * 0.9, 57 * 0.9);
+                XXX.restore();
+                if (this.doMagic)
+                {
+                    this.doMagic = false;
+                    this.magicalExperience += this.spell.EXP;
+                    magicList.push(new Magic(player.spell, true));
+                }
+            }
+            else if (Math.floor(this.stage) <= 5)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(tomb, 1389, 418, 73, 57, -1/2 * 73 * 0.9, -1/2 * 57 * 0.9 - 1.2, 73 * 0.9, 57 * 0.9);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) >= 6)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(tomb, 1389, 418, 73, 57, -1/2 * 73 * 0.9, -1/2 * 57 * 0.9 - 1.2, 73 * 0.9, 57 * 0.9);
                 XXX.restore();
                 this.castingCooldown = new Date().getTime();
             }
@@ -20369,6 +20483,13 @@ function Adventurer()
                         {
                             ArtificialIntelligenceAccess[i].burningTime = new Date().getTime();
                         }
+                        else if (this.weapon.ability == "lycanthropy" && (Math.max(0, this.weapon.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour)) > 0))
+                        {
+                            if (ArtificialIntelligenceAccess[i].silvered == false && ArtificialIntelligenceAccess[i].resistances.indexOf("lycanthropy") == -1)
+                            {
+                                ArtificialIntelligenceAccess[i].lycanthropyTime = new Date().getTime();
+                            }
+                        }
                         else if (this.weapon.ability == "maybeblind")
                         {
                             if (Math.random() > 0.677)
@@ -29545,6 +29666,12 @@ function Adventurer()
                                 this.perfumeTime = 540;
                                 this.perfumeStoreTime = new Date().getTime();
                             }
+                            else if (Inventory[i][0].ability == "ameloyPerfume") //This makes you smell good therefore enchanting those you interact with to like you more and give you better deals... that is if you are not a man.
+                            {
+                                this.perfume = "ameloy";
+                                this.perfumeTime = 660;
+                                this.perfumeStoreTime = new Date().getTime();
+                            }
                             else if (Inventory[i][0].ability == "rawThuegTripe") //this effect makes the player vomit and lose 22 hunger.
                             {
                                 if (this.timeSinceBadFoodEaten == 0)
@@ -31710,7 +31837,7 @@ function Adventurer()
     {
         if (this.health <= 0 && this.playerDeath != true)
         {
-            if (player.form != "vampire" || player.silvered)
+            if (player.form != "vampire" && player.gamemode != "protagonist" || player.silvered && player.gamemode != "protagonist")
             {
                 //Do death stuff
                 this.playerDeath = true;
@@ -31723,66 +31850,67 @@ function Adventurer()
                 this.vampDead = true;
             }
 
-            /*
-             //respawn
-             X = spawnX;
-             Y = spawnY;
+            if (player.gamemode == "protagonist")
+            {
+                //respawn
+                X = this.spawnX;
+                Y = this.spawnY;
 
-             //clear effects
-             this.gojiiPoisoned = false;
-             this.gojiiTimer = 0;
-             this.poisoned = false;
-             this.poisonI = false;
-             this.poisonII = false;
-             this.poisonIII = false;
-             this.poisonIV = false;
-             this.poisonV = false;
-             this.gutWorms = false;
-             this.freezing = false;
-             this.recoveryTime = 0;
-             this.energizeTime = 0;
-             this.timeSinceRawTrollBlood = 0;
+                //clear effects
+                this.gojiiPoisoned = false;
+                this.gojiiTimer = 0;
+                this.poisoned = false;
+                this.poisonI = false;
+                this.poisonII = false;
+                this.poisonIII = false;
+                this.poisonIV = false;
+                this.poisonV = false;
+                this.gutWorms = false;
+                this.freezing = false;
+                this.recoveryTime = 0;
+                this.energizeTime = 0;
+                this.timeSinceRawTrollBlood = 0;
 
-             //refresh all stats to max
-             this.health = this.healthMAX;
-             this.energy = this.energyMAX;
-             this.hunger = this.hungerMAX;
-             this.will = this.willMAX;
-             this.warmth = this.warmthMAX;
-             this.antiVenom = this.antiVenomMAX;
+                //refresh all stats to max
+                this.health = this.healthMAX;
+                this.energy = this.energyMAX;
+                this.hunger = this.hungerMAX;
+                this.will = this.willMAX;
+                this.warmth = this.warmthMAX;
+                this.antiVenom = this.antiVenomMAX;
 
-             //reset functionality variables
-             this.inCombat = false;
-             this.decreaseInHealth = 0;
+                //reset functionality variables
+                this.inCombat = false;
+                this.decreaseInHealth = 0;
 
-             //respawn bonus effects
-             this.fed = true;
+                //respawn bonus effects
+                this.fed = true;
 
-             //all items that are not equipped are lossed upon death
-             for (var i = Inventory.length - 1; i > -1; i--)
-             {
-             if (Inventory[i][0].equipped == false)
-             {
-             Inventory.splice(i, 1);
-             }
-             }
-             //all experience gained is lost
-             this.experience = 0;
-             this.magicalExperience = 0;
+                //all items that are not equipped are lossed upon death
+                for (var i = Inventory.length - 1; i > -1; i--)
+                {
+                    if (Inventory[i][0].equipped == false && Inventory[i][0].questy != true && Inventory[i][0].utility != "questItem")
+                    {
+                        Inventory.splice(i, 1);
+                    }
+                }
+                //all experience gained is lost
+                this.experience = 0;
+                this.magicalExperience = 0;
 
-             //all units still alive get their health reset and their disturbance set back to false.
-             for (var i = ArtificialIntelligenceAccess.length - 1; i > -1; i--)
-             {
-             if (ArtificialIntelligenceAccess[i].health < ArtificialIntelligenceAccess[i].healthMAX || ArtificialIntelligenceAccess[i].disturbed == true)
-             {
-             ArtificialIntelligenceAccess[i].disturbedTime = 0;
-             ArtificialIntelligenceAccess[i].extraRangeTime = 0;
-             ArtificialIntelligenceAccess[i].extraRange = 0;
-             ArtificialIntelligenceAccess[i].disturbed = false;
-             ArtificialIntelligenceAccess[i].health = ArtificialIntelligenceAccess[i].healthMAX;
-             }
-             }
-             */
+                //all units still alive get their health reset and their disturbance set back to false.
+                for (var i = ArtificialIntelligenceAccess.length - 1; i > -1; i--)
+                {
+                    if (ArtificialIntelligenceAccess[i].health < ArtificialIntelligenceAccess[i].healthMAX || ArtificialIntelligenceAccess[i].disturbed == true)
+                    {
+                        ArtificialIntelligenceAccess[i].disturbedTime = 0;
+                        ArtificialIntelligenceAccess[i].extraRangeTime = 0;
+                        ArtificialIntelligenceAccess[i].extraRange = 0;
+                        ArtificialIntelligenceAccess[i].disturbed = false;
+                        ArtificialIntelligenceAccess[i].health = ArtificialIntelligenceAccess[i].healthMAX;
+                    }
+                }
+            }
         }
     };
 

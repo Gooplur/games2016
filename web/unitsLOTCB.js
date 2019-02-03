@@ -25660,11 +25660,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
             if (Math.max(0, 100 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
             {
-                this.experience = 225 * ((player.getIntelligence() / 50) + 1);
+                this.experience = 1000 * ((player.getIntelligence() / 50) + 1);
             }
             else
             {
-                this.experience = (225 * ((player.getIntelligence() / 50) + 1)) / 10;
+                this.experience = (1000 * ((player.getIntelligence() / 50) + 1)) / 10;
             }
 
             this.drops = [];

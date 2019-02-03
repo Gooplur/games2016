@@ -3350,9 +3350,16 @@ function Adventurer()
             }
         };
 
-        this.poison = function ()
+        this.poison = function()
         {
-            if (new Date().getTime() - this.lycanthropyTime > 180 * 1000 && new Date().getTime() - this.lycanthropyTime < 200 * 1000)
+            if (this.silvered && this.lycanthropy == true && this.vamprism == false)
+            {
+                this.health -= 3;
+                player.stunnedII = true;
+                player.stunnedTime = 1;
+            }
+
+            if (new Date().getTime() - this.lycanthropyTime > 180 * 1000 && this.lycanthropyTime != 0)
             {
                 this.lycanthropy = true;
                 this.lycanthropyTime = 0;
@@ -11594,7 +11601,7 @@ function Adventurer()
 
                         for (var ll = 0; ll < ArtificialIntelligenceAccess.length; ll++)
                         {
-                            if (ArtificialIntelligenceAccess[ll].haste == false && ArtificialIntelligenceAccess[ll].healthMAX < 100 && ArtificialIntelligenceAccess[ll].team != "wolfia" && ArtificialIntelligenceAccess[ll].team != "player")
+                            if (ArtificialIntelligenceAccess[ll].haste == false && ArtificialIntelligenceAccess[ll].healthMAX < 100 && ArtificialIntelligenceAccess[ll].team != "wolf" && ArtificialIntelligenceAccess[ll].team != "werewolf" && ArtificialIntelligenceAccess[ll].team != "player")
                             {
                                 if (ArtificialIntelligenceAccess[ll].DTP() <= 80)
                                 {
@@ -11611,7 +11618,7 @@ function Adventurer()
 
                         for (var ll = 0; ll < ArtificialIntelligenceAccess.length; ll++)
                         {
-                            if (ArtificialIntelligenceAccess[ll].haste == false && ArtificialIntelligenceAccess[ll].healthMAX < 100 && ArtificialIntelligenceAccess[ll].team != "wolfia" && ArtificialIntelligenceAccess[ll].team != "player")
+                            if (ArtificialIntelligenceAccess[ll].haste == false && ArtificialIntelligenceAccess[ll].healthMAX < 100 && ArtificialIntelligenceAccess[ll].team != "wolf" && ArtificialIntelligenceAccess[ll].team != "werewolf" && ArtificialIntelligenceAccess[ll].team != "player")
                             {
                                 if (ArtificialIntelligenceAccess[ll].DTP() <= 80)
                                 {
@@ -12510,14 +12517,15 @@ function Adventurer()
                                 {
                                     if (this.vampCarry == ArtificialIntelligenceAccess[ll].barcode)
                                     {
-                                        if (ArtificialIntelligenceAccess[ll].land == true)
+                                        if (ArtificialIntelligenceAccess[ll].land == true && ArtificialIntelligenceAccess[ll].flying != true)
                                         {
                                             ArtificialIntelligenceAccess[ll].stunTime = new Date().getTime();
                                             ArtificialIntelligenceAccess[ll].stunTimer = 1;
                                             ArtificialIntelligenceAccess[ll].stunIII = true;
                                             ArtificialIntelligenceAccess[ll].health -= Math.min(13, 1/3 * ArtificialIntelligenceAccess[ll].healthMAX);
-                                            ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
-                                            ArtificialIntelligenceAccess[i].showHealthTime = new Date().getTime() + 1800;
+                                            ArtificialIntelligenceAccess[ll].disturbedTime = new Date().getTime();
+                                            ArtificialIntelligenceAccess[ll].disturbed = true;
+                                            ArtificialIntelligenceAccess[ll].showHealthTime = new Date().getTime();
                                         }
                                         break;
                                     }
@@ -12764,6 +12772,10 @@ function Adventurer()
                                                 {
                                                     if (ArtificialIntelligenceAccess[ll].type == "Person" || ArtificialIntelligenceAccess[ll].type == "Soldier")
                                                     {
+                                                        if (ArtificialIntelligenceAccess[ll].lycanthropy == true)
+                                                        {
+                                                            this.lycanthropy = true;
+                                                        }
                                                         this.hunger = Math.min(this.hungerMAX, (this.hunger + 20));
                                                         this.health = Math.min(this.healthMAX, (this.health + 10));
                                                     }
@@ -12771,10 +12783,9 @@ function Adventurer()
                                                     this.health = Math.min(this.healthMAX, this.health + ArtificialIntelligenceAccess[ll].healthMAX);
                                                 }
                                             }
-                                            else if (ArtificialIntelligenceAccess[ll].type != "werewolf")
+                                            else if (ArtificialIntelligenceAccess[ll].type == "werewolf" && ArtificialIntelligenceAccess[ll].DTU({X: this.bubbleOfDamageX, Y: this.bubbleOfDamageY}) < this.weapon.range * 7 + (ArtificialIntelligenceAccess[ll].sizeRadius * 0.6))
                                             {
-                                                this.silvered = true;
-                                                this.health = 0;
+                                                this.lycanthropy = true;
                                             }
                                         }
                                         this.warmth = this.warmthMAX;
@@ -12987,6 +12998,14 @@ function Adventurer()
                         this.form = false;
                         this.vampTurn = "over";
                         this.weaponEquipped = "none";
+                        this.isWeaponEquipped = false;
+                        for (var ll = 0; ll < Inventory.length; ll++)
+                        {
+                            if (Inventory[ll][0].equipped == true)
+                            {
+                                Inventory[ll][0].equipped = false;
+                            }
+                        }
                         XXX.restore();
                     }
                 }
@@ -20457,6 +20476,10 @@ function Adventurer()
                         ArtificialIntelligenceAccess[i].hurtByPlayer = true;
 
                         //effects
+                        if (ArtificialIntelligenceAccess[i].health <= 0 && ArtificialIntelligenceAccess[i].vamprism == true && ArtificialIntelligenceAccess[i].vampKill == false)
+                        {
+                            ArtificialIntelligenceAccess[i].vampirify = true;
+                        }
 
                         //if the player kills the enemy it is marked as being killed by the player
                         if (ArtificialIntelligenceAccess[i].health <= 0)
@@ -20482,6 +20505,10 @@ function Adventurer()
                         else if (this.weapon.ability == "burning")
                         {
                             ArtificialIntelligenceAccess[i].burningTime = new Date().getTime();
+                        }
+                        else if (this.weapon.ability == "silvered")
+                        {
+                            ArtificialIntelligenceAccess[i].silvered = true;
                         }
                         else if (this.weapon.ability == "lycanthropy" && (Math.max(0, this.weapon.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour)) > 0))
                         {
@@ -29767,6 +29794,10 @@ function Adventurer()
                                 this.wilTime = new Date().getTime() + 275000;
                                 this.willpowerV = true;
                             }
+                            else if (Inventory[i][0].ability == "silverBlood")
+                            {
+                                this.silvered = true;
+                            }
                             else if (Inventory[i][0].ability == "gassiness") //This gives the player indigestion (bad gasses)
                             {
                                 this.gassinessTime += 20;
@@ -29814,6 +29845,7 @@ function Adventurer()
                                 this.swollenI = false;
                                 this.swollenTime = 0;
                                 this.etnaVenTime = 0;
+                                this.silvered = false;
 
                                 //food poison and reduced hunger.
                                 if (this.timeSinceBadFoodEaten == 0)
@@ -29866,6 +29898,7 @@ function Adventurer()
                                 this.poisonIII = false;
                                 this.poisonIV = false;
                                 this.poisonV = false;
+                                this.poisonVI = false;
                                 this.etnaVenTime = 0;
                                 this.fungalFever = false;
                                 this.cyrinthilimTime = 0;
@@ -29886,6 +29919,9 @@ function Adventurer()
                                 this.swollenI = false;
                                 this.swollenTime = 0;
                                 this.timeSinceBadFoodEaten = 0;
+                                this.silvered = false;
+                                this.vamprism = false;
+                                this.lycanthropy = false;
                             }
                             else if (Inventory[i][0].ability == "foodPoisoning") //this effect makes the player vomit and lose 22 hunger.
                             {

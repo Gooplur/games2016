@@ -268,6 +268,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     this.lycanthropyTime = 0;
     this.wereTurnStage = 0;
     this.vamprism = false;
+    this.vampirify = false; //trigger this to turn into a vampire (if the unit has vamprism)
 
     //Artificial Intelligence
     this.setTeamByID = function()
@@ -7919,6 +7920,12 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                                 }
                                 this.target.healthShownTime = new Date().getTime();
                             }
+
+                            if (this.target.health <= 0 && this.target.vamprism == true && this.target.vampKill == false)
+                            {
+                                this.target.vampirify = true;
+                            }
+
                             if (this.target.health <= 0)
                             {
                                 if (this.team == "player")
@@ -8308,7 +8315,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         //Lycanthropy
         if (this.lycanthropyTime != 0)
         {
-            if (new Date().getTime() - this.lycanthropyTime > 180 * 1000 && new Date().getTime() - this.lycanthropyTime < 200 * 1000)
+            if (new Date().getTime() - this.lycanthropyTime > 180 * 1000 && this.lycanthropyTime != 0)
             {
                 this.lycanthropy = true;
                 this.lycanthropyTime = 0;
@@ -8835,7 +8842,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     {
         if (new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000 / timeSpeed * this.timeResistance))
         {
-            if (this.lycanthropy && timeOfDay != "Day" && this.type != "Changeling")
+            if (this.lycanthropy && timeOfDay == "Night" && this.type != "Changeling" && this.vamprism != true)
             {
                 this.costumeEngine(10, 0.2, true);
             }
@@ -8976,6 +8983,21 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
     this.drawHumanArms = function()
     {
+        //lycanthropy mortality to silver
+        if (this.silvered == true && this.lycanthropy == true && this.type != "Changeling" && this.vamprism == false)
+        {
+            this.health -= 3;
+            this.stunTime = new Date().getTime();
+            this.stunTimer = 1;
+            this.stunII = true;
+        }
+        //vampires die when bitten by a werewolf
+        if (this.vamprism == true && this.lycanthropy == true && this.type != "Changeling")
+        {
+            this.health -= 2.5;
+            this.vampKill = true;
+        }
+
         var playerFriendly = false;
         if (this.team == "player" && this.target == player) //this is so that ranged weapon using humans will not attack the player if they are on the players team.
         {
@@ -9075,7 +9097,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         XXX.save();
         var theCostume = Math.floor(this.costume); //This rounds this.costume down to the nearest whole number.
         //manual damaging
-        if (this.lycanthropy == true && timeOfDay != "Day" && this.type != "Changeling")
+        if (this.lycanthropy == true && timeOfDay == "Night" && this.type != "Changeling" && this.vamprism != true)
         {
             this.wereTurnStage += 0.15;
 
@@ -9083,54 +9105,94 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             if (this.wereTurnStage <= 0)
             {
                 this.drawUnit(polyPNG, 631, 55, 92, 30, -22, -17, 46, 22, 1 / 2 * Math.PI);
-                this.drawUnit(folw, 256, 333, 123, 134, -1/2 * 123 * szx, -1/2 * 134 * szx, 123 * szx, 134 * szx);
+                this.drawUnit(folw, 256, 333, 123, 134, -1/2 * 123 * szx, -1/2 * 134 * szx, 123 * szx, 134 * szx, 1/2 * Math.PI);
             }
             else if (this.wereTurnStage <= 1)
             {
                 this.drawUnit(polyPNG, 631, 55, 92, 30, -22, -17, 46, 22, 1 / 2 * Math.PI);
-                this.drawUnit(folw, 408, 334, 123, 134, -1/2 * 123 * szx, -1/2 * 134 * szx, 123 * szx, 134 * szx);
+                this.drawUnit(folw, 408, 334, 123, 134, -1/2 * 123 * szx, -1/2 * 134 * szx, 123 * szx, 134 * szx, 1/2 * Math.PI);
             }
             else if (this.wereTurnStage <= 2)
             {
                 this.drawUnit(polyPNG, 631, 55, 92, 30, -22, -17, 46, 22, 1 / 2 * Math.PI);
-                this.drawUnit(folw, 578, 330, 123, 134, -1/2 * 123 * szx, -1/2 * 134 * szx, 123 * szx, 134 * szx);
+                this.drawUnit(folw, 578, 330, 123, 134, -1/2 * 123 * szx, -1/2 * 134 * szx, 123 * szx, 134 * szx, 1/2 * Math.PI);
             }
             else if (this.wereTurnStage <= 3)
             {
                 this.drawUnit(polyPNG, 631, 55, 92, 30, -22, -17, 46, 22, 1 / 2 * Math.PI);
-                this.drawUnit(folw, 767, 322, 123, 134, -1/2 * 123 * szx, -1/2 * 134 * szx, 123 * szx, 134 * szx);
+                this.drawUnit(folw, 767, 322, 123, 134, -1/2 * 123 * szx, -1/2 * 134 * szx, 123 * szx, 134 * szx, 1/2 * Math.PI);
             }
             else if (this.wereTurnStage <= 4)
             {
                 this.drawUnit(polyPNG, 631, 55, 92, 30, -22, -17, 46, 22, 1 / 2 * Math.PI);
-                this.drawUnit(folw, 940, 327, 123, 134, -1/2 * 123 * szx, -1/2 * 134 * szx, 123 * szx, 134 * szx);
+                this.drawUnit(folw, 940, 327, 123, 134, -1/2 * 123 * szx, -1/2 * 134 * szx, 123 * szx, 134 * szx, 1/2 * Math.PI);
             }
             else if (this.wereTurnStage <= 5)
             {
                 this.drawUnit(polyPNG, 631, 55, 92, 30, -22, -17, 46, 22, 1 / 2 * Math.PI);
-                this.drawUnit(folw, 1108, 331, 123, 134, -1/2 * 123 * szx, -1/2 * 134 * szx, 123 * szx, 134 * szx);
+                this.drawUnit(folw, 1108, 331, 123, 134, -1/2 * 123 * szx, -1/2 * 134 * szx, 123 * szx, 134 * szx, 1/2 * Math.PI);
             }
             else if (this.wereTurnStage <= 6)
             {
                 this.drawUnit(polyPNG, 631, 55, 92, 30, -22, -17, 46, 22, 1 / 2 * Math.PI);
-                this.drawUnit(folw, 1310, 333, 123, 134, -1/2 * 123 * szx, -1/2 * 134 * szx, 123 * szx, 134 * szx);
+                this.drawUnit(folw, 1310, 333, 123, 134, -1/2 * 123 * szx, -1/2 * 134 * szx, 123 * szx, 134 * szx, 1/2 * Math.PI);
             }
             else if (this.wereTurnStage <= 7)
             {
                 this.drawUnit(polyPNG, 631, 55, 92, 30, -22, -17, 46, 22, 1 / 2 * Math.PI);
-                this.drawUnit(folw, 1521, 341, 123, 134, -1/2 * 123 * szx, -1/2 * 134 * szx, 123 * szx, 134 * szx);
+                this.drawUnit(folw, 1521, 341, 123, 134, -1/2 * 123 * szx, -1/2 * 134 * szx, 123 * szx, 134 * szx, 1/2 * Math.PI);
             }
             else if (this.wereTurnStage <= 8)
             {
                 this.drawUnit(polyPNG, 631, 55, 92, 30, -22, -17, 46, 22, 1 / 2 * Math.PI);
-                this.drawUnit(folw, 256, 15, 121, 106, -1/2 * 121 * szx, -1/2 * 106 * szx, 121 * szx, 106 * szx);
+                this.drawUnit(folw, 256, 15, 121, 106, -1/2 * 121 * szx, -1/2 * 106 * szx, 121 * szx, 106 * szx, 1/2 * Math.PI);
             }
             else if (this.wereTurnStage >= 9)
             {
                 this.drawUnit(polyPNG, 631, 55, 92, 30, -22, -17, 46, 22, 1 / 2 * Math.PI);
-                this.drawUnit(folw, 256, 15, 121, 106, -1/2 * 121 * szx, -1/2 * 106 * szx, 121 * szx, 106 * szx);
-                this.wereTurnStage = 0;
+                this.drawUnit(folw, 256, 15, 121, 106, -1/2 * 121 * szx, -1/2 * 106 * szx, 121 * szx, 106 * szx, 1/2 * Math.PI);
                 ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Werewolf", this.type, this.ID, this.ultra));
+                ArtificialIntelligenceAccess[(ArtificialIntelligenceAccess.length - 1)].newRotation = (this.newRotation - 1/2 * Math.PI);
+                ArtificialIntelligenceAccess[(ArtificialIntelligenceAccess.length - 1)].rotation = (this.rotation - 1/2 * Math.PI);
+                ArtificialIntelligenceAccess[(ArtificialIntelligenceAccess.length - 1)].silvered = this.silvered;
+                ArtificialIntelligenceAccess.splice(ArtificialIntelligenceAccess.indexOf(this), 1);
+            }
+        }
+        else if (this.vamprism == true && this.disturbed == true || this.vampirify == true)
+        {
+            this.wereTurnStage += 0.15;
+
+            var szx = 1.2;
+            if (this.wereTurnStage <= 0)
+            {
+                this.drawUnit(polyPNG, 631, 55, 92, 30, -22, -17, 46, 22, 1 / 2 * Math.PI);
+                this.drawUnit(vampiro, 652, 283, 54, 56, -1/2 * 54 * szx, -1/2 * 56 * szx, 54 * szx, 56 * szx);
+            }
+            else if (this.wereTurnStage <= 1)
+            {
+                this.drawUnit(polyPNG, 631, 55, 92, 30, -22, -17, 46, 22, 1 / 2 * Math.PI);
+                this.drawUnit(vampiro, 703, 283, 54, 56, -1/2 * 54 * szx, -1/2 * 56 * szx, 54 * szx, 56 * szx);
+            }
+            else if (this.wereTurnStage <= 2)
+            {
+                this.drawUnit(polyPNG, 631, 55, 92, 30, -22, -17, 46, 22, 1 / 2 * Math.PI);
+                this.drawUnit(vampiro, 777, 281, 54, 56, -1/2 * 54 * szx, -1/2 * 56 * szx, 54 * szx, 56 * szx);
+            }
+            else if (this.wereTurnStage <= 3)
+            {
+                this.drawUnit(polyPNG, 631, 55, 92, 30, -22, -17, 46, 22, 1 / 2 * Math.PI);
+                this.drawUnit(vampiro, 853, 283, 54, 56, -1/2 * 54 * szx, -1/2 * 56 * szx, 54 * szx, 56 * szx);
+            }
+            else if (this.wereTurnStage <= 4)
+            {
+                this.drawUnit(vampiro, 346, 14, 54, 56, -1/2 * 54 * szx, -1/2 * 56 * szx, 54 * szx, 56 * szx);
+            }
+            else if (this.wereTurnStage >= 5)
+            {
+                this.drawUnit(vampiro, 346, 14, 54, 56, -1/2 * 54 * szx, -1/2 * 56 * szx, 54 * szx, 56 * szx);
+                ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Vampire", this.type, this.ID, this.ultra));
+                ArtificialIntelligenceAccess[(ArtificialIntelligenceAccess.length - 1)].newRotation = (this.newRotation - 1/2 * Math.PI);
+                ArtificialIntelligenceAccess[(ArtificialIntelligenceAccess.length - 1)].rotation = (this.rotation - 1/2 * Math.PI);
                 ArtificialIntelligenceAccess.splice(ArtificialIntelligenceAccess.indexOf(this), 1);
             }
         }
@@ -10577,7 +10639,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     //death checker -- checks to see if they should be dead.
     this.deathChecker = function()
     {
-        if (this.health <= 0 && !this.petrified) //a petrified unit will wait to die until it is unpetrified
+        if (this.health <= 0 && !this.petrified && this.vamprism == false || this.vamprism == true && this.vampKill == true) //a petrified unit will wait to die until it is unpetrified
         {
             this.alive = false;
 
@@ -13985,6 +14047,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         }
         else if (this.type == "Werewolf") //werewolfwerewolf werewere
         {
+            this.resistances = ["night"];
             this.damageFrame = "automatic";
             this.team = "werewolf";
             if (this.ID == "docile")
@@ -13993,6 +14056,8 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
             this.baseTeam = this.team;
             this.tamable = false;
+
+            this.haste = true;
 
             this.magicalResistance = 0;
             this.heatResistance = -2;
@@ -14018,6 +14083,49 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             // this is the adjustment the alpha type of Etyr needs to be centered.
             this.yAdjustment = 0; //was - 3.5
             this.xAdjustment = 0; //was 6
+
+            this.swimSpeed = this.speed * 0.5;
+        }
+        else if (this.type == "Vampire")
+        {
+            this.resistances = ["night", "stealth"];
+            this.damageFrame = "manual";
+            this.team = "undead";
+            if (this.ID == "docile")
+            {
+                this.team = "docile";
+            }
+            this.baseTeam = this.team;
+            this.tamable = false;
+
+            this.flying = true;
+            this.vampFlight = "takeOff";
+            this.vampKill = false;
+            this.grabb = false;
+            this.vampCarry = false;
+
+            this.magicalResistance = 0;
+            this.heatResistance = 0;
+            this.attackStyle = "chunked";
+            this.attackRate = 0;  //this is for rapid style combat only.
+            this.healthMAX = 80;
+            this.health = this.healthMAX;
+            this.armour = 0;
+            this.speed = 12;
+            this.rangeOfSight = 1000; //This is just to set the variable initially. The rest is variable.
+            this.rotationSpeed = 0.5;
+            this.engagementRadius = 47;
+            this.sizeRadius = 19;
+            this.negateArmour = 26;
+            this.attackWait = 3.1;
+            this.vamprism = true;
+
+            //alpha has a larger size body and skills.
+            this.alphaSize = 1.2; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+
+            // this is the adjustment the alpha type of Etyr needs to be centered.
+            this.yAdjustment = 0;
+            this.xAdjustment = 0;
 
             this.swimSpeed = this.speed * 0.5;
         }
@@ -18214,6 +18322,13 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     this.lycanthropy = true;
                 }
             }
+            if (typeof(this.ultra) != "undefined")
+            {
+                if (this.ultra.vamp == true)
+                {
+                    this.vamprism = true;
+                }
+            }
 
             //STATS (non-variable)
             this.rotation = Math.random();
@@ -18289,6 +18404,13 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     this.lycanthropy = true;
                 }
             }
+            if (typeof(this.ultra) != "undefined")
+            {
+                if (this.ultra.vamp == true)
+                {
+                    this.vamprism = true;
+                }
+            }
 
             //Personality effected STATS
             if (this.ultra.personality == "scared")
@@ -18360,6 +18482,21 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.team = this.ultra.faction;
             this.baseTeam = this.team;
             this.tamable = false;
+
+            if (typeof(this.ultra) != "undefined")
+            {
+                if (this.ultra.lycan == true)
+                {
+                    this.lycanthropy = true;
+                }
+            }
+            if (typeof(this.ultra) != "undefined")
+            {
+                if (this.ultra.vamp == true)
+                {
+                    this.vamprism = true;
+                }
+            }
 
             //STATS (non-variable)
             if (typeof(this.ultra.rot) != "undefined")
@@ -25516,6 +25653,495 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.drawUnit(verse, 2929, 283, 54, 32, -35 - this.xAdjustment, -22 - this.yAdjustment, 54 * this.alphaSize, 32 * this.alphaSize);
             }
         }
+        //VAMPIRE
+        if (this.type == "Vampire")
+        {
+            //Set Drops and experience
+
+            if (Math.max(0, 100 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+            {
+                this.experience = 225 * ((player.getIntelligence() / 50) + 1);
+            }
+            else
+            {
+                this.experience = (225 * ((player.getIntelligence() / 50) + 1)) / 10;
+            }
+
+            this.drops = [];
+
+            //RANGE OF SIGHT (anything related to range of sight)
+            this.rangeOfSightCalculator(1000, false);
+
+
+            //AI
+            if (this.alive == true)
+            {
+                this.Attack(12, 80);
+                this.callForNearbyHelpFromType(661, "Vampire");
+
+                //this.deathChecker();
+                this.disturbedTimer();
+                this.visibleSight();
+                this.friendDecider();
+                this.targeting();
+
+                if (this.health > 0)
+                {
+                    if (this.grabb == true)
+                    {
+                        if (this.DTP() <= 120 && player.form != "vampire" && player.form != "werewolf")
+                        {
+                            if (this.vampCarry == false || this.vampCarry == "player")
+                            {
+                                X = this.X + Math.cos(this.rotation) * -24;
+                                Y = this.Y + Math.sin(this.rotation) * -24;;
+                                player.attackCooldown = new Date().getTime();
+                                this.vampCarry = "player";
+                            }
+                        }
+                        else
+                        {
+                            for (var ll = 0; ll < ArtificialIntelligenceAccess.length; ll++)
+                            {
+                                if (ArtificialIntelligenceAccess[ll].team != "undead" && ArtificialIntelligenceAccess[ll].team != "player" && ArtificialIntelligenceAccess[ll] != this)
+                                {
+                                    if (ArtificialIntelligenceAccess[ll].haste == false && ArtificialIntelligenceAccess[ll].healthMAX < 75 || ArtificialIntelligenceAccess[ll].type == "Person" || ArtificialIntelligenceAccess[ll].type == "Soldier")
+                                    {
+                                        if (this.vampCarry == false || this.vampCarry == ArtificialIntelligenceAccess[ll].barcode)
+                                        {
+                                            if (ArtificialIntelligenceAccess[ll].DTU(this) <= 120)
+                                            {
+                                                ArtificialIntelligenceAccess[ll].X = X;
+                                                ArtificialIntelligenceAccess[ll].Y = Y;
+                                                ArtificialIntelligenceAccess[ll].timeBetweenAttacks = new Date().getTime();
+                                                this.vampCarry = ArtificialIntelligenceAccess[ll].barcode;
+                                            }
+                                        }
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (this.vampCarry != false)
+                        {
+                            if (this.vampCarry == "player")
+                            {
+                                player.stunnedIII = true;
+                                player.stunnedTime = 1;
+                                player.health -= Math.min(13, 1/3 * player.healthMAX);
+                            }
+                            else
+                            {
+                                for (var ll = 0; ll < ArtificialIntelligenceAccess.length; ll++)
+                                {
+                                    if (this.vampCarry == ArtificialIntelligenceAccess[ll].barcode)
+                                    {
+                                        if (ArtificialIntelligenceAccess[ll].land == true && ArtificialIntelligenceAccess[ll].flying != true)
+                                        {
+                                            ArtificialIntelligenceAccess[ll].stunTime = new Date().getTime();
+                                            ArtificialIntelligenceAccess[ll].stunTimer = 1;
+                                            ArtificialIntelligenceAccess[ll].stunIII = true;
+                                            ArtificialIntelligenceAccess[ll].health -= Math.min(13, 1/3 * ArtificialIntelligenceAccess[ll].healthMAX);
+                                            ArtificialIntelligenceAccess[ll].disturbedTime = new Date().getTime();
+                                            ArtificialIntelligenceAccess[ll].disturbed = true;
+                                            ArtificialIntelligenceAccess[ll].showHealthTime = new Date().getTime();
+                                        }
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        this.vampCarry = false;
+                    }
+
+                    if (this.aiTimer > 11)
+                    {
+                        if (this.aiTimer < 16)
+                        {
+                            this.grabb = true;
+                            this.moving = true;
+                            this.attacking = false;
+                        }
+                        else
+                        {
+                            this.grabb = false;
+                            this.aiTimer = 0;
+                        }
+
+                        if (this.target == player)
+                        {
+                            this.pointTowardsPlayer();
+                            this.moveInRelationToThing({X: X + Math.cos(this.newRotation) * 600, Y: Y + Math.sin(this.newRotation) * 600});
+                        }
+                        else if (this.target != "none")
+                        {
+                            this.pointTowards(this.target);
+                            this.moveInRelationToThing({X: this.target.X + Math.cos(this.newRotation) * 600, Y: this.target.Y + Math.sin(this.newRotation) * 600});
+                        }
+                        else if (this.vampCarry == false)
+                        {
+                            this.vampFlight = "takeOff";
+                            this.moving = false;
+                            this.costume = 0;
+                        }
+                    }
+                    else
+                    {
+                        if (this.target == player)
+                        {
+                            this.pointTowardsPlayer();
+                            this.moveInRelationToPlayer();
+                        }
+                        else if (this.target != "none")
+                        {
+                            this.pointTowards(this.target);
+                            this.moveInRelationToThing(this.target);
+                        }
+                        else
+                        {
+                            this.vampFlight = "takeOff";
+                            this.moving = false;
+                            this.costume = 0;
+                        }
+                    }
+                }
+                else if (this.vampKill == false)
+                {
+                    if (player.form == false || player.form == "vampire")
+                    {
+                        if (this.DTP() <= 166)
+                        {
+                            var stakesilv = -1;
+
+                            for (var i = 0; i < Inventory.length; i++)
+                            {
+                                if (Inventory[i][0].type == "silverStake")
+                                {
+                                    stakesilv = i;
+                                    break;
+                                }
+                            }
+
+                            if (this.DTM() < (this.sizeRadius * 1.5) && dClick && stakesilv != -1)
+                            {
+                                dClick = false;
+                                if (Inventory[stakesilv][1] <= 1)
+                                {
+                                    Inventory.splice(stakesilv, 1);
+                                }
+                                else
+                                {
+                                    Inventory[stakesilv][1] -= 1;
+                                }
+                                this.vampKill = true;
+                            }
+                        }
+                    }
+                }
+            }
+
+            //ANIMATIONS
+            var szx = this.alphaSize;
+            if (this.alive == true)
+            {
+                if (this.health < 0)
+                {
+                    this.costumeEngine(3, 0.01, false);
+                }
+                else if (this.vampirify && this.vampCarry == false)
+                {
+                    this.costumeEngine(6, 0.10, false);
+                }
+                else if (this.moving && !this.attacking || this.vampCarry != false) //If moving and not attacking initiate moving animation...
+                {
+                    if (this.vampFlight == "takeOff")
+                    {
+                        this.costumeEngine(5, 0.15, false);
+                    }
+                    else
+                    {
+                        this.costumeEngine(3, 0.15, true);
+                    }
+                }
+                else if (this.attacking && this.vampCarry == false) //otherwise if it is attacking then initiate attacking animation, and if neither...
+                {
+                    if (new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000 / timeSpeed * this.timeResistance))
+                    {
+                        this.costumeEngine(8, 0.15, true);
+                    }
+                }
+                else
+                {
+                    this.costume = 0;
+                }
+
+                // the frames/stages/costumes of the animation.
+                var theCostume = Math.floor(this.costume); //This rounds this.costume down to the nearest whole number.
+
+                if (theCostume <= 0)
+                {
+                    if (this.health < 0)
+                    {
+                        this.vampFlight = "takeOff";
+                        this.drawUnit(vampiro, 875, 110, 123, 74, -1/2 * 123 * szx, -1/2 * 74 * szx, 123 * szx, 74 * szx);
+                    }
+                    else if (this.vampirify && this.vampCarry == false)
+                    {
+                        this.drawUnit(vampiro, 346, 14, 54, 56, -1/2 * 54 * szx, -1/2 * 56 * szx, 54 * szx, 56 * szx);
+                    }
+                    else if (this.attacking && this.vampCarry == false)
+                    {
+                        this.vampFlight = "takeOff";
+                        this.drawUnit(vampiro, 330, 1, 85, 83, -1/2 * 85 * szx, -1/2 * 83 * szx, 85 * szx, 83 * szx);
+                    }
+                    else if (this.moving == true)
+                    {
+                        if (this.vampFlight == "takeOff")
+                        {
+                            this.drawUnit(vampiro, 330, 1, 85, 83, -1/2 * 85 * szx, -1/2 * 83 * szx, 85 * szx, 83 * szx);
+                        }
+                        else
+                        {
+                            this.drawUnit(vampiro, 582, 4, 85, 83, -1/2 * 85 * szx, -1/2 * 83 * szx, 85 * szx, 83 * szx);
+                        }
+                    }
+                    else
+                    {
+                        this.vampFlight = "takeOff";
+                        this.drawUnit(vampiro, 330, 1, 85, 83, -1/2 * 85 * szx, -1/2 * 83 * szx, 85 * szx, 83 * szx);
+                    }
+                }
+                else if (theCostume <= 1)
+                {
+                    if (this.health < 0)
+                    {
+                        this.drawUnit(vampiro, 868, 190, 123, 74, -1/2 * 123 * szx, -1/2 * 74 * szx, 123 * szx, 74 * szx);
+                    }
+                    else if (this.vampirify && this.vampCarry == false)
+                    {
+                        this.drawUnit(vampiro, 853, 283, 54, 56, -1/2 * 54 * szx, -1/2 * 56 * szx, 54 * szx, 56 * szx);
+                    }
+                    else if (this.attacking && this.vampCarry == false)
+                    {
+                        this.drawUnit(vampiro, 47, 212, 85, 83, -1/2 * 85 * szx, -1/2 * 83 * szx, 85 * szx, 83 * szx);
+                    }
+                    else
+                    {
+                        if (this.vampFlight == "takeOff")
+                        {
+                            this.drawUnit(vampiro, 448, 0, 85, 83, -1/2 * 85 * szx, -1/2 * 83 * szx, 85 * szx, 83 * szx);
+                        }
+                        else
+                        {
+                            this.drawUnit(vampiro, 725, 8, 85, 83, -1/2 * 85 * szx, -1/2 * 83 * szx, 85 * szx, 83 * szx);
+                        }
+                    }
+                }
+                else if (theCostume <= 2)
+                {
+                    if (this.health < 0)
+                    {
+                        this.drawUnit(vampiro, 868, 190, 123, 74, -1/2 * 123 * szx, -1/2 * 74 * szx, 123 * szx, 74 * szx);
+                        this.health = 20;
+                    }
+                    else if (this.vampirify && this.vampCarry == false)
+                    {
+                        this.drawUnit(vampiro, 777, 281, 54, 56, -1/2 * 54 * szx, -1/2 * 56 * szx, 54 * szx, 56 * szx);
+                    }
+                    else if (this.attacking && this.vampCarry == false)
+                    {
+                        this.attackManual = false;
+                        this.drawUnit(vampiro, 153, 216, 85, 83, -1/2 * 85 * szx, -1/2 * 83 * szx, 85 * szx, 83 * szx);
+                    }
+                    else
+                    {
+                        if (this.vampFlight == "takeOff")
+                        {
+                            this.drawUnit(vampiro, 582, 4, 85, 83, -1/2 * 85 * szx, -1/2 * 83 * szx, 85 * szx, 83 * szx);
+                        }
+                        else
+                        {
+                            this.drawUnit(vampiro, 857, 9, 85, 83, -1/2 * 85 * szx, -1/2 * 83 * szx, 85 * szx, 83 * szx);
+                        }
+                    }
+                }
+                else if (theCostume <= 3)
+                {
+                    if (this.health < 0)
+                    {
+                        this.drawUnit(vampiro, 868, 190, 123, 74, -1/2 * 123 * szx, -1/2 * 74 * szx, 123 * szx, 74 * szx);
+                    }
+                    else if (this.vampirify && this.vampCarry == false)
+                    {
+                        this.drawUnit(vampiro, 703, 283, 54, 56, -1/2 * 54 * szx, -1/2 * 56 * szx, 54 * szx, 56 * szx);
+                    }
+                    else if (this.attacking && this.vampCarry == false)
+                    {
+                        this.attackManual = false;
+                        this.drawUnit(vampiro, 265, 217, 85, 83, -1/2 * 85 * szx, -1/2 * 83 * szx, 85 * szx, 83 * szx);
+                    }
+                    else
+                    {
+                        if (this.vampFlight == "takeOff")
+                        {
+                            this.drawUnit(vampiro, 725, 8, 85, 83, -1/2 * 85 * szx, -1/2 * 83 * szx, 85 * szx, 83 * szx);
+                        }
+                        else
+                        {
+                            this.drawUnit(vampiro, 725, 8, 85, 83, -1/2 * 85 * szx, -1/2 * 83 * szx, 85 * szx, 83 * szx);
+                        }
+                    }
+                }
+                else if (theCostume <= 4)
+                {
+                    if (this.health < 0)
+                    {
+                        this.drawUnit(vampiro, 868, 190, 123, 74, -1/2 * 123 * szx, -1/2 * 74 * szx, 123 * szx, 74 * szx);
+                    }
+                    else if (this.vampirify && this.vampCarry == false)
+                    {
+                        this.drawUnit(vampiro, 652, 283, 54, 56, -1/2 * 54 * szx, -1/2 * 56 * szx, 54 * szx, 56 * szx);
+                    }
+                    else if (this.attacking && this.vampCarry == false)
+                    {
+                        this.attackManual = false;
+                        this.drawUnit(vampiro, 380, 222, 85, 83, -1/2 * 85 * szx, -1/2 * 83 * szx, 85 * szx, 83 * szx);
+                    }
+                    else
+                    {
+                        if (this.vampFlight == "takeOff")
+                        {
+                            this.drawUnit(vampiro, 857, 9, 85, 83, -1/2 * 85 * szx, -1/2 * 83 * szx, 85 * szx, 83 * szx);
+                            this.vampFlight = false;
+                        }
+                        else
+                        {
+                            this.drawUnit(vampiro, 582, 4, 85, 83, -1/2 * 85 * szx, -1/2 * 83 * szx, 85 * szx, 83 * szx);
+                        }
+                    }
+                }
+                else if (theCostume >= 5)
+                {
+                    if (this.health < 0)
+                    {
+                        this.drawUnit(vampiro, 868, 190, 123, 74, -1/2 * 123 * szx, -1/2 * 74 * szx, 123 * szx, 74 * szx);
+                    }
+                    else if (this.vampirify && this.vampCarry == false)
+                    {
+                        this.drawUnit(vampiro, 652, 283, 54, 56, -1/2 * 54 * szx, -1/2 * 56 * szx, 54 * szx, 56 * szx);
+                    }
+                    else if (this.attacking && this.vampCarry == false)
+                    {
+                        if (this.target == player)
+                        {
+                            if (this.DTP() <= (this.engagementRadius + this.target.sizeRadius + 1) && ArtificialIntelligenceAccess[ll].dmx == this.dmx)
+                            {
+                                player.attackCooldown = new Date().getTime();
+                                player.stunnedIII = true;
+                                player.stunnedTime = 2;
+                            }
+                        }
+                        else if (this.target != "none")
+                        {
+                            for (var ll = 0; ll < ArtificialIntelligenceAccess.length; ll++)
+                            {
+                                if (ArtificialIntelligenceAccess[ll] != this)
+                                {
+                                    if (this.DTU(this.target) <= (this.engagementRadius + this.target.sizeRadius + 1) && !ArtificialIntelligenceAccess[ll].underground && ArtificialIntelligenceAccess[ll].dmx == this.dmx && ArtificialIntelligenceAccess[ll].mounted != true)
+                                    {
+                                        if (ArtificialIntelligenceAccess[ll].type == "Person" || ArtificialIntelligenceAccess[ll].type == "Soldier" || ArtificialIntelligenceAccess[ll].healthMAX < 75)
+                                        {
+                                            ArtificialIntelligenceAccess[ll].stunTime = new Date().getTime();
+                                            ArtificialIntelligenceAccess[ll].stunTimer = 1;
+                                            ArtificialIntelligenceAccess[ll].stunV = true;
+                                            ArtificialIntelligenceAccess[ll].timeBetweenAttacks = new Date().getTime();
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        if ((theCostume >= 7))
+                        {
+                            if (this.attackManual == false)
+                            {
+                                this.costume = 0;
+                                this.attackManual = true;
+                                this.finalAttackCostume = true;
+                                this.timeBetweenAttacks = new Date().getTime();
+                                if (this.target == player)
+                                {
+                                    if (this.DTP() <= (this.engagementRadius + this.target.sizeRadius + 1) && ArtificialIntelligenceAccess[ll].dmx == this.dmx)
+                                    {
+                                        if (player.lycanthropy == true)
+                                        {
+                                            this.lycanthropy = true;
+                                        }
+                                        if (player.form == false)
+                                        {
+                                            this.health = Math.min(this.healthMAX, (this.health + 10));
+                                        }
+
+                                        if (player.form != "vampire" && player.form != "werewolf")
+                                        {
+                                            this.health = Math.min(this.healthMAX, this.health + ArtificialIntelligenceAccess[ll].healthMAX);
+                                        }
+                                    }
+                                }
+                                else if (this.target != "none")
+                                {
+                                    for (var ll = 0; ll < ArtificialIntelligenceAccess.length; ll++)
+                                    {
+                                        if (ArtificialIntelligenceAccess[ll] != this)
+                                        {
+                                            if (ArtificialIntelligenceAccess[ll].petrified != true && ArtificialIntelligenceAccess[ll].undeath != true && ArtificialIntelligenceAccess[ll].type != "werewolf" && ArtificialIntelligenceAccess[ll].baseTeam != "undead")
+                                            {
+                                                if (this.DTU(this.target) <= (this.engagementRadius + this.target.sizeRadius + 1) && !ArtificialIntelligenceAccess[ll].underground && ArtificialIntelligenceAccess[ll].dmx == this.dmx && ArtificialIntelligenceAccess[ll].mounted != true)
+                                                {
+                                                    if (ArtificialIntelligenceAccess[ll].type == "Person" || ArtificialIntelligenceAccess[ll].type == "Soldier")
+                                                    {
+                                                        if (ArtificialIntelligenceAccess[ll].lycanthropy == true)
+                                                        {
+                                                            this.lycanthropy = true;
+                                                        }
+                                                        this.health = Math.min(this.healthMAX, (this.health + 10));
+                                                    }
+                                                    this.health = Math.min(this.healthMAX, this.health + ArtificialIntelligenceAccess[ll].healthMAX);
+                                                }
+                                            }
+                                            else if (ArtificialIntelligenceAccess[ll].type == "werewolf" && this.DTU(this.target) <= (this.engagementRadius + this.target.sizeRadius + 1) && !ArtificialIntelligenceAccess[ll].underground && ArtificialIntelligenceAccess[ll].dmx == this.dmx && ArtificialIntelligenceAccess[ll].mounted != true)
+                                            {
+                                                this.lycanthropy = true;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        this.drawUnit(vampiro, 511, 225, 85, 83, -1/2 * 85 * szx, -1/2 * 83 * szx, 85 * szx, 83 * szx);
+                    }
+                    else
+                    {
+                        if (this.vampFlight == "takeOff")
+                        {
+                            this.drawUnit(vampiro, 725, 8, 85, 83, -1/2 * 85 * szx, -1/2 * 83 * szx, 85 * szx, 83 * szx);
+                            this.vampFlight = true;
+                        }
+                        else
+                        {
+                            this.drawUnit(vampiro, 857, 9, 85, 83, -1/2 * 85 * szx, -1/2 * 83 * szx, 85 * szx, 83 * szx);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                this.flashAnimate(115, this.rotation, 1, [{image: vampiro, imgX: 52, imgY: 14, portionW: 99, portionH: 75, adjX: -1/2 * 99 * szx * this.alphaSize, adjY: -1/2 * 75 * szx * this.alphaSize, width: 99 * szx * this.alphaSize, height: 75 * szx * this.alphaSize}, {image: vampiro, imgX: 49, imgY: 99, portionW: 99, portionH: 75, adjX: -1/2 * 99 * szx * this.alphaSize, adjY: -1/2 * 75 * szx * this.alphaSize, width: 99 * szx * this.alphaSize, height: 75 * szx * this.alphaSize}, {image: vampiro, imgX: 182, imgY: 11, portionW: 99, portionH: 75, adjX: -1/2 * 99 * szx * this.alphaSize, adjY: -1/2 * 75 * szx * this.alphaSize, width: 99 * szx * this.alphaSize, height: 75 * szx * this.alphaSize}, {image: vampiro, imgX: 183, imgY: 100, portionW: 99, portionH: 75, adjX: -1/2 * 99 * szx * this.alphaSize, adjY: -1/2 * 75 * szx * this.alphaSize, width: 99 * szx * this.alphaSize, height: 75 * szx * this.alphaSize}, {image: vampiro, imgX: 49, imgY: 97, portionW: 99, portionH: 75, adjX: -1/2 * 99 * szx * this.alphaSize, adjY: -1/2 * 75 * szx * this.alphaSize, width: 99 * szx * this.alphaSize, height: 75 * szx * this.alphaSize}]);
+            }
+        }
         //WEREWOLF
         if (this.type == "Werewolf") ////werewolfwerewolf werewere
         {
@@ -25537,6 +26163,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             //AI
             if (this.alive == true)
             {
+                if (this.silvered == true)
+                {
+                    this.health -= 3;
+                    this.stunTime = new Date().getTime();
+                    this.stunTimer = 1;
+                    this.stunII = true;
+                }
+
                 if (this.attackSwitch == true)
                 {
                     var rand = Math.random();
@@ -25554,30 +26188,31 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         this.attackType = "bite";
                     }
                     this.attackSwitch = false;
+                    this.timeBetweenAttacks = new Date().getTime();
+                    this.costume = 0;
                 }
 
                 if (this.attackType == "slash")
                 {
-                    this.Attack(4, 20);
+                    this.Attack(11, 16);
                     this.effect = "none";
                     this.negateArmour = 5;
-                    this.attackWait = 2.25;
+                    this.attackWait = 1.4;
                 }
                 else if (this.attackType == "howl")
                 {
                     this.effect = "none";
-                    this.callForNearbyHelpFromType(1400, "Skol");
-                    this.callForNearbyHelpFromType(1400, "GreyWolf");
-                    this.callForNearbyHelpFromType(1400, "WinterWolf");
-                    this.attackWait = 2.5;
+                    this.callForNearbyHelpFromType(2200, "Skol");
+                    this.callForNearbyHelpFromType(2200, "GreyWolf");
+                    this.callForNearbyHelpFromType(2200, "WinterWolf");
                 }
                 else if (this.attackType == "bite")
                 {
-                    this.Attack((20 / 1.5), (35 / 1.5));
+                    this.Attack(38, 22);
 
                     this.effect = "lycanthropy";
-                    this.negateArmour = (11 / 1.5);
-                    this.attackWait = 3.4;
+                    this.negateArmour = (11);
+                    this.attackWait = 3.7;
                 }
 
                 //this.deathChecker();
@@ -25586,16 +26221,27 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.friendDecider();
                 this.targeting();
 
-                if (this.target == player)
+                if (this.attackType != "howl")
                 {
-                    this.pointTowardsPlayer();
-                    this.moveInRelationToPlayer();
+                    if (this.target == player)
+                    {
+                        this.pointTowardsPlayer();
+                        this.moveInRelationToPlayer();
+                    }
+                    else if (this.target != "none")
+                    {
+                        this.pointTowards(this.target);
+                        this.moveInRelationToThing(this.target);
+                    }
+                    else
+                    {
+                        this.moving = false;
+                        this.costume = 0;
+                    }
                 }
-                else if (this.target != "none")
-                {
-                    this.pointTowards(this.target);
-                    this.moveInRelationToThing(this.target);
-                }
+            }
+            else if (this.doOnDeathOnce == true)
+            {
 
             }
 
@@ -25603,20 +26249,48 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             var szx = this.alphaSize;
             if (this.alive == true)
             {
-                if (timeOfDay == "Day")
+                if (timeOfDay != "Night")
                 {
                     this.costumeEngine(10, 0.10, true);
                 }
                 else if (this.attackType == "howl")
                 {
-                    if(new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000 / timeSpeed * this.timeResistance))
-                    {
-                        this.costumeEngine(6, 0.15, false);
-                    }
+                    //this.costumeEngine(6, 0.15, false);
+                    this.costume += 0.15;
                 }
                 else if (this.moving && !this.attacking) //If moving and not attacking initiate moving animation...
                 {
                     this.costumeEngine(4, 0.20, false);
+
+                    if (this.target == player)
+                    {
+                        if (player.form != "werewolf" && player.form != "vampire")
+                        {
+                            if (((X - this.X)*(X - this.X) + (Y - this.Y)*(Y - this.Y)) <= 80*80)
+                            {
+                                player.stunnedIII = true;
+                                player.stunnedTime = 2;
+                            }
+                        }
+                    }
+                    else if (this.target != "none")
+                    {
+                        for (var ll = 0; ll < ArtificialIntelligenceAccess.length; ll++)
+                        {
+                            if (ArtificialIntelligenceAccess[ll] != this)
+                            {
+                                if (ArtificialIntelligenceAccess[ll].haste == false && ArtificialIntelligenceAccess[ll].healthMAX < 100 && ArtificialIntelligenceAccess[ll].team != "wolf" && ArtificialIntelligenceAccess[ll].team != "werewolf" && ArtificialIntelligenceAccess[ll].team != "player")
+                                {
+                                    if (((ArtificialIntelligenceAccess[ll].X - this.X)*(ArtificialIntelligenceAccess[ll].X - this.X) + (ArtificialIntelligenceAccess[ll].Y - this.Y)*(ArtificialIntelligenceAccess[ll].Y - this.Y)) <= 80*80)
+                                    {
+                                        ArtificialIntelligenceAccess[ll].stunTime = new Date().getTime();
+                                        ArtificialIntelligenceAccess[ll].stunTimer = 2;
+                                        ArtificialIntelligenceAccess[ll].stunIII = true;
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
                 else if (this.attacking) //otherwise if it is attacking then initiate attacking animation, and if neither...
                 {
@@ -25641,11 +26315,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 }
 
                 // the frames/stages/costumes of the animation.
-                var theCostume = Math.floor( this.costume ); //This rounds this.costume down to the nearest whole number.
+                var theCostume = Math.floor(this.costume); //This rounds this.costume down to the nearest whole number.
 
                 if (theCostume <= 0)
                 {
-                    if (timeOfDay == "Day")
+                    if (timeOfDay != "Night")
                     {
                         this.drawUnit(folw, 256, 15, 121, 106, -1/2 * 121 * szx, -1/2 * 106 * szx, 121 * szx, 106 * szx);
                     }
@@ -25685,7 +26359,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 }
                 else if (theCostume <= 1)
                 {
-                    if (timeOfDay == "Day")
+                    if (timeOfDay != "Night")
                     {
                         this.drawUnit(folw, 1521, 341, 123, 134, -1/2 * 123 * szx, -1/2 * 134 * szx, 123 * szx, 134 * szx);
                     }
@@ -25711,7 +26385,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 }
                 else if (theCostume <= 2)
                 {
-                    if (timeOfDay == "Day")
+                    if (timeOfDay != "Night")
                     {
                         this.drawUnit(folw, 1310, 333, 123, 134, -1/2 * 123 * szx, -1/2 * 134 * szx, 123 * szx, 134 * szx);
                     }
@@ -25737,7 +26411,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 }
                 else if (theCostume <= 3)
                 {
-                    if (timeOfDay == "Day")
+                    if (timeOfDay != "Night")
                     {
                         this.drawUnit(folw, 1108, 331, 123, 134, -1/2 * 123 * szx, -1/2 * 134 * szx, 123 * szx, 134 * szx);
                     }
@@ -25763,7 +26437,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 }
                 else if (theCostume <= 4)
                 {
-                    if (timeOfDay == "Day")
+                    if (timeOfDay != "Night")
                     {
                         this.drawUnit(folw, 940, 327, 123, 134, -1/2 * 123 * szx, -1/2 * 134 * szx, 123 * szx, 134 * szx);
                     }
@@ -25790,7 +26464,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 }
                 else if (theCostume <= 5)
                 {
-                    if (timeOfDay == "Day")
+                    if (timeOfDay != "Night")
                     {
                         this.drawUnit(folw, 767, 322, 123, 134, -1/2 * 123 * szx, -1/2 * 134 * szx, 123 * szx, 134 * szx);
                     }
@@ -25817,7 +26491,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 }
                 else if (theCostume <= 6)
                 {
-                    if (timeOfDay == "Day")
+                    if (timeOfDay != "Night")
                     {
                         this.drawUnit(folw, 578, 330, 123, 134, -1/2 * 123 * szx, -1/2 * 134 * szx, 123 * szx, 134 * szx);
                     }
@@ -25843,7 +26517,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 }
                 else if (theCostume <= 7)
                 {
-                    if (timeOfDay == "Day")
+                    if (timeOfDay != "Night")
                     {
                         this.drawUnit(folw, 408, 334, 123, 134, -1/2 * 123 * szx, -1/2 * 134 * szx, 123 * szx, 134 * szx);
                     }
@@ -25869,7 +26543,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 }
                 else if (theCostume <= 8)
                 {
-                    if (timeOfDay == "Day")
+                    if (timeOfDay != "Night")
                     {
                         this.drawUnit(folw, 256, 333, 123, 134, -1/2 * 123 * szx, -1/2 * 134 * szx, 123 * szx, 134 * szx);
                     }
@@ -25895,10 +26569,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 }
                 else if (theCostume <= 9)
                 {
-                    if (timeOfDay == "Day")
+                    if (timeOfDay != "Night")
                     {
                         this.drawUnit(folw, 256, 333, 123, 134, -1/2 * 123 * szx, -1/2 * 134 * szx, 123 * szx, 134 * szx);
                         ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, this.alpha, false, this.ID, this.ultra));
+                        ArtificialIntelligenceAccess[(ArtificialIntelligenceAccess.length - 1)].silvered = this.silvered;
                         ArtificialIntelligenceAccess.splice(ArtificialIntelligenceAccess.indexOf(this), 1);
                     }
                     else if (this.attackType == "howl")
@@ -26145,7 +26820,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
             else
             {
-                this.drawUnit(folw, 256, 15, 121, 106, -1/2 * 121 * szx, -1/2 * 106 * szx, 121 * szx, 106 * szx, 1/2 * Math.PI);
+                this.drawUnit(folw, 1486, 500, 137, 93, -1/2 * 137 * szx, -1/2 * 93 * szx, 137 * szx, 93 * szx);
             }
         }
         //KER

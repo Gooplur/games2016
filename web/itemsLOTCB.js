@@ -17530,6 +17530,31 @@ function Item(type, x, y)
             this.buyValue = 226 - Math.floor(player.getCharisma() / 8); // at max, buy for 220.
             this.sellValue = 200 + Math.floor(player.getCharisma() / 2.5); // at max, sell for 220.
         }
+        else if (this.type == "silverStake")
+        {
+            //For All Items
+            this.identity = "Silver Stake";
+            this.weight = 1.3;
+            this.size = 10;
+            this.description = "A sharpened stake made of silver.";
+            this.intForDes = 33;
+            this.intDescription = "A stake of silver is one of the few weapons that can be used to kill a vampire.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 3;
+            this.intForCraft = 28;
+            this.ingredients = [["Silver", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 100 - Math.floor(player.getCharisma() / 5); // at max, buy for 90.
+            this.sellValue = 75 + Math.floor(player.getCharisma() / 3); // at max, sell for 90.
+        }
         else if (this.type == "jvostranOre")
         {
             //For All Items
@@ -30727,6 +30752,11 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(candlewic, 60, 167, 27, 29, X - this.X + (1/2 * CCC.width) - (1/2 * 27 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 29 * 1.5), 27 * 1.5, 29 * 1.5);
         }
+        else if (this.type == "silverStake")
+        {
+            XXX.beginPath();
+            XXX.drawImage(tomb, 301, 26, 18, 33, X - this.X + (1/2 * CCC.width) - (1/2 * 18 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 33 * 1), 18 * 1, 33 * 1);
+        }
         else if (this.type == "rawCheshireFlesh")
         {
             XXX.beginPath();
@@ -34730,6 +34760,11 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(candlewic, 61, 201, 27, 29, this.invX - (1/2 * 27 * 1.5), this.invY - (1/2 * 29 * 1.5), 27 * 1.5, 29 * 1.5);
         }
+        else if (this.type == "silverStake")
+        {
+            LXX.beginPath();
+            LXX.drawImage(tomb, 301, 26, 18, 33, this.invX - (1/2 * 18 * 1), this.invY - (1/2 * 33 * 1), 18 * 1, 33 * 1);
+        }
         else if (this.type == "rawCheshireFlesh")
         {
             LXX.beginPath();
@@ -38707,6 +38742,11 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(candlewic, 61, 201, 27, 29, this.invX - (1/2 * 27 * 1.5), this.invY - (1/2 * 29 * 1.5), 27 * 1.5, 29 * 1.5);
+        }
+        else if (this.type == "silverStake")
+        {
+            XXX.beginPath();
+            XXX.drawImage(tomb, 301, 26, 18, 33, this.invX - (1/2 * 18 * 1), this.invY - (1/2 * 33 * 1), 18 * 1, 33 * 1);
         }
         else if (this.type == "rawCheshireFlesh")
         {

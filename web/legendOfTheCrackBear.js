@@ -3919,6 +3919,7 @@ function theLegend()
     smithing.push(new Item("nechrovitePlateArmourBlackPlume", false));
     smithing.push(new Item("nechrovitePlateArmourRedPlume", false));
     smithing.push(new Item("silkAndDagger", false));
+    smithing.push(new Item("silverStake", false));
     smithing.push(new Item("nirwadenSabreAndShield", false));
 
 

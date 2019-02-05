@@ -15606,7 +15606,7 @@ function Item(type, x, y)
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 1; // at max, buy for 1.
-            this.sellValue = 1; // at max, sell for 1.
+            this.sellValue = 0 + Math.floor(player.getCharisma() / 50); // at max, sell for 1.
         }
         else if (this.type == "ameloyFlower")
         {

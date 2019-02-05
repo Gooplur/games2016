@@ -1551,6 +1551,10 @@ function envPack()
     nirRoad.src = ("images/nirwadenRoad.jpg");
     window.nirRoad = nirRoad;
 
+    var vardanSwamp = new Image();
+    vardanSwamp.src = ("images/vardanSwamp.jpg");
+    window.vardanSwamp = vardanSwamp;
+
     var labEnv = new Image();
     labEnv.src = ("images/labTexture.jpg");
     window.labEnv = labEnv;
@@ -1624,6 +1628,18 @@ function chupaPack()
     window.chupa = chupa;
 
     chupa.onload = function()
+    {
+        toadPack();
+    };
+}
+
+function toadPack()
+{
+    var toad = new Image();
+    toad.src = ("images/toad.png");
+    window.toad = toad;
+
+    toad.onload = function()
     {
         tombPack();
     };

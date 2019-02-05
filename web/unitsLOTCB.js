@@ -14119,6 +14119,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.negateArmour = 26;
             this.attackWait = 3.1;
             this.vamprism = true;
+            this.vampirify = false;
 
             //alpha has a larger size body and skills.
             this.alphaSize = 1.2; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -26032,6 +26033,8 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     else if (this.vampirify && this.vampCarry == false)
                     {
                         this.drawUnit(vampiro, 652, 283, 54, 56, -1/2 * 54 * szx, -1/2 * 56 * szx, 54 * szx, 56 * szx);
+                        ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, this.alpha, false, this.ID, this.ultra));
+                        ArtificialIntelligenceAccess.splice(ArtificialIntelligenceAccess.indexOf(this), 1);
                     }
                     else if (this.attacking && this.vampCarry == false)
                     {
@@ -27235,7 +27238,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     this.experience = (10 * ((player.getIntelligence() / 50) + 1)) / 10;
                 }
 
-                this.drops = [[new Item("thegolThornLrg", this.X + 10, this.Y + 20), 2]];
+                this.drops = [[new Item("thegolThornLrg", this.X + 10, this.Y + 20), 1]];
             }
             else
             {

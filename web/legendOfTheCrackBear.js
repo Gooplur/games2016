@@ -1593,6 +1593,18 @@ function gargPack()
 
     garg.onload = function()
     {
+        hydraPack();
+    };
+}
+
+function hydraPack()
+{
+    var hydra = new Image();
+    hydra.src = ("images/hydra.png");
+    window.hydra = hydra;
+
+    hydra.onload = function()
+    {
         mimikPack();
     };
 }

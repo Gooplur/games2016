@@ -615,8 +615,21 @@ function worldBuilder()
 
         }
         //layer 1 (frosty region): elev 1
-        //mapN1 //TODO remake this map
-        if (Y > 6290 && Y < 17073) //X0
+
+        //mapN1W1
+        if (Y > 6290 && Y < 17073 && X < 17891 && X > 6299) //X-1
+        {
+            elevation = 0;
+            region = "n1w1";
+
+            outlineBuilder(34, 34, "frost", -54, -54);
+            outlineBuilder(1, 7, "crag", -49, -21);
+            outlineBuilder(1, 3, "crag", -38, -21);
+            outlineBuilder(2, 4, "crag", -31, -22);
+            outlineBuilder(1, 2, "crag", -27, -21);
+        }
+        //mapN1
+        if (Y > 6290 && Y < 17073 && X < 7726 && X > -3910) //X0
         {
             elevation = 1;
             region = "n1";
@@ -679,7 +692,7 @@ function worldBuilder()
         }
         //layer 2 (frosty region): elev 1
         //mapN2
-        if (Y > 16445 && Y < 27296) //X0
+        if (Y > 16445 && Y < 27296 && X < 7726 && X > -3910) //X0
         {
             elevation = 1;
             region = "n2";
@@ -688,7 +701,7 @@ function worldBuilder()
         }
         //layer 3 (frosty region): elev 1
         //mapN3
-        if (Y > 26650 && Y < 37456) //X0
+        if (Y > 26650 && Y < 37456 && X < 7726 && X > -3910) //X0
         {
             elevation = 1;
             region = "n3";

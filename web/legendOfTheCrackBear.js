@@ -1271,46 +1271,25 @@ function hyelingSounds()
     var hyelingBattlecry1 = new Audio("sounds/polySounds/hyelingBattlecry1.mp3");
     window.hyelingBattlecry1 = hyelingBattlecry1;
 
-    hyelingBattlecry1.oncanplaythrough = function()
-    {
-        var hyelingBattlecry2 = new Audio("sounds/polySounds/hyelingBattlecry2.mp3");
-        window.hyelingBattlecry2 = hyelingBattlecry2;
+    var hyelingBattlecry2 = new Audio("sounds/polySounds/hyelingBattlecry2.mp3");
+    window.hyelingBattlecry2 = hyelingBattlecry2;
 
-        hyelingBattlecry2.oncanplaythrough = function()
-        {
-            var hyelingPaincry1 = new Audio("sounds/polySounds/hyelingPaincry1.mp3");
-            window.hyelingPaincry1 = hyelingPaincry1;
+    var hyelingPaincry1 = new Audio("sounds/polySounds/hyelingPaincry1.mp3");
+    window.hyelingPaincry1 = hyelingPaincry1;
 
-            hyelingPaincry1.oncanplaythrough = function()
-            {
-                var hyelingPaincry2 = new Audio("sounds/polySounds/hyelingPaincry2.mp3");
-                window.hyelingPaincry2 = hyelingPaincry2;
+    var hyelingPaincry2 = new Audio("sounds/polySounds/hyelingPaincry2.mp3");
+    window.hyelingPaincry2 = hyelingPaincry2;
 
-                hyelingPaincry2.oncanplaythrough = function()
-                {
-                    var hyelingClick1 = new Audio("sounds/polySounds/hyelingClick1.mp3");
-                    window.hyelingClick1 = hyelingClick1;
+    var hyelingClick1 = new Audio("sounds/polySounds/hyelingClick1.mp3");
+    window.hyelingClick1 = hyelingClick1;
 
-                    hyelingClick1.oncanplaythrough = function()
-                    {
-                        var hyelingClick2 = new Audio("sounds/polySounds/hyelingClick2.mp3");
-                        window.hyelingClick2 = hyelingClick2;
+    var hyelingClick2 = new Audio("sounds/polySounds/hyelingClick2.mp3");
+    window.hyelingClick2 = hyelingClick2;
 
-                        hyelingClick2.oncanplaythrough = function()
-                        {
-                            var hyelingClick3 = new Audio("sounds/polySounds/hyelingClick3.mp3");
-                            window.hyelingClick3 = hyelingClick3;
+    var hyelingClick3 = new Audio("sounds/polySounds/hyelingClick3.mp3");
+    window.hyelingClick3 = hyelingClick3;
 
-                            hyelingClick3.oncanplaythrough = function()
-                            {
-                                envPack();
-                            };
-                        };
-                    };
-                };
-            };
-        };
-    };
+    envPack();
 }
 
 function envPack()

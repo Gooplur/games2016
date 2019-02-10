@@ -1275,6 +1275,78 @@ function buildMaster()
                 change = "central";
             }
         }
+        else if (region == "n1w1") //Y > 6290 && Y < 32370
+        {
+            if (change != "n1w1")
+            {
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
+                //Delete All Non-native AI Units
+                for (var i =  ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Structures
+                //todo when structures are created add their list's refresh sequence here.
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
+
+                //REGION CREATION
+                //Build AI Units
+
+                //meant for the map
+                //balkur
+                //ArtificialIntelligenceAccess.push(new Unit(-2158, 13626, "Balkur", false, "Tiitvehlesh"));
+
+                //waanti
+                //ArtificialIntelligenceAccess.push(new Unit(323, 15308, "Waanti", true, "Goablt"));
+
+                //winter wolves
+                //ArtificialIntelligenceAccess.push(new Unit(4659, 8375, "WinterWolf", false, "Dogmeat"));
+
+                //glutids
+                //ArtificialIntelligenceAccess.push(new Unit(2255, 10148, "Glutid", true, "Glup", {patrolStops: 5, patrolLoop: true, route:[[1741, 10369], [1898, 9900], [1602, 9909], [1635, 10189], [2255, 10148]]}));
+
+                //Scenery
+                //scenicList.push(new Scenery("bushkaPlant", 576, 8067, 2.5, true));
+                //scenicList.push(new Scenery("wightbloomPlant", 611 , 15616, 5, true));
+
+
+                //Seguidores del Hielo
+                ArtificialIntelligenceAccess.push(new Unit(9000, 10000, "HyelingSoldier", true, "Frost Maw"));
+                ArtificialIntelligenceAccess.push(new Unit(8900, 10100, "HyelingSoldier", false, "Long Tooth"));
+                ArtificialIntelligenceAccess.push(new Unit(9584, 9046, "Hyeling", "baby", "Cold Cloth"));
+                ArtificialIntelligenceAccess.push(new Unit(9498, 8856, "Hyeling", false, "Old Eyes"));
+                ArtificialIntelligenceAccess.push(new Unit(10041, 8746, "Hyeling", true, "White Hammer"));
+                ArtificialIntelligenceAccess.push(new Unit(9711, 8503, "HyelingSoldier", false, "Running Stone"));
+                scenicList.push(new Scenery("largeCeremonialRockCircle", 10075 , 8783, 0, true));
+                scenicList.push(new Scenery("hyelingTent", 9199 , 8965, 1/2 * Math.PI, true));
+                scenicList.push(new Scenery("hyelingTent", 9677 , 9170, -1/11 * Math.PI, true));
+                scenicList.push(new Scenery("hyelingTent", 10800 , 8897, -1/2 * Math.PI, true));
+                scenicList.push(new Scenery("hyelingTent", 10458 , 8363, -3/5 * Math.PI, true));
+
+
+                change = "n1w1";
+            }
+        }
         else if (region == "n1") //Y > 6290 && Y < 32370
         {
             if (change != "n1")
@@ -1362,17 +1434,17 @@ function buildMaster()
 
 
                 //Seguidores del Hielo
-                ArtificialIntelligenceAccess.push(new Unit(9000, 10000, "HyelingSoldier", true, "Frost Maw"));
-                ArtificialIntelligenceAccess.push(new Unit(8900, 10100, "HyelingSoldier", false, "Long Tooth"));
-                ArtificialIntelligenceAccess.push(new Unit(9584, 9046, "Hyeling", "baby", "Cold Cloth"));
-                ArtificialIntelligenceAccess.push(new Unit(9498, 8856, "Hyeling", false, "Old Eyes"));
-                ArtificialIntelligenceAccess.push(new Unit(10041, 8746, "Hyeling", true, "White Hammer"));
-                ArtificialIntelligenceAccess.push(new Unit(9711, 8503, "HyelingSoldier", false, "Running Stone"));
-                scenicList.push(new Scenery("largeCeremonialRockCircle", 10075 , 8783, 0, true));
-                scenicList.push(new Scenery("hyelingTent", 9199 , 8965, 1/2 * Math.PI, true));
-                scenicList.push(new Scenery("hyelingTent", 9677 , 9170, -1/11 * Math.PI, true));
-                scenicList.push(new Scenery("hyelingTent", 10800 , 8897, -1/2 * Math.PI, true));
-                scenicList.push(new Scenery("hyelingTent", 10458 , 8363, -3/5 * Math.PI, true));
+                //ArtificialIntelligenceAccess.push(new Unit(9000, 10000, "HyelingSoldier", true, "Frost Maw"));
+                //ArtificialIntelligenceAccess.push(new Unit(8900, 10100, "HyelingSoldier", false, "Long Tooth"));
+                //ArtificialIntelligenceAccess.push(new Unit(9584, 9046, "Hyeling", "baby", "Cold Cloth"));
+                //ArtificialIntelligenceAccess.push(new Unit(9498, 8856, "Hyeling", false, "Old Eyes"));
+                //ArtificialIntelligenceAccess.push(new Unit(10041, 8746, "Hyeling", true, "White Hammer"));
+                //ArtificialIntelligenceAccess.push(new Unit(9711, 8503, "HyelingSoldier", false, "Running Stone"));
+                //scenicList.push(new Scenery("largeCeremonialRockCircle", 10075 , 8783, 0, true));
+                //scenicList.push(new Scenery("hyelingTent", 9199 , 8965, 1/2 * Math.PI, true));
+                //scenicList.push(new Scenery("hyelingTent", 9677 , 9170, -1/11 * Math.PI, true));
+                //scenicList.push(new Scenery("hyelingTent", 10800 , 8897, -1/2 * Math.PI, true));
+                //scenicList.push(new Scenery("hyelingTent", 10458 , 8363, -3/5 * Math.PI, true));
 
 
                 change = "n1";

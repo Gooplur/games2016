@@ -1045,6 +1045,31 @@ function taxes()
     }
 }
 
+function decayer()
+{
+    if (new Date().getTime() - decayTime > 6000)
+    {
+        decayTime = new Date().getTime();
+
+        for (var l = 0; l < worldItems.length; l++)
+        {
+            if (worldItems[l][0].decayable == true)
+            {
+                if (worldItems[l][0].decay > worldItems[l][0].decayLimit)
+                {
+                    worldItems.push([new Item(worldItems[l][0].decayObjective, worldItems[l][0].X, worldItems[l][0].Y), worldItems[l][1]])
+                    worldItems.splice(l, 1);
+                    break;
+                }
+                else
+                {
+                    worldItems[l][0].decay += 1;
+                }
+            }
+        }
+    }
+}
+
 function miniEvent()
 {
     //Assassin that comes to kill the player

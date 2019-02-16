@@ -6268,6 +6268,34 @@ function Adventurer()
         {
             outfit = allWorn[102];
         }
+        else if (this.outfitEquipped == "jesterOutfit")
+        {
+            outfit = allWorn[103];
+        }
+        else if (this.outfitEquipped == "vardanianNobleOutfit")
+        {
+            outfit = allWorn[104];
+        }
+        else if (this.outfitEquipped == "vardanianRoyalDress")
+        {
+            outfit = allWorn[105];
+        }
+        else if (this.outfitEquipped == "vardanWearM")
+        {
+            outfit = allWorn[106];
+        }
+        else if (this.outfitEquipped == "vardanWearF")
+        {
+            outfit = allWorn[107];
+        }
+        else if (this.outfitEquipped == "vardanOutfitM")
+        {
+            outfit = allWorn[108];
+        }
+        else if (this.outfitEquipped == "vardanOutfitF")
+        {
+            outfit = allWorn[109];
+        }
         else
         {
             outfit = allWorn[0];
@@ -6311,6 +6339,14 @@ function Adventurer()
         {
             gloves = allWorn[77];
         }
+        else if (this.glovesEquipped == "elkGloves")
+        {
+            gloves = allWorn[112];
+        }
+        else if (this.glovesEquipped == "hideGloves")
+        {
+            gloves = allWorn[113];
+        }
         else
         {
             gloves = allWorn[0];
@@ -6320,31 +6356,43 @@ function Adventurer()
 
         if (this.bootsEquipped == "skolLeatherBoots")
         {
-            boots = allWorn[45]
+            boots = allWorn[45];
         }
         else if (this.bootsEquipped == "boulchomLeatherBoots")
         {
-            boots = allWorn[50]
+            boots = allWorn[50];
         }
         else if (this.bootsEquipped == "balkurLeatherBoots")
         {
-            boots = allWorn[59]
+            boots = allWorn[59];
         }
         else if (this.bootsEquipped == "neevFurBoots")
         {
-            boots = allWorn[62]
+            boots = allWorn[62];
         }
         else if (this.bootsEquipped == "sealSkinBoots")
         {
-            boots = allWorn[67]
+            boots = allWorn[67];
         }
         else if (this.bootsEquipped == "northernBoots")
         {
-            boots = allWorn[70]
+            boots = allWorn[70];
         }
         else if (this.bootsEquipped == "drileLeatherBoots")
         {
-            boots = allWorn[76]
+            boots = allWorn[76];
+        }
+        else if (this.bootsEquipped == "hideBoots")
+        {
+            boots = allWorn[110];
+        }
+        else if (this.bootsEquipped == "elkBoots")
+        {
+            boots = allWorn[111];
+        }
+        else if (this.bootsEquipped == "jesterShoes")
+        {
+            boots = allWorn[114];
         }
         else
         {
@@ -6458,6 +6506,58 @@ function Adventurer()
                 XXX.globalAlpha = 0.4;
             }
             XXX.drawImage(atal, 810, 2407, 89, 47, -(1 / 2 * 89 * 0.7) + 0, -(1 / 2 * 47 * 0.7) - 0, 89 * 0.7, 47 * 0.7);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "jesterOutfit")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(hydra, 852, 645, 44, 45, -(1 / 2 * 44 * 1.3) - 1, -(1 / 2 * 45 * 1.3) - 0.5, 44 * 1.3, 45 * 1.3);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "vardanianNobleOutfit")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(hydra, 1081, 739, 47, 38, -(1 / 2 * 47 * 1) - 2.7, -(1 / 2 * 38 * 1) - 0, 47 * 1, 38 * 1);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "vardanWearM")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(toad, 813, 297, 27, 24, -(1 / 2 * 27 * 1.46) - 2, -(1 / 2 * 24 * 1.46) - 0, 27 * 1.46, 24 * 1.46);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "vardanOutfitM")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(toad, 957, 300, 27, 24, -(1 / 2 * 27 * 1.15) - 2.3, -(1 / 2 * 24 * 1.15) - 0, 27 * 1.15, 24 * 1.15);
             XXX.restore();
         }
         else if (this.outfitEquipped == "matadorOutfit")
@@ -6954,6 +7054,140 @@ function Adventurer()
                     XXX.globalAlpha = 0.4;
                 }
                 XXX.drawImage(verse, 3182, 206, 38, 42, -(1 / 2 * 38) + 0.3, -(1 / 2 * 42) + 5.3, 38, 42);
+                XXX.restore();
+            }
+        }
+        else if (this.outfitEquipped == "vardanOutfitF")
+        {
+            this.outfitZ = false;
+            if (this.movingType == 0 || this.movingType == 4 || this.movingType == 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(toad, 912, 401, 34, 17, -(1 / 2 * 34 * 0.92) - 0 * 0.92, -(1 / 2 * 17 * 1) + 8, 34 * 0.92, 17 * 1);
+                XXX.restore();
+
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation + Math.PI);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(toad, 912, 401, 34, 17, -(1 / 2 * 34 * 0.92) + 0 * 0.92, -(1 / 2 * 17) + 7, 34 * 0.92, 17 * 1);
+                XXX.restore();
+            }
+            else
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(toad, 912, 401, 34, 17, -(1 / 2 * 34 * 0.95) - 0 * 0.95, -(1 / 2 * 17 * 1) + 8, 34 * 0.95, 17 * 1);
+                XXX.restore();
+
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(toad, 912, 401, 34, 17, -(1 / 2 * 34 * 0.98) - 0 * 0.98, -(1 / 2 * 17 * 1) + 12.5, 34 * 0.98, 17 * 1);
+                XXX.restore();
+
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation + Math.PI);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(toad, 912, 401, 34, 17, -(1 / 2 * 34 * 0.92) + 0 * 0.92, -(1 / 2 * 17) + 7, 34 * 0.92, 17 * 1);
+                XXX.restore();
+            }
+        }
+        else if (this.outfitEquipped == "vardanWearF")
+        {
+            this.outfitZ = false;
+            if (this.movingType == 0 || this.movingType == 4 || this.movingType == 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(toad, 863, 400, 34, 18, -(1 / 2 * 34 * 0.96) - 1 * 0.96, -(1 / 2 * 18 * 1) + 7, 34 * 0.96, 18 * 1);
+                XXX.restore();
+
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation + Math.PI);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(toad, 863, 400, 34, 18, -(1 / 2 * 34 * 0.96) + 2 * 0.96, -(1 / 2 * 18) + 6, 34 * 0.96, 18 * 1);
+                XXX.restore();
+            }
+            else
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(toad, 863, 400, 34, 18, -(1 / 2 * 34 * 0.96) - 1 * 0.96, -(1 / 2 * 18 * 1) + 10.5, 34 * 0.96, 18 * 1);
+                XXX.restore();
+
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation + Math.PI);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(toad, 863, 400, 34, 18, -(1 / 2 * 34 * 0.96) + 2 * 0.96, -(1 / 2 * 18) + 6, 34 * 0.96, 18 * 1);
+                XXX.restore();
+            }
+        }
+        else if (this.outfitEquipped == "vardanianRoyalDress")
+        {
+            this.outfitZ = false;
+            if (this.movingType == 0 || this.movingType == 4 || this.movingType == 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation - 1/2 * Math.PI);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(hydra, 977, 731, 74, 66, -(1 / 2 * 74 * 1.1) + 0, -(1 / 2 * 66 * 1.1) + 0, 74 * 1.1, 66 * 1.1);
+                XXX.restore();
+            }
+            else
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation - 1/2 * Math.PI);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(hydra, 848, 730, 111, 66, -(1 / 2 * 111 * 1.1) + 0, -(1 / 2 * 66 * 1.1) + 0, 111 * 1.1, 66 * 1.1);
                 XXX.restore();
             }
         }
@@ -27418,7 +27652,26 @@ function Adventurer()
             XXX.font = "30px Book Antiqua";
             XXX.fillStyle = "black";
             XXX.textAlign = "center";
-            XXX.fillText(this.raceName, 105 + (1 / 2 * 235), 90);
+            if (this.raceName == "Vardan")
+            {
+                XXX.fillText("Vardanian", 105 + (1 / 2 * 235), 90);
+            }
+            else if (this.raceName == "Cephrite")
+            {
+                XXX.fillText("Cephrian", 105 + (1 / 2 * 235), 90);
+            }
+            else if (this.raceName == "Thengar")
+            {
+                XXX.fillText("Thengan", 105 + (1 / 2 * 235), 90);
+            }
+            else if (this.raceName == "Aldrek")
+            {
+                XXX.fillText("Aldrekii", 105 + (1 / 2 * 235), 90);
+            }
+            else
+            {
+                XXX.fillText(this.raceName, 105 + (1 / 2 * 235), 90);
+            }
 
             //Gender
             //box: subject half
@@ -29441,6 +29694,10 @@ function Adventurer()
                                 player.intelligence = 0;
                                 player.survivalism = 0;
                             }
+                            else if (Inventory[i][0].ability == "vamprism")
+                            {
+                                this.vamprism = true;
+                            }
                             else if (Inventory[i][0].ability == "satiate" || Inventory[i][0].ability == "satiation") //Food with this effect will keep you fed for a little bit.
                             {
                                 this.fed = true;
@@ -29448,6 +29705,10 @@ function Adventurer()
                             else if (Inventory[i][0].ability == "quench") //Food with this effect will keep you quenched for a little bit.
                             {
                                 this.watered = true;
+                            }
+                            else if (Inventory[i][0].ability == "bigQuench")
+                            {
+                                this.wateredClock = 100 + 1/2 * this.getEndurance() * 2;
                             }
                             else if (Inventory[i][0].ability == "superQuench") //Food with this effect will keep you quenched for a little bit.
                             {
@@ -32859,6 +33120,54 @@ function Adventurer()
                         XXX.globalAlpha = 0.4;
                     }
                     XXX.drawImage(verse, 3228, 215, 33, 15, -(1 / 2 * 38) + 2.7, -(1 / 2 * 42) + 12.5, 33, 15);
+                    XXX.restore();
+                }
+                else if (this.outfitEquipped == "vardanianRoyalDress")
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - (1/2 * Math.PI));
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(hydra, 961, 663, 46, 37, -(1 / 2 * 46 * 1.05) - 0, -(1 / 2 * 37 * 1.05) + 0.21, 46 * 1.05, 37 * 1.05);
+                    XXX.restore();
+                }
+                else if (this.outfitEquipped == "vardanianNobleOutfitF")
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - (1/2 * Math.PI));
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(hydra, 961, 663, 46, 37, -(1 / 2 * 46 * 1.05) - 0, -(1 / 2 * 37 * 1.05) + 0.21, 46 * 1.05, 37 * 1.05);
+                    XXX.restore();
+                }
+                else if (this.outfitEquipped == "vardanWearF")
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(toad, 866, 298, 27, 24, -(1 / 2 * 27 * 1.46) - 0, -(1 / 2 * 24 * 1.46) - 0, 27 * 1.46, 24 * 1.46);
+                    XXX.restore();
+                }
+                else if (this.outfitEquipped == "vardanOutfitF")
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(toad, 911, 298, 27, 24, -(1 / 2 * 27 * 1.45) + 0.2, -(1 / 2 * 24 * 1.45) - 0, 27 * 1.45, 24 * 1.45);
                     XXX.restore();
                 }
                 else if (this.outfitEquipped == "nirwadenNobleDress")

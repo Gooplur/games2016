@@ -94,6 +94,8 @@ function gameloopOfDestiny(time)
         magicOperationsManagement(z);
     }
 
+    decayer(); //this lets certain items decay when in the worlditems list.
+
     //invisible game barriers (they block player and creature movement and they delete magic and projectiles)
     barrierOperationsManager();
     var barriersToBeDeleted = [];

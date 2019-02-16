@@ -13,7 +13,6 @@
 
 //things to add to the next image i'm adding:
 //todo add armoured horses
-//todo add a secret unit (a monster that is in an inanimate form during the day but lurks murderously throughout the night) GARGOYLE //the unit will know when to become a scenery object //the scenery object will know when to become a unit
 
 //Alzkwaya Update / Savannah Update
 //todo add the alzkwaya tribe's village (mofu themed tribe)
@@ -26,7 +25,6 @@
 
 //Calcutt Patch
 //todo add roselin's quest
-//todo add drinking horns
 //todo add kellish dolls
 
 //Isles Update
@@ -40,7 +38,7 @@
 //todo add ponds and ice holes
 //todo add the freydic hatchet from the balkur img sheet
 //todo add glass of Waanti milk
-//todo add sheep + shears [tool] (I already added wool and their potential drops)
+//todo add sheep
 //todo add muscles (shellfish) as a scenery object that stick out their tongues intermitently when in water, but also add a cooked form
 
 //Lethik Patch
@@ -82,12 +80,10 @@
 //todo add the city Cranheim to the west of Lethik in Thengaria
 //todo add haunted foggy woods: it will be populated with sprites, cheshires, grey trolls, skols, wearwolfs + the usual herbivores...
 //todo add wearwolf quest
-//todo add wearwolf unit
-//todo add a woodland grey troll
 
 //Vardania Update
-//todo add a boggy vardanian village to the far south west of Cranheim
-//todo add a vampire lord that can give you the gift of vamprism if you drink a goblet of his blood or something like that
+//todo add a boggy vardanian hamlet to the far south west of Cranheim
+//todo add a vardanian city to the south west of the hamlet
 
 
 //Eschuttes Update
@@ -97,7 +93,7 @@
 //todo add Gargoyl cream - once consumed/used (it is assumed you rub it into your hands) the first creature you punch will be un-petrified and the disturbed flag for punching them will be canceled that once.
 //todo add the Colic symptom of sickness and add the effect 'colicAway' that eating 'aktaltlFrond' gives you.
 //todo add a witch trap house where the witch becomes a mutated magical beast and tries to kill you
-//todo add ghosts - add that the way to kill ghosts is to digg up the bones, salt them, then set them aflame.
+
 //todo add water creatures that become beached if they go on land, usarían the variable this.flotation in Unit Class
 //todo add more jewelry from 'polpol' IMG
 //todo add haeflower drug trip monsters from 'zapa' IMG
@@ -2079,6 +2075,8 @@ var tertiarySpells;
 var wellConversionList;
 var naapridConversionList;
 var waantiConversionList;
+var bovineConversionList;
+var mandrakeConversionList;
 var conversationID;
 var conversations;
 var beegin;
@@ -2208,6 +2206,7 @@ var refillMag = true;
 var showSightCheat = false;
 var playerShopsTime = new Date().getTime();
 var skIntTime = new Date().getTime();
+var decayTime = new Date().getTime();
 
 //This sets the items that are in shops.
 function shopItemIDSetter()
@@ -2445,7 +2444,6 @@ function sceneryOperationsManager(z)
 //This function runs through the lists of Items and activates their operation functions.
 function ItemOperationsManager(z)
 {
-
     if (gameState == "active" || gameState == "stopTime")
     {
         for (var i = 0; i < worldItems.length; i++)
@@ -3024,10 +3022,12 @@ function theLegend()
     secondarySpells = [];
     tertiarySpells = [];
 //Well List
-    wellConversionList = [["pintGlass", "waterPintGlass"], ["barrel", "barrelOfWater"], ["walrusLeatherWaterskin", "walrusLeatherWaterskinFull"], ["bucket", "bucketOfWater"], ["potionGlass", "vialOfWater"], ["kellishClayPot", "kellishClayPotOfWater"], ["glassBottle", "glassBottleOfWater"], ["naapridDrinkinghorn", "naapridDrinkinghornFull"], ["grailOfEternity", "theGrailOfEternity"]];
+    wellConversionList = [["pintGlass", "waterPintGlass"], ["barrel", "barrelOfWater"], ["ashwoodBarrel", "ashwoodBarrelOfWater"], ["walrusLeatherWaterskin", "walrusLeatherWaterskinFull"], ["bucket", "bucketOfWater"], ["potionGlass", "vialOfWater"], ["kellishClayPot", "kellishClayPotOfWater"], ["glassBottle", "glassBottleOfWater"], ["naapridDrinkinghorn", "naapridDrinkinghornFull"], ["vardanianBowl", "vardanianBowlOfWater"], ["vardanianPot", "vardanianPotOfWater"], ["grailOfEternity", "theGrailOfEternity"]];
 //Milking/Juicing/Sapping Lists
-    naapridConversionList = [["bucket", "bucketOfNaapridMilk"], ["kellishClayPot", "kellishClayPotOfNaapridMilk"], ["naapridDrinkinghorn", "naapridMilkhornFull"], ["grailOfEternity", "theGrailOfEternity"]];
-    waantiConversionList = [["bucket", "bucketOfWaantiMilk"], ["kellishClayPot", "kellishClayPotOfWaantiMilk"], ["grailOfEternity", "theGrailOfEternity"]];
+    naapridConversionList = [["bucket", "bucketOfNaapridMilk"], ["kellishClayPot", "kellishClayPotOfNaapridMilk"], ["naapridDrinkinghorn", "naapridMilkhornFull"], ["vardanianBowl", "vardanianBowlOfNaapridMilk"], ["vardanianPot", "vardanianPotOfNaapridMilk"], ["grailOfEternity", "theGrailOfEternity"]];
+    waantiConversionList = [["bucket", "bucketOfWaantiMilk"], ["kellishClayPot", "kellishClayPotOfWaantiMilk"], ["vardanianBowl", "vardanianBowlOfWaantiMilk"], ["vardanianPot", "vardanianPotOfWaantiMilk"], ["grailOfEternity", "theGrailOfEternity"]];
+    bovineConversionList = [["bucket", "bucketOfBovineMilk"], ["kellishClayPot", "kellishClayPotOfBovineMilk"], ["vardanianBowl", "vardanianBowlOfBovineMilk"], ["vardanianPot", "vardanianPotOfBovineMilk"], ["grailOfEternity", "theGrailOfEternity"]];
+    mandrakeConversionList = [["bucketOfBovineMilk", "bucketOfMandrake"], ["kellishClayPotOfBovineMilk", "kellishClayPotOfMandrake"], ["vardanianBowlOfBovineMilk", "vardanianBowlOfMandrake"], ["vardanianPotOfBovineMilk", "vardanianPotOfMandrake"]];
 //conversations and dialogue
     conversationID = ["none", 0]; //[Person conversing with, stage in conversation]
     conversations =
@@ -3812,6 +3812,18 @@ function theLegend()
     allWorn.push(new Item("matadorOutfit", false)); //100
     allWorn.push(new Item("boarArmour", false)); //101
     allWorn.push(new Item("barracoPlateArmour", false)); //102
+    allWorn.push(new Item("jesterOutfit", false)); //103
+    allWorn.push(new Item("vardanianNobleOutfit", false)); //104
+    allWorn.push(new Item("vardanianRoyalDress", false)); //105
+    allWorn.push(new Item("vardanWearM", false)); //106
+    allWorn.push(new Item("vardanWearF", false)); //107
+    allWorn.push(new Item("vardanOutfitM", false)); //108
+    allWorn.push(new Item("vardanOutfitF", false)); //109
+    allWorn.push(new Item("hideBoots", false)); //110
+    allWorn.push(new Item("elkBoots", false)); //111
+    allWorn.push(new Item("elkGloves", false)); //112
+    allWorn.push(new Item("hideGloves", false)); //113
+    allWorn.push(new Item("jesterShoes", false)); //114
 
     scenicList = [];
 
@@ -3838,6 +3850,7 @@ function theLegend()
 //Smithing (Items crafted using an anvil)
     smithing = [];
     smithing.push(new Item("hammer", false));
+    smithing.push(new Item("shears", false));
     smithing.push(new Item("mace", false));
     smithing.push(new Item("longsword", false));
     smithing.push(new Item("kellishSawClub", false));
@@ -3851,6 +3864,7 @@ function theLegend()
     smithing.push(new Item("fireArrow", false));
     smithing.push(new Item("windArrow", false));
     smithing.push(new Item("barrel", false));
+    smithing.push(new Item("ashwoodBarrel", false));
     smithing.push(new Item("blueBlade", false));
     smithing.push(new Item("nirineseSabre", false));
     smithing.push(new Item("freydicSpear", false));
@@ -3928,6 +3942,8 @@ function theLegend()
     smithing.push(new Item("silkAndDagger", false));
     smithing.push(new Item("silverStake", false));
     smithing.push(new Item("nirwadenSabreAndShield", false));
+    smithing.push(new Item("vardanianBowl", false));
+    smithing.push(new Item("vardanianPot", false));
 
 
 //Foods (Items cooked at either a stove, an oven, or a campfire)
@@ -4048,6 +4064,8 @@ function theLegend()
     foods.push(new Item("garlicTialoPork", false));
     foods.push(new Item("searedFalder", false));
     foods.push(new Item("searedSalmon", false));
+    foods.push(new Item("bovineRibMeat", false));
+    foods.push(new Item("smokedBovineRibMeat", false));
 
 
 
@@ -4128,6 +4146,18 @@ function theLegend()
     tailoring.push(new Item("aldrekiiTurbanRed", false));
     tailoring.push(new Item("aldrekiiTurbanPurple", false));
     tailoring.push(new Item("orgishClothing", false));
+    tailoring.push(new Item("jesterOutfit", false));
+    tailoring.push(new Item("vardanianNobleOutfit", false));
+    tailoring.push(new Item("vardanianRoyalDress", false));
+    tailoring.push(new Item("vardanWearM", false));
+    tailoring.push(new Item("vardanWearF", false));
+    tailoring.push(new Item("vardanOutfitM", false));
+    tailoring.push(new Item("vardanOutfitF", false));
+    tailoring.push(new Item("hideBoots", false));
+    tailoring.push(new Item("elkBoots", false));
+    tailoring.push(new Item("elkGloves", false));
+    tailoring.push(new Item("hideGloves", false));
+    tailoring.push(new Item("jesterShoes", false));
 
 //Jewelry (Items crafted at a jewler's station, rings, necklaces, cutting gems, glassblowing etc.)
     jewelry = [];
@@ -4196,11 +4226,15 @@ function theLegend()
     brewing.push(new Item("mead", false));
     brewing.push(new Item("glassBottleOfPluttWine", false));
     brewing.push(new Item("glassBottleOfErguerWine", false));
+    brewing.push(new Item("glassBottleOfChyoulWine", false));
+    brewing.push(new Item("glassBottleOfCranberryWine", false));
     brewing.push(new Item("barrelOfHarstAle", false));
     brewing.push(new Item("barrelOfSanthAle", false));
     brewing.push(new Item("barrelOfMead", false));
     brewing.push(new Item("caskOfPluttWine", false));
     brewing.push(new Item("caskOfErguerWine", false));
+    brewing.push(new Item("caskOfChyoulWine", false));
+    brewing.push(new Item("caskOfCranberryWine", false));
 
 //Forge
     forge = [];
@@ -4251,14 +4285,22 @@ function theLegend()
     handcrafted.push(new Item("jackOLantern", false));
     handcrafted.push(new Item("waterPintGlass", false));
     handcrafted.push(new Item("bucketOfPluttJuice", false));
+    handcrafted.push(new Item("bucketOfChyoulJuice", false));
+    handcrafted.push(new Item("bucketOfCranberryJuice", false));
+    handcrafted.push(new Item("chyoulJuicePintGlass", false));
+    handcrafted.push(new Item("cranberryJuicePintGlass", false));
     handcrafted.push(new Item("pluttJuicePintGlass", false));
     handcrafted.push(new Item("pluttCiderPintGlass", false));
     handcrafted.push(new Item("driedPluttBerries", false));
     handcrafted.push(new Item("driedPluttBerriesWithHoney", false));
     handcrafted.push(new Item("pluttWine", false));
     handcrafted.push(new Item("erguerWine", false));
+    handcrafted.push(new Item("chyoulWine", false));
+    handcrafted.push(new Item("cranberryWine", false));
     handcrafted.push(new Item("glassBottleOfPluttWine", false));
     handcrafted.push(new Item("glassBottleOfErguerWine", false));
+    handcrafted.push(new Item("glassBottleOfChyoulWine", false));
+    handcrafted.push(new Item("glassBottleOfCranberryWine", false));
     handcrafted.push(new Item("harstAle", false));
     handcrafted.push(new Item("santhAle", false));
     handcrafted.push(new Item("mead", false));
@@ -4292,6 +4334,18 @@ function theLegend()
     handcrafted.push(new Item("rawIemaTart", false));
     handcrafted.push(new Item("rawChonaTart", false));
     handcrafted.push(new Item("rawPolyapaTart", false));
+    handcrafted.push(new Item("vardanianPotOfWater", false));
+    handcrafted.push(new Item("vardanianPotOfWaantiMilk", false));
+    handcrafted.push(new Item("vardanianPotOfNaapridMilk", false));
+    handcrafted.push(new Item("vardanianPotOfBovineMilk", false));
+    handcrafted.push(new Item("vardanianPotOfSourCream", false));
+    handcrafted.push(new Item("vardanianPotOfMandrake", false));
+    handcrafted.push(new Item("vardanianBowlOfWater", false));
+    handcrafted.push(new Item("vardanianBowlOfWaantiMilk", false));
+    handcrafted.push(new Item("vardanianBowlOfNaapridMilk", false));
+    handcrafted.push(new Item("vardanianBowlOfBovineMilk", false));
+    handcrafted.push(new Item("vardanianBowlOfSourCream", false));
+    handcrafted.push(new Item("vardanianBowlOfMandrake", false));
 
 
     //Activate Important Game Functions Here:

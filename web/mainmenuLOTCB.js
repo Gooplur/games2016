@@ -732,6 +732,14 @@ function applySelectionsButton()
                 player.stamina = 4;
                 player.dexterity = 2;
             }
+            if (player.gender == "Male")
+            {
+                Inventory.push([new Item("vardanianNobleOutfit", false, false), 1]);
+            }
+            else
+            {
+                Inventory.push([new Item("vardanianRoyalDress", false, false), 1]);
+            }
         }
         else if (player.title == "Nobility" && player.raceName == "Cephrite" || player.title == "Royalty" && player.raceName == "Cephrite")
         {
@@ -1132,6 +1140,11 @@ function applySelectionsButton()
             }
         }
 
+        if (player.raceName == "Orgell")
+        {
+            Inventory.push([new Item("orgishClothing", false, false), 1]);
+        }
+
         if (player.raceName == "Aldrek")
         {
             if (player.gender == "Female")
@@ -1147,6 +1160,32 @@ function applySelectionsButton()
                 else
                 {
                     Inventory.push([new Item("aldrekiiTurbanPurple", false, false), 1]);
+                }
+            }
+        }
+
+        if (player.raceName == "Vardan")
+        {
+            if (player.title == "Peasant" || player.title == "Commoner")
+            {
+                if (player.gender == "Male")
+                {
+                    Inventory.push([new Item("vardanWearM", false, false), 1]);
+                }
+                else
+                {
+                    Inventory.push([new Item("vardanWearF", false, false), 1]);
+                }
+            }
+            else if (player.title == "Tradefolk" || player.title == "Highfolk")
+            {
+                if (player.gender == "Female")
+                {
+                    Inventory.push([new Item("vardanOutfitF", false, false), 1]);
+                }
+                else
+                {
+                    Inventory.push([new Item("vardanOutfitM", false, false), 1]);
                 }
             }
         }
@@ -2458,7 +2497,7 @@ function Selector(bX, bY, type, selNumMAX)
                 XXX.fillStyle = "black";
                 XXX.font = "20px Impact";
                 XXX.textAlign = "center";
-                XXX.fillText("Thengar", bX + 105, bY + 23);
+                XXX.fillText("Thengan", bX + 105, bY + 23);
                 //race attributes
                 //colour and race name
                 player.raceName = "Thengar";
@@ -2611,7 +2650,7 @@ function Selector(bX, bY, type, selNumMAX)
                 XXX.fillStyle = "black";
                 XXX.font = "20px Impact";
                 XXX.textAlign = "center";
-                XXX.fillText("Aldrek", bX + 105, bY + 23);
+                XXX.fillText("Aldrekii", bX + 105, bY + 23);
                 //race attributes
                 //colour and race name
                 player.raceName = "Aldrek";
@@ -2718,7 +2757,7 @@ function Selector(bX, bY, type, selNumMAX)
                 XXX.fillStyle = "black";
                 XXX.font = "20px Impact";
                 XXX.textAlign = "center";
-                XXX.fillText("Vardan", bX + 105, bY + 23);
+                XXX.fillText("Vardanian", bX + 105, bY + 23);
                 //race attributes
                 //colour and race name
                 player.raceName = "Vardan";
@@ -2774,7 +2813,7 @@ function Selector(bX, bY, type, selNumMAX)
                 XXX.fillStyle = "black";
                 XXX.font = "20px Impact";
                 XXX.textAlign = "center";
-                XXX.fillText("Cephrite", bX + 105, bY + 23);
+                XXX.fillText("Cephrian", bX + 105, bY + 23);
                 //race attributes
                 //colour and race name
                 player.raceName = "Cephrite";

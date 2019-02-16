@@ -17394,6 +17394,89 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.xAdjustment = 0;
             }
         }
+        else if (this.type == "Bovine") //Cow
+        {
+            this.damageFrame = "manual";
+            this.team = "herd";
+            this.baseTeam = this.team;
+            this.milkTime = new Date().getTime();
+            this.goatEatness = 0;
+            this.goatly = false;
+            this.tameREQ = 4;
+
+            if (this.alpha == true)
+            {
+                //STATS (non-variable)
+                this.magicalResistance = 0;
+                this.heatResistance = 0;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = Math.floor(Math.random() * 7) + 34;
+                this.health = this.healthMAX;
+                this.armour = 0;
+                this.speed = 1 + (Math.floor(Math.random() * 2) / 10);
+                this.rangeOfSight = 100; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.075; // 0.1 is a standard turn speed.
+                this.engagementRadius = 35;
+                this.sizeRadius = 24;
+                this.negateArmour = 0;
+                this.attackWait = 6;
+                this.contraPlayer = false;
+
+                this.alphaSize = 1.3;
+
+                this.yAdjustment = 0;
+                this.xAdjustment = 0;
+            }
+            else if (this.alpha == "baby")
+            {
+                //STATS (non-variable)
+                this.magicalResistance = 0;
+                this.heatResistance = 0;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = Math.floor(Math.random() * 6) + 9;
+                this.health = this.healthMAX;
+                this.armour = 0;
+                this.speed = 0.5 + (Math.floor(Math.random() * 2) / 10);
+                this.rangeOfSight = 120; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.09; // 0.1 is a standard turn speed.
+                this.engagementRadius = 35;
+                this.sizeRadius = 10;
+                this.negateArmour = 0;
+                this.attackWait = 4;
+                this.contraPlayer = false;
+
+                this.alphaSize = 0.76;
+
+                this.yAdjustment = 0;
+                this.xAdjustment = 0;
+            }
+            else
+            {
+                //STATS (non-variable)
+                this.magicalResistance = 0;
+                this.heatResistance = 0;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = Math.floor(Math.random() * 5) + 23;
+                this.health = this.healthMAX;
+                this.armour = 0;
+                this.speed = 0.8 + (Math.floor(Math.random() * 2) / 10);
+                this.rangeOfSight = 110; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.075; // 0.1 is a standard turn speed.
+                this.engagementRadius = 35;
+                this.sizeRadius = 16;
+                this.negateArmour = 0;
+                this.attackWait = 5;
+                this.contraPlayer = false;
+
+                this.alphaSize = 1;
+
+                this.yAdjustment = 0;
+                this.xAdjustment = 0;
+            }
+        }
         else if (this.type == "Horse") //caballo
         {
             this.damageFrame = "manual";
@@ -39064,6 +39147,345 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                                     {
                                         Inventory.splice(i, 1);
                                         Inventory.push([new Item(waantiConversionList[j][1], false, false), 1]);
+                                    }
+                                    else
+                                    {
+                                        Inventory[this.yaTiene][1] +=1;
+                                        Inventory.splice(i, 1);
+                                    }
+                                    this.doBreak = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (this.doBreak == true)
+                        {
+                            break;
+                        }
+                    }
+                }
+            }
+
+            //AI
+            if (this.alive == true) //Waanti's attack is used for grazing not attacking. //grazing heals them.
+            {
+                if (this.alpha == true)
+                {
+                    this.callForNearbyHelpFromType(500, "Waanti");
+                }
+                else if (this.alpha == "baby")
+                {
+                    this.callForNearbyHelpFromType(450, "Waanti");
+                }
+                else
+                {
+                    this.callForNearbyHelpFromType(350, "Waanti");
+                }
+
+                //this.deathChecker();
+                this.disturbedTimer();
+                this.visibleSight();
+                this.friendDecider();
+                this.targeting();
+                if (this.alpha == true)
+                {
+                    if (player.weaponEquipped == "none" && player.getSurvivalism() >= 12 && !this.disturbed)
+                    {
+                        if (this.target == player)
+                        {
+                            this.pointTowardsPlayer();
+                        }
+                        else if (this.target != "none")
+                        {
+                            this.pointTowards(this.target);
+                        }
+                    }
+                    else
+                    {
+                        if (this.target == player)
+                        {
+                            this.pointAwayFromPlayer();
+                        }
+                        else if (this.target != "none")
+                        {
+                            this.pointAway(this.target);
+                        }
+                    }
+                }
+                else if (this.alpha == "baby")
+                {
+                    if (player.weaponEquipped == "none" && player.getSurvivalism() >= 12 && !this.disturbed)
+                    {
+                        if (this.target == player)
+                        {
+                            this.pointTowardsPlayer();
+                        }
+                        else if (this.target != "none")
+                        {
+                            this.pointAway(this.target);
+                        }
+                    }
+                    else
+                    {
+                        if (this.target == player)
+                        {
+                            this.pointAwayFromPlayer();
+                        }
+                        else if (this.target != "none")
+                        {
+                            this.pointAway(this.target);
+                        }
+                    }
+                }
+                else
+                {
+                    if (player.weaponEquipped == "none" && player.getSurvivalism() >= 12 && !this.disturbed)
+                    {
+                        if (this.target == player)
+                        {
+                            this.pointTowardsPlayer();
+                        }
+                        else if (this.target != "none")
+                        {
+                            this.pointAway(this.target);
+                        }
+                    }
+                    else
+                    {
+                        if (this.target == player)
+                        {
+                            this.pointAwayFromPlayer();
+                        }
+                        else if (this.target != "none")
+                        {
+                            this.pointAway(this.target);
+                        }
+                    }
+                }
+                if (this.target == player && player.getSurvivalism() < 12 || this.target == player && this.disturbed || this.target == player && player.weaponEquipped != "none")
+                {
+                    this.moveInRelationToPlayer();
+                }
+                else if (this.target != "none")
+                {
+                    this.moveInRelationToThing(this.target);
+                }
+
+            }
+
+            //ANIMATIONS
+
+            if (this.alive == true)
+            {
+                if (this.moving && !this.attacking) //If moving and not attacking initiate moving animation...
+                {
+                    this.costumeEngine(2, 0.155, false);
+                }
+                else
+                {
+                    this.goatEatness += 1;
+                    if(this.goatEatness > (this.attackWait * 100))
+                    {
+                        this.costumeEngine(4, 0.045, true);
+                    }
+                }
+
+                // the frames/stages/costumes of the animation.
+                var theCostume = Math.floor(this.costume); //This rounds this.costume down to the nearest whole number.
+
+                //manual damaging
+                if (theCostume <= 0)
+                {
+                    if (this.goatly == true)
+                    {
+                        this.goatEatness = 0;
+                        this.goatly = false;
+                    }
+                    if (this.moving  && !this.attacking)
+                    {
+                        this.drawUnit(furr, 263, 12, 76, 46, -1/2 * 76 * this.alphaSize - this.xAdjustment, -1/2 * 46 * this.alphaSize - this.yAdjustment, 76 * this.alphaSize, 46 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(furr, 269, 109, 76, 46, -1/2 * 76 * this.alphaSize - this.xAdjustment, -1/2 * 46 * this.alphaSize - this.yAdjustment, 76 * this.alphaSize, 46 * this.alphaSize);
+                    }
+                }
+                else if (theCostume == 1)
+                {
+                    if (this.moving && !this.attacking)
+                    {
+                        this.drawUnit(furr, 268, 64, 76, 46, -1/2 * 76 * this.alphaSize - this.xAdjustment, -1/2 * 46 * this.alphaSize - this.yAdjustment, 76 * this.alphaSize, 46 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.damageDealt = false; //this resets the potential for the Unit to damage its target, because by this point the unit has already passed the damaging phase.
+                        this.drawUnit(furr, 271, 191, 76, 46, -1/2 * 76 * this.alphaSize - this.xAdjustment, -1/2 * 46 * this.alphaSize - this.yAdjustment, 76 * this.alphaSize, 46 * this.alphaSize);
+                    }
+                }
+                else if (theCostume == 2)
+                {
+                    if (this.moving && !this.attacking)
+                    {
+                        this.drawUnit(furr, 269, 109, 76, 46, -1/2 * 76 * this.alphaSize - this.xAdjustment, -1/2 * 46 * this.alphaSize - this.yAdjustment, 76 * this.alphaSize, 46 * this.alphaSize);
+                    }
+                    else
+                    {
+                        if (this.damageDealt == false) // if the Unit has not yet dealt damage to its target then...
+                        {
+                            this.health = Math.min(this.healthMAX, this.health + 0.2);
+                            this.damageDealt = true; //tell the loop that the Unit has already dealt the damage for this attack.
+                        }
+                        this.drawUnit(furr, 271, 147, 76, 46, -1/2 * 76 * this.alphaSize - this.xAdjustment, -1/2 * 46 * this.alphaSize - this.yAdjustment, 76 * this.alphaSize, 46 * this.alphaSize);
+                    }
+                }
+                else if (theCostume == 3)
+                {
+                    if (this.moving && !this.attacking)
+                    {
+                        this.drawUnit(furr, 269, 109, 76, 46, -1/2 * 76 * this.alphaSize - this.xAdjustment, -1/2 * 46 * this.alphaSize - this.yAdjustment, 76 * this.alphaSize, 46 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.goatly = true;
+                        this.drawUnit(furr, 271, 147, 76, 46, -1/2 * 76 * this.alphaSize - this.xAdjustment, -1/2 * 46 * this.alphaSize - this.yAdjustment, 76 * this.alphaSize, 46 * this.alphaSize);
+                    }
+                }
+            }
+            else
+            {
+                this.drawUnit(furr, 268, 236, 76, 46, -1/2 * 76 * this.alphaSize - this.xAdjustment, -1/2 * 46 * this.alphaSize - this.yAdjustment, 76 * this.alphaSize, 46 * this.alphaSize);
+            }
+
+            if (this.X != this.plantedX || this.Y != this.plantedY)
+            {
+                console.log(this.plantedX + " " + this.X)
+                this.attacking = false;
+            }
+            else
+            {
+                this.attacking = true;
+            }
+
+            this.plantedX = this.X;
+            this.plantedY = this.Y;
+
+        }
+        //BOVINE
+        if (this.type == "Bovine") //cow
+        {
+            //Set Drops and experience
+            if (this.alpha == true)
+            {
+                if (Math.max(0, 9 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 3 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = (3 * ((player.getIntelligence() / 50) + 1)) / 10;
+                }
+
+                if (player.getIntelligence() >= 15)
+                {
+                    this.drops = [[new Item("rawBovineRibs", this.X, this.Y), 3], [new Item("bovineHide", this.X, this.Y), 2], [new Item("bovineMammaryGlands", this.X, this.Y), 2]];
+                }
+                else
+                {
+                    this.drops = [[new Item("rawBovineRibs", this.X, this.Y), 3], [new Item("bovineHide", this.X, this.Y), 2]];
+                }
+            }
+            else if (this.alpha == "baby")
+            {
+                if (Math.max(0, 2 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 1 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = (1 * ((player.getIntelligence() / 50) + 1)) / 10;
+                }
+
+                this.drops = [[new Item("rawBovineRibs", this.X, this.Y), 1]];
+            }
+            else
+            {
+                if (Math.max(0, 6 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 2 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = (2 * ((player.getIntelligence() / 50) + 1)) / 10;
+                }
+
+                if (player.getIntelligence() >= 15)
+                {
+                    this.drops = [[new Item("rawBovineRibs", this.X, this.Y), 3], [new Item("bovineHide", this.X, this.Y), 1], [new Item("bovineMammaryGlands", this.X, this.Y), 1]];
+                }
+                else
+                {
+                    this.drops = [[new Item("rawBovineRibs", this.X, this.Y), 3], [new Item("bovineHide", this.X, this.Y), 1]];
+                }
+            }
+
+            //RANGE OF SIGHT (anything related to range of sight)
+
+            if (this.alpha == true)
+            {
+                this.rangeOfSightCalculator(100, false);
+            }
+            else if (this.alpha == "baby")
+            {
+                this.rangeOfSightCalculator(120, false);
+            }
+            else
+            {
+                this.rangeOfSightCalculator(110, false);
+            }
+            //Milking Cow
+            if (this.alpha != "baby" && player.getSurvivalism() >= 1 && X - mouseX + 1/2 * CCC.width < this.X + this.sizeRadius && X - mouseX + 1/2 * CCC.width > this.X - this.sizeRadius && Y - mouseY + 1/2 * CCC.height < this.Y + this.sizeRadius && Y - mouseY + 1/2 * CCC.height > this.Y - this.sizeRadius)
+            {
+                if (this.DTP() <= this.sizeRadius + 70 && dClick && new Date().getTime() > this.milkTime + 90000)
+                {
+                    this.milkTime = new Date().getTime();
+                    this.doBreak = false;
+                    this.yaTiene = false;
+
+                    for (var i = 0; i < Inventory.length; i++)
+                    {
+                        for (var j = 0; j < bovineConversionList.length; j++)
+                        {
+                            //console.log(Inventory[i][0].type + " v.s. "  + bovineConversionList[j][0]);
+                            if (Inventory[i][0].type == bovineConversionList[j][0])
+                            {
+                                for (var k = 0; k < Inventory.length; k++)
+                                {
+                                    if (Inventory[k][0].type == bovineConversionList[j][1])
+                                    {
+                                        this.yaTiene = k;
+                                    }
+                                }
+
+                                if (Inventory[i][1] > 1)
+                                {
+                                    Inventory[i][1] -= 1;
+                                    if (this.yaTiene == false)
+                                    {
+                                        Inventory.push([new Item(bovineConversionList[j][1], false, false), 1]);
+                                    }
+                                    else
+                                    {
+                                        Inventory[this.yaTiene][1] +=1;
+                                    }
+                                    this.doBreak = true;
+                                    break;
+                                }
+                                else
+                                {
+                                    if (this.yaTiene == false)
+                                    {
+                                        Inventory.splice(i, 1);
+                                        Inventory.push([new Item(bovineConversionList[j][1], false, false), 1]);
                                     }
                                     else
                                     {

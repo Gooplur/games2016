@@ -21,6 +21,11 @@ function Item(type, x, y)
     this.fireProofing = 0;
     this.ingredients = [];
 
+    this.decay = 0;
+    this.decayable = false;
+    this.decayLimit = 10;
+    this.decayObjective = "rawFrichFlesh";
+
     this.turn = 0;
     this.flashFrame = 0;
     this.flashFrameTime = new Date().getTime();
@@ -6678,6 +6683,103 @@ function Item(type, x, y)
             this.buyValue = 3; // at max, buy for 3.
             this.sellValue = 2 + Math.floor(player.getCharisma() / 50); // at max, sell for 3.
         }
+        else if (this.type == "rawBovineRibs")
+        {
+            //For All Items
+            this.identity = "Raw Bovine Ribs";
+            this.weight = 2.5;
+            this.size = 14;
+            this.description = "The raw rib cut of a bovine.";
+            this.intForDes = 7;
+            this.intDescription = "The meat may have flesh mites, so it is best not to eat it raw.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 2.5; //satisfies hunger.
+            this.thirst = 0.2; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -4; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "fleshmites";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 10; // at max, buy for 10.
+            this.sellValue = 6 + Math.floor(player.getCharisma() / 12); // at max, sell for 10.
+        }
+        else if (this.type == "bovineRibs")
+        {
+            //For All Items
+            this.identity = "Bovine Rib Meat";
+            this.weight = 2.4;
+            this.size = 14;
+            this.description = "The cooked rib cut of a bovine.";
+            this.intForDes = 0;
+            this.intDescription = "The meat is hearty and tender.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 20; //satisfies hunger.
+            this.thirst = 0.5; //quenches thirst.
+            this.warmth = 6; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "satiate";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 16;
+            this.ingredients = [["Raw Bovine Ribs", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 19; // at max, buy for 19.
+            this.sellValue = 14 + Math.floor(player.getCharisma() / 10); // at max, sell for 19.
+        }
+        else if (this.type == "smokedBovineRibs")
+        {
+            //For All Items
+            this.identity = "Smoked Bovine Rib Meat";
+            this.weight = 2.4;
+            this.size = 14;
+            this.description = "The smoke-cooked rib cut of a bovine.";
+            this.intForDes = 0;
+            this.intDescription = "The meat is hearty, tender and smokey.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 22; //satisfies hunger.
+            this.thirst = 0.5; //quenches thirst.
+            this.warmth = 9; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 1; //recoops lost energy.
+            this.replenish = 0.15; //restores will.
+
+            //ability
+            this.ability = "satiate";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 22;
+            this.ingredients = [["Raw Bovine Ribs", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 26; // at max, buy for 26.
+            this.sellValue = 22 + Math.floor(player.getCharisma() / 12); // at max, sell for 26.
+        }
         else if (this.type == "rawCheshireFlesh")
         {
             //For All Items
@@ -6933,6 +7035,26 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 4 - Math.floor(player.getCharisma() / 50); // at max, buy for 3.
             this.sellValue = 2 + Math.floor(player.getCharisma() / 50); // at max, sell for 3.
+        }
+        else if (this.type == "bovineMammaryGlands")
+        {
+            //For All Items
+            this.identity = "Bovine Mammary Glands";
+            this.weight = 1.8;
+            this.size = 12;
+            this.description = "The milk producing glands from within a bovine's udder. ";
+            this.intForDes = 5;
+            this.intDescription = "This is used as a former in alchemy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 8 - Math.floor(player.getCharisma() / 50); // at max, buy for 7.
+            this.sellValue = 6 + Math.floor(player.getCharisma() / 50); // at max, sell for 7.
         }
         else if (this.type == "rawNogFlesh")
         {
@@ -8833,6 +8955,64 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 5 - Math.floor(player.getCharisma() / 25); // at max, buy for 3.
             this.sellValue = 2 + Math.floor(player.getCharisma() / 50); // at max, sell for 3.
+        }
+        else if (this.type == "chyoulBerries")
+        {
+            //For All Items
+            this.identity = "Chyoul Berries";
+            this.weight = 0.4;
+            this.size = 7;
+            this.description = "Chyoul berries are sweet with a thick throat coating fruity aftertaste.";
+            this.intForDes = 0;
+            this.intDescription = "They are extremely refreshing.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0.6; //satisfies hunger.
+            this.thirst = 1; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.06; //recoops lost energy.
+            this.replenish = 0.4; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+        }
+        else if (this.type == "cranberries")
+        {
+            //For All Items
+            this.identity = "Cranberries";
+            this.weight = 0.63;
+            this.size = 7;
+            this.description = "Bitter and sour tasting red berries.";
+            this.intForDes = 0;
+            this.intDescription = "They are sort of hard.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0.25; //satisfies hunger.
+            this.thirst = 0.01; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = -0.1; //heals health.
+            this.generation = -2; //recoops lost energy.
+            this.replenish = -2; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
         }
         else if (this.type == "iemaBerries")
         {
@@ -11402,6 +11582,290 @@ function Item(type, x, y)
             this.buyValue = 45 - Math.floor(player.getCharisma() / 3); // at max, buy for 30.
             this.sellValue = 15 + Math.floor(player.getCharisma() / 3); // at max, sell for 30.
         }
+        else if (this.type == "vardanianBowlOfNaapridMilk") //a vardanian bowl holds half as much as a bucket
+        {
+            //For All Items
+            this.identity = "Vardanian Bowl of Naaprid Milk";
+            this.weight = 3.5;
+            this.size = 12;
+            this.description = "An iron bowl filled with the thick creamy milk of a naaprid.";
+            this.intForDes = 3;
+            this.intDescription = "The Kellish were the first people to tame and farm naaprids for milk and meat.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["vardanianBowl", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 5; //satisfies hunger.
+            this.thirst = 17.5; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 1; //recoops lost energy.
+            this.replenish = 0.5; //restores will.
+
+            //ability
+            this.ability = "quench";
+
+            //Crafting
+            this.yield = 4;
+            this.intForCraft = 0;
+            this.biproducts = [[new Item("vardanianPot", false), 1]];
+            this.ingredients = [["Vardanian Pot of Naaprid Milk", 1], ["Vardanian Bowl", 4]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 21 - Math.floor(player.getCharisma() / 8); // at max, buy for 15.
+            this.sellValue = 11 + Math.floor(player.getCharisma() / 12); // at max, sell for 15.
+        }
+        else if (this.type == "vardanianBowlOfWaantiMilk")
+        {
+            //For All Items
+            this.identity = "Vardanian Bowl of Waanti Milk";
+            this.weight = 3.5;
+            this.size = 12;
+            this.description = "An iron bowl filled with the sour, gamey milk of a waanti.";
+            this.intForDes = 3;
+            this.intDescription = "Waanti are generally herded by the Freydic, and used for both milk and meat.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["vardanianBowl", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 3; //satisfies hunger.
+            this.thirst = 14; //quenches thirst.
+            this.warmth = 0.5; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.25; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "quench";
+
+            //Crafting
+            this.yield = 4;
+            this.intForCraft = 0;
+            this.biproducts = [[new Item("vardanianPot", false), 1]];
+            this.ingredients = [["Vardanian Pot of Waanti Milk", 1], ["Vardanian Bowl", 4]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 16 - Math.floor(player.getCharisma() / 25); // at max, buy for 14.
+            this.sellValue = 8 + Math.floor(player.getCharisma() / 8); // at max, sell for 14.
+        }
+        else if (this.type == "vardanianBowlOfSourCream")
+        {
+            //For All Items
+            this.identity = "Vardanian Bowl of Sour Cream";
+            this.weight = 8;
+            this.size = 12;
+            this.description = "Thick creamy milk curd that has a mild sour flavour.";
+            this.intForDes = 6;
+            this.intDescription = "Sour cream is formed by letting bovine milk sit at room temperature.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["vardanianBowl", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 18; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 4;
+            this.intForCraft = 0;
+            this.biproducts = [[new Item("vardanianPot", false), 1]];
+            this.ingredients = [["Vardanian Pot of Sour Cream", 1], ["Vardanian Bowl", 4]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 25 - Math.floor(player.getCharisma() / 6); // at max, buy for 17.
+            this.sellValue = 12 + Math.floor(player.getCharisma() / 10); // at max, sell for 17.
+        }
+        else if (this.type == "vardanianBowlOfMandrake")
+        {
+            //For All Items
+            this.identity = "Vardanian Bowl of Mandrake";
+            this.weight = 10;
+            this.size = 12;
+            this.description = "An iron bowl that contains a mandrake soaking in bovine milk.";
+            this.intForDes = 12;
+            this.intDescription = "The only way to avoid a mandrake's lethal cry is to soak it in bovine milk.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 4;
+            this.intForCraft = 0;
+            this.biproducts = [[new Item("vardanianPot", false), 1], [new Item("vardanianBowlOfBovineMilk", false), 3]];
+            this.ingredients = [["Vardanian Pot of Mandrake", 1], ["Vardanian Bowl", 4]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 28; // at max, buy for 28.
+            this.sellValue = 28; // at max, sell for 28.
+        }
+        else if (this.type == "bucketOfMandrake")
+        {
+            //For All Items
+            this.identity = "Bucket of Mandrake";
+            this.weight = 10;
+            this.size = 12;
+            this.description = "A bucket that contains a mandrake soaking in bovine milk.";
+            this.intForDes = 12;
+            this.intDescription = "The only way to avoid a mandrake's lethal cry is to soak it in bovine milk.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 28; // at max, buy for 28.
+            this.sellValue = 28; // at max, sell for 28.
+        }
+        else if (this.type == "kellishClayPotOfMandrake")
+        {
+            //For All Items
+            this.identity = "Kellish Clay Pot of Mandrake";
+            this.weight = 51;
+            this.size = 15;
+            this.description = "A kellish style of pot that contains a mandrake soaking in bovine milk.";
+            this.intForDes = 12;
+            this.intDescription = "The only way to avoid a mandrake's lethal cry is to soak it in bovine milk.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 37; // at max, buy for 37.
+            this.sellValue = 37; // at max, sell for 37.
+        }
+        else if (this.type == "vardanianBowlOfBovineMilk")
+        {
+            //For All Items
+            this.identity = "Vardanian Bowl of Bovine Milk";
+            this.weight = 5;
+            this.size = 12;
+            this.description = "An iron bowl filled with the thin watery milk of a bovine.";
+            this.intForDes = 3;
+            this.intDescription = "The Vardanians were the first people to tame and farm bovines for milk and meat.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["vardanianBowl", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1.5; //satisfies hunger.
+            this.thirst = 16; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.25; //recoops lost energy.
+            this.replenish = 0.1; //restores will.
+
+            this.decayable = true;
+            this.decayLimit = 20;
+            this.decayObjective = "vardanianBowlOfSourCream";
+
+            //ability
+            this.ability = "quench";
+
+            //Crafting
+            this.yield = 4;
+            this.intForCraft = 0;
+            this.biproducts = [[new Item("vardanianPot", false), 1]];
+            this.ingredients = [["Vardanian Pot of Bovine Milk", 1], ["Vardanian Bowl", 4]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 12 - Math.floor(player.getCharisma() / 12); // at max, buy for 8.
+            this.sellValue = 5 + Math.floor(player.getCharisma() / 15); // at max, sell for 8.
+        }
+        else if (this.type == "kellishClayPotOfBovineMilk")
+        {
+            //For All Items
+            this.identity = "Kellish Clay Pot of Bovine Milk";
+            this.weight = 49;
+            this.size = 15;
+            this.description = "A kellish style of pot filled with the milk of a bovine.";
+            this.intForDes = 8;
+            if (player.raceName == "Kel")
+            {
+                this.intForDes = 0;
+            }
+            this.intDescription = "This type of pot is traditionally used by the kellish to collect milk from the local naaprids.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["kellishClayPot", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 6; //satisfies hunger.
+            this.thirst = 57; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 1; //recoops lost energy.
+            this.replenish = 0.375; //restores will.
+
+            //ability
+            this.ability = "quench";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 48 - Math.floor(player.getCharisma() / 3.125); // at max, buy for 32.
+            this.sellValue = 22 + Math.floor(player.getCharisma() / 5); // at max, sell for 32.
+        }
+        else if (this.type == "bucketOfBovineMilk")
+        {
+            //For All Items
+            this.identity = "Bucket of Bovine Milk";
+            this.weight = 8;
+            this.size = 12;
+            this.description = "An iron bucket filled with the thin watery milk of a bovine.";
+            this.intForDes = 3;
+            this.intDescription = "The Vardanians were the first people to tame and farm bovines for milk and meat.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["bucket", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 3; //satisfies hunger.
+            this.thirst = 32; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.5; //recoops lost energy.
+            this.replenish = 0.2; //restores will.
+
+            //ability
+            this.ability = "quench";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 20 - Math.floor(player.getCharisma() / 6); // at max, buy for 12.
+            this.sellValue = 7 + Math.floor(player.getCharisma() / 10); // at max, sell for 12.
+        }
         else if (this.type == "bucketOfNaapridMilk")
         {
             //For All Items
@@ -11493,6 +11957,43 @@ function Item(type, x, y)
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 10 - Math.floor(player.getCharisma() / 10); // at max, buy for 5.
+            this.sellValue = 1 + Math.floor(player.getCharisma() / 25); // at max, sell for 3.
+        }
+        else if (this.type == "vardanianBowlOfWater") //a vardanian bowl holds half as much as a bucket
+        {
+            //For All Items
+            this.identity = "Vardanian Bowl of Water";
+            this.weight = 4.5;
+            this.size = 12;
+            this.description = "An iron bowl filled to the brim with water.";
+            this.intForDes = 1;
+            this.intDescription = "If the water spills out of the bowl the water will still be wet...";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["vardanianBowl", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 5; //satisfies hunger.
+            this.thirst = 17.5; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 1; //recoops lost energy.
+            this.replenish = 0.5; //restores will.
+
+            //ability
+            this.ability = "quench";
+
+            //Crafting
+            this.yield = 4;
+            this.intForCraft = 0;
+            this.biproducts = [[new Item("vardanianPot", false), 1]];
+            this.ingredients = [["Vardanian Pot of Water", 1], ["Vardanian Bowl", 4]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5 - Math.floor(player.getCharisma() / 50); // at max, buy for 4.
             this.sellValue = 1 + Math.floor(player.getCharisma() / 25); // at max, sell for 3.
         }
         else if (this.type == "bucketOfTechiTea")
@@ -11605,6 +12106,153 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 119; // at max, buy for 119.
             this.sellValue = 85 + Math.floor(player.getCharisma() / 3); // at max, sell for 100.
+        }
+        else if (this.type == "bucketOfCranberryJuice")
+        {
+            //For All Items
+            this.identity = "Bucket of Cranberry Juice";
+            this.weight = 9;
+            this.size = 12;
+            this.description = "An iron bucket filled to the brim with fresh squeezed cranberry juice.";
+            this.intForDes = 0;
+            this.intDescription = "Cranberry juice is extremely bitter and sour.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["bucket", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 10; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = -2; //heals health.
+            this.generation = -10; //recoops lost energy.
+            this.replenish = -2; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 1;
+
+            this.ingredients = [["Bucket", 1], ["Cranberries", 30]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 16; // at max, buy for 16.
+            this.sellValue = 13 + Math.floor(player.getCharisma() / 15); // at max, sell for 16.
+        }
+        else if (this.type == "cranberryJuicePintGlass")
+        {
+            //For All Items
+            this.identity = "Pint Glass of Cranberry Juice";
+            this.weight = 1;
+            this.size = 6;
+            this.description = "A pint glass filled with fresh squeezed cranberry juice.";
+            this.intForDes = 0;
+            this.intDescription = "It is absurdly bitter, and very sour.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["pintGlass", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 1; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = -0.5; //heals health.
+            this.generation = -1.5; //recoops lost energy.
+            this.replenish = -0.5; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 10;
+            this.intForCraft = 0;
+            this.ingredients = [["Pint Glass", 10], ["Bucket of Cranberry Juice", 1]];
+            this.biproducts = [[[new Item("bucket", false), 1]]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+        }
+        else if (this.type == "bucketOfChyoulJuice")
+        {
+            //For All Items
+            this.identity = "Bucket of Chyoul Juice";
+            this.weight = 7;
+            this.size = 12;
+            this.description = "An iron bucket filled to the brim with fresh squeezed chyoul berry juice.";
+            this.intForDes = 0;
+            this.intDescription = "Chyoul juice is sweet with a thick throat coating fruity aftertaste.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["bucket", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 8; //satisfies hunger.
+            this.thirst = 42; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 2; //recoops lost energy.
+            this.replenish = 3; //restores will.
+
+            //ability
+            this.ability = "bigQuench";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 1;
+            this.ingredients = [["Bucket", 1], ["Chyoul Berries", 20]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 80 - Math.floor(player.getCharisma() / 5); // at max, buy for 70.
+            this.sellValue = 40 + Math.floor(player.getCharisma() / 1.66667); // at max, sell for 70.
+        }
+        else if (this.type == "chyoulJuicePintGlass")
+        {
+            //For All Items
+            this.identity = "Pint Glass of Chyoul Juice";
+            this.weight = 1;
+            this.size = 6;
+            this.description = "A pint glass filled with fresh squeezed chyoul berry juice.";
+            this.intForDes = 0;
+            this.intDescription = "It has a thick throat coating fruityness and a smooth sweet flavour.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["pintGlass", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0.8; //satisfies hunger.
+            this.thirst = 7; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.2; //recoops lost energy.
+            this.replenish = 0.4; //restores will.
+
+            //ability
+            this.ability = "quench";
+
+            //Crafting
+            this.yield = 10;
+            this.intForCraft = 0;
+            this.ingredients = [["Pint Glass", 10], ["Bucket of Chyoul Juice", 1]];
+            this.biproducts = [[[new Item("bucket", false), 1]]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 12; // at max, buy for 12.
+            this.sellValue = 11 + Math.floor(player.getCharisma() / 50); // at max, sell for 12.
         }
         else if (this.type == "bucketOfPluttJuice")
         {
@@ -11823,6 +12471,62 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 1000000; // at max, buy for 1000000.
             this.sellValue = 1000000; // at max, sell for 1000000.
+        }
+        else if (this.type == "theBloodyChalice")
+        {
+            //For All Items
+            this.identity = "The Bloody Chalice";
+            this.weight = 30;
+            this.size = 13;
+            this.description = "A cursed chalice that is marked with the signs of a powerful arch demon.";
+            this.intForDes = 0;
+            this.intDescription = "The chalice is filled with the blood of the innocent. To drink from it is to make an eternal pact with an arch demon...";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["bloodyChalice", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1000; //satisfies hunger.
+            this.thirst = 1000; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 1000; //heals health.
+            this.generation = 1000; //recoops lost energy.
+            this.replenish = 1000; //restores will.
+
+            //ability
+            this.ability = "vamprism";
+
+            //Crafting
+            //this.yield = 1;
+            //this.intForCraft = 0;
+            //this.ingredients = [["Baby", 1], ["The Bloody Chalice", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 20000; // at max, buy for 20000.
+            this.sellValue = 20000; // at max, sell for 20000.
+        }
+        else if (this.type == "bloodyChalice")
+        {
+            //For All Items
+            this.identity = "The Bloody Chalice";
+            this.weight = 20;
+            this.size = 13;
+            this.description = "A cursed chalice that is marked with the signs of a powerful arch demon.";
+            this.intForDes = 0;
+            this.intDescription = "It is said that if one drinks the blood of the innocent from this chalice they will be granted immense power.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 20000; // at max, buy for 20000.
+            this.sellValue = 20000; // at max, sell for 20000.
         }
         else if (this.type == "naapridDrinkinghorn")
         {
@@ -12138,6 +12842,51 @@ function Item(type, x, y)
             this.buyValue = 7 - Math.floor(player.getCharisma() / 50); // at max, buy for 6.
             this.sellValue = 1 + Math.floor(player.getCharisma() / 10); // at max, sell for 6.
         }
+        else if (this.type == "ashwoodBarrel")
+        {
+            //For All Items
+            this.identity = "Ashwood Barrel";
+            this.weight = 20;
+            this.size = 18;
+            this.description = "A barrel made of ashwood.";
+            this.intForDes = 0;
+            this.intDescription = "Its empty.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 15;
+            this.ingredients = [["Ashwood", 8], ["Ashwood Powder", 4]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 40; // at max, buy for 40.
+            this.sellValue = 40; // at max, sell for 40.
+        }
+        else if (this.type == "ashwoodBarrelOfWater")
+        {
+            //For All Items
+            this.identity = "Ashwood Barrel Of Water";
+            this.weight = 20;
+            this.size = 18;
+            this.description = "A water filled barrel made of ashwood.";
+            this.intForDes = 0;
+            this.intDescription = "Its empty.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 40; // at max, buy for 40.
+            this.sellValue = 40; // at max, sell for 40.
+        }
         else if (this.type == "barrel")
         {
             //For All Items
@@ -12283,6 +13032,56 @@ function Item(type, x, y)
             this.buyValue = 2000; // at max, buy for 2000.
             this.sellValue = 2000; // at max, sell for 2000.
         }
+        else if (this.type == "caskOfCranberryWine")
+        {
+            //For All Items
+            this.identity = "Cask of Cranberry Wine";
+            this.weight = 215;
+            this.size = 18;
+            this.description = "A wooden barrel of cranberry wine.";
+            this.intForDes = 1;
+            this.intDescription = "Cranberry wine is made from cranberries... just in case you were curious.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 30;
+            this.ingredients = [["Barrel", 1], ["Cranberries", 600]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 900; // at max, buy for 900.
+            this.sellValue = 900; // at max, sell for 900.
+        }
+        else if (this.type == "caskOfChyoulWine")
+        {
+            //For All Items
+            this.identity = "Cask of Chyoul Wine";
+            this.weight = 220;
+            this.size = 18;
+            this.description = "A wooden barrel of chyoul wine.";
+            this.intForDes = 1;
+            this.intDescription = "Chyoul wine is made from chyoul berries.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 42;
+            this.ingredients = [["Ashwood Barrel", 1], ["Chyoul Berries", 720]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2605; // at max, buy for 2605.
+            this.sellValue = 2605; // at max, sell for 2605.
+        }
         else if (this.type == "caskOfErguerWine")
         {
             //For All Items
@@ -12345,6 +13144,82 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 5 - Math.floor(player.getCharisma() / 50); // at max, buy for 4.
             this.sellValue = 1 + Math.floor(player.getCharisma() / 15); // at max, sell for 4.
+        }
+        else if (this.type == "cranberryWine")
+        {
+            //For All Items
+            this.identity = "Pint of Cranberry Wine";
+            this.weight = 1;
+            this.size = 6;
+            this.description = "A glass pint of cranberry wine.";
+            this.intForDes = 1;
+            this.intDescription = "A sour alcoholic beverage made from cranberries.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["pintGlass", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 2; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -5; //recoops lost energy.
+            this.replenish = -8; //restores will.
+            this.alcohol = 65; //intoxicates the mind.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 4;
+            this.intForCraft = 0;
+            this.ingredients = [["Bottle of Cranberry Wine", 1], ["Pint Glass", 4]];
+            this.biproducts = [[new Item("glassBottle", false), 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 15; // at max, buy for 15.
+            this.sellValue = 15; // at max, sell for 15.
+        }
+        else if (this.type == "chyoulWine")
+        {
+            //For All Items
+            this.identity = "Pint of Chyoul Wine";
+            this.weight = 1;
+            this.size = 6;
+            this.description = "A glass pint of chyoul berry wine.";
+            this.intForDes = 0;
+            this.intDescription = "This smokey smelling wine is made from chyoul berries and it is is aged in Ashwood.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["pintGlass", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0.125; //satisfies hunger.
+            this.thirst = 6; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.9; //recoops lost energy.
+            this.replenish = -2.5; //restores will.
+            this.alcohol = 70; //intoxicates the mind.
+
+            //ability
+            this.ability = "quench";
+
+            //Crafting
+            this.yield = 4;
+            this.intForCraft = 0;
+            this.ingredients = [["Bottle of Chyoul Wine", 1], ["Pint Glass", 4]];
+            this.biproducts = [[new Item("glassBottle", false), 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 27 - Math.floor(player.getCharisma() / 25); // at max, buy for 25.
+            this.sellValue = 24 + Math.floor(player.getCharisma() / 50); // at max, sell for 25.
         }
         else if (this.type == "pluttWine")
         {
@@ -12460,6 +13335,44 @@ function Item(type, x, y)
             this.buyValue = 390 - Math.floor(player.getCharisma() / 5); // at max, buy for 380.
             this.sellValue = 365 + Math.floor(player.getCharisma() / 3); // at max, sell for 380.
         }
+        else if (this.type == "glassBottleOfCranberryWine")
+        {
+            //For All Items
+            this.identity = "Bottle of Cranberry Wine";
+            this.weight = 4;
+            this.size = 6;
+            this.description = "A bottle of cranberry wine.";
+            this.intForDes = 0;
+            this.intDescription = "It is a very bitter, and sour wine that tastes of leather, cranberries, and dirt.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["glassBottle", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 8; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -20; //recoops lost energy.
+            this.replenish = -40; //restores will.
+            this.alcohol = 260; //intoxicates the mind.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 50;
+            this.intForCraft = 0;
+            this.ingredients = [["Glass Bottle", 50], ["Cask of Cranberry Wine", 1]];
+            this.biproducts = [[new Item("barrel", false), 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 55; // at max, buy for 55.
+            this.sellValue = 55; // at max, sell for 55.
+        }
         else if (this.type == "glassBottleOfPluttWine")
         {
             //For All Items
@@ -12497,6 +13410,44 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 82 - Math.floor(player.getCharisma() / 5); // at max, buy for 72.
             this.sellValue = 66 + Math.floor(player.getCharisma() / 8); // at max, sell for 72.
+        }
+        else if (this.type == "glassBottleOfChyoulWine")
+        {
+            //For All Items
+            this.identity = "Bottle of Chyoul Wine";
+            this.weight = 4;
+            this.size = 6;
+            this.description = "A bottle of Chyoul berry wine.";
+            this.intForDes = 0;
+            this.intDescription = "It is a dry, and particularly viscous wine that has a throat coating dried fruit flavour, and a hint of smokiness.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["glassBottle", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1; //satisfies hunger.
+            this.thirst = 20; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 4; //recoops lost energy.
+            this.replenish = -10; //restores will.
+            this.alcohol = 280; //intoxicates the mind.
+
+            //ability
+            this.ability = "quench";
+
+            //Crafting
+            this.yield = 50;
+            this.intForCraft = 0;
+            this.ingredients = [["Glass Bottle", 50], ["Cask of Chyoul Wine", 1]];
+            this.biproducts = [[new Item("ashwoodBarrel", false), 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 93 - Math.floor(player.getCharisma() / 3.846153846); // at max, buy for 80.
+            this.sellValue = 72 + Math.floor(player.getCharisma() / 6); // at max, sell for 80.
         }
         else if (this.type == "glassBottleOfWater")
         {
@@ -12641,6 +13592,216 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "vardanianBowl")
+        {
+            //For All Items
+            this.identity = "Vardanian Bowl";
+            this.weight = 1;
+            this.size = 9;
+            this.description = "A bowl made of iron.";
+            this.intForDes = 1;
+            this.intDescription = "You can eat things out of it!";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 3;
+            this.intForCraft = 8;
+            this.ingredients = [["Iron", 2]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3; // at max, buy for 3.
+            this.sellValue = 3; // at max, sell for 3.
+        }
+        else if (this.type == "vardanianPot") //holds 2 buckets of content or 4 vardanian bowls or approximately 1 kellish clay pot
+        {
+            //For All Items
+            this.identity = "Vardanian Pot";
+            this.weight = 14;
+            this.size = 14;
+            this.description = "A pot made of iron.";
+            this.intForDes = 1;
+            this.intDescription = "You can use it to make large amounts of food or to store things in.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 14;
+            this.ingredients = [["Iron", 3]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 14; // at max, buy for 14.
+            this.sellValue = 14; // at max, sell for 14.
+        }
+        else if (this.type == "vardanianPotOfWaantiMilk") //holds 2 buckets of content or 4 vardanian bowls or approximately 1 kellish clay pot
+        {
+            //For All Items
+            this.identity = "Vardanian Pot of Waanti Milk";
+            this.weight = 24;
+            this.size = 14;
+            this.description = "An iron pot full up with waanti milk.";
+            this.intForDes = 3;
+            this.intDescription = "Thats a lot of nipple juice in one pot!";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 0;
+            this.biproducts = [[new Item("vardanianBowl", false), 4]];
+            this.ingredients = [["Vardanian Pot", 1], ["Vardanian Bowl of Waanti Milk", 4]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 69; // at max, buy for 69.
+            this.sellValue = 37; // at max, sell for 37.
+        }
+        else if (this.type == "vardanianPotOfBovineMilk") //holds 2 buckets of content or 4 vardanian bowls or approximately 1 kellish clay pot
+        {
+            //For All Items
+            this.identity = "Vardanian Pot of Bovine Milk";
+            this.weight = 28;
+            this.size = 14;
+            this.description = "An iron pot full up with bovine milk.";
+            this.intForDes = 3;
+            this.intDescription = "Bovine milk is thin and watery... but still nutricious.";
+
+            //Define Utility
+            this.utility = "material";
+
+            this.decayable = true;
+            this.decayLimit = 20;
+            this.decayObjective = "vardanianPotOfSourCream";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 0;
+            this.biproducts = [[new Item("vardanianBowl", false), 4]];
+            this.ingredients = [["Vardanian Pot", 1], ["Vardanian Bowl of Bovine Milk", 4]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 51; // at max, buy for 51.
+            this.sellValue = 25; // at max, sell for 25.
+        }
+        else if (this.type == "vardanianPotOfMandrake") //holds 2 buckets of content or 4 vardanian bowls or approximately 1 kellish clay pot
+        {
+            //For All Items
+            this.identity = "Vardanian Pot of Mandrake";
+            this.weight = 30;
+            this.size = 14;
+            this.description = "An iron pot that contains a mandrake soaking in bovine milk.";
+            this.intForDes = 12;
+            this.intDescription = "The only way to avoid a mandrake's lethal cry is to soak it in bovine milk.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 0;
+            this.biproducts = [[new Item("vardanianBowl", false), 4]];
+            this.ingredients = [["Vardanian Bowl of Mandrake", 1], ["Vardanian Bowl of Bovine Milk", 3]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 39; // at max, buy for 39.
+            this.sellValue = 39; // at max, sell for 39.
+        }
+        else if (this.type == "vardanianPotOfNaapridMilk") //holds 2 buckets of content or 4 vardanian bowls or approximately 1 kellish clay pot
+        {
+            //For All Items
+            this.identity = "Vardanian Pot of Naaprid Milk";
+            this.weight = 24;
+            this.size = 14;
+            this.description = "An iron pot full up with Naaprid milk.";
+            this.intForDes = 1;
+            this.intDescription = "Mmmm, thick n' creamy goodness!!";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 0;
+            this.biproducts = [[new Item("vardanianBowl", false), 4]];
+            this.ingredients = [["Vardanian Pot", 1], ["Vardanian Bowl of Naaprid Milk", 4]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 87; // at max, buy for 87.
+            this.sellValue = 44; // at max, sell for 44.
+        }
+        else if (this.type == "vardanianPotOfWater") //holds 2 buckets of content or 4 vardanian bowls or approximately 1 kellish clay pot
+        {
+            //For All Items
+            this.identity = "Vardanian Pot of Water";
+            this.weight = 32;
+            this.size = 14;
+            this.description = "A water filled pot made of iron.";
+            this.intForDes = 1;
+            this.intDescription = "A lot of water in a pot...";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 0;
+            this.biproducts = [[new Item("vardanianBowl", false), 4]];
+            this.ingredients = [["Vardanian Pot", 1], ["Vardanian Bowl of Water", 4]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 18; // at max, buy for 18.
+            this.sellValue = 14; // at max, sell for 14.
+        }
+        else if (this.type == "vardanianPotOfSourCream") //holds 2 buckets of content or 4 vardanian bowls or approximately 1 kellish clay pot
+        {
+            //For All Items
+            this.identity = "Vardanian Pot of Sour Cream";
+            this.weight = 32;
+            this.size = 14;
+            this.description = "An iron pot filled with sour cream.";
+            this.intForDes = 1;
+            this.intDescription = "Sour cream is formed when bovine milk sits out at room temperature...";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 0;
+            this.biproducts = [[new Item("vardanianBowl", false), 4]];
+            this.ingredients = [["Vardanian Pot", 1], ["Vardanian Bowl of Water", 4]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 58; // at max, buy for 58.
+            this.sellValue = 36; // at max, sell for 36.
         }
         else if (this.type == "bowlOfMushroomStew")
         {
@@ -16959,6 +18120,31 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 13 - Math.floor(player.getCharisma() / 15); // at max, buy for 10.
             this.sellValue = 5 + Math.floor(player.getCharisma() / 15); // at max, sell for 8.
+        }
+        else if (this.type == "shears")
+        {
+            //For All Items
+            this.identity = "Shears";
+            this.weight = 1;
+            this.size = 10;
+            this.description = "A pair of iron shears.";
+            this.intForDes = 2;
+            this.intDescription = "This tool is used to obtain wool or fur from a variety of animals, most notably sheep. Shears are also necessary to pick certain plants.";
+
+            //Define Utility
+            this.utility = "tool";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 10;
+            this.ingredients = [["Iron", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 7 - Math.floor(player.getCharisma() / 50); // at max, buy for 6.
+            this.sellValue = 5 + Math.floor(player.getCharisma() / 50); // at max, sell for 6.
         }
         else if (this.type == "tent")
         {
@@ -22593,7 +23779,7 @@ function Item(type, x, y)
             this.size = 8;
             this.description = "A meticulously and skillfully crafted arrow of Aldrekii design.";
             this.intForDes = 4;
-            this.intDescription = "The Aldrek are famed for their talent in archery, but also for their expertly crafted bows and arrows.";
+            this.intDescription = "The Aldrekii are famed for their talent in archery, but also for their expertly crafted bows and arrows.";
 
             //Define Utility
             this.utility = "ammunition";
@@ -26049,6 +27235,184 @@ function Item(type, x, y)
             this.buyValue = 1000; // at max, buy for 1000.
             this.sellValue = 900 + Math.floor(player.getCharisma() / 0.5); // at max, sell for 1000.
         }
+        else if (this.type == "jesterOutfit")
+        {
+            //For All Items
+            this.identity = "Jester Outfit";
+            this.weight = 2;
+            this.size = 26;
+            this.description = "The garb worn by the comedians and hired clowns that perform for the upper classes.";
+            this.intForDes = 4;
+            this.intDescription = "A bad joke in the wrong court might mean a trip to the gallows.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0.5;
+            this.thirstRetention = 0.5;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = -15;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 1;
+            this.dexterityBonus = 2;
+            this.survivalismBonus = -5;
+            //Extra Stat Bonuses
+            this.sleepBonus = 3;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 30;
+            this.ingredients = [["Velvet", 3], ["Cloth", 8]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 110; // at max, buy for 110.
+            this.sellValue = 60 + Math.floor(player.getCharisma() / 1); // at max, sell for 110.
+        }
+        else if (this.type == "vardanianNobleOutfit")
+        {
+            //For All Items
+            this.identity = "Vardanian Count Outfit";
+            this.weight = 2.5;
+            this.size = 26;
+            this.description = "A red, black, and white velvet outfit with golden buttons, and a ruby embedded cap covered in pearls.";
+            this.intForDes = 1;
+            this.intDescription = "While the poor starve and suffer, the nobility spend liberally on fashion.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 1.2;
+            this.thirstRetention = 0;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 40;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 50;
+            this.ingredients = [["Velvet", 17], ["Silk", 4], ["Gold", 2], ["Pearl", 50]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 10200 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 10000.
+            this.sellValue = 9800 + Math.floor(player.getCharisma() / 0.25); // at max, sell for 10000.
+        }
+        else if (this.type == "vardanianRoyalDress")
+        {
+            //For All Items
+            this.identity = "Vardanian Countess Dress";
+            this.weight = 6;
+            this.size = 26;
+            this.description = "A patterned red velvet dress, and a golden tiara with an embedded ruby and a cloth hair covering.";
+            this.intForDes = 1;
+            this.intDescription = "While the poor starve and suffer, the nobility spend liberally on fashion.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0.3;
+            this.thirstRetention = 0;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            if (player.gender == "Male")
+            {
+                this.charismaBonus = -50;
+            }
+            else
+            {
+                this.charismaBonus = 41;
+            }
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "heavy";
+
+            this.yield = 1;
+            this.intForCraft = 50;
+            this.ingredients = [["Velvet", 20], ["Silk", 8], ["Gold", 4], ["Ruby", 3], ["Cloth", 2]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5200 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 5000.
+            this.sellValue = 4800 + Math.floor(player.getCharisma() / 0.25); // at max, sell for 5000.
+        }
         else if (this.type == "nirwadenNobleOutfit")
         {
             //For All Items
@@ -26514,6 +27878,248 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 90 - Math.floor(player.getCharisma() / 2); // at max, buy for 65.
             this.sellValue = 30 + Math.floor(player.getCharisma() / 2); // at max, sell for 55.
+        }
+        else if (this.type == "vardanWearF")
+        {
+            //For All Items
+            this.identity = "Vardanian Peasant Dress";
+            this.weight = 2;
+            this.size = 26;
+            this.description = "A thick red dress with a white shawl.";
+            this.intForDes = 2;
+            this.intDescription = "A dress worn by the vardanian peasant women.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 2;
+            this.thirstRetention = -0.5;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            if (player.gender == "Male")
+            {
+                this.charismaBonus = -50;
+            }
+            else
+            {
+                this.charismaBonus = 3;
+            }
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = -3;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 16;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "hefty";
+
+            this.yield = 3;
+            this.intForCraft = 27;
+            this.ingredients = [["Elk Pelt", 2], ["Cloth", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 22 - Math.floor(player.getCharisma() / 8); // at max, buy for 16.
+            this.sellValue = 13 + Math.floor(player.getCharisma() / 15); // at max, sell for 16.
+        }
+        else if (this.type == "vardanWearM")
+        {
+            //For All Items
+            this.identity = "Vardanian Peasant Clothing";
+            this.weight = 2;
+            this.size = 26;
+            this.description = "A thick elk fur gown and a pointed fur hat.";
+            this.intForDes = 2;
+            this.intDescription = "An outfit worn by the vardanian peasant men.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 2;
+            this.thirstRetention = -0.5;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 1;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = -1;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 16;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 2;
+            this.intForCraft = 23;
+            this.ingredients = [["Elk Pelt", 1], ["Cloth", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 16 - Math.floor(player.getCharisma() / 15); // at max, buy for 13.
+            this.sellValue = 11 + Math.floor(player.getCharisma() / 25); // at max, sell for 13.
+        }
+        else if (this.type == "vardanOutfitF")
+        {
+            //For All Items
+            this.identity = "Fine Vardanian Dress";
+            this.weight = 1.5;
+            this.size = 26;
+            this.description = "A patterned silken magenta dress with an elk fur shawl.";
+            this.intForDes = 2;
+            this.intDescription = "A dress worn by the more wealthy vardanian women.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 1.1;
+            this.thirstRetention = -0.3;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            if (player.gender == "Male")
+            {
+                this.charismaBonus = -50;
+            }
+            else
+            {
+                this.charismaBonus = 6;
+            }
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = -3;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 8;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "hefty";
+
+            this.yield = 1;
+            this.intForCraft = 34;
+            this.ingredients = [["Elk Pelt", 1], ["Cloth", 2], ["Silk", 6]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 110 - Math.floor(player.getCharisma() / 5); // at max, buy for 100.
+            this.sellValue = 90 + Math.floor(player.getCharisma() / 5); // at max, sell for 100.
+        }
+        else if (this.type == "vardanOutfitM")
+        {
+            //For All Items
+            this.identity = "Fine Vardanian Outfit";
+            this.weight = 1.5;
+            this.size = 26;
+            this.description = "A thick red and black gown.";
+            this.intForDes = 2;
+            this.intDescription = "An outfit worn by the more wealthy vardanian men.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 1.9;
+            this.thirstRetention = -0.4;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 5;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = -1;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 15;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 33;
+            this.ingredients = [["Elk Pelt", 2], ["Cloth", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 80 - Math.floor(player.getCharisma() / 5); // at max, buy for 70.
+            this.sellValue = 60 + Math.floor(player.getCharisma() / 5); // at max, sell for 70.
         }
         else if (this.type == "frichFurClothing")
         {
@@ -27399,6 +29005,296 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 4; // at max, buy for 4.
             this.sellValue = 3 + Math.floor(player.getCharisma() / 50); // at max, sell for 4.
+        }
+        else if (this.type == "hideBoots")
+        {
+            //For All Items
+            this.identity = "Hide Boots";
+            this.weight = 1.8;
+            this.size = 10;
+            this.description = "Boots sewn from bovine hide.";
+            this.intForDes = 0;
+            this.intDescription = "The high laced boots cover much of the shins.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "boots";
+            //Utility Focused
+            //protections
+            this.protection = 0.05 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0.15;
+            this.thirstRetention = 0;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 0;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 1;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 3;
+            this.intForCraft = 17;
+            this.ingredients = [["Bovine Hide", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 2; // at max, sell for 2.
+        }
+        else if (this.type == "hideGloves")
+        {
+            //For All Items
+            this.identity = "Hide Gloves";
+            this.weight = 1;
+            this.size = 10;
+            this.description = "Gloves sewn from bovine hide.";
+            this.intForDes = 0;
+            this.intDescription = "The long gloves cover much of the forearm.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "gloves";
+            //Utility Focused
+            //protections
+            this.protection = 0.03 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0.1;
+            this.thirstRetention = 0;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 0;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 5;
+            this.intForCraft = 15;
+            this.ingredients = [["Bovine Hide", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 2.
+            this.sellValue = 1; // at max, sell for 2.
+        }
+        else if (this.type == "elkBoots")
+        {
+            //For All Items
+            this.identity = "Elk Boots";
+            this.weight = 1.8;
+            this.size = 10;
+            this.description = "Boots sewn from elk pelt.";
+            this.intForDes = 0;
+            this.intDescription = "The boots are durable and keep your feet warm.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "boots";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0.25;
+            this.thirstRetention = 0;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 1;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 2;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 2;
+            this.hungerBonus = 1;
+            this.thirstBonus = 0;
+            this.warmthBonus = 3;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 2;
+            this.intForCraft = 43;
+            this.ingredients = [["Elk Pelt", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 18; // at max, buy for 18.
+            this.sellValue = 18; // at max, sell for 18.
+        }
+        else if (this.type == "elkGloves")
+        {
+            //For All Items
+            this.identity = "Elk Gloves";
+            this.weight = 1.2;
+            this.size = 10;
+            this.description = "Gloves sewn from elk pelt.";
+            this.intForDes = 0;
+            this.intDescription = "The gloves are long and cover much of the forearms.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "gloves";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0.125;
+            this.thirstRetention = 0;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 1;
+            this.rangedBonus = 1;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 1;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 3;
+            this.intForCraft = 44;
+            this.ingredients = [["Elk Pelt", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 13; // at max, buy for 13.
+            this.sellValue = 13; // at max, sell for 13.
+        }
+        else if (this.type == "jesterShoes")
+        {
+            //For All Items
+            this.identity = "Jester Shoes";
+            this.weight = 1;
+            this.size = 10;
+            this.description = "Curved pointy toed colorful slippers traditionally worn by a jester.";
+            this.intForDes = 0;
+            this.intDescription = "What funny shoes!";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "boots";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0.02;
+            this.thirstRetention = 0;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = -15;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 1;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 2;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 36;
+            this.ingredients = [["Cloth", 2]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 20; // at max, buy for 20.
+            this.sellValue = 20; // at max, sell for 20.
         }
         else if (this.type == "northernClothing")
         {
@@ -30747,10 +32643,180 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(dolls, 161, 77, 15, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 15 * 1, 23 * 1);
         }
-        else if (this.type == "barrel" || this.type == "barrelOfWater" || this.type == "barrelOfHarstAle" || this.type == "barrelOfSanthAle" || this.type == "barrelOfMead" || this.type == "caskOfPluttWine" || this.type == "caskOfErguerWine")
+        else if (this.type == "barrel" || this.type == "barrelOfWater" || this.type == "barrelOfHarstAle" || this.type == "barrelOfSanthAle" || this.type == "barrelOfMead" || this.type == "caskOfPluttWine" || this.type == "caskOfErguerWine" || this.type == "caskOfCranberryWine")
         {
             XXX.beginPath();
             XXX.drawImage(candlewic, 60, 167, 27, 29, X - this.X + (1/2 * CCC.width) - (1/2 * 27 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 29 * 1.5), 27 * 1.5, 29 * 1.5);
+        }
+        else if (this.type == "ashwoodBarrel" || this.type == "ashwoodBarrelOfWater" || this.type == "caskOfChyoulWine")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
+        }
+        else if (this.type == "theBloodyChalice")
+        {
+            XXX.beginPath();
+            XXX.drawImage(hydra, 11, 525, 15, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16 * 1.5), 15 * 1.5, 16 * 1.5);
+        }
+        else if (this.type == "bloodyChalice")
+        {
+            XXX.beginPath();
+            XXX.drawImage(hydra, 35, 525, 15, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16 * 1.5), 15 * 1.5, 16 * 1.5);
+        }
+        else if (this.type == "vardanianPot" || this.type == "vardanianPotOfWater" || this.type == "vardanianPotOfBovineMilk" || this.type == "vardanianPotOfWaantiMilk" || this.type == "vardanianPotOfNaapridMilk" || this.type == "vardanianPotOfSourCream" || this.type == "vardanianPotOfMandrake")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 612, 527, 27, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 27 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19 * 1.5), 27 * 1.5, 19 * 1.5);
+        }
+        else if (this.type == "vardanianBowl")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 477, 558, 18, 18, X - this.X + (1/2 * CCC.width) - (1/2 * 18 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 18 * 1.5), 18 * 1.5, 18 * 1.5);
+        }
+        else if (this.type == "vardanianBowlOfWater")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 545, 613, 18, 18, X - this.X + (1/2 * CCC.width) - (1/2 * 18 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 18 * 1.5), 18 * 1.5, 18 * 1.5);
+        }
+        else if (this.type == "vardanianBowlOfBovineMilk" || this.type == "vardanianBowlOfWaantiMilk" || this.type == "vardanianBowlOfNaapridMilk")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 478, 615, 18, 18, X - this.X + (1/2 * CCC.width) - (1/2 * 18 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 18 * 1.5), 18 * 1.5, 18 * 1.5);
+        }
+        else if (this.type == "vardanianBowlOfSourCream")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 907, 482, 17, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17 * 1.5), 17 * 1.5, 17 * 1.5);
+        }
+        else if (this.type == "vardanianBowlOfMandrake")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 857, 178, 30, 32, X - this.X + (1/2 * CCC.width) - (1/2 * 30 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 32 * 1.5), 30 * 1.5, 32 * 1.5);
+        }
+        else if (this.type == "bucketOfBovineMilk")
+        {
+            XXX.beginPath();
+            XXX.drawImage(hydra, 331, 389, 14, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 14 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 15 * 2), 14 * 2, 15 * 2);
+        }
+        else if (this.type == "bucketOfChyoulJuice")
+        {
+            XXX.beginPath();
+            XXX.drawImage(hydra, 389, 420, 14, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 14 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 15 * 2), 14 * 2, 15 * 2);
+        }
+        else if (this.type == "bucketOfCranberryJuice")
+        {
+            XXX.beginPath();
+            XXX.drawImage(hydra, 405, 420, 14, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 14 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 15 * 2), 14 * 2, 15 * 2);
+        }
+        else if (this.type == "bucketOfMandrake")
+        {
+            XXX.beginPath();
+            XXX.drawImage(hydra, 353, 426, 14, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 14 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 15 * 2), 14 * 2, 15 * 2);
+        }
+        else if (this.type == "kellishClayPotOfBovineMilk")
+        {
+            XXX.beginPath();
+            XXX.drawImage(hydra, 353, 365, 18, 20, X - this.X + (1/2 * CCC.width) - (1/2 * 18 * 1.7), Y - this.Y + (1/2 * CCC.height) - (1/2 * 20 * 1.7), 18 * 1.7, 20 * 1.7);
+        }
+        else if (this.type == "kellishClayPotOfMandrake")
+        {
+            XXX.beginPath();
+            XXX.drawImage(hydra, 330, 416, 18, 31, X - this.X + (1/2 * CCC.width) - (1/2 * 18 * 1.7), Y - this.Y + (1/2 * CCC.height) - (1/2 * 31 * 1.7), 18 * 1.7, 31 * 1.7);
+        }
+        else if (this.type == "chyoulJuicePintGlass" || this.type == "chyoulWine" )
+        {
+            XXX.beginPath();
+            XXX.drawImage(hydra, 441, 420, 13, 10, X - this.X + (1/2 * CCC.width) - (1/2 * 13 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 10 * 1.5), 13 * 1.5, 10 * 1.5);
+        }
+        else if (this.type == "cranberryJuicePintGlass" || this.type == "cranberryWine" )
+        {
+            XXX.beginPath();
+            XXX.drawImage(hydra, 376, 385, 13, 10, X - this.X + (1/2 * CCC.width) - (1/2 * 13 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 10 * 1.5), 13 * 1.5, 10 * 1.5);
+        }
+        else if (this.type == "glassBottleOfChyoulWine")
+        {
+            XXX.beginPath();
+            XXX.drawImage(hydra, 476, 413, 8, 9, X - this.X + (1/2 * CCC.width) - (1/2 * 8 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 9 * 2), 8 * 2, 9 * 2);
+        }
+        else if (this.type == "glassBottleOfCranberryWine")
+        {
+            XXX.beginPath();
+            XXX.drawImage(hydra, 411, 378, 8, 9, X - this.X + (1/2 * CCC.width) - (1/2 * 8 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 9 * 2), 8 * 2, 9 * 2);
+        }
+        else if (this.type == "cranberries")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 781, 115, 15, 13, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 13 * 1.2), 15 * 1.2, 13 * 1.2);
+        }
+        else if (this.type == "chyoulBerries")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 816, 169, 15, 13, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 13 * 1.5), 15 * 1.5, 13 * 1.5);
+        }
+        else if (this.type == "shears")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 855, 250, 32, 31, X - this.X + (1/2 * CCC.width) - (1/2 * 32 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 31 * 1), 32 * 1, 31 * 1);
+        }
+        else if (this.type == "jesterOutfit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(hydra, 902, 632, 58, 98, X - this.X + (1/2 * CCC.width) - (1/2 * 58 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 98 * 1.2), 58 * 1.2, 98 * 1.2);
+        }
+        else if (this.type == "vardanianNobleOutfit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(hydra, 1073, 629, 58, 98, X - this.X + (1/2 * CCC.width) - (1/2 * 58 * 1.25), Y - this.Y + (1/2 * CCC.height) - (1/2 * 98 * 1.25), 58 * 1.25, 98 * 1.25);
+        }
+        else if (this.type == "vardanianRoyalDress")
+        {
+            XXX.beginPath();
+            XXX.drawImage(hydra, 1014, 628, 58, 98, X - this.X + (1/2 * CCC.width) - (1/2 * 58 * 1.15), Y - this.Y + (1/2 * CCC.height) - (1/2 * 98 * 1.15), 58 * 1.15, 98 * 1.15);
+        }
+        else if (this.type == "jesterShoes")
+        {
+            XXX.beginPath();
+            XXX.drawImage(hydra, 830, 697, 43, 33, X - this.X + (1/2 * CCC.width) - (1/2 * 43 * 1.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 33 * 1.3), 43 * 1.3, 33 * 1.3);
+        }
+        else if (this.type == "vardanWearM")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 803, 328, 49, 89, X - this.X + (1/2 * CCC.width) - (1/2 * 49 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 89 * 1.2), 49 * 1.2, 89 * 1.2);
+        }
+        else if (this.type == "vardanWearF")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 854, 331, 49, 89, X - this.X + (1/2 * CCC.width) - (1/2 * 49 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 89 * 1.2), 49 * 1.2, 89 * 1.2);
+        }
+        else if (this.type == "vardanOutfitM")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 948, 331, 49, 89, X - this.X + (1/2 * CCC.width) - (1/2 * 49 * 1.25), Y - this.Y + (1/2 * CCC.height) - (1/2 * 89 * 1.25), 49 * 1.25, 89 * 1.25);
+        }
+        else if (this.type == "vardanOutfitF")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 903, 331, 49, 89, X - this.X + (1/2 * CCC.width) - (1/2 * 49 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 89 * 1.2), 49 * 1.2, 89 * 1.2);
+        }
+        else if (this.type == "hideBoots")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 952, 226, 31, 35, X - this.X + (1/2 * CCC.width) - (1/2 * 31 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 35 * 1.4), 31 * 1.4, 35 * 1.4);
+        }
+        else if (this.type == "elkBoots")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 901, 226, 45, 35, X - this.X + (1/2 * CCC.width) - (1/2 * 45 * 1.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 35 * 1.3), 45 * 1.3, 35 * 1.3);
+        }
+        else if (this.type == "elkGloves")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 942, 259, 45, 35, X - this.X + (1/2 * CCC.width) - (1/2 * 45 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 35 * 1.2), 45 * 1.2, 35 * 1.2);
+        }
+        else if (this.type == "hideGloves")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 902, 259, 45, 35, X - this.X + (1/2 * CCC.width) - (1/2 * 45 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 35 * 1.2), 45 * 1.2, 35 * 1.2);
         }
         else if (this.type == "silverStake")
         {
@@ -34760,6 +36826,176 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(candlewic, 61, 201, 27, 29, this.invX - (1/2 * 27 * 1.5), this.invY - (1/2 * 29 * 1.5), 27 * 1.5, 29 * 1.5);
         }
+        else if (this.type == "ashwoodBarrel" || this.type == "ashwoodBarrelOfWater" || this.type == "caskOfChyoulWine")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "theBloodyChalice")
+        {
+            LXX.beginPath();
+            LXX.drawImage(hydra, 80, 524, 15, 32, this.invX - (1/2 * 15 * 1.5), this.invY - (1/2 * 32 * 1.5), 15 * 1.5, 32 * 1.5);
+        }
+        else if (this.type == "bloodyChalice")
+        {
+            LXX.beginPath();
+            LXX.drawImage(hydra, 58, 524, 15, 32, this.invX - (1/2 * 15 * 1.5), this.invY - (1/2 * 32 * 1.5), 15 * 1.5, 32 * 1.5);
+        }
+        else if (this.type == "vardanianPot" || this.type == "vardanianPotOfWater" || this.type == "vardanianPotOfBovineMilk" || this.type == "vardanianPotOfWaantiMilk" || this.type == "vardanianPotOfNaapridMilk" || this.type == "vardanianPotOfSourCream" || this.type == "vardanianPotOfMandrake")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 584, 525, 26, 22, this.invX - (1/2 * 26 * 1.5), this.invY - (1/2 * 22 * 1.5), 26 * 1.5, 22 * 1.5);
+        }
+        else if (this.type == "vardanianBowl")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 442, 559, 26, 17, this.invX - (1/2 * 26 * 1.5), this.invY - (1/2 * 17 * 1.5), 26 * 1.5, 17 * 1.5);
+        }
+        else if (this.type == "vardanianBowlOfWater")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 510, 614, 26, 17, this.invX - (1/2 * 26 * 1.5), this.invY - (1/2 * 17 * 1.5), 26 * 1.5, 17 * 1.5);
+        }
+        else if (this.type == "vardanianBowlOfBovineMilk" || this.type == "vardanianBowlOfWaantiMilk" || this.type == "vardanianBowlOfNaapridMilk")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 443, 616, 26, 17, this.invX - (1/2 * 26 * 1.5), this.invY - (1/2 * 17 * 1.5), 26 * 1.5, 17 * 1.5);
+        }
+        else if (this.type == "vardanianBowlOfSourCream")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 872, 482, 26, 17, this.invX - (1/2 * 26 * 1.5), this.invY - (1/2 * 17 * 1.5), 26 * 1.5, 17 * 1.5);
+        }
+        else if (this.type == "vardanianBowlOfMandrake")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 850, 217, 45, 20, this.invX - (1/2 * 45 * 1.5), this.invY - (1/2 * 20 * 1.5), 45 * 1.5, 20 * 1.5);
+        }
+        else if (this.type == "bucketOfBovineMilk")
+        {
+            LXX.beginPath();
+            LXX.drawImage(hydra, 334, 364, 11, 18, this.invX - (1/2 * 11 * 2), this.invY - (1/2 * 18 * 2), 11 * 2, 18 * 2);
+        }
+        else if (this.type == "bucketOfChyoulJuice")
+        {
+            LXX.beginPath();
+            LXX.drawImage(hydra, 392, 395, 11, 18, this.invX - (1/2 * 11 * 2), this.invY - (1/2 * 18 * 2), 11 * 2, 18 * 2);
+        }
+        else if (this.type == "bucketOfCranberryJuice")
+        {
+            LXX.beginPath();
+            LXX.drawImage(hydra, 408, 395, 11, 18, this.invX - (1/2 * 11 * 2), this.invY - (1/2 * 18 * 2), 11 * 2, 18 * 2);
+        }
+        else if (this.type == "bucketOfMandrake")
+        {
+            LXX.beginPath();
+            LXX.drawImage(hydra, 354, 396, 16, 31, this.invX - (1/2 * 16 * 2), this.invY - (1/2 * 31 * 2), 16 * 2, 31 * 2);
+        }
+        else if (this.type == "kellishClayPotOfBovineMilk")
+        {
+            LXX.beginPath();
+            LXX.drawImage(hydra, 353, 365, 18, 20, this.invX - (1/2 * 18 * 1.7), this.invY - (1/2 * 20 * 1.7), 18 * 1.7, 20 * 1.7);
+        }
+        else if (this.type == "kellishClayPotOfMandrake")
+        {
+            LXX.beginPath();
+            LXX.drawImage(hydra, 330, 416, 18, 31, this.invX - (1/2 * 18 * 1.7), this.invY - (1/2 * 31 * 1.7), 18 * 1.7, 31 * 1.7);
+        }
+        else if (this.type == "chyoulJuicePintGlass" || this.type == "chyoulWine" )
+        {
+            LXX.beginPath();
+            LXX.drawImage(hydra, 441, 404, 12, 12, this.invX - (1/2 * 12 * 2), this.invY - (1/2 * 12 * 2), 12 * 2, 12 * 2);
+        }
+        else if (this.type == "cranberryJuicePintGlass" || this.type == "cranberryWine" )
+        {
+            LXX.beginPath();
+            LXX.drawImage(hydra, 376, 369, 12, 12, this.invX - (1/2 * 12 * 2), this.invY - (1/2 * 12 * 2), 12 * 2, 12 * 2);
+        }
+        else if (this.type == "glassBottleOfChyoulWine")
+        {
+            LXX.beginPath();
+            LXX.drawImage(hydra, 462, 407, 8, 21, this.invX - (1/2 * 8 * 2), this.invY - (1/2 * 21 * 2), 8 * 2, 21 * 2);
+        }
+        else if (this.type == "glassBottleOfCranberryWine")
+        {
+            LXX.beginPath();
+            LXX.drawImage(hydra, 397, 372, 8, 21, this.invX - (1/2 * 8 * 2), this.invY - (1/2 * 21 * 2), 8 * 2, 21 * 2);
+        }
+        else if (this.type == "cranberries")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 781, 115, 15, 13, this.invX - (1/2 * 15 * 1.2), this.invY - (1/2 * 13 * 1.2), 15 * 1.2, 13 * 1.2);
+        }
+        else if (this.type == "chyoulBerries")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 816, 169, 15, 13, this.invX - (1/2 * 15 * 1.5), this.invY - (1/2 * 13 * 1.5), 15 * 1.5, 13 * 1.5);
+        }
+        else if (this.type == "shears")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 855, 250, 32, 31, this.invX - (1/2 * 32 * 1), this.invY - (1/2 * 31 * 1), 32 * 1, 31 * 1);
+        }
+        else if (this.type == "jesterOutfit")
+        {
+            LXX.beginPath();
+            LXX.drawImage(hydra, 902, 632, 58, 98, this.invX - (1/2 * 58 * 0.85), this.invY - (1/2 * 98 * 0.85), 58 * 0.85, 98 * 0.85);
+        }
+        else if (this.type == "vardanianNobleOutfit")
+        {
+            LXX.beginPath();
+            LXX.drawImage(hydra, 1073, 629, 58, 98, this.invX - (1/2 * 58 * 0.9), this.invY - (1/2 * 98 * 0.9), 58 * 0.9, 98 * 0.9);
+        }
+        else if (this.type == "vardanianRoyalDress")
+        {
+            LXX.beginPath();
+            LXX.drawImage(hydra, 1014, 628, 58, 98, this.invX - (1/2 * 58 * 0.8), this.invY - (1/2 * 98 * 0.8), 58 * 0.8, 98 * 0.8);
+        }
+        else if (this.type == "jesterShoes")
+        {
+            LXX.beginPath();
+            LXX.drawImage(hydra, 830, 697, 43, 33, this.invX - (1/2 * 43 * 1), this.invY - (1/2 * 33 * 1), 43 * 1, 33 * 1);
+        }
+        else if (this.type == "vardanWearM")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 803, 328, 49, 89, this.invX - (1/2 * 49 * 0.85), this.invY - (1/2 * 89 * 0.85), 49 * 0.85, 89 * 0.85);
+        }
+        else if (this.type == "vardanWearF")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 854, 331, 49, 89, this.invX - (1/2 * 49 * 0.85), this.invY - (1/2 * 89 * 0.85), 49 * 0.85, 89 * 0.85);
+        }
+        else if (this.type == "vardanOutfitM")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 948, 331, 49, 89, this.invX - (1/2 * 49 * 0.85), this.invY - (1/2 * 89 * 0.85), 49 * 0.85, 89 * 0.85);
+        }
+        else if (this.type == "vardanOutfitF")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 903, 331, 49, 89, this.invX - (1/2 * 49 * 0.85), this.invY - (1/2 * 89 * 0.85), 49 * 0.85, 89 * 0.85);
+        }
+        else if (this.type == "hideBoots")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 952, 226, 31, 35, this.invX - (1/2 * 31 * 1), this.invY - (1/2 * 35 * 1), 31 * 1, 35 * 1);
+        }
+        else if (this.type == "elkBoots")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 901, 226, 45, 35, this.invX - (1/2 * 45 * 1), this.invY - (1/2 * 35 * 1), 45 * 1, 35 * 1);
+        }
+        else if (this.type == "elkGloves")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 942, 259, 45, 35, this.invX - (1/2 * 45 * 1), this.invY - (1/2 * 35 * 1), 45 * 1, 35 * 1);
+        }
+        else if (this.type == "hideGloves")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 902, 259, 45, 35, this.invX - (1/2 * 45 * 1), this.invY - (1/2 * 35 * 1), 45 * 1, 35 * 1);
+        }
         else if (this.type == "silverStake")
         {
             LXX.beginPath();
@@ -38742,6 +40978,176 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(candlewic, 61, 201, 27, 29, this.invX - (1/2 * 27 * 1.5), this.invY - (1/2 * 29 * 1.5), 27 * 1.5, 29 * 1.5);
+        }
+        else if (this.type == "ashwoodBarrel" || this.type == "ashwoodBarrelOfWater" || this.type == "caskOfChyoulWine")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "theBloodyChalice")
+        {
+            XXX.beginPath();
+            XXX.drawImage(hydra, 80, 524, 15, 32, this.invX - (1/2 * 15 * 1.5), this.invY - (1/2 * 32 * 1.5), 15 * 1.5, 32 * 1.5);
+        }
+        else if (this.type == "bloodyChalice")
+        {
+            XXX.beginPath();
+            XXX.drawImage(hydra, 58, 524, 15, 32, this.invX - (1/2 * 15 * 1.5), this.invY - (1/2 * 32 * 1.5), 15 * 1.5, 32 * 1.5);
+        }
+        else if (this.type == "vardanianPot" || this.type == "vardanianPotOfWater" || this.type == "vardanianPotOfBovineMilk" || this.type == "vardanianPotOfWaantiMilk" || this.type == "vardanianPotOfNaapridMilk" || this.type == "vardanianPotOfSourCream" || this.type == "vardanianPotOfMandrake")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 584, 525, 26, 22, this.invX - (1/2 * 26 * 1.5), this.invY - (1/2 * 22 * 1.5), 26 * 1.5, 22 * 1.5);
+        }
+        else if (this.type == "vardanianBowl")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 442, 559, 26, 17, this.invX - (1/2 * 26 * 1.5), this.invY - (1/2 * 17 * 1.5), 26 * 1.5, 17 * 1.5);
+        }
+        else if (this.type == "vardanianBowlOfWater")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 510, 614, 26, 17, this.invX - (1/2 * 26 * 1.5), this.invY - (1/2 * 17 * 1.5), 26 * 1.5, 17 * 1.5);
+        }
+        else if (this.type == "vardanianBowlOfBovineMilk" || this.type == "vardanianBowlOfWaantiMilk" || this.type == "vardanianBowlOfNaapridMilk")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 443, 616, 26, 17, this.invX - (1/2 * 26 * 1.5), this.invY - (1/2 * 17 * 1.5), 26 * 1.5, 17 * 1.5);
+        }
+        else if (this.type == "vardanianBowlOfSourCream")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 872, 482, 26, 17, this.invX - (1/2 * 26 * 1.5), this.invY - (1/2 * 17 * 1.5), 26 * 1.5, 17 * 1.5);
+        }
+        else if (this.type == "vardanianBowlOfMandrake")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 850, 217, 45, 20, this.invX - (1/2 * 45 * 1.5), this.invY - (1/2 * 20 * 1.5), 45 * 1.5, 20 * 1.5);
+        }
+        else if (this.type == "bucketOfBovineMilk")
+        {
+            XXX.beginPath();
+            XXX.drawImage(hydra, 334, 364, 11, 18, this.invX - (1/2 * 11 * 2), this.invY - (1/2 * 18 * 2), 11 * 2, 18 * 2);
+        }
+        else if (this.type == "bucketOfChyoulJuice")
+        {
+            XXX.beginPath();
+            XXX.drawImage(hydra, 392, 395, 11, 18, this.invX - (1/2 * 11 * 2), this.invY - (1/2 * 18 * 2), 11 * 2, 18 * 2);
+        }
+        else if (this.type == "bucketOfCranberryJuice")
+        {
+            XXX.beginPath();
+            XXX.drawImage(hydra, 408, 395, 11, 18, this.invX - (1/2 * 11 * 2), this.invY - (1/2 * 18 * 2), 11 * 2, 18 * 2);
+        }
+        else if (this.type == "bucketOfMandrake")
+        {
+            XXX.beginPath();
+            XXX.drawImage(hydra, 354, 396, 16, 31, this.invX - (1/2 * 16 * 2), this.invY - (1/2 * 31 * 2), 16 * 2, 31 * 2);
+        }
+        else if (this.type == "kellishClayPotOfBovineMilk")
+        {
+            XXX.beginPath();
+            XXX.drawImage(hydra, 353, 365, 18, 20, this.invX - (1/2 * 18 * 1.7), this.invY - (1/2 * 20 * 1.7), 18 * 1.7, 20 * 1.7);
+        }
+        else if (this.type == "kellishClayPotOfMandrake")
+        {
+            XXX.beginPath();
+            XXX.drawImage(hydra, 330, 416, 18, 31, this.invX - (1/2 * 18 * 1.7), this.invY - (1/2 * 31 * 1.7), 18 * 1.7, 31 * 1.7);
+        }
+        else if (this.type == "chyoulJuicePintGlass" || this.type == "chyoulWine" )
+        {
+            XXX.beginPath();
+            XXX.drawImage(hydra, 441, 404, 12, 12, this.invX - (1/2 * 12 * 1.5), this.invY - (1/2 * 12 * 1.5), 12 * 1.5, 12 * 1.5);
+        }
+        else if (this.type == "cranberryJuicePintGlass" || this.type == "cranberryWine" )
+        {
+            XXX.beginPath();
+            XXX.drawImage(hydra, 376, 369, 12, 12, this.invX - (1/2 * 12 * 1.5), this.invY - (1/2 * 12 * 1.5), 12 * 1.5, 12 * 1.5);
+        }
+        else if (this.type == "glassBottleOfChyoulWine")
+        {
+            XXX.beginPath();
+            XXX.drawImage(hydra, 462, 407, 8, 21, this.invX - (1/2 * 8 * 2), this.invY - (1/2 * 21 * 2), 8 * 2, 21 * 2);
+        }
+        else if (this.type == "glassBottleOfCranberryWine")
+        {
+            XXX.beginPath();
+            XXX.drawImage(hydra, 397, 372, 8, 21, this.invX - (1/2 * 8 * 2), this.invY - (1/2 * 21 * 2), 8 * 2, 21 * 2);
+        }
+        else if (this.type == "cranberries")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 781, 115, 15, 13, this.invX - (1/2 * 15 * 1.2), this.invY - (1/2 * 13 * 1.2), 15 * 1.2, 13 * 1.2);
+        }
+        else if (this.type == "chyoulBerries")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 816, 169, 15, 13, this.invX - (1/2 * 15 * 1.5), this.invY - (1/2 * 13 * 1.5), 15 * 1.5, 13 * 1.5);
+        }
+        else if (this.type == "shears")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 855, 250, 32, 31, this.invX - (1/2 * 32 * 1), this.invY - (1/2 * 31 * 1), 32 * 1, 31 * 1);
+        }
+        else if (this.type == "jesterOutfit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(hydra, 902, 632, 58, 98, this.invX - (1/2 * 58 * 0.85), this.invY - (1/2 * 98 * 0.85), 58 * 0.85, 98 * 0.85);
+        }
+        else if (this.type == "vardanianNobleOutfit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(hydra, 1073, 629, 58, 98, this.invX - (1/2 * 58 * 0.9), this.invY - (1/2 * 98 * 0.9), 58 * 0.9, 98 * 0.9);
+        }
+        else if (this.type == "vardanianRoyalDress")
+        {
+            XXX.beginPath();
+            XXX.drawImage(hydra, 1014, 628, 58, 98, this.invX - (1/2 * 58 * 0.8), this.invY - (1/2 * 98 * 0.8), 58 * 0.8, 98 * 0.8);
+        }
+        else if (this.type == "jesterShoes")
+        {
+            XXX.beginPath();
+            XXX.drawImage(hydra, 830, 697, 43, 33, this.invX - (1/2 * 43 * 1), this.invY - (1/2 * 33 * 1), 43 * 1, 33 * 1);
+        }
+        else if (this.type == "vardanWearM")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 803, 328, 49, 89, this.invX - (1/2 * 49 * 0.85), this.invY - (1/2 * 89 * 0.85), 49 * 0.85, 89 * 0.85);
+        }
+        else if (this.type == "vardanWearF")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 854, 331, 49, 89, this.invX - (1/2 * 49 * 0.85), this.invY - (1/2 * 89 * 0.85), 49 * 0.85, 89 * 0.85);
+        }
+        else if (this.type == "vardanOutfitM")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 948, 331, 49, 89, this.invX - (1/2 * 49 * 0.85), this.invY - (1/2 * 89 * 0.85), 49 * 0.85, 89 * 0.85);
+        }
+        else if (this.type == "vardanOutfitF")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 903, 331, 49, 89, this.invX - (1/2 * 49 * 0.85), this.invY - (1/2 * 89 * 0.85), 49 * 0.85, 89 * 0.85);
+        }
+        else if (this.type == "hideBoots")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 952, 226, 31, 35, this.invX - (1/2 * 31 * 1), this.invY - (1/2 * 35 * 1), 31 * 1, 35 * 1);
+        }
+        else if (this.type == "elkBoots")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 901, 226, 45, 35, this.invX - (1/2 * 45 * 1), this.invY - (1/2 * 35 * 1), 45 * 1, 35 * 1);
+        }
+        else if (this.type == "elkGloves")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 942, 259, 45, 35, this.invX - (1/2 * 45 * 1), this.invY - (1/2 * 35 * 1), 45 * 1, 35 * 1);
+        }
+        else if (this.type == "hideGloves")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 902, 259, 45, 35, this.invX - (1/2 * 45 * 1), this.invY - (1/2 * 35 * 1), 45 * 1, 35 * 1);
         }
         else if (this.type == "silverStake")
         {

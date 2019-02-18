@@ -41,7 +41,7 @@ lostPaddle - an oar for a boat
 crashedBoat - a rowboat that is in ruin
 barrel - decorative barrels (one with a spigot the other without)
 crate - decorative and storage-system-capable varieties of crates in two color schemes dark-wood and light-wood
-blood - 6 different bloodstain options for spilled blood
+blood - 9 different bloodstain options for spilled blood (7, 8, and 9 are darkened to a more Vardanian tone)
 thenganSandbox - A sandpit arena in the thengan style
 thenganBuilding1 - a thengan building
 thenganBuilding2 - a thengan building
@@ -143,7 +143,9 @@ deadBody - a scenic dead body of up to thirteen different races to choose from w
 spiritBasin - a nirinese basin for storing holy water
 nirwadenStadium - for tournaments and naaprid fights.
 stillFountain - a selection of stillwater fountains 0 - 3
-tombstone
+tombstone - a variety of tombstones
+lilypads - a selection of lily pad patches 0-2
+vardanianSwampBrush - swamp foliage that is variable in size based on a manual input
 
 
 

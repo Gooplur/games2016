@@ -1568,6 +1568,18 @@ function gargPack()
 
     garg.onload = function()
     {
+        tribalPack();
+    };
+}
+
+function tribalPack()
+{
+    var tribe = new Image();
+    tribe.src = ("images/tribe.png");
+    window.tribe = tribe;
+
+    tribe.onload = function()
+    {
         hydraPack();
     };
 }
@@ -2444,7 +2456,7 @@ function sceneryOperationsManager(z)
 //This function runs through the lists of Items and activates their operation functions.
 function ItemOperationsManager(z)
 {
-    if (gameState == "active" || gameState == "stopTime")
+    if (gameState == "active" || gameState == "stopTime" || lowBar == "crafting")
     {
         for (var i = 0; i < worldItems.length; i++)
         {
@@ -3704,6 +3716,8 @@ function theLegend()
     allWeapons.push(new Item("sickle"));//81
     allWeapons.push(new Item("silkAndDagger"));//82
     allWeapons.push(new Item("nirwadenSabreAndShield"));//83
+    allWeapons.push(new Item("vardanianCrossbow"));//84
+    allWeapons.push(new Item("ironBolt"));//85
 
 
 
@@ -3944,6 +3958,8 @@ function theLegend()
     smithing.push(new Item("nirwadenSabreAndShield", false));
     smithing.push(new Item("vardanianBowl", false));
     smithing.push(new Item("vardanianPot", false));
+    smithing.push(new Item("ironBolt", false));
+    smithing.push(new Item("vardanianCrossbow", false));
 
 
 //Foods (Items cooked at either a stove, an oven, or a campfire)
@@ -4066,9 +4082,7 @@ function theLegend()
     foods.push(new Item("searedSalmon", false));
     foods.push(new Item("bovineRibMeat", false));
     foods.push(new Item("smokedBovineRibMeat", false));
-
-
-
+    foods.push(new Item("roastedBorsht", false));
 
 //Tailoring (Items crafted at a weaving, sewing, dying, etc. tailor's work bench thing)
     tailoring = [];
@@ -4346,7 +4360,9 @@ function theLegend()
     handcrafted.push(new Item("vardanianBowlOfBovineMilk", false));
     handcrafted.push(new Item("vardanianBowlOfSourCream", false));
     handcrafted.push(new Item("vardanianBowlOfMandrake", false));
-
+    handcrafted.push(new Item("treatedBovineHide", false));
+    handcrafted.push(new Item("soakedMandrake", false));
+    handcrafted.push(new Item("slicedBorsht", false));
 
     //Activate Important Game Functions Here:
     itemPlacer();

@@ -7938,6 +7938,26 @@ function Adventurer()
                             }
                         }
                     }
+                    else if (Inventory[i][0].utility == "ammunition" && Inventory[i][0].subUtility == "repeaterBolt" && Inventory[i][0].equipped == true && this.rangedWeaponType == "repeaterCrossbow")
+                    {
+                        spaceKey = false;
+
+                        if (this.attacking != true)
+                        {
+                            if (Inventory[i][1] >= 1) // && this.ammoLoaded == false
+                            {
+                                Inventory[i][1] -= 1;
+                                this.projectileReleased = false;
+                                this.strike = true;
+                            }
+
+                            //console.log("projectile released " + this.projectileReleased + " ammo loaded " + this.ammoLoaded + " attacking " + this.attacking);
+                            if (this.ammoLoaded == true)
+                            {
+                                this.projectileReleased = true;
+                            }
+                        }
+                    }
                     else if (Inventory[i][0].utility == "ammunition" && Inventory[i][0].subUtility == "bullet" && Inventory[i][0].equipped == true && this.rangedWeaponType == "gun")
                     {
                         var blkPwder = -1;
@@ -19252,6 +19272,55 @@ function Adventurer()
                 XXX.restore();
             }
         }
+        //VARDANIAN CROSSBOW
+        if (this.weaponEquipped == "vardanianCrossbow")
+        {
+            if (this.projectileReleased == false && this.isAmmoEquipped == true)
+            {
+                if (new Date().getTime() - this.reloadTime > 300)
+                {
+                    this.stage = "loadedAndReady";
+                }
+            }
+            else
+            {
+                this.stage = 0;
+                if (this.isAmmoEquipped == false)
+                {
+                    this.ammoLoaded = false;
+                }
+            }
+
+            //Loading ANIMATION
+            //This cycles through the stages of the load
+            if (Math.floor(this.stage) <= 0)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(hydra, 347, 619, 32, 71, -1/2 * 32 * 1.1, -1/2 * 71 * 1.1, 32 * 1.1, 71 * 1.1);
+                XXX.restore();
+
+            }
+            else if (this.stage == "loadedAndReady")
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(hydra, 384, 618, 32, 71, -1/2 * 32 * 1.1, -1/2 * 71 * 1.1, 32 * 1.1, 71 * 1.1);
+                XXX.restore();
+                this.attacking = false;
+                this.ammoLoaded = true;
+            }
+        }
         //CROSSBOW
         if (this.weaponEquipped == "crossbow")
         {
@@ -20097,6 +20166,14 @@ function Adventurer()
             this.projectileX = -1;
             this.projectileY = -1;
         }
+        else if (this.weaponEquipped == "vardanianCrossbow")
+        {
+            this.weapon = allWeapons[84];
+
+            //This adjusts the starting position of the arrow/bolt.
+            this.projectileX = 4.85;
+            this.projectileY = 4.85;
+        }
 
         //Access Stats for each weapon first. //1/2 is directly forward facing.
         if (this.weaponEquipped == "mace")
@@ -20882,7 +20959,7 @@ function Adventurer()
         else if (this.weaponIsRanged == true)
         {
             //On release the projectile is fired.
-            if (this.projectileReleased == false && spaceKey == false && this.ammoLoaded == true && this.weapon.subUtility == "bow" || this.weapon.subUtility == "crossbow" && this.projectileReleased == true && this.ammoLoaded == true || this.weapon.subUtility == "gun" && this.projectileReleased == true && this.ammoLoaded == true || this.weapon.subUtility == "assaultRifle" && this.projectileReleased == true && this.ammoLoaded == true || this.weapon.subUtility == "shotgun" && this.projectileReleased == true && this.ammoLoaded == true)
+            if (this.projectileReleased == false && spaceKey == false && this.ammoLoaded == true && this.weapon.subUtility == "bow" || this.weapon.subUtility == "crossbow" && this.projectileReleased == true && this.ammoLoaded == true || this.weapon.subUtility == "repeaterCrossbow" && this.projectileReleased == true && this.ammoLoaded == true || this.weapon.subUtility == "gun" && this.projectileReleased == true && this.ammoLoaded == true || this.weapon.subUtility == "assaultRifle" && this.projectileReleased == true && this.ammoLoaded == true || this.weapon.subUtility == "shotgun" && this.projectileReleased == true && this.ammoLoaded == true)
             {
                 this.attacking = false;
                 this.reloadTime = new Date().getTime();
@@ -20893,6 +20970,10 @@ function Adventurer()
                     this.releaseStage = true;
                 }
                 else if (this.weapon.subUtility == "crossbow")
+                {
+                    this.projectileReleased = false;
+                }
+                else if (this.weapon.subUtility == "repeaterCrossbow")
                 {
                     this.projectileReleased = false;
                 }
@@ -30295,6 +30376,7 @@ function Adventurer()
                                 this.weaponIsRanged = false;
                                 this.isWeaponEquipped = false;
                                 this.weaponID = false;
+                                this.stage = 0;
                             }
                             else
                             {
@@ -30311,6 +30393,7 @@ function Adventurer()
                                 this.weaponIsRanged = false;
                                 this.isWeaponEquipped = true;
                                 this.weaponID = Inventory[i][0].barcode;
+                                this.stage = 0;
                             }
                         }
                         else
@@ -30323,6 +30406,7 @@ function Adventurer()
                                 this.weaponEquipped = Inventory[i][0].type;
                                 this.weaponIsRanged = false;
                                 this.weaponID = Inventory[i][0].barcode;
+                                this.stage = 0;
                             }
                             else
                             {
@@ -30334,6 +30418,7 @@ function Adventurer()
                                     this.weaponEquipped = "none";
                                     this.weaponIsRanged = false;
                                     this.weaponID = false;
+                                    this.stage = 0;
                                 }
 
                             }
@@ -30456,6 +30541,9 @@ function Adventurer()
                                 this.rangedWeaponType = "none";
                                 this.weaponEquipped = "none";
                                 this.weaponIsRanged = false;
+                                this.loadedAmmo = "none";
+                                this.stage = 0;
+                                this.ammoLoaded = false;
                             }
                             else
                             {
@@ -30468,19 +30556,20 @@ function Adventurer()
                                     }
                                 }
 
+                                this.loadedAmmo = "none";
                                 Inventory[i][0].equipped = true;
                                 this.weaponEquipped = Inventory[i][0].type;
                                 this.rangedWeaponType = Inventory[i][0].subUtility;
                                 this.weaponIsRanged = true;
+                                this.stage = 0;
+                                this.ammoLoaded = false;
 
                                 if (Inventory[i][0].subUtility == "bow")
                                 {
                                     this.projectileReleased = true;
+                                    this.releaseStage = false
                                 }
-                                else if (Inventory[i][0].subUtility == "bow")
-                                {
-                                    this.projectileReleased = false;
-                                }
+
                             }
                         }
                         else
@@ -30493,14 +30582,14 @@ function Adventurer()
                                 this.weaponEquipped = Inventory[i][0].type;
                                 this.rangedWeaponType = Inventory[i][0].subUtility;
                                 this.weaponIsRanged = true;
+                                this.loadedAmmo = "none";
+                                this.stage = 0;
+                                this.ammoLoaded = false;
 
                                 if (Inventory[i][0].subUtility == "bow")
                                 {
                                     this.projectileReleased = true;
-                                }
-                                else if (Inventory[i][0].subUtility == "bow")
-                                {
-                                    this.projectileReleased = false;
+                                    this.releaseStage = false
                                 }
                             }
                             else
@@ -30513,6 +30602,9 @@ function Adventurer()
                                     this.rangedWeaponType = "none";
                                     this.weaponEquipped = "none";
                                     this.weaponIsRanged = false;
+                                    this.loadedAmmo = "none";
+                                    this.stage = 0;
+                                    this.ammoLoaded = false;
                                 }
                             }
                         }
@@ -31322,7 +31414,7 @@ function Adventurer()
                         {
                             XXX.fillText("      Range + " + Math.floor(Inventory[i][0].range) + "   Rate + " + Math.floor(Inventory[i][0].rate) + "    Projectile Speed + " + Math.floor(Inventory[i][0].speed) + "    Armour Negation + " + Math.floor(Inventory[i][0].negateArmour), 157, 514);
                         }
-                        else if (Inventory[i][0].subUtility == "crossbow")
+                        else if (Inventory[i][0].subUtility == "crossbow" || Inventory[i][0].subUtility == "repeaterCrossbow")
                         {
                             XXX.fillText("      Range + " + Math.floor(Inventory[i][0].range) + "    Projectile Speed + " + Math.floor(Inventory[i][0].speed) + "    Armour Negation + " + Math.floor(Inventory[i][0].negateArmour), 157, 514);
                         }
@@ -32273,7 +32365,7 @@ function Adventurer()
                 }
 
                 //this is rare, but some weapons draw below the body layer.
-                if (this.wepLayer == "under" || this.weaponEquipped == "swimming" || this.weaponEquipped == "boat" || this.weaponEquipped == "blunderbuss" || this.weaponEquipped == "musket" || this.weaponEquipped == "cutlass" || this.weaponEquipped == "freydicSword" || this.weaponEquipped == "freydicGreatSword" || this.weaponEquipped == "theNorthernGem" || this.weaponEquipped == "longbow" || this.weaponEquipped == "crossbow" || this.weaponEquipped == "nirineseSpear" || this.weaponEquipped == "iceBlade" || this.weaponEquipped == "kellishClaymore" || this.weaponEquipped == "smashStick" || this.weaponEquipped == "burningSmashStick" || this.weaponEquipped == "lightningCorseque" || this.weaponEquipped == "staff" || this.weaponEquipped == "estoc" || this.weaponEquipped == "scimitar" || this.weaponEquipped == "nirwadenLance" || this.weaponEquipped == "vardanianHalberd" || this.weaponEquipped == "shotgun" || this.weaponEquipped == "sickle") //add more cases for more overhead weapons.
+                if (this.wepLayer == "under" || this.weaponEquipped == "swimming" || this.weaponEquipped == "boat" || this.weaponEquipped == "blunderbuss" || this.weaponEquipped == "musket" || this.weaponEquipped == "cutlass" || this.weaponEquipped == "freydicSword" || this.weaponEquipped == "freydicGreatSword" || this.weaponEquipped == "theNorthernGem" || this.weaponEquipped == "longbow" || this.weaponEquipped == "crossbow" || this.weaponEquipped == "nirineseSpear" || this.weaponEquipped == "iceBlade" || this.weaponEquipped == "kellishClaymore" || this.weaponEquipped == "smashStick" || this.weaponEquipped == "burningSmashStick" || this.weaponEquipped == "lightningCorseque" || this.weaponEquipped == "staff" || this.weaponEquipped == "estoc" || this.weaponEquipped == "scimitar" || this.weaponEquipped == "nirwadenLance" || this.weaponEquipped == "vardanianHalberd" || this.weaponEquipped == "shotgun" || this.weaponEquipped == "sickle" || this.weaponEquipped == "vardanianCrossbow") //add more cases for more overhead weapons.
                 {
                     this.drawArms();
                 }
@@ -33099,7 +33191,7 @@ function Adventurer()
                 }
 
                 //most weapons draw beneath the armour layer.
-                if (this.wepLayer == "standard" || this.wepLayer != "under" && this.wepLayer != "over" && this.weaponEquipped != "swimming" && this.weaponEquipped != "boat" && this.weaponEquipped != "blunderbuss" && this.weaponEquipped != "musket" && this.weaponEquipped != "cutlass" && this.weaponEquipped != "nirineseSabre" && this.weaponEquipped != "longSpikedMorningStar" && this.weaponEquipped != "freydicSword" && this.weaponEquipped != "freydicGreatSword" && this.weaponEquipped != "theNorthernGem" && this.weaponEquipped != "longbow" && this.weaponEquipped != "crossbow" && this.weaponEquipped != "nirineseSpear" && this.weaponEquipped != "iceBlade" && this.weaponEquipped != "kellishClaymore" && this.weaponEquipped != "smashStick" && this.weaponEquipped != "burningSmashStick" && this.weaponEquipped != "lightningCorseque" && this.weaponEquipped != "staff" && this.weaponEquipped != "estoc" && this.weaponEquipped != "scimitar" && this.weaponEquipped != "nirwadenLance" && this.weaponEquipped != "vardanianHalberd" && this.weaponEquipped != "shotgun" && this.weaponEquipped != "sickle") //add more cases for more overhead weapons.
+                if (this.wepLayer == "standard" || this.wepLayer != "under" && this.wepLayer != "over" && this.weaponEquipped != "swimming" && this.weaponEquipped != "boat" && this.weaponEquipped != "blunderbuss" && this.weaponEquipped != "musket" && this.weaponEquipped != "cutlass" && this.weaponEquipped != "nirineseSabre" && this.weaponEquipped != "longSpikedMorningStar" && this.weaponEquipped != "freydicSword" && this.weaponEquipped != "freydicGreatSword" && this.weaponEquipped != "theNorthernGem" && this.weaponEquipped != "longbow" && this.weaponEquipped != "crossbow" && this.weaponEquipped != "nirineseSpear" && this.weaponEquipped != "iceBlade" && this.weaponEquipped != "kellishClaymore" && this.weaponEquipped != "smashStick" && this.weaponEquipped != "burningSmashStick" && this.weaponEquipped != "lightningCorseque" && this.weaponEquipped != "staff" && this.weaponEquipped != "estoc" && this.weaponEquipped != "scimitar" && this.weaponEquipped != "nirwadenLance" && this.weaponEquipped != "vardanianHalberd" && this.weaponEquipped != "shotgun" && this.weaponEquipped != "sickle" && this.weaponEquipped != "vardanianCrossbow") //add more cases for more overhead weapons.
                 {
                     this.drawArms();
                 }

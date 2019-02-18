@@ -773,12 +773,55 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
                 this.setStats();
                 this.shoot();
                 this.impact();
+                this.shoot();
+                this.impact();
+                this.shoot();
+                this.impact();
 
                 //HOW IT WILL DRAW...
                 XXX.save();
                 XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
                 XXX.rotate(this.rotation + (1 / 2 * Math.PI));
                 XXX.drawImage(verse, 3173, 1, 25, 9, 6, -6, 30, 10.8);
+                XXX.restore();
+            }
+        }
+        else if (type == "ironBolt")
+        {
+            if (list == playerProjectiles && this.isPlayerProjectile)
+            {
+                //WHAT IT WILL DO...
+                player.projYAd = 0;
+                player.projXAd = 0;
+                this.setStats();
+                this.shoot();
+                this.impact();
+                this.shoot();
+                this.impact();
+                this.shoot();
+                this.impact();
+
+                //HOW IT WILL DRAW...
+                XXX.save();
+                XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+                XXX.drawImage(hydra, 293, 603, 18, 9, 0, 0, 18, 9);
+                XXX.restore();
+            }
+            else if (list == unitProjectiles || list == playerProjectiles && !this.isPlayerProjectile)
+            {
+                //WHAT IT WILL DO...
+                player.projYAd = 0;
+                player.projXAd = 0;
+                this.setStats();
+                this.shoot();
+                this.impact();
+
+                //HOW IT WILL DRAW...
+                XXX.save();
+                XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                XXX.rotate(this.rotation + (1 / 2 * Math.PI));
+                XXX.drawImage(hydra, 293, 603, 18, 9, 0, 0, 18, 9);
                 XXX.restore();
             }
         }

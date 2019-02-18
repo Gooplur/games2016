@@ -4784,6 +4784,30 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.drawImage(theng, 371, 1793, 82, 77, -(1/2 * 82 * this.information), -(1/2 * 77 * this.information), 82 * this.information, 77 * this.information);
                 XXX.restore();
             }
+            else if (this.temporary == 7)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 567, 13, 52, 78, -(1/2 * 52 * this.information), -(1/2 * 78 * this.information), 52 * this.information, 78 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 8)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 448, 14, 108, 82, -(1/2 * 108 * this.information), -(1/2 * 82 * this.information), 108 * this.information, 82 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 9)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 626, 10, 87, 87, -(1/2 * 87 * this.information), -(1/2 * 87 * this.information), 87 * this.information, 87 * this.information);
+                XXX.restore();
+            }
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
             this.radius = 1;
@@ -9145,6 +9169,48 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 this.activate = false;
             }
         }
+        else if (this.type == "lilypads")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+            this.size = 1.2;
+
+            //DRAWSELF
+            if (this.temporary == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 114, 3, 83, 84, -(1/2 * 83 * this.size), -(1/2 * 84 * this.size), 83 * this.size, 84 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 1)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 219, 5, 92, 90, -(1/2 * 92 * this.size), -(1/2 * 90 * this.size), 92 * this.size, 90 * this.size);
+                XXX.restore();
+            }
+            else
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 332, 5, 92, 90, -(1/2 * 92 * this.size), -(1/2 * 90 * this.size), 92 * this.size, 90 * this.size);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 1;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+        }
         else if (this.type == "deadNaaprid")
         {
             //TRAITS
@@ -10303,6 +10369,68 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 }
             }
         }
+        else if (this.type == "cabbagePlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.solid = false;
+            this.interactionRange = 40;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 0, 5, 23, 24, -(1/2 * 23 * 1.5), -(1/2 * 24 * 1.5), 23 * 1.5, 24 * 1.5);
+                XXX.restore();
+            }
+            else if (this.phase == "picked")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 41, 5, 23, 24, -(1/2 * 23 * 1.5), -(1/2 * 24 * 1.5), 23 * 1.5, 24 * 1.5);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 14;
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0)
+            {
+                this.activate = false;
+                this.phase = "picked";
+
+                //if the plant is owned and you are noticed by any AI then decrease faction relation for stealing.
+                if (this.owned.length > 1)
+                {
+                    if (player.noticed == true)
+                    {
+                        this.changeFactionRelation(-8);
+                    }
+                }
+
+                var hits = 0;
+                for (var i = 0; i < Inventory.length; i ++)
+                {
+                    if (Inventory[i][0].type == "cabbage")
+                    {
+                        Inventory[i][1] += 1;
+                        break;
+                    }
+                    else
+                    {
+                        hits += 1;
+                    }
+                }
+                if (hits == Inventory.length)
+                {
+                    Inventory.push([new Item("cabbage", false, false), 1]);
+                }
+            }
+        }
         else if (this.type == "halgomPlant")
         {
             //TRAITS
@@ -11110,6 +11238,30 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 }
             }
         }
+        else if (this.type == "vardanianSwampBrush")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.solid = true;
+            this.interactionRange = 20;
+            this.size = this.temporary;
+
+            //DRAWSELF
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(toad, 178, 108, 55, 58, -(1/2 * 55 * this.size), -(1/2 * 58 * this.size), 55 * this.size, 58 * this.size);
+            XXX.restore();
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 34 * this.size;
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0)
+            {
+                this.activate = false;
+            }
+        }
         else if (this.type == "ulgoyPlant")
         {
             //TRAITS
@@ -11266,6 +11418,121 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 if (hits == Inventory.length)
                 {
                     Inventory.push([new Item("akerBerries", false, false), Math.floor(1 + Math.random() * 5)]);
+                }
+            }
+        }
+        else if (this.type == "cranberryPlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.nectar(2);
+            this.solid = true;
+            this.interactionRange = 80;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 812, 107, 29, 28, -(1/2 * 29 * 1.1), -(1/2 * 28 * 1.1), 29 * 1.1, 28 * 1.1);
+                XXX.restore();
+            }
+            else if (this.phase == "picked")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 854, 108, 29, 28, -(1/2 * 29 * 1.1), -(1/2 * 28 * 1.1), 29 * 1.1, 28 * 1.1);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 19;
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0)
+            {
+                this.activate = false;
+                this.phase = "picked";
+                var hits = 0;
+                for (var i = 0; i < Inventory.length; i ++)
+                {
+                    if (Inventory[i][0].type == "cranberries")
+                    {
+                        Inventory[i][1] += Math.floor(1 + Math.random() * 3);
+                        break;
+                    }
+                    else
+                    {
+                        hits += 1;
+                    }
+                }
+                if (hits == Inventory.length)
+                {
+                    Inventory.push([new Item("cranberries", false, false), Math.floor(1 + Math.random() * 3)]);
+                }
+            }
+        }
+        else if (this.type == "chyoulPlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.nectar(8);
+            this.solid = false;
+            this.interactionRange = 75;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 857, 140, 25, 23, -(1/2 * 25 * 1.5), -(1/2 * 23 * 1.5), 25 * 1.5, 23 * 1.5);
+                XXX.restore();
+            }
+            else if (this.phase == "picked")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 810, 138, 25, 23, -(1/2 * 25 * 1.5), -(1/2 * 23 * 1.5), 25 * 1.5, 23 * 1.5);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 17;
+
+            if (this.playerer <= this.radius && player.areBootsEquipped == false)
+            {
+                player.health -= 0.014;
+            }
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0)
+            {
+                this.activate = false;
+                this.phase = "picked";
+                if (player.areGlovesEquipped == false)
+                {
+                    player.health -= 0.8;
+                }
+                var hits = 0;
+                for (var i = 0; i < Inventory.length; i ++)
+                {
+                    if (Inventory[i][0].type == "chyoulBerries")
+                    {
+                        Inventory[i][1] += Math.floor(1 + Math.random() * 4);
+                        break;
+                    }
+                    else
+                    {
+                        hits += 1;
+                    }
+                }
+                if (hits == Inventory.length)
+                {
+                    Inventory.push([new Item("chyoulBerries", false, false), Math.floor(1 + Math.random() * 4)]);
                 }
             }
         }
@@ -14249,6 +14516,289 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 {
                     Inventory.push([new Item("ogard", false, false), Math.floor(1 + Math.random() * 3)]);
                 }
+            }
+        }
+        else if (this.type == "swampLilyPlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+
+            this.solid = false;
+            this.interactionRange = 64;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                this.nectar(7);
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 100, 143, 25, 24, -(1/2 * 25 * 1.2), -(1/2 * 24 * 1.2), 25 * 1.2, 24 * 1.2);
+                XXX.restore();
+            }
+            else if (this.phase == "picked")
+            {
+                this.nectar(0);
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 55, 143, 25, 24, -(1/2 * 25 * 1.2), -(1/2 * 24 * 1.2), 25 * 1.2, 24 * 1.2);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 12;
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0)
+            {
+                this.activate = false;
+                this.phase = "picked";
+                var hits = 0;
+                for (var i = 0; i < Inventory.length; i ++)
+                {
+                    if (Inventory[i][0].type == "swampLily")
+                    {
+                        Inventory[i][1] += 1;
+                        break;
+                    }
+                    else
+                    {
+                        hits += 1;
+                    }
+                }
+                if (hits == Inventory.length)
+                {
+                    Inventory.push([new Item("swampLily", false, false), 1]);
+                }
+            }
+        }
+        else if (this.type == "borshtPlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.nectar(1);
+            this.solid = false;
+            this.interactionRange = 70;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 13, 98, 30, 32, -(1/2 * 30 * 1.4), -(1/2 * 32 * 1.4), 30 * 1.4, 32 * 1.4);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 11;
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0)
+            {
+                this.activate = false;
+                this.phase = "picked";
+                var hits = 0;
+                for (var i = 0; i < Inventory.length; i ++)
+                {
+                    if (Inventory[i][0].type == "borsht")
+                    {
+                        Inventory[i][1] += 1;
+                        break;
+                    }
+                    else
+                    {
+                        hits += 1;
+                    }
+                }
+                if (hits == Inventory.length)
+                {
+                    Inventory.push([new Item("borsht", false, false), 1]);
+                }
+            }
+        }
+        else if (this.type == "cattailPlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.nectar(1);
+            this.solid = false;
+            this.interactionRange = 70;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 0, 41, 50, 59, -(1/2 * 50 * 1.25), -(1/2 * 59 * 1.25), 50 * 1.25, 59 * 1.25);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 14;
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0)
+            {
+                this.activate = false;
+                this.phase = "picked";
+                var hits = 0;
+                for (var i = 0; i < Inventory.length; i ++)
+                {
+                    if (Inventory[i][0].type == "cattail")
+                    {
+                        Inventory[i][1] += 1;
+                        break;
+                    }
+                    else
+                    {
+                        hits += 1;
+                    }
+                }
+                if (hits == Inventory.length)
+                {
+                    Inventory.push([new Item("cattail", false, false), 1]);
+                }
+            }
+        }
+        else if (this.type == "mandrakePlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.solid = false;
+            this.interactionRange = 55;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 818, 243, 21, 18, -(1/2 * 21 * 1.5), -(1/2 * 18 * 1.5), 21 * 1.5, 18 * 1.5);
+                XXX.restore();
+                this.mandrakeScream = false;
+            }
+            else if (this.phase == "picked")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 817, 264, 21, 18, -(1/2 * 21 * 1.5), -(1/2 * 18 * 1.5), 21 * 1.5, 18 * 1.5);
+                XXX.restore();
+
+                if (this.mandrakeScream == true)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(toad, 812, 202, 25, 41, -(1/2 * 25 * 1.5), -(1/2 * 41 * 1.5), 25 * 1.5, 41 * 1.5);
+                    XXX.restore();
+
+                    if (this.playerer < 150 && player.vamprism != true)
+                    {
+                        player.level -= 1;
+                        player.skillPoints -= 4;
+                        player.totalSkillPoints -= 4;
+                        player.experience = 0;
+                        player.magicalExperience = 0;
+                        if (player.level < 1)
+                        {
+                            player.health = -1000000;
+                        }
+                    }
+                    for (var jj = 0; jj < ArtificialIntelligenceAccess.length; jj++)
+                    {
+                        if (ArtificialIntelligenceAccess[jj].dmx == this.dmx)
+                        {
+                            if (ArtificialIntelligenceAccess[jj].DTU({X: this.X, Y: this.Y}) < 150)
+                            {
+                                if (ArtificialIntelligenceAccess[jj].type == "Changeling")
+                                {
+                                    ArtificialIntelligenceAccess[jj].childForm = false;
+                                    ArtificialIntelligenceAccess[jj].changelingForm = true;
+                                }
+                                if (ArtificialIntelligenceAccess[jj].team != "undead" && ArtificialIntelligenceAccess[jj].team != "ghost")
+                                {
+                                    ArtificialIntelligenceAccess[jj].health = -1000000;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 9;
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0)
+            {
+                this.activate = false;
+
+                this.doBreak = false;
+                this.yaTiene = false;
+                var hit = 0;
+
+                for (var i = 0; i < Inventory.length; i++)
+                {
+                    hit += 1;
+                    for (var j = 0; j < mandrakeConversionList.length; j++)
+                    {
+                        //console.log(Inventory[i][0].type + " v.s. "  + bovineConversionList[j][0]);
+                        if (Inventory[i][0].type == mandrakeConversionList[j][0])
+                        {
+                            hit = 0;
+                            for (var k = 0; k < Inventory.length; k++)
+                            {
+                                if (Inventory[k][0].type == mandrakeConversionList[j][1])
+                                {
+                                    this.yaTiene = k;
+                                }
+                            }
+
+                            if (Inventory[i][1] > 1)
+                            {
+                                Inventory[i][1] -= 1;
+                                if (this.yaTiene == false)
+                                {
+                                    Inventory.push([new Item(mandrakeConversionList[j][1], false, false), 1]);
+                                }
+                                else
+                                {
+                                    Inventory[this.yaTiene][1] +=1;
+                                }
+                                this.doBreak = true;
+                                break;
+                            }
+                            else
+                            {
+                                if (this.yaTiene == false)
+                                {
+                                    Inventory.splice(i, 1);
+                                    Inventory.push([new Item(mandrakeConversionList[j][1], false, false), 1]);
+                                }
+                                else
+                                {
+                                    Inventory[this.yaTiene][1] +=1;
+                                    Inventory.splice(i, 1);
+                                }
+                                this.doBreak = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (this.doBreak == true)
+                    {
+                        break;
+                    }
+                }
+                if (hit == Inventory.length)
+                {
+                    this.mandrakeScream = true;
+                }
+                this.phase = "picked";
             }
         }
         else if (this.type == "largeCeremonialRockCircle")

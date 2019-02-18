@@ -11414,6 +11414,77 @@ function Item(type, x, y)
             this.buyValue = 22 - Math.floor(player.getCharisma() / 10); // at max, buy for 17.
             this.sellValue = 8 + Math.floor(player.getCharisma() / 6); // at max, sell for 16.
         }
+        else if (this.type == "soakedMandrake") //a vardanian bowl holds half as much as a bucket
+        {
+            //For All Items
+            this.identity = "Soaked Mandrake";
+            this.weight = 2;
+            this.size = 14;
+            this.description = "A mandrake root that has been thoroughly soaked in bovine milk.";
+            this.intForDes = 25;
+            this.intDescription = "A certain chemical that is in the grass that bovines eat tricks mandrakes into thinking they are still in the ground.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            if (lowBar == "crafting" && crafting == "handcrafted")
+            {
+                for (var plrinv = 0; plrinv < Inventory.length; plrinv++)
+                {
+                    if (Inventory[plrinv][0].identity == "Vardanian Pot of Mandrake")
+                    {
+                        //Crafting
+                        this.yield = 1;
+                        this.intForCraft = 0;
+                        this.biproducts = [[new Item("vardanianPotOfBovineMilk", false), 1]];
+                        this.ingredients = [["Vardanian Pot of Mandrake", 1]];
+                        break;
+                    }
+                    else if (Inventory[plrinv][0].identity == "Vardanian Bowl of Mandrake")
+                    {
+                        //Crafting
+                        this.yield = 1;
+                        this.intForCraft = 0;
+                        this.biproducts = [[new Item("vardanianBowlOfBovineMilk", false), 1]];
+                        this.ingredients = [["Vardanian Bowl of Mandrake", 1]];
+                        break;
+                    }
+                    else if (Inventory[plrinv][0].identity == "Bucket of Mandrake")
+                    {
+                        //Crafting
+                        this.yield = 1;
+                        this.intForCraft = 0;
+                        this.biproducts = [[new Item("bucketOfBovineMilk", false), 1]];
+                        this.ingredients = [["Bucket of Mandrake", 1]];
+                        break;
+                    }
+                    else if (Inventory[plrinv][0].identity == "Kellish Clay Pot of Mandrake")
+                    {
+                        //Crafting
+                        this.yield = 1;
+                        this.intForCraft = 0;
+                        this.biproducts = [[new Item("kellishClayPotOfBovineMilk", false), 1]];
+                        this.ingredients = [["Kellish Clay Pot of Mandrake", 1]];
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 0;
+                this.biproducts = [[new Item("vardanianPotOfBovineMilk", false), 1]];
+                this.ingredients = [["Vardanian Pot of Mandrake", 1]];
+            }
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 25; // at max, buy for 25.
+            this.sellValue = 25; // at max, sell for 25.
+        }
         else if (this.type == "gojiiBerries")
         {
             //For All Items
@@ -12476,7 +12547,7 @@ function Item(type, x, y)
         {
             //For All Items
             this.identity = "The Bloody Chalice";
-            this.weight = 30;
+            this.weight = 190;
             this.size = 13;
             this.description = "A cursed chalice that is marked with the signs of a powerful arch demon.";
             this.intForDes = 0;
@@ -12512,7 +12583,7 @@ function Item(type, x, y)
         {
             //For All Items
             this.identity = "The Bloody Chalice";
-            this.weight = 20;
+            this.weight = 180;
             this.size = 13;
             this.description = "A cursed chalice that is marked with the signs of a powerful arch demon.";
             this.intForDes = 0;
@@ -15737,6 +15808,86 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 9 - Math.floor(player.getCharisma() / 25); // at max, buy for 7.
             this.sellValue = 5 + Math.floor(player.getCharisma() / 25); // at max, sell for 7.
+        }
+        else if (this.type == "bovineHide")
+        {
+            //For All Items
+            this.identity = "Raw Bovine Hide";
+            this.weight = 4;
+            this.size = 14;
+            this.description = "The black and white splotched hide of a bovine.";
+            this.intForDes = 3;
+            this.intDescription = "This must be first treated, then tanned before it can be made into anything.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 9 - Math.floor(player.getCharisma() / 25); // at max, buy for 7.
+            this.sellValue = 4 + Math.floor(player.getCharisma() / 15); // at max, sell for 7.
+        }
+        else if (this.type == "treatedBovineHide")
+        {
+            //For All Items
+            this.identity = "Treated Bovine Hide";
+            this.weight = 4;
+            this.size = 14;
+            this.description = "The treated hide of a bovine.";
+            this.intForDes = 3;
+            this.intDescription = "After scraping the flesh off and dehairing it, the hide must now soak in a tanic acid tea made from ashwood powder.";
+
+            //Define Utility
+            this.utility = "material";
+
+            this.decayable = true;
+            this.decayLimit = 60;
+            this.decayObjective = "tannedBovineHide";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 4;
+            this.biproducts = [[new Item("vardanianBowl", false), 1]];
+            this.ingredients = [["Raw Bovine Hide", 1], ["Vardanian Bowl of Water", 1], ["Ashwood Powder", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 15 - Math.floor(player.getCharisma() / 15); // at max, buy for 12.
+            this.sellValue = 9 + Math.floor(player.getCharisma() / 15); // at max, sell for 12.
+        }
+        else if (this.type == "tannedBovineHide")
+        {
+            //For All Items
+            this.identity = "Bovine Hide";
+            this.weight = 4;
+            this.size = 14;
+            this.description = "The tanned hide of a bovine.";
+            this.intForDes = 3;
+            this.intDescription = "This hide can be made into durable apparel.";
+
+            //Define Utility
+            this.utility = "material";
+
+            this.decayable = true;
+            this.decayLimit = 60;
+            this.decayObjective = "tannedBovineHide";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 4;
+            this.biproducts = [[new Item("vardanianBowl", false), 1]];
+            this.ingredients = [["Raw Bovine Hide", 1], ["Vardanian Bowl of Water", 1], ["Ashwood Powder", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 22 - Math.floor(player.getCharisma() / 25); // at max, buy for 20.
+            this.sellValue = 18 + Math.floor(player.getCharisma() / 25); // at max, sell for 20.
         }
         else if (this.type == "chupacabrasHead")
         {
@@ -19471,6 +19622,46 @@ function Item(type, x, y)
             this.buyValue = 7 - Math.floor(player.getCharisma() / 25); // at max, buy for 5.
             this.sellValue = 4 + Math.floor(player.getCharisma() / 50); // at max, sell for 5.
         }
+        else if (this.type == "cattail")
+        {
+            //For All Items
+            this.identity = "Cattails";
+            this.weight = 0.33;
+            this.size = 9;
+            this.description = "Cattails grow in the Vardanian Swamplands, and serve in part to filter the water.";
+            this.intForDes = 9;
+            this.intDescription = "Cattails can be used in certain herbal remedies.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "swampLily")
+        {
+            //For All Items
+            this.identity = "Swamp Lily";
+            this.weight = 0.12;
+            this.size = 9;
+            this.description = "Swamp Lilies grow from the lilypads in the Vardanian Swamplands.";
+            this.intForDes = 9;
+            this.intDescription = "Aside from being stunning in appearance, they are also a changer in alchemy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 6 - Math.floor(player.getCharisma() / 25); // at max, buy for 4.
+            this.sellValue = 3 + Math.floor(player.getCharisma() / 50); // at max, sell for 4.
+        }
         else if (this.type == "carrot")
         {
             //For All Items
@@ -19499,6 +19690,132 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 2; // at max, buy for 2.
             this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+        }
+        else if (this.type == "cabbage")
+        {
+            //For All Items
+            this.identity = "Cabbage";
+            this.weight = 1.1;
+            this.size = 9;
+            this.description = "A ball of tightly encircled green leaves.";
+            this.intForDes = 0;
+            this.intDescription = "The leaves are somewhat crunchy to eat raw.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 2; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0.05; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "borsht")
+        {
+            //For All Items
+            this.identity = "Borsht";
+            this.weight = 0.7;
+            this.size = 9;
+            this.description = "A red tuber that grows in the Vardanian Swamplands.";
+            this.intForDes = 6;
+            this.intDescription = "It takes the nutrients it needs to survive from the water; It can be roasted.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 2.2; //satisfies hunger.
+            this.thirst = 0.1; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 2; // at max, sell for 2.
+        }
+        else if (this.type == "roastedBorsht")
+        {
+            //For All Items
+            this.identity = "Roasted Borsht";
+            this.weight = 0.6;
+            this.size = 9;
+            this.description = "A roasted borsht.";
+            this.intForDes = 0;
+            this.intDescription = "It has a bit of a bite to it but it is tender; it tastes sweet, with an earthy aftertaste.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 4.6; //satisfies hunger.
+            this.thirst = 0.26; //quenches thirst.
+            this.warmth = 2; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 2;
+            this.ingredients = [["Borsht", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5; // at max, buy for 5.
+            this.sellValue = 3; // at max, sell for 3.
+        }
+        else if (this.type == "slicedBorsht")
+        {
+            //For All Items
+            this.identity = "Sliced Borsht";
+            this.weight = 0.3;
+            this.size = 9;
+            this.description = "Two slices of roasted borsht.";
+            this.intForDes = 0;
+            this.intDescription = "It has a bit of a bite to it but it is tender; it tastes sweet, with an earthy aftertaste.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 2.5; //satisfies hunger.
+            this.thirst = 0.1; //quenches thirst.
+            this.warmth = 1; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 2;
+            this.intForCraft = 1;
+            this.ingredients = [["Roasted Borsht", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3; // at max, buy for 3.
+            this.sellValue = 2; // at max, sell for 2.
         }
         else if (this.type == "potato")
         {
@@ -23382,6 +23699,71 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 4; // at max, buy for 4.
             this.sellValue = 4; // at max, sell for 4.
+        }
+        else if (this.type == "vardanianCrossbow")
+        {
+            //For All Items
+            this.identity = "Repeater Crossbow";
+            this.weight = 4;
+            this.size = 23;
+            this.description = "A wooden crossbow of Vardanian design that can fire repeatedly.";
+            this.intForDes = 6;
+            this.intDescription = "The bolts are stored in the top section of the crossbow so that they fall into place and replace the last bolt fired.";
+
+            //Define Utility
+            this.utility = "ranged";
+            //Sub Utility
+            this.subUtility = "repeaterCrossbow";
+
+            //Utility Focused
+            this.range = 800 + (200 * player.getRanged() / 50);
+            //this.rate = Math.max(0.1, 35 - (34 * player.getRanged() / 50));
+            this.speed = 3 + (2 * player.getRanged() / 50);
+            this.negateArmour = 2.5 + (1 * player.getRanged() / 50);
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 26;
+            this.ingredients = [["Ashwood", 5]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 50 - Math.floor(player.getCharisma() / 12); // at max, buy for 46.
+            this.sellValue = 40 + Math.floor(player.getCharisma() / 8); // at max, sell for 46.
+        }
+        else if (this.type == "ironBolt")
+        {
+            //For All Items
+            this.identity = "Iron Bolt";
+            this.weight = 0.04;
+            this.size = 8;
+            this.description = "An iron pointed bolt with red feathers";
+            this.intForDes = 1;
+            this.intDescription = "A bolt of Vardanian design; it was first introduced to Vardanian warfair as a measure against cavalry.";
+
+            //Define Utility
+            this.utility = "ammunition";
+            //Sub Utility
+            this.subUtility = "repeaterBolt";
+            this.subUtilityName = "Bolt";
+
+            //Utility Focused
+            this.damage = (2) * (1 + player.getRanged() / 50); //4 damage at max!
+            this.magicalDamage = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 26;
+            this.intForCraft = 11;
+            this.ingredients = [["Ashwood", 1], ["Iron", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
         }
         else if (this.type == "crossbow")
         {
@@ -29056,13 +29438,13 @@ function Item(type, x, y)
             this.ability = "none";
 
             //Crafting
-            this.yield = 3;
+            this.yield = 8;
             this.intForCraft = 17;
             this.ingredients = [["Bovine Hide", 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
-            this.buyValue = 2; // at max, buy for 2.
-            this.sellValue = 2; // at max, sell for 2.
+            this.buyValue = 3; // at max, buy for 2.
+            this.sellValue = 3; // at max, sell for 2.
         }
         else if (this.type == "hideGloves")
         {
@@ -29114,13 +29496,13 @@ function Item(type, x, y)
             this.ability = "none";
 
             //Crafting
-            this.yield = 5;
+            this.yield = 11;
             this.intForCraft = 15;
             this.ingredients = [["Bovine Hide", 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
-            this.buyValue = 1; // at max, buy for 2.
-            this.sellValue = 1; // at max, sell for 2.
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 2; // at max, sell for 2.
         }
         else if (this.type == "elkBoots")
         {
@@ -32652,6 +33034,86 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
+        }
+        else if (this.type == "vardanianCrossbow")
+        {
+            XXX.beginPath();
+            XXX.drawImage(hydra, 301, 624, 25, 26, X - this.X + (1/2 * CCC.width) - (1/2 * 25 * 1.1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 26 * 1.1), 25 * 1.1, 26 * 1.1);
+        }
+        else if (this.type == "ironBolt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(hydra, 291, 602, 22, 8, X - this.X + (1/2 * CCC.width) - (1/2 * 22 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 8 * 1), 22 * 1, 8 * 1);
+        }
+        else if (this.type == "bovineMammaryGlands")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 368, 518, 26, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 26 * 0.9), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 0.9), 26 * 0.9, 23 * 0.9);
+        }
+        else if (this.type == "rawBovineRibs")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 462, 519, 26, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 26 * 1.7), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1.7), 26 * 1.7, 23 * 1.7);
+        }
+        else if (this.type == "smokedBovineRibs")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 402, 520, 26, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 26 * 1.7), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1.7), 26 * 1.7, 23 * 1.7);
+        }
+        else if (this.type == "bovineRibs")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 432, 520, 26, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 26 * 1.7), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1.7), 26 * 1.7, 23 * 1.7);
+        }
+        else if (this.type == "bovineHide" || this.type == "treatedBovineHide")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 464, 164, 36, 26, X - this.X + (1/2 * CCC.width) - (1/2 * 36 * 1.9), Y - this.Y + (1/2 * CCC.height) - (1/2 * 26 * 1.9), 36 * 1.9, 26 * 1.9);
+        }
+        else if (this.type == "tannedBovineHide")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 512, 163, 36, 26, X - this.X + (1/2 * CCC.width) - (1/2 * 36 * 1.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 26 * 1.8), 36 * 1.8, 26 * 1.8);
+        }
+        else if (this.type == "borsht")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 46, 91, 48, 50, X - this.X + (1/2 * CCC.width) - (1/2 * 48 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 50 * 1.4), 48 * 1.4, 50 * 1.4);
+        }
+        else if (this.type == "roastedBorsht")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 88, 91, 48, 50, X - this.X + (1/2 * CCC.width) - (1/2 * 48 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 50 * 1.4), 48 * 1.4, 50 * 1.4);
+        }
+        else if (this.type == "slicedBorsht")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 125, 93, 48, 50, X - this.X + (1/2 * CCC.width) - (1/2 * 48 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 50 * 1.4), 48 * 1.4, 50 * 1.4);
+        }
+        else if (this.type == "slicedBorsht")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 125, 93, 48, 50, X - this.X + (1/2 * CCC.width) - (1/2 * 48 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 50 * 1.4), 48 * 1.4, 50 * 1.4);
+        }
+        else if (this.type == "swampLily")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 7, 134, 48, 50, X - this.X + (1/2 * CCC.width) - (1/2 * 48 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 50 * 1.2), 48 * 1.2, 50 * 1.2);
+        }
+        else if (this.type == "cattail")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 57, 48, 33, 43, X - this.X + (1/2 * CCC.width) - (1/2 * 33 * 1.25), Y - this.Y + (1/2 * CCC.height) - (1/2 * 43 * 1.25), 33 * 1.25, 43 * 1.25);
+        }
+        else if (this.type == "cabbage")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 81, 11, 14, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 14 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 14 * 1.5), 14 * 1.5, 14 * 1.5);
+        }
+        else if (this.type == "soakedMandrake")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 812, 201, 24, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 24 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 1.5), 24 * 1.5, 44 * 1.5);
         }
         else if (this.type == "theBloodyChalice")
         {
@@ -36831,6 +37293,86 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
+        else if (this.type == "vardanianCrossbow")
+        {
+            LXX.beginPath();
+            LXX.drawImage(hydra, 301, 624, 25, 26, this.invX - (1/2 * 25 * 1.1), this.invY - (1/2 * 26 * 1.1), 25 * 1.1, 26 * 1.1);
+        }
+        else if (this.type == "ironBolt")
+        {
+            LXX.beginPath();
+            LXX.drawImage(hydra, 291, 612, 31, 9, this.invX - (1/2 * 31 * 1), this.invY - (1/2 * 9 * 1), 31 * 1, 9 * 1);
+        }
+        else if (this.type == "bovineMammaryGlands")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 368, 518, 26, 23, this.invX - (1/2 * 26 * 0.9), this.invY - (1/2 * 23 * 0.9), 26 * 0.9, 23 * 0.9);
+        }
+        else if (this.type == "rawBovineRibs")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 462, 519, 26, 23, this.invX - (1/2 * 26 * 1.7), this.invY - (1/2 * 23 * 1.7), 26 * 1.7, 23 * 1.7);
+        }
+        else if (this.type == "smokedBovineRibs")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 402, 520, 26, 23, this.invX - (1/2 * 26 * 1.7), this.invY - (1/2 * 23 * 1.7), 26 * 1.7, 23 * 1.7);
+        }
+        else if (this.type == "bovineRibs")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 432, 520, 26, 23, this.invX - (1/2 * 26 * 1.7), this.invY - (1/2 * 23 * 1.7), 26 * 1.7, 23 * 1.7);
+        }
+        else if (this.type == "bovineHide" || this.type == "treatedBovineHide")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 464, 164, 36, 26, this.invX - (1/2 * 36 * 1.8), this.invY - (1/2 * 26 * 1.8), 36 * 1.8, 26 * 1.8);
+        }
+        else if (this.type == "tannedBovineHide")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 512, 163, 36, 26, this.invX - (1/2 * 36 * 1.7), this.invY - (1/2 * 26 * 1.7), 36 * 1.7, 26 * 1.7);
+        }
+        else if (this.type == "borsht")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 46, 91, 48, 50, this.invX - (1/2 * 48 * 1.4), this.invY - (1/2 * 50 * 1.4), 48 * 1.4, 50 * 1.4);
+        }
+        else if (this.type == "roastedBorsht")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 88, 91, 48, 50, this.invX - (1/2 * 48 * 1.4), this.invY - (1/2 * 50 * 1.4), 48 * 1.4, 50 * 1.4);
+        }
+        else if (this.type == "slicedBorsht")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 125, 93, 48, 50, this.invX - (1/2 * 48 * 1.4), this.invY - (1/2 * 50 * 1.4), 48 * 1.4, 50 * 1.4);
+        }
+        else if (this.type == "slicedBorsht")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 125, 93, 48, 50, this.invX - (1/2 * 48 * 1.4), this.invY - (1/2 * 50 * 1.4), 48 * 1.4, 50 * 1.4);
+        }
+        else if (this.type == "swampLily")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 7, 134, 48, 50, this.invX - (1/2 * 48 * 1.2), this.invY - (1/2 * 50 * 1.2), 48 * 1.2, 50 * 1.2);
+        }
+        else if (this.type == "cattail")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 57, 48, 33, 43, this.invX - (1/2 * 33 * 1.25), this.invY - (1/2 * 43 * 1.25), 33 * 1.25, 43 * 1.25);
+        }
+        else if (this.type == "cabbage")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 81, 11, 14, 14, this.invX - (1/2 * 14 * 1.5), this.invY - (1/2 * 14 * 1.5), 14 * 1.5, 14 * 1.5);
+        }
+        else if (this.type == "soakedMandrake")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 812, 201, 24, 44, this.invX - (1/2 * 24 * 1.3), this.invY - (1/2 * 44 * 1.3), 24 * 1.3, 44 * 1.3);
+        }
         else if (this.type == "theBloodyChalice")
         {
             LXX.beginPath();
@@ -40983,6 +41525,86 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "vardanianCrossbow")
+        {
+            XXX.beginPath();
+            XXX.drawImage(hydra, 301, 624, 25, 26, this.invX - (1/2 * 25 * 1.1), this.invY - (1/2 * 26 * 1.1), 25 * 1.1, 26 * 1.1);
+        }
+        else if (this.type == "ironBolt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(hydra, 291, 612, 31, 9, this.invX - (1/2 * 31 * 1), this.invY - (1/2 * 9 * 1), 31 * 1, 9 * 1);
+        }
+        else if (this.type == "bovineMammaryGlands")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 368, 518, 26, 23, this.invX - (1/2 * 26 * 0.9), this.invY - (1/2 * 23 * 0.9), 26 * 0.9, 23 * 0.9);
+        }
+        else if (this.type == "rawBovineRibs")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 462, 519, 26, 23, this.invX - (1/2 * 26 * 1.7), this.invY - (1/2 * 23 * 1.7), 26 * 1.7, 23 * 1.7);
+        }
+        else if (this.type == "smokedBovineRibs")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 402, 520, 26, 23, this.invX - (1/2 * 26 * 1.7), this.invY - (1/2 * 23 * 1.7), 26 * 1.7, 23 * 1.7);
+        }
+        else if (this.type == "bovineRibs")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 432, 520, 26, 23, this.invX - (1/2 * 26 * 1.7), this.invY - (1/2 * 23 * 1.7), 26 * 1.7, 23 * 1.7);
+        }
+        else if (this.type == "bovineHide" || this.type == "treatedBovineHide")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 464, 164, 36, 26, this.invX - (1/2 * 36 * 1.8), this.invY - (1/2 * 26 * 1.8), 36 * 1.8, 26 * 1.8);
+        }
+        else if (this.type == "tannedBovineHide")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 512, 163, 36, 26, this.invX - (1/2 * 36 * 1.7), this.invY - (1/2 * 26 * 1.7), 36 * 1.7, 26 * 1.7);
+        }
+        else if (this.type == "borsht")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 46, 91, 48, 50, this.invX - (1/2 * 48 * 1.4), this.invY - (1/2 * 50 * 1.4), 48 * 1.4, 50 * 1.4);
+        }
+        else if (this.type == "roastedBorsht")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 88, 91, 48, 50, this.invX - (1/2 * 48 * 1.4), this.invY - (1/2 * 50 * 1.4), 48 * 1.4, 50 * 1.4);
+        }
+        else if (this.type == "slicedBorsht")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 125, 93, 48, 50, this.invX - (1/2 * 48 * 1.4), this.invY - (1/2 * 50 * 1.4), 48 * 1.4, 50 * 1.4);
+        }
+        else if (this.type == "slicedBorsht")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 125, 93, 48, 50, this.invX - (1/2 * 48 * 1.4), this.invY - (1/2 * 50 * 1.4), 48 * 1.4, 50 * 1.4);
+        }
+        else if (this.type == "swampLily")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 7, 134, 48, 50, this.invX - (1/2 * 48 * 1.2), this.invY - (1/2 * 50 * 1.2), 48 * 1.2, 50 * 1.2);
+        }
+        else if (this.type == "cattail")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 57, 48, 33, 43, this.invX - (1/2 * 33 * 1.25), this.invY - (1/2 * 43 * 1.25), 33 * 1.25, 43 * 1.25);
+        }
+        else if (this.type == "cabbage")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 81, 11, 14, 14, this.invX - (1/2 * 14 * 1.5), this.invY - (1/2 * 14 * 1.5), 14 * 1.5, 14 * 1.5);
+        }
+        else if (this.type == "soakedMandrake")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 812, 201, 24, 44, this.invX - (1/2 * 24 * 1.3), this.invY - (1/2 * 44 * 1.3), 24 * 1.3, 44 * 1.3);
         }
         else if (this.type == "theBloodyChalice")
         {

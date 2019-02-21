@@ -57,6 +57,7 @@ function buildMaster()
                 //ArtificialIntelligenceAccess.push(new Unit(3000, 1500, "Person", false, "Loria the Bloodsucker", {race: "Vardan", faction: "arena2", personality: "violent", outfit: ["none", 0], weapon: ["none", [0.1, 0.4], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: false, route:[[0, 0]], vamp: true}));
                 //ArtificialIntelligenceAccess.push(new Unit(3000, 1500, "Bovine", true, "Wifi Cow"));
                 //ArtificialIntelligenceAccess.push(new Unit(3000, 1500, "Sheep", false, "Double-0-Fuzzball"));
+                //ArtificialIntelligenceAccess.push(new Unit(3000, 1500, "Toad", true, "Hurgar"));
 
                 //Friches in the plains
                 ArtificialIntelligenceAccess.push(new Unit(2921, -1125, "Frich", false, "Fuzzy Wuzzy"));

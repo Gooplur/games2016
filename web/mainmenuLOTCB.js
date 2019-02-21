@@ -731,15 +731,27 @@ function applySelectionsButton()
             {
                 player.stamina = 4;
                 player.dexterity = 2;
-            }
-            if (player.gender == "Male")
-            {
-                Inventory.push([new Item("vardanianNobleOutfit", false, false), 1]);
+                if (player.gender == "Male")
+                {
+                    Inventory.push([new Item("vardanianRoyalAttireM", false, false), 1]);
+                }
+                else
+                {
+                    Inventory.push([new Item("vardanianRoyalAttireF", false, false), 1]);
+                }
             }
             else
             {
-                Inventory.push([new Item("vardanianRoyalDress", false, false), 1]);
+                if (player.gender == "Male")
+                {
+                    Inventory.push([new Item("vardanianNobleOutfit", false, false), 1]);
+                }
+                else
+                {
+                    Inventory.push([new Item("vardanianRoyalDress", false, false), 1]);
+                }
             }
+
         }
         else if (player.title == "Nobility" && player.raceName == "Cephrite" || player.title == "Royalty" && player.raceName == "Cephrite")
         {

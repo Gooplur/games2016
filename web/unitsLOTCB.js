@@ -14045,6 +14045,75 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
             this.swimSpeed = this.speed * 0.8;
         }
+        else if (this.type == "Toad") //toadtoad
+        {
+            this.haste = true;
+            this.resistances = ["water"];
+            this.damageFrame = "automatic";
+            this.team = "toadia";
+            if (this.ID == "docile")
+            {
+                this.team = "docile";
+            }
+            this.baseTeam = this.team;
+            this.tameREQ = 50;
+
+            this.tongue = 0;
+            this.tongueBack = false;
+            this.tongued = false;
+            this.doTongueTime = new Date().getTime();
+            this.hopTime = new Date().getTime();
+            this.frogmove = 0;
+
+            if (this.alpha == true)
+            {
+                this.magicalResistance = 0.5;
+                this.heatResistance = 4;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = Math.floor(Math.random() * 21) + 120;
+                this.health = this.healthMAX;
+                this.armour = 2.5;
+                this.speed = 8;
+                this.rangeOfSight = 760; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.2;
+                this.engagementRadius = 60;
+                this.sizeRadius = 40;
+                this.negateArmour = 9;
+                this.attackWait = 5;
+
+                //alpha has a larger size body and skills.
+                this.alphaSize = 1.6; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                // this is the adjustment the alpha type of Etyr needs to be centered.
+                this.yAdjustment = 0;
+                this.xAdjustment = 0;
+            }
+            else
+            {
+                this.magicalResistance = 0.5;
+                this.heatResistance = 4;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = Math.floor(Math.random() * 12) + 75;
+                this.health = this.healthMAX;
+                this.armour = 1.5;
+                this.speed = 5;
+                this.rangeOfSight = 560; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.2;
+                this.engagementRadius = 60;
+                this.sizeRadius = 26;
+                this.negateArmour = 4;
+                this.attackWait = 5;
+
+                //this multiplies the draw image skew numbers by 1 so that it stays the same
+                this.alphaSize = 1;
+                // this is the adjustment the alpha type of Etyr needs to be centered.
+                this.yAdjustment = 0; //was -34
+                this.xAdjustment = 0; //was - 26
+
+            }
+            this.swimSpeed = this.speed * 0.5;
+        }
         else if (this.type == "Werewolf") //werewolfwerewolf werewere
         {
             this.resistances = ["night"];
@@ -25807,6 +25876,697 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.drawUnit(verse, 2929, 283, 54, 32, -35 - this.xAdjustment, -22 - this.yAdjustment, 54 * this.alphaSize, 32 * this.alphaSize);
             }
         }
+        //TOAD
+        if (this.type == "Toad") //toadtoad
+        {
+            //Set Drops and experience
+            if (this.alpha == true)
+            {
+                if (Math.max(0, 16 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 215 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = (215 * ((player.getIntelligence() / 50) + 1)) / 10;
+                }
+
+                this.drops = [[new Item("toadHide", this.X, this.Y), 2], [new Item("rawToadFlesh", this.X, this.Y), 5]];
+            }
+            else
+            {
+                if (Math.max(0, 13 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 115 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = 115 * ((player.getIntelligence() / 50) + 1) / 10;
+                }
+
+                this.drops = [[new Item("toadHide", this.X, this.Y), 1], [new Item("rawToadFlesh", this.X, this.Y), 3]];
+            }
+
+            //RANGE OF SIGHT (anything related to range of sight)
+            if (this.alpha == true)
+            {
+                this.rangeOfSightCalculator(800, false);
+            }
+            else
+            {
+                this.rangeOfSightCalculator(700, false);
+            }
+
+            //AI
+            if (this.alive == true)
+            {
+                if (this.alpha == true)
+                {
+                    //this.Attack(8, 10);
+                }
+                else
+                {
+                    //this.Attack(6, 7);
+                }
+
+                //this.deathChecker();
+                this.disturbedTimer();
+                this.visibleSight();
+                this.friendDecider();
+                this.targeting();
+
+                if (this.target == player && this.team == "player")
+                {
+                    this.tongued = false;
+                    if (this.tongue > 0)
+                    {
+                        this.tongueBack = true;
+                    }
+                }
+
+                if (this.target == player)
+                {
+                    if (this.tongued == true && this.DTP() <= this.engagementRadius && this.team != "player")
+                    {
+                        if (player.mageShield > 0)
+                        {
+                            if (this.alpha)
+                            {
+                                player.mageShield -= (10 + Math.round(8 * Math.random()));
+                            }
+                            else
+                            {
+                                player.mageShield -= (7 + Math.round(6 * Math.random()));
+                            }
+                        }
+                        else
+                        {
+                            player.health += player.mageShield;
+                            //player.decreaseInHealth -= player.mageShield;
+                            player.mageShield = 0;
+
+                            if (this.alpha)
+                            {
+                                player.health -= Math.max(0, (16 + Math.round(12 * Math.random())) - Math.max(0, player.armourTotal - (this.negateArmour + 3)));
+                                player.decreaseInHealth += Math.max(0, (16 + Math.round(12 * Math.random())) - Math.max(0, player.armourTotal - (this.negateArmour + 3)));
+                            }
+                            else
+                            {
+                                player.health -= Math.max(0, (11 + Math.round(8 * Math.random())) - Math.max(0, player.armourTotal - (this.negateArmour + 1)));
+                                player.decreaseInHealth += Math.max(0, (11 + Math.round(8 * Math.random())) - Math.max(0, player.armourTotal - (this.negateArmour + 1)));
+                            }
+                        }
+                        this.tongued = false;
+                        this.doTongueTime = new Date().getTime();
+                        this.hopTime = new Date().getTime();
+                    }
+                    if (this.tongueBack != true && new Date().getTime() - this.doTongueTime > 5000 && this.team != "player")
+                    {
+                        if (this.DTP() < 7/10 * this.rangeOfSight)
+                        {
+                            this.hopTime = new Date().getTime();
+                            if (this.tongue < this.DTP())
+                            {
+                                this.tongue += 40;
+                            }
+                            else
+                            {
+                                this.tongue = this.DTP();
+                                if (spaceKey != true && player.getToughness() <= 30 || player.weaponEquipped == "none" && player.getToughness() <= 30)
+                                {
+                                    this.tongued = true;
+                                    if (this.DTP() < 90)
+                                    {
+                                        X += Math.cos(Math.atan2(Y - this.Y, X - this.X) + Math.PI) * 20 + (5 / (1 + player.getToughness()));
+                                        Y += Math.sin(Math.atan2(Y - this.Y, X - this.X) + Math.PI) * 20 + (5 / (1 + player.getToughness()));
+                                    }
+                                    else
+                                    {
+                                        X += Math.cos(Math.atan2(Y - this.Y, X - this.X) + Math.PI) * 30 + (15 / (1 + player.getToughness()));
+                                        Y += Math.sin(Math.atan2(Y - this.Y, X - this.X) + Math.PI) * 30 + (15 / (1 + player.getToughness()));
+                                    }
+                                    player.stunnedIII = true;
+                                    player.stunnedTime = 2;
+                                }
+                                else if (player.weaponEquipped != "none" && spaceKey == true || player.getToughness() > 30)
+                                {
+                                    if (player.weaponEquipped != "none" && spaceKey == true)
+                                    {
+                                        this.tongueBack = true;
+                                        if (player.mageShield > 0)
+                                        {
+                                            if (this.alpha)
+                                            {
+                                                player.mageShield -= (6 + Math.round(4 * Math.random()));
+                                            }
+                                            else
+                                            {
+                                                player.mageShield -= (3 + Math.round(3 * Math.random()));
+                                            }
+                                        }
+                                        else
+                                        {
+                                            player.health += player.mageShield;
+                                            //player.decreaseInHealth -= player.mageShield;
+                                            player.mageShield = 0;
+
+                                            if (this.alpha)
+                                            {
+                                                player.health -= Math.max(0, (6 + Math.round(4 * Math.random())) - Math.max(0, player.armourTotal - this.negateArmour));
+                                                player.decreaseInHealth += Math.max(0, (6 + Math.round(4 * Math.random())) - Math.max(0, player.armourTotal - this.negateArmour));
+                                            }
+                                            else
+                                            {
+                                                player.health -= Math.max(0, (7 + Math.round(6 * Math.random())) - Math.max(0, player.armourTotal - this.negateArmour));
+                                                player.decreaseInHealth += Math.max(0, (7 + Math.round(6 * Math.random())) - Math.max(0, player.armourTotal - this.negateArmour));
+                                            }
+                                        }
+                                        this.health -= 6;
+                                    }
+                                    else
+                                    {
+                                        this.tongueBack = true;
+                                        if (player.mageShield > 0)
+                                        {
+                                            if (this.alpha)
+                                            {
+                                                player.mageShield -= (10 + Math.round(8 * Math.random()));
+                                            }
+                                            else
+                                            {
+                                                player.mageShield -= (7 + Math.round(6 * Math.random()));
+                                            }
+                                        }
+                                        else
+                                        {
+                                            player.health += player.mageShield;
+                                            //player.decreaseInHealth -= player.mageShield;
+                                            player.mageShield = 0;
+
+                                            if (this.alpha)
+                                            {
+                                                player.health -= Math.max(0, (10 + Math.round(8 * Math.random())) - Math.max(0, player.armourTotal - this.negateArmour));
+                                                player.decreaseInHealth += Math.max(0, (10 + Math.round(8 * Math.random())) - Math.max(0, player.armourTotal - this.negateArmour));
+                                            }
+                                            else
+                                            {
+                                                player.health -= Math.max(0, (10 + Math.round(8 * Math.random())) - Math.max(0, player.armourTotal - this.negateArmour));
+                                                player.decreaseInHealth += Math.max(0, (10 + Math.round(8 * Math.random())) - Math.max(0, player.armourTotal - this.negateArmour));
+                                            }
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    this.tongueBack = true;
+                                    if (player.mageShield > 0)
+                                    {
+                                        if (this.alpha)
+                                        {
+                                            player.mageShield -= (10 + Math.round(8 * Math.random()));
+                                        }
+                                        else
+                                        {
+                                            player.mageShield -= (7 + Math.round(6 * Math.random()));
+                                        }
+                                    }
+                                    else
+                                    {
+                                        player.health += player.mageShield;
+                                        //player.decreaseInHealth -= player.mageShield;
+                                        player.mageShield = 0;
+
+                                        if (this.alpha)
+                                        {
+                                            player.health -= Math.max(0, (5 + Math.round(8 * Math.random())) - Math.max(0, player.armourTotal - this.negateArmour));
+                                            player.decreaseInHealth += Math.max(0, (5 + Math.round(8 * Math.random())) - Math.max(0, player.armourTotal - this.negateArmour));
+                                        }
+                                        else
+                                        {
+                                            player.health -= Math.max(0, (3.5 + Math.round(6 * Math.random())) - Math.max(0, player.armourTotal - this.negateArmour));
+                                            player.decreaseInHealth += Math.max(0, (3.5 + Math.round(6 * Math.random())) - Math.max(0, player.armourTotal - this.negateArmour));
+                                        }
+                                    }
+                                }
+                            }
+
+                            if (this.alpha == true)
+                            {
+                                XXX.save();
+                                XXX.beginPath();
+                                XXX.lineWidth = 10;
+                                XXX.strokeStyle = "#bf7f7b";
+                                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                                XXX.moveTo(Math.cos(this.rotation) * 60, Math.sin(this.rotation) * 60);
+                                XXX.lineTo(Math.cos(this.rotation) * this.tongue, Math.sin(this.rotation) * this.tongue);
+                                XXX.stroke();
+                                XXX.restore();
+                            }
+                            else
+                            {
+                                XXX.save();
+                                XXX.beginPath();
+                                XXX.lineWidth = 6;
+                                XXX.strokeStyle = "#bf7f7b";
+                                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                                XXX.moveTo(Math.cos(this.rotation) * 33, Math.sin(this.rotation) * 33);
+                                XXX.lineTo(Math.cos(this.rotation) * this.tongue, Math.sin(this.rotation) * this.tongue);
+                                XXX.stroke();
+                                XXX.restore();
+                            }
+                        }
+                        else if (this.tongue > 0)
+                        {
+                            this.tongueBack = true;
+                        }
+                    }
+                    else if (this.tongueBack == true)
+                    {
+                        this.tongue -= 40;
+                        if (this.tongue <= 20)
+                        {
+                            this.tongue = 0;
+                            this.tongued = false;
+                            this.tongueBack = false;
+                            this.doTongueTime = new Date().getTime();
+                        }
+                        else
+                        {
+                            if (this.alpha == true)
+                            {
+                                XXX.save();
+                                XXX.beginPath();
+                                XXX.lineWidth = 10;
+                                XXX.strokeStyle = "#bf7f7b";
+                                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                                XXX.moveTo(Math.cos(this.rotation) * 60, Math.sin(this.rotation) * 60);
+                                XXX.lineTo(Math.cos(this.rotation) * this.tongue, Math.sin(this.rotation) * this.tongue);
+                                XXX.stroke();
+                                XXX.restore();
+                            }
+                            else
+                            {
+                                XXX.save();
+                                XXX.beginPath();
+                                XXX.lineWidth = 6;
+                                XXX.strokeStyle = "#bf7f7b";
+                                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                                XXX.moveTo(Math.cos(this.rotation) * 33, Math.sin(this.rotation) * 33);
+                                XXX.lineTo(Math.cos(this.rotation) * this.tongue, Math.sin(this.rotation) * this.tongue);
+                                XXX.stroke();
+                                XXX.restore();
+                            }
+                        }
+                    }
+                }
+                else if (this.target != "none")
+                {
+                    if (this.tongueBack != true && new Date().getTime() - this.doTongueTime > 5000)
+                    {
+                        if (this.tongued == true && this.target.healthMAX <= 28 && this.DTU(this.target) <= 50 && this.target.team != "undead" && this.target.team != "ghost" && this.target.type != "Changeling" && this.alpha == true || this.tongued == true && this.target.healthMAX <= 10 && this.DTU(this.target) <= 50 && this.target.team != "undead" && this.target.team != "ghost" && this.target.type != "Changeling" && this.alpha == false)
+                        {
+                            this.hopTime = new Date().getTime();
+                            this.tongued = false;
+                            this.target.health = -10;
+                            this.target.deleteBody = true;
+                            this.health += this.target.healthMAX / 2;
+                            if (this.health > this.healthMAX)
+                            {
+                                this.health = this.healthMAX;
+                            }
+                            this.target.killNotByPlayer = true;
+                            this.doTongueTime = new Date().getTime();
+                        }
+                        else if (this.tongued == true && this.DTU(this.target) <= this.engagementRadius && this.target.healthMAX > 28 || this.tongued == true && this.DTU(this.target) <= this.engagementRadius && this.target.team != "undead" || this.tongued == true && this.DTU(this.target) <= this.engagementRadius && this.target.team != "ghost" || this.tongued == true && this.DTU(this.target) <= this.engagementRadius && this.target.type != "Changeling")
+                        {
+                            if (this.alpha)
+                            {
+                                this.target.health -= Math.max(0, (10 + Math.round(8 * Math.random())) - Math.max(0, this.target.armour - this.negateArmour));
+                                if (this.target.health <= 0)
+                                {
+                                    this.target.killNotByPlayer = true;
+                                }
+                            }
+                            else
+                            {
+                                this.target.health -= Math.max(0, (7 + Math.round(6 * Math.random())) - Math.max(0, this.target.armour - this.negateArmour));
+                                if (this.target.health <= 0)
+                                {
+                                    this.target.killNotByPlayer = true;
+                                }
+                            }
+                            if (this.team == "player")
+                            {
+                                this.target.disturbedTime = new Date().getTime();
+                            }
+                            this.target.healthShownTime = new Date().getTime();
+                            this.hopTime = new Date().getTime();
+                            this.tongued = false;
+                            this.doTongueTime = new Date().getTime();
+                        }
+                        else if (this.DTU(this.target) < 7/10 * this.rangeOfSight)
+                        {
+                            this.hopTime = new Date().getTime();
+                            if (this.tongue < this.DTU(this.target))
+                            {
+                                this.tongue += 40;
+                            }
+                            else
+                            {
+                                this.tongue = this.DTU(this.target);
+                                if (this.target.healthMAX <= 50)
+                                {
+                                    this.tongued = true;
+                                    if (this.DTU(this.target) < 90)
+                                    {
+                                        this.target.X += Math.cos(Math.atan2(this.target.Y - this.Y, this.target.X - this.X) + Math.PI) * (20 + (5 / this.target.healthMAX));
+                                        this.target.Y += Math.sin(Math.atan2(this.target.Y - this.Y, this.target.X - this.X) + Math.PI) * (20 + (5 / this.target.healthMAX));
+                                    }
+                                    else
+                                    {
+                                        this.target.X += Math.cos(Math.atan2(this.target.Y - this.Y, this.target.X - this.X) + Math.PI) * (30 + (15 / this.target.healthMAX));
+                                        this.target.Y += Math.sin(Math.atan2(this.target.Y - this.Y, this.target.X - this.X) + Math.PI) * (30 + (15 / this.target.healthMAX));
+                                    }
+                                    this.target.stunV = true;
+                                    this.target.stunTimer = 2;
+                                    this.target.stunTime = new Date().getTime();
+                                }
+                                else
+                                {
+                                    this.tongueBack = true;
+                                    if (this.alpha)
+                                    {
+                                        this.target.health -= Math.max(0, (10 + Math.round(8 * Math.random())) - Math.max(0, this.target.armour - this.negateArmour));
+                                        if (this.target.health <= 0)
+                                        {
+                                            this.target.killNotByPlayer = true;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        this.target.health -= Math.max(0, (7 + Math.round(6 * Math.random())) - Math.max(0, this.target.armour - this.negateArmour));
+                                        if (this.target.health <= 0)
+                                        {
+                                            this.target.killNotByPlayer = true;
+                                        }
+                                    }
+                                    if (this.team == "player")
+                                    {
+                                        this.target.disturbedTime = new Date().getTime();
+                                    }
+                                    this.target.healthShownTime = new Date().getTime();
+                                }
+                            }
+
+                            if (this.alpha == true)
+                            {
+                                XXX.save();
+                                XXX.beginPath();
+                                XXX.lineWidth = 10;
+                                XXX.strokeStyle = "#bf7f7b";
+                                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                                XXX.moveTo(Math.cos(this.rotation) * 60, Math.sin(this.rotation) * 60);
+                                XXX.lineTo(Math.cos(this.rotation) * this.tongue, Math.sin(this.rotation) * this.tongue);
+                                XXX.stroke();
+                                XXX.restore();
+                            }
+                            else
+                            {
+                                XXX.save();
+                                XXX.beginPath();
+                                XXX.lineWidth = 6;
+                                XXX.strokeStyle = "#bf7f7b";
+                                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                                XXX.moveTo(Math.cos(this.rotation) * 33, Math.sin(this.rotation) * 33);
+                                XXX.lineTo(Math.cos(this.rotation) * this.tongue, Math.sin(this.rotation) * this.tongue);
+                                XXX.stroke();
+                                XXX.restore();
+                            }
+                        }
+                        else if (this.tongue > 0)
+                        {
+                            this.tongueBack = true;
+                        }
+                    }
+                    else if (this.tongueBack == true)
+                    {
+                        this.tongue -= 40;
+                        if (this.tongue <= 20)
+                        {
+                            this.attacking = false;
+                            this.tongue = 0;
+                            this.tongued = false;
+                            this.tongueBack = false;
+                            this.doTongueTime = new Date().getTime();
+                        }
+                        else
+                        {
+                            if (this.alpha == true)
+                            {
+                                XXX.save();
+                                XXX.beginPath();
+                                XXX.lineWidth = 10;
+                                XXX.strokeStyle = "#bf7f7b";
+                                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                                XXX.moveTo(Math.cos(this.rotation) * 60, Math.sin(this.rotation) * 60);
+                                XXX.lineTo(Math.cos(this.rotation) * this.tongue, Math.sin(this.rotation) * this.tongue);
+                                XXX.stroke();
+                                XXX.restore();
+                            }
+                            else
+                            {
+                                XXX.save();
+                                XXX.beginPath();
+                                XXX.lineWidth = 6;
+                                XXX.strokeStyle = "#bf7f7b";
+                                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                                XXX.moveTo(Math.cos(this.rotation) * 33, Math.sin(this.rotation) * 33);
+                                XXX.lineTo(Math.cos(this.rotation) * this.tongue, Math.sin(this.rotation) * this.tongue);
+                                XXX.stroke();
+                                XXX.restore();
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    this.tongue -= 40;
+                    if (this.tongue <= 20)
+                    {
+                        this.attacking = false;
+                        this.tongue = 0;
+                        this.tongued = false;
+                        this.tongueBack = false;
+                        this.doTongueTime = new Date().getTime();
+                    }
+                    else
+                    {
+                        if (this.alpha == true)
+                        {
+                            XXX.save();
+                            XXX.beginPath();
+                            XXX.lineWidth = 10;
+                            XXX.strokeStyle = "#bf7f7b";
+                            XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                            XXX.moveTo(Math.cos(this.rotation) * 60, Math.sin(this.rotation) * 60);
+                            XXX.lineTo(Math.cos(this.rotation) * this.tongue, Math.sin(this.rotation) * this.tongue);
+                            XXX.stroke();
+                            XXX.restore();
+                        }
+                        else
+                        {
+                            XXX.save();
+                            XXX.beginPath();
+                            XXX.lineWidth = 6;
+                            XXX.strokeStyle = "#bf7f7b";
+                            XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                            XXX.moveTo(Math.cos(this.rotation) * 40, Math.sin(this.rotation) * 40);
+                            XXX.lineTo(Math.cos(this.rotation) * this.tongue, Math.sin(this.rotation) * this.tongue);
+                            XXX.stroke();
+                            XXX.restore();
+                        }
+                    }
+                }
+            }
+
+            //ANIMATIONS
+            var szx = 1;
+            if (this.alive == true)
+            {
+                if (this.target == player)
+                {
+                    if (this.DTP() <= this.rangeOfSight && this.DTP() > (this.rangeOfSight / 2) && this.tongue <= 0) //If moving and not attacking initiate moving animation...
+                    {
+                        if (new Date().getTime() - this.hopTime > (800 / timeSpeed * this.timeResistance))
+                        {
+                            //this.costumeEngine(6, 0.36, false);
+                            this.frogmove += 0.6;
+                        }
+                        else
+                        {
+                            this.pointTowardsPlayer();
+                            this.frogmove = 0;
+                        }
+                    }
+                    else if (this.tongue > 0)
+                    {
+                        this.hopTime = new Date().getTime();
+                        this.pointTowardsPlayer();
+                        this.frogmove = 0;
+                    }
+                    else
+                    {
+                        this.pointTowardsPlayer();
+                        this.frogmove = 0;
+                    }
+                }
+                else if (this.target != "none")
+                {
+                    if (this.DTU(this.target) <= this.rangeOfSight && this.DTU(this.target) > (this.rangeOfSight / 2) && this.tongue <= 0) //If moving and not attacking initiate moving animation...
+                    {
+                        if (new Date().getTime() - this.hopTime > (800 / timeSpeed * this.timeResistance))
+                        {
+                            //this.costumeEngine(6, 0.36, false);
+                            this.frogmove += 0.6;
+                        }
+                        else
+                        {
+                            this.pointTowards(this.target);
+                            this.frogmove = 0;
+                        }
+                    }
+                    else if (this.tongue > 0)
+                    {
+                        this.hopTime = new Date().getTime();
+                        this.pointTowards(this.target);
+                        this.frogmove = 0;
+                    }
+                    else
+                    {
+                        this.pointTowards(this.target);
+                        this.frogmove = 0;
+                    }
+                }
+                else
+                {
+                    this.hopTime = new Date().getTime();
+                    this.frogmove = 0;
+                }
+
+                // the frames/stages/frogmoves of the animation.
+                var thefrogmove = Math.floor(this.frogmove); //This rounds this.frogmove down to the nearest whole number.
+
+                if (thefrogmove <= 0)
+                {
+                    if (this.tongue > 0)
+                    {
+                        this.drawUnit(toad, 36, 555, 193, 138, -1/2 * 193 * this.alphaSize * szx - this.xAdjustment, -1/2 * 138 * this.alphaSize * szx - this.yAdjustment, 193 * this.alphaSize * szx, 138 * this.alphaSize * szx);
+                    }
+                    else
+                    {
+                        this.drawUnit(toad, 36, 675, 193, 138, -1/2 * 193 * this.alphaSize * szx - this.xAdjustment, -1/2 * 138 * this.alphaSize * szx - this.yAdjustment, 193 * this.alphaSize * szx, 138 * this.alphaSize * szx);
+                    }
+                }
+                else if (thefrogmove <= 1)
+                {
+                    if (this.tongue > 0)
+                    {
+                        this.frogmove = 0;
+                        this.drawUnit(toad, 36, 555, 193, 138, -1/2 * 193 * this.alphaSize * szx - this.xAdjustment, -1/2 * 138 * this.alphaSize * szx - this.yAdjustment, 193 * this.alphaSize * szx, 138 * this.alphaSize * szx);
+                    }
+                    else
+                    {
+                        this.drawUnit(toad, 223, 677, 193, 138, -1/2 * 193 * this.alphaSize * szx - this.xAdjustment, -1/2 * 138 * this.alphaSize * szx - this.yAdjustment, 193 * this.alphaSize * szx, 138 * this.alphaSize * szx);
+                        if (this.target == player)
+                        {
+                            this.moveInRelationToPlayer();
+                        }
+                        else if (this.target != "none")
+                        {
+                            this.moveInRelationToThing(this.target);
+                        }
+                    }
+                }
+                else if (thefrogmove <= 2)
+                {
+                    if (this.tongue > 0)
+                    {
+                        this.frogmove = 0;
+                        this.drawUnit(toad, 36, 555, 193, 138, -1/2 * 193 * this.alphaSize * szx - this.xAdjustment, -1/2 * 138 * this.alphaSize * szx - this.yAdjustment, 193 * this.alphaSize * szx, 138 * this.alphaSize * szx);
+                    }
+                    else
+                    {
+                        this.drawUnit(toad, 410, 677, 193, 138, -1/2 * 193 * this.alphaSize * szx - this.xAdjustment, -1/2 * 138 * this.alphaSize * szx - this.yAdjustment, 193 * this.alphaSize * szx, 138 * this.alphaSize * szx);
+                        if (this.target == player)
+                        {
+                            this.moveInRelationToPlayer();
+                        }
+                        else if (this.target != "none")
+                        {
+                            this.moveInRelationToThing(this.target);
+                        }
+                    }
+                }
+                else if (thefrogmove <= 3)
+                {
+                    if (this.tongue > 0)
+                    {
+                        this.frogmove = 0;
+                        this.drawUnit(toad, 36, 555, 193, 138, -1/2 * 193 * this.alphaSize * szx - this.xAdjustment, -1/2 * 138 * this.alphaSize * szx - this.yAdjustment, 193 * this.alphaSize * szx, 138 * this.alphaSize * szx);
+                    }
+                    else
+                    {
+                        this.drawUnit(toad, 619, 676, 193, 138, -1/2 * 193 * this.alphaSize * szx - this.xAdjustment, -1/2 * 138 * this.alphaSize * szx - this.yAdjustment, 193 * this.alphaSize * szx, 138 * this.alphaSize * szx);
+                        if (this.target == player)
+                        {
+                            this.moveInRelationToPlayer();
+                        }
+                        else if (this.target != "none")
+                        {
+                            this.moveInRelationToThing(this.target);
+                        }
+                    }
+                }
+                else if (thefrogmove <= 4)
+                {
+                    if (this.tongue > 0)
+                    {
+                        this.frogmove = 0;
+                        this.drawUnit(toad, 36, 555, 193, 138, -1/2 * 193 * this.alphaSize * szx - this.xAdjustment, -1/2 * 138 * this.alphaSize * szx - this.yAdjustment, 193 * this.alphaSize * szx, 138 * this.alphaSize * szx);
+                    }
+                    else
+                    {
+                        this.drawUnit(toad, 410, 677, 193, 138, -1/2 * 193 * this.alphaSize * szx - this.xAdjustment, -1/2 * 138 * this.alphaSize * szx - this.yAdjustment, 193 * this.alphaSize * szx, 138 * this.alphaSize * szx);
+                        if (this.target == player)
+                        {
+                            this.moveInRelationToPlayer();
+                        }
+                        else if (this.target != "none")
+                        {
+                            this.moveInRelationToThing(this.target);
+                        }
+                    }
+                }
+                else if (thefrogmove >= 5)
+                {
+                    if (this.tongue > 0)
+                    {
+                        this.frogmove = 0;
+                        this.drawUnit(toad, 36, 555, 193, 138, -1/2 * 193 * this.alphaSize * szx - this.xAdjustment, -1/2 * 138 * this.alphaSize * szx - this.yAdjustment, 193 * this.alphaSize * szx, 138 * this.alphaSize * szx);
+                    }
+                    else
+                    {
+                        this.frogmove = 0;
+                        this.hopTime = new Date().getTime();
+                        this.drawUnit(toad, 410, 677, 193, 138, -1/2 * 193 * this.alphaSize * szx - this.xAdjustment, -1/2 * 138 * this.alphaSize * szx - this.yAdjustment, 193 * this.alphaSize * szx, 138 * this.alphaSize * szx);
+                    }
+                }
+            }
+            else
+            {
+                this.drawUnit(toad, 215, 550, 193, 138, -1/2 * 193 * this.alphaSize * szx - this.xAdjustment, -1/2 * 138 * this.alphaSize * szx - this.yAdjustment, 193 * this.alphaSize * szx, 138 * this.alphaSize * szx);
+            }
+        }
         //VAMPIRE
         if (this.type == "Vampire")
         {
@@ -25848,7 +26608,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             if (this.vampCarry == false || this.vampCarry == "player")
                             {
                                 X = this.X + Math.cos(this.rotation) * -24;
-                                Y = this.Y + Math.sin(this.rotation) * -24;;
+                                Y = this.Y + Math.sin(this.rotation) * -24;
                                 player.attackCooldown = new Date().getTime();
                                 this.vampCarry = "player";
                             }

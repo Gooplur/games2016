@@ -27674,6 +27674,127 @@ function Item(type, x, y)
             this.buyValue = 110; // at max, buy for 110.
             this.sellValue = 60 + Math.floor(player.getCharisma() / 1); // at max, sell for 110.
         }
+        else if (this.type == "vardanianRoyalAttireM")
+        {
+            //For All Items
+            this.identity = "Vardanian High Count Attire";
+            this.weight = 6;
+            this.size = 28;
+            this.description = "A majestic golden crown, a regal suit studded with pearls and rubies, and a golden cape.";
+            this.intForDes = 1;
+            this.intDescription = "While the poor starve and suffer, the royal family spends liberally on fashion.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 1.5;
+            this.thirstRetention = 0;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 85;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 60;
+            this.ingredients = [["Velvet", 25], ["Silk", 15], ["Gold", 8], ["Pearl", 100]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 56000; // at max, buy for 56000.
+            this.sellValue = 56000; // at max, sell for 56000.
+        }
+        else if (this.type == "vardanianRoyalAttireF")
+        {
+            //For All Items
+            this.identity = "Vardanian High Countess Dress";
+            this.weight = 10;
+            this.size = 28;
+            this.description = "An extravagently decorated dress of fine materials with a crown of gold, rubies, and pearls.";
+            this.intForDes = 1;
+            this.intDescription = "While the poor starve and suffer, the royal family spends liberally on fashion.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 1.5;
+            this.thirstRetention = 0;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            if (player.gender == "Male")
+            {
+                this.charismaBonus = -50;
+            }
+            else
+            {
+                this.charismaBonus = 85;
+            }
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "heavy";
+
+            this.yield = 1;
+            this.intForCraft = 60;
+            this.ingredients = [["Velvet", 35], ["Silk", 20], ["Gold", 20], ["Pearl", 40]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 56000; // at max, buy for 56000.
+            this.sellValue = 56000; // at max, sell for 56000.
+        }
         else if (this.type == "vardanianNobleOutfit")
         {
             //For All Items
@@ -33035,6 +33156,16 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "vardanianRoyalAttireM")
+        {
+            XXX.beginPath();
+            XXX.drawImage(tribe, 102, 81, 65, 113, X - this.X + (1/2 * CCC.width) - (1/2 * 65 * 1.1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 113 * 1.1), 65 * 1.1, 113 * 1.1);
+        }
+        else if (this.type == "vardanianRoyalAttireF")
+        {
+            XXX.beginPath();
+            XXX.drawImage(tribe, 219, 65, 76, 125, X - this.X + (1/2 * CCC.width) - (1/2 * 76 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 125 * 1), 76 * 1, 125 * 1);
+        }
         else if (this.type == "vardanianCrossbow")
         {
             XXX.beginPath();
@@ -37293,6 +37424,16 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
+        else if (this.type == "vardanianRoyalAttireM")
+        {
+            LXX.beginPath();
+            LXX.drawImage(tribe, 102, 81, 65, 113, this.invX - (1/2 * 65 * 0.7), this.invY - (1/2 * 113 * 0.7), 65 * 0.7, 113 * 0.7);
+        }
+        else if (this.type == "vardanianRoyalAttireF")
+        {
+            LXX.beginPath();
+            LXX.drawImage(tribe, 219, 65, 76, 125, this.invX - (1/2 * 76 * 0.45), this.invY - (1/2 * 125 * 0.45), 76 * 0.45, 125 * 0.45);
+        }
         else if (this.type == "vardanianCrossbow")
         {
             LXX.beginPath();
@@ -41525,6 +41666,16 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "vardanianRoyalAttireM")
+        {
+            XXX.beginPath();
+            XXX.drawImage(tribe, 102, 81, 65, 113, this.invX - (1/2 * 65 * 0.7), this.invY - (1/2 * 113 * 0.7), 65 * 0.7, 113 * 0.7);
+        }
+        else if (this.type == "vardanianRoyalAttireF")
+        {
+            XXX.beginPath();
+            XXX.drawImage(tribe, 219, 65, 76, 125, this.invX - (1/2 * 76 * 0.45), this.invY - (1/2 * 125 * 0.45), 76 * 0.45, 125 * 0.45);
         }
         else if (this.type == "vardanianCrossbow")
         {

@@ -3838,6 +3838,8 @@ function theLegend()
     allWorn.push(new Item("elkGloves", false)); //112
     allWorn.push(new Item("hideGloves", false)); //113
     allWorn.push(new Item("jesterShoes", false)); //114
+    allWorn.push(new Item("vardanianRoyalAttireM", false)); //115
+    allWorn.push(new Item("vardanianRoyalAttireF", false)); //116
 
     scenicList = [];
 

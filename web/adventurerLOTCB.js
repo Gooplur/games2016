@@ -6296,6 +6296,14 @@ function Adventurer()
         {
             outfit = allWorn[109];
         }
+        else if (this.outfitEquipped == "vardanianRoyalAttireM")
+        {
+            outfit = allWorn[115];
+        }
+        else if (this.outfitEquipped == "vardanianRoyalAttireF")
+        {
+            outfit = allWorn[116];
+        }
         else
         {
             outfit = allWorn[0];
@@ -6532,6 +6540,19 @@ function Adventurer()
                 XXX.globalAlpha = 0.4;
             }
             XXX.drawImage(hydra, 1081, 739, 47, 38, -(1 / 2 * 47 * 1) - 2.7, -(1 / 2 * 38 * 1) - 0, 47 * 1, 38 * 1);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "vardanianRoyalAttireM")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(tribe, 154, 4, 64, 67, -(1 / 2 * 64 * 1) - 0, -(1 / 2 * 67 * 1) - 0, 64 * 1, 67 * 1);
             XXX.restore();
         }
         else if (this.outfitEquipped == "vardanWearM")
@@ -7188,6 +7209,34 @@ function Adventurer()
                     XXX.globalAlpha = 0.4;
                 }
                 XXX.drawImage(hydra, 848, 730, 111, 66, -(1 / 2 * 111 * 1.1) + 0, -(1 / 2 * 66 * 1.1) + 0, 111 * 1.1, 66 * 1.1);
+                XXX.restore();
+            }
+        }
+        else if (this.outfitEquipped == "vardanianRoyalAttireF")
+        {
+            this.outfitZ = false;
+            if (this.movingType == 0 || this.movingType == 4 || this.movingType == 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation - 1/2 * Math.PI);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(tribe, 276, 44, 125, 86, -(1 / 2 * 125 * 1.1) + 0, -(1 / 2 * 86 * 1.1) + 0, 125 * 1.1, 86 * 1.1);
+                XXX.restore();
+            }
+            else
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation - 1/2 * Math.PI);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(tribe, 424, 42, 125, 86, -(1 / 2 * 125 * 1.1) + 0, -(1 / 2 * 86 * 1.1) + 0, 125 * 1.1, 86 * 1.1);
                 XXX.restore();
             }
         }
@@ -32445,6 +32494,84 @@ function Adventurer()
                         }
                     }
                 }
+                else if (this.outfitEquipped == "vardanianRoyalAttireM")
+                {
+                    if (this.movingType == 2 && this.energy > 0 && this.freeze <= 2)
+                    {
+                        this.wasCapeFlapping = true; //this lets the cape know it was showing so when the player slows down or stops moving the cape will ease back.
+                        this.capeFlappiness += 1; //this is a variable that determines what costume the cape will be.
+                        if (this.capeFlappiness > 100)
+                        {
+                            this.capeFlappiness = 0;
+                        }
+
+                        if (this.capeFlappiness <= 12.5 || this.capeFlappiness > 25 && this.capeFlappiness <= 37.5 || this.capeFlappiness > 50 && this.capeFlappiness <= 62.5 || this.capeFlappiness > 75 && this.capeFlappiness <= 87.5)
+                        {
+                            XXX.save();
+                            XXX.translate(this.myScreenX, this.myScreenY);
+                            XXX.rotate(this.rotation - 1/2 * Math.PI);
+                            XXX.scale(1, 1);
+                            if (this.subtlety)
+                            {
+                                XXX.globalAlpha = 0.4;
+                            }
+                            XXX.drawImage(tribe, 99, 22, 50, 29, -(1 / 2 * 50) - 24, -(1 / 2 * 29 * 1.6) + 0, 50, 29 * 1.6);
+                            XXX.restore();
+                        }
+                        else if (this.capeFlappiness > 12.5 && this.capeFlappiness <= 25 || this.capeFlappiness > 37.5 && this.capeFlappiness <= 50 || this.capeFlappiness > 62.5 && this.capeFlappiness <= 75 || this.capeFlappiness > 87.5)
+                        {
+                            XXX.save();
+                            XXX.translate(this.myScreenX, this.myScreenY);
+                            XXX.rotate(this.rotation - 1/2 * Math.PI);
+                            XXX.scale(1, -1);
+                            if (this.subtlety)
+                            {
+                                XXX.globalAlpha = 0.4;
+                            }
+                            XXX.drawImage(tribe, 99, 22, 50, 29, -(1 / 2 * 50) - 24, -(1 / 2 * 29 * 1.6) + 0, 50, 29 * 1.6);
+                            XXX.restore();
+                        }
+                    }
+                    else if (this.wasCapeFlapping == true)
+                    {
+                        this.capeFlappiness = 50;
+                        this.wasCapeFlapping = "gooblebunches";
+                        //display the cape while codey stuff happens...
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation - 1/2 * Math.PI);
+                        XXX.scale(1, 1);
+                        if (this.subtlety)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
+                        XXX.drawImage(tribe, 99, 22, 50, 29, -(1 / 2 * 50) - 24, -(1 / 2 * 29 * 1.6) + 0, 50, 29 * 1.6);
+                        XXX.restore();
+                    }
+                    else if (this.wasCapeFlapping == "gooblebunches")
+                    {
+                        this.capeFlappiness -= 1; //this time cape flappiness referrs to the cape flapping down on its way out of being displayed.
+                        if (this.capeFlappiness < 1)
+                        {
+                            this.capeFlappiness = 0;
+                            this.wasCapeFlapping = false;
+                        }
+
+                        if (this.capeFlappiness < 50)
+                        {
+                            XXX.save();
+                            XXX.translate(this.myScreenX, this.myScreenY);
+                            XXX.rotate(this.rotation - 1/2 * Math.PI);
+                            XXX.scale(1, 1);
+                            if (this.subtlety)
+                            {
+                                XXX.globalAlpha = 0.4;
+                            }
+                            XXX.drawImage(tribe, 99, 22, 50, 29, -(1 / 2 * 50) - 24 + (50 - this.capeFlappiness), -(1 / 2 * 29 * 1.6) + 0, this.capeFlappiness, 29 * 1.6);
+                            XXX.restore();
+                        }
+                    }
+                }
                 else if (this.outfitEquipped == "varnFurCloak")
                 {
                     if (this.movingType == 2 && this.energy > 0 && this.freeze <= 2)
@@ -33212,6 +33339,18 @@ function Adventurer()
                         XXX.globalAlpha = 0.4;
                     }
                     XXX.drawImage(verse, 3228, 215, 33, 15, -(1 / 2 * 38) + 2.7, -(1 / 2 * 42) + 12.5, 33, 15);
+                    XXX.restore();
+                }
+                else if (this.outfitEquipped == "vardanianRoyalAttireF")
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - (1/2 * Math.PI));
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(tribe, 226, 6, 85, 54, -(1 / 2 * 85 * 1) - 0, -(1 / 2 * 54 * 1) + 0, 85 * 1, 54 * 1);
                     XXX.restore();
                 }
                 else if (this.outfitEquipped == "vardanianRoyalDress")

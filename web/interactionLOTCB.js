@@ -14550,7 +14550,7 @@ function interaction(me)
                         }
                         else if (conversationID[1] == "0a")
                         {
-                            if (player.gender == "Female" && player.charisma >= 4 && player.gamemode != "protagonist" && player.title != "Highfolk" && player.title != "Nobility" && player.title != "Royalty")
+                            if (player.gender == "Female" && player.charisma >= 4 && player.gamemode != "protagonist" && player.title != "Highfolk" && player.title != "Nobility" && player.title != "Royalty" && player.matureContentFilter == false)
                             {
                                 joaquinPrettyThing.play();
                                 joaquinPrettyThing.onended = function()

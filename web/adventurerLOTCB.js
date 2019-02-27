@@ -573,6 +573,7 @@ function Adventurer()
     this.outfitType = "none";
     this.glovesType = "none";
     this.necklaceType = "none";
+    this.matureContentFilter = true; //this filters suggestive or otherwise mature content while set to true
     //fishing variables
     this.fishing = false;
     this.fishingID = "none";

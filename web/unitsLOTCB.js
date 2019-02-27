@@ -1478,6 +1478,21 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.allys.push("wild");
             this.allys.push("clamia");
         }
+        if (this.team == "koivayia" || this.team == "koivaya")
+        {
+            this.allys.push("shehidia");
+            this.allys.push("docile");
+            this.allys.push("clamia");
+            this.allys.push("anemonia");
+            if (this.team == "koivaya")
+            {
+                this.allys.push("koivayia");
+            }
+            else
+            {
+                this.allys.push("koivaya");
+            }
+        }
         if (this.team == "berulnia")
         {
             this.allys.push("docile");
@@ -8085,66 +8100,79 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             {
                                 this.target.quarterAcid = true;
                                 this.target.acidTime = new Date().getTime() + 8000;
+                                this.target.killedByPlayer = false;
                             }
                             else if (this.effect == "halfAcid" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
                             {
                                 this.target.halfAcid = true;
                                 this.target.acidTime = new Date().getTime() + 8000;
+                                this.target.killedByPlayer = false;
                             }
                             else if (this.effect == "acidI" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
                             {
                                 this.target.acidI = true;
                                 this.target.acidTime = new Date().getTime() + 8000;
+                                this.target.killedByPlayer = false;
                             }
                             else if (this.effect == "acidII" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
                             {
                                 this.target.acidII = true;
                                 this.target.acidTime = new Date().getTime() + 8000;
+                                this.target.killedByPlayer = false;
                             }
                             else if (this.effect == "acidIII" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
                             {
                                 this.target.acidIII = true;
                                 this.target.acidTime = new Date().getTime() + 8000;
+                                this.target.killedByPlayer = false;
                             }
                             else if (this.effect == "acidIV" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
                             {
                                 this.target.acidIV = true;
                                 this.target.acidTime = new Date().getTime() + 8000;
+                                this.target.killedByPlayer = false;
                             }
                             else if (this.effect == "acidV" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
                             {
                                 this.target.acidV = true;
                                 this.target.acidTime = new Date().getTime() + 8000;
+                                this.target.killedByPlayer = false;
                             }
                             else if (this.effect == "superAcid" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
                             {
                                 this.target.acidV = true;
                                 this.target.acidTime = new Date().getTime() + 22000;
+                                this.target.killedByPlayer = false;
                             }
                             else if (this.effect == "poisonI" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
                             {
                                 this.target.acidI = true;
                                 this.target.acidTime = new Date().getTime() + 40000;
+                                this.target.killedByPlayer = false;
                             }
                             else if (this.effect == "poisonII" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
                             {
                                 this.target.acidII = true;
                                 this.target.acidTime = new Date().getTime() + 40000;
+                                this.target.killedByPlayer = false;
                             }
                             else if (this.effect == "poisonIII" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
                             {
                                 this.target.acidIII = true;
                                 this.target.acidTime = new Date().getTime() + 40000;
+                                this.target.killedByPlayer = false;
                             }
                             else if (this.effect == "poisonIV" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
                             {
                                 this.target.acidIV = true;
                                 this.target.acidTime = new Date().getTime() + 40000;
+                                this.target.killedByPlayer = false;
                             }
                             else if (this.effect == "poisonV" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
                             {
                                 this.target.acidV = true;
                                 this.target.acidTime = new Date().getTime() + 40000;
+                                this.target.killedByPlayer = false;
                             }
                         }
                     }
@@ -14044,6 +14072,90 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
             }
             this.swimSpeed = this.speed * 0.8;
+        }
+        else if (this.type == "Koivaya") //koikoi
+        {
+            this.resistances = ["night", "blinded"];
+            this.damageFrame = "automatic";
+            this.team = "koivayia";
+            if (this.ID == "docile")
+            {
+                this.team = "docile";
+            }
+            if (this.ID == "loner")
+            {
+                this.team = "koivaya";
+            }
+
+            this.baseTeam = this.team;
+            this.tameREQ = 15;
+            this.horny = 0;
+            this.mate = "none";
+
+            this.hungerMAX = 100;
+            this.hunger = 100;
+
+            this.offendedTime = 0;
+
+            this.packGenes = Math.round(Math.random()); //calls for others of the species (+)
+            this.smellGenes = Math.round(Math.random()); //has a longer sight (=)
+            this.huntGenes = Math.round(Math.random()); //actively seeks out prey when not hungry (-)
+            this.bigHungerGenes = Math.round(Math.random()); //has a higher max hunger (=)
+            this.aggroGenes = Math.round(Math.random()); //faster attack rate (+)
+            this.bulkGenes = Math.round(Math.random()); //slightly increased size, health, and damage (-)
+            this.horndogGenes = Math.round(Math.random()); //faster pregnancy cycle, faster horniness cycle (=)
+            this.speedsterGenes = Math.round(Math.random()); //slightly faster movement speed (=)
+
+            this.fatherGenes = {pack: this.packGenes, smell: this.smellGenes, hunt: this.huntGenes, bigHunger: this.bigHungerGenes, aggro: this.aggroGenes, bulk: this.bulkGenes, horndog: this.horndogGenes, speedster: this.speedsterGenes};
+
+            if (this.alpha == true)
+            {
+                this.magicalResistance = 0;
+                this.heatResistance = -1.5;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = Math.floor(Math.random() * 6) + 11;
+                this.health = this.healthMAX;
+                this.armour = 0;
+                this.speed = 4.1 + (Math.floor(Math.random() * 4) / 10);
+                this.rangeOfSight = 500; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.25;
+                this.engagementRadius = 50;
+                this.sizeRadius = 17;
+                this.negateArmour = 4;
+                this.attackWait = 0.9;
+
+                //alpha has a larger size body and skills.
+                this.alphaSize = 1.25; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                // this is the adjustment the alpha type of Etyr needs to be centered.
+                this.yAdjustment = 0;
+                this.xAdjustment = 0;
+            }
+            else
+            {
+                this.magicalResistance = 0;
+                this.heatResistance = -1.5;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = Math.floor(Math.random() * 4) + 9;
+                this.health = this.healthMAX;
+                this.armour = 0;
+                this.speed = 3.75 + (Math.floor(Math.random() * 3) / 10);
+                this.rangeOfSight = 400; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.25;
+                this.engagementRadius = 44;
+                this.sizeRadius = 15;
+                this.negateArmour = 3;
+                this.attackWait = 0.8;
+
+                //alpha has a larger size body and skills.
+                this.alphaSize = 1; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                // this is the adjustment the alpha type of Etyr needs to be centered.
+                this.yAdjustment = 0;
+                this.xAdjustment = 0;
+
+            }
+            this.swimSpeed = this.speed * 0.4;
         }
         else if (this.type == "Toad") //toadtoad
         {
@@ -25876,6 +25988,729 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.drawUnit(verse, 2929, 283, 54, 32, -35 - this.xAdjustment, -22 - this.yAdjustment, 54 * this.alphaSize, 32 * this.alphaSize);
             }
         }
+        //KOIVAYA
+        if (this.type == "Koivaya") //koikoi
+        {
+            //Set Drops and experience
+            if (this.alpha == true)
+            {
+                if (Math.max(0, 7 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 30 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = (30 * ((player.getIntelligence() / 50) + 1)) / 10;
+                }
+
+                this.drops = [[new Item("koivayaPelt", this.X, this.Y), 1], [new Item("rawKoivayaFlesh", this.X, this.Y), 1]];
+            }
+            else
+            {
+                if (Math.max(0, 4 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 23 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = 23 * ((player.getIntelligence() / 50) + 1) / 10;
+                }
+
+                this.drops = [[new Item("koivayaPelt", this.X, this.Y), 1], [new Item("rawKoivayaFlesh", this.X, this.Y), 1]];
+            }
+
+            if (this.other == false)
+            {
+                this.other = true;
+
+                if (this.bigHungerGenes == true)
+                {
+                    this.hungerMAX = 160;
+                    this.hunger = this.hungerMAX;
+                }
+                else
+                {
+                    this.hungerMAX = 100;
+                    this.hunger = this.hungerMAX;
+                }
+                //genetics
+                if (this.alpha == true)
+                {
+                    this.magicalResistance = 0;
+                    this.heatResistance = -1.5;
+                    this.attackStyle = "chunked";
+                    this.attackRate = 0;  //this is for rapid style combat only.
+                    if (this.bulkGenes == true)
+                    {
+                        this.healthMAX = Math.floor(Math.random() * 7) + 13;
+                        this.health = this.healthMAX;
+                    }
+                    else
+                    {
+                        this.healthMAX = Math.floor(Math.random() * 6) + 11;
+                        this.health = this.healthMAX;
+                    }
+                    this.armour = 0;
+                    if (this.speedsterGenes == true)
+                    {
+                        this.speed = 4.25 + (Math.floor(Math.random() * 4) / 10);
+                    }
+                    else
+                    {
+                        this.speed = 4.1 + (Math.floor(Math.random() * 4) / 10);
+                    }
+
+                    if (this.bulkGenes == true)
+                    {
+                        this.engagementRadius = 48;
+                        this.sizeRadius = 18;
+                        this.alphaSize = 1.35;
+                    }
+                    else
+                    {
+                        this.engagementRadius = 43;
+                        this.sizeRadius = 17;
+                        this.alphaSize = 1.25;
+                    }
+                    this.rotationSpeed = 0.25;
+                    this.negateArmour = 4;
+                    if (this.aggroGenes == true)
+                    {
+                        this.attackWait = 0.75;
+                    }
+                    else
+                    {
+                        this.attackWait = 0.9;
+                    }
+
+                    //alpha has a larger size body and skills.
+                    //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                    // this is the adjustment the alpha type of Etyr needs to be centered.
+                    this.yAdjustment = 0;
+                    this.xAdjustment = 0;
+                }
+                else
+                {
+                    this.magicalResistance = 0;
+                    this.heatResistance = -1.5;
+                    this.attackStyle = "chunked";
+                    this.attackRate = 0;  //this is for rapid style combat only.
+                    if (this.bulkGenes == true)
+                    {
+                        this.healthMAX = Math.floor(Math.random() * 5) + 10;
+                        this.health = this.healthMAX;
+                    }
+                    else
+                    {
+                        this.healthMAX = Math.floor(Math.random() * 4) + 9;
+                        this.health = this.healthMAX;
+                    }
+                    this.armour = 0;
+                    if (this.speedsterGenes == true)
+                    {
+                        this.speed = 3.9 + (Math.floor(Math.random() * 3) / 10);
+                    }
+                    else
+                    {
+                        this.speed = 3.75 + (Math.floor(Math.random() * 3) / 10);
+                    }
+
+                    this.rotationSpeed = 0.25;
+                    if (this.bulkGenes == true)
+                    {
+                        this.engagementRadius = 41;
+                        this.sizeRadius = 16;
+                        this.alphaSize = 1.15;
+                    }
+                    else
+                    {
+                        this.engagementRadius = 35;
+                        this.sizeRadius = 15;
+                        this.alphaSize = 1;
+                    }
+                    this.negateArmour = 3;
+                    if (this.aggroGenes == true)
+                    {
+                        this.attackWait = 0.7;
+                    }
+                    else
+                    {
+                        this.attackWait = 0.8;
+                    }
+
+                    //alpha has a larger size body and skills.
+                    //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                    // this is the adjustment the alpha type of Etyr needs to be centered.
+                    this.yAdjustment = 0;
+                    this.xAdjustment = 0;
+
+                }
+            }
+
+            //RANGE OF SIGHT (anything related to range of sight)
+            if (this.hunger <= 0)
+            {
+                if (this.alpha == true)
+                {
+                    if (this.smellGenes == true)
+                    {
+                        this.rangeOfSightCalculator(900, "mildly");
+                    }
+                    else
+                    {
+                        this.rangeOfSightCalculator(700, "mildly");
+                    }
+                }
+                else
+                {
+                    if (this.smellGenes == true)
+                    {
+                        this.rangeOfSightCalculator(800, "mildy");
+                    }
+                    else
+                    {
+                        this.rangeOfSightCalculator(600, "mildy");
+                    }
+                }
+            }
+            else
+            {
+                if (this.alpha == true)
+                {
+                    if (this.smellGenes == true)
+                    {
+                        this.rangeOfSightCalculator(700, "mildly");
+                    }
+                    else
+                    {
+                        this.rangeOfSightCalculator(500, "mildly");
+                    }
+                }
+                else
+                {
+                    if (this.smellGenes == true)
+                    {
+                        this.rangeOfSightCalculator(600, "mildy");
+                    }
+                    else
+                    {
+                        this.rangeOfSightCalculator(400, "mildy");
+                    }
+                }
+            }
+
+            //AI
+            if (this.alive == true)
+            {
+                if (this.alpha == true)
+                {
+                    //console.log("preggers: " + (this.horny * -1))
+                }
+                else
+                {
+                    //console.log("xxxDrive: " + this.horny)
+                }
+
+                if (this.team != "player" && this.team != "koivaya")
+                {
+                    this.hunger -= 0.005;
+                }
+
+                if (this.hunger < 0)
+                {
+                    this.hunger = 0;
+                    this.health -= 0.001;
+                }
+                else if (this.hunger > 0 && this.health < this.healthMAX && this.team != "player" && this.team != "koivaya")
+                {
+                    this.health += 0.001;
+                }
+                else if (this.health > this.healthMAX)
+                {
+                    this.health = this.healthMAX;
+                }
+
+
+
+                if (this.alpha == true)
+                {
+                    if (this.bulkGenes == true)
+                    {
+                        this.Attack(6, 4);
+                    }
+                    else
+                    {
+                        this.Attack(6, 3.5);
+                    }
+
+                    if (this.packGenes == true)
+                    {
+                        this.callForNearbyHelpFromType(800, "Koivaya");
+                        if (this.disturbed == true || this.offended == true || this.hunger <= 40)
+                        {
+                            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                            {
+                                if (ArtificialIntelligenceAccess[i].type == this.type && ArtificialIntelligenceAccess[i].team == this.team)
+                                {
+                                    if (ArtificialIntelligenceAccess[i].packGenes == true)
+                                    {
+                                        if ((ArtificialIntelligenceAccess[i].X - this.X)+(ArtificialIntelligenceAccess[i].Y - this.Y) <= this.rangeOfSight*this.rangeOfSight)
+                                        {
+                                            if (this.disturbed == true || this.hunger <= 40)
+                                            {
+                                                ArtificialIntelligenceAccess[i].disturbed = true;
+                                            }
+
+                                            if (this.offended == true || this.hunger <= 40)
+                                            {
+                                                ArtificialIntelligenceAccess[i].offended = true;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        this.callForNearbyHelpFromType(100, "Koivaya");
+                    }
+                }
+                else
+                {
+                    if (this.bulkGenes == true)
+                    {
+                        this.Attack(4, 3);
+                    }
+                    else
+                    {
+                        this.Attack(4, 2.5);
+                    }
+
+                    if (this.packGenes == true)
+                    {
+                        this.callForNearbyHelpFromType(700, "Koivaya");
+                    }
+                    else
+                    {
+                        this.callForNearbyHelpFromType(75, "Koivaya");
+                    }
+                }
+
+                if (this.alpha == false)
+                {
+                    if (this.horndogGenes == true)
+                    {
+                        this.horny += 2;
+                    }
+                    else
+                    {
+                        this.horny += 1;
+                    }
+                }
+                else if (this.horny < 0)
+                {
+                    if (this.horndogGenes == true)
+                    {
+                        this.horny -= 2;
+                    }
+                    else
+                    {
+                        this.horny -= 1;
+                    }
+
+                    if (this.horny < -700)
+                    {
+                        this.horny = 0;
+                        var koivayaBaby = new Unit(this.X, this.Y, "Koivaya", Math.round(Math.random()), this.ID);
+                        koivayaBaby.designUnits();
+                        koivayaBaby.baseTeam = this.baseTeam;
+                        koivayaBaby.other = false;
+
+                        if (this.fatherGenes.pack == true || this.packGenes == true)
+                        {
+                            koivayaBaby.packGenes = true;
+                        }
+                        else
+                        {
+                            koivayaBaby.packGenes = false;
+                        }
+
+                        if (koivayaBaby.alpha == true)
+                        {
+                            if (Math.round(Math.random()))
+                            {
+                                koivayaBaby.smellGenes = this.smellGenes;
+                            }
+                            else
+                            {
+                                if (Math.round(Math.random()))
+                                {
+                                    koivayaBaby.smellGenes = this.smellGenes;
+                                }
+                                else
+                                {
+                                    koivayaBaby.smellGenes = this.fatherGenes.smell;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (Math.round(Math.random()))
+                            {
+                                koivayaBaby.smellGenes = this.fatherGenes.smell;
+                            }
+                            else
+                            {
+                                if (Math.round(Math.random()))
+                                {
+                                    koivayaBaby.smellGenes = this.fatherGenes.smell;
+                                }
+                                else
+                                {
+                                    koivayaBaby.smellGenes = this.smellGenes;
+                                }
+                            }
+                        }
+
+                        if (this.fatherGenes.hunt == true && this.huntGenes == true)
+                        {
+                            koivayaBaby.huntGenes = true;
+                        }
+                        else
+                        {
+                            koivayaBaby.huntGenes = false;
+                        }
+
+                        if (koivayaBaby.alpha == true)
+                        {
+                            if (Math.round(Math.random()))
+                            {
+                                koivayaBaby.bigHungerGenes = this.bigHungerGenes;
+                            }
+                            else
+                            {
+                                if (Math.round(Math.random()))
+                                {
+                                    koivayaBaby.bigHungerGenes = this.bigHungerGenes;
+                                }
+                                else
+                                {
+                                    koivayaBaby.bigHungerGenes = this.fatherGenes.bigHunger;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (Math.round(Math.random()))
+                            {
+                                koivayaBaby.bigHungerGenes = this.fatherGenes.bigHunger;
+                            }
+                            else
+                            {
+                                if (Math.round(Math.random()))
+                                {
+                                    koivayaBaby.bigHungerGenes = this.fatherGenes.bigHunger;
+                                }
+                                else
+                                {
+                                    koivayaBaby.bigHungerGenes = this.bigHungerGenes;
+                                }
+                            }
+                        }
+
+                        if (this.fatherGenes.aggro == true || this.aggroGenes == true)
+                        {
+                            koivayaBaby.aggroGenes = true;
+                        }
+                        else
+                        {
+                            koivayaBaby.aggroGenes = false;
+                        }
+
+                        if (this.fatherGenes.bulk == true && this.bulkGenes == true)
+                        {
+                            koivayaBaby.bulkGenes = true;
+                        }
+                        else
+                        {
+                            koivayaBaby.bulkGenes = false;
+                        }
+
+                        if (koivayaBaby.alpha == true)
+                        {
+                            koivayaBaby.horndogGenes = this.horndogGenes;
+                        }
+                        else
+                        {
+                            koivayaBaby.horndogGenes = this.fatherGenes.horndog;
+                        }
+
+                        if (koivayaBaby.alpha == true)
+                        {
+                            if (Math.round(Math.random()))
+                            {
+                                koivayaBaby.speedsterGenes = this.speedsterGenes;
+                            }
+                            else
+                            {
+                                if (Math.round(Math.random()))
+                                {
+                                    koivayaBaby.speedsterGenes = this.speedsterGenes;
+                                }
+                                else
+                                {
+                                    koivayaBaby.speedsterGenes = this.fatherGenes.speedster;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (Math.round(Math.random()))
+                            {
+                                koivayaBaby.speedsterGenes = this.fatherGenes.speedster;
+                            }
+                            else
+                            {
+                                if (Math.round(Math.random()))
+                                {
+                                    koivayaBaby.speedsterGenes = this.fatherGenes.speedster;
+                                }
+                                else
+                                {
+                                    koivayaBaby.speedsterGenes = this.speedsterGenes;
+                                }
+                            }
+                        }
+
+                        ArtificialIntelligenceAccess.push(koivayaBaby);
+                    }
+                }
+
+                if (this.alpha == true && this.mate != "none")
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].barcode == this.mate)
+                        {
+                            if (ArtificialIntelligenceAccess[i].type == this.type && this.alpha != ArtificialIntelligenceAccess[i].alpha && ArtificialIntelligenceAccess[i].team == this.team)
+                            {
+                                hits = 1;
+                            }
+                        }
+                    }
+
+                    if (hits == 0)
+                    {
+                        this.mate = "none";
+                    }
+                }
+
+                //this.deathChecker();
+                this.disturbedTimer();
+                this.visibleSight();
+                this.friendDecider();
+                this.targeting();
+
+                if (this.offended == true)
+                {
+                    this.offendedTime += 1;
+                    if (this.offendedTime > 200)
+                    {
+                        this.offended = false;
+                        this.offendedTime = 0;
+                    }
+                }
+
+                if (this.target == player && this.DTP() < 150 || this.team == "player" && tKey == true)
+                {
+                    this.pointTowardsPlayer();
+                    this.moveInRelationToPlayer();
+                }
+                else if (this.horny >= 600 && this.alpha == false && this.team != "koivaya")
+                {
+                    var nearness = 10000000;
+                    var nearest = -1;
+
+                    if (this.mate == "none")
+                    {
+                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                        {
+                            if (ArtificialIntelligenceAccess[i].type == this.type && this.alpha != ArtificialIntelligenceAccess[i].alpha && ArtificialIntelligenceAccess[i].team == this.team && ArtificialIntelligenceAccess[i].mate == "none")
+                            {
+                                var newDisty = this.DTU(ArtificialIntelligenceAccess[i]);
+                                if (newDisty < nearness)
+                                {
+                                    nearness = newDisty;
+                                    nearest = i;
+                                }
+                            }
+                        }
+                    }
+
+                    if (nearest > -1 && this.mate == "none")
+                    {
+                        if (ArtificialIntelligenceAccess[nearest].mate == "none")
+                        {
+                            //ArtificialIntelligenceAccess[nearest].mate = this.barcode;
+                            this.mate = ArtificialIntelligenceAccess[nearest].barcode;
+                        }
+                    }
+                    else
+                    {
+                        var hits = 0;
+                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                        {
+                            if (ArtificialIntelligenceAccess[i].barcode == this.mate)
+                            {
+                                hits = 1;
+                                if (ArtificialIntelligenceAccess[i].horny >= 0)
+                                {
+                                    if (ArtificialIntelligenceAccess[i].type == this.type && this.alpha != ArtificialIntelligenceAccess[i].alpha && ArtificialIntelligenceAccess[i].team == this.team)
+                                    {
+                                        this.pointTowards(ArtificialIntelligenceAccess[i]);
+                                        this.moveInRelationToThing(ArtificialIntelligenceAccess[i]);
+
+                                        if (this.DTU(ArtificialIntelligenceAccess[i]) < 70)
+                                        {
+                                            for (var j = 0; j < ArtificialIntelligenceAccess.length; j++) //all other competing males are forced to seek another mate
+                                            {
+                                                if (ArtificialIntelligenceAccess[j] !== this && ArtificialIntelligenceAccess[j].type == this.type && ArtificialIntelligenceAccess[j].team == this.team)
+                                                {
+                                                    if (ArtificialIntelligenceAccess[j].mate == this.mate)
+                                                    {
+                                                        ArtificialIntelligenceAccess[j].mate = "none";
+                                                    }
+                                                }
+                                            }
+
+                                            ArtificialIntelligenceAccess[i].mate = this.barcode; //the male claims the female as his own exclusive partner
+                                            this.X = ArtificialIntelligenceAccess[i].X;
+                                            this.Y = ArtificialIntelligenceAccess[i].Y;
+                                            ArtificialIntelligenceAccess[i].fatherGenes = {pack: this.packGenes, smell: this.smellGenes, hunt: this.huntGenes, bigHunger: this.bigHungerGenes, aggro: this.aggroGenes, bulk: this.bulkGenes, horndog: this.horndogGenes, speedster: this.speedsterGenes};
+                                            ArtificialIntelligenceAccess[i].horny = -1;
+                                            this.horny = 0;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        if (hits == 0)
+                        {
+                            this.mate = "none";
+                        }
+                    }
+                }
+                else if (this.target == player)
+                {
+                    if (this.disturbed == true || this.huntGenes == true || this.team == "player" || this.hunger <= 40 || this.team == "player" || this.team == "koivaya")
+                    {
+                        this.pointTowardsPlayer();
+                        this.moveInRelationToPlayer();
+                    }
+                    else
+                    {
+                        this.moving = false;
+                        this.costume = 0;
+                    }
+                }
+                else if (this.target != "none")
+                {
+                    if (this.offended == true || this.hunger <= 40 || this.huntGenes == true || this.DTU(this.target) < 150 || this.team == "player" || this.team == "koivaya")
+                    {
+                        this.pointTowards(this.target);
+                        this.moveInRelationToThing(this.target);
+                    }
+                    else
+                    {
+                        this.moving = false;
+                        this.costume = 0;
+                    }
+                }
+                else
+                {
+                    this.moving = false;
+                    this.costume = 0;
+                }
+            }
+
+            //ANIMATIONS
+            var szx = 1;
+            if (this.alive == true)
+            {
+                if (this.moving && !this.attacking) //If moving and not attacking initiate moving animation...
+                {
+                    this.costumeEngine(4, 0.18, false);
+                }
+                else if (this.attacking) //otherwise if it is attacking then initiate attacking animation, and if neither...
+                {
+                    if(new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000 / timeSpeed * this.timeResistance))
+                    {
+                        this.costumeEngine(4, 0.19, true);
+                    }
+                }
+
+                // the frames/stages/costumes of the animation.
+                var theCostume = Math.floor(this.costume); //This rounds this.costume down to the nearest whole number.
+
+                if (theCostume <= 0)
+                {
+                    if (this.attacking)
+                    {
+                        this.drawUnit(toad, 296, 194, 78, 57, -1/2 * 78 * this.alphaSize * szx - this.xAdjustment, -1/2 * 57 * this.alphaSize * szx - this.yAdjustment, 78 * this.alphaSize * szx, 57 * this.alphaSize * szx);
+                    }
+                    else
+                    {
+                        this.drawUnit(toad, 296, 194, 78, 57, -1/2 * 78 * this.alphaSize * szx - this.xAdjustment, -1/2 * 57 * this.alphaSize * szx - this.yAdjustment, 78 * this.alphaSize * szx, 57 * this.alphaSize * szx);
+                    }
+                }
+                else if (theCostume <= 1)
+                {
+                    if (this.attacking)
+                    {
+                        this.drawUnit(toad, 204, 194, 78, 57, -1/2 * 78 * this.alphaSize * szx - this.xAdjustment, -1/2 * 57 * this.alphaSize * szx - this.yAdjustment, 78 * this.alphaSize * szx, 57 * this.alphaSize * szx);
+                    }
+                    else
+                    {
+                        this.drawUnit(toad, 106, 265, 78, 57, -1/2 * 78 * this.alphaSize * szx - this.xAdjustment, -1/2 * 57 * this.alphaSize * szx - this.yAdjustment, 78 * this.alphaSize * szx, 57 * this.alphaSize * szx);
+                    }
+                }
+                else if (theCostume <= 2)
+                {
+                    if (this.attacking)
+                    {
+                        this.manualAttack = true;
+                        this.drawUnit(toad, 109, 193, 78, 57, -1/2 * 78 * this.alphaSize * szx - this.xAdjustment, -1/2 * 57 * this.alphaSize * szx - this.yAdjustment, 78 * this.alphaSize * szx, 57 * this.alphaSize * szx);
+                    }
+                    else
+                    {
+                        this.drawUnit(toad, 296, 194, 78, 57, -1/2 * 78 * this.alphaSize * szx - this.xAdjustment, -1/2 * 57 * this.alphaSize * szx - this.yAdjustment, 78 * this.alphaSize * szx, 57 * this.alphaSize * szx);
+                    }
+                }
+                else if (theCostume >= 3)
+                {
+                    if (this.attacking)
+                    {
+                        if (this.manualAttack == true)
+                        {
+                            this.manualAttack = false;
+                            this.hunger = Math.min(this.hungerMAX, this.hunger + 1/2 * this.hungerMAX);
+                        }
+                        this.drawUnit(toad, 12, 191, 78, 57, -1/2 * 78 * this.alphaSize * szx - this.xAdjustment, -1/2 * 57 * this.alphaSize * szx - this.yAdjustment, 78 * this.alphaSize * szx, 57 * this.alphaSize * szx);
+                    }
+                    else
+                    {
+                        this.drawUnit(toad, 7, 267, 78, 57, -1/2 * 78 * this.alphaSize * szx - this.xAdjustment, -1/2 * 57 * this.alphaSize * szx - this.yAdjustment, 78 * this.alphaSize * szx, 57 * this.alphaSize * szx);
+                    }
+                }
+            }
+            else
+            {
+                this.drawUnit(toad, 199, 272, 78, 57, -1/2 * 78 * this.alphaSize * szx - this.xAdjustment, -1/2 * 57 * this.alphaSize * szx - this.yAdjustment, 78 * this.alphaSize * szx, 57 * this.alphaSize * szx);
+            }
+        }
         //TOAD
         if (this.type == "Toad") //toadtoad
         {
@@ -34154,14 +34989,29 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 }
                 else if (this.gender == 0)
                 {
-                    if (theCostume <= 0)
+                    if (this.gamemode != "protagonist")
                     {
-                        this.drawUnit(garg, 687, 563, 231, 159, -1/2 * 231 * this.alphaSize * szx - this.xAdjustment, -1/2 * 159 * this.alphaSize * szx - this.yAdjustment, 231 * this.alphaSize * szx, 159 * this.alphaSize * szx);
+                        if (theCostume <= 0)
+                        {
+                            this.drawUnit(garg, 687, 563, 231, 159, -1/2 * 231 * this.alphaSize * szx - this.xAdjustment, -1/2 * 159 * this.alphaSize * szx - this.yAdjustment, 231 * this.alphaSize * szx, 159 * this.alphaSize * szx);
+                        }
+                        else if (theCostume >= 1)
+                        {
+                            this.matingNum += 0.2;
+                            this.drawUnit(garg, 639, 213, 231, 159, -1/2 * 231 * this.alphaSize * szx - this.xAdjustment, -1/2 * 159 * this.alphaSize * szx - this.yAdjustment, 231 * this.alphaSize * szx, 159 * this.alphaSize * szx);
+                        }
                     }
-                    else if (theCostume >= 1)
+                    else
                     {
-                        this.matingNum += 0.2;
-                        this.drawUnit(garg, 639, 213, 231, 159, -1/2 * 231 * this.alphaSize * szx - this.xAdjustment, -1/2 * 159 * this.alphaSize * szx - this.yAdjustment, 231 * this.alphaSize * szx, 159 * this.alphaSize * szx);
+                        if (theCostume <= 0)
+                        {
+                            this.drawUnit(garg, 254, 1492, 205, 167, -1/2 * 205 * this.alphaSize * szx - this.xAdjustment, -1/2 * 167 * this.alphaSize * szx - this.yAdjustment, 205 * this.alphaSize * szx, 167 * this.alphaSize * szx);//non version
+                        }
+                        else if (theCostume >= 1)
+                        {
+                            this.matingNum += 0.2;
+                            this.drawUnit(garg, 254, 1492, 205, 167, -1/2 * 205 * this.alphaSize * szx - this.xAdjustment, -1/2 * 167 * this.alphaSize * szx - this.yAdjustment, 205 * this.alphaSize * szx * 1.1, 167 * this.alphaSize * szx * 1.1); //non version
+                        }
                     }
                 }
             }
@@ -41483,15 +42333,15 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
             if (this.alpha == true)
             {
-                this.rangeOfSightCalculator(600, "mildly");
+                this.rangeOfSightCalculator(450, "mildly");
             }
             else if (this.alpha == "baby")
             {
-                this.rangeOfSightCalculator(400, "mildly");
+                this.rangeOfSightCalculator(300, "mildly");
             }
             else
             {
-                this.rangeOfSightCalculator(550, "mildly");
+                this.rangeOfSightCalculator(400, "mildly");
             }
 
             //AI
@@ -41499,15 +42349,15 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 if (this.alpha == true)
                 {
-                    this.callForNearbyHelpFromType(600, "Zarbu");
+                    this.callForNearbyHelpFromType(450, "Zarbu");
                 }
                 else if (this.alpha == "baby")
                 {
-                    this.callForNearbyHelpFromType(600, "Zarbu");
+                    this.callForNearbyHelpFromType(450, "Zarbu");
                 }
                 else
                 {
-                    this.callForNearbyHelpFromType(600, "Zarbu");
+                    this.callForNearbyHelpFromType(450, "Zarbu");
                 }
 
                 //this.deathChecker();

@@ -118,8 +118,11 @@ function worldBuilder()
         {
             elevation = -2;
             region = "s16";
-            outlineBuilder( 34, 34, "savannah", -20, 524);
-            outlineBuilder( 5, 5, "savannahDirt", -20, 533);
+            outlineBuilder(34, 34, "savannah", -20, 524);
+            outlineBuilder(5, 5, "savannahDirt", -20, 533);
+            outlineBuilder(8, 1, "stonePath", 0, 524);
+            outlineBuilder(1, 5, "stonePath", -4, 532);
+            outlineBuilder(8, 5, "savannahDirt", -9, 531);
         }
         //Layer -15 (temperate region): elev -1
         //mapS15
@@ -128,6 +131,13 @@ function worldBuilder()
             elevation = -1;
             region = "s15";
             outlineBuilder( 34, 34, "greenGrass", -20, 490);
+            outlineBuilder(2, 9, "savannah", -20, 522);
+            outlineBuilder(1, 4, "savannah", -11, 523);
+            outlineBuilder(1, 6, "savannah", -4, 523);
+            outlineBuilder(1, 2, "savannah", -8, 522);
+            outlineBuilder(1, 3, "savannah", 5, 523);
+            outlineBuilder(1, 1, "savannah", 8, 523);
+            outlineBuilder( 34, 1, "stonePath", 0, 490);
         }
         //Layer -14 (temperate region): elev -1
         //mapS14
@@ -136,6 +146,9 @@ function worldBuilder()
             elevation = -1;
             region = "s14";
             outlineBuilder( 34, 34, "greenGrass", -20, 456);
+            outlineBuilder( 6, 1, "stonePath", -6, 456);
+            outlineBuilder( 1, 6, "stonePath", -6, 462);
+            outlineBuilder( 28, 1, "stonePath", 0, 462);
         }
         //Layer -13 (temperate region): elev -1
         //mapS13

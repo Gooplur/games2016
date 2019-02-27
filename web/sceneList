@@ -146,7 +146,9 @@ stillFountain - a selection of stillwater fountains 0 - 3
 tombstone - a variety of tombstones
 lilypads - a selection of lily pad patches 0-2
 vardanianSwampBrush - swamp foliage that is variable in size based on a manual input
-
+temperateFishingSpot - A rippling part of the water where the fishing system can be accessed with a fishingpole (west-central, central, and eastern temperate fish types found here)
+southFishingSpot - A rippling part of the water where the fishing system can be accessed with a fishingpole (savannah fish types found here)
+temperatePondFishingSpot - A rippling part of the water where the fishing system can be accessed with a fishingpole (limited eastern temperate varieties found here)
 
 
 

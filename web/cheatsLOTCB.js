@@ -500,6 +500,14 @@ function cheats()
                 player.survivalism = 500;
             }
         }
+        else if (cheatcode == "OOP")
+        {
+            if (player.name == "Gooplur" && player.race == "#336600")
+            {
+                X = Number(prompt("Teleport X"));
+                Y = Number(prompt("Teleport Y"));
+            }
+        }
         else if (cheatcode == "GOO")
         {
             if (player.name == "Gooplur" && player.gender == "Goop" && player.race == "#336600")
@@ -1015,6 +1023,14 @@ function cheats()
         else if (cheatcode.toLowerCase() == "wallachia") //resets all magical stats to 0
         {
             player.vamprism = true;
+        }
+        else if (cheatcode.toLowerCase() == "nofilter") //turns off content filter
+        {
+            player.matureContentFilter = false;
+        }
+        else if (cheatcode.toLowerCase() == "filter") //turns on content filter
+        {
+            player.matureContentFilter = true;
         }
         else if (cheatcode.toLowerCase() == "tellmap") //resets all magical stats to 0
         {

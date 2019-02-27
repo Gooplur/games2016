@@ -58,6 +58,8 @@ function buildMaster()
                 //ArtificialIntelligenceAccess.push(new Unit(3000, 1500, "Bovine", true, "Wifi Cow"));
                 //ArtificialIntelligenceAccess.push(new Unit(3000, 1500, "Sheep", false, "Double-0-Fuzzball"));
                 //ArtificialIntelligenceAccess.push(new Unit(3000, 1500, "Toad", true, "Hurgar"));
+                //ArtificialIntelligenceAccess.push(new Unit(5550, 2500, "Koivaya", true, "Hamber"));
+                //ArtificialIntelligenceAccess.push(new Unit(5550, 2500, "Koivaya", false, "Hem"));
 
                 //Friches in the plains
                 ArtificialIntelligenceAccess.push(new Unit(2921, -1125, "Frich", false, "Fuzzy Wuzzy"));
@@ -13218,6 +13220,14 @@ function buildMaster()
                 //REGION CREATION
                 //Build AI Units
 
+                //fishing
+                scenicList.push(new Scenery("temperateFishingSpot", -39438, 2114, 10, true));
+                scenicList.push(new Scenery("temperateFishingSpot", -38296, 2004, 7, true));
+                scenicList.push(new Scenery("temperateFishingSpot", -39109, -260, 1, true));
+                scenicList.push(new Scenery("temperateFishingSpot", -39910, -171, 2, true));
+                scenicList.push(new Scenery("temperateFishingSpot", -36838, 357, 5, true));
+                scenicList.push(new Scenery("temperateFishingSpot", -37862, 4628, 4, true));
+
                 //Duendes
                 if (quests.duendeInfestationKillCount < 9 && quests.duendeInfestationDuendeLoad == 0)
                 {
@@ -13323,7 +13333,14 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-41317, 987, "Person", false, "Joaquin the Barkeep", {race: "Nirwaden", faction: "EstolGang", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.1, 0.4], 0, 0, 1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[-41320, 993]], merchant: true, merchandise: [[new Item("coins", false, false), 25], [new Item("harstAle", false, false), 13], [new Item("harstBread", false, false), 2]]}));
+                        if (player.gamemode == "protagonist")
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(-41317, 987, "Person", false, "Sir Elmo, the Carrot Guardian", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.1, 0.4], 0, 0, 1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[-41320, 993]], merchant: true, merchandise: [[new Item("carrot", false, false), 20000]]}));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(-41317, 987, "Person", false, "Joaquin the Barkeep", {race: "Nirwaden", faction: "EstolGang", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.1, 0.4], 0, 0, 1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[-41320, 993]], merchant: true, merchandise: [[new Item("coins", false, false), 25], [new Item("harstAle", false, false), 13], [new Item("harstBread", false, false), 2]]}));
+                        }
                     }
                 }
 
@@ -13832,11 +13849,19 @@ function buildMaster()
                 scenicList.push(new Scenery("sign", -41493, 1627, -1/2 * Math.PI, 3, "Riverfront Outfitter's"));
                 scenicList.push(new Scenery("sign", -41476, 2351, -1/2 * Math.PI, 3, "The Atalin Medical Clinic"));
 
-                if (player.gamemode == "protagonist")
+                if (player.gamemode == "protagonist" || player.matureContentFilter == true)
                 {
                     ArtificialIntelligenceAccess.push(new Unit(-41501, 998, "Person", false, "Buddy", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["northernClothing", 0], weapon: ["none", [0.35, 0.6], 0, 1, 0.5 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[-41562, 1135]]}));
                     ArtificialIntelligenceAccess.push(new Unit(-41562, 1139, "Person", false, "Buddy", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.15, 0.3], 0, 0, 0.5 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: true, route:[[-41562, 1135]]}));
-                    scenicList.push(new Scenery("sign", -41290, 1187, Math.PI, 3, "Beer, Beds, and Buddies")); //owned by estol gang
+
+                    if (player.gamemode == "protagonist")
+                    {
+                        scenicList.push(new Scenery("sign", -41290, 1187, Math.PI, 3, "The Super Buddy Fun House")); //owned by estol gang
+                    }
+                    else
+                    {
+                        scenicList.push(new Scenery("sign", -41290, 1187, Math.PI, 3, "The Riverfront Inn")); //owned by estol gang
+                    }
                 }
                 else
                 {
@@ -19443,16 +19468,147 @@ function buildMaster()
                 //Build AI Units
 
                 //Animals
-                ArtificialIntelligenceAccess.push(new Unit(1488, -157763, "Yioshk", true, "Bilter"));
+                ArtificialIntelligenceAccess.push(new Unit(-2305, -166222, "Yioshk", true, "Bilter"));
+                ArtificialIntelligenceAccess.push(new Unit(-1117, -163587, "Yioshk", false, "Biltukin"));
+
+                ArtificialIntelligenceAccess.push(new Unit(-844, -158511, "Yioshk", false, "Binutu"));
+
+                if (change != "s17")
+                {
+                    if (Math.round(Math.random()))
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(2213, -166458, "Yioshk", false, "Bintunin"));
+                    }
+                }
+                else
+                {
+                    if (Math.round(Math.random()))
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(5196, -164759, "Yioshk", true, "Bintunini"));
+                    }
+                }
+
+                ArtificialIntelligenceAccess.push(new Unit(-1765, -157266, "Yioshk", Math.round(Math.random()), "Biltu"));
+                if (Math.round(Math.random()))
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(6264, -160310, "Rhinoceros", false, "Cagatl"));
+                }
+                else
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(6301, -159706, "Taipan", false, "Sapatli"));
+                }
 
                 //Scenery
                 scenicList.push(new Scenery("yeolTree", 1805 , -157838, -Math.PI * 3, false));
                 scenicList.push(new Scenery("yeolTree", -108 , -158970, -Math.PI * 25, false));
+                scenicList.push(new Scenery("yeolTree", 6282 , -158637, -1, false));
+                scenicList.push(new Scenery("yeolTree", 2440 , -157733, 2.6, false));
+                scenicList.push(new Scenery("yeolTree", 1263 , -160197, 5.6, false));
 
+                for (var l = 0; l < 14; l++)
+                {
+                    scenicList.push(new Scenery("yeolTree", 2370 + 2800 * seeder(l * (l + 5)) - 1400, -163832 + 2800 * seeder(l + (l + 6)) - 1400, Math.random() * (2* Math.PI), "Kel"));
+                }
+                ArtificialIntelligenceAccess.push(new Unit(2105, -163958, "Mugmul", false, "Patpatlak"));
+                ArtificialIntelligenceAccess.push(new Unit(1676, -164759, "Taipan", true, "Sapatli"));
 
+                ArtificialIntelligenceAccess.push(new Unit(-2420, -164339, "Taipan", false, "Sapatlin"));
+
+                for (var l = 0; l < 30; l++)
+                {
+                    scenicList.push(new Scenery("maizePlant", 3677 , -158757 + -81 * l, Math.random() * (2* Math.PI), "Kel"));
+                }
+                for (var l = 0; l < 28; l++)
+                {
+                    scenicList.push(new Scenery("frijolPlant", 3677 - 81 , -158757 - 81 + -81 * l, Math.random() * (2* Math.PI), "Kel"));
+                }
+                for (var l = 0; l < 18; l++)
+                {
+                    scenicList.push(new Scenery("maizePlant", (3677 - 81) - 81 * l , -158757, Math.random() * (2* Math.PI), "Kel"));
+                }
+                for (var l = 0; l < 18; l++)
+                {
+                    scenicList.push(new Scenery("frijolPlant", (3677 - 81) - 81 * l , -158757 - 81, Math.random() * (2* Math.PI), "Kel"));
+                }
+                for (var l = 0; l < 18; l++)
+                {
+                    scenicList.push(new Scenery("frijolPlant", (3677 - 81) - 81 * l , -158757 - 81 * 28, Math.random() * (2* Math.PI), "Kel"));
+                }
+                for (var l = 0; l < 18; l++)
+                {
+                    scenicList.push(new Scenery("maizePlant", (3677 - 81) - 81 * l , -158757 - 81 * 29, Math.random() * (2* Math.PI), "Kel"));
+                }
+
+                scenicList.push(new Scenery("darkStone", 462 , -164353, 2, 1, 3));
+                scenicList.push(new Scenery("darkStone", 1210 , -165349, 7, 1.5, 3));
+
+                ArtificialIntelligenceAccess.push(new Unit(6107, -157621, "Mofu", Math.round(Math.random()), "Fletho"));
+                ArtificialIntelligenceAccess.push(new Unit(-1981, -161913, "Mofu", Math.round(Math.random()), "Fletho"));
+                ArtificialIntelligenceAccess.push(new Unit(-1523, -161219, "Mofu", Math.round(Math.random()), "Fletho"));
+                ArtificialIntelligenceAccess.push(new Unit(-2238, -166431, "Mofu", Math.round(Math.random()), "Fletho"));
+                for (var l = 0; l < 9; l++)
+                {
+                    var sdedX = 3645 + (1400 * seeder(l * 9) - 700);
+                    var sdedY = -158099 + (800 * seeder(l * 17) - 400);
+                    if (Math.random() > 0.56)
+                    {
+                        scenicList.push(new Scenery("mofuNest", sdedX, sdedY, Math.random() * (2* Math.PI), Math.random() + 0.6));
+                        ArtificialIntelligenceAccess.push(new Unit(sdedX, sdedY, "Mofu", Math.round(Math.random()), "Flethy"));
+                    }
+                    else
+                    {
+                        if (Math.random() > 0.6)
+                        {
+                            scenicList.push(new Scenery("mofuNest", sdedX, sdedY, Math.random() * (2* Math.PI), Math.random() + 0.6));
+                            ArtificialIntelligenceAccess.push(new Unit(sdedX + 350 * Math.random() - 175, sdedY + 350 * Math.random() - 175, "Mofu", Math.round(Math.random()), "Flethy"));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(sdedX + 500 * Math.random() - 250, sdedY + 400 * Math.random() - 200, "Mofu", "baby", "Flethu"));
+                        }
+                    }
+                }
+
+                //mofu nest area
+                for (var l = 0; l < 14; l++)
+                {
+                    var sdedX = -223 + (1600 * seeder((l + 1) * 23) - 800);
+                    var sdedY = -165430 + (1000 * seeder((l * 3) + 17) - 500);
+                    if (Math.random() > 0.56)
+                    {
+                        scenicList.push(new Scenery("mofuNest", sdedX, sdedY, Math.random() * (2* Math.PI), Math.random() + 0.6));
+                        ArtificialIntelligenceAccess.push(new Unit(sdedX, sdedY, "Mofu", Math.round(Math.random()), "Flethy"));
+                    }
+                    else
+                    {
+                        if (Math.random() > 0.6)
+                        {
+                            scenicList.push(new Scenery("mofuNest", sdedX, sdedY, Math.random() * (2* Math.PI), Math.random() + 0.6));
+                            ArtificialIntelligenceAccess.push(new Unit(sdedX + 350 * Math.random() - 175, sdedY + 350 * Math.random() - 175, "Mofu", Math.round(Math.random()), "Flethy"));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(sdedX + 500 * Math.random() - 250, sdedY + 400 * Math.random() - 200, "Mofu", "baby", "Flethu"));
+                        }
+                    }
+                }
 
                 //Plants
                 scenicList.push(new Scenery("aktaltlPlant", 2180 , -158186, 7, true));
+                scenicList.push(new Scenery("aktaltlPlant", -101 , -159578, 5, true));
+
+                scenicList.push(new Scenery("hracklePlant", -990 , -157472, 6, true));
+                scenicList.push(new Scenery("hracklePlant", -1574 , -164956, 0.5, true));
+
+                scenicList.push(new Scenery("lelPlant", -2253 , -157661, 0, true));
+
+                scenicList.push(new Scenery("apotlPlant", -299 , -158322, 11, true));
+                scenicList.push(new Scenery("apotlPlant", -98 , -160562, 1.5, true));
+
+                scenicList.push(new Scenery("pochalPlant", -1658 , -161677, 5.53, true));
+                scenicList.push(new Scenery("pochalPlant", 4819 , -164680, 6.35, true));
+
+                scenicList.push(new Scenery("kwomPlant", 855 , -165126, 5.5, true));
 
                 change = "s16";
             }
@@ -19493,6 +19649,17 @@ function buildMaster()
 
                 //REGION CREATION
                 //Build AI Units
+
+                //fishing
+                scenicList.push(new Scenery("southFishingSpot", 4100, -180775, 0, true));
+
+                scenicList.push(new Scenery("southFishingSpot", 3545, -179861, 8, true));
+
+                scenicList.push(new Scenery("southFishingSpot", 1636, -179556, 10, true));
+
+                scenicList.push(new Scenery("southFishingSpot", 5851, -182586, 6, true));
+
+                scenicList.push(new Scenery("southFishingSpot", 4845, -180477, 2, true));
 
                 //Animals
                 ArtificialIntelligenceAccess.push(new Unit(6266, -182359, "Drile", true, "Applejack"));
@@ -20097,6 +20264,82 @@ function buildMaster()
 
 
                 change = "s13";
+            }
+        }
+        else if (region == "s14")
+        {
+            if (change != "s14")
+            {
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
+                //Delete All Non-native AI Units
+                for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
+
+                //REGION CREATION
+                generator(56, 5, 33, 45, 135, 0, 6738, -136459);
+
+                change = "s14";
+            }
+        }
+        else if (region == "s15")
+        {
+            if (change != "s15")
+            {
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
+                //Delete All Non-native AI Units
+                for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
+
+                //REGION CREATION
+                generator(11124, 34, 92, 110, 22340, 0, 6679, -146718);
+                trimmer(809, -155022, 704, -155128, false);
+                trimmer(6940, -155987, -3197, -156973, false);
+
+                change = "s15";
             }
         }
     }

@@ -3102,6 +3102,26 @@ function Item(type, x, y)
             this.buyValue = 2 - Math.floor(player.getCharisma() / 50); // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
         }
+        else if (this.type == "toadHide")
+        {
+            //For All Items
+            this.identity = "Toad Hide";
+            this.weight = 12;
+            this.size = 28;
+            this.description = "The thick leathery green hide of a Vardanian Swamp Toad.";
+            this.intForDes = 0;
+            this.intDescription = "It is rather putrid smelling and rough.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 26; // at max, buy for 26.
+            this.sellValue = 26; // at max, sell for 26.
+        }
         else if (this.type == "rawTilkFlesh")
         {
             //For All Items
@@ -6682,6 +6702,103 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 3; // at max, buy for 3.
             this.sellValue = 2 + Math.floor(player.getCharisma() / 50); // at max, sell for 3.
+        }
+        else if (this.type == "rawToadFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Toad Flesh";
+            this.weight = 6;
+            this.size = 19;
+            this.description = "The raw flesh from a giant Vardanian swamp toad.";
+            this.intForDes = 0;
+            this.intDescription = "The flesh is slimy and smells utterly putrid.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 3; //satisfies hunger.
+            this.thirst = 1; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -3; //recoops lost energy.
+            this.replenish = -1; //restores will.
+
+            //ability
+            this.ability = "foodPoisoning";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "toadMeat")
+        {
+            //For All Items
+            this.identity = "Toad Meat";
+            this.weight = 6;
+            this.size = 19;
+            this.description = "The cooked meat of a giant Vardanian swamp toad.";
+            this.intForDes = 0;
+            this.intDescription = "It is a rubbery meat with an inediblely leathery skin, it tastes somewhat fatty and sort of muddy.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 6; //satisfies hunger.
+            this.thirst = 2; //quenches thirst.
+            this.warmth = 3; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -3; //recoops lost energy.
+            this.replenish = -1; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 7;
+            this.ingredients = [["Raw Toad Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 4; // at max, buy for 4.
+            this.sellValue = 4; // at max, sell for 4.
+        }
+        else if (this.type == "smokedToadMeat")
+        {
+            //For All Items
+            this.identity = "Smoked Toad Meat";
+            this.weight = 6;
+            this.size = 19;
+            this.description = "The smoked meat of a giant Vardanian swamp toad.";
+            this.intForDes = 0;
+            this.intDescription = "It is a rubbery meat with an inediblely leathery skin, it tastes somewhat fatty, muddy, and very smokey.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 7; //satisfies hunger.
+            this.thirst = 2; //quenches thirst.
+            this.warmth = 5; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -2.5; //recoops lost energy.
+            this.replenish = -1; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 8;
+            this.ingredients = [["Raw Toad Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5; // at max, buy for 5.
+            this.sellValue = 5; // at max, sell for 5.
         }
         else if (this.type == "rawBovineRibs")
         {
@@ -15689,6 +15806,26 @@ function Item(type, x, y)
             this.buyValue = 5 - Math.floor(player.getCharisma() / 15); // at max, buy for 2.
             this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
         }
+        else if (this.type == "koivayaPelt")
+        {
+            //For All Items
+            this.identity = "Koivaya Pelt";
+            this.weight = 1.25;
+            this.size = 13;
+            this.description = "The brown furred pelt of a koivaya.";
+            this.intForDes = 3;
+            this.intDescription = "This can be made into basic clothing and tailored goods.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 4 - Math.floor(player.getCharisma() / 50); // at max, buy for 3.
+            this.sellValue = 2 + Math.floor(player.getCharisma() / 50); // at max, sell for 3.
+        }
         else if (this.type == "molteHead")
         {
             //For All Items
@@ -16093,6 +16230,71 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 15 - Math.floor(player.getCharisma() / 10); // at max, buy for 10.
             this.sellValue = 5 + Math.floor(player.getCharisma() / 10); // at max, sell for 10.
+        }
+        else if (this.type == "rawKoivayaFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Koivaya Flesh";
+            this.weight = 1.85;
+            this.size = 9;
+            this.description = "The meaty wet flesh of a koivaya.";
+            this.intForDes = 3;
+            this.intDescription = "Eating this raw would be bad for you.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1.5; //satisfies hunger.
+            this.thirst = 2.2; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+
+            //ability
+            this.ability = "gutworms";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 7 - Math.floor(player.getCharisma() / 50); // at max, buy for 6.
+            this.sellValue = 5 + Math.floor(player.getCharisma() / 50); // at max, sell for 6.
+        }
+        else if (this.type == "koivayaMeat")
+        {
+            //For All Items
+            this.identity = "Koivaya Meat";
+            this.weight = 1.8;
+            this.size = 9;
+            this.description = "A moist meaty cut of koivaya meat.";
+            this.intForDes = 0;
+            this.intDescription = "It has a mouth-wateringly savory flavour with a hint of sweet and fattiness";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 13; //satisfies hunger.
+            this.thirst = 2; //quenches thirst.
+            this.warmth = 2; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.15; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+
+            //ability
+            this.ability = "satiate";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 19;
+            this.ingredients = [["Raw Koivaya Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 16 - Math.floor(player.getCharisma() / 50); // at max, buy for 15.
+            this.sellValue = 14 + Math.floor(player.getCharisma() / 50); // at max, sell for 15.
         }
         else if (this.type == "rhinocerosHorn")
         {
@@ -19676,20 +19878,43 @@ function Item(type, x, y)
             this.utility = "food";
 
             //Utility Focused
-            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
-            this.hunger = 1.5; //satisfies hunger.
-            this.thirst = 0.1; //quenches thirst.
-            this.warmth = 0; //warms player.
-            this.heal = 0; //heals health.
-            this.generation = -0.2; //recoops lost energy.
-            this.replenish = 0; //restores will.
+            if (player.gamemode == "protagonist")
+            {
+                this.description = "Carrots contain the ancient souls of your predecessors.";
+                this.intForDes = 0;
+                this.intDescription = "You are the Carrotborn!! To eat a carrot is to call upon the talent and wisdom of those who have been carrotborn before you.";
+                this.isRegenerative = true; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 1000; //satisfies hunger.
+                this.thirst = 1000; //quenches thirst.
+                this.warmth = 1000; //warms player.
+                this.heal = 1000; //heals health.
+                this.generation = 1000; //recoops lost energy.
+                this.replenish = 1000; //restores will.
 
-            //ability
-            this.ability = "none";
+                //ability
+                this.ability = "soul";
 
-            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
-            this.buyValue = 2; // at max, buy for 2.
-            this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 0; // at max, buy for 0.
+                this.sellValue = 10; // at max, sell for 10.
+            }
+            else
+            {
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 1.5; //satisfies hunger.
+                this.thirst = 0.1; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = -0.2; //recoops lost energy.
+                this.replenish = 0; //restores will.
+
+                //ability
+                this.ability = "none";
+
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 2; // at max, buy for 2.
+                this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+            }
         }
         else if (this.type == "cabbage")
         {
@@ -33156,6 +33381,41 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "koivayaPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 298, 285, 41, 33, X - this.X + (1/2 * CCC.width) - (1/2 * 41 * 1.1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 33 * 1.1), 41 * 1.1, 33 * 1.1);
+        }
+        else if (this.type == "rawKoivayaFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 352, 293, 20, 21, X - this.X + (1/2 * CCC.width) - (1/2 * 20 * 1.1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21 * 1.1), 20 * 1.1, 21 * 1.1);
+        }
+        else if (this.type == "koivayaMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 384, 292, 20, 21, X - this.X + (1/2 * CCC.width) - (1/2 * 20 * 1.1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21 * 1.1), 20 * 1.1, 21 * 1.1);
+        }
+        else if (this.type == "toadHide")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 469, 828, 67, 69, X - this.X + (1/2 * CCC.width) - (1/2 * 67 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 69 * 1), 67 * 1, 69 * 1);
+        }
+        else if (this.type == "rawToadFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 781, 582, 26, 26, X - this.X + (1/2 * CCC.width) - (1/2 * 26 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 26 * 1), 26 * 1, 26 * 1);
+        }
+        else if (this.type == "toadMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 816, 583, 26, 26, X - this.X + (1/2 * CCC.width) - (1/2 * 26 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 26 * 1), 26 * 1, 26 * 1);
+        }
+        else if (this.type == "smokedToadMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 780, 607, 26, 26, X - this.X + (1/2 * CCC.width) - (1/2 * 26 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 26 * 1), 26 * 1, 26 * 1);
+        }
         else if (this.type == "vardanianRoyalAttireM")
         {
             XXX.beginPath();
@@ -37424,6 +37684,41 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
+        else if (this.type == "koivayaPelt")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 298, 285, 41, 33, this.invX - (1/2 * 41 * 1.1), this.invY - (1/2 * 33 * 1.1), 41 * 1.1, 33 * 1.1);
+        }
+        else if (this.type == "rawKoivayaFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 352, 293, 20, 21, this.invX - (1/2 * 20 * 1.1), this.invY - (1/2 * 21 * 1.1), 20 * 1.1, 21 * 1.1);
+        }
+        else if (this.type == "koivayaMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 384, 292, 20, 21, this.invX - (1/2 * 20 * 1.1), this.invY - (1/2 * 21 * 1.1), 20 * 1.1, 21 * 1.1);
+        }
+        else if (this.type == "toadHide")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 469, 828, 67, 69, this.invX - (1/2 * 67 * 0.8), this.invY - (1/2 * 69 * 0.8), 67 * 0.8, 69 * 0.8);
+        }
+        else if (this.type == "rawToadFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 781, 582, 26, 26, this.invX - (1/2 * 26 * 1), this.invY - (1/2 * 26 * 1), 26 * 1, 26 * 1);
+        }
+        else if (this.type == "toadMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 816, 583, 26, 26, this.invX - (1/2 * 26 * 1), this.invY - (1/2 * 26 * 1), 26 * 1, 26 * 1);
+        }
+        else if (this.type == "smokedToadMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 780, 607, 26, 26, this.invX - (1/2 * 26 * 1), this.invY - (1/2 * 26 * 1), 26 * 1, 26 * 1);
+        }
         else if (this.type == "vardanianRoyalAttireM")
         {
             LXX.beginPath();
@@ -41666,6 +41961,41 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "koivayaPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 298, 285, 41, 33, this.invX - (1/2 * 41 * 1.1), this.invY - (1/2 * 33 * 1.1), 41 * 1.1, 33 * 1.1);
+        }
+        else if (this.type == "rawKoivayaFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 352, 293, 20, 21, this.invX - (1/2 * 20 * 1.1), this.invY - (1/2 * 21 * 1.1), 20 * 1.1, 21 * 1.1);
+        }
+        else if (this.type == "koivayaMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 384, 292, 20, 21, this.invX - (1/2 * 20 * 1.1), this.invY - (1/2 * 21 * 1.1), 20 * 1.1, 21 * 1.1);
+        }
+        else if (this.type == "toadHide")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 469, 828, 67, 69, this.invX - (1/2 * 67 * 0.8), this.invY - (1/2 * 69 * 0.8), 67 * 0.8, 69 * 0.8);
+        }
+        else if (this.type == "rawToadFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 781, 582, 26, 26, this.invX - (1/2 * 26 * 1), this.invY - (1/2 * 26 * 1), 26 * 1, 26 * 1);
+        }
+        else if (this.type == "toadMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 816, 583, 26, 26, this.invX - (1/2 * 26 * 1), this.invY - (1/2 * 26 * 1), 26 * 1, 26 * 1);
+        }
+        else if (this.type == "smokedToadMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 780, 607, 26, 26, this.invX - (1/2 * 26 * 1), this.invY - (1/2 * 26 * 1), 26 * 1, 26 * 1);
         }
         else if (this.type == "vardanianRoyalAttireM")
         {

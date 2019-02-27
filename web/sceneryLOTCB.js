@@ -4070,6 +4070,320 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 }
             }
         }
+        else if (this.type == "temperateFishingSpot")
+        {
+            //TRAITS
+            this.fishery = true;
+            this.solid = false;
+            this.interactionRange = 1;
+
+            //Establish Rock Load
+            if (this.runOneTime == true)
+            {
+                this.runOneTime = false;
+                this.health = 14 + Math.floor(Math.random() * 21);
+                this.rockLoad = [];
+                for (var looop = 0; looop < 50; looop++)
+                {
+                    this.rockLoad.push({type: "rawRedBelliedFalder", quantity: 1});
+                }
+                for (var looop = 0; looop < 10; looop++)
+                {
+                    this.rockLoad.push({type: "rawSalmon", quantity: 1});
+                }
+                for (var looop = 0; looop < 15 + player.miningLuck; looop++)
+                {
+                    this.rockLoad.push({type: "rawSlol", quantity: 1});
+                }
+                for (var looop = 0; looop < 25 + player.miningLuck; looop++)
+                {
+                    this.rockLoad.push({type: "crawdid", quantity: 1});
+                }
+
+                this.dayliteChecker = true;
+            }
+
+            if (timeOfDay == "Day" && this.dayliteChecker == false)
+            {
+                this.dayliteChecker = true;
+                for (var kk = this.rockLoad.length - 1; kk >= 0; kk--)
+                {
+                    if (this.rockLoad[kk].type == "rawDuskfish")
+                    {
+                        this.rockLoad.splice(kk, 1);
+                    }
+                }
+            }
+            else if (this.dayliteChecker == true && timeOfDay != "Day")
+            {
+                this.dayliteChecker = false;
+                for (var looop = 0; looop < 20 + player.miningLuck; looop++)
+                {
+                    this.rockLoad.push({type: "rawDuskfish", quantity: 1});
+                }
+            }
+
+            //DRAWSELF
+            this.phase += 0.10;
+
+            if (this.phase <= 1)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.globalAlpha = 0.4;
+                XXX.drawImage(norc, 48, 292, 35, 29, -(1/2 * 35 * 2), -(1/2 * 29 * 2), 35 * 2, 29 * 2);
+                XXX.restore();
+            }
+            else if (this.phase <= 2)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(norc, 0, 257, 35, 29, -(1/2 * 35 * 2), -(1/2 * 29 * 2), 35 * 2, 29 * 2);
+                XXX.restore();
+            }
+            else if (this.phase <= 3)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(norc, 29, 259, 35, 29, -(1/2 * 35 * 2), -(1/2 * 29 * 2), 35 * 2, 29 * 2);
+                XXX.restore();
+            }
+            else if (this.phase <= 4)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(norc, 63, 260, 35, 29, -(1/2 * 35 * 2), -(1/2 * 29 * 2), 35 * 2, 29 * 2);
+                XXX.restore();
+            }
+            else if (this.phase <= 5)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(norc, 3, 291, 35, 29, -(1/2 * 35 * 2), -(1/2 * 29 * 2), 35 * 2, 29 * 2);
+                XXX.restore();
+            }
+            else if (this.phase <= 6 || this.phase > 6)
+            {
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(norc, 48, 292, 35, 29, -(1/2 * 35 * 2), -(1/2 * 29 * 2), 35 * 2, 29 * 2);
+                XXX.restore();
+
+                if (this.phase >= 5.9)
+                {
+                    this.phase = 0;
+                }
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 100;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+
+
+            //console.log(player.finalAttackStage);
+            if (player.weaponEquipped == "fishingpole" && player.fishingFrame == true)//player.cutcut == true)
+            {
+                var distFromCutCut = Math.sqrt((this.X - player.bubbleOfDamageX)*(this.X - player.bubbleOfDamageX) + (this.Y - player.bubbleOfDamageY)*(this.Y - player.bubbleOfDamageY));
+                console.log(distFromCutCut);
+                if (distFromCutCut <= player.weapon.range * 7 + 125)
+                {
+                    player.fishing = true;
+                    player.fishingID = (this.hiveID + "_fishing");
+                    player.fishingTime = new Date().getTime();
+                    player.fishingFrame = false;
+                }
+            }
+
+            if (player.fishing == true && player.fishingID == (this.hiveID + "_fishing"))
+            {
+                if (new Date().getTime() - player.fishingTime > 41000)
+                {
+                    if (Math.round(Math.random()))
+                    {
+                        this.health -= 1;
+                        this.rockLoader(this.rockLoad); //this gives the player a fish (but only half of the time)
+                    }
+                    else
+                    {
+                        if (this.health >= 3)
+                        {
+                            this.health -= 1;
+                        }
+                    }
+
+                    if (this.temporary != true)
+                    {
+                        if (this.health <= 0)
+                        {
+                            scenicList.splice(scenicList.indexOf(this), 1);
+                        }
+                    }
+
+                    player.fishing = false;
+                    player.fishingID = false;
+                }
+            }
+        }
+        else if (this.type == "southFishingSpot")
+        {
+            //TRAITS
+            this.fishery = true;
+            this.solid = false;
+            this.interactionRange = 1;
+
+            //Establish Rock Load
+            if (this.runOneTime == true)
+            {
+                this.runOneTime = false;
+                this.health = 14 + Math.floor(Math.random() * 21);
+                this.rockLoad = [];
+                for (var looop = 0; looop < 26; looop++)
+                {
+                    this.rockLoad.push({type: "rawKalp", quantity: 1});
+                }
+                for (var looop = 0; looop < 33; looop++)
+                {
+                    this.rockLoad.push({type: "rawRiulpo", quantity: 1});
+                }
+                for (var looop = 0; looop < 10 + player.miningLuck; looop++)
+                {
+                    this.rockLoad.push({type: "rawSaskriit", quantity: 1});
+                }
+                for (var looop = 0; looop < 20 + player.miningLuck; looop++)
+                {
+                    this.rockLoad.push({type: "rawPolxetp", quantity: 1});
+                }
+                for (var looop = 0; looop < 11 + player.miningLuck; looop++)
+                {
+                    this.rockLoad.push({type: "rawTridite", quantity: 1});
+                }
+            }
+
+            //DRAWSELF
+            this.phase += 0.10;
+
+            if (this.phase <= 1)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.globalAlpha = 0.4;
+                XXX.drawImage(norc, 48, 292, 35, 29, -(1/2 * 35 * 2), -(1/2 * 29 * 2), 35 * 2, 29 * 2);
+                XXX.restore();
+            }
+            else if (this.phase <= 2)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(norc, 0, 257, 35, 29, -(1/2 * 35 * 2), -(1/2 * 29 * 2), 35 * 2, 29 * 2);
+                XXX.restore();
+            }
+            else if (this.phase <= 3)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(norc, 29, 259, 35, 29, -(1/2 * 35 * 2), -(1/2 * 29 * 2), 35 * 2, 29 * 2);
+                XXX.restore();
+            }
+            else if (this.phase <= 4)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(norc, 63, 260, 35, 29, -(1/2 * 35 * 2), -(1/2 * 29 * 2), 35 * 2, 29 * 2);
+                XXX.restore();
+            }
+            else if (this.phase <= 5)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(norc, 3, 291, 35, 29, -(1/2 * 35 * 2), -(1/2 * 29 * 2), 35 * 2, 29 * 2);
+                XXX.restore();
+            }
+            else if (this.phase <= 6 || this.phase > 6)
+            {
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(norc, 48, 292, 35, 29, -(1/2 * 35 * 2), -(1/2 * 29 * 2), 35 * 2, 29 * 2);
+                XXX.restore();
+
+                if (this.phase >= 5.9)
+                {
+                    this.phase = 0;
+                }
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 100;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+
+
+            //console.log(player.finalAttackStage);
+            if (player.weaponEquipped == "fishingpole" && player.fishingFrame == true)//player.cutcut == true)
+            {
+                var distFromCutCut = Math.sqrt((this.X - player.bubbleOfDamageX)*(this.X - player.bubbleOfDamageX) + (this.Y - player.bubbleOfDamageY)*(this.Y - player.bubbleOfDamageY));
+                console.log(distFromCutCut);
+                if (distFromCutCut <= player.weapon.range * 7 + 125)
+                {
+                    player.fishing = true;
+                    player.fishingID = (this.hiveID + "_fishing");
+                    player.fishingTime = new Date().getTime();
+                    player.fishingFrame = false;
+                }
+            }
+
+            if (player.fishing == true && player.fishingID == (this.hiveID + "_fishing"))
+            {
+                if (new Date().getTime() - player.fishingTime > 41000)
+                {
+                    if (Math.round(Math.random()))
+                    {
+                        this.health -= 1;
+                        this.rockLoader(this.rockLoad); //this gives the player a fish (but only half of the time)
+                    }
+                    else
+                    {
+                        if (this.health >= 3)
+                        {
+                            this.health -= 1;
+                        }
+                    }
+
+                    if (this.temporary != true)
+                    {
+                        if (this.health <= 0)
+                        {
+                            scenicList.splice(scenicList.indexOf(this), 1);
+                        }
+                    }
+
+                    player.fishing = false;
+                    player.fishingID = false;
+                }
+            }
+        }
         else if (this.type == "lostPaddle")
         {
             //TRAITS
@@ -11863,6 +12177,16 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             {
                 this.activate = false;
                 this.phase = "picked";
+
+                //if the plant is owned and you are noticed by any AI then decrease faction relation for stealing.
+                if (this.owned.length > 1)
+                {
+                    if (player.noticed == true)
+                    {
+                        this.changeFactionRelation(-7);
+                    }
+                }
+
                 var hits = 0;
                 for (var i = 0; i < Inventory.length; i ++)
                 {
@@ -11915,6 +12239,16 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             {
                 this.activate = false;
                 this.phase = "picked";
+
+                //if the plant is owned and you are noticed by any AI then decrease faction relation for stealing.
+                if (this.owned.length > 1)
+                {
+                    if (player.noticed == true)
+                    {
+                        this.changeFactionRelation(-10);
+                    }
+                }
+
                 var hits = 0;
                 for (var i = 0; i < Inventory.length; i ++)
                 {

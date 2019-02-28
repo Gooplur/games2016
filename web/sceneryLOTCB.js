@@ -2860,6 +2860,283 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 this.activate = false;
             }
         }
+        else if (this.type == "vardanianFloorDeco")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+
+            this.zIndex = 1;
+            if (this.temporary == 0) //toad hide rug
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 473, 830, 60, 65, -(1/2 * 60 * this.information), -(1/2 * 65 * this.information), 60 * this.information, 65 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 1)//elk fur rug
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 544, 829, 82, 56, -(1/2 * 82 * this.information), -(1/2 * 56 * this.information), 82 * this.information, 56 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 2)//bovine hide rug
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 650, 834, 82, 56, -(1/2 * 82 * this.information), -(1/2 * 56 * this.information), 82 * this.information, 56 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 3)//koivaya fur rug
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 755, 823, 110, 75, -(1/2 * 110 * this.information), -(1/2 * 75 * this.information), 110 * this.information, 75 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 4)//clean rags
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 189, 839, 37, 45, -(1/2 * 37 * this.information), -(1/2 * 45 * this.information), 37 * this.information, 45 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 5)//dirty rags
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 7, 838, 37, 45, -(1/2 * 37 * this.information), -(1/2 * 45 * this.information), 37 * this.information, 45 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 6)//clean rag (single)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 226, 845, 25, 32, -(1/2 * 25 * this.information), -(1/2 * 32 * this.information), 25 * this.information, 32 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary >= 7)//dirty rag (single)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 45, 843, 25, 32, -(1/2 * 25 * this.information), -(1/2 * 32 * this.information), 25 * this.information, 32 * this.information);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 1;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "vardanianMueble")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+
+            this.zIndex = 1;
+            if (this.temporary == 0) //decorated crate corner
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 641, 208, 61, 47, -(1/2 * 61 * this.information), -(1/2 * 47 * this.information), 61 * this.information, 47 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 1)//decorated desk
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 561, 210, 61, 47, -(1/2 * 61 * this.information), -(1/2 * 47 * this.information), 61 * this.information, 47 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 2)//tied up chest
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 480, 202, 62, 69, -(1/2 * 62 * this.information), -(1/2 * 69 * this.information), 62 * this.information, 69 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 3)//bag pile
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 397, 194, 62, 69, -(1/2 * 62 * this.information), -(1/2 * 69 * this.information), 62 * this.information, 69 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 4)//bench
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 969, 526, 20, 53, -(1/2 * 20 * this.information), -(1/2 * 53 * this.information), 20 * this.information, 53 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 5)//nightstand / chair
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 972, 581, 15, 14, -(1/2 * 15 * this.information), -(1/2 * 14 * this.information), 15 * this.information, 14 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 6)//square table
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 969, 614, 23, 22, -(1/2 * 23 * this.information), -(1/2 * 22 * this.information), 23 * this.information, 22 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 7)//stool
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 972, 596, 16, 15, -(1/2 * 16 * this.information), -(1/2 * 15 * this.information), 16 * this.information, 15 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 8)//long feast table
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 855, 606, 100, 28, -(1/2 * 100 * this.information), -(1/2 * 28 * this.information), 100 * this.information, 28 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 9)//big square table
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 936, 644, 53, 46, -(1/2 * 53 * this.information), -(1/2 * 46 * this.information), 53 * this.information, 46 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 10)//med-big table
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 900, 736, 53, 46, -(1/2 * 53 * this.information), -(1/2 * 46 * this.information), 53 * this.information, 46 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 11)//med table
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 955, 734, 42, 44, -(1/2 * 42 * this.information), -(1/2 * 44 * this.information), 42 * this.information, 44 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 12)//thick bench
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 927, 693, 73, 22, -(1/2 * 73 * this.information), -(1/2 * 22 * this.information), 73 * this.information, 22 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 13)//wide feast table
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 910, 787, 86, 40, -(1/2 * 86 * this.information), -(1/2 * 40 * this.information), 86 * this.information, 40 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 14)//long bench
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 909, 829, 87, 20, -(1/2 * 87 * this.information), -(1/2 * 20 * this.information), 87 * this.information, 20 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 15)//long shelf
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 871, 886, 61, 13, -(1/2 * 61 * this.information), -(1/2 * 13 * this.information), 61 * this.information, 13 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 16)//feast table
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 936, 868, 58, 25, -(1/2 * 58 * this.information), -(1/2 * 25 * this.information), 58 * this.information, 25 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 17)//shelf
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 887, 868, 45, 16, -(1/2 * 45 * this.information), -(1/2 * 16 * this.information), 45 * this.information, 16 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 18)//medium bench
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 945, 852, 50, 13, -(1/2 * 50 * this.information), -(1/2 * 13 * this.information), 50 * this.information, 13 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 19)//medium square table
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 407, 843, 46, 46, -(1/2 * 46 * this.information), -(1/2 * 46 * this.information), 46 * this.information, 46 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 20)//elk throne
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 322, 832, 63, 66, -(1/2 * 63 * this.information), -(1/2 * 66 * this.information), 63 * this.information, 66 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary >= 21)//royal elk throne
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 248, 832, 67, 67, -(1/2 * 67 * this.information), -(1/2 * 67 * this.information), 67 * this.information, 67 * this.information);
+                XXX.restore();
+            }
+
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 1;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
         else if (this.type == "nirwadenMueble")
         {
             //TRAITS
@@ -9984,6 +10261,59 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 if (hits == Inventory.length)
                 {
                     Inventory.push([new Item("neprilneBerries", false, false), 1]);
+                }
+            }
+        }
+        else if (this.type == "saugPlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.nectar(1);
+            this.solid = false;
+            this.interactionRange = 100;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(tribe, 464, 6, 19, 17, -(1/2 * 19), -(1/2 * 17), 19, 17);
+                XXX.restore();
+            }
+            else if (this.phase == "picked")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(tribe, 380, 7, 19, 19, -(1/2 * 19), -(1/2 * 19), 19, 19);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 6;
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0)
+            {
+                this.activate = false;
+                this.phase = "picked";
+                var hits = 0;
+                for (var i = 0; i < Inventory.length; i ++)
+                {
+                    if (Inventory[i][0].type == "saugRoot")
+                    {
+                        Inventory[i][1] += 1;
+                        break;
+                    }
+                    else
+                    {
+                        hits += 1;
+                    }
+                }
+                if (hits == Inventory.length)
+                {
+                    Inventory.push([new Item("saugRoot", false, false), 1]);
                 }
             }
         }

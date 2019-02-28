@@ -20342,6 +20342,127 @@ function buildMaster()
                 change = "s15";
             }
         }
+        else if (region == "s17")
+        {
+            if (change != "s17")
+            {
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
+                //Delete All Non-native AI Units
+                for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Structures
+                //todo when structures are created add their list's refresh sequence here.
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
+
+                //REGION CREATION
+                //Build AI Units
+
+                //Animals
+                ArtificialIntelligenceAccess.push(new Unit(4223, -169078, "Mugmul", false, "Pkotpaht"));
+                ArtificialIntelligenceAccess.push(new Unit(5256, -170128, "Mugmul", false, "Pkotpahti"));
+                ArtificialIntelligenceAccess.push(new Unit(5979, -168026, "Mugmul", false, "Pkotpahti"));
+                ArtificialIntelligenceAccess.push(new Unit(4259, -169683, "Mugmul", true, "Pkatpoht"));
+                ArtificialIntelligenceAccess.push(new Unit(3850, -170690, "Taipan", false, "Sapatli"));
+
+                ArtificialIntelligenceAccess.push(new Unit(2570, -171420, "Taipan", true, "Sapatli"));
+                ArtificialIntelligenceAccess.push(new Unit(2721, -171094, "Taipan", true, "Sapatli"));
+                ArtificialIntelligenceAccess.push(new Unit(2222, -171501, "Taipan", false, "Sapatli"));
+                ArtificialIntelligenceAccess.push(new Unit(2846, -171256, "Taipan", false, "Sapatli"));
+
+                for (var l = 0; l < 8; l++)
+                {
+                    var sdedX = 1317 + (1400 * seeder(l * 12) - 700);
+                    var sdedY = -174630 + (1400 * seeder(l * 15) - 700);
+                    if (Math.random() > 0.56)
+                    {
+                        scenicList.push(new Scenery("mofuNest", sdedX, sdedY, Math.random() * (2* Math.PI), Math.random() + 0.8));
+                        ArtificialIntelligenceAccess.push(new Unit(sdedX, sdedY, "Mofu", Math.round(Math.random()), "Flethy"));
+                    }
+                    else
+                    {
+                        if (Math.random() > 0.6)
+                        {
+                            scenicList.push(new Scenery("mofuNest", sdedX, sdedY, Math.random() * (2* Math.PI), Math.random() + 0.8));
+                            ArtificialIntelligenceAccess.push(new Unit(sdedX + 350 * Math.random() - 175, sdedY + 350 * Math.random() - 175, "Mofu", Math.round(Math.random()), "Flethy"));
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(sdedX + 500 * Math.random() - 250, sdedY + 400 * Math.random() - 200, "Mofu", "baby", "Flethu"));
+                        }
+                    }
+                }
+
+                ArtificialIntelligenceAccess.push(new Unit(1853, -169373, "Yioshk", true, "Biltir"));
+                ArtificialIntelligenceAccess.push(new Unit(-1506, -173266, "Yioshk", false, "Biltor"));
+                ArtificialIntelligenceAccess.push(new Unit(672, -175776, "Yioshk", false, "Biltar"));
+                ArtificialIntelligenceAccess.push(new Unit(5986, -174729, "Yioshk", true, "Biltirin"));
+                ArtificialIntelligenceAccess.push(new Unit(4783, -176294, "Rhinoceros", false, "Cacaletp"));
+
+                ArtificialIntelligenceAccess.push(new Unit(5882, -169442, "Zarbu", false, "zabiido"));
+                ArtificialIntelligenceAccess.push(new Unit(4985, -169270, "Zarbu", false, "zabiidu"));
+                ArtificialIntelligenceAccess.push(new Unit(6250, -170008, "Zarbu", "baby", "zabiida"));
+                ArtificialIntelligenceAccess.push(new Unit(6036, -170808, "Zarbu", true, "zabiidin"));
+
+                ArtificialIntelligenceAccess.push(new Unit(5788, -172535, "Taipan", false, "Sapatli"));
+
+                ArtificialIntelligenceAccess.push(new Unit(4126, -174209, "Zarbu", false, "zabiidu"));
+                ArtificialIntelligenceAccess.push(new Unit(3644, -174756, "Zarbu", "baby", "zabiida"));
+
+                ArtificialIntelligenceAccess.push(new Unit(3930, -173373, "Yioshk", false, "Biltar"));
+
+                scenicList.push(new Scenery("yeolTree", 6100 , -172371, 10.5, false));
+                scenicList.push(new Scenery("yeolTree", 3153 , -175028, 14, false));
+
+                ArtificialIntelligenceAccess.push(new Unit(2991, -175363, "Mofu", Math.round(Math.random()), "Flethy"));
+                ArtificialIntelligenceAccess.push(new Unit(3240, -176626, "Mofu", Math.round(Math.random()), "Flethy"));
+                ArtificialIntelligenceAccess.push(new Unit(5054, -169154, "Mofu", Math.round(Math.random()), "Flethy"));
+
+                //Scenery
+                for (var l = 0; l < 18; l++)
+                {
+                    scenicList.push(new Scenery("yeolTree", 4700 + 3000 * seeder(l + (l + 99)) - 1500, -169200 + 3000 * seeder(l * (l * 20)) - 1500, Math.random() * (2* Math.PI), true));
+                }
+                scenicList.push(new Scenery("darkStone", 2758 , -171183, 6, 2, 1));
+                scenicList.push(new Scenery("yeolTree", 2209 , -171535, 8, false));
+                scenicList.push(new Scenery("kwomPlant", 3313 , -172394, 7, true));
+                scenicList.push(new Scenery("apotlPlant", 1252 , -172151, 5, true));
+                scenicList.push(new Scenery("yeolTree", 11 , -174015, -2.9, false));
+                scenicList.push(new Scenery("pochalPlant", -882 , -174683, 10, true));
+                scenicList.push(new Scenery("hracklePlant", -1994 , -171679, 0.5, true));
+                scenicList.push(new Scenery("hracklePlant", 228 , -170877, 0, true));
+                scenicList.push(new Scenery("hracklePlant", 2033 , -176060, 2.5, true));
+                scenicList.push(new Scenery("aktaltlPlant", 4940 , -176674, 6.7, true));
+                scenicList.push(new Scenery("aktaltlPlant", 4715 , -172609, 13.1, true));
+                scenicList.push(new Scenery("kwomPlant", 3829 , -175155, 9, true));
+                scenicList.push(new Scenery("darkStone", 5624 , -167429, 8, 1, 2));
+                scenicList.push(new Scenery("apotlPlant", 5735 , -174626, 2.2, true));
+                scenicList.push(new Scenery("hracklePlant", 4797, -170657, 1.17, true));
+
+                change = "s17";
+            }
+        }
     }
     else if (map == "sagesCache")
     {

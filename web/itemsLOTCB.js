@@ -20042,11 +20042,105 @@ function Item(type, x, y)
             this.buyValue = 3; // at max, buy for 3.
             this.sellValue = 2; // at max, sell for 2.
         }
+        else if (this.type == "saugRoot")
+        {
+            //For All Items
+            this.identity = "Saug Root";
+            this.weight = 1.25;
+            this.size = 9;
+            this.description = "A sort of bland and sort of parsnip-like starchy tuber.";
+            this.intForDes = 0;
+            this.intDescription = "Saug roots release trapped moisture and develop a mild sweetness when they are cooked.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "roastedSaugRoot")
+        {
+            //For All Items
+            this.identity = "Roasted Saug Root";
+            this.weight = 1.2;
+            this.size = 9;
+            this.description = "A mildly sweet and sort of parsnip-like starchy tuber that is tender to bite into.";
+            this.intForDes = 0;
+            this.intDescription = "This can be eaten in two stages: (2/2)";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["roastedSaugRootHalf", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 4; //satisfies hunger.
+            this.thirst = 0.75; //quenches thirst.
+            this.warmth = 1.5; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.05; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 4;
+            this.ingredients = [["Saug Root", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 6; // at max, buy for 6.
+            this.sellValue = 6; // at max, sell for 6.
+        }
+        else if (this.type == "roastedSaugRootHalf")
+        {
+            //For All Items
+            this.identity = "Roasted Saug Root";
+            this.weight = 0.6;
+            this.size = 7;
+            this.description = "A mildly sweet and sort of parsnip-like starchy tuber that is tender to bite into.";
+            this.intForDes = 0;
+            this.intDescription = "This can be eaten in two stages: (1/2)";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 4; //satisfies hunger.
+            this.thirst = 0.75; //quenches thirst.
+            this.warmth = 1; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.05; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 2; // at max, sell for 2.
+        }
         else if (this.type == "potato")
         {
             //For All Items
             this.identity = "Potato";
-            this.weight = 0.1;
+            this.weight = 0.2;
             this.size = 9;
             this.description = "A starchy dry variety of potato.";
             this.intForDes = 5;
@@ -20075,7 +20169,7 @@ function Item(type, x, y)
         {
             //For All Items
             this.identity = "Roasted Potato";
-            this.weight = 0.1;
+            this.weight = 0.2;
             this.size = 9;
             this.description = "A cooked potato; be careful it's hot don't drop it.";
             this.intForDes = 1;
@@ -28327,7 +28421,7 @@ function Item(type, x, y)
             this.size = 27;
             this.description = "Fine robes made of gold embroidered cloth.";
             this.intForDes = 0;
-            this.intDescription = "This is the oficial preistly garment of the Nirwaden church.";
+            this.intDescription = "This is the official preistly garment of the Nirwaden Church.";
 
             //Define Utility
             this.utility = "worn";
@@ -28370,11 +28464,68 @@ function Item(type, x, y)
 
             this.yield = 1;
             this.intForCraft = 36;
-            this.ingredients = [["Cloth", 4], ["gold", 1]];
+            this.ingredients = [["Cloth", 4], ["Gold", 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 900 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 800.
             this.sellValue = 700 + Math.floor(player.getCharisma() / 0.5); // at max, sell for 800.
+        }
+        else if (this.type == "vardanianPriestRobes")
+        {
+            //For All Items
+            this.identity = "Priest Gown";
+            this.weight = 6;
+            this.size = 27;
+            this.description = "Fine robes made of ghoul fur decorated with red velvet and gold.";
+            this.intForDes = 0;
+            this.intDescription = "This is the official preistly garment of the Vardanian Church.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 10;
+            this.warmthRetention = 3.5;
+            this.thirstRetention = -2;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 18;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 1;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 38;
+            this.ingredients = [["Ghoul Pelt", 1], ["Red Dye", 3], ["Velvet", 3], ["Gold", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1200 - Math.floor(player.getCharisma() / 1); // at max, buy for 1150.
+            this.sellValue = 1100 + Math.floor(player.getCharisma() / 1); // at max, sell for 1150.
         }
         else if (this.type == "witchHunterOutfit")
         {
@@ -33381,6 +33532,26 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "vardanianPriestRobes")
+        {
+            XXX.beginPath();
+            XXX.drawImage(tribe, 19, 77, 59, 111, X - this.X + (1/2 * CCC.width) - (1/2 * 59 * 0.9), Y - this.Y + (1/2 * CCC.height) - (1/2 * 111 * 0.9), 59 * 0.9, 111 * 0.9);
+        }
+        else if (this.type == "saugRoot")
+        {
+            XXX.beginPath();
+            XXX.drawImage(tribe, 414, 6, 45, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 45 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16 * 1), 45 * 1, 16 * 1);
+        }
+        else if (this.type == "roastedSaugRoot")
+        {
+            XXX.beginPath();
+            XXX.drawImage(tribe, 490, 6, 45, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 45 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16 * 1), 45 * 1, 16 * 1);
+        }
+        else if (this.type == "roastedSaugRootHalf")
+        {
+            XXX.beginPath();
+            XXX.drawImage(tribe, 529, 5, 45, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 45 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16 * 1), 45 * 1, 16 * 1);
+        }
         else if (this.type == "koivayaPelt")
         {
             XXX.beginPath();
@@ -37684,6 +37855,26 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
+        else if (this.type == "vardanianPriestRobes")
+        {
+            LXX.beginPath();
+            LXX.drawImage(tribe, 19, 77, 59, 111, this.invX - (1/2 * 59 * 0.7), this.invY - (1/2 * 111 * 0.7), 59 * 0.7, 111 * 0.7);
+        }
+        else if (this.type == "saugRoot")
+        {
+            LXX.beginPath();
+            LXX.drawImage(tribe, 414, 6, 45, 16, this.invX - (1/2 * 45 * 1.15), this.invY - (1/2 * 16 * 1.15), 45 * 1.15, 16 * 1.15);
+        }
+        else if (this.type == "roastedSaugRoot")
+        {
+            LXX.beginPath();
+            LXX.drawImage(tribe, 490, 6, 45, 16, this.invX - (1/2 * 45 * 1.15), this.invY - (1/2 * 16 * 1.15), 45 * 1.15, 16 * 1.15);
+        }
+        else if (this.type == "roastedSaugRootHalf")
+        {
+            LXX.beginPath();
+            LXX.drawImage(tribe, 529, 5, 45, 16, this.invX - (1/2 * 45 * 1.15), this.invY - (1/2 * 16 * 1.15), 45 * 1.15, 16 * 1.15);
+        }
         else if (this.type == "koivayaPelt")
         {
             LXX.beginPath();
@@ -41961,6 +42152,26 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "vardanianPriestRobes")
+        {
+            XXX.beginPath();
+            XXX.drawImage(tribe, 19, 77, 59, 111, this.invX - (1/2 * 59 * 0.7), this.invY - (1/2 * 111 * 0.7), 59 * 0.7, 111 * 0.7);
+        }
+        else if (this.type == "saugRoot")
+        {
+            XXX.beginPath();
+            XXX.drawImage(tribe, 414, 6, 45, 16, this.invX - (1/2 * 45 * 1.15), this.invY - (1/2 * 16 * 1.15), 45 * 1.15, 16 * 1.15);
+        }
+        else if (this.type == "roastedSaugRoot")
+        {
+            XXX.beginPath();
+            XXX.drawImage(tribe, 490, 6, 45, 16, this.invX - (1/2 * 45 * 1.15), this.invY - (1/2 * 16 * 1.15), 45 * 1.15, 16 * 1.15);
+        }
+        else if (this.type == "roastedSaugRootHalf")
+        {
+            XXX.beginPath();
+            XXX.drawImage(tribe, 529, 5, 45, 16, this.invX - (1/2 * 45 * 1.15), this.invY - (1/2 * 16 * 1.15), 45 * 1.15, 16 * 1.15);
         }
         else if (this.type == "koivayaPelt")
         {

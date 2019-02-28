@@ -6305,6 +6305,10 @@ function Adventurer()
         {
             outfit = allWorn[116];
         }
+        else if (this.outfitEquipped == "vardanianPriestRobes")
+        {
+            outfit = allWorn[117];
+        }
         else
         {
             outfit = allWorn[0];
@@ -6515,6 +6519,19 @@ function Adventurer()
                 XXX.globalAlpha = 0.4;
             }
             XXX.drawImage(atal, 810, 2407, 89, 47, -(1 / 2 * 89 * 0.7) + 0, -(1 / 2 * 47 * 0.7) - 0, 89 * 0.7, 47 * 0.7);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "vardanianPriestRobes")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(tribe, 19, 10, 76, 51, -(1 / 2 * 76 * 1) - 0, -(1 / 2 * 51 * 1) - 0, 76 * 1, 51 * 1);
             XXX.restore();
         }
         else if (this.outfitEquipped == "jesterOutfit")

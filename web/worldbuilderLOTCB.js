@@ -110,7 +110,12 @@ function worldBuilder()
         {
             elevation = -2;
             region = "s17";
-            outlineBuilder( 34, 34, "savannahDirt", -20, 558);
+            outlineBuilder(34, 34, "savannah", -20, 558);
+            outlineBuilder(2, 1, "savannahDirt", -15, 570);
+            outlineBuilder(1, 1, "savannahDirt", -2, 579);
+            outlineBuilder(2, 2, "savannahDirt", -11, 558);
+            outlineBuilder(1, 1, "savannahDirt", -12, 559);
+            outlineBuilder(1, 1, "savannahDirt", 6, 571);
         }
         //Layer -16 (warm region): elev -2
         //mapS16

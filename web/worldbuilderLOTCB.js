@@ -49,6 +49,11 @@ function worldBuilder()
             elevation = -2;
             region = "s20";
             outlineBuilder( 34, 34, "savannah", -20, 660);
+            outlineBuilder( 2, 2, "savannahDirt", -3, 670);
+            outlineBuilder( 1, 2, "savannahDirt", -7, 683);
+            outlineBuilder( 1, 1, "savannahDirt", 8, 692);
+            outlineBuilder( 1, 1, "savannahDirt", 4, 667);
+            outlineBuilder( 1, 1, "savannahDirt", 10, 677);
         }
         //Layer -19 (warm region): elev -2
         //mapS19
@@ -56,7 +61,11 @@ function worldBuilder()
         {
             elevation = -2;
             region = "s19";
-            outlineBuilder( 34, 34, "savannahDirt", -20, 626);
+            outlineBuilder( 34, 34, "savannah", -20, 626);
+            outlineBuilder( 2, 3, "savannahDirt", -13, 637);
+            outlineBuilder( 1, 1, "savannahDirt", -5, 642);
+            outlineBuilder( 1, 2, "savannahDirt", -16, 631);
+            outlineBuilder( 1, 1, "savannahDirt", 10, 650);
         }
         //Layer -18 (warm region): elev -2
         //mapS18

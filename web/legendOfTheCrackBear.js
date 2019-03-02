@@ -1555,6 +1555,18 @@ function polypolypolyPack()
 
     poly.onload = function()
     {
+        junghoPack();
+    };
+}
+
+function junghoPack()
+{
+    var jungho = new Image();
+    jungho.src = ("images/jungho.png");
+    window.jungho = jungho;
+
+    jungho.onload = function()
+    {
         gargPack();
     };
 }

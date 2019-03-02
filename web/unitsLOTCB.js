@@ -7972,6 +7972,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                                 if (this.target.type != "Basilisk")
                                 {
                                     this.target.baskVenomed = true;
+                                    this.target.killNotByPlayer = true;
                                 }
                             }
                             else if (this.effect == "etnaVenom" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
@@ -8100,79 +8101,79 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             {
                                 this.target.quarterAcid = true;
                                 this.target.acidTime = new Date().getTime() + 8000;
-                                this.target.killedByPlayer = false;
+                                this.target.killNotByPlayer = true;
                             }
                             else if (this.effect == "halfAcid" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
                             {
                                 this.target.halfAcid = true;
                                 this.target.acidTime = new Date().getTime() + 8000;
-                                this.target.killedByPlayer = false;
+                                this.target.killNotByPlayer = true;
                             }
                             else if (this.effect == "acidI" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
                             {
                                 this.target.acidI = true;
                                 this.target.acidTime = new Date().getTime() + 8000;
-                                this.target.killedByPlayer = false;
+                                this.target.killNotByPlayer = true;
                             }
                             else if (this.effect == "acidII" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
                             {
                                 this.target.acidII = true;
                                 this.target.acidTime = new Date().getTime() + 8000;
-                                this.target.killedByPlayer = false;
+                                this.target.killNotByPlayer = true;
                             }
                             else if (this.effect == "acidIII" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
                             {
                                 this.target.acidIII = true;
                                 this.target.acidTime = new Date().getTime() + 8000;
-                                this.target.killedByPlayer = false;
+                                this.target.killNotByPlayer = true;
                             }
                             else if (this.effect == "acidIV" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
                             {
                                 this.target.acidIV = true;
                                 this.target.acidTime = new Date().getTime() + 8000;
-                                this.target.killedByPlayer = false;
+                                this.target.killNotByPlayer = true;
                             }
                             else if (this.effect == "acidV" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
                             {
                                 this.target.acidV = true;
                                 this.target.acidTime = new Date().getTime() + 8000;
-                                this.target.killedByPlayer = false;
+                                this.target.killNotByPlayer = true;
                             }
                             else if (this.effect == "superAcid" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
                             {
                                 this.target.acidV = true;
                                 this.target.acidTime = new Date().getTime() + 22000;
-                                this.target.killedByPlayer = false;
+                                this.target.killNotByPlayer = true;
                             }
                             else if (this.effect == "poisonI" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
                             {
                                 this.target.acidI = true;
                                 this.target.acidTime = new Date().getTime() + 40000;
-                                this.target.killedByPlayer = false;
+                                this.target.killNotByPlayer = true;
                             }
                             else if (this.effect == "poisonII" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
                             {
                                 this.target.acidII = true;
                                 this.target.acidTime = new Date().getTime() + 40000;
-                                this.target.killedByPlayer = false;
+                                this.target.killNotByPlayer = true;
                             }
                             else if (this.effect == "poisonIII" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
                             {
                                 this.target.acidIII = true;
                                 this.target.acidTime = new Date().getTime() + 40000;
-                                this.target.killedByPlayer = false;
+                                this.target.killNotByPlayer = true;
                             }
                             else if (this.effect == "poisonIV" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
                             {
                                 this.target.acidIV = true;
                                 this.target.acidTime = new Date().getTime() + 40000;
-                                this.target.killedByPlayer = false;
+                                this.target.killNotByPlayer = true;
                             }
                             else if (this.effect == "poisonV" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
                             {
                                 this.target.acidV = true;
                                 this.target.acidTime = new Date().getTime() + 40000;
-                                this.target.killedByPlayer = false;
+                                this.target.killNotByPlayer = true;
                             }
                         }
                     }

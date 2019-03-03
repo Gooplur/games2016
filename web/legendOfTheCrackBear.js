@@ -1555,6 +1555,18 @@ function polypolypolyPack()
 
     poly.onload = function()
     {
+        humpaPack();
+    };
+}
+
+function humpaPack()
+{
+    var humpa = new Image();
+    humpa.src = ("images/humpa.png");
+    window.humpa = humpa;
+
+    humpa.onload = function()
+    {
         junghoPack();
     };
 }

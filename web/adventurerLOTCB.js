@@ -6309,6 +6309,22 @@ function Adventurer()
         {
             outfit = allWorn[117];
         }
+        else if (this.outfitEquipped == "vardanianAkaton")
+        {
+            outfit = allWorn[118];
+        }
+        else if (this.outfitEquipped == "vardanianCoatOfPlates")
+        {
+            outfit = allWorn[119];
+        }
+        else if (this.outfitEquipped == "orgishEliteArmour")
+        {
+            outfit = allWorn[120];
+        }
+        else if (this.outfitEquipped == "orgishRoyalArmour")
+        {
+            outfit = allWorn[121];
+        }
         else
         {
             outfit = allWorn[0];
@@ -6532,6 +6548,58 @@ function Adventurer()
                 XXX.globalAlpha = 0.4;
             }
             XXX.drawImage(tribe, 19, 10, 76, 51, -(1 / 2 * 76 * 1) - 0, -(1 / 2 * 51 * 1) - 0, 76 * 1, 51 * 1);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "vardanianAkaton")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(gent, 192, 217, 29, 28, -(1 / 2 * 29 * 1.05) - 0, -(1 / 2 * 28 * 1.05) - 0, 29 * 1.05, 28 * 1.05);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "vardanianCoatOfPlates")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(gent, 121, 207, 42, 43, -(1 / 2 * 42 * 0.9) - 0, -(1 / 2 * 43 * 0.9) - 0, 42 * 0.9, 43 * 0.9);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "orgishEliteArmour")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(gent, 13, 76, 58, 49, -(1 / 2 * 58 * 0.7) - 0, -(1 / 2 * 49 * 0.7) - 0, 58 * 0.7, 49 * 0.7);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "orgishRoyalArmour")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(gent, 4, 141, 79, 53, -(1 / 2 * 79 * 0.7) - 0, -(1 / 2 * 53 * 0.7) - 0, 79 * 0.7, 53 * 0.7);
             XXX.restore();
         }
         else if (this.outfitEquipped == "jesterOutfit")

@@ -60,6 +60,7 @@ function buildMaster()
                 //ArtificialIntelligenceAccess.push(new Unit(3000, 1500, "Toad", true, "Hurgar"));
                 //ArtificialIntelligenceAccess.push(new Unit(5550, 2500, "Koivaya", true, "Hamber"));
                 //ArtificialIntelligenceAccess.push(new Unit(5550, 2500, "Koivaya", false, "Hem"));
+                //ArtificialIntelligenceAccess.push(new Unit(3000, 2500, "ZafBeetle", true, "Tzalit"));
 
                 //Friches in the plains
                 ArtificialIntelligenceAccess.push(new Unit(2921, -1125, "Frich", false, "Fuzzy Wuzzy"));

@@ -1404,6 +1404,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         }
         if (this.team == "narthwarpia")
         {
+            this.allys.push("zafia");
             this.allys.push("wild");
             this.allys.push("gribia");
             this.allys.push("bearia");
@@ -1453,6 +1454,13 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.allys.push("bearia");
             this.allys.push("ulgoyia");
             this.allys.push("clamia");
+        }
+        if (this.team == "zafia")
+        {
+            this.allys.push("docile");
+            this.allys.push("shehidia");
+            this.allys.push("clamia");
+            this.allys.push("narthwarpia");
         }
         if (this.team == "moltia")
         {
@@ -14074,6 +14082,69 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
             this.swimSpeed = this.speed * 0.8;
         }
+        else if (this.type == "ZafBeetle")
+        {
+            this.followAttack = true;
+            this.doubleFrame = true;
+            this.damageFrame = "automatic";
+            this.team = "zafia";
+            if (this.ID == "docile")
+            {
+                this.team = "docile";
+            }
+            this.baseTeam = this.team;
+            this.tameREQ = 28;
+
+            if (this.alpha == true)
+            {
+                this.magicalResistance = 0;
+                this.heatResistance = 1;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = Math.floor(Math.random() * 6) + 18;
+                this.health = this.healthMAX;
+                this.armour = 7;
+                this.speed = 2.1 + (Math.floor(Math.random() * 3) / 10);
+                this.rangeOfSight = 525; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.2;
+                this.engagementRadius = 60;
+                this.sizeRadius = 20;
+                this.negateArmour = 3;
+                this.attackWait = 1.5;
+
+                //alpha has a larger size body and skills.
+                this.alphaSize = 1.15; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                // this is the adjustment the alpha type of Etyr needs to be centered.
+                this.yAdjustment = 0; //was - 3.5
+                this.xAdjustment = 0; //was 6
+            }
+            else
+            {
+                //STATS (non-variable)
+                this.magicalResistance = 0;
+                this.heatResistance = 1;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = Math.floor(Math.random() * 4) + 11;
+                this.health = this.healthMAX;
+                this.armour = 6;
+                this.speed = 1.9 + (Math.floor(Math.random() * 2) / 10);
+                this.rangeOfSight = 450; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.2;
+                this.engagementRadius = 52;
+                this.sizeRadius = 16;
+                this.negateArmour = 2;
+                this.attackWait = 1.5;
+
+                //this multiplies the draw image skew numbers by 1 so that it stays the same
+                this.alphaSize = 1;
+                // this is the adjustment the alpha type of Etyr needs to be centered.
+                this.yAdjustment = 0; //was -34
+                this.xAdjustment = 0; //was - 26
+
+            }
+            this.swimSpeed = this.speed * 0.1;
+        }
         else if (this.type == "Koivaya") //koikoi
         {
             this.resistances = ["night", "blinded"];
@@ -25987,6 +26058,258 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             else
             {
                 this.drawUnit(verse, 2929, 283, 54, 32, -35 - this.xAdjustment, -22 - this.yAdjustment, 54 * this.alphaSize, 32 * this.alphaSize);
+            }
+        }
+        //ZAF BEETLE
+        if (this.type == "ZafBeetle")
+        {
+            //Set Drops and experience
+            if (this.alpha == true)
+            {
+                if (Math.max(0, 7 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 35 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = (35 * ((player.getIntelligence() / 50) + 1)) / 10;
+                }
+
+                this.drops = [[new Item("zafBeetleShell", this.X, this.Y), 1], [new Item("zafBeetleFeeler", this.X, this.Y), 1], [new Item("zafBeetleWhiskers", this.X, this.Y), 1]];
+            }
+            else
+            {
+                if (Math.max(0, 4 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 29 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = 29 * ((player.getIntelligence() / 50) + 1) / 10;
+                }
+
+                this.drops = [[new Item("zafBeetleShell", this.X, this.Y), 1], [new Item("zafBeetleFeeler", this.X, this.Y), 1], [new Item("zafBeetleWhiskers", this.X, this.Y), 1]];
+            }
+
+            //RANGE OF SIGHT (anything related to range of sight)
+            if (this.alpha == true)
+            {
+                this.rangeOfSightCalculator(750, false);
+            }
+            else
+            {
+                this.rangeOfSightCalculator(700, false);
+            }
+
+            //AI
+            if (this.alive == true)
+            {
+                if (this.alpha == true)
+                {
+                    this.Attack(1, 3);
+                    this.callForNearbyHelpFromType(90, "ZafBeetle");
+                }
+                else
+                {
+                    this.Attack(1, 2);
+                    this.callForNearbyHelpFromType(90, "ZafBeetle");
+                }
+
+                //this.deathChecker();
+                this.disturbedTimer();
+                this.visibleSight();
+                this.friendDecider();
+                this.targeting();
+
+                this.moving = false;
+                if (this.target == player)
+                {
+                    var ddttpp = this.DTP();
+                    var plantsToTarget = this.nearbyPlants(1, false, false, true);
+                    var plantTarget = "none";
+                    if (plantsToTarget.length >= 1)
+                    {
+                        plantTarget = plantsToTarget[0];
+                    }
+
+                    if (player.health <= 12 && player.armourTotal <= 3 && ddttpp < 350)
+                    {
+
+                        this.pointTowardsPlayer();
+                        this.moveInRelationToPlayer();
+                    }
+                    else if (ddttpp < 290 && ddttpp > 140)
+                    {
+                        this.pointAwayFromPlayer();
+                        this.moveInRelationToPlayer();
+                    }
+                    else if (ddttpp >= 100 && ddttpp <= 140 && this.disturbed != true)
+                    {
+                        this.pointTowardsPlayer();
+                    }
+                    else if (ddttpp < 100 || this.disturbed == true)
+                    {
+                        this.pointTowardsPlayer();
+                        this.moveInRelationToPlayer();
+                    }
+                    else if (plantTarget != "none")
+                    {
+                        if (this.DTU(plantTarget) <= 600 && plantTarget.subVariety != "fungi")
+                        {
+                            plantTarget = "none";
+                            this.pointAway(plantTarget);
+                            this.moveInRelationToThing(plantTarget);
+                        }
+                        else
+                        {
+                            if (this.DTU(plantTarget) < 600)
+                            {
+                                this.pointTowards(plantTarget);
+                                this.moveInRelationToThing(plantTarget);
+                                if (this.DTU(plantTarget) <= this.engagementRadius && plantTarget.phase != "picked")
+                                {
+                                    this.eating = true;
+                                }
+                                else
+                                {
+                                    this.eating = false;
+                                }
+                            }
+                        }
+                    }
+                }
+                else if (this.target != "none")
+                {
+                    var ddttpp = this.DTU(this.target);
+                    var plantsToTarget = this.nearbyPlants(1, false, false, true);
+                    var plantTarget = "none";
+                    if (plantsToTarget.length >= 1)
+                    {
+                        plantTarget = plantsToTarget[0];
+                    }
+
+                    if (this.target.health <= 12 && this.target.armourTotal <= 3 && ddttpp < 350)
+                    {
+                        this.pointTowards(this.target);
+                        this.moveInRelationToThing(this.target);
+                    }
+                    else if (ddttpp < 290 && ddttpp > 140)
+                    {
+                        this.pointAway(this.target);
+                        this.moveInRelationToThing(this.target);
+                    }
+                    else if (ddttpp >= 100 && ddttpp <= 140)
+                    {
+                        this.pointTowards(this.target);
+                    }
+                    else if (ddttpp < 100)
+                    {
+                        this.pointTowards(this.target);
+                        this.moveInRelationToThing(this.target);
+                    }
+                    else if (plantTarget != "none")
+                    {
+                        if (this.DTU(plantTarget) <= 600 && plantTarget.subVariety != "fungi")
+                        {
+                            plantTarget = "none";
+                            this.pointAway(plantTarget);
+                            this.moveInRelationToThing(plantTarget);
+                        }
+                        else
+                        {
+                            if (this.DTU(plantTarget) < 600)
+                            {
+                                this.pointTowards(plantTarget);
+                                this.moveInRelationToThing(plantTarget);
+                                if (this.DTU(plantTarget) <= this.engagementRadius && plantTarget.phase != "picked")
+                                {
+                                    this.eating = true;
+                                }
+                                else
+                                {
+                                    this.eating = false;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            //ANIMATIONS
+
+            if (this.alive == true)
+            {
+
+                if (this.moving) //If moving and not attacking initiate moving animation...
+                {
+                    this.costumeEngine(2, 0.115, false);
+                }
+                else
+                {
+                    this.costume = 0;
+                }
+
+                if (this.attacking || this.eating) //otherwise if it is attacking then initiate attacking animation, and if neither...
+                {
+                    if(new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000 / timeSpeed * this.timeResistance))
+                    {
+                        this.costumeEngine(2, 0.05, false, true);
+                    }
+                    else if (this.eating == true)
+                    {
+                        this.costumeEngine(2, 0.05, false, true);
+                    }
+                }
+                else
+                {
+                    this.costume2 = 0;
+                }
+
+
+                // the frames/stages/costumes of the animation.
+                var theCostume = Math.floor(this.costume); //This rounds this.costume down to the nearest whole number.
+                var theCostume2 = Math.floor(this.costume2); //This rounds this.costume2 down to the nearest whole number.
+
+                if (theCostume <= 0)
+                {
+                    if (!this.moving)
+                    {
+                        if (theCostume2 <= 0) //shut
+                        {
+                            this.drawUnit(humpa, 74, 1068, 125, 84, -1/2 * 125 * this.alphaSize - this.xAdjustment, -1/2 * 84 * this.alphaSize - this.yAdjustment, 125 * this.alphaSize, 84 * this.alphaSize);
+                        }
+                        else if (theCostume2 >= 1) //open
+                        {
+                            this.drawUnit(humpa, 73, 963, 125, 84, -1/2 * 125 * this.alphaSize - this.xAdjustment, -1/2 * 84 * this.alphaSize - this.yAdjustment, 125 * this.alphaSize, 84 * this.alphaSize);
+                        }
+                    }
+                    else
+                    {
+                        if (theCostume2 <= 0) //shut
+                        {
+                            this.drawUnit(humpa, 214, 1068, 125, 84, -1/2 * 125 * this.alphaSize - this.xAdjustment, -1/2 * 84 * this.alphaSize - this.yAdjustment, 125 * this.alphaSize, 84 * this.alphaSize);
+                        }
+                        else if (theCostume2 >= 1) //open
+                        {
+                            this.drawUnit(humpa, 213, 963, 125, 84, -1/2 * 125 * this.alphaSize - this.xAdjustment, -1/2 * 84 * this.alphaSize - this.yAdjustment, 125 * this.alphaSize, 84 * this.alphaSize);
+                        }
+                    }
+                }
+                else if (theCostume >= 1)
+                {
+                    if (theCostume2 <= 0) //shut
+                    {
+                        this.drawUnit(humpa, 348, 1068, 125, 84, -1/2 * 125 * this.alphaSize - this.xAdjustment, -1/2 * 84 * this.alphaSize - this.yAdjustment, 125 * this.alphaSize, 84 * this.alphaSize);
+                    }
+                    else if (theCostume2 >= 1) //open
+                    {
+                        this.drawUnit(humpa, 348, 963, 125, 84, -1/2 * 125 * this.alphaSize - this.xAdjustment, -1/2 * 84 * this.alphaSize - this.yAdjustment, 125 * this.alphaSize, 84 * this.alphaSize);
+                    }
+                }
+            }
+            else
+            {
+                this.drawUnit(humpa, 464, 1066, 125, 84, -1/2 * 125 * this.alphaSize - this.xAdjustment, -1/2 * 84 * this.alphaSize - this.yAdjustment, 125 * this.alphaSize, 84 * this.alphaSize);
             }
         }
         //KOIVAYA

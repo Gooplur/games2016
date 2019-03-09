@@ -716,6 +716,18 @@ function applySelectionsButton()
                 player.dexterity = 1;
                 player.stamina = 1;
             }
+
+            if (player.title == "Nobility")
+            {
+                if (player.gender == "Male")
+                {
+                    Inventory.push([new Item("orgishEliteArmour", false, false), 1]);
+                }
+                //else
+                //{
+                //
+                //}
+            }
         }
         else if (player.title == "Nobility" && player.raceName == "Vardan" || player.title == "Royalty" && player.raceName == "Vardan")
         {

@@ -5131,6 +5131,75 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
         }
+        else if (this.type == "zafBeetleWhiskers")
+        {
+            //For All Items
+            this.identity = "Zaf Beetle Whiskers";
+            this.weight = 0.2;
+            this.size = 10;
+            this.description = "The beetle uses these to notice subtle environmental changes.";
+            this.intForDes = 1;
+            if (player.getIntelligence() < 5)
+            {
+                this.intDescription = "This can be used as a rich spicy seasoning with a slightly mouth numbing, insecty aftertaste.";
+            }
+            else
+            {
+                this.intDescription = "This can be used as a rich spicy seasoning with a slightly numbing, insecty aftertaste; they can also be used to filter particles from the air.";
+            }
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3; // at max, buy for 3.
+            this.sellValue = 3; // at max, sell for 3.
+        }
+        else if (this.type == "zafBeetleFeeler")
+        {
+            //For All Items
+            this.identity = "Zaf Beetle Feeler";
+            this.weight = 2;
+            this.size = 15;
+            this.description = "The beetle uses its feelers to feel its way around the jungle floor.";
+            this.intForDes = 27;
+            this.intDescription = "The blood inside of the feeler contains antibodies to the Cerebris Fungus that when mixed with the right ingredients can make a cure.";
+
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 2; // at max, sell for 2.
+        }
+        else if (this.type == "zafBeetleShell")
+        {
+            //For All Items
+            this.identity = "Zaf Beetle Shell";
+            this.weight = 46;
+            this.size = 20;
+            this.description = "The striped yellow shell of a zaf beetle.";
+            this.intForDes = 4;
+            this.intDescription = "The shell is durable and hard and can be used to reinforce certain armours.";
+
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 40; // at max, buy for 40.
+            this.sellValue = 32; // at max, sell for 32.
+        }
         else if (this.type == "utMeat")
         {
             //For All Items
@@ -15946,6 +16015,96 @@ function Item(type, x, y)
             this.buyValue = 9 - Math.floor(player.getCharisma() / 25); // at max, buy for 7.
             this.sellValue = 5 + Math.floor(player.getCharisma() / 25); // at max, sell for 7.
         }
+        else if (this.type == "boreaLeg")
+        {
+            //For All Items
+            this.identity = "Borea Leg";
+            this.weight = 1.6;
+            this.size = 17;
+            this.description = "The long skinny yellow black-striped leg of a spitting borea.";
+            this.intForDes = 6;
+            this.intDescription = "Borea leg can be used in alchemy as a moderately potent amplifier.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 13 - Math.floor(player.getCharisma() / 50); // at max, buy for 12.
+            this.sellValue = 7 + Math.floor(player.getCharisma() / 10); // at max, sell for 12.
+        }
+        else if (this.type == "saliseaFur")
+        {
+            //For All Items
+            this.identity = "Salisea Fur";
+            this.weight = 0.75;
+            this.size = 14;
+            this.description = "The orange and black striped short haired pelt of a leaping salisea.";
+            this.intForDes = 3;
+            this.intDescription = "Salisea fur is made into rugs, or dehaired and tanned to make leather.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 16 - Math.floor(player.getCharisma() / 25); // at max, buy for 14.
+            this.sellValue = 12 + Math.floor(player.getCharisma() / 25); // at max, sell for 14.
+        }
+        else if (this.type == "saliseaLeather")
+        {
+            //For All Items
+            this.identity = "Salisea Leather";
+            this.weight = 0.7;
+            this.size = 14;
+            this.description = "The tanned leather made from a salisea hide.";
+            this.intForDes = 3;
+            this.intDescription = "Salisea leather is used for padding, or making durable clothing.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 28 - Math.floor(player.getCharisma() / 25); // at max, buy for 26.
+            this.sellValue = 24 + Math.floor(player.getCharisma() / 25); // at max, sell for 26.
+        }
+        else if (this.type == "treatedSaliseaHide")
+        {
+            //For All Items
+            this.identity = "Treated Salisea Hide";
+            this.weight = 1.4;
+            this.size = 10;
+            this.description = "The treated hide of a leaping salisea.";
+            this.intForDes = 4;
+            this.intDescription = "After scraping the flesh off and dehairing it, the hide must now soak in a tanic acid tea made from selva wood.";
+
+            //Define Utility
+            this.utility = "material";
+
+            this.decayable = true;
+            this.decayLimit = 140;
+            this.decayObjective = "saliseaLeather";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 5;
+            this.biproducts = [[new Item("bucket", false), 1]];
+            this.ingredients = [["Salisea Fur", 1], ["Bucket of Water", 1], ["Selva Wood", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 20 - Math.floor(player.getCharisma() / 25); // at max, buy for 18.
+            this.sellValue = 16 + Math.floor(player.getCharisma() / 25); // at max, sell for 18.
+        }
         else if (this.type == "bovineHide")
         {
             //For All Items
@@ -22315,6 +22474,104 @@ function Item(type, x, y)
             this.buyValue = 3 - Math.floor(player.getCharisma() / 50); // at max, buy for 2.
             this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
         }
+        else if (this.type == "araneaFang")
+        {
+            //For All Items
+            this.identity = "Aranea Fang";
+            this.weight = 0.9;
+            this.size = 7;
+            this.description = "The long dark fang of an aranea.";
+            this.intForDes = 9;
+            this.intDescription = "Aside from being a neat trophy, this can be used in alchemy as a catalyst.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 11 - Math.floor(player.getCharisma() / 50); // at max, buy for 10.
+            this.sellValue = 9 + Math.floor(player.getCharisma() / 50); // at max, sell for 10.
+        }
+        else if (this.type == "viudaFang")
+        {
+            //For All Items
+            this.identity = "Viuda Fang";
+            this.weight = 0.06;
+            this.size = 6;
+            this.description = "The curved black fang of a viuda.";
+            this.intForDes = 1;
+            this.intDescription = "This is used to administer the viuda's extremely deadly venom.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 8 - Math.floor(player.getCharisma() / 50); // at max, buy for 7.
+            this.sellValue = 6 + Math.floor(player.getCharisma() / 50); // at max, sell for 7.
+        }
+        else if (this.type == "viudaVenomSac")
+        {
+            //For All Items
+            this.identity = "Viuda Venom Sac";
+            this.weight = 0.57;
+            this.size = 5;
+            this.description = "Viuda venom swells within the thin fleshy sac; it is one of the most deadly venoms produced by an animal.";
+            this.intForDes = 1;
+            this.intDescription = "Don't eat it; it is very fragile so it is hard to harvest intact.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "poisonV";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 66 - Math.floor(player.getCharisma() / 3); // at max, buy for 51.
+            this.sellValue = 19 + Math.floor(player.getCharisma() / 2); // at max, sell for 44.
+        }
+        else if (this.type == "saliseaVenomSac")
+        {
+            //For All Items
+            this.identity = "Salisea Venom Sac";
+            this.weight = 2;
+            this.size = 7;
+            this.description = "A leaping salisea's venom producing gland that is swolen with the venom it has created so far.";
+            this.intForDes = 1;
+            this.intDescription = "If you like the taste of your own melted organs, go ahead and eat it...";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "poisonIV";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 50 - Math.floor(player.getCharisma() / 5); // at max, buy for 40.
+            this.sellValue = 15 + Math.floor(player.getCharisma() / 2); // at max, sell for 40.
+        }
         else if (this.type == "torperVenomSac")
         {
             //For All Items
@@ -27520,6 +27777,136 @@ function Item(type, x, y)
             this.buyValue = 2200 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 2000.
             this.sellValue = 2000; // at max, sell for 2000.
         }
+        else if (this.type == "orgishEliteArmour")
+        {
+            //For All Items
+            this.identity = "Orgish Elite Armour";
+            this.weight = 25;
+            this.size = 26;
+            this.description = "The armour worn by the nobles and those combat hardened warriors who are most highly ranked.";
+            if (player.raceName == "Orgell")
+            {
+                this.intForDes = 0;
+            }
+            else
+            {
+                this.intForDes = 1;
+            }
+            this.intDescription = "The mask is meant to show the ferocity and valor of the warrior who wears it.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "armour";
+            //Utility Focused
+            //protections
+            this.protection = 13 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 16;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 1;
+            this.thirstRetention = 0;
+            this.shockResist = -3;
+            //Main Stat Bonuses
+            this.strengthBonus = 1;
+            this.enduranceBonus = 1;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 30;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 1;
+            this.dexterityBonus = 1;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 3;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 40;
+            this.ingredients = [["Steel", 5], ["Red Leather", 5], ["Cloth", 2], ["Gold", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 600 - Math.floor(player.getCharisma() / 1); // at max, buy for 550.
+            this.sellValue = 450 + Math.floor(player.getCharisma() / 0.5); // at max, sell for 550.
+        }
+        else if (this.type == "orgishRoyalArmour")
+        {
+            //For All Items
+            this.identity = "Orgish Royal General Armour";
+            this.weight = 38;
+            this.size = 30;
+            this.description = "The armour worn exclusively by the royal orgell general.";
+            if (player.raceName == "Orgell")
+            {
+                this.intForDes = 0;
+            }
+            else
+            {
+                this.intForDes = 2;
+            }
+            this.intDescription = "In orgell society the king is in charge of society, domestic policy and tradition, while the royal general controls the military.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "armour";
+            //Utility Focused
+            //protections
+            this.protection = 14 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 20;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 1;
+            this.thirstRetention = 0;
+            this.shockResist = -3;
+            //Main Stat Bonuses
+            this.strengthBonus = 3;
+            this.enduranceBonus = 1;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 1;
+            this.charismaBonus = 46;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 1;
+            this.staminaBonus = 1;
+            this.dexterityBonus = 2;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 5;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 40;
+            this.ingredients = [["Steel", 6], ["Red Leather", 8], ["Cloth", 3], ["Gold", 11]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3800 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 3500.
+            this.sellValue = 3300 + Math.floor(player.getCharisma() / 0.25); // at max, sell for 3500.
+        }
         else if (this.type == "blackChainArmour")
         {
             //For All Items
@@ -27577,6 +27964,122 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 139 - Math.floor(player.getCharisma() / 3); // at max, buy for 124.
             this.sellValue = 100 + Math.floor(player.getCharisma() / 2.5); // at max, sell for 120.
+        }
+        else if (this.type == "vardanianCoatOfPlates")
+        {
+            //For All Items
+            this.identity = "Vardanian Coat of Plates";
+            this.weight = 16;
+            this.size = 25;
+            this.description = "This full armour set is worn by vardanian soldiers, deserters, and mercenaries alike.";
+            this.intForDes = 0;
+            this.intDescription = "This armour is designed to protect the wearer from inhaling particles of disease or swamp air.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "armour";
+            //Utility Focused
+            //protections
+            this.protection = 10 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 8;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 2;
+            this.thirstRetention = 0;
+            this.shockResist = -5;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 0;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = -10;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "resistDisease";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 25;
+            this.ingredients = [["Iron", 6], ["Nechrovite", 1], ["Cloth", 2], ["Bovine Hide", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 95 - Math.floor(player.getCharisma() / 50); // at max, buy for 94.
+            this.sellValue = 89 + Math.floor(player.getCharisma() / 10); // at max, sell for 94.
+        }
+        else if (this.type == "vardanianAkaton")
+        {
+            //For All Items
+            this.identity = "Akaton";
+            this.weight = 1.4;
+            this.size = 25;
+            this.description = "A sewn akaton of elk fur and cloth.";
+            this.intForDes = 0;
+            this.intDescription = "This armour is a necessary padding for plate armour, but it also can serve as an armour in and of itself.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "armour";
+            //Utility Focused
+            //protections
+            this.protection = 1.5 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0;
+            this.thirstRetention = 0;
+            this.shockResist = 0.1;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 0;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 10;
+            this.ingredients = [["Cloth", 3], ["Elk Pelt", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 26 - Math.floor(player.getCharisma() / 25); // at max, buy for 24.
+            this.sellValue = 23 + Math.floor(player.getCharisma() / 50); // at max, sell for 24.
         }
         else if (this.type == "naapridLeatherArmour")
         {
@@ -33532,6 +34035,76 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "vardanianCoatOfPlates")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 544, 8, 103, 209, X - this.X + (1/2 * CCC.width) - (1/2 * 103 * 0.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 209 * 0.6), 103 * 0.6, 209 * 0.6);
+        }
+        else if (this.type == "vardanianAkaton")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 654, 12, 105, 143, X - this.X + (1/2 * CCC.width) - (1/2 * 105 * 0.7), Y - this.Y + (1/2 * CCC.height) - (1/2 * 143 * 0.7), 105 * 0.7, 143 * 0.7);
+        }
+        else if (this.type == "orgishEliteArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 238, 11, 105, 207, X - this.X + (1/2 * CCC.width) - (1/2 * 105 * 0.7), Y - this.Y + (1/2 * CCC.height) - (1/2 * 207 * 0.7), 105 * 0.7, 207 * 0.7);
+        }
+        else if (this.type == "orgishRoyalArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 394, 2, 104, 214, X - this.X + (1/2 * CCC.width) - (1/2 * 104 * 0.7), Y - this.Y + (1/2 * CCC.height) - (1/2 * 214 * 0.7), 104 * 0.7, 214 * 0.7);
+        }
+        else if (this.type == "araneaFang")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 19, 448, 19, 9, X - this.X + (1/2 * CCC.width) - (1/2 * 19 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 9 * 1), 19 * 1, 9 * 1);
+        }
+        else if (this.type == "viudaFang")
+        {
+            XXX.beginPath();
+            XXX.drawImage(stic, 389, 297, 12, 6, X - this.X + (1/2 * CCC.width) - (1/2 * 12 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 6 * 1), 12 * 1, 6 * 1);
+        }
+        else if (this.type == "viudaVenomSac")
+        {
+            XXX.beginPath();
+            XXX.drawImage(stic, 376, 292, 12, 13, X - this.X + (1/2 * CCC.width) - (1/2 * 12 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 13 * 1), 12 * 1, 13 * 1);
+        }
+        else if (this.type == "boreaLeg")
+        {
+            XXX.beginPath();
+            XXX.drawImage(humpa, 2470, 11, 43, 55, X - this.X + (1/2 * CCC.width) - (1/2 * 43 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 55 * 1), 43 * 1, 55 * 1);
+        }
+        else if (this.type == "saliseaVenomSac")
+        {
+            XXX.beginPath();
+            XXX.drawImage(humpa, 417, 1287, 17, 20, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 20 * 1), 17 * 1, 20 * 1);
+        }
+        else if (this.type == "saliseaFur")
+        {
+            XXX.beginPath();
+            XXX.drawImage(humpa, 406, 1263, 40, 25, X - this.X + (1/2 * CCC.width) - (1/2 * 40 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 25 * 1), 40 * 1, 25 * 1);
+        }
+        else if (this.type == "saliseaLeather" || this.type == "treatedSaliseaHide")
+        {
+            XXX.beginPath();
+            XXX.drawImage(humpa, 406, 1308, 40, 25, X - this.X + (1/2 * CCC.width) - (1/2 * 40 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 25 * 1), 40 * 1, 25 * 1);
+        }
+        else if (this.type == "zafBeetleWhiskers")
+        {
+            XXX.beginPath();
+            XXX.drawImage(humpa, 571, 976, 25, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 25 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 25 * 1, 23 * 1);
+        }
+        else if (this.type == "zafBeetleFeeler")
+        {
+            XXX.beginPath();
+            XXX.drawImage(humpa, 572, 1002, 23, 36, X - this.X + (1/2 * CCC.width) - (1/2 * 23 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 36 * 1), 23 * 1, 36 * 1);
+        }
+        else if (this.type == "zafBeetleShell")
+        {
+            XXX.beginPath();
+            XXX.drawImage(humpa, 490, 985, 75, 38, X - this.X + (1/2 * CCC.width) - (1/2 * 75 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 38 * 1), 75 * 1, 38 * 1);
+        }
         else if (this.type == "vardanianPriestRobes")
         {
             XXX.beginPath();
@@ -37855,6 +38428,76 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
+        else if (this.type == "vardanianCoatOfPlates")
+        {
+            LXX.beginPath();
+            LXX.drawImage(gent, 544, 8, 103, 209, this.invX - (1/2 * 103 * 0.35), this.invY - (1/2 * 209 * 0.35), 103 * 0.35, 209 * 0.35);
+        }
+        else if (this.type == "vardanianAkaton")
+        {
+            LXX.beginPath();
+            LXX.drawImage(gent, 654, 12, 105, 143, this.invX - (1/2 * 105 * 0.5), this.invY - (1/2 * 143 * 0.5), 105 * 0.5, 143 * 0.5);
+        }
+        else if (this.type == "orgishEliteArmour")
+        {
+            LXX.beginPath();
+            LXX.drawImage(gent, 238, 11, 105, 207, this.invX - (1/2 * 105 * 0.35), this.invY - (1/2 * 207 * 0.35), 105 * 0.35, 207 * 0.35);
+        }
+        else if (this.type == "orgishRoyalArmour")
+        {
+            LXX.beginPath();
+            LXX.drawImage(gent, 394, 2, 104, 214, this.invX - (1/2 * 104 * 0.35), this.invY - (1/2 * 214 * 0.35), 104 * 0.35, 214 * 0.35);
+        }
+        else if (this.type == "araneaFang")
+        {
+            LXX.beginPath();
+            LXX.drawImage(jungho, 19, 448, 19, 9, this.invX - (1/2 * 19 * 1), this.invY - (1/2 * 9 * 1), 19 * 1, 9 * 1);
+        }
+        else if (this.type == "viudaFang")
+        {
+            LXX.beginPath();
+            LXX.drawImage(stic, 389, 297, 12, 6, this.invX - (1/2 * 12 * 1), this.invY - (1/2 * 6 * 1), 12 * 1, 6 * 1);
+        }
+        else if (this.type == "viudaVenomSac")
+        {
+            LXX.beginPath();
+            LXX.drawImage(stic, 376, 292, 12, 13, this.invX - (1/2 * 12 * 1), this.invY - (1/2 * 13 * 1), 12 * 1, 13 * 1);
+        }
+        else if (this.type == "boreaLeg")
+        {
+            LXX.beginPath();
+            LXX.drawImage(humpa, 2470, 11, 43, 55, this.invX - (1/2 * 43 * 1), this.invY - (1/2 * 55 * 1), 43 * 1, 55 * 1);
+        }
+        else if (this.type == "saliseaVenomSac")
+        {
+            LXX.beginPath();
+            LXX.drawImage(humpa, 417, 1287, 17, 20, this.invX - (1/2 * 17 * 1), this.invY - (1/2 * 20 * 1), 17 * 1, 20 * 1);
+        }
+        else if (this.type == "saliseaFur")
+        {
+            LXX.beginPath();
+            LXX.drawImage(humpa, 406, 1263, 40, 25, this.invX - (1/2 * 40 * 1), this.invY - (1/2 * 25 * 1), 40 * 1, 25 * 1);
+        }
+        else if (this.type == "saliseaLeather" || this.type == "treatedSaliseaHide")
+        {
+            LXX.beginPath();
+            LXX.drawImage(humpa, 406, 1308, 40, 25, this.invX - (1/2 * 40 * 1), this.invY - (1/2 * 25 * 1), 40 * 1, 25 * 1);
+        }
+        else if (this.type == "zafBeetleWhiskers")
+        {
+            LXX.beginPath();
+            LXX.drawImage(humpa, 571, 976, 25, 23, this.invX - (1/2 * 25 * 1), this.invY - (1/2 * 23 * 1), 25 * 1, 23 * 1);
+        }
+        else if (this.type == "zafBeetleFeeler")
+        {
+            LXX.beginPath();
+            LXX.drawImage(humpa, 572, 1002, 23, 36, this.invX - (1/2 * 23 * 1), this.invY - (1/2 * 36 * 1), 23 * 1, 36 * 1);
+        }
+        else if (this.type == "zafBeetleShell")
+        {
+            LXX.beginPath();
+            LXX.drawImage(humpa, 490, 985, 75, 38, this.invX - (1/2 * 75 * 1), this.invY - (1/2 * 38 * 1), 75 * 1, 38 * 1);
+        }
         else if (this.type == "vardanianPriestRobes")
         {
             LXX.beginPath();
@@ -42152,6 +42795,76 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "vardanianCoatOfPlates")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 544, 8, 103, 209, this.invX - (1/2 * 103 * 0.35), this.invY - (1/2 * 209 * 0.35), 103 * 0.35, 209 * 0.35);
+        }
+        else if (this.type == "vardanianAkaton")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 654, 12, 105, 143, this.invX - (1/2 * 105 * 0.5), this.invY - (1/2 * 143 * 0.5), 105 * 0.5, 143 * 0.5);
+        }
+        else if (this.type == "orgishEliteArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 238, 11, 105, 207, this.invX - (1/2 * 105 * 0.35), this.invY - (1/2 * 207 * 0.35), 105 * 0.35, 207 * 0.35);
+        }
+        else if (this.type == "orgishRoyalArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 394, 2, 104, 214, this.invX - (1/2 * 104 * 0.35), this.invY - (1/2 * 214 * 0.35), 104 * 0.35, 214 * 0.35);
+        }
+        else if (this.type == "araneaFang")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 19, 448, 19, 9, this.invX - (1/2 * 19 * 1), this.invY - (1/2 * 9 * 1), 19 * 1, 9 * 1);
+        }
+        else if (this.type == "viudaFang")
+        {
+            XXX.beginPath();
+            XXX.drawImage(stic, 389, 297, 12, 6, this.invX - (1/2 * 12 * 1), this.invY - (1/2 * 6 * 1), 12 * 1, 6 * 1);
+        }
+        else if (this.type == "viudaVenomSac")
+        {
+            XXX.beginPath();
+            XXX.drawImage(stic, 376, 292, 12, 13, this.invX - (1/2 * 12 * 1), this.invY - (1/2 * 13 * 1), 12 * 1, 13 * 1);
+        }
+        else if (this.type == "boreaLeg")
+        {
+            XXX.beginPath();
+            XXX.drawImage(humpa, 2470, 11, 43, 55, this.invX - (1/2 * 43 * 1), this.invY - (1/2 * 55 * 1), 43 * 1, 55 * 1);
+        }
+        else if (this.type == "saliseaVenomSac")
+        {
+            XXX.beginPath();
+            XXX.drawImage(humpa, 417, 1287, 17, 20, this.invX - (1/2 * 17 * 1), this.invY - (1/2 * 20 * 1), 17 * 1, 20 * 1);
+        }
+        else if (this.type == "saliseaFur")
+        {
+            XXX.beginPath();
+            XXX.drawImage(humpa, 406, 1263, 40, 25, this.invX - (1/2 * 40 * 1), this.invY - (1/2 * 25 * 1), 40 * 1, 25 * 1);
+        }
+        else if (this.type == "saliseaLeather" || this.type == "treatedSaliseaHide")
+        {
+            XXX.beginPath();
+            XXX.drawImage(humpa, 406, 1308, 40, 25, this.invX - (1/2 * 40 * 1), this.invY - (1/2 * 25 * 1), 40 * 1, 25 * 1);
+        }
+        else if (this.type == "zafBeetleWhiskers")
+        {
+            XXX.beginPath();
+            XXX.drawImage(humpa, 571, 976, 25, 23, this.invX - (1/2 * 25 * 1), this.invY - (1/2 * 23 * 1), 25 * 1, 23 * 1);
+        }
+        else if (this.type == "zafBeetleFeeler")
+        {
+            XXX.beginPath();
+            XXX.drawImage(humpa, 572, 1002, 23, 36, this.invX - (1/2 * 23 * 1), this.invY - (1/2 * 36 * 1), 23 * 1, 36 * 1);
+        }
+        else if (this.type == "zafBeetleShell")
+        {
+            XXX.beginPath();
+            XXX.drawImage(humpa, 490, 985, 75, 38, this.invX - (1/2 * 75 * 1), this.invY - (1/2 * 38 * 1), 75 * 1, 38 * 1);
         }
         else if (this.type == "vardanianPriestRobes")
         {

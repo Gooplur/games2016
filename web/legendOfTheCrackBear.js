@@ -1591,6 +1591,18 @@ function gargPack()
 
     garg.onload = function()
     {
+        sticPack();
+    };
+}
+
+function sticPack()
+{
+    var stic = new Image();
+    stic.src = ("images/stic.png");
+    window.stic = stic;
+
+    stic.onload = function()
+    {
         tribalPack();
     };
 }
@@ -3864,6 +3876,10 @@ function theLegend()
     allWorn.push(new Item("vardanianRoyalAttireM", false)); //115
     allWorn.push(new Item("vardanianRoyalAttireF", false)); //116
     allWorn.push(new Item("vardanianPriestRobes", false)); //117
+    allWorn.push(new Item("vardanianAkaton", false)); //118
+    allWorn.push(new Item("vardanianCoatOfPlates", false)); //119
+    allWorn.push(new Item("orgishEliteArmour", false)); //120
+    allWorn.push(new Item("orgishRoyalArmour", false)); //121
 
     scenicList = [];
 
@@ -3986,6 +4002,9 @@ function theLegend()
     smithing.push(new Item("vardanianPot", false));
     smithing.push(new Item("ironBolt", false));
     smithing.push(new Item("vardanianCrossbow", false));
+    smithing.push(new Item("vardanianCoatOfPlates", false));
+    smithing.push(new Item("orgishEliteArmour", false));
+    smithing.push(new Item("orgishRoyalArmour", false));
 
 
 //Foods (Items cooked at either a stove, an oven, or a campfire)
@@ -4203,6 +4222,7 @@ function theLegend()
     tailoring.push(new Item("hideGloves", false));
     tailoring.push(new Item("jesterShoes", false));
     tailoring.push(new Item("vardanianPriestRobes", false));
+    tailoring.push(new Item("vardanianAkaton", false));
 
 //Jewelry (Items crafted at a jewler's station, rings, necklaces, cutting gems, glassblowing etc.)
     jewelry = [];
@@ -4394,6 +4414,7 @@ function theLegend()
     handcrafted.push(new Item("treatedBovineHide", false));
     handcrafted.push(new Item("soakedMandrake", false));
     handcrafted.push(new Item("slicedBorsht", false));
+    handcrafted.push(new Item("treatedSaliseaHide", false));
 
     //Activate Important Game Functions Here:
     itemPlacer();

@@ -151,6 +151,9 @@ southFishingSpot - A rippling part of the water where the fishing system can be 
 temperatePondFishingSpot - A rippling part of the water where the fishing system can be accessed with a fishingpole (limited eastern temperate varieties found here)
 vardanianMueble - A variety of Vardanian Furnishings (0-21)
 vardanianFloorDeco - rugs, mats, and rags (0-7)
+viudaTunnel - A mound that hosts a webbed tunnel in which the Viuda spider makes its home. //scenicList.push(new Scenery("viudaTunnel", x, y, rotation, hasSpider?, isAlpha?));
+vinePatch - a foliage barrier that can be degraded upon being attacked. //scenicList.push(new Scenery("vinePatch", x, y, rotation, size));
+
 
 
 

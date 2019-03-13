@@ -273,6 +273,31 @@ function Item(type, x, y)
             this.buyValue = 95 - Math.floor(player.getCharisma() / 10); // at max, buy for 90.
             this.sellValue = 85 + Math.floor(player.getCharisma() / 10); // at max, sell for 90.
         }
+        else if (this.type == "venandi")
+        {
+            //For All Items
+            this.identity = "Venandi";
+            this.weight = 0;
+            this.size = 10;
+            this.description = "Your body has become host the a parasitic fungus thats mycelium has taken control of your circulatory and nervous systems.";
+            this.intForDes = 0;
+            this.intDescription = "Venandi cannot survive in climates colder than the jungle.";
+
+            //Define Utility
+            this.utility = "weapon";
+
+            //Utility Focused
+            this.energyCost = 0;
+            this.distance = 22;
+            this.range = 2 + 2/7;
+            this.rate = 90;
+            this.damage = 2 + player.getStrength() / 10;
+            this.magicalDamage = 0;
+            this.negateArmour = 2;
+
+            //ability
+            this.ability = "venandi";
+        }
         else if (this.type == "nude")
         {
             //For All Items
@@ -11698,7 +11723,27 @@ function Item(type, x, y)
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 400 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 300.
-            this.sellValue = 25 + Math.floor(player.getCharisma() / 1); // at max, sell for 75.
+            this.sellValue = 10; // at max, sell for 10.
+        }
+        else if (this.type == "gojiiFlower")
+        {
+            //For All Items
+            this.identity = "Gojii Flower";
+            this.weight = 0.85;
+            this.size = 8;
+            this.description = "A Sweet smelling pink flower.";
+            this.intForDes = 40;
+            this.intDescription = "The Gojii plant, including the flower, contains one of the most poisonous compounds in the world...";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 35 - Math.floor(player.getCharisma() / 3); // at max, buy for 20.
+            this.sellValue = 5 + Math.floor(player.getCharisma() / 3); // at max, sell for 20.
         }
         else if (this.type == "healingSalve")
         {
@@ -11807,6 +11852,98 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 690 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 590.
             this.sellValue = 185 + Math.floor(player.getCharisma() / 0.5); // at max, sell for 285.
+        }
+        else if (this.type == "bahabLeaf")
+        {
+            //For All Items
+            this.identity = "Bahab Leaf";
+            this.weight = 1.2;
+            this.size = 10;
+            this.description = "The colourful leaf of a bahab.";
+            this.intForDes = 0;
+            this.intDescription = "It has a fairly toxic and stringent smell so it is best not to eat it.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = true; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0.6; //satisfies hunger.
+            this.thirst = 0.8; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "poisonI";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 6 - Math.floor(player.getCharisma() / 25); // at max, buy for 4.
+            this.sellValue = 2 + Math.floor(player.getCharisma() / 25); // at max, sell for 4.
+        }
+        else if (this.type == "bahabPod")
+        {
+            //For All Items
+            this.identity = "Bahab Pod";
+            this.weight = 3;
+            this.size = 11;
+            this.description = "The pink gas producing and storing pod of a bahab.";
+            this.intForDes = 3;
+            this.intDescription = "This has strong long-lasting hallucinagenic properties that are triggered upon consumption.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = true; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0.25; //restores will.
+
+            //ability
+            this.ability = "bahabI";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 16 - Math.floor(player.getCharisma() / 15); // at max, buy for 13.
+            this.sellValue = 10 + Math.floor(player.getCharisma() / 25); // at max, sell for 12.
+        }
+        else if (this.type == "driedBahabPod")
+        {
+            //For All Items
+            this.identity = "Dried Bahab Pod";
+            this.weight = 1;
+            this.size = 9;
+            this.description = "The withered and dried out pod of a Bahab.";
+            this.intForDes = 3;
+            this.intDescription = "This has strong long-lasting hallucinagenic properties that are triggered upon consumption.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = true; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0.25; //restores will.
+
+            //ability
+            this.ability = "bahabII";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 2;
+            this.ingredients = [["Bahab Pod", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 20 - Math.floor(player.getCharisma() / 15); // at max, buy for 17.
+            this.sellValue = 14 + Math.floor(player.getCharisma() / 15); // at max, sell for 17.
         }
         else if (this.type == "jarOfUlgoyNectar")
         {
@@ -20632,6 +20769,35 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 12 - Math.floor(player.getCharisma() / 12); // at max, buy for 8.
             this.sellValue = 5 + Math.floor(player.getCharisma() / 15); // at max, sell for 8.
+        }
+        else if (this.type == "cerebrisMushrooms")
+        {
+            //For All Items
+            this.identity = "Cerebris Mushrooms";
+            this.weight = 1.8;
+            this.size = 10;
+            this.description = "Yellow mushrooms that use particular beings as hosts to spread their spores across their native jungle habitat.";
+            this.intForDes = 1;
+            this.intDescription = "Eating them will cause you to become infected with venandification.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 3; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "venandification";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
         }
         else if (this.type == "glinMushrooms")
         {
@@ -34035,6 +34201,31 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "bahabLeaf")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 436, 733, 27, 30, X - this.X + (1/2 * CCC.width) - (1/2 * 27 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 30 * 1), 27 * 1, 30 * 1);
+        }
+        else if (this.type == "bahabPod")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 465, 737, 21, 30, X - this.X + (1/2 * CCC.width) - (1/2 * 21 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 30 * 1), 21 * 1, 30 * 1);
+        }
+        else if (this.type == "driedBahabPod")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 415, 734, 21, 30, X - this.X + (1/2 * CCC.width) - (1/2 * 21 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 30 * 1), 21 * 1, 30 * 1);
+        }
+        else if (this.type == "gojiiFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 335, 753, 21, 25, X - this.X + (1/2 * CCC.width) - (1/2 * 21 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 25 * 1), 21 * 1, 25 * 1);
+        }
+        else if (this.type == "cerebrisMushrooms")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 211, 678, 32, 34, X - this.X + (1/2 * CCC.width) - (1/2 * 32 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 34 * 1), 32 * 1, 34 * 1);
+        }
         else if (this.type == "vardanianCoatOfPlates")
         {
             XXX.beginPath();
@@ -38428,6 +38619,31 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
+        else if (this.type == "bahabLeaf")
+        {
+            LXX.beginPath();
+            LXX.drawImage(jungho, 436, 733, 27, 30, this.invX - (1/2 * 27 * 1), this.invY - (1/2 * 30 * 1), 27 * 1, 30 * 1);
+        }
+        else if (this.type == "bahabPod")
+        {
+            LXX.beginPath();
+            LXX.drawImage(jungho, 465, 737, 21, 30, this.invX - (1/2 * 21 * 1), this.invY - (1/2 * 30 * 1), 21 * 1, 30 * 1);
+        }
+        else if (this.type == "driedBahabPod")
+        {
+            LXX.beginPath();
+            LXX.drawImage(jungho, 415, 734, 21, 30, this.invX - (1/2 * 21 * 1), this.invY - (1/2 * 30 * 1), 21 * 1, 30 * 1);
+        }
+        else if (this.type == "gojiiFlower")
+        {
+            LXX.beginPath();
+            LXX.drawImage(jungho, 335, 753, 21, 25, this.invX - (1/2 * 21 * 1), this.invY - (1/2 * 25 * 1), 21 * 1, 25 * 1);
+        }
+        else if (this.type == "cerebrisMushrooms")
+        {
+            LXX.beginPath();
+            LXX.drawImage(jungho, 211, 678, 32, 34, this.invX - (1/2 * 32 * 1), this.invY - (1/2 * 34 * 1), 32 * 1, 34 * 1);
+        }
         else if (this.type == "vardanianCoatOfPlates")
         {
             LXX.beginPath();
@@ -42795,6 +43011,31 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "bahabLeaf")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 436, 733, 27, 30, this.invX - (1/2 * 27 * 1), this.invY - (1/2 * 30 * 1), 27 * 1, 30 * 1);
+        }
+        else if (this.type == "bahabPod")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 465, 737, 21, 30, this.invX - (1/2 * 21 * 1), this.invY - (1/2 * 30 * 1), 21 * 1, 30 * 1);
+        }
+        else if (this.type == "driedBahabPod")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 415, 734, 21, 30, this.invX - (1/2 * 21 * 1), this.invY - (1/2 * 30 * 1), 21 * 1, 30 * 1);
+        }
+        else if (this.type == "gojiiFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 335, 753, 21, 25, this.invX - (1/2 * 21 * 1), this.invY - (1/2 * 25 * 1), 21 * 1, 25 * 1);
+        }
+        else if (this.type == "cerebrisMushrooms")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 211, 678, 32, 34, this.invX - (1/2 * 32 * 1), this.invY - (1/2 * 34 * 1), 32 * 1, 34 * 1);
         }
         else if (this.type == "vardanianCoatOfPlates")
         {

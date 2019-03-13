@@ -16829,6 +16829,69 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.xAdjustment = 0;
             }
         }
+        else if (this.type == "Viuda")
+        {
+            this.damageFrame = "automatic";
+            this.resistances = ["web", "night"];
+            this.team = "viuda";
+            if (this.ID == "docile")
+            {
+                this.team = "docile";
+            }
+            this.baseTeam = this.team;
+            this.tamable = false;
+
+            this.spiderAtk = false;
+
+            if (this.alpha == true)
+            {
+                this.magicalResistance = 0;
+                this.heatResistance = 0.5;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = Math.floor(Math.random() * 2) + 8;
+                this.health = this.healthMAX;
+                this.armour = 2;
+                this.speed = 3.5 + (Math.floor(Math.random() * 2) / 10);
+                this.rangeOfSight = 550; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.2;
+                this.effect = "poisonV";
+                this.engagementRadius = 29;
+                this.sizeRadius = 15;
+                this.negateArmour = 4;
+                this.attackWait = 2.3;
+
+                //alpha has a larger size body and skills.
+                this.alphaSize = 1; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                // this is the adjustment the alpha type of Etyr needs to be centered.
+                this.yAdjustment = 0;
+                this.xAdjustment = 0;
+            }
+            else
+            {
+                this.magicalResistance = 0;
+                this.heatResistance = 0.5;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = Math.floor(Math.random() * 2) + 5;
+                this.health = this.healthMAX;
+                this.armour = 2;
+                this.speed = 3 + (Math.floor(Math.random() * 2) / 10);
+                this.rangeOfSight = 500; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.2;
+                this.effect = "poisonV";
+                this.engagementRadius = 26;
+                this.sizeRadius = 11;
+                this.negateArmour = 3;
+                this.attackWait = 2.1;
+
+                //alpha has a larger size body and skills.
+                this.alphaSize = 0.8; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                // this is the adjustment the alpha type of Etyr needs to be centered.
+                this.yAdjustment = 0;
+                this.xAdjustment = 0;
+            }
+        }
         else if (this.type == "Avrak")
         {
             this.damageFrame = "automatic";
@@ -26058,6 +26121,281 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             else
             {
                 this.drawUnit(verse, 2929, 283, 54, 32, -35 - this.xAdjustment, -22 - this.yAdjustment, 54 * this.alphaSize, 32 * this.alphaSize);
+            }
+        }
+        //VIUDA
+        if (this.type == "Viuda")
+        {
+            //Set Drops and experience
+            if (this.alpha == true)
+            {
+                if (Math.max(0, 7 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 35 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = (35 * ((player.getIntelligence() / 50) + 1)) / 10;
+                }
+
+                if (player.getIntelligence() >= 28)
+                {
+                    this.drops = [[new Item("viudaFang", this.X, this.Y), 1], [new Item("viudaVenomSac", this.X, this.Y), 1]];
+                }
+                else
+                {
+                    this.drops = [[new Item("viudaFang", this.X, this.Y), 1]];
+                }
+            }
+            else
+            {
+                if (Math.max(0, 4 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 25 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = 25 * ((player.getIntelligence() / 50) + 1) / 10;
+                }
+
+                if (Math.random() > 0.6)
+                {
+                    this.drops = [[new Item("viudaFang", this.X, this.Y), 1]];
+                }
+            }
+
+            //RANGE OF SIGHT (anything related to range of sight)
+            if (this.alpha == true)
+            {
+                this.rangeOfSightCalculator(550, false);
+            }
+            else
+            {
+                this.rangeOfSightCalculator(500, false);
+            }
+
+            //AI
+            if (this.alive == true)
+            {
+                if (this.alpha == true)
+                {
+                    this.Attack(1, 3);
+                }
+                else
+                {
+                    this.Attack(1, 2);
+                }
+
+                this.spiderHunger -= 0.015;
+                if (this.spiderHunger < 0)
+                {
+                    this.spiderHunger = 0;
+                }
+
+                //this.deathChecker();
+                this.disturbedTimer();
+                this.visibleSight();
+                this.friendDecider();
+                this.targeting();
+
+                this.moving = false;
+
+                if (this.target == player)
+                {
+                    if (this.spiderHunger < 30 || player.health < 13 || this.DTP() < 100)
+                    {
+                        this.pointTowardsPlayer();
+                        this.moveInRelationToPlayer();
+                    }
+                    else
+                    {
+                        var closiness = 1000000000;
+                        var isiness = -1;
+                        for (var jl = 0; jl < scenicList.length; jl++)
+                        {
+                            if (scenicList[jl].type == "viudaTunnel")
+                            {
+                                if (scenicList[jl].spider == false && scenicList[jl].health > 0)
+                                {
+                                    var doodoodist = this.DTU(scenicList[jl]);
+                                    if (doodoodist < closiness)
+                                    {
+                                        closiness = doodoodist;
+                                        isiness = jl;
+                                    }
+                                }
+                            }
+                        }
+
+                        if (isiness != -1)
+                        {
+                            if (this.DTU(scenicList[isiness]) < 50)
+                            {
+                                scenicList[isiness].spider = true;
+                                scenicList[isiness].spiderHunger = this.spiderHunger;
+                                scenicList[isiness].spiderAlpha = this.alpha;
+                                scenicList[isiness].spiderId = this.ID;
+                                ArtificialIntelligenceAccess.splice(ArtificialIntelligenceAccess.indexOf(this), 1);
+                            }
+                            else
+                            {
+                                this.pointTowards(scenicList[isiness]);
+                                this.moveInRelationToThing(scenicList[isiness], 10000);
+                            }
+                        }
+                    }
+                }
+                else if (this.target != "none")
+                {
+                    if (this.spiderHunger < 30 || this.target.health < 13 || this.DTU(this.target) < 100)
+                    {
+                        this.pointTowards(this.target);
+                        this.moveInRelationToThing(this.target);
+                    }
+                    else
+                    {
+                        var closiness = 1000000000;
+                        var isiness = -1;
+                        for (var jl = 0; jl < scenicList.length; jl++)
+                        {
+                            if (scenicList[jl].type == "viudaTunnel")
+                            {
+                                if (scenicList[jl].spider == false && scenicList[jl].health > 0)
+                                {
+                                    var doodoodist = this.DTU(scenicList[jl]);
+                                    if (doodoodist < closiness)
+                                    {
+                                        closiness = doodoodist;
+                                        isiness = jl;
+                                    }
+                                }
+                            }
+                        }
+
+                        if (isiness != -1)
+                        {
+                            if (this.DTU(scenicList[isiness]) < 50)
+                            {
+                                scenicList[isiness].spider = true;
+                                scenicList[isiness].spiderHunger = this.spiderHunger;
+                                scenicList[isiness].spiderAlpha = this.alpha;
+                                scenicList[isiness].spiderId = this.ID;
+                                ArtificialIntelligenceAccess.splice(ArtificialIntelligenceAccess.indexOf(this), 1);
+                            }
+                            else
+                            {
+                                this.pointTowards(scenicList[isiness]);
+                                this.moveInRelationToThing(scenicList[isiness], 10000);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    var closiness = 1000000000;
+                    var isiness = -1;
+                    for (var jl = 0; jl < scenicList.length; jl++)
+                    {
+                        if (scenicList[jl].type == "viudaTunnel")
+                        {
+                            if (scenicList[jl].spider == false && scenicList[jl].health > 0)
+                            {
+                                var doodoodist = this.DTU(scenicList[jl]);
+                                if (doodoodist < closiness)
+                                {
+                                    closiness = doodoodist;
+                                    isiness = jl;
+                                }
+                            }
+                        }
+                    }
+
+                    if (isiness != -1)
+                    {
+                        if (this.DTU(scenicList[isiness]) < 50)
+                        {
+                            scenicList[isiness].spider = true;
+                            scenicList[isiness].spiderHunger = this.spiderHunger;
+                            scenicList[isiness].spiderAlpha = this.alpha;
+                            scenicList[isiness].spiderId = this.ID;
+                            ArtificialIntelligenceAccess.splice(ArtificialIntelligenceAccess.indexOf(this), 1);
+                        }
+                        else
+                        {
+                            this.pointTowards(scenicList[isiness]);
+                            this.moveInRelationToThing(scenicList[isiness], 10000);
+                        }
+                    }
+                }
+
+            }
+
+            //ANIMATIONS
+
+            if (this.alive == true)
+            {
+                if (this.moving && !this.attacking) //If moving and not attacking initiate moving animation...
+                {
+                    this.costumeEngine(3, 0.20, true);
+                }
+                else if (this.attacking) //otherwise if it is attacking then initiate attacking animation, and if neither...
+                {
+                    if(new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000 / timeSpeed * this.timeResistance))
+                    {
+                        this.costumeEngine(3, 0.110, true);
+                    }
+                }
+
+                // the frames/stages/costumes of the animation.
+                var theCostume = Math.floor( this.costume ); //This rounds this.costume down to the nearest whole number.
+
+                if (theCostume <= 0)
+                {
+                    if (this.attacking)
+                    {
+                        if (this.spiderAtk == true)
+                        {
+                            this.spiderAtk = false;
+                            this.spiderHunger = 40;
+                        }
+                        this.drawUnit(stic, 415, 328, 59, 56, -1/2 * 59 * this.alphaSize - this.xAdjustment, -1/2 * 56 * this.alphaSize - this.yAdjustment, 59 * this.alphaSize, 56 * this.alphaSize);
+                    }
+                    else if (this.moving)
+                    {
+                        this.drawUnit(stic, 478, 271, 59, 56, -1/2 * 59 * this.alphaSize - this.xAdjustment, -1/2 * 56 * this.alphaSize - this.yAdjustment, 59 * this.alphaSize, 56 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(stic, 414, 271, 59, 56, -1/2 * 59 * this.alphaSize - this.xAdjustment, -1/2 * 56 * this.alphaSize - this.yAdjustment, 59 * this.alphaSize, 56 * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 1)
+                {
+                    if (this.attacking)
+                    {
+                        this.drawUnit(stic, 478, 329, 59, 56, -1/2 * 59 * this.alphaSize - this.xAdjustment, -1/2 * 56 * this.alphaSize - this.yAdjustment, 59 * this.alphaSize, 56 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(stic, 414, 271, 59, 56, -1/2 * 59 * this.alphaSize - this.xAdjustment, -1/2 * 56 * this.alphaSize - this.yAdjustment, 59 * this.alphaSize, 56 * this.alphaSize);
+                    }
+                }
+                else if (theCostume >= 2)
+                {
+                    if (this.attacking)
+                    {
+                        this.spiderAtk = true;
+                        this.drawUnit(stic, 545, 331, 59, 56, -1/2 * 59 * this.alphaSize - this.xAdjustment, -1/2 * 56 * this.alphaSize - this.yAdjustment, 59 * this.alphaSize, 56 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(stic, 547, 272, 59, 56, -1/2 * 59 * this.alphaSize - this.xAdjustment, -1/2 * 56 * this.alphaSize - this.yAdjustment, 59 * this.alphaSize, 56 * this.alphaSize);
+                    }
+                }
+            }
+            else
+            {
+                this.drawUnit(stic, 353, 328, 59, 56, -1/2 * 59 * this.alphaSize - this.xAdjustment, -1/2 * 56 * this.alphaSize - this.yAdjustment, 59 * this.alphaSize, 56 * this.alphaSize);
             }
         }
         //ZAF BEETLE

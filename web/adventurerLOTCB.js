@@ -541,6 +541,10 @@ function Adventurer()
     this.spawnX = 0;
     this.spawnY = 0;
     this.lycanthropyTime = 0;
+    this.venandi = 0; //cerebris mushroom parasitic plague
+    this.bahabTime = 0; //a halucinagenic drug
+    this.bahabTrip = false;
+    this.controlled = false;
 
     //faction variables
     this.factionToggle = false;
@@ -3485,6 +3489,17 @@ function Adventurer()
                 this.haeflowerTrip = false;
             }
 
+            //Bahab Drug Trip
+            if (this.bahabTime > 0)
+            {
+                this.bahabTrip = true;
+                this.bahabTime -= 0.005 * (TTD / 16.75);
+            }
+            else
+            {
+                this.bahabTrip = false;
+            }
+
             //Food poisoning
             if (new Date().getTime() - this.timeSinceBadFoodEaten >= 33000 && new Date().getTime() - this.timeSinceBadFoodEaten < 34000)
             {
@@ -3620,6 +3635,52 @@ function Adventurer()
             }
         };
 
+        this.venandine = function()
+        {
+            if (this.venandi > 0)
+            {
+                if (elevation <= -3)
+                {
+                    if (this.venandi > 0) //spore development stage
+                    {
+                        this.venandi += 0.05;
+                    }
+                    else if (this.venandi >= 100) //spore infectious transmission stage
+                    {
+                        if (this.venandi % 20 == 0)
+                        {
+                            scenicList.push(new Scenery("cerebrisSporeCough", X + Math.cos(this.rotation + 1/2 * Math.PI) * 13, Y + Math.sin(this.rotation + 1/2 * Math.PI) * 13, this.rotation + 1/2 * Math.PI, false))
+                        }
+
+                        if (this.venandi >= 100)
+                        {
+                            this.venandi += 0.1;
+                        }
+                        else if (this.venandi >= 200) //mycelium entrenchment phase
+                        {
+                            this.venandi += 0.2;
+                        }
+                        else if (this.venandi >= 400) //nervous system replacement phase
+                        {
+                            this.venandi = 400;
+                        }
+                    }
+                }
+                else
+                {
+                    if (this.venandi >= 400) //mycelium entrenchment phase
+                    {
+                        this.health -= 1.25;
+                    }
+                    else if (this.venandi >= 200) //mycelium entrenchment phase
+                    {
+                        this.health -= 0.55;
+                    }
+                }
+            }
+            //this.venandi += 5; //test
+        };
+
         this.waterWalk = function()
         {
             if (this.waterwalkingTime > 0)
@@ -3717,6 +3778,7 @@ function Adventurer()
         this.gutWorm();
         this.fleshMite();
         this.brainMaggot();
+        this.venandine();
         this.alcoholManagement();
         this.bandagedTimer();
         this.stunnedTimer();
@@ -3741,7 +3803,7 @@ function Adventurer()
     this.formChanger = function()
     {
         //Selkie
-        if (this.raceName == "Sylkeem")
+        if (this.raceName == "Sylkeem" && this.venandi < 400)
         {
             if (this.weaponEquipped == "selkieSkin")
             {
@@ -3828,8 +3890,9 @@ function Adventurer()
             }
         }
         //Vamprism
-        if (this.vamprism)
+        if (this.vamprism && this.venandi < 400)
         {
+            this.venandi = 0;
             //vampires can survive without feeding much longer than humans can
             if (this.baseHunger < 90)
             {
@@ -3925,8 +3988,9 @@ function Adventurer()
         }
 
         //Lycanthropy
-        if (this.lycanthropy)
+        if (this.lycanthropy && this.venandi < 200)
         {
+            this.venandi = 0;
             if (timeOfDay == "Night")
             {
                 if (this.wolfChange != "transform" && this.wolfChange != "over" && this.wolfChange != "regress" && this.wolfChange != true)
@@ -3983,6 +4047,45 @@ function Adventurer()
                     player.energilTime = 180;
                     player.fatigueV = true;
                 }
+            }
+        }
+
+        //Cerebris Mushroom Plague
+        if (this.venandi >= 400)
+        {
+                this.form = "venandi";
+
+            //where venandi occurs
+            if (this.form == "venandi")
+            {
+                this.mageShield = 0;
+                for (var ll = 0; ll < ArtificialIntelligenceAccess.length; ll++)
+                {
+                    if (ArtificialIntelligenceAccess[ll].team != "venandi")
+                    {
+                        ArtificialIntelligenceAccess[ll].disturbed = true;
+
+                        if (ArtificialIntelligenceAccess[ll].team == "player")
+                        {
+                            ArtificialIntelligenceAccess[ll].baseTeam = "arena3";
+                        }
+                    }
+                }
+
+                //unequip weapon and armour then...
+                //set outfit to venandi
+                for (var i = 0; i < Inventory.length; i++)
+                {
+                    if (Inventory[i][0].utility == "weapon" || Inventory[i][0].utility == "ranged" || Inventory[i][0].utility == "worn")
+                    {
+                        Inventory[i][0].equipped = false;
+                    }
+                }
+                this.ammoLoaded = false; //if a ranged weapon is in the middle of shooting this counters that
+                this.isArmourEquipped = false;
+                this.outfitEquipped = "none";
+                this.weaponEquipped = "venandi";
+                this.subtlety = false;
             }
         }
     };
@@ -4220,6 +4323,10 @@ function Adventurer()
         {
             return 10;
         }
+        else if (this.form == "venandi")
+        {
+            return 100;
+        }
         else if (this.frozen == true)
         {
             return Math.max(0, Math.min(86, (this.dexterity + this.AdDexterity + this.dexBoost + this.swollenDEX) / 10));
@@ -4236,9 +4343,13 @@ function Adventurer()
         {
             return 99;
         }
-        if (this.form == "selkie")
+        else if (this.form == "selkie")
         {
             return 1;
+        }
+        else if (this.form == "venandi")
+        {
+            return Math.max(20, this.stamina);
         }
         else
         {
@@ -4258,7 +4369,7 @@ function Adventurer()
 
     this.getSurvivalism = function()
     {
-        if (this.form == "werewolf" || this.form == "vampire" || this.form == "selkie")
+        if (this.form == "werewolf" || this.form == "vampire" || this.form == "selkie" || this.form == "venandi")
         {
             return 0;
         }
@@ -4270,7 +4381,7 @@ function Adventurer()
 
     this.getIntelligence = function()
     {
-        if (this.form == "werewolf")
+        if (this.form == "werewolf" || this.form == "venandi")
         {
             return 0;
         }
@@ -4282,7 +4393,7 @@ function Adventurer()
 
     this.getCharisma = function()
     {
-        if (this.form == "werewolf")
+        if (this.form == "werewolf" || this.form == "venandi")
         {
             return 0;
         }
@@ -4294,7 +4405,7 @@ function Adventurer()
 
     this.getWillpower = function()
     {
-        if (this.form == "werewolf" || this.form == "selkie")
+        if (this.form == "werewolf" || this.form == "selkie" || this.form == "venandi")
         {
             return 0;
         }
@@ -4311,7 +4422,7 @@ function Adventurer()
 
     this.getMemory = function()
     {
-        if (this.form == "werewolf")
+        if (this.form == "werewolf" || this.form == "venandi")
         {
             return 0;
         }
@@ -4332,7 +4443,7 @@ function Adventurer()
 
     this.getKnowledge = function()
     {
-        if (this.form == "werewolf")
+        if (this.form == "werewolf" || this.form == "venandi")
         {
             return 0;
         }
@@ -4523,6 +4634,30 @@ function Adventurer()
         {
             //at this point the slot will have been cleared so next time the effect shows up it should have to check again to be entered into a position on the miniNoticeList.
             this.removeNotice("Brain Maggots");
+        }
+    };
+
+    //Venandification Notice Function
+    this.venandiChecker = function()
+    {
+        if (this.venandi > 0)
+        {
+            // at this point the slot should be consistent so it should not have to check again to be entered into a position on the miniNoticeList.
+            this.addNotice("Venandification");
+            //red background
+            XXX.beginPath();
+            XXX.fillStyle = "#E2F1C1";
+            XXX.lineWidth = 1;
+            XXX.strokeStyle = "black";
+            XXX.rect(this.arrangeNotices("Venandification"), 413, 20, 20);
+            XXX.fill();
+            XXX.stroke();
+            XXX.drawImage(jungho, 549, 620, 37, 35, this.arrangeNotices("Venandification"), 412.5, 20, 20);
+        }
+        else
+        {
+            //at this point the slot will have been cleared so next time the effect shows up it should have to check again to be entered into a position on the miniNoticeList.
+            this.removeNotice("Venandification");
         }
     };
 
@@ -5536,6 +5671,7 @@ function Adventurer()
         this.fungalFeverChecker();
         this.swollenChecker();
         this.brainMaggotsChecker();
+        this.venandiChecker();
         this.eliktozeolaChecker();
         this.satiationChecker();
         this.freezingChecker();
@@ -5877,6 +6013,20 @@ function Adventurer()
             //XXX.fill();
             XXX.restore();
         }
+
+        if (this.venandi >= 200) //venandine
+        {
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(jungho, 438, 613, 41, 39, -1/2 * 41, -1/2 * 39, 41, 39);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.2;
+            }
+            XXX.restore();
+        }
+
         //leeches sucking blood from you
         if (this.leeches > 0)
         {
@@ -12741,6 +12891,218 @@ function Adventurer()
                     XXX.globalAlpha = 0.4;
                 }
                 XXX.drawImage(norc, 59, 1, 53, 28, -1/2 * 53 * szx, -1/2 * 28 * szx, 53 * szx, 28 * szx);
+                XXX.restore();
+            }
+        }
+        //VENANDI (form)
+        if (this.form == "venandi")
+        {
+            var szx;
+            szx = 1;
+
+            if (wKey) //If moving and not attacking initiate moving animation...
+            {
+                this.animator(8, 0.23, false);
+
+                if (Math.floor(this.stage) <= 0)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(jungho, 612, 365, 82, 44, -1/2 * 82 * szx, -1/2 * 44 * szx, 82 * szx, 44 * szx); //legs
+                    //XXX.drawImage(jungho, 364, 460, 82, 86, -1/2 * 82 * szx, -1/2 * 86 * szx, 82 * szx, 86 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 1)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(jungho, 601, 461, 106, 45, -1/2 * 106 * szx, -1/2 * 45 * szx, 106 * szx, 45 * szx); //legs
+                    //XXX.drawImage(jungho, 364, 460, 82, 86, -1/2 * 82 * szx, -1/2 * 86 * szx, 82 * szx, 86 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 2)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(jungho, 600, 365, 106, 45, -1/2 * 106 * szx, -1/2 * 45 * szx, 106 * szx, 45 * szx); //legs
+                    //XXX.drawImage(jungho, 364, 460, 82, 86, -1/2 * 82 * szx, -1/2 * 86 * szx, 82 * szx, 86 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 3)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    //XXX.drawImage(jungho, 364, 460, 82, 86, -1/2 * 82 * szx, -1/2 * 86 * szx, 82 * szx, 86 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 4)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(jungho, 592, 417, 106, 45, -1/2 * 106 * szx, -1/2 * 45 * szx, 106 * szx, 45 * szx); //legs
+                    //XXX.drawImage(jungho, 364, 460, 82, 86, -1/2 * 82 * szx, -1/2 * 86 * szx, 82 * szx, 86 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 5)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(jungho, 595, 512, 106, 45, -1/2 * 106 * szx, -1/2 * 45 * szx, 106 * szx, 45 * szx); //legs
+                    //XXX.drawImage(jungho, 364, 460, 82, 86, -1/2 * 82 * szx, -1/2 * 86 * szx, 82 * szx, 86 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 6)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(jungho, 592, 417, 106, 45, -1/2 * 106 * szx, -1/2 * 45 * szx, 106 * szx, 45 * szx); //legs
+                    //XXX.drawImage(jungho, 364, 460, 82, 86, -1/2 * 82 * szx, -1/2 * 86 * szx, 82 * szx, 86 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) >= 7)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    //XXX.drawImage(jungho, 364, 460, 82, 86, -1/2 * 82 * szx, -1/2 * 86 * szx, 82 * szx, 86 * szx);
+                    XXX.restore();
+                }
+            }
+
+            if (spaceKey || this.attacking)
+            {
+                this.stageEngine(6, 0.18, true);
+
+                if (Math.floor(this.stage) <= 0)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(jungho, 364, 460, 82, 86, -1/2 * 82 * szx, -1/2 * 86 * szx, 82 * szx, 86 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 1)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(jungho, 288, 459, 82, 86, -1/2 * 82 * szx, -1/2 * 86 * szx, 82 * szx, 86 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 2)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(jungho, 364, 460, 82, 86, -1/2 * 82 * szx, -1/2 * 86 * szx, 82 * szx, 86 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 3)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(jungho, 215, 458, 82, 86, -1/2 * 82 * szx, -1/2 * 86 * szx, 82 * szx, 86 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 4) //
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    this.attackManual = false;
+
+                    XXX.drawImage(jungho, 132, 452, 82, 86, -1/2 * 82 * szx, -1/2 * 86 * szx, 82 * szx, 86 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) >= 5)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    if (this.attackManual == false)
+                    {
+                        this.attackManual = true;
+                        this.finalAttackStage = true;
+                        this.attackCooldown = new Date().getTime();
+                    }
+                    XXX.drawImage(jungho, 132, 452, 82, 86, -1/2 * 82 * szx, -1/2 * 86 * szx, 82 * szx, 86 * szx);
+                    XXX.restore();
+                }
+            }
+            else //idle
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation - 1/2 * Math.PI);
+                if (this.water && !this.land)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(jungho, 364, 460, 82, 86, -1/2 * 82 * szx, -1/2 * 86 * szx, 82 * szx, 86 * szx);
                 XXX.restore();
             }
         }
@@ -20838,6 +21200,14 @@ function Adventurer()
             this.bubbleOfDamageX = X - Math.cos(this.rotation - 2 / 5 * Math.PI) * (this.mySize + 19);
             this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2 / 5 * Math.PI) * (this.mySize + 19);
         }
+        else if (this.weaponEquipped == "venandi")
+        {
+            this.weapon = allWeapons[86];
+
+            //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+            this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.5 / 5 * Math.PI) * (this.mySize + 11);
+            this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.5 / 5 * Math.PI) * (this.mySize + 11);
+        }
     };
 
     //BLOCKING FUNCTION
@@ -20938,6 +21308,10 @@ function Adventurer()
                             {
                                 ArtificialIntelligenceAccess[i].killNotByPlayer = true; //vampires do not lose faction relation for killing
                             }
+                            else if (this.form == "venandi")
+                            {
+                                ArtificialIntelligenceAccess[i].killNotByPlayer = true; //vampires do not lose faction relation for killing
+                            }
                             else
                             {
                                 ArtificialIntelligenceAccess[i].killNotByPlayer = false;
@@ -20951,6 +21325,16 @@ function Adventurer()
                         else if (this.weapon.ability == "burning")
                         {
                             ArtificialIntelligenceAccess[i].burningTime = new Date().getTime();
+                        }
+                        else if (this.weapon.ability == "venandi" && (Math.max(0, this.weapon.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour)) > 0))
+                        {
+                            if (ArtificialIntelligenceAccess[i].health < 1/3 * ArtificialIntelligenceAccess[i].healthMAX || ArtificialIntelligenceAccess[i].resistDisease == false)
+                            {
+                                if (ArtificialIntelligenceAccess[i].type == "Person" || ArtificialIntelligenceAccess[i].type == "Soldier" || ArtificialIntelligenceAccess[i].type == "Etyr" || ArtificialIntelligenceAccess[i].type == "Aranea")
+                                {
+                                    ArtificialIntelligenceAccess[i].venandi = 1;
+                                }
+                            }
                         }
                         else if (this.weapon.ability == "silvered")
                         {
@@ -29913,6 +30297,18 @@ function Adventurer()
                             else if (Inventory[i][0].ability == "vamprism")
                             {
                                 this.vamprism = true;
+                            }
+                            else if (Inventory[i][0].ability == "venandification")
+                            {
+                                this.venandi = Math.max(this.venandi, 1);
+                            }
+                            else if (Inventory[i][0].ability == "bahabI")
+                            {
+                                this.bahabTime = 200;
+                            }
+                            else if (Inventory[i][0].ability == "bahabII")
+                            {
+                                this.bahabTime = 370;
                             }
                             else if (Inventory[i][0].ability == "satiate" || Inventory[i][0].ability == "satiation") //Food with this effect will keep you fed for a little bit.
                             {

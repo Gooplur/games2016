@@ -312,6 +312,9 @@ var mushStretchY = 9;
 var mushBlurRot2 = 0;
 var mushStretchX2 = 9;
 var mushStretchY2 = 9;
+var mushMoovX = 0;
+var mushMoovY = 0;
+
 //Screen Covers (includes night and day cycle)
 function screenCover()
 {
@@ -434,6 +437,142 @@ function screenCover()
         XXX.globalAlpha = 0.4;
         XXX.drawImage(rainblur, -1/2 * rainblur.width, -1/2 * rainblur.height);
         XXX.restore();
+    }
+
+    if (player.bahabTrip)
+    {
+        mushBlurRot2 -= 80/360 * Math.PI;
+        mushStretchX2 = 17 + Math.floor(Math.random() * 20);
+        mushStretchY2 = 17 + Math.floor(Math.random() * 20);
+
+        XXX.beginPath();
+        XXX.save();
+        XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+        XXX.scale(mushStretchX2, mushStretchY2);
+        XXX.rotate(mushBlurRot2);
+        XXX.globalAlpha = 0.3;
+        XXX.drawImage(stic, 160, 392, 212, 206, -1/2 * 212, -1/2 * 206, 212, 206);
+        XXX.restore();
+
+        mushBlurRot += 130/360 * Math.PI;
+
+        mushStretchX = 1 + Math.floor(Math.random() * 4);
+        mushStretchY = 1 + Math.floor(Math.random() * 4);
+
+        for (var mushdog = 0; mushdog < ArtificialIntelligenceAccess.length; mushdog++)
+        {
+            var mushydog = Math.random();
+            var mushdogg = ArtificialIntelligenceAccess[mushdog];
+
+            if (mushydog < 0.25)
+            {
+                XXX.beginPath();
+                XXX.save();
+                //XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.translate(X + 1/2 * CCC.width - mushdogg.X, Y + 1/2 * CCC.height - mushdogg.Y);
+                XXX.scale(mushStretchX, mushStretchY);
+                XXX.rotate(mushBlurRot);
+                XXX.globalAlpha = 0.86;
+                XXX.drawImage(stic, 22, 102, 66, 57, -1/2 * 66 * mushdogg.alphaSize, -1/2 * 57 * mushdogg.alphaSize, 66 * mushdogg.alphaSize, 57 * mushdogg.alphaSize);
+                XXX.restore();
+            }
+            else if (mushydog < 0.50)
+            {
+                XXX.beginPath();
+                XXX.save();
+                //XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.translate(X + 1/2 * CCC.width - mushdogg.X, Y + 1/2 * CCC.height - mushdogg.Y);
+                XXX.scale(mushStretchX, mushStretchY);
+                XXX.rotate(mushBlurRot);
+                XXX.globalAlpha = 0.86;
+                XXX.drawImage(stic, 22, 161, 66, 57, -1/2 * 66 * mushdogg.alphaSize, -1/2 * 57 * mushdogg.alphaSize, 66 * mushdogg.alphaSize, 57 * mushdogg.alphaSize);
+                XXX.restore();
+            }
+            else if (mushydog < 0.75)
+            {
+                XXX.beginPath();
+                XXX.save();
+                //XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.translate(X + 1/2 * CCC.width - mushdogg.X, Y + 1/2 * CCC.height - mushdogg.Y);
+                XXX.scale(mushStretchX, mushStretchY);
+                XXX.rotate(mushBlurRot);
+                XXX.globalAlpha = 0.86;
+                XXX.drawImage(stic, 25, 221, 66, 57, -1/2 * 66 * mushdogg.alphaSize, -1/2 * 57 * mushdogg.alphaSize, 66 * mushdogg.alphaSize, 57 * mushdogg.alphaSize);
+                XXX.restore();
+            }
+            else if (mushydog <= 1)
+            {
+                XXX.beginPath();
+                XXX.save();
+                //XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.translate(X + 1/2 * CCC.width - mushdogg.X, Y + 1/2 * CCC.height - mushdogg.Y);
+                XXX.scale(mushStretchX, mushStretchY);
+                XXX.rotate(mushBlurRot);
+                XXX.globalAlpha = 0.86;
+                XXX.drawImage(stic, 26, 286, 66, 57, -1/2 * 66 * mushdogg.alphaSize, -1/2 * 57 * mushdogg.alphaSize, 66 * mushdogg.alphaSize, 57 * mushdogg.alphaSize);
+                XXX.restore();
+            }
+        }
+
+        mushMoovX += (14 - Math.random() * 28);
+        mushMoovY += (14 - Math.random() * 28);
+
+        if (mushMoovX > 128)
+        {
+            mushMoovX = 128;
+        }
+        if (mushMoovX < 0)
+        {
+            mushMoovX = 0;
+        }
+
+        if (mushMoovY > 131)
+        {
+            mushMoovY = 131;
+        }
+        if (mushMoovY < 0)
+        {
+            mushMoovY = 0;
+        }
+
+        XXX.beginPath();
+        XXX.save();
+        //XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+        XXX.translate(0, 0);
+        //XXX.scale(mushStretchX, mushStretchY);
+        //XXX.rotate(mushBlurRot);
+        XXX.globalAlpha = 0.4;
+        XXX.drawImage(stic, 388 + mushMoovX, 394 + mushMoovY, 83, 75, 0 , 0 , 83 * 17, 75 * 8);
+        XXX.restore();
+
+        //uncontrolable movement
+        if (player.controlled == false)
+        {
+            if (Math.random() > 0.22)
+            {
+                wKey = true;
+                if (Math.random() > 0.65 && player.energy >= 1/3 * player.energyMAX)
+                {
+                    shiftKey = true;
+                    sKey = false;
+                }
+            }
+
+            if (Math.random() > 0.2)
+            {
+                player.rotation += 1/2 * Math.PI - Math.PI * Math.random();
+            }
+
+            if (Math.random() > 0.8)
+            {
+                spaceKey = false;
+            }
+
+            if (Math.random() > 0.97)
+            {
+                spaceKey = true;
+            }
+        }
     }
 
     if (player.etnaVenom)

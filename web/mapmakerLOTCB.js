@@ -61,6 +61,11 @@ function buildMaster()
                 //ArtificialIntelligenceAccess.push(new Unit(5550, 2500, "Koivaya", true, "Hamber"));
                 //ArtificialIntelligenceAccess.push(new Unit(5550, 2500, "Koivaya", false, "Hem"));
                 //ArtificialIntelligenceAccess.push(new Unit(3000, 2500, "ZafBeetle", true, "Tzalit"));
+                //scenicList.push(new Scenery("viudaTunnel", 3500, 2500, 0, true, false));
+                //scenicList.push(new Scenery("vinePatch", 3500, 2500, 0, 1));
+                //scenicList.push(new Scenery("cerebrisPlant", 3500, 2500, 0, 1));
+                //scenicList.push(new Scenery("gojiiPlant", 3500, 2500, 0, true));
+                scenicList.push(new Scenery("bahabPlant", 3500, 2500, 0, true));
 
                 //Friches in the plains
                 ArtificialIntelligenceAccess.push(new Unit(2921, -1125, "Frich", false, "Fuzzy Wuzzy"));

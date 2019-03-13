@@ -3753,6 +3753,7 @@ function theLegend()
     allWeapons.push(new Item("nirwadenSabreAndShield"));//83
     allWeapons.push(new Item("vardanianCrossbow"));//84
     allWeapons.push(new Item("ironBolt"));//85
+    allWeapons.push(new Item("venandi"));//86
 
 
 
@@ -4283,6 +4284,7 @@ function theLegend()
     alchemy.push(new Item("wobeaNeedles", false));
     alchemy.push(new Item("wobeaFlesh", false));
     alchemy.push(new Item("ameloyPerfume", false));
+    alchemy.push(new Item("driedBahabPod", false));
 
 //Brewing (alcohols, liquid fermentation, etc.)
     brewing = [];

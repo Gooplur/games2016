@@ -1013,6 +1013,48 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
         }
 
         //projectiles are accompanied by a gross psycodelic halucination if on a drug trip
+        if (player.bahabTrip)
+        {
+            var randip = Math.random();
+
+            if (randip < 0.25)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                XXX.rotate(2*Math.PI * Math.random());
+                XXX.globalAlpha = 0.95;
+                XXX.drawImage(stic, 27, 349, 66, 57, 0, 0, 66, 57);
+                XXX.restore();
+            }
+            else if (randip < 0.50)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                XXX.rotate(2*Math.PI * Math.random());
+                XXX.globalAlpha = 0.95;
+                XXX.drawImage(stic, 30, 410, 66, 57, 0, 0, 66, 57);
+                XXX.restore();
+            }
+            else if (randip < 0.75)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                XXX.rotate(2*Math.PI * Math.random());
+                XXX.globalAlpha = 0.95;
+                XXX.drawImage(stic, 30, 471, 66, 57, 0, 0, 66, 57);
+                XXX.restore();
+            }
+            else if (randip <= 1)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                XXX.rotate(2*Math.PI * Math.random());
+                XXX.globalAlpha = 0.95;
+                XXX.drawImage(stic, 34, 532, 66, 57, 0, 0, 66, 57);
+                XXX.restore();
+            }
+        }
+
         if (player.cyrinthilimTrip)
         {
             XXX.save();

@@ -485,6 +485,7 @@ function circularStart(modue)
                         this.Y = Math.floor(Math.random() * 701);
                         if (circleList[i].X >= this.X - this.size && circleList[i].X <= this.X + this.size && circleList[i].Y >= this.Y - this.size && circleList[i].Y <= this.Y + this.size)
                         {
+
                         }
                         else
                         {
@@ -523,12 +524,15 @@ function circularStart(modue)
             this.distanceI = null;
             for (var i = 0; i < circleList.length; i++)
             {
-                this.distanceFromI = Math.sqrt(((circleList[i].X - this.X) * (circleList[i].X - this.X)) + ((circleList[i].Y - this.Y) * (circleList[i].Y - this.Y)));
-                if (this.distanceFromI < this.distanceI && this.SLP != i || this.distanceI == null && this.SLP != i)
+                if (circleList[i] !== this)
                 {
-                    this.distanceI = this.distanceFromI;
-                    this.distanceFromClosest = this.distanceFromI;
-                    this.closest = circleList[i];
+                    this.distanceFromI = Math.sqrt(((circleList[i].X - this.X) * (circleList[i].X - this.X)) + ((circleList[i].Y - this.Y) * (circleList[i].Y - this.Y)));
+                    if (this.distanceFromI < this.distanceI && this.SLP != i || this.distanceI == null && this.SLP != i)
+                    {
+                        this.distanceI = this.distanceFromI;
+                        this.distanceFromClosest = this.distanceFromI;
+                        this.closest = circleList[i];
+                    }
                 }
             }
         };

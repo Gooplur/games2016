@@ -65,7 +65,7 @@ function buildMaster()
                 //scenicList.push(new Scenery("vinePatch", 3500, 2500, 0, 1));
                 //scenicList.push(new Scenery("cerebrisPlant", 3500, 2500, 0, 1));
                 //scenicList.push(new Scenery("gojiiPlant", 3500, 2500, 0, true));
-                scenicList.push(new Scenery("bahabPlant", 3500, 2500, 0, true));
+                //scenicList.push(new Scenery("bahabPlant", 3500, 2500, 0, true));
 
                 //Friches in the plains
                 ArtificialIntelligenceAccess.push(new Unit(2921, -1125, "Frich", false, "Fuzzy Wuzzy"));
@@ -19436,7 +19436,7 @@ function buildMaster()
                 change = "n1e5";
             }
         }
-        else if (region == "s16")
+        else if (region == "s16") //Inochtihikli Village
         {
             if (change != "s16")
             {
@@ -19504,6 +19504,151 @@ function buildMaster()
                     ArtificialIntelligenceAccess.push(new Unit(6301, -159706, "Taipan", false, "Sapatli"));
                 }
 
+                //people
+
+                if (uniqueChars.hamduLDS == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Hamdu the Banker")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(2024, -159004, "Person", false, "Hamdu the Banker", {race: "Orgell", faction: "Freynor", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.35, 0.35], 0, 0, 1.1], ranged: [false, "arrow", 8, 2000, 1, 6, 0, "none", 0.95], patrolStops: 1, patrolLoop: false, route:[[2024, -159010]], banker: true}));
+                    }
+
+                    ArtificialIntelligenceAccess.push(new Unit(1875, -158844, "Naaprid", true, "Abelt"));
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Abelt")
+                        {
+                            ArtificialIntelligenceAccess[i].baseTeam = "Freynor";
+                            ArtificialIntelligenceAccess[i].speed = 0;
+                            ArtificialIntelligenceAccess[i].tamable = false;
+                        }
+                    }
+                }
+
+                if (uniqueChars.sorvaldLDS == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Sorvald the Merchant")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(1987, -159402, "Person", false, "Sorvald the Merchant", {race: "Freynor", faction: "Freynor", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.25, 0.25], 0, 0, 1.25], ranged: [false, "arrow", 8, 2000, 1, 6, 0, "none", 0.95], patrolStops: 1, patrolLoop: false, route:[[1984, -159344]], merchant: true, merchandise: [[new Item("coins", false, false), 100], [new Item("iron", false, false), 15], [new Item("wood", false, false), 21], [new Item("barrelOfHarstAle", false, false), 1], [new Item("akerBerries", false, false), 12], [new Item("pluttBerries", false, false), 3], [new Item("beesWax", false, false), 7], [new Item("oilLamp", false, false), 1], [new Item("jarOfOil", false, false), 1], [new Item("fishingpole", false, false), 1], [new Item("fireStarter", false, false), 1]]}));
+                    }
+
+                    ArtificialIntelligenceAccess.push(new Unit(1809, -159530, "Naaprid", true, "Abilt"));
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Abilt")
+                        {
+                            ArtificialIntelligenceAccess[i].baseTeam = "Freynor";
+                            ArtificialIntelligenceAccess[i].speed = 0;
+                            ArtificialIntelligenceAccess[i].tamable = false;
+                        }
+                    }
+                }
+
+                if (uniqueChars.muktuLDS == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Muktu the Artisan")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(2920, -160235, "Person", false, "Muktu the Artisan", {race: "Kel", faction: "Kel", personality: "scared", outfit: ["mofuTribalWear", 0], weapon: ["none", [0.2, 0.2], 0, 0, 2], ranged: [false, "arrow", 8, 2000, 1, 6, 0, "none", 0.95], patrolStops: 1, patrolLoop: false, route:[[2964, -160210]], merchant: true, merchandise: [[new Item("coins", false, false), 6], [new Item("clayBowl", false, false), 25], [new Item("naapridDrinkinghorn", false, false), 8], [new Item("kellishClayPot", false, false), 6]]}));
+                    }
+                }
+
+                if (uniqueChars.imatlLDS == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Imatl the Tailor")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(3170, -159308, "Person", false, "Imatl the Tailor", {race: "Kel", faction: "Kel", personality: "scared", outfit: ["mofuTribalWear", 0], weapon: ["none", [0.2, 0.2], 0, 0, 2], ranged: [false, "arrow", 8, 2000, 1, 6, 0, "none", 0.95], patrolStops: 1, patrolLoop: false, route:[[3151, -159308]], merchant: true, merchandise: [[new Item("coins", false, false), 10], [new Item("mofuTribalWear", false, false), 3], [new Item("mofuRunnerOutfit", false, false), 2], [new Item("mofuFive", false, false), 4]]}));
+                    }
+                }
+
+                if (uniqueChars.ritlaktlLDS == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Feastmaker Ritlaktl")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(3373, -159891, "Person", false, "Feastmaker Ritlaktl", {race: "Kel", faction: "Kel", personality: "scared", outfit: ["mofuTribalWear", 0], weapon: ["none", [0.2, 0.2], 0, 0, 2], ranged: [false, "arrow", 8, 2000, 1, 6, 0, "none", 0.95], patrolStops: 1, patrolLoop: false, route:[[3333, -159916]], merchant: true, merchandise: [[new Item("coins", false, false), 2], [new Item("rawMofu", false, false), 6], [new Item("maizeHusk", false, false), 68], [new Item("boiledAktaltlRoot", false, false), 8]]}));
+                    }
+                }
+
+                if (uniqueChars.ehelteppLDS == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Eheltepp the Blacksmith")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(2707, -159729, "Person", false, "Eheltepp the Blacksmith", {race: "Kel", faction: "Kel", personality: "calculated", outfit: ["mofuTribalWear", 0], weapon: ["hammer", [2, 1], 0.5, 9, 1], ranged: [false, "arrow", 8, 2000, 1, 6, 0, "none", 0.95], patrolStops: 1, patrolLoop: false, route:[[2698, -159742]], merchant: true, merchandise: [[new Item("coins", false, false), 33], [new Item("kellishSpear", false, false), 6], [new Item("kellishSword", false, false), 3]]}));
+                    }
+                }
+
+                if (uniqueChars.ximataLDS == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Matriarch Ximata")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(3363, -160667, "Person", false, "Matriarch Ximata", {race: "Kel", faction: "Kel", personality: "violent", outfit: ["mofuMatriarchHeaddress", 0], weapon: ["kellishSpear", [5, 6], 5, 34, 1.35], ranged: [false, "arrow", 8, 2000, 1, 6, 0, "none", 0.95], patrolStops: 1, patrolLoop: false, route:[[3365, -160683]], merchant: true, merchandise: [[new Item("coins", false, false), 890], [new Item("mofuTamal", false, false), 12], [new Item("tamal", false, false), 9], [new Item("naapridDrinkinghorn", false, false), 3], [new Item("boiledFrijols", false, false), 2], [new Item("latuku", false, false), 5], [new Item("aktaltlSoup", false, false), 6], [new Item("boiledAktaltlFrond", false, false), 15], [new Item("mazorca", false, false), 30], [new Item("frijols", false, false), 28], [new Item("apotlPepper", false, false), 22], [new Item("aktaltlFrond", false, false), 18], [new Item("aktaltlRoot", false, false), 45], [new Item("lelBerries", false, false), 16], [new Item("pochalPods", false, false), 8], [new Item("yeolWood", false, false), 19]]}));
+                    }
+
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Matriarch Ximata")
+                        {
+                            ArtificialIntelligenceAccess[i].healthMAX = 25;
+                            ArtificialIntelligenceAccess[i].health = 25;
+                        }
+                    }
+                }
+
                 //Scenery
                 scenicList.push(new Scenery("yeolTree", 1805 , -157838, -Math.PI * 3, false));
                 scenicList.push(new Scenery("yeolTree", -108 , -158970, -Math.PI * 25, false));
@@ -19543,6 +19688,169 @@ function buildMaster()
                 for (var l = 0; l < 18; l++)
                 {
                     scenicList.push(new Scenery("maizePlant", (3677 - 81) - 81 * l , -158757 - 81 * 29, Math.random() * (2* Math.PI), "Kel"));
+                }
+
+                //huts
+                scenicList.push(new Scenery("alzkwayaBuilding5", 3365, -160795, 0, true));
+                scenicList.push(new Scenery("alzkwayaBuilding1", 3401, -160371, 0, true));
+                scenicList.push(new Scenery("alzkwayaBuilding4", 3435, -160186, 0, true));
+                scenicList.push(new Scenery("alzkwayaBuilding1", 2939, -160807, 0, true));
+                scenicList.push(new Scenery("well", 2939, -160807, 5.3, true));
+                scenicList.push(new Scenery("alzkwayaBuilding3", 2659, -160920, 0, true));
+                scenicList.push(new Scenery("alzkwayaBuilding2", 2474, -160919, 0, true));
+
+                scenicList.push(new Scenery("alzkwayaBuilding2", 2372, -159496, 0, true));
+                scenicList.push(new Scenery("alzkwayaBuilding4", 2360, -159698, 0, true));
+                scenicList.push(new Scenery("alzkwayaBuilding3", 2653, -159637, 0, true));
+
+                scenicList.push(new Scenery("alzkwayaBuilding1", 3471, -158954, 0, true));
+                scenicList.push(new Scenery("alzkwayaBuilding1", 3193, -158926, 0, true));
+                scenicList.push(new Scenery("alzkwayaBuilding4", 2923, -158957, 0, true));
+                scenicList.push(new Scenery("alzkwayaBuilding3", 2299, -158943, 0, true));
+
+                scenicList.push(new Scenery("alzkwayaBuilding4", 3261, -159287, 0, true));
+
+                scenicList.push(new Scenery("alzkwayaBuilding2", 2505, -159372, 0, true));
+                scenicList.push(new Scenery("alzkwayaBuilding4", 3167, -159640, 0, true));
+                scenicList.push(new Scenery("alzkwayaBuilding1", 3429, -159790, 0, true));
+                scenicList.push(new Scenery("alzkwayaBuilding3", 2592, -160242, 0, true));
+                scenicList.push(new Scenery("alzkwayaBuilding3", 2381, -160522, 0, true));
+                scenicList.push(new Scenery("alzkwayaBuilding2", 2903, -160324, 0, true));
+
+                scenicList.push(new Scenery("propWagon", 2088, -159416, 0.5, true));
+                scenicList.push(new Scenery("crate", 2092, -159416, 1, 1, [1.25]));
+                scenicList.push(new Scenery("barrel", 2113, -159387, 0.5, 0));
+
+                scenicList.push(new Scenery("dryMudSlab", 3005, -160237, 1.05 + 1/2 * Math.PI, 2, 1.5));
+                scenicList.push(new Scenery("dryMudSlab", 2990, -160186, 1 + Math.PI, 2, 3));
+
+                scenicList.push(new Scenery("dryMudSlab", 3293, -159933, 0.2, 4, 3));
+
+                scenicList.push(new Scenery("propWagon", 2067, -158928, 1.4, true));
+                scenicList.push(new Scenery("crate", 2067, -158928, 1.45, 1, [1.32]));
+                scenicList.push(new Scenery("crate", 2067, -158892, 1.31, 2, [0.76]));
+                scenicList.push(new Scenery("loom", 3264, -159244, 0.12, true));
+                scenicList.push(new Scenery("dryMudSlab", 3311, -159284, 0, 1.5, 1.5));
+
+                scenicList.push(new Scenery("dryMudSlab", 3361, -160799, 0, 2.5, 1.5));
+
+                scenicList.push(new Scenery("yeolCampFire", 3361, -160840, 2*Math.PI * Math.random(), "permaLit"));
+                scenicList.push(new Scenery("yeolCampFire", 3397, -160800, 2*Math.PI * Math.random(), "permaLit"));
+                scenicList.push(new Scenery("yeolCampFire", 3326, -160799, 2*Math.PI * Math.random(), "permaLit"));
+
+                scenicList.push(new Scenery("forge", 2634, -159730, 3 + Math.PI, true));
+                scenicList.push(new Scenery("anvil", 2686, -159770, 2.6, true));
+                scenicList.push(new Scenery("dryMudSlab", 2778, -159805, 1.25 + Math.PI, 1.5, 3.5));
+                scenicList.push(new Scenery("dryMudSlab", 2849, -159750, 1.25 + Math.PI - 1/2 * Math.PI, 1.5, 3.5));
+
+                scenicList.push(new Scenery("dryMudSlab", 3112, -159293, Math.PI, 2.25, 2.25));
+
+                if (player.raceName != "Kel" || player.gender != "Female" || player.title != "Nobility")
+                {
+                    scenicList.push(new Scenery("item", 2963, -160169, 0, false, ["kellishClayPot", 1, -9, "Kel"]));
+                    scenicList.push(new Scenery("item", 2976, -160180, 0, false, ["kellishClayPot", 1, -9, "Kel"]));
+                    scenicList.push(new Scenery("item", 2994, -160188, 0, false, ["kellishClayPot", 1, -9, "Kel"]));
+                    scenicList.push(new Scenery("item", 3009, -160197, 0, false, ["naapridDrinkinghorn", 1, -10, "Kel"]));
+                    scenicList.push(new Scenery("item", 3024, -160205, 0, false, ["naapridDrinkinghorn", 1, -10, "Kel"]));
+
+                    scenicList.push(new Scenery("item", 3293 + 7, -159933 - 2, 0, false, ["maizeFlour", 2, -5, "Kel"]));
+                    scenicList.push(new Scenery("item", 3293 - 6, -159933 + 1, 0, false, ["maizeFlour", 2, -5, "Kel"]));
+                    scenicList.push(new Scenery("item", 3293 + 2, -159933 + 5, 0, false, ["maizeFlour", 2, -5, "Kel"]));
+                    scenicList.push(new Scenery("item", 3293 - 3, -159933 - 4, 0, false, ["maizeFlour", 2, -5, "Kel"]));
+
+                    scenicList.push(new Scenery("item", 3278 - 3, -159902 - 6, 0, false, ["maize", 1, -3, "Kel"]));
+                    scenicList.push(new Scenery("item", 3278 - 14, -159902 - 1, 0, false, ["maize", 1, -3, "Kel"]));
+                    scenicList.push(new Scenery("item", 3278 + 12, -159902 + 2, 0, false, ["maize", 1, -3, "Kel"]));
+                    scenicList.push(new Scenery("item", 3278 + 1, -159902 + 7, 0, false, ["maize", 1, -3, "Kel"]));
+
+                    scenicList.push(new Scenery("item", 3283, -159974, 0, false, ["kellishClayPotOfWater", 1, -10, "Kel"]));
+                    scenicList.push(new Scenery("item", 3316, -159954, 0, false, ["masa", 2, -12, "Kel"]));
+                    scenicList.push(new Scenery("item", 3307, -159967, 0, false, ["masa", 2, -12, "Kel"]));
+
+                    scenicList.push(new Scenery("item", 3014, -160221, 0, false, ["clayBowl", 4, -6, "Kel"]));
+                    scenicList.push(new Scenery("item", 3009, -160234, 0, false, ["clayBowl", 4, -6, "Kel"]));
+                    scenicList.push(new Scenery("item", 3002, -160253, 0, false, ["clayBowl", 4, -6, "Kel"]));
+
+                    scenicList.push(new Scenery("item", 2995, -160873, 0, false, ["kellishClayPot", 1, -8, "Kel"]));
+                    scenicList.push(new Scenery("item", 3020, -160850, 0, false, ["kellishClayPot", 1, -8, "Kel"]));
+                    scenicList.push(new Scenery("item", 3305, -159277, 0, false, ["mofuFeather", 3, -9, "Kel"]));
+                    scenicList.push(new Scenery("item", 3305, -159286, 0, false, ["mofuFeather", 3, -9, "Kel"]));
+
+                    scenicList.push(new Scenery("item", 3361, -160799, 0, false, ["lelBerries", 8, -20, "Kel"]));
+                    scenicList.push(new Scenery("item", 3367, -160798, 0, false, ["lelBerries", 8, -20, "Kel"]));
+                    scenicList.push(new Scenery("item", 3366, -160803, 0, false, ["lelBerries", 8, -20, "Kel"]));
+                    scenicList.push(new Scenery("item", 3355, -160804, 0, false, ["lelBerries", 8, -20, "Kel"]));
+                    scenicList.push(new Scenery("item", 3355, -160797, 0, false, ["lelBerries", 8, -20, "Kel"]));
+
+                    scenicList.push(new Scenery("item", 2977, -160793, 0, false, ["ishBranch", 1, -20, "Kel"]));
+
+                    scenicList.push(new Scenery("mugmulSleepingMat", 3188, -159604, 0, false));
+                    scenicList.push(new Scenery("mugmulSleepingMat", 3467, -160159, 1/2 * Math.PI + 0.12, false));
+                    scenicList.push(new Scenery("mugmulSleepingMat", 3348, -160364, 1/2 * Math.PI + 0.18, false));
+
+                    scenicList.push(new Scenery("mugmulSleepingMat", 2637, -160921, Math.PI + 0.05, false));
+                    scenicList.push(new Scenery("mugmulSleepingMat", 2509, -160918, 0 + 0.07, false));
+                }
+                else
+                {
+                    scenicList.push(new Scenery("item", 2963, -160169, 0, false, ["kellishClayPot", 1, 0, "Kel"]));
+                    scenicList.push(new Scenery("item", 2976, -160180, 0, false, ["kellishClayPot", 1, 0, "Kel"]));
+                    scenicList.push(new Scenery("item", 2994, -160188, 0, false, ["kellishClayPot", 1, 0, "Kel"]));
+                    scenicList.push(new Scenery("item", 3009, -160197, 0, false, ["naapridDrinkinghorn", 1, 0, "Kel"]));
+                    scenicList.push(new Scenery("item", 3024, -160205, 0, false, ["naapridDrinkinghorn", 1, 0, "Kel"]));
+
+                    scenicList.push(new Scenery("item", 3293 + 7, -159933 - 2, 0, false, ["maizeFlour", 2, 0, "Kel"]));
+                    scenicList.push(new Scenery("item", 3293 - 6, -159933 + 1, 0, false, ["maizeFlour", 2, 0, "Kel"]));
+                    scenicList.push(new Scenery("item", 3293 + 2, -159933 + 5, 0, false, ["maizeFlour", 2, 0, "Kel"]));
+                    scenicList.push(new Scenery("item", 3293 - 3, -159933 - 4, 0, false, ["maizeFlour", 2, 0, "Kel"]));
+
+                    scenicList.push(new Scenery("item", 3278 - 3, -159902 - 6, 0, false, ["maize", 1, 0, "Kel"]));
+                    scenicList.push(new Scenery("item", 3278 - 14, -159902 - 1, 0, false, ["maize", 1, 0, "Kel"]));
+                    scenicList.push(new Scenery("item", 3278 + 12, -159902 + 2, 0, false, ["maize", 1, 0, "Kel"]));
+                    scenicList.push(new Scenery("item", 3278 + 1, -159902 + 7, 0, false, ["maize", 1, 0, "Kel"]));
+
+                    scenicList.push(new Scenery("item", 3283, -159974, 0, false, ["kellishClayPotOfWater", 1, 0, "Kel"]));
+                    scenicList.push(new Scenery("item", 3316, -159954, 0, false, ["masa", 2, 0, "Kel"]));
+                    scenicList.push(new Scenery("item", 3307, -159967, 0, false, ["masa", 2, 0, "Kel"]));
+
+                    scenicList.push(new Scenery("item", 3014, -160221, 0, false, ["clayBowl", 4, 0, "Kel"]));
+                    scenicList.push(new Scenery("item", 3009, -160234, 0, false, ["clayBowl", 4, 0, "Kel"]));
+                    scenicList.push(new Scenery("item", 3002, -160253, 0, false, ["clayBowl", 4, 0, "Kel"]));
+
+                    scenicList.push(new Scenery("item", 2995, -160873, 0, false, ["kellishClayPot", 1, 0, "Kel"]));
+                    scenicList.push(new Scenery("item", 3020, -160850, 0, false, ["kellishClayPot", 1, 0, "Kel"]));
+                    scenicList.push(new Scenery("item", 3305, -159277, 0, false, ["mofuFeather", 3, 0, "Kel"]));
+                    scenicList.push(new Scenery("item", 3305, -159286, 0, false, ["mofuFeather", 3, 0, "Kel"]));
+
+                    scenicList.push(new Scenery("item", 3361, -160799, 0, false, ["lelBerries", 8, 0, "Kel"]));
+                    scenicList.push(new Scenery("item", 3367, -160798, 0, false, ["lelBerries", 8, 0, "Kel"]));
+                    scenicList.push(new Scenery("item", 3366, -160803, 0, false, ["lelBerries", 8, 0, "Kel"]));
+                    scenicList.push(new Scenery("item", 3355, -160804, 0, false, ["lelBerries", 8, 0, "Kel"]));
+                    scenicList.push(new Scenery("item", 3355, -160797, 0, false, ["lelBerries", 8, 0, "Kel"]));
+
+                    scenicList.push(new Scenery("item", 2977, -160793, 0, false, ["ishBranch", 1, -10, "Kel"]));
+
+                    scenicList.push(new Scenery("mugmulSleepingMat", 3188, -159604, 0, true));
+                    scenicList.push(new Scenery("mugmulSleepingMat", 3467, -160159, 1/2 * Math.PI + 0.12, true));
+                    scenicList.push(new Scenery("mugmulSleepingMat", 3348, -160364, 1/2 * Math.PI + 0.18, true));
+
+                    scenicList.push(new Scenery("mugmulSleepingMat", 2637, -160921, Math.PI + 0.05, true));
+                    scenicList.push(new Scenery("mugmulSleepingMat", 2509, -160918, 0 + 0.07, true));
+                }
+
+                if (player.raceName != "Kel" || player.gender != "Female" || player.title != "Nobility")
+                {
+                    scenicList.push(new Scenery("item", 2778, -159805, 0, false, ["kellishSpear", 1, -24, "Kel"]));
+                    scenicList.push(new Scenery("item", 2850, -159753, 0, false, ["kellishSword", 1, -26, "Kel"]));
+                    scenicList.push(new Scenery("item", 2740, -159791, 0, false, ["hammer", 1, -13, "Kel"]));
+                    scenicList.push(new Scenery("item", 3112, -159293, 0, false, ["mofuTribalWear", 1, -30, "Kel"]));
+                }
+                else
+                {
+                    scenicList.push(new Scenery("item", 2778, -159805, 0, false, ["kellishSpear", 1, 0, "Kel"]));
+                    scenicList.push(new Scenery("item", 2850, -159753, 0, false, ["kellishSword", 1, 0, "Kel"]));
+                    scenicList.push(new Scenery("item", 2740, -159791, 0, false, ["hammer", 1, 0, "Kel"]));
+                    scenicList.push(new Scenery("item", 3112, -159293, 0, false, ["mofuTribalWear", 1, 0, "Kel"]));
                 }
 
                 scenicList.push(new Scenery("darkStone", 462 , -164353, 2, 1, 3));

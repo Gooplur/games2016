@@ -47231,6 +47231,30 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 this.drops = [[new Item("coins", this.X, this.Y), 115]];
             }
+            else if (this.ID == "Hamdu the Banker")
+            {
+                this.drops = [[new Item("coins", this.X, this.Y), 84]];
+            }
+            else if (this.ID == "Sorvald the Merchant")
+            {
+                this.drops = [[new Item("coins", this.X, this.Y), 100]];
+            }
+            else if (this.ID == "Matriarch Ximata")
+            {
+                this.drops = [[new Item("mofuMatriarchHeaddress", this.X, this.Y), 1], [new Item("coins", this.X, this.Y), 790]];
+            }
+            else if (this.ID == "Feastmaker Ritlaktl")
+            {
+                this.drops = [[new Item("mofuTribalWear", this.X, this.Y), 1], [new Item("coins", this.X, this.Y), 1]];
+            }
+            else if (this.ID == "Imatl the Tailor")
+            {
+                this.drops = [[new Item("mofuTribalWear", this.X, this.Y), 1], [new Item("coins", this.X, this.Y), 9]];
+            }
+            else if (this.ID == "Eheltepp the Blacksmith")
+            {
+                this.drops = [[new Item("mofuTribalWear", this.X, this.Y), 1], [new Item("coins", this.X, this.Y), 25], [new Item("hammer", this.X, this.Y), 1]];
+            }
             else if (this.ID == "Agustin the Doctor")
             {
                 this.drops = [[new Item("coins", this.X, this.Y), 100], [new Item("doctorOutfit", this.X, this.Y), 1]];
@@ -48024,6 +48048,62 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         if (this.killNotByPlayer == false || this.killByPlayerTeam)
                         {
                             player.freynorFaction -= 14;
+                        }
+                    }
+                    else if (this.ID == "Hamdu the Banker")
+                    {
+                        uniqueChars.hamduLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.freynorFaction -= 9;
+                        }
+                    }
+                    else if (this.ID == "Sorvald the Merchant")
+                    {
+                        uniqueChars.sorvaldLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.freynorFaction -= 10;
+                        }
+                    }
+                    else if (this.ID == "Matriarch Ximata")
+                    {
+                        uniqueChars.ximataLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.kelFaction -= 600;
+                        }
+                    }
+                    else if (this.ID == "Feastmaker Ritlaktl")
+                    {
+                        uniqueChars.ritlaktlLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.kelFaction -= 13;
+                        }
+                    }
+                    else if (this.ID == "Imatl the Tailor")
+                    {
+                        uniqueChars.imatlLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.kelFaction -= 7;
+                        }
+                    }
+                    else if (this.ID == "Muktu the Artisan")
+                    {
+                        uniqueChars.muktuLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.kelFaction -= 5;
+                        }
+                    }
+                    else if (this.ID == "Eheltepp the Blacksmith")
+                    {
+                        uniqueChars.ehelteppLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.kelFaction -= 11;
                         }
                     }
                     else if (this.ID == "Elma")

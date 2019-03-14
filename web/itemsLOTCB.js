@@ -11511,7 +11511,7 @@ function Item(type, x, y)
             this.size = 12;
             this.description = "A leaf from a carnivorous ulgoy plant.";
             this.intForDes = 7;
-            this.intDescription = "This can be used in rare alchemy recipes as either an amplifyer or a former.";
+            this.intDescription = "This can be used in rare alchemy recipes as either an amplifier or a former.";
 
             //Define Utility
             this.utility = "material";
@@ -11890,7 +11890,7 @@ function Item(type, x, y)
             this.size = 11;
             this.description = "The pink gas producing and storing pod of a bahab.";
             this.intForDes = 3;
-            this.intDescription = "This has strong long-lasting hallucinagenic properties that are triggered upon consumption.";
+            this.intDescription = "This is mildly acidic and has long-lasting hallucinagenic properties that are triggered upon consumption.";
 
             //Define Utility
             this.utility = "food";
@@ -11900,9 +11900,9 @@ function Item(type, x, y)
             this.hunger = 0; //satisfies hunger.
             this.thirst = 0; //quenches thirst.
             this.warmth = 0; //warms player.
-            this.heal = 0; //heals health.
+            this.heal = -3; //heals health.
             this.generation = 0; //recoops lost energy.
-            this.replenish = 0.25; //restores will.
+            this.replenish = 3; //restores will.
 
             //ability
             this.ability = "bahabI";
@@ -11929,9 +11929,9 @@ function Item(type, x, y)
             this.hunger = 0; //satisfies hunger.
             this.thirst = 0; //quenches thirst.
             this.warmth = 0; //warms player.
-            this.heal = 0; //heals health.
+            this.heal = -0.5; //heals health.
             this.generation = 0; //recoops lost energy.
-            this.replenish = 0.25; //restores will.
+            this.replenish = 6; //restores will.
 
             //ability
             this.ability = "bahabII";
@@ -14966,6 +14966,42 @@ function Item(type, x, y)
             this.buyValue = 925 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 725.
             this.sellValue = 495 + Math.floor(player.getCharisma() / 0.25); // at max, sell for 695.
         }
+        else if (this.type == "mandrakeJuice")
+        {
+            //For All Items
+            this.identity = "Mandrake Juice";
+            this.weight = 2;
+            this.size = 5;
+            this.description = "A light coloured liquid that is thick and creamy; there is a bit of an iron-like flavour.";
+            this.intForDes = 41;
+            this.intDescription = "This acts as a general antidote for a wide range of harmful compounds.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["potionGlass", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 4; //satisfies hunger.
+            this.thirst = 3; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "mj";
+
+            //Crafting
+            this.yield = 3;
+            this.intForCraft = 11;
+            this.ingredients = [["Vial of Water", 3], ["Soaked Mandrake", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 26 - Math.floor(player.getCharisma() / 3); // at max, buy for 11.
+            this.sellValue = 11; // at max, sell for 11.
+        }
         else if (this.type == "wobeaExtract")
         {
             //For All Items
@@ -15002,6 +15038,42 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 65 - Math.floor(player.getCharisma() / 10); // at max, buy for 60.
             this.sellValue = 55 + Math.floor(player.getCharisma() / 10); // at max, sell for 60.
+        }
+        else if (this.type == "mana")
+        {
+            //For All Items
+            this.identity = "Mana";
+            this.weight = 2.2;
+            this.size = 5;
+            this.description = "The shiny, purple, liquid substance in the vial swirls back and forth like a calm tide.";
+            this.intForDes = 32;
+            this.intDescription = "This sweet and creamy potion instantly restores magical will.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["potionGlass", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 32; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 44;
+            this.ingredients = [["Mandrake Juice", 1], ["Dried Bahab Pod", 2], ["Honey", 1], ["Steugiurne Flower", 1], ["Tylun Flower", 2]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 600 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 500.
+            this.sellValue = 400 + Math.floor(player.getCharisma() / 0.5); // at max, sell for 500.
         }
         else if (this.type == "energyPotionI")
         {
@@ -15536,7 +15608,7 @@ function Item(type, x, y)
             this.size = 7;
             this.description = "The semi-translucent gelatinous specled innards of a beach mite. They smell of decaying flesh and death.";
             this.intForDes = 25;
-            this.intDescription = "They are used as an amplifyer and a changer in alchemy.";
+            this.intDescription = "They are used as an amplifier and a changer in alchemy.";
 
             //Define Utility
             this.utility = "material";
@@ -22536,7 +22608,7 @@ function Item(type, x, y)
             this.size = 13;
             this.description = "The thin light green scaled skin of a taipan.";
             this.intForDes = 13;
-            this.intDescription = "This type of snake skin can be used as weak amplifyer in alchemy.";
+            this.intDescription = "This type of snake skin can be used as weak amplifier in alchemy.";
 
             //Define Utility
             this.utility = "material";
@@ -22820,7 +22892,7 @@ function Item(type, x, y)
             this.size = 14;
             this.description = "A powder made from crushed ghoul fly stomach.";
             this.intForDes = 1;
-            this.intDescription = "This can be used as an amplifyer and a changer in alchemy.";
+            this.intDescription = "This can be used as an amplifier and a changer in alchemy.";
 
             //Define Utility
             this.utility = "material";
@@ -37281,6 +37353,11 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(freeverse, 431, 945, 10, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 10), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17), 10, 17);
         }
+        else if (this.type == "mana")
+        {
+            XXX.beginPath();
+            XXX.drawImage(oldverse, 1775, 183, 9, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 9), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17), 9, 17);
+        }
         else if (this.type == "mightPotionI" || this.type == "mightPotionII" || this.type == "mightPotionIII" || this.type == "mightPotionIV" || this.type == "mightPotionV")
         {
             XXX.beginPath();
@@ -38041,7 +38118,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(verse, 86, 134, 10, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 10), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17), 10, 17);
         }
-        else if (this.type == "cleansingPotion" || this.type == "wobeaExtract")
+        else if (this.type == "cleansingPotion" || this.type == "wobeaExtract" || this.type == "mandrakeJuice")
         {
             XXX.beginPath();
             XXX.drawImage(verse, 35, 134, 11, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 11), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19), 11, 19);
@@ -41795,6 +41872,11 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(freeverse, 431, 945, 10, 17, this.invX - (1/2 * 10), this.invY - (1/2 * 17), 10, 17);
         }
+        else if (this.type == "mana")
+        {
+            LXX.beginPath();
+            LXX.drawImage(oldverse, 1775, 183, 9, 17, this.invX - (1/2 * 9), this.invY - (1/2 * 17), 9, 17);
+        }
         else if (this.type == "mightPotionI" || this.type == "mightPotionII" || this.type == "mightPotionIII" || this.type == "mightPotionIV" || this.type == "mightPotionV")
         {
             LXX.beginPath();
@@ -42465,7 +42547,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(verse, 86, 134, 10, 17, this.invX - (1/2 * 10), this.invY - (1/2 * 17), 10, 17);
         }
-        else if (this.type == "cleansingPotion" || this.type == "wobeaExtract")
+        else if (this.type == "cleansingPotion" || this.type == "wobeaExtract" || this.type == "mandrakeJuice")
         {
             LXX.beginPath();
             LXX.drawImage(verse, 35, 134, 11, 19, this.invX - (1/2 * 11), this.invY - (1/2 * 19), 11, 19);
@@ -46186,6 +46268,11 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(freeverse, 431, 945, 10, 17, this.invX - (1/2 * 10), this.invY - (1/2 * 17), 10, 17);
         }
+        else if (this.type == "mana")
+        {
+            XXX.beginPath();
+            XXX.drawImage(oldverse, 1775, 183, 9, 17, this.invX - (1/2 * 9), this.invY - (1/2 * 17), 9, 17);
+        }
         else if (this.type == "mightPotionI" || this.type == "mightPotionII" || this.type == "mightPotionIII" || this.type == "mightPotionIV" || this.type == "mightPotionV")
         {
             XXX.beginPath();
@@ -46852,7 +46939,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(verse, 86, 134, 10, 17, this.invX - (1/2 * 10), this.invY - (1/2 * 17), 10, 17);
         }
-        else if (this.type == "cleansingPotion" || this.type == "wobeaExtract")
+        else if (this.type == "cleansingPotion" || this.type == "wobeaExtract" || this.type == "mandrakeJuice")
         {
             XXX.beginPath();
             XXX.drawImage(verse, 35, 134, 11, 19, this.invX - (1/2 * 11), this.invY - (1/2 * 19), 11, 19);

@@ -583,6 +583,10 @@ function applySelectionsButton()
             {
                 player.endurance = 5;
             }
+            if (player.title == "Nobility" && player.gender == "Female")
+            {
+                Inventory.push([new Item("mofuMatriarchHeaddress", false, false), 1]);
+            }
         }
         else if (player.title == "Nobility" && player.raceName == "Thengar" || player.title == "Royalty" && player.raceName == "Thengar")
         {
@@ -952,7 +956,14 @@ function applySelectionsButton()
             }
             else
             {
-                Inventory.push([new Item("kellishClaymore", false, false), 1]);
+                if (player.title == "Nobility" && player.gender == "Female")
+                {
+                    Inventory.push([new Item("kellishSpear", false, false), 1]);
+                }
+                else
+                {
+                    Inventory.push([new Item("kellishClaymore", false, false), 1]);
+                }
             }
         }
         else if (player.class == "Fighter" && player.raceName == "Outlander") //This is the general one for all that don't meet a specific exception.
@@ -1299,8 +1310,16 @@ function applySelectionsButton()
         }
         else if (player.raceName == "Kel")
         {
-            X = -1297;
-            Y = -30784;
+            if (player.gender == "Female" && player.title == "Nobility")
+            {
+                X = 3362;
+                Y = -160906;
+            }
+            else
+            {
+                X = -1297;
+                Y = -30784;
+            }
         }
         else if (player.raceName == "Thengar")
         {

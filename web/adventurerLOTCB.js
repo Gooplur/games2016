@@ -30683,13 +30683,39 @@ function Adventurer()
                                     this.fleshMites = true;
                                 }
                             }
+                            else if (Inventory[i][0].ability == "mj")
+                            {
+                                //kills fungi to a certain extent
+                                if (this.venandi < 100)
+                                {
+                                    this.venandi = 0;
+                                }
+                                this.fungalFever = false;
+
+                                //breaks down drug compounds
+                                this.cyrinthilimTime = 0;
+                                this.haeflowerTime = 0;
+                                this.bahabTime = 0;
+                                this.inebriation = 0;
+
+                                //breaks down venom compounds
+                                this.poisonI = false;
+                                this.poisonII = false;
+                                this.swollenV = false;
+                                this.swollenIV = false;
+                                this.swollenIII = false;
+                                this.swollenII = false;
+                                this.swollenI = false;
+                                this.swollenTime = 0;
+                                this.etnaVenTime = 0;
+                            }
                             else if (Inventory[i][0].ability == "cleansing")
                             {
                                 //takes away satiation and quenched
                                 this.fedClock = 0;
                                 this.wateredClock = 0;
 
-                                //takes away up to poisonIII
+                                //takes away up to poisonIV
                                 this.poisonI = false;
                                 this.poisonII = false;
                                 this.poisonIII = false;
@@ -30702,6 +30728,7 @@ function Adventurer()
                                 this.fungalFever = false;
                                 this.cyrinthilimTime = 0;
                                 this.haeflowerTime = 0;
+                                this.bahabTime = 0;
                                 this.inebriation = 0;
                                 this.fleshMites = false;
                                 this.gutWorms = false;

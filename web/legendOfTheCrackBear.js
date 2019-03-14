@@ -57,8 +57,7 @@
 //todo add jungle trees
 //todo add blue water berries that dmitri made a while ago
 //todo add a venus fly trap monster
-//todo create and add a hive mind fungus that infects creatures to carry its spores and plant itself around the map, other jungle stuff
-//todo add a cephrian city directly to the south of the jungle map "Holuix City" (a town bustling with tropical market places and various magic venders)
+//todo add a cephrian city directly to the south of the jungle map "Holuim City" (a town bustling with tropical market places and various magic venders)
 //todo add the 'air staff' from Theng img sheet
 //todo add weaken spell
 //todo add arrow mods such as toxic/poison, electric, wind, armour piercing...
@@ -3362,7 +3361,14 @@ function theLegend()
         bernardoLDS: true,
         gavilioLDS: true,
         voraelLDS: true,
-        aavaiLDS: true
+        aavaiLDS: true,
+        hamduLDS: true,
+        ximataLDS: true,
+        imatlLDS: true,
+        ehelteppLDS: true,
+        sorvaldLDS: true,
+        muktuLDS: true,
+        ritlaktlLDS: true
     };
 //QUESTS
     quests =
@@ -4284,7 +4290,9 @@ function theLegend()
     alchemy.push(new Item("wobeaNeedles", false));
     alchemy.push(new Item("wobeaFlesh", false));
     alchemy.push(new Item("ameloyPerfume", false));
+    alchemy.push(new Item("mandrakeJuice", false));
     alchemy.push(new Item("driedBahabPod", false));
+    alchemy.push(new Item("mana", false));
 
 //Brewing (alcohols, liquid fermentation, etc.)
     brewing = [];

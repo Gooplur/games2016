@@ -1709,7 +1709,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             XXX.save();
             XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
             XXX.rotate(this.rotation);
-            XXX.drawImage(polux, 13, 907, 27, 34, (1/2 * 27 * this.temporary), (1/2 * 27 * this.temporary), 27 * this.temporary, 27 * this.temporary);
+            XXX.drawImage(polux, 13, 907, 27, 34, (-1/2 * 27 * this.temporary), (-1/2 * 27 * this.temporary), 27 * this.temporary, 27 * this.temporary);
             XXX.restore();
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.

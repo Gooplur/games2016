@@ -19560,6 +19560,46 @@ function buildMaster()
                     }
                 }
 
+                ArtificialIntelligenceAccess.push(new Unit(2602, -158899, "Soldier", false, "Alzkwaya Warrior", {race: "Kel", faction: "Kel", con: 6, speed: 1.5, outfit: ["mofuTribalWear", 0], weapon: ["kellishSpear", [7, 3], 4, 16, 1.1], ranged: [false, "steelBolt", 16, 2200, 19, 17 /3, 0, "none", 3.6], patrolStops: 10, patrolLoop: true, route:[[2602, -158899], [2594, -159109], [2267, -159092], [3003, -159391], [3021, -159111], [3488, -159174], [3455, -159549], [2988, -160099], [3014, -159125], [2594, -159109]]}));
+
+                ArtificialIntelligenceAccess.push(new Unit(3132, -159781, "Soldier", false, "Alzkwaya Warrior", {race: "Kel", faction: "Kel", con: 5, speed: 1.55, outfit: ["mofuTribalWear", 0], weapon: ["kellishSpear", [6, 3], 3.5, 16, 1.1], ranged: [false, "steelBolt", 16, 2200, 19, 17 /3, 0, "none", 3.6], patrolStops: 4, patrolLoop: true, route:[[3132, -159781], [3244, -160521], [2231, -160769], [3244, -160521]]}));
+
+                ArtificialIntelligenceAccess.push(new Unit(2347, -159341, "Soldier", false, "Alzkwaya Warrior", {race: "Kel", faction: "Kel", con: 4, speed: 1.57, outfit: ["mofuTribalWear", 0], weapon: ["kellishSword", [6, 5], 0, 18, 1.25], ranged: [false, "steelBolt", 16, 2200, 19, 17 /3, 0, "none", 3.6], patrolStops: 1, patrolLoop: false, route:[[2308, -159335]]}));
+
+                ArtificialIntelligenceAccess.push(new Unit(3099, -160672, "Soldier", false, "Alzkwaya Warrior", {race: "Kel", faction: "Kel", con: 3, speed: 1.6, outfit: ["mofuTribalWear", 0], weapon: ["kellishSpear", [5, 5], 4, 17, 0.9], ranged: [false, "steelBolt", 16, 2200, 19, 17 /3, 0, "none", 3.6], patrolStops: 4, patrolLoop: true, route:[[3099, -160672], [3101, -160944], [2803, -160944], [2803, -160693]]}));
+
+                if (uniqueChars.iplalaLDS == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Iplala the Warrior Elder")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(3287, -160912, "Soldier", false, "Iplala the Warrior Elder", {race: "Nirwaden", faction: "Nirwaden", con: 3, speed: 1, outfit: ["mofuTribalWear", 0], weapon: ["kellishSword", [4, 6], 0, 17, 1.4], ranged: [false, "steelBolt", 16, 2200, 19, 17 /3, 0, "none", 3.6], patrolStops: 1, patrolLoop: false, route:[[3304, -160884]]}));
+                    }
+                }
+
+                if (uniqueChars.ehitliLDS == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Ehitli")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(2402, -160021, "Soldier", false, "Ehitli", {race: "Kel", faction: "Kel", con: 0.5, speed: 1.45, outfit: ["mofuTribalWear", 0], weapon: ["kellishSpear", [1.7, 0.85], 0, 8, 2], ranged: [false, "steelBolt", 16, 2200, 19, 17 /3, 0, "none", 3.6], patrolStops: 1, patrolLoop: false, route:[[2301, -160018]], kid: true}));
+                    }
+                }
+
                 if (uniqueChars.muktuLDS == true)
                 {
                     var hits = 0;
@@ -19745,6 +19785,12 @@ function buildMaster()
 
                 scenicList.push(new Scenery("dryMudSlab", 3112, -159293, Math.PI, 2.25, 2.25));
 
+                scenicList.push(new Scenery("mugmulMat", 2368, -159680, 4, 2));
+                scenicList.push(new Scenery("mugmulMat", 2351, -159729, 6.1, 2.2));
+                scenicList.push(new Scenery("mugmulMat", 3429, -159794, 1, 3));
+                scenicList.push(new Scenery("mugmulMat", 2903, -160329, 2, 2.8));
+                scenicList.push(new Scenery("mugmulMat", 2655, -159634, 3, 2.9));
+
                 if (player.raceName != "Kel" || player.gender != "Female" || player.title != "Nobility")
                 {
                     scenicList.push(new Scenery("item", 2963, -160169, 0, false, ["kellishClayPot", 1, -9, "Kel"]));
@@ -19787,9 +19833,31 @@ function buildMaster()
                     scenicList.push(new Scenery("mugmulSleepingMat", 3188, -159604, 0, false));
                     scenicList.push(new Scenery("mugmulSleepingMat", 3467, -160159, 1/2 * Math.PI + 0.12, false));
                     scenicList.push(new Scenery("mugmulSleepingMat", 3348, -160364, 1/2 * Math.PI + 0.18, false));
-
                     scenicList.push(new Scenery("mugmulSleepingMat", 2637, -160921, Math.PI + 0.05, false));
                     scenicList.push(new Scenery("mugmulSleepingMat", 2509, -160918, 0 + 0.07, false));
+
+                    scenicList.push(new Scenery("mugmulSleepingMat", 2400, -160489, 0 + 0.02, false));
+                    scenicList.push(new Scenery("mugmulSleepingMat", 2558, -160228, 1/2 * Math.PI - 0.19, false));
+
+                    scenicList.push(new Scenery("item", 2368, -159680, 0, false, ["mofuFeather", 3, -6, "Kel"]));
+                    scenicList.push(new Scenery("item", 2368 + 7, -159680 + 9, 0, false, ["mofuFeather", 3, -6, "Kel"]));
+                    scenicList.push(new Scenery("item", 2368 -7, -159680 + 6, 0, false, ["mofuFeather", 3, -6, "Kel"]));
+                    scenicList.push(new Scenery("item", 2368 + 8, -159680 -5, 0, false, ["mofuFeather", 3, -6, "Kel"]));
+                    scenicList.push(new Scenery("item", 2368 -10, -159680 -8, 0, false, ["mofuFeather", 3, -6, "Kel"]));
+                    scenicList.push(new Scenery("item", 2368 -3, -159680 + 3, 0, false, ["mofuFeather", 3, -6, "Kel"]));
+                    scenicList.push(new Scenery("item", 2368 -6, -159680 - 6, 0, false, ["mofuFoot", 6, -6, "Kel"]));
+
+                    scenicList.push(new Scenery("item", 2351, -159729 - 9, 0, false, ["rawSaskriit", 1, -9, "Kel"]));
+                    scenicList.push(new Scenery("item", 2351 + 6, -159729, 0, false, ["rawRiulpo", 2, -14, "Kel"]));
+                    scenicList.push(new Scenery("item", 2351 - 10, -159729 + 8, 0, false, ["rawRiulpo", 1, -7, "Kel"]));
+
+                    scenicList.push(new Scenery("mugmulSleepingMat", 2372, -159510, Math.PI - 0.26, false));
+                    scenicList.push(new Scenery("mugmulSleepingMat", 2539, -159371, -1/2 * Math.PI - 0.14, false));
+                    scenicList.push(new Scenery("crate", 2291, -158924, 3.25/4 * Math.PI, 1, [1.25]));
+
+                    scenicList.push(new Scenery("mugmulSleepingMat", 2951, -158970, -1/2 * Math.PI - 0.2, false));
+                    scenicList.push(new Scenery("mugmulSleepingMat", 3174, -158905, Math.PI + 0.3, false));
+                    scenicList.push(new Scenery("mugmulSleepingMat", 3507, -158944, 1/2 * Math.PI, false));
                 }
                 else
                 {
@@ -19833,9 +19901,32 @@ function buildMaster()
                     scenicList.push(new Scenery("mugmulSleepingMat", 3188, -159604, 0, true));
                     scenicList.push(new Scenery("mugmulSleepingMat", 3467, -160159, 1/2 * Math.PI + 0.12, true));
                     scenicList.push(new Scenery("mugmulSleepingMat", 3348, -160364, 1/2 * Math.PI + 0.18, true));
-
                     scenicList.push(new Scenery("mugmulSleepingMat", 2637, -160921, Math.PI + 0.05, true));
                     scenicList.push(new Scenery("mugmulSleepingMat", 2509, -160918, 0 + 0.07, true));
+
+                    scenicList.push(new Scenery("mugmulSleepingMat", 2400, -160489, 0 + 0.02, true));
+                    scenicList.push(new Scenery("mugmulSleepingMat", 2558, -160228, 1/2 * Math.PI - 0.19, true));
+
+                    scenicList.push(new Scenery("item", 2368, -159680, 0, false, ["mofuFeather", 3, 0, "Kel"]));
+                    scenicList.push(new Scenery("item", 2368 + 7, -159680 + 9, 0, false, ["mofuFeather", 3, 0, "Kel"]));
+                    scenicList.push(new Scenery("item", 2368 -7, -159680 + 6, 0, false, ["mofuFeather", 3, 0, "Kel"]));
+                    scenicList.push(new Scenery("item", 2368 + 8, -159680 -5, 0, false, ["mofuFeather", 3, 0, "Kel"]));
+                    scenicList.push(new Scenery("item", 2368 -10, -159680 -8, 0, false, ["mofuFeather", 3, 0, "Kel"]));
+                    scenicList.push(new Scenery("item", 2368 -3, -159680 + 3, 0, false, ["mofuFeather", 3, 0, "Kel"]));
+                    scenicList.push(new Scenery("item", 2368 -6, -159680 - 6, 0, false, ["mofuFoot", 6, 0, "Kel"]));
+
+                    scenicList.push(new Scenery("item", 2351, -159729 - 9, 0, false, ["rawSaskriit", 1, 0, "Kel"]));
+                    scenicList.push(new Scenery("item", 2351 + 6, -159729, 0, false, ["rawRiulpo", 2, 0, "Kel"]));
+                    scenicList.push(new Scenery("item", 2351 - 10, -159729 + 8, 0, false, ["rawRiulpo", 1, 0, "Kel"]));
+
+                    scenicList.push(new Scenery("mugmulSleepingMat", 2372, -159510, Math.PI - 0.26, true));
+                    scenicList.push(new Scenery("mugmulSleepingMat", 2539, -159371, -1/2 * Math.PI - 0.14, true));
+
+                    scenicList.push(new Scenery("crate", 2291, -158924, 3.25/4 * Math.PI, 3, [1.25, "inochtihikliCrate1", 7, [], false, 0]));
+
+                    scenicList.push(new Scenery("mugmulSleepingMat", 2951, -158970, -1/2 * Math.PI - 0.2, true));
+                    scenicList.push(new Scenery("mugmulSleepingMat", 3174, -158905, Math.PI + 0.3, true));
+                    scenicList.push(new Scenery("mugmulSleepingMat", 3507, -158944, 1/2 * Math.PI, true));
                 }
 
                 if (player.raceName != "Kel" || player.gender != "Female" || player.title != "Nobility")

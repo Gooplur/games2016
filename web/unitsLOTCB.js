@@ -47243,6 +47243,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 this.drops = [[new Item("mofuMatriarchHeaddress", this.X, this.Y), 1], [new Item("coins", this.X, this.Y), 790]];
             }
+            else if (this.ID == "Iplala the Warrior Elder")
+            {
+                this.drops = [[new Item("mofuTribalWear", this.X, this.Y), 1], [new Item("kellishSword", this.X, this.Y), 1]];
+            }
             else if (this.ID == "Feastmaker Ritlaktl")
             {
                 this.drops = [[new Item("mofuTribalWear", this.X, this.Y), 1], [new Item("coins", this.X, this.Y), 1]];
@@ -48072,6 +48076,22 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         if (this.killNotByPlayer == false || this.killByPlayerTeam)
                         {
                             player.kelFaction -= 600;
+                        }
+                    }
+                    else if (this.ID == "Iplala the Warrior Elder")
+                    {
+                        uniqueChars.iplalaLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.kelFaction -= 20;
+                        }
+                    }
+                    else if (this.ID == "Ehitli")
+                    {
+                        uniqueChars.ehitliLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.kelFaction -= 5;
                         }
                     }
                     else if (this.ID == "Feastmaker Ritlaktl")

@@ -3368,7 +3368,9 @@ function theLegend()
         ehelteppLDS: true,
         sorvaldLDS: true,
         muktuLDS: true,
-        ritlaktlLDS: true
+        ritlaktlLDS: true,
+        iplalaLDS: true,
+        ehitliLDS: true
     };
 //QUESTS
     quests =

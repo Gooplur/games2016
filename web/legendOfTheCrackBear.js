@@ -3170,7 +3170,8 @@ function theLegend()
         vorael: ["Vorael", 0],
         aavai: ["Aavai", 0],
         ehitli: ["Ehitli", 0],
-        iplala: ["Iplala", 0]
+        iplala: ["Iplala", 0],
+        muktu: ["Muktu", 0]
     };
 
 //time Tracker Variables
@@ -3466,6 +3467,11 @@ function theLegend()
         cherylChildAccompany: false,
         rannukChild: false,
         rannukChildName: "Espen",
+
+        //QUEST: Lost Huntress ---- given by Muktu
+        lostHuntressQuest: false,
+        lostHuntressCompletionStyle: false,
+        lostHuntressFound: false,
 
         //QUEST: Neighborly Conversion ---- given by Bishop Emmanuel
         neighborlyConversionQuest: false,

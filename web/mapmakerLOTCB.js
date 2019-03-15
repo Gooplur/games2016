@@ -19580,7 +19580,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(3287, -160912, "Soldier", false, "Iplala the Warrior Elder", {race: "Nirwaden", faction: "Nirwaden", con: 3, speed: 1, outfit: ["mofuTribalWear", 0], weapon: ["kellishSword", [4, 6], 0, 17, 1.4], ranged: [false, "steelBolt", 16, 2200, 19, 17 /3, 0, "none", 3.6], patrolStops: 1, patrolLoop: false, route:[[3304, -160884]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(3287, -160912, "Soldier", false, "Iplala the Warrior Elder", {race: "Kel", faction: "Kel", con: 3, speed: 1, outfit: ["mofuTribalWear", 0], weapon: ["kellishSword", [4, 6], 0, 17, 1.4], ranged: [false, "steelBolt", 16, 2200, 19, 17 /3, 0, "none", 3.6], patrolStops: 1, patrolLoop: false, route:[[3304, -160884]]}));
                     }
                 }
 
@@ -19615,6 +19615,9 @@ function buildMaster()
                         ArtificialIntelligenceAccess.push(new Unit(2920, -160235, "Person", false, "Muktu the Artisan", {race: "Kel", faction: "Kel", personality: "scared", outfit: ["mofuTribalWear", 0], weapon: ["none", [0.2, 0.2], 0, 0, 2], ranged: [false, "arrow", 8, 2000, 1, 6, 0, "none", 0.95], patrolStops: 1, patrolLoop: false, route:[[2964, -160210]], merchant: true, merchandise: [[new Item("coins", false, false), 6], [new Item("clayBowl", false, false), 25], [new Item("naapridDrinkinghorn", false, false), 8], [new Item("kellishClayPot", false, false), 6]]}));
                     }
                 }
+
+                ArtificialIntelligenceAccess.push(new Unit(3639, -160235, "Person", false, "Alzkwaya Farmer", {race: "Kel", faction: "Kel", personality: "scared", outfit: ["mofuTribalWear", 0], weapon: ["none", [0.2, 0.2], 0, 0, 2], ranged: [false, "arrow", 8, 2000, 1, 6, 0, "none", 0.95], patrolStops: 1, patrolLoop: false, route:[[3657, -159553]]}));
+                ArtificialIntelligenceAccess.push(new Unit(3065, -158801, "Person", false, "Alzkwaya Farmer", {race: "Kel", faction: "Kel", personality: "scared", outfit: ["mofuTribalWear", 0], weapon: ["none", [0.2, 0.2], 0, 0, 2], ranged: [false, "arrow", 8, 2000, 1, 6, 0, "none", 0.95], patrolStops: 1, patrolLoop: false, route:[[2962, -158822]]}));
 
                 if (uniqueChars.imatlLDS == true)
                 {
@@ -20065,6 +20068,12 @@ function buildMaster()
                 scenicList.push(new Scenery("southFishingSpot", 5851, -182586, 6, true));
 
                 scenicList.push(new Scenery("southFishingSpot", 4845, -180477, 2, true));
+
+                if (quests.lostHuntressQuest == true)
+                {
+                    scenicList.push(new Scenery("deadDrileQST", 4995, -179625, 2, 1.1));
+                    scenicList.push(new Scenery("deadBody", 5020, -179715, 2, 2, 1));
+                }
 
                 //Animals
                 ArtificialIntelligenceAccess.push(new Unit(6266, -182359, "Drile", true, "Applejack"));

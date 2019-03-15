@@ -1996,6 +1996,212 @@ function interaction(me)
                         }
                     }
 
+                    if (self.ID == "Muktu the Artisan" || conversationID[0] == "Muktu")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Muktu";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [];
+
+                                if (player.title == "Nobility" && player.gender == "Female" && player.raceName == "Kel")
+                                {
+                                    player.dialogueOptions.push(["How goes your pottery crafting?", false, "a"]);
+                                    player.dialogueOptions.push(["Great job, these pots are well made!", false, "b"]);
+                                    if (quests.lostHuntressQuest == false)
+                                    {
+                                        player.dialogueOptions.push(["You look worried, Muktu...", false, "c"]);
+                                    }
+                                    else if (quests.lostHuntressFound == true && quests.lostHuntressCompletionStyle != "complete")
+                                    {
+                                        player.dialogueOptions.push(["I found your wife's body by the river, she fought off a hungry drile, but she did not survive her wounds. She died honorably...", false, "e"]);
+                                    }
+                                }
+                                else
+                                {
+                                    if (quests.lostHuntressQuest == false)
+                                    {
+                                        player.dialogueOptions.push(["You seem stressed out...", false, "c"]);
+                                    }
+                                    else if (quests.lostHuntressFound == true && quests.lostHuntressQuest != "complete")
+                                    {
+                                        player.dialogueOptions.push(["I found your wife's body by the river, she fought off a hungry drile, but she did not survive her wounds.", false, "e"]);
+                                    }
+                                    player.dialogueOptions.push(["How do you get clay down here in the savannah?", false, "d"]);
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            setMsg("I have made a lot with the new clay that the red sisters have brought.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            setMsg("I do my best...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            if (player.title == "Nobility" && player.gender == "Female" && player.raceName == "Kel")
+                            {
+                                setMsg("My wife has not returned from hunting, " + player.name + ", she is fierce and strong, but so are the beasts. Would you go out and see if she is okay?");
+                            }
+                            else
+                            {
+                                setMsg("My wife has not returned from hunting, she is fierce and strong, but so are the beasts. I will pay you 15 coins to check if she is okay.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.lostHuntressQuest = true;
+                                quests.activeQuests.push({name: "Lost Huntress", description: "Muktu's wife has not come back from hunting; find out if she is okay."});
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            setMsg("There is a small mudbog not to far to the northeast of here. Some of the red sisters occasionally go north to collect clay and they bring it back here so that I can make it into pots and bowls for the tribe.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            //text dialogue
+                            setMsg("[tears well in his eyes] I can't believe she's dead... I know that she died honourably... but I... I can't believe shes dead! [cries out in pain]");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+
+                                quests.completeQuests.push({name: "Lost Huntress", description: "You found the missing huntress. Her body was beside a drile which she had slain."});
+                                player.experience += 25;
+                                quests.lostHuntressCompletionStyle = "foundherdead";
+                                quests.lostHuntressQuest = "complete";
+                                if (player.title != "Nobility" || player.gender != "Female" || player.raceName != "Kel")
+                                {
+                                    worldItems.push([new Item("coins", X, Y), 15]);
+                                }
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
                     if (self.ID == "Inquisitor Gavilio" || conversationID[0] == "Gavilio")
                     {
                         lowBar = "dialogue";

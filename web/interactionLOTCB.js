@@ -1617,6 +1617,385 @@ function interaction(me)
                         }
                     }
 
+                    if (self.ID == "Iplala the Warrior Elder" || conversationID[0] == "Iplala")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Iplala";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [];
+
+                                if (player.title == "Nobility" && player.gender == "Female" && player.raceName == "Kel")
+                                {
+                                    player.dialogueOptions.push(["Tell me the story of how you lost your eye.", false, "a"]);
+                                    player.dialogueOptions.push(["Do you have any advice to offer me, Elder Iplala?", false, "c"]);
+                                    player.dialogueOptions.push(["Tell me a tale of the spirits.", false, "d"]);
+                                }
+                                else
+                                {
+                                    player.dialogueOptions.push(["How did you lose your eye?", false, "a"]);
+                                    player.dialogueOptions.push(["Can you tell me about your village?", false, "b"]);
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            if (player.title == "Nobility" && player.gender == "Female" && player.raceName == "Kel")
+                            {
+                                setMsg("I must have told you this once before, but if you insist. When you were not but a wee lass, the Kerib Tribe who held greed in their hearts, desired the wealth and resources that the great mother had granted us. A band of their women came to our village with clubs and demanded that we pay them a tribute of maize, frijols, fish, and apotl. We, being a sensible people declined them and a battle broke out between us all...");
+                            }
+                            else
+                            {
+                                setMsg("Curiosity can be dangerous, stranger, but I will indulge you. I lost my eye fighting the Kerib Tribe a long time ago before High Chieftain Har united most of the Kellish tribes to fight the barbarians.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                if (player.title == "Nobility" && player.gender == "Female" && player.raceName == "Kel")
+                                {
+                                    conversationID[1] = 1;
+                                }
+                                else
+                                {
+                                    conversationID[1] = 0;
+                                }
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            setMsg("Our village is old, as are our ways. It is good you ask me about it because if you are to remain a welcome guest there is much you need to know. In Alzkwaya tradition, the women are those who are the warriors, and the men craft the goods and work the land. We will permit men to enter our village, but only as long as they respect our red sisters. The red sisters are the warriers who fight for the great mother and the Matriarch of the village. Also, you should know that the well is home to a spirit of the deep that is kept at bay by the ish branch we have placed by the well. If you were to remove the branch, the spirit would cause great harm to our people and the chaos that would ensue would be your fault. Also, never eat of the lel berries at the great alter. The great mother has breathed her life upon them for the red sisters and the matriarch, to eat of them would be to disrespect our spiritual pact with the great mother. Respect our rules and traditions and you will be welcomed.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            setMsg("Never let a man believe that he can best you because he is bigger. His large size is exactly what makes him a worse warrior; it makes him slow and predictable. Women, we are small targets, we are nimble and can use our agility to avoid men's sluggish attacks. It is bad to underestimate your foes, but it is worse to underestimate yourself.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            setMsg("Yes... the spirits were once all part of the great mothers domain, but they began to destroy her creations in a mad rage that was unsoothable. The great mother devised a plan, she took a thread of her own green hair and planted it in the ground. It grew to be an ish bush, the first ish bush ever to grow. When the spirits tried to devour her creation they became horribly ill at the taste of it and started to wither. Their bodies melted away, and now all that remains of them are their twisted souls. To this day the spirits are deathly afraid of the ish bush. That is why we put an ish branch by the well, it keeps the deep spirit at bay. Never remove the ish branch from its place or we will all be in danger. The spirits will not stop until all of the nature is devoured.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 1)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [];
+
+                                player.dialogueOptions.push(["-- But the kerib tribe are our allies, why would they have attacked us so unjustly?", false, "a"]);
+                                player.dialogueOptions.push(["Tell me more.", false, "b"]);
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1b";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1a")
+                        {
+                            //text dialogue
+                            if (player.title == "Nobility" && player.gender == "Female" && player.raceName == "Kel")
+                            {
+                                setMsg("The kerib tribes have not always been our allies, " + player.name + ", High Chieftain Har convinced your mother and the matriarch of the Kerib peoples to unite to stop the barbarians of the west. If our lands were not under attack we would never have reconciled our differences. I certainly do not trust them.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1b")
+                        {
+                            //text dialogue
+                            setMsg("...oh... where was I... Oh, yes, the battle. The red sisters gave the keribs a fight they would never forget, but in the wildness I was struck hard by the blow of a kerib club. The great mother did not take me into the wind, though, she filled me with life anew, but in exchange for my life, she took my eye.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Ehitli" || conversationID[0] == "Ehitli")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Ehitli";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Hello.", false, "a"]];
+
+                                if (player.title == "Nobility" && player.gender == "Female" && player.raceName == "Kel")
+                                {
+                                    player.dialogueOptions.push(["How goes your vigil?", false, "c"]);
+                                }
+                                else
+                                {
+                                    player.dialogueOptions.push(["What are you up to?", false, "d"]);
+                                    player.dialogueOptions.push(["Where are your parents?", false, "b"]);
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            setMsg("Watch out for the Yioshk, they will eat you up with their big teeth. Chomp chomp chomp chomp chomp!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            setMsg("My mother went west to fight the barbarian raiders, she told me that it is our tribe's duty to help the other tribes who are in need, so that they will help us when we are threatened. My papa was bit by a taipan snake when I was young, it was hiding in the maize patch, and it bit him when he was picking maize.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            setMsg("Alright I guess, I hope one day I can be a full warrior like the red sisters are...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            setMsg("I'm trying to guard the village from wild animals, please don't distract me.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
                     if (self.ID == "Inquisitor Gavilio" || conversationID[0] == "Gavilio")
                     {
                         lowBar = "dialogue";

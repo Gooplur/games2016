@@ -20743,6 +20743,7 @@ function buildMaster()
                 generator(11124, 34, 92, 110, 22340, 0, 6679, -146718);
                 trimmer(809, -155022, 704, -155128, false);
                 trimmer(6940, -155987, -3197, -156973, false);
+                scenicList.push(new Scenery("sign", 1008, -146856, -1/2 * Math.PI, 0, "Inochtihikli Village - 46 sectors"));
 
                 change = "s15";
             }

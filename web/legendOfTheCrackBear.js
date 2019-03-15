@@ -3168,7 +3168,9 @@ function theLegend()
         gavilio: ["Gavilio", 0],
         inquisitionRecruiter: ["InquisitionRecruiter", 0],
         vorael: ["Vorael", 0],
-        aavai: ["Aavai", 0]
+        aavai: ["Aavai", 0],
+        ehitli: ["Ehitli", 0],
+        iplala: ["Iplala", 0]
     };
 
 //time Tracker Variables

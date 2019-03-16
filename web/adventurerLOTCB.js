@@ -736,11 +736,11 @@ function Adventurer()
             {
                 XXX.save();
                 XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
-                XXX.rotate(this.rotation)
+                XXX.rotate(this.rotation);
                 //XXX.globalAlpha = 0.9;
                 XXX.drawImage(humpa, 2546, 48, 50, 42, - 1/2 * ((50 * 1.7) / 23 * this.mySize), - 1/2 * ((42 * 1.7) / 23 * this.mySize), (50 * 1.7) / 23 * this.mySize, (42 * 1.7) / 23 * this.mySize);
                 XXX.restore();
-                if (dClick && mouseX > -1/2 * CCC.width - this.mySize && mouseX < -1/2 * CCC.width + this.mySize && mouseY > -1/2 * CCC.height - this.mySize && mouseY < -1/2 * CCC.height + this.mySize)
+                if (dClick && mouseX > 1/2 * CCC.width - this.mySize && mouseX < 1/2 * CCC.width + this.mySize && mouseY > 1/2 * CCC.height - this.mySize && mouseY < 1/2 * CCC.height + this.mySize)
                 {
                     this.strongWebbedNum -= 5 * (this.getStrength() / 50);
                 }

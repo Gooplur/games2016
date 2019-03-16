@@ -26515,6 +26515,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     this.zIndex = 2;
                 }
 
+                if (this.strongWebbedNum > 0)
+                {
+                    this.flying = false;
+                    this.ravaging = false;
+                    this.jumpWait = new Date().getTime() + 2280;
+                    this.jumpDist = 0;
+                }
+
                 if (this.target == player)
                 {
                     var ddttpp = this.DTP();
@@ -27154,7 +27162,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.moving = false;
 
                 //releases toxic stunning hair particles when threatened
-                if (this.health < 1/5 * this.healthMAX)
+                if (this.health < 1/5 * this.healthMAX && this.health > 0)
                 {
                     if (this.hairCloud == false)
                     {

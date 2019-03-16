@@ -161,6 +161,9 @@ alzkwayaBuilding5 - A large left facing mofu feather decorated kellish building 
 dryMudSlab - A cut and hardened slab made of dried savannah mud (vary its width with the longevity input, and its height with the information one)
 mugmulMat - A floor covering often used as a seat in southern kellish cultures (longevity input changes its size)
 mugmulSleepingMat - A sleeping mat made of mugmul fur
+deadDrile - A dead drile that can be any size
+araneaHair - The temporary floating hair particles released from an aranea that stun and acidify and fatigue units and the player
+araneaDen - A hole in the ground in which an aranea lives. If a unit or the player approach it, an aranea will crawl out to meet them (if it is in its den). //scenicList.push(new Scenery("araneaDen", x, y, rotation, isAlpha?, hasSpider?));
 
 
 

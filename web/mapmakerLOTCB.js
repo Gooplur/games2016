@@ -66,6 +66,10 @@ function buildMaster()
                 //scenicList.push(new Scenery("cerebrisPlant", 3500, 2500, 0, 1));
                 //scenicList.push(new Scenery("gojiiPlant", 3500, 2500, 0, true));
                 //scenicList.push(new Scenery("bahabPlant", 3500, 2500, 0, true));
+                //scenicList.push(new Scenery("araneaDen", 3500, 2500, 0, false, true));
+                //ArtificialIntelligenceAccess.push(new Unit(3000, 2500, "Borea", true, "Ipskwich"));
+                //ArtificialIntelligenceAccess.push(new Unit(3000, 2500, "Salisea", false, "Digit"));
+
 
                 //Friches in the plains
                 ArtificialIntelligenceAccess.push(new Unit(2921, -1125, "Frich", false, "Fuzzy Wuzzy"));

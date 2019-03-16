@@ -492,6 +492,9 @@ function Adventurer()
     this.webbedNum = 0;
     this.webbedTime = 0;
     this.webbed = true;
+    this.strongWebbedNum = 0;
+    this.strongWebbedTime = 0;
+    this.strongWebbed = true;
     this.etnaVenom = false;
     this.etnaVenTime = 0;
     this.extraDraining = false;
@@ -728,6 +731,19 @@ function Adventurer()
                 //XXX.globalAlpha = 0.9;
                 XXX.drawImage(nognog, 739, 351, 70, 62, - 1/2 * ((70 * 1.2) / 23 * this.mySize), - 1/2 * ((62 * 1.2) / 23 * this.mySize), (70 * 1.2) / 23 * this.mySize, (62 * 1.2) / 23 * this.mySize);
                 XXX.restore();
+            }
+            if (this.strongWebbed)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.rotate(this.rotation)
+                //XXX.globalAlpha = 0.9;
+                XXX.drawImage(humpa, 2546, 48, 50, 42, - 1/2 * ((50 * 1.7) / 23 * this.mySize), - 1/2 * ((42 * 1.7) / 23 * this.mySize), (50 * 1.7) / 23 * this.mySize, (42 * 1.7) / 23 * this.mySize);
+                XXX.restore();
+                if (dClick && mouseX > -1/2 * CCC.width - this.mySize && mouseX < -1/2 * CCC.width + this.mySize && mouseY > -1/2 * CCC.height - this.mySize && mouseY < -1/2 * CCC.height + this.mySize)
+                {
+                    this.strongWebbedNum -= 5 * (this.getStrength() / 50);
+                }
             }
         };
         this.onWeb();
@@ -2594,6 +2610,25 @@ function Adventurer()
             {
                 this.webbed = false;
             }
+
+            //Strong Web Effect
+            if (this.strongWebbedNum > 0)
+            {
+                player.stunnedIII = true;
+                player.stunnedTime = Math.max(player.stunnedTime, 1);
+
+                if (new Date().getTime() - this.strongWebbedTime > 1000)
+                {
+                    this.strongWebbedTime = new Date().getTime();
+                    this.strongWebbedNum -= 1;
+                }
+                this.strongWebbed = true;
+            }
+            else
+            {
+                this.strongWebbedNum = 0;
+                this.strongWebbed = false;
+            }
         };
 
         this.recovery = function() //for health and energy regenerations
@@ -4169,6 +4204,19 @@ function Adventurer()
         return (this.fistDamage + this.spikedHandsBonus);
     };
 
+    this.getCanAttack = function()
+    {
+        if (this.strongWebbed == true)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+
+    };
+
     this.getMagicHands = function(sort)
     {
         if (sort == "damage")
@@ -4931,7 +4979,7 @@ function Adventurer()
     //Stunned Notice Function
     this.webbedChecker = function()
     {
-        if (this.webbed == true)
+        if (this.webbed == true || this.strongWebbed == true)
         {
             // at this point the slot should be consistent so it should not have to check again to be entered into a position on the miniNoticeList.
 
@@ -8153,7 +8201,7 @@ function Adventurer()
         var self = this;
 
         //ATTACK INITIATOR [this triggers the attack when the player presses the space key]
-        if (spaceKey == true)
+        if (spaceKey == true && this.getCanAttack())
         {
             if (this.weaponIsRanged == false && new Date().getTime() - this.attackCooldown >= 10 * this.weapon.rate && this.spell == "none")
             {
@@ -8369,7 +8417,7 @@ function Adventurer()
             }
         }
         //BLOCK INITIATOR
-        if (qKey == true)
+        if (qKey == true && this.getCanAttack())
         {
             if (this.weapon.subUtility == "shield" && this.blocking == false || this.weapon.subUtility == "alternate" && this.blocking == false)
             {
@@ -8390,7 +8438,7 @@ function Adventurer()
             }
         }
         //POWER ATTACK INITIATOR
-        if (eKey == true)
+        if (eKey == true && this.getCanAttack())
         {
             if (player.form == "werewolf" || player.form == "vampire") //werewolves use power attack as one of their normal attacks
             {

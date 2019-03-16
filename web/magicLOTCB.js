@@ -441,6 +441,34 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                             player.stunnedTime = 2;
                         }
                     }
+                    else if (whatDoIDo == "boreaSpitI")
+                    {
+                        this.shieldFactoring(Math.max(0, (damage / 4) - Math.max(0, player.armourTotal - negate))); //borea spit does 4x less damage to shields
+                        if (player.mageShield <= 0)
+                        {
+                            player.strongWebbedNum = 14;
+                            player.strongWebbedTime = new Date().getTime();
+                            if (damage + negate > player.armourTotal)
+                            {
+                                player.acidII = true;
+                                player.acidTime = new Date().getTime() + 8000;
+                            }
+                        }
+                    }
+                    else if (whatDoIDo == "boreaSpitII")
+                    {
+                        this.shieldFactoring(Math.max(0, (damage / 4) - Math.max(0, player.armourTotal - negate))); //borea spit does 4x less damage to shields
+                        if (player.mageShield <= 0)
+                        {
+                            player.strongWebbedNum = 22;
+                            player.strongWebbedTime = new Date().getTime();
+                            if (damage + negate > player.armourTotal)
+                            {
+                                player.acidII = true;
+                                player.acidTime = new Date().getTime() + 8000;
+                            }
+                        }
+                    }
                     else if (whatDoIDo == "quarterAcid")
                     {
                         this.shieldFactoring(Math.max(0, damage - Math.max(0, player.armourTotal - negate)));
@@ -461,6 +489,18 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                             if (damage + negate > player.armourTotal)
                             {
                                 player.acidI = true;
+                                player.acidTime = new Date().getTime() + 5000;
+                            }
+                        }
+                    }
+                    else if (whatDoIDo == "acidII")
+                    {
+                        this.shieldFactoring(Math.max(0, damage - Math.max(0, player.armourTotal - negate)));
+                        if (player.mageShield <= 0)
+                        {
+                            if (damage + negate > player.armourTotal)
+                            {
+                                player.acidII = true;
                                 player.acidTime = new Date().getTime() + 5000;
                             }
                         }
@@ -587,6 +627,32 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                             ArtificialIntelligenceAccess[i].health -= Math.max(0, 7 + (2/50 * this.cnx) - Math.max(0, ArtificialIntelligenceAccess[i].armour - Math.max(0, 100 - 19 * ArtificialIntelligenceAccess[i].magicalResistance)));
                             ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
                             ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                        }
+                        else if (whatDoIDo == "boreaSpitI")
+                        {
+                            if (ArtificialIntelligenceAccess[i].type != "Borea")
+                            {
+                                ArtificialIntelligenceAccess[i].strongWebbedNum = 15;
+                                ArtificialIntelligenceAccess[i].strongWebbedTime = new Date().getTime();
+                                if (damage + negate > ArtificialIntelligenceAccess[i].armour)
+                                {
+                                    ArtificialIntelligenceAccess[i].acidII = true;
+                                    ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 8000;
+                                }
+                            }
+                        }
+                        else if (whatDoIDo == "boreaSpitII")
+                        {
+                            if (ArtificialIntelligenceAccess[i].type != "Borea")
+                            {
+                                ArtificialIntelligenceAccess[i].strongWebbedNum = 24;
+                                ArtificialIntelligenceAccess[i].strongWebbedTime = new Date().getTime();
+                                if (damage + negate > ArtificialIntelligenceAccess[i].armour)
+                                {
+                                    player.acidII = true;
+                                    player.acidTime = new Date().getTime() + 8000;
+                                }
+                            }
                         }
                         else if (whatDoIDo == "quarterAcid")
                         {
@@ -1197,6 +1263,22 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
             else if (unitSelf.alpha == "giant")
             {
                 this.orientToCaster(27 * 2.2, Math.PI);
+            }
+        }
+        //Borea Web Spit
+        if (this.spellType == "webSpit")
+        {
+            this.costumeRotation = 2 * Math.PI * Math.random();
+            this.speed = 14 + (1.2 * Math.random());
+            this.rotation = unitSelf.rotation;
+
+            if (unitSelf.alpha == false)
+            {
+                this.orientToCaster(35 * 0.7, Math.PI);
+            }
+            else if (unitSelf.alpha == true)
+            {
+                this.orientToCaster(35 * 1, Math.PI);
             }
         }
         //Mud Fly Spit
@@ -2867,6 +2949,40 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                     this.project(this.rotation + Math.PI, 3200, this.speed, "alert");
                 }
 
+            }
+
+            if (this.spellType == "webSpit")
+            {
+                if (unitSelf.target == player)
+                {
+                    if (unitSelf.alpha == false)
+                    {
+                        this.damageThenGoAway(13, "boreaSpitI", 5, 0, true, false);
+                    }
+                    else if (unitSelf.alpha == true)
+                    {
+                        this.damageThenGoAway(16, "boreaSpitII", 8.5, 0, true, false);
+                    }
+                }
+                else
+                {
+                    if (unitSelf.alpha == false)
+                    {
+                        this.damageThenGoAway(13,"boreaSpitI", 5, 0, false, false);
+                    }
+                    else if (unitSelf.alpha == true)
+                    {
+                        this.damageThenGoAway(16, "boreaSpitII", 8.5, 0, false, false);
+                    }
+                }
+
+                this.size = unitSelf.alphaSize;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.costumeRotation);
+                XXX.drawImage(humpa, 2429, 30, 28, 27, - (1/2 * 28 * this.size), - (1/2 * 27 * this.size), 28 * this.size, 27 * this.size);
+                XXX.restore();
+                this.project(this.unitRotation, unitSelf.baseSight, this.speed, true);
             }
 
             if (this.spellType == "flySpit")

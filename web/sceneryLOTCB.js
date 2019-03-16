@@ -9651,7 +9651,6 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 }
             }
 
-
             for (var j = 0; j < ArtificialIntelligenceAccess.length; j++)
             {
                 if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= this.radius + (3/4 * ArtificialIntelligenceAccess[j].sizeRadius) && !ArtificialIntelligenceAccess[j].underground && !ArtificialIntelligenceAccess[j].flying && ArtificialIntelligenceAccess[j].dmx == this.dmx)
@@ -10726,7 +10725,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 this.activate = false;
             }
         }
-        else if (this.type == "deadDrileQST")
+        else if (this.type == "deadDrileQST") //this is for a particular quest
         {
             //TRAITS
             this.solid = false;
@@ -10814,6 +10813,330 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
             this.radius = 1;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+        }
+        else if (this.type == "araneaDen")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+
+            if (this.runOneTime)
+            {
+                this.runOneTime = false;
+
+                this.health = 22;
+                this.tic = 0;
+                this.tac = 0;
+                this.toc = 0;
+                this.araneado = false;
+                this.makeAranea = true;
+
+                if (this.information == true)
+                {
+                    this.spiderHome = true;
+                }
+                else
+                {
+                    this.spiderHome = false;
+                }
+
+                if (this.temporary == true)
+                {
+                    this.size = 1.2
+                }
+                else
+                {
+                    this.size = 1;
+                }
+            }
+
+            this.tic += 1;
+
+            if (this.tic >= 32 && this.araneado != "broken" && this.spiderHome == true)
+            {
+                this.tic = 0;
+
+                if (this.araneado == false)
+                {
+                    for (var j = 0; j < ArtificialIntelligenceAccess.length; j++)
+                    {
+                        if (ArtificialIntelligenceAccess[j].type != "Aranea")
+                        {
+                            if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= 300 + (3/4 * ArtificialIntelligenceAccess[j].sizeRadius) && !ArtificialIntelligenceAccess[j].underground && !ArtificialIntelligenceAccess[j].insect && !ArtificialIntelligenceAccess[j].flying && ArtificialIntelligenceAccess[j].dmx == this.dmx)
+                            {
+                                this.araneado = true;
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (this.playerer <= 300 && this.araneado != "broken" && this.spiderHome == true)
+            {
+                this.araneado = true;
+            }
+
+            if (this.araneado == true && this.spiderHome == true)
+            {
+                this.tac += 2;
+            }
+
+            if (this.araneado == "broken")
+            {
+                this.toc += 1;
+            }
+
+            if (this.araneado == "broken")
+            {
+                if (this.toc < 6)
+                {
+                    //DRAWSELF
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jungho, 279, 928, 95, 109, -(1/2 * 95 * this.size), -(1/2 * 109 * this.size), 95 * this.size, 109 * this.size);
+                    XXX.restore();
+                }
+                else if (this.toc < (12))
+                {
+                    //DRAWSELF
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jungho, 0, 1015, 95, 109, -(1/2 * 95 * this.size), -(1/2 * 109 * this.size), 95 * this.size, 109 * this.size);
+                    XXX.restore();
+                }
+                else if (this.toc < (18))
+                {
+                    //DRAWSELF
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jungho, 84, 1018, 95, 109, -(1/2 * 95 * this.size), -(1/2 * 109 * this.size), 95 * this.size, 109 * this.size);
+                    XXX.restore();
+                }
+                else if (this.toc < (24))
+                {
+                    //DRAWSELF
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jungho, 172, 1019, 95, 109, -(1/2 * 95 * this.size), -(1/2 * 109 * this.size), 95 * this.size, 109 * this.size);
+                    XXX.restore();
+                }
+                else
+                {
+                    //DRAWSELF
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jungho, 262, 1022, 95, 109, -(1/2 * 95 * this.size), -(1/2 * 109 * this.size), 95 * this.size, 109 * this.size);
+                    XXX.restore();
+                }
+            }
+            else
+            {
+                if (this.tac < 110)
+                {
+                    //DRAWSELF
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jungho, 279, 928, 95, 109, -(1/2 * 95 * this.size), -(1/2 * 109 * this.size), 95 * this.size, 109 * this.size);
+                    XXX.restore();
+                }
+                else if (this.tac < (110 + 8))
+                {
+                    //DRAWSELF
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jungho, 366, 1023, 95, 109, -(1/2 * 95 * this.size), -(1/2 * 109 * this.size), 95 * this.size, 109 * this.size);
+                    XXX.restore();
+                }
+                else if (this.tac < (110 + 16))
+                {
+                    //DRAWSELF
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jungho, 484, 1026, 95, 109, -(1/2 * 95 * this.size), -(1/2 * 109 * this.size), 95 * this.size, 109 * this.size);
+                    XXX.restore();
+                }
+                else if (this.tac < (110 + 24))
+                {
+                    //DRAWSELF
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jungho, 608, 1027, 95, 109, -(1/2 * 95 * this.size), -(1/2 * 109 * this.size), 95 * this.size, 109 * this.size);
+                    XXX.restore();
+                }
+                else
+                {
+                    //DRAWSELF
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jungho, 279, 928, 95, 109, -(1/2 * 95 * this.size), -(1/2 * 109 * this.size), 95 * this.size, 109 * this.size);
+                    XXX.restore();
+                    if (this.makeAranea == true)
+                    {
+                        this.makeAranea = false;
+                        this.spiderHome = false;
+                        var araneato = new Unit(this.X + 55 * Math.cos(this.rotation + Math.PI), this.Y + 55 * Math.sin(this.rotation + Math.PI), "Aranea", this.temporary, "Emmergent Aranea");
+                        araneato.newRotation = this.rotation;
+                        araneato.rotation = this.rotation;
+                        ArtificialIntelligenceAccess.push(araneato);
+                    }
+                }
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 66 * this.size;
+
+            if (player.weaponEquipped == "spade" && player.cutcut == true && this.playerer < 500 || player.weaponEquipped == "pickaxe" && player.cutcut == true && this.playerer < 500)
+            {
+                var distFromCutCut = Math.sqrt((this.X - player.bubbleOfDamageX)*(this.X - player.bubbleOfDamageX) + (this.Y - player.bubbleOfDamageY)*(this.Y - player.bubbleOfDamageY));
+                console.log(distFromCutCut);
+                if (distFromCutCut <= player.weapon.distance)
+                {
+                    if (player.weaponEquipped == "spade")
+                    {
+                        this.health -= 8;
+                    }
+                    else
+                    {
+                        this.health -= 4;
+                    }
+                }
+
+                if (this.health <= 0)
+                {
+                    this.araneado = "broken";
+                }
+            }
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+        }
+        else if (this.type == "araneaHair")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+            this.zIndex = 6;
+
+            if (this.runOneTime)
+            {
+                this.runOneTime = false;
+
+                this.tic = 200;
+
+                if (typeof(this.owned) != "null" && typeof(this.owned) != "boolean")
+                {
+                    this.size = this.owned;
+                }
+                else
+                {
+                    this.size = 1;
+                }
+                this.alfa = 1;
+                this.alfa2 = 1;
+                this.spin = 0;
+            }
+
+            this.rotation += 0.18;
+            this.spin -= 0.18;
+
+            this.tic -= 3;
+            if (this.tic <= 0)
+            {
+                scenicList.splice(scenicList.indexOf(this), 1);
+            }
+            else
+            {
+                if (Math.random() > 0.5)
+                {
+                    this.alfa = 0.5;
+                }
+                else
+                {
+                    this.alfa = 0.4;
+                }
+
+                if (Math.random() > 0.5)
+                {
+                    this.alfa2 = 0.5;
+                }
+                else
+                {
+                    this.alfa2 = 0.4;
+                }
+            }
+
+            //DRAWSELF
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.spin);
+            XXX.globalAlpha = this.alfa2;
+            XXX.drawImage(jungho, 0, 675, 89, 94, -1/2 * 89 * (this.size + 0.6), -1/2 * 94 * (this.size + 0.6), 89 * (this.size + 0.6), 94 * (this.size + 0.6));
+            XXX.restore();
+
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation);
+            XXX.globalAlpha = this.alfa;
+            XXX.drawImage(jungho, 0, 675, 89, 94, -1/2 * 89 * (this.size + 0.6), -1/2 * 94 * (this.size + 0.6), 89 * (this.size + 0.6), 94 * (this.size + 0.6));
+            XXX.restore();
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90 * (this.size + 0.6);
+
+            if (this.dst(X, Y) <= this.radius)
+            {
+                if (player.resistDisease == false)
+                {
+                    player.energilTime = 40;
+                    player.fatigueII = true;
+
+                    player.stunnedII = true;
+                    player.stunnedTime = 40;
+
+                    player.halfAcid = true;
+                    player.acidTime = new Date().getTime() + 40000;
+                }
+            }
+
+
+            for (var j = 0; j < ArtificialIntelligenceAccess.length; j++)
+            {
+                if (ArtificialIntelligenceAccess[j].type != "Aranea")
+                {
+                    if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= this.radius + (3/4 * ArtificialIntelligenceAccess[j].sizeRadius) && !ArtificialIntelligenceAccess[j].underground && !ArtificialIntelligenceAccess[j].flying && ArtificialIntelligenceAccess[j].dmx == this.dmx)
+                    {
+                        if (ArtificialIntelligenceAccess[j].resistDisease != true)
+                        {
+                            ArtificialIntelligenceAccess[j].stunII = true;
+                            ArtificialIntelligenceAccess[j].stunTimer = 40;
+                            ArtificialIntelligenceAccess[j].stunTime = new Date().getTime();
+
+                            ArtificialIntelligenceAccess[j].halfAcid = true;
+                            ArtificialIntelligenceAccess[j].acidTime = new Date().getTime() + 40000;
+                            ArtificialIntelligenceAccess[j].killNotByPlayer = true;
+                        }
+                    }
+                }
+            }
 
             //INTERACTION
             if (this.activate == true)

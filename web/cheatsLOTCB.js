@@ -1028,6 +1028,14 @@ function cheats()
         {
             player.matureContentFilter = false;
         }
+        else if (cheatcode.toLowerCase() == "perfectArmour")
+        {
+            perfectArmour = true;
+        }
+        else if (cheatcode.toLowerCase() == "foePerfectArmour")
+        {
+            foePerfectArmour = true;
+        }
         else if (cheatcode.toLowerCase() == "filter") //turns on content filter
         {
             player.matureContentFilter = true;

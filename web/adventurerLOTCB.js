@@ -548,8 +548,9 @@ function Adventurer()
     this.bahabTime = 0; //a halucinagenic drug
     this.bahabTrip = false;
     this.controlled = false;
+    this.armourPerfect = false; //this determines whether enemy attacks that fail to pass your armour will damage you or not (true is that they will not, false is that they will)
 
-    //faction variables
+        //faction variables
     this.factionToggle = false;
     this.kelPeace = true;
     this.thengarPeace = true;
@@ -1065,6 +1066,7 @@ function Adventurer()
             var cyborgFlag = false;
             var airFilterFlag = false;
             var nightVision = false;
+            var perfectArmourFlag = false;
 
             //search worn ability list for abilities
             for (var i = 0; i < this.AdAbility.length; i++)
@@ -1114,6 +1116,10 @@ function Adventurer()
                     spikedHandsType = this.AdAbility[i];
                     spikedHandsFlag = true;
                 }
+                if (this.AdAbility[i] == "perfect")
+                {
+                    perfectArmourFlag = true;
+                }
             }
 
             //EXECUTE EFFECTS
@@ -1140,6 +1146,16 @@ function Adventurer()
                 this.cyborgTimeAlter = false;
                 this.cyberArmour = false;
                 this.cyborgRespo = 0;
+            }
+
+            //perfectArmour
+            if (perfectArmourFlag || cyborgFlag)
+            {
+                this.armourPerfect = true;
+            }
+            else
+            {
+                this.armourPerfect = false;
             }
 
             //airFilter
@@ -6523,6 +6539,10 @@ function Adventurer()
         {
             outfit = allWorn[121];
         }
+        else if (this.outfitEquipped == "jungleHunterOutfit")
+        {
+            outfit = allWorn[122];
+        }
         else
         {
             outfit = allWorn[0];
@@ -6733,6 +6753,19 @@ function Adventurer()
                 XXX.globalAlpha = 0.4;
             }
             XXX.drawImage(atal, 810, 2407, 89, 47, -(1 / 2 * 89 * 0.7) + 0, -(1 / 2 * 47 * 0.7) - 0, 89 * 0.7, 47 * 0.7);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "jungleHunterOutfit")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(humpa, 557, 1261, 62, 49, -(1 / 2 * 62 * 0.705) - 0, -(1 / 2 * 49 * 0.705) - 0.05, 62 * 0.705, 49 * 0.705);
             XXX.restore();
         }
         else if (this.outfitEquipped == "vardanianPriestRobes")
@@ -21311,27 +21344,59 @@ function Adventurer()
                         var justDealt = 0; //this stores the damage that was just dealt
                         if (this.powerAttack == false)
                         {
-                            ArtificialIntelligenceAccess[i].health -= Math.max(0, (this.weapon.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
-                            console.log("You Dealt " + (Math.max(0, this.weapon.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour)) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance)) + " damage!");
-                            justDealt = Math.max(0, this.weapon.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour)) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                            if (this.armourPerfect == true || foePerfectArmour == true || ArtificialIntelligenceAccess[i].perfectDefense == true || Math.max(0, (this.weapon.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance) > (this.weapon.damage / 35))
+                            {
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, (this.weapon.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                console.log("You Dealt " + (Math.max(0, this.weapon.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour)) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance)) + " damage!");
+                                justDealt = Math.max(0, this.weapon.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour)) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                            }
+                            else
+                            {
+                                ArtificialIntelligenceAccess[i].health -= (this.weapon.damage / 35);
+                                justDealt = Math.max(0, this.weapon.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour)) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                            }
                         }
                         else if (this.powerAttack == "weak")
                         {
-                            ArtificialIntelligenceAccess[i].health -= Math.max(0, (Math.min(3, (this.weapon.damage / 5)) - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
-                            console.log("Weak Attack: " + Math.max(0, (this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance) + " Damage!");
-                            justDealt = Math.max(0, (this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                            if (this.armourPerfect == true || foePerfectArmour == true || ArtificialIntelligenceAccess[i].perfectDefense == true || Math.max(0, (Math.min(3, (this.weapon.damage / 5)) - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance) > ((this.weapon.damage / 5) / 35))
+                            {
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, (Math.min(3, (this.weapon.damage / 5)) - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                console.log("Weak Attack: " + Math.max(0, (this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance) + " Damage!");
+                                justDealt = Math.max(0, (this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                            }
+                            else
+                            {
+                                ArtificialIntelligenceAccess[i].health -= ((this.weapon.damage / 5) / 35);
+                                justDealt = Math.max(0, (this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                            }
                         }
                         else if (this.powerAttack == "weakened")
                         {
-                            ArtificialIntelligenceAccess[i].health -= Math.max(0, (Math.min(5, (this.weapon.damage / 4)) - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
-                            console.log("Weakened Attack: " + Math.max(0, (this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance) + " Damage!");
-                            justDealt = Math.max(0, (this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                            if (this.armourPerfect == true || foePerfectArmour == true || ArtificialIntelligenceAccess[i].perfectDefense == true || Math.max(0, (Math.min(5, (this.weapon.damage / 4)) - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance) > ((this.weapon.damage / 4) / 35))
+                            {
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, (Math.min(5, (this.weapon.damage / 4)) - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                console.log("Weakened Attack: " + Math.max(0, (this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance) + " Damage!");
+                                justDealt = Math.max(0, (this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                            }
+                            else
+                            {
+                                ArtificialIntelligenceAccess[i].health -= ((this.weapon.damage / 4) / 35);
+                                justDealt = Math.max(0, (this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                            }
                         }
                         else
                         {
-                            ArtificialIntelligenceAccess[i].health -= Math.max(0, ((this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5)))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
-                            console.log("Power Attack: " + Math.max(0, (this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance) + " Damage!");
-                            justDealt = Math.max(0, (this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                            if (this.armourPerfect == true || foePerfectArmour == true || ArtificialIntelligenceAccess[i].perfectDefense == true || Math.max(0, ((this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5)))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance) > ((this.weapon.damage * 1.5) / 35))
+                            {
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, ((this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5)))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                console.log("Power Attack: " + Math.max(0, (this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance) + " Damage!");
+                                justDealt = Math.max(0, (this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                            }
+                            else
+                            {
+                                ArtificialIntelligenceAccess[i].health -= ((this.weapon.damage * 1.5) / 35);
+                                justDealt = Math.max(0, (this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                            }
                         }
 
                         //console.log(this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
@@ -23701,7 +23766,19 @@ function Adventurer()
             this.craftScrolling = function()
             {
                 //When the left inventory scroll is clicked scroll one to the left if there is one to the left otherwise don't.
-                if (this.craftPosition < craftMenu.length && mouseX > 1379.5 && mouseX < 1399.5 && mouseY > 0.5 && mouseY < 80 && clickReleased == true) //this (20.5, 0.5, 79, 79) is the position the first in the list will be in if the left scroll will not work.
+                if (shiftKey && this.craftPosition + 17 < craftMenu.length && mouseX > 1379.5 && mouseX < 1399.5 && mouseY > 0.5 && mouseY < 80 && clickReleased == true) //this (20.5, 0.5, 79, 79) is the position the first in the list will be in if the left scroll will not work.
+                {
+                    clickReleased = false;
+                    craftScroll -= 79 * 17;
+                    this.craftPosition += 17;
+                }
+                else if (shiftKey && this.craftPosition + 5 < craftMenu.length && mouseX > 1379.5 && mouseX < 1399.5 && mouseY > 0.5 && mouseY < 80 && clickReleased == true) //this (20.5, 0.5, 79, 79) is the position the first in the list will be in if the left scroll will not work.
+                {
+                    clickReleased = false;
+                    craftScroll -= 79 * 5;
+                    this.craftPosition += 5;
+                }
+                else if (this.craftPosition < craftMenu.length && mouseX > 1379.5 && mouseX < 1399.5 && mouseY > 0.5 && mouseY < 80 && clickReleased == true) //this (20.5, 0.5, 79, 79) is the position the first in the list will be in if the left scroll will not work.
                 {
                     clickReleased = false;
                     craftScroll -= 79;
@@ -23709,7 +23786,19 @@ function Adventurer()
                 }
 
                 //When the right inventory scroll is clicked scroll one to the right if there is one to the right otherwise don't.
-                if (this.craftPosition > 0 && mouseX > 0.5 && mouseX < 20.5 && mouseY > 0.5 && mouseY < 80 && clickReleased == true)
+                if (shiftKey && this.craftPosition - 17 > 0 && mouseX > 0.5 && mouseX < 20.5 && mouseY > 0.5 && mouseY < 80 && clickReleased == true)
+                {
+                    clickReleased = false;
+                    craftScroll += 79 * 17;
+                    this.craftPosition -= 17;
+                }
+                else if (shiftKey && this.craftPosition - 5 > 0 && mouseX > 0.5 && mouseX < 20.5 && mouseY > 0.5 && mouseY < 80 && clickReleased == true)
+                {
+                    clickReleased = false;
+                    craftScroll += 79 * 5;
+                    this.craftPosition -= 5;
+                }
+                else if (this.craftPosition > 0 && mouseX > 0.5 && mouseX < 20.5 && mouseY > 0.5 && mouseY < 80 && clickReleased == true)
                 {
                     clickReleased = false;
                     craftScroll += 79;
@@ -31551,6 +31640,34 @@ function Adventurer()
                             if (canPlace == true)
                             {
                                 scenicList.push(new Scenery("fertilizedMofuEgg", X, Y, (Math.random() * (2 * Math.PI)), false));
+
+                                if (Inventory[i][1] - 1 <= 0)
+                                {
+                                    Inventory.splice(i, 1);
+                                }
+                                else
+                                {
+                                    Inventory[i][1] -= 1;
+                                }
+                                break;
+                            }
+                        }
+                        else if (Inventory[i][0].ability == "dalgerHatch")
+                        {
+                            var canPlace = true;
+                            var hits = 0;
+                            for (var j = 0; j < scenicList.length; j++)
+                            {
+                                //5 is the radius of mofuEgg Scenery Object.
+                                if (scenicList[j].X - 11 <= X + scenicList[j].radius && scenicList[j].X + 11 >= X - scenicList[j].radius && scenicList[j].Y - 11 <= Y + scenicList[j].radius && scenicList[j].Y + 11 >= Y - scenicList[j].radius)
+                                {
+                                    canPlace = false;
+                                }
+                            }
+
+                            if (canPlace == true)
+                            {
+                                scenicList.push(new Scenery("dalgerEgg", X, Y, (Math.random() * (2 * Math.PI)), "player"));
 
                                 if (Inventory[i][1] - 1 <= 0)
                                 {

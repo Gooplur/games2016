@@ -1533,6 +1533,102 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 }
             }
         }
+        else if (this.type == "dalgerEgg")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 55;
+
+            if (this.runOneTime)
+            {
+                this.runOneTime = false;
+                this.health = 2;
+                this.tic = 0;
+                this.phase = 1;
+                this.rotation = 2 * Math.PI * Math.random();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 5;
+
+            //HATCHING
+            if (this.phase == 1)
+            {
+                this.eggHatchTimer += 1 * (TTD / 16.75);
+                if (this.eggHatchTimer >= 12000)
+                {
+                    this.eggHatchTimer = -1000000;
+                    var impressionableBaby = new Unit(this.X, this.Y, "Dalger", "baby", "Generic Dalger");
+                    if (this.temporary == "player")
+                    {
+                        impressionableBaby.baseTeam = "player";
+                    }
+                    ArtificialIntelligenceAccess.push(impressionableBaby);
+
+                    this.phase = 0;
+                }
+
+                if (player.cutcut == true && this.playerer <= 400)
+                {
+                    var distFromCutCut = Math.sqrt((this.X - player.bubbleOfDamageX)*(this.X - player.bubbleOfDamageX) + (this.Y - player.bubbleOfDamageY)*(this.Y - player.bubbleOfDamageY));
+                    if (distFromCutCut <= player.weapon.range * 7 + this.radius)
+                    {
+                        this.health -= player.weapon.damage;
+                    }
+                }
+
+                if (this.health <= 0)
+                {
+                    this.phase = 0;
+                }
+
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(stic, 115, 113, 21, 23, -(1/2 * 21), -(1/2 * 23), 21, 23);
+                XXX.restore();
+            }
+            else //broken egg
+            {
+                this.tic += 1;
+
+                if (this.tic > 130)
+                {
+                    for (var i = 0; i < scenicList.length; i++)
+                    {
+                        if (scenicList[i] === this)
+                        {
+                            scenicList.splice(i, 1);
+                            break;
+                        }
+                    }
+                }
+
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(stic, 139, 109, 27, 27, -(1/2 * 27), -(1/2 * 27), 27, 27);
+                XXX.restore();
+            }
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 1)
+            {
+                this.activate = false;
+                worldItems.push([new Item("dalgerEgg", this.X, this.Y), 1]);
+
+                for (var i = 0; i < scenicList.length; i++)
+                {
+                    if (scenicList[i] === this)
+                    {
+                        scenicList.splice(i, 1);
+                        break;
+                    }
+                }
+            }
+        }
         else if (this.type == "etnaEggSac")
         {
             //TRAITS
@@ -10820,6 +10916,29 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 this.activate = false;
             }
         }
+        else if (this.type == "dalgerNest")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+            this.size = 1;
+
+            //DRAWSELF
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(stic, 26, 624, 148, 150, -1/2 * 148 * this.size, -1/2 * 150 * this.size, 148 * this.size, 150 * this.size);
+            XXX.restore();
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 1;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+        }
         else if (this.type == "araneaDen")
         {
             //TRAITS
@@ -11677,6 +11796,59 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 if (hits == Inventory.length)
                 {
                     Inventory.push([new Item("neprilneBerries", false, false), 1]);
+                }
+            }
+        }
+        else if (this.type == "morshPlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.nectar(4);
+            this.solid = false;
+            this.interactionRange = 100;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(stic, 918, 710, 56, 53, -(1/2 * 56), -(1/2 * 53), 56, 53);
+                XXX.restore();
+            }
+            else if (this.phase == "picked")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(stic, 916, 772, 56, 53, -(1/2 * 56), -(1/2 * 53), 56, 53);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 22;
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0)
+            {
+                this.activate = false;
+                this.phase = "picked";
+                var hits = 0;
+                for (var i = 0; i < Inventory.length; i ++)
+                {
+                    if (Inventory[i][0].type == "morshPuff")
+                    {
+                        Inventory[i][1] += 1;
+                        break;
+                    }
+                    else
+                    {
+                        hits += 1;
+                    }
+                }
+                if (hits == Inventory.length)
+                {
+                    Inventory.push([new Item("morshPuff", false, false), 1]);
                 }
             }
         }

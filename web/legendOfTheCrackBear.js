@@ -2253,6 +2253,8 @@ var showSightCheat = false;
 var playerShopsTime = new Date().getTime();
 var skIntTime = new Date().getTime();
 var decayTime = new Date().getTime();
+var perfectArmour = false;
+var foePerfectArmour = false;
 
 //This sets the items that are in shops.
 function shopItemIDSetter()
@@ -3897,6 +3899,7 @@ function theLegend()
     allWorn.push(new Item("vardanianCoatOfPlates", false)); //119
     allWorn.push(new Item("orgishEliteArmour", false)); //120
     allWorn.push(new Item("orgishRoyalArmour", false)); //121
+    allWorn.push(new Item("jungleHunterOutfit", false)); //122
 
     scenicList = [];
 
@@ -4149,6 +4152,9 @@ function theLegend()
     foods.push(new Item("smokedToadMeat", false));
     foods.push(new Item("koivayaMeat", false));
     foods.push(new Item("roastedSaugRoot", false));
+    foods.push(new Item("gorgonMeat", false));
+    foods.push(new Item("cookedDalgerEgg", false));
+    foods.push(new Item("dalgerMeat", false));
 
 //Tailoring (Items crafted at a weaving, sewing, dying, etc. tailor's work bench thing)
     tailoring = [];
@@ -4240,6 +4246,7 @@ function theLegend()
     tailoring.push(new Item("jesterShoes", false));
     tailoring.push(new Item("vardanianPriestRobes", false));
     tailoring.push(new Item("vardanianAkaton", false));
+    tailoring.push(new Item("jungleHunterOutfit", false));
 
 //Jewelry (Items crafted at a jewler's station, rings, necklaces, cutting gems, glassblowing etc.)
     jewelry = [];
@@ -4435,6 +4442,7 @@ function theLegend()
     handcrafted.push(new Item("soakedMandrake", false));
     handcrafted.push(new Item("slicedBorsht", false));
     handcrafted.push(new Item("treatedSaliseaHide", false));
+    handcrafted.push(new Item("rawGorgonFlesh", false));
 
     //Activate Important Game Functions Here:
     itemPlacer();

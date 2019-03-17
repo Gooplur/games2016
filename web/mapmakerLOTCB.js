@@ -69,7 +69,9 @@ function buildMaster()
                 //scenicList.push(new Scenery("araneaDen", 3500, 2500, 0, false, true));
                 //ArtificialIntelligenceAccess.push(new Unit(3000, 2500, "Borea", true, "Ipskwich"));
                 //ArtificialIntelligenceAccess.push(new Unit(3000, 2500, "Salisea", false, "Digit"));
-
+                //ArtificialIntelligenceAccess.push(new Unit(3000, 2500, "Gorgon", false, "Gra"));
+                //ArtificialIntelligenceAccess.push(new Unit(3000, 2500, "Cruorcca", "massive", "Cruor"));
+                //ArtificialIntelligenceAccess.push(new Unit(3908, 2500, "Dalger", true, "Apom"));
 
                 //Friches in the plains
                 ArtificialIntelligenceAccess.push(new Unit(2921, -1125, "Frich", false, "Fuzzy Wuzzy"));

@@ -17926,6 +17926,89 @@ function Item(type, x, y)
                 this.sellValue = 25; // at max, sell for 8.
             }
         }
+        else if (this.type == "kigariiPelt")
+        {
+            //For All Items
+            this.identity = "Kigarii Pelt";
+            this.weight = 1;
+            this.size = 17;
+            this.description = "The black and red, spiked pelt of a kigarii.";
+            this.intForDes = 5;
+            this.intDescription = "This can be used as a decoration or to make apparel with.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 30 - Math.floor(player.getCharisma() / 7.142857142857); // at max, buy for 23.
+            this.sellValue = 19 + Math.floor(player.getCharisma() / 12.5); // at max, sell for 23.
+        }
+        else if (this.type == "rawKigariiFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Kigarii Flesh";
+            this.weight = 0.9;
+            this.size = 10;
+            this.description = "The spikey rib cut of a kigarii.";
+            this.intForDes = 4;
+            this.intDescription = "The flesh is unsafe to eat raw.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "gutWorms";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 9 - Math.floor(player.getCharisma() / 25); // at max, buy for 7.
+            this.sellValue = 5 + Math.floor(player.getCharisma() / 25); // at max, sell for 7.
+        }
+        else if (this.type == "kigariiRibs")
+        {
+            //For All Items
+            this.identity = "Kigarii Ribs";
+            this.weight = 0.8;
+            this.size = 10;
+            this.description = "The cooked rib meat of a kigarii.";
+            this.intForDes = 0;
+            this.intDescription = "Though it is firm in texture, it has a desirable meaty flavour.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 9; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 4; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.1; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "satiation";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 9;
+            this.ingredients = [["Raw Kigarii Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 14 - Math.floor(player.getCharisma() / 25); // at max, buy for 12.
+            this.sellValue = 9 + Math.floor(player.getCharisma() / 15); // at max, sell for 12.
+        }
         else if (this.type == "dalgerHide")
         {
             //For All Items
@@ -23372,6 +23455,26 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 20 - Math.floor(player.getCharisma() / 10); // at max, buy for 15.
             this.sellValue = 12 + Math.floor(player.getCharisma() / 15); // at max, sell for 15.
+        }
+        else if (this.type == "crenidRemains")
+        {
+            //For All Items
+            this.identity = "Crenid Ooze Remains";
+            this.weight = 5.5;
+            this.size = 9;
+            this.description = "The coagulated lifeless remains of a crenid.";
+            this.intForDes = 17;
+            this.intDescription = "The energy in the living ooze affects its consistency, and when it dies it thickens and bubbles up.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
         }
         else if (this.type == "smlOolidOozeRemains")
         {
@@ -34682,6 +34785,26 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "crenidRemains")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 223, 5, 36, 31, X - this.X + (1/2 * CCC.width) - (1/2 * 36 * 0.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 31 * 0.6), 36 * 0.6, 31 * 0.6);
+        }
+        else if (this.type == "kigariiPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 445, 17, 52, 26, X - this.X + (1/2 * CCC.width) - (1/2 * 52 * 1.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 26 * 1.3), 52 * 1.3, 26 * 1.3);
+        }
+        else if (this.type == "rawKigariiFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 362, 56, 26, 28, X - this.X + (1/2 * CCC.width) - (1/2 * 26 * 1.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 28 * 1.3), 26 * 1.3, 28 * 1.3);
+        }
+        else if (this.type == "kigariiRibs")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 388, 56, 26, 28, X - this.X + (1/2 * CCC.width) - (1/2 * 26 * 1.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 28 * 1.3), 26 * 1.3, 28 * 1.3);
+        }
         else if (this.type == "jungleHunterOutfit")
         {
             XXX.beginPath();
@@ -39175,6 +39298,26 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
+        else if (this.type == "crenidRemains")
+        {
+            LXX.beginPath();
+            LXX.drawImage(jungho, 223, 5, 36, 31, this.invX - (1/2 * 36 * 0.6), this.invY - (1/2 * 31 * 0.6), 36 * 0.6, 31 * 0.6);
+        }
+        else if (this.type == "kigariiPelt")
+        {
+            LXX.beginPath();
+            LXX.drawImage(jungho, 445, 17, 52, 26, this.invX - (1/2 * 52 * 1.2), this.invY - (1/2 * 26 * 1.2), 52 * 1.2, 26 * 1.2);
+        }
+        else if (this.type == "rawKigariiFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(jungho, 362, 56, 26, 28, this.invX - (1/2 * 26 * 1.3), this.invY - (1/2 * 28 * 1.3), 26 * 1.3, 28 * 1.3);
+        }
+        else if (this.type == "kigariiRibs")
+        {
+            LXX.beginPath();
+            LXX.drawImage(jungho, 388, 56, 26, 28, this.invX - (1/2 * 26 * 1.3), this.invY - (1/2 * 28 * 1.3), 26 * 1.3, 28 * 1.3);
+        }
         else if (this.type == "jungleHunterOutfit")
         {
             LXX.beginPath();
@@ -43642,6 +43785,26 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "crenidRemains")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 223, 5, 36, 31, this.invX - (1/2 * 36 * 0.6), this.invY - (1/2 * 31 * 0.6), 36 * 0.6, 31 * 0.6);
+        }
+        else if (this.type == "kigariiPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 445, 17, 52, 26, this.invX - (1/2 * 52 * 1.2), this.invY - (1/2 * 26 * 1.2), 52 * 1.2, 26 * 1.2);
+        }
+        else if (this.type == "rawKigariiFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 362, 56, 26, 28, this.invX - (1/2 * 26 * 1.3), this.invY - (1/2 * 28 * 1.3), 26 * 1.3, 28 * 1.3);
+        }
+        else if (this.type == "kigariiRibs")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 388, 56, 26, 28, this.invX - (1/2 * 26 * 1.3), this.invY - (1/2 * 28 * 1.3), 26 * 1.3, 28 * 1.3);
         }
         else if (this.type == "jungleHunterOutfit")
         {

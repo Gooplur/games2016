@@ -4155,6 +4155,7 @@ function theLegend()
     foods.push(new Item("gorgonMeat", false));
     foods.push(new Item("cookedDalgerEgg", false));
     foods.push(new Item("dalgerMeat", false));
+    foods.push(new Item("kigariiRibs", false));
 
 //Tailoring (Items crafted at a weaving, sewing, dying, etc. tailor's work bench thing)
     tailoring = [];

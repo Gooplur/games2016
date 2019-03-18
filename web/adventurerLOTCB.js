@@ -30812,7 +30812,7 @@ function Adventurer()
                             {
                                 this.gassinessTime += 20;
                             }
-                            else if (Inventory[i][0].ability == "fleshMites") //This gives the player fleshMites
+                            else if (Inventory[i][0].ability == "fleshMites" || Inventory[i][0].ability == "fleshmites") //This gives the player fleshMites
                             {
                                 var fleshMitez = Math.floor(Math.random() * 4);
                                 if (fleshMitez)

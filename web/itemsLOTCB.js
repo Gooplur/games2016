@@ -2450,6 +2450,94 @@ function Item(type, x, y)
             this.spellKnowledgeRequirement = 2;
             this.spellRange = "Medium-Long";
         }
+        else if (this.type == "eruption")
+        {
+            //For All Items
+            if (player.getKnowledge() >= 23)
+            {
+                this.identity = "Scroll of Eruption";
+                this.description = "Studying this scroll will teach you how to shoot out a growing circle of flames.";
+                this.intForDes = 0;
+                this.intDescription = "This scroll looks old and withered, but the magical writing is still clear enough to read.";
+                this.buyValue = 1500 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 1400.
+                this.sellValue = 1300 + Math.floor(player.getCharisma() / 0.5); // at max, sell for 1400.
+            }
+            else
+            {
+                this.identity = "Scroll";
+                this.description = "The markings on this scroll are incomprehensible; what a waste of paper!";
+                this.intForDes = 2;
+                this.intDescription = "Scrolls are supposed to be used for storing knowledge or sending messages, it looks like this one wasn't used for either.";
+                this.buyValue = 1500 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 1400.
+                this.sellValue = 1; // at max, sell for 1.
+            }
+            this.weight = 0.02;
+            this.size = 14;
+
+            //Define Utility
+            this.utility = "spell";
+
+            //ability
+            this.ability = "none";
+
+            //Utility Focused
+            this.damages = true;
+            this.spellCost = Math.max(3, 10 + (2 / 10) * player.getConcentration() - (7 / 10) * player.getEminence());
+            this.spellGroup = "Form";
+            this.spellGenre = "Fire";
+            this.spellName = "Eruption";
+            this.spellID = "eruption";
+            this.spellDamage = 35 + 0.5 * player.getConcentration();
+            this.spellEXP = 39 * ((50 + player.getMemory()) / 50);
+            this.spellCooldown = Math.max(3, 19 + (7/50) * player.getConcentration() - (18/50) * player.getEminence());
+            this.spellDescription = "An explosion of flames that eminates from the caster.";
+            this.spellKnowledgeRequirement = 23;
+            this.spellRange = "Medium";
+        }
+        else if (this.type == "drakeBreath")
+        {
+            //For All Items
+            if (player.getKnowledge() >= 29)
+            {
+                this.identity = "Scroll of Drake Breath";
+                this.description = "Studying this scroll will teach you how to spit a torrent of flames from your mouth.";
+                this.intForDes = 0;
+                this.intDescription = "This scroll looks old, withered, and burnt on the edges, but the magical writing is still clear enough to read.";
+                this.buyValue = 1750 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 1650.
+                this.sellValue = 1450 + Math.floor(player.getCharisma() / 0.25); // at max, sell for 1650.
+            }
+            else
+            {
+                this.identity = "Scroll";
+                this.description = "The markings on this scroll are incomprehensible; what a waste of paper!";
+                this.intForDes = 2;
+                this.intDescription = "Scrolls are supposed to be used for storing knowledge or sending messages, it looks like this one wasn't used for either.";
+                this.buyValue = 1750 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 1650.
+                this.sellValue = 1; // at max, sell for 1.
+            }
+            this.weight = 0.02;
+            this.size = 14;
+
+            //Define Utility
+            this.utility = "spell";
+
+            //ability
+            this.ability = "none";
+
+            //Utility Focused
+            this.damages = true;
+            this.spellCost = Math.max(0.2, 0.6 + (0.4 / 10) * player.getConcentration() - (1 / 10) * player.getEminence());
+            this.spellGroup = "Incantation";
+            this.spellGenre = "Fire";
+            this.spellName = "Drake Breath";
+            this.spellID = "drakeBreath";
+            this.spellDamage = 8 + 0.1 * player.getConcentration();
+            this.spellEXP = 0.2 * ((50 + player.getMemory()) / 50);
+            this.spellCooldown = Math.max(0.1, 0.2 + (0.3/50) * player.getConcentration() - (0.4/50) * player.getEminence());
+            this.spellDescription = "A torrent of flames that spills from the caster's mouth.";
+            this.spellKnowledgeRequirement = 29;
+            this.spellRange = "Short";
+        }
         else if (this.type == "electricBolt")
         {
             //For All Items
@@ -2816,6 +2904,26 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 39 - Math.floor(player.getCharisma() / 3); // at max, buy for 24.
             this.sellValue = 7 + Math.floor(player.getCharisma() / 3); // at max, sell for 22.
+        }
+        else if (this.type == "decipulaHead")
+        {
+            //For All Items
+            this.identity = "Decipula Head";
+            this.weight = 2.5;
+            this.size = 16;
+            this.description = "A severed head of the carnivorous decipula plant.";
+            this.intForDes = 1;
+            this.intDescription = "This can be used as a former in alchemy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 8 - Math.floor(player.getCharisma() / 12.5); // at max, buy for 4.
+            this.sellValue = 4; // at max, sell for 4.
         }
         else if (this.type == "nechromanticDust")
         {
@@ -8410,6 +8518,35 @@ function Item(type, x, y)
             this.buyValue = 2 - Math.floor(player.getCharisma() / 50); // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
         }
+        else if (this.type == "porstolBerries")
+        {
+            //For All Items
+            this.identity = "Porstol Berries";
+            this.weight = 0.3;
+            this.size = 7;
+            this.description = "Bitter, smooth-skinned berries that have a noxious smell.";
+            this.intForDes = 1;
+            this.intDescription = "They are poisonous...";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0.45; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "poisonI";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
         else if (this.type == "tyrniBerries")
         {
             //For All Items
@@ -11183,8 +11320,8 @@ function Item(type, x, y)
             this.weight = 0.1;
             this.size = 7;
             this.description = "The stomwik plant has an unforgetably foul odor, imagine wet sweaty socks that have begun to mold mixed with a hint of wrotten egg then sprinkled with a just a dab of cat urine.";
-            this.intForDes = 0;
-            this.intDescription = "";
+            this.intForDes = 7;
+            this.intDescription = "Crushed stomwik leaves can serve as a powerful bug repellent, but its whole form can be used as a changer in alchemy.";
 
             //Define Utility
             this.utility = "material";
@@ -13275,7 +13412,7 @@ function Item(type, x, y)
             //Crafting
             this.yield = 1;
             this.intForCraft = 15;
-            this.ingredients = [["ashaiWood", 8], ["ashaiWood Powder", 4]];
+            this.ingredients = [["Ashai Wood", 8], ["Ashai", 4]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 40; // at max, buy for 40.
@@ -14878,6 +15015,40 @@ function Item(type, x, y)
             this.buyValue = 66 - Math.floor(player.getCharisma() / 3); // at max, buy for 51.
             this.sellValue = 27 + Math.floor(player.getCharisma() / 3); // at max, sell for 42.
         }
+        else if (this.type == "stomwikCream")
+        {
+            //For All Items
+            this.identity = "Stomwik Cream";
+            this.weight = 1.4;
+            this.size = 9;
+            this.description = "Rub this thin textured black cream into your bare skin in order to disuade certain insects from attacking you.";
+            this.intForDes = 19;
+            this.intDescription = "This is particularly useful against mosquitos and brain flies.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "repelente";
+
+            //Crafting
+            this.yield = 3;
+            this.intForCraft = 13;
+            this.ingredients = [["Vial of Water", 3], ["Naaprid Butter", 1], ["Ogard Pollen", 1], ["Fermented Viper Venom Gland", 1], ["Stomwik Leaf", 5]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 35 - Math.floor(player.getCharisma() / 50); // at max, buy for 34.
+            this.sellValue = 30 + Math.floor(player.getCharisma() / 12.5); // at max, sell for 34.
+        }
         else if (this.type == "ogardPerfume")
         {
             //For All Items
@@ -14913,6 +15084,31 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 34 - Math.floor(player.getCharisma() / 6); // at max, buy for 26.
             this.sellValue = 20 + Math.floor(player.getCharisma() / 8); // at max, sell for 26.
+        }
+        else if (this.type == "poegroonOil")
+        {
+            //For All Items
+            this.identity = "Poegroon Oil";
+            this.weight = 0.8;
+            this.size = 5;
+            this.description = "A whitish oil extracted from the poegroon mushroom. It smells pungent, and musty.";
+            this.intForDes = 5;
+            this.intDescription = "This is both a base and a changer in alchemy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 28;
+            this.ingredients = [["Potion Glass", 1], ["Dried Poegroon Mushrooms", 6]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 88 - Math.floor(player.getCharisma() / 12.5); // at max, buy for 84.
+            this.sellValue = 82 + Math.floor(player.getCharisma() / 25); // at max, sell for 84.
         }
         else if (this.type == "ameloyPerfume")
         {
@@ -16473,7 +16669,7 @@ function Item(type, x, y)
             this.size = 14;
             this.description = "The treated hide of a bovine.";
             this.intForDes = 3;
-            this.intDescription = "After scraping the flesh off and dehairing it, the hide must now soak in a tanic acid tea made from ashaiWood powder.";
+            this.intDescription = "After scraping the flesh off and dehairing it, the hide must now soak in a tanic acid tea made from ashai wood.";
 
             //Define Utility
             this.utility = "material";
@@ -16489,7 +16685,7 @@ function Item(type, x, y)
             this.yield = 1;
             this.intForCraft = 4;
             this.biproducts = [[new Item("vardanianBowl", false), 1]];
-            this.ingredients = [["Raw Bovine Hide", 1], ["Vardanian Bowl of Water", 1], ["ashaiWood Powder", 1]];
+            this.ingredients = [["Raw Bovine Hide", 1], ["Vardanian Bowl of Water", 1], ["Ashai Wood", 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 15 - Math.floor(player.getCharisma() / 15); // at max, buy for 12.
@@ -16508,18 +16704,8 @@ function Item(type, x, y)
             //Define Utility
             this.utility = "material";
 
-            this.decayable = true;
-            this.decayLimit = 60;
-            this.decayObjective = "tannedBovineHide";
-
             //ability
             this.ability = "none";
-
-            //Crafting
-            this.yield = 1;
-            this.intForCraft = 4;
-            this.biproducts = [[new Item("vardanianBowl", false), 1]];
-            this.ingredients = [["Raw Bovine Hide", 1], ["Vardanian Bowl of Water", 1], ["ashaiWood Powder", 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 22 - Math.floor(player.getCharisma() / 25); // at max, buy for 20.
@@ -19476,6 +19662,81 @@ function Item(type, x, y)
             this.buyValue = 6 - Math.floor(player.getCharisma() / 25); // at max, buy for 4.
             this.sellValue = 2 + Math.floor(player.getCharisma() / 25); // at max, sell for 4.
         }
+        else if (this.type == "ashaiWood") //ashaiashai
+        {
+            //For All Items
+            this.identity = "Ashai Wood";
+            this.weight = 1.5;
+            this.size = 12;
+            this.description = "Timber from ashai trees.";
+            this.intForDes = 3;
+            this.intDescription = "This is an important raw material used in the crafting of many different things.";
+
+            //Define Utility
+            this.utility = "material";
+            //subUtility
+            this.subUtility = "ashaiCampFire";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5 - Math.floor(player.getCharisma() / 50); // at max, buy for 4.
+            this.sellValue = 2 + Math.floor(player.getCharisma() / 25); // at max, sell for 4.
+        }
+        else if (this.type == "ashai") //ashaiashaiashai
+        {
+            //For All Items
+            this.identity = "Ashai";
+            this.weight = 2;
+            this.size = 12;
+            this.description = "A hard but somewhat plyable substance much like wood.";
+            this.intForDes = 1;
+            this.intDescription = "This is made from hardened ashai powder.";
+
+            //Define Utility
+            this.utility = "material";
+            //subUtility
+            this.subUtility = "ashaiCampFire";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 1;
+            this.biproducts = [[new Item("vardanianBowl", false), 1]];
+            this.ingredients = [["Ashai Powder", 3], ["Vardanian Bowl of Water", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 6; // at max, buy for 6.
+            this.sellValue = 3; // at max, sell for 3.
+        }
+        else if (this.type == "ashaiPowder")
+        {
+            //For All Items
+            this.identity = "Ashai Powder";
+            this.weight = 0.6;
+            this.size = 12;
+            this.description = "Powdered ashai bark.";
+            this.intForDes = 2;
+            this.intDescription = "When water is added it solidifies into a hard wood-like substance that is slightly more durable than wood.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 16;
+            this.intForCraft = 2;
+            this.ingredients = [["Ashai Wood", 10], ["Salt", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 1; // at max, sell for 1.
+        }
         else if (this.type == "clay")
         {
             //For All Items
@@ -21186,13 +21447,252 @@ function Item(type, x, y)
             this.buyValue = 2 - Math.floor(player.getCharisma() / 50); // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
         }
+        else if (this.type == "maleotMushroom")
+        {
+            //For All Items
+            this.identity = "Maleot Mushroom";
+            this.weight = 4;
+            this.size = 14;
+            this.description = "A large dark grey mushroom that grows in the Vardanian woods.";
+            this.intForDes = 2;
+            this.intDescription = "It is poisonous as is, but it can be dried and used in alchemy as a changer.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 4; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "poisonI";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 7; // at max, buy for 7.
+            this.sellValue = 5 + Math.floor(player.getCharisma() / 25); // at max, sell for 7.
+        }
+        else if (this.type == "poegroonMushrooms")
+        {
+            //For All Items
+            this.identity = "Poegroon Mushrooms";
+            this.weight = 2.3;
+            this.size = 13;
+            if (player.areGlovesEquipped == true)
+            {
+                this.description = "Grey speckled mushrooms with lighter stringy grey stalks. Their leathery caps are coving in a thin layer of light coloured oil.";
+            }
+            else
+            {
+                this.description = "Grey speckled mushrooms with lighter stringy grey stalks. It stings your fingers to touch their greesy, slick, leathery mushroom caps.";
+            }
+            this.intForDes = 5;
+            this.intDescription = "They are host to a lethal poison.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1.6; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = -5.5; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "poisonII";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 10; // at max, buy for 10.
+            this.sellValue = 4 + Math.floor(player.getCharisma() / 8); // at max, sell for 7.
+        }
+        else if (this.type == "driedPoegroonMushrooms")
+        {
+            //For All Items
+            this.identity = "Dried Poegroon Mushrooms";
+            this.weight = 2.1;
+            this.size = 13;
+            if (player.areGlovesEquipped == true)
+            {
+                this.description = "The coarse and stringy textured dried mushrooms are drenched in a whitish coloured oil.";
+            }
+            else
+            {
+                this.description = "Grey speccled mushrooms with lighter stringy grey stalks. It stings your fingers to touch their greesy, slick, leathery mushroom caps.";
+            }
+            this.intForDes = 10;
+            this.intDescription = "They oil they produce is valued as an alchemical ingredient; it is used as a base..";
+
+            //Define Utility
+            this.utility = "material";
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 13; // at max, buy for 10.
+            this.sellValue = 11 + Math.floor(player.getCharisma() / 25); // at max, sell for 13.
+        }
+        else if (this.type == "iodFungi")
+        {
+            //For All Items
+            this.identity = "Iod Fungi";
+            this.weight = 2;
+            this.size = 15;
+            this.description = "Round-headed, green-stalked fungi that actively work to decompose corpses that fall within reach of their mycelium..";
+            this.intForDes = 4;
+            this.intDescription = "They are poisonous to eat; they can be fermented for alchemic purposes.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 2.5; //satisfies hunger.
+            this.thirst = 1; //quenches thirst.
+            this.warmth = -1; //warms player.
+            this.heal = -1; //heals health.
+            this.generation = -3; //recoops lost energy.
+            this.replenish = -5; //restores will.
+
+            //ability
+            this.ability = "poisonI";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 2; // at max, sell for 2.
+        }
+        else if (this.type == "fermentedIod")
+        {
+            //For All Items
+            this.identity = "Fermented Iod";
+            this.weight = 2;
+            this.size = 15;
+            this.description = "Fermented iod fungi; they smell sour and strange.";
+            this.intForDes = 4;
+            this.intDescription = "They are poisonous alone, but in combination with other substances can be rendered safe to consume. They act as a catalyst in alchemy.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 2; //satisfies hunger.
+            this.thirst = 2; //quenches thirst.
+            this.warmth = -2; //warms player.
+            this.heal = -2; //heals health.
+            this.generation = -6; //recoops lost energy.
+            this.replenish = -10; //restores will.
+
+            //ability
+            this.ability = "poisonIII";
+
+            this.yield = 1;
+            this.intForCraft = 27;
+            this.ingredients = [["Iod Fungi", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 12; // at max, buy for 12.
+            this.sellValue = 12; // at max, sell for 12.
+        }
+        else if (this.type == "driedMaleotMushroom")
+        {
+            //For All Items
+            this.identity = "Dried Maleot Mushroom";
+            this.weight = 3.7;
+            this.size = 14;
+            this.description = "A large, dry, and withered dark grey mushroom.";
+            this.intForDes = 2;
+            this.intDescription = "It can be used as a changer in alchemy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 5;
+            this.ingredients = [["Maleot Mushroom", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 9; // at max, buy for 9.
+            this.sellValue = 7 + Math.floor(player.getCharisma() / 25); // at max, sell for 9.
+        }
+        else if (this.type == "gribnoyMushroom")
+        {
+            //For All Items
+            this.identity = "Gribnoy Mushroom";
+            this.weight = 0.95;
+            this.size = 10;
+            this.description = "A light brown mushroom that grows along the trunks of trees.";
+            this.intForDes = 2;
+            this.intDescription = "Gribnoy mushrooms are safe to eat, but they taste much better cooked.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1.6; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 4; // at max, buy for 4.
+            this.sellValue = 2 + Math.floor(player.getCharisma() / 25); // at max, sell for 4.
+        }
+        else if (this.type == "roastedGribnoyMushroom")
+        {
+            //For All Items
+            this.identity = "Roasted Gribnoy Mushroom";
+            this.weight = 0.9;
+            this.size = 10;
+            this.description = "They have a distinct savory flavor.";
+            this.intForDes = 0;
+            this.intDescription = "They are somewhat chewy to eat, but in a totally manageable way.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 6; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 2; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 3;
+            this.ingredients = [["Gribnoy Mushroom", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 8 - Math.floor(player.getCharisma() / 25); // at max, buy for 6.
+            this.sellValue = 5 + Math.floor(player.getCharisma() / 50); // at max, sell for 6.
+        }
         else if (this.type == "halgomMushrooms")
         {
             //For All Items
             this.identity = "Halgom Mushrooms";
             this.weight = 0.87;
             this.size = 11;
-            this.description = "yellowish brown mushrooms that grow from a dark tan mycelium that lies below the soil.";
+            this.description = "Yellowish brown mushrooms that grow from a dark tan mycelium that lies below the soil.";
             this.intForDes = 6;
             this.intDescription = "Halgom mushrooms are edible raw, but they taste much better cooked.";
 
@@ -21277,6 +21777,69 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "driedMushrooms")
+        {
+            //For All Items
+            this.identity = "Dried Athergm Mushrooms";
+            this.weight = 0.4;
+            this.size = 8;
+            this.description = "Dried white mushrooms with red speckles with a hard powdery red substance on top of each.";
+            this.intForDes = 1;
+            this.intDescription = "These mushrooms are extremely poisonous, and are a former in alchemy.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0.5; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "poisonIV";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 7;
+            this.ingredients = [["Athergm Mushrooms", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 11; // at max, buy for 11.
+            this.sellValue = 11; // at max, sell for 11.
+        }
+        else if (this.type == "athergmMushrooms")
+        {
+            //For All Items
+            this.identity = "Athergm Mushrooms";
+            this.weight = 0.4;
+            this.size = 8;
+            this.description = "White mushrooms with red speckles, that have a hollow indent on top filled with red paste.";
+            this.intForDes = 1;
+            this.intDescription = "These mushrooms are extremely poisonous.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0.8; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "poisonIV";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 6; // at max, buy for 6.
+            this.sellValue = 6; // at max, sell for 6.
         }
         else if (this.type == "glinMushrooms")
         {
@@ -28773,6 +29336,64 @@ function Item(type, x, y)
             this.buyValue = 95 - Math.floor(player.getCharisma() / 50); // at max, buy for 94.
             this.sellValue = 89 + Math.floor(player.getCharisma() / 10); // at max, sell for 94.
         }
+        else if (this.type == "vardanianSoldierOutfit")
+        {
+            //For All Items
+            this.identity = "Vardanian Soldier Outfit";
+            this.weight = 1.4;
+            this.size = 25;
+            this.description = "Chainmail and an akaton with an iron helm.";
+            this.intForDes = 5;
+            this.intDescription = "This armour is commonly worn by town guards, but it is not necessarily worn in all Vardanian provinces.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "armour";
+            //Utility Focused
+            //protections
+            this.protection = 4 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 2;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0;
+            this.thirstRetention = 0;
+            this.shockResist = 0.1;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 0;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 16;
+            this.ingredients = [["Akaton", 1], ["Bovine Hide", 1], ["Iron", 4]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 46 - Math.floor(player.getCharisma() / 25); // at max, buy for 44.
+            this.sellValue = 43 + Math.floor(player.getCharisma() / 50); // at max, sell for 44.
+        }
         else if (this.type == "vardanianAkaton")
         {
             //For All Items
@@ -34451,6 +35072,26 @@ function Item(type, x, y)
             this.buyValue = 4 - Math.floor(player.getCharisma() / 25); // at max, buy for 2.
             this.sellValue = 2; // at max, sell for 2.
         }
+        else if (this.type == "inquisitorsBeastManual")
+        {
+            //For All Items
+            this.identity = "The official Inquisition Beast Manual";
+            this.weight = 0.5;
+            this.size = 12;
+            this.description = "A book with monster hunting info on a number of magical creatures.";
+            this.intForDes = 0;
+            this.intDescription = "It was written by the late High Inquisitor Evros, who was a renouned inquisitor in his day.";
+
+            //Define Utility
+            this.utility = "book";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 20; // at max, buy for 20.
+            this.sellValue = 20; // at max, sell for 20.
+        }
         else if (this.type == "lonersJournal")
         {
             //For All Items
@@ -34765,7 +35406,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(troli, 327, 359, 81, 21, X - this.X + (1/2 * CCC.width) - (1/2 * 81 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21 * 1), 81 * 1, 21 * 1);
         }
-        else if (this.type == "freydicFolkTales" || this.type == "lonersJournal")
+        else if (this.type == "freydicFolkTales" || this.type == "lonersJournal" || this.type == "inquisitorsBeastManual")
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1979, 12, 17, 20, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 20 * 1), 17 * 1, 20 * 1);
@@ -34784,6 +35425,81 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
+        }
+        else if (this.type == "driedPoegroonMushrooms")
+        {
+            XXX.beginPath();
+            XXX.drawImage(hydra, 476, 698, 55, 52, X - this.X + (1/2 * CCC.width) - (1/2 * 55 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 52 * 1), 55 * 1, 52 * 1);
+        }
+        else if (this.type == "poegroonMushrooms")
+        {
+            XXX.beginPath();
+            XXX.drawImage(hydra, 475, 748, 55, 52, X - this.X + (1/2 * CCC.width) - (1/2 * 55 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 52 * 1), 55 * 1, 52 * 1);
+        }
+        else if (this.type == "maleotMushroom")
+        {
+            XXX.beginPath();
+            XXX.drawImage(hydra, 624, 714, 42, 42, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 42 * 1.2), 42 * 1.2, 42 * 1.2);
+        }
+        else if (this.type == "driedMaleotMushroom")
+        {
+            XXX.beginPath();
+            XXX.drawImage(hydra, 623, 753, 42, 42, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 42 * 1.2), 42 * 1.2, 42 * 1.2);
+        }
+        else if (this.type == "iodFungi")
+        {
+            XXX.beginPath();
+            XXX.drawImage(hydra, 330, 719, 58, 60, X - this.X + (1/2 * CCC.width) - (1/2 * 58 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 60 * 1), 58 * 1, 60 * 1);
+        }
+        else if (this.type == "fermentedIod")
+        {
+            XXX.beginPath();
+            XXX.drawImage(hydra, 272, 721, 58, 60, X - this.X + (1/2 * CCC.width) - (1/2 * 58 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 60 * 1), 58 * 1, 60 * 1);
+        }
+        else if (this.type == "gribnoyMushroom")
+        {
+            XXX.beginPath();
+            XXX.drawImage(hydra, 769, 752, 25, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 25 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 1), 25 * 1, 24 * 1);
+        }
+        else if (this.type == "roastedGribnoyMushroom")
+        {
+            XXX.beginPath();
+            XXX.drawImage(hydra, 792, 753, 25, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 25 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 1), 25 * 1, 24 * 1);
+        }
+        else if (this.type == "ashaiPowder")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dmil, 13, 656, 32, 33, X - this.X + (1/2 * CCC.width) - (1/2 * 32 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 33 * 1), 32 * 1, 33 * 1);
+        }
+        else if (this.type == "ashai")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dmil, 9, 764, 32, 33, X - this.X + (1/2 * CCC.width) - (1/2 * 32 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 33 * 2), 32 * 2, 33 * 2);
+        }
+        else if (this.type == "ashaiWood")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dmil, 15, 733, 23, 22, X - this.X + (1/2 * CCC.width) - (1/2 * 23 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 22 * 2), 23 * 2, 22 * 2);
+        }
+        else if (this.type == "porstolBerries")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 602, 231, 14, 11, X - this.X + (1/2 * CCC.width) - (1/2 * 14 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 11 * 1), 14 * 1, 11 * 1);
+        }
+        else if (this.type == "decipulaHead")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 760, 585, 40, 43, X - this.X + (1/2 * CCC.width) - (1/2 * 40 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 43 * 1), 40 * 1, 43 * 1);
+        }
+        else if (this.type == "athergmMushrooms")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 442, 1, 22, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 22 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17 * 1), 22 * 1, 17 * 1);
+        }
+        else if (this.type == "driedAthergmMushrooms")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 469, 0, 22, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 22 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17 * 1), 22 * 1, 17 * 1);
         }
         else if (this.type == "crenidRemains")
         {
@@ -34909,6 +35625,11 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(gent, 654, 12, 105, 143, X - this.X + (1/2 * CCC.width) - (1/2 * 105 * 0.7), Y - this.Y + (1/2 * CCC.height) - (1/2 * 143 * 0.7), 105 * 0.7, 143 * 0.7);
+        }
+        else if (this.type == "vardanianSoldierOutfit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dmil, 638, 151, 49, 104, X - this.X + (1/2 * CCC.width) - (1/2 * 49 * 1.05), Y - this.Y + (1/2 * CCC.height) - (1/2 * 104 * 1.05), 49 * 1.05, 104 * 1.05);
         }
         else if (this.type == "orgishEliteArmour")
         {
@@ -35310,7 +36031,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(tomb, 530, 538, 43, 36, X - this.X + (1/2 * CCC.width) - (1/2 * 43 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 36 * 1), 43 * 1, 36 * 1);
         }
-        else if (this.type == "ameloyPerfume")
+        else if (this.type == "ameloyPerfume" || this.type == "poegroonOil")
         {
             XXX.beginPath();
             XXX.drawImage(oldverse, 1735, 201, 10, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 10 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 15 * 1), 10 * 1, 15 * 1);
@@ -37965,7 +38686,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(oldverse, 1788, 183, 9, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 9), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16), 9, 16);
         }
-        else if (this.type == "neevBlood")
+        else if (this.type == "neevBlood" || this.type == "stomwikCream")
         {
             XXX.beginPath();
             XXX.drawImage(oldverse, 1741, 183, 8, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16), 8, 16);
@@ -38190,7 +38911,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(zapa, 455, 455, 39, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 39 * 1.22), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 1.22), 39 * 1.22, 24 * 1.22);
         }
-        else if (this.type == "repellingWard" || this.type == "slowTimeI" || this.type == "slowTimeII" || this.type == "slowTimeIII" || this.type == "slowTimeIV" || this.type == "slowTimeV" || this.type == "slowTimeVI")
+        else if (this.type == "repellingWard" || this.type == "slowTimeI" || this.type == "slowTimeII" || this.type == "slowTimeIII" || this.type == "slowTimeIV" || this.type == "slowTimeV" || this.type == "slowTimeVI" || this.type == "eruption")
         {
             XXX.beginPath();
             XXX.drawImage(zapa, 414, 461, 24, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 24 * 1.25), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17 * 1.25), 24 * 1.25, 17 * 1.25);
@@ -38200,7 +38921,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(zapa, 521, 447, 30, 29, X - this.X + (1/2 * CCC.width) - (1/2 * 30 * 1.25), Y - this.Y + (1/2 * CCC.height) - (1/2 * 29 * 1.25), 30 * 1.25, 29 * 1.25);
         }
-        else if (this.type == "vivification" || this.type == "freezingGrasp" || this.type == "shieldingV" || this.type == "charm")
+        else if (this.type == "vivification" || this.type == "freezingGrasp" || this.type == "shieldingV" || this.type == "charm" || this.type == "drakeBreath")
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1928, 39, 40, 21, X - this.X + (1/2 * CCC.width) - (1/2 * 40), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21), 40, 21);
@@ -39278,7 +39999,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(troli, 327, 359, 81, 21, this.invX - (1/2 * 81 * 1), this.invY - (1/2 * 21 * 1), 81 * 1, 21 * 1);
         }
-        else if (this.type == "freydicFolkTales" || this.type == "lonersJournal")
+        else if (this.type == "freydicFolkTales" || this.type == "lonersJournal" || this.type == "inquisitorsBeastManual")
         {
             LXX.beginPath();
             LXX.drawImage(polypol, 1979, 12, 17, 20, this.invX - (1/2 * 17 * 1), this.invY - (1/2 * 20 * 1), 17 * 1, 20 * 1);
@@ -39297,6 +40018,81 @@ function Item(type, x, y)
         {
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "driedPoegroonMushrooms")
+        {
+            LXX.beginPath();
+            LXX.drawImage(hydra, 476, 698, 55, 52, this.invX - (1/2 * 55 * 1), this.invY - (1/2 * 52 * 1), 55 * 1, 52 * 1);
+        }
+        else if (this.type == "poegroonMushrooms")
+        {
+            LXX.beginPath();
+            LXX.drawImage(hydra, 475, 748, 55, 52, this.invX - (1/2 * 55 * 1), this.invY - (1/2 * 52 * 1), 55 * 1, 52 * 1);
+        }
+        else if (this.type == "maleotMushroom")
+        {
+            LXX.beginPath();
+            LXX.drawImage(hydra, 624, 714, 42, 42, this.invX - (1/2 * 42 * 1.2), this.invY - (1/2 * 42 * 1.2), 42 * 1.2, 42 * 1.2);
+        }
+        else if (this.type == "driedMaleotMushroom")
+        {
+            LXX.beginPath();
+            LXX.drawImage(hydra, 623, 753, 42, 42, this.invX - (1/2 * 42 * 1.2), this.invY - (1/2 * 42 * 1.2), 42 * 1.2, 42 * 1.2);
+        }
+        else if (this.type == "iodFungi")
+        {
+            LXX.beginPath();
+            LXX.drawImage(hydra, 330, 719, 58, 60, this.invX - (1/2 * 58 * 1), this.invY - (1/2 * 60 * 1), 58 * 1, 60 * 1);
+        }
+        else if (this.type == "fermentedIod")
+        {
+            LXX.beginPath();
+            LXX.drawImage(hydra, 272, 721, 58, 60, this.invX - (1/2 * 58 * 1), this.invY - (1/2 * 60 * 1), 58 * 1, 60 * 1);
+        }
+        else if (this.type == "gribnoyMushroom")
+        {
+            LXX.beginPath();
+            LXX.drawImage(hydra, 768, 724, 25, 24, this.invX - (1/2 * 25 * 1), this.invY - (1/2 * 24 * 1), 25 * 1, 24 * 1);
+        }
+        else if (this.type == "roastedGribnoyMushroom")
+        {
+            LXX.beginPath();
+            LXX.drawImage(hydra, 794, 725, 25, 24, this.invX - (1/2 * 25 * 1), this.invY - (1/2 * 24 * 1), 25 * 1, 24 * 1);
+        }
+        else if (this.type == "ashaiPowder")
+        {
+            LXX.beginPath();
+            LXX.drawImage(dmil, 13, 656, 32, 33, this.invX - (1/2 * 32 * 1), this.invY - (1/2 * 33 * 1), 32 * 1, 33 * 1);
+        }
+        else if (this.type == "ashai")
+        {
+            LXX.beginPath();
+            LXX.drawImage(dmil, 9, 764, 32, 33, this.invX - (1/2 * 32 * 2), this.invY - (1/2 * 33 * 2), 32 * 2, 33 * 2);
+        }
+        else if (this.type == "ashaiWood")
+        {
+            LXX.beginPath();
+            LXX.drawImage(dmil, 15, 733, 23, 22, this.invX - (1/2 * 23 * 2), this.invY - (1/2 * 22 * 2), 23 * 2, 22 * 2);
+        }
+        else if (this.type == "porstolBerries")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nognog, 602, 231, 14, 11, this.invX - (1/2 * 14 * 1), this.invY - (1/2 * 11 * 1), 14 * 1, 11 * 1);
+        }
+        else if (this.type == "decipulaHead")
+        {
+            LXX.beginPath();
+            LXX.drawImage(jungho, 760, 585, 40, 43, this.invX - (1/2 * 40 * 0.9), this.invY - (1/2 * 43 * 0.9), 40 * 0.9, 43 * 0.9);
+        }
+        else if (this.type == "athergmMushrooms")
+        {
+            LXX.beginPath();
+            LXX.drawImage(jungho, 442, 1, 22, 17, this.invX - (1/2 * 22 * 1), this.invY - (1/2 * 17 * 1), 22 * 1, 17 * 1);
+        }
+        else if (this.type == "driedAthergmMushrooms")
+        {
+            LXX.beginPath();
+            LXX.drawImage(jungho, 469, 0, 22, 17, this.invX - (1/2 * 22 * 1), this.invY - (1/2 * 17 * 1), 22 * 1, 17 * 1);
         }
         else if (this.type == "crenidRemains")
         {
@@ -39422,6 +40218,11 @@ function Item(type, x, y)
         {
             LXX.beginPath();
             LXX.drawImage(gent, 654, 12, 105, 143, this.invX - (1/2 * 105 * 0.5), this.invY - (1/2 * 143 * 0.5), 105 * 0.5, 143 * 0.5);
+        }
+        else if (this.type == "vardanianSoldierOutfit")
+        {
+            LXX.beginPath();
+            LXX.drawImage(dmil, 638, 151, 49, 104, this.invX - (1/2 * 49 * 0.75), this.invY - (1/2 * 104 * 0.75), 49 * 0.75, 104 * 0.75);
         }
         else if (this.type == "orgishEliteArmour")
         {
@@ -39823,7 +40624,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(tomb, 530, 538, 43, 36, this.invX - (1/2 * 43 * 1), this.invY - (1/2 * 36 * 1), 43 * 1, 36 * 1);
         }
-        else if (this.type == "ameloyPerfume")
+        else if (this.type == "ameloyPerfume" || this.type == "poegroonOil")
         {
             LXX.beginPath();
             LXX.drawImage(oldverse, 1735, 201, 10, 15, this.invX - (1/2 * 10 * 1), this.invY - (1/2 * 15 * 1), 10 * 1, 15 * 1);
@@ -42574,7 +43375,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(oldverse, 1788, 183, 9, 16, this.invX - (1/2 * 9), this.invY - (1/2 * 16), 9, 16);
         }
-        else if (this.type == "neevBlood")
+        else if (this.type == "neevBlood" || this.type == "stomwikCream")
         {
             LXX.beginPath();
             LXX.drawImage(oldverse, 1741, 183, 8, 16, this.invX - (1/2 * 8), this.invY - (1/2 * 16), 8, 16);
@@ -42764,7 +43565,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(polypol, 1859, 36, 22, 27, this.invX - (1/2 * 22), this.invY - (1/2 * 27), 22, 27);
         }
-        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind" || this.type == "iceBlast" || this.type == "healingPsalms" || this.type == "summonGriffin" || this.type == "summonDemon" || this.type == "slowTimeI" || this.type == "slowTimeII" || this.type == "slowTimeIII" || this.type == "slowTimeIV" || this.type == "slowTimeV" || this.type == "slowTimeVI" || this.type == "doppelganger" || this.type == "shadowSwitch")
+        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind" || this.type == "iceBlast" || this.type == "healingPsalms" || this.type == "summonGriffin" || this.type == "summonDemon" || this.type == "slowTimeI" || this.type == "slowTimeII" || this.type == "slowTimeIII" || this.type == "slowTimeIV" || this.type == "slowTimeV" || this.type == "slowTimeVI" || this.type == "doppelganger" || this.type == "shadowSwitch" || this.type == "eruption" || this.type == "drakeBreath")
         {
             LXX.beginPath();
             LXX.drawImage(polypol, 1738, 4, 33, 26, this.invX - (1/2 * 33), this.invY - (1/2 * 26), 33, 26);
@@ -43766,7 +44567,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(troli, 327, 359, 81, 21, this.invX - (1/2 * 81 * 1), this.invY - (1/2 * 21 * 1), 81 * 1, 21 * 1);
         }
-        else if (this.type == "freydicFolkTales" || this.type == "lonersJournal")
+        else if (this.type == "freydicFolkTales" || this.type == "lonersJournal" || this.type == "inquisitorsBeastManual")
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1979, 12, 17, 20, this.invX - (1/2 * 17 * 1), this.invY - (1/2 * 20 * 1), 17 * 1, 20 * 1);
@@ -43785,6 +44586,81 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "driedPoegroonMushrooms")
+        {
+            XXX.beginPath();
+            XXX.drawImage(hydra, 476, 698, 55, 52, this.invX - (1/2 * 55 * 1), this.invY - (1/2 * 52 * 1), 55 * 1, 52 * 1);
+        }
+        else if (this.type == "poegroonMushrooms")
+        {
+            XXX.beginPath();
+            XXX.drawImage(hydra, 475, 748, 55, 52, this.invX - (1/2 * 55 * 1), this.invY - (1/2 * 52 * 1), 55 * 1, 52 * 1);
+        }
+        else if (this.type == "maleotMushroom")
+        {
+            XXX.beginPath();
+            XXX.drawImage(hydra, 624, 714, 42, 42, this.invX - (1/2 * 42 * 1.2), this.invY - (1/2 * 42 * 1.2), 42 * 1.2, 42 * 1.2);
+        }
+        else if (this.type == "driedMaleotMushroom")
+        {
+            XXX.beginPath();
+            XXX.drawImage(hydra, 623, 753, 42, 42, this.invX - (1/2 * 42 * 1.2), this.invY - (1/2 * 42 * 1.2), 42 * 1.2, 42 * 1.2);
+        }
+        else if (this.type == "iodFungi")
+        {
+            XXX.beginPath();
+            XXX.drawImage(hydra, 330, 719, 58, 60, this.invX - (1/2 * 58 * 1), this.invY - (1/2 * 60 * 1), 58 * 1, 60 * 1);
+        }
+        else if (this.type == "fermentedIod")
+        {
+            XXX.beginPath();
+            XXX.drawImage(hydra, 272, 721, 58, 60, this.invX - (1/2 * 58 * 1), this.invY - (1/2 * 60 * 1), 58 * 1, 60 * 1);
+        }
+        else if (this.type == "gribnoyMushroom")
+        {
+            XXX.beginPath();
+            XXX.drawImage(hydra, 768, 724, 25, 24, this.invX - (1/2 * 25 * 1), this.invY - (1/2 * 24 * 1), 25 * 1, 24 * 1);
+        }
+        else if (this.type == "roastedGribnoyMushroom")
+        {
+            XXX.beginPath();
+            XXX.drawImage(hydra, 794, 725, 25, 24, this.invX - (1/2 * 25 * 1), this.invY - (1/2 * 24 * 1), 25 * 1, 24 * 1);
+        }
+        else if (this.type == "ashaiPowder")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dmil, 13, 656, 32, 33, this.invX - (1/2 * 32 * 1), this.invY - (1/2 * 33 * 1), 32 * 1, 33 * 1);
+        }
+        else if (this.type == "ashai")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dmil, 9, 764, 32, 33, this.invX - (1/2 * 32 * 2), this.invY - (1/2 * 33 * 2), 32 * 2, 33 * 2);
+        }
+        else if (this.type == "ashaiWood")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dmil, 15, 733, 23, 22, this.invX - (1/2 * 23 * 2), this.invY - (1/2 * 22 * 2), 23 * 2, 22 * 2);
+        }
+        else if (this.type == "porstolBerries")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 602, 231, 14, 11, this.invX - (1/2 * 14 * 1), this.invY - (1/2 * 11 * 1), 14 * 1, 11 * 1);
+        }
+        else if (this.type == "decipulaHead")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 760, 585, 40, 43, this.invX - (1/2 * 40 * 0.9), this.invY - (1/2 * 43 * 0.9), 40 * 0.9, 43 * 0.9);
+        }
+        else if (this.type == "athergmMushrooms")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 442, 1, 22, 17, this.invX - (1/2 * 22 * 1), this.invY - (1/2 * 17 * 1), 22 * 1, 17 * 1);
+        }
+        else if (this.type == "driedAthergmMushrooms")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 469, 0, 22, 17, this.invX - (1/2 * 22 * 1), this.invY - (1/2 * 17 * 1), 22 * 1, 17 * 1);
         }
         else if (this.type == "crenidRemains")
         {
@@ -43910,6 +44786,11 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(gent, 654, 12, 105, 143, this.invX - (1/2 * 105 * 0.5), this.invY - (1/2 * 143 * 0.5), 105 * 0.5, 143 * 0.5);
+        }
+        else if (this.type == "vardanianSoldierOutfit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(dmil, 638, 151, 49, 104, this.invX - (1/2 * 49 * 0.75), this.invY - (1/2 * 104 * 0.75), 49 * 0.75, 104 * 0.75);
         }
         else if (this.type == "orgishEliteArmour")
         {
@@ -44311,7 +45192,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(tomb, 530, 538, 43, 36, this.invX - (1/2 * 43 * 1), this.invY - (1/2 * 36 * 1), 43 * 1, 36 * 1);
         }
-        else if (this.type == "ameloyPerfume")
+        else if (this.type == "ameloyPerfume" || this.type == "poegroonOil")
         {
             XXX.beginPath();
             XXX.drawImage(oldverse, 1735, 201, 10, 15, this.invX - (1/2 * 10 * 1), this.invY - (1/2 * 15 * 1), 10 * 1, 15 * 1);
@@ -47060,7 +47941,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(oldverse, 1788, 183, 9, 16, this.invX - (1/2 * 9), this.invY - (1/2 * 16), 9, 16);
         }
-        else if (this.type == "neevBlood")
+        else if (this.type == "neevBlood" || this.type == "stomwikCream")
         {
             XXX.beginPath();
             XXX.drawImage(oldverse, 1741, 183, 8, 16, this.invX - (1/2 * 8), this.invY - (1/2 * 16), 8, 16);
@@ -47250,7 +48131,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 1859, 36, 22, 27, this.invX - (1/2 * 22), this.invY - (1/2 * 27), 22, 27);
         }
-        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind" || this.type == "iceBlast" || this.type == "healingPsalms" || this.type == "summonGriffin" || this.type == "summonDemon" || this.type == "slowTimeI" || this.type == "slowTimeII" || this.type == "slowTimeIII" || this.type == "slowTimeIV" || this.type == "slowTimeV" || this.type == "slowTimeVI" || this.type == "doppelganger" || this.type == "shadowSwitch")
+        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind" || this.type == "iceBlast" || this.type == "healingPsalms" || this.type == "summonGriffin" || this.type == "summonDemon" || this.type == "slowTimeI" || this.type == "slowTimeII" || this.type == "slowTimeIII" || this.type == "slowTimeIV" || this.type == "slowTimeV" || this.type == "slowTimeVI" || this.type == "doppelganger" || this.type == "shadowSwitch" || this.type == "eruption" || this.type == "drakeBreath")
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1738, 4, 33, 26, this.invX - (1/2 * 33), this.invY - (1/2 * 26), 33, 26);

@@ -16,6 +16,19 @@ Cabbage - A vardanian food staple that is cultivated in farms
 Cattail - A swamp grass that grows in the Vardanian swamps
 Chyoul - A thorny berry bush that has tiny blue berries that grow in clusters; grows in Vardania
 Cranberry - A berry bush that grows in Thengaria and in parts of Vardania
+Saug - A long tuber plant that has some light hair-like fibers that protrude from the ground
+Cerebris - A yellow jungle mushroom that parasitically grows in particular living beings and hijacks their circulatory and nervous systems in order to spread its spores.
+Gojii - The most poisonous plant in the lands; it grows in the jungle
+Bahab - A colourful and bulbous jungle plant that releases a cloud of hallucinagenic gas to scare away animals that might otherwise represent a threat
+Morsh - A wide leaved jungle plant that hosts a large blue puff made of fibers that is used for reproduction
+Athergm - A white mushroom with a red paste filled hollow indent on top. This mushroom releases white spores that drive creatures temporarily mad when they breath them in, the spores also cause their victim to become sapped of energy. The mushrooms are extremely poisonous to eat.
+Decipula - Man eating venus flytrap plants. There are two types in the code "decipulaBasePlant" which is for the unit type and "decipulaPlant" which is the plant only kind.
+Valum - A small carnivorous pitcher plant that eats insects and small flying critters that get too close
+Porstol - A small berry bush that grows in the north to mid west, particularly in Thengaria; its berries are poisonous
+Gribnoy - A Vardanian mushroom that grows on the trunks of ashai trees
+Poegroon - A variety of Vardanian mushroom that is fairly poisonous, and that produces an alchemically important oil
+Maleot - A large dark grey Vardanian mushroom that is moderately poisonous
+Iod - A green stalk-like fungus that grows in the Vardanian woods; it can be characterized as a carnivorous plant because it actively decomposes nearby carrion for use in its nutrient cycle using limb stalks that it maintains underground most of the time; iod fungus actively seeks to grow the reach of its mycelium, and when it has reached its capacity for growth it duplicates itself at the edge of its mycelium in order to expand even farther.
 
 
 //ALREADY IN GAME (to create a plant with the scenery class these plants must be made all lowercase)
@@ -90,8 +103,4 @@ BlueStetrili - A beautiful southeastern flower
 Wobea - An eastern variety of wild fruit plant that grows a single fruit in the center of the plant. During the day time the leaves are covered in needles that make their victims unable to move.
 Frijol - A black bean plant that grows primarily in savannah regions but can be sparsely encountered in the southernmost temperate regions
 Maize - Corn by another name, it grows in southern temperate and savannah regions
-Saug - A long tuber plant that has some light hair-like fibers that protrude from the ground
-Cerebris - A yellow jungle mushroom that parasitically grows in particular living beings and hijacks their circulatory and nervous systems in order to spread its spores.
-Gojii - The most poisonous plant in the lands; it grows in the jungle
-Bahab - A colourful and bulbous jungle plant that releases a cloud of hallucinagenic gas to scare away animals that might otherwise represent a threat
-Morsh - A wide leaved jungle plant that hosts a large blue puff made of fibers that is used for reproduction
+

@@ -74,6 +74,24 @@ function buildMaster()
                 //ArtificialIntelligenceAccess.push(new Unit(3908, 2500, "Dalger", true, "Apom"));
                 //ArtificialIntelligenceAccess.push(new Unit(3908, 2500, "Kigarii", true, "Apex"));
                 //ArtificialIntelligenceAccess.push(new Unit(3600, 2500, "Crenid", "massive", "Bulgg"));
+                //scenicList.push(new Scenery("athergmPlant", 3990, 2500, 0, 1));
+                //scenicList.push(new Scenery("decipulaBasePlant", 3670, 2500, 0, "massive"));
+                //ArtificialIntelligenceAccess.push(new Unit(3500, 2500, "Zancudo", false, "proboscis"));
+                //ArtificialIntelligenceAccess.push(new Unit(3550, 2500, "Venandi", true, "hunter"));
+                //ArtificialIntelligenceAccess.push(new Unit(3570, 2500, "EtyrVenandi", true, "scout"));
+                //ArtificialIntelligenceAccess.push(new Unit(3570, 2500, "AraneaVenandi", true, "tank"));
+                //scenicList.push(new Scenery("valumPlant", 3990, 2500, 0, 1));
+                //scenicList.push(new Scenery("decipulaPlant", 3670, 2500, 0, true));
+                //scenicList.push(new Scenery("porstolPlant", 3750, 2500, 0, true));
+                //scenicList.push(new Scenery("ashaiCampFire", 3750, 2500, 0, true));
+                //scenicList.push(new Scenery("ashaiTree", 3750, 2500, 0, true));
+                //scenicList.push(new Scenery("iodPlant", 3750, 2500, 0, true));
+                //scenicList.push(new Scenery("poegroonPlant", 3800, 2500, 0, true));
+                //scenicList.push(new Scenery("gribnoyPlant", 3700, 2500, 0, true));
+                //scenicList.push(new Scenery("maleotPlant", 3600, 2500, 0, true));
+
+
+                
 
                 //Friches in the plains
                 ArtificialIntelligenceAccess.push(new Unit(2921, -1125, "Frich", false, "Fuzzy Wuzzy"));
@@ -18600,7 +18618,7 @@ function buildMaster()
                     }
                     else if (player.inquisitionRank != "none")
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-46403, 860, "Soldier", false, "Inquisition Emprendor", {race: "Nirwaden", faction: "Nirwaden", con: 8, speed: 1.4, outfit: ["inquisitionOutfit", 11], weapon: ["nirineseSabre", [8, 8], 0, 22, 1.15], ranged: [false, "steelBolt", 14, 2200, 15, 16 /3, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-46409, 849]], merchant: true, merchandise: [[new Item("coins", false, false), 200], [new Item("witchHunterOutfit", false, false), 1], [new Item("silkAndDagger", false, false), 1]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-46403, 860, "Soldier", false, "Inquisition Emprendor", {race: "Nirwaden", faction: "Nirwaden", con: 8, speed: 1.4, outfit: ["inquisitionOutfit", 11], weapon: ["nirineseSabre", [8, 8], 0, 22, 1.15], ranged: [false, "steelBolt", 14, 2200, 15, 16 /3, 0, "none", 3], patrolStops: 1, patrolLoop: false, route:[[-46409, 849]], merchant: true, merchandise: [[new Item("coins", false, false), 200], [new Item("witchHunterOutfit", false, false), 1], [new Item("silkAndDagger", false, false), 1], [new Item("inquisitorsBeastManual", false, false), 1]]}));
                     }
                 }
 

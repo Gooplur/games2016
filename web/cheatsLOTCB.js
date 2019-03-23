@@ -317,6 +317,42 @@ function cheats()
                 player.gender = "Goop";
             }
         }
+        else if (cheatcode == "VOOP" || cheatcode == "venandify" || cheatcode == "venandi")
+        {
+            if (player.name == "Gooplur" && player.race == "#336600")
+            {
+                if (cheatcode == "venandify")
+                {
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].DTP() <= 900)
+                        {
+                            ArtificialIntelligenceAccess[i].venandi = 400;
+                        }
+                    }
+                }
+                else if (cheatcode == "venandi")
+                {
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].DTP() <= 2000)
+                        {
+                            ArtificialIntelligenceAccess[i].venandi = 390;
+                        }
+                    }
+                }
+                else
+                {
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].DTP() <= 1000)
+                        {
+                            ArtificialIntelligenceAccess[i].venandi = 361;
+                        }
+                    }
+                }
+            }
+        }
         else if (cheatcode == "G")
         {
             if (player.name == "Gooplur" && player.race == "#336600")
@@ -793,9 +829,9 @@ function cheats()
         {
             alert([player.illnesses[0][0], player.illnesses[0][1]]);
         }
-        else if (cheatcode.toLowerCase() == "test")
+        else if (cheatcode.toLowerCase() == "throatfrosttest")
         {
-            var chekked = 0
+            var chekked = 0;
             for (var i = 0; i < player.illnesses.length; i++)
             {
                 if (player.illnesses[i][0] == "Throat-Frost")
@@ -807,6 +843,22 @@ function cheats()
             if (chekked == 0)
             {
                 player.illnesses.push(["Throat-Frost", 0, 43]);
+            }
+        }
+        else if (cheatcode.toLowerCase() == "lypelistest")
+        {
+            var chekked = 0;
+            for (var i = 0; i < player.illnesses.length; i++)
+            {
+                if (player.illnesses[i][0] == "Lypelis")
+                {
+                    chekked = 1;
+                }
+            }
+
+            if (chekked == 0)
+            {
+                player.illnesses.push(["Lypelis", 0, 89]);
             }
         }
         else if (cheatcode.toLowerCase() == "clearinv")

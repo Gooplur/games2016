@@ -65,6 +65,7 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
         this.durAlert = false;
         this.targeted = "none"; //this is a variable that is not for use in functions meant to serve as a standard targeting tool.
         this.ready = false; //ready is an alternative to alert just in case alert is already being used for something.
+        this.goTic = 0;
         //SPELL BUILDER (functions that can be given to each individual spell to define its characteristics)
         this.spellTimer = function(duration, alert)
         {
@@ -1228,6 +1229,32 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
             this.size = 1;
             this.orientToCaster(0, 0);
         }
+
+        //ERUPTION
+        if (this.spellType == "eruption")
+        {
+            this.orientToCaster(0, 2*Math.PI*Math.random());
+        }
+        //DRAKE BREATH
+        if (this.spellType == "drakeBreath")
+        {
+            if (this.orders == 1)
+            {
+                this.orientToCaster(23, 1/2 * Math.PI);
+                this.rotation = 1/2 * Math.PI + this.playerRotation + (1/16 * Math.PI - 1/8 * Math.PI * Math.random());
+            }
+            else if (this.orders == 2)
+            {
+                this.orientToCaster(23, 1/2 * Math.PI);
+                this.rotation = 1/2 * Math.PI + this.playerRotation + 1/8 * Math.PI + (1/16 * Math.PI - 1/8 * Math.PI * Math.random());
+            }
+            else if (this.orders == 3)
+            {
+                this.orientToCaster(23, 1/2 * Math.PI);
+                this.rotation = 1/2 * Math.PI + this.playerRotation - 1/8 * Math.PI + (1/16 * Math.PI - 1/8 * Math.PI * Math.random());
+            }
+        }
+
         //SHADOWPORT
         if (this.spellType == "shadowport")
         {
@@ -2802,6 +2829,137 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                 else
                 {
                     //Todo add the Ai part of this spell...
+                }
+            }
+
+            if (this.spellType == "eruption")
+            {
+                this.size = 1;
+                this.goTic += 9;
+                if (caster)
+                {
+                    if (this.goTic < 10)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(0);
+                        XXX.drawImage(humpa, 829, 9, 230, 190, - (1/2 * 230 * this.size), - (1/2 * 190 * this.size), 230 * this.size, 190* this.size);
+                        XXX.restore();
+                    }
+                    else if (this.goTic < 20)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(0);
+                        XXX.drawImage(humpa, 827, 172, 260, 227, - (1/2 * 260 * this.size), - (1/2 * 227 * this.size), 260 * this.size, 227* this.size);
+                        XXX.restore();
+                    }
+                    else if (this.goTic < 30)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(0);
+                        XXX.drawImage(humpa, 807, 405, 321, 303, - (1/2 * 321 * this.size), - (1/2 * 303 * this.size), 321 * this.size, 303 * this.size);
+                        XXX.restore();
+                    }
+                    else if (this.goTic < 40)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(0);
+                        XXX.drawImage(humpa, 826, 708, 321, 303, - (1/2 * 321 * this.size), - (1/2 * 303 * this.size), 321 * this.size, 303 * this.size);
+                        XXX.restore();
+                    }
+                    else if (this.goTic <= 50 || this.goTic > 50)
+                    {
+                        this.contactDamage(false, 165, 35 + 0.5 * this.cnx, 10, "fire");
+                        //Disintegrate non-magical projectiles
+                        for (var i = 0; i < unitProjectiles.length; i++)
+                        {
+                            var distanceToProjectile = Math.sqrt((unitProjectiles[i].X - this.X)*(unitProjectiles[i].X - this.X) + (unitProjectiles[i].Y - this.Y)*(unitProjectiles[i].Y - this.Y));
+                            if (distanceToProjectile <= 160)
+                            {
+                                unitProjectiles.splice(i, 1);
+                            }
+                        }
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(0);
+                        XXX.drawImage(humpa, 816, 1001, 344, 356, - (1/2 * 344 * this.size), - (1/2 * 356 * this.size), 344 * this.size, 356 * this.size);
+                        XXX.restore();
+                    }
+
+                    if (this.goTic > 50)
+                    {
+                        magicList.splice(magicList.indexOf(this), 1);
+                    }
+                }
+            }
+
+            if (this.spellType == "drakeBreath")
+            {
+                this.size = 1;
+                this.goTic += 9;
+                if (caster)
+                {
+                    if (this.goTic < 10)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(0);
+                        XXX.drawImage(humpa, 10, 968, 38, 38, - (1/2 * 38 * this.size), - (1/2 * 38 * this.size), 38 * this.size, 38* this.size);
+                        XXX.restore();
+                    }
+                    else if (this.goTic < 20)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(0);
+                        XXX.drawImage(humpa, 10, 1009, 38, 38, - (1/2 * 38 * this.size), - (1/2 * 38 * this.size), 38 * this.size, 38* this.size);
+                        XXX.restore();
+                    }
+                    else if (this.goTic < 30)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(0);
+                        XXX.drawImage(humpa, 10, 1057, 38, 38, - (1/2 * 38 * this.size), - (1/2 * 38 * this.size), 38 * this.size, 38* this.size);
+                        XXX.restore();
+                    }
+                    else if (this.goTic < 40)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(0);
+                        XXX.drawImage(humpa, 11, 1106, 38, 38, - (1/2 * 38 * this.size), - (1/2 * 38 * this.size), 38 * this.size, 38* this.size);
+                        XXX.restore();
+                    }
+                    else if (this.goTic <= 50 || this.goTic > 50)
+                    {
+                        if (Math.random())
+                        {
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(0);
+                            XXX.drawImage(humpa, 10, 1057, 38, 38, - (1/2 * 38 * this.size), - (1/2 * 38 * this.size), 38 * this.size, 38* this.size);
+                            XXX.restore();
+                        }
+                        else
+                        {
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(0);
+                            XXX.drawImage(humpa, 10, 1009, 38, 38, - (1/2 * 38 * this.size), - (1/2 * 38 * this.size), 38 * this.size, 38* this.size);
+                            XXX.restore();
+                        }
+
+                        if (this.goTic > 50)
+                        {
+                            this.goTic = 0;
+                        }
+                    }
+                    this.contactDamage(false, 18, ((8 + 0.1 * this.cnx) / 9), 3, "fire");
+                    this.project(this.rotation, 85, 2, true);
                 }
             }
 

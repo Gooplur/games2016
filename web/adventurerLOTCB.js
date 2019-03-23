@@ -549,6 +549,9 @@ function Adventurer()
     this.bahabTrip = false;
     this.controlled = false;
     this.armourPerfect = false; //this determines whether enemy attacks that fail to pass your armour will damage you or not (true is that they will not, false is that they will)
+    this.repelenteTime = 0;
+    this.repelente = false;
+    this.repelenteKeepTime = new Date().getTime();
 
         //faction variables
     this.factionToggle = false;
@@ -1265,6 +1268,7 @@ function Adventurer()
         {
             for (var j = 0; j < this.illnesses.length; j++)
             {
+                var finishIllnessLoop = true;
                 for (var i = 0; i < this.antibodies.length; i++)
                 {
 
@@ -1275,38 +1279,62 @@ function Adventurer()
                     }
                     else
                     {
-                        this.antibodies[i][1] -= 0.001;
+                        this.antibodies[i][1] -= 0.005;
 
                         if (this.illnesses[j][0] == this.antibodies[i][0])
                         {
                             this.illnesses.splice(j, 1);
+                            finishIllnessLoop = false;
                             break;
                         }
                     }
                 }
-                var illDuration = Math.max(6, this.illnesses[j][2] - this.getToughness());
-                if (this.illnesses[j][1] >= illDuration)
+                if (finishIllnessLoop == true)
                 {
-                    this.antibodies.push([this.illnesses[j][0], 2500 + (12 * this.getToughness())]);
-                }
-                else
-                {
-                    this.illnesses[j][1] += 0.001;
-
-                    if (this.illnesses[j][1] >= (illDuration / 8))
+                    var illDuration = Math.max(6, this.illnesses[j][2] - this.getToughness());
+                    if (this.illnesses[j][1] >= illDuration)
                     {
-                        //ILLNESSES TAKE EFFECT HERE
-                        if (this.illnesses[j][0] == "Throat-Frost")
-                        {
-                            //Throat-Frost causes your body to stop producing enough natural heat.
-                            this.warmth -= 0.0002;
+                        this.antibodies.push([this.illnesses[j][0], 2400 + (24 * this.getToughness())]);
+                    }
+                    else
+                    {
+                        this.illnesses[j][1] += 0.005;
 
-                            //by the middle of its duration the body reacts with swelling
-                            if (this.illnesses[j][1] >= (illDuration * 5 / 8) && this.illnesses[j][1] <= (illDuration * 7.25 / 8))
+                        if (this.illnesses[j][1] >= (illDuration / 8))
+                        {
+                            //ILLNESSES TAKE EFFECT HERE
+                            if (this.illnesses[j][0] == "Throat-Frost")
                             {
-                                this.swollenII = true;
-                                swollenTime = Math.max(player.swollenTime, 90);
-                                this.energy -= 0.0001;
+                                //Throat-Frost causes your body to stop producing enough natural heat.
+                                this.warmth -= 0.0002;
+
+                                //by the middle of its duration the body reacts with swelling
+                                if (this.illnesses[j][1] >= (illDuration * 5 / 8) && this.illnesses[j][1] <= (illDuration * 7.25 / 8))
+                                {
+                                    this.swollenII = true;
+                                    swollenTime = Math.max(player.swollenTime, 90);
+                                    this.energy -= 0.0001;
+                                }
+                            }
+                            if (this.illnesses[j][0] == "Lypelis")
+                            {
+                                //Lypelis causes your body to dehydrate.
+                                this.thirst -= 0.0004;
+                                this.energilTime = Math.max(10, this.energilTime);
+                                this.fatigueI = true;
+
+                                //by the middle of its duration the body reacts with swelling
+                                if (this.illnesses[j][1] >= (illDuration * 3 / 8) && this.illnesses[j][1] <= (illDuration * 7.5 / 8))
+                                {
+                                    //rampant dehydration
+                                    this.thirst -= 0.0006;
+                                    this.fatigueII = true;
+                                    //vomitstorm
+                                    if (this.timeSinceBadFoodEaten == 0)
+                                    {
+                                        this.timeSinceBadFoodEaten = new Date().getTime();
+                                    }
+                                }
                             }
                         }
                     }
@@ -3298,6 +3326,21 @@ function Adventurer()
                 this.rangedIII = false;
                 this.rangedIV = false;
                 this.rangedV = false;
+            }
+
+            //repellent
+            if (this.repelenteTime > 0)
+            {
+                if (new Date().getTime() - this.repelenteKeepTime > 1000)
+                {
+                    this.repelenteKeepTime = new Date().getTime();
+                    this.repelenteTime -= 1;
+                }
+                this.repelente = true;
+            }
+            else
+            {
+                this.repelente = false;
             }
         };
 
@@ -6078,19 +6121,6 @@ function Adventurer()
             XXX.restore();
         }
 
-        if (this.venandi >= 200) //venandine
-        {
-            XXX.save();
-            XXX.translate(this.myScreenX, this.myScreenY);
-            XXX.rotate(this.rotation);
-            XXX.drawImage(jungho, 438, 613, 41, 39, -1/2 * 41, -1/2 * 39, 41, 39);
-            if (this.subtlety)
-            {
-                XXX.globalAlpha = 0.2;
-            }
-            XXX.restore();
-        }
-
         //leeches sucking blood from you
         if (this.leeches > 0)
         {
@@ -6543,6 +6573,10 @@ function Adventurer()
         {
             outfit = allWorn[122];
         }
+        else if (this.outfitEquipped == "vardanianSoldierOutfit")
+        {
+            outfit = allWorn[123];
+        }
         else
         {
             outfit = allWorn[0];
@@ -6728,6 +6762,20 @@ function Adventurer()
             this.unskilledUse = false;
         }
 
+        //draw effect (directly under the outfit layer)
+        if (this.venandi >= 200) //venandine
+        {
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(jungho, 438, 613, 41, 39, -1/2 * 41, -1/2 * 39, 41, 39);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.2;
+            }
+            XXX.restore();
+        }
+
         //DRAW OUTFIT
         if (this.outfitEquipped == "walrusLeatherArmour")
         {
@@ -6753,6 +6801,19 @@ function Adventurer()
                 XXX.globalAlpha = 0.4;
             }
             XXX.drawImage(atal, 810, 2407, 89, 47, -(1 / 2 * 89 * 0.7) + 0, -(1 / 2 * 47 * 0.7) - 0, 89 * 0.7, 47 * 0.7);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "vardanianSoldierOutfit")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(dmil, 570, 205, 39, 31, -(1 / 2 * 39 * 1.1) + 1, -(1 / 2 * 31 * 1.1) + 0.30, 39 * 1.1, 31 * 1.1);
             XXX.restore();
         }
         else if (this.outfitEquipped == "jungleHunterOutfit")
@@ -8877,6 +8938,21 @@ function Adventurer()
                             this.secondaryCastingCooldown = new Date().getTime();
                         }
                     }
+                    //Drake Breath
+                    if (secondarySpells[i].ID == "drakeBreath")
+                    {
+                        if (new Date().getTime() - this.secondaryCastingCooldown >= (secondarySpells[i].cooldown * 1000) && this.will - secondarySpells[i].cost >= 0)
+                        {
+                            this.will -= secondarySpells[i].cost;
+                            this.magicalExperience += secondarySpells[i].EXP;
+
+                            magicList.push(new Magic(secondarySpells[i], true, 1));
+                            magicList.push(new Magic(secondarySpells[i], true, 2));
+                            magicList.push(new Magic(secondarySpells[i], true, 3));
+
+                            this.secondaryCastingCooldown = new Date().getTime();
+                        }
+                    }
                     //Doppelganger
                     if (secondarySpells[i].ID == "doppelganger")
                     {
@@ -10252,6 +10328,7 @@ function Adventurer()
                 }
                 XXX.drawImage(polpol, 165, 408, 57, 37, -1/2 * 57 * 1.35, -1/2 * 39 * 1.35, 57 * 1.35, 37 * 1.35);
                 XXX.restore();
+                this.doMagic = true;
             }
             else if (Math.floor(this.stage) <= 3)
             {
@@ -10264,6 +10341,7 @@ function Adventurer()
                 }
                 XXX.drawImage(polpol, 165, 450, 57, 37, -1/2 * 57 * 1.3, -1/2 * 39 * 1.3, 57 * 1.3, 37 * 1.3);
                 XXX.restore();
+                this.doMagic = true;
             }
             else if (Math.floor(this.stage) <= 4)
             {
@@ -10289,7 +10367,7 @@ function Adventurer()
                 }
                 XXX.drawImage(polpol, 175, 570, 37, 29, -1/2 * 37 * 1.25, -1/2 * 29 * 1.25, 37 * 1.25, 29 * 1.25);
                 XXX.restore();
-                if (this.doMagic)
+                if (this.doMagic == true)
                 {
                     this.doMagic = false;
                     this.magicalExperience += this.spell.EXP;
@@ -10697,6 +10775,111 @@ function Adventurer()
                     XXX.globalAlpha = 0.4;
                 }
                 XXX.drawImage(polypol, 1731, 43, 49, 33, -27, -36, 49 * 1.2, 33 * 1.2);
+                XXX.restore();
+                this.castingCooldown = new Date().getTime();
+
+            }
+        }
+
+        //Eruption Form
+        if (this.spell.ID == "eruption")
+        {
+            this.stageEngine(7, 0.25, true);
+
+            var szx = 1.4;
+            //ATTACK
+            if (Math.floor(this.stage) <= 0)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(stic, 100, 18, 43, 46, -1/2 * 43 * szx, -1/2 * 46 * szx, 43 * szx, 46 * szx);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 1)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(stic, 15, 19, 43, 46, -1/2 * 43 * szx, -1/2 * 46 * szx, 43 * szx, 46 * szx);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 2)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(stic, 59, 20, 43, 46, -1/2 * 43 * szx, -1/2 * 46 * szx, 43 * szx, 46 * szx);
+                XXX.restore();
+                this.doMagic = true;
+            }
+            else if (Math.floor(this.stage) <= 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(stic, 100, 20, 43, 46, -1/2 * 43 * szx, -1/2 * 46 * szx, 43 * szx, 46 * szx);
+                XXX.restore();
+                this.doMagic = true;
+            }
+            else if (Math.floor(this.stage) <= 4)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(stic, 141, 17, 43, 46, -1/2 * 43 * szx, -1/2 * 46 * szx, 43 * szx, 46 * szx);
+                XXX.restore();
+                this.doMagic = true;
+            }
+            else if (Math.floor(this.stage) <= 5)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(stic, 194, 15, 43, 46, -1/2 * 43 * szx, -1/2 * 46 * szx, 43 * szx, 46 * szx);
+                XXX.restore();
+                if (this.doMagic == true)
+                {
+                    this.doMagic = false;
+                    this.warmth += 30;
+                    this.magicalExperience += this.spell.EXP;
+                    magicList.push(new Magic(player.spell, true));
+                }
+            }
+            else if (Math.floor(this.stage) >= 6)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(stic, 194, 15, 43, 46, -1/2 * 43 * szx, -1/2 * 46 * szx, 43 * szx, 46 * szx);
                 XXX.restore();
                 this.castingCooldown = new Date().getTime();
 
@@ -21439,17 +21622,20 @@ function Adventurer()
                         {
                             ArtificialIntelligenceAccess[i].burningTime = new Date().getTime();
                         }
-                        else if (this.weapon.ability == "venandi" && (Math.max(0, this.weapon.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour)) > 0))
+                        else if (this.weapon.ability == "venandi")
                         {
                             if (ArtificialIntelligenceAccess[i].health < 1/3 * ArtificialIntelligenceAccess[i].healthMAX || ArtificialIntelligenceAccess[i].resistDisease == false)
                             {
                                 if (ArtificialIntelligenceAccess[i].type == "Person" || ArtificialIntelligenceAccess[i].type == "Soldier" || ArtificialIntelligenceAccess[i].type == "Etyr" || ArtificialIntelligenceAccess[i].type == "Aranea")
                                 {
-                                    ArtificialIntelligenceAccess[i].venandi = 1;
+                                    if (ArtificialIntelligenceAccess[i].venandi <= 0)
+                                    {
+                                        ArtificialIntelligenceAccess[i].venandi = 1;
+                                    }
                                 }
                             }
                         }
-                        else if (this.weapon.ability == "silvered")
+                        else if (this.weapon.ability == "silvered" && (Math.max(0, this.weapon.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour)) > 0))
                         {
                             ArtificialIntelligenceAccess[i].silvered = true;
                         }
@@ -22144,7 +22330,7 @@ function Adventurer()
                             this.jumpBack();
 
                             var jumpHitter = true;
-                            for (var i = 1; i <= 17 + this.jumpDistance; i++)
+                            for (var i = 1; i <= 3 + this.jumpDistance; i++)
                             {
                                 var nextX = X - 3 * i * ((Math.cos(this.rotation + 1 / 2 * Math.PI) * (0.2 / this.freeze) + Math.cos(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * 40 / this.freeze))) * (TTD / 16.75);
                                 var nextY = Y - 3 * i * ((Math.sin(this.rotation + 1 / 2 * Math.PI) * (0.2 / this.freeze) + Math.sin(this.rotation + 1 / 2 * Math.PI) * (1 / 40 * 40 / this.freeze))) * (TTD / 16.75);
@@ -22213,7 +22399,7 @@ function Adventurer()
                     //Segment the jump process
                     if (this.jumpingBack)
                     {
-                        if (this.jBack < (17 + this.jumpDistance))
+                        if (this.jBack < (3 + this.jumpDistance))
                         {
                             this.jumpBack();
                             this.jumpBackKeepTime = new Date().getTime();
@@ -30468,6 +30654,12 @@ function Adventurer()
                                 this.watered = true;
                                 this.fed = true;
                             }
+                            else if (Inventory[i][0].ability == "repelente") //Keeps away certain flesh eating insects
+                            {
+                                this.repelenteKeepTime = new Date().getTime();
+                                this.repelenteTime = 185;
+                                this.repelente = true;
+                            }
                             else if (Inventory[i][0].ability == "wobeaNumbI") //Stuns the player for 6 seconds of stunI
                             {
                                 this.stunnedI = true;
@@ -31764,6 +31956,46 @@ function Adventurer()
                             if (canPlace == true)
                             {
                                 scenicList.push(new Scenery("campFire", X, Y, (Math.random() * (2 * Math.PI)), false));
+
+                                if (Inventory[i][1] - 1 <= 0)
+                                {
+                                    Inventory.splice(i, 1);
+                                }
+                                else
+                                {
+                                    Inventory[i][1] -= 1;
+                                }
+                                break;
+                            }
+                        }
+                        else if (Inventory[i][0].subUtility == "ashaiCampFire")
+                        {
+                            var canPlace = true;
+                            var hits = 0;
+                            for (var j = 0; j < scenicList.length; j++)
+                            {
+                                //19 is the radius of campFire Scenery Object.
+                                if (scenicList[j].X - 24 <= X + scenicList[j].radius && scenicList[j].X + 24 >= X - scenicList[j].radius && scenicList[j].Y - 24 <= Y + scenicList[j].radius && scenicList[j].Y + 24 >= Y - scenicList[j].radius)
+                                {
+                                    canPlace = false;
+                                }
+                            }
+                            for (var j = 0; j < Inventory.length; j++)
+                            {
+                                if (Inventory[j][0].identity != "Fire-Starter")
+                                {
+                                    hits += 1;
+                                }
+                            }
+
+                            if (hits == Inventory.length)
+                            {
+                                canPlace = false;
+                            }
+
+                            if (canPlace == true)
+                            {
+                                scenicList.push(new Scenery("ashaiCampFire", X, Y, (Math.random() * (2 * Math.PI)), false));
 
                                 if (Inventory[i][1] - 1 <= 0)
                                 {

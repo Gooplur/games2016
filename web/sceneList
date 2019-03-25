@@ -164,6 +164,10 @@ mugmulSleepingMat - A sleeping mat made of mugmul fur
 deadDrile - A dead drile that can be any size
 araneaHair - The temporary floating hair particles released from an aranea that stun and acidify and fatigue units and the player
 araneaDen - A hole in the ground in which an aranea lives. If a unit or the player approach it, an aranea will crawl out to meet them (if it is in its den). //scenicList.push(new Scenery("araneaDen", x, y, rotation, isAlpha?, hasSpider?));
+matnaWeb - a spiderweb for deadly jungle pack spiders (matnas) Try not to make them any larger than 2.4 (their size is based on longevity input)
+babosaSlime - the pinkish acidic slime of a babosa (temporary)
+sparks - flaming sparks that light up the night (temporary)
+pyromothWeb - A black web which is where pyromoths undergo their cacoon metamorphisis. "pyromothSilkweb" can be collected from it using shears. //scenicList.push(new Scenery("pyromothWeb", x, y, rotation, size, true/false)); the boolean represents the two shapes of pyromoth web, false: larger, true: narrower
 
 
 

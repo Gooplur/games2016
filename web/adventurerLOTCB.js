@@ -389,6 +389,8 @@ function Adventurer()
     this.stunnedI = false;
     this.stunnedII = false;
     this.stunnedIII = false;
+    this.stunnedX = false;
+    this.stunnedXV = false;
     this.stunnedTime = 0;
     this.wobea = false;
     this.stunTimer = new Date().getTime();
@@ -552,6 +554,7 @@ function Adventurer()
     this.repelenteTime = 0;
     this.repelente = false;
     this.repelenteKeepTime = new Date().getTime();
+    this.undying = false; //when the player's health is zero or below, if this is true the player will be instantly revived with 1/11 of MAX in every combat stat (energy, health)
 
         //faction variables
     this.factionToggle = false;
@@ -2419,7 +2422,7 @@ function Adventurer()
                 this.hinderance = false;
             }
 
-            if (this.stunnedI || this.stunnedII || this.stunnedIII)
+            if (this.stunnedI || this.stunnedII || this.stunnedIII || this.stunnedX || this.stunnedXV)
             {
                 this.stunned = true;
             }
@@ -2431,7 +2434,7 @@ function Adventurer()
             if (this.hinderance == true || this.stunned == true || this.webbed || this.unconscious) //If the player is carrying too much then they are slowed down depending on how much above the maximum they are carrying.
             {
                 //slowness for using armour that is beyond your toughness level.
-                if (this.unconscious == true)
+                if (this.unconscious == true || this.stunnedX == true || this.stunnedXV == true)
                 {
                     this.freeze = Math.max(this.freeze, 100);
                 }
@@ -2634,6 +2637,8 @@ function Adventurer()
                 this.stunnedI = false;
                 this.stunnedII = false;
                 this.stunnedIII = false;
+                this.stunnedX = false; //fully paralyzed but can attack
+                this.stunnedXV = false; //fully paralyzed and cannot attack
                 this.wobea = false;
             }
         };
@@ -4266,6 +4271,10 @@ function Adventurer()
     this.getCanAttack = function()
     {
         if (this.strongWebbed == true)
+        {
+            return false;
+        }
+        else if (this.stunnedXV == true)
         {
             return false;
         }
@@ -6577,6 +6586,10 @@ function Adventurer()
         {
             outfit = allWorn[123];
         }
+        else if (this.outfitEquipped == "pyromothSilkRobe")
+        {
+            outfit = allWorn[124];
+        }
         else
         {
             outfit = allWorn[0];
@@ -7219,7 +7232,7 @@ function Adventurer()
             XXX.drawImage(freeverse, 941, 114, 34, 30, - 1/2 * 34 * 0.9 + 0.4, - 1/2 * 30 * 0.9 + 1.1, 34 * 0.9, 30 * 0.9);
             XXX.restore();
         }
-        else if (this.outfitEquipped == "blackMageRobe")
+        else if (this.outfitEquipped == "blackMageRobe" || this.outfitEquipped == "pyromothSilkRobe")
         {
             this.outfitZ = true;
             XXX.save();
@@ -8390,7 +8403,7 @@ function Adventurer()
                         var blkPwder = -1;
                         for (var j = Inventory.length - 1; j > -1; j--)
                         {
-                            if (Inventory[j][0].type == "blackPowder" && Inventory[j][1] >= 1)
+                            if (Inventory[j][0].identity == "Black-Powder" && Inventory[j][1] >= 1)
                             {
                                 blkPwder = j;
                                 break;
@@ -9114,6 +9127,19 @@ function Adventurer()
                     }
                     //Repelling Ward
                     if (secondarySpells[i].ID == "repellingWard")
+                    {
+                        if (new Date().getTime() - this.secondaryCastingCooldown >= (secondarySpells[i].cooldown * 1000) && this.will - secondarySpells[i].cost >= 0)
+                        {
+                            this.will -= secondarySpells[i].cost;
+                            this.magicalExperience += secondarySpells[i].EXP;
+
+                            magicList.push(new Magic(secondarySpells[i], true));
+
+                            this.secondaryCastingCooldown = new Date().getTime();
+                        }
+                    }
+                    //Undying Ward
+                    if (secondarySpells[i].ID == "undyingWard")
                     {
                         if (new Date().getTime() - this.secondaryCastingCooldown >= (secondarySpells[i].cooldown * 1000) && this.will - secondarySpells[i].cost >= 0)
                         {
@@ -21886,7 +21912,7 @@ function Adventurer()
                 {
                     for (var i = 0; i < Inventory.length; i++)
                     {
-                        if (Inventory[i][1] < 1 && Inventory[i][0].type == "blackPowder")
+                        if (Inventory[i][1] < 1 && Inventory[i][0].identity == "Black-Powder")
                         {
                             Inventory.splice(i, 1);
                             break;
@@ -33179,7 +33205,7 @@ function Adventurer()
     //DEATH SENSING
     this.deathSensor = function()
     {
-        if (this.health <= 0 && this.playerDeath != true)
+        if (this.health <= 0 && this.playerDeath != true && this.undying != true)
         {
             if (player.form != "vampire" && player.gamemode != "protagonist" || player.silvered && player.gamemode != "protagonist")
             {
@@ -33256,6 +33282,13 @@ function Adventurer()
                 }
             }
         }
+        else if (this.health <= 0 && this.undying == true)
+        {
+            this.health = 1/11 * this.healthMAX;
+            this.energy = Math.min(1/11 * this.energyMAX, this.energy);
+        }
+
+        this.undying = false;
     };
 
     //This is a test function that displays the players coords on the screen as text.

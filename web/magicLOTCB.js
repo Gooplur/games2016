@@ -1552,6 +1552,13 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
             this.spin = ((-Math.random() * 2) + 1) /200;
             this.size = 0.1;
         }
+        //WARD OF UNDYING
+        if (this.spellType == "undyingWard")
+        {
+            this.orientToCaster(0, 1 / 2 * Math.PI);
+            this.spin = ((-Math.random() * 1.1) + 0.55) / 200;
+            this.size = 0.1;
+        }
         //FROST WIND
         if (this.spellType == "frostWind")
         {
@@ -2574,6 +2581,55 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                 this.spellTimer(9 + (120 / 50) * this.cnx);
             }
 
+            //WARD OF UNDYING
+            if (this.spellType == "undyingWard")
+            {
+                if (caster)
+                {
+                    if (this.size < 1.1)
+                    {
+                        this.size += 0.05;
+                        this.turn += this.spin;
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.turn);
+                        XXX.drawImage(zapa, 5, 9, 45, 48, - (1/2 * 45 * this.size), - (1/2 * 48 * this.size), 45 * this.size, 48 * this.size);
+                        XXX.restore();
+                    }
+                    else
+                    {
+                        this.turn += this.spin;
+                        this.flashAnimate(90, this.turn, 1, [{image: zapa, imgX: 60, imgY: 7, portionW: 45, portionH: 48, adjX: -1 / 2 * 45 * this.size, adjY: -1 / 2 * 48 * this.size, width: 45 * this.size, height: 48 * this.size}, {image: zapa, imgX: 120, imgY: 9, portionW: 45, portionH: 48, adjX: -1 / 2 * 45 * this.size, adjY: -1 / 2 * 48 * this.size, width: 45 * this.size, height: 48 * this.size}, {image: zapa, imgX: 174, imgY: 9, portionW: 45, portionH: 48, adjX: -1 / 2 * 45 * this.size, adjY: -1 / 2 * 48 * this.size, width: 45 * this.size, height: 48 * this.size}], true, false);
+                        lights.push({X: this.X, Y: this.Y, size: 75, extraStops: true, GRD: 0.86, Alpha: 0.9, showMe: false});
+                    }
+
+                    //revives nearby units
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].type != "Vampire" && ArtificialIntelligenceAccess[i].vamprism != true)
+                        {
+                            if (ArtificialIntelligenceAccess[i].DTU(this) <= 27)
+                            {
+                                ArtificialIntelligenceAccess[i].undying = true;
+                            }
+                        }
+                    }
+
+                    //revives nearby player
+                    var untilPlayer = (X - this.X)*(X - this.X) + (Y - this.Y)*(Y - this.Y);
+
+                    if (untilPlayer <= (27 * 27))
+                    {
+                        if (player.vamprism != true)
+                        {
+                            player.undying = true;
+                        }
+                    }
+                }
+
+                this.spellTimer(11 + (66 / 50) * this.cnx);
+            }
+
             //WHIRLWIND
             if (this.spellType == "whirlwind")
             {
@@ -2845,6 +2901,10 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                         XXX.rotate(0);
                         XXX.drawImage(humpa, 829, 9, 230, 190, - (1/2 * 230 * this.size), - (1/2 * 190 * this.size), 230 * this.size, 190* this.size);
                         XXX.restore();
+                        if (timeOfDay != "Day" || player.underground)
+                        {
+                            lights.push({X: this.X, Y: this.Y, size: 70, extraStops: true, GRD: 0, Alpha: 0.95, showMe: false});
+                        }
                     }
                     else if (this.goTic < 20)
                     {
@@ -2853,6 +2913,10 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                         XXX.rotate(0);
                         XXX.drawImage(humpa, 827, 172, 260, 227, - (1/2 * 260 * this.size), - (1/2 * 227 * this.size), 260 * this.size, 227* this.size);
                         XXX.restore();
+                        if (timeOfDay != "Day" || player.underground)
+                        {
+                            lights.push({X: this.X, Y: this.Y, size: 100, extraStops: true, GRD: 0, Alpha: 0.95, showMe: false});
+                        }
                     }
                     else if (this.goTic < 30)
                     {
@@ -2861,6 +2925,10 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                         XXX.rotate(0);
                         XXX.drawImage(humpa, 807, 405, 321, 303, - (1/2 * 321 * this.size), - (1/2 * 303 * this.size), 321 * this.size, 303 * this.size);
                         XXX.restore();
+                        if (timeOfDay != "Day" || player.underground)
+                        {
+                            lights.push({X: this.X, Y: this.Y, size: 130, extraStops: true, GRD: 0, Alpha: 0.95, showMe: false});
+                        }
                     }
                     else if (this.goTic < 40)
                     {
@@ -2869,6 +2937,10 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                         XXX.rotate(0);
                         XXX.drawImage(humpa, 826, 708, 321, 303, - (1/2 * 321 * this.size), - (1/2 * 303 * this.size), 321 * this.size, 303 * this.size);
                         XXX.restore();
+                        if (timeOfDay != "Day" || player.underground)
+                        {
+                            lights.push({X: this.X, Y: this.Y, size: 160, extraStops: true, GRD: 0, Alpha: 0.95, showMe: false});
+                        }
                     }
                     else if (this.goTic <= 50 || this.goTic > 50)
                     {
@@ -2881,6 +2953,10 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                             {
                                 unitProjectiles.splice(i, 1);
                             }
+                        }
+                        if (timeOfDay != "Day" || player.underground)
+                        {
+                            lights.push({X: this.X, Y: this.Y, size: 190, extraStops: true, GRD: 0, Alpha: 0.95, showMe: false});
                         }
                         XXX.save();
                         XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -2957,6 +3033,10 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                         {
                             this.goTic = 0;
                         }
+                    }
+                    if (timeOfDay != "Day" || player.underground)
+                    {
+                        lights.push({X: this.X, Y: this.Y, size: 28, extraStops: true, GRD: 0, Alpha: 0.9, showMe: false});
                     }
                     this.contactDamage(false, 18, ((8 + 0.1 * this.cnx) / 9), 3, "fire");
                     this.project(this.rotation, 85, 2, true);

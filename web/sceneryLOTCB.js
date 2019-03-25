@@ -481,6 +481,45 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             this.radius = 17;
 
         }
+        else if (this.type == "matnaWeb")
+        {
+            //TRAITS
+            this.solid = false;
+
+            //DRAWSELF
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(jungho, 593, 622, 51, 45, -(1/2 * 51 * 1.7 * this.temporary), -(1/2 * 45 * 1.7 * this.temporary), 51 * 1.7 * this.temporary, 45 * 1.7 * this.temporary);
+            XXX.restore();
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(jungho, 593, 622, 51, 45, -(1/2 * 51 * 1.7 * this.temporary) + 3 * this.temporary, -(1/2 * 45 * 1.7 * this.temporary) + 5 * this.temporary, 51 * 1.7 * this.temporary, 45 * 1.7 * this.temporary);
+            XXX.restore();
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 35 * this.temporary;
+
+            //stick player and units in the web then store the data for spiders to access.
+            this.webbed = [];
+            if (this.playerer <= this.radius)
+            {
+                player.webbedNum = 3;
+                player.webbedTime = new Date().getTime();
+                this.webbed.push(player);
+            }
+            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+            {
+                var unitDist = Math.sqrt((ArtificialIntelligenceAccess[i].X - this.X)*(ArtificialIntelligenceAccess[i].X - this.X) + (ArtificialIntelligenceAccess[i].Y - this.Y)*(ArtificialIntelligenceAccess[i].Y - this.Y));
+                if (unitDist <= this.radius)
+                {
+                    ArtificialIntelligenceAccess[i].webbedNum = 3;
+                    ArtificialIntelligenceAccess[i].webbedTime = new Date().getTime();
+                    this.webbed.push(ArtificialIntelligenceAccess[i]);
+                }
+            }
+        }
         else if (this.type == "web")
         {
             //TRAITS
@@ -9905,6 +9944,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                         player.energy -= 0.6;
                         player.stunnedTime = 6;
                         player.stunnedII = true;
+                        player.poisonI = true;
                         for (var j = 0; j < ArtificialIntelligenceAccess.length; j++)
                         {
                             if (ArtificialIntelligenceAccess[j].baseTeam != "player" && ArtificialIntelligenceAccess[j].dmx == this.dmx)
@@ -9932,6 +9972,10 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                         ArtificialIntelligenceAccess[j].stunTime = new Date().getTime();
                         ArtificialIntelligenceAccess[j].stunTimer = 6;
                         ArtificialIntelligenceAccess[j].stunII = true;
+
+                        ArtificialIntelligenceAccess[j].acidI = true;
+                        ArtificialIntelligenceAccess[j].acidTime = Math.max(new Date().getTime() + 90000, ArtificialIntelligenceAccess[j].acidTime);
+                        ArtificialIntelligenceAccess[j].killNotByPlayer = true;
                     }
                 }
             }
@@ -10677,6 +10721,173 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 }
             }
         }
+        else if (this.type == "sparks")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+
+            if (this.runOneTime)
+            {
+                this.runOneTime = false;
+
+                this.tic = 0.79;
+                this.fireCostume = 0;
+            }
+
+            //Permanence
+            if (typeof(this.owned) != "null" && typeof(this.owned) != "boolean")
+            {
+                this.tic -= 0.04;
+                if (this.tic < 0.04)
+                {
+                    scenicList.splice(scenicList.indexOf(this), 1);
+                }
+            }
+
+            if (typeof(this.owned) != "null" && typeof(this.owned) != "boolean")
+            {
+                this.size = this.owned * 2;
+            }
+            else
+            {
+                this.size = 2;
+            }
+
+            //DRAWSELF
+            if (this.fireCostume <= 8)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.globalAlpha = this.tic;
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jungho, 125, 778, 23, 24, -(1/2 * 23 * this.size / 2), -(1/2 * 24 * this.size / 2), 23 * this.size / 2, 24 * this.size / 2);
+                XXX.restore();
+            }
+            else if (this.fireCostume > 8 && this.fireCostume <= 16)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.globalAlpha = this.tic;
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jungho, 152, 779, 23, 24, -(1/2 * 23 * this.size / 2), -(1/2 * 24 * this.size / 2), 23 * this.size / 2, 24 * this.size / 2);
+                XXX.restore();
+            }
+            else if (this.fireCostume > 16 && this.fireCostume <= 24)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.globalAlpha = this.tic;
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jungho, 174, 778, 23, 24, -(1/2 * 23 * this.size / 2), -(1/2 * 24 * this.size / 2), 23 * this.size / 2, 24 * this.size / 2);
+                XXX.restore();
+            }
+            else if (this.fireCostume > 24 && this.fireCostume <= 32)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.globalAlpha = this.tic;
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jungho, 200, 778, 23, 24, -(1/2 * 23 * this.size / 2), -(1/2 * 24 * this.size / 2), 23 * this.size / 2, 24 * this.size / 2);
+                XXX.restore();
+            }
+            else
+            {
+                this.fireCostume = 0;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.globalAlpha = this.tic;
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jungho, 152, 779, 23, 24, -(1/2 * 23 * this.size / 2), -(1/2 * 24 * this.size / 2), 23 * this.size / 2, 24 * this.size / 2);
+                XXX.restore();
+            }
+
+            this.fireCostume += 7;
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 14 * this.size;
+
+            //FUNCTIONALITY
+            if (timeOfDay != "Day" || player.underground == true && this.dmx == map)
+            {
+                lights.push({X: this.X, Y: this.Y, size: 14 * this.size, extraStops: true, GRD: 0, Alpha: this.tic, showMe: false});
+            }
+
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+        }
+        else if (this.type == "babosaSlime")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+
+            if (this.runOneTime)
+            {
+                this.runOneTime = false;
+
+                this.tic = 0.99;
+            }
+
+            this.tic -= 0.03;
+            if (this.tic < 0.03)
+            {
+                scenicList.splice(scenicList.indexOf(this), 1);
+            }
+
+            if (typeof(this.owned) != "null" && typeof(this.owned) != "boolean")
+            {
+                this.size = this.owned;
+            }
+            else
+            {
+                this.size = 1.5;
+            }
+
+            //DRAWSELF
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.globalAlpha = this.tic;
+            XXX.rotate(this.rotation);
+            XXX.drawImage(zapa, 347, 266, 28, 21, -(1/2 * 28 * this.size), -(1/2 * 21 * this.size), 28 * this.size, 21 * this.size);
+            XXX.restore();
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 14 * this.size;
+
+            //FUNCTIONALITY
+            if (player.acidII == false && player.areBootsEquipped == false && player.armourTotal < 9 && player.outfitEquipped != "jungleHunterOutfit")
+            {
+                if (Math.sqrt((X - this.X) * (X - this.X) + (Y - this.Y) * (Y - this.Y)) <= this.radius)
+                {
+                    player.acidII = true;
+                    player.acidTime = Math.max(player.acidTime, new Date().getTime() + 39000);
+                }
+            }
+
+            for (var j = 0; j < ArtificialIntelligenceAccess.length; j++)
+            {
+                if (ArtificialIntelligenceAccess[j].acidII == false && ArtificialIntelligenceAccess[j].armour < 9 && ArtificialIntelligenceAccess[j].type == "Person" || ArtificialIntelligenceAccess[j].acidII == false && ArtificialIntelligenceAccess[j].armour < 9 && ArtificialIntelligenceAccess[j].type == "Soldier" || ArtificialIntelligenceAccess[j].acidII == false && ArtificialIntelligenceAccess[j].armour < 9 && ArtificialIntelligenceAccess[j].type == "Changeling" || ArtificialIntelligenceAccess[j].acidII == false && ArtificialIntelligenceAccess[j].armour < 4 && ArtificialIntelligenceAccess[j].type != "Person" && ArtificialIntelligenceAccess[j].type != "Soldier" && ArtificialIntelligenceAccess[j].type != "Changeling")
+                {
+                    if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= this.radius + (3/4 * ArtificialIntelligenceAccess[j].sizeRadius) && !ArtificialIntelligenceAccess[j].underground && !ArtificialIntelligenceAccess[j].flying && ArtificialIntelligenceAccess[j].dmx == this.dmx)
+                    {
+                        ArtificialIntelligenceAccess[j].acidII = true;
+                        ArtificialIntelligenceAccess[j].acidTime = Math.max(new Date().getTime() + 39000, ArtificialIntelligenceAccess[j].acidTime);
+                        ArtificialIntelligenceAccess[j].killNotByPlayer = true;
+                    }
+                }
+            }
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+        }
         else if (this.type == "utSlime")
         {
             //TRAITS
@@ -10719,6 +10930,19 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 {
                     player.stunnedI = true;
                     player.stunnedTime = 1;
+                }
+            }
+
+            for (var j = 0; j < ArtificialIntelligenceAccess.length; j++)
+            {
+                if (ArtificialIntelligenceAccess[j].stunI == false)
+                {
+                    if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= this.radius + (3/4 * ArtificialIntelligenceAccess[j].sizeRadius) && !ArtificialIntelligenceAccess[j].underground && !ArtificialIntelligenceAccess[j].flying && ArtificialIntelligenceAccess[j].dmx == this.dmx)
+                    {
+                        ArtificialIntelligenceAccess[j].stunI = true;
+                        ArtificialIntelligenceAccess[j].stunTimer = Math.max(ArtificialIntelligenceAccess[j].stunTimer, 6);
+                        ArtificialIntelligenceAccess[j].stunTime = new Date().getTime();
+                    }
                 }
             }
 
@@ -12035,6 +12259,59 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 }
             }
         }
+        else if (this.type == "crilkPlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.nectar(9);
+            this.solid = true;
+            this.interactionRange = 100;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jungho, 654, 736, 45, 43, -(1/2 * 45), -(1/2 * 43), 45, 43);
+                XXX.restore();
+            }
+            else if (this.phase == "picked")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jungho, 701, 705, 45, 43, -(1/2 * 45), -(1/2 * 43), 45, 43);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 15;
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0)
+            {
+                this.activate = false;
+                this.phase = "picked";
+                var hits = 0;
+                for (var i = 0; i < Inventory.length; i ++)
+                {
+                    if (Inventory[i][0].type == "crilkFruit")
+                    {
+                        Inventory[i][1] += 1 + Math.floor(Math.random()*5);
+                        break;
+                    }
+                    else
+                    {
+                        hits += 1;
+                    }
+                }
+                if (hits == Inventory.length)
+                {
+                    Inventory.push([new Item("crilkFruit", false, false), 1 + Math.floor(Math.random()*5)]);
+                }
+            }
+        }
         else if (this.type == "morshPlant")
         {
             //TRAITS
@@ -12085,6 +12362,83 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 if (hits == Inventory.length)
                 {
                     Inventory.push([new Item("morshPuff", false, false), 1]);
+                }
+            }
+        }
+        else if (this.type == "pyromothWeb")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 90;
+
+            //DRAWSELF
+            if (this.information == false)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jungho, 647, 620, 44, 52, -(1/2 * 44 * this.temporary), -(1/2 * 52 * this.temporary), 44 * this.temporary, 52 * this.temporary);
+                XXX.restore();
+                this.radius = 22 * this.temporary;
+            }
+            else if (this.information == true)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jungho, 649, 582, 37, 28, -(1/2 * 37 * this.temporary), -(1/2 * 28 * this.temporary), 37 * this.temporary, 28 * this.temporary);
+                XXX.restore();
+                this.radius = 14 * this.temporary;
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0)
+            {
+                this.activate = false;
+                var hasShears = false;
+                for (var i = 0; i < Inventory.length; i ++)
+                {
+                    if (Inventory[i][0].type == "shears")
+                    {
+                        hasShears = true;
+                        break;
+                    }
+                }
+
+                if (hasShears)
+                {
+                    var silkSwag = 1;
+                    if (this.information == false)
+                    {
+                        silkSwag += Math.floor(3 * this.temporary)
+                    }
+                    else
+                    {
+                        silkSwag += Math.floor(1 * this.temporary)
+                    }
+
+                    var hits = 0;
+                    for (var i = 0; i < Inventory.length; i ++)
+                    {
+                        if (Inventory[i][0].type == "pyromothSilkweb")
+                        {
+                            Inventory[i][1] += silkSwag;
+                            break;
+                        }
+                        else
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == Inventory.length)
+                    {
+                        Inventory.push([new Item("pyromothSilkweb", false, false), silkSwag]);
+                    }
+
+                    //self delete
+                    scenicList.splice(scenicList.indexOf(this), 1);
                 }
             }
         }
@@ -13453,7 +13807,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 this.activate = false;
                 this.phase = "picked";
                 var hits = 0;
-                for (var i = 0; i < Inventory.length; i ++)
+                for (var i = 0; i < Inventory.length; i++)
                 {
                     if (Inventory[i][0].type == "iodFungi")
                     {
@@ -19458,6 +19812,162 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                         this.treePhase = 1
                     }
                 }
+            }
+        }
+        else if (this.type == "sonjaTree")
+        {
+            //TRAITS
+            this.solid = true;
+            this.interactionRange = 100;
+
+            if (this.runOneTime == true)
+            {
+                this.runOneTime = false;
+
+                //DROPS NUT PODS FROM THE TREE
+                if (currentSeason == "Frost" || this.treePhase == 0 && currentSeason == "Bright") //The nut only falls from the tree when it is not the season frost
+                {
+                    if (currentSeason == "Bright") //twice as many yeol nuts fall during the season called Bounty
+                    {
+                        //Extra fruit Drop
+                        if (Math.floor(Math.random() * 3) == 2)
+                        {
+                            if (Math.floor(Math.random() * 3) == 2)
+                            {
+                                for (var ii = 0; ii < 2; ii++)
+                                {
+                                    var podX = this.X + (Math.random() * 320) - 160;
+                                    var podY = this.Y + (Math.random() * 320) - 160;
+                                    var podDist = Math.sqrt((this.X - podX)*(this.X - podX) + (this.Y - podY)*(this.Y - podY));
+                                    if (podDist > 50)
+                                    {
+                                        scenicList.push(new Scenery("item", podX, podY, 0, false, ["sonja", 1, 0]));
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                var podX = this.X + (Math.random() * 320) - 160;
+                                var podY = this.Y + (Math.random() * 320) - 160;
+                                var podDist = Math.sqrt((this.X - podX)*(this.X - podX) + (this.Y - podY)*(this.Y - podY));
+                                if (podDist > 50)
+                                {
+                                    scenicList.push(new Scenery("item", podX, podY, 0, false, ["sonja", 1, 0]));
+                                }
+                            }
+                        }
+                    }
+                    //fruit Drop
+                    if (Math.floor(Math.random() * 4) == 2)
+                    {
+                        if (Math.floor(Math.random() * 4) == 2)
+                        {
+                            for (var ii = 0; ii < 2; ii++)
+                            {
+                                var podX = this.X + (Math.random() * 320) - 160;
+                                var podY = this.Y + (Math.random() * 320) - 160;
+                                var podDist = Math.sqrt((this.X - podX)*(this.X - podX) + (this.Y - podY)*(this.Y - podY));
+                                if (podDist > 50)
+                                {
+                                    scenicList.push(new Scenery("item", podX, podY, 0, false, ["sonja", 1, 0]));
+                                }
+                            }
+                        }
+                        else
+                        {
+                            var podX = this.X + (Math.random() * 320) - 160;
+                            var podY = this.Y + (Math.random() * 320) - 160;
+                            var podDist = Math.sqrt((this.X - podX)*(this.X - podX) + (this.Y - podY)*(this.Y - podY));
+                            if (podDist > 50)
+                            {
+                                scenicList.push(new Scenery("item", podX, podY, 0, false, ["sonja", 1, 0]));
+                            }
+                        }
+                    }
+                }
+            }
+
+            //DRAWSELF
+            if (this.playerer < 160)
+            {
+                if (currentSeason == "Frost" || currentSeason == "Bright")
+                {
+                    this.zIndex = 6;
+                    XXX.globalAlpha = 0.9;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(humpa, 1802, 26, 279, 242, -(1/2 * 279 * 1.5), -(1/2 * 242 * 1.5), 279 * 1.5, 242 * 1.5);
+                    XXX.restore();
+
+                    XXX.globalAlpha = 0.7;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(humpa, 2128, 24, 279, 242, -(1/2 * 279 * 1.5), -(1/2 * 242 * 1.5), 279 * 1.5, 242 * 1.5);
+                    XXX.restore();
+                    XXX.globalAlpha = 1;
+                }
+                else
+                {
+                    this.zIndex = 6;
+                    XXX.globalAlpha = 0.9;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(humpa, 1482, 26, 279, 242, -(1/2 * 279 * 1.5), -(1/2 * 242 * 1.5), 279 * 1.5, 242 * 1.5);
+                    XXX.restore();
+
+                    XXX.globalAlpha = 0.7;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(humpa, 2128, 24, 279, 242, -(1/2 * 279 * 1.5), -(1/2 * 242 * 1.5), 279 * 1.5, 242 * 1.5);
+                    XXX.restore();
+                    XXX.globalAlpha = 1;
+                }
+            }
+            else
+            {
+                if (currentSeason == "Frost" || currentSeason == "Bright")
+                {
+                    this.zIndex = 6;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(humpa, 1802, 26, 279, 242, -(1/2 * 279 * 1.5), -(1/2 * 242 * 1.5), 279 * 1.5, 242 * 1.5);
+                    XXX.restore();
+
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(humpa, 2128, 24, 279, 242, -(1/2 * 279 * 1.5), -(1/2 * 242 * 1.5), 279 * 1.5, 242 * 1.5);
+                    XXX.restore();
+                }
+                else
+                {
+                    this.zIndex = 6;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(humpa, 1482, 26, 279, 242, -(1/2 * 279 * 1.5), -(1/2 * 242 * 1.5), 279 * 1.5, 242 * 1.5);
+                    XXX.restore();
+
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(humpa, 2128, 24, 279, 242, -(1/2 * 279 * 1.5), -(1/2 * 242 * 1.5), 279 * 1.5, 242 * 1.5);
+                    XXX.restore();
+                }
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 50;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
             }
         }
         else if (this.type == "algae")

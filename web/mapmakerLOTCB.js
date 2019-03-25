@@ -89,9 +89,19 @@ function buildMaster()
                 //scenicList.push(new Scenery("poegroonPlant", 3800, 2500, 0, true));
                 //scenicList.push(new Scenery("gribnoyPlant", 3700, 2500, 0, true));
                 //scenicList.push(new Scenery("maleotPlant", 3600, 2500, 0, true));
+                //ArtificialIntelligenceAccess.push(new Unit(3700, 2500, "Boa", false, "constricto"));
+                //ArtificialIntelligenceAccess.push(new Unit(3600, 2500, "PoisonDartFrog", true, "coqui"));
+                //scenicList.push(new Scenery("sonjaTree", 3600, 2500, 0, true));
+                //scenicList.push(new Scenery("matnaWeb", 3600, 2500, 0, 2.1));
+                //ArtificialIntelligenceAccess.push(new Unit(3600, 2500, "Matna", false, "deathByter"));
+                //ArtificialIntelligenceAccess.push(new Unit(3600, 2500, "Babosa", true, "Glubber", {patrolStops: 3, patrolLoop: true, route:[[3600, 2500], [3500, 2550], [3650, 2600]]}));
+                //scenicList.push(new Scenery("pyromothWeb", 3700, 2500, 0, 1, true));
+                //ArtificialIntelligenceAccess.push(new Unit(3700, 2500, "Pyromoth", true, "Palomilla de Brasas", {patrolStops: 3, patrolLoop: true, route:[[3600, 2500], [3500, 2550], [3650, 2600]]}));
+                //scenicList.push(new Scenery("crilkPlant", 3600, 2500, 3.2, true));
+                //ArtificialIntelligenceAccess.push(new Unit(3600, 2500, "Person", false, "Mr. Dumpty", {race: "Humpty", faction: "Cephrite", personality: "violent", outfit: ["none", 8], weapon: ["none", [3, 2], 3, 22, 2], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: false, route:[[0, 0], [0, 0]], kid: true, kidSize: 2}));
+                //ArtificialIntelligenceAccess.push(new Unit(3400, 2500, "Soldier", false, "Mrs. Dumpty", {race: "Humpty", faction: "Cephrite", con: 5, speed: 0.85, outfit: ["none", 9], weapon: ["none", [3, 3], 3.5, 25, 2], ranged: [false, "arrow", 8, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: false, route:[[0, 0], [0, 0]], kid: true, kidSize: 2.1}));
+                //ArtificialIntelligenceAccess.push(new Unit(3500, 2500, "BlackTroll", false, "Brufga"));
 
-
-                
 
                 //Friches in the plains
                 ArtificialIntelligenceAccess.push(new Unit(2921, -1125, "Frich", false, "Fuzzy Wuzzy"));
@@ -9143,7 +9153,7 @@ function buildMaster()
                  }
                  }
                  }*/
-                ArtificialIntelligenceAccess.push(new Unit(4526, -5718, "Golgemoff", false, "Keek", {patrolStops: 7, patrolLoop: true, route:[[6981, -6924], [6042, -5080], [5943, -4895], [5813, -4301], [-3119, -4307], [-1572, -6834], 4526, -5718]}));
+                ArtificialIntelligenceAccess.push(new Unit(4526, -5718, "Golgemoff", false, "Keek", {patrolStops: 7, patrolLoop: true, route:[[6981, -6924], [6042, -5080], [5943, -4895], [5813, -4301], [-3119, -4307], [-1572, -6834], [4526, -5718]]}));
 
                 //Evrak and Avrak dominating the plains!!!
                 ArtificialIntelligenceAccess.push(new Unit(577, -5839, "Evrak", false, "elvin"));

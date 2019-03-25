@@ -1503,6 +1503,58 @@ function Item(type, x, y)
             this.spellKnowledgeRequirement = 18;
             this.spellRange = "Short";
         }
+        else if (this.type == "undyingWard")
+        {
+            //For All Items
+            if (player.getKnowledge() >= 30)
+            {
+                this.identity = "Scroll of Undying Ward";
+                this.description = "Studying this scroll will teach you how to form a ward of undying that will will bring you and anyone standing within it back to life upon dying.";
+                this.intForDes = 0;
+                this.intDescription = "This scroll was gifted to humanity by a powerful arch demon.";
+                this.buyValue = 11000; // at max, buy for 11000.
+                this.sellValue = 11000; // at max, sell for 11000.
+            }
+            else
+            {
+                this.description = "The markings on this scroll look unnatural and wrong at the deepest of levels.";
+                this.intForDes = 50;
+                this.intDescription = "The markings resemble the lost language of death; it appears to be a contract with death itself...";
+                this.buyValue = 11000; // at max, buy for 11000.
+                if (player.getIntelligence() >= 50)
+                {
+                    this.identity = "Contract with Death Itself";
+                    this.sellValue = 1100; // at max, sell for 1100.
+                }
+                else
+                {
+                    this.identity = "Scroll";
+                    this.sellValue = 1; // at max, sell for 1.
+                }
+            }
+            this.weight = 11;
+            this.size = 12;
+
+            //Define Utility
+            this.utility = "spell";
+
+            //ability
+            this.ability = "none";
+
+            //Utility Focused
+            this.damages = false;
+            this.spellDamage = 0;
+            this.spellCost = Math.max(11, 11 + (11/50) * player.getConcentration() - (11/50) * player.getEminence());
+            this.spellGroup = "Incantation";
+            this.spellGenre = "Nechromancy";
+            this.spellName = "Undying Ward";
+            this.spellID = "undyingWard";
+            this.spellEXP = 66 * ((50 + player.getMemory()) / 50);
+            this.spellCooldown = Math.max(81, 90 + (150/50) * player.getConcentration() - (300/50) * player.getEminence());
+            this.spellDescription = "A circle of magical sigils that shields whomever is inside the ward from death itself.";
+            this.spellKnowledgeRequirement = 30;
+            this.spellRange = "Short";
+        }
         else if (this.type == "frostWind")
         {
             //For All Items
@@ -4467,6 +4519,261 @@ function Item(type, x, y)
             this.buyValue = 76 - Math.floor(player.getCharisma() / 8); // at max, buy for 70.
             this.sellValue = 60 + Math.floor(player.getCharisma() / 5); // at max, sell for 70.
         }
+        else if (this.type == "sonja")
+        {
+            //For All Items
+            this.identity = "Sonja";
+            this.weight = 4;
+            this.size = 12;
+            this.description = "A large tree fruit that is covered in golden sap filled bubbles.";
+            this.intForDes = 9;
+            this.intDescription = "The fruit's bubbles are meant to prevent serious bruising when the fruit falls from the tall sonja tree it grows on.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["sonjaFruit", 1], ["sonjaBubble", 32]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -2.5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 15; // at max, buy for 15.
+            this.sellValue = 15; // at max, sell for 15.
+        }
+        else if (this.type == "sonjaSlice")
+        {
+            //For All Items
+            this.identity = "Sonja Slice";
+            this.weight = 0.62;
+            this.size = 8;
+            this.description = "A tender and glistening golden-yellow slice of sonja fruit.";
+            this.intForDes = 0;
+            this.intDescription = "It has a sweet, smooth, tropical flavour with some notes of honey, ripe mango, and honeysuckle.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 4.6; //satisfies hunger.
+            this.thirst = 0.8; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.1; //recoops lost energy.
+            this.replenish = 0.1; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3; // at max, buy for 3.
+            this.sellValue = 2; // at max, sell for 2.
+        }
+        else if (this.type == "sonjaBubble")
+        {
+            //For All Items
+            this.identity = "Sonja Bubble";
+            this.weight = 0.01;
+            this.size = 2;
+            this.description = "A golden sap filled bubble from a sonja.";
+            this.intForDes = 0;
+            this.intDescription = "The sap is sweet, has the conistency of a syrup, and has a pleasant flavour that lies somwhere between tropical fruit and honey.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1.2; //satisfies hunger.
+            this.thirst = 0.3; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.05; //recoops lost energy.
+            this.replenish = 0.01; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 1.
+        }
+        else if (this.type == "jarOfSonjaSap")
+        {
+            //For All Items
+            this.identity = "Jar of Sonja Sap";
+            this.weight = 1.5;
+            this.size = 7;
+            this.description = "A glass jar full of the sweet syrup of the sonja fruit.";
+            this.intForDes = 0;
+            this.intDescription = "This can be used to make cephrian desserts, or drinks, or it can simply be consumed as it is, though that would be overwhelmingly sweet.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["glassJar", 1]];
+
+            //Utility Focused
+            this.isRegenerative = true; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 36; //satisfies hunger.
+            this.thirst = 13; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = -1; //heals health.
+            this.generation = -12; //recoops lost energy.
+            this.replenish = -4; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 0;
+            this.ingredients = [["Sonja Bubble", 29], ["Glass Jar", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 16 - Math.floor(player.getCharisma() / 15); // at max, buy for 13.
+            this.sellValue = 11 + Math.floor(player.getCharisma() / 25); // at max, sell for 13.
+        }
+        else if (this.type == "sonjaFruit")
+        {
+            //For All Items
+            this.identity = "Plucked Sonja";
+            this.weight = 3.7;
+            this.size = 11;
+            this.description = "A large, hard shelled, tree fruit that has green marks all over it from where its sap filled bubbels have been plucked off.";
+            this.intForDes = 1;
+            this.intDescription = "The fruit must be sliced before it can be eaten because it has a very thick shell.";
+
+            //Define Utility
+            if (player.getIntelligence() >= 1)
+            {
+                this.utility = "food";
+                this.subUtility = "reusable";
+                this.refund = [["sonjaSlice", 6]];
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 0; //satisfies hunger.
+                this.thirst = 0; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = -1.5; //recoops lost energy.
+                this.replenish = 0; //restores will.
+            }
+            else
+            {
+                //Define Utility
+                this.utility = "material";
+            }
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 13; // at max, buy for 13.
+            this.sellValue = 13; // at max, sell for 13.
+        }
+        else if (this.type == "sonjaPuree")
+        {
+            //For All Items
+            this.identity = "Sonja Puree";
+            this.weight = 1;
+            this.size = 6;
+            this.description = "A pint glass filled with pureed sonja fruit.";
+            this.intForDes = 0;
+            this.intDescription = "It is a somewhat thick liquid with a sweet, smooth, tropical flavour.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["pintGlass", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 8; //satisfies hunger.
+            this.thirst = 4; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.2; //recoops lost energy.
+            this.replenish = 0.2; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 0;
+            this.ingredients = [["Pint Glass", 1], ["Sonja Slice", 2]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 7; // at max, buy for 7.
+            this.sellValue = 6; // at max, sell for 6.
+        }
+        else if (this.type == "spicedSonjaPuree")
+        {
+            //For All Items
+            this.identity = "Spiced Sonja Puree";
+            this.weight = 1;
+            this.size = 6;
+            this.description = "A pint glass filled with pureed sonja fruit and topped with a spicy red mouth-numbing powder.";
+            if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite")
+            {
+                this.intForDes = 0;
+                this.intDescription = "The spiciness compliments the sweetness giving it a rich, bold, and well-rounded tropical flavour.";
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 9; //satisfies hunger.
+                this.thirst = 5; //quenches thirst.
+                this.warmth = 1; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 0.3; //recoops lost energy.
+                this.replenish = 0.3; //restores will.
+
+                //ability
+                this.ability = "quench";
+            }
+            else
+            {
+                this.intForDes = 0;
+                this.intDescription = "The insect-like spiciness is uncomfortable and completely ruins its otherwise good sweet tropical flavour.";
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 7; //satisfies hunger.
+                this.thirst = 3.5; //quenches thirst.
+                this.warmth = 1; //warms player.
+                this.heal = -0.65; //heals health.
+                this.generation = -0.25; //recoops lost energy.
+                this.replenish = -0.15; //restores will.
+
+                //ability
+                this.ability = "none";
+            }
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["pintGlass", 1]];
+
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 0;
+            this.ingredients = [["Sonja Puree", 1], ["Zaf Beetle Whiskers", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 11; // at max, buy for 11.
+            this.sellValue = 10; // at max, sell for 10.
+        }
         else if (this.type == "apotlPepper")
         {
             //For All Items
@@ -6587,6 +6894,160 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
         }
+        else if (this.type == "rawBabosaFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Babosa Flesh";
+            this.weight = 5;
+            this.size = 10;
+            this.description = "The raw gooey flesh of a babosa.";
+            this.intForDes = 2;
+            this.intDescription = "This is poisonous to eat.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 2; //satisfies hunger.
+            this.thirst = 1; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -4; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "poisonII";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            if (shopkeeper != "none")
+            {
+                if (shopkeeper.ultra.race == "Cephrite")
+                {
+                    this.buyValue = 3; // at max, buy for 3.
+                    this.sellValue = 3; // at max, sell for 3.
+                }
+                else
+                {
+                    this.buyValue = 1; // at max, buy for 1.
+                    this.sellValue = 1; // at max, sell for 1.
+                }
+            }
+            else
+            {
+                this.buyValue = 1; // at max, buy for 1.
+                this.sellValue = 1; // at max, sell for 1.
+            }
+        }
+        else if (this.type == "fermentedBabosaFlesh")
+        {
+            //For All Items
+            this.identity = "Fermented Babosa Flesh";
+            this.weight = 5;
+            this.size = 10;
+            this.description = "The putrid, festering, gooey, rotting flesh of a babosa; this is extremely dangerous to eat.";
+            this.intForDes = 10;
+            this.intDescription = "It functions as a changer in alchemy.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = true; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1; //satisfies hunger.
+            this.thirst = 1; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = -9; //heals health.
+            this.generation = -9; //recoops lost energy.
+            this.replenish = -9; //restores will.
+
+            //ability
+            this.ability = "poisonIV";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 27;
+            this.ingredients = [["Raw Babosa Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 11; // at max, buy for 11.
+            this.sellValue = 11; // at max, sell for 11.
+        }
+        else if (this.type == "babosaMeat")
+        {
+            //For All Items
+            this.identity = "Babosa Meat";
+            this.weight = 5;
+            this.size = 10;
+            this.description = "The soft somewhat bitter pasty meat of a babosa.";
+            if (player.raceName == "Cephrite")
+            {
+                this.intForDes = 0;
+                this.intDescription = "Not only is this safe to eat, it has a uniquely creamy aftertaste that is absolutely mouthwatering.";
+            }
+            else
+            {
+                this.intForDes = 4;
+                this.intDescription = "Cooking it deteriorated the poisonous compounds within it, but eating it would still be an unthinkable atrocity to your stomach.";
+            }
+
+            //Define Utility
+            this.utility = "food";
+
+            if (player.raceName == "Cephrite")
+            {
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 9; //satisfies hunger.
+                this.thirst = 1.5; //quenches thirst.
+                this.warmth = 3; //warms player.
+                this.heal = 0.05; //heals health.
+                this.generation = 0.1; //recoops lost energy.
+                this.replenish = 0.05; //restores will.
+
+                //ability
+                this.ability = "none";
+            }
+            else
+            {
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 6; //satisfies hunger.
+                this.thirst = 1; //quenches thirst.
+                this.warmth = 2; //warms player.
+                this.heal = -0.2; //heals health.
+                this.generation = -6; //recoops lost energy.
+                this.replenish = -1; //restores will.
+
+                //ability
+                this.ability = "foodPoisoning";
+            }
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 10;
+            this.ingredients = [["Raw Babosa Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            if (shopkeeper != "none")
+            {
+                if (shopkeeper.ultra.race == "Cephrite")
+                {
+                    this.buyValue = 8; // at max, buy for 8.
+                    this.sellValue = 8; // at max, sell for 8.
+                }
+                else
+                {
+                    this.buyValue = 1; // at max, buy for 1.
+                    this.sellValue = 0; // at max, sell for 0.
+                }
+            }
+            else
+            {
+                this.buyValue = 1; // at max, buy for 1.
+                this.sellValue = 0; // at max, sell for 0.
+            }
+        }
         else if (this.type == "rawMolteFlesh")
         {
             //For All Items
@@ -8633,6 +9094,42 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 4; // at max, buy for 3.
             this.sellValue = 0 + Math.floor(player.getCharisma() / 12); // at max, sell for 4.
+        }
+        else if (this.type == "crilkFruit")
+        {
+            //For All Items
+            this.identity = "Crilk";
+            this.weight = 1.4;
+            this.size = 8;
+            this.description = "The fruit of the crilk plant; it has a rubbery skin that does not break easily.";
+            this.intForDes = 0;
+            if (player.getIntelligence() >= 7)
+            {
+                this.intDescription = "It is filled with a thick gooey liquid with little black seeds floating in it; it is poisonous to eat.";
+            }
+            else
+            {
+                this.intDescription = "It is filled with a thick gooey liquid with little black seeds floating in it; it tastes sour.";
+            }
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1.2; //satisfies hunger.
+            this.thirst = 3.2; //quenches thirst.
+            this.warmth = -2; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -0.24; //recoops lost energy.
+            this.replenish = 0.1; //restores will.
+
+            //ability
+            this.ability = "poisonIII";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3; // at max, buy for 3.
+            this.sellValue = 2; // at max, sell for 2.
         }
         else if (this.type == "bequonFruit")
         {
@@ -13396,10 +13893,10 @@ function Item(type, x, y)
         else if (this.type == "ashaiWoodBarrel")
         {
             //For All Items
-            this.identity = "ashaiWood Barrel";
+            this.identity = "Ashai Wood Barrel";
             this.weight = 20;
             this.size = 18;
-            this.description = "A barrel made of ashaiWood.";
+            this.description = "A barrel made of Ashai Wood.";
             this.intForDes = 0;
             this.intDescription = "Its empty.";
 
@@ -13421,10 +13918,10 @@ function Item(type, x, y)
         else if (this.type == "ashaiWoodBarrelOfWater")
         {
             //For All Items
-            this.identity = "ashaiWood Barrel Of Water";
+            this.identity = "Ashai Wood Barrel Of Water";
             this.weight = 20;
             this.size = 18;
-            this.description = "A water filled barrel made of ashaiWood.";
+            this.description = "A water filled barrel made of Ashai Wood.";
             this.intForDes = 0;
             this.intDescription = "Its empty.";
 
@@ -13627,7 +14124,7 @@ function Item(type, x, y)
             //Crafting
             this.yield = 1;
             this.intForCraft = 42;
-            this.ingredients = [["ashaiWood Barrel", 1], ["Chyoul Berries", 720]];
+            this.ingredients = [["Ashai Wood Barrel", 1], ["Chyoul Berries", 720]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 2605; // at max, buy for 2605.
@@ -13742,7 +14239,7 @@ function Item(type, x, y)
             this.size = 6;
             this.description = "A glass pint of chyoul berry wine.";
             this.intForDes = 0;
-            this.intDescription = "This smokey smelling wine is made from chyoul berries and it is is aged in ashaiWood.";
+            this.intDescription = "This smokey smelling wine is made from chyoul berries and it is is aged in Ashai Wood.";
 
             //Define Utility
             this.utility = "food";
@@ -15904,7 +16401,7 @@ function Item(type, x, y)
             this.size = 10;
             this.description = "The thick leathery green skin of a nog.";
             this.intForDes = 4;
-            this.intDescription = "This hide has fire-resistant qualities.";
+            this.intDescription = "This hide has semi-fire-resistant qualities.";
 
             //Define Utility
             this.utility = "material";
@@ -16299,6 +16796,46 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 5 - Math.floor(player.getCharisma() / 15); // at max, buy for 2.
             this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+        }
+        else if (this.type == "orangeDartFrogSkin")
+        {
+            //For All Items
+            this.identity = "Dart Frog Skin";
+            this.weight = 0.011;
+            this.size = 4;
+            this.description = "The poisonous skin of an orange poison dart frog.";
+            this.intForDes = 1;
+            this.intDescription = "Make sure not to pick up dart frogs with your bare hands...";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 4 - Math.floor(player.getCharisma() / 50); // at max, buy for 3.
+            this.sellValue = 2 + Math.floor(player.getCharisma() / 50); // at max, sell for 3.
+        }
+        else if (this.type == "greenDartFrogSkin")
+        {
+            //For All Items
+            this.identity = "Dart Frog Skin";
+            this.weight = 0.011;
+            this.size = 4;
+            this.description = "The poisonous skin of a green poison dart frog.";
+            this.intForDes = 1;
+            this.intDescription = "Make sure not to pick up dart frogs with your bare hands...";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 4 - Math.floor(player.getCharisma() / 50); // at max, buy for 3.
+            this.sellValue = 2 + Math.floor(player.getCharisma() / 50); // at max, sell for 3.
         }
         else if (this.type == "koivayaPelt")
         {
@@ -18380,6 +18917,35 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 8 - Math.floor(player.getCharisma() / 25); // at max, buy for 6.
             this.sellValue = 2 + Math.floor(player.getCharisma() / 15); // at max, sell for 5.
+        }
+        else if (this.type == "humptyChalaza")
+        {
+            //For All Items
+            this.identity = "Humpty Chalaza";
+            this.weight = 1;
+            this.size = 7;
+            this.description = "The Spiral band that connected the humpty's yolk to its inner membrane.";
+            this.intForDes = 25;
+            this.intDescription = "This is a powful magical ingredient used in the making of Cephrian tinctures.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 3; //satisfies hunger.
+            this.thirst = 0.5; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.00; //recoops lost energy.
+            this.replenish = 2; //restores will.
+
+            //ability
+            this.ability = "foodPoisoning";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 18 - Math.floor(player.getCharisma() / 50); // at max, buy for 17.
+            this.sellValue = 15 + Math.floor(player.getCharisma() / 25); // at max, sell for 17.
         }
         else if (this.type == "mofflingMeat")
         {
@@ -23682,6 +24248,92 @@ function Item(type, x, y)
             this.buyValue = 3 - Math.floor(player.getCharisma() / 50); // at max, buy for 2.
             this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
         }
+        else if (this.type == "rawBoaFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Boa Flesh";
+            this.weight = 3.7;
+            this.size = 15;
+            this.description = "A large cut of raw flesh from a boa constrictor.";
+            if (player.raceName == "Cephrite")
+            {
+                this.intForDes = 0;
+                this.intDescription = "Boa is a traditional Cephrian food; it is sometimes eaten raw, but more often eaten cooked.";
+            }
+            else
+            {
+                this.intForDes = 2;
+                this.intDescription = "Boa is traditionally eaten by the Cephrian people. it can safely be eaten raw, but it tastes better cooked.";
+            }
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 4; //satisfies hunger.
+            this.thirst = 1; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -1; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 6 - Math.floor(player.getCharisma() / 50); // at max, buy for 5.
+            this.sellValue = 4 + Math.floor(player.getCharisma() / 50); // at max, sell for 5.
+        }
+        else if (this.type == "boaMeat")
+        {
+            //For All Items
+            this.identity = "Boa Meat";
+            this.weight = 3.5;
+            this.size = 15;
+            this.description = "A large cooked section of meat from a boa constrictor.";
+            if (player.raceName == "Cephrite")
+            {
+                this.intForDes = 0;
+                this.intDescription = "Boa is a traditional Cephrian food. It has a relatively bland, savoury flavour and is a little chewy.";
+            }
+            else
+            {
+                this.intForDes = 2;
+                this.intDescription = "Boa is traditionally eaten by the Cephrian people. It has a relatively bland, savoury flavour and is a little chewy.";
+            }
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 14; //satisfies hunger.
+            this.thirst = 0.45; //quenches thirst.
+            this.warmth = 4; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            if (player.raceName == "Cephrite")
+            {
+                this.ability = "satiate";
+            }
+            else
+            {
+                this.ability = "none";
+            }
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 13;
+            this.ingredients = [["Raw Boa Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 13 - Math.floor(player.getCharisma() / 50); // at max, buy for 12.
+            this.sellValue = 10 + Math.floor(player.getCharisma() / 25); // at max, sell for 12.
+        }
         else if (this.type == "araneaFang")
         {
             //For All Items
@@ -25524,6 +26176,71 @@ function Item(type, x, y)
             this.buyValue = 4; // at max, buy for 4.
             this.sellValue = 4; // at max, sell for 4.
         }
+        else if (this.type == "pyromothPowder")
+        {
+            //For All Items
+            this.identity = "Black-Powder";
+            this.weight = 0.0001;
+            this.size = 4;
+            this.description = "The combustible residue from the wings of a pyromoth.";
+            this.intForDes = 0;
+            this.intDescription = "It is a fine grained powder that is highly flammable.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 6; // at max, buy for 6.
+            this.sellValue = 6; // at max, sell for 6.
+        }
+        else if (this.type == "pyromothSilkweb")
+        {
+            //For All Items
+            this.identity = "Pyromoth Web";
+            this.weight = 0.05;
+            this.size = 8;
+            this.description = "The flame resistant web of a pyromoth.";
+            this.intForDes = 10;
+            this.intDescription = "This can be woven into pyromoth silk.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 2; // at max, sell for 2.
+        }
+        else if (this.type == "pyromothSilk")
+        {
+            //For All Items
+            this.identity = "Pyromoth Silk";
+            this.weight = 3;
+            this.size = 14;
+            this.description = "A roll of pyromoth silk.";
+            this.intForDes = 5;
+            this.intDescription = "This delicate and beautiful black silk is completely fire proof.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 22;
+            this.ingredients = [["Pyromoth Web", 60]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 155 - Math.floor(player.getCharisma() / 5.55555555); // at max, buy for 146.
+            this.sellValue = 140 + Math.floor(player.getCharisma() / 8.333); // at max, sell for 146.
+        }
         else if (this.type == "vardanianCrossbow")
         {
             //For All Items
@@ -25551,7 +26268,7 @@ function Item(type, x, y)
             //Crafting
             this.yield = 1;
             this.intForCraft = 26;
-            this.ingredients = [["ashaiWood", 5]];
+            this.ingredients = [["Ashai Wood", 5]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 50 - Math.floor(player.getCharisma() / 12); // at max, buy for 46.
@@ -25583,7 +26300,7 @@ function Item(type, x, y)
             //Crafting
             this.yield = 26;
             this.intForCraft = 11;
-            this.ingredients = [["ashaiWood", 1], ["Iron", 1]];
+            this.ingredients = [["Ashai Wood", 1], ["Iron", 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 1; // at max, buy for 1.
@@ -32743,6 +33460,64 @@ function Item(type, x, y)
             this.buyValue = 50 - Math.floor(player.getCharisma() / 10); // at max, buy for 45.
             this.sellValue = 42 + Math.floor(player.getCharisma() / 15); // at max, sell for 45.
         }
+        else if (this.type == "pyromothSilkRobe")
+        {
+            //For All Items
+            this.identity = "Pyromoth Silk Robe";
+            this.weight = 3;
+            this.size = 26;
+            this.description = "A sleek black hooded robe sewn purely from pyromoth silk.";
+            this.intForDes = 5;
+            this.intDescription = "This robe shields its wearer from flames, as pyromoth silk is fire resistant.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0;
+            this.thirstRetention = 0.5;
+            this.shockResist = 0;
+            this.fireProofing = 50;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 9;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = -8;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 28;
+            this.ingredients = [["Pyromoth Silk", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 216 - Math.floor(player.getCharisma() / 10); // at max, buy for 211.
+            this.sellValue = 201 + Math.floor(player.getCharisma() / 5); // at max, sell for 211.
+        }
         else if (this.type == "assassinWrappings")
         {
             //For All Items
@@ -33956,7 +34731,7 @@ function Item(type, x, y)
 
             this.yield = 3;
             this.intForCraft = 37;
-            this.ingredients = [["Thrice Forged Steel", 3], ["Silver", 1], ["Gold", 1], ["Pyromoth Silk", 3], ["Red Dye", 2]];
+            this.ingredients = [["Thrice Forged Steel", 3], ["Silver", 1], ["Gold", 1], ["Pyromoth Silk", 1], ["Red Dye", 2]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 125 - Math.floor(player.getCharisma() / 10); // at max, buy for 120.
@@ -35426,6 +36201,81 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "humptyChalaza")
+        {
+            XXX.beginPath();
+            XXX.drawImage(humpa, 657, 423, 41, 41, X - this.X + (1/2 * CCC.width) - (1/2 * 41 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 41 * 1), 41 * 1, 41 * 1);
+        }
+        else if (this.type == "crilkFruit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 773, 786, 15, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 15 * 1), 15 * 1, 15 * 1);
+        }
+        else if (this.type == "pyromothSilk")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 4, 401, 19, 38, X - this.X + (1/2 * CCC.width) - (1/2 * 19 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 38 * 1), 19 * 1, 38 * 1);
+        }
+        else if (this.type == "pyromothSilkweb")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 649, 582, 37, 28, X - this.X + (1/2 * CCC.width) - (1/2 * 37 * 0.64), Y - this.Y + (1/2 * CCC.height) - (1/2 * 28 * 0.64), 37 * 0.64, 28 * 0.64);
+        }
+        else if (this.type == "fermentedBabosaFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(zapa, 346, 289, 28, 21, X - this.X + (1/2 * CCC.width) - (1/2 * 28 * 1.55), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21 * 1.55), 28 * 1.55, 21 * 1.55);
+        }
+        else if (this.type == "babosaMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(zapa, 346, 240, 28, 21, X - this.X + (1/2 * CCC.width) - (1/2 * 28 * 1.45), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21 * 1.45), 28 * 1.45, 21 * 1.45);
+        }
+        else if (this.type == "rawBabosaFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(zapa, 346, 222, 28, 21, X - this.X + (1/2 * CCC.width) - (1/2 * 28 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21 * 1.5), 28 * 1.5, 21 * 1.5);
+        }
+        else if (this.type == "sonja")
+        {
+            XXX.beginPath();
+            XXX.drawImage(humpa, 658, 1116, 20, 21, X - this.X + (1/2 * CCC.width) - (1/2 * 20 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21 * 1.5), 20 * 1.5, 21 * 1.5);
+        }
+        else if (this.type == "sonjaFruit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(humpa, 687, 1116, 20, 21, X - this.X + (1/2 * CCC.width) - (1/2 * 20 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21 * 1.5), 20 * 1.5, 21 * 1.5);
+        }
+        else if (this.type == "sonjaBubble")
+        {
+            XXX.beginPath();
+            XXX.drawImage(humpa, 708, 1116, 20, 21, X - this.X + (1/2 * CCC.width) - (1/2 * 20 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21 * 1.5), 20 * 1.5, 21 * 1.5);
+        }
+        else if (this.type == "sonjaSlice")
+        {
+            XXX.beginPath();
+            XXX.drawImage(humpa, 726, 1116, 20, 21, X - this.X + (1/2 * CCC.width) - (1/2 * 20 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21 * 1.5), 20 * 1.5, 21 * 1.5);
+        }
+        else if (this.type == "greenDartFrogSkin")
+        {
+            XXX.beginPath();
+            XXX.drawImage(humpa, 766, 1100, 21, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 21 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 15 * 1), 21 * 1, 15 * 1);
+        }
+        else if (this.type == "orangeDartFrogSkin")
+        {
+            XXX.beginPath();
+            XXX.drawImage(humpa, 745, 1116, 21, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 21 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 15 * 1), 21 * 1, 15 * 1);
+        }
+        else if (this.type == "rawBoaFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(humpa, 28, 1251, 67, 33, X - this.X + (1/2 * CCC.width) - (1/2 * 67 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 33 * 1), 67 * 1, 33 * 1);
+        }
+        else if (this.type == "boaMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(humpa, 28, 1289, 67, 33, X - this.X + (1/2 * CCC.width) - (1/2 * 67 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 33 * 1), 67 * 1, 33 * 1);
+        }
         else if (this.type == "driedPoegroonMushrooms")
         {
             XXX.beginPath();
@@ -35559,12 +36409,12 @@ function Item(type, x, y)
         else if (this.type == "blackTrollPelt")
         {
             XXX.beginPath();
-            XXX.drawImage(stic, 937, 20, 43, 36, X - this.X + (1/2 * CCC.width) - (1/2 * 43 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 36 * 1), 43 * 1, 36 * 1);
+            XXX.drawImage(stic, 937, 20, 43, 36, X - this.X + (1/2 * CCC.width) - (1/2 * 43 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 36 * 1.4), 43 * 1.4, 36 * 1.4);
         }
         else if (this.type == "blackTrollSkull")
         {
             XXX.beginPath();
-            XXX.drawImage(stic, 938, 96, 43, 36, X - this.X + (1/2 * CCC.width) - (1/2 * 43 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 36 * 1), 43 * 1, 36 * 1);
+            XXX.drawImage(stic, 938, 96, 43, 36, X - this.X + (1/2 * CCC.width) - (1/2 * 43 * 1.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 36 * 1.3), 43 * 1.3, 36 * 1.3);
         }
         else if (this.type == "cruorccaNeedle")
         {
@@ -38144,7 +38994,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(mofu, 1321, 16, 5, 5, X - this.X + (1/2 * CCC.width) - (1/2 * 8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 8), 8, 8);
         }
-        else if (this.type == "blackPowder")
+        else if (this.type == "blackPowder" || this.type == "pyromothPowder")
         {
             XXX.beginPath();
             XXX.drawImage(mofu, 1350, 13, 13, 11, X - this.X + (1/2 * CCC.width) - (1/2 * 13), Y - this.Y + (1/2 * CCC.height) - (1/2 * 11), 13, 11);
@@ -38636,6 +39486,16 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(freeverse, 204, 17, 11, 10, X - this.X + (1/2 * CCC.width) - (1/2 * 11 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 10 * 1.5), 11 * 1.5, 10 * 1.5);
         }
+        else if (this.type == "sonjaPuree")
+        {
+            XXX.beginPath();
+            XXX.drawImage(humpa, 769, 1134, 14, 9, X - this.X + (1/2 * CCC.width) - (1/2 * 14 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 9 * 1.5), 14 * 1.5, 9 * 1.5);
+        }
+        else if (this.type == "spicedSonjaPuree")
+        {
+            XXX.beginPath();
+            XXX.drawImage(humpa, 783, 1134, 14, 9, X - this.X + (1/2 * CCC.width) - (1/2 * 14 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 9 * 1.5), 14 * 1.5, 9 * 1.5);
+        }
         else if (this.type == "harstGrain")
         {
             XXX.beginPath();
@@ -38891,7 +39751,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 1844, 64, 37, 32, X - this.X + (1/2 * CCC.width) - (1/2 * 37), Y - this.Y + (1/2 * CCC.height) - (1/2 * 32), 37, 32);
         }
-        else if (this.type == "embers" || this.type == "fireballI" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "drainingI" || this.type == "fireHands" || this.type == "sorcerer'sRaincoat" || this.type == "summonWolf" || this.type == "healingPsalms")
+        else if (this.type == "embers" || this.type == "fireballI" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "drainingI" || this.type == "fireHands" || this.type == "sorcerer'sRaincoat" || this.type == "summonWolf" || this.type == "healingPsalms" || this.type == "undyingWard")
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1967, 67, 33, 26, X - this.X + (1/2 * CCC.width) - (1/2 * 33), Y - this.Y + (1/2 * CCC.height) - (1/2 * 26), 33, 26);
@@ -39135,7 +39995,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(freeverse, 884, 103, 43, 54, X - this.X + (1/2 * CCC.width) - (1/2 * 43 * 2.05), Y - this.Y + (1/2 * CCC.height) - (1/2 * 54 * 2.05), 43 * 2.05, 54 * 2.05);
         }
-        else if (this.type == "blackMageRobe")
+        else if (this.type == "blackMageRobe" || this.type == "pyromothSilkRobe")
         {
             XXX.beginPath();
             XXX.drawImage(freeverse, 882, 213, 43, 54, X - this.X + (1/2 * CCC.width) - (1/2 * 43 * 2.05), Y - this.Y + (1/2 * CCC.height) - (1/2 * 54 * 2.05), 43 * 2.05, 54 * 2.05);
@@ -39321,7 +40181,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polyPNG, 452, 33, 8, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 12), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21), 12, 21);
         }
-        else if (this.type == "jarOfOil" || this.type == "jarOfButterMellowOil")
+        else if (this.type == "jarOfOil" || this.type == "jarOfButterMellowOil" || this.type == "jarOfSonjaSap")
         {
             XXX.beginPath();
             XXX.drawImage(mofu, 97, 3, 10, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 15), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21.5), 15, 21.5);
@@ -40019,6 +40879,81 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
+        else if (this.type == "humptyChalaza")
+        {
+            LXX.beginPath();
+            LXX.drawImage(humpa, 657, 423, 41, 41, this.invX - (1/2 * 41 * 1), this.invY - (1/2 * 41 * 1), 41 * 1, 41 * 1);
+        }
+        else if (this.type == "crilkFruit")
+        {
+            LXX.beginPath();
+            LXX.drawImage(jungho, 773, 786, 15, 15, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 15 * 1), 15 * 1, 15 * 1);
+        }
+        else if (this.type == "pyromothSilk")
+        {
+            LXX.beginPath();
+            LXX.drawImage(jungho, 4, 401, 19, 38, this.invX - (1/2 * 19 * 1), this.invY - (1/2 * 38 * 1), 19 * 1, 38 * 1);
+        }
+        else if (this.type == "pyromothSilkweb")
+        {
+            LXX.beginPath();
+            LXX.drawImage(jungho, 649, 582, 37, 28, this.invX - (1/2 * 37 * 0.64), this.invY - (1/2 * 28 * 0.64), 37 * 0.64, 28 * 0.64);
+        }
+        else if (this.type == "fermentedBabosaFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(zapa, 346, 289, 28, 21, this.invX - (1/2 * 28 * 1.55), this.invY - (1/2 * 21 * 1.55), 28 * 1.55, 21 * 1.55);
+        }
+        else if (this.type == "babosaMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(zapa, 346, 240, 28, 21, this.invX - (1/2 * 28 * 1.45), this.invY - (1/2 * 21 * 1.45), 28 * 1.45, 21 * 1.45);
+        }
+        else if (this.type == "rawBabosaFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(zapa, 346, 222, 28, 21, this.invX - (1/2 * 28 * 1.5), this.invY - (1/2 * 21 * 1.5), 28 * 1.5, 21 * 1.5);
+        }
+        else if (this.type == "sonja")
+        {
+            LXX.beginPath();
+            LXX.drawImage(humpa, 658, 1116, 20, 21, this.invX - (1/2 * 20 * 1.5), this.invY - (1/2 * 21 * 1.5), 20 * 1.5, 21 * 1.5);
+        }
+        else if (this.type == "sonjaFruit")
+        {
+            LXX.beginPath();
+            LXX.drawImage(humpa, 687, 1116, 20, 21, this.invX - (1/2 * 20 * 1.5), this.invY - (1/2 * 21 * 1.5), 20 * 1.5, 21 * 1.5);
+        }
+        else if (this.type == "sonjaBubble")
+        {
+            LXX.beginPath();
+            LXX.drawImage(humpa, 708, 1116, 20, 21, this.invX - (1/2 * 20 * 1.5), this.invY - (1/2 * 21 * 1.5), 20 * 1.5, 21 * 1.5);
+        }
+        else if (this.type == "sonjaSlice")
+        {
+            LXX.beginPath();
+            LXX.drawImage(humpa, 726, 1116, 20, 21, this.invX - (1/2 * 20 * 1.5), this.invY - (1/2 * 21 * 1.5), 20 * 1.5, 21 * 1.5);
+        }
+        else if (this.type == "greenDartFrogSkin")
+        {
+            LXX.beginPath();
+            LXX.drawImage(humpa, 766, 1100, 21, 15, this.invX - (1/2 * 21 * 1), this.invY - (1/2 * 15 * 1), 21 * 1, 15 * 1);
+        }
+        else if (this.type == "orangeDartFrogSkin")
+        {
+            LXX.beginPath();
+            LXX.drawImage(humpa, 745, 1116, 21, 15, this.invX - (1/2 * 21 * 1), this.invY - (1/2 * 15 * 1), 21 * 1, 15 * 1);
+        }
+        else if (this.type == "rawBoaFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(humpa, 28, 1251, 67, 33, this.invX - (1/2 * 67 * 1), this.invY - (1/2 * 33 * 1), 67 * 1, 33 * 1);
+        }
+        else if (this.type == "boaMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(humpa, 28, 1289, 67, 33, this.invX - (1/2 * 67 * 1), this.invY - (1/2 * 33 * 1), 67 * 1, 33 * 1);
+        }
         else if (this.type == "driedPoegroonMushrooms")
         {
             LXX.beginPath();
@@ -40152,7 +41087,7 @@ function Item(type, x, y)
         else if (this.type == "blackTrollPelt")
         {
             LXX.beginPath();
-            LXX.drawImage(stic, 937, 20, 43, 36, this.invX - (1/2 * 43 * 0.85), this.invY - (1/2 * 36 * 0.85), 43 * 0.85, 36 * 0.85);
+            LXX.drawImage(stic, 937, 20, 43, 36, this.invX - (1/2 * 43 * 1), this.invY - (1/2 * 36 * 1), 43 * 1, 36 * 1);
         }
         else if (this.type == "blackTrollSkull")
         {
@@ -42814,7 +43749,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(mofu, 1321, 16, 5, 5, this.invX - (1/2 * 8), this.invY - (1/2 * 8), 8, 8);
         }
-        else if (this.type == "blackPowder")
+        else if (this.type == "blackPowder" || this.type == "pyromothPowder")
         {
             LXX.beginPath();
             LXX.drawImage(mofu, 1350, 13, 13, 11, this.invX - (1/2 * 13), this.invY - (1/2 * 11), 13, 11);
@@ -43325,6 +44260,16 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(freeverse, 205, 2, 11, 11, this.invX - (1/2 * 11 * 2), this.invY - (1/2 * 11 * 2), 11 * 2, 11 * 2);
         }
+        else if (this.type == "sonjaPuree")
+        {
+            LXX.beginPath();
+            LXX.drawImage(humpa, 770, 1119, 12, 10, this.invX - (1/2 * 12 * 2), this.invY - (1/2 * 10 * 2), 12 * 2, 10 * 2);
+        }
+        else if (this.type == "spicedSonjaPuree")
+        {
+            LXX.beginPath();
+            LXX.drawImage(humpa, 784, 1119, 12, 10, this.invX - (1/2 * 12 * 2), this.invY - (1/2 * 10 * 2), 12 * 2, 10 * 2);
+        }
         else if (this.type == "harstGrain")
         {
             LXX.beginPath();
@@ -43565,7 +44510,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(polypol, 1859, 36, 22, 27, this.invX - (1/2 * 22), this.invY - (1/2 * 27), 22, 27);
         }
-        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind" || this.type == "iceBlast" || this.type == "healingPsalms" || this.type == "summonGriffin" || this.type == "summonDemon" || this.type == "slowTimeI" || this.type == "slowTimeII" || this.type == "slowTimeIII" || this.type == "slowTimeIV" || this.type == "slowTimeV" || this.type == "slowTimeVI" || this.type == "doppelganger" || this.type == "shadowSwitch" || this.type == "eruption" || this.type == "drakeBreath")
+        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind" || this.type == "iceBlast" || this.type == "healingPsalms" || this.type == "summonGriffin" || this.type == "summonDemon" || this.type == "slowTimeI" || this.type == "slowTimeII" || this.type == "slowTimeIII" || this.type == "slowTimeIV" || this.type == "slowTimeV" || this.type == "slowTimeVI" || this.type == "doppelganger" || this.type == "shadowSwitch" || this.type == "eruption" || this.type == "drakeBreath" || this.type == "undyingWard")
         {
             LXX.beginPath();
             LXX.drawImage(polypol, 1738, 4, 33, 26, this.invX - (1/2 * 33), this.invY - (1/2 * 26), 33, 26);
@@ -43734,7 +44679,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(freeverse, 884, 103, 43, 54, this.invX - (1/2 * 43 * 1.25), this.invY - (1/2 * 54 * 1.25), 43 * 1.25, 54 * 1.25);
         }
-        else if (this.type == "blackMageRobe")
+        else if (this.type == "blackMageRobe" || this.type == "pyromothSilkRobe")
         {
             LXX.beginPath();
             LXX.drawImage(freeverse, 882, 213, 43, 54, this.invX - (1/2 * 43 * 1.25), this.invY - (1/2 * 54 * 1.25), 43 * 1.25, 54 * 1.25);
@@ -43920,7 +44865,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(polyPNG, 452, 33, 8, 14, this.invX - (1/2 * 12), this.invY - (1/2 * 21), 12, 21);
         }
-        else if (this.type == "jarOfOil" || this.type == "jarOfButterMellowOil")
+        else if (this.type == "jarOfOil" || this.type == "jarOfButterMellowOil" || this.type == "jarOfSonjaSap")
         {
             LXX.beginPath();
             LXX.drawImage(mofu, 97, 3, 10, 15, this.invX - (1/2 * 15), this.invY - (1/2 * 21.5), 15, 21.5);
@@ -44587,6 +45532,81 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
+        else if (this.type == "humptyChalaza")
+        {
+            XXX.beginPath();
+            XXX.drawImage(humpa, 657, 423, 41, 41, this.invX - (1/2 * 41 * 1), this.invY - (1/2 * 41 * 1), 41 * 1, 41 * 1);
+        }
+        else if (this.type == "crilkFruit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 773, 786, 15, 15, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 15 * 1), 15 * 1, 15 * 1);
+        }
+        else if (this.type == "pyromothSilk")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 4, 401, 19, 38, this.invX - (1/2 * 19 * 1), this.invY - (1/2 * 38 * 1), 19 * 1, 38 * 1);
+        }
+        else if (this.type == "pyromothSilkweb")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 649, 582, 37, 28, this.invX - (1/2 * 37 * 0.64), this.invY - (1/2 * 28 * 0.64), 37 * 0.64, 28 * 0.64);
+        }
+        else if (this.type == "fermentedBabosaFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(zapa, 346, 289, 28, 21, this.invX - (1/2 * 28 * 1.55), this.invY - (1/2 * 21 * 1.55), 28 * 1.55, 21 * 1.55);
+        }
+        else if (this.type == "babosaMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(zapa, 346, 240, 28, 21, this.invX - (1/2 * 28 * 1.45), this.invY - (1/2 * 21 * 1.45), 28 * 1.45, 21 * 1.45);
+        }
+        else if (this.type == "rawBabosaFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(zapa, 346, 222, 28, 21, this.invX - (1/2 * 28 * 1.5), this.invY - (1/2 * 21 * 1.5), 28 * 1.5, 21 * 1.5);
+        }
+        else if (this.type == "sonja")
+        {
+            XXX.beginPath();
+            XXX.drawImage(humpa, 658, 1116, 20, 21, this.invX - (1/2 * 20 * 1.5), this.invY - (1/2 * 21 * 1.5), 20 * 1.5, 21 * 1.5);
+        }
+        else if (this.type == "sonjaFruit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(humpa, 687, 1116, 20, 21, this.invX - (1/2 * 20 * 1.5), this.invY - (1/2 * 21 * 1.5), 20 * 1.5, 21 * 1.5);
+        }
+        else if (this.type == "sonjaBubble")
+        {
+            XXX.beginPath();
+            XXX.drawImage(humpa, 708, 1116, 20, 21, this.invX - (1/2 * 20 * 1.5), this.invY - (1/2 * 21 * 1.5), 20 * 1.5, 21 * 1.5);
+        }
+        else if (this.type == "sonjaSlice")
+        {
+            XXX.beginPath();
+            XXX.drawImage(humpa, 726, 1116, 20, 21, this.invX - (1/2 * 20 * 1.5), this.invY - (1/2 * 21 * 1.5), 20 * 1.5, 21 * 1.5);
+        }
+        else if (this.type == "greenDartFrogSkin")
+        {
+            XXX.beginPath();
+            XXX.drawImage(humpa, 766, 1100, 21, 15, this.invX - (1/2 * 21 * 1), this.invY - (1/2 * 15 * 1), 21 * 1, 15 * 1);
+        }
+        else if (this.type == "orangeDartFrogSkin")
+        {
+            XXX.beginPath();
+            XXX.drawImage(humpa, 745, 1116, 21, 15, this.invX - (1/2 * 21 * 1), this.invY - (1/2 * 15 * 1), 21 * 1, 15 * 1);
+        }
+        else if (this.type == "rawBoaFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(humpa, 28, 1251, 67, 33, this.invX - (1/2 * 67 * 1), this.invY - (1/2 * 33 * 1), 67 * 1, 33 * 1);
+        }
+        else if (this.type == "boaMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(humpa, 28, 1289, 67, 33, this.invX - (1/2 * 67 * 1), this.invY - (1/2 * 33 * 1), 67 * 1, 33 * 1);
+        }
         else if (this.type == "driedPoegroonMushrooms")
         {
             XXX.beginPath();
@@ -44720,7 +45740,7 @@ function Item(type, x, y)
         else if (this.type == "blackTrollPelt")
         {
             XXX.beginPath();
-            XXX.drawImage(stic, 937, 20, 43, 36, this.invX - (1/2 * 43 * 0.85), this.invY - (1/2 * 36 * 0.85), 43 * 0.85, 36 * 0.85);
+            XXX.drawImage(stic, 937, 20, 43, 36, this.invX - (1/2 * 43 * 1), this.invY - (1/2 * 36 * 1), 43 * 1, 36 * 1);
         }
         else if (this.type == "blackTrollSkull")
         {
@@ -47389,7 +48409,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(mofu, 1321, 16, 5, 5, this.invX - (1/2 * 8), this.invY - (1/2 * 8), 8, 8);
         }
-        else if (this.type == "blackPowder")
+        else if (this.type == "blackPowder" || this.type == "pyromothPowder")
         {
             XXX.beginPath();
             XXX.drawImage(mofu, 1350, 13, 13, 11, this.invX - (1/2 * 13), this.invY - (1/2 * 11), 13, 11);
@@ -47891,6 +48911,16 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(freeverse, 205, 2, 11, 11, this.invX - (1/2 * 11 * 2), this.invY - (1/2 * 11 * 2), 11 * 2, 11 * 2);
         }
+        else if (this.type == "sonjaPuree")
+        {
+            XXX.beginPath();
+            XXX.drawImage(humpa, 770, 1119, 12, 10, this.invX - (1/2 * 12 * 2), this.invY - (1/2 * 10 * 2), 12 * 2, 10 * 2);
+        }
+        else if (this.type == "spicedSonjaPuree")
+        {
+            XXX.beginPath();
+            XXX.drawImage(humpa, 784, 1119, 12, 10, this.invX - (1/2 * 12 * 2), this.invY - (1/2 * 10 * 2), 12 * 2, 10 * 2);
+        }
         else if (this.type == "harstGrain")
         {
             XXX.beginPath();
@@ -48131,7 +49161,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 1859, 36, 22, 27, this.invX - (1/2 * 22), this.invY - (1/2 * 27), 22, 27);
         }
-        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind" || this.type == "iceBlast" || this.type == "healingPsalms" || this.type == "summonGriffin" || this.type == "summonDemon" || this.type == "slowTimeI" || this.type == "slowTimeII" || this.type == "slowTimeIII" || this.type == "slowTimeIV" || this.type == "slowTimeV" || this.type == "slowTimeVI" || this.type == "doppelganger" || this.type == "shadowSwitch" || this.type == "eruption" || this.type == "drakeBreath")
+        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind" || this.type == "iceBlast" || this.type == "healingPsalms" || this.type == "summonGriffin" || this.type == "summonDemon" || this.type == "slowTimeI" || this.type == "slowTimeII" || this.type == "slowTimeIII" || this.type == "slowTimeIV" || this.type == "slowTimeV" || this.type == "slowTimeVI" || this.type == "doppelganger" || this.type == "shadowSwitch" || this.type == "eruption" || this.type == "drakeBreath" || this.type == "undyingWard")
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1738, 4, 33, 26, this.invX - (1/2 * 33), this.invY - (1/2 * 26), 33, 26);
@@ -48296,7 +49326,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(freeverse, 884, 103, 43, 54, this.invX - (1/2 * 43 * 1.25), this.invY - (1/2 * 54 * 1.25), 43 * 1.25, 54 * 1.25);
         }
-        else if (this.type == "blackMageRobe")
+        else if (this.type == "blackMageRobe" || this.type == "pyromothSilkRobe")
         {
             XXX.beginPath();
             XXX.drawImage(freeverse, 882, 213, 43, 54, this.invX - (1/2 * 43 * 1.25), this.invY - (1/2 * 54 * 1.25), 43 * 1.25, 54 * 1.25);
@@ -48482,7 +49512,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polyPNG, 452, 33, 8, 14, this.invX - (1/2 * 12), this.invY - (1/2 * 21), 12, 21);
         }
-        else if (this.type == "jarOfOil" || this.type == "jarOfButterMellowOil")
+        else if (this.type == "jarOfOil" || this.type == "jarOfButterMellowOil" || this.type == "jarOfSonjaSap")
         {
             XXX.beginPath();
             XXX.drawImage(mofu, 97, 3, 10, 15, this.invX - (1/2 * 15), this.invY - (1/2 * 21.5), 15, 21.5);

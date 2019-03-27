@@ -2222,7 +2222,7 @@ function interaction(me)
                                 //text dialogue
                                 if (player.gender == "Female")
                                 {
-                                    setMsg("You are now the godess of this void and all the nothingness within it.");
+                                    setMsg("You are now the goddess of this void and all the nothingness within it.");
                                 }
                                 else
                                 {
@@ -2235,7 +2235,17 @@ function interaction(me)
                                     dialogueReset(self);
                                     msgReset();
 
-                                    player.godmode = true;
+                                    if (Math.random() > 0.5)
+                                    {
+                                        player.godmode = true;
+                                    }
+                                    else
+                                    {
+                                        map = "ghostWorld";
+                                        region = "ghostWorld";
+                                        change = "ghostWorld";
+                                    }
+
                                     self.wishedOut = true;
                                     playersTurnToSpeak = true;
                                     player.dialoguePosition = 0;

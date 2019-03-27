@@ -2414,6 +2414,49 @@ function Item(type, x, y)
             this.spellKnowledgeRequirement = 1;
             this.spellRange = "Near";
         }
+        else if (this.type == "potatoInvisibility")
+        {
+            //For All Items
+            if (player.getKnowledge() >= 1)
+            {
+                this.identity = "Scroll of Potato Invisibility";
+                this.description = "Studying this scroll will teach you how to make all potatoes within a wide range of the player completely invisible.";
+                this.intForDes = 0;
+                this.intDescription = "You are the first worldly being to have discovered this spell.";
+                this.buyValue = 10; // at max, buy for 10.
+                this.sellValue = 10; // at max, sell for 10.
+            }
+            else
+            {
+                this.identity = "Scroll";
+                this.description = "The markings on this scroll are incomprehensible; what a waste of paper!";
+                this.intForDes = 2;
+                this.intDescription = "Scrolls are supposed to be used for storing knowledge or sending messages, it looks like this one wasn't used for either.";
+                this.buyValue = 10; // at max, buy for 10.
+                this.sellValue = 1; // at max, sell for 1.
+            }
+            this.weight = 0.02;
+            this.size = 12;
+
+            //Define Utility
+            this.utility = "spell";
+
+            //ability
+            this.ability = "none";
+
+            //Utility Focused
+            this.damages = false;
+            this.spellCost = 1;
+            this.spellGroup = "Bind";
+            this.spellGenre = "Illusion";
+            this.spellName = "Potato Invisibility";
+            this.spellID = "potatoInvisibility";
+            this.spellEXP = 0;
+            this.spellCooldown = 0;
+            this.spellDescription = "A field of magical anti-potato energy that causes all potatoes within a wide radius to disappear.";
+            this.spellKnowledgeRequirement = 1;
+            this.spellRange = "Long";
+        }
         else if (this.type == "shadowSwitch")
         {
             //For All Items
@@ -4428,7 +4471,7 @@ function Item(type, x, y)
             this.weight = 45;
             this.size = 12;
             this.description = "A kellish style of pot filled with a soup made from mashed roasted Aktaltl and fish.";
-            if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite")
+            if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite" || player.raceName == "Zetian")
             {
                 this.intForDes = 12;
                 this.intDescription = "This sort of soup is a specialty of the Kellish Karib tribe.";
@@ -4472,7 +4515,7 @@ function Item(type, x, y)
             this.weight = 45;
             this.size = 12;
             this.description = "A Kellish style of pot filled with a Kellish stew unique to the alzkwaya tribe.";
-            if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite")
+            if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite" || player.raceName == "Zetian")
             {
                 this.intForDes = 18;
                 this.intDescription = "It is made with apotl pepper, mofu, frijols, aktaltl root, and kwom juice";
@@ -4498,7 +4541,7 @@ function Item(type, x, y)
             this.replenish = 0; //restores will.
 
             //ability
-            if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite")
+            if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite" || player.raceName == "Zetian")
             {
                 this.ability = "sensational";
             }
@@ -4726,7 +4769,7 @@ function Item(type, x, y)
             this.weight = 1;
             this.size = 6;
             this.description = "A pint glass filled with pureed sonja fruit and topped with a spicy red mouth-numbing powder.";
-            if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite")
+            if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite" || player.raceName == "Zetian")
             {
                 this.intForDes = 0;
                 this.intDescription = "The spiciness compliments the sweetness giving it a rich, bold, and well-rounded tropical flavour.";
@@ -4932,7 +4975,7 @@ function Item(type, x, y)
             this.weight = 0.2;
             this.size = 5;
             this.description = "A mostly eaten tamal.";
-            if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite")
+            if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite" || player.raceName == "Zetian")
             {
                 this.intForDes = 3;
                 this.intDescription = "Tamales are a food to eat on the go; they are particularly portable.";
@@ -4955,7 +4998,7 @@ function Item(type, x, y)
             this.generation = 0.2; //recoops lost energy.
             this.replenish = 0; //restores will.
             //ability
-            if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite")
+            if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite" || player.raceName == "Zetian")
             {
                 this.ability = "satiation";
             }
@@ -4977,7 +5020,7 @@ function Item(type, x, y)
             this.weight = 0.4;
             this.size = 5;
             this.description = "A partially eaten tamal.";
-            if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite")
+            if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite" || player.raceName == "Zetian")
             {
                 this.intForDes = 3;
                 this.intDescription = "Tamales are a food to eat on the go; they are particularly portable.";
@@ -5002,7 +5045,7 @@ function Item(type, x, y)
             this.generation = 0.2; //recoops lost energy.
             this.replenish = 0; //restores will.
             //ability
-            if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite")
+            if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite" || player.raceName == "Zetian")
             {
                 this.ability = "satiation";
             }
@@ -5024,7 +5067,7 @@ function Item(type, x, y)
             this.weight = 0.6;
             this.size = 5;
             this.description = "Steamed maize dough wrapped around a rich variety of ingredients and held together by being rolled up with a maize husk.";
-            if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite")
+            if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite" || player.raceName == "Zetian")
             {
                 this.intForDes = 3;
                 this.intDescription = "Tamales are a food to eat on the go; they are particularly portable.";
@@ -5049,7 +5092,7 @@ function Item(type, x, y)
             this.generation = 0.2; //recoops lost energy.
             this.replenish = 0; //restores will.
             //ability
-            if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite")
+            if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite" || player.raceName == "Zetian")
             {
                 this.ability = "satiation";
             }
@@ -5108,7 +5151,7 @@ function Item(type, x, y)
             this.weight = 0.2;
             this.size = 5;
             this.description = "A mostly eaten mofu tamal.";
-            if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite")
+            if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite" || player.raceName == "Zetian")
             {
                 this.intForDes = 3;
                 this.intDescription = "Tamales are a food to eat on the go; they are particularly portable.";
@@ -5131,7 +5174,7 @@ function Item(type, x, y)
             this.generation = 0.25; //recoops lost energy.
             this.replenish = 0; //restores will.
             //ability
-            if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite")
+            if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite" || player.raceName == "Zetian")
             {
                 this.ability = "satiation";
             }
@@ -5153,7 +5196,7 @@ function Item(type, x, y)
             this.weight = 0.4;
             this.size = 5;
             this.description = "A partially eaten mofu tamal.";
-            if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite")
+            if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite" || player.raceName == "Zetian")
             {
                 this.intForDes = 3;
                 this.intDescription = "Tamales are a food to eat on the go; they are particularly portable.";
@@ -5178,7 +5221,7 @@ function Item(type, x, y)
             this.generation = 0.25; //recoops lost energy.
             this.replenish = 0; //restores will.
             //ability
-            if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite")
+            if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite" || player.raceName == "Zetian")
             {
                 this.ability = "satiation";
             }
@@ -5200,7 +5243,7 @@ function Item(type, x, y)
             this.weight = 0.6;
             this.size = 5;
             this.description = "Steamed maize dough wrapped around a rich variety of ingredients and held together by being rolled up with a maize husk.";
-            if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite")
+            if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite" || player.raceName == "Zetian")
             {
                 this.intForDes = 3;
                 this.intDescription = "Tamales are a food to eat on the go; they are particularly portable.";
@@ -5225,7 +5268,7 @@ function Item(type, x, y)
             this.generation = 0.25; //recoops lost energy.
             this.replenish = 0; //restores will.
             //ability
-            if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite")
+            if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite" || player.raceName == "Zetian")
             {
                 this.ability = "satiation";
             }
@@ -5590,6 +5633,211 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "beholderTentacles")
+        {
+            //For All Items
+            this.identity = "Beholder Tentacles";
+            this.weight = 0.333;
+            this.size = 7;
+            this.description = "These are slippery and slick, but not at all wet. You feel static charge run through your flesh when you touch it.";
+            this.intForDes = 8;
+            this.intDescription = "This can be used in advanced alchemy.";
+
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5; // at max, buy for 5.
+            this.sellValue = 5; // at max, sell for 5.
+        }
+        else if (this.type == "jinnCore")
+        {
+            //For All Items
+            this.identity = "Jinn Core";
+            this.weight = 0;
+            this.size = 10;
+            this.description = "The slain essence of a jinn in the form of the creature's head.";
+            this.intForDes = 16;
+            this.intDescription = "This can be powdered for use in alchemy.";
+
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 250; // at max, buy for 250.
+            this.sellValue = 250; // at max, sell for 250.
+        }
+        else if (this.type == "jinnDust")
+        {
+            //For All Items
+            this.identity = "Jinn Dust";
+            this.weight = 0;
+            this.size = 10;
+            this.description = "The powdered essence of a jinn.";
+            this.intForDes = 8;
+            this.intDescription = "This is extremely magically potent; it can be used in advanced alchemy.";
+
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 14;
+            this.ingredients = [["Jinn Core", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 266; // at max, buy for 266.
+            this.sellValue = 266; // at max, sell for 266.
+        }
+        else if (this.type == "cephrianTincturePot")
+        {
+            //For All Items
+            this.identity = "Cephrian Tincture Pot";
+            this.weight = 1.55;
+            this.size = 9;
+            this.description = "A long spouted pot used to make powerful magical mixtures.";
+            this.intForDes = 10;
+            this.intDescription = "It is made from crystalized torper wax, which has unique ability to contain powerful magics without being corrupted or broken.";
+
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 19;
+            this.ingredients = [["Torper Wax", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 21; // at max, buy for 21.
+            this.sellValue = 21; // at max, sell for 21.
+        }
+        else if (this.type == "tinctureCup")
+        {
+            //For All Items
+            this.identity = "Cephrian Tincture Cup";
+            this.weight = 0.55;
+            this.size = 5;
+            this.description = "A small cup made from crystalized torper wax. It is a vessel from which Cephrian tinctures are drunk.";
+            this.intForDes = 10;
+            this.intDescription = "This has unique ability to contain powerful magics without being corrupted or broken.";
+
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 3;
+            this.intForCraft = 18;
+            this.ingredients = [["Torper Wax", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 7; // at max, buy for 7.
+            this.sellValue = 7; // at max, sell for 7.
+        }
+        else if (this.type == "cephrianTincturePotOfFungicideTincture")
+        {
+            //For All Items
+            this.identity = "Cephrian Tincture Pot of Fungicide Tincture";
+            this.weight = 3.35;
+            this.size = 5;
+            this.description = "A viscous, salty, red liquid that smells strongly of insect pharamones.";
+            this.intForDes = 0;
+            this.intDescription = "This tincture can cure any and all fungal infections.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 32;
+            this.ingredients = [["Cephrian Tincture Pot", 1], ["Humpty Chalaza", 1], ["Riod Beetle Flesh", 5], ["Zaf Beetle Feeler", 2], ["Salt", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 72; // at max, buy for 72.
+            this.sellValue = 72; // at max, sell for 72.
+        }
+        else if (this.type == "cupOfFungicideTincture")
+        {
+            //For All Items
+            this.identity = "Fungicide Tincture";
+            this.weight = 1.15;
+            this.size = 5;
+            this.description = "A viscous red liquid that smells strongly of insect pharamones.";
+            this.intForDes = 0;
+            this.intDescription = "This tincture can cure any and all fungal infections.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["tinctureCup", 1]];
+
+            //Utility Focused
+            this.isRegenerative = true; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0.5; //satisfies hunger.
+            this.thirst = 1; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = -1; //heals health.
+            this.generation = -5; //recoops lost energy.
+            this.replenish = -5; //restores will.
+            this.alcohol = 1; //intoxicates the mind.
+
+            //ability
+            this.ability = "fungicide";
+
+            //Crafting
+            this.yield = 3;
+            this.intForCraft = 0;
+            this.ingredients = [["Cephrian Tincture Cup", 3], ["Cephrian Tincture Pot of Fungicide Tincture", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 21; // at max, buy for 21.
+            this.sellValue = 21; // at max, sell for 21.
+        }
+        else if (this.type == "capturedJinn")
+        {
+            //For All Items
+            this.identity = "Cephrian Tincture Pot of Jinn Essence";
+            this.weight = 1.55;
+            this.size = 9;
+            this.description = "A powerful magical entity is trapped in this long spouted pot; once captured it owes its captor a single wish and cannot leave until it has been granted.";
+            this.intForDes = 12;
+            this.intDescription = "Crystalized torper wax is perhaps the only substance that contains magic well enough to hold a jinn.";
+
+
+            //Define Utility
+            this.utility = "material";
+            this.subUtility = "jinn";
+            this.questy = true;
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1000000; // at max, buy for 1000000.
+            this.sellValue = 1000000; // at max, sell for 1000000.
         }
         else if (this.type == "zafBeetleWhiskers")
         {
@@ -17777,6 +18025,26 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 5; // at max, buy for 5.
             this.sellValue = 3 + Math.floor(player.getCharisma() / 25); // at max, sell for 5.
+        }
+        else if (this.type == "torperWax")
+        {
+            //For All Items
+            this.identity = "Torper Wax";
+            this.weight = 1.6;
+            this.size = 12;
+            this.description = "A hefty glob of torper wax.";
+            this.intForDes = 15;
+            this.intDescription = "It can be crystalized in a forge and crafted into vessels for holding powerful magics.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 20; // at max, buy for 20.
+            this.sellValue = 17 + Math.floor(player.getCharisma() / 15); // at max, sell for 20.
         }
         else if (this.type == "candle")
         {
@@ -36201,6 +36469,36 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "jinnDust")
+        {
+            XXX.beginPath();
+            XXX.drawImage(humpa, 735, 595, 55, 67, X - this.X + (1/2 * CCC.width) - (1/2 * 55 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 67 * 1), 55 * 1, 67 * 1);
+        }
+        else if (this.type == "jinnCore")
+        {
+            XXX.beginPath();
+            XXX.drawImage(humpa, 740, 483, 55, 67, X - this.X + (1/2 * CCC.width) - (1/2 * 55 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 67 * 1), 55 * 1, 67 * 1);
+        }
+        else if (this.type == "beholderTentacles")
+        {
+            XXX.beginPath();
+            XXX.drawImage(humpa, 737, 550, 55, 39, X - this.X + (1/2 * CCC.width) - (1/2 * 55 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 39 * 1), 55 * 1, 39 * 1);
+        }
+        else if (this.type == "tinctureCup")
+        {
+            XXX.beginPath();
+            XXX.drawImage(humpa, 610, 201, 13, 11, X - this.X + (1/2 * CCC.width) - (1/2 * 13 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 11 * 1), 13 * 1, 11 * 1);
+        }
+        else if (this.type == "cupOfFungicideTincture")
+        {
+            XXX.beginPath();
+            XXX.drawImage(humpa, 610, 215, 13, 11, X - this.X + (1/2 * CCC.width) - (1/2 * 13 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 11 * 1), 13 * 1, 11 * 1);
+        }
+        else if (this.type == "cephrianTincturePot" || this.type == "cephrianTincturePotOfungicideTincture" || this.type == "capturedJinn")
+        {
+            XXX.beginPath();
+            XXX.drawImage(humpa, 595, 176, 42, 21, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21 * 1), 42 * 1, 21 * 1);
+        }
         else if (this.type == "humptyChalaza")
         {
             XXX.beginPath();
@@ -39196,7 +39494,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(candlewic, 3, 118, 14, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 14), Y - this.Y + (1/2 * CCC.height) - (1/2 * 15), 14, 15);
         }
-        else if (this.type == "beesWax")
+        else if (this.type == "beesWax" || this.type == "torperWax")
         {
             XXX.beginPath();
             XXX.drawImage(candlewic, 1, 2, 12, 13, X - this.X + (1/2 * CCC.width) - (1/2 * 12 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 13 * 1.4), 12 * 1.4, 13 * 1.4);
@@ -39408,13 +39706,19 @@ function Item(type, x, y)
         }
         else if (this.type == "potato")
         {
-            XXX.beginPath();
-            XXX.drawImage(oldverse, 2770, 1, 10, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 10), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16), 10, 16);
+            if (player.potatoInvisibility != true)
+            {
+                XXX.beginPath();
+                XXX.drawImage(oldverse, 2770, 1, 10, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 10), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16), 10, 16);
+            }
         }
         else if (this.type == "cookedPotato")
         {
-            XXX.beginPath();
-            XXX.drawImage(oldverse, 2782, 1, 10, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 10), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16), 10, 16);
+            if (player.potatoInvisibility != true)
+            {
+                XXX.beginPath();
+                XXX.drawImage(oldverse, 2782, 1, 10, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 10), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16), 10, 16);
+            }
         }
         else if (this.type == "nechromanticDust")
         {
@@ -39786,7 +40090,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 1928, 39, 40, 21, X - this.X + (1/2 * CCC.width) - (1/2 * 40), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21), 40, 21);
         }
-        else if (this.type == "frostWind" || this.type == "chasingLights" || this.type == "surge" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "summonDemon")
+        else if (this.type == "frostWind" || this.type == "chasingLights" || this.type == "surge" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "summonDemon" || this.type == "potatoInvisibility")
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1773, 3, 28, 30, X - this.X + (1/2 * CCC.width) - (1/2 * 28), Y - this.Y + (1/2 * CCC.height) - (1/2 * 30), 28, 30);
@@ -40878,6 +41182,36 @@ function Item(type, x, y)
         {
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "jinnDust")
+        {
+            LXX.beginPath();
+            LXX.drawImage(humpa, 735, 595, 55, 67, this.invX - (1/2 * 55 * 1), this.invY - (1/2 * 67 * 1), 55 * 1, 67 * 1);
+        }
+        else if (this.type == "jinnCore")
+        {
+            LXX.beginPath();
+            LXX.drawImage(humpa, 740, 483, 55, 67, this.invX - (1/2 * 55 * 1), this.invY - (1/2 * 67 * 1), 55 * 1, 67 * 1);
+        }
+        else if (this.type == "beholderTentacles")
+        {
+            LXX.beginPath();
+            LXX.drawImage(humpa, 737, 550, 55, 39, this.invX - (1/2 * 55 * 1), this.invY - (1/2 * 39 * 1), 55 * 1, 39 * 1);
+        }
+        else if (this.type == "tinctureCup")
+        {
+            LXX.beginPath();
+            LXX.drawImage(humpa, 610, 201, 13, 11, this.invX - (1/2 * 13 * 1), this.invY - (1/2 * 11 * 1), 13 * 1, 11 * 1);
+        }
+        else if (this.type == "cupOfFungicideTincture")
+        {
+            LXX.beginPath();
+            LXX.drawImage(humpa, 610, 215, 13, 11, this.invX - (1/2 * 13 * 1), this.invY - (1/2 * 11 * 1), 13 * 1, 11 * 1);
+        }
+        else if (this.type == "cephrianTincturePot" || this.type == "cephrianTincturePotOfungicideTincture" || this.type == "capturedJinn")
+        {
+            LXX.beginPath();
+            LXX.drawImage(humpa, 595, 143, 42, 21, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 21 * 1), 42 * 1, 21 * 1);
         }
         else if (this.type == "humptyChalaza")
         {
@@ -43970,7 +44304,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(candlewic, 3, 118, 14, 15, this.invX - (1/2 * 14 * 1.15), this.invY - (1/2 * 15 * 1.15), 14 * 1.15, 15 * 1.15);
         }
-        else if (this.type == "beesWax")
+        else if (this.type == "beesWax" || this.type == "torperWax")
         {
             LXX.beginPath();
             LXX.drawImage(candlewic, 1, 2, 12, 13, this.invX - (1/2 * 12 * 1.4), this.invY - (1/2 * 13 * 1.4), 12 * 1.4, 13 * 1.4);
@@ -44182,13 +44516,19 @@ function Item(type, x, y)
         }
         else if (this.type == "potato")
         {
-            LXX.beginPath();
-            LXX.drawImage(oldverse, 2770, 1, 10, 16, this.invX - (1/2 * 10), this.invY - (1/2 * 16), 10, 16);
+            if (player.potatoInvisibility != true)
+            {
+                LXX.beginPath();
+                LXX.drawImage(oldverse, 2770, 1, 10, 16, this.invX - (1/2 * 10), this.invY - (1/2 * 16), 10, 16);
+            }
         }
         else if (this.type == "cookedPotato")
         {
-            LXX.beginPath();
-            LXX.drawImage(oldverse, 2782, 1, 10, 16, this.invX - (1/2 * 10), this.invY - (1/2 * 16), 10, 16);
+            if (player.potatoInvisibility != true)
+            {
+                LXX.beginPath();
+                LXX.drawImage(oldverse, 2782, 1, 10, 16, this.invX - (1/2 * 10), this.invY - (1/2 * 16), 10, 16);
+            }
         }
         else if (this.type == "nechromanticDust")
         {
@@ -44510,7 +44850,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(polypol, 1859, 36, 22, 27, this.invX - (1/2 * 22), this.invY - (1/2 * 27), 22, 27);
         }
-        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind" || this.type == "iceBlast" || this.type == "healingPsalms" || this.type == "summonGriffin" || this.type == "summonDemon" || this.type == "slowTimeI" || this.type == "slowTimeII" || this.type == "slowTimeIII" || this.type == "slowTimeIV" || this.type == "slowTimeV" || this.type == "slowTimeVI" || this.type == "doppelganger" || this.type == "shadowSwitch" || this.type == "eruption" || this.type == "drakeBreath" || this.type == "undyingWard")
+        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind" || this.type == "iceBlast" || this.type == "healingPsalms" || this.type == "summonGriffin" || this.type == "summonDemon" || this.type == "slowTimeI" || this.type == "slowTimeII" || this.type == "slowTimeIII" || this.type == "slowTimeIV" || this.type == "slowTimeV" || this.type == "slowTimeVI" || this.type == "doppelganger" || this.type == "shadowSwitch" || this.type == "eruption" || this.type == "drakeBreath" || this.type == "undyingWard" || this.type == "potatoInvisibility")
         {
             LXX.beginPath();
             LXX.drawImage(polypol, 1738, 4, 33, 26, this.invX - (1/2 * 33), this.invY - (1/2 * 26), 33, 26);
@@ -45531,6 +45871,36 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "jinnDust")
+        {
+            XXX.beginPath();
+            XXX.drawImage(humpa, 735, 595, 55, 67, this.invX - (1/2 * 55 * 1), this.invY - (1/2 * 67 * 1), 55 * 1, 67 * 1);
+        }
+        else if (this.type == "jinnCore")
+        {
+            XXX.beginPath();
+            XXX.drawImage(humpa, 740, 483, 55, 67, this.invX - (1/2 * 55 * 1), this.invY - (1/2 * 67 * 1), 55 * 1, 67 * 1);
+        }
+        else if (this.type == "beholderTentacles")
+        {
+            XXX.beginPath();
+            XXX.drawImage(humpa, 737, 550, 55, 39, this.invX - (1/2 * 55 * 1), this.invY - (1/2 * 39 * 1), 55 * 1, 39 * 1);
+        }
+        else if (this.type == "tinctureCup")
+        {
+            XXX.beginPath();
+            XXX.drawImage(humpa, 610, 201, 13, 11, this.invX - (1/2 * 13 * 1), this.invY - (1/2 * 11 * 1), 13 * 1, 11 * 1);
+        }
+        else if (this.type == "cupOfFungicideTincture")
+        {
+            XXX.beginPath();
+            XXX.drawImage(humpa, 610, 215, 13, 11, this.invX - (1/2 * 13 * 1), this.invY - (1/2 * 11 * 1), 13 * 1, 11 * 1);
+        }
+        else if (this.type == "cephrianTincturePot" || this.type == "cephrianTincturePotOfungicideTincture" || this.type == "capturedJinn")
+        {
+            XXX.beginPath();
+            XXX.drawImage(humpa, 595, 143, 42, 21, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 21 * 1), 42 * 1, 21 * 1);
         }
         else if (this.type == "humptyChalaza")
         {
@@ -48621,7 +48991,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(candlewic, 3, 118, 14, 15, this.invX - (1/2 * 14 * 1.15), this.invY - (1/2 * 15 * 1.15), 14 * 1.15, 15 * 1.15);
         }
-        else if (this.type == "beesWax")
+        else if (this.type == "beesWax" || this.type == "torperWax")
         {
             XXX.beginPath();
             XXX.drawImage(candlewic, 1, 2, 12, 13, this.invX - (1/2 * 12 * 1.4), this.invY - (1/2 * 13 * 1.4), 12 * 1.4, 13 * 1.4);
@@ -48833,13 +49203,19 @@ function Item(type, x, y)
         }
         else if (this.type == "potato")
         {
-            XXX.beginPath();
-            XXX.drawImage(oldverse, 2770, 1, 10, 16, this.invX - (1/2 * 10), this.invY - (1/2 * 16), 10, 16);
+            if (player.potatoInvisibility != true)
+            {
+                XXX.beginPath();
+                XXX.drawImage(oldverse, 2770, 1, 10, 16, this.invX - (1/2 * 10), this.invY - (1/2 * 16), 10, 16);
+            }
         }
         else if (this.type == "cookedPotato")
         {
-            XXX.beginPath();
-            XXX.drawImage(oldverse, 2782, 1, 10, 16, this.invX - (1/2 * 10), this.invY - (1/2 * 16), 10, 16);
+            if (player.potatoInvisibility != true)
+            {
+                XXX.beginPath();
+                XXX.drawImage(oldverse, 2782, 1, 10, 16, this.invX - (1/2 * 10), this.invY - (1/2 * 16), 10, 16);
+            }
         }
         else if (this.type == "nechromanticDust")
         {
@@ -49161,7 +49537,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 1859, 36, 22, 27, this.invX - (1/2 * 22), this.invY - (1/2 * 27), 22, 27);
         }
-        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind" || this.type == "iceBlast" || this.type == "healingPsalms" || this.type == "summonGriffin" || this.type == "summonDemon" || this.type == "slowTimeI" || this.type == "slowTimeII" || this.type == "slowTimeIII" || this.type == "slowTimeIV" || this.type == "slowTimeV" || this.type == "slowTimeVI" || this.type == "doppelganger" || this.type == "shadowSwitch" || this.type == "eruption" || this.type == "drakeBreath" || this.type == "undyingWard")
+        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind" || this.type == "iceBlast" || this.type == "healingPsalms" || this.type == "summonGriffin" || this.type == "summonDemon" || this.type == "slowTimeI" || this.type == "slowTimeII" || this.type == "slowTimeIII" || this.type == "slowTimeIV" || this.type == "slowTimeV" || this.type == "slowTimeVI" || this.type == "doppelganger" || this.type == "shadowSwitch" || this.type == "eruption" || this.type == "drakeBreath" || this.type == "undyingWard" || this.type == "potatoInvisibility")
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1738, 4, 33, 26, this.invX - (1/2 * 33), this.invY - (1/2 * 26), 33, 26);

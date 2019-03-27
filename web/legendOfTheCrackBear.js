@@ -2255,6 +2255,8 @@ var skIntTime = new Date().getTime();
 var decayTime = new Date().getTime();
 var perfectArmour = false;
 var foePerfectArmour = false;
+var xKey = false;
+var cyberArTog = false;
 
 //This sets the items that are in shops.
 function shopItemIDSetter()
@@ -2647,6 +2649,11 @@ function keyReleased(event)
         fKey = false;
     }
 
+    if (key == 88)
+    {
+        xKey = false;
+    }
+
     if (key == 32)
     {
         spaceKey = false;
@@ -2800,6 +2807,11 @@ function keyHeld(event)
     if (key == 70)
     {
         fKey = true;
+    }
+
+    if (key == 88)
+    {
+        xKey = true;
     }
 
     if (key == 32)
@@ -3173,7 +3185,8 @@ function theLegend()
         aavai: ["Aavai", 0],
         ehitli: ["Ehitli", 0],
         iplala: ["Iplala", 0],
-        muktu: ["Muktu", 0]
+        muktu: ["Muktu", 0],
+        jinn: ["Jinn", 0]
     };
 
 //time Tracker Variables
@@ -3647,7 +3660,7 @@ function theLegend()
     exampleGuyList.push(new drawExampleCharacter(1/2 * CCC.width, 1/2 * CCC.height - 115, 0));
 //this list stores the Selector Bar Class for the character builder.
     selectorList = [];
-    selectorList.push(new Selector(1/2 * CCC.width - 105, 260, "race", 9)); // 0 == race selector
+    selectorList.push(new Selector(1/2 * CCC.width - 105, 260, "race", 10)); // 0 == race selector
     selectorList.push(new Selector(1/2 * CCC.width - 105, 300, "gender", 2)); // 1 == gender selector
     selectorList.push(new Selector(1/2 * CCC.width - 105, 340, "class", 6)); // 2 == wealth and social class selector
     selectorList.push(new Selector(1/2 * CCC.width - 105, 380, "style", 2)); // 3 == combat style selector
@@ -3676,7 +3689,7 @@ function theLegend()
     Inventory = [[new Item("mofuMatriarchHeaddress", false, false), 1], [new Item("avrakLeatherArmour", false, false), 1], [new Item("varnFiber", false, false), 1], [new Item("avrakHide", false, false), 1], [new Item("rawAvrakFlesh", false, false), 1], [new Item("avrakMeat", false, false), 1], [new Item("healingSalve", false, false), 1], [new Item("driedCyrinthilimMushroom", false, false), 1], [new Item("cyrinthilimMushroom", false, false), 1], [new Item("kellishClayPotOfMushroomStew", false, false), 1], [new Item("kellishClayPotOfNaapridMilk", false, false), 1], [new Item("kellishClayPotOfWater", false, false), 1], [new Item("kellishClayPot", false, false), 1], [new Item("fermentedViperVenomGland", false, false), 1], [new Item("viperVenomGland", false, false), 1], [new Item("viperSnakeSkin", false, false), 1], [new Item("rawViperFlesh", false, false), 1], [new Item("viperMeat", false, false), 1], [new Item("jvostranPlateArmour", false, false), 1], [new Item("waterPintGlass", false, false), 1], [new Item("pintGlass", false, false), 1], [new Item("harstAle", false, false), 1], [new Item("potionGlass", false, false), 1], [new Item("vialOfWater", false, false), 1], [new Item("frichFurMittens", false, false), 1], [new Item("halcifMushroom", false, false), 1], [new Item("walrusLeatherWaterskin", false, false), 1], [new Item("walrusLeatherWaterskinFull", false, false), 1], [new Item("bucketOfNaapridMilk", false, false), 1], [new Item("bucketOfWater", false, false), 1], [new Item("bucket", false, false), 1], [new Item("boiledGlinMushrooms", false, false), 1], [new Item("glinMushrooms", false, false), 6], [new Item("neprilneBerries", false, false), 1], [new Item("culprisLeaf", false, false), 1], [new Item("tylunFlower", false, false), 1], [new Item("akerBerries", false, false), 1], [new Item("pluttBerries", false, false), 1], [new Item("stomwikLeaf", false, false), 1], [new Item("hammer", false, false), 1], [new Item("lrgBlackBearPelt", false, false), 1], [new Item("medBlackBearPelt", false, false), 1], [new Item("smlBlackBearPelt", false, false), 1], [new Item("bearTongue", false, false), 1], [new Item("rawBearTongue", false, false), 1], [new Item("bearMeat", false, false), 1], [new Item("rawBearFlesh", false, false), 1], [new Item("varnFurDress", false, false), 2], [new Item("varnFurCloak", false, false), 2], [new Item("varnFurClothing", false, false), 2], [new Item("frichFurClothing", false, false), 3], [new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("fireStarter", false, false), 1], [new Item("wood", false, false), 55], [new Item("katana", false, false), 1], [new Item("winterWolfClothing", false, false), 2], [new Item("winterWolfOutfit", false, false), 2], [new Item("freydicRoyalOutfit", false, false), 2], [new Item("naapridLeatherArmour", false, false), 2], [new Item("winterWolfDress", false, false), 2], [new Item("freydicRoyalDress", false, false), 2], [new Item("youngNaapridMeat", false, false), 4], [new Item("rawYoungNaapridFlesh", false, false), 2], [new Item("naapridHorn", false, false), 8], [new Item("naapridPelt", false, false), 3], [new Item("naapridMeat", false, false), 14], [new Item("rawNaapridFlesh", false, false), 17], [new Item("thenganSwordAndShield", false, false), 1], [new Item("glassJar", false, false), 6], [new Item("rawTrollsBlood", false, false), 10], [new Item("chainArmour", false, false), 52], [new Item("blackChainArmour", false, false), 12], [new Item("freydicGreatSword", false, false), 5], [new Item("aldrekiiArrow", false, false), 79], [new Item("wolfLiver", false, false), 4], [new Item("rawWolfLiver", false, false), 8], [new Item("winterWolfPelt", false, false), 3], [new Item("massiveWinterWolfPelt", false, false), 1], [new Item("rawWinterWolfFlesh", false, false), 2], [new Item("winterWolfMeat", false, false), 3], [new Item("torperVenomSac", false, false), 4], [new Item("torperFuzz", false, false), 2], [new Item("torperMeat", false, false), 13], [new Item("rawTorperFlesh", false, false), 16], [new Item("frichPelt", false, false), 6], [new Item("frichMeat", false, false), 8], [new Item("rawFrichFlesh", false, false), 3], [new Item("freydicSpear", false, false), 1], [new Item("rawGulfreyFlesh", false, false), 2], [new Item("gulfreyMeat", false, false), 3], [new Item("gulfreyShell", false, false), 14], [new Item("gulfreyMandibles", false, false), 1], [new Item("vomit", false, false), 1], [new Item("gojiiBerries", false, false), 19], [new Item("blueBlade", false, false), 1], [new Item("berulnMeat", false, false), 3], [new Item("rawBerulnFlesh", false, false), 2], [new Item("bigBerulnPelt", false, false), 1], [new Item("berulnPelt", false, false), 1], [new Item("berulnSkull", false, false), 1], [new Item("ogoFruit", false, false), 8], [new Item("arrow", false, false), 49], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("coins", false, false), 2890540], [new Item("yaihefBerries", false, false), 2256], [new Item("mace", false, false), 1], [new Item("etyrMeat", false, false), 4], [new Item("etyrHide", false, false), 12], [new Item("longsword", false, false), 1], [new Item("rawEtyrFlesh", false, false), 8], [new Item("rawWalrusFlesh", false, false), 2], [new Item("walrusMeat", false, false), 3], [new Item("blubber", false, false), 5], [new Item("walrusTusks", false, false), 1], [new Item("elderWalrusTusks", false, false), 4], [new Item("walrusHide", false, false), 2], [new Item("elderWalrusHide", false, false), 2], [new Item("freydicWarAxe", false, false), 1], [new Item("trollsBlood", false, false), 20] ];
 //Inventory = [[new Item("kellishSword", false, false), 1], [new Item("lightningCorseque", false, false), 1], [new Item("smashStick", false, false), 1], [new Item("burningSmashStick", false, false), 1], [new Item("bullet", false, false), 200], [new Item("blackPowder", false, false), 200], [new Item("musket", false, false), 1], [new Item("blunderbuss", false, false), 1], [new Item("cutlass", false, false), 1], [new Item("avrakLeatherArmour", false, false), 1], [new Item("balgurCaptainArmour", false, false), 1], [new Item("balgurMercArmour", false, false), 1], [new Item("longSpikedMorningStar", false, false), 1], [new Item("rasper", false, false), 1], [new Item("kellishSawClub", false, false), 1], [new Item("hammer", false, false), 1], [new Item("kellishClaymore", false, false), 1], [new Item("warHammer", false, false), 1], [new Item("vardanianHeavyCleaver", false, false), 1], [new Item("timberAxe", false, false), 1], [new Item("curvedDagger", false, false), 1], [new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 100], [new Item("dualCurvedDaggers", false, false), 1], [new Item("nirineseSpear", false, false), 1], [new Item("hetmerArmour", false, false), 1], [new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("katana", false, false), 1], [new Item("naapridLeatherArmour", false, false), 1], [new Item("thenganSwordAndShield", false, false), 1], [new Item("chainArmour", false, false), 1], [new Item("blackChainArmour", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("aldrekiiArrow", false, false), 79], [new Item("freydicSword", false, false), 1], [new Item("pickaxe", false, false), 1], [new Item("aldrekiiBlade", false, false), 1], [new Item("flail", false, false), 1], [new Item("gulfreyShellArmour", false, false), 1], [new Item("vardanianAxe", false, false), 1], [new Item("vardanianAxeDual", false, false), 1], [new Item("freydicSpear", false, false), 1], [new Item("nirineseSabre", false, false), 1], [new Item("blueBlade", false, false), 1], [new Item("arrow", false, false), 250], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("aldrekiiBardiche", false, false), 1], [new Item("coins", false, false), 20], [new Item("freydicWarAxe", false, false), 1], [new Item("mace", false, false), 1], [new Item("longsword", false, false), 1]];
 
-    //All of the spells in the game
+    //All of the spells in the game -----------> except [new Item("potatoInvisibility", false, false), 1],  which is exclusive to a Jinn wish.
     allSpells = [[new Item("embers", false, false), 1], [new Item("fireballI", false, false), 1], [new Item("iceClaymore", false, false), 1], [new Item("iceSpikes", false, false), 1], [new Item("flyingColours", false, false), 1], [new Item("frostWind", false, false), 1], [new Item("repel", false, false), 1], [new Item("lifeTap", false, false), 1], [new Item("drainingI", false, false), 1], [new Item("vivification", false, false), 1], [new Item("chasingLights", false, false), 1], [new Item("electricBolt", false, false), 1], [new Item("surge", false, false), 1], [new Item("fireHands", false, false), 1], [new Item("chargedTouch", false, false), 1], [new Item("freezingGrasp", false, false), 1], [new Item("leechingTouch", false, false), 1], [new Item("sorcerer'sRaincoat", false, false), 1], [new Item("shieldingI", false, false), 1], [new Item("shieldingII", false, false), 1], [new Item("shieldingIII", false, false), 1], [new Item("shieldingIV", false, false), 1], [new Item("shieldingV", false, false), 1], [new Item("summonFrich", false, false), 1], [new Item("summonWolf", false, false), 1], [new Item("charm", false, false), 1], [new Item("sanctuary", false, false), 1], [new Item("repellingWard", false, false), 1], [new Item("iceberg", false, false), 1], [new Item("magicMissiles", false, false), 1], [new Item("minorVortex", false, false), 1], [new Item("mark", false, false), 1], [new Item("entanglement", false, false), 1], [new Item("whirlwind", false, false), 1], [new Item("iceBlast", false, false), 1], [new Item("shadowport", false, false), 1], [new Item("healingPsalms", false, false), 1], [new Item("summonGriffin", false, false), 1], [new Item("summonDemon", false, false), 1], [new Item("slowTimeI", false, false), 1], [new Item("slowTimeII", false, false), 1], [new Item("slowTimeIII", false, false), 1], [new Item("slowTimeIV", false, false), 1], [new Item("slowTimeV", false, false), 1], [new Item("slowTimeVI", false, false), 1], [new Item("doppelganger", false, false), 1], [new Item("shadowSwitch", false, false), 1], [new Item("eruption", false, false), 1], [new Item("drakeBreath", false, false), 1], [new Item("undyingWard", false, false), 1]];
 //Test Spells
     primarySpells = [];
@@ -4325,6 +4338,8 @@ function theLegend()
     alchemy.push(new Item("fermentedIod", false));
     alchemy.push(new Item("poegroonOil", false));
     alchemy.push(new Item("fermentedBabosaFlesh", false));
+    alchemy.push(new Item("cephrianTincturePotOfungicideTincture", false));
+    alchemy.push(new Item("jinnDust", false));
 
 //Brewing (alcohols, liquid fermentation, etc.)
     brewing = [];
@@ -4359,6 +4374,8 @@ function theLegend()
     forge.push(new Item("vrezinDust", false));
     forge.push(new Item("pimberDust", false));
     forge.push(new Item("shomeDust", false));
+    forge.push(new Item("cephrianTincturePot", false));
+    forge.push(new Item("tinctureCup", false));
 
 //Handcrafted (things the player can do without a work station of some kind)
     handcrafted = [];
@@ -4463,6 +4480,7 @@ function theLegend()
     handcrafted.push(new Item("jarOfSonjaSap", false));
     handcrafted.push(new Item("sonjaPuree", false));
     handcrafted.push(new Item("spicedSonjaPuree", false));
+    handcrafted.push(new Item("cupOfFungicideTincture", false));
 
     //Activate Important Game Functions Here:
     itemPlacer();

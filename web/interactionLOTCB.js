@@ -1483,6 +1483,1206 @@ function interaction(me)
                         }
                     }
 
+                    if (self.ID == "Jinn" && self.type == "Jinn" || conversationID[0] == "Jinn")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Jinn";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["...", false, "a"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            setMsg("You who possess the vessel to which I have been bound, are owed a single wish, which I will grant for you.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 1)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Cure me of all of my afflictions.", false, "a"], ["I wish to not have any wishes", false, "b"], ["I wish for infinite wishes.", false, "c"], ["I wish to have an infinite amount of wishes.", false, "d"], ["I wish to have one more wish.", false, "e"], ["I wish to have two more wishes.", false, "f"], ["Restore my soul and body to their peak condition.", false, "g"], ["Give me an item of my choosing in an amount of my choosing.", false, "h"], ["Rid me of hunger and thirst.", false, "i"], ["Grant me life eternal. ", false, "j"], ["Grant me superhuman strength and speed.", false, "k"], ["Transform me into a diety.", false, "l"], ["Grant me wealth and status.", false, "m"], ["I wish to be loved and cherished throughout the lands.", false, "n"], ["I wish to set you free from your magical captivity.", false, "o"], ["Strengthen my magical ability, but let me retain my humanity.", false, "p"], ["Give me worldly expertise, but let me retain my humanity.", false, "q"], ["Make me into a demi-god.", false, "r"], ["I wish you to be banished from reality for eternity.", false, "s"], ["I wish to have a comprehensive collection of all of the spell scrolls that have been written.", false, "t"], ["I wish to have a spell that no mage has yet discovered.", false, "u"], ["I wish to destroy all that cross my path.", false, "v"], ["I wish to bend time to my will whenever I desire without being affected myself.", false, "w"], ["I wish to change my gender.", false, "x"], ["I wish to have an army that is obedient only to me.", false, "y"], ["I wish to free you on the condition that you do not harm anyone directly or indirectly including me.", false, "z"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1e";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "f")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1f";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "g")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1g";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "h")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1h";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "i")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1i";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "j")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1j";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "k")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1k";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "l")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1l";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "m")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1m";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "n")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1n";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "o")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1o";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "p")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1p";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "q")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1q";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "r")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1r";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "s")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1s";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "t")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1t";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "u")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1u";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "v")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1v";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "w")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1w";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "x")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1x";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "y")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1y";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "z")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1z";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1a")
+                        {
+                            //text dialogue
+                            if (Math.round(Math.random()))
+                            {
+                                setMsg("Your wish is granted.");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    dialogueReset(self);
+                                    msgReset();
+
+                                    player.asthma = false;
+                                    player.thirst = player.thirstMAX;
+                                    player.hunger = player.hungerMAX;
+                                    player.watered = true;
+                                    player.fed = true;
+                                    player.sleep = player.sleepMAX;
+
+                                    player.illnesses = [];
+                                    player.gojiiTimer = 0;
+                                    player.acidI = false;
+                                    player.acidII = false;
+                                    player.acidIII = false;
+                                    player.acidIV = false;
+                                    player.acidV = false;
+                                    player.petrified = false;
+                                    player.fatigueI = false;
+                                    player.fatigueII = false;
+                                    player.fatigueIII = false;
+                                    player.fatigueIV = false;
+                                    player.fatigueV = false;
+                                    player.gassinessTime = 0;
+                                    player.eliktozeola = false;
+                                    player.poisonI = false;
+                                    player.poisonII = false;
+                                    player.poisonIII = false;
+                                    player.poisonIV = false;
+                                    player.poisonV = false;
+                                    player.poisonVI = false;
+                                    player.etnaVenTime = 0;
+                                    player.fungalFever = false;
+                                    player.cyrinthilimTime = 0;
+                                    player.haeflowerTime = 0;
+                                    player.bahabTime = 0;
+                                    player.inebriation = 0;
+                                    player.fleshMites = false;
+                                    player.gutWorms = false;
+                                    player.brainMaggots = false;
+                                    player.gojiiTimer = 0;
+                                    player.gojiiPoisoned = false;
+                                    player.insomniaTime = 0;
+                                    player.insomniaStoreTime = 0;
+                                    player.insomniated = false; //this is a flag that lets thing give the player permanent insomnia until this is switched off by something.
+                                    player.swollenV = false;
+                                    player.swollenIV = false;
+                                    player.swollenIII = false;
+                                    player.swollenII = false;
+                                    player.swollenI = false;
+                                    player.swollenTime = 0;
+                                    player.timeSinceBadFoodEaten = 0;
+                                    player.silvered = false;
+                                    player.vamprism = false;
+                                    player.lycanthropy = false;
+                                    if (player.venandi < 400)
+                                    {
+                                        player.venandi = 0;
+                                    }
+                                    player.kolumHigh = 0;
+                                    player.kolumAddiction = false;
+                                    player.kolumTolerance = 0;
+                                    player.kolumDegredation = 0;
+
+                                    self.wishedOut = true;
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                setMsg("Your wish is granted.");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    dialogueReset(self);
+                                    msgReset();
+
+                                    //kill the player no matter what
+                                    player.playerDeath = true;
+                                    gameState = "paused";
+                                    location.reload();
+
+                                    self.wishedOut = true;
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1b")
+                        {
+                            //text dialogue
+                            setMsg("As you just used the only wish you had to not have any wishes, you granted yourself your own wish...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                dialogueReset(self);
+                                msgReset();
+
+                                self.wishedOut = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1c")
+                        {
+                            //text dialogue
+                            setMsg("There are infinite wishes already, so your wish was needless. You have used up your singular wish, however, and will not be receiving another.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                dialogueReset(self);
+                                msgReset();
+
+                                self.wishedOut = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1d")
+                        {
+                            //text dialogue
+                            setMsg("Your wish will be infinite in amount in that your single finite wish will be composed of infinitely small wishes that all work together to produce the result of the single wish that they make up.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                dialogueReset(self);
+                                msgReset();
+
+                                self.wishedOut = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1e")
+                        {
+                            //text dialogue
+                            setMsg("As you wish...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1f")
+                        {
+                            //text dialogue
+                            setMsg("You now have 2 more wishes than an entity with negative 2 wishes, for it has two less wishes than you have.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                dialogueReset(self);
+                                msgReset();
+
+                                self.wishedOut = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1g")
+                        {
+                            //text dialogue
+                            setMsg("Your wish is granted.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                dialogueReset(self);
+                                msgReset();
+
+                                player.asthma = false;
+                                player.respiration = player.respirationMAX;
+                                player.will = player.willMAX;
+                                player.energy = player.energyMAX;
+                                player.health = player.healthMAX;
+                                player.thirst = player.thirstMAX;
+                                player.hunger = player.hungerMAX;
+                                player.watered = true;
+                                player.fed = true;
+                                player.sleep = player.sleepMAX;
+
+                                player.illnesses = [];
+                                player.gojiiTimer = 0;
+                                player.acidI = false;
+                                player.acidII = false;
+                                player.acidIII = false;
+                                player.acidIV = false;
+                                player.acidV = false;
+                                player.petrified = false;
+                                player.fatigueI = false;
+                                player.fatigueII = false;
+                                player.fatigueIII = false;
+                                player.fatigueIV = false;
+                                player.fatigueV = false;
+                                player.gassinessTime = 0;
+                                player.eliktozeola = false;
+                                player.poisonI = false;
+                                player.poisonII = false;
+                                player.poisonIII = false;
+                                player.poisonIV = false;
+                                player.poisonV = false;
+                                player.poisonVI = false;
+                                player.etnaVenTime = 0;
+                                player.fungalFever = false;
+                                player.cyrinthilimTime = 0;
+                                player.haeflowerTime = 0;
+                                player.bahabTime = 0;
+                                player.inebriation = 0;
+                                player.fleshMites = false;
+                                player.gutWorms = false;
+                                player.brainMaggots = false;
+                                player.gojiiTimer = 0;
+                                player.gojiiPoisoned = false;
+                                player.insomniaTime = 0;
+                                player.insomniaStoreTime = 0;
+                                player.insomniated = false; //this is a flag that lets thing give the player permanent insomnia until this is switched off by something.
+                                player.swollenV = false;
+                                player.swollenIV = false;
+                                player.swollenIII = false;
+                                player.swollenII = false;
+                                player.swollenI = false;
+                                player.swollenTime = 0;
+                                player.timeSinceBadFoodEaten = 0;
+                                player.silvered = false;
+                                player.vamprism = false;
+                                player.lycanthropy = false;
+                                if (player.venandi < 400)
+                                {
+                                    player.venandi = 0;
+                                }
+                                player.kolumHigh = 0;
+                                player.kolumAddiction = false;
+                                player.kolumTolerance = 0;
+                                player.kolumDegredation = 0;
+
+                                self.wishedOut = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1h")
+                        {
+                            var chtItem = prompt("Name exactly what you want, and be precise...");
+                            var chtAmnt = JSON.parse(prompt("What amount of " + chtItem + " do you wish for?"));
+                            worldItems.push([new Item(chtItem, X, Y), chtAmnt]);
+                            dialogueReset(self);
+                            self.wishedOut = true;
+                            playersTurnToSpeak = true;
+                            player.dialoguePosition = 0;
+                            conversationID[1] = 0;
+                            self.SC();
+                        }
+                        else if (conversationID[1] == "1i")
+                        {
+                            var rand = Math.random();
+                            if (rand < 0.333)
+                            {
+                                //text dialogue
+                                setMsg("Your wish is granted.");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    dialogueReset(self);
+                                    msgReset();
+
+                                    player.hunger = player.hungerMAX;
+                                    player.thirst = player.thirstMAX;
+                                    player.fed = true;
+                                    player.watered = true;
+                                    self.wishedOut = true;
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                            else if (rand < 0.666)
+                            {
+                                //text dialogue
+                                setMsg("Your wish is granted.");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    dialogueReset(self);
+                                    msgReset();
+
+                                    //kill the player no matter what
+                                    player.playerDeath = true;
+                                    gameState = "paused";
+                                    location.reload();
+                                    self.wishedOut = true;
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                //text dialogue
+                                setMsg("Your wish is granted.");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    dialogueReset(self);
+                                    msgReset();
+
+                                    player.hunger = player.hungerMAX;
+                                    player.thirst = player.thirstMAX;
+                                    player.urgeless = true;
+                                    self.wishedOut = true;
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1j")
+                        {
+                            //text dialogue
+                            setMsg("Your wish is granted.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                dialogueReset(self);
+                                msgReset();
+
+                                if (Math.random() > 0.5)
+                                {
+                                    player.vamprism = true;
+                                    player.silvered = false;
+                                    player.lycanthropy = false;
+                                }
+                                else
+                                {
+                                    player.lifeEternal = true;
+                                }
+                                self.wishedOut = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1k")
+                        {
+                            if (Math.round(Math.random()) && player.vamprism == false)
+                            {
+                                //text dialogue
+                                setMsg("Your wish is granted.");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    dialogueReset(self);
+                                    msgReset();
+
+                                    player.strength = 51;
+                                    player.dexterity = 51;
+                                    self.wishedOut = true;
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                            else if (player.vamprism == false)
+                            {
+                                //text dialogue
+                                setMsg("Your wish is granted.");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    dialogueReset(self);
+                                    msgReset();
+
+                                    player.lycanthropy = true;
+                                    self.wishedOut = true;
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                //text dialogue
+                                setMsg("I will give take away your vampire curse then give it back to you, so that I will have granted you superhuman strength...");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    dialogueReset(self);
+                                    msgReset();
+                                    player.vamprism = false;
+                                    player.vamprism = true;
+                                    self.wishedOut = true;
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1l")
+                        {
+                            if (Math.round(Math.random()))
+                            {
+                                //text dialogue
+                                if (player.gender == "Female")
+                                {
+                                    setMsg("You are now the godess of this void and all the nothingness within it.");
+                                }
+                                else
+                                {
+                                    setMsg("You are now the god of this void and all the nothingness within it.");
+                                }
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    dialogueReset(self);
+                                    msgReset();
+
+                                    player.godmode = true;
+                                    self.wishedOut = true;
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                    conversations.jinn = ["Jinn", 0];
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                //text dialogue
+                                if (player.gender == "Female")
+                                {
+                                    setMsg("You are now the godess of this void and all the nothingness within it.");
+                                }
+                                else
+                                {
+                                    setMsg("You are now the god of this void and all the nothingness within it.");
+                                }
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    dialogueReset(self);
+                                    msgReset();
+
+                                    player.godmode = true;
+                                    player.lifeEternal = true;
+                                    self.wishedOut = true;
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                    conversations.jinn = ["Jinn", 0];
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1m")
+                        {
+                            //text dialogue
+                            if (player.title != "Royalty")
+                            {
+                                setMsg("You have wealth and status, but you are not technically related to your parents anymore...");
+                            }
+                            else
+                            {
+                                setMsg("Your wish is granted.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                dialogueReset(self);
+                                msgReset();
+
+                                player.title = "Royalty";
+                                player.kelFaction = 1000;
+                                player.thengarFaction = 1000;
+                                player.freynorFaction = 1000;
+                                player.aldrekFaction = 1000;
+                                player.orgellFaction = 1000;
+                                player.vardanFaction = 1000;
+                                player.cephriteFaction = 1000;
+                                player.nirwadenFaction = 1000;
+                                worldItems.push([new Item("coins", X, Y), 20000]);
+
+                                player.theBalgurMercenariesFaction = 1000;
+                                player.estolgangFaction = 1000;
+                                player.sylkeemFaction = 1000;
+
+                                self.wishedOut = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1n")
+                        {
+                            //text dialogue
+                            setMsg("Your wish is granted.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                dialogueReset(self);
+                                msgReset();
+
+                                player.kelFaction = 1000;
+                                player.thengarFaction = 1000;
+                                player.freynorFaction = 1000;
+                                player.aldrekFaction = 1000;
+                                player.orgellFaction = 1000;
+                                player.vardanFaction = 1000;
+                                player.cephriteFaction = 1000;
+                                player.nirwadenFaction = 1000;
+
+                                player.theBalgurMercenariesFaction = 1000;
+                                player.estolgangFaction = 1000;
+                                player.sylkeemFaction = 1000;
+
+                                self.wishedOut = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1o")
+                        {
+                            //text dialogue
+                            setMsg("Thank you.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                dialogueReset(self);
+                                msgReset();
+
+                                self.trappedInPot = "freedom";
+                                self.wishedOut = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1p")
+                        {
+                            //text dialogue
+                            setMsg("Your wish is granted.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                dialogueReset(self);
+                                msgReset();
+
+                                player.magicalSkillPoints += 100;
+                                player.extraMagicPoints += 100;
+                                self.wishedOut = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1q")
+                        {
+                            //text dialogue
+                            setMsg("Your wish is granted.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                dialogueReset(self);
+                                msgReset();
+
+                                player.skillPoints += 100;
+                                player.extraSkillPoints += 100;
+                                self.wishedOut = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1r")
+                        {
+                            //text dialogue
+                            setMsg("You are now fused with the demigod known as Gooplur.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                dialogueReset(self);
+                                msgReset();
+
+                                player.endurance = 50;
+                                player.constitution = 100;
+                                player.knowledge = 50;
+                                player.willpower = 100;
+                                player.will = 100;
+                                player.concentration = 50;
+                                player.eminence = 50;
+                                player.memory = 100;
+                                player.health = 400;
+                                player.race = "#336600";
+                                player.strength = 50;
+                                player.stamina = 100;
+                                player.energy = 506;
+                                player.toughness = 50;
+                                player.intelligence = 50;
+                                player.ranged = 50;
+                                player.dexterity = 70;
+                                player.raceName = "Goop";
+                                player.title = "Supreme Overlord";
+                                player.name = "Gooplur";
+                                player.gender = "Goop";
+
+                                self.wishedOut = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1s")
+                        {
+                            //text dialogue
+                            setMsg("You are a pathetic, wretched little creature; how dare you do this to me!!!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                dialogueReset(self);
+                                msgReset();
+
+                                self.dmx = null;
+                                self.wishedOut = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                                conversations.jinn = ["Jinn", 0];
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1t")
+                        {
+                            //text dialogue
+                            setMsg("Your wish is granted.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                dialogueReset(self);
+                                msgReset();
+
+                                for (var i = 1; i < allSpells.length; i++)
+                                {
+                                    Inventory.push(allSpells[i]);
+                                }
+                                self.wishedOut = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1u")
+                        {
+                            //text dialogue
+                            setMsg("Your wish is granted...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                dialogueReset(self);
+                                msgReset();
+
+                                Inventory.push([new Item("potatoInvisibility", false, false), 1]);
+
+                                self.wishedOut = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1v")
+                        {
+                            //text dialogue
+                            setMsg("...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                dialogueReset(self);
+                                msgReset();
+
+                                player.medusa = true;
+                                self.trappedInPot = false;
+                                self.health = -1000;
+                                self.wishedOut = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1w")
+                        {
+                            //text dialogue
+                            setMsg("As you wish.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                dialogueReset(self);
+                                msgReset();
+
+                                player.chosenOne = true;
+                                self.wishedOut = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1x")
+                        {
+                            //text dialogue
+                            setMsg("So be it...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                dialogueReset(self);
+                                msgReset();
+                                player.gender = prompt("Enter whatever gender you wish to be. Use capitalization for the initial letter, unless that is, you don't identify with capital letters.");
+                                self.wishedOut = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1y")
+                        {
+                            //text dialogue
+                            setMsg("So be it...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                dialogueReset(self);
+                                msgReset();
+                                for (var ploo = 1; ploo <= 20; ploo++)
+                                {
+                                    if (ploo <= 5)
+                                    {
+                                        ArtificialIntelligenceAccess.push(new Unit(X + 60, Y + 40 * ploo, "Soldier", false, "Soulless Minion", {race: player.raceName, faction: "player", con: (2 + Math.round(Math.random() * 3)), speed: 1.55, outfit: ["chainArmour", 6.5], weapon: ["mace", [4, 3], 8, 18, 1.5], ranged: [false, "arrow", 7, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: false, route:[]}));
+                                    }
+                                    else if (ploo <= 10)
+                                    {
+                                        ArtificialIntelligenceAccess.push(new Unit(X + 120, Y + 40 * (ploo / 2), "Soldier", false, "Soulless Minion", {race: player.raceName, faction: "player", con: (2 + Math.round(Math.random() * 3)), speed: 1.55, outfit: ["chainArmour", 6.5], weapon: ["mace", [4, 3], 8, 18, 1.5], ranged: [false, "arrow", 7, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: false, route:[]}));
+                                    }
+                                    else if (ploo <= 15)
+                                    {
+                                        ArtificialIntelligenceAccess.push(new Unit(X + 180, Y + 40 * (ploo / 3), "Soldier", false, "Soulless Minion", {race: player.raceName, faction: "player", con: (2 + Math.round(Math.random() * 3)), speed: 1.55, outfit: ["chainArmour", 6.5], weapon: ["mace", [4, 3], 8, 18, 1.5], ranged: [false, "arrow", 7, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: false, route:[]}));
+                                    }
+                                    else if (ploo <= 20)
+                                    {
+                                        ArtificialIntelligenceAccess.push(new Unit(X + 240, Y + 40 * (ploo / 4), "Soldier", false, "Soulless Minion", {race: player.raceName, faction: "player", con: (2 + Math.round(Math.random() * 3)), speed: 1.55, outfit: ["chainArmour", 6.5], weapon: ["mace", [4, 3], 8, 18, 1.5], ranged: [false, "arrow", 7, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: false, route:[]}));
+                                    }
+                                }
+                                self.wishedOut = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1z")
+                        {
+                            //text dialogue
+                            setMsg("Your wish is my command.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                dialogueReset(self);
+                                msgReset();
+
+                                self.wishedOut = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
                     if (self.ID == "Maggy the Tailor" || conversationID[0] == "Maggy")
                     {
                         lowBar = "dialogue";

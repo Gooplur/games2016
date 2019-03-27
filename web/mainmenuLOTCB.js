@@ -1230,6 +1230,15 @@ function applySelectionsButton()
         {
             player.baseThirst = 35;
         }
+        else if (player.raceName == "Zetian")
+        {
+            player.baseThirst = 55;
+            player.thirstMAX = 55;
+            player.baseHunger = 45;
+            player.hungerMAX = 45;
+            player.baseWarmth = 25;
+            player.sleepMAX = 32;
+        }
         else if (player.raceName == "Freynor")
         {
             player.baseWarmth = 200;
@@ -1381,10 +1390,14 @@ function applySelectionsButton()
             player.creditRating = 0.05;
         }
 
-        //orgell race gets cheaper interest rates while aldrek get higher ones
+        //orgell race gets cheaper interest rates while aldrekii and Zetians get higher ones
         if (player.raceName == "Orgell")
         {
             player.interestRate = 0.12;
+        }
+        else if (player.raceName == "Zetian")
+        {
+            player.interestRate = 0.21;
         }
         else if (player.raceName == "Aldrek")
         {
@@ -1547,7 +1560,7 @@ function Selector(bX, bY, type, selNumMAX)
             }
             else if (selectNumber == 2)
             {
-                if (player.raceName != "Nirwaden" && player.raceName != "Aldrek" && player.raceName != "Sylkeem")
+                if (player.raceName != "Nirwaden" && player.raceName != "Aldrek" && player.raceName != "Sylkeem" && player.raceName != "Zetian")
                 {
                     //Combat Style: Mage
                     XXX.fillStyle = "black";
@@ -1581,6 +1594,24 @@ function Selector(bX, bY, type, selNumMAX)
                         LXX.font = "12px Book Antiqua";
                         LXX.textAlign = "left";
                         LXX.fillText("Shaman's are religious guides that support their cultural religious traditions through their mystical practice. This class will allow your character to start out with a mystical item or scroll that is fitting of your culture.", 5, (LCC.height / 2) + 4);
+                    }
+                }
+                else if (player.raceName == "Zetian")
+                {
+                    //Combat Style: Fighter
+                    XXX.fillStyle = "black";
+                    XXX.font = "20px Impact";
+                    XXX.textAlign = "center";
+                    XXX.fillText("Fighter", bX + 105, bY + 23);
+                    //attributes:
+                    player.class = "Fighter";
+                    //combat style low bar description
+                    if (mouseX >= bX && mouseX <= bX + 210 && mouseY > bY && mouseY < bY + 30)
+                    {
+                        LXX.fillStyle = "black";
+                        LXX.font = "12px Book Antiqua";
+                        LXX.textAlign = "left";
+                        LXX.fillText("Fighters specialize in close quarters combat with weapons like swords, daggers, axes, hammers, spears, etc. This class will allow your character to start out with a close quarters weapon appropriate to your culture and status.", 5, (LCC.height / 2) + 4);
                     }
                 }
                 else
@@ -1643,6 +1674,21 @@ function Selector(bX, bY, type, selNumMAX)
                         LXX.fillText("you have never been outside of your seal skin before. You feel bare and exposed. A sudden and fearful shock rattles through your bones as you realize that you have lost your seal skin...", 5, (LCC.height / 2) + 16);
                     }
                 }
+                else if (player.raceName == "Zetian")
+                {
+                    Inventory = [];
+                    player.hunger = 1/2 * player.hungerMAX;
+                    player.satiated = false;
+
+                    //class low bar description
+                    if (mouseX >= bX && mouseX <= bX + 210 && mouseY > bY && mouseY < bY + 30)
+                    {
+                        LXX.fillStyle = "black";
+                        LXX.font = "12px Book Antiqua";
+                        LXX.textAlign = "left";
+                        LXX.fillText("You wander the burning sands and live off the land as your ancestors have for centuries.", 5, (LCC.height / 2) + 4);
+                    }
+                }
                 else
                 {
                     //class low bar description
@@ -1693,6 +1739,27 @@ function Selector(bX, bY, type, selNumMAX)
                         LXX.font = "12px Book Antiqua";
                         LXX.textAlign = "left";
                         LXX.fillText("A ceremonial skin lets you connect with nature in the most intimate and original way possible. Only a person of Sylkeem blood can access the power of a ceremonial skin.", 5, (LCC.height / 2) + 16);
+                    }
+                }
+                else if (player.raceName == "Zetian")
+                {
+                    Inventory = [];
+                    Inventory.push([new Item("coins", false, false), 3]);
+                    player.hunger = player.hungerMAX;
+                    player.satiated = false;
+
+                    //class low bar description
+                    if (mouseX >= bX && mouseX <= bX + 210 && mouseY > bY && mouseY < bY + 30)
+                    {
+                        LXX.fillStyle = "black";
+                        LXX.font = "12px Book Antiqua";
+                        LXX.textAlign = "left";
+                        LXX.fillText("You grew up in the village of Akigma where your ancestors have lived for centuries. You have little in the way of coin, but you are rich in tradition and", 5, (LCC.height / 2) + 4);
+
+                        LXX.fillStyle = "black";
+                        LXX.font = "12px Book Antiqua";
+                        LXX.textAlign = "left";
+                        LXX.fillText("culture: you know how to live off the land.", 5, (LCC.height / 2) + 16);
                     }
                 }
                 else
@@ -1764,6 +1831,22 @@ function Selector(bX, bY, type, selNumMAX)
                         LXX.fillText("A ceremonial skin lets you connect with nature in the most intimate and original way possible. Only a person of Sylkeem blood can access the power of a ceremonial skin.", 5, (LCC.height / 2) + 16);
                     }
                 }
+                else if (player.raceName == "Zetian")
+                {
+                    Inventory = [];
+                    Inventory.push([new Item("coins", false, false), 11]);
+                    player.hunger = player.hungerMAX;
+                    player.satiated = false;
+
+                    //class low bar description
+                    if (mouseX >= bX && mouseX <= bX + 210 && mouseY > bY && mouseY < bY + 30)
+                    {
+                        LXX.fillStyle = "black";
+                        LXX.font = "12px Book Antiqua";
+                        LXX.textAlign = "left";
+                        LXX.fillText("You grew up in the village of Akigma where your ancestors have lived for centuries.", 5, (LCC.height / 2) + 4);
+                    }
+                }
                 else
                 {
                     Inventory = [];
@@ -1792,9 +1875,36 @@ function Selector(bX, bY, type, selNumMAX)
                 XXX.fillStyle = "black";
                 XXX.font = "20px Impact";
                 XXX.textAlign = "center";
-                XXX.fillText("Tradefolk", bX + 105, bY + 23);
+                if (player.raceName != "Zetian")
+                {
+                    XXX.fillText("Tradefolk", bX + 105, bY + 23);
+                    player.title = "Tradefolk";
+                }
+                else
+                {
+                    XXX.fillText("Peasant", bX + 105, bY + 23);
+                    player.title = "Peasant";
+
+                    Inventory = [];
+                    Inventory.push([new Item("coins", false, false), 3]);
+                    player.hunger = player.hungerMAX;
+                    player.satiated = false;
+
+                    //class low bar description
+                    if (mouseX >= bX && mouseX <= bX + 210 && mouseY > bY && mouseY < bY + 30)
+                    {
+                        LXX.fillStyle = "black";
+                        LXX.font = "12px Book Antiqua";
+                        LXX.textAlign = "left";
+                        LXX.fillText("You grew up in the village of Akigma where your ancestors have lived for centuries. You have little in the way of coin, but you are rich in tradition and", 5, (LCC.height / 2) + 4);
+
+                        LXX.fillStyle = "black";
+                        LXX.font = "12px Book Antiqua";
+                        LXX.textAlign = "left";
+                        LXX.fillText("culture: you know how to live off the land.", 5, (LCC.height / 2) + 16);
+                    }
+                }
                 //attributes:
-                player.title = "Tradefolk";
                 if (player.raceName == "Vardan")
                 {
                     Inventory = [];
@@ -1837,7 +1947,7 @@ function Selector(bX, bY, type, selNumMAX)
                         LXX.fillText("culture of mercantilism, some of your people, including you, have even stooped to selling their ceremonial skin.", 5, (LCC.height / 2) + 16);
                     }
                 }
-                else
+                else if (player.raceName != "Zetian")
                 {
                     Inventory = [];
                     Inventory.push([new Item("coins", false, false), 35]);
@@ -1865,9 +1975,31 @@ function Selector(bX, bY, type, selNumMAX)
                 XXX.fillStyle = "black";
                 XXX.font = "20px Impact";
                 XXX.textAlign = "center";
-                XXX.fillText("Highfolk", bX + 105, bY + 23);
+
+                if (player.raceName != "Zetian")
+                {
+                    XXX.fillText("Highfolk", bX + 105, bY + 23);
+                    player.title = "Highfolk";
+                }
+                else
+                {
+                    XXX.fillText("Vagabond", bX + 105, bY + 23);
+                    player.title = "Vagabond";
+
+                    Inventory = [];
+                    player.hunger = 1/2 * player.hungerMAX;
+                    player.satiated = false;
+
+                    //class low bar description
+                    if (mouseX >= bX && mouseX <= bX + 210 && mouseY > bY && mouseY < bY + 30)
+                    {
+                        LXX.fillStyle = "black";
+                        LXX.font = "12px Book Antiqua";
+                        LXX.textAlign = "left";
+                        LXX.fillText("You wander the burning sands and live off the land as your ancestors have for centuries.", 5, (LCC.height / 2) + 4);
+                    }
+                }
                 //attributes:
-                player.title = "Highfolk";
                 if (player.raceName == "Vardan")
                 {
                     Inventory = [];
@@ -1931,7 +2063,7 @@ function Selector(bX, bY, type, selNumMAX)
                         LXX.fillText("to venture out into the nature to seek out the great natural wisdom that will bring the tribe safely into the future.", 5, (LCC.height / 2) + 16);
                     }
                 }
-                else
+                else if (player.raceName != "Zetian")
                 {
                     Inventory = [];
                     Inventory.push([new Item("coins", false, false), 150]);
@@ -1959,9 +2091,32 @@ function Selector(bX, bY, type, selNumMAX)
                 XXX.fillStyle = "black";
                 XXX.font = "20px Impact";
                 XXX.textAlign = "center";
-                XXX.fillText("Nobility", bX + 105, bY + 23);
+                if (player.raceName != "Zetian")
+                {
+                    XXX.fillText("Nobility", bX + 105, bY + 23);
+                    player.title = "Nobility";
+                }
+                else
+                {
+                    XXX.fillText("Commoner", bX + 105, bY + 23);
+                    player.title = "Commoner";
+
+                    Inventory = [];
+                    Inventory.push([new Item("coins", false, false), 11]);
+                    player.hunger = player.hungerMAX;
+                    player.satiated = false;
+
+                    //class low bar description
+                    if (mouseX >= bX && mouseX <= bX + 210 && mouseY > bY && mouseY < bY + 30)
+                    {
+                        LXX.fillStyle = "black";
+                        LXX.font = "12px Book Antiqua";
+                        LXX.textAlign = "left";
+                        LXX.fillText("You grew up in the village of Akigma where your ancestors have lived for centuries.", 5, (LCC.height / 2) + 4);
+                    }
+                }
+
                 //attributes:
-                player.title = "Nobility";
                 if (player.raceName == "Vardan")
                 {
                     Inventory = [];
@@ -2198,9 +2353,36 @@ function Selector(bX, bY, type, selNumMAX)
                 XXX.fillStyle = "black";
                 XXX.font = "20px Impact";
                 XXX.textAlign = "center";
-                XXX.fillText("Royalty", bX + 105, bY + 23);
+                if (player.raceName != "Zetian")
+                {
+                    XXX.fillText("Royalty", bX + 105, bY + 23);
+                    player.title = "Royalty";
+                }
+                else
+                {
+                    XXX.fillText("Peasant", bX + 105, bY + 23);
+                    player.title = "Peasant";
+
+                    Inventory = [];
+                    Inventory.push([new Item("coins", false, false), 3]);
+                    player.hunger = player.hungerMAX;
+                    player.satiated = false;
+
+                    //class low bar description
+                    if (mouseX >= bX && mouseX <= bX + 210 && mouseY > bY && mouseY < bY + 30)
+                    {
+                        LXX.fillStyle = "black";
+                        LXX.font = "12px Book Antiqua";
+                        LXX.textAlign = "left";
+                        LXX.fillText("You grew up in the village of Akigma where your ancestors have lived for centuries. You have little in the way of coin, but you are rich in tradition and", 5, (LCC.height / 2) + 4);
+
+                        LXX.fillStyle = "black";
+                        LXX.font = "12px Book Antiqua";
+                        LXX.textAlign = "left";
+                        LXX.fillText("culture: you know how to live off the land.", 5, (LCC.height / 2) + 16);
+                    }
+                }
                 //attributes:
-                player.title = "Royalty";
                 if (player.raceName == "Vardan")
                 {
                     Inventory = [];
@@ -2893,10 +3075,71 @@ function Selector(bX, bY, type, selNumMAX)
                     LXX.fillStyle = "black";
                     LXX.font = "12px Book Antiqua";
                     LXX.textAlign = "left";
-                    LXX.fillText("Centuries ago the cephrian people have gained the understanding of the magical arts and since then their culture has evolved around it. They believe that no power exists except for the spirit of magic itself which they believe can be tamed and harnessed to their will.", 5, (LCC.height / 2) + 4);
+                    LXX.fillText("Centuries ago the cephrian people gained the understanding of the magical arts and since then their culture has evolved around it. They believe that no power exists except for the spirit of magic itself which they believe can be tamed and harnessed to their will.", 5, (LCC.height / 2) + 4);
                 }
             }
             else if (selectNumber == 8)
+            {
+                //race: Cephrite
+                XXX.fillStyle = "black";
+                XXX.font = "20px Impact";
+                XXX.textAlign = "center";
+                XXX.fillText("Zetian", bX + 105, bY + 23);
+                //race attributes
+                //colour and race name
+                player.raceName = "Zetian";
+                player.race = "#2a0038";
+                //faction relations
+                player.kelFaction = 15; //green (kellish) Chieftain Har
+                player.thengarFaction = -15; //brown (thengan) King Wolthgar
+                player.freynorFaction = 0; //blue (freydic) King Jirdun
+                player.aldrekFaction = -100; //red (aldrekii) Evaraxii Zoteff
+                player.orgellFaction = -40; //yellow (orgish) King Lysander
+                player.vardanFaction = 0; //black (vardanian) High Count Arlod
+                player.cephriteFaction = 20; //purple (cephrian) Arch Magus Eferous and the grand council of the magi
+                player.nirwadenFaction = -20; //orange (nirinese) Queen Lelaine
+                //skill bonus
+                player.constitution = 0;
+                player.strength = 0;
+                player.stamina = 0;
+                player.dexterity = 0;
+                player.ranged = 0;
+                player.survivalism = 5;
+                player.intelligence = 0;
+                player.endurance = 0;
+                player.toughness = 0;
+                player.charisma = 0;
+                player.willpower = 0;
+                player.knowledge = 0;
+                player.concentration = 0;
+                player.memory = 0;
+                player.eminence = 0;
+                player.skillPoints = 3 + extraSkillPoints;
+                //low bar race description
+                if (mouseX >= bX && mouseX <= bX + 210 && mouseY > bY && mouseY < bY + 30)
+                {
+                    LXX.fillStyle = "black";
+                    LXX.font = "12px Book Antiqua";
+                    LXX.textAlign = "left";
+                    LXX.fillText("The Zetians are the ancient inhabitants of the northern part of the burning desert. Their lands have long ago been divided between Cephrite and Aldrekai. They believe that silence is a virtue, and they tend towards careful observation than recklessness.", 5, (LCC.height / 2) - 8);
+
+                    LXX.fillStyle = "black";
+                    LXX.font = "12px Book Antiqua";
+                    LXX.textAlign = "left";
+                    LXX.fillText("They live in sandstone homes, and are well adapted to living off of what little their hostile desert home provides. They have a strong connection with the land that they live on; they were the first to tame giant whip scorpions to ride as mounts.", 5, (LCC.height / 2) + 4);
+
+                    LXX.fillStyle = "black";
+                    LXX.font = "12px Book Antiqua";
+                    LXX.textAlign = "left";
+                    LXX.fillText("In the days of old the each Zetian tribe was ruled by three chiefs: a war chief that was in charge of training fighters and commanding them in battle, a cultural chief that headed traditions and religious ceremonies, and that also established the villages'.", 5, (LCC.height / 2) + 16);
+
+                    LXX.fillStyle = "black";
+                    LXX.font = "12px Book Antiqua";
+                    LXX.textAlign = "left";
+                    LXX.fillText("rules, and the prosperity chief, that was tasked with working out differences between the tribe in favour of a degree of unity between them. The ancient Zetians believed that the god Asar crafted them all out of a sacred sand, and that they are all spiritually one.", 5, (LCC.height / 2) + 28);
+                }
+            }
+            else if (selectNumber == 9)
             {
                 //race: Nirwaden
                 XXX.fillStyle = "black";
@@ -2942,7 +3185,7 @@ function Selector(bX, bY, type, selNumMAX)
                     LXX.fillText("The Nirinese people have honed their skills in metalwork, craftsmanship, and warfare, and now they seek to expand their dominion across the land, not only to profit from their conquests, but also to spread their righteous faith in The Everlasting Spirit.", 5, (LCC.height / 2) + 4);
                 }
             }
-            else if (selectNumber == 9)
+            else if (selectNumber == 10)
             {
                 //race: Outlander
                 XXX.fillStyle = "black";

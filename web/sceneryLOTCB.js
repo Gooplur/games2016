@@ -2836,7 +2836,10 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             var thisItem = new Item(this.information[0], this.X, this.Y);
 
             //DRAWSELF
-            thisItem.drawItem();
+            if (player.potatoInvisibility != true || thisItem.type != "potato" && thisItem.type != "cookedPotato")
+            {
+                thisItem.drawItem();
+            }
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
             this.radius = 22;
@@ -2847,33 +2850,36 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 this.activate = false;
 
                 //if the plant is owned and you are noticed by any AI then decrease faction relation for stealing.
-                if (this.owned.length > 1)
+                if (player.potatoInvisibility != true || thisItem.type != "potato" && thisItem.type != "cookedPotato")
                 {
-                    if (player.noticed == true)
+                    if (this.owned.length > 1)
                     {
-                        this.changeFactionRelation(this.information[2]);
-                        //alert creatures or anger an individual
-                        if (typeof(this.information[3]) != "undefined")
+                        if (player.noticed == true)
                         {
-                            if (this.information[3] == true)
+                            this.changeFactionRelation(this.information[2]);
+                            //alert creatures or anger an individual
+                            if (typeof(this.information[3]) != "undefined")
                             {
-                                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                                if (this.information[3] == true)
                                 {
-                                    if (ArtificialIntelligenceAccess[i].baseTeam != "player")
+                                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
                                     {
-                                        this.callForNearbyHelpFromType(3500, ArtificialIntelligenceAccess[i].type);
+                                        if (ArtificialIntelligenceAccess[i].baseTeam != "player")
+                                        {
+                                            this.callForNearbyHelpFromType(3500, ArtificialIntelligenceAccess[i].type);
+                                        }
                                     }
                                 }
-                            }
-                            else if (this.information[3] != false)
-                            {
-                                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                                else if (this.information[3] != false)
                                 {
-                                    if (ArtificialIntelligenceAccess[i].baseTeam != "player")
+                                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
                                     {
-                                        if (ArtificialIntelligenceAccess[i].ID == this.information[3])
+                                        if (ArtificialIntelligenceAccess[i].baseTeam != "player")
                                         {
-                                            ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                            if (ArtificialIntelligenceAccess[i].ID == this.information[3])
+                                            {
+                                                ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                            }
                                         }
                                     }
                                 }
@@ -13311,11 +13317,14 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 this.phase = "picked";
 
                 //if the plant is owned and you are noticed by any AI then decrease faction relation for stealing.
-                if (this.owned.length > 1)
+                if (player.potatoInvisibility != true)
                 {
-                    if (player.noticed == true)
+                    if (this.owned.length > 1)
                     {
-                        this.changeFactionRelation(-7);
+                        if (player.noticed == true)
+                        {
+                            this.changeFactionRelation(-7);
+                        }
                     }
                 }
 

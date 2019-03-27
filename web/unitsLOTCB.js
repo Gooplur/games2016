@@ -11410,6 +11410,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         {
             XXX.fillStyle = "white";
         }
+        else if (this.ultra.race == "Zetian")
+        {
+            XXX.fillStyle = "#2a0038";
+        }
         else if (this.ultra.race == "Empiric")
         {
             XXX.fillStyle = "#999966";
@@ -17349,7 +17353,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         }
         else if (this.type == "Sprite")
         {
-            this.resistances = ["time", "shock", "acid", "charm", "web", "water", "petrification", "stun", "blinded", "burning", "frozen", "buffout", "night"];
+            this.resistances = ["time", "shock", "acid", "charm", "strongWeb", "web", "water", "petrification", "stun", "blinded", "burning", "frozen", "buffout", "night"];
             this.damageFrame = "manual";
             this.team = "sprite";
             if (this.ID == "docile")
@@ -17382,6 +17386,54 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.sizeRadius = 10;
             this.negateArmour = 90;
             this.attackWait = 3.1;
+
+            //alpha has a larger size body and skills.
+            this.alphaSize = 1;
+
+            this.yAdjustment = 0;
+            this.xAdjustment = 0;
+        }
+        else if (this.type == "Jinn")
+        {
+            this.resistances = ["time", "shock", "acid", "charm", "strongWeb", "web", "water", "petrification", "stun", "blinded", "burning", "frozen", "buffout", "night"];
+            this.damageFrame = "manual";
+            this.team = "Jinn";
+            if (this.ID == "docile")
+            {
+                this.team = "docile";
+            }
+            this.baseTeam = this.team;
+            this.tamable = false;
+            this.alwaysMove = true;
+
+            if (this.alpha == false)
+            {
+                this.trappedInPot = "captivity";
+            }
+            else
+            {
+                this.trappedInPot = "freedom";
+            }
+
+            this.chaosMoveX = spacer(220);
+            this.chaosMoveY = spacer(220);
+
+            this.flying = true;
+            this.haste = true;
+            this.magicalResistance = 214;
+            this.heatResistance = 115;
+            this.attackStyle = "chunked";
+            this.attackRate = 0;  //this is for rapid style combat only.
+            this.healthMAX = 1600;
+            this.health = this.healthMAX;
+            this.armour = 0;
+            this.speed = 10;
+            this.rangeOfSight = 12000;
+            this.rotationSpeed = 2;
+            this.engagementRadius = 1;
+            this.sizeRadius = 4;
+            this.negateArmour = 0;
+            this.attackWait = 4;
 
             //alpha has a larger size body and skills.
             this.alphaSize = 1;
@@ -29987,6 +30039,179 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             else
             {
                 this.drawUnit(verse, 2929, 283, 54, 32, -35 - this.xAdjustment, -22 - this.yAdjustment, 54 * this.alphaSize, 32 * this.alphaSize);
+            }
+        }
+        //JINN
+        if (this.type == "Jinn") //djin //genie
+        {
+            //Set Drops and experience
+            if (this.trappedInPot == "freedom")
+            {
+                worldItems.push([new Item("cephrianTincturePot", this.X, this.Y), 1]);
+                this.health = 1600;
+                this.healthMAX = 1600;
+                this.trappedInPot = false;
+                conversations.jinn = ["Jinn", 0];
+            }
+
+            if (this.trappedInPot == "captivity")
+            {
+                this.health = 0.1;
+                this.healthMAX = 0.1;
+                this.trappedInPot = true;
+            }
+
+            if (this.trappedInPot == true)
+            {
+                this.sizeRadius = 28
+                if(this.wishedOut != true)
+                {
+                    this.interactable = true;
+                    this.speed = 0;
+                    this.drops = [[new Item("capturedJinn", this.X, this.Y), 1]];
+                }
+                else if (this.alive == true)
+                {
+                    this.interactable = false;
+                    this.drops = [];
+                    conversations.jinn = ["Jinn", 0];
+                    worldItems.push([new Item("cephrianTincturePot", this.X, this.Y), 1]);
+                    this.health = -1000000;
+                }
+            }
+            else if (this.trappedInPot == false)
+            {
+                this.sizeRadius = 4
+                this.interactable = false;
+                this.speed = (5 + (Math.random() * 5));
+                if (Math.max(0, 7 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 12000 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = (12000 * ((player.getIntelligence() / 50) + 1)) / 10;
+                }
+                this.drops = [[new Item("jinnCore", this.X, this.Y), 1]];
+            }
+
+            //RANGE OF SIGHT (anything related to range of sight)
+            this.rangeOfSightCalculator(12000, "extremely");
+
+            //AI
+            if (this.alive == true)
+            {
+
+                if (this.trappedInPot == false)
+                {
+                    if (this.aiTimer > 3)
+                    {
+                        magicList.push(new Magic({ID: "jinnBubble", CNX: 50}, false, false, this, true));
+                        magicList.push(new Magic({ID: "jinnBubble", CNX: 50}, false, false, this, true));
+                        magicList.push(new Magic({ID: "jinnBubble", CNX: 50}, false, false, this, true));
+                        magicList.push(new Magic({ID: "jinnBubble", CNX: 50}, false, false, this, true));
+                        this.aiTimer = 0;
+                        this.chaosMoveX = spacer(360);
+                        this.chaosMoveY = spacer(360);
+                    }
+                }
+
+                //this.deathChecker();
+                this.disturbedTimer();
+                this.visibleSight();
+                this.friendDecider();
+                this.targeting();
+
+                if (this.trappedInPot == false)
+                {
+                    if (this.target == player)
+                    {
+                        this.pointTowards({X: X + this.chaosMoveX, Y: Y + this.chaosMoveY});
+                        this.moveInRelationToThing({X: X + this.chaosMoveX, Y: Y + this.chaosMoveY});
+                    }
+                    else if (this.target != "none")
+                    {
+                        this.pointTowards({X: this.target.X + this.chaosMoveX, Y: this.target.Y + this.chaosMoveY});
+                        this.moveInRelationToThing({X: this.target.X + this.chaosMoveX, Y: this.target.Y + this.chaosMoveY});
+                    }
+                    else
+                    {
+                        this.pointTowards({X: this.X + this.chaosMoveX, Y: this.Y + this.chaosMoveY});
+                        this.moveInRelationToThing({X: this.X + this.chaosMoveX, Y: this.Y + this.chaosMoveY});
+                    }
+                }
+                else
+                {
+                    if (this.target == player)
+                    {
+                        this.pointTowardsPlayer();
+                        this.moveInRelationToPlayer();
+                    }
+                    else if (this.target != "none")
+                    {
+                        this.pointTowards(this.target);
+                        this.moveInRelationToThing(this.target);
+                    }
+                }
+
+            }
+
+            //ANIMATIONS
+            var szx = 1;
+            if (this.alive == true)
+            {
+                if (this.trappedInPot == false)
+                {
+
+                    this.costumeEngine(8, 0.13, false);
+
+                    // the frames/stages/costumes of the animation.
+                    var theCostume = Math.floor(this.costume); //This rounds this.costume down to the nearest whole number.
+
+                    if (theCostume <= 0)
+                    {
+                        this.drawUnit(humpa, 16, 11, 91, 95, -1/2 * 91 * szx * this.alphaSize - this.xAdjustment, -1/2 * 95 * szx * this.alphaSize - this.yAdjustment, 91 * this.alphaSize, 95 * this.alphaSize);
+                    }
+                    else if (theCostume <= 1)
+                    {
+                        this.drawUnit(humpa, 120, 11, 91, 95, -1/2 * 91 * szx * this.alphaSize - this.xAdjustment, -1/2 * 95 * szx * this.alphaSize - this.yAdjustment, 91 * this.alphaSize, 95 * this.alphaSize);
+                    }
+                    else if (theCostume <= 2)
+                    {
+                        this.drawUnit(humpa, 225, 5, 91, 95, -1/2 * 91 * szx * this.alphaSize - this.xAdjustment, -1/2 * 95 * szx * this.alphaSize - this.yAdjustment, 91 * this.alphaSize, 95 * this.alphaSize);
+                    }
+                    else if (theCostume <= 3)
+                    {
+                        this.drawUnit(humpa, 337, 5, 91, 95, -1/2 * 91 * szx * this.alphaSize - this.xAdjustment, -1/2 * 95 * szx * this.alphaSize - this.yAdjustment, 91 * this.alphaSize, 95 * this.alphaSize);
+                    }
+                    else if (theCostume <= 4)
+                    {
+                        this.drawUnit(humpa, 450, 14, 91, 95, -1/2 * 91 * szx * this.alphaSize - this.xAdjustment, -1/2 * 95 * szx * this.alphaSize - this.yAdjustment, 91 * this.alphaSize, 95 * this.alphaSize);
+                    }
+                    else if (theCostume <= 5)
+                    {
+                        this.drawUnit(humpa, 39, 102, 91, 95, -1/2 * 91 * szx * this.alphaSize - this.xAdjustment, -1/2 * 95 * szx * this.alphaSize - this.yAdjustment, 91 * this.alphaSize, 95 * this.alphaSize);
+                    }
+                    else if (theCostume <= 6)
+                    {
+                        this.drawUnit(humpa, 228, 1, 91, 95, -1/2 * 91 * szx * this.alphaSize - this.xAdjustment, -1/2 * 95 * szx * this.alphaSize - this.yAdjustment, 91 * this.alphaSize, 95 * this.alphaSize);
+                    }
+                    else if (theCostume >= 7)
+                    {
+                        this.drawUnit(humpa, 165, 117, 91, 95, -1/2 * 91 * szx * this.alphaSize - this.xAdjustment, -1/2 * 95 * szx * this.alphaSize - this.yAdjustment, 91 * this.alphaSize, 95 * this.alphaSize);
+                    }
+                }
+                else
+                {
+                    this.flashAnimate(90, this.rotation, 1, [{image: humpa, imgX: 594, imgY: 173, portionW: 43, portionH: 26, adjX: -1/2 * 43 * szx * this.alphaSize, adjY: -1/2 * 26 * szx * this.alphaSize, width: 43 * szx * this.alphaSize, height: 26 * szx * this.alphaSize}, {image: humpa, imgX: 0, imgY: 189, portionW: 159, portionH: 78, adjX: -1/2 * 159 * szx * this.alphaSize + 22, adjY: -1/2 * 78 * szx * this.alphaSize, width: 159 * szx * this.alphaSize, height: 78 * szx * this.alphaSize}, {image: humpa, imgX: 0, imgY: 279, portionW: 159, portionH: 78, adjX: -1/2 * 159 * szx * this.alphaSize + 22, adjY: -1/2 * 78 * szx * this.alphaSize, width: 159 * szx * this.alphaSize, height: 78 * szx * this.alphaSize}, {image: humpa, imgX: 0, imgY: 363, portionW: 159, portionH: 78, adjX: -1/2 * 159 * szx * this.alphaSize + 21, adjY: -1/2 * 78 * szx * this.alphaSize - 17, width: 159 * szx * this.alphaSize, height: 78 * szx * this.alphaSize}, {image: humpa, imgX: 0, imgY: 480, portionW: 159, portionH: 78, adjX: -1/2 * 159 * szx * this.alphaSize + 19, adjY: -1/2 * 78 * szx * this.alphaSize, width: 159 * szx * this.alphaSize, height: 78 * szx * this.alphaSize}, {image: humpa, imgX: 0, imgY: 583, portionW: 159, portionH: 78, adjX: -1/2 * 159 * szx * this.alphaSize + 17, adjY: -1/2 * 78 * szx * this.alphaSize, width: 159 * szx * this.alphaSize, height: 78 * szx * this.alphaSize}, {image: humpa, imgX: 0, imgY: 480, portionW: 159, portionH: 78, adjX: -1/2 * 159 * szx * this.alphaSize + 19, adjY: -1/2 * 78 * szx * this.alphaSize, width: 159 * szx * this.alphaSize, height: 78 * szx * this.alphaSize}, {image: humpa, imgX: 0, imgY: 363, portionW: 159, portionH: 78, adjX: -1/2 * 159 * szx * this.alphaSize + 21, adjY: -1/2 * 78 * szx * this.alphaSize - 17, width: 159 * szx * this.alphaSize, height: 78 * szx * this.alphaSize}, {image: humpa, imgX: 0, imgY: 279, portionW: 159, portionH: 78, adjX: -1/2 * 159 * szx * this.alphaSize + 22, adjY: -1/2 * 78 * szx * this.alphaSize, width: 159 * szx * this.alphaSize, height: 78 * szx * this.alphaSize}, {image: humpa, imgX: 0, imgY: 189, portionW: 159, portionH: 78, adjX: -1/2 * 159 * szx * this.alphaSize + 22, adjY: -1/2 * 78 * szx * this.alphaSize, width: 159 * szx * this.alphaSize, height: 78 * szx * this.alphaSize}]);
+                }
+            }
+            else
+            {
+                if (this.trappedInPot == false)
+                {
+                    this.drawUnit(humpa, 15, 690, 91, 64, -1/2 * 91 * szx * this.alphaSize - this.xAdjustment, -1/2 * 64 * szx * this.alphaSize - this.yAdjustment, 91 * this.alphaSize, 64 * this.alphaSize);
+                }
             }
         }
         //BLACK TROLL

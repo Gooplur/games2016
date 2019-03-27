@@ -506,6 +506,18 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                             }
                         }
                     }
+                    else if (whatDoIDo == "acidIII")
+                    {
+                        this.shieldFactoring(Math.max(0, damage - Math.max(0, player.armourTotal - negate)));
+                        if (player.mageShield <= 0)
+                        {
+                            if (damage + negate > player.armourTotal)
+                            {
+                                player.acidIII = true;
+                                player.acidTime = new Date().getTime() + 5000;
+                            }
+                        }
+                    }
                     else if (whatDoIDo == "electricity")
                     {
                         this.shieldFactoring(Math.max(0, damage - ((player.totalShockResist * 3) + (19 * player.magicalResistanceTotal))));
@@ -553,6 +565,12 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                         {
                             ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].heatResistance);
                             ArtificialIntelligenceAccess[i].burningTime = new Date().getTime();
+                        }
+                        else if (whatDoIDo == "bonk")
+                        {
+                            ArtificialIntelligenceAccess[i].stunIII = true;
+                            ArtificialIntelligenceAccess[i].stunTimer = Math.max(ArtificialIntelligenceAccess[i].stunTimer, 2);
+                            ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
                         }
                         else if (whatDoIDo == "blinding")
                         {
@@ -994,7 +1012,9 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                                 {
                                     this.shieldFactoring(Math.max(0, damage - player.warmthProtection));
                                     player.warmth -= Math.max(0, 5 - player.warmthProtection);
-                                    //todo figure out how to add wind pushback based on ai rotation for the player and put it here.
+                                    var twrdsUnit = Math.atan2(this.Y - Y, this.X - X);
+                                    X -= Math.cos(twrdsUnit) * 125;
+                                    Y -= Math.sin(twrdsUnit) * 125;
                                 }
                                 else if (kind == "magic")
                                 {
@@ -1135,7 +1155,9 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                             {
                                 player.health -= Math.max(0, damage - player.warmthProtection);
                                 player.warmth -= Math.max(0, 5 - player.warmthProtection);
-                                //todo figure out how to add wind pushback based on ai rotation for the player and put it here.
+                                var twrdsUnit = Math.atan2(this.Y - Y, this.X - X);
+                                X -= Math.cos(twrdsUnit) * 125;
+                                Y -= Math.sin(twrdsUnit) * 125;
                             }
                             else if (kind == "magic")
                             {
@@ -1343,6 +1365,13 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
             this.rotation = Math.random() * 2*Math.PI;
             this.size = 0.2;
         }
+        //JINN BUBBLE
+        if (this.spellType == "jinnBubble")
+        {
+            this.orientToCaster(0, Math.random() * 2*Math.PI);
+            this.rotation = Math.random() * 2 * Math.PI;
+            this.jinnDo = Math.round(Math.random() * 7);
+        }
         //FLAMING MISSILES
         if (this.spellType == "flamingMissiles")
         {
@@ -1353,7 +1382,11 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
             }
             else
             {
-                if (unitSelf.type == "AncientBeing")
+                if (this.orders == "chaotic")
+                {
+                    this.orientToCaster(25, 2*Math.PI*Math.random());
+                }
+                else if (unitSelf.type == "AncientBeing")
                 {
                     if (this.orders == "left")
                     {
@@ -1413,6 +1446,11 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                 {
                     this.orientToCaster(29, -0.7 / 5 * Math.PI); //0.7
                     this.drawWithRotation(mofu, 454, 46, 19, 32, 29, 26, this.unitRotation, -1 / 2 * 19, -1 / 2 * 32);
+                }
+                else
+                {
+                    this.X = unitSelf[1];
+                    this.Y = unitSelf[2];
                 }
             }
         }
@@ -2200,6 +2238,179 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                 else
                 {
                     //todo add mark spell for AI
+                }
+            }
+
+            //JINN BUBBLE
+            if (this.spellType == "jinnBubble")
+            {
+                var rand = Math.random();
+                if (rand < 0.333)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.globalAlpha = 0.99;
+                    XXX.drawImage(humpa, 316, 135, 85, 84, - (1/2 * 85 * 1), - (1/2 * 84 * 1), 85 * 1, 84 * 1);
+                    XXX.restore();
+                }
+                else if (rand < 0.666)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.globalAlpha = 0.99;
+                    XXX.drawImage(humpa, 410, 138, 85, 84, - (1/2 * 85 * 1), - (1/2 * 84 * 1), 85 * 1, 84 * 1);
+                    XXX.restore();
+                }
+                else
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.globalAlpha = 0.99;
+                    XXX.drawImage(humpa, 513, 138, 85, 84, - (1/2 * 85 * 1), - (1/2 * 84 * 1), 85 * 1, 84 * 1);
+                    XXX.restore();
+                }
+
+                if (this.jinnDo == 0)
+                {
+                    this.damageThenGoAway(45, "mark", 20, 11, true, "alert");
+                    this.project(this.rotation, 600, 1 + 2 * ((50 + 50) / 50), "alert");
+                    if (this.alert)
+                    {
+                        for (var i = 0; i < magicList.length; i++)
+                        {
+                            if (magicList[i] === this)
+                            {
+                                magicList.splice(i, 1);
+                                break;
+                            }
+                        }
+                    }
+                }
+                else if (this.jinnDo == 1)
+                {
+                    this.damageThenGoAway(45, "electricity", 20, 11, true, "alert");
+                    this.project(this.rotation, 600, 1 + 2 * ((50 + 50) / 50), "alert");
+                    if (this.alert)
+                    {
+                        for (var i = 0; i < magicList.length; i++)
+                        {
+                            if (magicList[i] === this)
+                            {
+                                magicList.splice(i, 1);
+                                break;
+                            }
+                        }
+                    }
+                }
+                else if (this.jinnDo == 2)
+                {
+                    this.project(this.rotation, 200, 1 + 2 * ((50 + 50) / 50), "alert");
+
+                    if (this.alert)
+                    {
+                        magicList.push(new Magic({ID: "electricBolt", CNX: 50}, false, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, unitSelf], true));
+                        magicList.push(new Magic({ID: "electricBolt", CNX: 50}, false, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, unitSelf], true));
+                        magicList.push(new Magic({ID: "electricBolt", CNX: 50}, false, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, unitSelf], true));
+                        magicList.push(new Magic({ID: "electricBolt", CNX: 50}, false, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, unitSelf], true));
+                        magicList.push(new Magic({ID: "electricBolt", CNX: 50}, false, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, unitSelf], true));
+                        magicList.push(new Magic({ID: "electricBolt", CNX: 50}, false, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, unitSelf], true));
+                        magicList.push(new Magic({ID: "electricBolt", CNX: 50}, false, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, unitSelf], true));
+                        for (var i = 0; i < magicList.length; i++)
+                        {
+                            if (magicList[i] === this)
+                            {
+                                magicList.splice(i, 1);
+                                break;
+                            }
+                        }
+                    }
+                }
+                else if (this.jinnDo == 3)
+                {
+                    this.project(this.rotation, 200, 1 + 2 * ((50 + 50) / 50), "alert");
+
+                    if (this.alert)
+                    {
+                        magicList.push(new Magic({ID: "flamingMissiles"}, false, "chaotic", this));
+                        magicList.push(new Magic({ID: "flamingMissiles"}, false, "chaotic", this));
+                        magicList.push(new Magic({ID: "flamingMissiles"}, false, "chaotic", this));
+                        magicList.push(new Magic({ID: "flamingMissiles"}, false, "chaotic", this));
+                        for (var i = 0; i < magicList.length; i++)
+                        {
+                            if (magicList[i] === this)
+                            {
+                                magicList.splice(i, 1);
+                                break;
+                            }
+                        }
+                    }
+                }
+                else if (this.jinnDo == 4)
+                {
+                    this.damageThenGoAway(45, "bonk", 20, 11, true, "alert");
+                    this.project(this.rotation, 600, 1 + 2 * ((50 + 50) / 50), "alert");
+                    if (this.alert)
+                    {
+                        for (var i = 0; i < magicList.length; i++)
+                        {
+                            if (magicList[i] === this)
+                            {
+                                magicList.splice(i, 1);
+                                break;
+                            }
+                        }
+                    }
+                }
+                else if (this.jinnDo == 5)
+                {
+                    this.damageThenGoAway(45, "fire", 20, 11, true, "alert");
+                    this.project(this.rotation, 600, 1 + 2 * ((50 + 50) / 50), "alert");
+                    if (this.alert)
+                    {
+                        for (var i = 0; i < magicList.length; i++)
+                        {
+                            if (magicList[i] === this)
+                            {
+                                magicList.splice(i, 1);
+                                break;
+                            }
+                        }
+                    }
+                }
+                else if (this.jinnDo == 6)
+                {
+                    this.contactDamage(true, 45, 18, 250, "frostwind", "frostI");
+                    this.project(this.rotation, 600, 1 + 2 * ((50 + 50) / 50), "alert");
+                    if (this.alert)
+                    {
+                        for (var i = 0; i < magicList.length; i++)
+                        {
+                            if (magicList[i] === this)
+                            {
+                                magicList.splice(i, 1);
+                                break;
+                            }
+                        }
+                    }
+                }
+                else if (this.jinnDo == 7)
+                {
+                    this.damageThenGoAway(45, "acidIII", 20, 11, true, "alert");
+                    this.project(this.rotation, 600, 1 + 2 * ((50 + 50) / 50), "alert");
+                    if (this.alert)
+                    {
+                        for (var i = 0; i < magicList.length; i++)
+                        {
+                            if (magicList[i] === this)
+                            {
+                                magicList.splice(i, 1);
+                                break;
+                            }
+                        }
+                    }
                 }
             }
 

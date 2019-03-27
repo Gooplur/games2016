@@ -284,7 +284,7 @@ function cheats()
             player.energilTime = 100;
             player.fatigueI = true;
         }
-        else if (cheatcode == "SMFSGD")
+        else if (cheatcode == "SMSP")
         {
             player.warmth += 5;
             player.thirst += 3;

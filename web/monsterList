@@ -3,6 +3,7 @@ Skeleton - A skeletal warrior
 Lich - A skeletal mage
 Corpse Golem - A golem formed of hexed bones. Upon its death skeletal warriors rise to fight you from its remains.
 Deth - An intelligent, sentient goblinoid that lives in the vardanian grey grass plains: They construct villages, war with one another, celebrate with dances, develop technologies medical, architectural and militaristic, they hunt and gather food and supplies, and they have a hierarchical tribal system that includes a chief and a shaman.
+RiodBeetle - A small red desert beetle that's flesh can be eaten raw or fermented and eaten as a semi alcoholic sour mash. It lives in the northern part of the burning desert.
 
 //NOT YET ADDED INTO THE GAME
 
@@ -45,6 +46,7 @@ Babosa - A large pinkish slug that lives in the jungle; it leaves a trail of aci
 Pyromoth - A black and red moth that is most active at night time. It lives in the jungle. It has a combustible substance on its wings that make sparks as it flies, it does this to scare away potential predators. Its web is fire-proof.
 Humpty - Technically they are human... Um, but in truth they have long been experimented upon with powerful magics such that they have lost their human form. The experimentation was intended to produce a being that could biologically grow a powerful magic compound used in the some of the most advanced elixirs, one previously very rare and difficult to obtain. Humpties' connective cord known as the chalaza holds this magical compound inside of it. In terms of behavior, humpties are just like humans (for they were magically evolved from humans). They talk, walk, drink, fight, craft, laugh, joke, tease... etc. However, humpty reproduction is completely inhuman. They reproduce by kissing and then later the female spits out a baby humpty (from her mouth).  //ArtificialIntelligenceAccess.push(new Unit(3600, 2500, "Person", false, "Mr. Dumpty", {race: "Humpty", faction: "Cephrite", personality: "violent", outfit: ["none", 8], weapon: ["none", [3, 2], 3, 22, 2], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: false, route:[[0, 0], [0, 0]], kid: true, kidSize: 2})); //ArtificialIntelligenceAccess.push(new Unit(3400, 2500, "Soldier", false, "Mrs. Dumpty", {race: "Humpty", faction: "Cephrite", con: 5, speed: 0.85, outfit: ["none", 9], weapon: ["none", [3, 3], 3.5, 25, 2], ranged: [false, "arrow", 8, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: false, route:[[0, 0], [0, 0]], kid: true, kidSize: 2.1}));
 BlackTroll - A black furred jungle troll that can be found alone or in communities. If there are only a few trolls they will warn you to stay away by making aggressive motions, however if there are many, they will attack you without warning. Black Trolls have one of the fastest regeneration rates among trolls (for their size at the very least).
+Jinn - An extremely powerful cosmic being that comes from the chaos realm. If it is captured it owes its captor a single wish, then it is returned to the chaos realm. If a jinn is freed, it can choose to stay in the worldly realm and wreak havoc.
 
 //ALREADY IN THE GAME
 

@@ -555,6 +555,11 @@ function Adventurer()
     this.repelente = false;
     this.repelenteKeepTime = new Date().getTime();
     this.undying = false; //when the player's health is zero or below, if this is true the player will be instantly revived with 1/11 of MAX in every combat stat (energy, health)
+    this.urgeless = false; //if true, this rids the player of the need to eat or drink
+    this.godmode = false; //if this mode is true, the player is warped away into a different dimension in which they can use game assets to create their own world.
+    this.lifeEternal = false; //this makes it so that the player cannot die.
+    this.potatoInvisibility = false; //determines whether potatoes will turn invisible around the player...
+    this.chosenOne = false;
 
         //faction variables
     this.factionToggle = false;
@@ -3351,9 +3356,15 @@ function Adventurer()
 
         this.cheatPowers = function()
         {
-            if (player.name == "Gooplur" && player.gender == "Gooplitor" && player.race == "#336600")
+            if (this.urgeless == true)
             {
-                if (qKey)
+                this.fed = true;
+                this.watered = true;
+            }
+
+            if (player.name == "Gooplur" && player.gender == "Gooplitor" && player.race == "#336600" || this.chosenOne == true)
+            {
+                if (xKey)
                 {
                     this.timeAlterTime = 1;
                     this.timeAlter = 0.0333;
@@ -3368,9 +3379,14 @@ function Adventurer()
             if (this.cyberArmour)
             {
                 this.respiration += 1;
-                if (qKey)
+
+                if (xKey)
                 {
-                    qKey = false;
+                    cyberArTog = true;
+                }
+                if (cyberArTog == true && xKey == false)
+                {
+                    cyberArTog = false;
                     if (new Date().getTime() - this.cyberToggleTime > 900)
                     {
                         this.cyberToggleTime = new Date().getTime();
@@ -3386,6 +3402,20 @@ function Adventurer()
             else
             {
                 this.cyberToggle = 0;
+            }
+
+            if (this.lifeEternal == true)
+            {
+                this.health = this.healthMAX;
+                this.constitution = 999;
+            }
+
+            if (this.godmode == true)
+            {
+                map = "luominene";
+                region = "luominene";
+                change = "luominene";
+                player.dmx = "luominene";
             }
         };
 
@@ -9235,6 +9265,10 @@ function Adventurer()
                     {
                         this.shieldingV = true;
                     }
+                    if (tertiarySpells[i].ID == "potatoInvisibility")
+                    {
+                        this.potatoInvisibility = true;
+                    }
                 }
             }
             else
@@ -9289,6 +9323,10 @@ function Adventurer()
                 if (tertiarySpells[i].ID == "shieldingV")
                 {
                     this.shieldingV = false;
+                }
+                if (tertiarySpells[i].ID == "potatoInvisibility")
+                {
+                    this.potatoInvisibility = false;
                 }
             }
         }
@@ -24814,7 +24852,7 @@ function Adventurer()
                     XXX.font = "bold 20px Book Antiqua";
                     XXX.fillStyle = "black";
                     XXX.textAlign = "center";
-                    XXX.fillText("Kel: " + this.kelFaction, 700, 72);
+                    XXX.fillText("The Kellish Confederation of Tribes: " + this.kelFaction, 700, 72);
                         //clickability
                     if (mouseX > 425 && mouseX < 975 && mouseY > 50 && mouseY < 80 && clicked)
                     {
@@ -24869,7 +24907,7 @@ function Adventurer()
                     XXX.font = "bold 20px Book Antiqua";
                     XXX.fillStyle = "black";
                     XXX.textAlign = "center";
-                    XXX.fillText("Thengar: " + this.thengarFaction, 700, 72 + 55);
+                    XXX.fillText("Thengaria: " + this.thengarFaction, 700, 72 + 55);
                         //clickability
                     if (mouseX > 425 && mouseX < 975 && mouseY > 50 + 55 && mouseY < 80 + 55 && clicked)
                     {
@@ -24979,7 +25017,7 @@ function Adventurer()
                     XXX.font = "bold 20px Book Antiqua";
                     XXX.fillStyle = "black";
                     XXX.textAlign = "center";
-                    XXX.fillText("Aldrek: " + this.aldrekFaction, 700, 72 + (55 * 3));
+                    XXX.fillText("Aldrekai: " + this.aldrekFaction, 700, 72 + (55 * 3));
                         //clickability
                     if (mouseX > 425 && mouseX < 975 && mouseY > 50 + (55 * 3) && mouseY < 80 + (55 * 3) && clicked)
                     {
@@ -25089,7 +25127,7 @@ function Adventurer()
                     XXX.font = "bold 20px Book Antiqua";
                     XXX.fillStyle = "black";
                     XXX.textAlign = "center";
-                    XXX.fillText("Vardan: " + this.vardanFaction, 700, 72 + (55 * 5));
+                    XXX.fillText("Vardania: " + this.vardanFaction, 700, 72 + (55 * 5));
                         //clickability
                     if (mouseX > 425 && mouseX < 975 && mouseY > 50 + (55 * 5) && mouseY < 80 + (55 * 5) && clicked)
                     {
@@ -25199,7 +25237,7 @@ function Adventurer()
                     XXX.font = "bold 20px Book Antiqua";
                     XXX.fillStyle = "black";
                     XXX.textAlign = "center";
-                    XXX.fillText("Nirwaden: " + this.nirwadenFaction, 700, 72 + (55 * 7));
+                    XXX.fillText("The Nirwaden Empire: " + this.nirwadenFaction, 700, 72 + (55 * 7));
                     //clickability
                     if (mouseX > 425 && mouseX < 975 && mouseY > 50 + (55 * 7) && mouseY < 80 + (55 * 7) && clicked)
                     {
@@ -31038,8 +31076,20 @@ function Adventurer()
                                     this.fleshMites = true;
                                 }
                             }
+                            else if (Inventory[i][0].ability == "fungicide")
+                            {
+                                //kills fungi to a certain extent
+                                if (this.venandi < 400)
+                                {
+                                    this.venandi = 0;
+                                }
+                                this.fungalFever = false;
+                            }
                             else if (Inventory[i][0].ability == "mj")
                             {
+                                //neutralizes rogue protiens
+                                this.eliktozeola = false;
+
                                 //kills fungi to a certain extent
                                 if (this.venandi < 100)
                                 {
@@ -31129,6 +31179,7 @@ function Adventurer()
                                 this.toughnessV = true;
 
                                 //cure all
+                                this.illnesses = [];
                                 this.recoveryTime = 1000;
                                 this.recoverV = true;
                                 this.watered = true;
@@ -31158,6 +31209,7 @@ function Adventurer()
                                 this.fungalFever = false;
                                 this.cyrinthilimTime = 0;
                                 this.haeflowerTime = 0;
+                                this.bahabTime = 0;
                                 this.inebriation = 0;
                                 this.fleshMites = false;
                                 this.gutWorms = false;
@@ -31177,6 +31229,14 @@ function Adventurer()
                                 this.silvered = false;
                                 this.vamprism = false;
                                 this.lycanthropy = false;
+                                if (this.venandi < 400)
+                                {
+                                    this.venandi = 0;
+                                }
+                                this.kolumHigh = 0;
+                                this.kolumAddiction = false;
+                                this.kolumTolerance = 0;
+                                this.kolumDegredation = 0;
                             }
                             else if (Inventory[i][0].ability == "foodPoisoning") //this effect makes the player vomit and lose 22 hunger.
                             {
@@ -31953,6 +32013,20 @@ function Adventurer()
                                 }
                                 break;
                             }
+                        }
+                        else if (Inventory[i][0].subUtility == "jinn")
+                        {
+                                ArtificialIntelligenceAccess.push(new Unit(X + Math.cos(this.rotation + 1/2 * Math.PI) * 14, Y + Math.sin(this.rotation + 1/2 * Math.PI) * 14, "Jinn", false, "Jinn", {faction: "Jinn"}));
+
+                                if (Inventory[i][1] - 1 <= 0)
+                                {
+                                    Inventory.splice(i, 1);
+                                }
+                                else
+                                {
+                                    Inventory[i][1] -= 1;
+                                }
+                                break;
                         }
                         else if (Inventory[i][0].subUtility == "campFire")
                         {

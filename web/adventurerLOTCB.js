@@ -1302,7 +1302,7 @@ function Adventurer()
                     var illDuration = Math.max(6, this.illnesses[j][2] - this.getToughness());
                     if (this.illnesses[j][1] >= illDuration)
                     {
-                        this.antibodies.push([this.illnesses[j][0], 2400 + (24 * this.getToughness())]);
+                        this.antibodies.push([this.illnesses[j][0], 1800 + (24 * this.getToughness())]);
                     }
                     else
                     {

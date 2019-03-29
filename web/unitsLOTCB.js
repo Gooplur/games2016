@@ -1499,6 +1499,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.allys.push("wolf");
             this.allys.push("werewolf");
             this.allys.push("snake");
+            this.allys.push("kigaria");
         }
         if (this.team == "gribia")
         {
@@ -1540,6 +1541,12 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         {
             this.allys.push("docile");
             this.allys.push("shehidia");
+            this.allys.push("clamia");
+            this.allys.push("ulgoyia");
+        }
+        if (this.team == "kigaria")
+        {
+            this.allys.push("docile");
             this.allys.push("clamia");
             this.allys.push("ulgoyia");
         }
@@ -7489,7 +7496,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         {
             for (var i = 0; i < scenicList.length; i++)
             {
-                if (typeof(excludeSubVariety) != "undefined")
+                if (typeof(excludeSubVariety) != "undefined" && typeof(excludeSubVariety) != "boolean")
                 {
                     var nect = true;
                     var pikked = true;
@@ -12128,7 +12135,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         else if (this.type == "Etyr") //etyretyr
         {
             this.damageFrame = "automatic";
-            this.team = "etyria";
+            this.team = "wild";
             this.baseTeam = this.team;
             this.tameREQ = 9;
 
@@ -32576,15 +32583,30 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.targeting();
 
                 this.moving = false;
+
+                var closestDist = 1000000000000000000000000000;
+                var closest = -1;
+                var plantTarget = "none";
+                for (var i = 0; i < scenicList.length; i++)
+                {
+                    if (scenicList[i].subVariety == "fungi" && scenicList[i].phase != "picked")
+                    {
+                        var distiy = (this.X - scenicList[i].X)*(this.X - scenicList[i].X) + (this.Y - scenicList[i].Y)*(this.Y - scenicList[i].Y)
+                        if (distiy < closestDist)
+                        {
+                            closestDist = distiy;
+                            closest = i;
+                        }
+                    }
+                }
+                if (closest > -1)
+                {
+                    plantTarget = scenicList[closest];
+                }
+
                 if (this.target == player)
                 {
                     var ddttpp = this.DTP();
-                    var plantsToTarget = this.nearbyPlants(1, false, false, true);
-                    var plantTarget = "none";
-                    if (plantsToTarget.length >= 1)
-                    {
-                        plantTarget = plantsToTarget[0];
-                    }
 
                     if (player.health <= 12 && player.armourTotal <= 3 && ddttpp < 350)
                     {
@@ -32635,12 +32657,6 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 else if (this.target != "none")
                 {
                     var ddttpp = this.DTU(this.target);
-                    var plantsToTarget = this.nearbyPlants(1, false, false, true);
-                    var plantTarget = "none";
-                    if (plantsToTarget.length >= 1)
-                    {
-                        plantTarget = plantsToTarget[0];
-                    }
 
                     if (this.target.health <= 12 && this.target.armourTotal <= 3 && ddttpp < 350)
                     {
@@ -32662,6 +32678,34 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         this.moveInRelationToThing(this.target);
                     }
                     else if (plantTarget != "none")
+                    {
+                        if (this.DTU(plantTarget) <= 600 && plantTarget.subVariety != "fungi")
+                        {
+                            plantTarget = "none";
+                            this.pointAway(plantTarget);
+                            this.moveInRelationToThing(plantTarget);
+                        }
+                        else
+                        {
+                            if (this.DTU(plantTarget) < 600)
+                            {
+                                this.pointTowards(plantTarget);
+                                this.moveInRelationToThing(plantTarget);
+                                if (this.DTU(plantTarget) <= this.engagementRadius && plantTarget.phase != "picked")
+                                {
+                                    this.eating = true;
+                                }
+                                else
+                                {
+                                    this.eating = false;
+                                }
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    if (plantTarget != "none")
                     {
                         if (this.DTU(plantTarget) <= 600 && plantTarget.subVariety != "fungi")
                         {
@@ -32734,6 +32778,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         }
                         else if (theCostume2 >= 1) //open
                         {
+                            if (this.eating == true && plantTarget != "none")
+                            {
+                                plantTarget.phase = "picked";
+                                this.eating = false;
+                            }
                             this.drawUnit(humpa, 73, 963, 125, 84, -1/2 * 125 * this.alphaSize - this.xAdjustment, -1/2 * 84 * this.alphaSize - this.yAdjustment, 125 * this.alphaSize, 84 * this.alphaSize);
                         }
                     }
@@ -32745,6 +32794,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         }
                         else if (theCostume2 >= 1) //open
                         {
+                            if (this.eating == true && plantTarget != "none")
+                            {
+                                plantTarget.phase = "picked";
+                                this.eating = false;
+                            }
                             this.drawUnit(humpa, 213, 963, 125, 84, -1/2 * 125 * this.alphaSize - this.xAdjustment, -1/2 * 84 * this.alphaSize - this.yAdjustment, 125 * this.alphaSize, 84 * this.alphaSize);
                         }
                     }
@@ -53965,11 +54019,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             //RANGE OF SIGHT (anything related to range of sight)
             if (this.alpha == true)
             {
-                this.rangeOfSightCalculator(675, "unrelenting");
+                this.rangeOfSightCalculator(200, "unrelenting");
             }
             else
             {
-                this.rangeOfSightCalculator(575, "unrelenting");
+                this.rangeOfSightCalculator(150, "unrelenting");
             }
 
             //AI
@@ -53994,13 +54048,31 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
                 if (this.target == player)
                 {
-                    this.pointTowardsPlayer();
-                    this.moveInRelationToPlayer();
+                    if (this.DTP() > this.rangeOfSight && typeof(this.ultra) != "undefined")
+                    {
+                        this.patrol(this.ultra.patrolStops, this.ultra.patrolLoop);
+                    }
+                    else
+                    {
+                        this.pointTowardsPlayer();
+                        this.moveInRelationToPlayer();
+                    }
                 }
                 else if (this.target != "none")
                 {
-                    this.pointTowards(this.target);
-                    this.moveInRelationToThing(this.target);
+                    if (this.DTP() > this.rangeOfSight && typeof(this.ultra) != "undefined")
+                    {
+                        this.patrol(this.ultra.patrolStops, this.ultra.patrolLoop);
+                    }
+                    else
+                    {
+                        this.pointTowards(this.target);
+                        this.moveInRelationToThing(this.target);
+                    }
+                }
+                else if (typeof(this.ultra) != "undefined")
+                {
+                    this.patrol(this.ultra.patrolStops, this.ultra.patrolLoop);
                 }
 
             }

@@ -31,6 +31,8 @@ Maleot - A large dark grey Vardanian mushroom that is moderately poisonous
 Iod - A green stalk-like fungus that grows in the Vardanian woods; it can be characterized as a carnivorous plant because it actively decomposes nearby carrion for use in its nutrient cycle using limb stalks that it maintains underground most of the time; iod fungus actively seeks to grow the reach of its mycelium, and when it has reached its capacity for growth it duplicates itself at the edge of its mycelium in order to expand even farther.
 SonjaTree - A large tree with numerous branches that bear delicious sonja fruits in the seasons Bright, and Frost; it grows in the jungle.
 Crilk - A jungle bush that has blue fruits with yellowish spots: the fruits are squishy because the skin is rubbery; the fruits are filled with a thick liquid goo that suspends the numerous little black seeds inside; they are very poisonous to eat.
+SelvaTree - A large jungle tree with very long twisting branches. jungle trees: 0 = normal, 1 = torper nest, 2 = borea perch //scenicList.push(new Scenery("selvaTree", x, y, rotation, type));
+AshaiTree - A temperate black Vardanian tree that has white wood. //scenicList.push(new Scenery("ashaiTree", x, y, rotation, size));
 
 //ALREADY IN GAME (to create a plant with the scenery class these plants must be made all lowercase)
     //FARM

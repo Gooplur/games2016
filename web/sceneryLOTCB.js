@@ -2910,6 +2910,210 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 scenicList.splice(scenicList.indexOf(this), 1);
             }
         }
+        else if (this.type == "overVines")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+
+            if (typeof(this.information) != "undefined" && typeof(this.information) != "boolean")
+            {
+                this.size = this.information;
+            }
+            else
+            {
+                this.size = 1;
+            }
+
+            this.zIndex = 4;
+            if (this.temporary == 0) //med
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(humpa, 1233, 250, 627, 161, -(1/2 * 627 * this.size), -(1/2 * 161 * this.size), 627 * this.size, 161 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 1) //small wide
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(humpa, 2013, 275, 345, 177, -(1/2 * 345 * this.size), -(1/2 * 177 * this.size), 345 * this.size, 177 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 2) //long
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(humpa, 2748, 1070, 299, 946, -(1/2 * 299 * this.size), -(1/2 * 946 * this.size), 299 * this.size, 946 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 3) //short thin
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(stic, 298, 0, 171, 46, -(1/2 * 171 * this.size), -(1/2 * 46 * this.size), 171 * this.size, 46 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary >= 4) //short mediumwidth
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(stic, 501, 0, 208, 49, -(1/2 * 208 * this.size), -(1/2 * 49 * this.size), 208 * this.size, 49 * this.size);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 1;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "webVictim")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+
+            if (typeof(this.information) != "undefined" && typeof(this.information) != "boolean")
+            {
+                this.size = this.information;
+            }
+            else
+            {
+                this.size = 1;
+            }
+
+            this.zIndex = 1;
+            if (this.temporary == 0) //zaf beetle
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(humpa, 2531, 119, 71, 62, -(1/2 * 71 * this.size), -(1/2 * 62 * this.size), 71 * this.size, 62 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 1) //salisea
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(humpa, 2531, 196, 71, 62, -(1/2 * 71 * this.size), -(1/2 * 62 * this.size), 71 * this.size, 62 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 2) //boa
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(humpa, 2515, 289, 86, 79, -(1/2 * 86 * this.size), -(1/2 * 79 * this.size), 86 * this.size, 79 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary >= 3) //dalger
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(stic, 86, 151, 76, 104, -(1/2 * 76 * this.size), -(1/2 * 104 * this.size), 76 * this.size, 104 * this.size);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 1;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "jungleStuff")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+
+            if (typeof(this.information) != "undefined" && typeof(this.information) != "boolean")
+            {
+                this.size = this.information;
+            }
+            else
+            {
+                this.size = 1;
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 1;
+
+            this.zIndex = 1;
+            if (this.temporary == 0) //round
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(humpa, 79, 1436, 196, 152, -(1/2 * 196 * this.size), -(1/2 * 152 * this.size), 196 * this.size, 152 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 1) //straight
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(humpa, 68, 1613, 217, 63, -(1/2 * 217 * this.size), -(1/2 * 63 * this.size), 217 * this.size, 63 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 2) //selva tree stump
+            {
+                this.radius = 41;
+                this.solid = true;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(humpa, 251, 258, 111, 107, -(1/2 * 111 * this.size), -(1/2 * 107 * this.size), 111 * this.size, 107 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 3) //salisea rug
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(humpa, 449, 1254, 53, 56, -(1/2 * 53 * this.size), -(1/2 * 56 * this.size), 53 * this.size, 56 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 4) //borea web ball (low)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(humpa, 2427, 29, 33, 29, -(1/2 * 33 * this.size), -(1/2 * 29 * this.size), 33 * this.size, 29 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 5) //borea web ball (high)
+            {
+                this.zIndex = 3;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(humpa, 2427, 29, 33, 29, -(1/2 * 33 * this.size), -(1/2 * 29 * this.size), 33 * this.size, 29 * this.size);
+                XXX.restore();
+            }
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
         else if (this.type == "bartop")
         {
             //TRAITS
@@ -19259,6 +19463,190 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 }
             }
         }
+        else if (this.type == "selvaTree")
+        {
+            //TRAITS
+            this.solid = true;
+            this.interactionRange = 1;
+            if (this.runOneTime == true)
+            {
+                this.runOneTime = false;
+                this.tic = 0;
+            }
+
+            //DRAWSELF
+            if (this.temporary == 0)
+            {
+                if (this.playerer < 328)
+                {
+                    XXX.globalAlpha = 0.5;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(humpa, 251, 258, 111, 107, -(1/2 * 111 * 1), -(1/2 * 107 * 1), 111 * 1, 107 * 1);
+                    XXX.restore();
+
+                    this.zIndex = 6;
+                    XXX.globalAlpha = 0.8;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(humpa, 1204, 1289, 716, 762, -(1/2 * 716 * 1) + 4, -(1/2 * 762 * 1) -28, 716 * 1, 762 * 1);
+                    XXX.restore();
+
+                    XXX.globalAlpha = 0.4;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(humpa, 1211, 394, 755, 871, -(1/2 * 755 * 1), -(1/2 * 871 * 1), 755 * 1, 871 * 1);
+                    XXX.restore();
+                    XXX.globalAlpha = 1;
+                }
+                else
+                {
+                    this.zIndex = 6;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(humpa, 1211, 394, 755, 871, -(1/2 * 755 * 1), -(1/2 * 871 * 1), 755 * 1, 871 * 1);
+                    XXX.restore();
+                }
+            }
+            else if (this.temporary == 1) //torper nest
+            {
+                this.minionsMAX = 11;
+                this.summonRate = 23;
+                this.minionCount();
+                if (this.minions < this.minionsMAX)
+                {
+                    if (new Date().getTime() - this.summonTime > this.summonRate * 1000)
+                    {
+                        this.summonTime = new Date().getTime();
+                        var random = Math.floor(Math.random() * 4);
+                        var randAlpha = Math.floor(Math.random() * 6);
+                        var alphaPicks = [false, false, false, true, true, true];
+
+                        if (random == 0)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Torper", alphaPicks[randAlpha], this.hiveID, {patrolStops: 6, patrolLoop: true, route:[[this.X + (Math.random() * 1200) - 600, this.Y + (Math.random() * 1200) - 600], [this.X + (Math.random() * 1200) - 600, this.Y + (Math.random() * 1200) - 600], [this.X + (Math.random() * 1200) - 600, this.Y + (Math.random() * 1200) - 600], [this.X + (Math.random() * 1200) - 600, this.Y + (Math.random() * 1200) - 600], [this.X, this.Y], [this.X + (Math.random() * 1200) - 600, this.Y + (Math.random() * 1200) - 600]]}));
+                        }
+                        else if (random == 1)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Torper", alphaPicks[randAlpha], this.hiveID, {patrolStops: 6, patrolLoop: true, route:[[this.X + (Math.random() * 1800) - 900, this.Y + (Math.random() * 1800) - 900], [this.X + (Math.random() * 1800) - 900, this.Y + (Math.random() * 1800) - 900], [this.X + (Math.random() * 1800) - 900, this.Y + (Math.random() * 1800) - 900], [this.X + (Math.random() * 1800) - 900, this.Y + (Math.random() * 1800) - 900], [this.X + (Math.random() * 1800) - 900, this.Y + (Math.random() * 1800) - 900], [this.X, this.Y]]}));
+                        }
+                        else if (random == 2)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Torper", alphaPicks[randAlpha], this.hiveID, {patrolStops: 6, patrolLoop: true, route:[[this.X, this.Y], [this.X + (Math.random() * 2400) - 1200, this.Y + (Math.random() * 2400) - 1200], [this.X + (Math.random() * 2400) - 1200, this.Y + (Math.random() * 2400) - 1200], [this.X, this.Y], [this.X + (Math.random() * 2400) - 1200, this.Y + (Math.random() * 2400) - 1200], [this.X + (Math.random() * 2400) - 1200, this.Y + (Math.random() * 2400) - 1200]]}));
+                        }
+                        else if (random == 3)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Torper", alphaPicks[randAlpha], this.hiveID, {patrolStops: 6, patrolLoop: true, route:[[this.X + (Math.random() * 800) - 400, this.Y + (Math.random() * 800) - 400], [this.X, this.Y], [this.X + (Math.random() * 800) - 400, this.Y + (Math.random() * 800) - 400], [this.X, this.Y], [this.X + (Math.random() * 800) - 400, this.Y + (Math.random() * 800) - 400], [this.X, this.Y]]}));
+                        }
+                    }
+                }
+
+                if (this.playerer < 328)
+                {
+                    XXX.globalAlpha = 0.5;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(humpa, 251, 258, 111, 107, -(1/2 * 111 * 1), -(1/2 * 107 * 1), 111 * 1, 107 * 1);
+                    XXX.restore();
+
+                    this.zIndex = 6;
+                    XXX.globalAlpha = 0.9;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(humpa, 2029, 484, 716, 762, -(1/2 * 716 * 1) + 4, -(1/2 * 762 * 1) -28, 716 * 1, 762 * 1);
+                    XXX.restore();
+
+                    //XXX.globalAlpha = 0.75;
+                    //XXX.save();
+                    //XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    //XXX.rotate(this.rotation);
+                    //XXX.drawImage(humpa, 1211, 394, 755, 871, -(1/2 * 755 * 1), -(1/2 * 871 * 1), 755 * 1, 871 * 1);
+                    //XXX.restore();
+                    XXX.globalAlpha = 1;
+                }
+                else
+                {
+                    this.zIndex = 6;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(humpa, 2029, 484, 716, 762, -(1/2 * 716 * 1) + 4, -(1/2 * 762 * 1) -28, 716 * 1, 762 * 1);
+                    XXX.restore();
+
+                    //XXX.save();
+                    //XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    //XXX.rotate(this.rotation);
+                    //XXX.drawImage(humpa, 1211, 394, 755, 871, -(1/2 * 755 * 1), -(1/2 * 871 * 1), 755 * 1, 871 * 1);
+                    //XXX.restore();
+                }
+            }
+            else if (this.temporary == 2) //borea perch
+            {
+                if (this.playerer < 328)
+                {
+                    this.tic += 1;
+                    if (this.tic > 70)
+                    {
+                        for (var boreeat = 0; boreeat < 1 + Math.round(Math.random() * 3); boreeat++)
+                        {
+                            if (boreeat == 0 || Math.round(Math.random()))
+                            {
+                                var boreat = new Unit(this.X + spacer(266), this.Y + spacer(266), "Borea", Math.round(Math.random()), "Borea Suprise");
+                                ArtificialIntelligenceAccess.push(boreat);
+                            }
+                        }
+                        this.temporary = 0;
+                    }
+                    XXX.globalAlpha = 0.5;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(humpa, 251, 258, 111, 107, -(1/2 * 111 * 1), -(1/2 * 107 * 1), 111 * 1, 107 * 1);
+                    XXX.restore();
+
+                    this.zIndex = 6;
+                    XXX.globalAlpha = 0.8;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(humpa, 2033, 1288, 716, 762, -(1/2 * 716 * 1) + 2, -(1/2 * 762 * 1) -37, 716 * 1, 762 * 1);
+                    XXX.restore();
+
+                    XXX.globalAlpha = 0.4;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(humpa, 1211, 394, 755, 871, -(1/2 * 755 * 1), -(1/2 * 871 * 1), 755 * 1, 871 * 1);
+                    XXX.restore();
+                    XXX.globalAlpha = 1;
+                }
+                else
+                {
+                    this.zIndex = 6;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(humpa, 1211, 394, 755, 871, -(1/2 * 755 * 1), -(1/2 * 871 * 1), 755 * 1, 871 * 1);
+                    XXX.restore();
+                }
+            }
+
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 41;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+        }
         else if (this.type == "pineTree")
         {
             //TRAITS
@@ -19422,15 +19810,16 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
         }
         else if (this.type == "ashaiTree")
         {
-            //TRAITS
-            this.solid = true;
-            this.interactionRange = 100;
-
             if (this.runOneTime == true)
             {
                 this.runOneTime = false;
-                this.treeHealth = 98;
+                this.size = this.temporary;
+                this.treeHealth = 98 * this.size;
             }
+
+            //TRAITS
+            this.solid = true;
+            this.interactionRange = 100 * this.size;
 
             //DRAWSELF
             if (this.treePhase == 0)
@@ -19441,14 +19830,14 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                     XXX.rotate(this.rotation);
-                    XXX.drawImage(dmil, 11, 698, 33, 29, -(1/2 * 33 * 2), -(1/2 * 29 * 2), 33 * 2, 29 * 2);
+                    XXX.drawImage(dmil, 11, 698, 33, 29, -(1/2 * 33 * 2 * this.size), -(1/2 * 29 * 2 * this.size), 33 * 2 * this.size, 29 * 2 * this.size);
                     XXX.restore();
 
                     XXX.globalAlpha = 0.8;
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                     XXX.rotate(this.rotation);
-                    XXX.drawImage(dmil, 15, 522, 99, 108, -(1/2 * 99 * 2), -(1/2 * 108 * 2), 99 * 2, 108 * 2);
+                    XXX.drawImage(dmil, 15, 522, 99, 108, -(1/2 * 99 * 2 * this.size), -(1/2 * 108 * 2 * this.size), 99 * 2 * this.size, 108 * 2 * this.size);
                     XXX.restore();
                     XXX.globalAlpha = 1;
                 }
@@ -19458,7 +19847,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                     XXX.rotate(this.rotation);
-                    XXX.drawImage(dmil, 15, 522, 99, 108, -(1/2 * 99 * 2), -(1/2 * 108 * 2), 99 * 2, 108 * 2);
+                    XXX.drawImage(dmil, 15, 522, 99, 108, -(1/2 * 99 * 2 * this.size), -(1/2 * 108 * 2 * this.size), 99 * 2 * this.size, 108 * 2 * this.size);
                     XXX.restore();
                 }
             }
@@ -19468,7 +19857,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
-                XXX.drawImage(dmil, 129, 508, 194, 202, -(1/2 * 194 * 2 - 53 * 2), -(1/2 * 202 * 2 + 67 * 2), 194 * 2, 202 * 2);
+                XXX.drawImage(dmil, 129, 508, 194, 202, -(1/2 * 194 * 2 * this.size - 53 * 2 * this.size), -(1/2 * 202 * 2 * this.size + 67 * 2 * this.size), 194 * 2 * this.size, 202 * 2 * this.size);
                 XXX.restore();
             }
             else if (this.treePhase == 2)
@@ -19477,12 +19866,12 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
-                XXX.drawImage(dmil, 11, 698, 33, 29, -(1/2 * 33 * 2), -(1/2 * 29 * 2), 33 * 2, 29 * 2);
+                XXX.drawImage(dmil, 11, 698, 33, 29, -(1/2 * 33 * 2 * this.size), -(1/2 * 29 * 2 * this.size), 33 * 2 * this.size, 29 * 2 * this.size);
                 XXX.restore();
             }
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
-            this.radius = 18;
+            this.radius = 18 * this.size;
 
             //INTERACTION
             if (this.activate == true)
@@ -19494,7 +19883,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     {
                         if (Inventory[i][0].type == "ashaiWood")
                         {
-                            Inventory[i][1] += 46;
+                            Inventory[i][1] += Math.round(46 * this.size);
                             this.treePhase = 2;
                             break;
                         }
@@ -19505,7 +19894,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     }
                     if (hits == Inventory.length)
                     {
-                        Inventory.push([new Item("ashaiWood", false, false), 46]);
+                        Inventory.push([new Item("ashaiWood", false, false), Math.round(46 * this.size)]);
                         this.treePhase = 2;
                     }
                 }
@@ -19515,7 +19904,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             if (this.treePhase == 0) //if this tree is in its cut down phase.
             {
                 //console.log(player.finalAttackStage);
-                if (player.weaponEquipped == "vardanianAxe" && player.cutcut == true && this.playerer < 130 || player.weaponEquipped == "vardanianAxeDual" && player.cutcut == true && this.playerer < 130)
+                if (player.weaponEquipped == "vardanianAxe" && player.cutcut == true && this.playerer < 130 * this.size || player.weaponEquipped == "vardanianAxeDual" && player.cutcut == true && this.playerer < 130 * this.size)
                 {
                     var distFromCutCut = Math.sqrt((this.X - player.bubbleOfDamageX)*(this.X - player.bubbleOfDamageX) + (this.Y - player.bubbleOfDamageY)*(this.Y - player.bubbleOfDamageY));
                     //console.log(distFromCutCut);
@@ -19529,7 +19918,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                         this.treePhase = 1
                     }
                 }
-                else if (player.weaponEquipped == "timberAxe" && player.cutcut == true && this.playerer < 130)
+                else if (player.weaponEquipped == "timberAxe" && player.cutcut == true && this.playerer < 130 * this.size)
                 {
                     var distFromCutCut = Math.sqrt((this.X - player.bubbleOfDamageX)*(this.X - player.bubbleOfDamageX) + (this.Y - player.bubbleOfDamageY)*(this.Y - player.bubbleOfDamageY));
                     //console.log(distFromCutCut);
@@ -19543,7 +19932,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                         this.treePhase = 1
                     }
                 }
-                else if (player.weaponEquipped == "vardanianBattleAxe" && player.cutcut == true && this.playerer < 130 || player.weaponEquipped == "freydicWarAxe" && player.cutcut == true  && this.playerer < 130)
+                else if (player.weaponEquipped == "vardanianBattleAxe" && player.cutcut == true && this.playerer < 130 * this.size || player.weaponEquipped == "freydicWarAxe" && player.cutcut == true  && this.playerer < 130 * this.size)
                 {
                     var distFromCutCut = Math.sqrt((this.X - player.bubbleOfDamageX)*(this.X - player.bubbleOfDamageX) + (this.Y - player.bubbleOfDamageY)*(this.Y - player.bubbleOfDamageY));
                     //console.log(distFromCutCut);
@@ -19557,7 +19946,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                         this.treePhase = 1
                     }
                 }
-                else if (player.weaponEquipped == "dualVardanianBattleAxe" && player.cutcut == true && this.playerer < 130)
+                else if (player.weaponEquipped == "dualVardanianBattleAxe" && player.cutcut == true && this.playerer < 130 * this.size)
                 {
                     var distFromCutCut = Math.sqrt((this.X - player.bubbleOfDamageX)*(this.X - player.bubbleOfDamageX) + (this.Y - player.bubbleOfDamageY)*(this.Y - player.bubbleOfDamageY));
                     //console.log(distFromCutCut);
@@ -19571,7 +19960,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                         this.treePhase = 1
                     }
                 }
-                else if (player.weaponEquipped == "chainsaw" && player.cutcut == true && this.playerer < 130)
+                else if (player.weaponEquipped == "chainsaw" && player.cutcut == true && this.playerer < 130 * this.size)
                 {
                     var distFromCutCut = Math.sqrt((this.X - player.bubbleOfDamageX)*(this.X - player.bubbleOfDamageX) + (this.Y - player.bubbleOfDamageY)*(this.Y - player.bubbleOfDamageY));
                     //console.log(distFromCutCut);
@@ -19834,7 +20223,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 this.runOneTime = false;
 
                 //DROPS NUT PODS FROM THE TREE
-                if (currentSeason == "Frost" || this.treePhase == 0 && currentSeason == "Bright") //The nut only falls from the tree when it is not the season frost
+                if (currentSeason == "Frost" || currentSeason == "Bright") //The nut only falls from the tree when it is not the season frost
                 {
                     if (currentSeason == "Bright") //twice as many yeol nuts fall during the season called Bounty
                     {
@@ -21589,7 +21978,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             if (this.lit == true)
             {
                 lights.push({X:this.X, Y: this.Y, size: 140, extraStops: true, GRD: 0.5, Alpha: 0.75, showMe: false});
-                this.fireCostume += 1;
+                this.fireCostume += 3.5;
                 this.campFireTime += 1;
 
                 //die out over time

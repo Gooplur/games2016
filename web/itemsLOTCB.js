@@ -26922,7 +26922,7 @@ function Item(type, x, y)
             this.ability = "none";
 
             //Crafting
-            this.yield = 17;
+            this.yield = 18;
             this.intForCraft = 5;
             this.ingredients = [["Wood", 1], ["Iron", 1]];
 

@@ -612,9 +612,53 @@ function cheats()
             player.inebriation = 10000000;
             player.cyrinthilimTime = 10000000;
         }
-        else if (cheatcode == "444416skyeisthecoolerest164444")
+        else if (cheatcode == "444416theskyisthecoolerest164444")
         {
             constantMagic = true;
+        }
+        else if (cheatcode.toLowerCase() == "greaty")
+        {
+            var lesky = Y;
+            for (var i = 0; i < scenicList.length; i++)
+            {
+                if (scenicList[i].Y > lesky)
+                {
+                    console.log('scenicList.push(new Scenery("' + scenicList[i].type +'", ' + scenicList[i].X + ', ' + scenicList[i].Y + ',' + scenicList[i].rotation + ', ' + scenicList[i].temporary +', ' + scenicList[i].information + ')); //copied ' + region);
+                }
+            }
+        }
+        else if (cheatcode.toLowerCase() == "lessy")
+        {
+            var lesky = Y;
+            for (var i = 0; i < scenicList.length; i++)
+            {
+                if (scenicList[i].Y < lesky)
+                {
+                    console.log('scenicList.push(new Scenery("' + scenicList[i].type +'", ' + scenicList[i].X + ', ' + scenicList[i].Y + ',' + scenicList[i].rotation + ', ' + scenicList[i].temporary +', ' + scenicList[i].information + ')); //copied ' + region);
+                }
+            }
+        }
+        else if (cheatcode.toLowerCase() == "lessx")
+        {
+            var lesky = X;
+            for (var i = 0; i < scenicList.length; i++)
+            {
+                if (scenicList[i].X < lesky)
+                {
+                    console.log('scenicList.push(new Scenery("' + scenicList[i].type +'", ' + scenicList[i].X + ', ' + scenicList[i].Y + ',' + scenicList[i].rotation + ', ' + scenicList[i].temporary +', ' + scenicList[i].information + ')); //copied ' + region);
+                }
+            }
+        }
+        else if (cheatcode.toLowerCase() == "greatx")
+        {
+            var lesky = X;
+            for (var i = 0; i < scenicList.length; i++)
+            {
+                if (scenicList[i].X > lesky)
+                {
+                    console.log('scenicList.push(new Scenery("' + scenicList[i].type +'", ' + scenicList[i].X + ', ' + scenicList[i].Y + ',' + scenicList[i].rotation + ', ' + scenicList[i].temporary +', ' + scenicList[i].information + ')); //copied ' + region);
+                }
+            }
         }
         else if (cheatcode == "badbeans")
         {

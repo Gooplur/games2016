@@ -10,6 +10,22 @@ function worldBuilder()
     {
         player.dmx = map;
         player.underground = false;
+        //Layer -26 (tropical region): elev -3
+        //mapS26
+        if (Y > -269151 && Y < -258299 && X < 7687 && X > - 3901) //X0
+        {
+            elevation = -3;
+            region = "s26";
+            outlineBuilder( 34, 34, "outline", -20, 864);
+        }
+        //Layer -25 (tropical region): elev -3
+        //mapS25
+        if (Y > -258904 && Y < -248132 && X < 7687 && X > - 3901) //X0
+        {
+            elevation = -3;
+            region = "s25";
+            outlineBuilder( 34, 34, "jungle", -20, 830);
+        }
         //Layer -24 (tropical region): elev -3
         //mapS24
         if (Y > -248711 && Y < -237943 && X < 7687 && X > - 3901) //X0

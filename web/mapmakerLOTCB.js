@@ -21240,6 +21240,8 @@ function buildMaster()
 
                 scenicList.push(new Scenery("blilPlant", -470.9390016003971, -251318.1865111086, 19, true));
 
+                scenicList.push(new Scenery("gojiiPlant", 2770.1966475281256, -250765.70181540382, 6.4, true));
+
 
                 ArtificialIntelligenceAccess.push(new Unit(6287.677962858545, -251578.3457090744, "Gulfrey", false, "Guld"));
 
@@ -21302,6 +21304,18 @@ function buildMaster()
 
                 scenicList.push(new Scenery("vinePatch", 4497.97218409932, -254863.509567, 8, 2.2));
                 scenicList.push(new Scenery("vinePatch", 4643.781255676743, -254890.77543502665, 9.8, 2.1));
+                scenicList.push(new Scenery("vinePatch", 4559.684842958875, -254895.29172090703, 3, 3));
+                scenicList.push(new Scenery("vinePatch", 4777.977832666722, -254960.24345582732, 5, 3.2));
+
+                scenicList.push(new Scenery("vinePatch", 4360.092795484291, -254721.6548654766, 11.5, 4));
+
+                scenicList.push(new Scenery("vinePatch", 4653.225034382625, -254971.5894830742, 7, 2.1));
+                scenicList.push(new Scenery("vinePatch", 4420.359198118161, -254805.85273277925, 6, 2.3));
+                scenicList.push(new Scenery("vinePatch", 4209.195042176571, -254715.18097234968, 4.3, 2.9));
+                scenicList.push(new Scenery("vinePatch", 4841.87246986231, -255054.28928447817, 2.1, 2.5));
+                scenicList.push(new Scenery("vinePatch", 4902.939307001633, -254971.56741410802, 46, 2.8));
+                scenicList.push(new Scenery("vinePatch", 4528.985418810061, -255017.30237312702, 22, 2.7));
+                scenicList.push(new Scenery("vinePatch", 4640.544381816028, -255067.68225871224, 1, 3.1));
 
                 //Plants
                 scenicList.push(new Scenery("blilPlant", 4079.2539998820657, -249674.53841142682, 8.78, true));
@@ -21400,12 +21414,6 @@ function buildMaster()
                 ArtificialIntelligenceAccess.push(new Unit(-383.77554895651366, -257091.94101076867, "Salisea", false, "Digit"));
 
                 change = "s25";
-            }
-            if (xKey) //TEST
-            {
-                xKey = false;
-                console.log(X + ", " + Y);
-                worldItems.push([new Item("unitMarker", X, Y), 1]);
             }
         }
         else if (region == "s26") //Silvestre third of the jungle
@@ -21706,6 +21714,12 @@ function buildMaster()
                 //scenicList.push(new Scenery("sonjaTree", 5802.338804284937, -240763.69844355193, 15.34, 0));
 
                 change = "s26";
+            }
+            if (xKey) //TEST
+            {
+                xKey = false;
+                console.log(X + ", " + Y);
+                worldItems.push([new Item("unitMarker", X, Y), 1]);
             }
             //if (xKey) //TEST
             //{

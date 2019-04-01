@@ -26567,7 +26567,7 @@ function Item(type, x, y)
 
             //Crafting
             this.yield = 26;
-            this.intForCraft = 11;
+            this.intForCraft = 6;
             this.ingredients = [["Ashai Wood", 1], ["Iron", 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)

@@ -16,7 +16,7 @@ function worldBuilder()
         {
             elevation = -3;
             region = "s26";
-            outlineBuilder( 34, 34, "outline", -20, 864);
+            outlineBuilder( 34, 34, "jungle", -20, 864);
         }
         //Layer -25 (tropical region): elev -3
         //mapS25

@@ -534,6 +534,12 @@ function cheats()
             if (player.name == "Gooplur" && player.race == "#336600")
             {
                 player.survivalism = 500;
+                player.venandi = 0;
+                if (player.form == "venandi")
+                {
+                    player.form = false;
+                    player.weapon = "none";
+                }
             }
         }
         else if (cheatcode == "OOP")

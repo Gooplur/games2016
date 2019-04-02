@@ -13160,7 +13160,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.armour = 8;
                 this.speed = 3 + (Math.floor(Math.random() * 3) / 10);
                 this.rangeOfSight = 490; //This is just to set the variable initially. The rest is variable.
-                this.rotationSpeed = 0.05; // 0.01 is a standard turn speed.
+                this.rotationSpeed = 0.12; // 0.01 is a standard turn speed.
                 this.engagementRadius = 58;
                 this.sizeRadius = 33;
                 this.negateArmour = 7;
@@ -13185,7 +13185,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.armour = 4;
                 this.speed = 2.8 + (Math.floor(Math.random() * 4) / 10);
                 this.rangeOfSight = 440; //This is just to set the variable initially. The rest is variable.
-                this.rotationSpeed = 0.05; // 0.01 is a standard turn speed.
+                this.rotationSpeed = 0.12; // 0.01 is a standard turn speed.
                 this.engagementRadius = 22;
                 this.sizeRadius = 13;
                 this.negateArmour = 4;
@@ -29330,7 +29330,6 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
                     if (this.attackDun == true)
                     {
-                        console.log("poopybutt");
                         this.drawUnit(jungho, 578, 208, 116, 72, -1/2 * 116 * this.alphaSize - this.xAdjustment, -1/2 * 72 * this.alphaSize - this.yAdjustment, 116 * this.alphaSize, 72 * this.alphaSize);
                     }
                     else if (this.attackBusy || this.attacking)

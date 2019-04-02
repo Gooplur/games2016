@@ -22708,6 +22708,134 @@ function buildMaster()
                 change = "s20";
             }
         }
+        else if (region == "s21")
+        {
+            if (change != "s21")
+            {
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
+                //Delete All Non-native AI Units
+                for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
+
+                //REGION CREATION
+                generator(673, 20791, 10, 110, 11010, 3, 6703, -207910);
+
+
+                change = "s21";
+            }
+        }
+        else if (region == "s22")
+        {
+            if (change != "s22")
+            {
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
+                //Delete All Non-native AI Units
+                for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
+
+                //REGION CREATION
+                scenicList.push(new Scenery("yeolTree", -1789.9381250000004, -217656.13882572018,4.343001556192405, true)); //copied s21
+                scenicList.push(new Scenery("hracklePlant", 3421.228, -217190.30544999999,5.345574630865979, true)); //copied s21
+                scenicList.push(new Scenery("pochalPlant", 2478.6633249999995, -217310.3455,4.820169979450494, true)); //copied s21
+                generator(74, 3090, 75, 567, 89, 3, 6568, -218179);
+                trimmer(6685, -227283, -3236, -229903);
+
+
+                change = "s22";
+            }
+        }
+        else if (region == "s23")
+        {
+            if (change != "s23")
+            {
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
+                //Delete All Non-native AI Units
+                for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
+
+                //REGION CREATION
+                generator(27, 150, 9870, 5545, 29, 3, 6727, -228264);
+                scenicList.push(new Scenery("selvaTree", 6456, -238578,0.38, 0)); //copied s24
+                scenicList.push(new Scenery("selvaTree", 5687.632046935739, -238507.84678797744,3, 0)); //copied s24
+                scenicList.push(new Scenery("selvaTree", 1001.1523946130909, -238607.04309654268,2, 0)); //copied s24
+                scenicList.push(new Scenery("selvaTree", -2375.632782131061, -238617.4969161959,5, 0)); //copied s24
+                scenicList.push(new Scenery("selvaTree", 4621.544364409696, -238546.04183270253,5, 0)); //copied s24
+                scenicList.push(new Scenery("selvaTree", 1847.0919853353873, -238827.94306016766,20.04, 0)); //copied s24
+                scenicList.push(new Scenery("selvaTree", 3609.163662697182, -238684.98384033298,1, 0)); //copied s24
+                scenicList.push(new Scenery("selvaTree", -1095.837109391663, -238770.385976248,1, 0)); //copied s24
+                scenicList.push(new Scenery("selvaTree", -2957.990835461984, -238550.7498541408,0, 0)); //copied s24
+                scenicList.push(new Scenery("selvaTree", 238.54078903048904, -238534.22047766793,19, 0)); //copied s24
+
+
+                change = "s23";
+            }
+        }
     }
     else if (map == "sagesCache")
     {

@@ -40,7 +40,19 @@ function worldBuilder()
         {
             elevation = -2;
             region = "s23";
-            outlineBuilder( 34, 34, "savannahDirt", -20, 762);
+            outlineBuilder( 34, 34, "savannah", -20, 762);
+            outlineBuilder( 2, 2, "savannahDirt", -15, 770);
+            outlineBuilder( 3, 1, "savannahDirt", 2, 789);
+            outlineBuilder( 1, 1, "savannahDirt", 0, 775);
+            outlineBuilder( 1, 1, "savannahDirt", -9, 783);
+            outlineBuilder( 2, 5, "jungle", -18, 794);
+            outlineBuilder( 1, 2, "jungle", -17, 793);
+            outlineBuilder( 1, 4, "jungle", -13, 795);
+            outlineBuilder( 1, 3, "jungle", -9, 795);
+            outlineBuilder( 1, 6, "jungle", -2, 795);
+            outlineBuilder( 1, 3, "jungle", 0, 794);
+            outlineBuilder( 1, 2, "jungle", 9, 795);
+            outlineBuilder( 1, 1, "jungle", 13, 795);
         }
         //Layer -22 (warm region): elev -2
         //mapS22
@@ -49,6 +61,9 @@ function worldBuilder()
             elevation = -2;
             region = "s22";
             outlineBuilder( 34, 34, "savannah", -20, 728);
+            outlineBuilder( 4, 2, "savannahDirt", -16, 737);
+            outlineBuilder( 1, 3, "savannahDirt", 8, 742);
+            outlineBuilder( 1, 1, "savannahDirt", 3, 735);
         }
         //Layer -21 (warm region): elev -2
         //mapS21
@@ -56,7 +71,13 @@ function worldBuilder()
         {
             elevation = -2;
             region = "s21";
-            outlineBuilder( 34, 34, "savannahDirt", -20, 694);
+            outlineBuilder( 34, 34, "savannah", -20, 694);
+            outlineBuilder( 1, 1, "savannahDirt", 2, 700);
+            outlineBuilder( 1, 1, "savannahDirt", 6, 712);
+            outlineBuilder( 1, 2, "savannahDirt", -11, 705);
+            outlineBuilder( 1, 1, "savannahDirt", -17, 720);
+            outlineBuilder( 1, 1, "savannahDirt", -14, 717);
+            outlineBuilder( 1, 1, "savannahDirt", -7, 718);
         }
         //Layer -20 (warm region): elev -2
         //mapS20

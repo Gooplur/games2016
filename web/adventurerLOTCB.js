@@ -25981,7 +25981,7 @@ function Adventurer()
                                             altKey = false;
                                             var amount = prompt("Enter the amount you would like to deposit.");
                                             var amountt = 0;
-                                            if (amount != "")
+                                            if (amount != "" && amount != null)
                                             {
                                                 amountt = JSON.parse(amount);
                                             }
@@ -26039,7 +26039,7 @@ function Adventurer()
                                             altKey = false;
                                             var amount = prompt("Enter the amount you would like to deposit.");
                                             var amountt = 0;
-                                            if (amount != "")
+                                            if (amount != "" && amount != null)
                                             {
                                                 amountt = JSON.parse(amount);
                                             }
@@ -26176,7 +26176,7 @@ function Adventurer()
                                         altKey = false;
                                         var amount = prompt("Enter the amount you would like to withdraw.");
                                         var amountt = 0;
-                                        if (amount != "")
+                                        if (amount != "" && amount != null)
                                         {
                                             amountt = JSON.parse(amount);
                                         }
@@ -26230,7 +26230,7 @@ function Adventurer()
                                     altKey = false;
                                     var amount = prompt("Enter the amount you would like to withdraw.");
                                     var amountt = 0;
-                                    if (amount != "")
+                                    if (amount != "" && amount != null)
                                     {
                                         amountt = JSON.parse(amount);
                                     }
@@ -26794,7 +26794,7 @@ function Adventurer()
                                             altKey = false;
                                             var amount = prompt("Enter the amount you would like to store.");
                                             var amountt = 0;
-                                            if (amount != "")
+                                            if (amount != "" && amount != null)
                                             {
                                                 amountt = JSON.parse(amount);
                                             }
@@ -26852,7 +26852,7 @@ function Adventurer()
                                             altKey = false;
                                             var amount = prompt("Enter the amount you would like to store.");
                                             var amountt = 0;
-                                            if (amount != "")
+                                            if (amount != "" && amount != null)
                                             {
                                                 amountt = JSON.parse(amount);
                                             }
@@ -26990,7 +26990,7 @@ function Adventurer()
                                         altKey = false;
                                         var amount = prompt("Enter the amount you would like to remove.");
                                         var amountt = 0;
-                                        if (amount != "")
+                                        if (amount != "" && amount != null)
                                         {
                                             amountt = JSON.parse(amount);
                                         }
@@ -27044,7 +27044,7 @@ function Adventurer()
                                     altKey = false;
                                     var amount = prompt("Enter the amount you would like to remove.");
                                     var amountt = 0;
-                                    if (amount != "")
+                                    if (amount != "" && amount != null)
                                     {
                                         amountt = JSON.parse(amount);
                                     }
@@ -30494,6 +30494,29 @@ function Adventurer()
                                 if (gutwormz)
                                 {
                                     this.gutWorms = true;
+                                }
+                            }
+                            else if (Inventory[i][0].ability == "nasty")
+                            {
+                                this.gutWorms = true;
+                                this.swollenI = true;
+                                this.swollenTime = Math.max(player.swollenTime, 336);
+                                this.energilTime = Math.max(player.energilTime, 336);
+                                this.fatigueII = true;
+                                this.fleshMites = true;
+
+                                //causes vomiting
+                                if (this.timeSinceBadFoodEaten == 0)
+                                {
+                                    this.timeSinceBadFoodEaten = new Date().getTime();
+                                }
+                                else if (new Date().getTime() - this.timeSinceBadFoodEaten < 33000 - 11500)
+                                {
+                                    this.timeSinceBadFoodEaten -= 11000
+                                }
+                                else if (new Date().getTime() - this.timeSinceBadFoodEaten < 33000 - 4500)
+                                {
+                                    this.timeSinceBadFoodEaten -= 4000
                                 }
                             }
                             else if (Inventory[i][0].ability == "gojii") //gojii berry poison

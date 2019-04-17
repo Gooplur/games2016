@@ -17,7 +17,7 @@ function imageCastle()
 
     cAssets.onload = function()
     {
-            castleLoader();
+        castleLoader();
     }
 }
 
@@ -286,7 +286,7 @@ function castleLoader()
         {
             if (this.engaged)
             {
-                //TODO do the attack here
+               //TODO add attack
             }
         };
 

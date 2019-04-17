@@ -360,7 +360,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         //TAMING (a survivalism based skill)
         if (this.alive && this.muzzle == false && this.dmx == player.dmx && this.owned == false && this.baseTeam != "player" && this.team != "player" && yKey == true && this.tamable && player.getSurvivalism() >= this.tameREQ && this.health < ((50 + Math.max(0, player.getSurvivalism() - this.tameREQ))/200 * this.healthMAX))
         {
-            if (this.DTP() < this.engagementRadius + 8)
+            if (this.DTP() < this.engagementRadius + 20)
             {
                 XXX.beginPath();
                 if (100 - tameShrink <= tameSize && tameShrink < 92)
@@ -568,12 +568,22 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
                             this.mounted = true;
                             player.mounted = true;
+                            if (this.stay)
+                            {
+                                this.stay = false;
+                                this.speed = this.staySpeed;
+                            }
                         }
                     }
                 }
             }
             else if (this.mounted)
             {
+                //Do Mount Stuff
+                this.dmx = player.dmx;
+                X = this.X + Math.cos(this.rotation) * num;
+                Y = this.Y + Math.sin(this.rotation) * num;
+
                 if (this.DTM() <= this.sizeRadius)
                 {
                     if (dClick)
@@ -582,13 +592,28 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         dClick = false;
                         this.mounted = false;
                         player.mounted = false;
+
+                        //gets off in the direction of the mouse
+                        X = this.X + Math.cos(player.rotation + 1/2 * Math.PI) * (this.sizeRadius + 6);
+                        Y = this.Y + Math.sin(player.rotation + 1/2 * Math.PI) * (this.sizeRadius + 6);
+
+                        if (!this.stay)
+                        {
+                            this.stay = true;
+                            if (this.keepSpeed < this.speed)
+                            {
+                                this.staySpeed = this.speed;
+                            }
+                            else
+                            {
+                                this.staySpeed = this.keepSpeed;
+                            }
+
+                            this.speed = 0;
+                            this.stayTime = new Date().getTime() + 900;
+                        }
                     }
                 }
-
-                //Do Mount Stuff
-                this.dmx = player.dmx;
-                X = this.X + Math.cos(this.rotation) * num;
-                Y = this.Y + Math.sin(this.rotation) * num;
             }
         }
         else
@@ -15024,6 +15049,167 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
             this.swimSpeed = this.speed * 0.8;
         }
+        else if (this.type == "Ghoul") //ghoulghoul
+        {
+            this.haste = true;
+            this.damageFrame = "automatic";
+            this.team = "ghoul";
+            if (this.ID == "docile")
+            {
+                this.team = "docile";
+            }
+            this.baseTeam = this.team;
+            this.tameREQ = 40;
+
+            this.hunger = 100;
+
+            this.playerGrudge = new Date().getTime();
+            this.aiGrudge = new Date().getTime();
+
+            this.birthing = false;
+            this.slimeBirth = 0;
+
+            this.home = "none";
+            this.trueAge = 0;
+            this.age = 0;
+            this.eggs = false;
+            this.eggsT = 0;
+            this.horny = 0;
+            this.genes = {bruiser: Math.round(Math.random()), fecundidad: Math.round(Math.random()), savage: Math.round(Math.random())};
+            this.dadGenes = {bruiser: Math.round(Math.random()), fecundidad: Math.round(Math.random()), savage: Math.round(Math.random())};
+
+            this.nestBuildX = "none";
+            this.nestBuildY = "none";
+
+            if (this.alpha == true)
+            {
+                this.magicalResistance = 1;
+                this.heatResistance = -0.5;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = Math.floor(Math.random() * 6) + 48;
+                this.health = this.healthMAX;
+                this.armour = 0;
+                this.speed = 4 + (Math.floor(Math.random() * 4) / 10);
+                this.rangeOfSight = 800;
+                this.rotationSpeed = 0.25;
+                this.engagementRadius = 80;
+                this.sizeRadius = 40;
+                this.negateArmour = 3.5;
+                this.attackWait = 1.2;
+                this.age = 8;
+                this.trueAge = 8;
+                this.gender = 1;
+
+                this.alphaSize = 1.15;
+
+                this.yAdjustment = 0;
+                this.xAdjustment = 0;
+            }
+            else if (this.alpha == "baby")
+            {
+                this.birthing = true;
+                this.magicalResistance = 1;
+                this.heatResistance = -0.5;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = Math.floor(Math.random() * 3) + 7;
+                this.health = this.healthMAX;
+                this.armour = 0;
+                this.speed = 3 + (Math.floor(Math.random() * 4) / 10);
+                this.rangeOfSight = 800;
+                this.rotationSpeed = 0.25;
+                this.engagementRadius = 52;
+                this.sizeRadius = 20;
+                this.negateArmour = 0.5;
+                this.attackWait = 1.2;
+                this.age = 0;
+                this.trueAge = 0;
+                this.gender = Math.round(Math.random());
+
+                this.alphaSize = 0.6;
+
+                this.yAdjustment = 0;
+                this.xAdjustment = 0;
+            }
+            else if (this.alpha == "girl")
+            {
+                this.magicalResistance = 1;
+                this.heatResistance = -0.5;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = Math.floor(Math.random() * 4) + 24;
+                this.health = this.healthMAX;
+                this.armour = 0;
+                this.speed = 3.8 + (Math.floor(Math.random() * 5) / 10);
+                this.rangeOfSight = 800;
+                this.rotationSpeed = 0.25;
+                this.engagementRadius = 58;
+                this.sizeRadius = 24;
+                this.negateArmour = 1;
+                this.attackWait = 1.2;
+                this.age = 3;
+                this.trueAge = 3;
+                this.gender = Math.round(Math.random());
+
+                this.alphaSize = 0.8;
+
+                this.yAdjustment = 0;
+                this.xAdjustment = 0;
+            }
+            else if (this.alpha == "boy")
+            {
+                this.magicalResistance = 1;
+                this.heatResistance = -0.5;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = Math.floor(Math.random() * 3) + 30;
+                this.health = this.healthMAX;
+                this.armour = 0;
+                this.speed = 3.5 + (Math.floor(Math.random() * 3) / 10);
+                this.rangeOfSight = 800;
+                this.rotationSpeed = 0.25;
+                this.engagementRadius = 64;
+                this.sizeRadius = 30;
+                this.negateArmour = 1.5;
+                this.attackWait = 1.2;
+                this.age = 3;
+                this.trueAge = 3;
+                this.gender = Math.round(Math.random());
+
+                this.alphaSize = 0.95;
+
+                this.yAdjustment = 0;
+                this.xAdjustment = 0;
+            }
+            else
+            {
+                //STATS (non-variable)
+                this.magicalResistance = 1;
+                this.heatResistance = -0.5;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = Math.floor(Math.random() * 5) + 32;
+                this.health = this.healthMAX;
+                this.armour = 0;
+                this.speed = 4.3 + (Math.floor(Math.random() * 5) / 10);
+                this.rangeOfSight = 800;
+                this.rotationSpeed = 0.25;
+                this.engagementRadius = 70;
+                this.sizeRadius = 34;
+                this.negateArmour = 2;
+                this.attackWait = 1.2;
+                this.age = 8;
+                this.trueAge = 8;
+                this.gender = 0;
+
+                this.alphaSize = 1;
+
+                this.yAdjustment = 0;
+                this.xAdjustment = 0;
+            }
+            this.swimSpeed = this.speed * 0.4;
+        }
         else if (this.type == "BlackTroll")
         {
             this.resistances = ["acid", "night"];
@@ -17679,60 +17865,160 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         }
         else if (this.type == "Deth")
         {
-            this.damageFrame = "automatic";
-            this.team = "deth";
-            if (this.ID == "docile")
+            if (this.newGen != true)
             {
-                this.team = "docile";
+                this.damageFrame = "automatic";
+                this.team = "deth";
+                if (this.ID == "docile")
+                {
+                    this.team = "docile";
+                }
+                else if (this.ID == "deth1")
+                {
+                    this.team = "deth1";
+                }
+                else if (this.ID == "deth2")
+                {
+                    this.team = "deth2";
+                }
+                else if (this.ID == "deth3")
+                {
+                    this.team = "deth3";
+                }
+                else if (this.ID == "deth4")
+                {
+                    this.team = "deth4";
+                }
+                this.baseTeam = this.team;
+                this.tamable = false;
+
+                this.gender = Math.round(Math.random()); //is it biologically male or female
+
+                if (typeof(this.ultra) != "undefined")
+                {
+                    this.age = this.ultra.age; //how old the deth is
+                }
+                else
+                {
+                    this.age = 3;
+                }
+
+                if (Math.round(Math.random())) //bedtime
+                {
+                    this.culturePreset = "II";
+                }
+                else
+                {
+                    this.culturePreset = "III";
+                }
+
+                this.dethwait = 0;
+
+                //GENES
+                if (typeof(this.ultra) != "undefined")
+                {
+                    this.APR = this.ultra.APR; //Appearance: looks good to other deths
+                    this.CON = this.ultra.CON; //Constitution: health
+                    this.ING = this.ultra.ING; //Ingenious: technological advancement + free thinking
+                    this.DEX = this.ultra.DEX; //Dexterity: speed
+                    this.PER = this.ultra.PER; //Perception: rangeOfSight + lifespan
+                }
+                else
+                {
+                    this.APR = 12; //Appearance: looks good to other deths
+                    this.CON = 12; //Constitution: health
+                    this.ING = 12; //Ingenious: technological advancement + free thinking
+                    this.DEX = 12; //Dexterity: speed
+                    this.PER = 12; //Perception: rangeOfSight + lifespan
+                }
+
+                this.geneBank = {APR: this.APR, CON: this.CON, ING: this.ING, DEX: this.DEX, PER: this.PER};
+
+                this.totem = {X: 0, Y: 0};
+                this.goTo = {X: 0, Y: 0};
+
+                this.peacable = true;
+
+                this.equipment = {outfit: "none", weapon: "none"};
+                //society
+                this.role = "none";
+                this.task = false;
+                this.bloodline = false;
+                this.lineage = false;
+
+                //social
+                this.culture = false;
+                this.doBow = false;
+                this.dancing = false;
+
+                //fighting
+                this.warring = false;
+
+                //mating
+                this.preggers = {baby: false, progress: 0, genes: "none", bloodline: this.bloodline, lineage: this.lineage};
+                this.bulging = 0;
+
+                //shaman
+                this.leadershipTrait = "none"; //chief leadership picked based on this
+                this.shamanshipTrait = "none"; //shaman leadership picked based on this
+                this.chiefGender = "none"; //male,female,either
+                this.shamanGender = "none"; //male,female,either
+                this.religion = "none"; //{player: ++, nature: +, death: -, archdemon: –}
+
+                this.cultural = {leadershipTrait: this.leadershipTrait, shamanshipTrait: this.shamanshipTrait, chiefGender: this.chiefGender, shamanGender: this.shamanGender, religion: this.religion};
+
+                this.magicalResistance = 0;
+                this.heatResistance = 0;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;
+                this.healthMAX = 3 + (this.CON / 2) * Math.min(1, this.age / 2);
+                this.health = this.healthMAX;
+                this.armour = 0;
+                this.speed = 0.5 + (Math.floor(Math.random() * 1) / 1);
+                this.rangeOfSight = 0;
+                this.rotationSpeed = 0.2;
+                this.engagementRadius = 50;
+                this.sizeRadius = 10;
+                this.negateArmour = 0;
+                this.attackWait = 2;
+
+                this.hungerMAX = 150;
+                this.hunger = 150;
+
+                this.alphaSize = 1;
+
+                this.yAdjustment = 0;
+                this.xAdjustment = 0;
             }
-            else if (this.ID == "deth1")
+            else
             {
-                this.team = "deth1";
+                this.damageFrame = "automatic";
+                this.magicalResistance = 0;
+                this.heatResistance = 0;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;
+                this.engagementRadius = 50;
+                this.sizeRadius = 10;
+                this.negateArmour = 0;
+                this.attackWait = 2;
+                this.tamable = false;
+
+                this.hungerMAX = 150;
+
+                this.doBow = false;
+                this.dancing = false;
+
+                this.warring = false;
+
+                this.peacable = true;
+
+                this.task = false;
+                this.totem = {X: 0, Y: 0};
+                this.goTo = {X: 0, Y: 0};
+
+                this.dethwait = 0;
             }
-            else if (this.ID == "deth2")
-            {
-                this.team = "deth2";
-            }
-            else if (this.ID == "deth3")
-            {
-                this.team = "deth3";
-            }
-            else if (this.ID == "deth4")
-            {
-                this.team = "deth4";
-            }
-            this.baseTeam = this.team;
-            this.tamable = false;
-
-            this.age = this.ultra.age; //how old the deth is
-
-            //GENES
-            this.APR = this.ultra.APR; //Appearance: Social standing for female deths
-            this.CON = this.ultra.CON; //Constitution: health + size
-            this.ING = this.ultra.ING; //Ingenious: technological advancment + free thinking
-            this.DEX = this.ultra.DEX; //Dexterity: speed
-            this.PER = this.ultra.PER; //Perception: rangeOfSight + lifespan
-
-            //these skills are intentionally low because Deths' have their skills set by their DNA
-            this.magicalResistance = 0;
-            this.heatResistance = 0;
-            this.attackStyle = "chunked";
-            this.attackRate = 0;
-            this.healthMAX = Math.floor(Math.random() * 1) + 1;
-            this.health = this.healthMAX;
-            this.armour = 0;
-            this.speed = 0.5 + (Math.floor(Math.random() * 1) / 1);
-            this.rangeOfSight = 0;
-            this.rotationSpeed = 0.2;
-            this.engagementRadius = 1;
-            this.sizeRadius = 1;
-            this.negateArmour = 0;
-            this.attackWait = 2;
-
-            this.alphaSize = 1;
-
-            this.yAdjustment = 0;
-            this.xAdjustment = 0;
+            this.hungry = false;
         }
         else if (this.type == "HyelingSoldier")
         {
@@ -20203,6 +20489,67 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.yAdjustment = 0;
                 this.xAdjustment = 0;
             }
+        }
+        else if (this.type == "MudToad")
+        {
+            this.bugger = true;
+            this.damageFrame = "automatic";
+            this.resistances = ["water"];
+            this.team = "herd";
+            if (this.ID == "docile")
+            {
+                this.team = "docile";
+            }
+            this.baseTeam = this.team;
+            this.tameREQ = 1;
+
+            if (this.alpha == true)
+            {
+                this.magicalResistance = 0;
+                this.heatResistance = 0;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = 2.5;
+                this.health = this.healthMAX;
+                this.armour = 0;
+                this.speed = 1.55;
+                this.rangeOfSight = 200; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.2; // 0.01 is a standard turn speed.
+                this.engagementRadius = 18;
+                this.sizeRadius = 9;
+                this.negateArmour = 0;
+                this.attackWait = 2;
+
+                //alpha has a larger size body and skills.
+                this.alphaSize = 1; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                // this is the adjustment the alpha type of Etyr needs to be centered.
+                this.yAdjustment = 0;
+                this.xAdjustment = 0;
+            }
+            else
+            {
+                this.magicalResistance = 0;
+                this.heatResistance = 0;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = 1.6;
+                this.health = this.healthMAX;
+                this.armour = 0;
+                this.speed = 1.2;
+                this.rangeOfSight = 200; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.2; // 0.01 is a standard turn speed.
+                this.engagementRadius = 13;
+                this.sizeRadius = 6;
+                this.negateArmour = 0;
+                this.attackWait = 2;
+
+                //alpha has a larger size body and skills.
+                this.alphaSize = 0.87; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                // this is the adjustment the alpha type of Etyr needs to be centered.
+                this.yAdjustment = 0;
+                this.xAdjustment = 0;
+            }
+            this.swimSpeed = 2 * this.speed;
         }
         else if (this.type == "Pyromoth")
         {
@@ -30047,6 +30394,916 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.drawUnit(verse, 2929, 283, 54, 32, -35 - this.xAdjustment, -22 - this.yAdjustment, 54 * this.alphaSize, 32 * this.alphaSize);
             }
         }
+        //GHOUL
+        if (this.type == "Ghoul") //ghoulghoul
+        {
+            //Set Drops and experience
+            if (this.alpha == true)
+            {
+                if (Math.max(0, 12 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 130 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = (130 * ((player.getIntelligence() / 50) + 1)) / 10;
+                }
+
+                this.drops = [[new Item("ghoulPelt", this.X, this.Y), 1], [new Item("rawGhoulFlesh", this.X, this.Y), 6]];
+            }
+            else if (this.alpha == "baby")
+            {
+                if (Math.max(0, 4 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 39 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = (39 * ((player.getIntelligence() / 50) + 1)) / 10;
+                }
+
+                this.drops = [[new Item("rawGhoulFlesh", this.X, this.Y), 1]];
+            }
+            else if (this.alpha == "girl")
+            {
+                if (Math.max(0, 8 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 69 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = (69 * ((player.getIntelligence() / 50) + 1)) / 10;
+                }
+
+                this.drops = [[new Item("rawGhoulFlesh", this.X, this.Y), 3]];
+            }
+            else if (this.alpha == "boy")
+            {
+                if (Math.max(0, 9 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 78 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = (78 * ((player.getIntelligence() / 50) + 1)) / 10;
+                }
+
+                this.drops = [[new Item("rawGhoulFlesh", this.X, this.Y), 4]];
+            }
+            else
+            {
+                if (Math.max(0, 10 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 90 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = 90 * ((player.getIntelligence() / 50) + 1) / 10;
+                }
+
+                this.drops = [[new Item("ghoulPelt", this.X, this.Y), 1], [new Item("rawGhoulFlesh", this.X, this.Y), 5]];
+            }
+
+            //reproduction
+            if (this.alpha == true && this.gender == 1)
+            {
+                if (this.genes.fecundidad == true) //testicles for males
+                {
+                    this.horny += 1.2;
+                }
+                else
+                {
+                    this.horny += 0.6;
+                }
+            }
+
+            if (this.alpha == false && this.eggs == false && this.gender == 0) //ovaries for females
+            {
+                if (this.genes.fecundidad == true)
+                {
+                    this.eggsT += 1.2;
+                }
+                else
+                {
+                    this.eggsT += 0.6;
+                }
+
+                if (this.eggsT >= 800)
+                {
+                    this.eggs = true;
+                    this.eggsT = 0;
+                }
+            }
+
+            if (new Date().getTime() - this.playerGrudge > 5000)
+            {
+                this.playerGrudge = new Date().getTime();
+                this.disturbed = false;
+            }
+
+            if (new Date().getTime() - this.aiGrudge > 5000)
+            {
+                this.aiGrudge = new Date().getTime();
+                this.offended = false;
+            }
+
+            //maturation process
+            if (this.alive == true)
+            {
+                if (this.genes.fecundidad == true)
+                {
+                    this.trueAge += 0.0005;
+                    this.age += 0.0001;
+                }
+                else
+                {
+                    this.trueAge += 0.0005;
+                    this.age += 0.0005;
+                }
+            }
+            else
+            {
+                this.trueAge += 0.0005;
+            }
+
+            if (this.age >= 8 && this.alpha != true && this.gender == 1)
+            {
+                this.alpha = true;
+                this.healthMAX = Math.floor(Math.random() * 6) + 48;
+                if (this.genes.bruiser == true)
+                {
+                    this.healthMAX += 8;
+                }
+                this.health = this.healthMAX;
+
+                this.speed = 4 + (Math.floor(Math.random() * 4) / 10);
+                if (this.genes.bruiser == true)
+                {
+                    this.speed -= 0.4;
+                }
+                this.rotationSpeed = 0.25;
+                if (this.genes.savage == true)
+                {
+                    this.rotationSpeed -= 0.1;
+                }
+                this.engagementRadius = 80;
+                this.sizeRadius = 40;
+                this.negateArmour = 3.5;
+                this.attackWait = 1.2;
+
+                this.alphaSize = 1.15;
+                if (this.genes.bruiser == true)
+                {
+                    this.alphaSize += 0.05;
+                    this.engagementRadius += 2;
+                    this.sizeRadius += 1;
+                }
+                this.swimSpeed = this.speed * 0.4;
+            }
+            else if (this.age >= 3 && this.alpha == "baby" && this.gender == 0)
+            {
+                this.alpha = "girl";
+                this.healthMAX = Math.floor(Math.random() * 4) + 24;
+                if (this.genes.bruiser == true)
+                {
+                    this.healthMAX += 4;
+                }
+                this.health = this.healthMAX;
+                this.speed = 3.8 + (Math.floor(Math.random() * 5) / 10);
+                if (this.genes.bruiser == true)
+                {
+                    this.speed -= 0.3;
+                }
+                this.rotationSpeed = 0.25;
+                if (this.genes.savage == true)
+                {
+                    this.rotationSpeed -= 0.1;
+                }
+                this.engagementRadius = 58;
+                this.sizeRadius = 24;
+                this.negateArmour = 1;
+                this.attackWait = 1.2;
+
+                this.alphaSize = 0.8;
+                if (this.genes.bruiser == true)
+                {
+                    this.alphaSize += 0.05;
+                    this.engagementRadius += 2;
+                    this.sizeRadius += 1;
+                }
+                this.swimSpeed = this.speed * 0.4;
+            }
+            else if (this.age >= 3 && this.alpha == "baby" && this.gender == 1)
+            {
+                this.alpha = "boy";
+                this.healthMAX = Math.floor(Math.random() * 3) + 30;
+                if (this.genes.bruiser == true)
+                {
+                    this.healthMAX += 8;
+                }
+                this.health = this.healthMAX;
+                this.speed = 3.5 + (Math.floor(Math.random() * 3) / 10);
+                if (this.genes.bruiser == true)
+                {
+                    this.speed -= 0.4;
+                }
+                this.rotationSpeed = 0.25;
+                if (this.genes.savage == true)
+                {
+                    this.rotationSpeed -= 0.1;
+                }
+                this.engagementRadius = 64;
+                this.sizeRadius = 30;
+                this.negateArmour = 1.5;
+                this.attackWait = 1.2;
+
+                this.alphaSize = 0.95;
+                if (this.genes.bruiser == true)
+                {
+                    this.alphaSize += 0.05;
+                    this.engagementRadius += 2;
+                    this.sizeRadius += 1;
+                }
+                this.swimSpeed = this.speed * 0.4;
+            }
+            else if (this.age >= 8 && this.alpha != false && this.gender == 0)
+            {
+                this.alpha = false;
+                //STATS (non-variable)
+                this.healthMAX = Math.floor(Math.random() * 5) + 32;
+                if (this.genes.bruiser == true)
+                {
+                    this.healthMAX += 4;
+                }
+                this.health = this.healthMAX;
+                this.speed = 4.3 + (Math.floor(Math.random() * 5) / 10);
+                if (this.genes.bruiser == true)
+                {
+                    this.speed -= 0.3;
+                }
+                this.rotationSpeed = 0.25;
+                if (this.genes.savage == true)
+                {
+                    this.rotationSpeed -= 0.1;
+                }
+                this.engagementRadius = 70;
+                this.sizeRadius = 34;
+                this.negateArmour = 2;
+                this.attackWait = 1.2;
+
+                this.alphaSize = 1;
+                if (this.genes.bruiser == true)
+                {
+                    this.alphaSize += 0.05;
+                    this.engagementRadius += 2;
+                    this.sizeRadius += 1;
+                }
+                this.swimSpeed = this.speed * 0.4;
+            }
+
+            //RANGE OF SIGHT (anything related to range of sight)
+            if (this.genes.savage == true)
+            {
+                this.rangeOfSightCalculator(1100, false);
+            }
+            else
+            {
+                this.rangeOfSightCalculator(800, false);
+            }
+
+            //AI
+            if (this.alive == true)
+            {
+                if (this.alpha == true)
+                {
+                    if (this.genes.bruiser == true)
+                    {
+                        this.Attack(5.5, 6.5);
+                    }
+                    else
+                    {
+                        this.Attack(5, 6);
+                    }
+                }
+                else if (this.alpha == "baby")
+                {
+                    if (this.genes.bruiser == true)
+                    {
+                        this.Attack(1.5, 2.5);
+                    }
+                    else
+                    {
+                        this.Attack(1, 2);
+                    }
+                }
+                else if (this.alpha == "girl")
+                {
+                    if (this.genes.bruiser == true)
+                    {
+                        this.Attack(3.5, 4.5);
+                    }
+                    else
+                    {
+                        this.Attack(3, 4);
+                    }
+                }
+                else if (this.alpha == "boy")
+                {
+                    if (this.genes.bruiser == true)
+                    {
+                        this.Attack(3.5, 5.5);
+                    }
+                    else
+                    {
+                        this.Attack(3, 5);
+                    }
+                }
+                else
+                {
+                    if (this.genes.bruiser == true)
+                    {
+                        this.Attack(4.5, 5.5);
+                    }
+                    else
+                    {
+                        this.Attack(4, 5);
+                    }
+                }
+
+                if (this.genes.savage == true)
+                {
+                    this.callForNearbyHelpFromType(500, "Ghoul");
+                }
+                else
+                {
+                    this.callForNearbyHelpFromType(400, "Ghoul");
+                }
+
+                //this.deathChecker();
+                this.disturbedTimer();
+                this.visibleSight();
+                this.friendDecider();
+                this.targeting();
+
+                this.eating = false;
+                this.moving = false;
+                this.buildNest = false;
+
+                //find nearest body
+                var carrion = "none";
+                var nearestCarrion = 100000000000;
+                for (var i = 0; i < deadAIList.length; i++)
+                {
+                    var disto = this.DTU(deadAIList[i]);
+                    if (disto < nearestCarrion)
+                    {
+                        carrion = deadAIList[i];
+                        nearestCarrion = disto;
+                    }
+                }
+
+                var homeward = "none";
+                var nearestHome = 100000000000;
+                if (this.home == "none")
+                {
+                    for (var i = 0; i < scenicList.length; i++)
+                    {
+                        if (scenicList[i].type == "ghoulDen" && scenicList[i].pop < 8 && scenicList[i].health > 22)
+                        {
+                            var distoo = this.DTU(scenicList[i]);
+                            if (distoo < nearestHome)
+                            {
+                                nearestHome = distoo;
+                                homeward = scenicList[i];
+                            }
+                        }
+                    }
+                    if (homeward != "none")
+                    {
+                        this.home = homeward.hiveID;
+                        homeward.pop += 1;
+                    }
+                    else if (this.gender == 1 && this.alpha == true)
+                    {
+                        this.buildNest = true;
+                    }
+                }
+                else
+                {
+                    for (var i = 0; i < scenicList.length; i++)
+                    {
+                        if (scenicList[i].type == "ghoulDen" && scenicList[i].hiveID == this.home)
+                        {
+                            if (scenicList[i].health <= 0)
+                            {
+                                this.home = "none";
+                            }
+                            else
+                            {
+                                homeward = scenicList[i];
+                            }
+                            break;
+                        }
+                    }
+                }
+
+                var mate = "none";
+                var nearestMate = 100000000000;
+                if (this.alpha == true && this.gender == 1 && this.horny >= 600)
+                {
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].type == "Ghoul" && ArtificialIntelligenceAccess[i].gender == 0 && ArtificialIntelligenceAccess[i].alpha == false && ArtificialIntelligenceAccess[i].eggs == true && ArtificialIntelligenceAccess[i].trueAge > (this.trueAge - 8) && ArtificialIntelligenceAccess[i].trueAge < (this.trueAge + 8))
+                        {
+                            var distoi = this.DTU(ArtificialIntelligenceAccess[i]);
+                            if (distoi < nearestMate)
+                            {
+                                mate = ArtificialIntelligenceAccess[i];
+                                nearestMate = distoi;
+                            }
+                        }
+                    }
+                }
+
+                if (this.birthing == true) //babies breaking free of their slime coating
+                {
+                    //do nothing here
+                }
+                else if (this.alpha == true && this.gender == 1 && mate != "none")
+                {
+                    if (nearestMate <= this.engagementRadius + 10)
+                    {
+                        this.X = mate.X;
+                        this.Y = mate.Y;
+                        mate.eggs = "fecundo";
+                        mate.dadGenes = this.genes;
+                        this.horny = 0;
+                    }
+                    else
+                    {
+                        this.pointTowards(mate);
+                        this.moveInRelationToThing(mate, 20000);
+                    }
+                }
+                else if (this.buildNest == true && this.alpha == true)
+                {
+                    if (this.nestBuildX == "none" || this.nestBuildY == "none")
+                    {
+                        var randoo = 2*Math.PI * Math.random();
+                        this.nestBuildX = this.X + Math.cos(randoo) * 214;
+                        this.nestBuildY = this.Y + Math.sin(randoo) * 214;
+                    }
+
+                    for (var i = 0; i < scenicList.length; i++)
+                    {
+                        if (scenicList[i].dst({X: this.nestBuildX, Y: this.nestBuildY}) <= scenicList[i].radius + 64)
+                        {
+                            this.nestBuildX = "none";
+                            this.nestBuildY = "none";
+                            break;
+                        }
+                    }
+
+                    if (this.nestBuildX != "none" && this.nestBuildY != "none")
+                    {
+                        var distapp = this.DTU({X: this.nestBuildX, Y: this.nestBuildY});
+                        if (distapp <= this.engagementRadius + 10)
+                        {
+                            this.pointTowards({X: this.nestBuildX, Y: this.nestBuildY});
+                            this.X = this.nestBuildX;
+                            this.Y = this.nestBuildY;
+                            var mahDen = new Scenery("ghoulDen", this.nestBuildX, this.nestBuildY, (2 * Math.PI * Math.random()), true);
+                            mahDen.pop = 1;
+                            this.home = mahDen.hiveID;
+                            scenicList.push(mahDen);
+                            this.buildNest = false;
+                        }
+                        else
+                        {
+                            this.pointTowards({X: this.nestBuildX, Y: this.nestBuildY});
+                            this.moveInRelationToThing({X: this.nestBuildX, Y: this.nestBuildY}, 20000);
+                        }
+                    }
+                }
+                else if (this.eggs == "fecundo" && this.alpha == false)
+                {
+                    var egger = "none";
+                    var nearestEgger = 1000000000000;
+
+                    for (var i = 0; i < deadAIList.length; i++)
+                    {
+                        if (deadAIList[i].type == "Deth" || deadAIList[i].type == "Dalger" || deadAIList[i].type == "Ghoul" || deadAIList[i].type == "Koivaya" || deadAIList[i].type == "Elk" || deadAIList[i].type == "Bovine" || deadAIList[i].type == "Vreck" || deadAIList[i].type == "Person" || deadAIList[i].type == "Soldier")
+                        {
+                            var distop = this.DTU(deadAIList[i]);
+                            if (distop < nearestEgger)
+                            {
+                                egger = deadAIList[i];
+                                nearestEgger = distop;
+                            }
+                        }
+                    }
+
+                    if (egger != "none")
+                    {
+                        var distap = this.DTU(egger);
+                        if (distap <= this.engagementRadius + 10)
+                        {
+                            this.pointTowards(egger);
+                            this.X = egger.X;
+                            this.Y = egger.Y;
+                            var eggerSz = egger.alphaSize;
+                            if (egger.type == "Person" || egger.type == "Soldier")
+                            {
+                                if (egger.kid == true)
+                                {
+                                    eggerSz = egger.kidSize;
+                                }
+                                else
+                                {
+                                    eggerSz = 1;
+                                }
+                            }
+                            scenicList.push(new Scenery("ghoulEggs", egger.X, egger.Y, egger.rotation, [egger.type, eggerSz], {genes: this.genes, dadGenes: this.dadGenes}));
+                            deadAIList.splice(deadAIList.indexOf(egger), 1);
+                            this.eggs = false;
+                        }
+                        else
+                        {
+                            this.pointTowards(egger);
+                            this.moveInRelationToThing(egger, 20000);
+                        }
+                    }
+                    else
+                    {
+                        if (this.target == player)
+                        {
+                            this.pointTowardsPlayer();
+                            this.moveInRelationToPlayer();
+                        }
+                        else if (this.target != "none")
+                        {
+                            this.pointTowards(this.target);
+                            this.moveInRelationToThing(this.target);
+                        }
+                    }
+                }
+                else if (this.hunger < 180)
+                {
+                    if (carrion != "none")
+                    {
+                        var refocusGhoul = false;
+
+                        if (this.offended == true || this.disturbed == true)
+                        {
+                            if (this.target == player)
+                            {
+                                if (this.disturbed == true)
+                                {
+                                    refocusGhoul = true;
+                                }
+                            }
+                            else if (this.target != "none")
+                            {
+                                if (this.offended == true)
+                                {
+                                    refocusGhoul = true;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (this.target == player)
+                            {
+                                if (this.DTP() < 80)
+                                {
+                                    refocusGhoul = true;
+                                }
+                            }
+                            else if (this.target != "none")
+                            {
+                                if (this.DTU(this.target) < 80)
+                                {
+                                    refocusGhoul = true;
+                                }
+                            }
+                        }
+
+
+                        var dista = this.DTU(carrion);
+                        if (dista <= 400 && refocusGhoul == false)
+                        {
+                            if (dista <= this.engagementRadius)
+                            {
+                                this.pointTowards(carrion);
+                                this.eating = true;
+                            }
+                            else
+                            {
+                                this.pointTowards(carrion);
+                                this.moveInRelationToThing(carrion);
+                            }
+                        }
+                        else
+                        {
+                            if (this.target == player)
+                            {
+                                this.pointTowardsPlayer();
+                                this.moveInRelationToPlayer();
+                            }
+                            else if (this.target != "none")
+                            {
+                                this.pointTowards(this.target);
+                                this.moveInRelationToThing(this.target);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (this.target == player)
+                        {
+                            this.pointTowardsPlayer();
+                            this.moveInRelationToPlayer();
+                        }
+                        else if (this.target != "none")
+                        {
+                            this.pointTowards(this.target);
+                            this.moveInRelationToThing(this.target);
+                        }
+                    }
+                }
+                else if (homeward != "none")
+                {
+                    var homDist = this.DTU(homeward);
+                    if (homeward.health > 22)
+                    {
+                        if (homDist <= this.engagementRadius + 10)
+                        {
+                            homeward.inhabitants.push({hunger: this.hunger, healthMAX: this.healthMAX, eggs: this.eggs, eggsT: this.eggsT, horny: this.horny, gender: this.gender, alpha: this.alpha, age: this.age, trueAge: this.trueAge, genes: this.genes, home: this.home, dadGenes: this.dadGenes, speed: this.speed, swimSpeed: this.swimSpeed});
+                            ArtificialIntelligenceAccess.splice(ArtificialIntelligenceAccess.indexOf(this), 1);
+                        }
+                        else
+                        {
+                            this.pointTowards(homeward);
+                            this.moveInRelationToThing(homeward, 20000);
+                        }
+                    }
+                    else
+                    {
+
+                        if (this.target == player)
+                        {
+                            if (this.DTP() < 200 && homDist < 400)
+                            {
+                                this.pointTowardsPlayer();
+                                this.moveInRelationToPlayer();
+                            }
+                            else if (homDist <= this.engagementRadius + 10)
+                            {
+                                homeward.health += 0.64;
+                            }
+                            else
+                            {
+                                this.pointTowards(homeward);
+                                this.moveInRelationToThing(homeward, 20000);
+                            }
+                        }
+                        else if (this.target != "none")
+                        {
+                            if (this.DTU(this.target) < 200 && homDist < 400)
+                            {
+                                this.pointTowards(this.target);
+                                this.moveInRelationToThing(this.target);
+                            }
+                            else if (homDist <= this.engagementRadius + 10)
+                            {
+                                homeward.health += 0.64;
+                            }
+                            else
+                            {
+                                this.pointTowards(homeward);
+                                this.moveInRelationToThing(homeward, 20000);
+                            }
+                        }
+                        else
+                        {
+                            if (homDist <= this.engagementRadius + 10)
+                            {
+                                homeward.health += 0.6;
+                            }
+                            else
+                            {
+                                this.pointTowards(homeward);
+                                this.moveInRelationToThing(homeward, 20000);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    if (this.target == player)
+                    {
+                        if (this.disturbed == true || this.DTP() < 140)
+                        {
+                            this.pointTowardsPlayer();
+                            this.moveInRelationToPlayer();
+                        }
+                    }
+                    else if (this.target != "none")
+                    {
+                        if (this.offended == true || this.DTU(this.target) < 140)
+                        {
+                            this.pointTowards(this.target);
+                            this.moveInRelationToThing(this.target);
+                        }
+                    }
+                }
+
+                if (this.moving == true && this.alpha != "baby")
+                {
+                    if (this.target == player)
+                    {
+                        if (this.DTP() < this.engagementRadius + 10)
+                        {
+                            player.stunnedI = true;
+                            player.stunnedTime = 2;
+                        }
+                    }
+                    else if (this.target != "none")
+                    {
+                        if (this.DTU(this.target) < this.engagementRadius + 10)
+                        {
+                            this.target.stunI = true;
+                            this.target.stunTimer = 2;
+                            this.target.stunTime = new Date().getTime();
+                        }
+                    }
+                }
+
+            }
+
+            //ANIMATIONS
+            if (this.alive == true)
+            {
+                if (this.birthing == true)
+                {
+                    this.slimeBirth += 1;
+                }
+                else if (this.eating == true)
+                {
+                    this.costumeEngine(8, 0.29, false);
+                }
+                else if (this.moving && !this.attacking) //If moving and not attacking initiate moving animation...
+                {
+                    this.costumeEngine(5, 0.14, false);
+                }
+                else if (this.attacking) //otherwise if it is attacking then initiate attacking animation, and if neither...
+                {
+                    if(new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000 / timeSpeed * this.timeResistance))
+                    {
+                        this.costumeEngine(8, 0.29, false);
+                    }
+                }
+                else
+                {
+                    this.costume = 0;
+                }
+
+                // the frames/stages/costumes of the animation.
+                var theCostume = Math.floor(this.costume); //This rounds this.costume down to the nearest whole number.
+
+                if (this.birthing == true)
+                {
+                    if (this.slimeBirth <= 12)
+                    {
+                        this.drawUnit(gul, 387, 585, 130, 111, -1/2 * 130 * this.alphaSize - this.xAdjustment,  -1/2 * 111 * this.alphaSize - this.yAdjustment, 130 * this.alphaSize, 111 * this.alphaSize);
+                    }
+                    else if (this.slimeBirth <= 24)
+                    {
+                        this.drawUnit(gul, 530, 586, 130, 111, -1/2 * 130 * this.alphaSize - this.xAdjustment,  -1/2 * 111 * this.alphaSize - this.yAdjustment, 130 * this.alphaSize, 111 * this.alphaSize);
+                    }
+                    else if (this.slimeBirth <= 36)
+                    {
+                        this.drawUnit(gul, 659, 589, 130, 111, -1/2 * 130 * this.alphaSize - this.xAdjustment,  -1/2 * 111 * this.alphaSize - this.yAdjustment, 130 * this.alphaSize, 111 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(gul, 559, 1, 175, 103, -1/2 * 175 * this.alphaSize - this.xAdjustment,  -1/2 * 103 * this.alphaSize - this.yAdjustment, 175 * this.alphaSize, 103 * this.alphaSize);
+                        this.birthing = false;
+                    }
+                }
+                else if (theCostume <= 0)
+                {
+                    if (this.attacking || this.eating)
+                    {
+                        this.drawUnit(gul, 559, 1, 175, 103, -1/2 * 175 * this.alphaSize - this.xAdjustment,  -1/2 * 103 * this.alphaSize - this.yAdjustment, 175 * this.alphaSize, 103 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(gul, 559, 1, 175, 103, -1/2 * 175 * this.alphaSize - this.xAdjustment,  -1/2 * 103 * this.alphaSize - this.yAdjustment, 175 * this.alphaSize, 103 * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 1)
+                {
+                    if (this.attacking || this.eating)
+                    {
+                        this.drawUnit(gul, 2, 120, 150, 103, -1/2 * 150 * this.alphaSize - this.xAdjustment,  -1/2 * 103 * this.alphaSize - this.yAdjustment, 150 * this.alphaSize, 103 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(gul, 380, 5, 175, 103, -1/2 * 175 * this.alphaSize - this.xAdjustment,  -1/2 * 103 * this.alphaSize - this.yAdjustment, 175 * this.alphaSize, 103 * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 2)
+                {
+                    if (this.attacking || this.eating)
+                    {
+                        this.drawUnit(gul, 185, 124, 175, 103, -1/2 * 175 * this.alphaSize - this.xAdjustment,  -1/2 * 103 * this.alphaSize - this.yAdjustment, 175 * this.alphaSize, 103 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(gul, 196, 11, 175, 103, -1/2 * 175 * this.alphaSize - this.xAdjustment,  -1/2 * 103 * this.alphaSize - this.yAdjustment, 175 * this.alphaSize, 103 * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 3)
+                {
+                    if (this.attacking || this.eating)
+                    {
+                        this.drawUnit(gul, 2, 120, 150, 103, -1/2 * 150 * this.alphaSize - this.xAdjustment,  -1/2 * 103 * this.alphaSize - this.yAdjustment, 150 * this.alphaSize, 103 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(gul, 0, 3, 158, 111, -1/2 * 158 * this.alphaSize - this.xAdjustment,  -1/2 * 111 * this.alphaSize - this.yAdjustment, 158 * this.alphaSize, 111 * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 4)
+                {
+                    if (this.attacking || this.eating)
+                    {
+                        this.drawUnit(gul, 559, 1, 175, 103, -1/2 * 175 * this.alphaSize - this.xAdjustment,  -1/2 * 103 * this.alphaSize - this.yAdjustment, 175 * this.alphaSize, 103 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(gul, 389, 0, 158, 111, -1/2 * 158 * this.alphaSize - this.xAdjustment,  -1/2 * 111 * this.alphaSize - this.yAdjustment, 158 * this.alphaSize, 111 * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 5)
+                {
+                    if (this.attacking || this.eating)
+                    {
+                        this.drawUnit(gul, 379, 116, 175, 103, -1/2 * 175 * this.alphaSize - this.xAdjustment,  -1/2 * 103 * this.alphaSize - this.yAdjustment, 175 * this.alphaSize, 103 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(gul, 559, 1, 175, 103, -1/2 * 175 * this.alphaSize - this.xAdjustment,  -1/2 * 103 * this.alphaSize - this.yAdjustment, 175 * this.alphaSize, 103 * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 6)
+                {
+                    if (this.attacking || this.eating)
+                    {
+                        this.drawUnit(gul, 561, 123, 175, 103, -1/2 * 175 * this.alphaSize - this.xAdjustment,  -1/2 * 103 * this.alphaSize - this.yAdjustment, 175 * this.alphaSize, 103 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(gul, 559, 1, 175, 103, -1/2 * 175 * this.alphaSize - this.xAdjustment,  -1/2 * 103 * this.alphaSize - this.yAdjustment, 175 * this.alphaSize, 103 * this.alphaSize);
+                    }
+                }
+                else if (theCostume >= 7)
+                {
+                    if (this.attacking || this.eating)
+                    {
+                        if (this.eating && carrion != "none")
+                        {
+                            if (carrion.healthMAX > 0)
+                            {
+                                carrion.healthMAX -= 4;
+                                this.hunger += 20;
+                                this.health += 2;
+                                if (this.health > this.healthMAX)
+                                {
+                                    this.health = this.healthMAX;
+                                }
+                            }
+
+                            if (carrion.healthMAX <= 0)
+                            {
+                                deadAIList.splice(deadAIList.indexOf(carrion), 1);
+                            }
+                            this.costume = 0;
+                        }
+                        this.drawUnit(gul, 379, 116, 175, 103, -1/2 * 175 * this.alphaSize - this.xAdjustment,  -1/2 * 103 * this.alphaSize - this.yAdjustment, 175 * this.alphaSize, 103 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(gul, 559, 1, 175, 103, -1/2 * 175 * this.alphaSize - this.xAdjustment,  -1/2 * 103 * this.alphaSize - this.yAdjustment, 175 * this.alphaSize, 103 * this.alphaSize);
+                    }
+                }
+            }
+            else
+            {
+                this.drawUnit(gul, 732, 0, 158, 111, -1/2 * 158 * this.alphaSize - this.xAdjustment,  -1/2 * 111 * this.alphaSize - this.yAdjustment, 158 * this.alphaSize, 111 * this.alphaSize);
+            }
+        }
         //JINN
         if (this.type == "Jinn") //djin //genie
         {
@@ -32979,28 +34236,28 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
 
             //RANGE OF SIGHT (anything related to range of sight)
-            if (this.hunger <= 0)
+            if (this.hunger <= 40)
             {
                 if (this.alpha == true)
                 {
                     if (this.smellGenes == true)
                     {
-                        this.rangeOfSightCalculator(900, "mildly");
+                        this.rangeOfSightCalculator(1200, "mildly");
                     }
                     else
                     {
-                        this.rangeOfSightCalculator(700, "mildly");
+                        this.rangeOfSightCalculator(1000, "mildly");
                     }
                 }
                 else
                 {
                     if (this.smellGenes == true)
                     {
-                        this.rangeOfSightCalculator(800, "mildly");
+                        this.rangeOfSightCalculator(1100, "mildly");
                     }
                     else
                     {
-                        this.rangeOfSightCalculator(600, "mildly");
+                        this.rangeOfSightCalculator(900, "mildly");
                     }
                 }
             }
@@ -33044,13 +34301,13 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
                 if (this.team != "player" && this.team != "koivaya")
                 {
-                    this.hunger -= 0.005;
+                    this.hunger -= 0.025;
                 }
 
                 if (this.hunger < 0)
                 {
                     this.hunger = 0;
-                    this.health -= 0.001;
+                    this.health -= 0.02;
                 }
                 else if (this.hunger > 0 && this.health < this.healthMAX && this.team != "player" && this.team != "koivaya")
                 {
@@ -33132,22 +34389,22 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 {
                     if (this.horndogGenes == true)
                     {
-                        this.horny += 2;
+                        this.horny += 1;
                     }
                     else
                     {
-                        this.horny += 1;
+                        this.horny += 0.5;
                     }
                 }
                 else if (this.horny < 0)
                 {
                     if (this.horndogGenes == true)
                     {
-                        this.horny -= 2;
+                        this.horny -= 0.5;
                     }
                     else
                     {
-                        this.horny -= 1;
+                        this.horny -= 0.25;
                     }
 
                     if (this.horny < -700)
@@ -43211,36 +44468,44 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         //DETH
         if (this.type == "Deth")
         {
+            console.log(this.role);
+            if (this.role == "none" && this.age >= 2)
+            {
+                if (this.gender == 1)
+                {
+                    this.role = "stalker";
+                }
+                else
+                {
+                    this.role = "maker";
+                }
+            }
+            this.APR = this.geneBank.APR; //Appearance: looks good to other deths
+            this.CON = this.geneBank.CON; //Constitution: health
+            this.ING = this.geneBank.ING; //Ingenious: technological advancement + free thinking
+            this.DEX = this.geneBank.DEX; //Dexterity: speed
+            this.PER = this.geneBank.PER;
+
             //GENETIC COMPOSER
                 //Life
-            this.lifespan = this.PER * 3;
+            this.lifespan = 10 + this.PER / 5;
                 //Speed
-            this.speed = 1 + (this.DEX / 7) * Math.min(1, this.age / 10);
-                //Awareness
-            if (this.age < 5)
-            {
-                this.rangeOfSight = this.PER * 20;
-            }
-            else if (this.age < 10)
-            {
-                this.rangeOfSight = this.PER * 35;
-            }
-            else if (this.age < 5/6 * this.lifespan)
-            {
-                this.rangeOfSight = this.PER * 50;
-            }
-            else
-            {
-                this.rangeOfSight = this.PER * 30;
-            }
+            this.baseSpeed = 1 + (this.DEX / 10) * Math.min(1, this.age / 2);
+            this.speed = this.baseSpeed;
                 //Build
-            this.healthMAX = this.CON * Math.min(1, this.age / 10);
-            this.engagementRadius = 10 + this.CON * Math.min(1, this.age / 10); //+ this.weaponRange;
-            this.sizeRadius = 6 + this.CON * Math.min(1, this.age / 10);
-            this.alphaSize = 0.4 + (this.CON / 20) * Math.min(1, this.age / 10);
+            this.healthMAX = 3 + (this.CON / 2) * Math.min(1, this.age / 2);
+            this.engagementRadius = 8 + this.CON * Math.min(1, this.age / 2); //+ this.weaponRange;
+            this.sizeRadius = 5 + 1/3 * this.CON * Math.min(1, this.age / 2);
+            this.alphaSize = 0.9 + (this.CON / 6) * Math.min(1, this.age / 2);
 
             this.yAdjustment = 0;
             this.xAdjustment = 0;
+
+            this.leadershipTrait = this.cultural.leadershipTrait;
+            this.shamanshipTrait = this.cultural.shamanshipTrait;
+            this.chiefGender = this.cultural.chiefGender;
+            this.shamanGender = this.cultural.shamanGender;
+            this.religion = this.cultural.religion;
 
             //Set Drops and experience
             if (this.alpha == true)
@@ -43283,13 +44548,395 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             //AI
             if (this.alive == true)
             {
-                if (this.alpha == true)
+                //Awareness
+                if (this.age < 2)
                 {
-                    this.Attack(11, 8);
+                    this.rangeOfSightCalculator(this.PER * 15);
+                }
+                else if (this.age < 6/7 * this.lifespan)
+                {
+                    this.rangeOfSightCalculator(this.PER * 40);
                 }
                 else
                 {
-                    this.Attack(9, 6);
+                    this.rangeOfSightCalculator(this.PER * 25);
+                }
+
+                //aging
+                this.age += 0.0001;
+
+                //death by old age
+                if (this.age >= this.lifespan)
+                {
+                    this.killNotByPlayer = true;
+                    this.health = 0;
+                }
+
+                if (this.hunger <= 0)
+                {
+                    this.killNotByPlayer = true;
+                    this.health -= 0.22;
+                }
+
+                if (this.role != "shaman")
+                {
+                    var nearestWep = "none";
+                    var nearness = 1000000000000000;
+                    for (var i = 0; i < scenicList.length; i++)
+                    {
+                        if (scenicList[i].type == "dethArmory")
+                        {
+                            if (scenicList[i].team == this.team && scenicList[i].usable == true && scenicList[i].vacio == false || scenicList[i].team == this.team && this.role == "maker")
+                            {
+                                var wepDist = this.DTU(scenicList[i])
+                                if (wepDist < nearness)
+                                {
+                                    nearestWep = scenicList[i];
+                                    nearest = wepDist;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                var nearestFit = "none";
+                var nearness = 1000000000000000;
+                for (var i = 0; i < scenicList.length; i++)
+                {
+                    if (scenicList[i].type == "dethOutfitter")
+                    {
+                        if (scenicList[i].team == this.team && scenicList[i].usable == true && scenicList[i].vacio == false || scenicList[i].team == this.team && this.role == "maker")
+                        {
+                            if (this.role == "shaman" && scenicList[i].resources.koiShaman >= 1 || this.role == "shaman" && scenicList[i].resources.elkShaman >= 1 || this.role == "shaman" && scenicList[i].resources.gulShaman >= 1 || this.role != "shaman")
+                            {
+                                if (this.role == "chief" && scenicList[i].resources.koiChief >= 1 || this.role == "chief" && scenicList[i].resources.elkChief >= 1 || this.role == "chief" && scenicList[i].resources.gulChief >= 1 || this.role != "chief")
+                                {
+                                    if (this.role == "stalker" && scenicList[i].resources.koiStalker >= 1 || this.role == "stalker" && scenicList[i].resources.elkStalker >= 1 || this.role == "stalker" && scenicList[i].resources.gulStalker >= 1 || this.role != "stalker")
+                                    {
+                                        if (this.role == "maker" && scenicList[i].resources.koiMaker >= 1 || this.role == "maker" && scenicList[i].resources.elkMaker >= 1 || this.role == "maker" && scenicList[i].resources.gulMaker >= 1 || this.role != "maker")
+                                        {
+                                            var fitDist = this.DTU(scenicList[i])
+                                            if (fitDist < nearness)
+                                            {
+                                                nearestFit = scenicList[i];
+                                                nearest = fitDist;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                var nearestFood = "none";
+                var nearness = 1000000000000000;
+                for (var i = 0; i < scenicList.length; i++)
+                {
+                    if (scenicList[i].type == "dethKoiPile" || scenicList[i].type == "dethGulPile" || scenicList[i].type == "dethElkPile")
+                    {
+                        if (scenicList[i].team == this.team && scenicList[i].usable == true && scenicList[i].vacio == false || scenicList[i].team == this.team && this.role == "maker")
+                        {
+                            var foodDist = this.DTU(scenicList[i])
+                            if (foodDist < nearness)
+                            {
+                                nearestFood = scenicList[i];
+                                nearest = foodDist;
+                            }
+                        }
+                    }
+                }
+
+                //hunger //food finding
+                this.hunger -= 0.01;
+                if (this.hunger < 7/10 * this.hungerMAX)
+                {
+                    this.hungry = true;
+                }
+                else
+                {
+                    this.hungry = false;
+                }
+
+                //outfit finding
+                if (this.equipment.outfit == "none")
+                {
+                    this.obtainArmour = true;
+                }
+                else
+                {
+                    this.obtainArmour = false;
+                }
+
+                //weapon finding
+                if (this.gender == 1 && this.role != "shaman")
+                {
+                    if (this.equipment.weapon == "none")
+                    {
+                        this.obtainWeapon = true;
+                    }
+                    else
+                    {
+                        this.obtainWeapon = false;
+                    }
+                }
+
+                //attack
+                if (this.alpha == true)
+                {
+                    this.Attack(1, 1);
+                }
+                else
+                {
+                    this.Attack(1, 1);
+                }
+
+                //chain of command
+                this.dethwait += 0.1;
+                if (this.dethwait > 8 && this.role != "loner" && this.role != "shaman" && this.role != "chief")
+                {
+                    var shaman = -1;
+                    var chief = -1;
+                    var heredero = -1;
+                    var heir = -1;
+                    var potHeredero = -1;
+                    var potHeir = -1;
+                    var popTot = 0;
+
+                    var wrongGender = -1;
+                    var falseGender = -1;
+
+                    var apro = this.APR;
+                    var cono = this.CON;
+                    var ingo = this.ING;
+                    var dexo = this.DEX;
+                    var pero = this.PER;
+
+                    this.dethwait = 0;
+
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].type == "Deth" && ArtificialIntelligenceAccess[i].team == this.team && ArtificialIntelligenceAccess[i].alive == true && ArtificialIntelligenceAccess[i].dmx == this.dmx)
+                        {
+                            popTot += 1;
+                            if (ArtificialIntelligenceAccess[i].role == "shaman")
+                            {
+                                shaman = i;
+                            }
+                            if (ArtificialIntelligenceAccess[i].role == "chief")
+                            {
+                                chief = i;
+                            }
+
+                            if (ArtificialIntelligenceAccess[i].APR > apro)
+                            {
+                                apro = ArtificialIntelligenceAccess[i].APR;
+                            }
+                            if (ArtificialIntelligenceAccess[i].CON > cono)
+                            {
+                                cono = ArtificialIntelligenceAccess[i].CON;
+                            }
+                            if (ArtificialIntelligenceAccess[i].ING > ingo)
+                            {
+                                ingo = ArtificialIntelligenceAccess[i].ING;
+                            }
+                            if (ArtificialIntelligenceAccess[i].DEX > dexo)
+                            {
+                                dexo = ArtificialIntelligenceAccess[i].DEX;
+                            }
+                            if (ArtificialIntelligenceAccess[i].PER > pero)
+                            {
+                                pero = ArtificialIntelligenceAccess[i].PER;
+                            }
+
+                            if (ArtificialIntelligenceAccess[i] !== this)
+                            {
+                                if (ArtificialIntelligenceAccess[i].gender == ArtificialIntelligenceAccess[i].shamanGender && ArtificialIntelligenceAccess[i].role != "chief")
+                                {
+                                    wrongGender = i;
+                                }
+                                if (ArtificialIntelligenceAccess[i].gender == ArtificialIntelligenceAccess[i].chiefGender && ArtificialIntelligenceAccess[i].role != "shaman")
+                                {
+                                    falseGender = i;
+                                }
+
+                                if (ArtificialIntelligenceAccess[i].bloodline == true && this.gender == this.shamanGender)
+                                {
+                                    heredero = i;
+                                }
+                                else if (ArtificialIntelligenceAccess[i].bloodline == true)
+                                {
+                                    potHeredero = i;
+                                }
+
+                                if (ArtificialIntelligenceAccess[i].lineage == true && this.gender == this.chiefGender)
+                                {
+                                    heir = i;
+                                }
+                                else if (ArtificialIntelligenceAccess[i].lineage == true)
+                                {
+                                    potHeir = i;
+                                }
+                            }
+                        }
+                    }
+                    for (var i = 0; i < scenicList.length; i++)
+                    {
+                        if (scenicList[i].type == "dethMasterHut" && scenicList[i].team == true)
+                        {
+                            for (var ii = 0; scenicList[i].refuge.length; ii++)
+                            {
+                                popTot += 1;
+                                if (scenicList[i].refuge[ii].role == "shaman")
+                                {
+                                    shaman = ii;
+                                }
+                                if (scenicList[i].refuge[ii].role == "chief")
+                                {
+                                    chief = ii;
+                                }
+                            }
+                        }
+                        else if (scenicList[i].type == "dethHut")
+                        {
+                            for (var ii = 0; scenicList[i].inhabitants.length; ii++)
+                            {
+                                popTot += 1;
+                            }
+                        }
+                    }
+
+                    if (shaman == -1 && this.role != "chief")
+                    {
+                        if (this.gender == this.shamanGender && popTot > 2 || this.bloodline == true && this.shamanshipTrait == "birth")
+                        {
+                            if (this.shamanshipTrait == "none")
+                            {
+                                this.role = "shaman";
+                            }
+                            else if (this.shamanshipTrait == "birth")
+                            {
+                                if (this.bloodline == true && this.gender == this.shamanGender)
+                                {
+                                    this.role = "shaman";
+                                }
+                                else if (this.bloodline == true && heredero == -1)
+                                {
+                                    this.role = "shaman";
+                                }
+                                else if (potHeredero == -1)
+                                {
+                                    this.role = "shaman";
+                                }
+                            }
+                            else
+                            {
+                                if (this.shamanshipTrait == "apr")
+                                {
+                                    if (this.APR == apro)
+                                    {
+                                        this.role = "shaman";
+                                    }
+                                }
+                                else if (this.shamanshipTrait == "con")
+                                {
+                                    if (this.CON == cono)
+                                    {
+                                        this.role = "shaman";
+                                    }
+                                }
+                                else if (this.shamanshipTrait == "ing")
+                                {
+                                    if (this.ING == ingo)
+                                    {
+                                        this.role = "shaman";
+                                    }
+                                }
+                                else if (this.shamanshipTrait == "per")
+                                {
+                                    if (this.PER == pero)
+                                    {
+                                        this.role = "shaman";
+                                    }
+                                }
+                            }
+                        }
+                        else if (popTot <= 2)
+                        {
+                            this.role = "loner";
+                            this.team = "dethLoner";
+                        }
+                        else if (wrongGender == -1)
+                        {
+                            this.role = "shaman";
+                        }
+                    }
+
+                    if (chief == -1 && this.role != "shaman")
+                    {
+                        if (this.gender == this.chiefGender && popTot > 2 || this.lineage == true && this.leadershipTrait == "birth")
+                        {
+                            if (this.leadershipTrait == "none")
+                            {
+                                this.role = "chief";
+                            }
+                            else if (this.leadershipTrait == "birth")
+                            {
+                                if (this.lineage == true && this.gender == this.chiefGender)
+                                {
+                                    this.role = "chief";
+                                }
+                                else if (this.lineage == true && heir == -1)
+                                {
+                                    this.role = "chief";
+                                }
+                                else if (potHeir == -1)
+                                {
+                                    this.role = "chief";
+                                }
+                            }
+                            else
+                            {
+                                if (this.leadershipTrait == "apr")
+                                {
+                                    if (this.APR == apro)
+                                    {
+                                        this.role = "chief";
+                                    }
+                                }
+                                else if (this.leadershipTrait == "con")
+                                {
+                                    if (this.CON == cono)
+                                    {
+                                        this.role = "chief";
+                                    }
+                                }
+                                else if (this.leadershipTrait == "dex")
+                                {
+                                    if (this.DEX == dexo)
+                                    {
+                                        this.role = "chief";
+                                    }
+                                }
+                                else if (this.leadershipTrait == "per")
+                                {
+                                    if (this.PER == pero)
+                                    {
+                                        this.role = "chief";
+                                    }
+                                }
+                            }
+                        }
+                        else if (popTot <= 2)
+                        {
+                            this.role = "loner";
+                            this.team = "dethLoner";
+                        }
+                        else if (falseGender == -1)
+                        {
+                            this.role = "chief";
+                        }
+                    }
                 }
 
                 //this.deathChecker();
@@ -43298,17 +44945,1406 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.friendDecider();
                 this.targeting();
 
-                if (this.target == player)
+                if (this.age < 2) //kid
                 {
-                    this.pointTowardsPlayer();
-                    this.moveInRelationToPlayer();
+
                 }
-                else if (this.target != "none")
+                else if (this.role == "stalker") //hunter/gatherer
                 {
-                    this.pointTowards(this.target);
-                    this.moveInRelationToThing(this.target);
+
+                }
+                else if (this.role == "maker") //builder/crafter/herbalist
+                {
+
+                }
+                else if (this.role == "shaman") //shaman
+                {
+                    if (this.equipment.outfit != "koiShaman" && this.equipment.outfit != "elkShaman" && this.equipment.outfit != "gulShaman")
+                    {
+                        this.equipment.outfit = "none";
+                    }
+                    //make tribe's basic culture
+                    if (this.leadershipTrait == "none")
+                    {
+                        var traitDecision = Math.random();
+
+                        var traitDecision = Math.random()
+                        if (traitDecision < 0.2)
+                        {
+                            this.leadershipTrait = "apr";
+                        }
+                        else if (traitDecision < 0.4)
+                        {
+                            this.leadershipTrait = "con";
+                        }
+                        else if (traitDecision < 0.6)
+                        {
+                            this.leadershipTrait = "per";
+                        }
+                        else if (traitDecision < 0.8)
+                        {
+                            this.leadershipTrait = "dex";
+                        }
+                        else //hereditary
+                        {
+                            this.leadershipTrait = "birth";
+                        }
+                    }
+                    if (this.shamanshipTrait == "none")
+                    {
+                        var traitDecision = Math.random()
+                        if (traitDecision < 0.2)
+                        {
+                            this.shamanshipTrait = "ing";
+                        }
+                        else if (traitDecision < 0.4)
+                        {
+                            this.shamanshipTrait = "con";
+                        }
+                        else if (traitDecision < 0.6)
+                        {
+                            this.shamanshipTrait = "per";
+                        }
+                        else if (traitDecision < 0.8)
+                        {
+                            this.shamanshipTrait = "apr";
+                        }
+                        else //hereditary
+                        {
+                            this.shamanshipTrait = "birth";
+                        }
+                    }
+                    if (this.chiefGender == "none")
+                    {
+                        this.chiefGender = Math.round(Math.random());
+                    }
+                    if (this.shamanGender == "none")
+                    {
+                        this.shamanGender = Math.round(Math.random());
+                    }
+                    if (this.religion == "none")
+                    {
+                        var religDecision = Math.random()
+                        if (religDecision < 0.25)
+                        {
+                            this.cultural.religion = "player"; //{player: ++, nature: +, death: -, archdemon: –}
+                        }
+                        else if (religDecision < 0.5)
+                        {
+                            this.cultural.religion = "death"; //{player: ++, nature: +, death: -, archdemon: –}
+                        }
+                        else if (religDecision < 0.75)
+                        {
+                            this.cultural.religion = "nature"; //{player: ++, nature: +, death: -, archdemon: –}
+                        }
+                        else
+                        {
+                            this.cultural.religion = "archdemon"; //{player: ++, nature: +, death: -, archdemon: –}
+                        }
+                    }
+
+                    console.log("religion: " + this.religion)
+                    //call ceremony session
+                    if (hourOfDay >= 1 && hourOfDay < 2 && this.religion == "archdemon")
+                    {
+                        this.cultural.culture = "I";
+                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                        {
+                            if (ArtificialIntelligenceAccess[i].type == "Deth" && ArtificialIntelligenceAccess[i].team == this.team)
+                            {
+                                ArtificialIntelligenceAccess[i].cultural.culture = "I";
+                            }
+                        }
+
+                        for (var i = 0; i < scenicList.length; i++)
+                        {
+                            if (scenicList[i].type == "dethHut" || scenicList[i].type == "dethMasterHut")
+                            {
+                                if (scenicList[i].team == this.team)
+                                {
+                                    scenicList[i].culture = "I";
+                                }
+                            }
+                        }
+                    }
+                    else if (this.religion == "archdemon")
+                    {
+                        if (hourOfDay >= 2 && hourOfDay < 5)
+                        {
+                            this.cultural.culture = "II";
+                            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                            {
+                                if (ArtificialIntelligenceAccess[i].type == "Deth" && ArtificialIntelligenceAccess[i].team == this.team)
+                                {
+                                    ArtificialIntelligenceAccess[i].cultural.culture = "II";
+                                }
+                            }
+                            for (var i = 0; i < scenicList.length; i++)
+                            {
+                                if (scenicList[i].type == "dethHut" || scenicList[i].type == "dethMasterHut")
+                                {
+                                    if (scenicList[i].team == this.team)
+                                    {
+                                        scenicList[i].culture = "II";
+                                    }
+                                }
+                            }
+                        }
+                        else if (hourOfDay >= 5 && hourOfDay < 8)
+                        {
+                            this.cultural.culture = "III";
+                            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                            {
+                                if (ArtificialIntelligenceAccess[i].type == "Deth" && ArtificialIntelligenceAccess[i].team == this.team)
+                                {
+                                    ArtificialIntelligenceAccess[i].cultural.culture = "III";
+                                }
+                            }
+                            for (var i = 0; i < scenicList.length; i++)
+                            {
+                                if (scenicList[i].type == "dethHut" || scenicList[i].type == "dethMasterHut")
+                                {
+                                    if (scenicList[i].team == this.team)
+                                    {
+                                        scenicList[i].culture = "III";
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            this.cultural.culture = false;
+                            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                            {
+                                if (ArtificialIntelligenceAccess[i].type == "Deth" && ArtificialIntelligenceAccess[i].team == this.team)
+                                {
+                                    ArtificialIntelligenceAccess[i].cultural.culture = false;
+                                }
+                            }
+                            for (var i = 0; i < scenicList.length; i++)
+                            {
+                                if (scenicList[i].type == "dethHut" || scenicList[i].type == "dethMasterHut")
+                                {
+                                    if (scenicList[i].team == this.team)
+                                    {
+                                        scenicList[i].culture = false;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else if (hourOfDay >= 20 && hourOfDay < 21 && this.religion == "death")
+                    {
+                        this.cultural.culture = "I";
+                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                        {
+                            if (ArtificialIntelligenceAccess[i].type == "Deth" && ArtificialIntelligenceAccess[i].team == this.team)
+                            {
+                                ArtificialIntelligenceAccess[i].cultural.culture = "I";
+                            }
+                        }
+                        for (var i = 0; i < scenicList.length; i++)
+                        {
+                            if (scenicList[i].type == "dethHut" || scenicList[i].type == "dethMasterHut")
+                            {
+                                if (scenicList[i].team == this.team)
+                                {
+                                    scenicList[i].culture = "I";
+                                }
+                            }
+                        }
+                    }
+                    else if (this.religion == "death")
+                    {
+                        if (hourOfDay >= 21 && hourOfDay < 24)
+                        {
+                            this.cultural.culture = "II";
+                            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                            {
+                                if (ArtificialIntelligenceAccess[i].type == "Deth" && ArtificialIntelligenceAccess[i].team == this.team)
+                                {
+                                    ArtificialIntelligenceAccess[i].cultural.culture = "II";
+                                }
+                            }
+                            for (var i = 0; i < scenicList.length; i++)
+                            {
+                                if (scenicList[i].type == "dethHut" || scenicList[i].type == "dethMasterHut")
+                                {
+                                    if (scenicList[i].team == this.team)
+                                    {
+                                        scenicList[i].culture = "II";
+                                    }
+                                }
+                            }
+                        }
+                        else if (hourOfDay >= 0 && hourOfDay < 3)
+                        {
+                            this.cultural.culture = "III";
+                            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                            {
+                                if (ArtificialIntelligenceAccess[i].type == "Deth" && ArtificialIntelligenceAccess[i].team == this.team)
+                                {
+                                    ArtificialIntelligenceAccess[i].cultural.culture = "III";
+                                }
+                            }
+                            for (var i = 0; i < scenicList.length; i++)
+                            {
+                                if (scenicList[i].type == "dethHut" || scenicList[i].type == "dethMasterHut")
+                                {
+                                    if (scenicList[i].team == this.team)
+                                    {
+                                        scenicList[i].culture = "III";
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            this.cultural.culture = false;
+                            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                            {
+                                if (ArtificialIntelligenceAccess[i].type == "Deth" && ArtificialIntelligenceAccess[i].team == this.team)
+                                {
+                                    ArtificialIntelligenceAccess[i].cultural.culture = false;
+                                }
+                            }
+                            for (var i = 0; i < scenicList.length; i++)
+                            {
+                                if (scenicList[i].type == "dethHut" || scenicList[i].type == "dethMasterHut")
+                                {
+                                    if (scenicList[i].team == this.team)
+                                    {
+                                        scenicList[i].culture = false;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else if (hourOfDay >= 12 && hourOfDay < 13 && this.religion == "player")
+                    {
+                        this.cultural.culture = "I";
+                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                        {
+                            if (ArtificialIntelligenceAccess[i].type == "Deth" && ArtificialIntelligenceAccess[i].team == this.team)
+                            {
+                                ArtificialIntelligenceAccess[i].cultural.culture = "I";
+                            }
+                        }
+                        for (var i = 0; i < scenicList.length; i++)
+                        {
+                            if (scenicList[i].type == "dethHut" || scenicList[i].type == "dethMasterHut")
+                            {
+                                if (scenicList[i].team == this.team)
+                                {
+                                    scenicList[i].culture = "I";
+                                }
+                            }
+                        }
+                    }
+                    else if (this.religion == "player")
+                    {
+                        if (hourOfDay >= 13 && hourOfDay < 16)
+                        {
+                            this.cultural.culture = "II";
+                            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                            {
+                                if (ArtificialIntelligenceAccess[i].type == "Deth" && ArtificialIntelligenceAccess[i].team == this.team)
+                                {
+                                    ArtificialIntelligenceAccess[i].cultural.culture = "II";
+                                }
+                            }
+                            for (var i = 0; i < scenicList.length; i++)
+                            {
+                                if (scenicList[i].type == "dethHut" || scenicList[i].type == "dethMasterHut")
+                                {
+                                    if (scenicList[i].team == this.team)
+                                    {
+                                        scenicList[i].culture = "II";
+                                    }
+                                }
+                            }
+                        }
+                        else if (hourOfDay >= 16 && hourOfDay < 19)
+                        {
+                            this.cultural.culture = "III";
+                            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                            {
+                                if (ArtificialIntelligenceAccess[i].type == "Deth" && ArtificialIntelligenceAccess[i].team == this.team)
+                                {
+                                    ArtificialIntelligenceAccess[i].cultural.culture = "III";
+                                }
+                            }
+                            for (var i = 0; i < scenicList.length; i++)
+                            {
+                                if (scenicList[i].type == "dethHut" || scenicList[i].type == "dethMasterHut")
+                                {
+                                    if (scenicList[i].team == this.team)
+                                    {
+                                        scenicList[i].culture = "III";
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            this.cultural.culture = false;
+                            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                            {
+                                if (ArtificialIntelligenceAccess[i].type == "Deth" && ArtificialIntelligenceAccess[i].team == this.team)
+                                {
+                                    ArtificialIntelligenceAccess[i].cultural.culture = false;
+                                }
+                            }
+                            for (var i = 0; i < scenicList.length; i++)
+                            {
+                                if (scenicList[i].type == "dethHut" || scenicList[i].type == "dethMasterHut")
+                                {
+                                    if (scenicList[i].team == this.team)
+                                    {
+                                        scenicList[i].culture = false;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else if (hourOfDay >= 7 && hourOfDay < 8 && this.religion == "nature")
+                    {
+                        this.cultural.culture = "I";
+                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                        {
+                            if (ArtificialIntelligenceAccess[i].type == "Deth" && ArtificialIntelligenceAccess[i].team == this.team)
+                            {
+                                ArtificialIntelligenceAccess[i].cultural.culture = "I";
+                            }
+                        }
+                        for (var i = 0; i < scenicList.length; i++)
+                        {
+                            if (scenicList[i].type == "dethHut" || scenicList[i].type == "dethMasterHut")
+                            {
+                                if (scenicList[i].team == this.team)
+                                {
+                                    scenicList[i].culture = "I";
+                                }
+                            }
+                        }
+                    }
+                    else if (this.religion == "nature")
+                    {
+                        if (hourOfDay >= 8 && hourOfDay < 11)
+                        {
+                            this.cultural.culture = "II";
+                            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                            {
+                                if (ArtificialIntelligenceAccess[i].type == "Deth" && ArtificialIntelligenceAccess[i].team == this.team)
+                                {
+                                    ArtificialIntelligenceAccess[i].cultural.culture = "II";
+                                }
+                            }
+                            for (var i = 0; i < scenicList.length; i++)
+                            {
+                                if (scenicList[i].type == "dethHut" || scenicList[i].type == "dethMasterHut")
+                                {
+                                    if (scenicList[i].team == this.team)
+                                    {
+                                        scenicList[i].culture = "II";
+                                    }
+                                }
+                            }
+                        }
+                        else if (hourOfDay >= 11 && hourOfDay < 14)
+                        {
+                            this.cultural.culture = "III";
+                            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                            {
+                                if (ArtificialIntelligenceAccess[i].type == "Deth" && ArtificialIntelligenceAccess[i].team == this.team)
+                                {
+                                    ArtificialIntelligenceAccess[i].cultural.culture = "III";
+                                }
+                            }
+                            for (var i = 0; i < scenicList.length; i++)
+                            {
+                                if (scenicList[i].type == "dethHut" || scenicList[i].type == "dethMasterHut")
+                                {
+                                    if (scenicList[i].team == this.team)
+                                    {
+                                        scenicList[i].culture = "III";
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            this.cultural.culture = false;
+                            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                            {
+                                if (ArtificialIntelligenceAccess[i].type == "Deth" && ArtificialIntelligenceAccess[i].team == this.team)
+                                {
+                                    ArtificialIntelligenceAccess[i].cultural.culture = false;
+                                }
+                            }
+                            for (var i = 0; i < scenicList.length; i++)
+                            {
+                                if (scenicList[i].type == "dethHut" || scenicList[i].type == "dethMasterHut")
+                                {
+                                    if (scenicList[i].team == this.team)
+                                    {
+                                        scenicList[i].culture = false;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    //teaching
+                    if (this.age >= 2 && this.team != "dethLoner")
+                    {
+                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                        {
+                            if (ArtificialIntelligenceAccess[i].team == this.team && ArtificialIntelligenceAccess[i].type == "Deth" && ArtificialIntelligenceAccess[i].religion == "none" || ArtificialIntelligenceAccess[i].type == "Deth" && ArtificialIntelligenceAccess[i].team == "dethLoner" || ArtificialIntelligenceAccess[i].type == "Deth" && ArtificialIntelligenceAccess[i].team == "dethLoner")
+                            {
+                                if (this.DTU(ArtificialIntelligenceAccess[i]) < 260)
+                                {
+                                    ArtificialIntelligenceAccess[i].cultural = this.cultural;
+                                }
+                            }
+                        }
+                    }
+
+                    if (this.target == player)
+                    {
+                        //point to or run away from player
+                        if (this.religion == "player")
+                        {
+                            if (this.DTP() < 200)
+                            {
+                                this.doBow = true;
+                                this.pointTowardsPlayer();
+                            }
+                            else if (this.hungry == true && nearestFood != "none") //eat
+                            {
+                                if (this.DTU(nearestFood) < (30 + nearestFood.radius))
+                                {
+                                    this.pointTowards(nearestFood);
+                                    if (nearestFood.resources.koivayaMeat > 0)
+                                    {
+                                        nearestFood.resources.koivayaMeat -= 1;
+                                        this.hunger += 20;
+                                    }
+                                    else if (nearestFood.resources.elkMeat > 0)
+                                    {
+                                        nearestFood.resources.elkMeat -= 1;
+                                        this.hunger += 60;
+                                    }
+                                    else if (nearestFood.resources.ghoulMeat > 0)
+                                    {
+                                        nearestFood.resources.ghoulMeat -= 1;
+                                        this.hunger += 80;
+                                    }
+
+                                    if (this.hunger > this.hungerMAX)
+                                    {
+                                        this.hunger = this.hungerMAX;
+                                    }
+                                }
+                                else
+                                {
+                                    this.pointTowards(nearestFood);
+                                    this.moveInRelationToThing(nearestFood);
+                                }
+                            }
+                            else if (this.obtainArmour == true && nearestFit != "none") //dress
+                            {
+                                if (this.DTU(nearestFit) < (20 + nearestFit.radius))
+                                {
+                                    this.pointTowards(nearestFit);
+                                    if (nearestFit.resources.gulShaman > 0)
+                                    {
+                                        this.equipment.outfit = "gulShaman";
+                                        nearestFit.resources.gulShaman -= 1;
+                                    }
+                                    else if (nearestFit.resources.elkShaman > 0)
+                                    {
+                                        this.equipment.outfit = "elkShaman";
+                                        nearestFit.resources.elkShaman -= 1;
+                                    }
+                                    else if (nearestFit.resources.koiShaman > 0)
+                                    {
+                                        this.equipment.outfit = "koiShaman";
+                                        nearestFit.resources.koiShaman -= 1;
+                                    }
+                                }
+                                else
+                                {
+                                    this.pointTowards(nearestFit);
+                                    this.moveInRelationToThing(nearestFit);
+                                }
+                            }
+                            else if (this.culture == "I")
+                            {
+                                var dancidance = "none";
+                                for (var i = 0; i < scenicList.length; i++)
+                                {
+                                    if (scenicList[i].type == "dethTotem")
+                                    {
+                                        if (scenicList[i].team == this.team)
+                                        {
+                                            dancidance = scenicList[i];
+                                            break;
+                                        }
+                                    }
+                                }
+
+                                if (dancidance != "none")
+                                {
+                                    var totalL = 0;
+                                    var subL = 0;
+                                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                                    {
+                                        if (ArtificialIntelligenceAccess[i].type == "Deth" && ArtificialIntelligenceAccess[i].team == this.team)
+                                        {
+                                            totalL += 1;
+                                            ArtificialIntelligenceAccess[i].totem = {X: dancidance.X, Y: dancidance.Y};
+                                        }
+                                    }
+                                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                                    {
+                                        if (ArtificialIntelligenceAccess[i].type == "Deth" && ArtificialIntelligenceAccess[i].team == this.team)
+                                        {
+                                            subL += 1;
+                                            ArtificialIntelligenceAccess[i].goTo = {X: dancidance.X + Math.cos((subL/totalL) * 2*Math.PI) * 200, Y: dancidance.Y + Math.sin((subL/totalL) * 2*Math.PI) * 200};
+                                        }
+                                    }
+
+                                    if (this.DTU(this.goTo) < 30) // if near ceremonial position, lock into it.
+                                    {
+                                        this.X = this.goTo.X;
+                                        this.Y = this.goTo.Y;
+                                        this.pointTowards(this.totem);
+                                        this.dancing = true;
+                                    }
+                                    else
+                                    {
+                                        this.pointTowards(this.goTo);
+                                        this.moveInRelationToThing(this.goTo);
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                if (this.DTU({X: this.initX, Y: this.initY}) < 30)
+                                {
+                                    this.X = this.initX;
+                                    this.Y = this.initY;
+                                    this.pointTowards(this.totem);
+                                }
+                                else
+                                {
+                                    this.pointTowards({X: this.initX, Y: this.initY});
+                                    this.moveInRelationToThing({X: this.initX, Y: this.initY}, 30000);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            var masterHut = "none";
+                            for (var i = 0; i < scenicList.length; i++)
+                            {
+                                if (scenicList[i].type == "dethMasterHut")
+                                {
+                                    console.log("nextPhase: " + (scenicList[i].team == this.team && scenicList[i].lockout != true));
+                                    console.log("role: " + this.role);
+                                    if (scenicList[i].team == this.team && scenicList[i].lockout != true)
+                                    {
+                                        masterHut = scenicList[i];
+                                        break;
+                                    }
+                                }
+                            }
+
+                            if (this.hungry == true && nearestFood != "none") //eat
+                            {
+                                if (this.DTU(nearestFood) < (30 + nearestFood.radius))
+                                {
+                                    this.pointTowards(nearestFood);
+                                    if (nearestFood.resources.koivayaMeat > 0)
+                                    {
+                                        nearestFood.resources.koivayaMeat -= 1;
+                                        this.hunger += 20;
+                                    }
+                                    else if (nearestFood.resources.elkMeat > 0)
+                                    {
+                                        nearestFood.resources.elkMeat -= 1;
+                                        this.hunger += 60;
+                                    }
+                                    else if (nearestFood.resources.ghoulMeat > 0)
+                                    {
+                                        nearestFood.resources.ghoulMeat -= 1;
+                                        this.hunger += 80;
+                                    }
+
+                                    if (this.hunger > this.hungerMAX)
+                                    {
+                                        this.hunger = this.hungerMAX;
+                                    }
+                                }
+                                else
+                                {
+                                    this.pointTowards(nearestFood);
+                                    this.moveInRelationToThing(nearestFood);
+                                }
+                            }
+                            else if (this.obtainArmour == true && nearestFit != "none") //dress
+                            {
+                                if (this.DTU(nearestFit) < (20 + nearestFit.radius))
+                                {
+                                    this.pointTowards(nearestFit);
+                                    if (nearestFit.resources.gulShaman > 0)
+                                    {
+                                        this.equipment.outfit = "gulShaman";
+                                        nearestFit.resources.gulShaman -= 1;
+                                    }
+                                    else if (nearestFit.resources.elkShaman > 0)
+                                    {
+                                        this.equipment.outfit = "elkShaman";
+                                        nearestFit.resources.elkShaman -= 1;
+                                    }
+                                    else if (nearestFit.resources.koiShaman > 0)
+                                    {
+                                        this.equipment.outfit = "koiShaman";
+                                        nearestFit.resources.koiShaman -= 1;
+                                    }
+                                }
+                                else
+                                {
+                                    this.pointTowards(nearestFit);
+                                    this.moveInRelationToThing(nearestFit);
+                                }
+                            }
+                            else
+                            {
+                                if (masterHut != "none")
+                                {
+                                    if (this.culture == "I" && DTP() > 550)
+                                    {
+                                        var dancidance = "none";
+                                        for (var i = 0; i < scenicList.length; i++)
+                                        {
+                                            if (scenicList[i].type == "dethTotem")
+                                            {
+                                                if (scenicList[i].team == this.team)
+                                                {
+                                                    dancidance = scenicList[i];
+                                                    break;
+                                                }
+                                            }
+                                        }
+
+                                        if (dancidance != "none")
+                                        {
+                                            var totalL = 0;
+                                            var subL = 0;
+                                            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                                            {
+                                                if (ArtificialIntelligenceAccess[i].type == "Deth" && ArtificialIntelligenceAccess[i].team == this.team)
+                                                {
+                                                    totalL += 1;
+                                                    ArtificialIntelligenceAccess[i].totem = {X: dancidance.X, Y: dancidance.Y};
+                                                }
+                                            }
+                                            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                                            {
+                                                if (ArtificialIntelligenceAccess[i].type == "Deth" && ArtificialIntelligenceAccess[i].team == this.team)
+                                                {
+                                                    subL += 1;
+                                                    ArtificialIntelligenceAccess[i].goTo = {X: dancidance.X + Math.cos((subL/totalL) * 2*Math.PI) * 200, Y: dancidance.Y + Math.sin((subL/totalL) * 2*Math.PI) * 200};
+                                                }
+                                            }
+
+                                            if (this.DTU(this.goTo) < 30) // if near ceremonial position, lock into it.
+                                            {
+                                                this.X = this.goTo.X;
+                                                this.Y = this.goTo.Y;
+                                                this.pointTowards(this.totem);
+                                                this.dancing = true;
+                                            }
+                                            else
+                                            {
+                                                this.pointTowards(this.goTo);
+                                                this.moveInRelationToThing(this.goTo, 30000);
+                                            }
+                                        }
+                                    }
+                                    else if (this.DTP() <= 500)
+                                    {
+                                        this.pointTowards(masterHut);
+                                        this.moveInRelationToThing(masterHut);
+                                        if (this.DTU(masterHut) < 40 + masterHut.radius) //flee into master hut
+                                        {
+                                            masterHut.refuge.push({role: this.role, gender: this.gender, cultural: this.cultural, geneBank: this.geneBank, age: this.age, healthMAX: this.healthMAX, health: this.health, equipment: this.equipment, culturePreset: this.culturePreset, team: this.baseTeam, preggers: this.preggers, bulging: this.bulging, lineage: this.lineage, bloodline: this.bloodline, hunger: this.hunger});
+                                            ArtificialIntelligenceAccess.splice(ArtificialIntelligenceAccess.indexOf(this), 1);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (this.DTU({X: this.initX, Y: this.initY}) < 30)
+                                        {
+                                            this.X = this.initX;
+                                            this.Y = this.initY;
+                                            this.pointTowards(this.totem);
+                                        }
+                                        else
+                                        {
+                                            this.pointTowards({X: this.initX, Y: this.initY});
+                                            this.moveInRelationToThing({X: this.initX, Y: this.initY}, 30000);
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    if (this.DTU({X: this.initX, Y: this.initY}) < 30)
+                                    {
+                                        this.X = this.initX;
+                                        this.Y = this.initY;
+                                        this.pointTowards(this.totem);
+                                    }
+                                    else
+                                    {
+                                        this.pointTowards({X: this.initX, Y: this.initY});
+                                        this.moveInRelationToThing({X: this.initX, Y: this.initY}, 30000);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else if (this.target != "none")
+                    {
+                        var masterHut = "none";
+                        for (var i = 0; i < scenicList.length; i++)
+                        {
+                            if (scenicList[i].type == "dethMasterHut" && scenicList[i].lockout != true)
+                            {
+                                if (scenicList[i].team == this.team)
+                                {
+                                    masterHut = scenicList[i];
+                                    break;
+                                }
+                            }
+                        }
+
+                        if (this.hungry == true && nearestFood != "none") //eat
+                        {
+                            if (this.DTU(nearestFood) < (30 + nearestFood.radius))
+                            {
+                                this.pointTowards(nearestFood);
+                                if (nearestFood.resources.koivayaMeat > 0)
+                                {
+                                    nearestFood.resources.koivayaMeat -= 1;
+                                    this.hunger += 20;
+                                }
+                                else if (nearestFood.resources.elkMeat > 0)
+                                {
+                                    nearestFood.resources.elkMeat -= 1;
+                                    this.hunger += 60;
+                                }
+                                else if (nearestFood.resources.ghoulMeat > 0)
+                                {
+                                    nearestFood.resources.ghoulMeat -= 1;
+                                    this.hunger += 80;
+                                }
+
+                                if (this.hunger > this.hungerMAX)
+                                {
+                                    this.hunger = this.hungerMAX;
+                                }
+                            }
+                            else
+                            {
+                                this.pointTowards(nearestFood);
+                                this.moveInRelationToThing(nearestFood);
+                            }
+                        }
+                        else if (this.obtainArmour == true && nearestFit != "none") //dress
+                        {
+                            if (this.DTU(nearestFit) < (20 + nearestFit.radius))
+                            {
+                                this.pointTowards(nearestFit);
+                                if (nearestFit.resources.gulShaman > 0)
+                                {
+                                    this.equipment.outfit = "gulShaman";
+                                    nearestFit.resources.gulShaman -= 1;
+                                }
+                                else if (nearestFit.resources.elkShaman > 0)
+                                {
+                                    this.equipment.outfit = "elkShaman";
+                                    nearestFit.resources.elkShaman -= 1;
+                                }
+                                else if (nearestFit.resources.koiShaman > 0)
+                                {
+                                    this.equipment.outfit = "koiShaman";
+                                    nearestFit.resources.koiShaman -= 1;
+                                }
+                            }
+                            else
+                            {
+                                this.pointTowards(nearestFit);
+                                this.moveInRelationToThing(nearestFit);
+                            }
+                        }
+                        else
+                        {
+                            if (masterHut != "none")
+                            {
+                                if (this.culture == "I" && DTU(this.target) > 550)
+                                {
+                                    var dancidance = "none";
+                                    for (var i = 0; i < scenicList.length; i++)
+                                    {
+                                        if (scenicList[i].type == "dethTotem")
+                                        {
+                                            if (scenicList[i].team == this.team)
+                                            {
+                                                dancidance = scenicList[i];
+                                                break;
+                                            }
+                                        }
+                                    }
+
+                                    if (dancidance != "none")
+                                    {
+                                        var totalL = 0;
+                                        var subL = 0;
+                                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                                        {
+                                            if (ArtificialIntelligenceAccess[i].type == "Deth" && ArtificialIntelligenceAccess[i].team == this.team)
+                                            {
+                                                totalL += 1;
+                                                ArtificialIntelligenceAccess[i].totem = {X: dancidance.X, Y: dancidance.Y};
+                                            }
+                                        }
+                                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                                        {
+                                            if (ArtificialIntelligenceAccess[i].type == "Deth" && ArtificialIntelligenceAccess[i].team == this.team)
+                                            {
+                                                subL += 1;
+                                                ArtificialIntelligenceAccess[i].goTo = {X: dancidance.X + Math.cos((subL/totalL) * 2*Math.PI) * 200, Y: dancidance.Y + Math.sin((subL/totalL) * 2*Math.PI) * 200};
+                                            }
+                                        }
+
+                                        if (this.DTU(this.goTo) < 30) // if near ceremonial position, lock into it.
+                                        {
+                                            this.X = this.goTo.X;
+                                            this.Y = this.goTo.Y;
+                                            this.pointTowards(this.totem);
+                                            this.dancing = true;
+                                        }
+                                        else
+                                        {
+                                            this.pointTowards(this.goTo);
+                                            this.moveInRelationToThing(this.goTo, 30000);
+                                        }
+                                    }
+                                }
+                                else if (this.DTU(this.target <= 500))
+                                {
+                                    if (this.target.type != "Deth" || this.target.age >= 2 && this.target.team != "dethLoner")
+                                    {
+                                        this.pointTowards(masterHut);
+                                        this.moveInRelationToThing(masterHut);
+                                        if (this.DTU(masterHut) < 40 + masterHut.radius) //flee into master hut
+                                        {
+                                            masterHut.refuge.push({role: this.role, gender: this.gender, cultural: this.cultural, geneBank: this.geneBank, age: this.age, healthMAX: this.healthMAX, health: this.health, equipment: this.equipment, culturePreset: this.culturePreset, team: this.baseTeam, preggers: this.preggers, bulging: this.bulging, lineage: this.lineage, bloodline: this.bloodline, hunger: this.hunger});
+                                            ArtificialIntelligenceAccess.splice(ArtificialIntelligenceAccess.indexOf(this), 1);
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    if (this.DTU({X: this.initX, Y: this.initY}) < 30)
+                                    {
+                                        this.X = this.initX;
+                                        this.Y = this.initY;
+                                        this.pointTowards(this.totem);
+                                    }
+                                    else
+                                    {
+                                        this.pointTowards({X: this.initX, Y: this.initY});
+                                        this.moveInRelationToThing({X: this.initX, Y: this.initY}, 30000);
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                if (this.DTU({X: this.initX, Y: this.initY}) < 30)
+                                {
+                                    this.X = this.initX;
+                                    this.Y = this.initY;
+                                    this.pointTowards(this.totem);
+                                }
+                                else
+                                {
+                                    this.pointTowards({X: this.initX, Y: this.initY});
+                                    this.moveInRelationToThing({X: this.initX, Y: this.initY}, 30000);
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (this.hungry == true && nearestFood != "none") //eat
+                        {
+                            if (this.DTU(nearestFood) < (30 + nearestFood.radius))
+                            {
+                                this.pointTowards(nearestFood);
+                                if (nearestFood.resources.koivayaMeat > 0)
+                                {
+                                    nearestFood.resources.koivayaMeat -= 1;
+                                    this.hunger += 20;
+                                }
+                                else if (nearestFood.resources.elkMeat > 0)
+                                {
+                                    nearestFood.resources.elkMeat -= 1;
+                                    this.hunger += 60;
+                                }
+                                else if (nearestFood.resources.ghoulMeat > 0)
+                                {
+                                    nearestFood.resources.ghoulMeat -= 1;
+                                    this.hunger += 80;
+                                }
+
+                                if (this.hunger > this.hungerMAX)
+                                {
+                                    this.hunger = this.hungerMAX;
+                                }
+                            }
+                            else
+                            {
+                                this.pointTowards(nearestFood);
+                                this.moveInRelationToThing(nearestFood);
+                            }
+                        }
+                        else if (this.obtainArmour == true && nearestFit != "none") //dress
+                        {
+                            if (this.DTU(nearestFit) < (20 + nearestFit.radius))
+                            {
+                                this.pointTowards(nearestFit);
+                                if (nearestFit.resources.gulShaman > 0)
+                                {
+                                    this.equipment.outfit = "gulShaman";
+                                    nearestFit.resources.gulShaman -= 1;
+                                }
+                                else if (nearestFit.resources.elkShaman > 0)
+                                {
+                                    this.equipment.outfit = "elkShaman";
+                                    nearestFit.resources.elkShaman -= 1;
+                                }
+                                else if (nearestFit.resources.koiShaman > 0)
+                                {
+                                    this.equipment.outfit = "koiShaman";
+                                    nearestFit.resources.koiShaman -= 1;
+                                }
+                            }
+                            else
+                            {
+                                this.pointTowards(nearestFit);
+                                this.moveInRelationToThing(nearestFit);
+                            }
+                        }
+                        else if (this.culture == "I")
+                        {
+                            var dancidance = "none";
+                            for (var i = 0; i < scenicList.length; i++)
+                            {
+                                if (scenicList[i].type == "dethTotem")
+                                {
+                                    if (scenicList[i].team == this.team)
+                                    {
+                                        dancidance = scenicList[i];
+                                        break;
+                                    }
+                                }
+                            }
+
+                            if (dancidance != "none")
+                            {
+                                var totalL = 0;
+                                var subL = 0;
+                                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                                {
+                                    if (ArtificialIntelligenceAccess[i].type == "Deth" && ArtificialIntelligenceAccess[i].team == this.team)
+                                    {
+                                        totalL += 1;
+                                        ArtificialIntelligenceAccess[i].totem = {X: dancidance.X, Y: dancidance.Y};
+                                    }
+                                }
+                                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                                {
+                                    if (ArtificialIntelligenceAccess[i].type == "Deth" && ArtificialIntelligenceAccess[i].team == this.team)
+                                    {
+                                        subL += 1;
+                                        ArtificialIntelligenceAccess[i].goTo = {X: dancidance.X + Math.cos((subL/totalL) * 2*Math.PI) * 200, Y: dancidance.Y + Math.sin((subL/totalL) * 2*Math.PI) * 200};
+                                    }
+                                }
+
+                                if (this.DTU(this.goTo) < 30) // if near ceremonial position, lock into it.
+                                {
+                                    this.X = this.goTo.X;
+                                    this.Y = this.goTo.Y;
+                                    this.pointTowards(this.totem);
+                                    this.dancing = true;
+                                }
+                                else
+                                {
+                                    this.pointTowards(this.goTo);
+                                    this.moveInRelationToThing(this.goTo, 30000);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (this.DTU({X: this.initX, Y: this.initY}) < 30)
+                            {
+                                this.X = this.initX;
+                                this.Y = this.initY;
+                                this.pointTowards(this.totem);
+                            }
+                            else
+                            {
+                                this.pointTowards({X: this.initX, Y: this.initY});
+                                this.moveInRelationToThing({X: this.initX, Y: this.initY}, 30000);
+                            }
+                        }
+                    }
+                }
+                else if (this.role == "chief") //chief
+                {
+                    if (this.equipment.outfit != "koiChief" && this.equipment.outfit != "elkChief" && this.equipment.outfit != "gulChief")
+                    {
+                        this.equipment.outfit = "none";
+                    }
+                    if (this.target == player)
+                    {
+                        if (this.DTP() < 200 && this.religion == "player" && this.gender == 1)
+                        {
+                            this.doBow = true;
+                            this.pointTowardsPlayer();
+                        }
+                        else if (this.DTP() < 600 && this.religion == "archdemon" && this.culture != "I" && this.gender == 1 || this.DTP() < 300 && this.religion == "archdemon" && this.gender == 1)
+                        {
+                            this.pointTowardsPlayer();
+                            this.moveInRelationToPlayer();
+                        }
+                        else if (this.DTP() < 500 && this.religion == "death" && this.culture != "I" && this.gender == 1 || this.DTP() < 200 && this.religion == "death" && this.gender == 1)
+                        {
+                            this.pointTowardsPlayer();
+                            this.moveInRelationToPlayer();
+                        }
+                        else if (this.DTP() < 400 && this.religion == "nature" && this.culture != "I" && this.gender == 1 || this.disturbed == true && this.gender == 1 || this.DTP() < 100 && this.religion == "nature" && this.gender == 1)
+                        {
+                            this.pointTowardsPlayer();
+                            this.moveInRelationToPlayer();
+                        }
+                        else if (this.health <= 2 && this.DTP() < 400 || this.gender == 0 && this.DTP() < 400)
+                        {
+                            var masterHut = "none";
+                            for (var i = 0; i < scenicList.length; i++)
+                            {
+                                if (scenicList[i].type == "dethMasterHut" && scenicList[i].lockout != true)
+                                {
+                                    if (scenicList[i].team == this.team)
+                                    {
+                                        masterHut = scenicList[i];
+                                        break;
+                                    }
+                                }
+                            }
+                            if (masterHut != "none")
+                            {
+                                this.pointTowards(masterHut);
+                                this.moveInRelationToThing(masterHut);
+                                if (this.DTU(masterHut) < 40) //flee into master hut
+                                {
+                                    masterHut.refuge.push({role: this.role, gender: this.gender, cultural: this.cultural, geneBank: this.geneBank, age: this.age, healthMAX: this.healthMAX, health: this.health, equipment: this.equipment, culturePreset: this.culturePreset, team: this.baseTeam, preggers: this.preggers, bulging: this.bulging, lineage: this.lineage, bloodline: this.bloodline, hunger: this.hunger});
+                                    ArtificialIntelligenceAccess.splice(ArtificialIntelligenceAccess.indexOf(this), 1);
+                                }
+                            }
+                        }
+                        else if (this.culture == "I")
+                        {
+                            if (this.DTU(this.goTo) < 30) // if near ceremonial position, lock into it.
+                            {
+                                this.X = this.goTo.X;
+                                this.Y = this.goTo.Y;
+                                this.pointTowards(this.totem);
+                                this.dancing = true;
+                            }
+                            else
+                            {
+                                this.pointTowards(this.goTo);
+                                this.moveInRelationToThing(this.goTo, 30000);
+                            }
+                        }
+                        else
+                        {
+                            if (this.DTU({X: this.initX, Y: this.initY}) < 30)
+                            {
+                                this.X = this.initX;
+                                this.Y = this.initY;
+                                this.pointTowards(this.totem);
+                            }
+                            else
+                            {
+                                this.pointTowards({X: this.initX, Y: this.initY});
+                                this.moveInRelationToThing({X: this.initX, Y: this.initY}, 30000);
+                            }
+                        }
+                    }
+                    else if (this.target != "none")
+                    {
+                        if (this.DTU(this.target) < 200 && this.religion == "player")
+                        {
+                            this.doBow = true;
+                            this.pointTowards(this.target);
+                        }
+                        else if (this.hungry == true && nearestFood != "none") //eat
+                        {
+                            if (this.DTU(nearestFood) < (30 + nearestFood.radius))
+                            {
+                                this.pointTowards(nearestFood);
+                                if (nearestFood.resources.koivayaMeat > 0)
+                                {
+                                    nearestFood.resources.koivayaMeat -= 1;
+                                    this.hunger += 20;
+                                }
+                                else if (nearestFood.resources.elkMeat > 0)
+                                {
+                                    nearestFood.resources.elkMeat -= 1;
+                                    this.hunger += 60;
+                                }
+                                else if (nearestFood.resources.ghoulMeat > 0)
+                                {
+                                    nearestFood.resources.ghoulMeat -= 1;
+                                    this.hunger += 80;
+                                }
+
+                                if (this.hunger > this.hungerMAX)
+                                {
+                                    this.hunger = this.hungerMAX;
+                                }
+                            }
+                            else
+                            {
+                                this.pointTowards(nearestFood);
+                                this.moveInRelationToThing(nearestFood);
+                            }
+                        }
+                        else if (this.obtainArmour == true && nearestFit != "none") //dress
+                        {
+                            if (this.DTU(nearestFit) < (20 + nearestFit.radius))
+                            {
+                                this.pointTowards(nearestFit);
+                                if (nearestFit.resources.gulChief > 0)
+                                {
+                                    this.equipment.outfit = "gulChief";
+                                    nearestFit.resources.gulChief -= 1;
+                                }
+                                else if (nearestFit.resources.elkChief > 0)
+                                {
+                                    this.equipment.outfit = "elkChief";
+                                    nearestFit.resources.elkChief -= 1;
+                                }
+                                else if (nearestFit.resources.koiChief > 0)
+                                {
+                                    this.equipment.outfit = "koiChief";
+                                    nearestFit.resources.koiChief -= 1;
+                                }
+                            }
+                            else
+                            {
+                                this.pointTowards(nearestFit);
+                                this.moveInRelationToThing(nearestFit);
+                            }
+                        }
+                        else if (this.DTU(this.target) < 600 && this.religion == "archdemon" && this.culture != "I" && this.gender == 1 || this.DTU(this.target) < 300 && this.religion == "archdemon" && this.gender == 1)
+                        {
+                            this.pointTowards(this.target);
+                            this.moveInRelationToThing(this.target);
+                        }
+                        else if (this.DTU(this.target) < 500 && this.religion == "death" && this.culture != "I" && this.gender == 1 || this.DTU(this.target) < 200 && this.religion == "death" && this.gender == 1)
+                        {
+                            this.pointTowards(this.target);
+                            this.moveInRelationToThing(this.target);
+                        }
+                        else if (this.DTU(this.target) < 400 && this.religion == "nature" && this.culture != "I" && this.gender == 1 || this.offended == true && this.gender == 1 || this.DTU(this.target) && this.religion == "nature" && this.gender == 1)
+                        {
+                            this.pointTowards(this.target);
+                            this.moveInRelationToThing(this.target);
+                        }
+                        else if (this.culture == "I")
+                        {
+                            if (this.DTU(this.goTo) < 30) // if near ceremonial position, lock into it.
+                            {
+                                this.X = this.goTo.X;
+                                this.Y = this.goTo.Y;
+                                this.pointTowards(this.totem);
+                                this.dancing = true;
+                            }
+                            else
+                            {
+                                this.pointTowards(this.goTo);
+                                this.moveInRelationToThing(this.goTo, 30000);
+                            }
+                        }
+                        else
+                        {
+                            if (this.DTU({X: this.initX, Y: this.initY}) < 30)
+                            {
+                                this.X = this.initX;
+                                this.Y = this.initY;
+                                this.pointTowards(this.totem);
+                            }
+                            else
+                            {
+                                this.pointTowards({X: this.initX, Y: this.initY});
+                                this.moveInRelationToThing({X: this.initX, Y: this.initY}, 30000);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (this.hungry == true && nearestFood != "none") //eat
+                        {
+                            if (this.DTU(nearestFood) < (30 + nearestFood.radius))
+                            {
+                                this.pointTowards(nearestFood);
+                                if (nearestFood.resources.koivayaMeat > 0)
+                                {
+                                    nearestFood.resources.koivayaMeat -= 1;
+                                    this.hunger += 20;
+                                }
+                                else if (nearestFood.resources.elkMeat > 0)
+                                {
+                                    nearestFood.resources.elkMeat -= 1;
+                                    this.hunger += 60;
+                                }
+                                else if (nearestFood.resources.ghoulMeat > 0)
+                                {
+                                    nearestFood.resources.ghoulMeat -= 1;
+                                    this.hunger += 80;
+                                }
+
+                                if (this.hunger > this.hungerMAX)
+                                {
+                                    this.hunger = this.hungerMAX;
+                                }
+                            }
+                            else
+                            {
+                                this.pointTowards(nearestFood);
+                                this.moveInRelationToThing(nearestFood);
+                            }
+                        }
+                        else if (this.obtainWeapon == true && nearestWep != "none") //dress
+                        {
+                            if (this.DTU(nearestWep) < (20 + nearestWep.radius))
+                            {
+                                this.pointTowards(nearestWep);
+                                if (nearestWep.resources.claws > 0)
+                                {
+                                    this.equipment.weapon = "claws";
+                                    nearestWep.resources.claws -= 1;
+                                }
+                                else if (nearestWep.resources.blowdart >= 30 && nearestWep.resources.blowgun > 0)
+                                {
+                                    this.equipment.weapon = "blowgun";
+                                    nearestWep.resources.blowdart -= 30;
+                                    nearestWep.resources.blowgun -= 1;
+                                }
+                                else if (nearestWep.resources.spike > 0)
+                                {
+                                    this.equipment.weapon = "spike";
+                                    nearestWep.resources.spike -= 1;
+                                }
+                                else if (nearestWep.resources.spear > 0)
+                                {
+                                    this.equipment.weapon = "spear";
+                                    nearestWep.resources.spear -= 1;
+                                }
+                            }
+                            else
+                            {
+                                this.pointTowards(nearestWep);
+                                this.moveInRelationToThing(nearestWep);
+                            }
+                        }
+                        else if (this.obtainArmour == true && nearestFit != "none") //dress
+                        {
+                            if (this.DTU(nearestFit) < (20 + nearestFit.radius))
+                            {
+                                this.pointTowards(nearestFit);
+                                if (nearestFit.resources.gulChief > 0)
+                                {
+                                    this.equipment.outfit = "gulChief";
+                                    nearestFit.resources.gulChief -= 1;
+                                }
+                                else if (nearestFit.resources.elkChief > 0)
+                                {
+                                    this.equipment.outfit = "elkChief";
+                                    nearestFit.resources.elkChief -= 1;
+                                }
+                                else if (nearestFit.resources.koiChief > 0)
+                                {
+                                    this.equipment.outfit = "koiChief";
+                                    nearestFit.resources.koiChief -= 1;
+                                }
+                            }
+                            else
+                            {
+                                this.pointTowards(nearestFit);
+                                this.moveInRelationToThing(nearestFit);
+                            }
+                        }
+                        else if (this.culture == "I")
+                        {
+                            if (this.DTU(this.goTo) < 30) // if near ceremonial position, lock into it.
+                            {
+                                this.X = this.goTo.X;
+                                this.Y = this.goTo.Y;
+                                this.pointTowards(this.totem);
+                                this.dancing = true;
+                            }
+                            else
+                            {
+                                this.pointTowards(this.goTo);
+                                this.moveInRelationToThing(this.goTo, 30000);
+                            }
+                        }
+                        else if (this.DTU({X: this.initX, Y: this.initY}) < 30)
+                        {
+                            this.X = this.initX;
+                            this.Y = this.initY;
+                            this.pointTowards(this.totem);
+                        }
+                        else
+                        {
+                            this.pointTowards({X: this.initX, Y: this.initY});
+                            this.moveInRelationToThing({X: this.initX, Y: this.initY}, 30000);
+                        }
+                    }
                 }
 
+                //disturbed/offended resetting
+                if (this.peacable == true && this.disturbed == true || this.peacable == true && this.offended == true)
+                {
+                    this.aiTimer = 0;
+                    this.peacable = false;
+                }
+
+                if (this.aiTimer > 20)
+                {
+                    this.disturbed = false;
+                    this.offended = false;
+                    this.peacable = true;
+                }
             }
 
             //ANIMATIONS
@@ -51809,6 +54845,198 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             else
             {
                 this.drawUnit(polypol, 1521, 26, 21, 14, -1/2 * 21 * this.alphaSize - this.xAdjustment, -1/2 * 14 * this.alphaSize - this.yAdjustment, 21 * this.alphaSize, 14 * this.alphaSize);
+            }
+
+        }
+        //MUD TOAD
+        if (this.type == "MudToad")
+        {
+            //Set Drops and experience
+            if (this.alpha == true)
+            {
+                this.experience = (2 * ((player.getIntelligence() / 50) + 1));
+                if (Math.round(Math.random()))
+                {
+                    this.drops = [[new Item("mudToadLeg", this.X, this.Y), 1]];
+                }
+                else
+                {
+                    this.drops = [[new Item("rawMudToad", this.X, this.Y), 1]];
+                }
+            }
+            else
+            {
+                this.experience = (1 * ((player.getIntelligence() / 50) + 1));
+                if (Math.round(Math.random()))
+                {
+                    this.drops = [[new Item("mudToadLeg", this.X, this.Y), 1]];
+                }
+                else
+                {
+                    this.drops = [[new Item("rawMudToad", this.X, this.Y), 1]];
+                }
+            }
+
+            //RANGE OF SIGHT (anything related to range of sight)
+            if (this.alpha == true)
+            {
+                this.rangeOfSightCalculator(200, false);
+            }
+            else
+            {
+                this.rangeOfSightCalculator(200, false);
+            }
+
+            //AI
+            if (this.alive == true)
+            {
+                this.Attack(0, 1);
+                //this.deathChecker();
+                this.disturbedTimer();
+                this.visibleSight();
+                this.friendDecider();
+                this.targeting();
+
+                this.moving = false;
+
+                if (this.target == player)
+                {
+                    if (this.stay == false)
+                    {
+                        if (this.DTP() <= this.rangeOfSight)
+                        {
+                            this.moving = true;
+                            this.pointAwayFromPlayer();
+                        }
+                    }
+                    else
+                    {
+                        this.pointAwayFromPlayer();
+                    }
+
+                }
+                else if (this.target != "none")
+                {
+                    if (this.target.insect == true)
+                    {
+                        this.moving = true;
+                        this.pointTowards(this.target);
+                    }
+                    else
+                    {
+                        this.moving = true;
+                        this.pointAway(this.target);
+                    }
+                }
+            }
+
+            //ANIMATIONS
+
+            if (this.alive == true)
+            {
+                if (this.moving && !this.attacking) //walking (towards food)
+                {
+                    this.costumeEngine(5, 0.14, false);
+                }
+                else if (this.attacking) //otherwise if it is attacking then initiate attacking animation, and if neither...
+                {
+                    if (new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000 / timeSpeed * this.timeResistance))
+                    {
+                        this.costumeEngine(4, 0.09, true);
+                    }
+                }
+                else
+                {
+                    this.costume = 0;
+                }
+
+                // the frames/stages/costumes of the animation.
+                var theCostume = Math.floor( this.costume ); //This rounds this.costume down to the nearest whole number.
+
+                //manual damaging
+                if (theCostume <= 0)
+                {
+                    if (this.attacking)
+                    {
+                        this.drawUnit(toad, 819, 55, 44, 31, -1/2 * 44 * this.alphaSize - this.xAdjustment, -1/2 * 31 * this.alphaSize - this.yAdjustment, 44 * this.alphaSize, 31 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(toad, 819, 55, 44, 31, -1/2 * 44 * this.alphaSize - this.xAdjustment, -1/2 * 31 * this.alphaSize - this.yAdjustment, 44 * this.alphaSize, 31 * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 1)
+                {
+                    if (this.attacking)
+                    {
+                        this.drawUnit(toad, 819, 28, 44, 31, -1/2 * 44 * this.alphaSize - this.xAdjustment, -1/2 * 31 * this.alphaSize - this.yAdjustment, 44 * this.alphaSize, 31 * this.alphaSize);
+                    }
+                    else
+                    {
+                        if (this.target == player)
+                        {
+                            this.moveInRelationToPlayer();
+                        }
+                        else if (this.target != "none")
+                        {
+                            this.moveInRelationToThing(this.target);
+                        }
+                        this.drawUnit(toad, 860, 56, 44, 31, -1/2 * 44 * this.alphaSize - this.xAdjustment, -1/2 * 31 * this.alphaSize - this.yAdjustment, 44 * this.alphaSize, 31 * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 2)
+                {
+                    if (this.attacking)
+                    {
+                        this.drawUnit(toad, 897, 27, 44, 31, -1/2 * 44 * this.alphaSize - this.xAdjustment, -1/2 * 31 * this.alphaSize - this.yAdjustment, 44 * this.alphaSize, 31 * this.alphaSize);
+                    }
+                    else
+                    {
+                        if (this.target == player)
+                        {
+                            this.moveInRelationToPlayer();
+                        }
+                        else if (this.target != "none")
+                        {
+                            this.moveInRelationToThing(this.target);
+                        }
+                        this.drawUnit(toad, 899, 55, 44, 31, -1/2 * 44 * this.alphaSize - this.xAdjustment, -1/2 * 31 * this.alphaSize - this.yAdjustment, 44 * this.alphaSize, 31 * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 3)
+                {
+                    if (this.attacking)
+                    {
+                        this.drawUnit(toad, 937, 27, 44, 31, -1/2 * 44 * this.alphaSize - this.xAdjustment + 1, -1/2 * 31 * this.alphaSize - this.yAdjustment, 44 * this.alphaSize, 31 * this.alphaSize);
+                    }
+                    else
+                    {
+                        if (this.target == player)
+                        {
+                            this.moveInRelationToPlayer();
+                        }
+                        else if (this.target != "none")
+                        {
+                            this.moveInRelationToThing(this.target);
+                        }
+                        this.drawUnit(toad, 945, 55, 44, 31, -1/2 * 44 * this.alphaSize - this.xAdjustment, -1/2 * 31 * this.alphaSize - this.yAdjustment, 44 * this.alphaSize, 31 * this.alphaSize);
+                    }
+                }
+                else if (theCostume >= 4)
+                {
+                    if (this.attacking)
+                    {
+                        this.drawUnit(toad, 937, 27, 44, 31, -1/2 * 44 * this.alphaSize - this.xAdjustment + 1, -1/2 * 31 * this.alphaSize - this.yAdjustment, 44 * this.alphaSize, 31 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(toad, 899, 55, 44, 31, -1/2 * 44 * this.alphaSize - this.xAdjustment, -1/2 * 31 * this.alphaSize - this.yAdjustment, 44 * this.alphaSize, 31 * this.alphaSize);
+                    }
+                }
+            }
+            else
+            {
+                this.drawUnit(toad, 858, 28, 44, 31, -1/2 * 44 * this.alphaSize - this.xAdjustment, -1/2 * 31 * this.alphaSize - this.yAdjustment, 44 * this.alphaSize, 31 * this.alphaSize);
             }
 
         }

@@ -18,7 +18,6 @@ Sprite - A powerful reclusive magical being that lives in the Thengan woods. The
 Ker - A large white lobster that lives in the Vardanian Swamps and bogs etc.
 Varonoi - A black raven-like bird that lives in Vardania
 VecherBug - A small grey bug that lives in Vardania
-PetraBeetle - A long small green beetle that lives in the jungle
 ThegolThorn - An acidic, carnivorous thorn plant that grows in Vardania
 Bat - A small flying rodent that sees with echolocation and is largely nocturnal
 Werewolf - A cursed beast that infects the humans that it bites with its monstrous disease (it is very weak to silver; it can be killed by ordinary means)
@@ -28,25 +27,12 @@ Bovine - A skinny, underfed dairy cow that is native to the gray grass plains of
 Sheep - A northern domesticated herd animal that is covered in soft fuzzy thick wool and that yields a tasty meat when brought to slaughter
 Toad - A giant monstrous toad that lives in the Vardanian Swamplands. It drags its prey to their doom with its long sticky tongue.
 Koivaya - An eyeless brown furred beast that lives in the Thengarian woodlands and plains, as well as those of Vardania (it reproduces and has inherited genetics)
-ZafBeetle - A yellow shelled jungle beetle that feasts on the famously deadly Cerebris mushroom (it has a unique resistance to its effects which is helpful in developing a Cerebris cure)
 Viuda - A giant black widow spider that lives in the black vardanian ash woods; they live in webbed tunnels; they are one of the most venomous animals in all the lands
-Aranea - A large tarantula-like spider that lives in the jungle; it lives in dug out burrows or large holes in the ground; it has a highly acidic bite; it releases the hairs on its back when it feels threatened (when it is injured enough), these hairs stun its foes
-Borea - A yellow and black spitting spider that spits an acidic web that dissolves its prey; they live in the jungle (they are particularly prudent when it comes to danger as they will only approach a target if it has first been entangled in web)
-Salisea - A venomous orange and black striped leaping spider that lives in the southern jungles; it clings to its victim and ravenously eats it alive.
-Gorgon - A large green mantis-like stick bug that has six long legs and two bladed arms. (it uses an attack bubble and can roam)
-Cruorcca - A reddish vine plant with extremely sharp orangish yellow needles that inject acid into its foes that digests them; to eat its prey the cruorcca plant wraps itself around the pussy body of its victim
 Dalger - A black reptilian quadruped with a spiked back and a club tail; they live in the Vardanian woods, and occasionally in the vardanian plains; they lay eggs, build nests, mate, and have relatively good self preservation instincts
-Kigarii - A black and red, feline-esque, panther-like, spined jungle creature. (They have a mechanic wherein they will attack if they sense weakness or provocation from the player, if the player scares them off it will run away instead)
-Crenid - A yellow slime that lives in the jungle, unlike most other slimes it is particularly capable of surviving being cut into bits: the smaller bits become new crenids. It eats the dead to which it is adjacent, and with the new mass enlarges. Crenids are often found in medium to small packs.
-Decipula - A giant venus fly trap that eats small to medium sized animals that get too close
-Boa - A large jungle snake that kills its prey by constricting it then swallowing it whole
-PoisonDartFrog - two varieties of jungle dwelling dart frog that have deadly poison in their skin: alpha = "orange", non-alpha = "green"
-Matna - A small pack spider that lurks on its wide ground-built webs waiting to devour its prey killing it with its super venomous bite. It lives in the jungle.
-Babosa - A large pinkish slug that lives in the jungle; it leaves a trail of acidic slime in its wake
-Pyromoth - A black and red moth that is most active at night time. It lives in the jungle. It has a combustible substance on its wings that make sparks as it flies, it does this to scare away potential predators. Its web is fire-proof.
 Humpty - Technically they are human... Um, but in truth they have long been experimented upon with powerful magics such that they have lost their human form. The experimentation was intended to produce a being that could biologically grow a powerful magic compound used in the some of the most advanced elixirs, one previously very rare and difficult to obtain. Humpties' connective cord known as the chalaza holds this magical compound inside of it. In terms of behavior, humpties are just like humans (for they were magically evolved from humans). They talk, walk, drink, fight, craft, laugh, joke, tease... etc. However, humpty reproduction is completely inhuman. They reproduce by kissing and then later the female spits out a baby humpty (from her mouth).  //ArtificialIntelligenceAccess.push(new Unit(3600, 2500, "Person", false, "Mr. Dumpty", {race: "Humpty", faction: "Cephrite", personality: "violent", outfit: ["none", 8], weapon: ["none", [3, 2], 3, 22, 2], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: false, route:[[0, 0], [0, 0]], kid: true, kidSize: 2})); //ArtificialIntelligenceAccess.push(new Unit(3400, 2500, "Soldier", false, "Mrs. Dumpty", {race: "Humpty", faction: "Cephrite", con: 5, speed: 0.85, outfit: ["none", 9], weapon: ["none", [3, 3], 3.5, 25, 2], ranged: [false, "arrow", 8, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: false, route:[[0, 0], [0, 0]], kid: true, kidSize: 2.1}));
-BlackTroll - A black furred jungle troll that can be found alone or in communities. If there are only a few trolls they will warn you to stay away by making aggressive motions, however if there are many, they will attack you without warning. Black Trolls have one of the fastest regeneration rates among trolls (for their size at the very least).
 Jinn - An extremely powerful cosmic being that comes from the chaos realm. If it is captured it owes its captor a single wish, then it is returned to the chaos realm. If a jinn is freed, it can choose to stay in the worldly realm and wreak havoc.
+MudToad - A brown Vardanian toad that lives in the swamplands and feasts on insects. These are not gargantuan like some other varieties of Vardanian toad.
+Ghoul - A black furred, vardanian, corpse eater that lives in the woodlands and grasslands. They dig burrows and lay their eggs in carrion.
 
 //ALREADY IN THE GAME
 
@@ -129,3 +115,19 @@ Horse - A quadruped that lives in the eastern temperate grasslands; they often g
 Phantom - A type of ghost that only haunts the earthly plane in the nighttime: dusk, dawn, night; it is tied to its bones and will die when they are burnt. A phantom is made when someone dies tragically in a way that demands retribution that the soul feels was not rendered. Thus, phantoms are all vengeful in nature.
 Peacock - An illustrious temperate bird that spreads its colorful and long tail feathers to scare aware potential predators by making itself seem larger
 Changeling - A fairy that seeks immortality by trapping the soul of a child and stealing their form. Changelings are scared of iron. Changelings can not die while they are inhabiting a stolen form.
+BlackTroll - A black furred jungle troll that can be found alone or in communities. If there are only a few trolls they will warn you to stay away by making aggressive motions, however if there are many, they will attack you without warning. Black Trolls have one of the fastest regeneration rates among trolls (for their size at the very least).
+Kigarii - A black and red, feline-esque, panther-like, spined jungle creature. (They have a mechanic wherein they will attack if they sense weakness or provocation from the player, if the player scares them off it will run away instead)
+Crenid - A yellow slime that lives in the jungle, unlike most other slimes it is particularly capable of surviving being cut into bits: the smaller bits become new crenids. It eats the dead to which it is adjacent, and with the new mass enlarges. Crenids are often found in medium to small packs.
+Decipula - A giant venus fly trap that eats small to medium sized animals that get too close
+Boa - A large jungle snake that kills its prey by constricting it then swallowing it whole
+PoisonDartFrog - two varieties of jungle dwelling dart frog that have deadly poison in their skin: alpha = "orange", non-alpha = "green"
+Matna - A small pack spider that lurks on its wide ground-built webs waiting to devour its prey killing it with its super venomous bite. It lives in the jungle.
+Babosa - A large pinkish slug that lives in the jungle; it leaves a trail of acidic slime in its wake
+Pyromoth - A black and red moth that is most active at night time. It lives in the jungle. It has a combustible substance on its wings that make sparks as it flies, it does this to scare away potential predators. Its web is fire-proof.
+Aranea - A large tarantula-like spider that lives in the jungle; it lives in dug out burrows or large holes in the ground; it has a highly acidic bite; it releases the hairs on its back when it feels threatened (when it is injured enough), these hairs stun its foes
+Borea - A yellow and black spitting spider that spits an acidic web that dissolves its prey; they live in the jungle (they are particularly prudent when it comes to danger as they will only approach a target if it has first been entangled in web)
+Salisea - A venomous orange and black striped leaping spider that lives in the southern jungles; it clings to its victim and ravenously eats it alive.
+Gorgon - A large green mantis-like stick bug that has six long legs and two bladed arms. (it uses an attack bubble and can roam)
+Cruorcca - A reddish vine plant with extremely sharp orangish yellow needles that inject acid into its foes that digests them; to eat its prey the cruorcca plant wraps itself around the pussy body of its victim
+ZafBeetle - A yellow shelled jungle beetle that feasts on the famously deadly Cerebris mushroom (it has a unique resistance to its effects which is helpful in developing a Cerebris cure)
+PetraBeetle - A long small green beetle that lives in the jungle

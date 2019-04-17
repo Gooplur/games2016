@@ -1674,6 +1674,18 @@ function toadPack()
 
     toad.onload = function()
     {
+        gulPack();
+    };
+}
+
+function gulPack()
+{
+    var gul = new Image();
+    gul.src = ("images/gul.png");
+    window.gul = gul;
+
+    gul.onload = function()
+    {
         tombPack();
     };
 }
@@ -2257,6 +2269,8 @@ var perfectArmour = false;
 var foePerfectArmour = false;
 var xKey = false;
 var cyberArTog = false;
+var buildMode = false;
+var buildToggle = 0;
 
 //This sets the items that are in shops.
 function shopItemIDSetter()
@@ -4175,6 +4189,8 @@ function theLegend()
     foods.push(new Item("roastedGribnoyMushroom", false));
     foods.push(new Item("boaMeat", false));
     foods.push(new Item("babosaMeat", false));
+    foods.push(new Item("mudToad", false));
+    foods.push(new Item("ghoulMeat", false));
 
 //Tailoring (Items crafted at a weaving, sewing, dying, etc. tailor's work bench thing)
     tailoring = [];

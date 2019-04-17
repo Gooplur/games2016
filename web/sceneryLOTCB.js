@@ -83,12 +83,27 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
     this.savified = false; //this determines if a scenery object can resist a safe map edit from cropper or trimmer functions
     //mushroom variables
     this.mycelium = 0;
+    //dethstuff variables
+    this.resources = [];
+    this.inhabitants = [];
+    this.refuge = [];
+    this.built = 0;
+    //ghoulden variables
+    this.pop = 0;
 
     //Scenery Item
 
     this.isMassive = function()
     {
         if (this.type == "nirwadenCastle1")
+        {
+            this.massive = true;
+        }
+        if (this.type == "ghoulDen")
+        {
+            this.massive = true;
+        }
+        if (this.type == "ghoulEggs")
         {
             this.massive = true;
         }
@@ -11370,6 +11385,421 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 this.activate = false;
             }
         }
+        else if (this.type == "ghoulDen")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+            this.size = 1;
+
+            if (this.runOneTime)
+            {
+                this.runOneTime = false;
+
+                this.health = 40;
+            }
+
+            if (this.health > 40)
+            {
+                this.health = 40;
+            }
+
+            //DRAWSELF
+            if (this.health > 22)
+            {
+                if (this.inhabitants.length > 0)
+                {
+                    this.health += 0.15;
+                }
+
+                for (var i = 0; i < this.inhabitants.length; i++)
+                {
+                    //hunger
+                    if (this.inhabitants[i].hunger > 180)
+                    {
+                        this.inhabitants[i].hunger = 180;
+                    }
+                    this.inhabitants[i].hunger -= 0.05;
+                    //console.log(this.inhabitants[i].hunger);
+
+                    //reproduction
+                    if (this.inhabitants[i].alpha == true && this.inhabitants[i].gender == 1)
+                    {
+                        if (this.inhabitants[i].genes.fecundidad == true) //testicles for males
+                        {
+                            this.inhabitants[i].horny += 1.2;
+                        }
+                        else
+                        {
+                            this.inhabitants[i].horny += 0.6;
+                        }
+                    }
+
+                    if (this.inhabitants[i].alpha == false && this.inhabitants[i].eggs == false && this.inhabitants[i].gender == 0) //ovaries for females
+                    {
+                        if (this.inhabitants[i].genes.fecundidad == true)
+                        {
+                            this.inhabitants[i].eggsT += 1.2;
+                        }
+                        else
+                        {
+                            this.inhabitants[i].eggsT += 0.6;
+                        }
+
+                        if (this.inhabitants[i].eggsT >= 800)
+                        {
+                            this.inhabitants[i].eggs = true;
+                            this.inhabitants[i].eggsT = 0;
+                        }
+                    }
+
+                    //aging process
+                    if (this.inhabitants[i].genes.fecundidad == true)
+                    {
+                        this.inhabitants[i].trueAge += 0.005;
+                        this.inhabitants[i].age += 0.002;
+                    }
+                    else
+                    {
+                        this.inhabitants[i].trueAge += 0.005;
+                        this.inhabitants[i].age += 0.005;
+                    }
+
+                    //xxxy time
+                    if (this.inhabitants[i].horny >= 800 && this.inhabitants[i].alpha == true && this.inhabitants[i].gender == 1)
+                    {
+                        for (var j = 0; j < this.inhabitants.length; j++)
+                        {
+                            if (this.inhabitants[j].alpha == false && this.inhabitants[j].gender == 0 && this.inhabitants[j].eggs == true)
+                            {
+                                this.inhabitants[j].eggs = "fecundo";
+                                this.inhabitants[i].horny = 0;
+                                this.inhabitants[i].dadGenes = this.inhabitants[i].genes;
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                for (var i = 0; i < this.inhabitants.length; i++)
+                {
+                    if (this.inhabitants[i].hunger < 90 || this.inhabitants[i].eggs == "fecundo" && this.inhabitants[i].hunger < 170)
+                    {
+                        var makeGhoul = new Unit(this.X, this.Y, "Ghoul", this.inhabitants[i].alpha, "ghoul");
+                        //{hunger: this.hunger, healthMAX: this.healthMAX, eggs: this.eggs, eggsT: this.eggsT, horny: this.horny, gender: this.gender, alpha: this.alpha, age: this.age, trueAge: this.trueAge, genes: this.genes, home: this.home, dadGenes: this.dadGenes}
+                        makeGhoul.hunger = this.inhabitants[i].hunger;
+                        makeGhoul.healthMAX = this.inhabitants[i].healthMAX;
+                        makeGhoul.eggs = this.inhabitants[i].eggs;
+                        makeGhoul.eggsT = this.inhabitants[i].eggsT;
+                        makeGhoul.horny = this.inhabitants[i].horny;
+                        makeGhoul.gender = this.inhabitants[i].gender;
+                        makeGhoul.speed = this.inhabitants[i].speed;
+                        makeGhoul.swimSpeed = this.inhabitants[i].swimSpeed;
+                        makeGhoul.age = this.inhabitants[i].age;
+                        makeGhoul.trueAge = this.inhabitants[i].trueAge;
+                        makeGhoul.genes = this.inhabitants[i].genes;
+                        makeGhoul.home = this.inhabitants[i].home;
+                        makeGhoul.dadGenes = this.inhabitants[i].dadGenes;
+
+                        ArtificialIntelligenceAccess.push(makeGhoul);
+                        this.inhabitants.splice(this.inhabitants.indexOf(this.inhabitants[i]), 1);
+                        break;
+                    }
+                }
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(gul, 310, 721, 106, 106, -(1/2 * 106 * this.size), -(1/2 * 106 * this.size), 106 * this.size, 106 * this.size);
+                XXX.restore();
+            }
+            else if (this.health > 0)
+            {
+                if (this.inhabitants.length > 0)
+                {
+                    this.health += 0.3;
+                }
+                for (var i = 0; i < this.inhabitants.length; i++)
+                {
+                    //hunger
+                    this.inhabitants[i].hunger -= 0.2;
+                }
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(gul, 428, 723, 106, 106, -(1/2 * 106 * this.size), -(1/2 * 106 * this.size), 106 * this.size, 106 * this.size);
+                XXX.restore();
+            }
+            else
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(gul, 537, 724, 106, 106, -(1/2 * 106 * this.size), -(1/2 * 106 * this.size), 106 * this.size, 106 * this.size);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 64;
+
+            if (player.weaponEquipped == "spade" && player.cutcut == true && this.playerer < 500 || player.weaponEquipped == "pickaxe" && player.cutcut == true && this.playerer < 500)
+            {
+                var distFromCutCut = Math.sqrt((this.X - player.bubbleOfDamageX)*(this.X - player.bubbleOfDamageX) + (this.Y - player.bubbleOfDamageY)*(this.Y - player.bubbleOfDamageY));
+                console.log(distFromCutCut);
+                if (distFromCutCut <= player.weapon.distance)
+                {
+                    if (player.weaponEquipped == "spade")
+                    {
+                        this.health -= 8;
+                    }
+                    else
+                    {
+                        this.health -= 4;
+                    }
+                }
+            }
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+        }
+        else if (this.type == "ghoulEggs")
+        {
+            //TRAITS
+            this.solid = false;
+
+            if (this.runOneTime)
+            {
+                this.runOneTime = false;
+                this.size = this.temporary[1];
+                this.eggs = 1;
+                this.hatchRate = 0.5;
+                this.hatch = 0;
+                this.rotAway = 0;
+                this.phase = false;
+                this.interactionRange = 100;
+            }
+
+            //DRAWSELF
+            if (this.phase != "popped")
+            {
+                if (this.temporary[0] == "Deth")
+                {
+                    this.eggs = 1 + Math.floor(this.size * 3);
+
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(gul, 632, 275, 97, 62, -(1/2 * 97 * this.size), -(1/2 * 62 * this.size), 97 * this.size, 62 * this.size);
+                    XXX.restore();
+                }
+                else if (this.temporary[0] == "Elk")
+                {
+                    this.eggs = 1 + Math.floor(this.size * 3);
+                    this.hatchRate = 1;
+
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(gul, 246, 255, 97, 84, -(1/2 * 97 * this.size * 1.5), -(1/2 * 84 * this.size * 1.5), 97 * this.size * 1.5, 84 * this.size * 1.5);
+                    XXX.restore();
+                }
+                else if (this.temporary[0] == "Koivaya")
+                {
+                    this.eggs = 2 + Math.floor(this.size * 2);
+                    this.hatchRate = 0.2;
+
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(gul, 160, 252, 97, 84, -(1/2 * 97 * this.size), -(1/2 * 84 * this.size), 97 * this.size, 84 * this.size);
+                    XXX.restore();
+                }
+                else if (this.temporary[0] == "Person" || this.temporary[0] == "Soldier")
+                {
+                    this.eggs = 1 + Math.floor(this.size * 4);
+                    this.hatchRate = 0.35;
+
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(gul, 454, 271, 57, 88, -(1/2 * 57 * this.size * 1.5), -(1/2 * 88 * this.size * 1.5), 57 * this.size * 1.5, 88 * this.size * 1.5);
+                    XXX.restore();
+                }
+                else if (this.temporary[0] == "Ghoul")
+                {
+                    this.eggs = 3 + Math.floor(this.size * 3);
+                    this.hatchRate = 0.5;
+
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(gul, 13, 241, 128, 102, -(1/2 * 128 * this.size), -(1/2 * 102* this.size), 128 * this.size, 102 * this.size);
+                    XXX.restore();
+                }
+                else if (this.temporary[0] == "Dalger")
+                {
+                    this.eggs = 1 + Math.floor(this.size * 6);
+                    this.hatchRate = 0.1;
+
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(gul, 523, 267, 101, 78, -(1/2 * 101 * this.size), -(1/2 * 78 * this.size), 101 * this.size, 78 * this.size);
+                    XXX.restore();
+                }
+                else if (this.temporary[0] == "Vreck")
+                {
+                    this.eggs = 1 + Math.floor(this.size * 2);
+                    this.hatchRate = 0.4;
+
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(gul, 834, 567, 117, 77, -(1/2 * 117 * this.size), -(1/2 * 77 * this.size), 117 * this.size, 77 * this.size);
+                    XXX.restore();
+                }
+                else if (this.temporary[0] == "Bovine")
+                {
+                    this.eggs = 1 + Math.floor(this.size * 3);
+                    this.hatchRate = 1.2;
+
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(gul, 357, 273, 81, 61, -(1/2 * 81 * this.size * 1.15), -(1/2 * 61 * this.size * 1.15), 81 * this.size * 1.15, 61 * this.size * 1.15);
+                    XXX.restore();
+                }
+            }
+            else
+            {
+                if (this.temporary[0] == "Deth")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(gul, 634, 358, 97, 62, -(1/2 * 97 * this.size), -(1/2 * 62 * this.size), 97 * this.size, 62 * this.size);
+                    XXX.restore();
+                }
+                else if (this.temporary[0] == "Elk")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(gul, 245, 349, 97, 84, -(1/2 * 97 * this.size * 1.5), -(1/2 * 84 * this.size * 1.5), 97 * this.size * 1.5, 84 * this.size * 1.5);
+                    XXX.restore();
+                }
+                else if (this.temporary[0] == "Koivaya")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(gul, 159, 354, 97, 84, -(1/2 * 97 * this.size), -(1/2 * 84 * this.size), 97 * this.size, 84 * this.size);
+                    XXX.restore();
+                }
+                else if (this.temporary[0] == "Person" || this.temporary[0] == "Soldier")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(gul, 452, 358, 57, 88, -(1/2 * 57 * this.size * 1.5), -(1/2 * 88 * this.size * 1.5), 57 * this.size * 1.5, 88 * this.size * 1.5);
+                    XXX.restore();
+                }
+                else if (this.temporary[0] == "Ghoul")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(gul, 15, 342, 128, 102, -(1/2 * 128 * this.size), -(1/2 * 102* this.size), 128 * this.size, 102 * this.size);
+                    XXX.restore();
+                }
+                else if (this.temporary[0] == "Dalger")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(gul, 521, 350, 101, 78, -(1/2 * 101 * this.size), -(1/2 * 78 * this.size), 101 * this.size, 78 * this.size);
+                    XXX.restore();
+                }
+                else if (this.temporary[0] == "Vreck")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(gul, 835, 630, 117, 77, -(1/2 * 117 * this.size), -(1/2 * 77 * this.size), 117 * this.size, 77 * this.size);
+                    XXX.restore();
+                }
+                else if (this.temporary[0] == "Bovine")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(gul, 361, 358, 81, 61, -(1/2 * 81 * this.size * 1.15), -(1/2 * 61 * this.size * 1.15), 81 * this.size * 1.15, 61 * this.size * 1.15);
+                    XXX.restore();
+                }
+            }
+
+            if (this.phase != "popped")
+            {
+                this.hatch += this.hatchRate;
+
+                //console.log(this.hatch);
+                if (this.hatch > 900)
+                {
+                    for (var i = 0; i < this.eggs; i++)
+                    {
+                        var makeGhoul = new Unit(this.X, this.Y, "Ghoul", "baby", "ghoul");
+
+                        var bruzah = false;
+                        var savuj = false;
+                        var fecuntitat = false;
+
+                        if (this.information.genes.bruiser == true || this.information.dadGenes.bruiser == true) //dominant gene
+                        {
+                            bruzah = true;
+                        }
+
+                        if (this.information.genes.savage == true && this.information.dadGenes.savage == true) //recessive gene
+                        {
+                            savuj = true;
+                        }
+
+                        if (this.information.genes.fecundidad == true || this.information.dadGenes.fecundidad == true) //recessive gene
+                        {
+                            fecuntitat = Math.round(Math.random());
+                        }
+
+                        makeGhoul.genes.bruiser = bruzah;
+                        makeGhoul.genes.fecundidad = fecuntitat;
+                        makeGhoul.genes.savage = savuj;
+                        ArtificialIntelligenceAccess.push(makeGhoul);
+                    }
+
+                    this.phase = "popped";
+                }
+            }
+            else
+            {
+                this.rotAway += 1;
+
+                if (this.rotAway > 220)
+                {
+                    scenicList.splice(scenicList.indexOf(this), 1);
+                }
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 28;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+                this.phase = "popped";
+                this.interactionRange = 1;
+            }
+        }
         else if (this.type == "deadNaaprid")
         {
             //TRAITS
@@ -11546,6 +11976,853 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             if (this.activate == true)
             {
                 this.activate = false;
+            }
+        }
+        else if (this.type == "dethElkPile")
+        {
+            //TRAITS
+            this.interactionRange = 100;
+            this.size = 1;
+
+            if (this.runOneTime)
+            {
+                this.runOneTime = false;
+
+                this.vacio = true;
+                this.health = 25;
+                this.team = this.information;
+                this.usable = false;
+
+                if (this.temporary == true)
+                {
+                    this.built = 1;
+                    this.resources = {elkMeat: 20};
+                }
+                else
+                {
+                    this.resources = {elkMeat: 0};
+                }
+            }
+
+            if (this.health <= 0)
+            {
+                scenicList.splice(scenicList.indexOf(this), 1);
+            }
+
+            //DRAWSELF
+            if (this.built == 0)
+            {
+                this.solid = false;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(tribe, 793, 570, 98, 86, -1/2 * 98 * this.size, -1/2 * 86 * this.size, 98 * this.size, 86 * this.size);
+                XXX.restore();
+            }
+            else
+            {
+                if (this.resources.elkMeat <= 0)
+                {
+                    this.solid = false;
+                    this.radius = 18;
+                    this.vacio = true;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(tribe, 903, 666, 98, 80, -1/2 * 98 * this.size, -1/2 * 80 * this.size, 98 * this.size, 80 * this.size);
+                    XXX.restore();
+                }
+                else if (this.resources.elkMeat < 4)
+                {
+                    this.solid = true;
+                    this.radius = 5;
+                    this.vacio = false;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(tribe, 908, 659, 98, 80, -1/2 * 98 * this.size, -1/2 * 80 * this.size, 98 * this.size, 80 * this.size);
+                    XXX.restore();
+                }
+                else if (this.resources.elkMeat < 9)
+                {
+                    this.solid = true;
+                    this.radius = 10;
+                    this.vacio = false;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(tribe, 908, 733, 98, 80, -1/2 * 98 * this.size, -1/2 * 80 * this.size, 98 * this.size, 80 * this.size);
+                    XXX.restore();
+                }
+                else
+                {
+                    this.solid = true;
+                    this.radius = 15;
+                    this.vacio = false;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(tribe, 909, 809, 98, 80, -1/2 * 98 * this.size, -1/2 * 80 * this.size, 98 * this.size, 80 * this.size);
+                    XXX.restore();
+                }
+                this.usable = true;
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+                this.health -= 10;
+            }
+        }
+        else if (this.type == "dethGulPile")
+        {
+            //TRAITS
+            this.interactionRange = 100;
+            this.size = 1;
+
+            if (this.runOneTime)
+            {
+                this.runOneTime = false;
+
+                this.vacio = true;
+                this.health = 25;
+                this.team = this.information;
+                this.usable = false;
+
+                if (this.temporary == true)
+                {
+                    this.built = 1;
+                    this.resources = {ghoulMeat: 20};
+                }
+                else
+                {
+                    this.resources = {ghoulMeat: 0};
+                }
+            }
+
+            if (this.health <= 0)
+            {
+                scenicList.splice(scenicList.indexOf(this), 1);
+            }
+
+            //DRAWSELF
+            if (this.built == 0)
+            {
+                this.solid = false;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(tribe, 793, 570, 98, 86, -1/2 * 98 * this.size, -1/2 * 86 * this.size, 98 * this.size, 86 * this.size);
+                XXX.restore();
+            }
+            else
+            {
+                if (this.resources.ghoulMeat <= 0)
+                {
+                    this.solid = false;
+                    this.radius = 5;
+                    this.vacio = true;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(tribe, 1124, 563, 98, 80, -1/2 * 98 * this.size, -1/2 * 80 * this.size, 98 * this.size, 80 * this.size);
+                    XXX.restore();
+                }
+                else if (this.resources.ghoulMeat < 4)
+                {
+                    this.solid = true;
+                    this.radius = 5;
+                    this.vacio = false;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(tribe, 1128, 655, 98, 80, -1/2 * 98 * this.size, -1/2 * 80 * this.size, 98 * this.size, 80 * this.size);
+                    XXX.restore();
+                }
+                else if (this.resources.ghoulMeat < 9)
+                {
+                    this.solid = true;
+                    this.radius = 10;
+                    this.vacio = false;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(tribe, 1129, 730, 98, 80, -1/2 * 98 * this.size, -1/2 * 80 * this.size, 98 * this.size, 80 * this.size);
+                    XXX.restore();
+                }
+                else
+                {
+                    this.solid = true;
+                    this.radius = 15;
+                    this.vacio = false;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(tribe, 1130, 808, 98, 80, -1/2 * 98 * this.size, -1/2 * 80 * this.size, 98 * this.size, 80 * this.size);
+                    XXX.restore();
+                }
+                this.usable = true;
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+                this.health -= 10;
+            }
+        }
+        else if (this.type == "dethKoiPile")
+        {
+            //TRAITS
+            this.interactionRange = 100;
+            this.size = 1;
+
+            if (this.runOneTime)
+            {
+                this.runOneTime = false;
+
+                this.vacio = true;
+                this.health = 25;
+                this.team = this.information;
+                this.usable = false;
+
+                if (this.temporary == true)
+                {
+                    this.built = 1;
+                    this.resources = {koivayaMeat: 20};
+                }
+                else
+                {
+                    this.resources = {koivayaMeat: 0};
+                }
+            }
+
+            if (this.health <= 0)
+            {
+                scenicList.splice(scenicList.indexOf(this), 1);
+            }
+
+            //DRAWSELF
+            if (this.built == 0)
+            {
+                this.solid = false;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(tribe, 793, 570, 98, 86, -1/2 * 98 * this.size, -1/2 * 86 * this.size, 98 * this.size, 86 * this.size);
+                XXX.restore();
+            }
+            else
+            {
+                if (this.resources.koivayaMeat <= 0)
+                {
+                    this.solid = false;
+                    this.radius = 18;
+                    this.vacio = true;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(tribe, 1012, 560, 98, 86, -1/2 * 98 * this.size, -1/2 * 86 * this.size, 98 * this.size, 86 * this.size);
+                    XXX.restore();
+                }
+                else if (this.resources.koivayaMeat < 4)
+                {
+                    this.solid = true;
+                    this.radius = 5;
+                    this.vacio = false;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(tribe, 1017, 656, 98, 80, -1/2 * 98 * this.size, -1/2 * 80 * this.size, 98 * this.size, 80 * this.size);
+                    XXX.restore();
+                }
+                else if (this.resources.koivayaMeat < 9)
+                {
+                    this.solid = true;
+                    this.radius = 10;
+                    this.vacio = false;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(tribe, 1017, 731, 98, 80, -1/2 * 98 * this.size, -1/2 * 80 * this.size, 98 * this.size, 80 * this.size);
+                    XXX.restore();
+                }
+                else
+                {
+                    this.solid = true;
+                    this.radius = 15;
+                    this.vacio = false;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(tribe, 1020, 807, 98, 80, -1/2 * 98 * this.size, -1/2 * 80 * this.size, 98 * this.size, 80 * this.size);
+                    XXX.restore();
+                }
+                this.usable = true;
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+                this.health -= 10;
+            }
+        }
+        else if (this.type == "dethArmory")
+        {
+            //TRAITS
+            this.solid = true;
+            this.interactionRange = 100;
+            this.size = 1;
+
+            if (this.runOneTime)
+            {
+                this.runOneTime = false;
+
+                this.vacio = true;
+                this.health = 19;
+                this.team = this.information;
+                this.usable = false;
+
+                if (this.temporary == true)
+                {
+                    this.built = 2;
+                    this.resources = {claws: 2, spear: 2, spike: 2, blowdart: 60, blowgun: 2};
+                }
+                else
+                {
+                    this.resources = {claws: 0, spear: 0, spike: 0, blowdart: 0, blowgun: 0};
+                }
+            }
+
+            if (this.health <= 0)
+            {
+                scenicList.splice(scenicList.indexOf(this), 1);
+            }
+
+            //DRAWSELF
+            if (this.built == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(tribe, 406, 948, 75, 44, -1/2 * 75 * this.size, -1/2 * 44 * this.size, 75 * this.size, 44 * this.size);
+                XXX.restore();
+            }
+            else if (this.built == 1)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(tribe, 407, 1002, 74, 33, -1/2 * 74 * this.size, -1/2 * 33 * this.size, 74 * this.size, 33 * this.size);
+                XXX.restore();
+            }
+            else
+            {
+                if (this.resources.claws + this.resources.spear + this.resources.spike + this.resources.blowdart + this.resources.blowgun > 0)
+                {
+                    this.vacio = false;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(tribe, 314, 1034, 76, 46, -1/2 * 76 * this.size, -1/2 * 46 * this.size, 76 * this.size, 46 * this.size);
+                    XXX.restore();
+                }
+                else
+                {
+                    this.vacio = true;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(tribe, 407, 1002, 74, 33, -1/2 * 74 * this.size, -1/2 * 33 * this.size, 74 * this.size, 33 * this.size);
+                    XXX.restore();
+                }
+                this.usable = true;
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 18;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+                this.health -= 10;
+            }
+        }
+        else if (this.type == "dethOutfitter")
+        {
+            //TRAITS
+            this.solid = true;
+            this.interactionRange = 100;
+            this.size = 1;
+
+            if (this.runOneTime)
+            {
+                this.runOneTime = false;
+
+                this.health = 19;
+                this.team = this.information;
+                this.usable = false;
+                this.vacio = true;
+
+                if (this.temporary == 1) //elk
+                {
+                    this.built = 2;
+                    this.resources = {elkMaker: 7, elkStalker: 7, elkShaman: 2, elkChief: 2, koiMaker: 0, koiStalker: 0, koiShaman: 0, koiChief: 0, gulMaker: 0, gulStalker: 0, gulShaman: 0, gulChief: 0};
+                }
+                else if (this.temporary == 2) //koivaya
+                {
+                    this.built = 2;
+                    this.resources = {elkMaker: 0, elkStalker: 0, elkShaman: 0, elkChief: 0, koiMaker: 9, koiStalker: 9, koiShaman: 2, koiChief: 2, gulMaker: 0, gulStalker: 0, gulShaman: 0, gulChief: 0};
+                }
+                else if (this.temporary == 3) //ghoul
+                {
+                    this.built = 2;
+                    this.resources = {elkMaker: 0, elkStalker: 0, elkShaman: 0, elkChief: 0, koiMaker: 0, koiStalker: 0, koiShaman: 0, koiChief: 0, gulMaker: 6, gulStalker: 6, gulShaman: 2, gulChief: 2};
+                }
+                else
+                {
+                    this.resources = {elkMaker: 0, elkStalker: 0, elkShaman: 0, elkChief: 0, koiMaker: 0, koiStalker: 0, koiShaman: 0, koiChief: 0, gulMaker: 0, gulStalker: 0, gulShaman: 0, gulChief: 0};
+                }
+            }
+
+            var elkPoint = 0;
+            elkPoint += this.resources.elkMaker;
+            elkPoint += this.resources.elkStalker;
+            elkPoint += this.resources.elkShaman;
+            elkPoint += this.resources.elkChief;
+            var koiPoint = 0;
+            koiPoint += this.resources.koiMaker;
+            koiPoint += this.resources.koiStalker;
+            koiPoint += this.resources.koiShaman;
+            koiPoint += this.resources.koiChief;
+            var gulPoint = 0;
+            gulPoint += this.resources.gulMaker;
+            gulPoint += this.resources.gulStalker;
+            gulPoint += this.resources.gulShaman;
+            gulPoint += this.resources.gulChief;
+
+            if (this.health <= 0)
+            {
+                scenicList.splice(scenicList.indexOf(this), 1);
+            }
+
+            //DRAWSELF
+            if (this.built == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(tribe, 406, 948, 75, 44, -1/2 * 75 * this.size, -1/2 * 44 * this.size, 75 * this.size, 44 * this.size);
+                XXX.restore();
+            }
+            else if (this.built == 1)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(tribe, 407, 1002, 74, 33, -1/2 * 74 * this.size, -1/2 * 33 * this.size, 74 * this.size, 33 * this.size);
+                XXX.restore();
+            }
+            else
+            {
+                if ((gulPoint + koiPoint + elkPoint) <= 0)
+                {
+                    this.vacio = true;
+
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(tribe, 407, 1002, 74, 33, -1/2 * 74 * this.size, -1/2 * 33 * this.size, 74 * this.size, 33 * this.size);
+                    XXX.restore();
+                }
+                else
+                {
+                    this.vacio = false;
+
+                    if (gulPoint >= koiPoint && gulPoint >= elkPoint)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(tribe, 313, 1142, 76, 46, -1/2 * 76 * this.size, -1/2 * 46 * this.size, 76 * this.size, 46 * this.size);
+                        XXX.restore();
+                    }
+                    else if (elkPoint >= koiPoint && elkPoint >= koiPoint)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(tribe, 314, 1093, 76, 46, -1/2 * 76 * this.size, -1/2 * 46 * this.size, 76 * this.size, 46 * this.size);
+                        XXX.restore();
+                    }
+                    else
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(tribe, 407, 1035, 76, 46, -1/2 * 76 * this.size, -1/2 * 46 * this.size, 76 * this.size, 46 * this.size);
+                        XXX.restore();
+                    }
+                }
+                this.usable = true;
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 18;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+                this.health -= 10;
+            }
+        }
+        else if (this.type == "dethMasterHut")
+        {
+            //TRAITS
+            this.solid = true;
+            this.interactionRange = 100;
+            this.size = 1;
+
+            if (this.runOneTime)
+            {
+                this.runOneTime = false;
+
+                this.health = 70;
+                this.team = this.information;
+                this.culture = false;
+                this.tiiic = 0;
+                this.lockout = false;
+
+                if (this.temporary == 0) //elk
+                {
+                    this.resources = {bones: 70, koivayaSkull: 0, koivayaMeat: 0, elkSkull: 25, elkMeat: 55, ghoulSkull: 0, ghoulMeat: 0, healing: 50, poison: 0, koivayaHide: 0, ghoulHide: 0, elkHide: 30, feather: 40}
+                }
+                else if (this.temporary == 1) //ghoul
+                {
+                    this.resources = {bones: 70, koivayaSkull: 0, koivayaMeat: 0, elkSkull: 0, elkMeat: 0, ghoulSkull: 25, ghoulMeat: 65, healing: 10, poison: 20, koivayaHide: 0, ghoulHide: 30, elkHide: 0, feather: 32}
+                }
+                else if (this.temporary == 2) //koivaya
+                {
+                    this.resources = {bones: 90, koivayaSkull: 35, koivayaMeat: 75, elkSkull: 0, elkMeat: 0, ghoulSkull: 0, ghoulMeat: 0, healing: 10, poison: 0, koivayaHide: 50, ghoulHide: 0, elkHide: 0, feather: 32}
+                }
+            }
+
+            if (this.health <= 0)
+            {
+                scenicList.splice(scenicList.indexOf(this), 1);
+            }
+
+            this.chiefF = -1;
+            this.shamanN = -1;
+            this.lockout = false;
+            for (var kkk = 0; kkk < ArtificialIntelligenceAccess.length; kkk++)
+            {
+                if (ArtificialIntelligenceAccess[kkk].type == "Deth" && ArtificialIntelligenceAccess[kkk].team == this.team)
+                {
+                    if (ArtificialIntelligenceAccess[kkk].role == "shaman")
+                    {
+                        this.shamanN = kkk;
+                    }
+                    if (ArtificialIntelligenceAccess[kkk].role == "chief")
+                    {
+                        this.chiefF = kkk;
+                    }
+                }
+            }
+            for (var kkk = 0; kkk < scenicList.length; kkk++)
+            {
+                if (scenicList[kkk].type == "dethMasterHut" && scenicList[kkk].team == this.team)
+                {
+                    for (var kkkk = 0; kkkk < scenicList[kkk].refuge.length; kkkk++)
+                    {
+                        if (scenicList[kkk].refuge[kkkk].role == "shaman")
+                        {
+                            this.shamanN = kkkk;
+                        }
+                        if (scenicList[kkk].refuge[kkkk].role == "chief")
+                        {
+                            this.chiefF = kkkk;
+                        }
+                    }
+                }
+            }
+
+            if (this.chiefF == -1 || this.shamanN == -1)
+            {
+                this.lockout = true;
+            }
+
+            if (this.lockout == true) //if an election needs to take place all must attend otherwise proper succession of power will not progress properly
+            {
+                for (var l = 0; l < this.refuge.length; l++)
+                {
+                    var leavDeth = new Unit(this.X + Math.cos(this.rotation + (0.2 * Math.random() - 0.1)) * 110, this.Y + Math.sin(this.rotation + (0.2 * Math.random() - 0.1)) * 110, "Deth", true, "deth");
+                    leavDeth.role = this.refuge[l].role;
+                    leavDeth.gender = this.refuge[l].gender;
+                    leavDeth.cultural = this.refuge[l].cultural;
+                    leavDeth.geneBank = this.refuge[l].geneBank;
+                    leavDeth.age = this.refuge[l].age;
+                    leavDeth.healthMAX = this.refuge[l].healthMAX;
+                    leavDeth.health = this.refuge[l].health;
+                    leavDeth.equipment = this.refuge[l].equipment;
+                    leavDeth.culturePreset = this.refuge[l].culturePreset;
+                    leavDeth.baseTeam = this.refuge[l].team;
+                    leavDeth.team = this.refuge[l].team;
+                    leavDeth.bulging = this.refuge[l].bulging;
+                    leavDeth.preggers = this.refuge[l].preggers;
+                    leavDeth.lineage = this.refuge[l].lineage;
+                    leavDeth.bloodline = this.refuge[l].bloodline;
+                    leavDeth.newGen = true;
+                    leavDeth.hunger = this.refuge[l].hunger;
+
+                    ArtificialIntelligenceAccess.push(leavDeth);
+                }
+                for (var l = 0; l < this.inhabitants.length; l++)
+                {
+                    var leavDeth = new Unit(this.X + Math.cos(this.rotation + (0.2 * Math.random() - 0.1)) * 110, this.Y + Math.sin(this.rotation + (0.2 * Math.random() - 0.1)) * 110, "Deth", true, "deth");
+                    leavDeth.role = this.inhabitants[l].role;
+                    leavDeth.gender = this.inhabitants[l].gender;
+                    leavDeth.cultural = this.inhabitants[l].cultural;
+                    leavDeth.geneBank = this.inhabitants[l].geneBank;
+                    leavDeth.age = this.inhabitants[l].age;
+                    leavDeth.healthMAX = this.inhabitants[l].healthMAX;
+                    leavDeth.health = this.inhabitants[l].health;
+                    leavDeth.equipment = this.inhabitants[l].equipment;
+                    leavDeth.culturePreset = this.inhabitants[l].culturePreset;
+                    leavDeth.baseTeam = this.inhabitants[l].team;
+                    leavDeth.team = this.inhabitants[l].team;
+                    leavDeth.bulging = this.inhabitants[l].bulging;
+                    leavDeth.preggers = this.inhabitants[l].preggers;
+                    leavDeth.lineage = this.inhabitants[l].lineage;
+                    leavDeth.bloodline = this.inhabitants[l].bloodline;
+                    leavDeth.newGen = true;
+                    leavDeth.hunger = this.inhabitants[l].hunger;
+
+                    ArtificialIntelligenceAccess.push(leavDeth);
+                }
+                this.refuge = [];
+                this.inhabitants = [];
+            }
+
+            this.tiiic += 1;
+            var totalK = 0;
+            var awayK = 0;
+            var plNotc = 0;
+
+            if (this.tiiic > 30)
+            {
+                this.tiiic = 0;
+
+                for (var j = 0; j < ArtificialIntelligenceAccess.length; j++)
+                {
+                    if (ArtificialIntelligenceAccess[j].team != this.team)
+                    {
+                        if (ArtificialIntelligenceAccess[j].type != "Deth" || ArtificialIntelligenceAccess[j].age >= 2)
+                        {
+                            totalK += 1;
+                            if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) >= 500 && !ArtificialIntelligenceAccess[j].underground && ArtificialIntelligenceAccess[j].dmx == this.dmx)
+                            {
+                                awayK += 1;
+                            }
+                        }
+                    }
+                }
+                if (this.dst(X, Y) <= 500)
+                {
+                    plNotc = 1;
+                }
+
+                if (totalK != 0 && totalK == awayK && plNotc == 0)
+                {
+                    for (var l = 0; l < this.refuge.length; l++)
+                    {
+                        var leavDeth = new Unit(this.X + Math.cos(this.rotation + (0.2 * Math.random() - 0.1)) * 110, this.Y + Math.sin(this.rotation + (0.2 * Math.random() - 0.1)) * 110, "Deth", true, "deth");
+                        leavDeth.role = this.refuge[l].role;
+                        leavDeth.gender = this.refuge[l].gender;
+                        leavDeth.cultural = this.refuge[l].cultural;
+                        leavDeth.geneBank = this.refuge[l].geneBank;
+                        leavDeth.age = this.refuge[l].age;
+                        leavDeth.healthMAX = this.refuge[l].healthMAX;
+                        leavDeth.health = this.refuge[l].health;
+                        leavDeth.equipment = this.refuge[l].equipment;
+                        leavDeth.culturePreset = this.refuge[l].culturePreset;
+                        leavDeth.baseTeam = this.refuge[l].team;
+                        leavDeth.team = this.refuge[l].team;
+                        leavDeth.bulging = this.refuge[l].bulging;
+                        leavDeth.preggers = this.refuge[l].preggers;
+                        leavDeth.lineage = this.refuge[l].lineage;
+                        leavDeth.bloodline = this.refuge[l].bloodline;
+                        leavDeth.newGen = true;
+                        leavDeth.hunger = this.refuge[l].hunger;
+
+                        ArtificialIntelligenceAccess.push(leavDeth);
+                    }
+                    this.refuge = [];
+                }
+
+                if (this.culture == false || this.culture == "I")
+                {
+                    for (var l = 0; l < this.inhabitants.length; l++)
+                    {
+                        var leavDeth = new Unit(this.X + Math.cos(this.rotation + (0.2 * Math.random() - 0.1)) * 110, this.Y + Math.sin(this.rotation + (0.2 * Math.random() - 0.1)) * 110, "Deth", true, "deth");
+                        leavDeth.role = this.inhabitants[l].role;
+                        leavDeth.gender = this.inhabitants[l].gender;
+                        leavDeth.cultural = this.inhabitants[l].cultural;
+                        leavDeth.geneBank = this.inhabitants[l].geneBank;
+                        leavDeth.age = this.inhabitants[l].age;
+                        leavDeth.healthMAX = this.inhabitants[l].healthMAX;
+                        leavDeth.health = this.inhabitants[l].health;
+                        leavDeth.equipment = this.inhabitants[l].equipment;
+                        leavDeth.culturePreset = this.inhabitants[l].culturePreset;
+                        leavDeth.baseTeam = this.inhabitants[l].team;
+                        leavDeth.team = this.inhabitants[l].team;
+                        leavDeth.bulging = this.inhabitants[l].bulging;
+                        leavDeth.preggers = this.inhabitants[l].preggers;
+                        leavDeth.lineage = this.inhabitants[l].lineage;
+                        leavDeth.bloodline = this.inhabitants[l].bloodline;
+                        leavDeth.newGen = true;
+                        leavDeth.hunger = this.inhabitants[l].hunger;
+
+                        ArtificialIntelligenceAccess.push(leavDeth);
+                    }
+                    this.inhabitants = [];
+                }
+                else if (this.culture == "II" || this.culture == "III")
+                {
+                    for (var l = this.inhabitants.length - 1; l >= 0 ; l--)
+                    {
+                        if (this.inhabitants[l].culturePreset != this.culture)
+                        {
+                            var leavDeth = new Unit(this.X + Math.cos(this.rotation + (0.2 * Math.random() - 0.1)) * 110, this.Y + Math.sin(this.rotation + (0.2 * Math.random() - 0.1)) * 110, "Deth", true, "deth");
+                            leavDeth.role = this.inhabitants[l].role;
+                            leavDeth.gender = this.inhabitants[l].gender;
+                            leavDeth.cultural = this.inhabitants[l].cultural;
+                            leavDeth.geneBank = this.inhabitants[l].geneBank;
+                            leavDeth.age = this.inhabitants[l].age;
+                            leavDeth.healthMAX = this.inhabitants[l].healthMAX;
+                            leavDeth.health = this.inhabitants[l].health;
+                            leavDeth.equipment = this.inhabitants[l].equipment;
+                            leavDeth.culturePreset = this.inhabitants[l].culturePreset;
+                            leavDeth.baseTeam = this.inhabitants[l].team;
+                            leavDeth.team = this.inhabitants[l].team;
+                            leavDeth.bulging = this.inhabitants[l].bulging;
+                            leavDeth.preggers = this.inhabitants[l].preggers;
+                            leavDeth.lineage = this.inhabitants[l].lineage;
+                            leavDeth.bloodline = this.inhabitants[l].bloodline;
+                            leavDeth.newGen = true;
+                            leavDeth.hunger = this.inhabitants[l].hunger;
+
+                            ArtificialIntelligenceAccess.push(leavDeth);
+                            this.inhabitants.splice(l, 1);
+                        }
+                    }
+                }
+            }
+
+            if (this.temporary == 0) //elkstyle
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(tribe, 1027, 0, 182, 155, -1/2 * 182 * this.size, -1/2 * 155 * this.size, 182 * this.size, 155 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 1) //ghoulstyle
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(tribe, 1027, 182, 181, 179, -1/2 * 181 * this.size, -1/2 * 179 * this.size, 181 * this.size, 179 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 2) //koivayastyle
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(tribe, 1023, 368, 182, 170, -1/2 * 182 * this.size, -1/2 * 170 * this.size, 182 * this.size, 170 * this.size);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 67;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+                this.health -= 10;
+            }
+        }
+        else if (this.type == "dethTotem")
+        {
+            //TRAITS
+            this.solid = true;
+            this.interactionRange = 100;
+            this.size = 1;
+
+            if (this.runOneTime)
+            {
+                this.runOneTime = false;
+
+                this.health = 37;
+                this.team = this.information;
+            }
+
+            if (this.health <= 0)
+            {
+                scenicList.splice(scenicList.indexOf(this), 1);
+            }
+
+            if (this.temporary == 0) //elkstyle
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(tribe, 226, 1107, 65, 67, -1/2 * 65 * this.size, -1/2 * 67 * this.size, 65 * this.size, 67 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 1) //ghoulstyle
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(tribe, 239, 1008, 47, 51, -1/2 * 47 * this.size, -1/2 * 51 * this.size, 47 * this.size, 51 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 2) //koivayastyle
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(tribe, 240, 1051, 47, 51, -1/2 * 47 * this.size, -1/2 * 51 * this.size, 47 * this.size, 51 * this.size);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 9;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+                this.health -= 10;
             }
         }
         else if (this.type == "araneaDen")
@@ -13737,6 +15014,62 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 if (hits == Inventory.length)
                 {
                     Inventory.push([new Item("cabbage", false, false), 1]);
+                }
+            }
+        }
+        else if (this.type == "kozlyakPlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.subVariety = "fungi";
+            this.solid = false;
+            this.interactionRange = 55;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 407, 577, 26, 27, -(1/2 * 26), -(1/2 * 27), 26, 27);
+                XXX.restore();
+            }
+            else
+            {
+                for (var i = 0; i < scenicList.length; i++)
+                {
+                    if (scenicList[i] === this)
+                    {
+                        scenicList.splice(i, 1);
+                        break;
+                    }
+                }
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 19;
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0)
+            {
+                this.activate = false;
+                this.phase = "picked";
+                var hits = 0;
+                for (var i = 0; i < Inventory.length; i ++)
+                {
+                    if (Inventory[i][0].type == "kozlyakMushrooms")
+                    {
+                        Inventory[i][1] += 1 + Math.round(Math.random());
+                        break;
+                    }
+                    else
+                    {
+                        hits += 1;
+                    }
+                }
+                if (hits == Inventory.length)
+                {
+                    Inventory.push([new Item("kozlyakMushrooms", false, false), 1 + Math.round(Math.random())]);
                 }
             }
         }

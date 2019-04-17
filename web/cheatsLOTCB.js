@@ -4,7 +4,91 @@
 //this function contains cheat methods that rely on the gameLoop.
 function cheats()
 {
+    if (buildMode == true)
+    {
+        var buildList = ["coords", "Selva Tree", "Sonja Tree"];
+        if (tKey)
+        {
+            tKey = false;
+            buildToggle -= 1;
+            if (buildToggle < 0)
+            {
+                buildToggle = (buildList.length - 1);
+            }
+            console.log(buildList[buildToggle]);
+        }
+        if (yKey)
+        {
+            yKey = false;
+            buildToggle += 1;
+            if (buildToggle >= buildList.length)
+            {
+                buildToggle = 0;
+            }
+            console.log(buildList[buildToggle]);
+        }
 
+        //BUILDMENU
+        if (buildToggle == 0)
+        {
+            if (xKey)
+            {
+                xKey = false;
+                console.log(X + ", " + Y);
+                worldItems.push([new Item("marker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.beginPath();
+                XXX.fillStyle = "#BF0000";
+                XXX.arc(1/2 * CCC.width, 1/2 * CCC.height, 15, 0, Math.PI * 2);
+                XXX.fill();
+            }
+        }
+        else if (buildToggle == 1)
+        {
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("selvaTree", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', 0));');
+                worldItems.push([new Item("treeMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(humpa, 1211, 394, 755, 871, -(1/2 * 755 * 1), -(1/2 * 871 * 1), 755 * 1, 871 * 1);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 2)
+        {
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("sonjaTree", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', 0));');
+                worldItems.push([new Item("treeMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(humpa, 1802, 26, 279, 242, -(1/2 * 279 * 1.5), -(1/2 * 242 * 1.5), 279 * 1.5, 242 * 1.5);
+                XXX.restore();
+
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(humpa, 2128, 24, 279, 242, -(1/2 * 279 * 1.5), -(1/2 * 242 * 1.5), 279 * 1.5, 242 * 1.5);
+                XXX.restore();
+            }
+        }
+    }
     //kids mode silliness
     if (player.gamemode == "protagonist")
     {
@@ -548,6 +632,22 @@ function cheats()
             {
                 X = Number(prompt("Teleport X"));
                 Y = Number(prompt("Teleport Y"));
+            }
+        }
+        else if (cheatcode == "GOOPGOOP")
+        {
+            if (player.name == "Gooplur" && player.race == "#336600")
+            {
+                buildMode = true;
+                player.lifeEternal = true;
+            }
+        }
+        else if (cheatcode == "OP")
+        {
+            if (player.name == "Gooplur" && player.race == "#336600")
+            {
+                X = X + Number(prompt("Teleport X"));
+                Y = Y + Number(prompt("Teleport Y"));
             }
         }
         else if (cheatcode == "GOO")

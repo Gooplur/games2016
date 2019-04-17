@@ -44,7 +44,6 @@ function buildMaster()
                     ArtificialIntelligenceAccess.push(new Unit(2100, 1050, "Neev", false, "Easter"));
                 }
 
-                //ArtificialIntelligenceAccess.push(new Unit(3000, 1600, "Deth", false, "Fud", {age: 10, CON: 18, DEX: 17, APR: 19, PER: 14, ING: 8}));
                 //ArtificialIntelligenceAccess.push(new Unit(3000, 1500, "Griffin", "massive", "Criaad The Voracious"));
                 //ArtificialIntelligenceAccess.push(new Unit(3000, 1400, "Peacock", true, "Deriere"));
                 //ArtificialIntelligenceAccess.push(new Unit(3000, 1500, "Horse", true, "player"));
@@ -105,6 +104,21 @@ function buildMaster()
                 //scenicList.push(new Scenery("webVictim", 3600, 2500, 0, 3, 1));
                 //scenicList.push(new Scenery("jungleStuff", 3600, 2500, 0.23, 2, 1));
                 //scenicList.push(new Scenery("selvaTree", 3600, 2500, 0, 0));
+                //scenicList.push(new Scenery("kozlyakPlant", 3600, 2500, 3.2, true));
+                //ArtificialIntelligenceAccess.push(new Unit(4000, 2500, "MudToad", true, "Slub"));
+                //ArtificialIntelligenceAccess.push(new Unit(4000, 2500, "Ghoul", true, "Slub"));
+                //ArtificialIntelligenceAccess.push(new Unit(4000, 2900, "Ghoul", false, "Sluba"));
+                //ArtificialIntelligenceAccess[ArtificialIntelligenceAccess.length - 1].eggs = "fecundo";
+
+                //scenicList.push(new Scenery("dethMasterHut", 3600, 2500, 0, 0, "deth1"));
+                //scenicList.push(new Scenery("dethTotem", 3600, 3400, 0, 0, "deth1"));
+                //scenicList.push(new Scenery("dethArmory", 4000, 3000, 0, true, "deth1"));
+                //scenicList.push(new Scenery("dethOutfitter", 3700, 3000, 0, 1, "deth1"));
+                //scenicList.push(new Scenery("dethElkPile", 4200, 2600, 0, true, "deth1"));
+                //ArtificialIntelligenceAccess.push(new Unit(3450, 2010, "Deth", false, "deth1", {age: 3, CON: 18, DEX: 17, APR: 19, PER: 14, ING: 8}));
+                //ArtificialIntelligenceAccess.push(new Unit(3500, 2020, "Deth", false, "deth1", {age: 3, CON: 19, DEX: 15, APR: 15, PER: 18, ING: 15}));
+                //ArtificialIntelligenceAccess.push(new Unit(3475, 2030, "Deth", false, "deth1", {age: 3, CON: 16, DEX: 19, APR: 20, PER: 12, ING: 4}));
+                //ArtificialIntelligenceAccess.push(new Unit(3400, 2000, "Deth", false, "deth1", {age: 4, CON: 14, DEX: 18, APR: 12, PER: 15, ING: 16}));
 
 
                 //Friches in the plains
@@ -3653,6 +3667,35 @@ function buildMaster()
 
                 //algae
                 //scenicList.push(new Scenery("algae", -8894, 45943, 3.4, 2));
+
+                for (var i = 0; i < 12; i++)
+                {
+                    for (var j = 0; j < 7; j++)
+                    {
+                        scenicList.push(new Scenery("harstPlant", -22144 - j * 35, 39907 + i * 50, Math.random() * 2, "freynor"));
+                    }
+                }
+                for (var i = 0; i < 6; i++)
+                {
+                    for (var j = 0; j < 5; j++)
+                    {
+                        scenicList.push(new Scenery("potatoPlant", -22426 - j * 35, 39907 + i * 50, Math.random() * 2, "freynor"));
+                    }
+                }
+                for (var i = 0; i < 6; i++)
+                {
+                    for (var j = 0; j < 3; j++)
+                    {
+                        scenicList.push(new Scenery("carrotPlant", -22610 - j * 35, 39907 + i * 50, Math.random() * 2, "freynor"));
+                    }
+                }
+                for (var i = 0; i < 4; i++)
+                {
+                    for (var j = 0; j < 6; j++)
+                    {
+                        scenicList.push(new Scenery("suuliPlant", -22426 - j * 50, 40225 + i * 65, Math.random() * 2, "freynor"));
+                    }
+                }
 
                 change = "n4e3";
             }
@@ -19687,7 +19730,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(3373, -159891, "Person", false, "Feastmaker Ritlaktl", {race: "Kel", faction: "Kel", personality: "scared", outfit: ["mofuTribalWear", 0], weapon: ["none", [0.2, 0.2], 0, 0, 2], ranged: [false, "arrow", 8, 2000, 1, 6, 0, "none", 0.95], patrolStops: 1, patrolLoop: false, route:[[3333, -159916]], merchant: true, merchandise: [[new Item("coins", false, false), 2], [new Item("rawMofu", false, false), 6], [new Item("maizeHusk", false, false), 68], [new Item("boiledAktaltlRoot", false, false), 8]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(3373, -159891, "Person", false, "Feastmaker Ritlaktl", {race: "Kel", faction: "Kel", personality: "scared", outfit: ["mofuTribalWear", 0], weapon: ["none", [0.2, 0.2], 0, 0, 2], ranged: [false, "arrow", 8, 2000, 1, 6, 0, "none", 0.95], patrolStops: 1, patrolLoop: false, route:[[3333, -159916]], merchant: true, merchandise: [[new Item("coins", false, false), 2], [new Item("rawMofuFlesh", false, false), 6], [new Item("maizeHusk", false, false), 68], [new Item("roastedAktaltlRoot", false, false), 8]]}));
                     }
                 }
 
@@ -19871,7 +19914,7 @@ function buildMaster()
                     scenicList.push(new Scenery("item", 3355, -160804, 0, false, ["lelBerries", 8, -20, "Kel"]));
                     scenicList.push(new Scenery("item", 3355, -160797, 0, false, ["lelBerries", 8, -20, "Kel"]));
 
-                    scenicList.push(new Scenery("item", 2977, -160793, 0, false, ["ishBranch", 1, -20, "Kel"]));
+                    scenicList.push(new Scenery("item", 2977, -160793, 0, false, ["itlinBranch", 1, -20, "Kel"]));
 
                     scenicList.push(new Scenery("mugmulSleepingMat", 3188, -159604, 0, false));
                     scenicList.push(new Scenery("mugmulSleepingMat", 3467, -160159, 1/2 * Math.PI + 0.12, false));
@@ -19939,7 +19982,7 @@ function buildMaster()
                     scenicList.push(new Scenery("item", 3355, -160804, 0, false, ["lelBerries", 8, 0, "Kel"]));
                     scenicList.push(new Scenery("item", 3355, -160797, 0, false, ["lelBerries", 8, 0, "Kel"]));
 
-                    scenicList.push(new Scenery("item", 2977, -160793, 0, false, ["ishBranch", 1, -10, "Kel"]));
+                    scenicList.push(new Scenery("item", 2977, -160793, 0, false, ["itlinBranch", 1, -10, "Kel"]));
 
                     scenicList.push(new Scenery("mugmulSleepingMat", 3188, -159604, 0, true));
                     scenicList.push(new Scenery("mugmulSleepingMat", 3467, -160159, 1/2 * Math.PI + 0.12, true));
@@ -22011,25 +22054,6 @@ function buildMaster()
 
                 change = "s26";
             }
-            if (xKey) //TEST
-            {
-                xKey = false;
-                console.log(X + ", " + Y);
-                worldItems.push([new Item("unitMarker", X, Y), 1]);
-            }
-            //if (xKey) //TEST
-            //{
-            //    xKey = false;
-            //    console.log('scenicList.push(new Scenery("selvaTree", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', 0));');
-            //    worldItems.push([new Item("plantMarker", X, Y), 1]);
-            //}
-
-            //if (xKey) //TEST
-            //{
-            //    xKey = false;
-            //    console.log('scenicList.push(new Scenery("sonjaTree", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', 0));');
-            //    worldItems.push([new Item("plantMarker", X, Y), 1]);
-            //}
         }
         else if (region == "s4")
         {
@@ -22064,7 +22088,8 @@ function buildMaster()
 
                 //REGION CREATION
                 generator2(998194838973478567290593490753765777, 893156183774189889999927462711, 212646126477828899823923656415326758196327583974281, 6688395285999999892194291914929422375482332503, 1111111111009836537010101010010100000011110010 , 0, 6997, -34734);
-
+                trimmer(434.61849699811074, -44423.834101181696, 284.8898175850846, -44507.41441065698, false);
+                trimmer(-806.7417209570492, -34633.92173035913, -1060.7593222988721, -38254.921303375566, false);
 
                 change = "s4";
             }
@@ -22102,7 +22127,8 @@ function buildMaster()
 
                 //REGION CREATION
                 generator2(5736809278362490038293, 918929, 2392365641532675817348289600124772911, 66897437318899912746321004929422375, 27138463725763667236888366664 , 0, 6712, -45024);
-
+                trimmer(6706.511984252476, -46639.560260598635, 6586.768919842608, -46711.23408554718, false);
+                trimmer(5997.574834492017, -52847.19909806379, 5717.451997282227, -53038.20435162931, false);
 
                 change = "s5";
             }
@@ -22292,7 +22318,7 @@ function buildMaster()
 
                 //REGION CREATION
                 generator2(432492005292412, 232435923599384100, 128321492394420300012, 12314294993281923192, 3485124912, 0, 6775, -95695);
-
+                trimmer(2740, -98131, 2534, -98413, false);
 
                 change = "s10";
             }
@@ -22741,6 +22767,7 @@ function buildMaster()
 
                 //REGION CREATION
                 generator(673, 20791, 10, 110, 11010, 3, 6703, -207910);
+                trimmer(7997, -216466, 7355, -216833, false);
 
 
                 change = "s21";

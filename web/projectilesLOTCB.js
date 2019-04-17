@@ -18,6 +18,7 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
     this.team = team;
     this.isPlayerProjectile = false;
     this.speed = speed;
+    this.radius = 4;
 
     //random individual variables
     this.flameFrame = 0;
@@ -134,7 +135,7 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
             {
                 var distanceFromUnit = Math.sqrt((this.X - ArtificialIntelligenceAccess[i].X)*(this.X - ArtificialIntelligenceAccess[i].X)+(this.Y - ArtificialIntelligenceAccess[i].Y)*(this.Y - ArtificialIntelligenceAccess[i].Y));
 
-                if (distanceFromUnit < ArtificialIntelligenceAccess[i].sizeRadius && !ArtificialIntelligenceAccess[i].underground)
+                if (distanceFromUnit < (ArtificialIntelligenceAccess[i].sizeRadius + this.radius) && !ArtificialIntelligenceAccess[i].underground)
                 {
                     //bullets do half damage against large enough non-human creatures. All others damage always remains the same.
                     if (ArtificialIntelligenceAccess[i].team != this.team && this.dmx == ArtificialIntelligenceAccess[i].dmx)

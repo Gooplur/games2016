@@ -7142,6 +7142,69 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
         }
+        else if (this.type == "rawMudToad")
+        {
+            //For All Items
+            this.identity = "Raw Mud Toad";
+            this.weight = 1.25;
+            this.size = 8;
+            this.description = "A slimy, rough skinned mud toad.";
+            this.intForDes = 1;
+            this.intDescription = "This can make for a tasty snack if it is cooked, but don't eat it raw.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "foodPoisoning";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "mudToad")
+        {
+            //For All Items
+            this.identity = "Roasted Mud Toad";
+            this.weight = 1.23;
+            this.size = 8;
+            this.description = "A standard tasting meat with a very slight rubberiness to the bite.";
+            this.intForDes = 0;
+            this.intDescription = "Mud toads eat a diet of mainly fireflies and vecher beetles so their meat is high in protein.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 4.25; //satisfies hunger.
+            this.thirst = 0.1; //quenches thirst.
+            this.warmth = 0.5; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 1;
+            this.ingredients = [["Raw Mud Toad", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
         else if (this.type == "rawBabosaFlesh")
         {
             //For All Items
@@ -7332,6 +7395,26 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 0; // at max, sell for 0.
         }
+        else if (this.type == "mudToadLeg")
+        {
+            //For All Items
+            this.identity = "Mud Toad Leg";
+            this.weight = 0.16;
+            this.size = 4;
+            this.description = "The leg of a Vardanian mud toad.";
+            this.intForDes = 19;
+            this.intDescription = "This can be used in alchemy, and in certain culinary recipes.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
         else if (this.type == "yeolPod")
         {
             //For All Items
@@ -7340,7 +7423,7 @@ function Item(type, x, y)
             this.size = 6;
             this.description = "The green pod that fell from a yeol tree.";
             this.intForDes = 1;
-            this.intDescription = "Yeol pods only fall during Bounty; each hold a yeol nut within.";
+            this.intDescription = "Yeol pods are most abundant during Bounty; each hold a yeol nut within.";
 
             //Define Utility
             this.utility = "food";
@@ -7633,6 +7716,69 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 3; // at max, buy for 3.
             this.sellValue = 2 + Math.floor(player.getCharisma() / 50); // at max, sell for 3.
+        }
+        else if (this.type == "rawGhoulFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Ghoul Flesh";
+            this.weight = 6;
+            this.size = 14;
+            this.description = "The raw stench exuding green grey flesh of ghoul.";
+            this.intForDes = 7;
+            this.intDescription = "As ghouls' diet consists largely of carrion, you should probably not eat this. However this can be used in alchemy.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 3; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -4; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "nasty";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "ghoulMeat")
+        {
+            //For All Items
+            this.identity = "Ghoul Meat";
+            this.weight = 6;
+            this.size = 15;
+            this.description = "The vile, stench exuding meat of ghoul.";
+            this.intForDes = 8;
+            this.intDescription = "As ghouls' diet consists largely of carrion and rotten corpses, this is not edible by any means.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 12; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 3; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -4; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "nasty";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 2;
+            this.ingredients = [["Raw Ghoul Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
         }
         else if (this.type == "rawToadFlesh")
         {
@@ -10208,7 +10354,7 @@ function Item(type, x, y)
             this.replenish = 0; //restores will.
 
             //ability
-            this.ability = "foodPoisoning";
+            this.ability = "none";
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 3 - Math.floor(player.getCharisma() / 50); // at max, buy for 2.
@@ -22069,13 +22215,33 @@ function Item(type, x, y)
             this.buyValue = 4 - Math.floor(player.getCharisma() / 50); // at max, buy for 3.
             this.sellValue = 1 + Math.floor(player.getCharisma() / 25); // at max, sell for 3.
         }
+        else if (this.type == "ghoulPelt")
+        {
+            //For All Items
+            this.identity = "Ghoul Pelt";
+            this.weight = 9;
+            this.size = 40;
+            this.description = "The pelt of a ghoul.";
+            this.intForDes = 6;
+            this.intDescription = "Ghoul pelt can be made into clothing and apparel, as well as other tailored goods.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 25 - Math.floor(player.getCharisma() / 15); // at max, buy for 22.
+            this.sellValue = 20 + Math.floor(player.getCharisma() / 50); // at max, sell for 22.
+        }
         else if (this.type == "berulnPelt")
         {
             //For All Items
             this.identity = "Beruln Pelt";
             this.weight = 7;
             this.size = 38;
-            this.description = "The pelt of a Beruln.";
+            this.description = "The pelt of a beruln.";
             this.intForDes = 23;
             this.intDescription = "Beruln fur can be used to make warm clothing as well as to line fine Thengan Armours.";
 
@@ -22095,7 +22261,7 @@ function Item(type, x, y)
             this.identity = "Large Beruln Pelt";
             this.weight = 10;
             this.size = 43;
-            this.description = "The pelt of a Beruln.";
+            this.description = "The pelt of a beruln.";
             this.intForDes = 23;
             this.intDescription = "Beruln fur can be used to make warm clothing as well as to line fine Thengan Armours.";
 
@@ -22457,6 +22623,35 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 9; // at max, buy for 9.
             this.sellValue = 7 + Math.floor(player.getCharisma() / 25); // at max, sell for 9.
+        }
+        else if (this.type == "kozlyakMushrooms")
+        {
+            //For All Items
+            this.identity = "Kozlyak Mushrooms";
+            this.weight = 0.45;
+            this.size = 7;
+            this.description = "A greyish brown mushroom that grows in dark, damp areas, most often in the Vardanian woods.";
+            this.intForDes = 1;
+            this.intDescription = "Kozlyak mushrooms are delectable in both their cooked and raw forms.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 2.15; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
         }
         else if (this.type == "gribnoyMushroom")
         {
@@ -36339,13 +36534,53 @@ function Item(type, x, y)
             this.buyValue = 0; // at max, buy for 0.
             this.sellValue = 0; // at max, sell for 0.
         }
+        else if (this.type == "treeMarker")
+        {
+            //For All Items
+            this.identity = "Marker";
+            this.weight = 0;
+            this.size = 12;
+            this.description = "Place a marker to show where a tree will be spawned in the future so that you don't get mixed up.";
+            this.intForDes = 0;
+            this.intDescription = "These are not a real game item.";
+
+            //Define Utility
+            this.utility = "junk";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 0; // at max, buy for 0.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "marker")
+        {
+            //For All Items
+            this.identity = "Marker";
+            this.weight = 0;
+            this.size = 10;
+            this.description = "A miscellaneous marker used to represent anything.";
+            this.intForDes = 0;
+            this.intDescription = "These are not a real game item.";
+
+            //Define Utility
+            this.utility = "junk";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 0; // at max, buy for 0.
+            this.sellValue = 0; // at max, sell for 0.
+        }
         else if (this.type == "plantMarker")
             {
                 //For All Items
                 this.identity = "Marker";
                 this.weight = 0;
                 this.size = 12;
-                this.description = "Place a marker to show where an item will be spawned in the future so that you don't get mixed up.";
+                this.description = "Place a marker to show where a plant will be spawned in the future so that you don't get mixed up.";
                 this.intForDes = 0;
                 this.intDescription = "These are not a real game item.";
 
@@ -36429,6 +36664,20 @@ function Item(type, x, y)
             XXX.arc(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height), 15, 0, Math.PI * 2);
             XXX.fill();
         }
+        else if (this.type == "treeMarker")
+        {
+            XXX.beginPath();
+            XXX.fillStyle = "black";
+            XXX.arc(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height), 15, 0, Math.PI * 2);
+            XXX.fill();
+        }
+        else if (this.type == "marker")
+        {
+            XXX.beginPath();
+            XXX.fillStyle = "#BF0000";
+            XXX.arc(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height), 15, 0, Math.PI * 2);
+            XXX.fill();
+        }
         else if (this.type == "shotgunAmmo")
         {
             XXX.beginPath();
@@ -36468,6 +36717,41 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
+        }
+        else if (this.type == "ghoulPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gul, 1006, 148, 78, 50, X - this.X + (1/2 * CCC.width) - (1/2 * 78 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 50 * 1), 78 * 1, 50 * 1);
+        }
+        else if (this.type == "rawGhoulFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gul, 964, 161, 28, 26, X - this.X + (1/2 * CCC.width) - (1/2 * 28 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 26 * 1), 28 * 1, 26 * 1);
+        }
+        else if (this.type == "ghoulMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gul, 920, 161, 33, 26, X - this.X + (1/2 * CCC.width) - (1/2 * 33 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 26 * 1), 33 * 1, 26 * 1);
+        }
+        else if (this.type == "kozlyakMushrooms")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 411, 559, 18, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 18 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16 * 1), 18 * 1, 16 * 1);
+        }
+        else if (this.type == "rawMudToad")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 945, 55, 44, 31, X - this.X + (1/2 * CCC.width) - (1/2 * 44 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 31 * 1), 44 * 1, 31 * 1);
+        }
+        else if (this.type == "mudToad")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 941, 100, 44, 31, X - this.X + (1/2 * CCC.width) - (1/2 * 44 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 31 * 1), 44 * 1, 31 * 1);
+        }
+        else if (this.type == "mudToadLeg")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 903, 102, 44, 31, X - this.X + (1/2 * CCC.width) - (1/2 * 44 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 31 * 1), 44 * 1, 31 * 1);
         }
         else if (this.type == "jinnDust")
         {
@@ -41143,6 +41427,20 @@ function Item(type, x, y)
             LXX.arc(this.invX, this.invY, 15, 0, Math.PI * 2);
             LXX.fill();
         }
+        else if (this.type == "treeMarker")
+        {
+            LXX.beginPath();
+            LXX.fillStyle = "black";
+            LXX.arc(this.invX, this.invY, Y - this.Y + (1/2 * CCC.height), 15, 0, Math.PI * 2);
+            LXX.fill();
+        }
+        else if (this.type == "marker")
+        {
+            LXX.beginPath();
+            LXX.fillStyle = "#BF0000";
+            LXX.arc(this.invX, this.invY, Y - this.Y + (1/2 * CCC.height), 15, 0, Math.PI * 2);
+            LXX.fill();
+        }
         else if (this.type == "shotgunAmmo")
         {
             LXX.beginPath();
@@ -41182,6 +41480,41 @@ function Item(type, x, y)
         {
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "ghoulPelt")
+        {
+            LXX.beginPath();
+            LXX.drawImage(gul, 1006, 148, 78, 50, this.invX - (1/2 * 78 * 1), this.invY - (1/2 * 50 * 1), 78 * 1, 50 * 1);
+        }
+        else if (this.type == "rawGhoulFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(gul, 964, 161, 28, 26, this.invX - (1/2 * 28 * 1), this.invY - (1/2 * 26 * 1), 28 * 1, 26 * 1);
+        }
+        else if (this.type == "ghoulMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(gul, 920, 161, 33, 26, this.invX - (1/2 * 33 * 1), this.invY - (1/2 * 26 * 1), 33 * 1, 26 * 1);
+        }
+        else if (this.type == "kozlyakMushrooms")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 411, 559, 18, 16, this.invX - (1/2 * 18 * 1), this.invY - (1/2 * 16 * 1), 18 * 1, 16 * 1);
+        }
+        else if (this.type == "rawMudToad")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 945, 55, 44, 31, this.invX - (1/2 * 44 * 1), this.invY - (1/2 * 31 * 1), 44 * 1, 31 * 1);
+        }
+        else if (this.type == "mudToad")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 941, 100, 44, 31, this.invX - (1/2 * 44 * 1), this.invY - (1/2 * 31 * 1), 44 * 1, 31 * 1);
+        }
+        else if (this.type == "mudToadLeg")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 903, 102, 44, 31, this.invX - (1/2 * 44 * 1), this.invY - (1/2 * 31 * 1), 44 * 1, 31 * 1);
         }
         else if (this.type == "jinnDust")
         {
@@ -45832,6 +46165,20 @@ function Item(type, x, y)
             XXX.arc(this.invX, this.invY, 15, 0, Math.PI * 2);
             XXX.fill();
         }
+        else if (this.type == "treeMarker")
+        {
+            XXX.beginPath();
+            XXX.fillStyle = "black";
+            XXX.arc(this.invX, this.invY, Y - this.Y + (1/2 * CCC.height), 15, 0, Math.PI * 2);
+            XXX.fill();
+        }
+        else if (this.type == "marker")
+        {
+            XXX.beginPath();
+            XXX.fillStyle = "#BF0000";
+            XXX.arc(this.invX, this.invY, Y - this.Y + (1/2 * CCC.height), 15, 0, Math.PI * 2);
+            XXX.fill();
+        }
         else if (this.type == "shotgunAmmo")
         {
             XXX.beginPath();
@@ -45871,6 +46218,41 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "ghoulPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gul, 1006, 148, 78, 50, this.invX - (1/2 * 78 * 1), this.invY - (1/2 * 50 * 1), 78 * 1, 50 * 1);
+        }
+        else if (this.type == "rawGhoulFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gul, 964, 161, 28, 26, this.invX - (1/2 * 28 * 1), this.invY - (1/2 * 26 * 1), 28 * 1, 26 * 1);
+        }
+        else if (this.type == "ghoulMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gul, 920, 161, 33, 26, this.invX - (1/2 * 33 * 1), this.invY - (1/2 * 26 * 1), 33 * 1, 26 * 1);
+        }
+        else if (this.type == "kozlyakMushrooms")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 411, 559, 18, 16, this.invX - (1/2 * 18 * 1), this.invY - (1/2 * 16 * 1), 18 * 1, 16 * 1);
+        }
+        else if (this.type == "rawMudToad")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 945, 55, 44, 31, this.invX - (1/2 * 44 * 1), this.invY - (1/2 * 31 * 1), 44 * 1, 31 * 1);
+        }
+        else if (this.type == "mudToad")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 941, 100, 44, 31, this.invX - (1/2 * 44 * 1), this.invY - (1/2 * 31 * 1), 44 * 1, 31 * 1);
+        }
+        else if (this.type == "mudToadLeg")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 903, 102, 44, 31, this.invX - (1/2 * 44 * 1), this.invY - (1/2 * 31 * 1), 44 * 1, 31 * 1);
         }
         else if (this.type == "jinnDust")
         {

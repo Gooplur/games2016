@@ -1686,6 +1686,30 @@ function gulPack()
 
     gul.onload = function()
     {
+        blacPack();
+    };
+}
+
+function blacPack()
+{
+    var blac = new Image();
+    blac.src = ("images/black.png");
+    window.blac = blac;
+
+    blac.onload = function()
+    {
+        beetsPack();
+    };
+}
+
+function beetsPack()
+{
+    var beets = new Image();
+    beets.src = ("images/beets.png");
+    window.beets = beets;
+
+    beets.onload = function()
+    {
         tombPack();
     };
 }

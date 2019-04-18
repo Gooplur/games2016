@@ -22271,6 +22271,124 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 }
             }
         }
+        else if (this.type == "brightStone")
+        {
+            //TRAITS
+            this.solid = true;
+            this.interactionRange = 1;
+
+            //Establish Rock Load
+            if (this.runOneTime == true)
+            {
+                this.runOneTime = false;
+                this.health = 22;
+                this.rockLoad = [];
+                for (var looop = 0; looop < 90; looop++)
+                {
+                    this.rockLoad.push({type: "brightStone", quantity: 1});
+                }
+                for (var looop = 0; looop < 5; looop++)
+                {
+                    this.rockLoad.push({type: "brightStone", quantity: 2});
+                }
+                for (var looop = 0; looop < 2 + player.miningLuck; looop++)
+                {
+                    this.rockLoad.push({type: "ironOre", quantity: 1});
+                }
+                for (var looop = 0; looop < 2 + player.miningLuck; looop++)
+                {
+                    this.rockLoad.push({type: "rawSilver", quantity: 1});
+                }
+                for (var looop = 0; looop < 1 + player.miningLuck; looop++)
+                {
+                    this.rockLoad.push({type: "rawGold", quantity: 1});
+                }
+            }
+
+            //DRAWSELF
+            if (this.information == 1)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(polypol, 1070, 458, 58, 44, -(1/2 * 58 * this.owned), -(1/2 * 44 * this.owned), 58 * this.owned, 44 * this.owned);
+                XXX.restore();
+            }
+            else if (this.information == 2)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(polypol, 1129, 451, 51, 51, -(1/2 * 51 * this.owned), -(1/2 * 51 * this.owned), 51 * this.owned, 51 * this.owned);
+                XXX.restore();
+            }
+            else
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(polypol, 1038, 469, 31, 32, -(1/2 * 31 * this.owned * 1.5), -(1/2 * 32 * this.owned * 1.5), 31 * this.owned * 1.5, 32 * this.owned * 1.5);
+                XXX.restore();
+            }
+
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 10 * this.owned;
+
+            //radioactive
+            if (player.radProof != true)
+            {
+                if (this.playerer < 105 * this.owned)
+                {
+                    player.radiation += 0.05;
+                }
+            }
+
+            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+            {
+                if (ArtificialIntelligenceAccess[i].radProof != true)
+                {
+                    if (ArtificialIntelligenceAccess[i].DTU(this) < 105 * this.owned)
+                    {
+                        ArtificialIntelligenceAccess[i].radiation += 0.05;
+                    }
+                }
+            }
+
+            //light
+            if (timeOfDay != "Day" || player.underground == true)
+            {
+                lights.push({X:this.X, Y: this.Y, size: 98 * this.owned, extraStops: true, GRD: 0.19, Alpha: 0.7, showMe: false});
+            }
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+
+
+            //console.log(player.finalAttackStage);
+            if (player.weaponEquipped == "pickaxe" && player.cutcut == true)
+            {
+                var distFromCutCut = Math.sqrt((this.X - player.bubbleOfDamageX)*(this.X - player.bubbleOfDamageX) + (this.Y - player.bubbleOfDamageY)*(this.Y - player.bubbleOfDamageY));
+                console.log(distFromCutCut);
+                if (distFromCutCut <= player.weapon.range * 7 + 18)
+                {
+                    this.health -= 1;
+                    if (this.health <= 0)
+                    {
+                        this.health = 10;
+                        this.rockLoader(this.rockLoad);
+                        this.owned -= 0.25;
+                        if (this.owned <= 0)
+                        {
+                            scenicList.splice(scenicList.indexOf(this), 1);
+                        }
+                    }
+                }
+            }
+        }
         else if (this.type == "jvostran")
         {
             //TRAITS

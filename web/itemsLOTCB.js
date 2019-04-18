@@ -20817,6 +20817,51 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
         }
+        else if (this.type == "brightStone")
+        {
+            //For All Items
+            this.identity = "Bright Stone";
+            this.weight = 7;
+            this.size = 8;
+            this.description = "A chunk of glowing rock.";
+            this.intForDes = 7;
+            this.intDescription = "Some say that these stones contain malevolent spirits that sap your life away.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //radioactive in world
+            if (this.X != false)
+            {
+                if (player.radProof != true)
+                {
+                    var pluyaDista = (X - this.X) * (X - this.X) + (Y - this.Y) * (Y - this.Y);
+                    if (pluyaDista <= (53 * 53))
+                    {
+                        player.radiation += 0.05;
+                    }
+                }
+
+                for (var iiiii = 0; iiiii < ArtificialIntelligenceAccess.length; iiiii++)
+                {
+                    if (ArtificialIntelligenceAccess[iiiii].radProof != true)
+                    {
+                        var pluyaDista = (ArtificialIntelligenceAccess[iiiii].X - this.X) * (ArtificialIntelligenceAccess[iiiii].X - this.X) + (ArtificialIntelligenceAccess[iiiii].Y - this.Y) * (ArtificialIntelligenceAccess[iiiii].Y - this.Y);
+                        if (pluyaDista <= (53 * 53))
+                        {
+                            ArtificialIntelligenceAccess[iiiii].radiation += 0.05;
+                        }
+                    }
+                }
+            }
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 13; // at max, buy for 13.
+            this.sellValue = 13; // at max, sell for 13.
+        }
         else if (this.type == "copperOre")
         {
             //For All Items
@@ -32168,6 +32213,165 @@ function Item(type, x, y)
             this.buyValue = 15 - Math.floor(player.getCharisma() / 15); // at max, buy for 12.
             this.sellValue = 9 + Math.floor(player.getCharisma() / 15); // at max, sell for 12.
         }
+        else if (this.type == "alemanWWI")
+        {
+            //For All Items
+            this.identity = "German Soldier Outfit";
+            this.weight = 6;
+            this.size = 25;
+            this.description = "Standard issue german military fatigues from world war one.";
+            this.intForDes = 3;
+            this.intDescription = "The germans had to paint the camoflauge onto the helmets themselves.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0.5 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0.8;
+            this.thirstRetention = -0.1;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 1;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 3;
+            this.rangedBonus = 3;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 3;
+            this.dexterityBonus = 3;
+            this.survivalismBonus = 2;
+            //Extra Stat Bonuses
+            this.sleepBonus = 13;
+            this.hungerBonus = 2;
+            this.thirstBonus = 2;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "resistDisease";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 19 - Math.floor(player.getCharisma() / 25); // at max, buy for 17.
+            this.sellValue = 12 + Math.floor(player.getCharisma() / 10); // at max, sell for 17.
+        }
+        else if (this.type == "hazmatMarkI")
+        {
+            //For All Items
+            this.identity = "Hazmat Suit Mark I";
+            this.weight = 12;
+            this.size = 27;
+            this.description = "An airtight suit that protects the wearer from radiation and dangerous fumes or chemicals.";
+            this.intForDes = 0;
+            this.intDescription = "Do not use if damaged in any way: Trineum Technologies Incorporated will not be held liable for any loss of life due to misuse of this product.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0.2 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 2;
+            this.thirstRetention = 2;
+            this.shockResist = 0.6;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 2;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 2;
+            this.staminaBonus = 0;
+            this.dexterityBonus = -6;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "hazmat";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 819 - Math.floor(player.getCharisma() / 25); // at max, buy for 817.
+            this.sellValue = 812 + Math.floor(player.getCharisma() / 10); // at max, sell for 817.
+        }
+        else if (this.type == "hazmatMarkII")
+        {
+            //For All Items
+            this.identity = "Hazmat Suit Mark II";
+            this.weight = 14;
+            this.size = 27;
+            this.description = "An airtight suit that protects the wearer from radiation and dangerous fumes or chemicals.";
+            this.intForDes = 0;
+            this.intDescription = "This has aquatic capabilities allowing the wearer to dive for extended periods without a need to emerge.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0.2 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 2;
+            this.thirstRetention = 2;
+            this.shockResist = 0.6;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 2;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 2;
+            this.staminaBonus = 0;
+            this.dexterityBonus = -7;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "aquamat";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 920 - Math.floor(player.getCharisma() / 25); // at max, buy for 918.
+            this.sellValue = 913 + Math.floor(player.getCharisma() / 10); // at max, sell for 918.
+        }
         else if (this.type == "nirwadenClothingM")
         {
             //For All Items
@@ -36717,6 +36921,30 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
+        }
+        else if (this.type == "brightStone")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polypol, 1729, 525, 36, 29, X - this.X + (1/2 * CCC.width) - (1/2 * 36 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 29 * 1), 36 * 1, 29 * 1);
+            if (timeOfDay != "Day" || player.underground == true)
+            {
+                lights.push({X:this.X, Y: this.Y, size: 43, extraStops: true, GRD: 0.1, Alpha: 0.5, showMe: false});
+            }
+        }
+        else if (this.type == "alemanWWI")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gul, 1023, 804, 56, 140, X - this.X + (1/2 * CCC.width) - (1/2 * 56 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 140 * 0.8), 56 * 0.8, 140 * 0.8);
+        }
+        else if (this.type == "hazmatMarkI")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gul, 210, 812, 60, 132, X - this.X + (1/2 * CCC.width) - (1/2 * 60 * 0.9), Y - this.Y + (1/2 * CCC.height) - (1/2 * 132 * 0.9), 60 * 0.9, 132 * 0.9);
+        }
+        else if (this.type == "hazmatMarkII")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gul, 270, 812, 60, 132, X - this.X + (1/2 * CCC.width) - (1/2 * 60 * 0.9), Y - this.Y + (1/2 * CCC.height) - (1/2 * 132 * 0.9), 60 * 0.9, 132 * 0.9);
         }
         else if (this.type == "ghoulPelt")
         {
@@ -41481,6 +41709,26 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
+        else if (this.type == "brightStone")
+        {
+            LXX.beginPath();
+            LXX.drawImage(polypol, 1729, 525, 36, 29, this.invX - (1/2 * 36 * 1), this.invY - (1/2 * 29 * 1), 36 * 1, 29 * 1);
+        }
+        else if (this.type == "alemanWWI")
+        {
+            LXX.beginPath();
+            LXX.drawImage(gul, 1023, 804, 56, 140, this.invX - (1/2 * 56 * 0.55), this.invY - (1/2 * 140 * 0.55), 56 * 0.55, 140 * 0.55);
+        }
+        else if (this.type == "hazmatMarkI")
+        {
+            LXX.beginPath();
+            LXX.drawImage(gul, 210, 812, 60, 132, this.invX - (1/2 * 60 * 0.6), this.invY - (1/2 * 132 * 0.6), 60 * 0.6, 132 * 0.6);
+        }
+        else if (this.type == "hazmatMarkII")
+        {
+            LXX.beginPath();
+            LXX.drawImage(gul, 270, 812, 60, 132, this.invX - (1/2 * 60 * 0.6), this.invY - (1/2 * 132 * 0.6), 60 * 0.6, 132 * 0.6);
+        }
         else if (this.type == "ghoulPelt")
         {
             LXX.beginPath();
@@ -46218,6 +46466,26 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "brightStone")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polypol, 1729, 525, 36, 29, this.invX - (1/2 * 36 * 1), this.invY - (1/2 * 29 * 1), 36 * 1, 29 * 1);
+        }
+        else if (this.type == "alemanWWI")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gul, 1023, 804, 56, 140, this.invX - (1/2 * 56 * 0.55), this.invY - (1/2 * 140 * 0.55), 56 * 0.55, 140 * 0.55);
+        }
+        else if (this.type == "hazmatMarkI")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gul, 210, 812, 60, 132, this.invX - (1/2 * 60 * 0.6), this.invY - (1/2 * 132 * 0.6), 60 * 0.6, 132 * 0.6);
+        }
+        else if (this.type == "hazmatMarkII")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gul, 270, 812, 60, 132, this.invX - (1/2 * 60 * 0.6), this.invY - (1/2 * 132 * 0.6), 60 * 0.6, 132 * 0.6);
         }
         else if (this.type == "ghoulPelt")
         {

@@ -3929,6 +3929,9 @@ function theLegend()
     allWorn.push(new Item("jungleHunterOutfit", false)); //122
     allWorn.push(new Item("vardanianSoldierOutfit", false)); //123
     allWorn.push(new Item("pyromothSilkRobe", false)); //124
+    allWorn.push(new Item("alemanWWI", false)); //125
+    allWorn.push(new Item("hazmatMarkI", false)); //126
+    allWorn.push(new Item("hazmatMarkII", false)); //127
 
     scenicList = [];
 

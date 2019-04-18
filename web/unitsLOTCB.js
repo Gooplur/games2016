@@ -285,6 +285,8 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     this.repelente = false; //keeps certain insects from attacking that would otherwise seek the unit's flesh
     this.venandi = 0;
     this.humptiShell = 0; //for humpty death and drop
+    this.radiation = 0;
+    this.radProof = false; //this prevents the unit from absorbing radation if it is true
 
     //Artificial Intelligence
     this.setTeamByID = function()
@@ -8572,6 +8574,8 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         var leechResistance = false;
         var timeAlterResistance = false;
         var nightResistance = false;
+        var radResistance = false;
+        var radiationResistance = false;
 
         //for loop to check for resistance
         for (var i = 0; i < resistancesList.length; i++)
@@ -8640,6 +8644,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 nightResistance = true;
             }
+            else if (resistancesList[i] == "rads") //can not absorb rads naturally
+            {
+                radResistance = true;
+            }
+            else if (resistancesList[i] == "radiation") //can not be damaged by rads if already absorbed
+            {
+                radiationResistance = true;
+            }
         }
 
         //Petrification Effect
@@ -8663,6 +8675,22 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.lycanthropy = true;
                 this.lycanthropyTime = 0;
             }
+        }
+
+        //Radiation Resistance
+        if (radResistance == true)
+        {
+            this.radProof = true;
+        }
+        else
+        {
+            this.radProof = false;
+        }
+
+        //radiation poisoning
+        if (radiationResistance != true && this.radiation >= 90)
+        {
+            this.health -= (0.2 + (0.4 * (this.radiation / 90)));
         }
 
         //Basilisk Venom Effect

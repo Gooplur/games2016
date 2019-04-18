@@ -1730,6 +1730,8 @@ function interaction(me)
                                     player.fed = true;
                                     player.sleep = player.sleepMAX;
 
+                                    player.radiation = 0;
+
                                     player.illnesses = [];
                                     player.gojiiTimer = 0;
                                     player.acidI = false;
@@ -1758,6 +1760,7 @@ function interaction(me)
                                     player.bahabTime = 0;
                                     player.inebriation = 0;
                                     player.fleshMites = false;
+                                    player.throatTicks = false;
                                     player.gutWorms = false;
                                     player.brainMaggots = false;
                                     player.gojiiTimer = 0;
@@ -1952,6 +1955,8 @@ function interaction(me)
                                 player.fed = true;
                                 player.sleep = player.sleepMAX;
 
+                                player.radiation = 0;
+
                                 player.illnesses = [];
                                 player.gojiiTimer = 0;
                                 player.acidI = false;
@@ -1980,6 +1985,7 @@ function interaction(me)
                                 player.bahabTime = 0;
                                 player.inebriation = 0;
                                 player.fleshMites = false;
+                                player.throatTicks = false;
                                 player.gutWorms = false;
                                 player.brainMaggots = false;
                                 player.gojiiTimer = 0;

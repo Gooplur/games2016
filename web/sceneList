@@ -171,6 +171,7 @@ pyromothWeb - A black web which is where pyromoths undergo their cacoon metamorp
 overVines - jungle vines that hang above the player. ranges from 0 - 4 //scenicList.push(new Scenery("overVines", x, y, rotation, type, size));
 webVictim - A variety of web covered animals (primarily jungle animals, but not exclusively). ranges from 0-3 //scenicList.push(new Scenery("webVictim", x, y, rotation, type, size));
 jungleStuff - 0 = rounded boa skin, 1 = straight boa skin, 2 = selva tree stump, 3 = salisea pelt, 4 = web ball (low), 5 = web ball (high) //scenicList.push(new Scenery("jungleStuff", x, y, rotation, type, size));
+brightStone - A glowing yellow stone that exudes radiation (it has a slightly higher silver content than ordinary stone)
 
 
 

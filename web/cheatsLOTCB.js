@@ -186,6 +186,10 @@ function cheats()
         {
             uniqueChars.medliaLDS = true;
         }
+        else if (cheatcode == "radical")
+        {
+            player.radiation += 90;
+        }
         else if (cheatcode == "forget")
         {
             if (player.getKnowledge() >= 1)

@@ -560,6 +560,10 @@ function Adventurer()
     this.lifeEternal = false; //this makes it so that the player cannot die.
     this.potatoInvisibility = false; //determines whether potatoes will turn invisible around the player...
     this.chosenOne = false;
+    this.throatTicks = false;
+    this.radProof = false;
+    this.radiation = 0;
+    this.aquatica = false;
 
         //faction variables
     this.factionToggle = false;
@@ -728,6 +732,21 @@ function Adventurer()
         if ((this.decreaseInHealth + this.health) > this.healthMAX)
         {
             this.decreaseInHealth = this.healthMAX - this.health;
+        }
+    };
+
+    this.inventoryAction = function()
+    {
+        //inventory action
+        for (var iiiiii = 0; iiiiii < Inventory.length; iiiiii++)
+        {
+            if (Inventory[iiiiii][0].type == "brightStone") //radioactive brightstone
+            {
+                if (player.radProof != true)
+                {
+                    player.radiation += 0.05;
+                }
+            }
         }
     };
 
@@ -1078,6 +1097,8 @@ function Adventurer()
             var airFilterFlag = false;
             var nightVision = false;
             var perfectArmourFlag = false;
+            var radResFlag = false;
+            var aquaFlag = false;
 
             //search worn ability list for abilities
             for (var i = 0; i < this.AdAbility.length; i++)
@@ -1085,6 +1106,7 @@ function Adventurer()
                 if (this.AdAbility[i] == "cyborg")
                 {
                     cyborgFlag = true;
+                    radResFlag = true;
                 }
                 if (this.AdAbility[i] == "airFilter")
                 {
@@ -1131,9 +1153,40 @@ function Adventurer()
                 {
                     perfectArmourFlag = true;
                 }
+                if (this.AdAbility[i] == "aquamat")
+                {
+                    radResFlag = true;
+                    aquaFlag = true;
+                    resistDiseaseFlag = true;
+                }
+                if (this.AdAbility[i] == "hazmat")
+                {
+                    radResFlag = true;
+                    resistDiseaseFlag = true;
+                }
             }
 
             //EXECUTE EFFECTS
+
+            //water breathing
+            if (aquaFlag)
+            {
+                this.aquatica = true;
+            }
+            else
+            {
+                this.aquatica = false;
+            }
+
+            //radiation resistance
+            if (radResFlag)
+            {
+                this.radProof = true;
+            }
+            else
+            {
+                this.radProof = false;
+            }
 
             //night vision
             if (nightVision)
@@ -1813,7 +1866,7 @@ function Adventurer()
                     //DROWN if in water and run out of energy past fatigue point
                     if (this.movingType == "swimming" && this.energy < -5)
                     {
-                        if (this.vamprism == false && this.form != "selkie")
+                        if (this.vamprism == false && this.form != "selkie" && this.aquatica != true)
                         {
                             this.drowned = true;
                         }
@@ -1849,12 +1902,183 @@ function Adventurer()
             }
 
             //This is Where warmth and thirst will either increase or decrease depending on the region the player is in.
-            if (elevation == 3 && new Date().getTime() - this.timeSinceLastWarmthChange > 5000)
+            if (elevation == 5 && new Date().getTime() - this.timeSinceLastWarmthChange > 5000)
             {
                 //extra coldness is added for swimming in cold water
                 if (this.movingType == "swimming")
                 {
-                    this.warmth -= 11;
+                    if (this.aquatica != true)
+                    {
+                        this.warmth -= 15;
+                    }
+                }
+                //COLD SYSTEM (seasonal differences)
+                if (currentSeason == "Bright")
+                {
+                    if (timeOfDay == "Day")
+                    {
+                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (4 - this.warmthProtection)));
+                        this.timeSinceLastWarmthChange = new Date().getTime();
+                    }
+                    else if (timeOfDay == "Night")
+                    {
+                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (5 - this.warmthProtection)));
+                        this.timeSinceLastWarmthChange = new Date().getTime();
+                    }
+                    else
+                    {
+                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (4.5 - this.warmthProtection)));
+                        this.timeSinceLastWarmthChange = new Date().getTime();
+                    }
+                }
+                else if (currentSeason == "Harvest")
+                {
+                    if (timeOfDay == "Day")
+                    {
+                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (5 - this.warmthProtection)));
+                        this.timeSinceLastWarmthChange = new Date().getTime();
+                    }
+                    else if (timeOfDay == "Night")
+                    {
+                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (6 - this.warmthProtection)));
+                        this.timeSinceLastWarmthChange = new Date().getTime();
+                    }
+                    else
+                    {
+                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (5.5 - this.warmthProtection)));
+                        this.timeSinceLastWarmthChange = new Date().getTime();
+                    }
+                }
+                else if (currentSeason == "Frost")
+                {
+                    if (timeOfDay == "Day")
+                    {
+                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (6 - this.warmthProtection)));
+                        this.timeSinceLastWarmthChange = new Date().getTime();
+                    }
+                    else if (timeOfDay == "Night")
+                    {
+                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (7 - this.warmthProtection)));
+                        this.timeSinceLastWarmthChange = new Date().getTime();
+                    }
+                    else
+                    {
+                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (6.5 - this.warmthProtection)));
+                        this.timeSinceLastWarmthChange = new Date().getTime();
+                    }
+                }
+                else if (currentSeason == "Bounty")
+                {
+                    if (timeOfDay == "Day")
+                    {
+                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (5 - this.warmthProtection)));
+                        this.timeSinceLastWarmthChange = new Date().getTime();
+                    }
+                    else if (timeOfDay == "Night")
+                    {
+                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (6 - this.warmthProtection)));
+                        this.timeSinceLastWarmthChange = new Date().getTime();
+                    }
+                    else
+                    {
+                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (5.5 - this.warmthProtection)));
+                        this.timeSinceLastWarmthChange = new Date().getTime();
+                    }
+                }
+            }
+            else if (elevation == 4 && new Date().getTime() - this.timeSinceLastWarmthChange > 5000)
+            {
+                //extra coldness is added for swimming in cold water
+                if (this.movingType == "swimming")
+                {
+                    if (this.aquatica != true)
+                    {
+                        this.warmth -= 13;
+                    }
+                }
+                //COLD SYSTEM (seasonal differences)
+                if (currentSeason == "Bright")
+                {
+                    if (timeOfDay == "Day")
+                    {
+                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (3 - this.warmthProtection)));
+                        this.timeSinceLastWarmthChange = new Date().getTime();
+                    }
+                    else if (timeOfDay == "Night")
+                    {
+                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (4 - this.warmthProtection)));
+                        this.timeSinceLastWarmthChange = new Date().getTime();
+                    }
+                    else
+                    {
+                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (3.5 - this.warmthProtection)));
+                        this.timeSinceLastWarmthChange = new Date().getTime();
+                    }
+                }
+                else if (currentSeason == "Harvest")
+                {
+                    if (timeOfDay == "Day")
+                    {
+                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (4 - this.warmthProtection)));
+                        this.timeSinceLastWarmthChange = new Date().getTime();
+                    }
+                    else if (timeOfDay == "Night")
+                    {
+                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (5 - this.warmthProtection)));
+                        this.timeSinceLastWarmthChange = new Date().getTime();
+                    }
+                    else
+                    {
+                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (4.5 - this.warmthProtection)));
+                        this.timeSinceLastWarmthChange = new Date().getTime();
+                    }
+                }
+                else if (currentSeason == "Frost")
+                {
+                    if (timeOfDay == "Day")
+                    {
+                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (5 - this.warmthProtection)));
+                        this.timeSinceLastWarmthChange = new Date().getTime();
+                    }
+                    else if (timeOfDay == "Night")
+                    {
+                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (6 - this.warmthProtection)));
+                        this.timeSinceLastWarmthChange = new Date().getTime();
+                    }
+                    else
+                    {
+                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (5.5 - this.warmthProtection)));
+                        this.timeSinceLastWarmthChange = new Date().getTime();
+                    }
+                }
+                else if (currentSeason == "Bounty")
+                {
+                    if (timeOfDay == "Day")
+                    {
+                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (4 - this.warmthProtection)));
+                        this.timeSinceLastWarmthChange = new Date().getTime();
+                    }
+                    else if (timeOfDay == "Night")
+                    {
+                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (5 - this.warmthProtection)));
+                        this.timeSinceLastWarmthChange = new Date().getTime();
+                    }
+                    else
+                    {
+                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (4.5 - this.warmthProtection)));
+                        this.timeSinceLastWarmthChange = new Date().getTime();
+                    }
+                }
+            }
+            else if (elevation == 3 && new Date().getTime() - this.timeSinceLastWarmthChange > 5000)
+            {
+                //extra coldness is added for swimming in cold water
+                if (this.movingType == "swimming")
+                {
+                    if (this.aquatica != true)
+                    {
+                        this.warmth -= 11;
+                    }
                 }
                 //COLD SYSTEM (seasonal differences)
                 if (currentSeason == "Bright")
@@ -1935,7 +2159,10 @@ function Adventurer()
                 //extra coldness is added for swimming in cold water
                 if (this.movingType == "swimming")
                 {
-                    this.warmth -= 9;
+                    if (this.aquatica != true)
+                    {
+                        this.warmth -= 9;
+                    }
                 }
                 //COLD SYSTEM (seasonal differences)
                 if (currentSeason == "Bright")
@@ -2016,7 +2243,10 @@ function Adventurer()
                 //extra coldness is added for swimming in cold water
                 if (this.movingType == "swimming")
                 {
-                    this.warmth -= 7;
+                    if (this.aquatica != true)
+                    {
+                        this.warmth -= 7;
+                    }
                 }
                 //COLD SYSTEM (seasonal differences)
                 if (currentSeason == "Bright")
@@ -2097,7 +2327,10 @@ function Adventurer()
                 //extra coldness is added for swimming in cold water
                 if (this.movingType == "swimming")
                 {
-                    this.warmth -= 5;
+                    if (this.aquatica != true)
+                    {
+                        this.warmth -= 5;
+                    }
                 }
                 //COLD SYSTEM (seasonal differences)
                 if (currentSeason == "Bright")
@@ -2576,6 +2809,11 @@ function Adventurer()
                 this.timeSinceLastFleshFeast = new Date().getTime();
                 //Take away health from the player because the fleshMites are eating the player from the inside.
                 this.health -= 0.0025625 * (TTD / 16.75);
+            }
+
+            if (this.throatTicks == true)
+            {
+                this.health -= 0.000012 * (TTD / 16.75);
             }
         };
 
@@ -3671,7 +3909,42 @@ function Adventurer()
             {
                 this.etnaVenom = false;
             }
-            //TODO different types of poisons will get their own seperate categories!
+
+            //Radiation Poisoning
+            if (this.radiation >= 90)
+            {
+                this.health -= (0.02 + (0.04 * (this.radiation / 90)));
+                this.will = Math.max(0, this.will - (0.015 + (0.03 * (this.radiation / 90))));
+
+                this.energilTime = Math.max(this.energilTime, 1);
+
+                if (this.radiation >= 120)
+                {
+                    this.stunnedTime = Math.max(this.stunnedTime, 1);
+                    if (this.radiation >= 160)
+                    {
+                        if (this.radiation >= 220)
+                        {
+                            this.stunnedIII = true;
+                            this.fatigueIV = true;
+                        }
+                        else
+                        {
+                            this.stunnedII = true;
+                            this.fatigueIII = true;
+                        }
+                    }
+                    else
+                    {
+                        this.stunnedI = true;
+                        this.fatigueII = true;
+                    }
+                }
+                else
+                {
+                    this.fatigueI = true;
+                }
+            }
         };
 
         this.alterTime = function()
@@ -4735,6 +5008,30 @@ function Adventurer()
         }
     };
 
+    //Radiation Notice Function
+    this.radiationChecker = function()
+    {
+        if (this.radiation >= 90)
+        {
+            // at this point the slot should be consistent so it should not have to check again to be entered into a position on the miniNoticeList.
+            this.addNotice("Radiation");
+            //red background
+            XXX.beginPath();
+            XXX.fillStyle = "yellow";
+            XXX.lineWidth = 1;
+            XXX.strokeStyle = "black";
+            XXX.rect(this.arrangeNotices("Radiation"), 413, 20, 20);
+            XXX.fill();
+            XXX.stroke();
+            XXX.drawImage(gul, 870, 148, 46, 46, this.arrangeNotices("Radiation"), 412.5, 20, 20);
+        }
+        else
+        {
+            //at this point the slot will have been cleared so next time the effect shows up it should have to check again to be entered into a position on the miniNoticeList.
+            this.removeNotice("Radiation");
+        }
+    };
+
     //Sleep Deprivation Notice Function
     this.deprivationChecker = function()
     {
@@ -5172,7 +5469,7 @@ function Adventurer()
     };
 
     //Gut Worms Notice Function
-    this.sicknessChecker = function ()
+    this.sicknessChecker = function()
     {
         if (this.illnesses.length > 0)
         {
@@ -5201,7 +5498,7 @@ function Adventurer()
     };
 
     //Gut Worms Notice Function
-    this.gutWormsChecker = function ()
+    this.gutWormsChecker = function()
     {
         if (this.gutWorms == true)
         {
@@ -5229,8 +5526,37 @@ function Adventurer()
             this.removeNotice("Gut Worms");
         }
     };
+
+    //Throat Ticks Notice Function
+    this.throatTicksChecker = function()
+    {
+        if (this.throatTicks == true)
+        {
+            // at this point the slot should be consistent so it should not have to check again to be entered into a position on the miniNoticeList.
+            this.addNotice("Throat Ticks");
+            //pinkish throat-like background colour.
+            XXX.beginPath();
+            XXX.fillStyle = "#ff6666";
+            XXX.rect(this.arrangeNotices("Throat Ticks"), 413, 20, 20);
+            XXX.fill();
+
+            //pinkish gut-like background colour.
+            XXX.beginPath();
+            XXX.lineWidth = 1;
+            XXX.strokeStyle = "black";
+            XXX.rect(this.arrangeNotices("Throat Ticks"), 413, 20, 20);
+            XXX.stroke();
+            XXX.drawImage(gul, 1015, 263, 20, 20, this.arrangeNotices("Throat Ticks") + 0, 412, 20, 20);
+        }
+        else
+        {
+            //at this point the slot will have been cleared so next time the effect shows up it should have to check again to be entered into a position on the miniNoticeList.
+            this.removeNotice("Throat Ticks");
+        }
+    };
+
     //RECOVERY Notice Function
-    this.recoveredChecker = function ()
+    this.recoveredChecker = function()
     {
         if (this.recovered == true)
         {
@@ -5255,7 +5581,7 @@ function Adventurer()
     };
 
     //ENERGIZED Notice Function
-    this.energizedChecker = function ()
+    this.energizedChecker = function()
     {
         if (this.energized == true)
         {
@@ -5825,6 +6151,7 @@ function Adventurer()
         this.webbedChecker();
         this.stunnedChecker();
         this.gutWormsChecker();
+        this.throatTicksChecker();
         this.sicknessChecker();
         this.fleshMights();
         this.poisonedChecker();
@@ -5852,6 +6179,7 @@ function Adventurer()
         this.acidicChecker();
         this.asfixiationChecker();
         this.kolumChecker();
+        this.radiationChecker();
     };
 
     //MOVEMENT ANIMATION
@@ -6620,6 +6948,18 @@ function Adventurer()
         {
             outfit = allWorn[124];
         }
+        else if (this.outfitEquipped == "alemanWWI")
+        {
+            outfit = allWorn[125];
+        }
+        else if (this.outfitEquipped == "hazmatMarkI")
+        {
+            outfit = allWorn[126];
+        }
+        else if (this.outfitEquipped == "hazmatMarkII")
+        {
+            outfit = allWorn[127];
+        }
         else
         {
             outfit = allWorn[0];
@@ -6857,6 +7197,45 @@ function Adventurer()
                 XXX.globalAlpha = 0.4;
             }
             XXX.drawImage(dmil, 570, 205, 39, 31, -(1 / 2 * 39 * 1.1) + 1, -(1 / 2 * 31 * 1.1) + 0.30, 39 * 1.1, 31 * 1.1);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "alemanWWI")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(gul, 0, 900, 48, 35, -(1/2 * 48 * 0.92) + 0, -(1 / 2 * 35 * 0.92) + 0, 48 * 0.92, 35 * 0.92);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "hazmatMarkI")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(gul, 142, 834, 47, 43, -(1/2 * 47 * 0.85) + 0, -(1 / 2 * 43 * 0.85) + 0, 47 * 0.85, 43 * 0.85);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "hazmatMarkII")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(gul, 140, 882, 47, 43, -(1/2 * 47 * 0.85) + 0, -(1 / 2 * 43 * 0.85) + 0, 47 * 0.85, 43 * 0.85);
             XXX.restore();
         }
         else if (this.outfitEquipped == "jungleHunterOutfit")
@@ -22104,7 +22483,10 @@ function Adventurer()
                 }
                 else //SWIMMING
                 {
-                    this.energy -= 0.0025 * energil;
+                    if (this.aquatica != true)
+                    {
+                        this.energy -= 0.0025 * energil;
+                    }
 
                     if (this.form == "selkie") //seal swim speed min
                     {
@@ -22134,7 +22516,17 @@ function Adventurer()
 
                     if (wKey)
                     {
-                        this.energy -= 0.015 * energil;
+                        if (this.aquatica != true)
+                        {
+                            this.energy -= 0.015 * energil;
+                        }
+                        else //if wearing a diving suit or something like one
+                        {
+                            if (this.energy > -5)
+                            {
+                                this.energy -= 0.0075 * energil;
+                            }
+                        }
                         // If the place where the player would move next under the same instruction is blocked then the player will not move.
                         var strBasedMinSwimSpeed;
                         if (this.form == "selkie") //seal swim speed min
@@ -30457,6 +30849,14 @@ function Adventurer()
                         this.will = Math.min(this.willMAX, this.will + Inventory[i][0].replenish);
                         this.inebriation += Inventory[i][0].alcohol;
 
+                        if (this.throatTicks == true && this.hunger > 0 && this.thirst > 0)
+                        {
+                            //eating or drinking irritates your throat which is infested with tics
+                            this.health -= (1 + (1/100 * this.healthMAX));
+                            this.energy -= (6 + (2/100 * this.energyMAX));
+                            this.will -= (2 + (1/100 * this.willMAX));
+                        }
+
                         //some items when used will give you an item when they are used.
                         if (Inventory[i][0].subUtility == "reusable")
                         {
@@ -30496,8 +30896,17 @@ function Adventurer()
                                     this.gutWorms = true;
                                 }
                             }
+                            else if (Inventory[i][0].ability == "throatTicks" || Inventory[i][0].ability == "throatticks") //gojii berry poison
+                            {
+                                var throtikz = Math.round(Math.random()); //this makes it so that you will only get the gut worms 50% of the time.
+                                if (throtikz)
+                                {
+                                    this.throatTicks = true;
+                                }
+                            }
                             else if (Inventory[i][0].ability == "nasty")
                             {
+                                this.throatTicks = true;
                                 this.gutWorms = true;
                                 this.swollenI = true;
                                 this.swollenTime = Math.max(player.swollenTime, 336);
@@ -31126,6 +31535,8 @@ function Adventurer()
                                 this.bahabTime = 0;
                                 this.inebriation = 0;
 
+                                this.radiation = Math.max(0, this.radiation - 5);
+
                                 //breaks down venom compounds
                                 this.poisonI = false;
                                 this.poisonII = false;
@@ -31160,6 +31571,7 @@ function Adventurer()
                                 this.inebriation = 0;
                                 this.fleshMites = false;
                                 this.gutWorms = false;
+                                this.throatTicks = false;
                                 this.brainMaggots = false;
                                 this.gojiiTimer = 0;
                                 this.gojiiPoisoned = false;
@@ -31208,6 +31620,8 @@ function Adventurer()
                                 this.watered = true;
                                 this.fed = true;
 
+                                this.radiation = 0;
+
                                 this.gojiiTimer = 0;
                                 this.acidI = false;
                                 this.acidII = false;
@@ -31236,6 +31650,7 @@ function Adventurer()
                                 this.inebriation = 0;
                                 this.fleshMites = false;
                                 this.gutWorms = false;
+                                this.throatTicks = false;
                                 this.brainMaggots = false;
                                 this.gojiiTimer = 0;
                                 this.gojiiPoisoned = false;
@@ -33333,10 +33748,13 @@ function Adventurer()
                 this.poisonIV = false;
                 this.poisonV = false;
                 this.gutWorms = false;
+                this.throatTicks = false;
                 this.freezing = false;
                 this.recoveryTime = 0;
                 this.energizeTime = 0;
                 this.timeSinceRawTrollBlood = 0;
+
+                this.radiation = 0;
 
                 //refresh all stats to max
                 this.health = this.healthMAX;
@@ -34556,6 +34974,7 @@ function Adventurer()
             //Quick fixes are my lazy way of solving challenging or bothersom problems!
             if (zindex == 6)
             {
+                this.inventoryAction(); //this is how items affect the player while they are in the player's inventory
                 this.quickFixes();
             }
         }

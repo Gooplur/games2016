@@ -109,6 +109,8 @@ function buildMaster()
                 //ArtificialIntelligenceAccess.push(new Unit(4000, 2500, "Ghoul", true, "Slub"));
                 //ArtificialIntelligenceAccess.push(new Unit(4000, 2900, "Ghoul", false, "Sluba"));
                 //ArtificialIntelligenceAccess[ArtificialIntelligenceAccess.length - 1].eggs = "fecundo";
+                //scenicList.push(new Scenery("eyewortPlant", 3400, 2400, 2.2, true));
+                //ArtificialIntelligenceAccess.push(new Unit(3900, 2900, "Xormid", false, "Sluba"));
 
                 //scenicList.push(new Scenery("dethMasterHut", 3600, 2500, 0, 0, "deth1"));
                 //scenicList.push(new Scenery("dethTotem", 3600, 3400, 0, 0, "deth1"));

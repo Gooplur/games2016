@@ -287,6 +287,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     this.humptiShell = 0; //for humpty death and drop
     this.radiation = 0;
     this.radProof = false; //this prevents the unit from absorbing radation if it is true
+    this.fireDeath = false; //if this is true, the unit can only die by fire
 
     //Artificial Intelligence
     this.setTeamByID = function()
@@ -8081,6 +8082,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                                     player.blindedStoreTime = new Date().getTime();
                                     player.blindedTime = 13;
                                 }
+                                else if (this.effect == "xormid" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
+                                {
+                                    player.radiation += this.damage * 1/5;
+                                }
                                 else if (this.effect == "quarterAcid" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
                                 {
                                     player.quarterAcid = true;
@@ -8295,6 +8300,34 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                                 this.target.stunTimer = 12;
                                 this.target.stunTime = new Date().getTime();
                                 this.target.frozenTime = new Date().getTime();
+                            }
+                            else if (this.effect == "xormid" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
+                            {
+                                this.target.radiation += this.damage * 1/5;
+                                if (this.target.health <= 0 && this.target.invisible != true && this.target.vamprism != true && this.target.undying != true)
+                                {
+                                    if (this.target.type != "Xormid")
+                                    {
+                                        if (this.target.healthMAX >= 27)
+                                        {
+                                            if (this.target.healthMAX > 27)
+                                            {
+                                                this.radiation += 1/4 * (this.target.healthMAX - 27);
+                                            }
+                                            ArtificialIntelligenceAccess.push(new Unit(this.target.X, this.target.Y, "Xormid", true, "oozling"));
+                                        }
+                                        else if (this.target.healthMAX >= 9)
+                                        {
+                                            ArtificialIntelligenceAccess.push(new Unit(this.target.X, this.target.Y, "Xormid", false, "oozling"));
+                                        }
+                                        else
+                                        {
+                                            this.radiation += 1/4 * this.target.healthMAX;
+                                        }
+                                    }
+                                    this.target.invisible = true;
+                                }
+
                             }
                             else if (this.effect == "blackTrollSmash" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
                             {
@@ -11045,155 +11078,158 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     {
         if (this.undying != true || this.vamprism == true)
         {
-            if (this.health <= 0 && !this.petrified && this.vamprism == false || this.vamprism == true && this.vampKill == true) //a petrified unit will wait to die until it is unpetrified
+            if (this.fireDeath != true || this.burningTime != 0)
             {
-                this.alive = false;
-
-                this.attacking = false;
-                this.moving = false;
-                this.playerSeen = false;
-                this.disturbedTime = 0;
-                this.disturbed = false;
-                this.extraRangeTime = 0;
-                this.extraRange = 0;
-
-                //leeches leave body on death
-                if (this.leeches > 0)
+                if (this.health <= 0 && !this.petrified && this.vamprism == false || this.vamprism == true && this.vampKill == true) //a petrified unit will wait to die until it is unpetrified
                 {
-                    for (var iii = 0; iii < this.leeches; iii++)
+                    this.alive = false;
+
+                    this.attacking = false;
+                    this.moving = false;
+                    this.playerSeen = false;
+                    this.disturbedTime = 0;
+                    this.disturbed = false;
+                    this.extraRangeTime = 0;
+                    this.extraRange = 0;
+
+                    //leeches leave body on death
+                    if (this.leeches > 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Leech", false, "corpseLeech"));
-                    }
-                    this.leeches = 0;
-                }
-
-                //unmount on death
-                if (this.mounted)
-                {
-                    this.mounted = false;
-                    player.mounted = false;
-                }
-
-                if (this.wasAlive == true && !this.undeath)
-                {
-                    this.wasAlive = false;
-                    this.timeSinceDead = new Date().getTime();
-
-                    //loot and experience
-                    if (player.spell == "none" && this.killNotByPlayer == false && this.muzzle == false && player.form != "werewolf")
-                    {
-                        player.experience += Math.max(0, this.experience - this.lessEXP);
-                    }
-
-                    var chanced = false;
-                    if (this.killNotByPlayer == false && this.muzzle == false || this.killedByCompanion && this.muzzle == false)
-                    {
-                        if (!this.water || this.flotation || this.land) //items are lost to the water unless the creature can float
+                        for (var iii = 0; iii < this.leeches; iii++)
                         {
-                            if (player.form != "werewolf" && this.type != "Changeling")
+                            ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Leech", false, "corpseLeech"));
+                        }
+                        this.leeches = 0;
+                    }
+
+                    //unmount on death
+                    if (this.mounted)
+                    {
+                        this.mounted = false;
+                        player.mounted = false;
+                    }
+
+                    if (this.wasAlive == true && !this.undeath)
+                    {
+                        this.wasAlive = false;
+                        this.timeSinceDead = new Date().getTime();
+
+                        //loot and experience
+                        if (player.spell == "none" && this.killNotByPlayer == false && this.muzzle == false && player.form != "werewolf")
+                        {
+                            player.experience += Math.max(0, this.experience - this.lessEXP);
+                        }
+
+                        var chanced = false;
+                        if (this.killNotByPlayer == false && this.muzzle == false || this.killedByCompanion && this.muzzle == false)
+                        {
+                            if (!this.water || this.flotation || this.land) //items are lost to the water unless the creature can float
                             {
-                                if (this.revived != true)
+                                if (player.form != "werewolf" && this.type != "Changeling")
                                 {
-                                    chanced = true;
-                                    for (var i = 0; i < this.drops.length; i++)
+                                    if (this.revived != true)
+                                    {
+                                        chanced = true;
+                                        for (var i = 0; i < this.drops.length; i++)
+                                        {
+                                            worldItems.push([this.drops[i][0], this.drops[i][1]]);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        worldItems.push([new Item("nechromanticDust", this.X, this.Y), 1 + Math.floor(this.healthMAX / 35)]);
+                                    }
+                                }
+                                else if (this.type == "Changeling")
+                                {
+                                    if (this.childForm == false && this.revived == false)
+                                    {
+                                        for (var i = 0; i < this.drops.length; i++)
+                                        {
+                                            worldItems.push([this.drops[i][0], this.drops[i][1]]);
+                                        }
+                                    }
+                                }
+                            }
+
+                            if (this.beastEntry != "none")
+                            {
+                                if (player.getSurvivalism() >= this.beastEntry.intReq)
+                                {
+                                    var addEntry = true;
+                                    for (var i = 0; i < beastJournal.length; i++)
+                                    {
+                                        if (this.beastEntry.name == beastJournal[i].name && this.beastEntry.alpha == beastJournal[i].alpha)
+                                        {
+                                            if (changeBeastiary)
+                                            {
+                                                beastJournal.splice(i, 1);
+                                            }
+                                            else
+                                            {
+                                                addEntry = false;
+                                            }
+                                            break;
+                                        }
+                                    }
+
+                                    if (addEntry)
+                                    {
+                                        beastJournal.push(this.beastEntry);
+                                    }
+                                }
+                            }
+                        }
+
+                        //if player would not otherwise get the dropped item make sure to drop all quest important items.
+                        if (chanced == false)
+                        {
+                            if (this.revived != true)
+                            {
+                                for (var i = 0; i < this.drops.length; i++)
+                                {
+                                    this.drops[i][0].setItemID();
+                                    if (this.drops[i][0].questy == true || this.drops[i][0].utility == "questItem")
                                     {
                                         worldItems.push([this.drops[i][0], this.drops[i][1]]);
                                     }
                                 }
-                                else
-                                {
-                                    worldItems.push([new Item("nechromanticDust", this.X, this.Y), 1 + Math.floor(this.healthMAX / 35)]);
-                                }
-                            }
-                            else if (this.type == "Changeling")
-                            {
-                                if (this.childForm == false && this.revived == false)
-                                {
-                                    for (var i = 0; i < this.drops.length; i++)
-                                    {
-                                        worldItems.push([this.drops[i][0], this.drops[i][1]]);
-                                    }
-                                }
                             }
                         }
 
-                        if (this.beastEntry != "none")
+                        //transference into the list of the dead...
+                        if (this.guarantee)
                         {
-                            if (player.getSurvivalism() >= this.beastEntry.intReq)
-                            {
-                                var addEntry = true;
-                                for (var i = 0; i < beastJournal.length; i++)
-                                {
-                                    if (this.beastEntry.name == beastJournal[i].name && this.beastEntry.alpha == beastJournal[i].alpha)
-                                    {
-                                        if (changeBeastiary)
-                                        {
-                                            beastJournal.splice(i, 1);
-                                        }
-                                        else
-                                        {
-                                            addEntry = false;
-                                        }
-                                        break;
-                                    }
-                                }
+                            this.removeSelfFromCompanionList(); //if the unit was a companion this removes the unit from the player's companion list.
+                        }
 
-                                if (addEntry)
+
+                        var me = ArtificialIntelligenceAccess.indexOf(this);
+                        if (!this.deleteBody)
+                        {
+                            if (!this.water || this.flotation || this.land) //bodies are lost to the water unless the creature can float
+                            {
+                                if (this.removeFromDeath != true)
                                 {
-                                    beastJournal.push(this.beastEntry);
+                                    deadAIList.push(this);
                                 }
                             }
                         }
+                        ArtificialIntelligenceAccess.splice(me, 1);
                     }
-
-                    //if player would not otherwise get the dropped item make sure to drop all quest important items.
-                    if (chanced == false)
+                    else if (this.undeath == true)
                     {
-                        if (this.revived != true)
+                        this.undeath = false;
+                        this.disturbedTime = new Date().getTime() + 9999999999;
+                        this.disturbed = true;
+                        this.health = 1/1000 * this.healthMAX;
+                        this.alive = true;
+                        if (player.getEminence() >= 2)
                         {
-                            for (var i = 0; i < this.drops.length; i++)
+                            if (this.baseTeam != "neutral")
                             {
-                                this.drops[i][0].setItemID();
-                                if (this.drops[i][0].questy == true || this.drops[i][0].utility == "questItem")
-                                {
-                                    worldItems.push([this.drops[i][0], this.drops[i][1]]);
-                                }
+                                this.baseTeam = "player";
                             }
-                        }
-                    }
-
-                    //transference into the list of the dead...
-                    if (this.guarantee)
-                    {
-                        this.removeSelfFromCompanionList(); //if the unit was a companion this removes the unit from the player's companion list.
-                    }
-
-
-                    var me = ArtificialIntelligenceAccess.indexOf(this);
-                    if (!this.deleteBody)
-                    {
-                        if (!this.water || this.flotation || this.land) //bodies are lost to the water unless the creature can float
-                        {
-                            if (this.removeFromDeath != true)
-                            {
-                                deadAIList.push(this);
-                            }
-                        }
-                    }
-                    ArtificialIntelligenceAccess.splice(me, 1);
-                }
-                else if (this.undeath == true)
-                {
-                    this.undeath = false;
-                    this.disturbedTime = new Date().getTime() + 9999999999;
-                    this.disturbed = true;
-                    this.health = 1/1000 * this.healthMAX;
-                    this.alive = true;
-                    if (player.getEminence() >= 2)
-                    {
-                        if (this.baseTeam != "neutral")
-                        {
-                            this.baseTeam = "player";
                         }
                     }
                 }
@@ -13834,6 +13870,67 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.effect = "fire";
                 this.beastEntry = {intReq: 25, name: "Pelcrid", health: "9 - 11", armour: 9.25, damage: "5.05 - 8.05", negate: 5.35, ability: "Fire", fireProof: 1000, habitat: "Molten barrens / Underground", sight: 290, alpha: "Normal", magicProof: -2, size: 16, speed: "0.21 - 0.51", rotation: 0.05, rate: "0.86 - 2.85", experience: 39, description: ["Pelcrids are a type of slime that lives at a very high temperature and that is fed by heat. If fire comes in contact with a pelcrid the pelcrid will", "absorb the heat and almost immediately grow larger. Pelcrids can not survive off of heat alone they also need to consume carbon in order to maintain", "itself; pelcrids hunt for prey to make up its carbon content incinerating it and soaking it into itself. Pelcrids, being reliant on heat, are damaged", "significantly when they are frozen.", " ", "When a pelcrid increased in size all of its stats increase as well, so the stats shown here are not accurate for an enlarged pelcrid."], image: ["nognog", 560, 92, 43, 28, 0, 0, 43 * 1 / 3, 28 * 1 / 3]};
 
+                // this is the adjustment the alpha type of Etyr needs to be centered.
+                this.yAdjustment = 0;
+                this.xAdjustment = 0;
+            }
+        }
+        else if (this.type == "Xormid")
+        {
+            this.damageFrame = "automatic";
+            this.resistances = ["radiation", "acid", "stun", "blinded", "shock", "night"];
+            this.team = "shehidia";
+            this.baseTeam = this.team;
+            this.tamable = false;
+
+            this.being = true;
+
+            this.fireDeath = true;
+
+            if (this.alpha == true)
+            {
+                this.magicalResistance = 20;
+                this.heatResistance = -5;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = 39;
+                this.health = this.healthMAX;
+                this.armour = 0;
+                this.speed = 0.9 + (Math.floor(Math.random() * 2) / 10);
+                this.rangeOfSight = 920; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.2; // 0.01 is a standard turn speed.
+                this.engagementRadius = 160;
+                this.sizeRadius = 20;
+                this.negateArmour = 12;
+                this.attackWait = 2.5;
+                this.effect = "xormid";
+
+                //alpha has a larger size body and skills.
+                this.alphaSize = 1.3; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                // this is the adjustment the alpha type of Etyr needs to be centered.
+                this.yAdjustment = 0;
+                this.xAdjustment = 0;
+            }
+            else
+            {
+                this.magicalResistance = 20;
+                this.heatResistance = -4;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = 27;
+                this.health = this.healthMAX;
+                this.armour = 0;
+                this.speed = 0.5 + (Math.floor(Math.random() * 2) / 10);
+                this.rangeOfSight = 920; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.2; // 0.01 is a standard turn speed.
+                this.engagementRadius = 110;
+                this.sizeRadius = 20;
+                this.negateArmour = 9;
+                this.attackWait = 2.5;
+                this.effect = "xormid";
+
+                //alpha has a larger size body and skills.
+                this.alphaSize = 1; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
                 // this is the adjustment the alpha type of Etyr needs to be centered.
                 this.yAdjustment = 0;
                 this.xAdjustment = 0;
@@ -23114,6 +23211,391 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.drawUnit(nognog, 606, 94, 38, 24, -1/2 * 38 * (this.alphaSize / 5) * szx - this.xAdjustment, -1/2 * 24 * (this.alphaSize / 5) * szx - this.yAdjustment, 38 * (this.alphaSize / 5) * szx, 24 * (this.alphaSize / 5) * szx);
             }
         }
+        //XORMID
+        if (this.type == "Xormid")
+        {
+            //Set Drops and experience
+            if (this.alpha == true)
+            {
+                if (Math.max(0, 4 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 22 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = (22 * ((player.getIntelligence() / 50) + 1)) / 10;
+                }
+
+                this.drops = [[new Item("xormidRemainsLarge", this.X, this.Y), 1]];
+            }
+            else
+            {
+                if (Math.max(0, 2 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 12 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = 12 * ((player.getIntelligence() / 50) + 1) / 10;
+                }
+
+                this.drops = [[new Item("xormidRemainsSmall", this.X, this.Y), 1]];
+            }
+
+            //RANGE OF SIGHT (anything related to range of sight)
+            if (this.alpha == true)
+            {
+                this.rangeOfSightCalculator(920, "unrelenting");
+            }
+            else
+            {
+                this.rangeOfSightCalculator(920, "unrelenting");
+            }
+
+            //AI
+            if (this.alive == true)
+            {
+                if (this.health < 0)
+                {
+                    this.health = 0;
+                }
+                if (this.being == true)
+                {
+                    if (this.alpha == true)
+                    {
+                        this.speed = 5.2 + (Math.floor(Math.random() * 3) / 10);
+                        this.rotationSpeed = 0.2; // 0.01 is a standard turn speed.
+                        this.engagementRadius = 130;
+                        this.negateArmour = 12;
+                        this.attackWait = 2.5;
+
+                        this.Attack(12, 12);
+                        this.callForNearbyHelpFromType(1200, "Xormid");
+                    }
+                    else
+                    {
+                        this.speed = 4.6 + (Math.floor(Math.random() * 3) / 10);
+                        this.negateArmour = 9;
+                        this.rotationSpeed = 0.2;
+                        this.engagementRadius = 100;
+                        this.attackWait = 2.5;
+
+                        this.Attack(9, 9);
+                        this.callForNearbyHelpFromType(1200, "Xormid");
+                    }
+                }
+                else if (this.being == false)
+                {
+                    if (this.alpha == true)
+                    {
+                        this.speed = 0.9 + (Math.floor(Math.random() * 2) / 10);
+                        this.rotationSpeed = 0.25; // 0.01 is a standard turn speed.
+                        this.engagementRadius = 125;
+                        this.negateArmour = 14;
+                        this.attackWait = 2;
+
+                        this.Attack(9, 10);
+                        this.callForNearbyHelpFromType(1200, "Xormid");
+                    }
+                    else
+                    {
+                        this.speed = 0.65 + (Math.floor(Math.random() * 2) / 10);
+                        this.negateArmour = 13;
+                        this.rotationSpeed = 0.25;
+                        this.engagementRadius = 92;
+                        this.attackWait = 2;
+
+                        this.Attack(6, 7);
+                        this.callForNearbyHelpFromType(1200, "Xormid");
+                    }
+                }
+
+                //this.deathChecker();
+                this.disturbedTimer();
+                this.visibleSight();
+                this.friendDecider();
+                this.targeting();
+
+                this.moving = false;
+
+                //radiation heals them
+                if (this.health < this.healthMAX)
+                {
+                    this.health += (this.radiation * 15);
+                    this.radiation = 0;
+                }
+
+                if (this.health > this.healthMAX)
+                {
+                    this.health = this.healthMAX;
+                }
+
+                if (this.health < (1/2 * this.healthMAX) && this.being == true)
+                {
+                    this.being = "unbecome";
+                }
+                else if (this.health >= (1/2 * this.healthMAX) && this.being == false)
+                {
+                    this.being = "become";
+                }
+
+                if (this.target == player)
+                {
+                    this.pointTowardsPlayer();
+                    this.moveInRelationToPlayer();
+                }
+                else if (this.target != "none")
+                {
+                    this.pointTowards(this.target);
+                    this.moveInRelationToThing(this.target);
+                }
+
+            }
+            else
+            {
+                //do stuff when a oolid dies...
+                if (this.doOnDeathOnce == true)
+                {
+                    this.doOnDeathOnce = false;
+                }
+            }
+
+            //ANIMATIONS
+
+            if (this.alive == true)
+            {
+                if (this.being == true)
+                {
+                    if (this.attacking) //otherwise if it is attacking then initiate attacking animation, and if neither...
+                    {
+                        if (new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000 / timeSpeed * this.timeResistance))
+                        {
+                            this.costumeEngine(4, 0.19, true);
+                        }
+                    }
+                    else
+                    {
+                        this.costume = 0;
+                    }
+
+                    // the frames/stages/costumes of the animation.
+                    var theCostume = Math.floor(this.costume); //This rounds this.costume down to the nearest whole number.
+
+                    var szx = 1;
+                    if (this.X != this.plantedX && this.Y != this.plantedY)
+                    {
+                        this.flashAnimate(500 / this.speed, this.rotation - Math.PI, 1, [{image: blac, imgX: 183, imgY: 532, portionW: 70, portionH: 49, adjX: -1/2 * 70 * szx * this.alphaSize, adjY: -1/2 * 49 * szx * this.alphaSize, width: 70 * szx * this.alphaSize, height: 49 * szx * this.alphaSize}, {image: blac, imgX: 184, imgY: 579, portionW: 70, portionH: 49, adjX: -1/2 * 70 * szx * this.alphaSize, adjY: -1/2 * 49 * szx * this.alphaSize, width: 70 * szx * this.alphaSize, height: 49 * szx * this.alphaSize}, {image: blac, imgX: 119, imgY: 537, portionW: 70, portionH: 49, adjX: -1/2 * 70 * szx * this.alphaSize, adjY: -1/2 * 49 * szx * this.alphaSize, width: 70 * szx * this.alphaSize, height: 49 * szx * this.alphaSize}, {image: blac, imgX: 119, imgY: 573, portionW: 70, portionH: 49, adjX: -1/2 * 70 * szx * this.alphaSize, adjY: -1/2 * 49 * szx * this.alphaSize, width: 70 * szx * this.alphaSize, height: 49 * szx * this.alphaSize}]);
+                    }
+                    this.plantedX = this.X;
+                    this.plantedY = this.Y;
+
+                    if (theCostume <= 0)
+                    {
+                        var rand = Math.random();
+                        if (rand < 0.2)
+                        {
+                            this.drawUnit(blac, 11, 58, 72, 43, -1/2 * 72 * this.alphaSize - this.xAdjustment, -1/2 * 43 * this.alphaSize - this.yAdjustment, 72 * this.alphaSize, 43 * this.alphaSize);
+                        }
+                        else if (rand < 0.4)
+                        {
+                            this.drawUnit(blac, 11, 107, 72, 43, -1/2 * 72 * this.alphaSize - this.xAdjustment, -1/2 * 43 * this.alphaSize - this.yAdjustment, 72 * this.alphaSize, 43 * this.alphaSize);
+                        }
+                        else if (rand < 0.6)
+                        {
+                            this.drawUnit(blac, 8, 148, 72, 43, -1/2 * 72 * this.alphaSize - this.xAdjustment, -1/2 * 43 * this.alphaSize - this.yAdjustment, 72 * this.alphaSize, 43 * this.alphaSize);
+                        }
+                        else if (rand < 0.8)
+                        {
+                            this.drawUnit(blac, 11, 195, 72, 43, -1/2 * 72 * this.alphaSize - this.xAdjustment, -1/2 * 43 * this.alphaSize - this.yAdjustment, 72 * this.alphaSize, 43 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(blac, 12, 244, 72, 43, -1/2 * 72 * this.alphaSize - this.xAdjustment, -1/2 * 43 * this.alphaSize - this.yAdjustment, 72 * this.alphaSize, 43 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume <= 1)
+                    {
+                        var rand = Math.random();
+                        if (rand < 0.333)
+                        {
+                            this.drawUnit(blac, 22, 298, 109, 44, -1/2 * 109 * this.alphaSize - this.xAdjustment, -1/2 * 44 * this.alphaSize - this.yAdjustment, 109 * this.alphaSize, 44 * this.alphaSize);
+                        }
+                        else if (rand < 0.666)
+                        {
+                            this.drawUnit(blac, 25, 354, 109, 44, -1/2 * 109 * this.alphaSize - this.xAdjustment, -1/2 * 44 * this.alphaSize - this.yAdjustment, 109 * this.alphaSize, 44 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(blac, 26, 414, 109, 44, -1/2 * 109 * this.alphaSize - this.xAdjustment, -1/2 * 44 * this.alphaSize - this.yAdjustment, 109 * this.alphaSize, 44 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume <= 2)
+                    {
+                        var rand = Math.random();
+                        if (rand < 0.333)
+                        {
+                            this.drawUnit(blac, 129, 410, 176, 48, -1/2 * 176 * this.alphaSize - this.xAdjustment, -1/2 * 48 * this.alphaSize - this.yAdjustment, 176 * this.alphaSize, 48 * this.alphaSize);
+                        }
+                        else if (rand < 0.666)
+                        {
+                            this.drawUnit(blac, 180, 347, 176, 48, -1/2 * 176 * this.alphaSize - this.xAdjustment, -1/2 * 48 * this.alphaSize - this.yAdjustment, 176 * this.alphaSize, 48 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(blac, 197, 294, 163, 48, -1/2 * 163 * this.alphaSize - this.xAdjustment, -1/2 * 48 * this.alphaSize - this.yAdjustment, 163 * this.alphaSize, 48 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume >= 3)
+                    {
+                        var rand = Math.random();
+                        if (rand < 0.333)
+                        {
+                            this.drawUnit(blac, 86, 469, 228, 48, -1/2 * 228 * this.alphaSize - this.xAdjustment, -1/2 * 48 * this.alphaSize - this.yAdjustment, 228 * this.alphaSize, 48 * this.alphaSize);
+                        }
+                        else if (rand < 0.666)
+                        {
+                            this.drawUnit(blac, 121, 248, 228, 48, -1/2 * 228 * this.alphaSize - this.xAdjustment, -1/2 * 48 * this.alphaSize - this.yAdjustment, 228 * this.alphaSize, 48 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(blac, 128, 203, 228, 48, -1/2 * 228 * this.alphaSize - this.xAdjustment, -1/2 * 48 * this.alphaSize - this.yAdjustment, 228 * this.alphaSize, 48 * this.alphaSize);
+                        }
+                    }
+                }
+                else
+                {
+                    if (this.being == "unbecome") //If not moving and not attacking initiate standing animation...
+                    {
+                        this.costumeEngine(5, 0.10, false);
+                    }
+                    else if (this.being == "become") //If not moving and not attacking initiate standing animation...
+                    {
+                        this.costumeEngine(5, 0.10, false);
+                    }
+                    else if (this.moving && !this.attacking) //If moving and not attacking initiate moving animation...
+                    {
+                        this.costumeEngine(3, 0.14, true);
+                    }
+                    else if (this.attacking) //otherwise if it is attacking then initiate attacking animation, and if neither...
+                    {
+                        if (new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000 / timeSpeed * this.timeResistance))
+                        {
+                            this.costumeEngine(5, 0.15, true);
+                        }
+                    }
+                    else
+                    {
+                        this.costume = 0;
+                    }
+                    // the frames/stages/costumes of the animation.
+                    var theCostume = Math.floor(this.costume); //This rounds this.costume down to the nearest whole number.
+
+                    if (theCostume <= 0)
+                    {
+                        if (this.being == "become")
+                        {
+                            this.drawUnit(blac, 87, 643, 53, 50, -1/2 * 53 * this.alphaSize - this.xAdjustment, -1/2 * 50 * this.alphaSize - this.yAdjustment, 53 * this.alphaSize, 50 * this.alphaSize);
+                        }
+                        else if (this.being == "unbecome")
+                        {
+                            this.drawUnit(blac, 223, 642, 58, 50, -1/2 * 58 * this.alphaSize - this.xAdjustment, -1/2 * 50 * this.alphaSize - this.yAdjustment, 58 * this.alphaSize, 50 * this.alphaSize);
+                        }
+                        else if (this.attacking == true)
+                        {
+                            this.drawUnit(blac, 13, 9, 83, 43, -1/2 * 83 * this.alphaSize - this.xAdjustment, -1/2 * 43 * this.alphaSize - this.yAdjustment, 83 * this.alphaSize, 43 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(blac, 13, 9, 83, 43, -1/2 * 83 * this.alphaSize - this.xAdjustment, -1/2 * 43 * this.alphaSize - this.yAdjustment, 83 * this.alphaSize, 43 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume <= 1)
+                    {
+                        if (this.being == "become")
+                        {
+                            this.drawUnit(blac, 27, 643, 58, 50, -1/2 * 58 * this.alphaSize - this.xAdjustment, -1/2 * 50 * this.alphaSize - this.yAdjustment, 58 * this.alphaSize, 50 * this.alphaSize);
+                        }
+                        else if (this.being == "unbecome")
+                        {
+                            this.drawUnit(blac, 159, 642, 53, 50, -1/2 * 53 * this.alphaSize - this.xAdjustment, -1/2 * 50 * this.alphaSize - this.yAdjustment, 53 * this.alphaSize, 50 * this.alphaSize);
+                        }
+                        else if (this.attacking == true)
+                        {
+                            this.drawUnit(blac, 181, 152, 178, 51, -1/2 * 178 * this.alphaSize - this.xAdjustment, -1/2 * 51 * this.alphaSize - this.yAdjustment, 178 * this.alphaSize, 51 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(blac, 79, 9, 83, 43, -1/2 * 83 * this.alphaSize - this.xAdjustment, -1/2 * 43 * this.alphaSize - this.yAdjustment, 83 * this.alphaSize, 43 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume <= 2)
+                    {
+                        if (this.being == "become")
+                        {
+                            this.drawUnit(blac, 159, 642, 53, 50, -1/2 * 53 * this.alphaSize - this.xAdjustment, -1/2 * 50 * this.alphaSize - this.yAdjustment, 53 * this.alphaSize, 50 * this.alphaSize);
+                        }
+                        else if (this.being == "unbecome")
+                        {
+                            this.drawUnit(blac, 27, 643, 58, 50, -1/2 * 58 * this.alphaSize - this.xAdjustment, -1/2 * 50 * this.alphaSize - this.yAdjustment, 58 * this.alphaSize, 50 * this.alphaSize);
+                        }
+                        else if (this.attacking == true)
+                        {
+                            this.drawUnit(blac, 178, 101, 178, 51, -1/2 * 178 * this.alphaSize - this.xAdjustment, -1/2 * 51 * this.alphaSize - this.yAdjustment, 178 * this.alphaSize, 51 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(blac, 161, 10, 83, 43, -1/2 * 83 * this.alphaSize - this.xAdjustment, -1/2 * 43 * this.alphaSize - this.yAdjustment, 83 * this.alphaSize, 43 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume <= 3)
+                    {
+                        if (this.being == "become")
+                        {
+                            this.drawUnit(blac, 223, 642, 58, 50, -1/2 * 58 * this.alphaSize - this.xAdjustment, -1/2 * 50 * this.alphaSize - this.yAdjustment, 58 * this.alphaSize, 50 * this.alphaSize);
+                        }
+                        else if (this.being == "unbecome")
+                        {
+                            this.drawUnit(blac, 87, 643, 53, 50, -1/2 * 53 * this.alphaSize - this.xAdjustment, -1/2 * 50 * this.alphaSize - this.yAdjustment, 53 * this.alphaSize, 50 * this.alphaSize);
+                        }
+                        else if (this.attacking == true)
+                        {
+                            this.drawUnit(blac, 142, 54, 203, 51, -1/2 * 203 * this.alphaSize - this.xAdjustment, -1/2 * 51 * this.alphaSize - this.yAdjustment, 203 * this.alphaSize, 51 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(blac, 161, 10, 83, 43, -1/2 * 83 * this.alphaSize - this.xAdjustment, -1/2 * 43 * this.alphaSize - this.yAdjustment, 83 * this.alphaSize, 43 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume >= 4)
+                    {
+                        if (this.being == "become")
+                        {
+                            this.drawUnit(blac, 223, 642, 58, 50, -1/2 * 58 * this.alphaSize - this.xAdjustment, -1/2 * 50 * this.alphaSize - this.yAdjustment, 58 * this.alphaSize, 50 * this.alphaSize);
+                            this.being = true;
+                            this.costume = 0;
+                        }
+                        else if (this.being == "unbecome")
+                        {
+                            this.drawUnit(blac, 87, 643, 53, 50, -1/2 * 53 * this.alphaSize - this.xAdjustment, -1/2 * 50 * this.alphaSize - this.yAdjustment, 53 * this.alphaSize, 50 * this.alphaSize);
+                            this.being = false;
+                            this.costume = 0;
+                        }
+                        else if (this.attacking == true)
+                        {
+                            this.drawUnit(blac, 142, 54, 203, 51, -1/2 * 203 * this.alphaSize - this.xAdjustment, -1/2 * 51 * this.alphaSize - this.yAdjustment, 203 * this.alphaSize, 51 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(blac, 161, 10, 83, 43, -1/2 * 83 * this.alphaSize - this.xAdjustment, -1/2 * 43 * this.alphaSize - this.yAdjustment, 83 * this.alphaSize, 43 * this.alphaSize);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                //this.drawUnit(theCrack, 38, 171, 38, 36, -1/2 * 38 * this.alphaSize - this.xAdjustment, -1/2 * 36 * this.alphaSize - this.yAdjustment, 38 * this.alphaSize, 36 * this.alphaSize);
+            }
+        }
         //OOLID
         if (this.type == "Oolid")
         {
@@ -23228,7 +23710,6 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 //do stuff when a oolid dies...
                 if (this.doOnDeathOnce == true)
                 {
-
                     this.doOnDeathOnce = false;
                 }
             }

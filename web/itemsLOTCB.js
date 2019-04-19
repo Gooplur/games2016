@@ -10922,6 +10922,64 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
         }
+        else if (this.type == "eyewortLeaves")
+        {
+            //For All Items
+            this.identity = "Eyewort Leaves";
+            this.weight = 0.12;
+            this.size = 8;
+            this.description = "A rough bumpy leaf that smells a bit sour.";
+            this.intForDes = 25;
+            this.intDescription = "The toxins in the leaves are not necessarily strong enough to kill you, but they will kill most gut parasites living in you.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = -2; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = -5; //warms player.
+            this.heal = -2; //heals health.
+            this.generation = -3; //recoops lost energy.
+            this.replenish = -2; //restores will.
+
+            //ability
+            this.ability = "gutCleanse";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 9 - Math.floor(player.getCharisma() / 50); // at max, buy for 8.
+            this.sellValue = 6 + Math.floor(player.getCharisma() / 25); // at max, sell for 8.
+        }
+        else if (this.type == "eyewortStalk")
+        {
+            //For All Items
+            this.identity = "Eyewort Stalk";
+            this.weight = 0.83;
+            this.size = 9;
+            this.description = "A red branching stem that hosts numerous buds that look like human eyes.";
+            this.intForDes = 5;
+            this.intDescription = "This is highly poisonous to consume, but can be used in certain alchemic formulas as a changer.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0.65; //satisfies hunger.
+            this.thirst = 0.2; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "poisonIII";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 7 - Math.floor(player.getCharisma() / 50); // at max, buy for 6.
+            this.sellValue = 5 + Math.floor(player.getCharisma() / 50); // at max, sell for 6.
+        }
         else if (this.type == "culprisLeaf")
         {
             //For All Items
@@ -32274,7 +32332,7 @@ function Item(type, x, y)
             this.size = 27;
             this.description = "An airtight suit that protects the wearer from radiation and dangerous fumes or chemicals.";
             this.intForDes = 0;
-            this.intDescription = "Do not use if damaged in any way: Trineum Technologies Incorporated will not be held liable for any loss of life due to misuse of this product.";
+            this.intDescription = "Trineum Technologies Incorporated will not be held liable for any loss of life due to misuse of this product.";
 
             //Define Utility
             this.utility = "worn";
@@ -36921,6 +36979,16 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
+        }
+        else if (this.type == "eyewortLeaves")
+        {
+            XXX.beginPath();
+            XXX.drawImage(beets, 555, 474, 25, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 25 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 1.4), 25 * 1.4, 24 * 1.4);
+        }
+        else if (this.type == "eyewortStalk")
+        {
+            XXX.beginPath();
+            XXX.drawImage(beets, 557, 338, 21, 30, X - this.X + (1/2 * CCC.width) - (1/2 * 21 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 30 * 1.4), 21 * 1.4, 30 * 1.4);
         }
         else if (this.type == "brightStone")
         {
@@ -41709,6 +41777,16 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
+        else if (this.type == "eyewortLeaves")
+        {
+            LXX.beginPath();
+            LXX.drawImage(beets, 555, 474, 25, 24, this.invX - (1/2 * 25 * 1.4), this.invY - (1/2 * 24 * 1.4), 25 * 1.4, 24 * 1.4);
+        }
+        else if (this.type == "eyewortStalk")
+        {
+            LXX.beginPath();
+            LXX.drawImage(beets, 557, 338, 21, 30, this.invX - (1/2 * 21 * 1.4), this.invY - (1/2 * 30 * 1.4), 21 * 1.4, 30 * 1.4);
+        }
         else if (this.type == "brightStone")
         {
             LXX.beginPath();
@@ -46466,6 +46544,16 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "eyewortLeaves")
+        {
+            XXX.beginPath();
+            XXX.drawImage(beets, 555, 474, 25, 24, this.invX - (1/2 * 25 * 1.4), this.invY - (1/2 * 24 * 1.4), 25 * 1.4, 24 * 1.4);
+        }
+        else if (this.type == "eyewortStalk")
+        {
+            XXX.beginPath();
+            XXX.drawImage(beets, 557, 338, 21, 30, this.invX - (1/2 * 21 * 1.4), this.invY - (1/2 * 30 * 1.4), 21 * 1.4, 30 * 1.4);
         }
         else if (this.type == "brightStone")
         {

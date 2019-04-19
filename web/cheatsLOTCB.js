@@ -190,6 +190,10 @@ function cheats()
         {
             player.radiation += 90;
         }
+        else if (cheatcode == "oozling")
+        {
+            ArtificialIntelligenceAccess.push(new Unit(X + 600, Y, "Xormid", true, "Sluba"));
+        }
         else if (cheatcode == "forget")
         {
             if (player.getKnowledge() >= 1)

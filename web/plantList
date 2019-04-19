@@ -33,6 +33,7 @@ SonjaTree - A large tree with numerous branches that bear delicious sonja fruits
 Crilk - A jungle bush that has blue fruits with yellowish spots: the fruits are squishy because the skin is rubbery; the fruits are filled with a thick liquid goo that suspends the numerous little black seeds inside; they are very poisonous to eat.
 SelvaTree - A large jungle tree with very long twisting branches. jungle trees: 0 = normal, 1 = torper nest, 2 = borea perch //scenicList.push(new Scenery("selvaTree", x, y, rotation, type));
 AshaiTree - A temperate black Vardanian tree that has white wood. //scenicList.push(new Scenery("ashaiTree", x, y, rotation, size));
+Eyewort - A thengan medicinal herb that has a red stalk with eyelike buds along its length: the stalk is poisonous, the leaves are medicinal.
 
 //ALREADY IN GAME (to create a plant with the scenery class these plants must be made all lowercase)
     //FARM

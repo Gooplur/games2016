@@ -30904,6 +30904,10 @@ function Adventurer()
                                     this.throatTicks = true;
                                 }
                             }
+                            else if (Inventory[i][0].ability == "gutCleanse")
+                            {
+                                this.gutWorms = false;
+                            }
                             else if (Inventory[i][0].ability == "nasty")
                             {
                                 this.throatTicks = true;

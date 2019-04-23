@@ -2833,6 +2833,3147 @@ function interaction(me)
                         }
                     }
 
+                    if (self.ID == "Hanz" || conversationID[0] == "Hanz")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Hanz";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                if (player.raceName == "Kel")
+                                {
+                                    player.dialogueOptions = [["Good day.", false, "c"], ["What brings you to the tavern?", false, "b"]];
+                                }
+                                else if (player.raceName != "Thengar" || player.title != "Nobility")
+                                {
+                                    player.dialogueOptions = [["Good day.", false, "a"], ["What brings you to the tavern?", false, "b"]];
+                                }
+                                else
+                                {
+                                    player.dialogueOptions = [["Good day, cousin Hanz.", false, "d"]];
+
+                                    player.dialogueOptions.unshift(["I have heard of your shame your wife brought to your household, cousin...", false, "e"])
+                                }
+                                if (quests.debtCollectorQuest == true && quests.debtCollectorHanz == false)
+                                {
+                                    player.dialogueOptions.unshift(["You owe Ederhal 39 coins, I'm here to collect them for him.", false, "f"]);
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "f")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0f";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            if (quests.debtCollectorStoryTold == false)
+                            {
+                                //text dialogue
+                                setMsg("Good day! Hey, I'll tell you a tale for a beer, does that sound like a deal?");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 1;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                //text dialogue
+                                setMsg("Good day! Do you want to hear my cautionary tale again for another beer?");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 1;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            if (player.raceName == "Kel")
+                            {
+                                //text dialogue
+                                setMsg("To get away from my troubles... leave me, Kel. I do not wish to be seen talking to you. I am the lord's nephew afterall, you have no right to approach me.");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 2;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                //text dialogue
+                                setMsg("Just drowning down my sorrows, friend. What brings you to the tavern?");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 3;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            setMsg("Go back to your master, Kel! It is not in good taste for a Kel to wander around the city alone except to do menial errands.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            setMsg("Ah, good day cousin! Well, it is now that you are here.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 4;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            //text dialogue
+                            setMsg("Business is hard work youngin'. When I was a girl I had four sisters, and we'd all help my ma' with the sowing. Now it's just me. I'll tell you, this work is not as easy as it seems...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0f")
+                        {
+                            //text dialogue
+                            setMsg("I would be happy to pay what I owe... Here you are.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.debtCollectorHanz = true;
+                                worldItems.push([new Item("coins", X, Y), 39]);
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 1)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["No thanks.", false, "b"]];
+
+                                for (var i = 0; i < Inventory.length; i++)
+                                {
+                                    if (Inventory[i][0].type == "harstAle")
+                                    {
+                                        player.dialogueOptions.push(["Sure! [give harst ale]", false, "a"]);
+                                        break;
+                                    }
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1b";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1a")
+                        {
+                            //text dialogue
+                            setMsg("[takes a long swig of the beer you offered then clears his throat]");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                var alehasA = -1;
+                                for (var i = 0; i < Inventory.length; i++)
+                                {
+                                    if (Inventory[i][0].type == "harstAle")
+                                    {
+                                        alehasA = i;
+                                    }
+                                }
+                                if (alehasA > -1)
+                                {
+                                    Inventory[alehasA][1] -= 1;
+
+                                    if (Inventory[alehasA][1] <= 0)
+                                    {
+                                        Inventory.splice(alehasA, 1);
+                                    }
+                                }
+
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 2;
+                                self.SC();
+                                quests.debtCollectorStoryTold = true;
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1b")
+                        {
+                            //text dialogue
+                            setMsg("Allright then... maybe later.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 2)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["...", false, "a"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "2a";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "2a")
+                        {
+                            //text dialogue
+                            setMsg("Once upon a time in a village much like this one, lived two children. They were very active children, a brother, and a sister. One day the children were playing along the edge of the woods when they heard a weird sound. They were both intreagued by the sound and wanted to investigate it, but the young boy... let's call him Fredriche, remember that his mother told him never to enter the woods. No matter what! < We have to see what that sound was! > said the girl, lets call her, ummm, Gilbana. The boy warned her of the dangers that his mom described. He said there were terrifying creatures like skols and spiders, and beasts that might tear little children limb from limb. The girl was not worried by this and so as to prove that he was no coward the boy offered to accompany the girl into the woods despite the dangers that awaited them. The deeper into the woods the children went, the louder the sound became as if it was beckoning them nearer. Soon enough they came across a pile of sticks. The children took the sticks to use as swords and they continued bravely. Next the children found a large spiderweb that spread across the woodland floor. They found the web in the most peculiar of ways, Gilbana had stepped right into it and fallen over. The more she struggled in the web, the more stuck she became. It wasn't long before giant etna spiders came crawling close with acidic foam dripping from each of their fanged mouths. They scurried forth to drain Gilbana dry of her blood, but as they drew near her brother defender her fiercely brandishing the sticks they had collected earlier. Soon enough he had poked out all of the spiders beady eyes. with the sticks. He helped his sister out of the web and they continued deeper into the woods. Next they came across a pile of rocks. They took the rocks just in case they might come in handy later on. After following the strange sound even deeper into the dark woods that were now only illuminated by the light of the moon, they came across a snarling pack of skols. One large Skol grabbed Fredriche  by his boot and began to drag him away to eat as a snack. Gilbana threw one of the heavy rocks the children had found earlier and it hit the Skol right between the eyes. It fell over dead releasing the boys leg from its jaws. She threw the rest of the rocks at the rest of the pack and they ran away. Finally the children came across a glowing white light in the woods. The light it seemed was the source of the sound, It had long black eyes and a twisted black smile. It reached out as if to embrace the children but within a moment had grabbed them each in one of its giant hands and toar them limb from limb eating their flesh as it spilled. The End! The moral of the story is to never go into the woods... that is I mean, if you want to live.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 3)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["The usual, beer, food, merriment...", false, "a"], ["I'm looking for work.", false, "c"], ["I'm drinking away my troubles as well... what sort of sorrows are you drowning?", false, "d"], ["I'm renting a room here.", false, "e"]];
+                                if (player.gamemode == "protagonist")
+                                {
+                                    player.dialogueOptions.push["Oh I'm just brooding, I brood on Thursdays mostly. Its the edgey thing to do.", false, "b"];
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "3a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "3b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "3c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "3d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "3e";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "3a")
+                        {
+                            //text dialogue
+                            setMsg("Ederhal has delicious food here, if you can afford it I recommend the bread with vel spread on it. Vel tastes amazing. Enjoy yourself then!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "3b")
+                        {
+                            //text dialogue
+                            setMsg("[he nods seeming to not understand a thing you just said] Alright then, I'll leave you to that.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "3c")
+                        {
+                            //text dialogue
+                            setMsg("Well that is a stroke of convenience because I just happen to have a job for you if you are interested. I need a tracker to find my wife and the slave she ran off with.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 6;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "3d")
+                        {
+                            //text dialogue
+                            setMsg("My wife ran away with one of my slaves and everybody knows about it. They say, what sort of a man is Hanz who can't even control his own wife... I have lost my credebility and honour in the eyes of my peers and so I spend my time here drinking to forget my shame. There's not enough beer in the world to forget it long enough to feel content.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 7;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "3e")
+                        {
+                            //text dialogue
+                            setMsg("If you are staying for a while you should watch a pit fight or two, Lethik is famous for our champion pit fighters.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 4)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Why is that?", false, "a"], ["Funny, I suspected my coming here to disown you would make your day worse...", false, "b"], ["I'm glad, I hope to help you however I can with this most unfortunate occurence.", false, "c"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "4a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "4b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "4c";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "4a")
+                        {
+                            //text dialogue
+                            setMsg("Because you can restore my honour by nullifying my marriage and having my wife and her Kellish lover killed. Please cousin, do this for me.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 5;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "4b")
+                        {
+                            //text dialogue
+                            setMsg("You came here to disown me!?!?!?! Does blood matter so little to house Beulingerr!? I am leaving!!! I would rather live a life of exile than bear the shame that you unjustly lay upon me!!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                uniqueChars.hanzLDS = false;
+                                player.blinded = true;
+                                player.blindedStoreTime = new Date().getTime();
+                                player.blindedTime = 1;
+                                change = "hanzExile";
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "4c")
+                        {
+                            if (player.gender == "Female")
+                            {
+                                //text dialogue
+                                setMsg("Sweet cousin, I am glad that you are so eager to help me... would you request an anullment of my marriage to my wife and have her and her kellish lover hanged? That is the only way to restore my honour at this point.");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 5;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                //text dialogue
+                                setMsg("It warms my heart that you are so zealous in your desire to help out a family member in need... would you request an anullment of my marriage to my wife and have her and her kellish lover hanged? That is the only way to restore my honour at this point.");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 5;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == 5)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["I will. [write a letter requesting an anullment for your cousin's past marriage and requesting a death warrant to be placed on his wife and her lover]", false, "a"], ["I will grant you the anullment but I will not order the execution of your wife. [write a letter requesting the marriage anullment]", false, "b"]];
+                                if (player.gender == "Female")
+                                {
+                                    player.dialogueOptions.push(["I will anull your marriage on the condition that you marry me, cousin Hanz. I will see to it that your wife and her lover will be executed as well. [write a letter to the necessary authorities]", false, "c"]);
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "5a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "5b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "5c";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "5a")
+                        {
+                            //text dialogue
+                            setMsg("You have saved me pulled me up from dishonor, cousin! I can not thank you enough! I will return to my estate now that I am free from the culpability of that wretched woman who called herself my wife... I hope you stop by to see me some time.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                lethikHanzRestored = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "5b")
+                        {
+                            //text dialogue
+                            setMsg("I thank you, cousin, so very much, though I fail to see the justice in letting my wife run amuck dishonoring herself and me by whoring herself to that despicable Kellish slave she ran away with. I will return to my estate now, perhaps you will stop by and visit sometime. You are always welcome.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                lethikHanzRestored = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "5c")
+                        {
+                            //text dialogue
+                            setMsg("I would be delighted to marry you! I have known you since we were both children, even then I was infatuated by your beauty. It was a mistake for me to marry my wife, I see that now! Let us marry in Cranheim, then we will return to live in my estate to the south of here!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                player.blinded = true;
+                                player.blindedStoreTime = new Date().getTime();
+                                player.blindedTime = 1;
+                                lethikHanzRestored = true;
+                                lethikHanzMarried = true;
+                                alert("Your family and crowds of local notables gather around as you approach the High Sage. Hanz is waiting for you in all his finery and lends you his outstretched hand to step up to the alter. You take his hand and stand facing him. Do you take this Man, Hanz of house Beulingerr to be your husband? You reply affirmatively. And do you take her Ladyship " + player.name + "to be your wife? Hanz replies affirmatively. The under the eyes of the gods, watchful and judging do we hereby proclaim the union of this noble couple. May prosperity seed your fields and may your union seed life! By the will of the gods you shall bed each other and be joined!")
+                                alert("You and Hanz have been married, and the seed of your union has been planted!");
+                                quests.hanzChildName = prompt("After nine months pass by, you deliver your daughter. What do you name her?", "Gelna");
+                                quests.hanzChild = true;
+                                change = "hanzMarried";
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 6)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["How much will you pay for the job?", false, "c"], ["I'll track them down for you, just tell me where to start.", false, "a"], ["Thanks for the offer but I'm not much of a tracker.", false, "b"], ["No thanks.", false, "d"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "6a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "6b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "6c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "6d";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "6a")
+                        {
+                            //text dialogue
+                            setMsg("My best guess is that they went south west towards kellish territory, otherwise maybe they went north to Hawik or west to Teshir. Any of those options are suicidal: because south west is the front lines of our nation's war with the Kellish tribes, if they went north they would freeze to death, and if they went west they would likely never get across the crag lands alive without a large armed escort protecting them. I'm sorry I can't be more helpful.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.spouseTrackerQuest = true;
+                                quests.activeQuests.push({name: "Spouse Tracker", description: "Hanz has hired you to track down his wife and slave and either bring them back or inform him of their location."});
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "6b")
+                        {
+                            //text dialogue
+                            setMsg("I understand, everyone has their own skillset.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "6c")
+                        {
+                            //text dialogue
+                            setMsg("If you find them and tell me their location I will pay you 80 coins, if you bring them back I will pay 100. Don't hurt my wife it it can be avoided, but the only part of the slave you would need to bring back is the head.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 6;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "6d")
+                        {
+                            //text dialogue
+                            setMsg("Oh, I'm sorry for bothering you then...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 7)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Thats tough...", false, "a"], ["Is there any way I can help?", false, "b"], ["I'm down on my luck too. Let us toast to our woes!", false, "c"], ["I can track them down for you if you are willing to pay.", false, "d"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "7a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "7b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "7c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "7d";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "7a")
+                        {
+                            //text dialogue
+                            setMsg("Yeah... Its been good to spend time with the locals though, there are many good people who I never would have met before because I used to spent all my time in my estate. This bitter experience has its positive side.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "7b")
+                        {
+                            //text dialogue
+                            setMsg("Actually yes, if you think you would be able to track down my wife and my slave I would pay.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 6;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "7c")
+                        {
+                            //text dialogue
+                            setMsg("Here's to drowning sorrows with beer!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "7d")
+                        {
+                            //text dialogue
+                            setMsg("Excellent! I had need for a tracker for just that purpose. I will pay you 80 coins for finding them and another 20 if you bring them back. Don't harm my wife if you can avoid it, but all I need back from the slave is his head.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.spouseTrackerQuest = true;
+                                quests.activeQuests.push({name: "Spouse Tracker", description: "Hanz has hired you to track down his wife and slave and either bring them back or inform him of their location."});
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Conrad" || conversationID[0] == "Conrad")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Conrad";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Good day.", false, "a"], ["Why weren't you drafted?", false, "b"], ["What do you think about Kellish slaves?", false, "c"]];
+                                if (player.raceName != "Thengar")
+                                {
+                                    player.dialogueOptions.unshift(["I'm not from around here, do you have any idea whom I should talk to if I'm looking for a job?", false, "d"]);
+                                }
+                                if (quests.debtCollectorQuest == true && quests.debtCollectorConrad == false)
+                                {
+                                    player.dialogueOptions.unshift(["You owe Ederhal 45 coins, pay up.", false, "e"]);
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            if (quests.thePlightOfLethikQuest == "complete" && uniqueChars.vsevolodLDS == false)
+                            {
+                                //text dialogue
+                                setMsg("Hey, axel told me that you saved his farm... I got my job back thanks to you!");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                setMsg("Yeah, its a good, but a bit dull I admit since I've been out of work.");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            setMsg("Most families in Lethik were asked to provide one able bodied man to fight, I walk with a limp, so I didn't qualify.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            setMsg("I think that I can't afford to buy one... I wish I could though, I would have it carry me around everywhere so that I wouldn't have to walk on my limp. Then I'd get to see the look on my neighbors faces when they see me living the high life while they're still shoveling manure in the fields.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            if (uniqueChars.vsevolodLDS == true && quests.theSecretOfTheSagesCacheQuest == false)
+                            {
+                                setMsg("Yeah, um I heard that there was some Vardan fellow that came into town a little while back, he was looking for somebody to help him with some sort of an expedition. It sounded exciting, but much too dangerous for me. He's probably still staying in a room at our local inn on the southeast corner of town.");
+                            }
+                            else
+                            {
+                                setMsg("To be honest, I can't think of any other sort of work. I guess it wouldn't hurt to ask around in the tavern. People usually congregate there after a hard days work.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            if (quests.thePlightOfLethikQuest == "complete" && uniqueChars.vsevolodLDS == false)
+                            {
+                                //text dialogue
+                                setMsg("Since I got my job back working Axels field, I feel comfortable paying off my tab. Here is the money for that... Thank you for being pacient with me!");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    quests.debtCollectorConrad = true;
+                                    worldItems.push([new Item("coins", X, Y), 45]);
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                //text dialogue
+                                setMsg("Uuummm, is there any chance I could get an extension on that? My boss Axel hasn't paid me since his farm dried up. There hasn't been much land to work so, I don't blame him... but I sort of don't have any coins to spare.");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 1;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == 1)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Sure, I guess you can have a short extension.", false, "a"], ["Your out of time, pay up now!", false, "b"], ["If you pay your tab back now I won't have to make this encounter unpleasant...", false, "c"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1c";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1a")
+                        {
+                            //text dialogue
+                            setMsg("Thank you so much, this is such a relief!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1b")
+                        {
+                            //text dialogue
+                            setMsg("Wow... that was a really short extension.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.debtCollectorConrad = true;
+                                worldItems.push([new Item("coins", X, Y), 45]);
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1c")
+                        {
+                            //text dialogue
+                            setMsg("I'll pay, I'll pay, it is just inconvenient for me because I am not making any money right now.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.debtCollectorConrad = true;
+                                worldItems.push([new Item("coins", X, Y), 45]);
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Lenard" || conversationID[0] == "Lenard")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Lenard";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                if (quests.debtCollectorLenardSeduced == false)
+                                {
+                                    if (player.raceName != "Kel")
+                                    {
+                                        player.dialogueOptions = [["Hello.", false, "a"], ["What do you think about the war?", false, "b"], ["Stop staring at me!", false, "c"]];
+                                        if (quests.debtCollectorQuest == true && quests.debtCollectorLenard == false)
+                                        {
+                                            player.dialogueOptions.unshift(["You owe Ederhal 65 coins, pay up.", false, "d"]);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        player.dialogueOptions = [["Hello.", false, "e"]];
+                                    }
+                                }
+                                else if (quests.debtCollectorLenardSeduced != "hurt")
+                                {
+
+                                    if (player.matureContentFilter != true)
+                                    {
+                                        player.dialogueOptions = [["Hello.", false, "f"], ["I played you for the fool that you are!", false, "f"]];
+                                        player.dialogueOptions.push(["Hey there lover... [kiss]", false, "g"], ["Sorry for rushing off earlier. I want to make that up to you. [unbutton his shirt -> XXX]", false, "h"]);
+                                    }
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "f")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0f";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "g")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0g";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "h")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0h";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            if (X < 52851 && X > 52676 && Y < -7125 && Y > -7235 && player.title != "Royalty" && player.title != "Nobility")
+                            {
+                                //text dialogue
+                                setMsg("What are you doing in my home!? Get out!");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                //text dialogue
+                                setMsg("Hello...");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            if (X < 52851 && X > 52676 && Y < -7125 && Y > -7235 && player.title != "Royalty" && player.title != "Nobility")
+                            {
+                                //text dialogue
+                                setMsg("I think its weird that you are asking me what I think about it in my home uninvited, thats what I think about it! Get out!");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                if (player.title != "Highfolk" && player.title != "Royalty" && player.title != "Nobility")
+                                {
+                                    //text dialogue
+                                    setMsg("Is this your thing? You just walk up to strangers and start asking them big political questions? Mind your own business will you!");
+
+                                    //on ended text dialogue
+                                    if (tellMessage == "reset")
+                                    {
+                                        msgReset();
+
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                    else
+                                    {
+                                        self.SC();
+                                    }
+                                }
+                                else
+                                {
+                                    //text dialogue
+                                    setMsg("It is a just war, the Kellish are scum and occupy expansive amounts a fertile land that our people who are more worthy in all respects deserve to have.");
+
+                                    //on ended text dialogue
+                                    if (tellMessage == "reset")
+                                    {
+                                        msgReset();
+
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                    else
+                                    {
+                                        self.SC();
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            if (player.gender == "Female" && player.title != "Royalty" && player.title != "Nobility" && player.matureContentFilter != true)
+                            {
+                                //text dialogue
+                                if (player.charisma >= 4)
+                                {
+                                    setMsg("With a body like yours, can you blame me?");
+                                }
+                                else if (player.getCharisma() >= 12)
+                                {
+                                    setMsg("If you don't want me to stare why are you so dressed up? You're literally begging me to look at you, you harlot!");
+                                }
+                                else
+                                {
+                                    setMsg("I wasn't looking at you... Who would want to look at you!? You ugly whore!");
+                                }
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                            else if (X < 52851 && X > 52676 && Y < -7125 && Y > -7235 && player.title != "Royalty" && player.title != "Nobility")
+                            {
+                                //text dialogue
+                                setMsg("Get out of my house before I call the guards!");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                            else if (player.title == "Royalty" || player.title == "Nobility")
+                            {
+                                if (player.gender == "Male")
+                                {
+                                    //text dialogue
+                                    setMsg("I apologize your lordship...");
+                                }
+                                else
+                                {
+                                    //text dialogue
+                                    setMsg("I apologize your ladyship... ");
+                                }
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                            else if (player.gender == "Female" && player.matureContentFilter == true)
+                            {
+                                //text dialogue
+                                setMsg("Your a beauty, what can I say!?");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                //text dialogue
+                                setMsg("You're in my way... Move!");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            if (player.gender == "Male")
+                            {
+                                setMsg("Ederhal wants to collect my tab, eh? Well if he isn't even brave enough to come collect his own dues then he is without honor and I need not pay him a single coin.");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 1;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                setMsg("If Ederhal is such a coward that he needs to send a woman to collect his tabs, he isn't going to see a single coin from me.");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 2;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            //text dialogue
+                            if (player.matureContentFilter != true)
+                            {
+                                setMsg("How dare you speak to me you disgusting abomination, go run back to your master before I cut your nose off!");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                setMsg("How dare you speak to me you disgusting abomination, go run along back to your master!");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0f")
+                        {
+                            //text dialogue
+                            setMsg("You thieving whore! You stole my money, you vile succubus!!! I should kill you!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                self.baseTeam = "arena3";
+                                self.ultra.faction = "arena3";
+                                self.disturbed = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0g")
+                        {
+                            //text dialogue
+                            setMsg("[As you approach for a kiss Lenard grabs you by the hair and starts punching you in the face!] You'll regret robbing me you no good whore!!!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.debtCollectorLenardSeduced = "hurt";
+                                if (player.health < 8)
+                                {
+                                    player.health = 0;
+                                }
+                                else
+                                {
+                                    player.health = 1/50 * player.healthMAX;
+                                }
+                                for (var i = 0; i < Inventory.length; i++)
+                                {
+                                    if (Inventory[i][0].type == "coins")
+                                    {
+                                        Inventory.splice(i, 1);
+                                        break;
+                                    }
+                                }
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0h")
+                        {
+                            //text dialogue
+                            setMsg("[You unbutton his shirt and well you know... He is extremely rough with you and when he finishes up he cuts your throat] That's for robbing me, Whore!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                player.health = 0;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 1)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["You'll pay up, I'll make sure of that. Do you want to do this the hard way or the easy way?", false, "a"], ["Your right it is sort of dishonorable to send someone to collect debts for you...", false, "b"], ["I don't give a crap about honour, pay up or else!", false, "c"], ["It is dishonorable to keep a running tab of 65 coins without paying it off, the only one whose honour is in question here is you.", false, "d"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1d";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1a")
+                        {
+                            //text dialogue
+                            if (player.level > 3 || player.title == "Nobility" || player.title == "Royalty")
+                            {
+                                setMsg("Fine I'll pay the tab, but he'll never see me coming around to that broken down excuse for an tavern ever again! I mean not until I get thirsty at least...");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    quests.debtCollectorLenard = true;
+                                    worldItems.push([new Item("coins", X, Y), 65]);
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                setMsg("OH the hard way for sure, I haven't had a good fight in ages!");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    self.baseTeam = "arena3";
+                                    self.ultra.faction = "arena3";
+                                    self.disturbed = true;
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1b")
+                        {
+                            //text dialogue
+                            if (player.title == "Nobility" || player.title == "Royalty")
+                            {
+                                setMsg("I'm glad you agree, now would you kindly let me be?");
+                            }
+                            else
+                            {
+                                setMsg("So what are you still doing here then! Bugger off!!");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1c")
+                        {
+                            if (player.weaponEquipped != "none" && player.level >= 2 || player.title == "Nobility" || player.title == "Royalty")
+                            {
+                                //text dialogue
+                                setMsg("Take the money, you're not worth my trouble!");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    quests.debtCollectorLenard = true;
+                                    worldItems.push([new Item("coins", X, Y), 65]);
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                //text dialogue
+                                setMsg("You dishonorable fiend, I will make you regret challenging me!");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    self.baseTeam = "arena3";
+                                    self.ultra.faction = "arena3";
+                                    self.disturbed = true;
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1d")
+                        {
+                            if (player.getCharisma >= 10 || player.title == "Nobility" || player.title == "Royalty")
+                            {
+                                if (player.title != "Nobility" && player.title != "Royalty")
+                                {
+                                    //text dialogue
+                                    setMsg("Your right, I... If you tell anybody about this I will cut your face!");
+
+                                    //on ended text dialogue
+                                    if (tellMessage == "reset")
+                                    {
+                                        msgReset();
+
+                                        quests.debtCollectorLenard = true;
+                                        worldItems.push([new Item("coins", X, Y), 65]);
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                    else
+                                    {
+                                        self.SC();
+                                    }
+                                }
+                                else
+                                {
+                                    //text dialogue
+                                    setMsg("Your right... I guess I should just pay him back so that my honour remains in tact. There is never a convenient time to lose 65 coins...");
+
+                                    //on ended text dialogue
+                                    if (tellMessage == "reset")
+                                    {
+                                        msgReset();
+
+                                        quests.debtCollectorLenard = true;
+                                        worldItems.push([new Item("coins", X, Y), 65]);
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                    else
+                                    {
+                                        self.SC();
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                //text dialogue
+                                setMsg("You think you're smart don't you, well your not! Bugger off!!");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == 2)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [];
+                                if (player.title == "Nobility" || player.title == "Royalty")
+                                {
+                                    if (player.raceName == "Thengar")
+                                    {
+                                        player.dialogueOptions.unshift(["Must I repeat myself, or would you like to keep your head on your shoulders?", false, "b"], ["Debt avoidance is a punishable offense, must I have you hanged for insubordination or will you pay what you owe?", false, "b"]);
+                                    }
+                                    else
+                                    {
+                                        player.dialogueOptions.unshift(["You insolent fool, don't you realize to whom you are speaking!?", false, "a"], ["It is best not to challenge a woman of noble birth you baseborn fool!", false, "a"]);
+                                    }
+                                }
+                                else
+                                {
+                                    player.dialogueOptions.push(["You think I can't take you on!?", false, "a"], ["With respect, I am a perfectly capable stand in for Ederhal. Please pay what you owe.", false, "c"], ["Your right, you shouldn't have to give Ederhal anything. Forgive me... [seduce him and steal his coin purse while kissing]", false, "d"]);
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "2a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "2b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "2c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "2d";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "2a")
+                        {
+                            //text dialogue
+                            if (player.title == "Nobility" || player.title == "Royalty")
+                            {
+                                setMsg("I meant no offense your ladyship, I only meant that he ought to come collect the tab himself is all. I will pay the money, its all here see.");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    quests.debtCollectorLenard = true;
+                                    worldItems.push([new Item("coins", X, Y), 65]);
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                if (player.weaponEquipped != "none")
+                                {
+                                    if (player.level < 8)
+                                    {
+                                        setMsg("Do you even know how to use that weapon? The tales of Brunhilda the warrior princess are just that, tales, women will never be fit enough to face men in battle. Put that weapon down and give me a kiss, you Harlot.");
+                                    }
+                                    else
+                                    {
+                                        setMsg("Alright now, alright, you don't need to make threats... here is the money.");
+                                    }
+                                }
+                                else
+                                {
+                                    setMsg("Your an ornery one aren't you... I'll tell you what, you swing at me first and we'll see who's tough then.");
+                                }
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    if (player.level >= 8)
+                                    {
+                                        quests.debtCollectorLenard = true;
+                                        worldItems.push([new Item("coins", X, Y), 65]);
+                                    }
+                                    else
+                                    {
+                                        self.baseTeam = "loner";
+                                        self.ultra.faction = "arena3";
+                                    }
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "2b")
+                        {
+                            //text dialogue
+                            setMsg("Here is the coin your ladyship, forgive my rudeness... here take some more as gift of apology, it is all I can afford.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.debtCollectorLenard = true;
+                                worldItems.push([new Item("coins", X, Y), 75]);
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "2c")
+                        {
+                            //text dialogue
+                            setMsg("With respect!? [spits on your feet and laughs loudly] Your a woman! Handling money is a man's job! Now you go and tell your lover Ederhal that he needs to come collect his own debt!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "2d")
+                        {
+                            //text dialogue
+                            setMsg("[Your kissing stops abruptly after you unfasten Lenard's coin purse] ...Hey! Come back here you harlot! Give me another kiss! You tease!!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.debtCollectorLenardSeduced = true;
+                                quests.debtCollectorLenard = true;
+                                var koinz = -1
+                                for (var i = 0; i < Inventory.length; i++)
+                                {
+                                    if (Inventory[i][0].type == "coins")
+                                    {
+                                        koinz = i;
+                                    }
+                                }
+
+                                if (koinz > -1)
+                                {
+                                    Inventory[koinz][1] += 75;
+                                }
+                                else
+                                {
+                                    Inventory.unshift([new Item("coins", false, false), 75])
+                                }
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Axel" || conversationID[0] == "Axel")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Axel";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Hey there.", false, "a"]];
+
+                                if (uniqueChars.vsevolodLDS == true && quests.thePlightOfLethikQuest == "complete")
+                                {
+                                    player.dialogueOptions.push(["I slayed the witch... Why is your farm still barren?", false, "e"]);
+                                }
+
+                                if (quests.thePlightOfLethikQuest == false)
+                                {
+                                    player.dialogueOptions.push(["Why is your farm so barren?", false, "b"]);
+                                }
+                                else if (quests.thePlightOfLethikQuest == true)
+                                {
+                                    if (uniqueChars.vsevolodLDS == false)
+                                    {
+                                        player.dialogueOptions.push(["Hildegard was innocent, the warlock responsible has been slain.", false, "d"]);
+                                        quests.thePlightOfLethikCompletionStyle = "vsevolod";
+                                    }
+                                    else if (uniqueChars.hildegardLDS == false)
+                                    {
+                                        player.dialogueOptions.push(["The witch is dead.", false, "d"]);
+                                        quests.thePlightOfLethikCompletionStyle = "hildegard";
+                                    }
+                                    else
+                                    {
+                                        player.dialogueOptions.push(["Could you tell me where to find the witch again?", false, "d"]);
+                                        quests.thePlightOfLethikCompletionStyle = "repeat";
+                                    }
+                                }
+
+                                if (quests.debtCollectorQuest == true && quests.debtCollectorAxel == false)
+                                {
+                                    player.dialogueOptions.push(["You owe Ederhal 33 coins, pay up.", false, "c"]);
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            if (uniqueChars.vsevolodLDS == false)
+                            {
+                                setMsg("I can't thank you enough for ridding my field of that warlock's curse!");
+                            }
+                            else if (quests.thePlightOfLethikCompletionStyle == "hildegard" && quests.thePlightOfLethikPay == 0)
+                            {
+                                setMsg("I am grateful that you slayed the old crone who cursed my field, but unfortunately my luck hasn't improved any...");
+                            }
+                            else if (quests.thePlightOfLethikCompletionStyle == "hildegard")
+                            {
+                                setMsg("I was hoping for better results since I paid you to take care of my witch problem... What a waste of money!");
+                            }
+                            else
+                            {
+                                setMsg("Hi.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            setMsg("It's witchcraft I tell ye, witchcraft, and I know who's behind it too. That nasty old crone Hildegard!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            setMsg("So, you're collecting Ederhal's tabs, eh? I'll have you know that I pay my debts when they are called on... here are the coins for Ederhal, make sure they get to him safely.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.debtCollectorAxel = true;
+                                worldItems.push([new Item("coins", X, Y), 33]);
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            if (quests.thePlightOfLethikCompletionStyle == "repeat")
+                            {
+                                //text dialogue
+                                setMsg("She lives in the house right beside the barracks.");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                            else if (quests.thePlightOfLethikCompletionStyle == "vsevolod")
+                            {
+                                //text dialogue
+                                setMsg("What a twist of fate, a warlock eh? Who would have thought? I guess I should consider apologizing to Hildegard for calling her a wicked fiendish hag...");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    if (quests.thePlightOfLethikPay > 0)
+                                    {
+                                        worldItems.push([new Item("coins", X, Y), quests.thePlightOfLethikPay]);
+                                    }
+                                    quests.thePlightOfLethikQuest = "complete";
+                                    quests.completeQuests.push({name: "The Plight of Lethik", description: "You slayed the warlock that was responsible for cursing Axel's farm."});
+                                    player.thengarFaction += 30;
+                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                    {
+                                        player.magicalExperience += 100;
+                                    }
+                                    else
+                                    {
+                                        player.magicalExperience += 20;
+                                        player.experience += 400;
+                                    }
+                                    player.fame += 1;
+                                    change = "bringBackDaField";
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                            else if (quests.thePlightOfLethikCompletionStyle == "hildegard")
+                            {
+                                //text dialogue
+                                setMsg("May the gods grant you glory! You have saved my farm!");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    if (quests.thePlightOfLethikPay > 0)
+                                    {
+                                        worldItems.push([new Item("coins", X, Y), quests.thePlightOfLethikPay]);
+                                    }
+                                    quests.thePlightOfLethikQuest = "complete";
+                                    quests.completeQuests.push({name: "The Plight of Lethik", description: "You slayed the witch accused of cursing Axel's farm."});
+                                    player.thengarFaction += 30;
+                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                    {
+                                        player.magicalExperience += 20;
+                                    }
+                                    else
+                                    {
+                                        player.experience += 95;
+                                    }
+                                    player.fame += 1;
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            //text dialogue
+                            setMsg("That dastardly curse of hers was so potent that even her death couldn't stop it. I hope that its effects will wear off soon, because my living depends on it.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 1)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Why do you think she is behind it?", false, "a"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1a";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1a")
+                        {
+                            //text dialogue
+                            setMsg("She walked by here muttering spells several times! She's a witch and she's cursed me poor field!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 2;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 2)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Tell me where she is, we shant suffer a witch to live! ", false, "a"], ["I'll help you find out the problem with your field.", false, "b"], ["How much will you pay me to solve your problem?", false, "c"], ["I'm sorry to hear that...", false, "d"], ["Good luck with that...", false, "d"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "2a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "2b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "2c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "2d";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "2a")
+                        {
+                            //text dialogue
+                            setMsg("She lives in a big house to the south-east of here, sort of near the middle of town, good luck to ye, and be wary of her evil spells.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.thePlightOfLethikQuest = true;
+                                quests.activeQuests.push({name: "The Plight of Lethik", description: "Old Lady Hildegard is accused of cursing the town field."});
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "2b")
+                        {
+                            //text dialogue
+                            setMsg("I already know the problem, its that old hag Hildegard and her curses.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.thePlightOfLethikQuest = true;
+                                quests.activeQuests.push({name: "The Plight of Lethik", description: "Old Lady Hildegard is accused of cursing the town field."});
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "2c")
+                        {
+                            //text dialogue
+                            setMsg("Pay you? I guess I could spare 20 coins.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 3;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "2d")
+                        {
+                            //text dialogue
+                            setMsg("Thanks for your kind words...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 3)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Its a deal.", false, "a"], ["You want me to kill a magical lune for just 20 coins, no.", false, "b"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "3a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "3b";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "3a")
+                        {
+                            //text dialogue
+                            setMsg("She lives in a big house to the south-east of here, sort of near the middle of town. You won't see a single coin until every last drop of her evil blood is spilled...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.thePlightOfLethikPay = 20;
+                                quests.thePlightOfLethikQuest = true;
+                                quests.activeQuests.push({name: "The Plight of Lethik", description: "Old Lady Hildegard is accused of cursing the town field."});
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "3b")
+                        {
+                            if (player.inquisitionRank != "none" || player.charisma >= 6 || player.getCharisma() >= 10)
+                            {
+                                //text dialogue
+                                setMsg("Fine I'll make it 35, please help me! This field is my entire living...");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    quests.thePlightOfLethikPay = 35;
+                                    quests.thePlightOfLethikQuest = true;
+                                    quests.activeQuests.push({name: "The Plight of Lethik", description: "Old Lady Hildegard is accused of cursing the town field."});
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                //text dialogu
+                                setMsg("If your not happy with what I can offer you, then I'm not paying you nothing!");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Lambert" || conversationID[0] == "Lambert")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Lambert";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                if (quests.debtCollectorLambertViolence == false)
+                                {
+                                    player.dialogueOptions = [["Hello.", false, "a"]];
+                                    if (quests.debtCollectorQuest == true && quests.debtCollectorLambert == false)
+                                    {
+                                        player.dialogueOptions.push(["You owe Ederhal 47 coins, pay up.", false, "c"])
+                                    }
+                                    else if (quests.debtCollectorLambert == "gift")
+                                    {
+                                        player.dialogueOptions.push(["How is your life so far?", false, "b"]);
+                                    }
+                                }
+                                else
+                                {
+                                    player.dialogueOptions = [["Hello there.", false, "d"]];
+                                }
+
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            if (quests.debtCollectorLambert == "gift")
+                            {
+                                //text dialogue
+                                setMsg("Its nice to see you again!");
+                            }
+                            else
+                            {
+                                //text dialogue
+                                setMsg("Hello.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            setMsg("Times are tough, but thanks to you I can afford to feed myself still!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            setMsg("I can't afford to pay Ederhal back yet, I need the money I have for food and clothing. My boots are worn and my pantry is nearly empty.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.debtCollectorLambert = true;
+                                worldItems.push([new Item("coins", X, Y), 33]);
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            setMsg("I don't want any trouble.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 1)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Frankly, I don't care about your other expenses, if you don't fork over the coins your boots won't be the only things of yours in disrepair!", false, "a"], ["Look, everyone needs the coins, but what is more important than coins is honor. Your honor will be at stake if you evade your debt any longer.", false, "b"], ["I didn't realize you were in such bad circumstances, I can pay your bar tab for you if you like.", false, "c"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1c";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1a")
+                        {
+                            if (player.weaponEquipped != "none")
+                            {
+                                //text dialogue
+                                setMsg("OK OK!! There is no need for violence, the coins are right here.");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    quests.debtCollectorLambert = true;
+                                    quests.debtCollectorLambertViolence = true;
+                                    worldItems.push([new Item("coins", X, Y), 47]);
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                //text dialogue
+                                setMsg("I won't stand here and listen to your empty threats, Ederhal will get his money when I am ready to pay him it!");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1b")
+                        {
+                            if (player.getCharisma() >= 8 || player.charisma >= 5)
+                            {
+                                //text dialogue
+                                setMsg("Your right, I should not wait any longer to pay this debt, I can't have the townsfolk seeing me as dishonorable.");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    quests.debtCollectorLambert = true;
+                                    playersTurnToSpeak = true;
+                                    worldItems.push([new Item("coins", X, Y), 47]);
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 1;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                //text dialogue
+                                setMsg("Being poor and being dishonorable are not the same! I will pay ederhal back when I can afford to.");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1c")
+                        {
+                            //text dialogue
+                            setMsg("Your kindness is a gift from the gods! I will remember this!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.debtCollectorLambert = "gift";
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+
+                    }
+
                     if (self.ID == "Iplala the Warrior Elder" || conversationID[0] == "Iplala")
                     {
                         lowBar = "dialogue";
@@ -19154,6 +22295,7 @@ function interaction(me)
                                     {
                                         if (player.dialogueOptions[i][2] == "a")
                                         {
+                                            tellMessage = false;
                                             playersTurnToSpeak = false;
                                             conversationID[1] = "0a";
                                         }
@@ -19165,34 +22307,61 @@ function interaction(me)
                         {
                             if (player.raceName == "Thengar" || player.raceName == "Freynor" || player.raceName == "Vardan")
                             {
-                                ederhalGet.play();
-                                ederhalGet.onended = function()
+                                //text dialogue
+                                setMsg("So, what can I get for you?");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
                                 {
+                                    msgReset();
+
                                     playersTurnToSpeak = true;
                                     player.dialoguePosition = 0;
                                     conversationID[1] = 1;
+                                    self.SC();
+                                }
+                                else
+                                {
                                     self.SC();
                                 }
                             }
                             else if (player.raceName == "Kel")
                             {
-                                ederhalKell.play();
-                                ederhalKell.onended = function()
+                                //text dialogue
+                                setMsg("Don't pollute my air with your filth, Kel!");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
                                 {
+                                    msgReset();
+
                                     playersTurnToSpeak = true;
                                     player.dialoguePosition = 0;
                                     conversationID[1] = 0;
                                     self.SC();
                                 }
+                                else
+                                {
+                                    self.SC();
+                                }
                             }
                             else
                             {
-                                ederhalQuickly.play();
-                                ederhalQuickly.onended = function()
+                                //text dialogue
+                                setMsg("Say what you're gonna say, and get it over with quickly.");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
                                 {
+                                    msgReset();
+
                                     playersTurnToSpeak = true;
                                     player.dialoguePosition = 0;
                                     conversationID[1] = 1;
+                                    self.SC();
+                                }
+                                else
+                                {
                                     self.SC();
                                 }
                             }
@@ -19235,36 +22404,43 @@ function interaction(me)
                                     {
                                         if (player.dialogueOptions[i][2] == "a")
                                         {
+                                            tellMessage = false;
                                             playersTurnToSpeak = false;
                                             conversationID[1] = "1a";
                                         }
                                         else if (player.dialogueOptions[i][2] == "b")
                                         {
+                                            tellMessage = false;
                                             playersTurnToSpeak = false;
                                             conversationID[1] = "1b";
                                         }
                                         else if (player.dialogueOptions[i][2] == "c")
                                         {
+                                            tellMessage = false;
                                             playersTurnToSpeak = false;
                                             conversationID[1] = "1c";
                                         }
                                         else if (player.dialogueOptions[i][2] == "d")
                                         {
+                                            tellMessage = false;
                                             playersTurnToSpeak = false;
                                             conversationID[1] = "1d";
                                         }
                                         else if (player.dialogueOptions[i][2] == "e")
                                         {
+                                            tellMessage = false;
                                             playersTurnToSpeak = false;
                                             conversationID[1] = "1e";
                                         }
                                         else if (player.dialogueOptions[i][2] == "f")
                                         {
+                                            tellMessage = false;
                                             playersTurnToSpeak = false;
                                             conversationID[1] = "1f";
                                         }
                                         else if (player.dialogueOptions[i][2] == "g")
                                         {
+                                            tellMessage = false;
                                             playersTurnToSpeak = false;
                                             conversationID[1] = "1g";
                                         }
@@ -19274,31 +22450,54 @@ function interaction(me)
                         }
                         else if (conversationID[1] == "1a")
                         {
-                            ederhalRightPlace.play();
-                            ederhalRightPlace.onended = function()
+                            //text dialogue
+                            setMsg("Good, you came to the right place.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
                             {
+                                msgReset();
+
                                 playersTurnToSpeak = true;
                                 player.dialoguePosition = 0;
                                 conversationID[1] = 1;
                                 self.SC();
                             }
+                            else
+                            {
+                                self.SC();
+                            }
                         }
                         else if (conversationID[1] == "1b")
                         {
-                            ederhalSheets.play();
-                            ederhalSheets.onended = function()
+                            //text dialogue
+                            setMsg("Its 9 coins per night, and don't ask for extra sheets.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
                             {
+                                msgReset();
+
                                 playersTurnToSpeak = true;
                                 player.dialoguePosition = 0;
                                 conversationID[1] = 2;
                                 self.SC();
                             }
+                            else
+                            {
+                                self.SC();
+                            }
                         }
                         else if (conversationID[1] == "1c")
                         {
-                            ederhalGossip.play();
-                            ederhalGossip.onended = function()
+                            //text dialogue
+                            setMsg("I don't gossip. You're going to have to find some other looselip to hear that from.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
                             {
+                                msgReset();
+
                                 playersTurnToSpeak = true;
                                 player.dialoguePosition = 0;
                                 if (quests.thePlightOfLethikQuest != "complete")
@@ -19311,28 +22510,50 @@ function interaction(me)
                                 }
                                 self.SC();
                             }
+                            else
+                            {
+                                self.SC();
+                            }
                         }
                         else if (conversationID[1] == "1d")
                         {
                             if (quests.debtCollectorQuest == false)
                             {
-                                ederhalConvincing.play();
-                                ederhalConvincing.onended = function()
+                                //text dialogue
+                                setMsg("Sure there are, I could use a debt collector. I need someone to collect the unpaid tabs from some of my clients that refused to pay up. They're locals, so they might need some convincing...");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
                                 {
+                                    msgReset();
+
                                     playersTurnToSpeak = true;
                                     player.dialoguePosition = 0;
                                     conversationID[1] = 4;
                                     self.SC();
                                 }
+                                else
+                                {
+                                    self.SC();
+                                }
                             }
                             else if (quests.draftAndDieQuest == false && uniqueChars.friedrichLDS == true)
                             {
-                                ederhalTrust.play();
-                                ederhalTrust.onended = function()
+                                //text dialogue
+                                setMsg("Well, there's one other job I can think of, but I don't know if I can trust you with it.");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
                                 {
+                                    msgReset();
+
                                     playersTurnToSpeak = true;
                                     player.dialoguePosition = 0;
                                     conversationID[1] = 5;
+                                    self.SC();
+                                }
+                                else
+                                {
                                     self.SC();
                                 }
                             }
@@ -19342,36 +22563,59 @@ function interaction(me)
                             if (quests.debtCollectorWho == false)
                             {
                                 quests.debtCollectorWho = true;
-                                ederhalFirstRound.play();
-                                ederhalFirstRound.onended = function()
+                                //text dialogue
+                                setMsg("Axel owes 33, Hanz owes 39, Lambert owes 47, Lenard owes 65, that drunken bastard, and Conrad owes me 45, so just make sure you get me all 229 coins and I'll give you your pay.");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
                                 {
+                                    msgReset();
+
                                     playersTurnToSpeak = true;
                                     player.dialoguePosition = 0;
                                     conversationID[1] = 1;
                                     self.SC();
                                 }
+                                else
+                                {
+                                    self.SC();
+                                }
                             }
                             else
                             {
-                                ederhalLetsSee.play();
-                                ederhalLetsSee.onended = function()
+                                //text dialogue
+                                setMsg("Lets see, Hanz owes 39, Lenard owes 65, Axel owes 33, Conrad owes 45, and Lambert owes me 47. Make sure to get me all 229 coins and I'll give you your pay. Remember, you'll get more than just a cut when you bring it all back to me.");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
                                 {
+                                    msgReset();
+
                                     playersTurnToSpeak = true;
                                     player.dialoguePosition = 0;
                                     conversationID[1] = 1;
+                                    self.SC();
+                                }
+                                else
+                                {
                                     self.SC();
                                 }
                             }
                         }
                         else if (conversationID[1] == "1f")
                         {
-                            ederhalYourCut.play();
-                            ederhalYourCut.onended = function()
+                            //text dialogue
+                            setMsg("Here's your cut, I hope you're content.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
                             {
+                                msgReset();
+
                                 var coinReqq = -1;
                                 for (var i = 0; i < Inventory.length; i++)
                                 {
-                                    if (Inventory[i][1] >= 229 && Inventory[i][0].type == "coin")
+                                    if (Inventory[i][1] >= 229 && Inventory[i][0].type == "coins")
                                     {
                                         coinReqq = i;
                                         break;
@@ -19381,15 +22625,21 @@ function interaction(me)
                                 if (coinReqq > -1)
                                 {
                                     quests.debtCollectorQuest = "complete";
-                                    quests.completeQuests.push({name: "Beer Money", description: "You brought Ederhal the Innkeeper the money that his patrons owed him for their bar tabs."});
+                                    quests.completeQuests.push({name: "Beer Money", description: "You brought Ederhal the Innkeeper the money that his clients owed him for their bar tabs."});
                                     Inventory[coinReqq][1] -= 169;
                                     player.thengarFaction += 5;
                                     player.experience += 50;
                                     playersTurnToSpeak = true;
                                     player.dialoguePosition = 0;
                                     conversationID[1] = 1;
+                                    worldItems.push([new Item("skolLeatherGloves", X, Y), 1]);
+
                                     self.SC();
                                 }
+                            }
+                            else
+                            {
+                                self.SC();
                             }
                         }
                         else if (conversationID[1] == "1g")
@@ -19399,7 +22649,7 @@ function interaction(me)
                                 var coinReqq = -1;
                                 for (var i = 0; i < Inventory.length; i++)
                                 {
-                                    if (Inventory[i][0].type == "coin")
+                                    if (Inventory[i][0].type == "coins")
                                     {
                                         coinReqq = i;
                                         break;
@@ -19412,7 +22662,7 @@ function interaction(me)
                                 }
                                 else
                                 {
-                                    Inventory.unshift([new Item("coin", false, false), quests.draftAndDieReward]);
+                                    Inventory.unshift([new Item("coins", false, false), quests.draftAndDieReward]);
                                 }
                                 quests.draftAndDieQuest = "complete";
                                 quests.completeQuests.push({name: "To Draft to Death", description: "You assassinated the captain of the guard of Lethik City for a hefty sum."});
@@ -19424,14 +22674,23 @@ function interaction(me)
                             }
                             else
                             {
-                                ederhalForgetAboutIt.play();
-                                ederhalForgetAboutIt.onended = function()
+                                //text dialogue
+                                setMsg("Forget about it.");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
                                 {
+                                    msgReset();
+
                                     quests.draftAndDieQuest = "complete";
                                     quests.completeQuests.push({name: "To Draft to Death", description: "The captain of the guard was killed, but not by you. Your employer Ederhal was delighted that he no longer required such costly services as yours."});
                                     playersTurnToSpeak = true;
                                     player.dialoguePosition = 0;
                                     conversationID[1] = 1;
+                                    self.SC();
+                                }
+                                else
+                                {
                                     self.SC();
                                 }
                             }
@@ -19451,11 +22710,13 @@ function interaction(me)
                                     {
                                         if (player.dialogueOptions[i][2] == "a")
                                         {
+                                            tellMessage = false;
                                             playersTurnToSpeak = false;
                                             conversationID[1] = "2a";
                                         }
                                         else if (player.dialogueOptions[i][2] == "b")
                                         {
+                                            tellMessage = false;
                                             playersTurnToSpeak = true;
                                             conversationID[1] = "2b";
                                         }
@@ -19475,12 +22736,21 @@ function interaction(me)
                             }
                             if (room < 0)
                             {
-                                ederhalForgetAboutIt.play();
-                                ederhalForgetAboutIt.onended = function()
+                                //text dialogue
+                                setMsg("Forget about it.");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
                                 {
+                                    msgReset();
+
                                     playersTurnToSpeak = true;
                                     player.dialoguePosition = 0;
                                     conversationID[1] = 1;
+                                    self.SC();
+                                }
+                                else
+                                {
                                     self.SC();
                                 }
                             }
@@ -19534,11 +22804,13 @@ function interaction(me)
                                     {
                                         if (player.dialogueOptions[i][2] == "a")
                                         {
+                                            tellMessage = false;
                                             playersTurnToSpeak = false;
                                             conversationID[1] = "3a";
                                         }
                                         else if (player.dialogueOptions[i][2] == "b")
                                         {
+                                            tellMessage = false;
                                             playersTurnToSpeak = true;
                                             conversationID[1] = "3b";
                                         }
@@ -19571,17 +22843,22 @@ function interaction(me)
                                     Inventory.splice(room, 1);
                                 }
 
-                                ederhalKnow.play();
-                                ederhalKnow.onended = function()
+                                //text dialogue
+                                setMsg("Yeah, 10 coins will get you what you want to know. I've heard that old lady hildegard is a sorceress, some folks are wanting to burn her away... but I'm thinking that's all a load of nonsense. She's a nice woman, she dosn't have any reason to do anything to harm the town, she is one of us.");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
                                 {
-                                    ederhalNonsense.play();
-                                    ederhalNonsense.onended = function()
-                                    {
-                                        playersTurnToSpeak = true;
-                                        player.dialoguePosition = 0;
-                                        conversationID[1] = 1;
-                                        self.SC();
-                                    }
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 1;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
                                 }
                             }
                         }
@@ -19606,6 +22883,7 @@ function interaction(me)
                                     {
                                         if (player.dialogueOptions[i][2] == "a")
                                         {
+                                            tellMessage = false;
                                             playersTurnToSpeak = false;
                                             conversationID[1] = "4a";
                                         }
@@ -19615,12 +22893,21 @@ function interaction(me)
                         }
                         else if (conversationID[1] == "4a")
                         {
-                            ederhalTabs.play();
-                            ederhalTabs.onended = function()
+                            //text dialogue
+                            setMsg("60 coins and a little something else, but you don't get nothing until you come back with the tabs.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
                             {
+                                msgReset();
+
                                 playersTurnToSpeak = true;
                                 player.dialoguePosition = 0;
                                 conversationID[1] = 8;
+                                self.SC();
+                            }
+                            else
+                            {
                                 self.SC();
                             }
                         }
@@ -19656,11 +22943,13 @@ function interaction(me)
                                     {
                                         if (player.dialogueOptions[i][2] == "a")
                                         {
+                                            tellMessage = false;
                                             playersTurnToSpeak = false;
                                             conversationID[1] = "5a";
                                         }
                                         else if (player.dialogueOptions[i][2] == "b")
                                         {
+                                            tellMessage = false;
                                             playersTurnToSpeak = false;
                                             conversationID[1] = "5b";
                                         }
@@ -19670,23 +22959,41 @@ function interaction(me)
                         }
                         else if (conversationID[1] == "5a")
                         {
-                            ederhalDrafted.play();
-                            ederhalDrafted.onended = function()
+                            //text dialogue
+                            setMsg("My son was drafted into the front lines by the Captain of the guard. He died in a raid against the Kels. I can't sleep at night knowing that the man who sent my son to his death is himself nested safely in town away from all harm.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
                             {
+                                msgReset();
+
                                 playersTurnToSpeak = true;
                                 player.dialoguePosition = 0;
                                 conversationID[1] = 6;
                                 self.SC();
                             }
+                            else
+                            {
+                                self.SC();
+                            }
                         }
                         else if (conversationID[1] == "5b")
                         {
-                            ederhalForgetAboutIt.play();
-                            ederhalForgetAboutIt.onended = function()
+                            //text dialogue
+                            setMsg("Forget about it.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
                             {
+                                msgReset();
+
                                 playersTurnToSpeak = true;
                                 player.dialoguePosition = 0;
                                 conversationID[1] = 1;
+                                self.SC();
+                            }
+                            else
+                            {
                                 self.SC();
                             }
                         }
@@ -19709,11 +23016,13 @@ function interaction(me)
                                     {
                                         if (player.dialogueOptions[i][2] == "a")
                                         {
+                                            tellMessage = false;
                                             playersTurnToSpeak = false;
                                             conversationID[1] = "6a";
                                         }
                                         else if (player.dialogueOptions[i][2] == "b")
                                         {
+                                            tellMessage = false;
                                             playersTurnToSpeak = true;
                                             conversationID[1] = "6b";
                                         }
@@ -19723,12 +23032,21 @@ function interaction(me)
                         }
                         else if (conversationID[1] == "6a")
                         {
-                            ederhalKill.play();
-                            ederhalKill.onended = function()
+                            //text dialogue
+                            setMsg("Kill the captain so that my son can be avenged.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
                             {
+                                msgReset();
+
                                 playersTurnToSpeak = true;
                                 player.dialoguePosition = 0;
                                 conversationID[1] = 7;
+                                self.SC();
+                            }
+                            else
+                            {
                                 self.SC();
                             }
                         }
@@ -19758,11 +23076,13 @@ function interaction(me)
                                     {
                                         if (player.dialogueOptions[i][2] == "a")
                                         {
+                                            tellMessage = false;
                                             playersTurnToSpeak = true;
                                             conversationID[1] = "7a";
                                         }
                                         else if (player.dialogueOptions[i][2] == "b")
                                         {
+                                            tellMessage = false;
                                             playersTurnToSpeak = true;
                                             conversationID[1] = "7b";
                                         }
@@ -19801,21 +23121,25 @@ function interaction(me)
                                     {
                                         if (player.dialogueOptions[i][2] == "a")
                                         {
-                                            playersTurnToSpeak = false;
+                                            tellMessage = false;
+                                            playersTurnToSpeak = true;
                                             conversationID[1] = "8a";
                                         }
                                         else if (player.dialogueOptions[i][2] == "b")
                                         {
+                                            tellMessage = false;
                                             playersTurnToSpeak = true;
                                             conversationID[1] = "8b";
                                         }
                                         else if (player.dialogueOptions[i][2] == "c")
                                         {
+                                            tellMessage = false;
                                             playersTurnToSpeak = false;
                                             conversationID[1] = "8c";
                                         }
                                         else if (player.dialogueOptions[i][2] == "d")
                                         {
+                                            tellMessage = false;
                                             playersTurnToSpeak = false;
                                             conversationID[1] = "8d";
                                         }
@@ -19842,12 +23166,21 @@ function interaction(me)
                         {
                             if (quests.draftAndDieQuest == false && uniqueChars.friedrichLDS == true)
                             {
-                                ederhalTrust.play();
-                                ederhalTrust.onended = function()
+                                //text dialogue
+                                setMsg("Well, there's one other job I can think of, but I don't know if I can trust you with it...");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
                                 {
+                                    msgReset();
+
                                     playersTurnToSpeak = true;
                                     player.dialoguePosition = 0;
                                     conversationID[1] = 5;
+                                    self.SC();
+                                }
+                                else
+                                {
                                     self.SC();
                                 }
                             }
@@ -19861,12 +23194,21 @@ function interaction(me)
                         }
                         else if (conversationID[1] == "8d")
                         {
-                            ederhalOwe.play();
-                            ederhalOwe.onended = function()
+                            //text dialogue
+                            setMsg("Whoa there, don't kill them! Just get them to pay what they owe. You can't just go around killing my customers.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
                             {
+                                msgReset();
+
                                 playersTurnToSpeak = true;
                                 player.dialoguePosition = 0;
                                 conversationID[1] = 8;
+                                self.SC();
+                            }
+                            else
+                            {
                                 self.SC();
                             }
                         }
@@ -20119,6 +23461,7 @@ function interaction(me)
                                     {
                                         if (player.dialogueOptions[i][2] == "a")
                                         {
+                                            tellMessage = false;
                                             playersTurnToSpeak = false;
                                             conversationID[1] = "0a";
                                         }
@@ -20130,23 +23473,41 @@ function interaction(me)
                         {
                             if (quests.thePlightOfLethikWitchInterrogated == false)
                             {
-                                hildegardSweety.play();
-                                hildegardSweety.onended = function()
+                                //text dialogue
+                                setMsg("Why hi there, sweety!");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
                                 {
+                                    msgReset();
+
                                     playersTurnToSpeak = true;
                                     player.dialoguePosition = 0;
                                     conversationID[1] = 1;
                                     self.SC();
                                 }
+                                else
+                                {
+                                    self.SC();
+                                }
                             }
                             else
                             {
-                                hildegardNow.play();
-                                hildegardNow.onended = function()
+                                //text dialogue
+                                setMsg("What do you want now!?");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
                                 {
+                                    msgReset();
+
                                     playersTurnToSpeak = true;
                                     player.dialoguePosition = 0;
                                     conversationID[1] = 1;
+                                    self.SC();
+                                }
+                                else
+                                {
                                     self.SC();
                                 }
                             }
@@ -20171,16 +23532,19 @@ function interaction(me)
                                     {
                                         if (player.dialogueOptions[i][2] == "a")
                                         {
+                                            tellMessage = false;
                                             playersTurnToSpeak = false;
                                             conversationID[1] = "1a";
                                         }
                                         else if (player.dialogueOptions[i][2] == "b")
                                         {
+                                            tellMessage = false;
                                             playersTurnToSpeak = false;
                                             conversationID[1] = "1b";
                                         }
                                         else if (player.dialogueOptions[i][2] == "c")
                                         {
+                                            tellMessage = false;
                                             playersTurnToSpeak = false;
                                             conversationID[1] = "1c";
                                         }
@@ -20190,36 +23554,63 @@ function interaction(me)
                         }
                         else if (conversationID[1] == "1a")
                         {
-                            hildegardCried.play();
-                            hildegardCried.onended = function()
+                            //text dialogue
+                            setMsg("Not well, to be honest I've woken up crying every morning since my son's been drafted to fight in the war...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
                             {
+                                msgReset();
+
                                 playersTurnToSpeak = true;
                                 player.dialoguePosition = 0;
                                 conversationID[1] = 1;
                                 self.SC();
                             }
+                            else
+                            {
+                                self.SC();
+                            }
                         }
                         else if (conversationID[1] == "1b")
                         {
-                            hildegardNasty.play();
-                            hildegardNasty.onended = function()
+                            //text dialogue
+                            setMsg("Of course I'm not a witch!! Why would someone accuse me of such a nasty thing!?");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
                             {
+                                msgReset();
+
                                 quests.thePlightOfLethikWitchInterrogated = true;
                                 playersTurnToSpeak = true;
                                 player.dialoguePosition = 0;
                                 conversationID[1] = 2;
                                 self.SC();
                             }
+                            else
+                            {
+                                self.SC();
+                            }
                         }
                         else if (conversationID[1] == "1c")
                         {
-                            hildegardWait.play();
-                            hildegardWait.onended = function()
+                            //text dialogue
+                            setMsg("Wait!!! Don't kill me, please! Don't kill me!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
                             {
+                                msgReset();
+
                                 quests.thePlightOfLethikWitchInterrogated = true;
                                 playersTurnToSpeak = true;
                                 player.dialoguePosition = 0;
                                 conversationID[1] = 3;
+                                self.SC();
+                            }
+                            else
+                            {
                                 self.SC();
                             }
                         }
@@ -20238,11 +23629,13 @@ function interaction(me)
                                     {
                                         if (player.dialogueOptions[i][2] == "a")
                                         {
+                                            tellMessage = false;
                                             playersTurnToSpeak = false;
                                             conversationID[1] = "2a";
                                         }
                                         else if (player.dialogueOptions[i][2] == "b")
                                         {
+                                            tellMessage = false;
                                             conversationID[1] = "2b";
                                         }
                                     }
@@ -20251,12 +23644,21 @@ function interaction(me)
                         }
                         else if (conversationID[1] == "2a")
                         {
-                            hildegardVardan.play();
-                            hildegardVardan.onended = function()
+                            //text dialogue
+                            setMsg("I don't know, but if anyone's responsible it would probably be that strange Vardan man with the dark cloak. He came to town a little while ago...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
                             {
+                                msgReset();
+
                                 playersTurnToSpeak = true;
                                 player.dialoguePosition = 0;
                                 conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
                                 self.SC();
                             }
                         }
@@ -20281,6 +23683,7 @@ function interaction(me)
                                     {
                                         if (player.dialogueOptions[i][2] == "a")
                                         {
+                                            tellMessage = false;
                                             playersTurnToSpeak = false;
                                             conversationID[1] = "3a";
                                         }
@@ -20290,12 +23693,21 @@ function interaction(me)
                         }
                         else if (conversationID[1] == "3a")
                         {
-                            hildegardISwear.play();
-                            hildegardISwear.onended = function()
+                            //text dialogue
+                            setMsg("I'm not a witch! I swear I'm not!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
                             {
+                                msgReset();
+
                                 playersTurnToSpeak = true;
                                 player.dialoguePosition = 0;
                                 conversationID[1] = 4;
+                                self.SC();
+                            }
+                            else
+                            {
                                 self.SC();
                             }
                         }
@@ -20314,10 +23726,12 @@ function interaction(me)
                                     {
                                         if (player.dialogueOptions[i][2] == "a")
                                         {
+                                            tellMessage = false;
                                             conversationID[1] = "4a";
                                         }
                                         else if (player.dialogueOptions[i][2] == "b")
                                         {
+                                            tellMessage = false;
                                             playersTurnToSpeak = false;
                                             conversationID[1] = "4b";
                                         }
@@ -20333,12 +23747,21 @@ function interaction(me)
                         }
                         else if (conversationID[1] == "4b")
                         {
-                            hildegardSinging.play();
-                            hildegardSinging.onended = function()
+                            //text dialogue
+                            setMsg("I wasn't, I was singing to myself!!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
                             {
+                                msgReset();
+
                                 playersTurnToSpeak = true;
                                 player.dialoguePosition = 0;
                                 conversationID[1] = 2;
+                                self.SC();
+                            }
+                            else
+                            {
                                 self.SC();
                             }
                         }

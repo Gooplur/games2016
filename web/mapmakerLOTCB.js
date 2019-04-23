@@ -110,7 +110,9 @@ function buildMaster()
                 //ArtificialIntelligenceAccess.push(new Unit(4000, 2900, "Ghoul", false, "Sluba"));
                 //ArtificialIntelligenceAccess[ArtificialIntelligenceAccess.length - 1].eggs = "fecundo";
                 //scenicList.push(new Scenery("eyewortPlant", 3400, 2400, 2.2, true));
+                //scenicList.push(new Scenery("sciltPlant", 3400, 2400, 1.6, true, 1));
                 //ArtificialIntelligenceAccess.push(new Unit(3900, 2900, "Xormid", false, "Sluba"));
+                //ArtificialIntelligenceAccess.push(new Unit(3900, 2900, "Silter", false, "Screpa"));
 
                 //scenicList.push(new Scenery("dethMasterHut", 3600, 2500, 0, 0, "deth1"));
                 //scenicList.push(new Scenery("dethTotem", 3600, 3400, 0, 0, "deth1"));
@@ -4843,6 +4845,94 @@ function buildMaster()
                     }
                 }
 
+                if (uniqueChars.lambertLDS == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Lambert")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(52735, -6741, "Person", false, "Lambert", {race: "Thengar", faction: "Thengar", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.025, 0.025], 0, 0, 1], ranged: [false, "arrow", 8, 2200, 5, 7, 0, "none", 2], patrolStops: 1, patrolLoop: false, route:[[52742, -6717]]}));
+                        ArtificialIntelligenceAccess[i].health = 4;
+                    }
+                }
+
+                if (quests.lethikHanzRestored == false)
+                {
+                    if (uniqueChars.hanzLDS == true)
+                    {
+                        var hits = 0;
+                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                        {
+                            if (ArtificialIntelligenceAccess[i].ID == "Hanz")
+                            {
+                                hits += 1;
+                            }
+                        }
+                        if (hits == 0)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(50667, -10366, "Person", false, "Hanz", {race: "Thengar", faction: "Thengar", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.03, 0.03], 0, 0, 1], ranged: [false, "arrow", 8, 2200, 5, 7, 0, "none", 2], patrolStops: 1, patrolLoop: false, route:[[50686, -10368]]}));
+                            ArtificialIntelligenceAccess[i].health = 8;
+                        }
+                    }
+                }
+
+                if (uniqueChars.conradLDS == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Conrad")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(52152, -7228, "Person", false, "Conrad", {race: "Thengar", faction: "Thengar", personality: "calculated", outfit: ["hoffalgreFurCloak", 0], weapon: ["none", [0.04, 0.04], 0, 2, 1.3], ranged: [false, "arrow", 8, 2200, 5, 7, 0, "none", 2], patrolStops: 1, patrolLoop: false, route:[[52154, -7203]]}));
+                        ArtificialIntelligenceAccess[i].health = 16;
+                        ArtificialIntelligenceAccess[i].speed = 0.5;
+                    }
+                }
+
+                if (uniqueChars.lenardLDS == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Lenard")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(52765, -7202, "Person", false, "Lenard", {race: "Thengar", faction: "Thengar", personality: "violent", outfit: ["none", 0], weapon: ["none", [0.045, 0.035], 0, 3, 1.1], ranged: [false, "arrow", 8, 2200, 5, 7, 0, "none", 2], patrolStops: 1, patrolLoop: false, route:[[52764, -7190]]}));
+                        ArtificialIntelligenceAccess[i].health = 12;
+                    }
+                }
+
+                if (uniqueChars.vsevolodLDS == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Vsevolod")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(50419, -10510, "Soldier", false, "Vsevolod", {race: "Vardan", faction: "loner", con: 7, speed: 1.2, outfit: ["blackMageRobe", 0], weapon: ["drainingI", [9, 4], 0, 200, 3], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, CNX: 200, MR: 19, patrolStops: 1, patrolLoop: false, route:[[50405, -10488]]}));
+                    }
+                }
+
                 if (uniqueChars.hildegardLDS == true)
                 {
                     var hits = 0;
@@ -6957,6 +7047,266 @@ function buildMaster()
                 //scenicList.push(new Scenery("haeflowerPlant", 15185, 4442, 4, true));
 
                 change = "s1w5";
+            }
+        }
+        else if (region == "s2w5")
+        {
+            if (change != "s2w5")
+            {
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
+                //Delete All Non-native AI Units
+                for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee || ArtificialIntelligenceAccess[i].team == "arena1" || ArtificialIntelligenceAccess[i].team == "arena2" || ArtificialIntelligenceAccess[i].team == "arena3")
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
+
+                //REGION CREATION
+                //characters
+                //unique AND non-unique only by necessity
+                if (quests.lethikHanzRestored == true)
+                {
+                    if (uniqueChars.hanzLDS == true)
+                    {
+                        var hits = 0;
+                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                        {
+                            if (ArtificialIntelligenceAccess[i].ID == "Master Hanz of Beulingerr")
+                            {
+                                hits += 1;
+                            }
+                        }
+                        if (hits == 0)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(51163.344108947895, -17434.104393046102, "Person", false, "Master Hanz of Beulingerr", {race: "Thengar", faction: "Thengar", personality: "calculated", outfit: ["boulchomLeatherArmour", 2.5], weapon: ["none", [0.03, 0.03], 0, 0, 1], ranged: [false, "arrow", 8, 2200, 5, 7, 0, "none", 2], patrolStops: 1, patrolLoop: false, route:[[51143.10528022211, -17415.811817174665]]}));
+                            ArtificialIntelligenceAccess[i].health = 8;
+                        }
+                    }
+                }
+
+                if (uniqueChars.hanzChildLDS == true && quests.hanzChild == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "[ " + quests.hanzChildName + " ]")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(50958.387714003904, -17583.743554043962, "Person", false, "[ " + quests.hanzChildName + " ]", {race: player.raceName, faction: "Thengar", personality: "scared", outfit: ["boulchomLeatherArmour", 0.9], weapon: ["none", [0.25, 0.25], 0, 0, 1.3], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[50958.90713732814, -17571.478617217566]], kid: true}));
+                        ArtificialIntelligenceAccess[i].health = 1.5;
+                    }
+                }
+
+
+
+
+
+                ArtificialIntelligenceAccess.push(new Unit(51179.95648489057, -18223.398333135712, "Soldier", false, "Slave Man", {race: "Kel", faction: "loner", con: 1, speed: 1, outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                ArtificialIntelligenceAccess.push(new Unit(51262.15123196404, -17857.65551897758, "Soldier", false, "Slave Boy", {race: "Kel", faction: "loner", con: 0.25, speed: 1, outfit: ["none", 0], weapon: ["none", [0.045, 0.045], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                ArtificialIntelligenceAccess.push(new Unit(51296.28596957222, -17798.71270264655, "Soldier", false, "Slave Woman", {race: "Kel", faction: "loner", con: 1, speed: 1, outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                ArtificialIntelligenceAccess.push(new Unit(51212.37513444989, -17820.42104102751, "Soldier", false, "Slave Girl", {race: "Kel", faction: "loner", con: 0.25, speed: 1, outfit: ["none", 0], weapon: ["none", [0.075, 0.075], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+
+                ArtificialIntelligenceAccess.push(new Unit(50928.239379441264, -18129.686504034762, "Soldier", false, "Slave Man", {race: "Kel", faction: "loner", con: 1, speed: 1, outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                ArtificialIntelligenceAccess.push(new Unit(50682.9136336489, -18404.924325711105, "Soldier", false, "Slave Woman", {race: "Kel", faction: "loner", con: 1, speed: 1, outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                ArtificialIntelligenceAccess.push(new Unit(50536.72400985568, -18272.239160849163, "Soldier", false, "Slave Girl", {race: "Kel", faction: "loner", con: 0.25, speed: 1, outfit: ["none", 0], weapon: ["none", [0.075, 0.075], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+
+                ArtificialIntelligenceAccess.push(new Unit(51183.08339986864, -18519.83257973238, "Soldier", false, "Slave Man", {race: "Kel", faction: "loner", con: 1, speed: 1, outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                ArtificialIntelligenceAccess.push(new Unit(50827.94524048814, -17594.569711000953, "Soldier", false, "Ichlahomda", {race: "Kel", faction: "loner", con: 1, speed: 1, outfit: ["varnFurClothing", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 1, patrolLoop: false, route:[[50837.036948365894, -17584.39891653539]]}));
+                ArtificialIntelligenceAccess.push(new Unit(50886.11965600879, -18590.90056741665, "Soldier", false, "Slave Man", {race: "Kel", faction: "loner", con: 1, speed: 1, outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+
+                //city guards
+                ArtificialIntelligenceAccess.push(new Unit(51166, -7530, "Soldier", false, "Beulingerr Soldier", {race: "Thengar", faction: "Thengar", con: 5, speed: 1.15, outfit: ["chainArmour", 7], weapon: ["thenganSword", [8, 5], 0, 16, 1.3], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 0, patrolLoop: true, route:[[-514, 277], [-514, 277]]}));
+                ArtificialIntelligenceAccess.push(new Unit(51945, -8393, "Soldier", false, "Beulingerr Soldier", {race: "Thengar", faction: "Thengar", con: 8, speed: 1.34, outfit: ["chainArmour", 6.5], weapon: ["thenganSword", [12, 4], 0, 16, 1.45], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 4, patrolLoop: true, route:[[51945, -10184], [50570, -10156], [50559, -8470], [51972, -8481]]}));
+
+                //Creatures
+                //ArtificialIntelligenceAccess.push(new Unit(48545, -4542, "Nog", false, "Chom-Chom"));
+
+                //buildings
+                scenicList.push(new Scenery("thenganBuilding4", 50952.21876496255 - 152, -17563.48775587589 + 50, 0, true));
+                scenicList.push(new Scenery("thenganBuilding3", 51187.283320822404 + 70, -17436.4769991973 + 60, 0, true));
+                scenicList.push(new Scenery("thenganBuilding1", 51254.08200296437, -17886.34715189713 + 40, 0, true));
+
+                if (quests.lethikHanzMarried == true)
+                {
+                    scenicList.push(new Scenery("fineBed", 51205.574791729276 - 20, -17264.593596797826 - 15, -1/2 * Math.PI, true, 1));
+                    scenicList.push(new Scenery("fineBed", 51205.574791729276 - 20, -17264.593596797826 - 50, -1/2 * Math.PI, true, 1));
+                    scenicList.push(new Scenery("fineBed", 50611.087733934946 - 15, -17704.830075102782, Math.PI, true, 1));
+                    scenicList.push(new Scenery("drawerB", 51221.682135427596 + 14, -17497.851459438843, 0, 3, [1.55, "hanzDrawer2", 6, [], false, 0]));
+                    scenicList.push(new Scenery("drawerB", 51090.13433516202, -17240.438142506537, 1/2 * Math.PI, 3, [1.55, "hanzDrawer3", 6, [], false, 0]));
+                    scenicList.push(new Scenery("drawerB", 50775.33144794008, -17601.40919267769, 0, 3, [1.55, "hanzDrawer4", 6, [], false, 0]));
+                    scenicList.push(new Scenery("loom", 51095.27751626207, -17495.55820738738, 3/5 * Math.PI, true));
+                    scenicList.push(new Scenery("loom", 50756.75606937152, -17719.83932159072, 1/5 * Math.PI, true));
+                }
+                else
+                {
+                    scenicList.push(new Scenery("fineBed", 51205.574791729276 - 20, -17264.593596797826 - 15, -1/2 * Math.PI, false, 1));
+                    scenicList.push(new Scenery("fineBed", 51205.574791729276 - 20, -17264.593596797826 - 50, -1/2 * Math.PI, false, 1));
+                    scenicList.push(new Scenery("fineBed", 50611.087733934946 - 15, -17704.830075102782, Math.PI, false, 1));
+                    scenicList.push(new Scenery("drawerB", 51221.682135427596 + 14, -17497.851459438843, 0, 1, [1.55]));
+                    scenicList.push(new Scenery("drawerB", 51090.13433516202, -17240.438142506537, 1/2 * Math.PI, 1, [1.55]));
+                    scenicList.push(new Scenery("drawerB", 50775.33144794008, -17601.40919267769, 0, 1, [1.55]));
+                    scenicList.push(new Scenery("loom", 51095.27751626207, -17495.55820738738, 3/5 * Math.PI, false));
+                    scenicList.push(new Scenery("loom", 50756.75606937152, -17719.83932159072, 1/5 * Math.PI, false));
+                }
+                scenicList.push(new Scenery("bed", 50759.770203091015, -17316.670178454657, 0, false));
+
+                scenicList.push(new Scenery("woodenBench", 50587.95342726742 - 4, -17402.801581791166 + 10, 1/2 * Math.PI, 1));
+                scenicList.push(new Scenery("woodenBench", 50583.00082165551, -17341.983170983345 + 10, 1/2 * Math.PI, 1));
+                scenicList.push(new Scenery("smallTable", 50602.31914070535 - 14, -17449.262631164158 - 5, Math.PI, 1));
+                scenicList.push(new Scenery("smallTable", 50602.31914070535 + 21, -17449.262631164158 - 5, Math.PI, 1));
+
+                scenicList.push(new Scenery("smallTable", 50826.009295263306 - 4, -17447.42517126783 + 4, Math.PI, 1));
+
+                scenicList.push(new Scenery("smallTable", 51214.42275645069, -17387.921746165954, 1/2 * Math.PI, 1));
+                scenicList.push(new Scenery("oilLamp", 51214.42275645069 + 4, -17387.921746165954 - 3, -2.9314159 * Math.PI, true, [1000, 2]));
+
+                scenicList.push(new Scenery("woodenBench", 50684.075724590984, -17736.357169480583 - 6, Math.PI, 1));
+                scenicList.push(new Scenery("oilLamp", 50753.25195874327 + 24.5, -17588.441650342385, -1.9224149 * Math.PI, true, [1000, 2]));
+
+                //the well
+                //scenicList.push(new Scenery("thenganWell", 50927, -9830, 0, false));
+
+                //scenicList.push(new Scenery("countertop", 51642, -8897, -1/2 * Math.PI, false));
+
+                //ArtificialIntelligenceAccess.push(new Unit(50603, -10342, "Person", false, "Thengar Villager", {race: "Thengar", faction: "Thengar", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.4, 0.45], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[50603, -10366]]}));
+
+                scenicList.push(new Scenery("item", 50825.763414011824, -17443.516842105408 , 0, "thengar", ["berulnSkull", 1, -25]));
+                //scenicList.push(new Scenery("smallTable", 53136, -7412, 0.045 * Math.PI, 0));
+                scenicList.push(new Scenery("thenganHearth", 51020, -17516, -1/2 * Math.PI, "lit"));
+                //scenicList.push(new Scenery("woodenBench", 50718, -10330, 1/2 * Math.PI, 1));
+                //scenicList.push(new Scenery("crate", 50290, -10550, 0.0025/4 * 2 * Math.PI, 1, [1.23]));
+                //scenicList.push(new Scenery("mediumTable", 50549, -10267, 0.0025 * Math.PI, 0));
+                scenicList.push(new Scenery("stumpStoolSml", 51141.10873556455, -17489.869267960446, 1 * Math.PI, 1));
+                scenicList.push(new Scenery("stumpStoolSml", 50716.97839531122, -17688.463224878804, 1 * Math.PI, 1));
+
+                //signs
+                scenicList.push(new Scenery("sign", 50849, -17395 - 10, Math.PI, 3, "Master Hanz's Estate"));
+
+                ArtificialIntelligenceAccess.push(new Unit(51444.79595695257, -18312.584700259704, "Soldier", false, "Beulingerr Soldier", {race: "Thengar", faction: "Thengar", con: 6, speed: 1.3, outfit: ["chainArmour", 7.5], weapon: ["thenganSword", [10, 6], 0, 16, 1.4], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 0, patrolLoop: false, route:[]}));
+                ArtificialIntelligenceAccess.push(new Unit(51137.4213879315, -17173.24733532316, "Soldier", false, "Beulingerr Soldier", {race: "Thengar", faction: "Thengar", con: 6, speed: 1.3, outfit: ["chainArmour", 7.5], weapon: ["thenganSword", [10, 6], 0, 16, 1.4], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 1, patrolLoop: false, route:[51135.672562431995, -17138.215643546486]}));
+                ArtificialIntelligenceAccess.push(new Unit(50132.33554380641, -18142.16824571496, "Soldier", false, "Beulingerr Soldier", {race: "Thengar", faction: "Thengar", con: 6, speed: 1.3, outfit: ["chainArmour", 7.5], weapon: ["thenganSword", [10, 6], 0, 16, 1.4], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 1, patrolLoop: false, route:[50177.646210515326, -18153.690313679974]}));
+
+                //leaping beasts
+                ArtificialIntelligenceAccess.push(new Unit(52851.07680661046, -15566.01196931189, "Boulchom", false, "preBuilt"));
+                ArtificialIntelligenceAccess.push(new Unit(53278.086487407156, -17499.88159767438, "Boulchom", true, "preBuilt"));
+                ArtificialIntelligenceAccess.push(new Unit(56595.329716381704, -18585.48310731894, "Boulchom", true, "preBuilt"));
+
+                //fuzzy bunnies
+                ArtificialIntelligenceAccess.push(new Unit(51410.193023157626, -16862.37073025137, "Conejo", true, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(49887.156387586314, -16521.722209539017, "Conejo", false, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(49363.94314032468, -17890.962711886725, "Conejo", true, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(50055.865135511296, -18309.583058584914, "Conejo", false, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(50141.67139029875, -19388.209010617527, "Conejo", true, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(49267.27562709055, -19494.73094191716, "Conejo", true, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(49891.67211969955, -20164.42442152324, "Conejo", false, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(48830.37491428079, -20577.80918343987, "Conejo", true, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(48636.6588910616, -21763.86150642056, "Conejo", false, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(50351.183785241294, -22068.29046314775, "Conejo", false, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(51083.77053004774, -21605.280485405015, "Conejo", true, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(52844.553889279916, -22681.06469454945, "Conejo", false, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(52990.58825982892, -21185.9384108894, "Conejo", false, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(54350.48697836207, -20232.374731606786, "Conejo", false, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(55104.471466954725, -19317.76647128289, "Conejo", false, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(52377.54922595536, -16068.648408738623, "Conejo", false, "neutral2"));
+
+                //sun baskers basking in the sun
+                ArtificialIntelligenceAccess.push(new Unit(52462.62308439578, -18232.215921082283, "Thueg", true, "preBuilt"));
+                ArtificialIntelligenceAccess.push(new Unit(53325.428937786346, -18977.609628416467, "Thueg", true, "preBuilt"));
+                ArtificialIntelligenceAccess.push(new Unit(54441.95119398309, -18367.105672354515, "Thueg", false, "preBuilt"));
+                ArtificialIntelligenceAccess.push(new Unit(55073.529553833716, -17053.07877663746, "Thueg", "baby", "preBuilt"));
+                ArtificialIntelligenceAccess.push(new Unit(56418.97212674992, -15517.179163381208, "Thueg", false, "preBuilt"));
+                ArtificialIntelligenceAccess.push(new Unit(55655.973299603196, -14272.92619933836, "Thueg", true, "preBuilt"));
+
+                //Plants
+                //flora silvestre
+                scenicList.push(new Scenery("galloshPlant", 52594.311927833616, -16095.45791089152, 0.40865706236296423, 0));
+                scenicList.push(new Scenery("galloshPlant", 52924.82245602937, -16368.683433004435, 4.879284342069474, 0));
+                scenicList.push(new Scenery("vorlymPlant", 53250.67895190364, -16082.223602431684, 3.0195687599972754, 0));
+                scenicList.push(new Scenery("vorlymPlant", 53841.311176593175, -16679.291464741185, 5.916832670755593, 0));
+                scenicList.push(new Scenery("galloshPlant", 54693.85521929732, -16708.92025999494, 0.1928257613391401, 0));
+                scenicList.push(new Scenery("vorlymPlant", 55315.394354826676, -16018.401740833466, 3.6900837040697043, 0));
+                scenicList.push(new Scenery("vorlymPlant", 55897.544607335345, -15048.256867075146, 3.0914710261905434, 0));
+                scenicList.push(new Scenery("vorlymPlant", 56963.148629800926, -16743.467931628966, 6.110993927482205, 0));
+                scenicList.push(new Scenery("galloshPlant", 56667.4187742036, -18207.788170348467, 6.0532469921364065, 0));
+                scenicList.push(new Scenery("vorlymPlant", 55726.956201221954, -19455.26421777284, 0.20435454266758837, 0));
+                scenicList.push(new Scenery("galloshPlant", 54653.96174630907, -19858.964246574786, 6.178649333863466, 0));
+                scenicList.push(new Scenery("vorlymPlant", 53693.18848509903, -19821.637604657022, 4.9377082820782086, 0));
+                scenicList.push(new Scenery("vorlymPlant", 53559.038608363844, -19933.94365833898, 5.170216990489441, 0));
+                scenicList.push(new Scenery("galloshPlant", 56378.75697063421, -21698.01477169757, 2.525861300509192, 0));
+                scenicList.push(new Scenery("galloshPlant", 55617.72935225897, -22087.13866581917, 5.945667295570987, 0));
+                scenicList.push(new Scenery("vorlymPlant", 55881.55762103505, -22568.169296230913, 2.407502238557517, 0));
+                scenicList.push(new Scenery("galloshPlant", 56795.128521480605, -23347.11342796734, 3.987149936910246, 0));
+                scenicList.push(new Scenery("vorlymPlant", 57287.18565373689, -23103.219622162884, 2.0292416736303, 0));
+                scenicList.push(new Scenery("vorlymPlant", 54755.04152783804, -23157.276828448863, 3.321051185322233, 0));
+                scenicList.push(new Scenery("galloshPlant", 53901.43048493201, -23207.220362330027, 4.971432774733972, 0));
+                scenicList.push(new Scenery("vorlymPlant", 54322.093887172516, -22861.97406554746, 0.7803073439147524, 0));
+                scenicList.push(new Scenery("galloshPlant", 53656.51968951969, -22427.616126730143, 1.4384924403337502, 0));
+                scenicList.push(new Scenery("galloshPlant", 52315.24659948676, -22111.379019165404, 6.15596754007661, 0));
+                scenicList.push(new Scenery("galloshPlant", 51213.62918818491, -22712.93476619524, 0.2990006925384412, 0));
+                scenicList.push(new Scenery("vorlymPlant", 50242.980561749, -22994.056902780132, 1.9313666696530545, 0));
+                scenicList.push(new Scenery("vorlymPlant", 49152.179556845054, -23555.09273107336, 3.785298016924506, 0));
+                scenicList.push(new Scenery("galloshPlant", 49000.79903035162, -22202.986912249333, 0.883380227418619, 0));
+                scenicList.push(new Scenery("vorlymPlant", 50592.4736585556, -21510.93937446758, 4.329176880336672, 0));
+                scenicList.push(new Scenery("vorlymPlant", 50673.274875264666, -20363.513216679097, 5.656408116343633, 0));
+                scenicList.push(new Scenery("galloshPlant", 49365.47846636224, -19959.681484833174, 2.1361871076312755, 0));
+                scenicList.push(new Scenery("galloshPlant", 48379.130206031274, -18469.381109242215, 5.679972754242756, 0));
+                scenicList.push(new Scenery("galloshPlant", 49248.275586033145, -17655.843400343638, 2.9798433624124785, 0));
+                scenicList.push(new Scenery("vorlymPlant", 49246.91833351866, -15482.342150053777, 5.111930000773011, 0));
+                scenicList.push(new Scenery("vorlymPlant", 49246.91833351866, -15482.342150053777, 3.0688266992169537, 0));
+
+                for (var i = 0; i < 15; i++)
+                {
+                    scenicList.push(new Scenery("suuliPlant", 51345.94450614859 - 76 * i, -18078.099390228628, 0, "thengar"));
+                }
+
+                for (var j = 0; j < 3; j++)
+                {
+                    for (var i = 0; i < 20; i++)
+                    {
+                        scenicList.push(new Scenery("carrotPlant", 51339.77742181595 - 55 * i, -18166.314516782444 - 60 * j, 0, "thengar"));
+                    }
+                }
+
+                for (var j = 0; j < 3; j++)
+                {
+                    for (var i = 0; i < 20; i++)
+                    {
+                        scenicList.push(new Scenery("potatoPlant", 51341.86132441727 - 55 * i, -18355.081177264317 - 60 * j, 0, "thengar"));
+                    }
+                }
+
+                for (var j = 0; j < 2; j++)
+                {
+                    for (var i = 0; i < 24; i++)
+                    {
+                        scenicList.push(new Scenery("harstPlant", 51344.93221059554 - 46 * i, -18528.418025060386 - 60 * j, 0, "thengar"));
+                    }
+                }
+
+                change = "s2w5";
             }
         }
         else if (region == "w5")

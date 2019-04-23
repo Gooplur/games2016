@@ -747,6 +747,13 @@ function Adventurer()
                     player.radiation += 0.05;
                 }
             }
+            else if (Inventory[iiiiii][0].type == "xormidRemainsLarge" || Inventory[iiiiii][0].type == "xormidRemainsSmall") //radioactive ooze remains
+            {
+                if (player.radProof != true)
+                {
+                    player.radiation += 0.01;
+                }
+            }
         }
     };
 

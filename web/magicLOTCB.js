@@ -11,9 +11,12 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
         this.castedByPlayer = caster;
         this.spellType = spellInfo.ID;
         this.cnx = spellInfo.CNX;
-        if (player.getConcentration() < this.cnx)
+        if (caster == true)
         {
-            this.cnx = player.getConcentration();
+            if (player.getConcentration() < this.cnx)
+            {
+                this.cnx = player.getConcentration();
+            }
         }
         this.X = false;
         this.Y = false;
@@ -413,7 +416,10 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                 {
                     if (whatDoIDo == "drainOrb")
                     {
-                        player.health += damage;
+                        if (caster != true)
+                        {
+                            player.health += damage;
+                        }
                     }
                     else if (whatDoIDo == "fire")
                     {
@@ -530,6 +536,24 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                             }
                         }
                     }
+                    else if (whatDoIDo == "draining")
+                    {
+                        this.shieldFactoring(Math.max(0, damage - player.magicalResistanceTotal));
+
+                        var orbsAllowed = Math.max(0, damage - player.magicalResistanceTotal);
+
+                        for (var j = 0; j < orbsAllowed; j++)
+                        {
+                            magicList.push(new Magic({ID: "drainOrb", CNX: this.cnx}, true, unitSelf, {X: X, Y: Y}, false));
+                        }
+                        if (unitSelf.extraDraining == true)
+                        {
+                            for (var j = 0; j < 5; j++)
+                            {
+                                magicList.push(new Magic({ID: "drainOrb", CNX: this.cnx}, true, unitSelf, {X: X, Y: Y}, false));
+                            }
+                        }
+                    }
 
                     if (extra != "alert")
                     {
@@ -560,6 +584,16 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                         if (whatDoIDo == "soulOrb")
                         {
                             ArtificialIntelligenceAccess[i].health = Math.min(ArtificialIntelligenceAccess[i].healthMAX, ArtificialIntelligenceAccess[i].health + 55)
+                        }
+                        else if (whatDoIDo == "drainOrb")
+                        {
+                            if (caster == true)
+                            {
+                                if (instructions == ArtificialIntelligenceAccess[i])
+                                {
+                                    ArtificialIntelligenceAccess[i].health += damage;
+                                }
+                            }
                         }
                         else if (whatDoIDo == "fire")
                         {
@@ -875,30 +909,53 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                         {
                             ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
                             ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
-                            ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
-                            //todo add that it turns lifeforce successfully stolen into magical life orbs that shoot off to the player and heal him/her.
+
                             var counterOrbCount = 0;
                             if (ArtificialIntelligenceAccess[i].health < 0)
                             {
                                 counterOrbCount = Math.round(- ArtificialIntelligenceAccess[i].health);
                             }
                             var orbsAllowed = Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance - counterOrbCount);
-                            for (var j = 0; j < orbsAllowed; j++)
+
+                            if (caster == true)
                             {
-                                magicList.push(new Magic({ID: "drainOrb", CNX: this.cnx}, false, 0, ArtificialIntelligenceAccess[i]));
-                            }
-                            if (player.extraDraining)
-                            {
-                                for (var j = 0; j < 5; j++)
+                                ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                for (var j = 0; j < orbsAllowed; j++)
                                 {
                                     magicList.push(new Magic({ID: "drainOrb", CNX: this.cnx}, false, 0, ArtificialIntelligenceAccess[i]));
+                                }
+                                if (player.extraDraining)
+                                {
+                                    for (var j = 0; j < 5; j++)
+                                    {
+                                        magicList.push(new Magic({ID: "drainOrb", CNX: this.cnx}, false, 0, ArtificialIntelligenceAccess[i]));
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                for (var j = 0; j < orbsAllowed; j++)
+                                {
+                                    magicList.push(new Magic({ID: "drainOrb", CNX: this.cnx}, true, unitSelf, ArtificialIntelligenceAccess[i]));
+                                }
+                                if (this.castor.extraDraining == true)
+                                {
+                                    for (var j = 0; j < 5; j++)
+                                    {
+                                        magicList.push(new Magic({ID: "drainOrb", CNX: this.cnx}, true, unitSelf, ArtificialIntelligenceAccess[i]));
+                                    }
                                 }
                             }
                         }
 
-                        if (caster == true && ArtificialIntelligenceAccess[i].health <= 0)
+                        if (caster == true)
                         {
                             ArtificialIntelligenceAccess[i].killNotByPlayer = false;
+                        }
+
+                        if (caster != true)
+                        {
+                            ArtificialIntelligenceAccess[i].killNotByPlayer = true;
                         }
 
                         if (extra != "alert")
@@ -983,6 +1040,15 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                             {
                                 ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
                                 ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                            }
+
+                            if (caster == true)
+                            {
+                                ArtificialIntelligenceAccess[i].killNotByPlayer = false;
+                            }
+                            if (caster != true)
+                            {
+                                ArtificialIntelligenceAccess[i].killNotByPlayer = true;
                             }
                         }
 
@@ -1560,12 +1626,27 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
         if (this.spellType == "drainingI")
         {
             this.orientToCaster(20, 0.64 / 2 * Math.PI);
-            this.drawWithRotation(polypol, 1767, 266, 16, 25, 29, 26, player.rotation, -1 / 2 * 16, -1 / 2 * 25);
+            if (caster == true)
+            {
+                this.drawWithRotation(polypol, 1767, 266, 16, 25, 29, 26, player.rotation, -1 / 2 * 16, -1 / 2 * 25);
+            }
+            else
+            {
+                this.rotation = unitSelf.rotation;
+            }
         }
         //DrainOrb
         if (this.spellType == "drainOrb")
         {
-            this.orientToCaster(Math.random() * 24, (Math.random() * 2) / 2 * Math.PI);
+            if (caster != true)
+            {
+                this.orientToCaster(Math.random() * 24, (Math.random() * 2) / 2 * Math.PI);
+            }
+            else
+            {
+                this.X = unitSelf.X;
+                this.Y = unitSelf.Y;
+            }
         }
         //LifeTap
         if (this.spellType == "lifeTap")
@@ -3696,7 +3777,9 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
             {
                 if (caster)
                 {
-                    //Todo add the Ai part of this spell...
+                    this.damageThenGoAway(6, "drainOrb", 1, 0, false);
+                    this.flashAnimate(90, this.ticCounter(100), 0.75, [{image: polypol, imgX: 1668, imgY: 270, portionW: 20, portionH: 18, adjX: -1 / 2 * 20 * 0.4, adjY: -1 / 2 * 18 * 0.4, width: 20 * 0.4, height: 18 * 0.4}, {image: polypol, imgX: 1695, imgY: 270, portionW: 20, portionH: 18, adjX: -1 / 2 * 20 * 0.4, adjY: -1 / 2 * 18 * 0.4, width: 20 * 0.4, height: 18 * 0.4}, {image: polypol, imgX: 1723, imgY: 270, portionW: 20, portionH: 18, adjX: -1 / 2 * 20 * 0.4, adjY: -1 / 2 * 18 * 0.4, width: 20 * 0.4, height: 18 * 0.4}]);
+                    this.project(Math.atan2(instructions.Y - this.Y, instructions.X - this.X), 100000, 3 + Math.random() * 2, true);
                 }
                 else
                 {
@@ -3762,7 +3845,10 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                 }
                 else
                 {
-                    //Todo add the Ai part of this spell...
+                    this.damageThenGoAway(10, "draining", 1 + (Math.floor(4/50 * this.cnx)), 0, this.damagesPlayer);
+                    this.flashAnimate(90, this.unitRotation + 1/2 * Math.PI, 1, [{image: polypol, imgX: 1767, imgY: 267, portionW: 16, portionH: 25, adjX: -1 / 2 * 16, adjY: -1 / 2 * 25, width: 16, height: 25}, {image: polypol, imgX: 1784, imgY: 267, portionW: 16, portionH: 25, adjX: -1 / 2 * 16, adjY: -1 / 2 * 25, width: 16, height: 25}, {image: polypol, imgX: 1809, imgY: 267, portionW: 16, portionH: 25, adjX: -1 / 2 * 16, adjY: -1 / 2 * 25, width: 16, height: 25}, {image: polypol, imgX: 1827, imgY: 267, portionW: 16, portionH: 25, adjX: -1 / 2 * 16, adjY: -1 / 2 * 25, width: 16, height: 25}]);
+                    this.project(this.unitRotation, 110 * ((50 + 3 * this.cnx) / 50), Math.min(4 * ((50 + this.cnx) / 50), 4 * ((50 + 50) / 50)), true);
+
                 }
             }
 

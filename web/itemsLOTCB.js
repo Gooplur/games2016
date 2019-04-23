@@ -2756,6 +2756,71 @@ function Item(type, x, y)
             this.buyValue = 3 - Math.floor(player.getCharisma() / 25); // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
         }
+        else if (this.type == "rawSilterFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Silter Flesh";
+            this.weight = 0.85;
+            this.size = 6;
+            this.description = "The raw flesh of a silter.";
+            this.intForDes = 0;
+            this.intDescription = "It is slimy, sour, somewhat bitter, and it burns your mouth and throat to eat it.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1.6; //satisfies hunger.
+            this.thirst = 0.7; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = -3; //heals health.
+            this.generation = -0.5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "silterMeat")
+        {
+            //For All Items
+            this.identity = "Silter Meat";
+            this.weight = 0.80;
+            this.size = 6;
+            this.description = "The cooked meat of a silter.";
+            this.intForDes = 0;
+            this.intDescription = "It is pasty and fills your mouth with a crippling bitterness.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 2; //satisfies hunger.
+            this.thirst = 0.2; //quenches thirst.
+            this.warmth = 2; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -1; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+
+            //ability
+            this.ability = "foodPoisoning";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 1;
+            this.ingredients = [["Raw Silter Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
         else if (this.type == "ardilMeat")
         {
             //For All Items
@@ -25157,6 +25222,46 @@ function Item(type, x, y)
             this.buyValue = 4 - Math.floor(player.getCharisma() / 50); // at max, buy for 3.
             this.sellValue = 1 + Math.floor(player.getCharisma() / 25); // at max, sell for 3.
         }
+        else if (this.type == "xormidRemainsLarge")
+        {
+            //For All Items
+            this.identity = "Xormid Remains";
+            this.weight = 20;
+            this.size = 14;
+            this.description = "The black coagulated ooze of a xormid.";
+            this.intForDes = 11;
+            this.intDescription = "This black ooze radiates evil and should be avoided.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 11; // at max, buy for 11.
+            this.sellValue = 11; // at max, sell for 11.
+        }
+        else if (this.type == "xormidRemainsSmall")
+        {
+            //For All Items
+            this.identity = "Xormid Remains";
+            this.weight = 14;
+            this.size = 14;
+            this.description = "The black coagulated ooze of a xormid.";
+            this.intForDes = 11;
+            this.intDescription = "This black ooze radiates evil and should be avoided.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 8; // at max, buy for 8.
+            this.sellValue = 8; // at max, sell for 8.
+        }
         else if (this.type == "smlGlutidOoze")
         {
             //For All Items
@@ -25456,6 +25561,26 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 18 - Math.floor(player.getCharisma() / 5); // at max, buy for 8.
             this.sellValue = 6 + Math.floor(player.getCharisma() / 25); // at max, sell for 8.
+        }
+        else if (this.type == "sciltArm")
+        {
+            //For All Items
+            this.identity = "Scilt Arm";
+            this.weight = 0.9;
+            this.size = 7;
+            this.description = "The long pointed arm of a scilt plant.";
+            this.intForDes = 18;
+            this.intDescription = "The sap inside can be dried into a chewy gum-like substance.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
         }
         else if (this.type == "shotShooter")
         {
@@ -29611,7 +29736,7 @@ function Item(type, x, y)
             this.constitutionBonus = 0;
             this.staminaBonus = 0;
             this.dexterityBonus = -35;
-            this.survivalismBonus = -50;
+            this.survivalismBonus = 0;
             //Extra Stat Bonuses
             this.sleepBonus = 0;
             this.hungerBonus = 0;
@@ -29680,7 +29805,7 @@ function Item(type, x, y)
             this.constitutionBonus = 0;
             this.staminaBonus = 0;
             this.dexterityBonus = -35;
-            this.survivalismBonus = -50;
+            this.survivalismBonus = 0;
             //Extra Stat Bonuses
             this.sleepBonus = 0;
             this.hungerBonus = 0;
@@ -29749,7 +29874,7 @@ function Item(type, x, y)
             this.constitutionBonus = 0;
             this.staminaBonus = 0;
             this.dexterityBonus = -32;
-            this.survivalismBonus = -50;
+            this.survivalismBonus = 0;
             //Extra Stat Bonuses
             this.sleepBonus = 0;
             this.hungerBonus = 0;
@@ -29818,7 +29943,7 @@ function Item(type, x, y)
             this.constitutionBonus = 0;
             this.staminaBonus = 1;
             this.dexterityBonus = -32;
-            this.survivalismBonus = -50;
+            this.survivalismBonus = 0;
             //Extra Stat Bonuses
             this.sleepBonus = 1;
             this.hungerBonus = 0;
@@ -29934,7 +30059,7 @@ function Item(type, x, y)
             this.constitutionBonus = 0;
             this.staminaBonus = 0;
             this.dexterityBonus = -32;
-            this.survivalismBonus = -50;
+            this.survivalismBonus = 0;
             //Extra Stat Bonuses
             this.sleepBonus = 0;
             this.hungerBonus = 0;
@@ -30003,7 +30128,7 @@ function Item(type, x, y)
             this.constitutionBonus = 0;
             this.staminaBonus = 0;
             this.dexterityBonus = -32;
-            this.survivalismBonus = -50;
+            this.survivalismBonus = 0;
             //Extra Stat Bonuses
             this.sleepBonus = 0;
             this.hungerBonus = 0;
@@ -30072,7 +30197,7 @@ function Item(type, x, y)
             this.constitutionBonus = 0;
             this.staminaBonus = 0;
             this.dexterityBonus = -32;
-            this.survivalismBonus = -50;
+            this.survivalismBonus = 0;
             //Extra Stat Bonuses
             this.sleepBonus = 0;
             this.hungerBonus = 0;
@@ -30141,7 +30266,7 @@ function Item(type, x, y)
             this.constitutionBonus = 0;
             this.staminaBonus = 0;
             this.dexterityBonus = -32;
-            this.survivalismBonus = -50;
+            this.survivalismBonus = 0;
             //Extra Stat Bonuses
             this.sleepBonus = 0;
             this.hungerBonus = 0;
@@ -30210,7 +30335,7 @@ function Item(type, x, y)
             this.constitutionBonus = 0;
             this.staminaBonus = 0;
             this.dexterityBonus = -32;
-            this.survivalismBonus = -50;
+            this.survivalismBonus = 0;
             //Extra Stat Bonuses
             this.sleepBonus = 0;
             this.hungerBonus = 0;
@@ -30279,7 +30404,7 @@ function Item(type, x, y)
             this.constitutionBonus = 0;
             this.staminaBonus = 0;
             this.dexterityBonus = -32;
-            this.survivalismBonus = -50;
+            this.survivalismBonus = 0;
             //Extra Stat Bonuses
             this.sleepBonus = 0;
             this.hungerBonus = 0;
@@ -36980,6 +37105,31 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "xormidRemainsLarge")
+        {
+            XXX.beginPath();
+            XXX.drawImage(blac, 279, 11, 41, 36, X - this.X + (1/2 * CCC.width) - (1/2 * 41 * 1.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 36 * 1.3), 41 * 1.3, 36 * 1.3);
+        }
+        else if (this.type == "xormidRemainsSmall")
+        {
+            XXX.beginPath();
+            XXX.drawImage(blac, 279, 11, 41, 36, X - this.X + (1/2 * CCC.width) - (1/2 * 41 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 36 * 1), 41 * 1, 36 * 1);
+        }
+        else if (this.type == "rawSilterFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(beets, 313, 139, 23, 18, X - this.X + (1/2 * CCC.width) - (1/2 * 23 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 18 * 1), 23 * 1, 18 * 1);
+        }
+        else if (this.type == "silterMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(beets, 314, 163, 23, 18, X - this.X + (1/2 * CCC.width) - (1/2 * 23 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 18 * 1), 23 * 1, 18 * 1);
+        }
+        else if (this.type == "sciltArm")
+        {
+            XXX.beginPath();
+            XXX.drawImage(beets, 241, 182, 58, 35, X - this.X + (1/2 * CCC.width) - (1/2 * 58 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 35 * 1), 58 * 1, 35 * 1);
+        }
         else if (this.type == "eyewortLeaves")
         {
             XXX.beginPath();
@@ -41727,14 +41877,14 @@ function Item(type, x, y)
         {
             LXX.beginPath();
             LXX.fillStyle = "black";
-            LXX.arc(this.invX, this.invY, Y - this.Y + (1/2 * CCC.height), 15, 0, Math.PI * 2);
+            LXX.arc(this.invX, this.invY, 15, 0, Math.PI * 2);
             LXX.fill();
         }
         else if (this.type == "marker")
         {
             LXX.beginPath();
             LXX.fillStyle = "#BF0000";
-            LXX.arc(this.invX, this.invY, Y - this.Y + (1/2 * CCC.height), 15, 0, Math.PI * 2);
+            LXX.arc(this.invX, this.invY, 15, 0, Math.PI * 2);
             LXX.fill();
         }
         else if (this.type == "shotgunAmmo")
@@ -41776,6 +41926,31 @@ function Item(type, x, y)
         {
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "xormidRemainsLarge")
+        {
+            LXX.beginPath();
+            LXX.drawImage(blac, 279, 11, 41, 36, this.invX - (1/2 * 41 * 1.1), this.invY - (1/2 * 36 * 1.1), 41 * 1.1, 36 * 1.1);
+        }
+        else if (this.type == "xormidRemainsSmall")
+        {
+            LXX.beginPath();
+            LXX.drawImage(blac, 279, 11, 41, 36, this.invX - (1/2 * 41 * 0.8), this.invY - (1/2 * 36 * 0.8), 41 * 0.8, 36 * 0.8);
+        }
+        else if (this.type == "rawSilterFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(beets, 313, 139, 23, 18, this.invX - (1/2 * 23 * 1), this.invY - (1/2 * 18 * 1), 23 * 1, 18 * 1);
+        }
+        else if (this.type == "silterMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(beets, 314, 163, 23, 18, this.invX - (1/2 * 23 * 1), this.invY - (1/2 * 18 * 1), 23 * 1, 18 * 1);
+        }
+        else if (this.type == "sciltArm")
+        {
+            LXX.beginPath();
+            LXX.drawImage(beets, 241, 182, 58, 35, this.invX - (1/2 * 58 * 1), this.invY - (1/2 * 35 * 1), 58 * 1, 35 * 1);
         }
         else if (this.type == "eyewortLeaves")
         {
@@ -46495,14 +46670,14 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.fillStyle = "black";
-            XXX.arc(this.invX, this.invY, Y - this.Y + (1/2 * CCC.height), 15, 0, Math.PI * 2);
+            XXX.arc(this.invX, this.invY, 15, 0, Math.PI * 2);
             XXX.fill();
         }
         else if (this.type == "marker")
         {
             XXX.beginPath();
             XXX.fillStyle = "#BF0000";
-            XXX.arc(this.invX, this.invY, Y - this.Y + (1/2 * CCC.height), 15, 0, Math.PI * 2);
+            XXX.arc(this.invX, this.invY, 15, 0, Math.PI * 2);
             XXX.fill();
         }
         else if (this.type == "shotgunAmmo")
@@ -46544,6 +46719,31 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "xormidRemainsLarge")
+        {
+            XXX.beginPath();
+            XXX.drawImage(blac, 279, 11, 41, 36, this.invX - (1/2 * 41 * 1.1), this.invY - (1/2 * 36 * 1.1), 41 * 1.1, 36 * 1.1);
+        }
+        else if (this.type == "xormidRemainsSmall")
+        {
+            XXX.beginPath();
+            XXX.drawImage(blac, 279, 11, 41, 36, this.invX - (1/2 * 41 * 0.8), this.invY - (1/2 * 36 * 0.8), 41 * 0.8, 36 * 0.8);
+        }
+        else if (this.type == "rawSilterFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(beets, 313, 139, 23, 18, this.invX - (1/2 * 23 * 1), this.invY - (1/2 * 18 * 1), 23 * 1, 18 * 1);
+        }
+        else if (this.type == "silterMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(beets, 314, 163, 23, 18, this.invX - (1/2 * 23 * 1), this.invY - (1/2 * 18 * 1), 23 * 1, 18 * 1);
+        }
+        else if (this.type == "sciltArm")
+        {
+            XXX.beginPath();
+            XXX.drawImage(beets, 241, 182, 58, 35, this.invX - (1/2 * 58 * 1), this.invY - (1/2 * 35 * 1), 58 * 1, 35 * 1);
         }
         else if (this.type == "eyewortLeaves")
         {

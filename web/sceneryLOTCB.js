@@ -13852,6 +13852,82 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 }
             }
         }
+        else if (this.type == "sciltPlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.nectar(1);
+            this.solid = false;
+            this.interactionRange = 100;
+            this.size = this.information;
+
+            //DRAWSELF
+            if (this.temporary == true)
+            {
+                if (this.phase == 0)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(beets, 3, 351, 114, 101, -(1/2 * 114 * this.size), -(1/2 * 101 * this.size), 114 * this.size, 101 * this.size);
+                    XXX.restore();
+                }
+                else if (this.phase == "picked")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(stic, 41, 464, 30, 25, -(1/2 * 30 * this.size), -(1/2 * 25 * this.size), 30 * this.size, 25 * this.size);
+                    XXX.restore();
+                }
+            }
+            else
+            {
+                if (this.phase == 0)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(beets, 115, 357, 115, 101, -(1/2 * 115 * this.size), -(1/2 * 101 * this.size), 115 * this.size, 101 * this.size);
+                    XXX.restore();
+                }
+                else if (this.phase == "picked")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(stic, 140, 468, 30, 25, -(1/2 * 30 * this.size), -(1/2 * 25 * this.size), 30 * this.size, 25 * this.size);
+                    XXX.restore();
+                }
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 10;
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0)
+            {
+                this.activate = false;
+                this.phase = "picked";
+                var hits = 0;
+                for (var i = 0; i < Inventory.length; i ++)
+                {
+                    if (Inventory[i][0].type == "sciltArm")
+                    {
+                        Inventory[i][1] += 1 + Math.round(Math.random() * 3 * this.size);
+                        break;
+                    }
+                    else
+                    {
+                        hits += 1 + Math.round(Math.random() * 4);
+                    }
+                }
+                if (hits == Inventory.length)
+                {
+                    Inventory.push([new Item("sciltArm", false, false), 1 + Math.round(Math.random() * 3 * this.size)]);
+                }
+            }
+        }
         else if (this.type == "pyromothWeb")
         {
             //TRAITS

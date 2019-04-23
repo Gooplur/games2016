@@ -6,7 +6,6 @@
 
 //TODO LIST
 //top priority
-//todo make it so that the player can become the victim of the mind controlling spore of the deadly and infectious jungle mushroom (actually add a spore infected form for the player)
 //todo ---fish to add to southern fishing spot---- saskriit, riulpo, kald, polxetp, tridite
 //todo add the new fish to the seal unit's diet
 //todo add Cymothoa Exigua - tongue eating louse IRL (make a parasitic grub that sucks the players tongue dry and replaces it with itself) reduces hunger gain from all foods eaten [consider making it something that can be cured in a pre-mature stage]
@@ -14,8 +13,7 @@
 //things to add to the next image i'm adding:
 //todo add armoured horses
 
-//Alzkwaya Update / Savannah Update
-//todo add the alzkwaya tribe's village (mofu themed tribe)
+//Kerib Update
 //todo add the karib tribe's village (zarbu themed tribe)
 
 //No Man's Land Update (kellish v thengan warzone)
@@ -31,7 +29,7 @@
 //todo add shark-like creatures with crazy pointed teeth called 'Taebure'
 //todo add northern jellyfish creatures called 'Holn' -- they electrocute and stun their victim and when they die are converting into a scenery object that can be collected with gloves to avoid the same stun shock which would result in getting 'holn lappets' (the tentacle-like stuff)
 //todo add a scenery object that mimics the dead versions of the jellyfish monster
-//todo add Frajek Island in elevation two area and put a small village there
+//todo add Frajek Island in elevation two area and put city there
 //todo add a small northern island with a village
 //todo create and add Margul - White furred, large, carnivorous, arctic beast with a tail and a long neck...
 //todo create and add large bare-faced furry snow trolls to the north
@@ -53,15 +51,11 @@
 
 //Cephrian/Jungle Update
 //todo piranah fish swarm (water creature) [Only attacks the player if not in a boat]
-//todo add Sonja Fruit and Sonja fruit trees (tropical trees that drop Sonja fruits)
-//todo add jungle trees
 //todo add blue water berries that dmitri made a while ago
-//todo add a venus fly trap monster
 //todo add a cephrian city directly to the south of the jungle map "Holuim City" (a town bustling with tropical market places and various magic venders)
 //todo add the 'air staff' from Theng img sheet
 //todo add weaken spell
 //todo add arrow mods such as toxic/poison, electric, wind, armour piercing...
-//todo add toxic slugs from 'zapa' IMG
 //todo add waterwalking spell
 //todo add anti petrification spell
 
@@ -69,9 +63,8 @@
 //todo add quests for the several unique characters:
     //todo add quest 'A Noble Conspiracy' -- the Jarl of Venning is involved in supporting piratry in exhcange for a cut (evidence: you spot a town guard that tries to attack you in map n4w1 when you see him making a cash pickup from a pirate, pirate says "here's for yer jarl's blind eye to ar' business") if you bring it up to the jarl he will sic his guards on you unless you are noble or royal in which case he will try to justify it, and bribe you not to tell the king (pick either the option to take the bribe (lying that you will not tell the king), (take the bribe and don't tell the king), or refuse the bribe (if you refuse the bribe he will send an assassin after you at a later point), - if highfolk and your faction relation with Freynor is 500+ the king will believe you, otherwise you must have 65 fame and 700 faction relation with Freynor for him to believe you. if noble or royalty the king will believe you unless your own faction relation with Freynor is less than 250, in which case he will say "Of course it would be you who brings malicious slander into my court, you think that spreading fowl rumors about your moral betters will gain you something from me, *chuckles* you are utterly mistaken [-50 faction relation] (you only get one chance to convince the king, but if you do he stripps Jarl Stombjord of his titles and gives his cousin who is a knight in the royal court the title Jarl of Venning, (the new jarl, Gallok Stambjord, feasts as well but is a fully armoured and trained fighter)
     //todo add a flooded basement pest control quest in which you kill the crabs that are infesting someone's basement for a fee.
-    //todo add a quest 'A broken hearted soul' pass letters between a love interest and a passionate man whose family does not permit him leave to move away from the farm, when his lover tells the man that she has found someone new, he kills himself. his angry ghost can be confronted at the island's cemetery (digg up bones and burn them with salt - all while trying not to die by the very spectre you are eradicating)
+    //todo add a quest 'A broken hearted soul' pass letters between a love interest and a passionate man whose family does not permit him leave to move away from the farm, when his lover tells the man that she has found someone new, he kills himself. his angry ghost can be confronted at the island's cemetery (digg up bones and burn them - all while trying not to die by the very spectre you are eradicating)
     //todo the herbalist has a sick patient that needs a special elixer that only the alchemist knows how to make, the alchemist dislikes the patient (who has insulted him for not being a hunter and therefore not the pinnacle of freydic virility) so he has refused to help, the options are: convince him to help (CHAR), convince him to help ($$$$), accept a quest for him in which you bring him a 'rawCloimidFlesh' item for one of his potions in exchange for his help.
-    //todo add quest 'Worthy Under the Watchful Eye' -- find an ancient tablet for the sage of Gemesh in the Venning city temple (it has been part of the temples belongings for centuries, but it has been stolen {whoever stole it stole the wrong one, because the one missing is not the spell}, "This tablet was dear to our temple, if you can find it you will surely be rewarded in the afterlife, the great valley of Halmthafgh will yield to you its wonderous fruits, sewn from the glory of its maker, our wise father Gemesh!" - if the player requests a more tangible reward, the sage will scoff and offer the player a 100 coin reward (at the expense of the magic experience that would otherwise be gained for finding it) - include a letter that was cursed to kill the person who opened it.
 //todo add the jewelry shop / add more jewelry into the game / add a jeweler
 
 //Cranheim Update
@@ -3224,7 +3217,15 @@ function theLegend()
         ehitli: ["Ehitli", 0],
         iplala: ["Iplala", 0],
         muktu: ["Muktu", 0],
-        jinn: ["Jinn", 0]
+        jinn: ["Jinn", 0],
+        axel: ["Axel", 0],
+        lambert: ["Lambert", 0],
+        lenard: ["Lenard", 0],
+        hanz: ["Hanz", 0],
+        conrad: ["Conrad", 0],
+        vsevolod: ["Vsevolod", 0],
+        hanzChild: ["HanzChild", 0],
+        masterHanz: ["MasterHanz", 0]
     };
 
 //time Tracker Variables
@@ -3426,7 +3427,13 @@ function theLegend()
         muktuLDS: true,
         ritlaktlLDS: true,
         iplalaLDS: true,
-        ehitliLDS: true
+        ehitliLDS: true,
+        lambertLDS: true,
+        lenardLDS: true,
+        hanzLDS: true,
+        conradLDS: true,
+        vsevolodLDS: true,
+        hanzChildLDS: true
     };
 //QUESTS
     quests =
@@ -3506,6 +3513,9 @@ function theLegend()
         atalinTournyHosted: false, //is the tourny happening or not?
         atalinSisterJarl: false, //your sister is the obvious choice to be the dame of Teshir.
         teshirConverted: false, //is teshir converted to the faith of the everlasting spirit (do they had a church and a pyre built?)
+            //Lethik
+        lethikHanzRestored: false,
+        lethikHanzMarried: false,
 
         //FACTION MEMBERSHIP PROGRESS
         theOrderOfTheInquisition: 0,
@@ -3520,6 +3530,8 @@ function theLegend()
         cherylChildAccompany: false,
         rannukChild: false,
         rannukChildName: "Espen",
+        hanzChild: false,
+        hanzChildName: "Gelna",
 
         //QUEST: Lost Huntress ---- given by Muktu
         lostHuntressQuest: false,
@@ -3618,15 +3630,34 @@ function theLegend()
         thePlightOfLethikWitchInterrogated: false,
         thePlightOfLethikCompletionStyle: false,
         thePlightOfLethikFarmRestored: false,
+        thePlightOfLethikPay: 0,
 
         //QUEST: Debt Collector ---- given by Ederhal
         debtCollectorQuest: false,
         debtCollectorWho: false,
+        debtCollectorLambert: false,
+        debtCollectorAxel: false,
+        debtCollectorLenard: false,
+        debtCollectorHanz: false,
+        debtCollectorConrad: false,
+        debtCollectorLenardSeduced: false,
+        debtCollectorLambertViolence: false,
+        debtCollectorStoryTold: false,
 
-        //QUEST: Debt Collector ---- given by Ederhal
+        //QUEST: Draft And Die ---- given by Ederhal
         draftAndDieQuest: false,
         draftAndDieReward: 300,
         draftAndDiePlayersKill: true,
+
+        //QUEST: The Secret of The Sage's Cache ---- given by Vsevolod
+        theSecretOfTheSagesCacheQuest: false,
+        theSecretOfTheSagesCacheCompletionStyle: false,
+        theSecretOfTheSagesCacheGarldSaved: false,
+
+        //QUEST: Spouse Tracker ---- given by Hanz
+        spouseTrackerQuest: false,
+        spouseTrackerCompletionStyle: false,
+        spouseTrackerFound: false,
 
         //QUEST: Sword Delivery ---- given by Dagmar
         swordDeliveryQuest: false,
@@ -4218,6 +4249,7 @@ function theLegend()
     foods.push(new Item("babosaMeat", false));
     foods.push(new Item("mudToad", false));
     foods.push(new Item("ghoulMeat", false));
+    foods.push(new Item("silterMeat", false));
 
 //Tailoring (Items crafted at a weaving, sewing, dying, etc. tailor's work bench thing)
     tailoring = [];

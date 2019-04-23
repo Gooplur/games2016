@@ -355,6 +355,16 @@ function worldBuilder()
             outlineBuilder( 3, 1, "forest", -14, 65); //^
             outlineBuilder( 1, 6, "forest", -10, 70); //^
         }
+        //mapS2W5
+        if (Y > -24704 && Y < -13476 && X < 58680 && X > 47082) //X-5
+        {
+            elevation = 0;
+            region = "s2w5";
+
+            outlineBuilder( 34, 34, "hotGrass", -190, 48);
+            outlineBuilder( 12, 1, "brickRoad", -167, 48);
+            outlineBuilder( 2, 4, "farmland", -168, 62);
+        }
         //Layer -1 (cold region): elev 0
         //mapS1E1 //TODO finish the map
         if (Y > -14144 && Y < -3328 && X < - 2490 && X > -14114) //X1
@@ -412,6 +422,7 @@ function worldBuilder()
             outlineBuilder( 13, 2, "crag", -163, 25);
             outlineBuilder( 4, 1, "crag", -162, 38);
             outlineBuilder( 1, 1, "crag", -161, 47);
+            outlineBuilder( 12, 1, "brickRoad", -167, 36);
             if (uniqueChars.vsevolodLDS)
             {
                 outlineBuilder( 1, 2, "desert", -175, 22);

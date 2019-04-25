@@ -3721,6 +3721,27 @@ function Adventurer()
                 }
                 this.superStealthCooldownKeeper = new Date().getTime(); //prepares the cooldown.
                 this.superStealth = true;
+
+                if (player.getDexterity() >= 55) //time slows while superstealth is active if player's dexterity is 30+
+                {
+                    this.timeAlterTime = Math.max(this.timeAlterTime, 1);
+                    this.timeAlter = Math.min(this.timeAlter, 0.4);
+                }
+                else if (player.getDexterity() >= 50) //time slows while superstealth is active if player's dexterity is 30+
+                {
+                    this.timeAlterTime = Math.max(this.timeAlterTime, 1);
+                    this.timeAlter = Math.min(this.timeAlter, 0.45);
+                }
+                else if (player.getDexterity() >= 35) //time slows while superstealth is active if player's dexterity is 30+
+                {
+                    this.timeAlterTime = Math.max(this.timeAlterTime, 1);
+                    this.timeAlter = Math.min(this.timeAlter, 0.5);
+                }
+                else if (player.getDexterity() >= 30) //time slows while superstealth is active if player's dexterity is 30+
+                {
+                    this.timeAlterTime = Math.max(this.timeAlterTime, 1);
+                    this.timeAlter = Math.min(this.timeAlter, 0.6);
+                }
             }
             else
             {

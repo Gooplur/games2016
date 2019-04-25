@@ -126,7 +126,7 @@ function Item(type, x, y)
 
         this.superStealthNum = function(multiplyerOrAddend)
         {
-            if (player.superStealth)
+            if (player.superStealth == true)
             {
                 return multiplyerOrAddend;
             }

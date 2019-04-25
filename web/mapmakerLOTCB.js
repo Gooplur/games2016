@@ -115,8 +115,7 @@ function buildMaster()
                 //scenicList.push(new Scenery("lauminPlant", 3600, 2400, 2, true));
                 //ArtificialIntelligenceAccess.push(new Unit(3900, 2900, "Xormid", false, "Sluba"));
                 //ArtificialIntelligenceAccess.push(new Unit(3900, 2900, "Silter", false, "Screpa"));
-                ArtificialIntelligenceAccess.push(new Unit(3900, 2900, "KorskBeetle", true, "Scraupp"));
-                ArtificialIntelligenceAccess.push(new Unit(3950, 2950, "KorskBeetle", false, "Scraupp"));
+                //ArtificialIntelligenceAccess.push(new Unit(3900, 2900, "KorskBeetle", true, "Scraupp"));
 
                 //scenicList.push(new Scenery("dethMasterHut", 3600, 2500, 0, 0, "deth1"));
                 //scenicList.push(new Scenery("dethTotem", 3600, 3400, 0, 0, "deth1"));

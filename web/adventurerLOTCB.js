@@ -32435,6 +32435,34 @@ function Adventurer()
                                 break;
                             }
                         }
+                        else if (Inventory[i][0].ability == "hatchSilter")
+                        {
+                            var canPlace = true;
+                            var hits = 0;
+                            for (var j = 0; j < scenicList.length; j++)
+                            {
+                                //5 is the radius of mofuEgg Scenery Object.
+                                if (scenicList[j].X - 6 <= X + scenicList[j].radius && scenicList[j].X + 6 >= X - scenicList[j].radius && scenicList[j].Y - 6 <= Y + scenicList[j].radius && scenicList[j].Y + 6 >= Y - scenicList[j].radius)
+                                {
+                                    canPlace = false;
+                                }
+                            }
+
+                            if (canPlace == true)
+                            {
+                                scenicList.push(new Scenery("silterEggs", X, Y, (Math.random() * (2 * Math.PI)), false));
+
+                                if (Inventory[i][1] - 1 <= 0)
+                                {
+                                    Inventory.splice(i, 1);
+                                }
+                                else
+                                {
+                                    Inventory[i][1] -= 1;
+                                }
+                                break;
+                            }
+                        }
                         else if (Inventory[i][0].ability == "etnaHatch")
                         {
                             var canPlace = true;

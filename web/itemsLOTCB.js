@@ -3330,6 +3330,156 @@ function Item(type, x, y)
             this.buyValue = 9200 - Math.floor(player.getCharisma() / 0.125); // at max, buy for 8800.
             this.sellValue = 6592 + Math.floor(player.getCharisma() / 0.025); // at max, sell for 8592.
         }
+        else if (this.type == "korskBeetleStinkGland")
+        {
+            //For All Items
+            this.identity = "Korsk Beetle Stink Gland";
+            this.weight = 2.25;
+            this.size = 9;
+            this.description = "A slimey organ of the korsk beetle that exudes a terrible stench that lingers in your nostrils.";
+            this.intForDes = 1;
+            this.intDescription = "The stink glands are used by the male beetles to attract the females when it is time to mate.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 6 - Math.floor(player.getCharisma() / 15); // at max, buy for 3.
+            this.sellValue = 2 + Math.floor(player.getCharisma() / 50); // at max, sell for 3.
+        }
+        else if (this.type == "silterEggs")
+        {
+            //For All Items
+            this.identity = "Silter Eggs";
+            this.weight = 0.9;
+            this.size = 8;
+            this.description = "Fleshy membrain composed yellow orbs that each shelter a baby silter.";
+            this.intForDes = 0;
+            this.intDescription = "Since these eggs are already fertalized, you can lay them down to hatch.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+
+            //ability
+            this.ability = "hatchSilter";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "friedSilterEggs")
+        {
+            //For All Items
+            this.identity = "Fried Silter Eggs";
+            this.weight = 0.9;
+            this.size = 8;
+            this.description = "The popped and coagulated eggs of a silter.";
+            this.intForDes = 3;
+            this.intDescription = "These are not particularly appetizing aesthetically, but they taste alright.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 4; //satisfies hunger.
+            this.thirst = 0.1; //quenches thirst.
+            this.warmth = 1.5; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 1;
+            this.ingredients = [["Silter Eggs", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "rawKorskBeetleFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Korsk Beetle Flesh";
+            this.weight = 1;
+            this.size = 10;
+            this.description = "The raw flesh of a korsk beetle.";
+            this.intForDes = 0;
+            this.intDescription = "It has a peculiar distasteful stench to it... eating it would not be advisable.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -1; //recoops lost energy.
+            this.replenish = -1; //restores will.
+
+
+            //ability
+            this.ability = "potentialFoodPoisoning";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "korskBeetleMeat")
+        {
+            //For All Items
+            this.identity = "Korsk Beetle Meat";
+            this.weight = 1;
+            this.size = 10;
+            this.description = "The cooked meat of a korsk beetle.";
+            this.intForDes = 0;
+            this.intDescription = "It has a relatively bland flavour, but its aftertaste somewhat resembles a rotten egg fart...";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 3; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0.5; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = - 0.5; //recoops lost energy.
+            this.replenish = -0.5; //restores will.
+
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 1;
+            this.ingredients = [["Raw Korsk Beetle Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
         else if (this.type == "rawGribFlesh")
         {
             //For All Items
@@ -9966,6 +10116,66 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 5; // at max, buy for 2.
             this.sellValue = 4; // at max, sell for 2.
+        }
+        else if (this.type == "laumin")
+        {
+            //For All Items
+            this.identity = "Laumin";
+            this.weight = 0.002;
+            this.size = 6;
+            this.description = "A stem with a cluster of neatly ordered laumin flowers.";
+            this.intForDes = 10;
+            this.intDescription = "This acts as a changer in alchemy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3; // at max, buy for 3.
+            this.sellValue = 3; // at max, sell for 3.
+        }
+        else if (this.type == "korceidaFlower")
+        {
+            //For All Items
+            this.identity = "Korceida Flower";
+            this.weight = 0.22;
+            this.size = 6;
+            this.description = "A red petalled flower with light pollen that grows in the thengan woodlands.";
+            this.intForDes = 10;
+            this.intDescription = "This acts as a changer in alchemy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 4; // at max, buy for 4.
+            this.sellValue = 4; // at max, sell for 4.
+        }
+        else if (this.type == "korceidaLeaf")
+        {
+            //For All Items
+            this.identity = "Korceida Leaf";
+            this.weight = 0.01;
+            this.size = 4;
+            this.description = "A smooth and silky thin green leaf.";
+            this.intForDes = 2;
+            this.intDescription = "These can be used to give Thengan soups and stews a hearty herbal aromatic.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
         }
         else if (this.type == "palntFlower")
         {
@@ -37105,6 +37315,46 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "korskBeetleStinkGland")
+        {
+            XXX.beginPath();
+            XXX.drawImage(beets, 311, 4, 38, 33, X - this.X + (1/2 * CCC.width) - (1/2 * 38 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 33 * 1), 38 * 1, 33 * 1);
+        }
+        else if (this.type == "rawKorskBeetleFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(beets, 237, 5, 38, 33, X - this.X + (1/2 * CCC.width) - (1/2 * 38 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 33 * 1), 38 * 1, 33 * 1);
+        }
+        else if (this.type == "korskBeetleMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(beets, 275, 5, 38, 33, X - this.X + (1/2 * CCC.width) - (1/2 * 38 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 33 * 1), 38 * 1, 33 * 1);
+        }
+        else if (this.type == "silterEggs")
+        {
+            XXX.beginPath();
+            XXX.drawImage(beets, 550, 277, 38, 33, X - this.X + (1/2 * CCC.width) - (1/2 * 38 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 33 * 1), 38 * 1, 33 * 1);
+        }
+        else if (this.type == "friedSilterEggs")
+        {
+            XXX.beginPath();
+            XXX.drawImage(beets, 549, 245, 38, 33, X - this.X + (1/2 * CCC.width) - (1/2 * 38 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 33 * 1), 38 * 1, 33 * 1);
+        }
+        else if (this.type == "korceidaLeaf")
+        {
+            XXX.beginPath();
+            XXX.drawImage(beets, 239, 91, 31, 30, X - this.X + (1/2 * CCC.width) - (1/2 * 31 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 30 * 1), 31 * 1, 30 * 1);
+        }
+        else if (this.type == "korceidaFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(beets, 275, 90, 31, 30, X - this.X + (1/2 * CCC.width) - (1/2 * 31 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 30 * 1), 31 * 1, 30 * 1);
+        }
+        else if (this.type == "laumin")
+        {
+            XXX.beginPath();
+            XXX.drawImage(beets, 313, 91, 31, 30, X - this.X + (1/2 * CCC.width) - (1/2 * 31 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 30 * 1), 31 * 1, 30 * 1);
+        }
         else if (this.type == "xormidRemainsLarge")
         {
             XXX.beginPath();
@@ -41927,6 +42177,46 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
+        else if (this.type == "korskBeetleStinkGland")
+        {
+            LXX.beginPath();
+            LXX.drawImage(beets, 311, 4, 38, 33, this.invX - (1/2 * 38 * 1), this.invY - (1/2 * 33 * 1), 38 * 1, 33 * 1);
+        }
+        else if (this.type == "rawKorskBeetleFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(beets, 237, 5, 38, 33, this.invX - (1/2 * 38 * 1), this.invY - (1/2 * 33 * 1), 38 * 1, 33 * 1);
+        }
+        else if (this.type == "korskBeetleMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(beets, 275, 5, 38, 33, this.invX - (1/2 * 38 * 1), this.invY - (1/2 * 33 * 1), 38 * 1, 33 * 1);
+        }
+        else if (this.type == "silterEggs")
+        {
+            LXX.beginPath();
+            LXX.drawImage(beets, 550, 277, 38, 33, this.invX - (1/2 * 38 * 1), this.invY - (1/2 * 33 * 1), 38 * 1, 33 * 1);
+        }
+        else if (this.type == "friedSilterEggs")
+        {
+            LXX.beginPath();
+            LXX.drawImage(beets, 549, 245, 38, 33, this.invX - (1/2 * 38 * 1), this.invY - (1/2 * 33 * 1), 38 * 1, 33 * 1);
+        }
+        else if (this.type == "korceidaLeaf")
+        {
+            LXX.beginPath();
+            LXX.drawImage(beets, 239, 91, 31, 30, this.invX - (1/2 * 31 * 1), this.invY - (1/2 * 30 * 1), 31 * 1, 30 * 1);
+        }
+        else if (this.type == "korceidaFlower")
+        {
+            LXX.beginPath();
+            LXX.drawImage(beets, 275, 90, 31, 30, this.invX - (1/2 * 31 * 1), this.invY - (1/2 * 30 * 1), 31 * 1, 30 * 1);
+        }
+        else if (this.type == "laumin")
+        {
+            LXX.beginPath();
+            LXX.drawImage(beets, 313, 91, 31, 30, this.invX - (1/2 * 31 * 1), this.invY - (1/2 * 30 * 1), 31 * 1, 30 * 1);
+        }
         else if (this.type == "xormidRemainsLarge")
         {
             LXX.beginPath();
@@ -46719,6 +47009,46 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "korskBeetleStinkGland")
+        {
+            XXX.beginPath();
+            XXX.drawImage(beets, 311, 4, 38, 33, this.invX - (1/2 * 38 * 1), this.invY - (1/2 * 33 * 1), 38 * 1, 33 * 1);
+        }
+        else if (this.type == "rawKorskBeetleFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(beets, 237, 5, 38, 33, this.invX - (1/2 * 38 * 1), this.invY - (1/2 * 33 * 1), 38 * 1, 33 * 1);
+        }
+        else if (this.type == "korskBeetleMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(beets, 275, 5, 38, 33, this.invX - (1/2 * 38 * 1), this.invY - (1/2 * 33 * 1), 38 * 1, 33 * 1);
+        }
+        else if (this.type == "silterEggs")
+        {
+            XXX.beginPath();
+            XXX.drawImage(beets, 550, 277, 38, 33, this.invX - (1/2 * 38 * 1), this.invY - (1/2 * 33 * 1), 38 * 1, 33 * 1);
+        }
+        else if (this.type == "friedSilterEggs")
+        {
+            XXX.beginPath();
+            XXX.drawImage(beets, 549, 245, 38, 33, this.invX - (1/2 * 38 * 1), this.invY - (1/2 * 33 * 1), 38 * 1, 33 * 1);
+        }
+        else if (this.type == "korceidaLeaf")
+        {
+            XXX.beginPath();
+            XXX.drawImage(beets, 239, 91, 31, 30, this.invX - (1/2 * 31 * 1), this.invY - (1/2 * 30 * 1), 31 * 1, 30 * 1);
+        }
+        else if (this.type == "korceidaFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(beets, 275, 90, 31, 30, this.invX - (1/2 * 31 * 1), this.invY - (1/2 * 30 * 1), 31 * 1, 30 * 1);
+        }
+        else if (this.type == "laumin")
+        {
+            XXX.beginPath();
+            XXX.drawImage(beets, 313, 91, 31, 30, this.invX - (1/2 * 31 * 1), this.invY - (1/2 * 30 * 1), 31 * 1, 30 * 1);
         }
         else if (this.type == "xormidRemainsLarge")
         {

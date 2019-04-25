@@ -15990,6 +15990,69 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
             this.swimSpeed = this.speed * 0.1;
         }
+        else if (this.type == "KorskBeetle")
+        {
+            this.followAttack = true;
+            this.doubleFrame = true;
+            this.damageFrame = "automatic";
+            this.team = "wild";
+            if (this.ID == "docile")
+            {
+                this.team = "docile";
+            }
+            this.baseTeam = this.team;
+            this.tameREQ = 10;
+
+            if (this.alpha == true)
+            {
+                this.magicalResistance = 0;
+                this.heatResistance = 1;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = Math.floor(Math.random() * 4) + 12;
+                this.health = this.healthMAX;
+                this.armour = 1.5;
+                this.speed = 1.7 + (Math.floor(Math.random() * 2) / 10);
+                this.rangeOfSight = 400; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.15;
+                this.engagementRadius = 40;
+                this.sizeRadius = 16;
+                this.negateArmour = 1.8;
+                this.attackWait = 1.65;
+
+                //alpha has a larger size body and skills.
+                this.alphaSize = 1.25; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                // this is the adjustment the alpha type of Etyr needs to be centered.
+                this.yAdjustment = 0; //was - 3.5
+                this.xAdjustment = 0; //was 6
+            }
+            else
+            {
+                //STATS (non-variable)
+                this.magicalResistance = 0;
+                this.heatResistance = 1;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = Math.floor(Math.random() * 3) + 9;
+                this.health = this.healthMAX;
+                this.armour = 1.5;
+                this.speed = 1.5 + (Math.floor(Math.random() * 2) / 10);
+                this.rangeOfSight = 400; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.15;
+                this.engagementRadius = 36;
+                this.sizeRadius = 14;
+                this.negateArmour = 1.4;
+                this.attackWait = 1.6;
+
+                //this multiplies the draw image skew numbers by 1 so that it stays the same
+                this.alphaSize = 1;
+                // this is the adjustment the alpha type of Etyr needs to be centered.
+                this.yAdjustment = 0; //was -34
+                this.xAdjustment = 0; //was - 26
+
+            }
+            this.swimSpeed = this.speed * 0.1;
+        }
         else if (this.type == "Koivaya") //koikoi
         {
             this.resistances = ["night", "blinded"];
@@ -35002,6 +35065,203 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             else
             {
                 this.drawUnit(humpa, 464, 1066, 125, 84, -1/2 * 125 * this.alphaSize - this.xAdjustment, -1/2 * 84 * this.alphaSize - this.yAdjustment, 125 * this.alphaSize, 84 * this.alphaSize);
+            }
+        }
+        //KORSK BEETLE
+        if (this.type == "KorskBeetle")
+        {
+            //Set Drops and experience
+            if (this.alpha == true)
+            {
+                if (Math.max(0, 3.5 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 25 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = (25 * ((player.getIntelligence() / 50) + 1)) / 10;
+                }
+
+                this.drops = [[new Item("korskBeetleStinkGland", this.X, this.Y), 1], [new Item("rawKorskBeetleFlesh", this.X, this.Y), 1]];
+            }
+            else
+            {
+                if (Math.max(0, 2.25 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 17 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = 17 * ((player.getIntelligence() / 50) + 1) / 10;
+                }
+
+                this.drops = [[new Item("rawKorskBeetleFlesh", this.X, this.Y), 1]];
+            }
+
+            //RANGE OF SIGHT (anything related to range of sight)
+            if (this.alpha == true)
+            {
+                this.rangeOfSightCalculator(360, false);
+            }
+            else
+            {
+                this.rangeOfSightCalculator(340, false);
+            }
+
+            //AI
+            if (this.alive == true)
+            {
+                if (this.alpha == true)
+                {
+                    this.Attack(2, 1.5);
+                    this.callForNearbyHelpFromType(300, "KorskBeetle");
+                }
+                else
+                {
+                    this.Attack(1, 1.25);
+                }
+
+                //this.deathChecker();
+                this.disturbedTimer();
+                this.visibleSight();
+                this.friendDecider();
+                this.targeting();
+
+                this.moving = false;
+
+                if (this.target == player)
+                {
+                    var ddttpp = this.DTP();
+
+                    if (this.disturbed == true || ddttpp <= 225)
+                    {
+                        this.pointTowardsPlayer();
+                        this.moveInRelationToPlayer();
+                    }
+                    else
+                    {
+                        this.pointTowardsPlayer();
+                    }
+
+                }
+                else if (this.target != "none")
+                {
+                    var ddttpp = this.DTU(this.target);
+
+                    if (this.offended == true || ddttpp <= 225)
+                    {
+                        this.pointTowards(this.target);
+                        this.moveInRelationToThing(this.target);
+                    }
+                    else
+                    {
+                        this.pointTowards(this.target);
+                    }
+                }
+            }
+
+            //ANIMATIONS
+
+            if (this.alive == true)
+            {
+
+                if (this.moving) //If moving and not attacking initiate moving animation...
+                {
+                    this.costumeEngine(3, 0.115, false);
+                }
+                else
+                {
+                    this.costume = 0;
+                }
+
+                if (this.attacking || this.eating) //otherwise if it is attacking then initiate attacking animation, and if neither...
+                {
+                    if(new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000 / timeSpeed * this.timeResistance))
+                    {
+                        this.costumeEngine(3, 0.05, false, true);
+                    }
+                    else if (this.eating == true)
+                    {
+                        this.costumeEngine(3, 0.05, false, true);
+                    }
+                }
+                else
+                {
+                    this.costume2 = 0;
+                }
+
+
+                // the frames/stages/costumes of the animation.
+                var theCostume = Math.floor(this.costume); //This rounds this.costume down to the nearest whole number.
+                var theCostume2 = Math.floor(this.costume2); //This rounds this.costume2 down to the nearest whole number.
+
+                if (theCostume <= 0)
+                {
+                    if (!this.moving)
+                    {
+                        if (theCostume2 <= 0) //shut
+                        {
+                            this.drawUnit(beets, 7, 0, 68, 71, -1/2 * 68 * this.alphaSize - this.xAdjustment, -1/2 * 71 * this.alphaSize - this.yAdjustment, 68 * this.alphaSize, 71 * this.alphaSize);
+                        }
+                        else if (theCostume2 <= 1) //mid
+                        {
+                            this.drawUnit(beets, 6, 83, 68, 71, -1/2 * 68 * this.alphaSize - this.xAdjustment, -1/2 * 71 * this.alphaSize - this.yAdjustment, 68 * this.alphaSize, 71 * this.alphaSize);
+                        }
+                        else if (theCostume2 >= 2) //open
+                        {
+                            this.drawUnit(beets, 6, 168, 68, 71, -1/2 * 68 * this.alphaSize - this.xAdjustment, -1/2 * 71 * this.alphaSize - this.yAdjustment, 68 * this.alphaSize, 71 * this.alphaSize);
+                        }
+                    }
+                    else
+                    {
+                        if (theCostume2 <= 0) //shut
+                        {
+                            this.drawUnit(beets, 85, 0, 68, 71, -1/2 * 68 * this.alphaSize - this.xAdjustment, -1/2 * 71 * this.alphaSize - this.yAdjustment + 1, 68 * this.alphaSize, 71 * this.alphaSize);
+                        }
+                        else if (theCostume2 <= 1) //mid
+                        {
+                            this.drawUnit(beets, 85, 84, 68, 71, -1/2 * 68 * this.alphaSize - this.xAdjustment, -1/2 * 71 * this.alphaSize - this.yAdjustment + 1, 68 * this.alphaSize, 71 * this.alphaSize);
+                        }
+                        else if (theCostume2 >= 2) //open
+                        {
+                            this.drawUnit(beets, 85, 170, 68, 71, -1/2 * 68 * this.alphaSize - this.xAdjustment, -1/2 * 71 * this.alphaSize - this.yAdjustment + 1, 68 * this.alphaSize, 71 * this.alphaSize);
+                        }
+                    }
+                }
+                else if (theCostume <= 1)
+                {
+                    if (theCostume2 <= 0) //shut
+                    {
+                        this.drawUnit(beets, 7, 0, 68, 71, -1/2 * 68 * this.alphaSize - this.xAdjustment, -1/2 * 71 * this.alphaSize - this.yAdjustment, 68 * this.alphaSize, 71 * this.alphaSize);
+                    }
+                    else if (theCostume2 <= 1) //mid
+                    {
+                        this.drawUnit(beets, 6, 83, 68, 71, -1/2 * 68 * this.alphaSize - this.xAdjustment, -1/2 * 71 * this.alphaSize - this.yAdjustment, 68 * this.alphaSize, 71 * this.alphaSize);
+                    }
+                    else if (theCostume2 >= 2) //open
+                    {
+                        this.drawUnit(beets, 6, 168, 68, 71, -1/2 * 68 * this.alphaSize - this.xAdjustment, -1/2 * 71 * this.alphaSize - this.yAdjustment, 68 * this.alphaSize, 71 * this.alphaSize);
+                    }
+                }
+                else if (theCostume >= 2)
+                {
+                    if (theCostume2 <= 0) //shut
+                    {
+                        this.drawUnit(beets, 165, 0, 68, 71, -1/2 * 68 * this.alphaSize - this.xAdjustment, -1/2 * 71 * this.alphaSize - this.yAdjustment, 68 * this.alphaSize, 71 * this.alphaSize);
+                    }
+                    else if (theCostume2 <= 1) //mid
+                    {
+                        this.drawUnit(beets, 165, 82, 68, 71, -1/2 * 68 * this.alphaSize - this.xAdjustment, -1/2 * 71 * this.alphaSize - this.yAdjustment, 68 * this.alphaSize, 71 * this.alphaSize);
+                    }
+                    else if (theCostume2 >= 2) //open
+                    {
+                        this.drawUnit(beets, 165, 169, 68, 71, -1/2 * 68 * this.alphaSize - this.xAdjustment, -1/2 * 71 * this.alphaSize - this.yAdjustment, 68 * this.alphaSize, 71 * this.alphaSize);
+                    }
+                }
+            }
+            else
+            {
+                this.drawUnit(beets, 514, 161, 68, 71, -1/2 * 68 * this.alphaSize - this.xAdjustment, -1/2 * 71 * this.alphaSize - this.yAdjustment, 68 * this.alphaSize, 71 * this.alphaSize);
             }
         }
         //KOIVAYA

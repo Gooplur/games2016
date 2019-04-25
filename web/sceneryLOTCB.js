@@ -1742,6 +1742,72 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 }
             }
         }
+        else if (this.type == "silterEggs")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 55;
+
+            //DRAWSELF
+            if (this.phase != "broken")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(beets, 552, 274, 38, 33, -(1/2 * 38 * 1), -(1/2 * 33 * 1), 38 * 1, 33 * 1);
+                XXX.restore();
+            }
+            else
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(beets, 551, 307, 38, 33, -(1/2 * 38 * 1), -(1/2 * 33 * 1), 38 * 1, 33 * 1);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 8;
+
+            //HATCHING
+            this.eggHatchTimer += 1 * (TTD / 16.75);
+            if (this.eggHatchTimer >= 7777)
+            {
+                this.eggHatchTimer = -1000000;
+                ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Silter", "baby", "Generic Silter"));
+                for (var i = 0; i < scenicList.length; i++)
+                {
+                    if (scenicList[i] === this)
+                    {
+                        scenicList.splice(i, 1);
+                        break;
+                    }
+                }
+            }
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+                if (player.getSurvivalism() >= 1 && this.phase != "broken")
+                {
+                    worldItems.push([new Item("silterEggs", this.X, this.Y), 1]);
+
+                    for (var i = 0; i < scenicList.length; i++)
+                    {
+                        if (scenicList[i] === this)
+                        {
+                            scenicList.splice(i, 1);
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+
+                }
+            }
+        }
         else if (this.type == "grewbleEgg")
         {
             //TRAITS
@@ -13850,6 +13916,146 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 {
                     Inventory.push([new Item("morshPuff", false, false), 1]);
                 }
+            }
+        }
+        else if (this.type == "lauminPlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.nectar(8);
+            this.solid = false;
+            this.interactionRange = 100;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(beets, 237, 132, 31, 30, -(1/2 * 31), -(1/2 * 30), 31, 30);
+                XXX.restore();
+            }
+            else if (this.phase == "picked")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(beets, 273, 132, 31, 30, -(1/2 * 31), -(1/2 * 30), 31, 30);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 14;
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0)
+            {
+                this.activate = false;
+                this.phase = "picked";
+                var hits = 0;
+                for (var i = 0; i < Inventory.length; i ++)
+                {
+                    if (Inventory[i][0].type == "laumin")
+                    {
+                        Inventory[i][1] += 1;
+                        break;
+                    }
+                    else
+                    {
+                        hits += 1;
+                    }
+                }
+                if (hits == Inventory.length)
+                {
+                    Inventory.push([new Item("laumin", false, false), 1]);
+                }
+            }
+        }
+        else if (this.type == "korceidaPlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.nectar(9);
+            this.solid = false;
+            this.interactionRange = 100;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(beets, 238, 46, 31, 30, -(1/2 * 31), -(1/2 * 30), 31, 30);
+                XXX.restore();
+            }
+            else if (this.phase == 1)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(beets, 277, 45, 31, 30, -(1/2 * 31), -(1/2 * 30), 31, 30);
+                XXX.restore();
+            }
+            else if (this.phase == "picked")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(beets, 316, 48, 31, 30, -(1/2 * 31), -(1/2 * 30), 31, 30);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 14;
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0 || this.activate == true && this.phase == 1)
+            {
+                if (this.phase == 1)
+                {
+                    this.activate = false;
+                    this.phase = "picked";
+                    var hits = 0;
+                    for (var i = 0; i < Inventory.length; i ++)
+                    {
+                        if (Inventory[i][0].type == "korceidaLeaf")
+                        {
+                            Inventory[i][1] += 1 + Math.floor(Math.random() * 3);
+                            break;
+                        }
+                        else
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == Inventory.length)
+                    {
+                        Inventory.push([new Item("korceidaLeaf", false, false), 1 + Math.floor(Math.random() * 3)]);
+                    }
+                }
+                else
+                {
+                    this.activate = false;
+                    this.phase = 1;
+                    var hits = 0;
+                    for (var i = 0; i < Inventory.length; i ++)
+                    {
+                        if (Inventory[i][0].type == "korceidaFlower")
+                        {
+                            Inventory[i][1] += 1;
+                            break;
+                        }
+                        else
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == Inventory.length)
+                    {
+                        Inventory.push([new Item("korceidaFlower", false, false), 1]);
+                    }
+                }
+
             }
         }
         else if (this.type == "sciltPlant")

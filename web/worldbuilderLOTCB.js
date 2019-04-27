@@ -371,7 +371,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s1e1";
-            outlineBuilder( 34, 34, "outline", 14, 14);
+            outlineBuilder( 34, 34, "greenGrass", 14, 14);
             outlineBuilder( 1, 22, "forest", 26, 14);
             outlineBuilder( 1, 20, "forest", 28, 15);
             outlineBuilder( 1, 13, "forest", 35, 16);
@@ -425,7 +425,7 @@ function worldBuilder()
             outlineBuilder( 12, 1, "brickRoad", -167, 36);
             if (uniqueChars.vsevolodLDS)
             {
-                outlineBuilder( 1, 2, "desert", -175, 22);
+                outlineBuilder( 1, 2, "gritty", -175, 22);
             }
             else
             {
@@ -1424,7 +1424,7 @@ function outlineBuilder(width, length, terrain, extraX, extraY)
                 {
                     XXX.drawImage(dirtEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
                 }
-                else if (terrain == "desert")
+                else if (terrain == "gritty")
                 {
                     XXX.drawImage(sandyEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
                 }
@@ -1475,6 +1475,35 @@ function outlineBuilder(width, length, terrain, extraX, extraY)
                 else if (terrain == "savannahDirt")
                 {
                     XXX.drawImage(savannahDirtEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "vardanianStone")
+                {
+                    XXX.drawImage(vardanianStone, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "vardanianForest")
+                {
+                    XXX.drawImage(vardanianForest, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "vardanianGrass")
+                {
+                    XXX.drawImage(vardanianGrass, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "zetianStone")
+                {
+                    XXX.drawImage(zetianStone, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "desert")
+                {
+                    XXX.drawImage(dunesEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "redDesert")
+                {
+                    XXX.drawImage(redEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "shallowSwamp")
+                {
+                    over("landing", j, i, extraX, extraY);
+                    XXX.drawImage(swampEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
                 }
                 else if (terrain == "searock")
                 {
@@ -1661,6 +1690,36 @@ function outlineBuilder(width, length, terrain, extraX, extraY)
                         XXX.drawImage(seaCornerTR, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
                         XXX.restore();
                     }
+                }
+                else if (terrain == "swamp")
+                {
+                    over("sea", j, i, extraX, extraY);
+
+                    XXX.drawImage(swampEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "swampTR")
+                {
+                    over("landing", j, i, extraX, extraY);
+
+                    XXX.drawImage(swampTR, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "swampTL")
+                {
+                    over("landing", j, i, extraX, extraY);
+
+                    XXX.drawImage(swampTL, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "swampBR")
+                {
+                    over("landing", j, i, extraX, extraY);
+
+                    XXX.drawImage(swampBR, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "swampBL")
+                {
+                    over("landing", j, i, extraX, extraY);
+
+                    XXX.drawImage(swampBL, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
                 }
             }
         }

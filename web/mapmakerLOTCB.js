@@ -11183,7 +11183,65 @@ function buildMaster()
                 ArtificialIntelligenceAccess.push(new Unit(-11025, -4803, "Viper", false, "scale"));
                 ArtificialIntelligenceAccess.push(new Unit(-11448, -4055, "Lizard", true, "eLIZabeth"));
 
+                ArtificialIntelligenceAccess.push(new Unit(-9805, -9416, "Frich", false, "thugBug"));
+                ArtificialIntelligenceAccess.push(new Unit(-9511, -9249, "Frich", true, "thugBug"));
+                ArtificialIntelligenceAccess.push(new Unit(-9487, -9384, "Frich", false, "thugBug"));
+                ArtificialIntelligenceAccess.push(new Unit(-11547, -10427, "Frich", false, "thugBug"));
+                ArtificialIntelligenceAccess.push(new Unit(-11687, -10474, "Frich", true, "thugBug"));
+                ArtificialIntelligenceAccess.push(new Unit(-11579, -10281, "Frich", true, "thugBug"));
+                ArtificialIntelligenceAccess.push(new Unit(-11763, -10221, "Frich", false, "thugBug"));
+                ArtificialIntelligenceAccess.push(new Unit(-11498, -10145, "Frich", false, "thugBug"));
+                ArtificialIntelligenceAccess.push(new Unit(-7947, -12989, "Frich", false, "thugBug"));
+                ArtificialIntelligenceAccess.push(new Unit(-5246, -11020, "Frich", false, "thugBug"));
+                ArtificialIntelligenceAccess.push(new Unit(-5423, -11898, "Frich", false, "thugBug"));
+                ArtificialIntelligenceAccess.push(new Unit(-5271, -10854, "Frich", false, "thugBug"));
+                ArtificialIntelligenceAccess.push(new Unit(-5423, -5052, "Frich", false, "thugBug"));
+                ArtificialIntelligenceAccess.push(new Unit(-5652, -5168, "Frich", true, "thugBug"));
+                ArtificialIntelligenceAccess.push(new Unit(-9414, -6154, "Frich", true, "thugBug"));
+                ArtificialIntelligenceAccess.push(new Unit(-9194, -6239, "Frich", true, "thugBug"));
+                ArtificialIntelligenceAccess.push(new Unit(-9014, -6041, "Frich", false, "thugBug"));
+                ArtificialIntelligenceAccess.push(new Unit(-8725, -6390, "Frich", true, "thugBug"));
+
+                ArtificialIntelligenceAccess.push(new Unit(-7522, -11182, "Evrak", false, "thoogBoog"));
+
+                ArtificialIntelligenceAccess.push(new Unit(-6731, -9301, "Ardil", false, "badyBoop"));
+                ArtificialIntelligenceAccess.push(new Unit(-4438, -9200, "Ardil", true, "badyBoop"));
+                ArtificialIntelligenceAccess.push(new Unit(-11038, -6393, "Ardil", false, "badyBoop"));
+
+                ArtificialIntelligenceAccess.push(new Unit(-5012, -12614, "Naaprid", false, "jerryBoog"));
+                ArtificialIntelligenceAccess.push(new Unit(-4688, -12444, "Naaprid", true, "jerryBoog"));
+                ArtificialIntelligenceAccess.push(new Unit(-4953, -12709, "Naaprid", "baby", "jerryBoog"));
+
+                ArtificialIntelligenceAccess.push(new Unit(-7799, -5368, "Varn", true, "ppopyDog"));
+                ArtificialIntelligenceAccess.push(new Unit(-7724, -5637, "Varn", false, "ppopyDog"));
+                ArtificialIntelligenceAccess.push(new Unit(-11475, -8059, "Varn", false, "ppopyDog"));
+                ArtificialIntelligenceAccess.push(new Unit(-12220, -6760, "Varn", true, "ppopyDog"));
+                ArtificialIntelligenceAccess.push(new Unit(-11913, -5649, "Varn", true, "ppopyDog"));
+
+
                 //Build Scenery
+
+                scenicList.push(new Scenery("techiPlant", -9289 ,-9603, 1, true));
+                scenicList.push(new Scenery("techiPlant", -9649 ,-12638, 2, true));
+                scenicList.push(new Scenery("techiPlant", -6660 ,-5127, 3, true));
+                scenicList.push(new Scenery("techiPlant", -9275 ,-6523, 4, true));
+                scenicList.push(new Scenery("techiPlant", -6227 ,-7006, 5, true));
+                scenicList.push(new Scenery("techiPlant", -4357 ,-10745, 6, true));
+                scenicList.push(new Scenery("techiPlant", -9778 ,-7778, 8, true));
+                scenicList.push(new Scenery("techiPlant", -12453 ,-6554, 10, true));
+
+                scenicList.push(new Scenery("palntPlant", -5177 ,-12902, 12, true));
+                scenicList.push(new Scenery("palntPlant", -10814 ,-8486, 15, true));
+
+                scenicList.push(new Scenery("itlinPlant", -7293 , -8208, 5.5, true));
+                scenicList.push(new Scenery("itlinPlant", -6836 , -8281, 7.8, true));
+                scenicList.push(new Scenery("itlinPlant", -8423 , -8807, 1.1, true));
+                scenicList.push(new Scenery("ishPlant", -11117 , -7781, 2.23, true));
+
+                scenicList.push(new Scenery("luufPlant", -11155 ,-9093, 3, true));
+                scenicList.push(new Scenery("luufPlant", -5283 ,-10015, 2.5, true));
+
+
 
                 //trees in the southern wuncwer woods.
                 scenicList.push(new Scenery("pineTree", -7583 , -3885, 1.2, true));

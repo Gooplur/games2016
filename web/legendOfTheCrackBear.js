@@ -377,62 +377,6 @@ function legendaryPrerequisites()
     var rannukYours = new Audio("sounds/polySounds/rannukYours.wav");
     window.rannukYours = rannukYours;
 
-        //EDERHAL CHARACTER: voice acting
-
-    var ederhalGet = new Audio("sounds/polySounds/ederhalGet.mp3");
-    window.ederhalGet = ederhalGet;
-
-    var ederhalKell = new Audio("sounds/polySounds/ederhalKell.mp3");
-    window.ederhalKell = ederhalKell;
-
-    var ederhalQuickly = new Audio("sounds/polySounds/ederhalQuickly.mp3");
-    window.ederhalQuickly = ederhalQuickly;
-
-    var ederhalYourCut = new Audio("sounds/polySounds/ederhalYourCut.mp3");
-    window.ederhalYourCut = ederhalYourCut;
-
-    var ederhalDrafted = new Audio("sounds/polySounds/ederhalDrafted.mp3");
-    window.ederhalDrafted = ederhalDrafted;
-
-    var ederhalSheets = new Audio("sounds/polySounds/ederhalSheets.mp3");
-    window.ederhalSheets = ederhalSheets;
-
-    var ederhalForgetAboutIt = new Audio("sounds/polySounds/ederhalForgetAboutIt.mp3");
-    window.ederhalForgetAboutIt = ederhalForgetAboutIt;
-
-    var ederhalGossip = new Audio("sounds/polySounds/ederhalGossip.mp3");
-    window.ederhalGossip = ederhalGossip;
-
-    var ederhalOwe = new Audio("sounds/polySounds/ederhalOwe.mp3");
-    window.ederhalOwe = ederhalOwe;
-
-    var ederhalConvincing = new Audio("sounds/polySounds/ederhalConvincing.mp3");
-    window.ederhalConvincing = ederhalConvincing;
-
-    var ederhalKill = new Audio("sounds/polySounds/ederhalKill.mp3");
-    window.ederhalKill = ederhalKill;
-
-    var ederhalFirstRound = new Audio("sounds/polySounds/ederhalFirstRound.mp3");
-    window.ederhalFirstRound = ederhalFirstRound;
-
-    var ederhalTabs = new Audio("sounds/polySounds/ederhalTabs.mp3");
-    window.ederhalTabs = ederhalTabs;
-
-    var ederhalRightPlace = new Audio("sounds/polySounds/ederhalRightPlace.mp3");
-    window.ederhalRightPlace = ederhalRightPlace;
-
-    var ederhalKnow = new Audio("sounds/polySounds/ederhalKnow.mp3");
-    window.ederhalKnow = ederhalKnow;
-
-    var ederhalLetsSee = new Audio("sounds/polySounds/ederhalLetsSee.mp3");
-    window.ederhalLetsSee = ederhalLetsSee;
-
-    var ederhalTrust = new Audio("sounds/polySounds/ederhalTrust.mp3");
-    window.ederhalTrust = ederhalTrust;
-
-    var ederhalNonsense = new Audio("sounds/polySounds/ederhalNonsense.mp3");
-    window.ederhalNonsense = ederhalNonsense;
-
         //GARLD CHARACTER: voice acting
 
     var garldCurse = new Audio("sounds/polySounds/garldCurse.mp3");
@@ -578,35 +522,6 @@ function legendaryPrerequisites()
 
     var togginChangeMind = new Audio("sounds/polySounds/togginChangeMind.mp3");
     window.togginChangeMind = togginChangeMind;
-
-        //AXEL CHARACTER: voice acting
-
-    var axelCurses = new Audio("sounds/polySounds/axelCurses.mp3");
-    window.axelCurses = axelCurses;
-
-    var axelTwist = new Audio("sounds/polySounds/axelTwist.mp3");
-    window.axelTwist = axelTwist;
-
-    var axelPayYou = new Audio("sounds/polySounds/axelPayYou.mp3");
-    window.axelPayYou = axelPayYou;
-
-    var axelHi = new Audio("sounds/polySounds/axelHi.mp3");
-    window.axelHi = axelHi;
-
-    var axelWitchcraff = new Audio("sounds/polySounds/axelWitchcraff.mp3");
-    window.axelWitchcraff = axelWitchcraff;
-
-    var axelHelp = new Audio("sounds/polySounds/axelHelp.mp3");
-    window.axelHelp = axelHelp;
-
-    var axelField = new Audio("sounds/polySounds/axelField.mp3");
-    window.axelField = axelField;
-
-    var axelBlessings = new Audio("sounds/polySounds/axelBlessings.mp3");
-    window.axelBlessings = axelBlessings;
-
-    var axelBewary = new Audio("sounds/polySounds/axelBewary.mp3");
-    window.axelBewary = axelBewary;
 
         //CHERYL CHARACTER: voice acting
 
@@ -1301,6 +1216,50 @@ function envPack()
     kellStone.src = ("images/puterRocks.jpg");
     window.kellStone = kellStone;
 
+    var redEnv = new Image();
+    redEnv.src = ("images/redSand.jpg");
+    window.redEnv = redEnv;
+
+    var dunesEnv = new Image();
+    dunesEnv.src = ("images/dunes.jpg");
+    window.dunesEnv = dunesEnv;
+
+    var swampEnv = new Image();
+    swampEnv.src = ("images/vardanSwamp.jpg");
+    window.swampEnv = swampEnv;
+
+    var zetianStone = new Image();
+    zetianStone.src = ("images/zetianStone.jpg");
+    window.zetianStone = zetianStone;
+
+    var vardanianStone = new Image();
+    vardanianStone.src = ("images/vardanStone.jpg");
+    window.vardanianStone = vardanianStone;
+
+    var vardanianGrass = new Image();
+    vardanianGrass.src = ("images/vardanGrass.jpg");
+    window.vardanianGrass = vardanianGrass;
+
+    var vardanianForest = new Image();
+    vardanianForest.src = ("images/vardanForest.jpg");
+    window.vardanianForest = vardanianForest;
+
+    var swampTL = new Image();
+    swampTL.src = ("images/highL.png");
+    window.swampTL = swampTL;
+
+    var swampTR = new Image();
+    swampTR.src = ("images/highR.png");
+    window.swampTR = swampTR;
+
+    var swampBR = new Image();
+    swampBR.src = ("images/lowR.png");
+    window.swampBR = swampBR;
+
+    var swampBL = new Image();
+    swampBL.src = ("images/lowL.png");
+    window.swampBL = swampBL;
+
     var kellsStone = new Image();
     kellsStone.src = ("images/heavyRock.jpg");
     window.kellsStone = kellsStone;
@@ -1594,6 +1553,30 @@ function sticPack()
     window.stic = stic;
 
     stic.onload = function()
+    {
+        raedPack();
+    };
+}
+
+function raedPack()
+{
+    var raed = new Image();
+    raed.src = ("images/raed.png");
+    window.raed = raed;
+
+    raed.onload = function()
+    {
+        scorpPack();
+    };
+}
+
+function scorpPack()
+{
+    var scorp = new Image();
+    scorp.src = ("images/scorp.png");
+    window.scorp = scorp;
+
+    scorp.onload = function()
     {
         tribalPack();
     };

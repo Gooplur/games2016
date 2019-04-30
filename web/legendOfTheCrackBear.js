@@ -1578,6 +1578,18 @@ function scorpPack()
 
     scorp.onload = function()
     {
+        scorpionPack();
+    };
+}
+
+function scorpionPack()
+{
+    var ion = new Image();
+    ion.src = ("images/ion.png");
+    window.ion = ion;
+
+    ion.onload = function()
+    {
         tribalPack();
     };
 }

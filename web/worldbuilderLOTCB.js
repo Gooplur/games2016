@@ -365,6 +365,33 @@ function worldBuilder()
             outlineBuilder( 12, 1, "brickRoad", -167, 48);
             outlineBuilder( 2, 4, "farmland", -168, 62);
         }
+        //mapS2W6
+        if (Y > -24704 && Y < -13476 && X < 68925 && X > 57283) //X-6
+        {
+            elevation = 0;
+            region = "s2w6";
+            outlineBuilder( 34, 29, "woods", -224, 48);
+            outlineBuilder( 34, 5, "hotGrass", -195, 48);
+            outlineBuilder( 1, 1, "hotGrass", -196, 48);
+            outlineBuilder( 6, 1, "hotGrass", -196, 55);
+            outlineBuilder( 4, 2, "hotGrass", -197, 60);
+            outlineBuilder( 1, 1, "hotGrass", -198, 61);
+            outlineBuilder( 4, 1, "hotGrass", -196, 64);
+            outlineBuilder( 5, 2, "hotGrass", -197, 70);
+            outlineBuilder( 2, 1, "hotGrass", -196, 68);
+            outlineBuilder( 3, 1, "hotGrass", -197, 58);
+            outlineBuilder( 2, 1, "hotGrass", -196, 77);
+        }
+        //mapS2W7
+        if (Y > -24704 && Y < -13476 && X < 79186 && X > 67501) //X-7
+        {
+            elevation = 0;
+            region = "s2w7";
+            outlineBuilder( 34, 34, "woods", -258, 48);
+
+            outlineBuilder( 1, 25, "brickRoad", -258, 53);
+            outlineBuilder( 6, 1, "brickRoad", -233, 48);
+        }
         //Layer -1 (cold region): elev 0
         //mapS1E1 //TODO finish the map
         if (Y > -14144 && Y < -3328 && X < - 2490 && X > -14114) //X1
@@ -453,6 +480,16 @@ function worldBuilder()
             outlineBuilder( 1, 14, "brickRoad", -204, 30);
             outlineBuilder( 5, 1, "brickRoad", -205, 30);
             outlineBuilder( 1, 20, "brickRoad", -224, 35);
+        }
+        //mapS1W7
+        if (Y > -14144 && Y < -3328 && X < 79186 && X > 67501) //X-7
+        {
+            elevation = 0;
+            region = "s1w7";
+            outlineBuilder( 34, 34, "woods", -258, 14);
+
+            outlineBuilder( 1, 9, "brickRoad", -233, 35);
+            outlineBuilder( 13, 1, "brickRoad", -233, 35);
         }
         //mapS1E4 Loroka Woods
         if (Y > -14144 && Y < -3328 && X < -33084 && X > -44714) //X4

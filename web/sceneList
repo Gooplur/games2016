@@ -41,7 +41,7 @@ lostPaddle - an oar for a boat
 crashedBoat - a rowboat that is in ruin
 barrel - decorative barrels (one with a spigot the other without)
 crate - decorative and storage-system-capable varieties of crates in two color schemes dark-wood and light-wood
-blood - 9 different bloodstain options for spilled blood (7, 8, and 9 are darkened to a more Vardanian tone)
+blood - 11 different bloodstain options for spilled blood (7, 8, 9, 10, and 11 are darkened to a more Vardanian tone)
 thenganSandbox - A sandpit arena in the thengan style
 thenganBuilding1 - a thengan building
 thenganBuilding2 - a thengan building
@@ -173,6 +173,14 @@ webVictim - A variety of web covered animals (primarily jungle animals, but not 
 jungleStuff - 0 = rounded boa skin, 1 = straight boa skin, 2 = selva tree stump, 3 = salisea pelt, 4 = web ball (low), 5 = web ball (high) //scenicList.push(new Scenery("jungleStuff", x, y, rotation, type, size));
 brightStone - A glowing yellow stone that exudes radiation (it has a slightly higher silver content than ordinary stone)
 silterEggs - small egg patches of fertilized silter eggs
-
+nechrovite - a shiny black rock that can be mined //scenicList.push(new Scenery("nechrovite", 2000 , 1000, 7, 1, 1));
+kellishRaft - A light coloured  wooden raft used by savannah tribes for ferrying rivers and other such bodies of water
+gorePile - A rotten pile of flesh and gnawed bones (intended to decorate areas inhabited by ghouls) variations range from 1-3. Temporary: 1) slightly elongated pile; 2) neat round pile; 3) just a severed leg;
+brokenTent - A collection of broken camping stuff (mostly tents) 1-2
+murderedVardanians - A variety of murdered Vardanian serfs and soldiers from the aftermath of a still somewhat lingering civil war. 1-8 are the vardanian serfs, 9-12 are vardanian soldiers lying dead on the ground, 13 and 14 are vardanian soldiers dead against a wall or a raised obstacle, and 15 is a WWI german soldier casualty
+scuffleMarks - marks on the ground that can be size adjusted with longevity
+vardanianDirtPile - a pileo of vardanian dirt that can be size adjusted with longevity
+vardanianBasin - A ker shell basin that is meant to hold rainwater.
+mimicry - A scenery object that informs a Mimic about what they can shift into, where they can do it, and what angle they should point towards. (Mimic type is determined by a string input in longevity)
 
 

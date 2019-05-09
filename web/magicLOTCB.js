@@ -599,6 +599,11 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                         {
                             ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].heatResistance);
                             ArtificialIntelligenceAccess[i].burningTime = new Date().getTime();
+                            ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
+                            if (caster == true)
+                            {
+                                ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                            }
                         }
                         else if (whatDoIDo == "bonk")
                         {
@@ -615,8 +620,10 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                         {
                             ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - negate));
                             ArtificialIntelligenceAccess[i].blindedTime = new Date().getTime() - 1500;
-                            ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
-                            ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                            if (caster == true)
+                            {
+                                ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                            }
                             var claimTaken = false;
                             for (var ll = 0; ll < magicList.length; ll++)
                             {
@@ -635,31 +642,46 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                         {
                             ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - negate));
                             ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
-                            ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                            if (caster == true)
+                            {
+                                ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                            }
                         }
                         else if (whatDoIDo == "earthDamage" && !ArtificialIntelligenceAccess[i].flying)
                         {
                             ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - negate));
                             ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
-                            ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                            if (caster == true)
+                            {
+                                ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                            }
                         }
                         else if (whatDoIDo == "magicalDamage")
                         {
                             ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].magicalResistance));
                             ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
-                            ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                            if (caster == true)
+                            {
+                                ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                            }
                         }
                         else if (whatDoIDo == "magicalEarthDamage" && !ArtificialIntelligenceAccess[i].flying)
                         {
                             ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].magicalResistance));
                             ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
-                            ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                            if (caster == true)
+                            {
+                                ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                            }
                         }
                         else if (whatDoIDo == "switch")
                         {
                             ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].magicalResistance));
                             ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
-                            ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                            if (caster == true)
+                            {
+                                ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                            }
 
                             if (Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].magicalResistance)) > 0)
                             {
@@ -673,13 +695,19 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                         {
                             ArtificialIntelligenceAccess[i].health -= Math.max(0, 4 + (4/50 * this.cnx) - Math.max(0, ArtificialIntelligenceAccess[i].armour - Math.max(0, 100 - 19 * ArtificialIntelligenceAccess[i].magicalResistance)));
                             ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
-                            ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                            if (caster == true)
+                            {
+                                ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                            }
                         }
                         else if (whatDoIDo == "iceBlast")
                         {
                             ArtificialIntelligenceAccess[i].health -= Math.max(0, 7 + (2/50 * this.cnx) - Math.max(0, ArtificialIntelligenceAccess[i].armour - Math.max(0, 100 - 19 * ArtificialIntelligenceAccess[i].magicalResistance)));
                             ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
-                            ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                            if (caster == true)
+                            {
+                                ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                            }
                         }
                         else if (whatDoIDo == "boreaSpitI")
                         {
@@ -715,7 +743,10 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                                 ArtificialIntelligenceAccess[i].quarterAcid = true;
                                 ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 5000;
                                 ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
-                                ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                if (caster == true)
+                                {
+                                    ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                }
                             }
                         }
                         else if (whatDoIDo == "acidI")
@@ -726,7 +757,10 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                                 ArtificialIntelligenceAccess[i].acidI = true;
                                 ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 5000;
                                 ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
-                                ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                if (caster == true)
+                                {
+                                    ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                }
                             }
                         }
                         else if (whatDoIDo == "acidII")
@@ -737,7 +771,10 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                                 ArtificialIntelligenceAccess[i].acidII = true;
                                 ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 5000;
                                 ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
-                                ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                if (caster == true)
+                                {
+                                    ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                }
                             }
                         }
                         else if (whatDoIDo == "acidIII")
@@ -748,7 +785,10 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                                 ArtificialIntelligenceAccess[i].acidIII = true;
                                 ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 5000;
                                 ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
-                                ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                if (caster == true)
+                                {
+                                    ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                }
                             }
                         }
                         else if (whatDoIDo == "acidIV")
@@ -759,7 +799,10 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                                 ArtificialIntelligenceAccess[i].acidIV = true;
                                 ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 5000;
                                 ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
-                                ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                if (caster == true)
+                                {
+                                    ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                }
                             }
                         }
                         else if (whatDoIDo == "acidV")
@@ -778,7 +821,10 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                                     ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 5000;
                                     ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
                                 }
-                                ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                if (caster == true)
+                                {
+                                    ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                }
                             }
                         }
                         else if (whatDoIDo == "alter")
@@ -791,7 +837,10 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                             if (damage < 1)
                             {
                                 console.log(ArtificialIntelligenceAccess[i].buffout);
-                                ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                if (caster == true)
+                                {
+                                    ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                }
                             }
 
                             if (extra == "iril")
@@ -799,7 +848,10 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                                 ArtificialIntelligenceAccess[i].stunIII = true;
                                 ArtificialIntelligenceAccess[i].stunTimer = 5;
                                 ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
-                                ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                if (caster == true)
+                                {
+                                    ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                }
                             }
                         }
                         else if (whatDoIDo == "charm")
@@ -808,7 +860,10 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                             {
                                 ArtificialIntelligenceAccess[i].charmedTeam = "player";
                                 ArtificialIntelligenceAccess[i].charmedTime = new Date().getTime() + 45000;
-                                ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                if (caster == true)
+                                {
+                                    ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                }
                             }
                         }
                         else if (whatDoIDo == "mark")
@@ -825,7 +880,10 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                                 {
                                     ArtificialIntelligenceAccess[i].marked = true;
                                 }
-                                ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                if (caster == true)
+                                {
+                                    ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                }
 
                             }
                         }
@@ -841,7 +899,10 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                                     ArtificialIntelligenceAccess[i].shockedTime = new Date().getTime();
                                     ArtificialIntelligenceAccess[i].shockedTime2 = new Date().getTime();
                                     ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
-                                    ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                    if (caster == true)
+                                    {
+                                        ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                    }
                                 }
 
                                 if (this.cnx >= 65)
@@ -887,7 +948,10 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                                     ArtificialIntelligenceAccess[i].shockedTime = new Date().getTime();
                                     ArtificialIntelligenceAccess[i].shockedTime2 = new Date().getTime();
                                     ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
-                                    ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                    if (caster == true)
+                                    {
+                                        ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                    }
                                 }
 
                                 //magicList.push(new Magic({ID: "electricBolt"}, true, "aftershocked", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
@@ -901,7 +965,10 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                                     ArtificialIntelligenceAccess[i].shockedTime = new Date().getTime();
                                     ArtificialIntelligenceAccess[i].shockedTime2 = new Date().getTime();
                                     ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
-                                    ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                    if (caster == true)
+                                    {
+                                        ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                    }
                                 }
                             }
                         }
@@ -1444,7 +1511,18 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
             var directedRotation = "none";
             if (caster)
             {
-                this.orientToCaster(20, 8 / 16 * Math.PI); //TODO fix this up to be accurate for the player
+                if (this.orders == 1)
+                {
+                    this.orientToCaster(18, 18 / 16 * Math.PI);
+                }
+                else if (this.orders == 0)
+                {
+                    this.orientToCaster(18, 2 / 16 * Math.PI);
+                }
+                else
+                {
+                    this.orientToCaster(20, 8 / 16 * Math.PI);
+                }
             }
             else
             {

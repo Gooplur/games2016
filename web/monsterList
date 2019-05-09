@@ -3,7 +3,19 @@ Skeleton - A skeletal warrior
 Lich - A skeletal mage
 Corpse Golem - A golem formed of hexed bones. Upon its death skeletal warriors rise to fight you from its remains.
 Deth - An intelligent, sentient goblinoid that lives in the vardanian grey grass plains: They construct villages, war with one another, celebrate with dances, develop technologies medical, architectural and militaristic, they hunt and gather food and supplies, and they have a hierarchical tribal system that includes a chief and a shaman.
-RiodBeetle - A small red desert beetle that's flesh can be eaten raw or fermented and eaten as a semi alcoholic sour mash. It lives in the northern part of the burning desert.
+RiodBeetle - A small red desert beetle that's flesh can be eaten raw or fermented and eaten as a semi alcoholic sour mash. It lives in the northern part of the burning desert. They will attack when in a swarm of four or more, but will otherwise run away.
+Mummy - A cursed Zetian dead. The Zetians wrap their dead to preserve their body for the afterlife, but one of these preserved bodies is reanimated with a demonic curse.
+Scorpion - A giant black scorpion that can be found in many desert biomes.
+WhipScorpion - A giant whip scorpion that is native to the burning sands; they can be mounted and ridden, but Zetians are much more experienced at taming them than most other humans are.
+Voaii - A giant red locust species that comes in several forms: winged locust, wingless crawler, and when it is a baby, it is a little grub. They lay their eggs in the stomach of their target. They leave their target alive and eventually that fertilized target pukes out the grubs along with blood since the grubs usually start feeding slightly on the stomach lining.
+Barbol - A giant bearded dragon that is native to many different desert biomes.
+DesertLizard - A small reddish bearded dragon native to the burning red sands.
+Yag - A ginormous desert dwelling mammal that sifts the sand for insects to munch on. They are lazy and do not seek out larger prey unless they are particularly hungry, or are bothered and are acting in self defence. "A snack in self defence..."
+Druog - A slim flying black serpent that has pointed venom tipped scales and spines, a particularly venomous bite, and that (if female) lays venomous spiny eggs to protect their young.
+Shril - A south sea dwelling crustacean that has a toxic punch to its bite for which it has slender but long pointed fangs in rows in a mouth that barely fits them all.
+Xerocole - A strange camel native to the burning red sands. Their necks are made out of a special type of cartilage that can easily break and almost instantly repair itself, this allows the xerocole to turn its head around in circles endlessly with no need to turn it back. Xerocoles are very friendly, they lick passersby to eat bugs off of them or just to taste their skin. Xerocoles love eating bugs.
+Rattler - A type of snake that has a special part at the end of its tail that it shakes to produce a loud rattling sound. It makes this sound to scare potential predators away; if you near it despite its warning it will strike you with its venomous fangs.
+Palinsyda - A swamp worm native to Vardania. It floats around in the swamp pretending to be a flower until an unwitting victim nears its mouth and it snaps shut around it. It can swim quickly to catch up with fleeing prey as well.
 
 //NOT YET ADDED INTO THE GAME
 
@@ -35,6 +47,14 @@ MudToad - A brown Vardanian toad that lives in the swamplands and feasts on inse
 Ghoul - A black furred, vardanian, corpse eater that lives in the woodlands and grasslands. They dig burrows and lay their eggs in carrion.
 Silter - A thengan insect that hides among scilt plants to avoid predators and to ambush unsuspecting prey
 KorskBeetle - A medium sized black and white beetle that lives in the Thengan woodlands
+Vreck - A Vardanian canine/rodent that hunts in packs in which a single alpha leads the pack everywhere it goes. They live in the temperate woodlands of Vardania.
+Mimic - The fairy form of the mimic that can change into any of the varieties of mimic at suitable locations (scenery objects called mimicry that specify what type of mimic); mimics are amphibious and are much faster in water. Mimics can not change form while frozen.
+HouseMimic - A mimic that has taken the form of a small Vardanian home. It walks on stilt legs and can easily pass through water and over units.
+CrateMimic - A mimic that has taken the form of a small Vardanian crate. It has six legs and the top of the crate lifts to reveal its sharp teeth.
+BarrelMimic - A mimic that has taken the form of a Vardanian barrel. It pushes its self around like a squid (it is faster in water) The front of the barrel opens up to take a massive bite out of its prey.
+CribMimic - A mimic that has taken the form of a Vardanian baby crib. It is slow in water but fast on land. It moves sort of like it were a deer.
+Hydra - A mythical beast of lore that is said to have blood so poisonous that the scent of it would kill a man... (this is false, hydras are poisonous but just slightly) What is true, however, is that when the beast's head is severed two grow in its place. Hydras are aquatic and live primarily in the swamps of Vardania. The only way to kill a hydra is to stab it in the heart.
+Xormid - A mysterious black ooze that dwells underground. It is radioactive and feeds on radiation. It also feeds on flesh. It creates replicas of itself by taking over the organic material of other creatures.
 
 //ALREADY IN THE GAME
 
@@ -133,3 +153,7 @@ Gorgon - A large green mantis-like stick bug that has six long legs and two blad
 Cruorcca - A reddish vine plant with extremely sharp orangish yellow needles that inject acid into its foes that digests them; to eat its prey the cruorcca plant wraps itself around the pussy body of its victim
 ZafBeetle - A yellow shelled jungle beetle that feasts on the famously deadly Cerebris mushroom (it has a unique resistance to its effects which is helpful in developing a Cerebris cure)
 PetraBeetle - A long small green beetle that lives in the jungle
+Venandi - A cerebris mushroom infected human.
+AraneaVenandi - A cerebris mushroom infected aranea.
+EtyrVenandi - A cerebris mushroom infected etyr.
+

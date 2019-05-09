@@ -2833,6 +2833,928 @@ function interaction(me)
                         }
                     }
 
+                    if (self.ID == "Mesek the Runaway" || conversationID[0] == "Mesek")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Mesek";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                if (region == "central")
+                                {
+                                    player.dialogueOptions = [["How's life in Teshir?", false, "a"]];
+                                }
+                                else
+                                {
+                                    if (player.raceName == "Thengar")
+                                    {
+                                        if (quests.spouseTrackerCompletionStyle != "escort" && quests.spouseTrackerCompletionStyle != "bienEscort")
+                                        {
+                                            player.dialogueOptions = [["Kels are meant to have a master, they say that a Kel without a master is a feral beast. I kill wild beasts...", false, "b"], ["You're disgusting! Just looking at you makes me sick!", false, "c"], ["What are you doing out here?", false, "d"]];
+                                        }
+                                        else
+                                        {
+                                            player.dialogueOptions = [["What inspired you to cross the crags?", false, "d"]];
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (quests.spouseTrackerCompletionStyle != "escort" && quests.spouseTrackerCompletionStyle != "bienEscort")
+                                        {
+                                            player.dialogueOptions = [["What are you doing out here?", false, "d"]];
+                                        }
+                                        else
+                                        {
+                                            player.dialogueOptions = [["What inspired you to cross the crags?", false, "d"]];
+                                        }
+                                    }
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            if (uniqueChars.bellaLDS == true)
+                            {
+                                setMsg("I am thankful to you that you have helped us across the crags to get here, but I am still far away from the land of my birth. I cannot return home, not ever. The tribe that I was born to was burnt to the ground by the Thengans... my people are all enslaved. I will never be truly happy while my people live in chains.");
+                            }
+                            else
+                            {
+                                setMsg("I feel sadness for many reasons friend... being in Teshir is good because it is good to be free. But my freedom is won while so many others suffer in chains. I am sad that Madam Bella died... but she is with the wind now. She will be happy where she is. ");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            playersTurnToSpeak = true;
+                            player.dialoguePosition = 0;
+                            conversationID[1] = 1;
+                            self.SC();
+                            self.disturbed = true;
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            setMsg("If looking at me is so painful for you maybe there is something wrong with your eyes...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            if (quests.spouseTrackerCompletionStyle != "escort" && quests.spouseTrackerCompletionStyle != "bienEscort")
+                            {
+                                setMsg("I am accompanying Madam Bella on a trip across the crags.");
+                            }
+                            else
+                            {
+                                setMsg("A life in captivity is no life. It is better to die free in the jaws of a beruln than to live as a slave.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Madam Bella" || conversationID[0] == "Bella")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Bella";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                if (quests.spouseTrackerQuest == false)
+                                {
+                                    player.dialogueOptions = [["What madness has overcome you that you attempt to cross the crags?", false, "a"], ["Just camping in the craglands for fun? As you do...", false, "c"]];
+                                }
+                                else
+                                {
+                                    if (uniqueChars.spouseTrackerCompletionStyle == false)
+                                    {
+                                        uniqueChars.spouseTrackerCompletionStyle = "local";
+                                    }
+                                    player.dialogueOptions = [["I'm here to return you to your husband, come in peace or face the consequences.", false, "b"], ["I know you fled your husband with your lover, I want to help you both escape. How can I help?", false, "d"]];
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            setMsg("No wild beast here in the crags could compare with the ferocity of my husband. If he finds me I will surely hang for the love I hold for my dear Mesek.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            if (uniqueChars.mesekLDS == true)
+                            {
+                                setMsg("I should have known my husband would hire thugs to find us! Mesek, run!! Don't look back, just run!!!");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                    self.disturbed = true;
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                setMsg("I have nothing left to live for, I will return with you to face my husband, if only to be reunited with my dear Mesek in death.");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 2;
+                                    self.SC();
+
+                                    if (uniqueChars.bellaLDS == true)
+                                    {
+                                        uniqueChars.spouseTrackerCompletionStyle = "spouseCollected";
+                                    }
+                                    alert("Upon returning to Lethik the guards arrest Madam Bella and take her to be executed for adultery with a slave and for conspiring to free a slave.");
+                                    uniqueChars.bellaLDS = false;
+                                    player.blinded = true;
+                                    player.blindedStoreTime = new Date().getTime();
+                                    player.blindedTime = 1;
+                                    X = 50643;
+                                    Y = -10255;
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            setMsg("I would not for a moment call being forced to survive in this inhospitable wasteland fun! I would not be in these brutal conditions if they were not imposed upon me by my terrible husband!!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            setMsg("You want to help? I am am glad to hear it, as help is sorely needed. If there is any way you could escort us to Teshir to the east, I would be ever grateful to you.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 3;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 1)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["I'm sorry to hear that.", false, "a"], ["Is there any way I can help you?", false, "b"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1b";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1a")
+                        {
+                            //text dialogue
+                            if (uniqueChars.mesekLDS == true)
+                            {
+                                setMsg("We will do our best to survive these terrible crags on our way to Teshir, but the odds are not in our favour...");
+                            }
+                            else
+                            {
+                                setMsg("I will do my best to survive these terrible crags on my way to Teshir, but the odds are not in my favour...");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+
+                                uniqueChars.mesekLDS = false;
+                                uniqueChars.bellaLDS = false;
+
+                                player.blinded = true;
+                                player.blindedStoreTime = new Date().getTime();
+                                player.blindedTime = 1;
+                                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                                {
+                                    if (ArtificialIntelligenceAccess[i].ID == "Madam Bella")
+                                    {
+                                        ArtificialIntelligenceAccess.splice(i, 1);
+                                        break;
+                                    }
+                                }
+                                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                                {
+                                    if (ArtificialIntelligenceAccess[i].ID == "Mesek the Runaway")
+                                    {
+                                        ArtificialIntelligenceAccess.splice(i, 1);
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1b")
+                        {
+                            //text dialogue
+                            setMsg("If you could escort us eastward to Teshir, we would be ever grateful... our odds of surviving without an escort are extremely low.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 3;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 2)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["How is everything?", false, "a"], ["Do you need help with anything else?", false, "c"]];
+
+                                if (region == "central")
+                                {
+
+                                }
+                                player.dialogueOptions.push(["Have you settled well in here in Teshir?", false, "b"]);
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "2a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "2b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "2c";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "2a")
+                        {
+                            //text dialogue
+                            if (uniqueChars.mesekLDS == true && quests.spouseTrackerCompletionStyle == "bienEscort")
+                            {
+                                setMsg("We are doing great! Thanks to you!");
+                            }
+                            else if (quests.spouseTrackerCompletionStyle == "malEscort" || uniqueChars.mesekLDS == false)
+                            {
+                                setMsg("Why do I carry on living? My life is pointless without my dear Mesek.");
+                            }
+                            else
+                            {
+                                setMsg("Well being on the run isn't exactly jolly...");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 2;
+                                self.SC();
+
+                                uniqueChars.mesekLDS = false;
+                                uniqueChars.bellaLDS = false;
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "2b")
+                        {
+                            //text dialogue
+                            if (uniqueChars.mesekLDS == true && quests.spouseTrackerCompletionStyle == "bienEscort")
+                            {
+                                if (uniqueChars.medliaLDS)
+                                {
+                                    setMsg("I like it here, it sort of reminds me of home. There is much more hunting here though, and much less fighting. It seems the Freydic have never heard of buying food in the market, they are always venturing out to slay this or that or to gather berries or collect honey or what not... I'm sure I'll get used to it eventually. At least the townsfolk are friendly. Medlia was just darling, she asked me how my day was and even helped me carry the firewood back home. What a sweet woman... Mesek isn't settled in at all though, he is always scared that mercenaries will march from the west to take us back to Thengaria.");
+                                }
+                                else
+                                {
+                                    setMsg("I like it here, it sort of reminds me of home. There is much more hunting here though, and much less fighting. It seems the Freydic have never heard of buying food in the market, they are always venturing out to slay this or that or to gather berries or collect honey or what not... I'm sure I'll get used to it eventually. I don't think that Mesek would feel comfortable anywhere, he is always scared that mercenaries will march from the west to take us back to Thengaria.");
+                                }
+                            }
+                            else if (quests.spouseTrackerCompletionStyle == "malEscort" && uniqueChars.mesekLDS == false)
+                            {
+                                setMsg("How can I settle in to a foreign land when my love is dead!? The freydic do nothing but hunt, dance, pick berries and drink... Life was so much easier before too, I have little way to support myself out here. If it weren't for you, I would be living a happy life, and Mesek would be alive!");
+                            }
+                            else
+                            {
+                                setMsg("Well being on the run isn't exactly jolly...");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 2;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "2c")
+                        {
+                            //text dialogue
+                            if (uniqueChars.mesekLDS == true && quests.spouseTrackerCompletionStyle == "bienEscort")
+                            {
+                                setMsg("You are so kind to ask! I do not need help with anything at the moment.");
+                            }
+                            else if (quests.spouseTrackerCompletionStyle == "malEscort" && uniqueChars.mesekLDS == false)
+                            {
+                                setMsg("If I did need help, you would be the last person I'd ask!");
+                            }
+                            else
+                            {
+                                setMsg("Yes...");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 2;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 3)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["I would be pleased to escort you to Teshir.", false, "a"], ["Sorry, but I am not up to the task.", false, "b"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "3a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "3b";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "3a")
+                        {
+                            //text dialogue
+                            setMsg("Thank you! Remember, Teshir is directly to the east.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 4;
+                                if (quests.spouseTrackerQuest == false)
+                                {
+                                    quests.spouseTrackerQuest = true;
+                                    quests.activeQuests.push({name: "Spouse Tracker", description: "You offered to escort Madam Bella and her lover across the crags."});
+                                    quests.spouseTrackerCompletionStyle = "escort";
+                                }
+                                self.SC();
+                                change = "bellaEscort";
+                                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                                {
+                                    if (ArtificialIntelligenceAccess[i].ID == "Madam Bella")
+                                    {
+                                        ArtificialIntelligenceAccess.splice(i, 1);
+                                        break;
+                                    }
+                                }
+                                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                                {
+                                    if (ArtificialIntelligenceAccess[i].ID == "Mesek the Runaway")
+                                    {
+                                        ArtificialIntelligenceAccess.splice(i, 1);
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "3b")
+                        {
+                            //text dialogue
+                            if (uniqueChars.mesekLDS == true)
+                            {
+                                setMsg("We will do our best to survive these terrible crags on our way to Teshir without an escort... but we will likely die.");
+                            }
+                            else
+                            {
+                                setMsg("I will do my best to survive these terrible crags on my way to Teshir without an escort... but I will likely be eaten by a ravenous beast.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+
+                                uniqueChars.mesekLDS = false;
+                                uniqueChars.bellaLDS = false;
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 4)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                if (region == "central")
+                                {
+                                    player.dialogueOptions = [["We are through the crags, the road to Teshir is before you.", false, "a"]];
+                                }
+                                else
+                                {
+                                    player.dialogueOptions = [["Wait here for a moment.", false, "b"], ["Lets move!", false, "c"]];
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "4a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "4b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "4c";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "4a")
+                        {
+                            //text dialogue
+                            if (uniqueChars.mesekLDS == true)
+                            {
+                                setMsg("You have saved us! I can't thank you enough! Here take this family jewl, it belonged to my mother... it is the least I can do to repay you.");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 2;
+                                    self.SC();
+
+                                    var hits = 0;
+                                    for (var i = 0; i < Inventory.length; i++)
+                                    {
+                                        if (Inventory[i][0].type == "sapphire")
+                                        {
+                                            Inventory[i][1] += 1;
+                                            hits = 1;
+                                            break;
+                                        }
+                                    }
+                                    if (!hits)
+                                    {
+                                        Inventory.push([new Item("sapphire", false, false), 1]);
+                                    }
+
+                                    quests.spouseTrackerCompletionStyle = "bienEscort";
+                                    quests.spouseTrackerQuest = "complete";
+                                    quests.completeQuests.push({name: "Spouse Tracker", description: "You helped Madam Bella and her lover escape Thengaria."});
+                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                    {
+                                        player.magicalExperience += 20;
+                                    }
+                                    else
+                                    {
+                                        player.experience += 65;
+                                    }
+                                    player.fame += 1;
+
+                                    change = "mesekFreedom";
+
+                                    player.blinded = true;
+                                    player.blindedStoreTime = new Date().getTime();
+                                    player.blindedTime = 1;
+                                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                                    {
+                                        if (ArtificialIntelligenceAccess[i].ID == "Madam Bella")
+                                        {
+                                            ArtificialIntelligenceAccess.splice(i, 1);
+                                            break;
+                                        }
+                                    }
+                                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                                    {
+                                        if (ArtificialIntelligenceAccess[i].ID == "Mesek the Runaway")
+                                        {
+                                            ArtificialIntelligenceAccess.splice(i, 1);
+                                            break;
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                setMsg("It doesn't matter anymore... my dear Mesek is dead. Our escape was all for nothing!");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 2;
+                                    self.SC();
+
+                                    quests.spouseTrackerCompletionStyle = "malEscort";
+                                    quests.spouseTrackerQuest = "complete";
+                                    quests.completeQuests.push({name: "Spouse Tracker", description: "You helped Madam Bella escape Thengaria, but her lover didn't make it."});
+                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                    {
+                                        player.magicalExperience += 15;
+                                    }
+                                    else
+                                    {
+                                        player.experience += 50;
+                                    }
+
+                                    change = "bellaFreedom";
+
+                                    player.blinded = true;
+                                    player.blindedStoreTime = new Date().getTime();
+                                    player.blindedTime = 1;
+                                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                                    {
+                                        if (ArtificialIntelligenceAccess[i].ID == "Madam Bella")
+                                        {
+                                            ArtificialIntelligenceAccess.splice(i, 1);
+                                            break;
+                                        }
+                                    }
+                                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                                    {
+                                        if (ArtificialIntelligenceAccess[i].ID == "Mesek the Runaway")
+                                        {
+                                            ArtificialIntelligenceAccess.splice(i, 1);
+                                            break;
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "4b")
+                        {
+                            //text dialogue
+                            setMsg("Alright, I will wait.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 4;
+                                self.SC();
+                                self.speed = 0;
+                                if (uniqueChars.mesekLDS == true)
+                                {
+                                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                                    {
+                                        if (ArtificialIntelligenceAccess[i].ID == "Mesek the Runaway")
+                                        {
+                                            ArtificialIntelligenceAccess[i].speed = 0;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "4c")
+                        {
+                            //text dialogue
+                            setMsg("Alright then...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 4;
+                                self.SC();
+                                self.speed = 1;
+                                if (uniqueChars.mesekLDS == true)
+                                {
+                                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                                    {
+                                        if (ArtificialIntelligenceAccess[i].ID == "Mesek the Runaway")
+                                        {
+                                            ArtificialIntelligenceAccess[i].speed = 1;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
                     if (self.ID == "Hanz" || conversationID[0] == "Hanz")
                     {
                         lowBar = "dialogue";
@@ -2865,6 +3787,32 @@ function interaction(me)
                                 if (quests.debtCollectorQuest == true && quests.debtCollectorHanz == false)
                                 {
                                     player.dialogueOptions.unshift(["You owe Ederhal 39 coins, I'm here to collect them for him.", false, "f"]);
+                                }
+                                if (quests.spouseTrackerQuest == true)
+                                {
+                                    if (quests.spouseTrackerCompletionStyle == "escort")
+                                    {
+                                        player.dialogueOptions.push(["Your wife was trying to cross the crags into Teshir...", false, "g"]);
+                                    }
+                                    else if (quests.spouseTrackerCompletionStyle == "local")
+                                    {
+                                        player.dialogueOptions.push(["Your wife and slave are camped out in the crags to the northeast of here.", false, "g"]);
+                                    }
+                                    else if (quests.spouseTrackerCompletionStyle == "spouseCollected")
+                                    {
+                                        if (uniqueChars.mesekLDS == true)
+                                        {
+                                            player.dialogueOptions.push(["I brought your wife back, but the local authorities had her executed... Your slave got away, but he probably will not survive long in the crags.", false, "g"]);
+                                        }
+                                        else
+                                        {
+                                            player.dialogueOptions.push(["I brought your wife back, but the local authorities had her executed... Your slave is dead too.", false, "g"]);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        player.dialogueOptions.push(["About your wife...", false, "g"]);
+                                    }
                                 }
                             }
                             else if (player.dialogueChoiceMade == true)
@@ -2909,6 +3857,12 @@ function interaction(me)
                                             tellMessage = false;
                                             playersTurnToSpeak = false;
                                             conversationID[1] = "0f";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "g")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0g";
                                         }
                                     }
                                 }
@@ -2962,7 +3916,7 @@ function interaction(me)
                             if (player.raceName == "Kel")
                             {
                                 //text dialogue
-                                setMsg("To get away from my troubles... leave me, Kel. I do not wish to be seen talking to you. I am the lord's nephew afterall, you have no right to approach me.");
+                                setMsg("To get away from my troubles... leave me, Kel. I do not wish to be seen talking to you. I am the lord's nephew after all, you have no right to approach me.");
 
                                 //on ended text dialogue
                                 if (tellMessage == "reset")
@@ -3043,7 +3997,7 @@ function interaction(me)
                         else if (conversationID[1] == "0e")
                         {
                             //text dialogue
-                            setMsg("Business is hard work youngin'. When I was a girl I had four sisters, and we'd all help my ma' with the sowing. Now it's just me. I'll tell you, this work is not as easy as it seems...");
+                            setMsg("I suspected as much... and so I am overjoyed that you are finally here!");
 
                             //on ended text dialogue
                             if (tellMessage == "reset")
@@ -3052,7 +4006,7 @@ function interaction(me)
 
                                 playersTurnToSpeak = true;
                                 player.dialoguePosition = 0;
-                                conversationID[1] = 0;
+                                conversationID[1] = 4;
                                 self.SC();
                             }
                             else
@@ -3080,6 +4034,200 @@ function interaction(me)
                             else
                             {
                                 self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0g")
+                        {
+                            if (quests.spouseTrackerCompletionStyle == "local")
+                            {
+                                //text dialogue
+                                setMsg("She probably will not survive long, the crags often prove to be deadly to those who try to traverse them... thank you for telling me her location. I owe you 80 coins");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    quests.spouseTrackerQuest = "complete";
+                                    quests.completeQuests.push({name: "Spouse Tracker", description: "You informed Master Hanz that his wife and slave were camping out in the crags."});
+                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                    {
+                                        player.magicalExperience += 8;
+                                    }
+                                    else
+                                    {
+                                        player.experience += 40;
+                                    }
+
+                                    var hits = 0;
+                                    for (var i = 0; i < Inventory.length; i++)
+                                    {
+                                        if (Inventory[i][0].type == "coins")
+                                        {
+                                            Inventory[i][1] += 80;
+                                            hits = 1;
+                                            break;
+                                        }
+                                    }
+                                    if (!hits)
+                                    {
+                                        Inventory.unshift([new Item("coins", false, false), 80]);
+                                    }
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                            else if (quests.spouseTrackerCompletionStyle == "escort")
+                            {
+                                //text dialogue
+                                setMsg("She probably will not survive long, the crags often prove to be deadly to those who try to traverse them... thank you for telling me her location. I owe you 80 coins");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    quests.spouseTrackerQuest = "complete";
+                                    quests.completeQuests.push({name: "Spouse Tracker", description: "You informed Master Hanz that his wife was trying to cross the crags."});
+                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                    {
+                                        player.magicalExperience += 8;
+                                    }
+                                    else
+                                    {
+                                        player.experience += 40;
+                                    }
+
+                                    var hits = 0;
+                                    for (var i = 0; i < Inventory.length; i++)
+                                    {
+                                        if (Inventory[i][0].type == "coins")
+                                        {
+                                            Inventory[i][1] += 80;
+                                            hits = 1;
+                                            break;
+                                        }
+                                    }
+                                    if (!hits)
+                                    {
+                                        Inventory.unshift([new Item("coins", false, false), 80]);
+                                    }
+
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                            else if (quests.spouseTrackerCompletionStyle == "spouseCollected")
+                            {
+                                //text dialogue
+                                setMsg("Do not trouble yourself with my wife's execution. I attended it... She deserved the punishment she got for the filthy harlot of a woman she was. Now that my wife is dead I am free from her dishonour. My worthiness of the Beulingerr name is no longer in question. -- Ah right, your pay... Here you are. It's been a pleasure doing business with you.");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    quests.spouseTrackerQuest = "complete";
+                                    quests.completeQuests.push({name: "Spouse Tracker", description: "You arrested Madam Bella and brought her back to Lethik to be executed."});
+                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                    {
+                                        player.magicalExperience += 10;
+                                    }
+                                    else
+                                    {
+                                        player.experience += 45;
+                                    }
+                                    player.fame += 1;
+
+                                    var hasScalp = false;
+                                    for (var i = 0; i < Inventory.length; i++)
+                                    {
+                                        if (Inventory[i][0].type == "mesekScalp")
+                                        {
+                                            Inventory.splice(i, 1);
+                                            hasScalp = true;
+                                            break;
+                                        }
+                                    }
+
+                                    if (hasScalp == true)
+                                    {
+                                        var hits = 0;
+                                        for (var i = 0; i < Inventory.length; i++)
+                                        {
+                                            if (Inventory[i][0].type == "coins")
+                                            {
+                                                Inventory[i][1] += 100;
+                                                hits = 1;
+                                                break;
+                                            }
+                                        }
+                                        if (!hits)
+                                        {
+                                            Inventory.unshift([new Item("coins", false, false), 100]);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        var hits = 0;
+                                        for (var i = 0; i < Inventory.length; i++)
+                                        {
+                                            if (Inventory[i][0].type == "coins")
+                                            {
+                                                Inventory[i][1] += 80;
+                                                hits = 1;
+                                                break;
+                                            }
+                                        }
+                                        if (!hits)
+                                        {
+                                            Inventory.unshift([new Item("coins", false, false), 80]);
+                                        }
+                                    }
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                //text dialogue
+                                setMsg("She couldn't have gotten far, she most likely is trying to flee Thengaria, that means going through either the barren icy northlands, going southeast to the fronteir, or east to the crags. It wouldn't suprise me if you find them both dead.");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
                             }
                         }
                         else if (conversationID[1] == 1)
@@ -3230,7 +4378,7 @@ function interaction(me)
                                 player.dialogueOptions = [["The usual, beer, food, merriment...", false, "a"], ["I'm looking for work.", false, "c"], ["I'm drinking away my troubles as well... what sort of sorrows are you drowning?", false, "d"], ["I'm renting a room here.", false, "e"]];
                                 if (player.gamemode == "protagonist")
                                 {
-                                    player.dialogueOptions.push["Oh I'm just brooding, I brood on Thursdays mostly. Its the edgey thing to do.", false, "b"];
+                                    player.dialogueOptions.push(["Oh I'm just brooding, I brood on Thursdays mostly. Its the edgey thing to do.", false, "b"]);
                                 }
                             }
                             else if (player.dialogueChoiceMade == true)
@@ -3505,7 +4653,7 @@ function interaction(me)
                                 player.dialogueOptions = [["I will. [write a letter requesting an anullment for your cousin's past marriage and requesting a death warrant to be placed on his wife and her lover]", false, "a"], ["I will grant you the anullment but I will not order the execution of your wife. [write a letter requesting the marriage anullment]", false, "b"]];
                                 if (player.gender == "Female")
                                 {
-                                    player.dialogueOptions.push(["I will anull your marriage on the condition that you marry me, cousin Hanz. I will see to it that your wife and her lover will be executed as well. [write a letter to the necessary authorities]", false, "c"]);
+                                    player.dialogueOptions.push(["I will nullify your marriage on the condition that you marry me, cousin Hanz. I will see to it that your wife and her lover will be executed as well. [write a letter to the necessary authorities]", false, "c"]);
                                 }
                             }
                             else if (player.dialogueChoiceMade == true)
@@ -3549,6 +4697,8 @@ function interaction(me)
 
                                 lethikHanzRestored = true;
                                 playersTurnToSpeak = true;
+                                uniqueChars.bellaLDS = false;
+                                uniqueChars.mesekLDS = false;
                                 player.dialoguePosition = 0;
                                 conversationID[1] = 0;
                                 self.SC();
@@ -3592,6 +4742,8 @@ function interaction(me)
                                 player.blinded = true;
                                 player.blindedStoreTime = new Date().getTime();
                                 player.blindedTime = 1;
+                                uniqueChars.bellaLDS = false;
+                                uniqueChars.mesekLDS = false;
                                 lethikHanzRestored = true;
                                 lethikHanzMarried = true;
                                 alert("Your family and crowds of local notables gather around as you approach the High Sage. Hanz is waiting for you in all his finery and lends you his outstretched hand to step up to the alter. You take his hand and stand facing him. Do you take this Man, Hanz of house Beulingerr to be your husband? You reply affirmatively. And do you take her Ladyship " + player.name + "to be your wife? Hanz replies affirmatively. The under the eyes of the gods, watchful and judging do we hereby proclaim the union of this noble couple. May prosperity seed your fields and may your union seed life! By the will of the gods you shall bed each other and be joined!")
@@ -3695,7 +4847,7 @@ function interaction(me)
                         else if (conversationID[1] == "6c")
                         {
                             //text dialogue
-                            setMsg("If you find them and tell me their location I will pay you 80 coins, if you bring them back I will pay 100. Don't hurt my wife it it can be avoided, but the only part of the slave you would need to bring back is the head.");
+                            setMsg("If you find them and tell me their location I will pay you 80 coins, if you bring them back I will pay 100. Don't hurt my wife if it can be avoided, but the only part of the slave you would need to bring back is the scalp.");
 
                             //on ended text dialogue
                             if (tellMessage == "reset")

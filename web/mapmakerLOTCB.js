@@ -116,6 +116,25 @@ function buildMaster()
                 //ArtificialIntelligenceAccess.push(new Unit(3900, 2900, "Xormid", false, "Sluba"));
                 //ArtificialIntelligenceAccess.push(new Unit(3900, 2900, "Silter", false, "Screpa"));
                 //ArtificialIntelligenceAccess.push(new Unit(3900, 2900, "KorskBeetle", true, "Scraupp"));
+                //scenicList.push(new Scenery("nechrovite", 2000 , 1000, 7, 1, 1));
+                //scenicList.push(new Scenery("meklePlant", 3400, 2400, 2.2, true));
+                //scenicList.push(new Scenery("laicaumPlant", 3200, 2400, 1.2, true));
+                //scenicList.push(new Scenery("danzigPlant", 3000, 2400, 3, true));
+                //ArtificialIntelligenceAccess.push(new Unit(3400, 2400, "Vreck", true, "Skeever", {patrolStops: 5, patrolLoop: true, route:[[4000, 2000], [3400, 2400], [3100, 2600], [3500, 3000], [4500, 2500]]}));
+
+                //scenicList.push(new Scenery("vardanianBasin", 3600, 2400, 2, true));
+                //scenicList.push(new Scenery("swampWalk", 3600, 2400, 2, true));
+                //scenicList.push(new Scenery("swampWalkShort", 3530, 2291, 2 + 1/2 * Math.PI, true));
+                //scenicList.push(new Scenery("swampStilt", 3599, 2255, 0, true));
+                //scenicList.push(new Scenery("swampStilt", 3580, 2170, 1.6, true));
+                //scenicList.push(new Scenery("swampPlank", 3585, 2306, 0.2, true));
+                //scenicList.push(new Scenery("swampBridge", 3500, 2442, 0, false));
+                //scenicList.push(new Scenery("swampPlatform", 3346, 2506, 0.13, true));
+                //scenicList.push(new Scenery("vardanianPyre", 3304, 2529, 2.2, false, 0.8));
+                //scenicList.push(new Scenery("pikeWall", 3280, 2435, 0.23, true));
+                //scenicList.push(new Scenery("mimicry", 3369, 2651, 1.2, "BarrelMimic"));
+                //ArtificialIntelligenceAccess.push(new Unit(4000, 2300, "Hydra", false, "Hercules"));
+                //ArtificialIntelligenceAccess.push(new Unit(3900, 2900, "Mimic", false, "Mimmi"));
 
                 //scenicList.push(new Scenery("dethMasterHut", 3600, 2500, 0, 0, "deth1"));
                 //scenicList.push(new Scenery("dethTotem", 3600, 3400, 0, 0, "deth1"));
@@ -471,7 +490,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-344, -48, "Soldier", false, "Jarl Orjov Tor", {race: "Freynor", faction: "Freynor", con: 40, speed: 0.6, outfit: ["jvostranPlateArmour", 42], weapon: ["freydicGreatSword", [37, 20], 0, 37, 5], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 1, patrolLoop: false, route:[[-341, -24]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-344, -48, "Soldier", false, "Jarl Orjov Tor", {race: "Freynor", faction: "Freynor", con: 40, speed: 0.6, outfit: ["northernPlateArmour", 22], weapon: ["freydicGreatSword", [37, 20], 0, 37, 5], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 1, patrolLoop: false, route:[[-341, -24]]}));
                     }
                 }
 
@@ -487,7 +506,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-514, 277, "Soldier", false, "Ser Olis Pynske", {race: "Freynor", faction: "Freynor", con: 20, speed: 0.55, outfit: ["jvostranPlateArmour", 37.5], weapon: ["freydicGreatSword", [25, 14], 0, 37, 5.5], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 2, patrolLoop: true, route:[[-514, 277], [-514, 277]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-514, 277, "Soldier", false, "Ser Olis Pynske", {race: "Freynor", faction: "Freynor", con: 20, speed: 0.55, outfit: ["northernPlateArmour", 16], weapon: ["freydicGreatSword", [25, 14], 0, 37, 5.5], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 2, patrolLoop: true, route:[[-514, 277], [-514, 277]]}));
                     }
                 }
 
@@ -696,6 +715,54 @@ function buildMaster()
                                 ArtificialIntelligenceAccess.push(new Unit(2756, 1815, "Person", false, "Neculai the Beggar", {race: "Vardan", faction: "Vardan", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.2, 0.5], 0, 0, 0.55], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[]}));
                             }
 
+                        }
+                    }
+                }
+
+                if (quests.spouseTrackerQuest == "complete" && quests.spouseTrackerCompletionStyle == "bienEscort" || quests.spouseTrackerQuest == "complete" && quests.spouseTrackerCompletionStyle == "malEscort")
+                {
+                    if (uniqueChars.bellaLDS == true)
+                    {
+                        var hits = 0;
+                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                        {
+                            if (ArtificialIntelligenceAccess[i].ID == "Madam Bella")
+                            {
+                                hits += 1;
+                            }
+                        }
+                        if (hits == 0)
+                        {
+                            if (player.gamemode == "protagonist")
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(2687.167015109158, 2240.688924879708, "Person", false, "Bouncy Ball Saleswoman", {race: "Thengar", faction: "Freynor", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.1, 0.1], 0, 0, 1.5], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[2686.756821173579, 2251.491555658622]]}));
+                            }
+                            else
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(2687.167015109158, 2240.688924879708, "Person", false, "Madam Bella", {race: "Thengar", faction: "Freynor", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.1, 0.1], 0, 0, 1.5], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[2686.756821173579, 2251.491555658622]]}));
+                            }
+                        }
+                    }
+                    if (uniqueChars.mesekLDS == true)
+                    {
+                        var hits = 0;
+                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                        {
+                            if (ArtificialIntelligenceAccess[i].ID == "Mesek the Runaway")
+                            {
+                                hits += 1;
+                            }
+                        }
+                        if (hits == 0)
+                        {
+                            if (player.gamemode == "protagonist")
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(2702.149154924032, 2308.4115238442287, "Person", false, "Bouncy Ball Salesman", {race: "Kel", faction: "Freynor", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 2, 1.12], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[2695.3375492293803, 2301.4451089292443]]}));
+                            }
+                            else
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(2702.149154924032, 2308.4115238442287, "Person", false, "Mesek the Runaway", {race: "Kel", faction: "Freynor", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 2, 1.12], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[2695.3375492293803, 2301.4451089292443]]}));
+                            }
                         }
                     }
                 }
@@ -4419,6 +4486,92 @@ function buildMaster()
                 //REGION CREATION
                 //Build AI Units
 
+                //runaway wife and slave
+                if (quests.spouseTrackerQuest != "complete")
+                {
+                    scenicList.push(new Scenery("tent", 45199.7397712692, 3197.711262295074, (0.25 * Math.PI), false));
+                    if (change == "bellaEscort")
+                    {
+                        if (uniqueChars.bellaLDS == true)
+                        {
+                            var hits = 0;
+                            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                            {
+                                if (ArtificialIntelligenceAccess[i].ID == "Madam Bella")
+                                {
+                                    hits += 1;
+                                }
+                            }
+                            if (hits == 0)
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(45286.25527856664, 3179.0236167482553, "Person", false, "Madam Bella", {race: "Thengar", faction: "loner", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.1, 0.1], 0, 0, 1.5], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 2, patrolLoop: false, route:[[45528.82632754614, 3362.0350167485813], [16132.540241610046, 2214.628209223153], [15914.23473243726, 1886.2043063687495], [12263.955191303412, 1823.9268809259627], [11649.991900788626, 2450.626211964874], [2947.9988373871365, 2424.285780812395]]}));
+                            }
+                        }
+                        if (uniqueChars.mesekLDS == true)
+                        {
+                            var hits = 0;
+                            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                            {
+                                if (ArtificialIntelligenceAccess[i].ID == "Mesek the Runaway")
+                                {
+                                    hits += 1;
+                                }
+                            }
+                            if (hits == 0)
+                            {
+                                if (player.gamemode == "protagonist")
+                                {
+                                    ArtificialIntelligenceAccess.push(new Unit(45238.64377328323, 3101.0912884143677, "Person", false, "Bouncy Ball Salesman", {race: "Kel", faction: "loner", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 2, 1.12], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 2, patrolLoop: false, route:[[45459.54105475488, 3372.782541353318], [16079.79650130994, 2145.1599545880536], [15862.457760143232, 1906.6027086021259], [12267.554408995364, 1901.909930918241], [11618.28459583104, 2406.2367399540312], [3038.350152319535, 2446.4773318484226]]}));
+                                }
+                                else
+                                {
+                                    ArtificialIntelligenceAccess.push(new Unit(45238.64377328323, 3101.0912884143677, "Person", false, "Mesek the Runaway", {race: "Kel", faction: "loner", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 2, 1.12], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 2, patrolLoop: false, route:[[45459.54105475488, 3372.782541353318], [16079.79650130994, 2145.1599545880536], [15862.457760143232, 1906.6027086021259], [12267.554408995364, 1901.909930918241], [11618.28459583104, 2406.2367399540312], [3038.350152319535, 2446.4773318484226]]}));
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (uniqueChars.bellaLDS == true)
+                        {
+                            var hits = 0;
+                            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                            {
+                                if (ArtificialIntelligenceAccess[i].ID == "Madam Bella")
+                                {
+                                    hits += 1;
+                                }
+                            }
+                            if (hits == 0)
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(45286.25527856664, 3179.0236167482553, "Person", false, "Madam Bella", {race: "Thengar", faction: "loner", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.1, 0.1], 0, 0, 1.5], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[45290.74559387053, 3161.9140878198677]]}));
+                            }
+                        }
+                        if (uniqueChars.mesekLDS == true)
+                        {
+                            var hits = 0;
+                            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                            {
+                                if (ArtificialIntelligenceAccess[i].ID == "Mesek the Runaway")
+                                {
+                                    hits += 1;
+                                }
+                            }
+                            if (hits == 0)
+                            {
+                                if (player.gamemode == "protagonist")
+                                {
+                                    ArtificialIntelligenceAccess.push(new Unit(45238.64377328323, 3101.0912884143677, "Person", false, "Bouncy Ball Salesman", {race: "Kel", faction: "loner", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 2, 1.12], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[45258.58413918966, 3133.96905700862]]}));
+                                }
+                                else
+                                {
+                                    ArtificialIntelligenceAccess.push(new Unit(45238.64377328323, 3101.0912884143677, "Person", false, "Mesek the Runaway", {race: "Kel", faction: "loner", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 2, 1.12], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[45258.58413918966, 3133.96905700862]]}));
+                                }
+                            }
+                        }
+                    }
+                }
+
                 //High-Hill Howlers
                 ArtificialIntelligenceAccess.push(new Unit(45825, 1195, "GreyWolf", false, "Shod"));
                 ArtificialIntelligenceAccess.push(new Unit(46096, 1568, "GreyWolf", false, "Shad"));
@@ -4879,8 +5032,18 @@ function buildMaster()
                         }
                         if (hits == 0)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(50667, -10366, "Person", false, "Hanz", {race: "Thengar", faction: "Thengar", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.03, 0.03], 0, 0, 1], ranged: [false, "arrow", 8, 2200, 5, 7, 0, "none", 2], patrolStops: 1, patrolLoop: false, route:[[50686, -10368]]}));
-                            ArtificialIntelligenceAccess[i].health = 8;
+                            if (player.gamemode == "protagonist")
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(50667, -10366, "Person", false, "Hanzelopsinopolis the III", {race: "Thengar", faction: "Thengar", personality: "calculated", outfit: ["none", 0], weapon: ["none", [100, 100], 100, 0, 0.3], ranged: [false, "arrow", 8, 2200, 5, 7, 0, "none", 2], patrolStops: 1, patrolLoop: false, route:[[50686, -10368]]}));
+                                ArtificialIntelligenceAccess[i].health = 80;
+                                ArtificialIntelligenceAccess[i].healthMAX = 80;
+                            }
+                            else
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(50667, -10366, "Person", false, "Hanz", {race: "Thengar", faction: "Thengar", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.03, 0.03], 0, 0, 1], ranged: [false, "arrow", 8, 2200, 5, 7, 0, "none", 2], patrolStops: 1, patrolLoop: false, route:[[50686, -10368]]}));
+                                ArtificialIntelligenceAccess[i].health = 8;
+                                ArtificialIntelligenceAccess[i].healthMAX = 8;
+                            }
                         }
                     }
                 }
@@ -7125,20 +7288,37 @@ function buildMaster()
 
 
 
+                if (player.gamemode == "protagonist")
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(51179.95648489057, -18223.398333135712, "Soldier", false, "Birthday guest", {race: "Kel", faction: "loner", con: 1, speed: 1, outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(51262.15123196404, -17857.65551897758, "Soldier", false, "Birthday guest", {race: "Kel", faction: "loner", con: 0.25, speed: 1, outfit: ["none", 0], weapon: ["none", [0.045, 0.045], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(51296.28596957222, -17798.71270264655, "Soldier", false, "Birthday guest", {race: "Kel", faction: "loner", con: 1, speed: 1, outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(51212.37513444989, -17820.42104102751, "Soldier", false, "Birthday guest", {race: "Kel", faction: "loner", con: 0.25, speed: 1, outfit: ["none", 0], weapon: ["none", [0.075, 0.075], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
 
+                    ArtificialIntelligenceAccess.push(new Unit(50928.239379441264, -18129.686504034762, "Soldier", false, "Birthday guest", {race: "Kel", faction: "loner", con: 1, speed: 1, outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(50682.9136336489, -18404.924325711105, "Soldier", false, "Birthday guest", {race: "Kel", faction: "loner", con: 1, speed: 1, outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(50536.72400985568, -18272.239160849163, "Soldier", false, "Birthday Girl", {race: "Kel", faction: "loner", con: 0.25, speed: 1, outfit: ["none", 0], weapon: ["none", [0.075, 0.075], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
 
-                ArtificialIntelligenceAccess.push(new Unit(51179.95648489057, -18223.398333135712, "Soldier", false, "Slave Man", {race: "Kel", faction: "loner", con: 1, speed: 1, outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
-                ArtificialIntelligenceAccess.push(new Unit(51262.15123196404, -17857.65551897758, "Soldier", false, "Slave Boy", {race: "Kel", faction: "loner", con: 0.25, speed: 1, outfit: ["none", 0], weapon: ["none", [0.045, 0.045], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
-                ArtificialIntelligenceAccess.push(new Unit(51296.28596957222, -17798.71270264655, "Soldier", false, "Slave Woman", {race: "Kel", faction: "loner", con: 1, speed: 1, outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
-                ArtificialIntelligenceAccess.push(new Unit(51212.37513444989, -17820.42104102751, "Soldier", false, "Slave Girl", {race: "Kel", faction: "loner", con: 0.25, speed: 1, outfit: ["none", 0], weapon: ["none", [0.075, 0.075], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(51183.08339986864, -18519.83257973238, "Soldier", false, "Birthday guest", {race: "Kel", faction: "loner", con: 1, speed: 1, outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(50827.94524048814, -17594.569711000953, "Soldier", false, "Edgy Emo Goth Chick", {race: "Vardan", faction: "loner", con: 1, speed: 1, outfit: ["varnFurClothing", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 1, patrolLoop: false, route:[[50837.036948365894, -17584.39891653539]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(50886.11965600879, -18590.90056741665, "Soldier", false, "Birthday guest", {race: "Kel", faction: "loner", con: 1, speed: 1, outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
 
-                ArtificialIntelligenceAccess.push(new Unit(50928.239379441264, -18129.686504034762, "Soldier", false, "Slave Man", {race: "Kel", faction: "loner", con: 1, speed: 1, outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
-                ArtificialIntelligenceAccess.push(new Unit(50682.9136336489, -18404.924325711105, "Soldier", false, "Slave Woman", {race: "Kel", faction: "loner", con: 1, speed: 1, outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
-                ArtificialIntelligenceAccess.push(new Unit(50536.72400985568, -18272.239160849163, "Soldier", false, "Slave Girl", {race: "Kel", faction: "loner", con: 0.25, speed: 1, outfit: ["none", 0], weapon: ["none", [0.075, 0.075], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                }
+                else
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(51179.95648489057, -18223.398333135712, "Soldier", false, "Slave Man", {race: "Kel", faction: "loner", con: 1, speed: 1, outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(51262.15123196404, -17857.65551897758, "Soldier", false, "Slave Boy", {race: "Kel", faction: "loner", con: 0.25, speed: 1, outfit: ["none", 0], weapon: ["none", [0.045, 0.045], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(51296.28596957222, -17798.71270264655, "Soldier", false, "Slave Woman", {race: "Kel", faction: "loner", con: 1, speed: 1, outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(51212.37513444989, -17820.42104102751, "Soldier", false, "Slave Girl", {race: "Kel", faction: "loner", con: 0.25, speed: 1, outfit: ["none", 0], weapon: ["none", [0.075, 0.075], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
 
-                ArtificialIntelligenceAccess.push(new Unit(51183.08339986864, -18519.83257973238, "Soldier", false, "Slave Man", {race: "Kel", faction: "loner", con: 1, speed: 1, outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
-                ArtificialIntelligenceAccess.push(new Unit(50827.94524048814, -17594.569711000953, "Soldier", false, "Ichlahomda", {race: "Kel", faction: "loner", con: 1, speed: 1, outfit: ["varnFurClothing", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 1, patrolLoop: false, route:[[50837.036948365894, -17584.39891653539]]}));
-                ArtificialIntelligenceAccess.push(new Unit(50886.11965600879, -18590.90056741665, "Soldier", false, "Slave Man", {race: "Kel", faction: "loner", con: 1, speed: 1, outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(50928.239379441264, -18129.686504034762, "Soldier", false, "Slave Man", {race: "Kel", faction: "loner", con: 1, speed: 1, outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(50682.9136336489, -18404.924325711105, "Soldier", false, "Slave Woman", {race: "Kel", faction: "loner", con: 1, speed: 1, outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(50536.72400985568, -18272.239160849163, "Soldier", false, "Slave Girl", {race: "Kel", faction: "loner", con: 0.25, speed: 1, outfit: ["none", 0], weapon: ["none", [0.075, 0.075], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+
+                    ArtificialIntelligenceAccess.push(new Unit(51183.08339986864, -18519.83257973238, "Soldier", false, "Slave Man", {race: "Kel", faction: "loner", con: 1, speed: 1, outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(50827.94524048814, -17594.569711000953, "Soldier", false, "Ichlahomda", {race: "Kel", faction: "loner", con: 1, speed: 1, outfit: ["varnFurClothing", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 1, patrolLoop: false, route:[[50837.036948365894, -17584.39891653539]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(50886.11965600879, -18590.90056741665, "Soldier", false, "Slave Man", {race: "Kel", faction: "loner", con: 1, speed: 1, outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                }
 
                 //city guards
                 ArtificialIntelligenceAccess.push(new Unit(51166, -7530, "Soldier", false, "Beulingerr Soldier", {race: "Thengar", faction: "Thengar", con: 5, speed: 1.15, outfit: ["chainArmour", 7], weapon: ["thenganSword", [8, 5], 0, 16, 1.3], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 0, patrolLoop: true, route:[[-514, 277], [-514, 277]]}));

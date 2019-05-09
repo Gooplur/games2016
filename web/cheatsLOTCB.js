@@ -1355,6 +1355,12 @@ function cheats()
         {
             player.vamprism = true;
         }
+        else if (cheatcode.toLowerCase() == "ratsinthewhitecity") //turns off content filter
+        {
+            ArtificialIntelligenceAccess.push(new Unit(3400, 2400, "Vreck", true, "Skeever", {patrolStops: 5, patrolLoop: true, route:[[4000, 2000], [3400, 2400], [3100, 2600], [3500, 3000], [4500, 2500]]}));
+            ArtificialIntelligenceAccess.push(new Unit(3300, 2200, "Vreck", false, "Skeever"));
+            ArtificialIntelligenceAccess.push(new Unit(3200, 2250, "Vreck", false, "Skeever"));
+        }
         else if (cheatcode.toLowerCase() == "nofilter") //turns off content filter
         {
             player.matureContentFilter = false;

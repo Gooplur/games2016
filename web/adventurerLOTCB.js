@@ -6988,6 +6988,22 @@ function Adventurer()
         {
             outfit = allWorn[127];
         }
+        else if (this.outfitEquipped == "fineVardanianPlateArmour")
+        {
+            outfit = allWorn[128];
+        }
+        else if (this.outfitEquipped == "fineNechrovitePlateArmour")
+        {
+            outfit = allWorn[129];
+        }
+        else if (this.outfitEquipped == "ghoulMercArmour")
+        {
+            outfit = allWorn[130];
+        }
+        else if (this.outfitEquipped == "vrekFurClothing")
+        {
+            outfit = allWorn[131];
+        }
         else
         {
             outfit = allWorn[0];
@@ -7212,6 +7228,58 @@ function Adventurer()
                 XXX.globalAlpha = 0.4;
             }
             XXX.drawImage(atal, 810, 2407, 89, 47, -(1 / 2 * 89 * 0.7) + 0, -(1 / 2 * 47 * 0.7) - 0, 89 * 0.7, 47 * 0.7);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "ghoulMercArmour")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(gul, 1007, 203, 41, 40, -(1 / 2 * 41 * 0.9) + 0, -(1 / 2 * 40 * 0.9) - 0, 41 * 0.9, 40 * 0.9);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "vreckFurClothing")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(gul, 13, 843, 34, 31, -(1 / 2 * 34 * 1.38) + 2.4, -(1 / 2 * 31 * 1.38) - 0, 34 * 1.38, 31 * 1.38);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "fineNechrovitePlateArmour")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(beets, 12, 302, 49, 41, -(1 / 2 * 49 * 0.85) + 0, -(1 / 2 * 41 * 0.85) - 0, 49 * 0.85, 41 * 0.85);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "fineVardanianPlateArmour")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(beets, 13, 255, 49, 41, -(1 / 2 * 49 * 0.85) + 0, -(1 / 2 * 41 * 0.85) - 0, 49 * 0.85, 41 * 0.85);
             XXX.restore();
         }
         else if (this.outfitEquipped == "vardanianSoldierOutfit")
@@ -11246,6 +11314,152 @@ function Adventurer()
                     XXX.globalAlpha = 0.4;
                 }
                 XXX.drawImage(polypol, 1731, 43, 49, 33, -27, -36, 49 * 1.2, 33 * 1.2);
+                XXX.restore();
+                this.castingCooldown = new Date().getTime();
+
+            }
+        }
+
+        //Flaming Missiles Form
+        if (this.spell.ID == "flamingMissiles")
+        {
+            this.stageEngine(10, 0.1, false);
+
+            //ATTACK
+            if (Math.floor(this.stage) <= 0)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(polypol, 1926, 100, 54, 38, -1/2 * 54 * 1.1, -1/2 * 38 * 1.1 - 10, 54 * 1.1, 38 * 1.1);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 1)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(polypol, 1926, 134, 54, 38, -1/2 * 54 * 1.1, -1/2 * 38 * 1.1 - 10, 54 * 1.1, 38 * 1.1);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 2)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(polypol, 1925, 165, 54, 38, -1/2 * 54 * 1.1, -1/2 * 38 * 1.1 - 10, 54 * 1.1, 38 * 1.1);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(polypol, 1924, 196, 54, 38, -1/2 * 54 * 1.1, -1/2 * 38 * 1.1 - 10, 54 * 1.1, 38 * 1.1);
+                XXX.restore();
+                this.doMagic = true;
+            }
+            else if (Math.floor(this.stage) <= 4)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(polypol, 1925, 230, 54, 38, -1/2 * 54 * 1.1, -1/2 * 38 * 1.1 - 10, 54 * 1.1, 38 * 1.1);
+                XXX.restore();
+                if (this.doMagic)
+                {
+                    this.doMagic = false;
+                    this.warmth += 2;
+                    this.magicalExperience += this.spell.EXP;
+                    magicList.push(new Magic(player.spell, true, 1));
+                }
+            }
+            else if (Math.floor(this.stage) <= 5)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(polypol, 1929, 262, 54, 38, -1/2 * 54 * 1.1, -1/2 * 38 * 1.1 - 10, 54 * 1.1, 38 * 1.1);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 6)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(polypol, 1929, 293, 54, 38, -1/2 * 54 * 1.1, -1/2 * 38 * 1.1 - 10, 54 * 1.1, 38 * 1.1);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 7)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(polypol, 1930, 324, 54, 38, -1/2 * 54 * 1.1, -1/2 * 38 * 1.1 - 10, 54 * 1.1, 38 * 1.1);
+                XXX.restore();
+                this.doMagic = true;
+            }
+            else if (Math.floor(this.stage) <= 8)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(polypol, 1929, 358, 54, 38, -1/2 * 54 * 1.1, -1/2 * 38 * 1.1 - 10, 54 * 1.1, 38 * 1.1);
+                XXX.restore();
+                if (this.doMagic)
+                {
+                    this.doMagic = false;
+                    this.warmth += 2;
+                    this.magicalExperience += this.spell.EXP;
+                    magicList.push(new Magic(player.spell, true, 0));
+                }
+            }
+            else if (Math.floor(this.stage) >= 9)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(polypol, 1926, 134, 54, 38, -1/2 * 54 * 1.1, -1/2 * 38 * 1.1 - 10, 54 * 1.1, 38 * 1.1);
                 XXX.restore();
                 this.castingCooldown = new Date().getTime();
 
@@ -32664,6 +32878,36 @@ function Adventurer()
                             if (canPlace == true)
                             {
                                 scenicList.push(new Scenery("tent", inFrontX, inFrontY, (this.rotation), false));
+
+                                if (Inventory[i][1] - 1 <= 0)
+                                {
+                                    Inventory.splice(i, 1);
+                                }
+                                else
+                                {
+                                    Inventory[i][1] -= 1;
+                                }
+                                break;
+                            }
+                        }
+                        else if (Inventory[i][0].subUtility == "vardanianTent" && this.weaponEquipped == "hammer")
+                        {
+                            var canPlace = true;
+                            var hits = 0;
+                            var inFrontY = Y + Math.sin(this.rotation + 1/2 * Math.PI) * 48;
+                            var inFrontX = X + Math.cos(this.rotation + 1/2 * Math.PI) * 48;
+                            for (var j = 0; j < scenicList.length; j++)
+                            {
+                                //38 is the radius of vardanianTent Scenery Object.
+                                if (scenicList[j].X - 38 <= inFrontX + scenicList[j].radius && scenicList[j].X + 38 >= inFrontX - scenicList[j].radius && scenicList[j].Y - 38 <= inFrontY + scenicList[j].radius && scenicList[j].Y + 38 >= inFrontY - scenicList[j].radius)
+                                {
+                                    canPlace = false;
+                                }
+                            }
+
+                            if (canPlace == true)
+                            {
+                                scenicList.push(new Scenery("vardanianTent", inFrontX, inFrontY, (this.rotation), false));
 
                                 if (Inventory[i][1] - 1 <= 0)
                                 {

@@ -1244,6 +1244,10 @@ function envPack()
     vardanianForest.src = ("images/vardanForest.jpg");
     window.vardanianForest = vardanianForest;
 
+    var vardanianWetland = new Image();
+    vardanianWetland.src = ("images/vardanWetland.jpg");
+    window.vardanianWetland = vardanianWetland;
+
     var swampTL = new Image();
     swampTL.src = ("images/highL.png");
     window.swampTL = swampTL;
@@ -1553,6 +1557,18 @@ function sticPack()
     window.stic = stic;
 
     stic.onload = function()
+    {
+        cypherPack();
+    };
+}
+
+function cypherPack()
+{
+    var cypher = new Image();
+    cypher.src = ("images/cypher.png");
+    window.cypher = cypher;
+
+    cypher.onload = function()
     {
         raedPack();
     };

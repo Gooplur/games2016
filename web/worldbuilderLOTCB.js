@@ -1525,6 +1525,10 @@ function outlineBuilder(width, length, terrain, extraX, extraY)
                 {
                     XXX.drawImage(vardanianGrass, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
                 }
+                else if (terrain == "vardanianWetland")
+                {
+                    XXX.drawImage(vardanianWetland, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
                 else if (terrain == "zetianStone")
                 {
                     XXX.drawImage(zetianStone, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);

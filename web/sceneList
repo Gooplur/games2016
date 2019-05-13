@@ -182,5 +182,17 @@ scuffleMarks - marks on the ground that can be size adjusted with longevity
 vardanianDirtPile - a pileo of vardanian dirt that can be size adjusted with longevity
 vardanianBasin - A ker shell basin that is meant to hold rainwater.
 mimicry - A scenery object that informs a Mimic about what they can shift into, where they can do it, and what angle they should point towards. (Mimic type is determined by a string input in longevity)
-
-
+swampWalk - A fully rotational suspended wooden walk in a vardanian style
+swampWalkShort - A fully rotational suspended wooden walk in a vardanian style (a short one)
+swampStilt - A fully rotational suspended wooden balance beam in a vardanian style (it requires 3 dex to use)
+swampPlank - A fully rotational suspended wooden plank in a vardanian style
+swampBridge - A fully rotational suspended wooden Bridge in a vardanian style (it can break when you cross over it if temporary == false) The more weight you are holding the more quickly it breaks. With a hammer equipped and 8 intelligence you can repair the bridge by double clicking.
+swampPlatform - A fully rotational suspended wooden platform in a vardanian style
+vardanianPyre - A flaming size adjustable pyre - temporary = lit or not, information = size
+pikeWall - A wall of pikes that damage enemies that cross it
+magicLock - A magical combination lock; the player rotates the three pointers in 45 degree increments clockwise until they are oriented in the way that causes the lock to unlock. Rotations of 360 and over are logged for this type of lock, so it may be necessary to spin a pointer multiple times around to reach the correct orientation. //scenicList.push(new Scenery("magicLock", 3280, 2435, 0, "magesCache"));
+magicSpinnerLock - A magical combination lock that spins around and will only unlock if it is stopped at the correct orientation: the player double clicks on it to stop its rotations. //scenicList.push(new Scenery("magicSpinnerLock", 3000, 2400, 0, [15, 30, 10, "magicSpinnerA"], 0.5)); //scenicList.push(new Scenery("magicSpinnerLock", 3000, 2000, 0, [45, 30, 15, "magicSpinnerB"], 1));
+magicButton - A magical button that can be pressed and which in some magical puzzles must be pressed a certain amount of times in a specific order. //scenicList.push(new Scenery("magicButton", 3250, 2200, 0, "magesCache", "abc"));
+magicOrbPortal - A magical portal that only functions when the appropriate orb key is placed upon it. //scenicList.push(new Scenery("magicOrbPortal", 3300, 2000, 0, "magesCache", [2000, 1000, "world"]));
+returnOrbPortal - The other side of the magicOrbPortal, it allows you to get back from where ever the portal sent you. //scenicList.push(new Scenery("returnOrbPortal", 2000, 1000, 0, 1, [3300, 2000, "world"]));
+door - a wooden door that opens and closes when you double click it. longevity determines colour (0-3), information[0] determines locked status (true = locked, false = unlocked, "broken" = knocked down), information[1] specifies a key ID to open it with a key //scenicList.push(new Scenery("door", 3346, 2506, -1/2 * Math.PI, 3, [true, "abc"]));

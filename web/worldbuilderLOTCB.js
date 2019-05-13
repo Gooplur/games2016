@@ -1213,6 +1213,15 @@ function worldBuilder()
         outlineBuilder( 3, 2, "dungeon", 7, -2);
         outlineBuilder( 10, 1, "dungeon", 9, -13);
     }
+    else if (map == "sagesTrap")
+    {
+        player.dmx = map;
+        player.underground = false;
+        elevation = -5; //underground temperatures are consistently -1 unless there is a certain closeness to magma...
+        region = "sagesTrap";
+
+        outlineBuilder( 20, 20, "Magma", 0, 0);
+    }
     else if (map == "lethikCityPrison")
     {
         player.dmx = map;

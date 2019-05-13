@@ -784,11 +784,29 @@ function applySelectionsButton()
                 player.knowledge = 4;
                 player.willpower = 4;
                 player.memory = 2;
+
+                if (player.gender == "Male")
+                {
+                    Inventory.push([new Item("magusRobesM", false, false), 1]);
+                }
+                else
+                {
+                    Inventory.push([new Item("magusRobesF", false, false), 1]);
+                }
             }
             else if (player.title == "Nobility")
             {
                 player.knowledge = 3;
                 player.memory = 1;
+
+                if (player.gender == "Female")
+                {
+                    Inventory.push([new Item("magusRobesF", false, false), 1]);
+                }
+                else
+                {
+                    Inventory.push([new Item("magusRobesM", false, false), 1]);
+                }
             }
         }
         else if (player.title == "Nobility" && player.raceName == "Nirwaden" || player.title == "Royalty" && player.raceName == "Nirwaden")

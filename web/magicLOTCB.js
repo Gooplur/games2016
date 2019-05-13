@@ -1491,6 +1491,53 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
             this.orientToCaster(17, 1 / 2 * Math.PI);
             this.drawWithRotation(polypol, 1688, 212, 29, 26, 29, 26, player.rotation, -1 / 2 * 29, -1 / 2 * 26);
         }
+        //ARCANE ORBS
+        if (this.spellType == "arcaneOrbs")
+        {
+            this.momentumRequests = [];
+            this.veloz = 12;
+            this.startX = this.X;
+            this.startY = this.Y;
+            this.spin = 0;
+            if (this.orders == 0)
+            {
+                this.orientToCaster(16, 6/16 * Math.PI);
+                if (caster)
+                {
+                    this.momentum = player.rotation + 6/16 * Math.PI;
+                }
+                else
+                {
+                    this.momentum = this.unitRotation + 6/16 * Math.PI;
+                }
+            }
+            else if (this.orders == 1)
+            {
+                this.orientToCaster(16, 10/16 * Math.PI);
+                if (caster)
+                {
+                    this.momentum = player.rotation + 10/16 * Math.PI;
+                }
+                else
+                {
+                    this.momentum = this.unitRotation + 10/16 * Math.PI;
+                }
+            }
+        }
+        //DESPELL
+        if (this.spellType == "despell")
+        {
+            this.orientToCaster(14, 1 / 2 * Math.PI);
+
+            if (caster == true)
+            {
+                this.rotation = player.rotation;
+            }
+            else
+            {
+                this.rotation = this.unitRotation;
+            }
+        }
         //SMOKE
         if (this.spellType == "smoke")
         {
@@ -3234,6 +3281,165 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                 }
             }
 
+            //ARCANE ORBS
+            if (this.spellType == "arcaneOrbs")
+            {
+                //pick a target that is closest (avoids picking itself if it is a unit caster)
+                var targ = "none";
+                var distTarg = 100000000000000000000000000;
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    if (caster == true || ArtificialIntelligenceAccess[i] != unitSelf)
+                    {
+                        if (caster == true && ArtificialIntelligenceAccess[i].team != "player" || caster != true)
+                        {
+                            var targDist = (this.X - ArtificialIntelligenceAccess[i].X)*(this.X - ArtificialIntelligenceAccess[i].X)+(this.Y - ArtificialIntelligenceAccess[i].Y)*(this.Y - ArtificialIntelligenceAccess[i].Y);
+                            if (targDist < distTarg && ArtificialIntelligenceAccess[i].health > 0)
+                            {
+                                distTarg = targDist;
+                                targ = ArtificialIntelligenceAccess[i];
+                            }
+                        }
+                    }
+                }
+
+                if (caster != true)
+                {
+                    var playarDist = (this.X - X)*(this.X - X)+(this.Y - Y)*(this.Y - Y);
+                    if (playarDist < distTarg)
+                    {
+                        targ = player;
+                        distTarg = playarDist;
+                    }
+                }
+
+                this.momentumRequests.push([this.momentum, this.veloz]);
+
+                if (targ != "none")
+                {
+                    if (targ != player)
+                    {
+                        this.momentumRequests.push([Math.atan2(this.Y - targ.Y, this.X-targ.X) + Math.PI, 4]);
+                    }
+                    else
+                    {
+                        this.momentumRequests.push([Math.atan2(this.Y - Y, this.X - X) + Math.PI, 4]);
+                    }
+                }
+
+                for (var i = this.momentumRequests.length - 1; i >= 0; i--)
+                {
+                    var diff = ((degrees(this.momentum) - degrees(this.momentumRequests[i][0]) + 180 + 360 ) % 360 ) - 180;
+                    this.momentum = (360 + degrees(this.momentumRequests[i][0]) + ( diff / 2 ) ) % 360;
+                    this.momentum = radians(this.momentum);
+
+                    this.veloz = ((this.veloz + this.momentumRequests[i][1]) / 2);
+                    //this.momentum = (this.momentum + this.momentumRequests[i][0]) / 2;
+                    this.momentumRequests.splice(i, 1);
+                }
+
+                //if (targ != "none")
+                //{
+                //    this.project(Math.atan2(this.Y - targ.Y, this.X-targ.X) - Math.PI, 10000000000000, 4, true);
+                //}
+
+                this.project(this.momentum, 10000000000000, this.veloz, true);
+
+                //laser beam
+                if (caster)
+                {
+                    if (targ != "none" && distTarg < ((220 + (10 * this.cnx)) * (220 + (10 * this.cnx))))
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.beginPath();
+                        XXX.strokeStyle = "#AA83B0";
+                        XXX.lineWidth = 1;
+                        XXX.moveTo(0, 0);
+                        XXX.lineTo(-targ.X + this.X, -targ.Y + this.Y);
+                        XXX.stroke();
+                        XXX.restore();
+
+                        this.damage = 2.5 + (0.1 * this.cnx);
+                        if (targ.magicalResistance < this.damage)
+                        {
+                            targ.health -= (this.damage / 24) - (targ.magicalResistance / 24);
+                            targ.healthShownTime = new Date().getTime();
+
+                        }
+                        targ.disturbedTime = new Date().getTime();
+                    }
+                }
+                else
+                {
+                    if (targ != player)
+                    {
+                        if (targ != "none" && distTarg < ((220 + (10 * this.cnx)) * (220 + (10 * this.cnx))))
+                        {
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.beginPath();
+                            XXX.strokeStyle = "#AA83B0";
+                            XXX.lineWidth = 1;
+                            XXX.moveTo(0, 0);
+                            XXX.lineTo(-targ.X + this.X, -targ.Y + this.Y);
+                            XXX.stroke();
+                            XXX.restore();
+
+                            this.damage = 2.5 + (0.1 * this.cnx);
+                            if (targ.magicalResistance < this.damage)
+                            {
+                                targ.health -= (this.damage / 24) - (targ.magicalResistance / 24);
+                                targ.healthShownTime = new Date().getTime();
+
+                            }
+                            targ.disturbedTime = new Date().getTime();
+                        }
+                    }
+                    else
+                    {
+                        if (targ != "none" && distTarg < ((220 + (10 * this.cnx)) * (220 + (10 * this.cnx))))
+                        {
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.beginPath();
+                            XXX.strokeStyle = "#AA83B0";
+                            XXX.lineWidth = 1;
+                            XXX.moveTo(0, 0);
+                            XXX.lineTo(-X + this.X, -Y + this.Y);
+                            XXX.stroke();
+                            XXX.restore();
+                            console.log("drewup")
+
+                            this.damage = 2.5 + (0.1 * this.cnx);
+                            if (targ.magicalResistance < this.damage)
+                            {
+                                targ.health -= (this.damage / 24) - (targ.magicalResistance / 24);
+
+                            }
+                        }
+                    }
+                }
+
+
+
+                //draw self
+                this.spin += 0.05;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.spin);
+                XXX.globalAlpha = 0.92;
+                XXX.drawImage(cypher, 8, 141, 13, 13, - (1/2 * 13), - (1/2 * 13), 13, 13);
+                XXX.restore();
+
+                if (player.underground || timeOfDay != "Day")
+                {
+                    lights.push({X: this.X, Y: this.Y, size: 14, extraStops: true, GRD: 0.05, Alpha: 0.2, showMe: false});
+                }
+
+                this.spellTimer(9 + 3/50 * this.cnx);
+            }
+
             if (this.spellType == "fireballI")
             {
                 if (caster)
@@ -3866,18 +4072,63 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                     this.project(Math.atan2(Y - this.Y, X - this.X), 100000, 3 + Math.random() * 2, true);
                 }
             }
+            if (this.spellType == "powerDraw")
+            {
+                if (caster)
+                {
+                    this.X = this.orders[0];
+                    this.Y = this.orders[1];
+
+                    this.damageThenGoAway(10, "draining", 3 + (Math.floor(6/50 * this.cnx)), 3, false);
+                }
+                else
+                {
+
+                }
+            }
+            if (this.spellType == "despell")
+            {
+                if (caster)
+                {
+                    this.project(this.playerRotation + 1/2 * Math.PI, 800, 6 + (3/50 * this.cnx), true);
+                }
+                else
+                {
+                    this.project(this.unitRotation, 800, 6 + (3/50 * this.cnx), true);
+                }
+
+
+                XXX.save();
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                XXX.rotate(this.rotation);
+                XXX.drawImage(cypher, 7, 270, 98, 64, - (1/2 * 98), - (1/2 * 64), 98, 64);
+                XXX.restore();
+
+                for (var i = 0; i < magicList.length; i++)
+                {
+                    if (Math.sqrt((this.X - magicList[i].X) * (this.X - magicList[i].X) + (this.Y - magicList[i].Y) * (this.Y - magicList[i].Y)) < 82)
+                    {
+                        if (magicList[i] != this && magicList[i].spellType != "webSpit" && magicList[i].spellType != "soulOrb" && magicList[i].spellType != "flySpit" && magicList[i].spellType != "golemRock" && magicList[i].spellType != "smoke" && magicList[i].spellType != "drainOrb" && magicList[i].spellType != "ancientRift")
+                        {
+                            magicList.splice(i, 1);
+                            break;
+                        }
+                    }
+                }
+            }
             if (this.spellType == "soulOrb")
             {
                 if (caster)
                 {
                     this.damageThenGoAway(8, "soulOrb", 0, 0, false);
                     this.turn -= 0.314;
-                    XXX.beginPath();
+
                     XXX.save();
                     XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
                     XXX.rotate(this.turn);
                     XXX.drawImage(mofu, 23, 51, 22, 19, - (1/2 * 22), - (1/2 * 19), 22, 19);
                     XXX.restore();
+
                     this.project(Math.atan2(unitSelf.Y - this.Y, unitSelf.X - this.X), 1000000, 4 + (Math.random() * 3), true);
                 }
                 else

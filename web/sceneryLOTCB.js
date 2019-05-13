@@ -2714,6 +2714,458 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
 
             }
         }
+        else if (this.type == "door")
+        {
+            //TRAITS
+            this.solid = false;
+            this.size = 2;
+            if (this.runOneTime)
+            {
+                this.runOneTime = false;
+                this.tic = 0;
+                this.phase = 0;
+                this.doTic = false;
+                this.primed = true;
+                this.clave = "door" + (Math.random() + Math.random()) + "door";
+                this.locked = this.information[0];
+                this.keyToUnlock = this.information[1];
+            }
+
+            if (this.locked != "broken")
+            {
+                this.interactionRange = 90;
+            }
+            else
+            {
+                this.interactionRange = 1;
+            }
+
+            //DRAWSELF
+            if (this.temporary == 0)
+            {
+                if (this.locked == "broken")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(cypher, 233, 73, 101, 44, (-1/2 * 101 * this.size), (-1/2 * 44 * this.size), 101 * this.size, 44 * this.size);
+                    XXX.restore();
+                }
+                else if (this.phase == 0)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(cypher, 239, 14, 25, 44, (-1/2 * 25 * this.size), (-1/2 * 44 * this.size), 25 * this.size, 44 * this.size);
+                    XXX.restore();
+
+                    //barriers
+                    if (this.primed == true)
+                    {
+                        this.primed = false;
+                        if (this.rotation == 0)
+                        {
+                            barrierList.push(new Barrier((this.X - 9.5), (this.Y - 32), 60, 17, true, this.clave)); //door closed
+                        }
+                        else if (this.rotation == Math.PI)
+                        {
+                            barrierList.push(new Barrier((this.X - 9.5), (this.Y - 32), 60, 17, true, this.clave)); //door closed
+                        }
+                        else if (this.rotation == 1/2 * Math.PI)
+                        {
+                            barrierList.push(new Barrier((this.X - 32), (this.Y - 9.5), 17, 60, true, this.clave)); //door closed
+                        }
+                        else if (this.rotation == -1/2 * Math.PI)
+                        {
+                            barrierList.push(new Barrier((this.X - 32), (this.Y - 9.5), 17, 60, true, this.clave)); //door closed
+                        }
+                    }
+                }
+                else if (this.phase == 1)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(cypher, 256, 14, 35, 44, (-1/2 * 35 * this.size), (-1/2 * 44 * this.size), 35 * this.size, 44 * this.size);
+                    XXX.restore();
+                    this.primed = true;
+                }
+                else
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(cypher, 300, 18, 58, 44, (-1/2 * 58 * this.size), (-1/2 * 44 * this.size), 58 * this.size, 44 * this.size);
+                    XXX.restore();
+
+                    if (this.primed)
+                    {
+                        var deleteList = [];
+                        for (var l = 0; l < barrierList.length; l++)
+                        {
+                            if (barrierList[l].info == this.clave)
+                            {
+                                deleteList.push(l);
+                            }
+                        }
+                        for (var l = deleteList.length - 1; l > -1; l--)
+                        {
+                            barrierList.splice(deleteList[l], 1);
+                        }
+                    }
+                }
+            }
+            else if (this.temporary == 1)
+            {
+                if (this.locked == "broken")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(cypher, 345, 72, 101, 44, (-1/2 * 101 * this.size), (-1/2 * 44 * this.size), 101 * this.size, 44 * this.size);
+                    XXX.restore();
+                }
+                else if (this.phase == 0)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(cypher, 369, 17, 14, 40, (-1/2 * 14 * this.size), (-1/2 * 40 * this.size), 14 * this.size, 40 * this.size);
+                    XXX.restore();
+
+                    //barriers
+                    if (this.primed == true)
+                    {
+                        this.primed = false;
+                        if (this.rotation == 0)
+                        {
+                            barrierList.push(new Barrier((this.X - 9.5), (this.Y - 32), 60, 17, true, this.clave)); //door closed
+                        }
+                        else if (this.rotation == Math.PI)
+                        {
+                            barrierList.push(new Barrier((this.X - 9.5), (this.Y - 32), 60, 17, true, this.clave)); //door closed
+                        }
+                        else if (this.rotation == 1/2 * Math.PI)
+                        {
+                            barrierList.push(new Barrier((this.X - 32), (this.Y - 9.5), 17, 60, true, this.clave)); //door closed
+                        }
+                        else if (this.rotation == -1/2 * Math.PI)
+                        {
+                            barrierList.push(new Barrier((this.X - 32), (this.Y - 9.5), 17, 60, true, this.clave)); //door closed
+                        }
+                    }
+                }
+                else if (this.phase == 1)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(cypher, 381, 19, 35, 37, (-1/2 * 35 * this.size), (-1/2 * 37 * this.size), 35 * this.size, 37 * this.size);
+                    XXX.restore();
+                    this.primed = true;
+                }
+                else
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(cypher, 416, 19, 66, 38, (-1/2 * 66 * this.size), (-1/2 * 38 * this.size), 66 * this.size, 38 * this.size);
+                    XXX.restore();
+
+                    if (this.primed)
+                    {
+                        var deleteList = [];
+                        for (var l = 0; l < barrierList.length; l++)
+                        {
+                            if (barrierList[l].info == this.clave)
+                            {
+                                deleteList.push(l);
+                            }
+                        }
+                        for (var l = deleteList.length - 1; l > -1; l--)
+                        {
+                            barrierList.splice(deleteList[l], 1);
+                        }
+                    }
+                }
+            }
+            else if (this.temporary == 2)
+            {
+                if (this.locked == "broken")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(cypher, 465, 73, 101, 44, (-1/2 * 101 * this.size), (-1/2 * 44 * this.size), 101 * this.size, 44 * this.size);
+                    XXX.restore();
+                }
+                else if (this.phase == 0)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(cypher, 494, 15, 14, 40, (-1/2 * 14 * this.size), (-1/2 * 40 * this.size), 14 * this.size, 40 * this.size);
+                    XXX.restore();
+
+                    //barriers
+                    if (this.primed == true)
+                    {
+                        this.primed = false;
+                        if (this.rotation == 0)
+                        {
+                            barrierList.push(new Barrier((this.X - 9.5), (this.Y - 32), 60, 17, true, this.clave)); //door closed
+                        }
+                        else if (this.rotation == Math.PI)
+                        {
+                            barrierList.push(new Barrier((this.X - 9.5), (this.Y - 32), 60, 17, true, this.clave)); //door closed
+                        }
+                        else if (this.rotation == 1/2 * Math.PI)
+                        {
+                            barrierList.push(new Barrier((this.X - 32), (this.Y - 9.5), 17, 60, true, this.clave)); //door closed
+                        }
+                        else if (this.rotation == -1/2 * Math.PI)
+                        {
+                            barrierList.push(new Barrier((this.X - 32), (this.Y - 9.5), 17, 60, true, this.clave)); //door closed
+                        }
+                    }
+                }
+                else if (this.phase == 1)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(cypher, 506, 18, 35, 37, (-1/2 * 35 * this.size), (-1/2 * 37 * this.size), 35 * this.size, 37 * this.size);
+                    XXX.restore();
+                    this.primed = true;
+                }
+                else
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(cypher, 541, 18, 66, 38, (-1/2 * 66 * this.size), (-1/2 * 38 * this.size), 66 * this.size, 38 * this.size);
+                    XXX.restore();
+
+                    if (this.primed)
+                    {
+                        var deleteList = [];
+                        for (var l = 0; l < barrierList.length; l++)
+                        {
+                            if (barrierList[l].info == this.clave)
+                            {
+                                deleteList.push(l);
+                            }
+                        }
+                        for (var l = deleteList.length - 1; l > -1; l--)
+                        {
+                            barrierList.splice(deleteList[l], 1);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if (this.locked == "broken")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(cypher, 572, 72, 101, 44, (-1/2 * 101 * this.size), (-1/2 * 44 * this.size), 101 * this.size, 44 * this.size);
+                    XXX.restore();
+                }
+                else if (this.phase == 0)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(cypher, 622, 15, 14, 40, (-1/2 * 14 * this.size), (-1/2 * 40 * this.size), 14 * this.size, 40 * this.size);
+                    XXX.restore();
+
+                    //barriers
+                    if (this.primed == true)
+                    {
+                        this.primed = false;
+                        if (this.rotation == 0)
+                        {
+                            barrierList.push(new Barrier((this.X - 9.5), (this.Y - 32), 60, 17, true, this.clave)); //door closed
+                        }
+                        else if (this.rotation == Math.PI)
+                        {
+                            barrierList.push(new Barrier((this.X - 9.5), (this.Y - 32), 60, 17, true, this.clave)); //door closed
+                        }
+                        else if (this.rotation == 1/2 * Math.PI)
+                        {
+                            barrierList.push(new Barrier((this.X - 32), (this.Y - 9.5), 17, 60, true, this.clave)); //door closed
+                        }
+                        else if (this.rotation == -1/2 * Math.PI)
+                        {
+                            barrierList.push(new Barrier((this.X - 32), (this.Y - 9.5), 17, 60, true, this.clave)); //door closed
+                        }
+                    }
+                }
+                else if (this.phase == 1)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(cypher, 634, 17, 35, 37, (-1/2 * 35 * this.size), (-1/2 * 37 * this.size), 35 * this.size, 37 * this.size);
+                    XXX.restore();
+                    this.primed = true;
+                }
+                else
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(cypher, 669, 18, 66, 38, (-1/2 * 66 * this.size), (-1/2 * 38 * this.size), 66 * this.size, 38 * this.size);
+                    XXX.restore();
+
+                    if (this.primed)
+                    {
+                        var deleteList = [];
+                        for (var l = 0; l < barrierList.length; l++)
+                        {
+                            if (barrierList[l].info == this.clave)
+                            {
+                                deleteList.push(l);
+                            }
+                        }
+                        for (var l = deleteList.length - 1; l > -1; l--)
+                        {
+                            barrierList.splice(deleteList[l], 1);
+                        }
+                    }
+                }
+            }
+
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 20;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                if (this.locked == true)
+                {
+                    this.activate = false;
+                    var hasTheKey = false;
+                    for (var i = 0; i < Inventory.length; i++)
+                    {
+                        if (Inventory[i][0].doorKeyID == this.keyToUnlock || Inventory[i][0].doorKeyID == "master")
+                        {
+                            hasTheKey = true;
+                            break;
+                        }
+                    }
+
+                    if (hasTheKey == true) //key
+                    {
+                        this.locked = false;
+                    }
+                    else if (have("lockpick", 1)) //picklock
+                    {
+                        var lockPikChance = Math.random();
+                        if (player.getDexterity() >= 40)
+                        {
+                            this.locked = false;
+                        }
+                        else if (player.getDexterity() >= 20)
+                        {
+                            if (lockPikChance > 0.35)
+                            {
+                                this.locked = false;
+                            }
+                            else
+                            {
+                                take("lockpick", 1);
+                                give("brokenLockpick", 1);
+                            }
+                        }
+                        else if (player.getDexterity() >= 10)
+                        {
+                            if (lockPikChance > 0.55)
+                            {
+                                this.locked = false;
+                            }
+                            else
+                            {
+                                take("lockpick", 1);
+                                give("brokenLockpick", 1);
+                            }
+                        }
+                        else
+                        {
+                            if (lockPikChance > 0.8)
+                            {
+                                this.locked = false;
+                            }
+                            else
+                            {
+                                take("lockpick", 1);
+                                give("brokenLockpick", 1);
+                            }
+                        }
+                    }
+                    else if (player.getStrength() >= 16) //break down the door
+                    {
+                        this.locked = "broken";
+                    }
+                }
+                //CONDITIONS TO ACTIVATE
+                if (this.phase == 0 && this.locked == false && this.doTic == false)
+                {
+                    this.doTic = "open";
+                    this.tic = 0;
+                }
+                else if (this.phase > 1 && this.doTic == false && this.locked != "broken")
+                {
+                    this.doTic = "close";
+                    this.tic = 0;
+                }
+
+                if (this.doTic == "open" || this.doTic == "close")
+                {
+                    this.tic += 1;
+                }
+
+                //OPEN
+                if (this.doTic == "open")
+                {
+                    if (this.tic < 5)
+                    {
+                        this.phase = 0;
+                    }
+                    else if (this.tic < 10)
+                    {
+                        this.phase = 1;
+                    }
+                    else
+                    {
+                        this.phase = 2;
+                        this.doTic = false;
+                        this.activate = false;
+                    }
+                }
+                else if (this.doTic == "close")
+                {
+                    if (this.tic < 5)
+                    {
+                        this.phase = 2;
+                    }
+                    else if (this.tic < 10)
+                    {
+                        this.phase = 1;
+                    }
+                    else
+                    {
+                        this.phase = 0;
+                        this.doTic = false;
+                        this.activate = false;
+                    }
+                }
+
+            }
+        }
         else if (this.type == "nirwadenCastleDoor")
         {
             //TRAITS
@@ -13061,6 +13513,462 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 this.activate = false;
             }
         }
+        else if (this.type == "magicLock")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 120;
+            this.size = 1;
+
+            if (this.runOneTime)
+            {
+                this.runOneTime = false;
+                this.lowLock = 0;
+                this.midLock = 0;
+                this.topLock = 0;
+            }
+
+            //DRAWSELF
+
+            //base
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(cypher, 136, 0, 83, 81, -(1/2 * 83 * this.size), -(1/2 * 81 * this.size), 83 * this.size, 81 * this.size);
+            XXX.restore();
+
+            //lowest lock
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation + this.lowLock);
+            XXX.drawImage(cypher, 67, 2, 72, 87, -(1/2 * 72 * this.size), -(1/2 * 87 * this.size), 72 * this.size, 87 * this.size);
+            XXX.restore();
+
+            //middle lock
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation + this.midLock);
+            XXX.drawImage(cypher, 24, 4, 34, 42, -(1/2 * 34 * this.size), -(1/2 * 42 * this.size), 34 * this.size, 42 * this.size);
+            XXX.restore();
+
+            //highest lock
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation + this.topLock);
+            XXX.drawImage(cypher, 1, 4, 20, 22, -(1/2 * 20 * this.size), -(1/2 * 22 * this.size), 20 * this.size, 22 * this.size);
+            XXX.restore();
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 50;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                if (this.mouser < 6)
+                {
+                    this.topLock += 1/4 * Math.PI;
+                    if (this.temporary == "magesCache")
+                    {
+                        magesCacheLock[0] = Math.round(degrees(this.topLock));
+                        console.log(magesCacheLock);
+                    }
+                }
+                else if (this.mouser < 16)
+                {
+                    this.midLock += 1/4 * Math.PI;
+                    if (this.temporary == "magesCache")
+                    {
+                        magesCacheLock[1] = Math.round(degrees(this.midLock));
+                        console.log(magesCacheLock);
+                    }
+                }
+                else if (this.mouser < 46)
+                {
+                    this.lowLock += 1/4 * Math.PI;
+                    if (this.temporary == "magesCache")
+                    {
+                        magesCacheLock[2] = Math.round(degrees(this.lowLock));
+                        console.log(magesCacheLock);
+                    }
+                }
+                this.activate = false;
+            }
+        }
+        else if (this.type == "magicSpinnerLock")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 100;
+            this.size = 0.8;
+
+            if (this.runOneTime)
+            {
+                this.runOneTime = false;
+                this.lowLock = 0;
+                this.midLock = 0;
+                this.topLock = 0;
+                this.callStop = false;
+                this.magicSpinLockTime = new Date().getTime();
+            }
+
+            //DRAWSELF
+
+            if (this.callStop == false)
+            {
+                if (new Date().getTime() - this.magicSpinLockTime > (this.information * 1000))
+                {
+                    this.magicSpinLockTime = new Date().getTime();
+                    this.lowLock += radians(this.temporary[0]);
+                    this.midLock += radians(this.temporary[1]);
+                    this.topLock += radians(this.temporary[2]);
+                    if (Math.round(degrees(this.lowLock)) > 360)
+                    {
+                        this.lowLock = radians(degrees(this.lowLock) % 360);
+                    }
+                    if (Math.round(degrees(this.midLock)) > 360)
+                    {
+                        this.midLock = radians(degrees(this.midLock) % 360);
+                    }
+                    if (Math.round(degrees(this.topLock)) > 360)
+                    {
+                        this.topLock = radians(degrees(this.topLock) % 360);
+                    }
+
+                    if (Math.round(degrees(this.lowLock)) == 360)
+                    {
+                        this.lowLock = 0;
+                    }
+                    if (Math.round(degrees(this.midLock)) == 360)
+                    {
+                        this.midLock = 0;
+                    }
+                    if (Math.round(degrees(this.topLock)) == 360)
+                    {
+                        this.topLock = 0;
+                    }
+                }
+            }
+
+            //base
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(cypher, 136, 0, 83, 81, -(1/2 * 83 * this.size), -(1/2 * 81 * this.size), 83 * this.size, 81 * this.size);
+            XXX.restore();
+
+            //lowest lock
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation + this.lowLock);
+            XXX.drawImage(cypher, 67, 2, 72, 87, -(1/2 * 72 * this.size), -(1/2 * 87 * this.size), 72 * this.size, 87 * this.size);
+            XXX.restore();
+
+            //middle lock
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation + this.midLock);
+            XXX.drawImage(cypher, 24, 4, 34, 42, -(1/2 * 34 * this.size), -(1/2 * 42 * this.size), 34 * this.size, 42 * this.size);
+            XXX.restore();
+
+            //highest lock
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation + this.topLock);
+            XXX.drawImage(cypher, 1, 4, 20, 22, -(1/2 * 20 * this.size), -(1/2 * 22 * this.size), 20 * this.size, 22 * this.size);
+            XXX.restore();
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 70 * this.size;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+
+                this.callStop = true;
+                if (this.temporary[3] == "magicSpinnerA")
+                {
+                    magicSpinnerA[0] = Math.round(degrees(this.topLock));
+                    magicSpinnerA[1] = Math.round(degrees(this.midLock));
+                    magicSpinnerA[2] = Math.round(degrees(this.lowLock));
+                    console.log(magicSpinnerA);
+                }
+                else if (this.temporary[3] == "magicSpinnerB")
+                {
+                    magicSpinnerB[0] = Math.round(degrees(this.topLock));
+                    magicSpinnerB[1] = Math.round(degrees(this.midLock));
+                    magicSpinnerB[2] = Math.round(degrees(this.lowLock));
+                    console.log(magicSpinnerB);
+                }
+            }
+        }
+        else if (this.type == "magicButton")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 40;
+            this.size = 1;
+
+            if (this.runOneTime)
+            {
+                this.runOneTime = false;
+                this.pressed = 0;
+            }
+
+            //DRAWSELF
+            if (this.pressed == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(cypher, 0, 98, 21, 13, -(1/2 * 21 * this.size), -(1/2 * 13 * this.size), 21 * this.size, 13 * this.size);
+                XXX.restore();
+            }
+            else
+            {
+                this.pressed += 1;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(cypher, 0, 113, 21, 13, -(1/2 * 21 * this.size), -(1/2 * 13 * this.size), 21 * this.size, 13 * this.size);
+                XXX.restore();
+
+                if (this.pressed > 10)
+                {
+                    this.pressed = 0;
+                }
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 11 * this.size;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+                if (this.pressed == 0)
+                {
+                    this.pressed = 1;
+                    if (this.temporary == "magesCache")
+                    {
+                        magesCacheButtons.push(this.information);
+                        console.log(magesCacheButtons);
+                    }
+                }
+            }
+        }
+        else if (this.type == "magicOrbPortal")
+        {
+            //TRAITS
+            this.solid = false;
+            this.size = 1;
+
+            if (this.runOneTime)
+            {
+                this.runOneTime = false;
+                this.orbPlaced = false;
+                this.tic = 0;
+                this.useBlock = false;
+            }
+
+            //portal activation pre-reqs
+            if (this.temporary == "magesCache")
+            {
+                var isLocked = false;
+
+                if (magesCacheButtons.toString() != [1, 1, 3, 2, 1, 2].toString())
+                {
+                    isLocked = true;
+                }
+
+                isSameStupidtard = false;
+                if (magesCacheLock.toString() != [360, 90, 270].toString())
+                {
+                    isLocked = true;
+                }
+                this.useBlock = isLocked;
+            }
+
+            //if it has already been unlocked
+            if (this.temporary == "magesCache")
+            {
+                if (quests.sagesCachePortal == true)
+                {
+                    this.useBlock = false;
+                    this.orbPlaced = true;
+                }
+            }
+
+
+            if (this.useBlock == false)
+            {
+                this.interactionRange = 130;
+            }
+            else
+            {
+                this.interactionRange = 1;
+            }
+
+            //DRAWSELF
+            if (this.orbPlaced == false)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(cypher, 594, 165, 99, 101, -(1/2 * 99 * this.size), -(1/2 * 101 * this.size), 99 * this.size, 101 * this.size);
+                XXX.restore();
+            }
+            else
+            {
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(cypher, 598, 277, 99, 101, -(1/2 * 99 * this.size), -(1/2 * 101 * this.size), 99 * this.size, 101 * this.size);
+                XXX.restore();
+
+                if (this.useBlock == false)
+                {
+                    this.tic += 2;
+                    if (this.tic <= 4)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(cypher, 729, 281, 63, 65, -(1/2 * 63 * this.size), -(1/2 * 65 * this.size), 63 * this.size, 65 * this.size);
+                        XXX.restore();
+                    }
+                    else if (this.tic <= 8)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(cypher, 728, 344, 63, 65, -(1/2 * 63 * this.size), -(1/2 * 65 * this.size), 63 * this.size, 65 * this.size);
+                        XXX.restore();
+                    }
+                    else if (this.tic <= 12)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(cypher, 725, 415, 63, 65, -(1/2 * 63 * this.size), -(1/2 * 65 * this.size), 63 * this.size, 65 * this.size);
+                        XXX.restore();
+                    }
+                    else
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(cypher, 728, 344, 63, 65, -(1/2 * 63 * this.size), -(1/2 * 65 * this.size), 63 * this.size, 65 * this.size);
+                        XXX.restore();
+                        this.tic = 0;
+                    }
+
+                }
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 100 * this.size;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+                if (this.useBlock == false)
+                {
+                    if (this.orbPlaced == true)
+                    {
+                        if (this.temporary == "magesCache")
+                        {
+                            X = this.information[0];
+                            Y = this.information[1];
+                            map = this.information[2];
+                        }
+                    }
+                    else
+                    {
+                        if (this.temporary == "magesCache")
+                        {
+                            if (have("garldsMemories", 1))
+                            {
+                                take("garldsMemories", 1);
+                                this.orbPlaced = true;
+                                quests.sagesCachePortal = true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        else if (this.type == "returnOrbPortal")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 30 + 60 * this.size;
+            if (typeof(this.owned) != "null" && typeof(this.owned) != "boolean")
+            {
+                this.size = this.owned;
+            }
+            else
+            {
+                this.size = 1;
+            }
+
+            if (this.runOneTime)
+            {
+                this.runOneTime = false;
+                this.tic = 0;
+            }
+
+            //DRAWSELF
+            this.tic += 2;
+            if (this.tic <= 4)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(cypher, 729, 281, 63, 65, -(1/2 * 63 * this.size), -(1/2 * 65 * this.size), 63 * this.size, 65 * this.size);
+                XXX.restore();
+            }
+            else if (this.tic <= 8)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(cypher, 728, 344, 63, 65, -(1/2 * 63 * this.size), -(1/2 * 65 * this.size), 63 * this.size, 65 * this.size);
+                XXX.restore();
+            }
+            else if (this.tic <= 12)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(cypher, 725, 415, 63, 65, -(1/2 * 63 * this.size), -(1/2 * 65 * this.size), 63 * this.size, 65 * this.size);
+                XXX.restore();
+            }
+            else
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(cypher, 728, 344, 63, 65, -(1/2 * 63 * this.size), -(1/2 * 65 * this.size), 63 * this.size, 65 * this.size);
+                XXX.restore();
+                this.tic = 0;
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 60 * this.size;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+                X = this.information[0];
+                Y = this.information[1];
+                map = this.information[2];
+            }
+        }
         else if (this.type == "deadNaaprid")
         {
             //TRAITS
@@ -18034,6 +18942,59 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 if (hits == Inventory.length)
                 {
                     Inventory.push([new Item("akerBerries", false, false), Math.floor(1 + Math.random() * 5)]);
+                }
+            }
+        }
+        else if (this.type == "yaihefPlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.nectar(5);
+            this.solid = true;
+            this.interactionRange = 95;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(theCrack, 107, 462, 36, 28, -(1/2 * 36), -(1/2 * 28), 36, 28);
+                XXX.restore();
+            }
+            else if (this.phase == "picked")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(theCrack, 51, 464, 36, 28, -(1/2 * 36), -(1/2 * 28), 36, 28);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 20;
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0)
+            {
+                this.activate = false;
+                this.phase = "picked";
+                var hits = 0;
+                for (var i = 0; i < Inventory.length; i ++)
+                {
+                    if (Inventory[i][0].type == "yaihefBerries")
+                    {
+                        Inventory[i][1] += 1;
+                        break;
+                    }
+                    else
+                    {
+                        hits += 1;
+                    }
+                }
+                if (hits == Inventory.length)
+                {
+                    Inventory.push([new Item("yaihefBerries", false, false), 1]);
                 }
             }
         }

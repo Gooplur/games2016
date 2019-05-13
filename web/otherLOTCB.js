@@ -1271,3 +1271,78 @@ function pDist(x, y, x1, y1, x2, y2)
     return (dx * dx + dy * dy);
     //Math.sqrt();
 }
+
+function degrees(radians)
+{
+    return radians * (180/Math.PI);
+}
+
+function radians(degrees)
+{
+    return degrees * Math.PI / 180;
+}
+
+function have(itemType, quantity) //checks if the player has more than or as much as a specified amoun of a particular item
+{
+    var iHasIt = false;
+    for (var iHave = 0; iHave < Inventory.length; iHave++)
+    {
+        if (Inventory[iHave][0].type == itemType && Inventory[iHave][1] >= quantity)
+        {
+            iHasIt = true;
+            break;
+        }
+    }
+    return iHasIt;
+}
+
+function lack(itemType, quantity) //checks if the player has less that a certain amount of something
+{
+    var hasALackDe = true;
+    for (var iLack = 0; iLack < Inventory.length; iLack++)
+    {
+        if (Inventory[iLack][0].type == itemType && Inventory[iLack][1] >= quantity)
+        {
+            hasALackDe = false;
+        }
+    }
+    return hasALackDe;
+}
+
+function take(itemType, quantity) //takes away items in a certain quantity from the player
+{
+    for (var iHave = 0; iHave < Inventory.length; iHave++)
+    {
+        if (Inventory[iHave][0].type == itemType && Inventory[iHave][1] > quantity)
+        {
+            Inventory[iHave][1] -= quantity;
+            break;
+        }
+        else if (Inventory[iHave][0].type == itemType && Inventory[iHave][1] <= quantity)
+        {
+            Inventory.splice(Inventory.splice(iHave, 1));
+            break;
+        }
+    }
+}
+
+function give(itemType, quantity) //gives items in a certain quantity to the player
+{
+    var hits = 0;
+    for (var iHave = 0; iHave < Inventory.length; iHave++)
+    {
+        if (Inventory[iHave][0].type == itemType)
+        {
+            Inventory[iHave][1] += quantity;
+            break;
+        }
+        else
+        {
+            hits += 1;
+        }
+    }
+    if (hits == Inventory.length)
+    {
+        Inventory.push([new Item(itemType, false, false), quantity]);
+    }
+}

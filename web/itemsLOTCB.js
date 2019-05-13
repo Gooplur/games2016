@@ -26,6 +26,8 @@ function Item(type, x, y)
     this.decayLimit = 10;
     this.decayObjective = "rawFrichFlesh";
 
+    this.doorKeyID = "none"; //for opening doors with keys etc.
+
     this.turn = 0;
     this.flashFrame = 0;
     this.flashFrameTime = new Date().getTime();
@@ -1371,6 +1373,49 @@ function Item(type, x, y)
             this.spellKnowledgeRequirement = 1;
             this.spellRange = "Short";
         }
+        else if (this.type == "despell")
+        {
+            //For All Items
+            if (player.getKnowledge() >= 10)
+            {
+                this.identity = "Scroll of Despell";
+                this.description = "This spell lets out a blast of light that despells any spell that it makes contact with.";
+                this.intForDes = 0;
+                this.intDescription = "This spell is thought to be of the light.";
+                this.buyValue = 1100;
+                this.sellValue = 1100;
+            }
+            else
+            {
+                this.identity = "Revered Scripture";
+                this.description = "The old scripture is written in an ancient and holy language only spoken by the church.";
+                this.intForDes = 0;
+                this.intDescription = "You must study this ancient holy language if you are to aquaint yourself with these sacred verses.";
+                this.buyValue = 1100;
+                this.sellValue = 100;
+            }
+            this.weight = 0.02;
+            this.size = 12;
+
+            //Define Utility
+            this.utility = "spell";
+
+            //ability
+            this.ability = "none";
+
+            //Utility Focused
+            this.damages = false;
+            this.spellCost = Math.max(1, 3 + (2/50) * player.getConcentration() - (10/50) * player.getEminence());
+            this.spellGroup = "Form";
+            this.spellGenre = "Clerical";
+            this.spellName = "Despell";
+            this.spellID = "despell";
+            this.spellEXP = 18 * ((50 + player.getMemory()) / 50);
+            this.spellCooldown = Math.max(4, 6 + (4/50) * player.getConcentration() - (12/50) * player.getEminence());
+            this.spellDescription = "Eliminates other spells upon proximity with them.";
+            this.spellKnowledgeRequirement = 10;
+            this.spellRange = "Medium-Long";
+        }
         else if (this.type == "repel")
         {
             //For All Items
@@ -2414,6 +2459,94 @@ function Item(type, x, y)
             this.spellKnowledgeRequirement = 1;
             this.spellRange = "Near";
         }
+        else if (this.type == "powerDraw")
+        {
+            //For All Items
+            if (player.getKnowledge() >= 11)
+            {
+                this.identity = "Scroll of Absorption";
+                this.description = "Studying this scroll will teach you how to cast a spiraling dance of fire.";
+                this.intForDes = 0;
+                this.intDescription = "Although this is a novice spell it is actually quite effective when used by skilled magi.";
+                this.buyValue = 450 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 350.
+                this.sellValue = 250 + Math.floor(player.getCharisma() / 0.5); // at max, sell for 350.
+            }
+            else
+            {
+                this.identity = "Scroll";
+                this.description = "The markings on this scroll are incomprehensible; what a waste of paper!";
+                this.intForDes = 2;
+                this.intDescription = "Scrolls are supposed to be used for storing knowledge or sending messages, it looks like this one wasn't used for either.";
+                this.buyValue = 450 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 350.
+                this.sellValue = 1; // at max, sell for 1.
+            }
+            this.weight = 0.02;
+            this.size = 12;
+
+            //Define Utility
+            this.utility = "spell";
+
+            //ability
+            this.ability = "none";
+
+            //Utility Focused
+            this.damages = true;
+            this.spellCost = Math.max(4, 8 + (5 / 50) * player.getConcentration() - (15 / 50) * player.getEminence());
+            this.spellGroup = "Form";
+            this.spellGenre = "Nechromancy";
+            this.spellName = "Absorption";
+            this.spellID = "powerDraw";
+            this.spellDamage = 3 + (0.2 * player.getConcentration());
+            this.spellEXP = 20 * ((50 + player.getMemory()) / 50);
+            this.spellCooldown = Math.max(6, 10 + (5/50) * player.getConcentration() - (12/50) * player.getEminence());
+            this.spellDescription = "Drains the lifeforce from all surrounding beings and transfers it to the caster.";
+            this.spellKnowledgeRequirement = 11;
+            this.spellRange = "Medium";
+        }
+        else if (this.type == "arcaneOrbs")
+        {
+            //For All Items
+            if (player.getKnowledge() >= 9)
+            {
+                this.identity = "Scroll of Arcane Orbs";
+                this.description = "Studying this scroll will teach you how to send forth two orbs that shoot arcane lasers at whatever is nearest to them.";
+                this.intForDes = 1;
+                this.intDescription = "This spell targets all but the player's own team.";
+                this.buyValue = 750 - Math.floor(player.getCharisma() / 1); // at max, buy for 700.
+                this.sellValue = 650 + Math.floor(player.getCharisma() / 1); // at max, sell for 700.
+            }
+            else
+            {
+                this.identity = "Scroll";
+                this.description = "The markings on this scroll are incomprehensible; what a waste of paper!";
+                this.intForDes = 2;
+                this.intDescription = "Scrolls are supposed to be used for storing knowledge or sending messages, it looks like this one wasn't used for either.";
+                this.buyValue = 750 - Math.floor(player.getCharisma() / 1); // at max, buy for 700.
+                this.sellValue = 1; // at max, sell for 1.
+            }
+            this.weight = 0.02;
+            this.size = 12;
+
+            //Define Utility
+            this.utility = "spell";
+
+            //ability
+            this.ability = "none";
+
+            //Utility Focused
+            this.damages = true;
+            this.spellCost = Math.max(3, 3 + (10 / 50) * player.getConcentration() - (6 / 50) * player.getEminence());
+            this.spellGroup = "Form";
+            this.spellGenre = "Cosmic";
+            this.spellName = "Arcane Orbs";
+            this.spellID = "arcaneOrbs";
+            this.spellDamage = 2.5 + (0.1 * player.getConcentration());
+            this.spellEXP = 12 * ((50 + player.getMemory()) / 50);
+            this.spellCooldown = Math.max(3, 8 + (4/50) * player.getConcentration() - (9/50) * player.getEminence());
+            this.spellDescription = "Two orbs of magic that shoot magical laser beams at the target nearest them.";
+            this.spellKnowledgeRequirement = 9;
+            this.spellRange = "Wander";
+        }
         else if (this.type == "potatoInvisibility")
         {
             //For All Items
@@ -3029,6 +3162,50 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 15 - Math.floor(player.getCharisma() / 25); // at max, buy for 13.
             this.sellValue = 8 + Math.floor(player.getCharisma() / 25); // at max, sell for 10.
+        }
+        else if (this.type == "masterKey")
+        {
+            //For All Items
+            this.identity = "Master Key";
+            this.weight = 0.01;
+            this.size = 3;
+            this.description = "A key that unlocks any locked door.";
+            this.intForDes = 10000;
+            this.intDescription = "";
+
+            //Define Utility
+            this.utility = "material";
+
+            this.doorKeyID = "master";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 10 - Math.floor(player.getCharisma() / 50); // at max, buy for 9.
+            this.sellValue = 8 + Math.floor(player.getCharisma() / 50); // at max, sell for 9.
+        }
+        else if (this.type == "masterKeyring")
+        {
+            //For All Items
+            this.identity = "Master Keyring";
+            this.weight = 0.01;
+            this.size = 5;
+            this.description = "A keyring that contains a master key.";
+            this.intForDes = 2;
+            this.intDescription = "What are the other keys for if the master key opens all locks?";
+
+            //Define Utility
+            this.utility = "material";
+
+            this.doorKeyID = "master";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 12 - Math.floor(player.getCharisma() / 50); // at max, buy for 11.
+            this.sellValue = 10 + Math.floor(player.getCharisma() / 50); // at max, sell for 11.
         }
         else if (this.type == "rawOlkrinFlesh")
         {
@@ -21085,6 +21262,31 @@ function Item(type, x, y)
             this.buyValue = 13 - Math.floor(player.getCharisma() / 15); // at max, buy for 10.
             this.sellValue = 5 + Math.floor(player.getCharisma() / 15); // at max, sell for 8.
         }
+        else if (this.type == "lockpick")
+        {
+            //For All Items
+            this.identity = "Lockpick";
+            this.weight = 0.05;
+            this.size = 6;
+            this.description = "An skinny iron device used for picking locks.";
+            this.intForDes = 1;
+            this.intDescription = "If this tool is in your inventory you can double click on doors and have achance to unlock them. Dexterity improves your effectiveness at lockpicking.";
+
+            //Define Utility
+            this.utility = "tool";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 9;
+            this.intForCraft = 5;
+            this.ingredients = [["Iron", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
         else if (this.type == "shears")
         {
             //For All Items
@@ -21168,6 +21370,26 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 46 - Math.floor(player.getCharisma() / 2.6315789); // at max, buy for 26.
             this.sellValue = 21 + Math.floor(player.getCharisma() / 10); // at max, sell for 26.
+        }
+        else if (this.type == "brokenLockpick")
+        {
+            //For All Items
+            this.identity = "Broken Lockpick";
+            this.weight = 0.05;
+            this.size = 7;
+            this.description = "A broken lockpick.";
+            this.intForDes = 1;
+            this.intDescription = "Lockpicks can break if picklocking goes wrong...";
+
+            //Define Utility
+            this.utility = "junk";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 0; // at max, buy for 0.
+            this.sellValue = 0; // at max, sell for 0.
         }
         else if (this.type == "beartrap")
         {
@@ -24018,6 +24240,68 @@ function Item(type, x, y)
 
             //ability
             this.ability = "soul";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 0; // at max, buy for 0.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "memory")
+        {
+            //For All Items
+            this.identity = "Memory";
+            this.weight = 0;
+            this.size = 5;
+            this.description = "A physical stagnation of raw memory.";
+            this.intForDes = 40;
+            this.intDescription = "Memory can be absorbed giving the player a point of memory.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = true; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 1; //restores will.
+
+            //ability
+            this.ability = "memory";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 0; // at max, buy for 0.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "garldsMemories")
+        {
+            //For All Items
+            this.identity = "Garld's Memories";
+            this.weight = 0;
+            this.size = 5;
+            this.description = "The physical stagnation of the raw memories of a Sage named Garld.";
+            this.intForDes = 30;
+            this.intDescription = "To separate ones memories from their being requires extremely powerful magic.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["garldsMemories", 1]];
+
+            this.questy = true;
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "garldsMemories";
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 0; // at max, buy for 0.
@@ -30423,6 +30707,139 @@ function Item(type, x, y)
             this.buyValue = 640 - Math.floor(player.getCharisma() / 3); // at max, buy for 625.
             this.sellValue = 600 + Math.floor(player.getCharisma() / 2); // at max, sell for 625.
         }
+        else if (this.type == "greatPlateArmour")
+        {
+            //For All Items
+            this.identity = "Thengan Plate Armour";
+            this.weight = 86;
+            this.size = 26;
+            this.description = "Forged steel plate armour with a great helm.";
+            this.intForDes = 14;
+            this.intDescription = "This armour is designed in the Thengan style.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "armour";
+            //Utility Focused
+            //protections
+            this.protection = 17 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 20;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 3;
+            this.thirstRetention = -1;
+            this.shockResist = -10;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 20;
+            this.rangedBonus = -25;
+            this.constitutionBonus = 1;
+            this.staminaBonus = 0;
+            this.dexterityBonus = -35;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 15;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            if (player.strength >= 30 && player.dexterity >= 15)
+            {
+                this.ability = "none";
+            }
+            else if (player.strength >= 20 && player.dexterity >= 10)
+            {
+                this.ability = "hefty";
+            }
+            else
+            {
+                this.ability = "heavy";
+            }
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 36;
+            this.ingredients = [["Steel", 22], ["Black Bear Pelt", 3]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1200 - Math.floor(player.getCharisma() / 1); // at max, buy for 1150.
+            this.sellValue = 1100 + Math.floor(player.getCharisma() / 1); // at max, sell for 1150.
+        }
+        else if (this.type == "wolthgarPlateArmour")
+        {
+            //For All Items
+            this.identity = "Wolthgar's Plate Armour";
+            this.weight = 88;
+            this.size = 26;
+            this.description = "Forged steel plate armour lined with grey troll fur with a horned great helm.";
+            this.intForDes = 0;
+            this.intDescription = "This armour belonged to the late King Wolthgar the Great.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "armour";
+            //Utility Focused
+            //protections
+            this.protection = 18 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 21;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 3;
+            this.thirstRetention = -1;
+            this.shockResist = -10;
+            //Main Stat Bonuses
+            this.strengthBonus = 3;
+            this.enduranceBonus = 1;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 41;
+            this.rangedBonus = -25;
+            this.constitutionBonus = 4;
+            this.staminaBonus = 0;
+            this.dexterityBonus = -35;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 25;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            if (player.strength >= 30 && player.dexterity >= 15)
+            {
+                this.ability = "none";
+            }
+            else if (player.strength >= 20 && player.dexterity >= 10)
+            {
+                this.ability = "hefty";
+            }
+            else
+            {
+                this.ability = "heavy";
+            }
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 10000 - Math.floor(player.getCharisma() / 1); // at max, buy for 9950.
+            this.sellValue = 9900 + Math.floor(player.getCharisma() / 1); // at max, sell for 9950.
+        }
         else if (this.type == "northernPlateArmour")
         {
             //For All Items
@@ -30443,8 +30860,8 @@ function Item(type, x, y)
             this.toughnessRequirement = 14;
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
-            this.warmthRetention = 2;
-            this.thirstRetention = -0.5;
+            this.warmthRetention = 3.5;
+            this.thirstRetention = -1;
             this.shockResist = -8;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -35272,6 +35689,172 @@ function Item(type, x, y)
             this.buyValue = 216 - Math.floor(player.getCharisma() / 10); // at max, buy for 211.
             this.sellValue = 201 + Math.floor(player.getCharisma() / 5); // at max, sell for 211.
         }
+        else if (this.type == "magusRobesF")
+        {
+            //For All Items
+            this.identity = "Magus Robe";
+            this.weight = 1.5;
+            this.size = 28;
+            this.description = "An exquisite robe of light purples and magenta that is imbued with magical power.";
+            if (player.raceName == "Cephrite" || player.raceName == "Zetian")
+            {
+                this.intForDes = 0;
+                this.intDescription = "This is worn by female councilors of Cephrite and their female relatives.";
+            }
+            else
+            {
+                this.intForDes = 4;
+                this.intDescription = "This is worn by female councilors of Cephrite and their female relatives.";
+            }
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 8;
+            this.magicalProtection = 1;
+            this.warmthRetention = 0.15;
+            this.thirstRetention = 0.5;
+            this.shockResist = 0.2;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 2;
+            this.charismaBonus = 33;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = -8;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            if (player.getEminence() >= 8)
+            {
+                this.eminenceBonus = 0;
+                this.willpowerBonus = 5;
+                this.knowledgeBonus = 1;
+                this.concentrationBonus = 0;
+                this.memoryBonus = 5;
+            }
+            else
+            {
+                this.eminenceBonus = 0;
+                this.willpowerBonus = 0;
+                this.knowledgeBonus = 0;
+                this.concentrationBonus = 0;
+                this.memoryBonus = 0;
+            }
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            if (player.eminence >= 20)
+            {
+                this.intForCraft = 25;
+            }
+            else
+            {
+                this.intForCraft = 100;
+            }
+            this.ingredients = [["Cloth", 11], ["Purple Dye", 2], ["Magenta Dye", 2], ["Amethyst", 3]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2800 - Math.floor(player.getCharisma() / 1); // at max, buy for 2750.
+            this.sellValue = 2700 + Math.floor(player.getCharisma() / 1); // at max, sell for 2750.
+        }
+        else if (this.type == "magusRobesM")
+        {
+            //For All Items
+            this.identity = "Magus Robe";
+            this.weight = 1.5;
+            this.size = 28;
+            this.description = "An exquisite robe of various dark purples that is imbued with magical power.";
+            if (player.raceName == "Cephrite" || player.raceName == "Zetian")
+            {
+                this.intForDes = 0;
+                this.intDescription = "This is worn by the male councilors of Cephrite and their male relatives.";
+            }
+            else
+            {
+                this.intForDes = 4;
+                this.intDescription = "This is worn by the male councilors of Cephrite and their male relatives.";
+            }
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 9;
+            this.magicalProtection = 1;
+            this.warmthRetention = 0.15;
+            this.thirstRetention = 0.5;
+            this.shockResist = 0.3;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 1;
+            this.charismaBonus = 34;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = -8;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            if (player.getEminence() >= 9)
+            {
+                this.eminenceBonus = 1;
+                this.willpowerBonus = 5;
+                this.knowledgeBonus = 1;
+                this.concentrationBonus = 1;
+                this.memoryBonus = 4;
+            }
+            else
+            {
+                this.eminenceBonus = 0;
+                this.willpowerBonus = 0;
+                this.knowledgeBonus = 0;
+                this.concentrationBonus = 0;
+                this.memoryBonus = 0;
+            }
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            if (player.eminence >= 21)
+            {
+                this.intForCraft = 27;
+            }
+            else
+            {
+                this.intForCraft = 100;
+            }
+            this.ingredients = [["Cloth", 11], ["Purple Dye", 3], ["Black Dye", 1], ["Amethyst", 3]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2900 - Math.floor(player.getCharisma() / 1); // at max, buy for 2850.
+            this.sellValue = 2800 + Math.floor(player.getCharisma() / 1); // at max, sell for 2850.
+        }
         else if (this.type == "assassinWrappings")
         {
             //For All Items
@@ -38055,6 +38638,75 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
+        }
+        else if (this.type == "masterKey")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cypher, 760, 12, 22, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 22 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 22 * 1, 23 * 1);
+        }
+        else if (this.type == "masterKeyring")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cypher, 755, 31, 33, 39, X - this.X + (1/2 * CCC.width) - (1/2 * 33 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 39 * 1), 33 * 1, 39 * 1);
+        }
+        else if (this.type == "lockpick")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cypher, 0, 30, 17, 29, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 29 * 1), 17 * 1, 29 * 1);
+        }
+        else if (this.type == "brokenLockpick")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cypher, 0, 60, 24, 29, X - this.X + (1/2 * CCC.width) - (1/2 * 24 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 29 * 1), 24 * 1, 29 * 1);
+        }
+        else if (this.type == "garldsMemories" || this.type == "memory")
+        {
+            this.turn += 1;
+            if (this.turn <= 3)
+            {
+                XXX.drawImage(cypher, 764, 184, 13, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 13 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 14 * 1), 13 * 1, 14 * 1);
+            }
+            else if (this.turn <= 6)
+            {
+                XXX.drawImage(cypher, 764, 197, 13, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 13 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 14 * 1), 13 * 1, 14 * 1);
+            }
+            else if (this.turn <= 9)
+            {
+                XXX.drawImage(cypher, 764, 210, 13, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 13 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 14 * 1), 13 * 1, 14 * 1);
+            }
+            else if (this.turn <= 12)
+            {
+                XXX.drawImage(cypher, 764, 224, 13, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 13 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 14 * 1), 13 * 1, 14 * 1);
+            }
+            else if (this.turn <= 15)
+            {
+                XXX.drawImage(cypher, 764, 237, 13, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 13 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 14 * 1), 13 * 1, 14 * 1);
+            }
+            else
+            {
+                this.turn = 0;
+                XXX.drawImage(cypher, 764, 210, 13, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 13 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 14 * 1), 13 * 1, 14 * 1);
+            }
+        }
+        else if (this.type == "magusRobesF")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cypher, 278, 628, 73, 133, X - this.X + (1/2 * CCC.width) - (1/2 * 73 * 0.94), Y - this.Y + (1/2 * CCC.height) - (1/2 * 133 * 0.94), 73 * 0.94, 133 * 0.94);
+        }
+        else if (this.type == "magusRobesM")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cypher, 739, 863, 60, 133, X - this.X + (1/2 * CCC.width) - (1/2 * 60 * 0.94), Y - this.Y + (1/2 * CCC.height) - (1/2 * 133 * 0.94), 60 * 0.94, 133 * 0.94);
+        }
+        else if (this.type == "greatPlateArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cypher, 315, 192, 59, 118, X - this.X + (1/2 * CCC.width) - (1/2 * 59 * 0.93), Y - this.Y + (1/2 * CCC.height) - (1/2 * 118 * 0.93), 59 * 0.93, 118 * 0.93);
+        }
+        else if (this.type == "wolthgarPlateArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cypher, 464, 176, 65, 135, X - this.X + (1/2 * CCC.width) - (1/2 * 65 * 0.93), Y - this.Y + (1/2 * CCC.height) - (1/2 * 135 * 0.93), 65 * 0.93, 135 * 0.93);
         }
         else if (this.type == "mimicHead")
         {
@@ -41870,7 +42522,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 1844, 64, 37, 32, X - this.X + (1/2 * CCC.width) - (1/2 * 37), Y - this.Y + (1/2 * CCC.height) - (1/2 * 32), 37, 32);
         }
-        else if (this.type == "embers" || this.type == "fireballI" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "drainingI" || this.type == "fireHands" || this.type == "sorcerer'sRaincoat" || this.type == "summonWolf" || this.type == "healingPsalms" || this.type == "undyingWard")
+        else if (this.type == "embers" || this.type == "fireballI" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "drainingI" || this.type == "fireHands" || this.type == "sorcerer'sRaincoat" || this.type == "summonWolf" || this.type == "healingPsalms" || this.type == "undyingWard" || this.type == "despell")
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1967, 67, 33, 26, X - this.X + (1/2 * CCC.width) - (1/2 * 33), Y - this.Y + (1/2 * CCC.height) - (1/2 * 26), 33, 26);
@@ -41895,7 +42547,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(zapa, 414, 461, 24, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 24 * 1.25), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17 * 1.25), 24 * 1.25, 17 * 1.25);
         }
-        else if (this.type == "sanctuary" || this.type == "mark" || this.type == "iceBlast")
+        else if (this.type == "sanctuary" || this.type == "mark" || this.type == "iceBlast" || this.type == "arcaneOrbs")
         {
             XXX.beginPath();
             XXX.drawImage(zapa, 521, 447, 30, 29, X - this.X + (1/2 * CCC.width) - (1/2 * 30 * 1.25), Y - this.Y + (1/2 * CCC.height) - (1/2 * 29 * 1.25), 30 * 1.25, 29 * 1.25);
@@ -41905,7 +42557,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 1928, 39, 40, 21, X - this.X + (1/2 * CCC.width) - (1/2 * 40), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21), 40, 21);
         }
-        else if (this.type == "frostWind" || this.type == "chasingLights" || this.type == "surge" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "summonDemon" || this.type == "potatoInvisibility")
+        else if (this.type == "frostWind" || this.type == "chasingLights" || this.type == "surge" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "summonDemon" || this.type == "potatoInvisibility" || this.type == "powerDraw")
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1773, 3, 28, 30, X - this.X + (1/2 * CCC.width) - (1/2 * 28), Y - this.Y + (1/2 * CCC.height) - (1/2 * 30), 28, 30);
@@ -43011,6 +43663,75 @@ function Item(type, x, y)
         {
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "masterKey")
+        {
+            LXX.beginPath();
+            LXX.drawImage(cypher, 760, 12, 22, 23, this.invX - (1/2 * 22 * 1), this.invY - (1/2 * 23 * 1), 22 * 1, 23 * 1);
+        }
+        else if (this.type == "masterKeyring")
+        {
+            LXX.beginPath();
+            LXX.drawImage(cypher, 755, 31, 33, 39, this.invX - (1/2 * 33 * 1), this.invY - (1/2 * 39 * 1), 33 * 1, 39 * 1);
+        }
+        else if (this.type == "lockpick")
+        {
+            LXX.beginPath();
+            LXX.drawImage(cypher, 0, 30, 17, 29, this.invX - (1/2 * 17 * 1), this.invY - (1/2 * 29 * 1), 17 * 1, 29 * 1);
+        }
+        else if (this.type == "brokenLockpick")
+        {
+            LXX.beginPath();
+            LXX.drawImage(cypher, 0, 60, 24, 29, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 29 * 1), 24 * 1, 29 * 1);
+        }
+        else if (this.type == "garldsMemories" || this.type == "memory")
+        {
+            this.turn += 1;
+            if (this.turn <= 3)
+            {
+                LXX.drawImage(cypher, 764, 184, 13, 14, this.invX - (1/2 * 13 * 1), this.invY - (1/2 * 14 * 1), 13 * 1, 14 * 1);
+            }
+            else if (this.turn <= 6)
+            {
+                LXX.drawImage(cypher, 764, 197, 13, 14, this.invX - (1/2 * 13 * 1), this.invY - (1/2 * 14 * 1), 13 * 1, 14 * 1);
+            }
+            else if (this.turn <= 9)
+            {
+                LXX.drawImage(cypher, 764, 210, 13, 14, this.invX - (1/2 * 13 * 1), this.invY - (1/2 * 14 * 1), 13 * 1, 14 * 1);
+            }
+            else if (this.turn <= 12)
+            {
+                LXX.drawImage(cypher, 764, 224, 13, 14, this.invX - (1/2 * 13 * 1), this.invY - (1/2 * 14 * 1), 13 * 1, 14 * 1);
+            }
+            else if (this.turn <= 15)
+            {
+                LXX.drawImage(cypher, 764, 237, 13, 14, this.invX - (1/2 * 13 * 1), this.invY - (1/2 * 14 * 1), 13 * 1, 14 * 1);
+            }
+            else
+            {
+                this.turn = 0;
+                LXX.drawImage(cypher, 764, 210, 13, 14, this.invX - (1/2 * 13 * 1), this.invY - (1/2 * 14 * 1), 13 * 1, 14 * 1);
+            }
+        }
+        else if (this.type == "magusRobesF")
+        {
+            LXX.beginPath();
+            LXX.drawImage(cypher, 278, 628, 73, 133, this.invX - (1/2 * 73 * 0.5), this.invY - (1/2 * 133 * 0.5), 73 * 0.5, 133 * 0.5);
+        }
+        else if (this.type == "magusRobesM")
+        {
+            LXX.beginPath();
+            LXX.drawImage(cypher, 739, 863, 60, 133, this.invX - (1/2 * 60 * 0.5), this.invY - (1/2 * 133 * 0.5), 60 * 0.5, 133 * 0.5);
+        }
+        else if (this.type == "greatPlateArmour")
+        {
+            LXX.beginPath();
+            LXX.drawImage(cypher, 315, 192, 59, 118, this.invX - (1/2 * 59 * 0.63), this.invY - (1/2 * 118 * 0.63), 59 * 0.63, 118 * 0.63);
+        }
+        else if (this.type == "wolthgarPlateArmour")
+        {
+            LXX.beginPath();
+            LXX.drawImage(cypher, 464, 176, 65, 135, this.invX - (1/2 * 65 * 0.55), this.invY - (1/2 * 135 * 0.55), 65 * 0.55, 135 * 0.55);
         }
         else if (this.type == "mimicHead")
         {
@@ -46903,7 +47624,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(polypol, 1859, 36, 22, 27, this.invX - (1/2 * 22), this.invY - (1/2 * 27), 22, 27);
         }
-        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind" || this.type == "iceBlast" || this.type == "healingPsalms" || this.type == "summonGriffin" || this.type == "summonDemon" || this.type == "slowTimeI" || this.type == "slowTimeII" || this.type == "slowTimeIII" || this.type == "slowTimeIV" || this.type == "slowTimeV" || this.type == "slowTimeVI" || this.type == "doppelganger" || this.type == "shadowSwitch" || this.type == "eruption" || this.type == "drakeBreath" || this.type == "undyingWard" || this.type == "potatoInvisibility" || this.type == "flamingMissiles")
+        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind" || this.type == "iceBlast" || this.type == "healingPsalms" || this.type == "summonGriffin" || this.type == "summonDemon" || this.type == "slowTimeI" || this.type == "slowTimeII" || this.type == "slowTimeIII" || this.type == "slowTimeIV" || this.type == "slowTimeV" || this.type == "slowTimeVI" || this.type == "doppelganger" || this.type == "shadowSwitch" || this.type == "eruption" || this.type == "drakeBreath" || this.type == "undyingWard" || this.type == "potatoInvisibility" || this.type == "flamingMissiles" || this.type == "despell" || this.type == "powerDraw" || this.type == "arcaneOrbs")
         {
             LXX.beginPath();
             LXX.drawImage(polypol, 1738, 4, 33, 26, this.invX - (1/2 * 33), this.invY - (1/2 * 26), 33, 26);
@@ -47938,6 +48659,75 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "masterKey")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cypher, 760, 12, 22, 23, this.invX - (1/2 * 22 * 1), this.invY - (1/2 * 23 * 1), 22 * 1, 23 * 1);
+        }
+        else if (this.type == "masterKeyring")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cypher, 755, 31, 33, 39, this.invX - (1/2 * 33 * 1), this.invY - (1/2 * 39 * 1), 33 * 1, 39 * 1);
+        }
+        else if (this.type == "lockpick")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cypher, 0, 30, 17, 29, this.invX - (1/2 * 17 * 1), this.invY - (1/2 * 29 * 1), 17 * 1, 29 * 1);
+        }
+        else if (this.type == "brokenLockpick")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cypher, 0, 60, 24, 29, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 29 * 1), 24 * 1, 29 * 1);
+        }
+        else if (this.type == "garldsMemories" || this.type == "memory")
+        {
+            this.turn += 1;
+            if (this.turn <= 3)
+            {
+                XXX.drawImage(cypher, 764, 184, 13, 14, this.invX - (1/2 * 13 * 1), this.invY - (1/2 * 14 * 1), 13 * 1, 14 * 1);
+            }
+            else if (this.turn <= 6)
+            {
+                XXX.drawImage(cypher, 764, 197, 13, 14, this.invX - (1/2 * 13 * 1), this.invY - (1/2 * 14 * 1), 13 * 1, 14 * 1);
+            }
+            else if (this.turn <= 9)
+            {
+                XXX.drawImage(cypher, 764, 210, 13, 14, this.invX - (1/2 * 13 * 1), this.invY - (1/2 * 14 * 1), 13 * 1, 14 * 1);
+            }
+            else if (this.turn <= 12)
+            {
+                XXX.drawImage(cypher, 764, 224, 13, 14, this.invX - (1/2 * 13 * 1), this.invY - (1/2 * 14 * 1), 13 * 1, 14 * 1);
+            }
+            else if (this.turn <= 15)
+            {
+                XXX.drawImage(cypher, 764, 237, 13, 14, this.invX - (1/2 * 13 * 1), this.invY - (1/2 * 14 * 1), 13 * 1, 14 * 1);
+            }
+            else
+            {
+                this.turn = 0;
+                XXX.drawImage(cypher, 764, 210, 13, 14, this.invX - (1/2 * 13 * 1), this.invY - (1/2 * 14 * 1), 13 * 1, 14 * 1);
+            }
+        }
+        else if (this.type == "magusRobesF")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cypher, 278, 628, 73, 133, this.invX - (1/2 * 73 * 0.5), this.invY - (1/2 * 133 * 0.5), 73 * 0.5, 133 * 0.5);
+        }
+        else if (this.type == "magusRobesM")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cypher, 739, 863, 60, 133, this.invX - (1/2 * 60 * 0.5), this.invY - (1/2 * 133 * 0.5), 60 * 0.5, 133 * 0.5);
+        }
+        else if (this.type == "greatPlateArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cypher, 315, 192, 59, 118, this.invX - (1/2 * 59 * 0.63), this.invY - (1/2 * 118 * 0.63), 59 * 0.63, 118 * 0.63);
+        }
+        else if (this.type == "wolthgarPlateArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cypher, 464, 176, 65, 135, this.invX - (1/2 * 65 * 0.55), this.invY - (1/2 * 135 * 0.55), 65 * 0.55, 135 * 0.55);
         }
         else if (this.type == "mimicHead")
         {
@@ -51828,7 +52618,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 1859, 36, 22, 27, this.invX - (1/2 * 22), this.invY - (1/2 * 27), 22, 27);
         }
-        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind" || this.type == "iceBlast" || this.type == "healingPsalms" || this.type == "summonGriffin" || this.type == "summonDemon" || this.type == "slowTimeI" || this.type == "slowTimeII" || this.type == "slowTimeIII" || this.type == "slowTimeIV" || this.type == "slowTimeV" || this.type == "slowTimeVI" || this.type == "doppelganger" || this.type == "shadowSwitch" || this.type == "eruption" || this.type == "drakeBreath" || this.type == "undyingWard" || this.type == "potatoInvisibility" || this.type == "flamingMissiles")
+        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind" || this.type == "iceBlast" || this.type == "healingPsalms" || this.type == "summonGriffin" || this.type == "summonDemon" || this.type == "slowTimeI" || this.type == "slowTimeII" || this.type == "slowTimeIII" || this.type == "slowTimeIV" || this.type == "slowTimeV" || this.type == "slowTimeVI" || this.type == "doppelganger" || this.type == "shadowSwitch" || this.type == "eruption" || this.type == "drakeBreath" || this.type == "undyingWard" || this.type == "potatoInvisibility" || this.type == "flamingMissiles" || this.type == "despell" || this.type == "powerDraw" || this.type == "arcaneOrbs")
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1738, 4, 33, 26, this.invX - (1/2 * 33), this.invY - (1/2 * 26), 33, 26);

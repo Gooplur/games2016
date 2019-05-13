@@ -121,12 +121,10 @@ function buildMaster()
                 //scenicList.push(new Scenery("laicaumPlant", 3200, 2400, 1.2, true));
                 //scenicList.push(new Scenery("danzigPlant", 3000, 2400, 3, true));
                 //ArtificialIntelligenceAccess.push(new Unit(3400, 2400, "Vreck", true, "Skeever", {patrolStops: 5, patrolLoop: true, route:[[4000, 2000], [3400, 2400], [3100, 2600], [3500, 3000], [4500, 2500]]}));
-
                 //scenicList.push(new Scenery("vardanianBasin", 3600, 2400, 2, true));
                 //scenicList.push(new Scenery("swampWalk", 3600, 2400, 2, true));
                 //scenicList.push(new Scenery("swampWalkShort", 3530, 2291, 2 + 1/2 * Math.PI, true));
                 //scenicList.push(new Scenery("swampStilt", 3599, 2255, 0, true));
-                //scenicList.push(new Scenery("swampStilt", 3580, 2170, 1.6, true));
                 //scenicList.push(new Scenery("swampPlank", 3585, 2306, 0.2, true));
                 //scenicList.push(new Scenery("swampBridge", 3500, 2442, 0, false));
                 //scenicList.push(new Scenery("swampPlatform", 3346, 2506, 0.13, true));
@@ -135,6 +133,15 @@ function buildMaster()
                 //scenicList.push(new Scenery("mimicry", 3369, 2651, 1.2, "TentMimic"));
                 //ArtificialIntelligenceAccess.push(new Unit(4000, 2300, "Hydra", false, "Hercules"));
                 //ArtificialIntelligenceAccess.push(new Unit(3900, 2900, "Mimic", false, "Mimmi"));
+                //scenicList.push(new Scenery("door", 3346, 2506, -1/2 * Math.PI, 3, [true, "abc"]));
+
+                //scenicList.push(new Scenery("magicButton", 3300, 2600, 0, "magesCache", 3));
+                //scenicList.push(new Scenery("magicButton", 3390, 2600, 0, "magesCache", 2));
+                //scenicList.push(new Scenery("magicButton", 3480, 2600, 0, "magesCache", 1));
+                //scenicList.push(new Scenery("magicLock", 3280, 2435, 0, "magesCache"));
+                ////scenicList.push(new Scenery("magicSpinnerLock", 3000, 2400, 0, [15, 30, 10, "magicSpinnerA"], 0.5));
+                //scenicList.push(new Scenery("magicOrbPortal", 3300, 2000, 0, "magesCache", [2000, 1000, "world"]));
+                //scenicList.push(new Scenery("returnOrbPortal", 2000, 1000, 0, 1, [3300, 2000, "world"]));
 
                 //scenicList.push(new Scenery("dethMasterHut", 3600, 2500, 0, 0, "deth1"));
                 //scenicList.push(new Scenery("dethTotem", 3600, 3400, 0, 0, "deth1"));
@@ -24421,6 +24428,56 @@ function buildMaster()
                 scenicList.push(new Scenery("bartop", 2061, 6712, 1 * Math.PI, true));
                 scenicList.push(new Scenery("hearth", 2062, 6855, 0 * Math.PI, "ash"));
 
+                scenicList.push(new Scenery("magicButton", 2805, 1935, Math.PI, "magesCache", 1));
+                scenicList.push(new Scenery("skeleton", 2881.6936888668993, 1827.604513908504, 0.68 * Math.PI, 1.4));
+                scenicList.push(new Scenery("magicButton", -174, 4470, 1/2 * Math.PI, "magesCache", 2));
+                scenicList.push(new Scenery("item", -207, 4455, 0, false, ["arrow", 1, 0]));
+                scenicList.push(new Scenery("magicButton", -1104, 553, 0, "magesCache", 3));
+                scenicList.push(new Scenery("item", -1217, 593, 0, false, ["steelArrow", 1, 0]));
+                scenicList.push(new Scenery("magicLock", -967, 4008, 0, "magesCache"));
+
+                scenicList.push(new Scenery("magicOrbPortal", -6341, 3777, 0, "magesCache", [0, 0, "sagesTrap"]));
+
+                if (uniqueChars.vsevolodLDS == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Vsevolod")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        if (quests.theSecretOfTheSagesCacheQuest == true)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(-31812, -3676, "Soldier", false, "Vsevolod", {race: "Vardan", faction: "loner", con: 7, speed: 1.2, outfit: ["blackMageRobe", 0], weapon: ["drainingI", [9, 4], 0, 200, 3], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, CNX: 200, MR: 7, patrolStops: 1, patrolLoop: false, route:[[50405, -10488]]}));
+                        }
+                    }
+                }
+
+                if (uniqueChars.aleksiLDS == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "High Magus Aleksi")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        //if (quests.theSecretOfTheSagesCacheQuest == true)
+                        //{
+                            ArtificialIntelligenceAccess.push(new Unit(-6341.102330659225, 3708.7013251695707, "Soldier", false, "High Magus Aleksi", {race: "Cephrite", faction: "loner", con: 9, speed: 1.4, outfit: ["magusRobesM", 0], weapon: ["lightningCorseque", [12, 6], 5, 43, 1.5], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, CNX: 50, MR: 4, patrolStops: 1, patrolLoop: false, route:[[-6313.101891814239, 3687.254470007552]]}));
+                        //}
+                    }
+                }
+
+
+
 
                 if (quests.sagesCacheStash)
                 {
@@ -24432,6 +24489,56 @@ function buildMaster()
                 }
 
                 change = "sagesCache";
+            }
+        }
+    }
+    else if (map == "sagesTrap")
+    {
+        if (region == "sagesTrap")
+        {
+            if (change != "sagesTrap")
+            {
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
+                //Delete All Non-native AI Units
+                for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (!ArtificialIntelligenceAccess[i].guarantee)
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Structures
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
+
+                //barriers
+
+                //REGION CREATION
+                //Build AI Units
+
+                if (quests.sagesTrapStash)
+                {
+                    quests.sagesTrapStash = false;
+                    //worldItems.push([new Item("oiledArrow", 2051, 6782), 9]);
+                }
+
+                change = "sagesTrap";
             }
         }
     }

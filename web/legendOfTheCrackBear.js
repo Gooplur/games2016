@@ -2311,6 +2311,10 @@ var xKey = false;
 var cyberArTog = false;
 var buildMode = false;
 var buildToggle = 0;
+var magesCacheLock = [0, 0, 0];
+var magesCacheButtons = [];
+var magicSpinnerA = [0, 0, 0];
+var magicSpinnerB = [0, 0, 0];
 
 //This sets the items that are in shops.
 function shopItemIDSetter()
@@ -3250,7 +3254,8 @@ function theLegend()
         hanzChild: ["HanzChild", 0],
         masterHanz: ["MasterHanz", 0],
         madamBella: ["Bella", 0],
-        mesek: ["Mesek", 0]
+        mesek: ["Mesek", 0],
+        aleksi: ["Aleksi", 0]
     };
 
 //time Tracker Variables
@@ -3460,7 +3465,8 @@ function theLegend()
         vsevolodLDS: true,
         hanzChildLDS: true,
         bellaLDS: true,
-        mesekLDS: true
+        mesekLDS: true,
+        aleksiLDS: true
     };
 //QUESTS
     quests =
@@ -3511,6 +3517,7 @@ function theLegend()
         //ITEM STASH VARIABLES (non quest)
         lonerGuyStash: true,
         sagesCacheStash: true,
+        sagesTrapStash: true,
         spiderwebLoot: true,
         ultherMapItems: true,
         venningMapItems: true,
@@ -3524,6 +3531,7 @@ function theLegend()
         atalinTaxManReformed: false,
         retaliation: false, //turning this to true sends exactly one assassin at the player.
         emyliaOffended: false,
+        sagesCachePortal: false,
 
         //POLITICS
             //Atalin
@@ -3559,6 +3567,8 @@ function theLegend()
         rannukChildName: "Espen",
         hanzChild: false,
         hanzChildName: "Gelna",
+
+
 
         //QUEST: Lost Huntress ---- given by Muktu
         lostHuntressQuest: false,
@@ -3786,7 +3796,7 @@ function theLegend()
 //Inventory = [[new Item("kellishSword", false, false), 1], [new Item("lightningCorseque", false, false), 1], [new Item("smashStick", false, false), 1], [new Item("burningSmashStick", false, false), 1], [new Item("bullet", false, false), 200], [new Item("blackPowder", false, false), 200], [new Item("musket", false, false), 1], [new Item("blunderbuss", false, false), 1], [new Item("cutlass", false, false), 1], [new Item("avrakLeatherArmour", false, false), 1], [new Item("balgurCaptainArmour", false, false), 1], [new Item("balgurMercArmour", false, false), 1], [new Item("longSpikedMorningStar", false, false), 1], [new Item("rasper", false, false), 1], [new Item("kellishSawClub", false, false), 1], [new Item("hammer", false, false), 1], [new Item("kellishClaymore", false, false), 1], [new Item("warHammer", false, false), 1], [new Item("vardanianHeavyCleaver", false, false), 1], [new Item("timberAxe", false, false), 1], [new Item("curvedDagger", false, false), 1], [new Item("crossbow", false, false), 1], [new Item("steelBolt", false, false), 100], [new Item("dualCurvedDaggers", false, false), 1], [new Item("nirineseSpear", false, false), 1], [new Item("hetmerArmour", false, false), 1], [new Item("vardanianBattleAxe", false, false), 1], [new Item("vardanianCleaver", false, false), 1], [new Item("katana", false, false), 1], [new Item("naapridLeatherArmour", false, false), 1], [new Item("thenganSwordAndShield", false, false), 1], [new Item("chainArmour", false, false), 1], [new Item("blackChainArmour", false, false), 1], [new Item("freydicGreatSword", false, false), 1], [new Item("aldrekiiArrow", false, false), 79], [new Item("freydicSword", false, false), 1], [new Item("pickaxe", false, false), 1], [new Item("aldrekiiBlade", false, false), 1], [new Item("flail", false, false), 1], [new Item("gulfreyShellArmour", false, false), 1], [new Item("vardanianAxe", false, false), 1], [new Item("vardanianAxeDual", false, false), 1], [new Item("freydicSpear", false, false), 1], [new Item("nirineseSabre", false, false), 1], [new Item("blueBlade", false, false), 1], [new Item("arrow", false, false), 250], [new Item("longbow", false, false), 1], [new Item("walrusLeatherArmour", false, false), 1], [new Item("aldrekiiBardiche", false, false), 1], [new Item("coins", false, false), 20], [new Item("freydicWarAxe", false, false), 1], [new Item("mace", false, false), 1], [new Item("longsword", false, false), 1]];
 
     //All of the spells in the game -----------> except [new Item("potatoInvisibility", false, false), 1],  which is exclusive to a Jinn wish.
-    allSpells = [[new Item("embers", false, false), 1], [new Item("fireballI", false, false), 1], [new Item("iceClaymore", false, false), 1], [new Item("iceSpikes", false, false), 1], [new Item("flyingColours", false, false), 1], [new Item("frostWind", false, false), 1], [new Item("repel", false, false), 1], [new Item("lifeTap", false, false), 1], [new Item("drainingI", false, false), 1], [new Item("vivification", false, false), 1], [new Item("chasingLights", false, false), 1], [new Item("electricBolt", false, false), 1], [new Item("surge", false, false), 1], [new Item("fireHands", false, false), 1], [new Item("chargedTouch", false, false), 1], [new Item("freezingGrasp", false, false), 1], [new Item("leechingTouch", false, false), 1], [new Item("sorcerer'sRaincoat", false, false), 1], [new Item("shieldingI", false, false), 1], [new Item("shieldingII", false, false), 1], [new Item("shieldingIII", false, false), 1], [new Item("shieldingIV", false, false), 1], [new Item("shieldingV", false, false), 1], [new Item("summonFrich", false, false), 1], [new Item("summonWolf", false, false), 1], [new Item("charm", false, false), 1], [new Item("sanctuary", false, false), 1], [new Item("repellingWard", false, false), 1], [new Item("iceberg", false, false), 1], [new Item("magicMissiles", false, false), 1], [new Item("minorVortex", false, false), 1], [new Item("mark", false, false), 1], [new Item("entanglement", false, false), 1], [new Item("whirlwind", false, false), 1], [new Item("iceBlast", false, false), 1], [new Item("shadowport", false, false), 1], [new Item("healingPsalms", false, false), 1], [new Item("summonGriffin", false, false), 1], [new Item("summonDemon", false, false), 1], [new Item("slowTimeI", false, false), 1], [new Item("slowTimeII", false, false), 1], [new Item("slowTimeIII", false, false), 1], [new Item("slowTimeIV", false, false), 1], [new Item("slowTimeV", false, false), 1], [new Item("slowTimeVI", false, false), 1], [new Item("doppelganger", false, false), 1], [new Item("shadowSwitch", false, false), 1], [new Item("eruption", false, false), 1], [new Item("drakeBreath", false, false), 1], [new Item("undyingWard", false, false), 1], [new Item("flamingMissiles", false, false), 1]];
+    allSpells = [[new Item("embers", false, false), 1], [new Item("fireballI", false, false), 1], [new Item("iceClaymore", false, false), 1], [new Item("iceSpikes", false, false), 1], [new Item("flyingColours", false, false), 1], [new Item("frostWind", false, false), 1], [new Item("repel", false, false), 1], [new Item("lifeTap", false, false), 1], [new Item("drainingI", false, false), 1], [new Item("vivification", false, false), 1], [new Item("chasingLights", false, false), 1], [new Item("electricBolt", false, false), 1], [new Item("surge", false, false), 1], [new Item("fireHands", false, false), 1], [new Item("chargedTouch", false, false), 1], [new Item("freezingGrasp", false, false), 1], [new Item("leechingTouch", false, false), 1], [new Item("sorcerer'sRaincoat", false, false), 1], [new Item("shieldingI", false, false), 1], [new Item("shieldingII", false, false), 1], [new Item("shieldingIII", false, false), 1], [new Item("shieldingIV", false, false), 1], [new Item("shieldingV", false, false), 1], [new Item("summonFrich", false, false), 1], [new Item("summonWolf", false, false), 1], [new Item("charm", false, false), 1], [new Item("sanctuary", false, false), 1], [new Item("repellingWard", false, false), 1], [new Item("iceberg", false, false), 1], [new Item("magicMissiles", false, false), 1], [new Item("minorVortex", false, false), 1], [new Item("mark", false, false), 1], [new Item("entanglement", false, false), 1], [new Item("whirlwind", false, false), 1], [new Item("iceBlast", false, false), 1], [new Item("shadowport", false, false), 1], [new Item("healingPsalms", false, false), 1], [new Item("summonGriffin", false, false), 1], [new Item("summonDemon", false, false), 1], [new Item("slowTimeI", false, false), 1], [new Item("slowTimeII", false, false), 1], [new Item("slowTimeIII", false, false), 1], [new Item("slowTimeIV", false, false), 1], [new Item("slowTimeV", false, false), 1], [new Item("slowTimeVI", false, false), 1], [new Item("doppelganger", false, false), 1], [new Item("shadowSwitch", false, false), 1], [new Item("eruption", false, false), 1], [new Item("drakeBreath", false, false), 1], [new Item("undyingWard", false, false), 1], [new Item("flamingMissiles", false, false), 1], [new Item("arcaneOrbs", false, false), 1], [new Item("despell", false, false), 1], [new Item("powerDraw", false, false), 1]];
 //Test Spells
     primarySpells = [];
     secondarySpells = [];
@@ -4018,6 +4028,10 @@ function theLegend()
     allWorn.push(new Item("fineNechrovitePlateArmour", false)); //129
     allWorn.push(new Item("ghoulMercArmour", false)); //130
     allWorn.push(new Item("vreckFurClothing", false)); //131
+    allWorn.push(new Item("greatPlateArmour", false)); //132
+    allWorn.push(new Item("wolthgarPlateArmour", false)); //133
+    allWorn.push(new Item("magusRobesF", false)); //134
+    allWorn.push(new Item("magusRobesM", false)); //135
 
     scenicList = [];
 
@@ -4093,6 +4107,7 @@ function theLegend()
     smithing.push(new Item("jvostranPlateArmour", false));
     smithing.push(new Item("oilLampEmpty", false));
     smithing.push(new Item("oilLanternEmpty", false));
+    smithing.push(new Item("lockpick", false));
     smithing.push(new Item("longSpikedMorningStar", false));
     smithing.push(new Item("cutlass", false));
     smithing.push(new Item("musket", false));

@@ -291,6 +291,9 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     this.radProof = false; //this prevents the unit from absorbing radation if it is true
     this.fireDeath = false; //if this is true, the unit can only die by fire
     this.silvered = false; //is the unit infected with silver
+    this.resistDisease = false; //this deterimines resistance to several airborne effects (this is changed in effects or by gsmasked)
+    this.gasmasked = false; //an alternate way to flag resist disease
+    this.hazmatted = false; //an alternate way to flag radiation resistance
 
     //Artificial Intelligence
     this.setTeamByID = function()
@@ -8104,6 +8107,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                                 {
                                     player.burningTime = new Date().getTime();
                                 }
+                                else if (this.effect == "shock" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
+                                {
+                                    player.shockedTime = new Date().getTime();
+                                    player.shockedTime2 = new Date().getTime();
+                                }
                                 else if (this.effect == "blindingI" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
                                 {
                                     player.blinded = true;
@@ -8430,6 +8438,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             {
                                 this.target.burningTime = new Date().getTime();
                             }
+                            else if (this.effect == "shock" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
+                            {
+                                this.target.shockedTime = new Date().getTime();
+                                this.target.shockedTime2 = new Date().getTime();
+                            }
                             else if (this.effect == "venandi")
                             {
                                 if (this.target.health < 1/3 * this.target.healthMAX || this.target.resistDisease == false)
@@ -8661,6 +8674,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         var nightResistance = false;
         var radResistance = false;
         var radiationResistance = false;
+        var breathResistance = false;
 
         //for loop to check for resistance
         for (var i = 0; i < resistancesList.length; i++)
@@ -8729,6 +8743,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 nightResistance = true;
             }
+            else if (resistancesList[i] == "breath")
+            {
+                breathResistance = true;
+            }
             else if (resistancesList[i] == "rads") //can not absorb rads naturally
             {
                 radResistance = true;
@@ -8762,8 +8780,18 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
         }
 
+        //anti gas/smoke/spore
+        if (this.breathResistance == true || this.gasmasked == true)
+        {
+            this.resistDisease = true;
+        }
+        else
+        {
+            this.resistDisease = false;
+        }
+
         //Radiation Resistance
-        if (radResistance == true)
+        if (radResistance == true || this.hazmatted == true)
         {
             this.radProof = true;
         }
@@ -9337,54 +9365,67 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
             else if (this.weapon == "none")
             {
+                this.effect = "none";
                 this.costumeEngine(6, 0.2, true);
             }
             else if (this.weapon == "freydicSword")
             {
+                this.effect = "none";
                 this.costumeEngine(7, 0.2, true);
             }
             else if (this.weapon == "freydicSpear")
             {
+                this.effect = "none";
                 this.costumeEngine(5, 0.18, true);
             }
             else if (this.weapon == "freydicGreatSword")
             {
+                this.effect = "none";
                 this.costumeEngine(8, 0.23, true);
             }
             else if (this.weapon == "timberAxe")
             {
+                this.effect = "none";
                 this.costumeEngine(7, 0.25, true);
             }
             else if (this.weapon == "rasper")
             {
+                this.effect = "none";
                 this.costumeEngine(5, 0.20, true);
             }
             else if (this.weapon == "longSpikedMorningStar")
             {
+                this.effect = "none";
                 this.costumeEngine(7, 0.125, true);
             }
             else if (this.weapon == "kellishSword")
             {
+                this.effect = "none";
                 this.costumeEngine(7, 0.21, true);
             }
             else if (this.weapon == "warHammer")
             {
+                this.effect = "none";
                 this.costumeEngine(9, 0.22, true);
             }
             else if (this.weapon == "kellishClaymore")
             {
+                this.effect = "none";
                 this.costumeEngine(14, 0.32, true);
             }
             else if (this.weapon == "flail")
             {
+                this.effect = "none";
                 this.costumeEngine(11, 0.18, false);
             }
             else if (this.weapon == "thenganSword")
             {
+                this.effect = "none";
                 this.costumeEngine(8, 0.2, true);
             }
             else if (this.weapon == "hammer")
             {
+                this.effect = "none";
                 this.costumeEngine(8, 0.24, true);
             }
             else if (this.weapon == "thenganWarhammer")
@@ -9394,30 +9435,37 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
             else if (this.weapon == "smashStick")
             {
+                this.effect = "none";
                 this.costumeEngine(7, 0.19, true);
             }
             else if (this.weapon == "kellishSawClub")
             {
+                this.effect = "none";
                 this.costumeEngine(7, 0.21, true);
             }
             else if (this.weapon == "kellishSpear")
             {
+                this.effect = "none";
                 this.costumeEngine(5, 0.21, true);
             }
             else if (this.weapon == "meatCleaver")
             {
+                this.effect = "none";
                 this.costumeEngine(7, 0.26, true);
             }
             else if (this.weapon == "iceSpikes")
             {
+                this.effect = "none";
                 this.costumeEngine(7, 0.20, false);
             }
             else if (this.weapon == "electricBolt")
             {
+                this.effect = "none";
                 this.costumeEngine(8, 0.25, false);
             }
             else if (this.weapon == "mace")
             {
+                this.effect = "none";
                 this.costumeEngine(6, 0.15, true);
             }
             else if (this.weapon == "burningSmashStick")
@@ -9427,14 +9475,17 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
             else if (this.weapon == "fishingpole")
             {
+                this.effect = "none";
                 this.costumeEngine(6, 0.15, true);
             }
             else if (this.weapon == "crateLight" || this.weapon == "crateDark" || this.weapon == "basketDark" || this.weapon == "basketLight")
             {
+                this.effect = "none";
                 this.costumeEngine(2, 0.15, true);
             }
             else if (this.weapon == "nirineseSabre")
             {
+                this.effect = "none";
                 this.costumeEngine(9, 0.3, true);
             }
             else if (this.weapon == "burningHands")
@@ -9444,14 +9495,17 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
             else if (this.weapon == "estoc")
             {
+                this.effect = "none";
                 this.costumeEngine(6, 0.15, true);
             }
             else if (this.weapon == "vardanianHalberd")
             {
+                this.effect = "none";
                 this.costumeEngine(9, 0.20, true);
             }
             else if (this.weapon == "thenganDagger")
             {
+                this.effect = "none";
                 this.costumeEngine(6, 0.22, true);
             }
             else if (this.weapon == "silkAndDagger")
@@ -9461,15 +9515,28 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
             else if (this.weapon == "sickle")
             {
+                this.effect = "none";
                 this.costumeEngine(7, 0.25, true);
             }
             else if (this.weapon == "nirineseSpear")
             {
+                this.effect = "none";
                 this.costumeEngine(7, 0.235, true);
             }
             else if (this.weapon == "drainingI")
             {
+                this.effect = "none";
                 this.costumeEngine(6, 0.20, false);
+            }
+            else if (this.weapon == "arcaneOrbs")
+            {
+                this.effect = "none";
+                this.costumeEngine(6, 0.23, false);
+            }
+            else if (this.weapon == "lightningCorseque")
+            {
+                this.effect = "shock";
+                this.costumeEngine(4, 0.18, true);
             }
         }
     };
@@ -10052,6 +10119,22 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 }
             }
         }
+        else if (this.weapon == "lightningCorseque")
+        {
+            this.damageFrame = "automatic";
+            if (theCostume <= 0)
+            {
+                this.flashAnimate(90, this.rotation + 1 / 2 * Math.PI, 0.90, [{image: mofu, imgX: 327, imgY: 43, portionW: 33, portionH: 77, adjX: -7, adjY: -92, width: 33 * 1.5, height: 77 * 1.5}, {image: mofu, imgX: 365, imgY: 43, portionW: 33, portionH: 77, adjX: -7, adjY: -92, width: 33 * 1.5, height: 77 * 1.5}, {image: mofu, imgX: 404, imgY: 43.5, portionW: 33, portionH: 77, adjX: -7, adjY: -92, width: 33 * 1.5, height: 77 * 1.5}]);
+            }
+            else if (theCostume <= 1)
+            {
+                this.flashAnimate(90, this.rotation + 1 / 2 * Math.PI, 0.90, [{image: mofu, imgX: 325, imgY: 222, portionW: 33, portionH: 77, adjX: -6, adjY: -102, width: 33 * 1.5, height: 77 * 1.5}, {image: mofu, imgX: 366, imgY: 222, portionW: 33, portionH: 77, adjX: -6, adjY: -102, width: 33 * 1.5, height: 77 * 1.5}, {image: mofu, imgX: 406, imgY: 222, portionW: 33, portionH: 77, adjX: -6, adjY: -102, width: 33 * 1.5, height: 77 * 1.5}]);
+            }
+            else if (theCostume >= 2)
+            {
+                this.flashAnimate(90, this.rotation + 1 / 2 * Math.PI, 0.90, [{image: mofu, imgX: 329, imgY: 133, portionW: 33, portionH: 77, adjX: -5, adjY: -100, width: 33 * 1.5, height: 77 * 1.5}, {image: mofu, imgX: 370.5, imgY: 134, portionW: 33, portionH: 77, adjX: -5, adjY: -100, width: 33 * 1.5, height: 77 * 1.5}, {image: mofu, imgX: 409.5, imgY: 134, portionW: 33, portionH: 77, adjX: -5, adjY: -100, width: 33 * 1.5, height: 77 * 1.5}]);
+            }
+        }
         else if (this.weapon == "freydicSword")
         {
             this.damageFrame = "automatic";
@@ -10411,6 +10494,46 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             else if (theCostume >= 7)
             {
                 this.drawUnit(mofu, 461, 267, 32, 30, -21, -33, 32 * 1.25, 30 * 1.25, 1 / 2 * Math.PI);
+            }
+        }
+        else if (this.weapon == "arcaneOrbs")
+        {
+            this.damageFrame = "manual";
+            if (theCostume <= 0)
+            {
+                this.spellCast = false;
+
+                this.drawUnit(cypher, 135, 260, 71, 60, -1/2 * 71, -1/2 * 60, 71, 60, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 1)
+            {
+                this.drawUnit(cypher, 135, 203, 71, 60, -1/2 * 71, -1/2 * 60, 71, 60, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 2)
+            {
+                this.drawUnit(cypher, 137, 150, 71, 60, -1/2 * 71, -1/2 * 60, 71, 60, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 3)
+            {
+                this.drawUnit(cypher, 135, 260, 71, 60, -1/2 * 71, -1/2 * 60, 71, 60, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 4)
+            {
+                this.drawUnit(cypher, 137, 90, 71, 60, -1/2 * 71, -1/2 * 60, 71, 60, 1 / 2 * Math.PI);
+            }
+            else if (theCostume >= 5)
+            {
+                if (this.spellCast == false)
+                {
+                    if (player.gamemode != "protagonist")
+                    {
+                        this.rotation = this.newRotation; //turn instantly to player at time of projection
+                    }
+                    this.spellCast = true;
+                    magicList.push(new Magic({ID: "arcaneOrbs", CNX: this.CNX}, false, 0, this, this.damagesPlayer));
+                    magicList.push(new Magic({ID: "arcaneOrbs", CNX: this.CNX}, false, 1, this, this.damagesPlayer));
+                }
+                this.drawUnit(cypher, 135, 261, 71, 60, -1/2 * 71, -1/2 * 60, 71, 60, 1 / 2 * Math.PI);
             }
         }
         else if (this.weapon == "drainingI")
@@ -11899,6 +12022,314 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 XXX.rotate(this.rotation);
                 XXX.drawImage(atal, 810, 2407, 89, 47, -(1 / 2 * 89 * 0.7) + 0, -(1 / 2 * 47 * 0.7) - 0, 89 * 0.7, 47 * 0.7);
             }
+            else if (outfit == "magusRobesF")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(cypher, 292, 577, 56, 51, -(1 / 2 * 56 * 1) + 2, -(1 / 2 * 51 * 1) - 0, 56 * 1, 51 * 1);
+            }
+            else if (outfit == "magusRobesM")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(cypher, 746, 812, 56, 51, -(1 / 2 * 56 * 1) + 2, -(1 / 2 * 51 * 1) - 0, 56 * 1, 51 * 1);
+            }
+            else if (outfit == "ghoulMercArmour")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(gul, 1007, 203, 41, 40, -(1 / 2 * 41 * 0.9) + 0, -(1 / 2 * 40 * 0.9) - 0, 41 * 0.9, 40 * 0.9);
+            }
+            else if (outfit == "vreckFurClothing")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(gul, 13, 843, 34, 31, -(1 / 2 * 34 * 1.38) + 2.4, -(1 / 2 * 31 * 1.38) - 0, 34 * 1.38, 31 * 1.38);
+            }
+            else if (outfit == "fineNechrovitePlateArmour")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(beets, 12, 302, 49, 41, -(1 / 2 * 49 * 0.85) + 0, -(1 / 2 * 41 * 0.85) - 0, 49 * 0.85, 41 * 0.85);
+            }
+            else if (outfit == "fineVardanianPlateArmour")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(beets, 13, 255, 49, 41, -(1 / 2 * 49 * 0.85) + 0, -(1 / 2 * 41 * 0.85) - 0, 49 * 0.85, 41 * 0.85);
+            }
+            else if (outfit == "vardanianSoldierOutfit")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(dmil, 570, 205, 39, 31, -(1 / 2 * 39 * 1.1) + 1, -(1 / 2 * 31 * 1.1) + 0.30, 39 * 1.1, 31 * 1.1);
+            }
+            else if (outfit == "alemanWWI")
+            {
+                this.gasmasked = true;
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(gul, 0, 900, 48, 35, -(1/2 * 48 * 0.92) + 0, -(1 / 2 * 35 * 0.92) + 0, 48 * 0.92, 35 * 0.92);
+            }
+            else if (outfit == "hazmatMarkI")
+            {
+                this.gasmasked = true;
+                this.hazmatted = true;
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(gul, 142, 834, 47, 43, -(1/2 * 47 * 0.85) + 0, -(1 / 2 * 43 * 0.85) + 0, 47 * 0.85, 43 * 0.85);
+            }
+            else if (outfit == "hazmatMarkII")
+            {
+                this.gasmasked = true;
+                this.hazmatted = true;
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(gul, 140, 882, 47, 43, -(1/2 * 47 * 0.85) + 0, -(1 / 2 * 43 * 0.85) + 0, 47 * 0.85, 43 * 0.85);
+            }
+            else if (outfit == "vardanianPriestRobes")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(tribe, 19, 10, 76, 51, -(1 / 2 * 76 * 1) - 0, -(1 / 2 * 51 * 1) - 0, 76 * 1, 51 * 1);
+            }
+            else if (outfit == "vardanianAkaton")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(gent, 192, 217, 29, 28, -(1 / 2 * 29 * 1.05) - 0, -(1 / 2 * 28 * 1.05) - 0, 29 * 1.05, 28 * 1.05);
+            }
+            else if (outfit == "vardanianCoatOfPlates")
+            {
+                this.gasmasked = true;
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(gent, 121, 207, 42, 43, -(1 / 2 * 42 * 0.9) - 0, -(1 / 2 * 43 * 0.9) - 0, 42 * 0.9, 43 * 0.9);
+            }
+            else if (outfit == "orgishEliteArmour")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(gent, 13, 76, 58, 49, -(1 / 2 * 58 * 0.7) - 0, -(1 / 2 * 49 * 0.7) - 0, 58 * 0.7, 49 * 0.7);
+            }
+            else if (outfit == "orgishRoyalArmour")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(gent, 4, 141, 79, 53, -(1 / 2 * 79 * 0.7) - 0, -(1 / 2 * 53 * 0.7) - 0, 79 * 0.7, 53 * 0.7);
+            }
+            else if (outfit == "jesterOutfit")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(hydra, 852, 645, 44, 45, -(1 / 2 * 44 * 1.3) - 1, -(1 / 2 * 45 * 1.3) - 0.5, 44 * 1.3, 45 * 1.3);
+            }
+            else if (outfit == "vardanianNobleOutfit")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(hydra, 1081, 739, 47, 38, -(1 / 2 * 47 * 1) - 2.7, -(1 / 2 * 38 * 1) - 0, 47 * 1, 38 * 1);
+            }
+            else if (outfit == "vardanianRoyalAttireM")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(tribe, 154, 4, 64, 67, -(1 / 2 * 64 * 1) - 0, -(1 / 2 * 67 * 1) - 0, 64 * 1, 67 * 1);
+            }
+            else if (outfit == "vardanWearM")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 813, 297, 27, 24, -(1 / 2 * 27 * 1.46) - 2, -(1 / 2 * 24 * 1.46) - 0, 27 * 1.46, 24 * 1.46);
+            }
+            else if (outfit == "vardanOutfitM")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 957, 300, 27, 24, -(1 / 2 * 27 * 1.15) - 2.3, -(1 / 2 * 24 * 1.15) - 0, 27 * 1.15, 24 * 1.15);
+            }
+            else if (outfit == "orgishClothing")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(chupa, 51, 24, 28, 39, -1/2 * 28 * 1.61 - 1.5, -1/2 * 39 * 1.61 + 4.4, 28 * 1.61, 39 * 1.61);
+            }
+            else if (outfit == "jungleHunterOutfit")
+            {
+                this.gasmasked = true;
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(humpa, 557, 1261, 62, 49, -(1 / 2 * 62 * 0.705) - 0, -(1 / 2 * 49 * 0.705) - 0.05, 62 * 0.705, 49 * 0.705);
+            }
+            else if (outfit == "swampWalkerArmour")
+            {
+                this.gasmasked = true;
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation - 1/2 * Math.PI);
+                XXX.drawImage(theCrack, 128, 584, 21, 19, -(1 / 2 * 21 * 1.55) - 0, -(1 / 2 * 19 * 1.55) -0, 21 * 1.55, 19 * 1.55);
+            }
+            else if (outfit == "greatPlateArmour")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(cypher, 346, 145, 29, 37, -(1 / 2 * 29 * 1.32) - 0.58, -(1 / 2 * 37 * 1.32) - 0, 29 * 1.32, 37 * 1.32);
+            }
+            else if (outfit == "wolthgarPlateArmour")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(cypher, 392, 125, 28, 64, -(1 / 2 * 28 * 1.32) - 1, -(1 / 2 * 64 * 1.32) - 0, 28 * 1.32, 64 * 1.32);
+            }
+            else if (outfit == "vardanianRoyalDress")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(hydra, 961, 663, 46, 37, -(1 / 2 * 46 * 1.05) - 0, -(1 / 2 * 37 * 1.05) + 0.21, 46 * 1.05, 37 * 1.05);
+            }
+            else if (outfit == "vardanianRoyalAttireF")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(tribe, 226, 6, 85, 54, -(1 / 2 * 85 * 1) - 0, -(1 / 2 * 54 * 1) + 0, 85 * 1, 54 * 1);
+            }
+            else if (outfit == "vardanianNobleOutfitF")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(hydra, 961, 663, 46, 37, -(1 / 2 * 46 * 1.05) - 0, -(1 / 2 * 37 * 1.05) + 0.21, 46 * 1.05, 37 * 1.05);
+            }
+            else if (outfit == "vardanWearF")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 866, 298, 27, 24, -(1 / 2 * 27 * 1.46) - 0, -(1 / 2 * 24 * 1.46) - 0, 27 * 1.46, 24 * 1.46);
+            }
+            else if (outfit == "vardanOutfitF")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 911, 298, 27, 24, -(1 / 2 * 27 * 1.45) + 0.2, -(1 / 2 * 24 * 1.45) - 0, 27 * 1.45, 24 * 1.45);
+            }
             else if (outfit == "walrusLeatherArmour")
             {
                 XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
@@ -11951,6 +12382,8 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
             else if (outfit == "mrbTacticalArmour")
             {
+                this.gasmasked = true;
+                this.hazmatted = true;
                 XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
                 if (this.kid)
                 {
@@ -11971,6 +12404,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
             else if (outfit == "blackMageRobe")
             {
+                this.gasmasked = true;
                 XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
                 if (this.kid)
                 {
@@ -12281,6 +12715,26 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 }
                 XXX.rotate(this.rotation);
                 XXX.drawImage(atal, 449, 827, 127, 157, -(1 / 2 * 127 * 0.55) + 0, -(1 / 2 * 157 * 0.55) -3, 127 * 0.55, 157 * 0.55);
+            }
+            else if (outfit == "vardanianRoyalDress")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(hydra, 977, 731, 74, 66, -(1 / 2 * 74 * 1.1) + 0, -(1 / 2 * 66 * 1.1) + 0, 74 * 1.1, 66 * 1.1);
+            }
+            else if (outfit == "vardanianRoyalAttireF")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(tribe, 276, 44, 125, 86, -(1 / 2 * 125 * 1.1) + 0, -(1 / 2 * 86 * 1.1) + 0, 125 * 1.1, 86 * 1.1);
             }
             XXX.restore();
         }
@@ -41825,6 +42279,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     {
                         this.humanATK(); //do the attack for the human arms
                     }
+                    this.drawHumanOutfitBelow(this.outfit, false);
                     //draw some weapons underneath the body
                     if (this.wepLayer == "under" || this.weapon == "freydicSword" || this.weapon == "longbow" || this.weapon == "crossbow" || this.weapon == "kellishClaymore" || this.weapon == "estoc" || this.weapon == "vardanianHalberd" || this.weapon == "shotgun" || this.weapon == "m16Carbine" || this.weapon == "sickle" || this.weapon == "nirineseSpear")
                     {
@@ -63017,7 +63472,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
         };
         //SOLDIER
-        if (this.type == "Soldier") //soldado humano
+        if (this.type == "Soldier") //soldado humano //human soldier
         {
             //Set Drops and experience
             if (Math.max(0, (this.ultra.weapon[1][0] + this.ultra.weapon[1][1]) - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
@@ -63306,7 +63761,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         //All of this factions guards drop this:
                         if (this.ID == "Jarl Orjov Tor")
                         {
-                            this.drops = [[new Item("coins", this.X, this.Y), 2000], [new Item("jvostranPlateArmour", this.X, this.Y), 1], [new Item("freydicGreatSword", this.X, this.Y), 1]];
+                            this.drops = [[new Item("coins", this.X, this.Y), 2000], [new Item("northernPlateArmour", this.X, this.Y), 1], [new Item("freydicGreatSword", this.X, this.Y), 1]];
                         }
                         else if (this.ID == "Ser Olis Pynske")
                         {
@@ -64033,6 +64488,109 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             }
                         }
                     }
+                    else if (this.ID == "High Magus Aleksi")
+                    {
+                        this.rangeOfSightCalculator(1200, false);
+                        this.drops = [[new Item("magusRobesM", this.X, this.Y), 1], [new Item("electricBolt", this.X, this.Y), 1], [new Item("arcaneOrbs", this.X, this.Y), 1], [new Item("lightningCorseque", this.X, this.Y), 1]];
+
+                        if (this.target == player)
+                        {
+                            if (this.disturbed == true)
+                            {
+                                var ddtttuu = this.DTP();
+                                if (ddtttuu > 73 && this.health >= 1/3*this.healthMAX)
+                                {
+                                    this.ultra.weapon[1][0] = 0;
+                                    this.ultra.weapon[1][1] = 0;
+                                    this.ultra.weapon[0] = "electricBolt";
+                                    this.ultra.weapon[2] = 0;
+                                    this.ultra.weapon[3] = 260;
+                                    this.ultra.weapon[4] = 1.9;
+
+                                    this.weapon = this.ultra.weapon[0];
+                                    this.negateArmour = this.ultra.weapon[2];
+                                    this.engagementRadius = 30 + this.ultra.weapon[3];
+                                    this.attackWait = this.ultra.weapon[4];
+                                }
+                                else if (this.health < 1/3*this.healthMAX)
+                                {
+                                    this.ultra.weapon[1][0] = 0;
+                                    this.ultra.weapon[1][1] = 0;
+                                    this.ultra.weapon[0] = "arcaneOrbs";
+                                    this.ultra.weapon[2] = 0;
+                                    this.ultra.weapon[3] = 360;
+                                    this.ultra.weapon[4] = 4.5;
+
+                                    this.weapon = this.ultra.weapon[0];
+                                    this.negateArmour = this.ultra.weapon[2];
+                                    this.engagementRadius = 30 + this.ultra.weapon[3];
+                                    this.attackWait = this.ultra.weapon[4];
+                                }
+                                else
+                                {
+                                    //"lightningCorseque", [12, 6], 5, 43, 1.5
+                                    this.ultra.weapon[1][0] = 12;
+                                    this.ultra.weapon[1][1] = 6;
+                                    this.ultra.weapon[0] = "lightningCorseque";
+                                    this.ultra.weapon[2] = 5;
+                                    this.ultra.weapon[3] = 43;
+                                    this.ultra.weapon[4] = 1.5;
+
+                                    this.weapon = this.ultra.weapon[0];
+                                    this.negateArmour = this.ultra.weapon[2];
+                                    this.engagementRadius = 30 + this.ultra.weapon[3];
+                                    this.attackWait = this.ultra.weapon[4];
+                                }
+                            }
+                        }
+                        else if (this.target != "none")
+                        {
+                            var ddtttuu = this.DTU(this.target);
+                            if (ddtttuu > 73 && this.health >= 1/2*this.healthMAX)
+                            {
+                                this.ultra.weapon[1][0] = 0;
+                                this.ultra.weapon[1][1] = 0;
+                                this.ultra.weapon[0] = "electricBolt";
+                                this.ultra.weapon[2] = 0;
+                                this.ultra.weapon[3] = 260;
+                                this.ultra.weapon[4] = 1.9;
+
+                                this.weapon = this.ultra.weapon[0];
+                                this.negateArmour = this.ultra.weapon[2];
+                                this.engagementRadius = 30 + this.ultra.weapon[3];
+                                this.attackWait = this.ultra.weapon[4];
+                            }
+                            else if (this.health < 1/2*this.healthMAX)
+                            {
+                                this.ultra.weapon[1][0] = 0;
+                                this.ultra.weapon[1][1] = 0;
+                                this.ultra.weapon[0] = "arcaneOrbs";
+                                this.ultra.weapon[2] = 0;
+                                this.ultra.weapon[3] = 360;
+                                this.ultra.weapon[4] = 4.5;
+
+                                this.weapon = this.ultra.weapon[0];
+                                this.negateArmour = this.ultra.weapon[2];
+                                this.engagementRadius = 30 + this.ultra.weapon[3];
+                                this.attackWait = this.ultra.weapon[4];
+                            }
+                            else
+                            {
+                                //"lightningCorseque", [12, 6], 5, 43, 1.5
+                                this.ultra.weapon[1][0] = 12;
+                                this.ultra.weapon[1][1] = 6;
+                                this.ultra.weapon[0] = "lightningCorseque";
+                                this.ultra.weapon[2] = 5;
+                                this.ultra.weapon[3] = 43;
+                                this.ultra.weapon[4] = 1.5;
+
+                                this.weapon = this.ultra.weapon[0];
+                                this.negateArmour = this.ultra.weapon[2];
+                                this.engagementRadius = 30 + this.ultra.weapon[3];
+                                this.attackWait = this.ultra.weapon[4];
+                            }
+                        }
+                    }
                     else if (this.ID == "Barracano")
                     {
                         this.rangeOfSightCalculator(850, false);
@@ -64442,6 +65000,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     {
                         uniqueChars.vsevolodLDS = false;
                     }
+                    else if (this.ID == "High Magus Aleksi")
+                    {
+                        uniqueChars.aleksiLDS = false;
+                    }
                     else if (this.ID == "Raldo the Long")
                     {
                         uniqueChars.raldoLDS = false;
@@ -64746,8 +65308,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 {
                     this.humanATK(); //do the attack for the human arms
                 }
+                this.drawHumanOutfitBelow(this.outfit, false);
+
                 //draw some weapons underneath the body
-                if (this.wepLayer == "under" || this.weapon == "freydicSword" || this.weapon == "longbow" || this.weapon == "crossbow" || this.weapon == "kellishClaymore" || this.weapon == "estoc" || this.weapon == "vardanianHalberd" || this.weapon == "shotgun" || this.weapon == "m16Carbine" || this.weapon == "sickle" || this.weapon == "nirineseSpear")
+                if (this.wepLayer == "under" || this.weapon == "freydicSword" || this.weapon == "longbow" || this.weapon == "crossbow" || this.weapon == "kellishClaymore" || this.weapon == "estoc" || this.weapon == "vardanianHalberd" || this.weapon == "shotgun" || this.weapon == "m16Carbine" || this.weapon == "sickle" || this.weapon == "nirineseSpear" || this.weapon == "lightningCorseque")
                 {
                     this.drawHumanArms();
                 }
@@ -64756,7 +65320,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.drawHuman();
 
                 //draw the others over it.
-                if (this.wepLayer == "standard" || this.weapon != "freydicSword" && this.weapon != "longbow" && this.weapon != "crossbow" && this.weapon != "longSpikedMorningStar" && this.weapon != "kellishClaymore" && this.weapon != "estoc" && this.weapon != "vardanianHalberd" && this.weapon != "shotgun" && this.weapon != "m16Carbine" && this.weapon != "sickle" && this.weapon != "nirineseSpear")
+                if (this.wepLayer == "standard" || this.weapon != "freydicSword" && this.weapon != "longbow" && this.weapon != "crossbow" && this.weapon != "longSpikedMorningStar" && this.weapon != "kellishClaymore" && this.weapon != "estoc" && this.weapon != "vardanianHalberd" && this.weapon != "shotgun" && this.weapon != "m16Carbine" && this.weapon != "sickle" && this.weapon != "nirineseSpear" && this.weapon != "lightningCorseque")
                 {
                     this.drawHumanArms();
                 }
@@ -64880,5 +65444,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.heatResistance = this.keepHeatRes;
             this.doKeepHeatRes = true;
         }
+        this.gasmasked = false;
+        this.hazmatted = false;
     };
 };

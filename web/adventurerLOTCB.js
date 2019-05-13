@@ -797,6 +797,10 @@ function Adventurer()
                     this.health -= Math.max(0, 1 - (this.totalShockResist / 10));
                 }
             }
+            else
+            {
+                this.shockedTime = 0;
+            }
         };
         this.onElectric();
         //fire effect on highest layer possible;
@@ -7004,6 +7008,22 @@ function Adventurer()
         {
             outfit = allWorn[131];
         }
+        else if (this.outfitEquipped == "greatPlateArmour")
+        {
+            outfit = allWorn[132];
+        }
+        else if (this.outfitEquipped == "wolthgarPlateArmour")
+        {
+            outfit = allWorn[133];
+        }
+        else if (this.outfitEquipped == "magusRobesF")
+        {
+            outfit = allWorn[134];
+        }
+        else if (this.outfitEquipped == "magusRobesM")
+        {
+            outfit = allWorn[135];
+        }
         else
         {
             outfit = allWorn[0];
@@ -7146,7 +7166,6 @@ function Adventurer()
         this.bootsType = boots;
         this.necklaceType = necklace;
         this.ringType = ring;
-        //TODO add boots.
 
         this.armour = outfit.protection + gloves.protection + necklace.protection + ring.protection + boots.protection;
         this.magicalResistance = outfit.magicalProtection + gloves.magicalProtection + necklace.magicalProtection + ring.magicalProtection + boots.magicalProtection;
@@ -7228,6 +7247,58 @@ function Adventurer()
                 XXX.globalAlpha = 0.4;
             }
             XXX.drawImage(atal, 810, 2407, 89, 47, -(1 / 2 * 89 * 0.7) + 0, -(1 / 2 * 47 * 0.7) - 0, 89 * 0.7, 47 * 0.7);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "magusRobesF")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(cypher, 292, 577, 56, 51, -(1 / 2 * 56 * 1) + 2, -(1 / 2 * 51 * 1) - 0, 56 * 1, 51 * 1);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "magusRobesM")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(cypher, 746, 812, 56, 51, -(1 / 2 * 56 * 1) + 2, -(1 / 2 * 51 * 1) - 0, 56 * 1, 51 * 1);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "greatPlateArmour")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(cypher, 346, 145, 29, 37, -(1 / 2 * 29 * 1.32) - 0.58, -(1 / 2 * 37 * 1.32) - 0, 29 * 1.32, 37 * 1.32);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "wolthgarPlateArmour")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(cypher, 392, 125, 28, 64, -(1 / 2 * 28 * 1.32) - 1, -(1 / 2 * 64 * 1.32) - 0, 28 * 1.32, 64 * 1.32);
             XXX.restore();
         }
         else if (this.outfitEquipped == "ghoulMercArmour")
@@ -12144,6 +12215,208 @@ function Adventurer()
                 }
                 XXX.drawImage(polypol, 1637, 234, 49, 33, -29, -23, 49 * 1.2, 33);
                 XXX.restore();
+                this.castingCooldown = new Date().getTime();
+            }
+        }
+
+        //Arcane Orbs Form
+        if (this.spell.ID == "arcaneOrbs")
+        {
+            this.stageEngine(6, 0.23, false);
+
+            //ATTACK
+            if (Math.floor(this.stage) <= 0)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(cypher, 135, 260, 71, 60, -1/2 * 71, -1/2 * 60, 71, 60);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 1)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(cypher, 135, 203, 71, 60, -1/2 * 71, -1/2 * 60, 71, 60);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 2)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(cypher, 137, 150, 71, 60, -1/2 * 71, -1/2 * 60, 71, 60);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(cypher, 135, 260, 71, 60, -1/2 * 71, -1/2 * 60, 71, 60);
+                XXX.restore();
+                this.doMagic = true;
+            }
+            else if (Math.floor(this.stage) <= 4)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(cypher, 137, 90, 71, 60, -1/2 * 71, -1/2 * 60, 71, 60);
+                XXX.restore();
+                this.doMagic = true;
+            }
+            else if (Math.floor(this.stage) >= 5)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(cypher, 135, 261, 71, 60, -1/2 * 71, -1/2 * 60, 71, 60);
+                XXX.restore();
+                if (this.doMagic)
+                {
+                    this.doMagic = false;
+                    this.magicalExperience += this.spell.EXP;
+                    magicList.push(new Magic(player.spell, true, 0));
+                    magicList.push(new Magic(player.spell, true, 1));
+                }
+                this.castingCooldown = new Date().getTime();
+            }
+        }
+
+        //Power Draw Form
+        if (this.spell.ID == "powerDraw")
+        {
+            this.stageEngine(6, 0.21, true);
+
+            //ATTACK
+            if (Math.floor(this.stage) <= 0)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(cypher, 40, 95, 71, 60, -1/2 * 71, -1/2 * 60, 71, 60);
+                XXX.restore();
+                this.doMagic = true;
+            }
+            else if (Math.floor(this.stage) <= 1)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(cypher, 41, 147, 71, 60, -1/2 * 71, -1/2 * 60, 71, 60);
+                XXX.restore();
+                this.doMagic = true;
+            }
+            else if (Math.floor(this.stage) >= 2)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(cypher, 40, 200, 71, 60, -1/2 * 71, -1/2 * 60, 71, 60);
+                XXX.restore();
+                if (this.doMagic)
+                {
+                    this.doMagic = false;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].DTP() <= 475)
+                        {
+                            magicList.push(new Magic(player.spell, true, [ArtificialIntelligenceAccess[i].X, ArtificialIntelligenceAccess[i].Y]));
+                        }
+                    }
+                    this.magicalExperience += this.spell.EXP;
+                }
+                this.castingCooldown = new Date().getTime();
+            }
+        }
+
+        //Despell Form
+        if (this.spell.ID == "despell")
+        {
+            this.stageEngine(4, 0.21, true);
+
+            //ATTACK
+            if (Math.floor(this.stage) <= 0)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(cypher, 220, 147, 71, 60, -1/2 * 71, -1/2 * 60, 71, 60);
+                XXX.restore();
+                this.doMagic = true;
+            }
+            else if (Math.floor(this.stage) <= 1)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(cypher, 218, 201, 71, 60, -1/2 * 71, -1/2 * 60, 71, 60);
+                XXX.restore();
+                this.doMagic = true;
+            }
+            else if (Math.floor(this.stage) >= 2)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(cypher, 216, 259, 71, 60, -1/2 * 71, -1/2 * 60, 71, 60);
+                XXX.restore();
+                if (this.doMagic)
+                {
+                    this.doMagic = false;
+                    this.magicalExperience += this.spell.EXP;
+                    magicList.push(new Magic(player.spell, true));
+                }
                 this.castingCooldown = new Date().getTime();
             }
         }
@@ -31525,6 +31798,45 @@ function Adventurer()
                             {
                                 this.skillPoints += 1;
                                 this.extraSkillPoints += 1;
+                            }
+                            else if (Inventory[i][0].ability == "memory") //Food with this effect will keep you fed for a little bit.
+                            {
+                                this.memory += 1;
+                                this.extraSkillPoints += 1;
+                            }
+                            else if (Inventory[i][0].ability == "garldsMemories") //Food with this effect will keep you fed for a little bit.
+                            {
+                                var grldMemoz = Math.random();
+
+                                alert("As you look into the orb you start to feel as if you have left yourself behind...")
+                                if (uniqueChars.vsevolodLDS == true && player.eminence <= 24)
+                                {
+                                    alert("The key is hidden safely in the lives of the three hunters... -- You feel yourself being sudden pulled from the memory back into your own body.");
+                                }
+                                else
+                                {
+                                    if (grldMemoz < 0.2)
+                                    {
+                                        alert("You see yourself reading scripture in ancient Freydic. The words strike fear in your heart, for they speak of unknown creatures from beyond this world... creatures that would destroy all of civilization as you know it. The ground tremors have been growing more intense with each passing day. The demon bringer and his evil magics must be locked away or all will be brought to chaos and ruin. I must trick this power hungry fiend into the trap... he wants my scroll of Gemesh. I will use it to lure him.")
+                                    }
+                                    else if (grldMemoz < 0.4)
+                                    {
+                                        alert("The key is hidden safely in the lives of the three hunters... Though it is too dangerous even for me to remember this... Somebody seeking power or wealth might be able to get the information from me through corruption. I have no choice but to sacrifice myself to madness. I will no longer be able to guide Teshir in the ways of Gemesh, but at least I will keep the strange ones from setting foot in this world again.")
+                                    }
+                                    else if (grldMemoz < 0.6)
+                                    {
+                                        alert("Vesevolod, you do not understand! My cache is not a treasure trove! It is a prison for the most unseemly of entities... 'I will find out what you are hiding one way or another old man! Your order is pathetic, you let so much power go to waste... you just store it and keep it away from those who it could serve. Magics are not meant to be hidden away! They are meant to be studied and practiced! Or is it that you wish to keep all of these powerful magics to yourself!?' I have no time! I knew somebody would come sooner or later to challenge the peace that I have so carefully maintained. I must sever my memories, I can stall no longer for if Vsevolod returns he may bring tools of persuasion that even I cannot resist...")
+                                    }
+                                    else if (grldMemoz < 0.8)
+                                    {
+                                        alert("This ancient buried keep will be the perfect place to banish these strange fiends and their master. Especially since it was cursed ever since the chief of the old Thengan clan that ruled it was killed by his own brother long ago. Nobody remembers that this place is still hear. After hundreds of years Borejal Keep has been swallowed by rock and land. It is a pit of corruption, the creatures drawn hear by the curse of fratricide alone will ward away curious travelers or slay them... But I must be wary of themages and nechromancers of the land. They do not scare so easily, I will need to seal the trap with complex magical instruments. May Gemesh grant me strength and victory in this most important of undertakings!")
+                                    }
+                                    else
+                                    {
+                                        alert("'Garld, the snow covers us to our waste. Should we not turn back and warm ourselves by the hearth?' No young Ukko, we must not reject the cold. Without it we would be weak and would not learn to live in truth with the world.");
+                                        alert("'Garld, stop! Come here!' We have a long way to go before we reach the tree, young Ukko. 'But Garld, I see a crack in the world! It is dark and the snow melts around it.' You turn to Ukko who is standing about 20 yards back. You rush over to him. It is true what he spoke... the ground it is steaming and a crack has started to form in the land where the snow had nearly completely melted off. Ukko, we must go now. We must learn what the cause of the foul corruption is!")
+                                    }
+                                }
                             }
                             else if (Inventory[i][0].ability == "healthVI") //This is the highest level of health regeneration.
                             {

@@ -2999,7 +2999,7 @@ function interaction(me)
                         else if (conversationID[1] == "0e")
                         {
                             //text dialogue
-                            setMsg("You are my inferior, and as such I will may you pay for trying to give me orders! You will die painfully you insolent cretin!");
+                            setMsg("You are my inferior, and as such I will make you pay for trying to give me orders! You will die painfully you insolent cretin!");
 
                             //on ended text dialogue
                             if (tellMessage == "reset")

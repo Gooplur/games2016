@@ -1320,7 +1320,7 @@ function take(itemType, quantity) //takes away items in a certain quantity from 
         }
         else if (Inventory[iHave][0].type == itemType && Inventory[iHave][1] <= quantity)
         {
-            Inventory.splice(Inventory.splice(iHave, 1));
+            Inventory.splice(iHave, 1);
             break;
         }
     }

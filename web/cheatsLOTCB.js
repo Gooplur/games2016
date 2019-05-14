@@ -1210,6 +1210,12 @@ function cheats()
                 player.theBalgurMercenariesFaction = 0;
             }
         }
+        else if (cheatcode.toLowerCase() == "metiitem")
+        {
+            var chtItem = prompt("Enter the name of the item you would like.");
+            var chtAmnt = JSON.parse(prompt("Enter the amount of " + chtItem + " you would like."));
+            worldItems.push([new Item(chtItem, X, Y), chtAmnt]);
+        }
         else if (cheatcode.toLowerCase() == "qualdo")
         {
             console.log(allSpells.length);

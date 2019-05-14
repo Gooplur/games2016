@@ -851,6 +851,18 @@ function cheats()
         {
             constantMagic = true;
         }
+        else if (cheatcode == "renewHildegardQuest")
+        {
+            quests.thePlightOfLethikQuest = false;
+            quests.thePlightOfLethikWitchInterrogated = false;
+            quests.thePlightOfLethikVardan = false;
+            quests.thePlightOfLethikCompletionStyle = false;
+            quests.thePlightOfLethikFarmRestored = false;
+            quests.thePlightOfLethikPay = 0;
+            uniqueChars.vsevolodLDS = true;
+            uniqueChars.hildegardLDS = true;
+            uniqueChars.axelLDS = true;
+        }
         else if (cheatcode.toLowerCase() == "greaty")
         {
             var lesky = Y;

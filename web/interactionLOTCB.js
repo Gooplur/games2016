@@ -3544,7 +3544,7 @@ function interaction(me)
                         {
                             if (player.dialogueChoiceMade == false)
                             {
-                                player.dialogueOptions = [["I will help you with your riddle.", false, "a"], ["Then we will be partners! I will help you with your riddle and we we share the hidden treasures.", false, "a"], ["No thank you.", false, "b"], ["No.", false, "b"], ["I'm afraid I must decline your offer.", false, "b"], ["Now that you have told me all of this, what is to keep me doing this all myself?", "c"]];
+                                player.dialogueOptions = [["I will help you with your riddle.", false, "a"], ["Then we will be partners! I will help you with your riddle and we we share the hidden treasures.", false, "a"], ["No thank you.", false, "b"], ["No.", false, "b"], ["I'm afraid I must decline your offer.", false, "b"], ["Now that you have told me all of this, what is to keep me doing this all myself?", false, "c"]];
                             }
                             else if (player.dialogueChoiceMade == true)
                             {
@@ -3578,7 +3578,7 @@ function interaction(me)
                         else if (conversationID[1] == "3a")
                         {
                             //text dialogue
-                            setMsg("Excellent, I will meet you in the ancient fort in the crags... when you have solved the riddle come to me and we will solve the magical puzzle.");
+                            setMsg("Excellent, I will meet you in the ancient fort in the crags... It is directly to the east of here. When you have solved the riddle come to me and we will solve the magical puzzle.");
 
                             //on ended text dialogue
                             if (tellMessage == "reset")
@@ -3591,6 +3591,7 @@ function interaction(me)
                                 player.dialoguePosition = 0;
                                 conversationID[1] = 0;
                                 self.SC();
+                                dialogueReset(self);
                                 player.blinded = true;
                                 player.blindedStoreTime = new Date().getTime();
                                 player.blindedTime = 1;
@@ -7763,8 +7764,6 @@ function interaction(me)
                             {
                                 msgReset();
 
-                                quests.debtCollectorLambert = true;
-                                worldItems.push([new Item("coins", X, Y), 33]);
                                 playersTurnToSpeak = true;
                                 player.dialoguePosition = 0;
                                 conversationID[1] = 1;

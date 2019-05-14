@@ -1225,6 +1225,7 @@ function cheats()
             this.isWeaponEquipped = false;
             this.weaponEquipped = "none";
             this.ammoLoaded = false;
+            console.log("ghostgear removed");
         }
         else if (cheatcode.toLowerCase() == "metiitem")
         {

@@ -1210,6 +1210,22 @@ function cheats()
                 player.theBalgurMercenariesFaction = 0;
             }
         }
+        else if (cheatcode.toLowerCase() == "ghostgear")
+        {
+            this.areBootsEquipped = false;
+            this.bootsEquipped = "none";
+            this.areGlovesEquipped = false;
+            this.glovesEquipped = "none";
+            this.isNecklaceEquipped = false;
+            this.necklaceEquipped = "none";
+            this.isRingEquipped = false;
+            this.ringEquipped = "none";
+            this.isArmourEquipped = false;
+            this.outfitEquipped = "none";
+            this.isWeaponEquipped = false;
+            this.weaponEquipped = "none";
+            this.ammoLoaded = false;
+        }
         else if (cheatcode.toLowerCase() == "metiitem")
         {
             var chtItem = prompt("Enter the name of the item you would like.");

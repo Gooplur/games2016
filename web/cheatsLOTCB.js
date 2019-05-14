@@ -1212,20 +1212,24 @@ function cheats()
         }
         else if (cheatcode.toLowerCase() == "ghostgear")
         {
-            this.areBootsEquipped = false;
-            this.bootsEquipped = "none";
-            this.areGlovesEquipped = false;
-            this.glovesEquipped = "none";
-            this.isNecklaceEquipped = false;
-            this.necklaceEquipped = "none";
-            this.isRingEquipped = false;
-            this.ringEquipped = "none";
-            this.isArmourEquipped = false;
-            this.outfitEquipped = "none";
-            this.isWeaponEquipped = false;
-            this.weaponEquipped = "none";
-            this.ammoLoaded = false;
+            player.areBootsEquipped = false;
+            player.bootsEquipped = "none";
+            player.areGlovesEquipped = false;
+            player.glovesEquipped = "none";
+            player.isNecklaceEquipped = false;
+            player.necklaceEquipped = "none";
+            player.isRingEquipped = false;
+            player.ringEquipped = "none";
+            player.isArmourEquipped = false;
+            player.outfitEquipped = "none";
+            player.isWeaponEquipped = false;
+            player.weaponEquipped = "none";
+            player.ammoLoaded = false;
             console.log("ghostgear removed");
+        }
+        else if (cheatcode.toLowerCase() == "fthisfingf")
+        {
+            quests.sagesCachePortal = true;
         }
         else if (cheatcode.toLowerCase() == "metiitem")
         {

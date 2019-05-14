@@ -24450,7 +24450,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-31812, -3676, "Soldier", false, "Vsevolod", {race: "Vardan", faction: "loner", con: 7, speed: 1.2, outfit: ["blackMageRobe", 0], weapon: ["drainingI", [9, 4], 0, 200, 3], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, CNX: 200, MR: 7, patrolStops: 1, patrolLoop: false, route:[[50405, -10488]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-4278, 3654, "Soldier", false, "Vsevolod", {race: "Vardan", faction: "loner", con: 7, speed: 1.2, outfit: ["blackMageRobe", 0], weapon: ["drainingI", [9, 4], 0, 200, 3], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, CNX: 200, MR: 7, patrolStops: 1, patrolLoop: false, route:[[50405, -10488]]}));
                     }
                 }
 

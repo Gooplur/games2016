@@ -3585,6 +3585,7 @@ function interaction(me)
                             {
                                 msgReset();
 
+                                give("garldsMemories", 1);
                                 quests.theSecretOfTheSagesCacheQuest = true;
                                 quests.activeQuests.push({name: "The Secret of the Sage's Cache", description: "A sage has locked away magics in an ancient fort in the crags. Look into the sage's memories and solve the riddle to unlock the magical puzzle guarding the treasures."});
                                 playersTurnToSpeak = true;

@@ -64454,11 +64454,19 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     {
                         this.rangeOfSightCalculator(1100, false);
                         this.drops = [[new Item("blackMageRobe", this.X, this.Y), 1], [new Item("drainingI", this.X, this.Y), 1]];
+                        if (quests.theSecretOfTheSagesCacheQuest == false)
+                        {
+                            this.drops.push([new Item("garldsMemories", this.X, this.Y), 1]);
+                        }
                         if (this.health > this.healthMAX)
                         {
                             this.health = this.healthMAX;
                         }
 
+                        if (quests.sagesCachePortal == true)
+                        {
+                            this.disturbed = true;
+                        }
                         //if you are of status those around you will assist you
                         if (this.disturbed == true && player.title == "Royalty" && player.raceName == "Thengar" || this.disturbed == true && player.title == "Nobility" && player.raceName == "Thengar")
                         {
@@ -64492,6 +64500,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     {
                         this.rangeOfSightCalculator(1200, false);
                         this.drops = [[new Item("magusRobesM", this.X, this.Y), 1], [new Item("electricBolt", this.X, this.Y), 1], [new Item("arcaneOrbs", this.X, this.Y), 1], [new Item("lightningCorseque", this.X, this.Y), 1]];
+
+                        if (quests.sagesCachePortal == true)
+                        {
+                            this.disturbed = true;
+                        }
 
                         if (this.target == player)
                         {

@@ -583,7 +583,7 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                     {
                         if (whatDoIDo == "soulOrb")
                         {
-                            ArtificialIntelligenceAccess[i].health = Math.min(ArtificialIntelligenceAccess[i].healthMAX, ArtificialIntelligenceAccess[i].health + 55)
+                            ArtificialIntelligenceAccess[i].health = Math.min(ArtificialIntelligenceAccess[i].healthMAX, ArtificialIntelligenceAccess[i].health + 55);
                         }
                         else if (whatDoIDo == "drainOrb")
                         {
@@ -4120,6 +4120,7 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
             {
                 if (caster)
                 {
+                    this.casterTeam = false;
                     this.damageThenGoAway(8, "soulOrb", 0, 0, false);
                     this.turn -= 0.314;
 

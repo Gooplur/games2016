@@ -3568,8 +3568,6 @@ function theLegend()
         hanzChild: false,
         hanzChildName: "Gelna",
 
-
-
         //QUEST: Lost Huntress ---- given by Muktu
         lostHuntressQuest: false,
         lostHuntressCompletionStyle: false,
@@ -3663,8 +3661,9 @@ function theLegend()
         aNobleConspiracyCompletionStyle: false,
 
         //QUEST: The Plight of Lethik ---- given by Axel
-        thePlightOfLethikQuest: false, //was true //todo (see if that was for testing purposes)
+        thePlightOfLethikQuest: false,
         thePlightOfLethikWitchInterrogated: false,
+        thePlightOfLethikVardan: false,
         thePlightOfLethikCompletionStyle: false,
         thePlightOfLethikFarmRestored: false,
         thePlightOfLethikPay: 0,

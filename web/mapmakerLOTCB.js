@@ -5090,7 +5090,7 @@ function buildMaster()
                     }
                 }
 
-                if (uniqueChars.vsevolodLDS == true)
+                if (uniqueChars.vsevolodLDS == true && quests.theSecretOfTheSagesCacheQuest == false)
                 {
                     var hits = 0;
                     for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
@@ -24438,7 +24438,7 @@ function buildMaster()
 
                 scenicList.push(new Scenery("magicOrbPortal", -6341, 3777, 0, "magesCache", [0, 0, "sagesTrap"]));
 
-                if (uniqueChars.vsevolodLDS == true)
+                if (uniqueChars.vsevolodLDS == true && quests.theSecretOfTheSagesCacheQuest == true)
                 {
                     var hits = 0;
                     for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
@@ -24450,14 +24450,11 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        if (quests.theSecretOfTheSagesCacheQuest == true)
-                        {
-                            ArtificialIntelligenceAccess.push(new Unit(-31812, -3676, "Soldier", false, "Vsevolod", {race: "Vardan", faction: "loner", con: 7, speed: 1.2, outfit: ["blackMageRobe", 0], weapon: ["drainingI", [9, 4], 0, 200, 3], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, CNX: 200, MR: 7, patrolStops: 1, patrolLoop: false, route:[[50405, -10488]]}));
-                        }
+                        ArtificialIntelligenceAccess.push(new Unit(-31812, -3676, "Soldier", false, "Vsevolod", {race: "Vardan", faction: "loner", con: 7, speed: 1.2, outfit: ["blackMageRobe", 0], weapon: ["drainingI", [9, 4], 0, 200, 3], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, CNX: 200, MR: 7, patrolStops: 1, patrolLoop: false, route:[[50405, -10488]]}));
                     }
                 }
 
-                if (uniqueChars.aleksiLDS == true)
+                if (uniqueChars.aleksiLDS == true && quests.theSecretOfTheSagesCacheQuest == true || uniqueChars.aleksiLDS == true && have("garldsMemories", 1))
                 {
                     var hits = 0;
                     for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
@@ -24469,10 +24466,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        //if (quests.theSecretOfTheSagesCacheQuest == true)
-                        //{
-                            ArtificialIntelligenceAccess.push(new Unit(-6341.102330659225, 3708.7013251695707, "Soldier", false, "High Magus Aleksi", {race: "Cephrite", faction: "loner", con: 9, speed: 1.4, outfit: ["magusRobesM", 0], weapon: ["lightningCorseque", [12, 6], 5, 43, 1.5], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, CNX: 50, MR: 4, patrolStops: 1, patrolLoop: false, route:[[-6313.101891814239, 3687.254470007552]]}));
-                        //}
+                        ArtificialIntelligenceAccess.push(new Unit(-6341.102330659225, 3708.7013251695707, "Soldier", false, "High Magus Aleksi", {race: "Cephrite", faction: "loner", con: 9, speed: 1.4, outfit: ["magusRobesM", 0], weapon: ["lightningCorseque", [12, 6], 5, 43, 1.5], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, CNX: 50, MR: 4, patrolStops: 1, patrolLoop: false, route:[[-6313.101891814239, 3687.254470007552]]}));
                     }
                 }
 
@@ -24532,13 +24526,104 @@ function buildMaster()
                 //REGION CREATION
                 //Build AI Units
 
+                if (quests.theSecretOfTheSagesCacheQuest == true)
+                {
+                    quests.theSecretOfTheSagesCacheCompletionStyle = "foundCache";
+                    quests.theSecretOfTheSagesCacheQuest = "complete";
+                    if (uniqueChars.vsevolodLDS == true)
+                    {
+                        quests.completeQuests.push({name: "The Secret of the Sage's Cache", description: "You have solved the puzzle and entered the magical realm wherein the sage's treasure lies, but you have been decieved by Vsevolod who has turned on you."});
+                    }
+                    else
+                    {
+                        quests.completeQuests.push({name: "The Secret of the Sage's Cache", description: "You have solved the puzzle and entered the magical realm wherein the sage's treasure lies."});
+                    }
+                    player.thengarFaction += 20;
+                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                    {
+                        player.magicalExperience += 300;
+                    }
+                    else
+                    {
+                        player.experience += 1100;
+                    }
+                    player.fame += 1;
+                }
+
+                scenicList.push(new Scenery("returnOrbPortal", 0, 0, 0, 1, [-6341, 3777, "sagesCache"]));
+
+                if (uniqueChars.vsevolodLDS == true && quests.theSecretOfTheSagesCacheQuest == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Vsevolod")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(200, -100, "Soldier", false, "Vsevolod", {race: "Vardan", faction: "loner", con: 7, speed: 1.2, outfit: ["blackMageRobe", 0], weapon: ["drainingI", [9, 4], 0, 200, 3], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, CNX: 200, MR: 19, patrolStops: 1, patrolLoop: false, route:[[50405, -10488]]}));
+                    }
+                }
+
+                if (uniqueChars.aleksiLDS == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "High Magus Aleksi")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-100, 200, "Soldier", false, "High Magus Aleksi", {race: "Cephrite", faction: "loner", con: 9, speed: 1.4, outfit: ["magusRobesM", 0], weapon: ["lightningCorseque", [12, 6], 5, 43, 1.5], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, CNX: 50, MR: 4, patrolStops: 1, patrolLoop: false, route:[[-6313.101891814239, 3687.254470007552]]}));
+                    }
+                }
+
+                ArtificialIntelligenceAccess.push(new Unit(2000, 1000, "AncientBeing", false, "edod"));
+                ArtificialIntelligenceAccess.push(new Unit(4000, -4500, "AncientBeing", false, "ezod"));
+                ArtificialIntelligenceAccess.push(new Unit(0, -5000, "AncientBeing", false, "ezob"));
+                ArtificialIntelligenceAccess.push(new Unit(-1000, 2000, "AncientBeing", true, "elbav"));
+                ArtificialIntelligenceAccess.push(new Unit(6500, 4900, "AncientBeing", true, "evohg"));
+                ArtificialIntelligenceAccess.push(new Unit(-7200, -8100, "AncientBeing", false, "izub"));
+                ArtificialIntelligenceAccess.push(new Unit(3700, 2500, "AncientBeing", false, "izub"));
+                ArtificialIntelligenceAccess.push(new Unit(-6600, 1200, "AncientBeing", true, "izud"));
+
+
+                scenicList.push(new Scenery("skeleton", 2990, 3998, -3/5 * Math.PI, 1.55));
                 if (quests.sagesTrapStash)
                 {
                     quests.sagesTrapStash = false;
-                    //worldItems.push([new Item("oiledArrow", 2051, 6782), 9]);
+                    worldItems.push([new Item("theCorpseRing", 3000, 4000), 1]);
+                    worldItems.push([new Item("summonDemon", 3020, 3980), 1]);
+                    worldItems.push([new Item("surge", 4000, 3990), 1]);
+                    worldItems.push([new Item("powerDraw", 2650, 3760), 1]);
+                    worldItems.push([new Item("theUndyingEdge", 6000, 5000), 1]);
                 }
 
                 change = "sagesTrap";
+            }
+
+            //endless
+            if (X > 11900)
+            {
+                X = -9400;
+            }
+            if (X < -9500)
+            {
+                X = 11800;
+            }
+            if (Y > 11900)
+            {
+                Y = -10650;
+            }
+            if (Y < -10750)
+            {
+                Y = 11800;
             }
         }
     }

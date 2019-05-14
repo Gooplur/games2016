@@ -1220,7 +1220,7 @@ function worldBuilder()
         elevation = -5; //underground temperatures are consistently -1 unless there is a certain closeness to magma...
         region = "sagesTrap";
 
-        outlineBuilder( 20, 20, "Magma", 0, 0);
+        outlineBuilder( 80, 80, "molten", -40, -40);
     }
     else if (map == "lethikCityPrison")
     {

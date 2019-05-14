@@ -2833,6 +2833,825 @@ function interaction(me)
                         }
                     }
 
+                    if (self.ID == "High Magus Aleksi" || conversationID[0] == "Aleksi")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Aleksi";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                if (player.raceName == "Cephrite" && player.title == "Nobility" || player.raceName == "Cephrite" && player.title == "Royalty")
+                                {
+                                    player.dialogueOptions = [["What are you doing here Aleksi!? Your family thinks that you are dead, they have replaced your seat on the council!", false, "a"], ["Step aside High Magus Aleksi, I wish to open the portal.", false, "b"]];
+                                }
+                                else
+                                {
+                                    player.dialogueOptions = [["Who are you and what are you doing here?", false, "c"], ["What an unseemly manner to wait here in the dark alone...", false, "d"], ["Step aside mage!", false, "e"]];
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            if (player.gender == "Female")
+                            {
+                                setMsg("My sweet lady... I know not what brings you here inquiring after me... but you must leave this place at once! These ancient and dirty ruins are no place for a noble lady such as yourself!");
+                            }
+                            else
+                            {
+                                setMsg("I am touched that you have missed me, " + player.name + ", but I care not about the monotonous politics of Cephrite. I am on a quest for power. Dare you not get in my way, or you will face dire consequences...");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            if (player.gender == "Female")
+                            {
+                                setMsg("How dare you try to command me, woman! You forget yourself! Leave now, before I react to your insolence in a manner I would regret!");
+                            }
+                            else
+                            {
+                                setMsg("You dare challenge me!? You will regret this...");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                if (player.gender != "Female")
+                                {
+                                    self.disturbed = true;
+                                }
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            setMsg("I am High Magus Aleksi of the Cephrian Council and I am here on business of my own that ought not concern you. Now leave me!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            setMsg("What an unseemly manner to approach a man in the dark while naming his manner unseemly...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            //text dialogue
+                            setMsg("You are my inferior, and as such I will may you pay for trying to give me orders! You will die painfully you insolent cretin!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                self.disturbed = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Vsevolod" || conversationID[0] == "Vsevolod")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Vsevolod";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [];
+                                if (quests.theSecretOfTheSagesCacheQuest == true)
+                                {
+                                    player.dialogueOptions.push(["What now?", false, "e"]);
+                                    if (uniqueChars.aleksiLDS == true)
+                                    {
+                                        player.dialogueOptions.push(["There is somebody else in the room with the portal... They look to be a mage.", false, "f"]);
+                                    }
+                                }
+                                else
+                                {
+                                    player.dialogueOptions.push(["Good day.", false, "c"], ["How long will you be staying in Lethik?", false, "d"]);
+                                }
+
+                                if (quests.thePlightOfLethikQuest == true)
+                                {
+                                    if (quests.thePlightOfLethikVardan == true)
+                                    {
+                                        player.dialogueOptions.push(["You are accused of using dark magics to corrupt Axel's field! How do you plead!?", false, "a"], ["What are you doing in lethik!?", false, "b"])
+                                    }
+                                }
+
+                                if (quests.theSecretOfTheSagesCacheGarldSaved == true)
+                                {
+                                    player.dialogueOptions.unshift(["About your offer...", false, "g"]);
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "f")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0f";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "g")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0g";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            if (player.raceName != "Vardan" && player.raceName != "Thengar")
+                            {
+                                setMsg("I cursed the field so that these inbreds could have just the slightest taste of what my people in Vardania have been suffering through, but these ignorant idiots don't seem to get the message...");
+                            }
+                            if (player.raceName != "Vardan")
+                            {
+                                setMsg("I cursed the field so that you inbreds could have just the slightest taste of what my people in Vardania have been suffering through without any support from your kingdom, but you ignorant idiots don't seem to get the message...");
+                            }
+                            else
+                            {
+                                setMsg("I cursed the field so that these inbreds could have just the slightest taste of what our people in Vardania have been suffering through, but these ignorant idiots don't seem to get the message...");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.thePlightOfLethikVardan = "accused";
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            setMsg("I am resting, I need a place to settle down and think before continuing with my travels.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            setMsg("Yes, yes, I am busy, I have no time for such frivolous formalities as greetings. Now, if you are any good at riddles you may be useful to me yet.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 2;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            setMsg("I will be staying here until I figure out the next steps to obtain my goal. I am presently trying to solve a rather difficult riddle, if you are any good at riddles I would much appreciate your help.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 2;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            //text dialogue
+                            setMsg("You have to solve the sage's puzzle so that we can access his cache of magics and treasures. In my investigations of this place I have found that there are three buttons throughout the dungeon, a magical combination lock, and in the next room there should be the portal. You will need to use the memory orb to unlock it after the other puzzles have been solved.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0f")
+                        {
+                            //text dialogue
+                            setMsg("I knew it! It was only a matter of time until others sought the magical treasures of this place... We may have to get our hands dirty if we want to claim the treasure for ourselves.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0g")
+                        {
+                            //text dialogue
+                            setMsg("Have you reconsidered my proposed partnership then? Will you solve the riddle stored within the sage's memories?");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 3;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 1)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["You will be brought to trial for using magics for evil means!", false, "a"], ["You are much too forthcoming with your admission of guilt... what drives the truth from you so.", false, "c"], ["Cursing peoples fields will not bring anybody to see things your way, it will only drive them to hatred of you...", false, "d"], ["Good on you!", false, "e"]];
+                                if (player.raceName == "Thengar")
+                                {
+                                    player.dialogueOptions.unshift(["Vardania's war is petty, it is your people who are idiots. Here in Thengaria we bring criminals like you to justice. Come with me to face your judgement or die!", false, "b"]);
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1e";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1a")
+                        {
+                            //text dialogue
+                            setMsg("You will not be bringing me anywhere.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                self.disturbed = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1b")
+                        {
+                            //text dialogue
+                            setMsg("Those are bold words for a dead man...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                self.disturbed = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1c")
+                        {
+                            //text dialogue
+                            setMsg("Its simple really, I highly doubt anybody in Lethik can do anything about it, so I do not really care who knows.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1d")
+                        {
+                            //text dialogue
+                            setMsg("Yes, yes, that is true, it was more for me than anything else... I can not stand the sight of people living with a bounty of resouces whilst my people suffer through famine, disease, and starvation. Humans are inherently greedy, I do not expect this to change. I am retribution. It is up to me to make people suffer for their ways, for nobody else will lift a hand against this evil human nature.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1e")
+                        {
+                            //text dialogue
+                            setMsg("I'm glad to see that at least someone appreciates a good dose of karma.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 2)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["A riddle? Do go on...", false, "a"], ["What do I get out of helping you solve this riddle?", false, "b"], ["You're talking to the wrong person... I hate riddles!", false, "c"], ["Why do you want to solve this riddle in the first place?", false, "d"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "2a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "2b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "2c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "2d";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "2a")
+                        {
+                            //text dialogue
+                            setMsg("I am seeking a cache of magical treasures that are hidden in an ancient fort sunken deep in the craglands. The problem is that the sage who hid these treasures greedily locked them behind complex magical puzzles. The answer to the riddle that he has hidden in his memories somewhere should help me learn how to access the hidden magics. If you take a look into this sage's memories and help me solve the riddle that holds the key to the magical puzzle I will let you have some of the magical treasures hidden in the cache.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 3;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "2b")
+                        {
+                            //text dialogue
+                            setMsg("If you help me solve this riddle I will share with you a portion of the magical treasures that I am after. There is a fort lost to time, drowned in the rocky land of the crags. There within is a magical puzzle that a greedy sage who hoarded magics but did not use them used to lock them away so that nobody could ever benefit from the magics. If you take a look into this sage's memories and help me solve the riddle that holds the key to the magical puzzle those treasures can be ours to share with the world!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 3;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "2c")
+                        {
+                            //text dialogue
+                            setMsg("[laughs gruffly] Then I have no use for you at all!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "2d")
+                        {
+                            //text dialogue
+                            setMsg("I am seeking a cache of magical treasures that were locked away by a dastardly sage who greedily wished to keep the magics away from the world. He built an elaborate magical puzzle to keep them locked away that lies in the depths of an ancient fort in the crags. The only way to solve this puzzle is to solve a riddle that lies in the memory of the sage. If you take a look into the memories and help me solve the riddle that is the key to the puzzle then I will share a portion of the magical treasures I find with you.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 3;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 3)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["I will help you with your riddle.", false, "a"], ["Then we will be partners! I will help you with your riddle and we we share the hidden treasures.", false, "a"], ["No thank you.", false, "b"], ["No.", false, "b"], ["I'm afraid I must decline your offer.", false, "b"], ["Now that you have told me all of this, what is to keep me doing this all myself?", "c"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "3a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "3b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "3c";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "3a")
+                        {
+                            //text dialogue
+                            setMsg("Excellent, I will meet you in the ancient fort in the crags... when you have solved the riddle come to me and we will solve the magical puzzle.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.theSecretOfTheSagesCacheQuest = true;
+                                quests.activeQuests.push({name: "The Secret of the Sage's Cache", description: "A sage has locked away magics in an ancient fort in the crags. Look into the sage's memories and solve the riddle to unlock the magical puzzle guarding the treasures."});
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                                player.blinded = true;
+                                player.blindedStoreTime = new Date().getTime();
+                                player.blindedTime = 1;
+                                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                                {
+                                    if (ArtificialIntelligenceAccess[i].ID == "Vsevolod")
+                                    {
+                                        ArtificialIntelligenceAccess.splice(i, 1);
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "3b")
+                        {
+                            //text dialogue
+                            setMsg("If you change your mind I will be here.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.theSecretOfTheSagesCacheGarldSaved = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "3c")
+                        {
+                            //text dialogue
+                            setMsg("Because you have not the memories of the sage! You will have to slay me to get them, and I am no easy foe!!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                self.disturbed = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
                     if (self.ID == "Mesek the Runaway" || conversationID[0] == "Mesek")
                     {
                         lowBar = "dialogue";
@@ -24804,6 +25623,7 @@ function interaction(me)
                             {
                                 msgReset();
 
+                                quests.thePlightOfLethikVardan = true;
                                 playersTurnToSpeak = true;
                                 player.dialoguePosition = 0;
                                 conversationID[1] = 0;

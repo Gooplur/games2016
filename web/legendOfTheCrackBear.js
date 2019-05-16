@@ -38,19 +38,15 @@
 //todo add muscles (shellfish) as a scenery object that stick out their tongues intermitently when in water, but also add a cooked form
 
 //Lethik Patch
-//todo finish lost memories quest
-//todo finish the witch quest
-//todo finish the beer money quest, (add the characters he mentions to collect money from)
 //todo add a bountyhunt quest that the captain gives (if he is still alive of course)
 //todo make Lethik city property purchasable at the bank.
-//todo extend the thengan forest
 //todo add hops and the red flower from 'freeverse' IMG
 //todo add the strange light greenish plant from 'nognog' IMG
 //todo add slop from  'theng' IMG for Vardanian the fegils as pre-chewed food stuff
+//todo add dialogue for all of the characters in the estate to the south (including player child)
 
 //Cephrian/Jungle Update
 //todo piranha fish swarm (water creature) [Only attacks the player if not in a boat]
-//todo add blue water berries that dmitri made a while ago (from crackAssets)
 //todo add a cephrian city directly to the south of the jungle map "Holuim City" (a town bustling with tropical market places and various magic venders)
 //todo add the 'air staff' from Theng img sheet
 //todo add weaken spell
@@ -73,7 +69,7 @@
 
 //Vardania Update
 //todo add a boggy vardanian hamlet to the far south west of Cranheim
-//todo add a vardanian city to the south west of the hamlet
+//todo add a vardanian city to the south west of the hamlet - Morrow City
 
 
 //Eschuttes Update
@@ -98,14 +94,12 @@
 //todo add hangover, and soarness effects as well as their mini notices.
 //todo add a rest without bed button on the UI that uses a homemade confirm popup to ask if you are sure you want to sleep. Add the nappy closed eye for the sleepButton. (it's on poly)
 //todo add lv 25 = side-jumping (more levels slightly increase the time before the enemy reacts to your new position)
-//todo add mage boss who uses the electric spear as well as magical shielding spell he uses. (High Magus Aleksi of the Cephrian Council - he is an aetheistic powerhungry  mage-surpremacist that is gallavanting about the north in search of ancient magics)
 //todo add throwing stars for the orgel
 //todo add grenades and smoke bombs
 //todo make alpha Olkrin's death animation line up slightly more.
 //todo add options menu with button: it will allow you to toggle certain settings like mouse combat mode, game coordinates, and other such features.
 //todo Add harsh hot weather conditions: deserts cause faster dehydration. (base the effect on elevation variable)
 //todo add unique fairytails for each faction
-//todo add Yaihef berry bush (look up how they are actually spelled first) from 'crackAssets' IMG
 //todo add Cymothoa Exigua - tongue eating louse IRL (make a parasitic grub that sucks the players tongue dry and replaces it with itself) reduces hunger gain from all foods eaten [consider making it something that can be cured in a pre-mature stage]
 //todo unconscious system for humans? punching and stuff?
 
@@ -1557,6 +1551,18 @@ function sticPack()
     window.stic = stic;
 
     stic.onload = function()
+    {
+        florasPack();
+    };
+}
+
+function florasPack()
+{
+    var floras = new Image();
+    floras.src = ("images/floras.png");
+    window.floras = floras;
+
+    floras.onload = function()
     {
         cypherPack();
     };
@@ -3890,6 +3896,17 @@ function theLegend()
     allWeapons.push(new Item("vardanianCrossbow"));//84
     allWeapons.push(new Item("ironBolt"));//85
     allWeapons.push(new Item("venandi"));//86
+    allWeapons.push(new Item("serratedNechroviteGreatBlade"));//87
+    allWeapons.push(new Item("cephrianFlail"));//88
+    allWeapons.push(new Item("vardanSword"));//89
+    allWeapons.push(new Item("longHammer"));//90
+    allWeapons.push(new Item("zetianWarPick"));//91
+    allWeapons.push(new Item("vardanGreatSword"));//92
+    allWeapons.push(new Item("vardanDagger"));//93
+    allWeapons.push(new Item("shortSword"));//94
+    allWeapons.push(new Item("silverDagger"));//95
+    allWeapons.push(new Item("thorn"));//96
+
 
 
 
@@ -4031,6 +4048,8 @@ function theLegend()
     allWorn.push(new Item("wolthgarPlateArmour", false)); //133
     allWorn.push(new Item("magusRobesF", false)); //134
     allWorn.push(new Item("magusRobesM", false)); //135
+    allWorn.push(new Item("thenganBascinetArmour", false)); //136
+    allWorn.push(new Item("alitkaArmour", false)); //137
 
     scenicList = [];
 
@@ -4300,6 +4319,9 @@ function theLegend()
     foods.push(new Item("silterMeat", false));
     foods.push(new Item("korskBeetleMeat", false));
     foods.push(new Item("friedSilterEggs", false));
+    foods.push(new Item("smokedHydraHeart", false));
+    foods.push(new Item("roastedHydraHeart", false));
+    foods.push(new Item("wheatBread", false));
 
 //Tailoring (Items crafted at a weaving, sewing, dying, etc. tailor's work bench thing)
     tailoring = [];
@@ -4397,6 +4419,8 @@ function theLegend()
     tailoring.push(new Item("jungleHunterOutfit", false));
     tailoring.push(new Item("pyromothSilk", false));
     tailoring.push(new Item("pyromothSilkRobe", false));
+    tailoring.push(new Item("magusRobesM", false));
+    tailoring.push(new Item("magusRobesF", false));
 
 //Jewelry (Items crafted at a jewler's station, rings, necklaces, cutting gems, glassblowing etc.)
     jewelry = [];
@@ -4488,6 +4512,9 @@ function theLegend()
     brewing.push(new Item("caskOfErguerWine", false));
     brewing.push(new Item("caskOfChyoulWine", false));
     brewing.push(new Item("caskOfCranberryWine", false));
+    brewing.push(new Item("barrelOfWheatBeer", false));
+    brewing.push(new Item("barrelOfCider", false));
+    brewing.push(new Item("barrelOfGin", false));
 
 //Forge
     forge = [];
@@ -4612,6 +4639,17 @@ function theLegend()
     handcrafted.push(new Item("jarOfSonjaSap", false));
     handcrafted.push(new Item("sonjaPuree", false));
     handcrafted.push(new Item("spicedSonjaPuree", false));
+    handcrafted.push(new Item("cupOfFungicideTincture", false));
+    handcrafted.push(new Item("wheatBeer", false));
+    handcrafted.push(new Item("gin", false));
+    handcrafted.push(new Item("cider", false));
+    handcrafted.push(new Item("glassBottleOfGin", false));
+    handcrafted.push(new Item("glassBottleOfCider", false));
+    handcrafted.push(new Item("wheatFlour", false));
+    handcrafted.push(new Item("wheatDough", false));
+    handcrafted.push(new Item("butteredWheatBread", false));
+    handcrafted.push(new Item("velWheatBread", false));
+    handcrafted.push(new Item("borshtWheatBread", false));
     handcrafted.push(new Item("cupOfFungicideTincture", false));
 
     //Activate Important Game Functions Here:

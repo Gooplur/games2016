@@ -134,14 +134,9 @@ function buildMaster()
                 //ArtificialIntelligenceAccess.push(new Unit(4000, 2300, "Hydra", false, "Hercules"));
                 //ArtificialIntelligenceAccess.push(new Unit(3900, 2900, "Mimic", false, "Mimmi"));
                 //scenicList.push(new Scenery("door", 3346, 2506, -1/2 * Math.PI, 3, [true, "abc"]));
-
-                //scenicList.push(new Scenery("magicButton", 3300, 2600, 0, "magesCache", 3));
-                //scenicList.push(new Scenery("magicButton", 3390, 2600, 0, "magesCache", 2));
-                //scenicList.push(new Scenery("magicButton", 3480, 2600, 0, "magesCache", 1));
-                //scenicList.push(new Scenery("magicLock", 3280, 2435, 0, "magesCache"));
-                ////scenicList.push(new Scenery("magicSpinnerLock", 3000, 2400, 0, [15, 30, 10, "magicSpinnerA"], 0.5));
-                //scenicList.push(new Scenery("magicOrbPortal", 3300, 2000, 0, "magesCache", [2000, 1000, "world"]));
-                //scenicList.push(new Scenery("returnOrbPortal", 2000, 1000, 0, 1, [3300, 2000, "world"]));
+                //scenicList.push(new Scenery("appleTree", 3002.861389777469, 2550.1841011505403, 6, true));
+                //scenicList.push(new Scenery("ogoTree", 4202.861389777469, 2700.2841011505403, 6, true));
+                //scenicList.push(new Scenery("greatPineTree", 3791.380634648301, 2587.5857670519786, 3.0663822932121048, 8.646700282896546, "snowy"));
 
                 //scenicList.push(new Scenery("dethMasterHut", 3600, 2500, 0, 0, "deth1"));
                 //scenicList.push(new Scenery("dethTotem", 3600, 3400, 0, 0, "deth1"));

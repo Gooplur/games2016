@@ -196,3 +196,5 @@ magicButton - A magical button that can be pressed and which in some magical puz
 magicOrbPortal - A magical portal that only functions when the appropriate orb key is placed upon it. //scenicList.push(new Scenery("magicOrbPortal", 3300, 2000, 0, "magesCache", [2000, 1000, "world"]));
 returnOrbPortal - The other side of the magicOrbPortal, it allows you to get back from where ever the portal sent you. //scenicList.push(new Scenery("returnOrbPortal", 2000, 1000, 0, 1, [3300, 2000, "world"]));
 door - a wooden door that opens and closes when you double click it. longevity determines colour (0-3), information[0] determines locked status (true = locked, false = unlocked, "broken" = knocked down), information[1] specifies a key ID to open it with a key //scenicList.push(new Scenery("door", 3346, 2506, -1/2 * Math.PI, 3, [true, "abc"]));
+hydraTrophy - the mounted head of a hydra
+elkTrophy - the mounted head of an elk

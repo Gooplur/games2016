@@ -6,8 +6,8 @@ function cheats()
 {
     if (buildMode == true)
     {
-        var buildList = ["coords", "Selva Tree", "Sonja Tree", "Gallosh Plant", "Vorlym Plant", "Thueg Unit", "Conejo", "Boulchom"];
-        //                  0           1              2               3                4             5           6         7
+        var buildList = ["coords", "Selva Tree", "Sonja Tree", "Gallosh Plant", "Vorlym Plant", "Thueg Unit", "Conejo", "Boulchom", "Great Pine Tree", "Pine Tree", "Snowy Great Pine Tree", "Snowy Pine Tree"];
+        //                  0           1              2               3                4             5           6         7               8               9                  10                    11
         if (tKey)
         {
             tKey = false;
@@ -206,6 +206,78 @@ function cheats()
                 XXX.save();
                 XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
                 XXX.drawImage(nognog, 159, 194, 46, 42, -1/2 * 46 * 2, -1/2 * 42 * 2, 46 * 2, 42 * 2);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 8)
+        {
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("greatPineTree", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', ' + (5 + 4 * Math.random()) + '));');
+                worldItems.push([new Item("treeMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(verse, 3783, 317, 79, 71, -(1/2 * 79 * 8), -(1/2 * 71 * 8), 79 * 8, 71 * 8);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 9)
+        {
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("pineTree", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', true));');
+                worldItems.push([new Item("treeMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(verse, 3783, 317, 79, 71, -(1/2 * 79 * 4.5), -(1/2 * 71 * 4.5), 79 * 4.5, 71 * 4.5);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 10)
+        {
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("greatPineTree", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', ' + (5 + 4 * Math.random()) + ', "snowy"));');
+                worldItems.push([new Item("treeMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(folw, 19, 315, 82, 79, -(1/2 * 82 * 8), -(1/2 * 79 * 8), 82 * 8, 79 * 8);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 11)
+        {
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("pineTree", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', true, "snowy"));');
+                worldItems.push([new Item("treeMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(folw, 19, 315, 82, 79, -(1/2 * 82 * 4.5), -(1/2 * 79 * 4.5), 82 * 4.5, 79 * 4.5);
                 XXX.restore();
             }
         }

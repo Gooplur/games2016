@@ -31,6 +31,10 @@ Laicaum - A grey leafy bush that hosts plump black coloured berries; the berries
 Danzig - A black fern plant that grows in Vardania.
 Mekle - A small green bush that grows in Vardania. It has a rapid growth rate... (when picked it grows back soon after)
 Yaihef - A jungle bush that yields thirst quenching light blue berries
+GreatPineTree - A large variety of pine tree that grows in Thengaria, and in some parts of the North (set information to "snowy" to make it a snow covered tree) (use longevity to adjust its size: 5min - 9max)
+OgoTree - A tropical tree that bears energizing ogo fruits
+AppleTree - A temperate tree that yields apples; apple trees grow almost exclusively in Thengaria
+Wheat - A tropical/temperate grass that yields a wholesome grain that can be milled into bread or fermented.
 
 //ALREADY IN GAME (to create a plant with the scenery class these plants must be made all lowercase)
     //FARM

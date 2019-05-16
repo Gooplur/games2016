@@ -7024,6 +7024,14 @@ function Adventurer()
         {
             outfit = allWorn[135];
         }
+        else if (this.outfitEquipped == "thenganBascinetArmour")
+        {
+            outfit = allWorn[136];
+        }
+        else if (this.outfitEquipped == "alitkaArmour")
+        {
+            outfit = allWorn[137];
+        }
         else
         {
             outfit = allWorn[0];
@@ -7273,6 +7281,32 @@ function Adventurer()
                 XXX.globalAlpha = 0.4;
             }
             XXX.drawImage(cypher, 746, 812, 56, 51, -(1 / 2 * 56 * 1) + 2, -(1 / 2 * 51 * 1) - 0, 56 * 1, 51 * 1);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "alitkaArmour")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(floras, 623, 64, 34, 39, -(1 / 2 * 34 * 1.3) + 0, -(1 / 2 * 39 * 1.3) - 0, 34 * 1.3, 39 * 1.3);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "thenganBascinetArmour")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(floras, 663, 64, 34, 39, -(1 / 2 * 34 * 1.3) + 0, -(1 / 2 * 39 * 1.3) - 0, 34 * 1.3, 39 * 1.3);
             XXX.restore();
         }
         else if (this.outfitEquipped == "greatPlateArmour")
@@ -9249,7 +9283,7 @@ function Adventurer()
                     {
                         if (bothwaysBool == false) // if the animation is one way it ends here...
                         {
-                            if (this.weaponEquipped != "flail" && this.weaponEquipped != "vardanianHalberd" && this.weaponEquipped != "aldrekiiClaws" && this.weaponEquipped != "theUndyingEdge" && this.weaponEquipped != "cero" && this.weaponEquipped != "werewolf" && this.weaponEquipped != "vampire")
+                            if (this.weaponEquipped != "flail" && this.weaponEquipped != "vardanianHalberd" && this.weaponEquipped != "aldrekiiClaws" && this.weaponEquipped != "theUndyingEdge" && this.weaponEquipped != "cero" && this.weaponEquipped != "werewolf" && this.weaponEquipped != "vampire" && this.weaponEquipped != "cephrianFlail")
                             {
                                 self.finalAttackStage = true;
                                 self.attackCooldown = new Date().getTime();
@@ -9261,7 +9295,7 @@ function Adventurer()
                         }
                         else if (bothwaysBool == true) //but if it is two directional it swings back to frame zero.
                         {
-                            if (this.weaponEquipped != "flail" && this.weaponEquipped != "vardanianHalberd" && this.weaponEquipped != "aldrekiiClaws" && this.weaponEquipped != "theUndyingEdge" && this.weaponEquipped != "cero" && this.weaponEquipped != "werewolf" && this.weaponEquipped != "vampire")
+                            if (this.weaponEquipped != "flail" && this.weaponEquipped != "vardanianHalberd" && this.weaponEquipped != "aldrekiiClaws" && this.weaponEquipped != "theUndyingEdge" && this.weaponEquipped != "cero" && this.weaponEquipped != "werewolf" && this.weaponEquipped != "vampire" && this.weaponEquipped != "cephrianFlail")
                             {
                                 if (this.frameOrder == "positive")
                                 {
@@ -15048,6 +15082,612 @@ function Adventurer()
                     XXX.globalAlpha = 0.4;
                 }
                 XXX.drawImage(polyPNG, 520, 59, 105, 69, -28, -43, 72, 47);
+                XXX.restore();
+            }
+        }
+        //THORN
+        if (this.weaponEquipped == "thorn")
+        {
+            this.stageEngine(6, 0.12, true); //This cycles through the stages of the attack for four stages (ending at five) and at a rate of 4 * 16.75 miliseconds
+
+            //ATTACK ANIMATION
+            if (Math.floor(this.stage) <= 0)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(floras, 29, 275, 159, 154, -1/2 * 159 * 1.1, -1/2 * 154 * 1.1, 159 * 1.1, 154 * 1.1);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 1)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(floras, 197, 280, 159, 154, -1/2 * 159 * 1.1, -1/2 * 154 * 1.1, 159 * 1.1, 154 * 1.1);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 2)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(floras, 391, 286, 159, 154, -1/2 * 159 * 1.1, -1/2 * 154 * 1.1, 159 * 1.1, 154 * 1.1);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(floras, 577, 259, 159, 154, -1/2 * 159 * 1.1, -1/2 * 154 * 1.1 - 24, 159 * 1.1, 154 * 1.1);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) >= 4)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(floras, 771, 262, 159, 154, -1/2 * 159 * 1.1, -1/2 * 154 * 1.1 - 7, 159 * 1.1, 154 * 1.1);
+                XXX.restore();
+            }
+        }
+        //SERRATED NECHROVITE GREAT BLADE
+        if (this.weaponEquipped == "serratedNechroviteGreatBlade")
+        {
+            this.stageEngine(6, 0.15, true);
+
+            //ATTACK ANIMATION
+            if (Math.floor(this.stage) <= 0)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(cypher, 22, 804, 145, 179, -1/2 * 145, -1/2 * 179, 145, 179);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 1)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(cypher, 174, 803, 145, 179, -1/2 * 145, -1/2 * 179, 145, 179);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 2)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(cypher, 312, 801, 145, 179, -1/2 * 145, -1/2 * 179, 145, 179);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(cypher, 449, 800, 145, 179, -1/2 * 145, -1/2 * 179, 145, 179);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) >= 4)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(cypher, 582, 796, 145, 179, -1/2 * 145, -1/2 * 179, 145, 179);
+                XXX.restore();
+            }
+        }
+        //CEPHRIAN FLAIL
+        if (this.weaponEquipped == "cephrianFlail")
+        {
+            this.stageEngine(4, 0.14, false);
+
+            //ATTACK ANIMATION
+            if (Math.floor(this.stage) <= 0)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(cypher, 368, 409, 104, 109, -1/2 * 104, -1/2 * 109, 104, 109);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 1)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(cypher, 452, 412, 104, 109, -1/2 * 104, -1/2 * 109, 104, 109);
+                XXX.restore();
+                this.attackManual = false;
+            }
+            else if (Math.floor(this.stage) <= 2)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(cypher, 536, 413, 104, 109, -1/2 * 104, -1/2 * 109, 104, 109);
+                XXX.restore();
+                if (this.attackManual == false)
+                {
+                    this.attackManual = true;
+                    this.finalAttackStage = true;
+                    this.attackCooldown = new Date().getTime();
+                }
+            }
+            else if (Math.floor(this.stage) >= 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(cypher, 614, 415, 104, 109, -1/2 * 104, -1/2 * 109, 104, 109);
+                XXX.restore();
+            }
+        }
+        //VARDANIAN SWORD
+        if (this.weaponEquipped == "vardanSword")
+        {
+            this.stageEngine(4, 0.10, true);
+
+            //ATTACK ANIMATION
+            if (Math.floor(this.stage) <= 0)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(cypher, 25, 607, 102, 91, -1/2 * 102, -1/2 * 91, 102, 91);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 1)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(cypher, 119, 569, 61, 169, -1/2 * 61, -1/2 * 169, 61, 169);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) >= 2)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(cypher, 198, 566, 61, 169, -1/2 * 61, -1/2 * 169, 61, 169);
+                XXX.restore();
+            }
+        }
+        //LONG HAMMER
+        if (this.weaponEquipped == "longHammer")
+        {
+            this.stageEngine(7, 0.19, true);
+
+            //ATTACK ANIMATION
+            if (Math.floor(this.stage) <= 0)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(cypher, 381, 546, 121, 86, -1/2 * 121, -1/2 * 86, 121, 86);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 1)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(cypher, 510, 545, 121, 86, -1/2 * 121, -1/2 * 86, 121, 86);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 2)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(cypher, 654, 531, 121, 105, -1/2 * 121, -1/2 * 105 -4, 121, 105);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(cypher, 377, 630, 121, 174, -1/2 * 121, -1/2 * 174, 121, 174);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 4)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(cypher, 515, 631, 121, 174, -1/2 * 121, -1/2 * 174, 121, 174);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) >= 5)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(cypher, 656, 634, 121, 174, -1/2 * 121, -1/2 * 174 + 1, 121, 174);
+                XXX.restore();
+            }
+        }
+        //ZETIAN WAR PICK
+        if (this.weaponEquipped == "zetianWarPick")
+        {
+            this.stageEngine(5, 0.18, true);
+
+            //ATTACK ANIMATION
+            if (Math.floor(this.stage) <= 0)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(ion, 1585, 29, 104, 75, -1/2 * 104, -1/2 * 75 - 3, 104, 75);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 1)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(ion, 1602, 103, 76, 95, -1/2 * 76, -1/2 * 95 - 4, 76, 95);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 2)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(ion, 1713, 3, 73, 103, -1/2 * 73 - 1, -1/2 * 103 - 19, 73, 103);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) >= 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(ion, 1713, 106, 76, 95, -1/2 * 76, -1/2 * 95 - 3, 76, 95);
+                XXX.restore();
+            }
+        }
+        //VARDANIAN BASTARD SWORD
+        if (this.weaponEquipped == "vardanGreatSword")
+        {
+            this.stageEngine(6, 0.14, true);
+
+            //ATTACK ANIMATION
+            if (Math.floor(this.stage) <= 0)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(ion, 1707, 189, 112, 90, -1/2 * 112, -1/2 * 90 - 16, 112, 90);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 1)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(ion, 1709, 268, 121, 90, -1/2 * 121, -1/2 * 90 - 38, 121, 90);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 2)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(ion, 1713, 363, 121, 106, -1/2 * 121, -1/2 * 106 - 46, 121, 106);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(ion, 1720, 492, 121, 117, -1/2 * 121, -1/2 * 117 - 43, 121, 117);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) >= 4)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(ion, 1717, 620, 121, 117, -1/2 * 121, -1/2 * 117 - 33, 121, 117);
+                XXX.restore();
+            }
+        }
+        //VARDANIAN DAGGER
+        if (this.weaponEquipped == "vardanDagger")
+        {
+            this.stageEngine(5, 0.16, true);
+
+            //ATTACK ANIMATION
+            if (Math.floor(this.stage) <= 0)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(ion, 1649, 363, 71, 102, -1/2 * 71, -1/2 * 102, 71, 102);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 1)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(ion, 1653, 448, 71, 102, -1/2 * 71, -1/2 * 102 - 11, 71, 102);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 2)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(ion, 1655, 548, 71, 102, -1/2 * 71, -1/2 * 102 - 4, 71, 102);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) >= 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(ion, 1658, 648, 71, 102, -1/2 * 71, -1/2 * 102 - 7, 71, 102);
+                XXX.restore();
+            }
+        }
+        //SHORT SWORD
+        if (this.weaponEquipped == "shortSword")
+        {
+            var szx = 0.8;
+            this.stageEngine(5, 0.14, true);
+
+            //ATTACK ANIMATION
+            if (Math.floor(this.stage) <= 0)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(tomb, 829, 380, 125, 162, -1/2 * 125 * szx - 0.75, -1/2 * 162 * szx, 125 * szx, 162 * szx);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 1)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(tomb, 962, 381, 125, 162, -1/2 * 125, -1/2 * 162, 125, 162);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 2)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(tomb, 1082, 378, 125, 162, -1/2 * 125, -1/2 * 162, 125, 162);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) >= 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(tomb, 1218, 383, 125, 162, -1/2 * 125 - 1, -1/2 * 162 + 0.75, 125, 162);
+                XXX.restore();
+            }
+        }
+        //SILVER DAGGER
+        if (this.weaponEquipped == "silverDagger")
+        {
+            this.stageEngine(5, 0.21, true);
+
+            //ATTACK ANIMATION
+            if (Math.floor(this.stage) <= 0)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(folw, 53, 476, 89, 130, -1/2 * 89, -1/2 * 130, 89, 130);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 1)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(folw, 143, 474, 89, 130, -1/2 * 89, -1/2 * 130, 89, 130);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 2)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(folw, 259, 473, 89, 130, -1/2 * 89, -1/2 * 130, 89, 130);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) >= 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(folw, 370, 473, 89, 130, -1/2 * 89, -1/2 * 130, 89, 130);
                 XXX.restore();
             }
         }
@@ -22429,6 +23069,86 @@ function Adventurer()
             //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
             this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.5 / 5 * Math.PI) * (this.mySize + 11);
             this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.5 / 5 * Math.PI) * (this.mySize + 11);
+        }
+        else if (this.weaponEquipped == "serratedNechroviteGreatBlade")
+        {
+            this.weapon = allWeapons[87];
+
+            //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+            this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.4 / 5 * Math.PI) * (this.mySize + 32);
+            this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.4 / 5 * Math.PI) * (this.mySize + 32);
+        }
+        else if (this.weaponEquipped == "cephrianFlail")
+        {
+            this.weapon = allWeapons[88];
+
+            //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+            this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.3 / 5 * Math.PI) * (this.mySize + 28);
+            this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.3 / 5 * Math.PI) * (this.mySize + 28);
+        }
+        else if (this.weaponEquipped == "vardanSword")
+        {
+            this.weapon = allWeapons[89];
+
+            //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+            this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.5 / 5 * Math.PI) * (this.mySize + 37);
+            this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.5 / 5 * Math.PI) * (this.mySize + 37);
+        }
+        else if (this.weaponEquipped == "longHammer")
+        {
+            this.weapon = allWeapons[90];
+
+            //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+            this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.7 / 5 * Math.PI) * (this.mySize + 66);
+            this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.7 / 5 * Math.PI) * (this.mySize + 66);
+        }
+        else if (this.weaponEquipped == "zetianWarPick")
+        {
+            this.weapon = allWeapons[91];
+
+            //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+            this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.8 / 5 * Math.PI) * (this.mySize + 45);
+            this.bubbleOfDamageY = Y - Math.sin(this.rotation - 4 / 5 * Math.PI) * (this.mySize + 45);
+        }
+        else if (this.weaponEquipped == "vardanGreatSword")
+        {
+            this.weapon = allWeapons[92];
+
+            //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+            this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.5 / 5 * Math.PI) * (this.mySize + 41);
+            this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.5 / 5 * Math.PI) * (this.mySize + 41);
+        }
+        else if (this.weaponEquipped == "vardanDagger")
+        {
+            this.weapon = allWeapons[93];
+
+            //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+            this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.55 / 5 * Math.PI) * (this.mySize + 39);
+            this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.55 / 5 * Math.PI) * (this.mySize + 39);
+        }
+        else if (this.weaponEquipped == "shortSword")
+        {
+            this.weapon = allWeapons[94];
+
+            //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+            this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.5 / 5 * Math.PI) * (this.mySize + 50);
+            this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.5 / 5 * Math.PI) * (this.mySize + 50);
+        }
+        else if (this.weaponEquipped == "silverDagger")
+        {
+            this.weapon = allWeapons[95];
+
+            //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+            this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.75 / 5 * Math.PI) * (this.mySize + 36);
+            this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.75 / 5 * Math.PI) * (this.mySize + 36);
+        }
+        else if (this.weaponEquipped == "thorn")
+        {
+            this.weapon = allWeapons[96];
+
+            //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+            this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.25 / 5 * Math.PI) * (this.mySize + 33);
+            this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.25 / 5 * Math.PI) * (this.mySize + 33);
         }
     };
 

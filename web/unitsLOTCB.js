@@ -31987,7 +31987,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
         }
         //HYDRA
-        if (this.type == "Hydra")
+        if (this.type == "Hydra") //hydrahydra
         {
             //Set Drops and experience
             if (this.heads == 1)

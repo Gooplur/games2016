@@ -198,3 +198,6 @@ returnOrbPortal - The other side of the magicOrbPortal, it allows you to get bac
 door - a wooden door that opens and closes when you double click it. longevity determines colour (0-3), information[0] determines locked status (true = locked, false = unlocked, "broken" = knocked down), information[1] specifies a key ID to open it with a key //scenicList.push(new Scenery("door", 3346, 2506, -1/2 * Math.PI, 3, [true, "abc"]));
 hydraTrophy - the mounted head of a hydra
 elkTrophy - the mounted head of an elk
+thenganTray - A wooden tray off of which Thengans eat food
+thenganTemperateFishingSpot - A fishing spot that hosts 5 different Thengan fish
+thenganSewerFishingSpot - A fishing spot in a thengan sewer

@@ -8,43 +8,46 @@ var singleAuto = false;
 var doBARSave = false;
 function autosave()
 {
-    //Downloadsave
-    if (keyBAR == true)
+    if (saveLock == false)
     {
-        doBARSave = true;
-    }
-    else if (keyBAR == false && doBARSave == true)
-    {
-        doBARSave = false;
-        saveType = "download";
-        save();
-        saveType = null;
-    }
-    //Quicksave
-    if (tildKey == false && player.petrified != true && player.drowned != true) //quicksaves the game when the tild key is pressed -- unless the player is petrified or drowning
-    {
-        doQuicksave = true;
-    }
-    else if (tildKey == true && doQuicksave == true)
-    {
-        doQuicksave = false;
-        saveType = "quicksave";
-        save();
-        saveType = null;
-    }
-    //Autosave
-    if (player.autosaveEnabled && player.health > (25/100) * player.healthMAX && player.inCombat == false && player.thirst > 5 && player.hunger > 10 && player.warmth > (5/10 * player.warmthMAX))
-    {
-        if (new Date().getTime() - autosaveTime > player.autosaveFrequency * 1000) //manual number of seconds between autosaves (starts at 200)
+        //Downloadsave
+        if (keyBAR == true)
         {
-            autosaveTime = new Date().getTime();
-            if (lowBar != "save")
+            doBARSave = true;
+        }
+        else if (keyBAR == false && doBARSave == true)
+        {
+            doBARSave = false;
+            saveType = "download";
+            save();
+            saveType = null;
+        }
+        //Quicksave
+        if (tildKey == false && player.petrified != true && player.drowned != true) //quicksaves the game when the tild key is pressed -- unless the player is petrified or drowning
+        {
+            doQuicksave = true;
+        }
+        else if (tildKey == true && doQuicksave == true)
+        {
+            doQuicksave = false;
+            saveType = "quicksave";
+            save();
+            saveType = null;
+        }
+        //Autosave
+        if (player.autosaveEnabled && player.health > (25/100) * player.healthMAX && player.inCombat == false && player.thirst > 5 && player.hunger > 10 && player.warmth > (5/10 * player.warmthMAX))
+        {
+            if (new Date().getTime() - autosaveTime > player.autosaveFrequency * 1000) //manual number of seconds between autosaves (starts at 200)
             {
-                //alert("** Autosave **");
-                console.log("** Autosave **");
-                saveType = "autosave";
-                save();
-                saveType = null;
+                autosaveTime = new Date().getTime();
+                if (lowBar != "save")
+                {
+                    //alert("** Autosave **");
+                    console.log("** Autosave **");
+                    saveType = "autosave";
+                    save();
+                    saveType = null;
+                }
             }
         }
     }
@@ -260,8 +263,6 @@ function save()
 
         download(saveFile, player.name + ".txt", "text/plain");
     }
-
-
 }
 
 function load()

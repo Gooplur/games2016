@@ -2321,6 +2321,13 @@ var magesCacheLock = [0, 0, 0];
 var magesCacheButtons = [];
 var magicSpinnerA = [0, 0, 0];
 var magicSpinnerB = [0, 0, 0];
+var saveLock = false; //the saving system is not locked when the game starts de nuevo
+var opiumFiction = false;
+var opiumOutOfBody = false; //this determines whether or not the player's opium trip is in or out of body
+var opiumHangover = false; //this is a trigger for the after effects of taking opium or a similar substance
+var opiumSave = false; //this tells the game whether or not the opium triggered item save has taken effect yet
+var itemQuickSaveEffect = false; //this allows items to save the game when consumed: quick save
+var itemSaveEffect = false; //this allows items to save the game when consumed: big save
 
 //This sets the items that are in shops.
 function shopItemIDSetter()
@@ -4179,6 +4186,16 @@ function theLegend()
     smithing.push(new Item("fineNechrovitePlateArmour", false));
     smithing.push(new Item("orgishEliteArmour", false));
     smithing.push(new Item("orgishRoyalArmour", false));
+    smithing.push(new Item("longHammer", false));
+    smithing.push(new Item("silverDagger", false));
+    smithing.push(new Item("vardanDagger", false));
+    smithing.push(new Item("vardanSword", false));
+    smithing.push(new Item("vardanGreatSword", false));
+    smithing.push(new Item("serratedNechroviteGreatBlade", false));
+    smithing.push(new Item("thenganBascinetArmour", false));
+    smithing.push(new Item("greatPlateArmour", false));
+    smithing.push(new Item("cephrianFlail", false));
+    smithing.push(new Item("zetianWarPick", false));
 
 
 //Foods (Items cooked at either a stove, an oven, or a campfire)
@@ -4322,6 +4339,17 @@ function theLegend()
     foods.push(new Item("smokedHydraHeart", false));
     foods.push(new Item("roastedHydraHeart", false));
     foods.push(new Item("wheatBread", false));
+    foods.push(new Item("wiltedMustardGreens", false));
+    foods.push(new Item("hoffalgreSausage", false));
+    foods.push(new Item("hetlaukWorm", false));
+    foods.push(new Item("gulbFillet", false));
+    foods.push(new Item("gulbPlatter", false));
+    foods.push(new Item("hob", false));
+    foods.push(new Item("cresFillet", false));
+    foods.push(new Item("cresAndGreens", false));
+    foods.push(new Item("tilmuk", false));
+    foods.push(new Item("opium", false));
+
 
 //Tailoring (Items crafted at a weaving, sewing, dying, etc. tailor's work bench thing)
     tailoring = [];
@@ -4495,6 +4523,7 @@ function theLegend()
     alchemy.push(new Item("cephrianTincturePotOfungicideTincture", false));
     alchemy.push(new Item("jinnDust", false));
     alchemy.push(new Item("mimicFilament", false));
+    alchemy.push(new Item("sauerkraut", false));
 
 //Brewing (alcohols, liquid fermentation, etc.)
     brewing = [];
@@ -4651,6 +4680,11 @@ function theLegend()
     handcrafted.push(new Item("velWheatBread", false));
     handcrafted.push(new Item("borshtWheatBread", false));
     handcrafted.push(new Item("cupOfFungicideTincture", false));
+    handcrafted.push(new Item("rawHoffalgreSausageChain", false));
+    handcrafted.push(new Item("rawHoffalgreSausage", false));
+    handcrafted.push(new Item("sausageCombo", false));
+    handcrafted.push(new Item("hetlaukWormPlatter", false));
+    handcrafted.push(new Item("sausageAndGreens", false));
 
     //Activate Important Game Functions Here:
     itemPlacer();

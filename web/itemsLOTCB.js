@@ -7964,6 +7964,244 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 0; // at max, sell for 0.
         }
+        else if (this.type == "palggaFlowers")
+        {
+            //For All Items
+            this.identity = "Palgga Flowers";
+            this.weight = 1.25;
+            this.size = 10;
+            this.description = "A branch of a palgga bush that has thick green leaves and numerous little pink flowers.";
+            this.intForDes = 10;
+            this.intDescription = "These flowers can be used to make a sweet and floral smelling perfume.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 4; // at max, buy for 4.
+            this.sellValue = 2; // at max, sell for 2.
+        }
+        else if (this.type == "falloryFlower")
+        {
+            //For All Items
+            this.identity = "Fallory Flower";
+            this.weight = 0.015;
+            this.size = 5;
+            this.description = "A gorgeous red flower.";
+            this.intForDes = 15;
+            this.intDescription = "Fallory flowers are used to celebrate romantic love and marriage in Thengaria.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3; // at max, buy for 3.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "desertPoppyPods")
+        {
+            //For All Items
+            this.identity = "Desert Poppy Pods";
+            this.weight = 0.25;
+            this.size = 6;
+            this.description = "The part of the poppy that holds the seeds.";
+            this.intForDes = 5;
+            this.intDescription = "Desert poppy seeds have painkilling affects on the human mind and they leave the consumer with a feeling of euphoria.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["desertPoppySeedMash", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            if (shopkeeper != "none")
+            {
+                if (shopkeeper.ultra.race != "Aldrek" && shopkeeper.ultra.race != "Zetian" && shopkeeper.ultra.race != "Orgell" && shopkeeper.ultra.race != "Cephrite" && shopkeeper.ultra.faction != "Nirwaden")
+                {
+                    this.buyValue = 24 - Math.floor(player.getCharisma() / 25); // at max, buy for 22.
+                    this.sellValue = 20 + Math.floor(player.getCharisma() / 25); // at max, sell for 22.
+                }
+                else if (shopkeeper.ultra.faction == "Nirwaden")
+                {
+                    this.buyValue = 0; // at max, buy for 0.
+                    this.sellValue = 0; // at max, sell for 0.
+                }
+                else
+                {
+                    this.buyValue = 5; // at max, buy for 5.
+                    this.sellValue = 5; // at max, sell for 5.
+                }
+            }
+            else
+            {
+                this.buyValue = 5; // at max, buy for 5.
+                this.sellValue = 5; // at max, sell for 5.
+            }
+        }
+        else if (this.type == "desertPoppySeedMash")
+        {
+            //For All Items
+            this.identity = "Desert Poppy Seed Mash";
+            this.weight = 0.2;
+            this.size = 6;
+            this.description = "This is a potent opioid drug.";
+            this.intForDes = 5;
+            this.intDescription = "Desert poppy seeds have painkilling affects on the human mind and they leave the consumer with a feeling of euphoria.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0.05; //satisfies hunger.
+            this.thirst = 0.05; //quenches thirst.
+            this.warmth = 1; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 2; //restores will.
+
+            //ability
+            this.ability = "opium";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            if (shopkeeper != "none")
+            {
+                if (shopkeeper.ultra.race != "Aldrek" && shopkeeper.ultra.race != "Zetian" && shopkeeper.ultra.race != "Orgell" && shopkeeper.ultra.race != "Cephrite" && shopkeeper.ultra.faction != "Nirwaden")
+                {
+                    this.buyValue = 28 - Math.floor(player.getCharisma() / 25); // at max, buy for 26.
+                    this.sellValue = 24 + Math.floor(player.getCharisma() / 25); // at max, sell for 26.
+                }
+                else if (shopkeeper.ultra.faction == "Nirwaden")
+                {
+                    this.buyValue = 0; // at max, buy for 0.
+                    this.sellValue = 0; // at max, sell for 0.
+                }
+                else
+                {
+                    this.buyValue = 7; // at max, buy for 7.
+                    this.sellValue = 7; // at max, sell for 7.
+                }
+            }
+            else
+            {
+                this.buyValue = 7; // at max, buy for 7.
+                this.sellValue = 7; // at max, sell for 7.
+            }
+        }
+        else if (this.type == "opium")
+        {
+            //For All Items
+            this.identity = "Opium";
+            this.weight = 0.1;
+            this.size = 6;
+            this.description = "This is an extremely potent and addictive opioid drug.";
+            this.intForDes = 5;
+            this.intDescription = "Opium has strong painkilling affects on the human mind and it leaves the consumer with a feeling of utter bliss and euphoria.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 2; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 4; //restores will.
+
+            //ability
+            this.ability = "superOpium";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 30;
+            this.ingredients = [["Desert Poppy Seed Mash", 3]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            if (shopkeeper != "none")
+            {
+                if (shopkeeper.ultra.race != "Aldrek" && shopkeeper.ultra.race != "Zetian" && shopkeeper.ultra.race != "Orgell" && shopkeeper.ultra.race != "Cephrite" && shopkeeper.ultra.faction != "Nirwaden")
+                {
+                    this.buyValue = 32 - Math.floor(player.getCharisma() / 25); // at max, buy for 30.
+                    this.sellValue = 30; // at max, sell for 30.
+                }
+                else if (shopkeeper.ultra.faction == "Nirwaden")
+                {
+                    this.buyValue = 0; // at max, buy for 0.
+                    this.sellValue = 0; // at max, sell for 0.
+                }
+                else
+                {
+                    this.buyValue = 20; // at max, buy for 20.
+                    this.sellValue = 20; // at max, sell for 20.
+                }
+            }
+            else
+            {
+                this.buyValue = 20; // at max, buy for 20.
+                this.sellValue = 20; // at max, sell for 20.
+            }
+        }
+        else if (this.type == "desertPoppyFlower")
+        {
+            //For All Items
+            this.identity = "Desert Poppy Flower";
+            this.weight = 0.03;
+            this.size = 5;
+            this.description = "The red flower of a desert poppy can be used as a former in alchemy.";
+            this.intForDes = 5;
+            this.intDescription = "The desert poppy flower does not share the same potency as the seeds.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            if (shopkeeper != "none")
+            {
+                if (shopkeeper.ultra.race != "Aldrek" && shopkeeper.ultra.race != "Zetian" && shopkeeper.ultra.race != "Orgell" && shopkeeper.ultra.race != "Cephrite" && shopkeeper.ultra.faction != "Nirwaden")
+                {
+                    this.buyValue = 6 - Math.floor(player.getCharisma() / 50); // at max, buy for 5.
+                    this.sellValue = 4 + Math.floor(player.getCharisma() / 50); // at max, sell for 5.
+                }
+                else if (shopkeeper.ultra.faction == "Nirwaden")
+                {
+                    this.buyValue = 3; // at max, buy for 0.
+                    this.sellValue = 3; // at max, sell for 0.
+                }
+                else
+                {
+                    this.buyValue = 1; // at max, buy for 1.
+                    this.sellValue = 0; // at max, sell for 0.
+                }
+            }
+            else
+            {
+                this.buyValue = 1; // at max, buy for 1.
+                this.sellValue = 0; // at max, sell for 0.
+            }
+        }
         else if (this.type == "yeolPod")
         {
             //For All Items
@@ -17454,6 +17692,42 @@ function Item(type, x, y)
             this.buyValue = 40 - Math.floor(player.getCharisma() / 8); // at max, buy for 34.
             this.sellValue = 28 + Math.floor(player.getCharisma() / 8); // at max, sell for 34.
         }
+        else if (this.type == "palggaPerfume")
+        {
+            //For All Items
+            this.identity = "Palgga Perfume";
+            this.weight = 0.5;
+            this.size = 5;
+            this.description = "A smooth pink liquid extract of palgga flowers; it smells strongly of floral sweetness";
+            this.intForDes = 0;
+            this.intDescription = "Applying perfume makes you more openly embraced when interacting with others.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["potionGlass", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "palggaPerfume";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 3;
+            this.ingredients = [["Potion Glass", 1], ["Palgga Flowers", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 9 - Math.floor(player.getCharisma() / 25); // at max, buy for 7.
+            this.sellValue = 5 + Math.floor(player.getCharisma() / 25); // at max, sell for 7.
+        }
         else if (this.type == "laicaumExtract")
         {
             //For All Items
@@ -23976,6 +24250,46 @@ function Item(type, x, y)
             this.buyValue = 10 - Math.floor(player.getCharisma() / 50); // at max, buy for 9.
             this.sellValue = 8 + Math.floor(player.getCharisma() / 50); // at max, sell for 9.
         }
+        else if (this.type == "marigoldFlower")
+        {
+            //For All Items
+            this.identity = "Marigold Flower";
+            this.weight = 0.06;
+            this.size = 8;
+            this.description = "An orange flower that grows in Thengan woodlands.";
+            this.intForDes = 8;
+            this.intDescription = "Marigold flowers act as a moderate amplifier in alchemy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "bleedingHeartBranch")
+        {
+            //For All Items
+            this.identity = "Bleeding Heart Branch";
+            this.weight = 0.8;
+            this.size = 8;
+            this.description = "A branch with a number of small heart shaped flowers hanging down from it.";
+            this.intForDes = 16;
+            this.intDescription = "Bleeding heart flowers can be used in remedies that support old and weary joints.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 1; // at max, sell for 1.
+        }
         else if (this.type == "haeflower")
         {
             //For All Items
@@ -24067,7 +24381,7 @@ function Item(type, x, y)
             //Crafting
             this.yield = 30;
             this.intForCraft = 27;
-            this.ingredients = [["Desert Poppy", 6], ["Cirmusidic Compound", 2], ["Bloch Extract", 1]];
+            this.ingredients = [["Desert Poppy Seed Mash", 6], ["Cirmusidic Compound", 2], ["Bloch Extract", 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             if (shopkeeper != "none")
@@ -24551,6 +24865,100 @@ function Item(type, x, y)
             this.buyValue = 6; // at max, buy for 6.
             this.sellValue = 6; // at max, sell for 6.
         }
+        else if (this.type == "aberdomMushrooms")
+        {
+            //For All Items
+            this.identity = "Aberdom Mushrooms";
+            this.weight = 0.2;
+            this.size = 7;
+            this.description = "A mushroom with a flattish black and white striped cap.";
+            this.intForDes = 3;
+            this.intDescription = "These are poisonous to touch, eating them would just be overkill.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0.66; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -66; //recoops lost energy.
+            this.replenish = -22; //restores will.
+
+            //ability
+            this.ability = "poisonIV";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 6 - Math.floor(player.getCharisma() / 50); // at max, buy for 5.
+            this.sellValue = 3 + Math.floor(player.getCharisma() / 25); // at max, sell for 5.
+        }
+        else if (this.type == "beunumMushroom")
+        {
+            //For All Items
+            this.identity = "Beunum Mushroom";
+            this.weight = 0.45;
+            this.size = 5;
+            this.description = "A thick black capped mushroom with white spots.";
+            this.intForDes = 2;
+            this.intDescription = "This is poisonous to eat.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1.28; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "poisonI";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "ciprinMushroom")
+        {
+            //For All Items
+            this.identity = "Ciprin Mushroom";
+            this.weight = 0.45;
+            this.size = 5;
+            this.description = "A white capped mushroom with black speckles and a long black stalk.";
+            this.intForDes = 5;
+            if (player.getIntelligence() < 12)
+            {
+                this.intDescription = "This is poisonous... you can eat it if you want, but you'll probably die if you do.";
+            }
+            else
+            {
+                this.intDescription = "This is poisonous... However its poison can be nuetralized in certain alchemic combinations; it acts as a former in alchemy.";
+            }
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1.9; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "poisonII";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+        }
         else if (this.type == "glinMushrooms")
         {
             //For All Items
@@ -24714,6 +25122,877 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 11 - Math.floor(player.getCharisma() / 12); // at max, buy for 7.
             this.sellValue = 3 + Math.floor(player.getCharisma() / 12); // at max, sell for 7.
+        }
+        else if (this.type == "mustardGreens")
+        {
+            //For All Items
+            this.identity = "Mustard Greens";
+            this.weight = 0.08;
+            this.size = 7;
+            this.description = "The leafy greens of a mustard plant.";
+            this.intForDes = 1;
+            this.intDescription = "When cooked these have a subtle spiciness to them.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0.55; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "wiltedMustardGreens")
+        {
+            //For All Items
+            this.identity = "Wilted Mustard Greens";
+            this.weight = 0.06;
+            this.size = 8;
+            this.description = "The lightly cooked leafy greens of a mustard plant.";
+            this.intForDes = 0;
+            this.intDescription = "These have a subtle spicy taste that is by no means overpowering.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0.5; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.05; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 1;
+            this.ingredients = [["Mustard Greens", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "mustardSeedPods")
+        {
+            //For All Items
+            this.identity = "Mustard Seed Pods";
+            this.weight = 0.2;
+            this.size = 8;
+            this.description = "Numerous pods each filled with small dark round seeds.";
+            this.intForDes = 1;
+            this.intDescription = "It takes effort to remove all of the seeds from the pods...";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["mustardSeeds", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -1; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "mustardSeeds")
+        {
+            //For All Items
+            this.identity = "Mustard Seeds";
+            this.weight = 0.15;
+            this.size = 8;
+            this.description = "The tiny little dark round seeds of a mustard plant.";
+            this.intForDes = 1;
+            this.intDescription = "These can be ground up to make mustard, but can also be used as a spice to flavour various dishes.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "mustard")
+        {
+            //For All Items
+            this.identity = "Mustard";
+            this.weight = 0.1;
+            this.size = 6;
+            this.description = "A paste made from the coarsely ground seeds of a mustard plant.";
+            this.intForDes = 0;
+            this.intDescription = "It has a pungent and spicy aroma.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1; //satisfies hunger.
+            this.thirst = 0.05; //quenches thirst.
+            this.warmth = 0.05; //warms player.
+            this.heal = -0.05; //heals health.
+            this.generation = -1; //recoops lost energy.
+            this.replenish = -1; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 3;
+            this.intForCraft = 3;
+            this.ingredients = [["Mustard Seeds", 2]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "sauerkraut")
+        {
+            //For All Items
+            this.identity = "Sauerkraut";
+            this.weight = 0.333;
+            this.size = 7;
+            this.description = "A sour tasting shredded vegetable condiment.";
+            this.intForDes = 4;
+            this.intDescription = "Sauerkraut is made by fermenting cabbage.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1.4; //satisfies hunger.
+            this.thirst = 0.1; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -0.5; //recoops lost energy.
+            this.replenish = -0.5; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 3;
+            if (player.raceName == "Thengar")
+            {
+                this.intForCraft = 4;
+            }
+            else
+            {
+                this.intForCraft = 10;
+            }
+            this.ingredients = [["Cabbage", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "rawHoffalgreSausageChain")
+        {
+            //For All Items
+            this.identity = "Raw Hoffalgre Sausage Chain";
+            this.weight = 1.8;
+            this.size = 13;
+            this.description = "Intestinal lining packed with finely chopped Hoffalgre flesh.";
+            this.intForDes = 3;
+            this.intDescription = "Sausage chains are made by twisting the casing after a section of it is filled.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 6; //satisfies hunger.
+            this.thirst = 1.5; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            if (player.raceName == "Thengar")
+            {
+                this.intForCraft = 10;
+            }
+            else
+            {
+                this.intForCraft = 18;
+            }
+            this.ingredients = [["Raw Hoffalgre Flesh", 2]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 14 - Math.floor(player.getCharisma() / 50); // at max, buy for 13.
+            this.sellValue = 10 + Math.floor(player.getCharisma() / 15); // at max, sell for 13.
+        }
+        else if (this.type == "rawHoffalgreSausage")
+        {
+            //For All Items
+            this.identity = "Raw Hoffalgre Sausage";
+            this.weight = 0.3;
+            this.size = 6;
+            this.description = "A section of raw sausage made with hoffalgre flesh.";
+            this.intForDes = 1;
+            this.intDescription = "Sausages are a classic part of Thengan cuisine.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1; //satisfies hunger.
+            this.thirst = 0.25; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 6;
+            this.intForCraft = 1;
+            this.ingredients = [["Raw Hoffalgre Sausage Chain", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 2; // at max, sell for 2.
+        }
+        else if (this.type == "hoffalgreSausage")
+        {
+            //For All Items
+            this.identity = "Hoffalgre Sausage";
+            this.weight = 0.3;
+            this.size = 6;
+            this.description = "A cooked sausage made with well marbled hoffalgre meat.";
+            this.intForDes = 0;
+            this.intDescription = "Hoffalgre sausages are rich in flavour and have a nice fattiness to them.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 5.5; //satisfies hunger.
+            this.thirst = 0.2; //quenches thirst.
+            this.warmth = 3.5; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.05; //recoops lost energy.
+            this.replenish = 0.05; //restores will.
+
+            //ability
+            this.ability = "satiate";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 2;
+            this.ingredients = [["Raw Hoffalgre Sausage", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 7 - Math.floor(player.getCharisma() / 50); // at max, buy for 6.
+            this.sellValue = 5 + Math.floor(player.getCharisma() / 50); // at max, sell for 6.
+        }
+        else if (this.type == "sausageCombo")
+        {
+            //For All Items
+            this.identity = "Classic Sausage Platter";
+            this.weight = 0.7;
+            this.size = 9;
+            this.description = "A juicy hoffalgre sausage served with fresh sauerkraut and coarsly ground mustard.";
+            this.intForDes = 1;
+            this.intDescription = "This is considered to be the most classical Thengan meal.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 14; //satisfies hunger.
+            this.thirst = 0.6; //quenches thirst.
+            this.warmth = 6.5; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.075; //recoops lost energy.
+            this.replenish = 0.075; //restores will.
+
+            //ability
+            this.ability = "satiate";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 0;
+            this.ingredients = [["Hoffalgre Sausage", 1], ["Mustard", 1], ["Sauerkraut", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 15 - Math.floor(player.getCharisma() / 10); // at max, buy for 10.
+            this.sellValue = 10; // at max, sell for 10.
+        }
+        else if (this.type == "hetlaukWormPlatter")
+        {
+            //For All Items
+            this.identity = "Hetlauk Worm Platter";
+            this.weight = 1.3;
+            this.size = 8;
+            this.description = "A roasted hetlauk worm served with fresh sauerkraut and coarsly ground mustard.";
+            this.intForDes = 1;
+            this.intDescription = "This is a lower class imitation of the famous classic dish made with sausage.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 8; //satisfies hunger.
+            this.thirst = 1; //quenches thirst.
+            this.warmth = 4; //warms player.
+            this.heal = 0; //heals health.
+            if (player.raceName == "Thengar")
+            {
+                this.generation = -0.5; //recoops lost energy.
+            }
+            else
+            {
+                this.generation = -1; //recoops lost energy.
+            }
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 0;
+            this.ingredients = [["Hetlauk Worm", 1], ["Mustard", 1], ["Sauerkraut", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 6 - Math.floor(player.getCharisma() / 50); // at max, buy for 5.
+            this.sellValue = 5; // at max, sell for 5.
+        }
+        else if (this.type == "hetlaukWorm")
+        {
+            //For All Items
+            this.identity = "Hetlauk Worm";
+            this.weight = 0.9;
+            this.size = 8;
+            this.description = "A roasted hetlauk worm.";
+            this.intForDes = 0;
+            this.intDescription = "If you close your eyes and pretend... you can imagine you are eating sausage.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 4.5; //satisfies hunger.
+            this.thirst = 0.5; //quenches thirst.
+            this.warmth = 2; //warms player.
+            this.heal = 0; //heals health.
+            if (player.raceName == "Thengar")
+            {
+                this.generation = -1; //recoops lost energy.
+            }
+            else
+            {
+                this.generation = -2; //recoops lost energy.
+            }
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 2;
+            this.ingredients = [["Live Hetlauk Worm", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 2; // at max, sell for 2.
+        }
+        else if (this.type == "rawHetlaukWorm")
+        {
+            //For All Items
+            this.identity = "Live Hetlauk Worm";
+            this.weight = 1;
+            this.size = 10;
+            this.description = "An aquatic worm that inhabits lakes, rivers, and sewage.";
+            this.intForDes = 2;
+            this.intDescription = "They spoil quickly once they are dead so, people tend to keep hetlauk worms alive until they cook them.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 2; //satisfies hunger.
+            this.thirst = 1; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            if (player.raceName == "Thengar")
+            {
+                this.generation = -12; //recoops lost energy.
+            }
+            else
+            {
+                this.generation = -20; //recoops lost energy.
+            }
+            this.replenish = 0; //restores will.
+
+            //ability
+            if (player.raceName == "Thengar")
+            {
+                this.ability = "none";
+            }
+            else
+            {
+                this.ability = "foodPoisoning";
+            }
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "sewerHetlaukWorm")
+        {
+            //For All Items
+            this.identity = "Live Hetlauk Worm";
+            this.weight = 1;
+            this.size = 10;
+            this.description = "An aquatic worm that inhabits lakes, rivers, and sewage.";
+            this.intForDes = 2;
+            this.intDescription = "They spoil quickly once they are dead so, people tend to keep hetlauk worms alive until they cook them.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 2; //satisfies hunger.
+            this.thirst = 1; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = -4; //heals health.
+            if (player.raceName == "Thengar")
+            {
+                this.generation = -12; //recoops lost energy.
+            }
+            else
+            {
+                this.generation = -20; //recoops lost energy.
+            }
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "acidIII";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "rawGulb")
+        {
+            //For All Items
+            this.identity = "Raw Gulb";
+            this.weight = 3;
+            this.size = 10;
+            this.description = "A green fish with white stripes that lives in temperate waters primarily around Thengaria.";
+            this.intForDes = 4;
+            this.intDescription = "They are unsafe to eat raw.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 2.5; //satisfies hunger.
+            this.thirst = 0.85; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -2; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "gutWorms";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3; // at max, buy for 3.
+            this.sellValue = 1 + Math.floor(player.getCharisma() / 25); // at max, sell for 3.
+        }
+        else if (this.type == "gulbFillet")
+        {
+            //For All Items
+            this.identity = "Gulb Fillet";
+            this.weight = 1.75;
+            this.size = 10;
+            this.description = "A sizable cut of cooked gulb.";
+            this.intForDes = 4;
+            this.intDescription = "Gulb has a tender pinkish coloured flesh that has a desirable flavour.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 9; //satisfies hunger.
+            this.thirst = 0.6; //quenches thirst.
+            this.warmth = 5; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.025; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 4;
+            this.ingredients = [["Raw Gulb", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 11 - Math.floor(player.getCharisma() / 25); // at max, buy for 9.
+            this.sellValue = 8 + Math.floor(player.getCharisma() / 50); // at max, sell for 9.
+        }
+        else if (this.type == "gulbPlatter")
+        {
+            //For All Items
+            this.identity = "Gulb Platter";
+            this.weight = 1.75;
+            this.size = 10;
+            this.description = "Two thin fillets of roasted gulb rubbed with coarsely ground mustard and served over a bed of Sauerkraut.";
+            this.intForDes = 1;
+            this.intDescription = "This is a very strongly flavoured dish.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 11; //satisfies hunger.
+            this.thirst = 0.9; //quenches thirst.
+            this.warmth = 7; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.03; //recoops lost energy.
+            this.replenish = 0.015; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 8;
+            this.ingredients = [["Raw Gulb", 1], ["Mustard", 1], ["Sauerkraut", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 12 - Math.floor(player.getCharisma() / 50); // at max, buy for 11.
+            this.sellValue = 10 + Math.floor(player.getCharisma() / 50); // at max, sell for 11.
+        }
+        else if (this.type == "sausageAndGreens")
+        {
+            //For All Items
+            this.identity = "Sausage and Greens";
+            this.weight = 0.5;
+            this.size = 9;
+            this.description = "Chopped hoffalgre sausage served over a bed of wilted greens with mustard.";
+            this.intForDes = 1;
+            this.intDescription = "This is a common dish in Thengaria.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 7.5; //satisfies hunger.
+            this.thirst = 0.5; //quenches thirst.
+            this.warmth = 5; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.015; //recoops lost energy.
+            this.replenish = 0.015; //restores will.
+
+            //ability
+            this.ability = "satiate";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 8;
+            this.ingredients = [["Hoffalgre Sausage", 1], ["Mustard", 1], ["Wilted Mustard Greens", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 10 - Math.floor(player.getCharisma() / 50); // at max, buy for 9.
+            this.sellValue = 7 + Math.floor(player.getCharisma() / 25); // at max, sell for 9.
+        }
+        else if (this.type == "rawHob")
+        {
+            //For All Items
+            this.identity = "Raw Hob";
+            this.weight = 2;
+            this.size = 10;
+            this.description = "A slimey greyish pink fish that is native to Thengaria. It smells like someone had diarrea after eating rotten fish.";
+            this.intForDes = 0;
+            this.intDescription = "Just the smell alone makes you gag, don't you dare put this in your mouth hole.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1; //satisfies hunger.
+            this.thirst = 0.5; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -5; //recoops lost energy.
+            this.replenish = -3; //restores will.
+
+            //ability
+            this.ability = "foodPoisoning";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 0; // at max, buy for 0.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "hob")
+        {
+            //For All Items
+            this.identity = "Hob";
+            this.weight = 2;
+            this.size = 10;
+            this.description = "A crisp but slick greyish pink fish with a red flesh that smells like a ripe fishy fart.";
+            this.intForDes = 0;
+            this.intDescription = "Why would someone cook this? That would imply they were going to eat it... that's just gross!";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 3; //satisfies hunger.
+            this.thirst = 0.4; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -3.5; //recoops lost energy.
+            this.replenish = -2; //restores will.
+
+            //ability
+            this.ability = "foodPoisoning";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 0; // at max, buy for 0.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "rawCres")
+        {
+            //For All Items
+            this.identity = "Raw Cres";
+            this.weight = 1.2;
+            this.size = 9;
+            this.description = "A delectable blue fish native to Thengaria that is known for its buttery smooth taste.";
+            this.intForDes = 2;
+            this.intDescription = "This type of fish is safe to eat raw, but it tastes even better cooked.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 3; //satisfies hunger.
+            this.thirst = 1.5; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 6 - Math.floor(player.getCharisma() / 25); // at max, buy for 4.
+            this.sellValue = 3 + Math.floor(player.getCharisma() / 50); // at max, sell for 4.
+        }
+        else if (this.type == "cresFillet")
+        {
+            //For All Items
+            this.identity = "Fillet of Cres";
+            this.weight = 1;
+            this.size = 9;
+            this.description = "A fine fillet of buttery smooth white flesh from a cres.";
+            this.intForDes = 0;
+            this.intDescription = "This type of fish is widely sought after for its natural creamy flavour.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 15; //satisfies hunger.
+            this.thirst = 1.25; //quenches thirst.
+            this.warmth = 6; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.01; //recoops lost energy.
+            this.replenish = 0.01; //restores will.
+
+            //ability
+            this.ability = "satiate";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 14;
+            this.ingredients = [["Raw Cres", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 15; // at max, buy for 15.
+            this.sellValue = 14 + Math.floor(player.getCharisma() / 50); // at max, sell for 15.
+        }
+        else if (this.type == "cresAndGreens")
+        {
+            //For All Items
+            this.identity = "Fillet of Cres with greens";
+            this.weight = 1.1;
+            this.size = 9;
+            this.description = "Two halves of a fillet of cres served over a bed of wilted mustard greens.";
+            this.intForDes = 0;
+            this.intDescription = "The spicyness of the mustard greens compliments the smooth creamyness of the fish.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 17; //satisfies hunger.
+            this.thirst = 1.4; //quenches thirst.
+            this.warmth = 7; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.015; //recoops lost energy.
+            this.replenish = 0.015; //restores will.
+
+            //ability
+            this.ability = "satiate";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 15;
+            this.ingredients = [["Raw Cres", 1], ["Mustard Greens", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 15; // at max, buy for 15.
+            this.sellValue = 14 + Math.floor(player.getCharisma() / 50); // at max, sell for 15.
+        }
+        else if (this.type == "hoffalgreRoast")
+        {
+            //For All Items
+            this.identity = "Hoffalgre Roast";
+            this.weight = 20;
+            this.size = 20;
+            this.description = "A whole roasted hoffalgre with an apple in its trunk.";
+            this.intForDes = 7;
+            this.intDescription = "Hoffalgre roast is usually the centerpiece of a Lordly feast in Thengaria.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 74; //satisfies hunger.
+            this.thirst = 9; //quenches thirst.
+            this.warmth = 40; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 5; //recoops lost energy.
+            this.replenish = 3; //restores will.
+
+            //ability
+            this.ability = "satiate";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 150 - Math.floor(player.getCharisma() / 3); // at max, buy for 135.
+            this.sellValue = 120 + Math.floor(player.getCharisma() / 3); // at max, sell for 135.
+        }
+        else if (this.type == "rawTilmuk")
+        {
+            //For All Items
+            this.identity = "Raw Tilmuk";
+            this.weight = 1.3;
+            this.size = 8;
+            this.description = "A red fish with a black head and tail that is native to the temperate waters around Thengaria.";
+            this.intForDes = 6;
+            this.intDescription = "Do not eat this fish raw, it is unsafe.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1.5; //satisfies hunger.
+            this.thirst = 0.5; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "gutWorms";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+        }
+        else if (this.type == "tilmuk")
+        {
+            //For All Items
+            this.identity = "Tilmuk";
+            this.weight = 1.15;
+            this.size = 8;
+            this.description = "Sliced roasted tilmuk; its flesh is pinkish in colour.";
+            this.intForDes = 0;
+            this.intDescription = "It is somewhat fishy, but has a pleasant taste.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 7; //satisfies hunger.
+            this.thirst = 0.3; //quenches thirst.
+            this.warmth = 2.5; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 6;
+            this.ingredients = [["Raw Tilmut", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 8 - Math.floor(player.getCharisma() / 25); // at max, buy for 15.
+            this.sellValue = 5 + Math.floor(player.getCharisma() / 50); // at max, sell for 6.
         }
         else if (this.type == "dyedMufCloth")
         {
@@ -38878,7 +40157,7 @@ function Item(type, x, y)
             }
             this.damage = (3.5 - (this.damageHandicap * 0.5)) * (this.leveledDamageMultiple / 25) + ((3/50) * player.getStrength());
             this.magicalDamage = 0;
-            this.negateArmour = 0;
+            this.negateArmour = 3;
 
             //ability
             this.ability = "none";
@@ -39932,6 +41211,202 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
+        }
+        else if (this.type == "mustard")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 840, 115, 14, 13, X - this.X + (1/2 * CCC.width) - (1/2 * 14 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 13 * 1), 14 * 1, 13 * 1);
+        }
+        else if (this.type == "sauerkraut")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 838, 95, 20, 18, X - this.X + (1/2 * CCC.width) - (1/2 * 20 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 18 * 1), 20 * 1, 18 * 1);
+        }
+        else if (this.type == "rawHoffalgreSausageChain")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 869, 87, 54, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 54 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 1), 54 * 1, 44 * 1);
+        }
+        else if (this.type == "hoffalgreRoast")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 921, 11, 70, 45, X - this.X + (1/2 * CCC.width) - (1/2 * 70 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 45 * 1), 70 * 1, 45 * 1);
+        }
+        else if (this.type == "rawGulb")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 467, 14, 64, 31, X - this.X + (1/2 * CCC.width) - (1/2 * 64 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 31 * 1), 64 * 1, 31 * 1);
+        }
+        else if (this.type == "gulbFillet")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 539, 15, 64, 31, X - this.X + (1/2 * CCC.width) - (1/2 * 64 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 31 * 1), 64 * 1, 31 * 1);
+        }
+        else if (this.type == "rawHob")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 465, 68, 64, 31, X - this.X + (1/2 * CCC.width) - (1/2 * 64 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 31 * 1), 64 * 1, 31 * 1);
+        }
+        else if (this.type == "hob")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 535, 66, 64, 31, X - this.X + (1/2 * CCC.width) - (1/2 * 64 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 31 * 1), 64 * 1, 31 * 1);
+        }
+        else if (this.type == "rawTilmuk")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 328, 64, 64, 31, X - this.X + (1/2 * CCC.width) - (1/2 * 64 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 31 * 1), 64 * 1, 31 * 1);
+        }
+        else if (this.type == "tilmuk")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 386, 64, 64, 31, X - this.X + (1/2 * CCC.width) - (1/2 * 64 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 31 * 1), 64 * 1, 31 * 1);
+        }
+        else if (this.type == "palggaFlowers")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 250, 14, 64, 31, X - this.X + (1/2 * CCC.width) - (1/2 * 64 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 31 * 1), 64 * 1, 31 * 1);
+        }
+        else if (this.type == "rawCres")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 620, 15, 65, 30, X - this.X + (1/2 * CCC.width) - (1/2 * 65 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 30 * 1), 65 * 1, 30 * 1);
+        }
+        else if (this.type == "cresFillet")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 687, 16, 65, 30, X - this.X + (1/2 * CCC.width) - (1/2 * 65 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 30 * 1), 65 * 1, 30 * 1);
+        }
+        else if (this.type == "desertPoppySeedMash")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 512, 151, 47, 30, X - this.X + (1/2 * CCC.width) - (1/2 * 47 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 30 * 1), 47 * 1, 30 * 1);
+        }
+        else if (this.type == "opium")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 598, 152, 42, 30, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 30 * 1), 42 * 1, 30 * 1);
+        }
+        else if (this.type == "gulbPlatter")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 870, 133, 42, 30, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 30 * 1), 42 * 1, 30 * 1);
+        }
+        else if (this.type == "sausageAndGreens")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 954, 135, 42, 30, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 30 * 1), 42 * 1, 30 * 1);
+        }
+        else if (this.type == "cresAndGreens")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 914, 132, 42, 30, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 30 * 1), 42 * 1, 30 * 1);
+        }
+        else if (this.type == "rawHoffalgreSausage")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 841, 58, 42, 30, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 30 * 1), 42 * 1, 30 * 1);
+        }
+        else if (this.type == "hoffalgreSausage")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 882, 58, 42, 30, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 30 * 1), 42 * 1, 30 * 1);
+        }
+        else if (this.type == "sausageCombo")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 925, 61, 42, 30, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 30 * 1), 42 * 1, 30 * 1);
+        }
+        else if (this.type == "hetlaukWormPlatter")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 842, 135, 29, 30, X - this.X + (1/2 * CCC.width) - (1/2 * 29 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 30 * 1), 29 * 1, 30 * 1);
+        }
+        else if (this.type == "mustardSeeds")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 810, 155, 29, 30, X - this.X + (1/2 * CCC.width) - (1/2 * 29 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 30 * 1), 29 * 1, 30 * 1);
+        }
+        else if (this.type == "mustardSeedPods")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 780, 155, 29, 30, X - this.X + (1/2 * CCC.width) - (1/2 * 29 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 30 * 1), 29 * 1, 30 * 1);
+        }
+        else if (this.type == "mustardGreens")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 744, 181, 29, 30, X - this.X + (1/2 * CCC.width) - (1/2 * 29 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 30 * 1), 29 * 1, 30 * 1);
+        }
+        else if (this.type == "wiltedMustardGreens")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 773, 181, 29, 30, X - this.X + (1/2 * CCC.width) - (1/2 * 29 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 30 * 1), 29 * 1, 30 * 1);
+        }
+        else if (this.type == "hetlaukWorm")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 889, 18, 29, 30, X - this.X + (1/2 * CCC.width) - (1/2 * 29 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 30 * 1), 29 * 1, 30 * 1);
+        }
+        else if (this.type == "rawHetlaukWorm" || this.type == "sewerHetlaukWorm")
+        {
+            if (this.turn <= 2)
+            {
+                XXX.drawImage(floras, 852, 16, 29, 31, X - this.X + (1/2 * CCC.width) - (1/2 * 29 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 31 * 1), 29 * 1, 31 * 1);
+            }
+            else if (this.turn <= 4)
+            {
+                XXX.drawImage(floras, 808, 14, 29, 31, X - this.X + (1/2 * CCC.width) - (1/2 * 29 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 31 * 1), 29 * 1, 31 * 1);
+            }
+            else if (this.turn <= 6)
+            {
+                XXX.drawImage(floras, 764, 16, 29, 31, X - this.X + (1/2 * CCC.width) - (1/2 * 29 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 31 * 1), 29 * 1, 31 * 1);
+            }
+            else
+            {
+                XXX.drawImage(floras, 808, 14, 29, 31, X - this.X + (1/2 * CCC.width) - (1/2 * 29 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 31 * 1), 29 * 1, 31 * 1);
+                this.turn = 0;
+            }
+            this.turn += 1;
+        }
+        else if (this.type == "desertPoppyFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 967, 401, 29, 30, X - this.X + (1/2 * CCC.width) - (1/2 * 29 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 30 * 1), 29 * 1, 30 * 1);
+        }
+        else if (this.type == "desertPoppyPods")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 966, 438, 29, 31, X - this.X + (1/2 * CCC.width) - (1/2 * 29 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 31 * 1), 29 * 1, 31 * 1);
+        }
+        else if (this.type == "falloryFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 268, 63, 29, 36, X - this.X + (1/2 * CCC.width) - (1/2 * 29 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 36 * 1), 29 * 1, 36 * 1);
+        }
+        else if (this.type == "bleedingHeartBranch")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 651, 147, 37, 40, X - this.X + (1/2 * CCC.width) - (1/2 * 37 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 40 * 0.8), 37 * 0.8, 40 * 0.8);
+        }
+        else if (this.type == "marigoldFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 403, 141, 28, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 28 * 0.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.6), 28 * 0.6, 44 * 0.6);
+        }
+        else if (this.type == "aberdomMushrooms")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 882, 174, 18, 18, X - this.X + (1/2 * CCC.width) - (1/2 * 18 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 18 * 1), 18 * 1, 18 * 1);
+        }
+        else if (this.type == "beunumMushroom")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 974, 235, 18, 22, X - this.X + (1/2 * CCC.width) - (1/2 * 18 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 22 * 0.8), 18 * 0.8, 22 * 0.8);
+        }
+        else if (this.type == "ciprinMushroom")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 973, 202, 22, 31, X - this.X + (1/2 * CCC.width) - (1/2 * 22 * 0.7), Y - this.Y + (1/2 * CCC.height) - (1/2 * 31 * 0.7), 22 * 0.7, 31 * 0.7);
         }
         else if (this.type == "thorn")
         {
@@ -43756,7 +45231,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(freeverse, 149, 19, 10, 10, X - this.X + (1/2 * CCC.width) - (1/2 * 10 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 10 * 1.5), 10 * 1.5, 10 * 1.5);
         }
-        else if (this.type == "energilPotionI" || this.type == "energilPotionII" || this.type == "energilPotionIII" || this.type == "energilPotionIV" || this.type == "energilPotionV")
+        else if (this.type == "energilPotionI" || this.type == "energilPotionII" || this.type == "energilPotionIII" || this.type == "energilPotionIV" || this.type == "energilPotionV" || this.type == "palggaPerfume")
         {
             XXX.beginPath();
             XXX.drawImage(oldverse, 1700, 180, 12, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 12), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19), 12, 19);
@@ -45123,10 +46598,206 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
+        else if (this.type == "mustard")
+        {
+            LXX.beginPath();
+            LXX.drawImage(floras, 840, 115, 14, 13, this.invX - (1/2 * 14 * 1), this.invY - (1/2 * 13 * 1), 14 * 1, 13 * 1);
+        }
+        else if (this.type == "sauerkraut")
+        {
+            LXX.beginPath();
+            LXX.drawImage(floras, 838, 95, 20, 18, this.invX - (1/2 * 20 * 1), this.invY - (1/2 * 18 * 1), 20 * 1, 18 * 1);
+        }
+        else if (this.type == "rawHoffalgreSausageChain")
+        {
+            LXX.beginPath();
+            LXX.drawImage(floras, 869, 87, 54, 44, this.invX - (1/2 * 54 * 1), this.invY - (1/2 * 44 * 1), 54 * 1, 44 * 1);
+        }
+        else if (this.type == "hoffalgreRoast")
+        {
+            LXX.beginPath();
+            LXX.drawImage(floras, 921, 11, 70, 45, this.invX - (1/2 * 70 * 1), this.invY - (1/2 * 45 * 1), 70 * 1, 45 * 1);
+        }
+        else if (this.type == "rawGulb")
+        {
+            LXX.beginPath();
+            LXX.drawImage(floras, 467, 14, 64, 31, this.invX - (1/2 * 64 * 1), this.invY - (1/2 * 31 * 1), 64 * 1, 31 * 1);
+        }
+        else if (this.type == "gulbFillet")
+        {
+            LXX.beginPath();
+            LXX.drawImage(floras, 539, 15, 64, 31, this.invX - (1/2 * 64 * 1), this.invY - (1/2 * 31 * 1), 64 * 1, 31 * 1);
+        }
+        else if (this.type == "rawHob")
+        {
+            LXX.beginPath();
+            LXX.drawImage(floras, 465, 68, 64, 31, this.invX - (1/2 * 64 * 1), this.invY - (1/2 * 31 * 1), 64 * 1, 31 * 1);
+        }
+        else if (this.type == "hob")
+        {
+            LXX.beginPath();
+            LXX.drawImage(floras, 535, 66, 64, 31, this.invX - (1/2 * 64 * 1), this.invY - (1/2 * 31 * 1), 64 * 1, 31 * 1);
+        }
+        else if (this.type == "rawTilmuk")
+        {
+            LXX.beginPath();
+            LXX.drawImage(floras, 328, 64, 64, 31, this.invX - (1/2 * 64 * 1), this.invY - (1/2 * 31 * 1), 64 * 1, 31 * 1);
+        }
+        else if (this.type == "tilmuk")
+        {
+            LXX.beginPath();
+            LXX.drawImage(floras, 386, 64, 64, 31, this.invX - (1/2 * 64 * 1), this.invY - (1/2 * 31 * 1), 64 * 1, 31 * 1);
+        }
+        else if (this.type == "palggaFlowers")
+        {
+            LXX.beginPath();
+            LXX.drawImage(floras, 250, 14, 64, 31, this.invX - (1/2 * 64 * 1), this.invY - (1/2 * 31 * 1), 64 * 1, 31 * 1);
+        }
+        else if (this.type == "rawCres")
+        {
+            LXX.beginPath();
+            LXX.drawImage(floras, 620, 15, 65, 30, this.invX - (1/2 * 65 * 1), this.invY - (1/2 * 30 * 1), 65 * 1, 30 * 1);
+        }
+        else if (this.type == "cresFillet")
+        {
+            LXX.beginPath();
+            LXX.drawImage(floras, 687, 16, 65, 30, this.invX - (1/2 * 65 * 1), this.invY - (1/2 * 30 * 1), 65 * 1, 30 * 1);
+        }
+        else if (this.type == "desertPoppySeedMash")
+        {
+            LXX.beginPath();
+            LXX.drawImage(floras, 512, 151, 47, 30, this.invX - (1/2 * 47 * 1), this.invY - (1/2 * 30 * 1), 47 * 1, 30 * 1);
+        }
+        else if (this.type == "opium")
+        {
+            LXX.beginPath();
+            LXX.drawImage(floras, 598, 152, 42, 30, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 30 * 1), 42 * 1, 30 * 1);
+        }
+        else if (this.type == "gulbPlatter")
+        {
+            LXX.beginPath();
+            LXX.drawImage(floras, 870, 133, 42, 30, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 30 * 1), 42 * 1, 30 * 1);
+        }
+        else if (this.type == "sausageAndGreens")
+        {
+            LXX.beginPath();
+            LXX.drawImage(floras, 954, 135, 42, 30, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 30 * 1), 42 * 1, 30 * 1);
+        }
+        else if (this.type == "cresAndGreens")
+        {
+            LXX.beginPath();
+            LXX.drawImage(floras, 914, 132, 42, 30, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 30 * 1), 42 * 1, 30 * 1);
+        }
+        else if (this.type == "rawHoffalgreSausage")
+        {
+            LXX.beginPath();
+            LXX.drawImage(floras, 841, 58, 42, 30, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 30 * 1), 42 * 1, 30 * 1);
+        }
+        else if (this.type == "hoffalgreSausage")
+        {
+            LXX.beginPath();
+            LXX.drawImage(floras, 882, 58, 42, 30, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 30 * 1), 42 * 1, 30 * 1);
+        }
+        else if (this.type == "sausageCombo")
+        {
+            LXX.beginPath();
+            LXX.drawImage(floras, 925, 61, 42, 30, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 30 * 1), 42 * 1, 30 * 1);
+        }
+        else if (this.type == "hetlaukWormPlatter")
+        {
+            LXX.beginPath();
+            LXX.drawImage(floras, 842, 135, 29, 30, this.invX - (1/2 * 29 * 1), this.invY - (1/2 * 30 * 1), 29 * 1, 30 * 1);
+        }
+        else if (this.type == "mustardSeeds")
+        {
+            LXX.beginPath();
+            LXX.drawImage(floras, 810, 155, 29, 30, this.invX - (1/2 * 29 * 1), this.invY - (1/2 * 30 * 1), 29 * 1, 30 * 1);
+        }
+        else if (this.type == "mustardSeedPods")
+        {
+            LXX.beginPath();
+            LXX.drawImage(floras, 780, 155, 29, 30, this.invX - (1/2 * 29 * 1), this.invY - (1/2 * 30 * 1), 29 * 1, 30 * 1);
+        }
+        else if (this.type == "mustardGreens")
+        {
+            LXX.beginPath();
+            LXX.drawImage(floras, 744, 181, 29, 30, this.invX - (1/2 * 29 * 1), this.invY - (1/2 * 30 * 1), 29 * 1, 30 * 1);
+        }
+        else if (this.type == "wiltedMustardGreens")
+        {
+            LXX.beginPath();
+            LXX.drawImage(floras, 773, 181, 29, 30, this.invX - (1/2 * 29 * 1), this.invY - (1/2 * 30 * 1), 29 * 1, 30 * 1);
+        }
+        else if (this.type == "hetlaukWorm")
+        {
+            LXX.beginPath();
+            LXX.drawImage(floras, 889, 18, 29, 30, this.invX - (1/2 * 29 * 1), this.invY - (1/2 * 30 * 1), 29 * 1, 30 * 1);
+        }
+        else if (this.type == "rawHetlaukWorm" || this.type == "sewerHetlaukWorm")
+        {
+            if (this.turn <= 2)
+            {
+                LXX.drawImage(floras, 852, 16, 29, 31, this.invX - (1/2 * 29 * 1), this.invY - (1/2 * 31 * 1), 29 * 1, 31 * 1);
+            }
+            else if (this.turn <= 4)
+            {
+                LXX.drawImage(floras, 808, 14, 29, 31, this.invX - (1/2 * 29 * 1), this.invY - (1/2 * 31 * 1), 29 * 1, 31 * 1);
+            }
+            else if (this.turn <= 6)
+            {
+                LXX.drawImage(floras, 764, 16, 29, 31, this.invX - (1/2 * 29 * 1), this.invY - (1/2 * 31 * 1), 29 * 1, 31 * 1);
+            }
+            else
+            {
+                LXX.drawImage(floras, 808, 14, 29, 31, this.invX - (1/2 * 29 * 1), this.invY - (1/2 * 31 * 1), 29 * 1, 31 * 1);
+                this.turn = 0;
+            }
+            this.turn += 1;
+        }
+        else if (this.type == "desertPoppyFlower")
+        {
+            LXX.beginPath();
+            LXX.drawImage(floras, 967, 401, 29, 30, this.invX - (1/2 * 29 * 1), this.invY - (1/2 * 30 * 1), 29 * 1, 30 * 1);
+        }
+        else if (this.type == "desertPoppyPods")
+        {
+            LXX.beginPath();
+            LXX.drawImage(floras, 966, 438, 29, 31, this.invX - (1/2 * 29 * 1), this.invY - (1/2 * 31 * 1), 29 * 1, 31 * 1);
+        }
+        else if (this.type == "falloryFlower")
+        {
+            LXX.beginPath();
+            LXX.drawImage(floras, 268, 63, 29, 36, this.invX - (1/2 * 29 * 1), this.invY - (1/2 * 36 * 1), 29 * 1, 36 * 1);
+        }
+        else if (this.type == "bleedingHeartBranch")
+        {
+            LXX.beginPath();
+            LXX.drawImage(floras, 651, 147, 37, 40, this.invX - (1/2 * 37 * 0.8), this.invY - (1/2 * 40 * 0.8), 37 * 0.8, 40 * 0.8);
+        }
+        else if (this.type == "marigoldFlower")
+        {
+            LXX.beginPath();
+            LXX.drawImage(floras, 403, 141, 28, 44, this.invX - (1/2 * 28 * 0.6), this.invY - (1/2 * 44 * 0.6), 28 * 0.6, 44 * 0.6);
+        }
+        else if (this.type == "aberdomMushrooms")
+        {
+            LXX.beginPath();
+            LXX.drawImage(floras, 882, 174, 18, 18, this.invX - (1/2 * 18 * 1), this.invY - (1/2 * 18 * 1), 18 * 1, 18 * 1);
+        }
+        else if (this.type == "beunumMushroom")
+        {
+            LXX.beginPath();
+            LXX.drawImage(floras, 974, 235, 18, 22, this.invX - (1/2 * 18 * 0.8), this.invY - (1/2 * 22 * 0.8), 18 * 0.8, 22 * 0.8);
+        }
+        else if (this.type == "ciprinMushroom")
+        {
+            LXX.beginPath();
+            LXX.drawImage(floras, 973, 202, 22, 31, this.invX - (1/2 * 22 * 0.7), this.invY - (1/2 * 31 * 0.7), 22 * 0.7, 31 * 0.7);
+        }
         else if (this.type == "thorn")
         {
             LXX.beginPath();
-            LXX.drawImage(floras, 338, 12, 112, 33, this.invX - (1/2 * 112 * 0.8), this.invY - (1/2 * 33 * 0.8), 112 * 0.8, 33 * 0.8);
+            LXX.drawImage(floras, 338, 12, 112, 33, this.invX - (1/2 * 112 * 0.7), this.invY - (1/2 * 33 * 0.7), 112 * 0.7, 33 * 0.7);
         }
         else if (this.type == "alitkaArmour")
         {
@@ -49038,7 +50709,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(freeverse, 148, 5, 11, 12, this.invX - (1/2 * 11 * 2), this.invY - (1/2 * 12 * 2), 11 * 2, 12 * 2);
         }
-        else if (this.type == "energilPotionI" || this.type == "energilPotionII" || this.type == "energilPotionIII" || this.type == "energilPotionIV" || this.type == "energilPotionV")
+        else if (this.type == "energilPotionI" || this.type == "energilPotionII" || this.type == "energilPotionIII" || this.type == "energilPotionIV" || this.type == "energilPotionV" || this.type == "palggaPerfume")
         {
             LXX.beginPath();
             LXX.drawImage(oldverse, 1700, 180, 12, 19, this.invX - (1/2 * 12), this.invY - (1/2 * 19), 12, 19);
@@ -50284,10 +51955,206 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
+        else if (this.type == "mustard")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 840, 115, 14, 13, this.invX - (1/2 * 14 * 1), this.invY - (1/2 * 13 * 1), 14 * 1, 13 * 1);
+        }
+        else if (this.type == "sauerkraut")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 838, 95, 20, 18, this.invX - (1/2 * 20 * 1), this.invY - (1/2 * 18 * 1), 20 * 1, 18 * 1);
+        }
+        else if (this.type == "rawHoffalgreSausageChain")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 869, 87, 54, 44, this.invX - (1/2 * 54 * 1), this.invY - (1/2 * 44 * 1), 54 * 1, 44 * 1);
+        }
+        else if (this.type == "hoffalgreRoast")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 921, 11, 70, 45, this.invX - (1/2 * 70 * 1), this.invY - (1/2 * 45 * 1), 70 * 1, 45 * 1);
+        }
+        else if (this.type == "rawGulb")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 467, 14, 64, 31, this.invX - (1/2 * 64 * 1), this.invY - (1/2 * 31 * 1), 64 * 1, 31 * 1);
+        }
+        else if (this.type == "gulbFillet")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 539, 15, 64, 31, this.invX - (1/2 * 64 * 1), this.invY - (1/2 * 31 * 1), 64 * 1, 31 * 1);
+        }
+        else if (this.type == "rawHob")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 465, 68, 64, 31, this.invX - (1/2 * 64 * 1), this.invY - (1/2 * 31 * 1), 64 * 1, 31 * 1);
+        }
+        else if (this.type == "hob")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 535, 66, 64, 31, this.invX - (1/2 * 64 * 1), this.invY - (1/2 * 31 * 1), 64 * 1, 31 * 1);
+        }
+        else if (this.type == "rawTilmuk")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 328, 64, 64, 31, this.invX - (1/2 * 64 * 1), this.invY - (1/2 * 31 * 1), 64 * 1, 31 * 1);
+        }
+        else if (this.type == "tilmuk")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 386, 64, 64, 31, this.invX - (1/2 * 64 * 1), this.invY - (1/2 * 31 * 1), 64 * 1, 31 * 1);
+        }
+        else if (this.type == "palggaFlowers")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 250, 14, 64, 31, this.invX - (1/2 * 64 * 1), this.invY - (1/2 * 31 * 1), 64 * 1, 31 * 1);
+        }
+        else if (this.type == "rawCres")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 620, 15, 65, 30, this.invX - (1/2 * 65 * 1), this.invY - (1/2 * 30 * 1), 65 * 1, 30 * 1);
+        }
+        else if (this.type == "cresFillet")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 687, 16, 65, 30, this.invX - (1/2 * 65 * 1), this.invY - (1/2 * 30 * 1), 65 * 1, 30 * 1);
+        }
+        else if (this.type == "desertPoppySeedMash")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 512, 151, 47, 30, this.invX - (1/2 * 47 * 1), this.invY - (1/2 * 30 * 1), 47 * 1, 30 * 1);
+        }
+        else if (this.type == "opium")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 598, 152, 42, 30, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 30 * 1), 42 * 1, 30 * 1);
+        }
+        else if (this.type == "gulbPlatter")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 870, 133, 42, 30, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 30 * 1), 42 * 1, 30 * 1);
+        }
+        else if (this.type == "sausageAndGreens")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 954, 135, 42, 30, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 30 * 1), 42 * 1, 30 * 1);
+        }
+        else if (this.type == "cresAndGreens")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 914, 132, 42, 30, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 30 * 1), 42 * 1, 30 * 1);
+        }
+        else if (this.type == "rawHoffalgreSausage")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 841, 58, 42, 30, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 30 * 1), 42 * 1, 30 * 1);
+        }
+        else if (this.type == "hoffalgreSausage")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 882, 58, 42, 30, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 30 * 1), 42 * 1, 30 * 1);
+        }
+        else if (this.type == "sausageCombo")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 925, 61, 42, 30, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 30 * 1), 42 * 1, 30 * 1);
+        }
+        else if (this.type == "hetlaukWormPlatter")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 842, 135, 29, 30, this.invX - (1/2 * 29 * 1), this.invY - (1/2 * 30 * 1), 29 * 1, 30 * 1);
+        }
+        else if (this.type == "mustardSeeds")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 810, 155, 29, 30, this.invX - (1/2 * 29 * 1), this.invY - (1/2 * 30 * 1), 29 * 1, 30 * 1);
+        }
+        else if (this.type == "mustardSeedPods")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 780, 155, 29, 30, this.invX - (1/2 * 29 * 1), this.invY - (1/2 * 30 * 1), 29 * 1, 30 * 1);
+        }
+        else if (this.type == "mustardGreens")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 744, 181, 29, 30, this.invX - (1/2 * 29 * 1), this.invY - (1/2 * 30 * 1), 29 * 1, 30 * 1);
+        }
+        else if (this.type == "wiltedMustardGreens")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 773, 181, 29, 30, this.invX - (1/2 * 29 * 1), this.invY - (1/2 * 30 * 1), 29 * 1, 30 * 1);
+        }
+        else if (this.type == "hetlaukWorm")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 889, 18, 29, 30, this.invX - (1/2 * 29 * 1), this.invY - (1/2 * 30 * 1), 29 * 1, 30 * 1);
+        }
+        else if (this.type == "rawHetlaukWorm" || this.type == "sewerHetlaukWorm")
+        {
+            if (this.turn <= 2)
+            {
+                XXX.drawImage(floras, 852, 16, 29, 31, this.invX - (1/2 * 29 * 1), this.invY - (1/2 * 31 * 1), 29 * 1, 31 * 1);
+            }
+            else if (this.turn <= 4)
+            {
+                XXX.drawImage(floras, 808, 14, 29, 31, this.invX - (1/2 * 29 * 1), this.invY - (1/2 * 31 * 1), 29 * 1, 31 * 1);
+            }
+            else if (this.turn <= 6)
+            {
+                XXX.drawImage(floras, 764, 16, 29, 31, this.invX - (1/2 * 29 * 1), this.invY - (1/2 * 31 * 1), 29 * 1, 31 * 1);
+            }
+            else
+            {
+                XXX.drawImage(floras, 808, 14, 29, 31, this.invX - (1/2 * 29 * 1), this.invY - (1/2 * 31 * 1), 29 * 1, 31 * 1);
+                this.turn = 0;
+            }
+            this.turn += 1;
+        }
+        else if (this.type == "desertPoppyFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 967, 401, 29, 30, this.invX - (1/2 * 29 * 1), this.invY - (1/2 * 30 * 1), 29 * 1, 30 * 1);
+        }
+        else if (this.type == "desertPoppyPods")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 966, 438, 29, 31, this.invX - (1/2 * 29 * 1), this.invY - (1/2 * 31 * 1), 29 * 1, 31 * 1);
+        }
+        else if (this.type == "falloryFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 268, 63, 29, 36, this.invX - (1/2 * 29 * 1), this.invY - (1/2 * 36 * 1), 29 * 1, 36 * 1);
+        }
+        else if (this.type == "marigoldFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 403, 141, 28, 44, this.invX - (1/2 * 28 * 0.6), this.invY - (1/2 * 44 * 0.6), 28 * 0.6, 44 * 0.6);
+        }
+        else if (this.type == "bleedingHeartBranch")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 651, 147, 37, 40, this.invX - (1/2 * 37 * 0.8), this.invY - (1/2 * 40 * 0.8), 37 * 0.8, 40 * 0.8);
+        }
+        else if (this.type == "aberdomMushrooms")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 882, 174, 18, 18, this.invX - (1/2 * 18 * 1), this.invY - (1/2 * 18 * 1), 18 * 1, 18 * 1);
+        }
+        else if (this.type == "beunumMushroom")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 974, 235, 18, 22, this.invX - (1/2 * 18 * 0.8), this.invY - (1/2 * 22 * 0.8), 18 * 0.8, 22 * 0.8);
+        }
+        else if (this.type == "ciprinMushroom")
+        {
+            XXX.beginPath();
+            XXX.drawImage(floras, 973, 202, 22, 31, this.invX - (1/2 * 22 * 0.7), this.invY - (1/2 * 31 * 0.7), 22 * 0.7, 31 * 0.7);
+        }
         else if (this.type == "thorn")
         {
             XXX.beginPath();
-            XXX.drawImage(floras, 338, 12, 112, 33, this.invX - (1/2 * 112 * 0.8), this.invY - (1/2 * 33 * 0.8), 112 * 0.8, 33 * 0.8);
+            XXX.drawImage(floras, 338, 12, 112, 33, this.invX - (1/2 * 112 * 0.7), this.invY - (1/2 * 33 * 0.7), 112 * 0.7, 33 * 0.7);
         }
         else if (this.type == "alitkaArmour")
         {
@@ -54197,7 +56064,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(freeverse, 148, 5, 11, 12, this.invX - (1/2 * 11 * 2), this.invY - (1/2 * 12 * 2), 11 * 2, 12 * 2);
         }
-        else if (this.type == "energilPotionI" || this.type == "energilPotionII" || this.type == "energilPotionIII" || this.type == "energilPotionIV" || this.type == "energilPotionV")
+        else if (this.type == "energilPotionI" || this.type == "energilPotionII" || this.type == "energilPotionIII" || this.type == "energilPotionIV" || this.type == "energilPotionV" || this.type == "palggaPerfume")
         {
             XXX.beginPath();
             XXX.drawImage(oldverse, 1700, 180, 12, 19, this.invX - (1/2 * 12), this.invY - (1/2 * 19), 12, 19);

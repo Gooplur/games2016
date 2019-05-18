@@ -564,6 +564,13 @@ function Adventurer()
     this.radProof = false;
     this.radiation = 0;
     this.aquatica = false;
+    this.opioidTime = new Date().getTime();
+    this.opioidTic = 0;
+    this.opioidTolerance = 0;
+    this.opioidAddiction = 0;
+    this.opiumAddiction = false;
+    this.opiumVomitTime = new Date().getTime();
+    this.opiumed = false;
 
         //faction variables
     this.factionToggle = false;
@@ -1834,6 +1841,10 @@ function Adventurer()
                         {
                             this.perfumeCHA = 6;
                         }
+                        else if (this.perfume == "palgga")
+                        {
+                            this.perfumeCHA = 2;
+                        }
                     }
                 }
                 else
@@ -2855,7 +2866,12 @@ function Adventurer()
                 if (new Date().getTime() - this.bandagedStoreTime >= 1000)
                 {
                     this.bandagedStoreTime = new Date().getTime();
-                    if (this.wobea == true)
+
+                    if (this.opioidTic > 60)
+                    {
+                        this.bandagedTime -= 0.1;
+                    }
+                    else if (this.wobea == true || this.opioidTic > 0)
                     {
                         this.bandagedTime -= 0.25;
                     }
@@ -2974,7 +2990,12 @@ function Adventurer()
                     if (this.recoverI == true || this.recoverII == true || this.recoverIII == true || this.recoverIV == true || this.recoverV == true)
                     {
                         this.timeSinceLastRecovery = new Date().getTime();
-                        if (this.wobea == true) //wobea quadruples the recovery time gained.
+
+                        if (this.opioidTic > 60)
+                        {
+                            this.bandagedTime -= 0.1;
+                        }
+                        else if (this.wobea == true || this.opioidTic > 0) //wobea quadruples the recovery time gained.
                         {
                             this.recoveryTime -= 0.25;
                         }
@@ -4016,14 +4037,21 @@ function Adventurer()
                 }
             }
 
-            if (this.kolumHigh >= 595) //initial buzz
+            if (this.kolumHigh >= 400 && this.kolumTolerance < 10) //first time ever super buzz
+            {
+                this.energy += 0.007;
+                this.sleep = this.sleepMAX;
+                this.timeAlterTime = Math.max(1, this.timeAlterTime);
+                this.timeAlter = 0.2;
+            }
+            else if (this.kolumHigh >= 595 && this.kolumTolerance < 18) //initial buzz
             {
                 this.energy += 0.0055;
                 this.sleep = this.sleepMAX;
                 this.timeAlterTime = Math.max(1, this.timeAlterTime);
                 this.timeAlter = 0.3;
             }
-            else if (this.kolumHigh >= 540) //initial buzz
+            else if (this.kolumHigh >= 540 && this.kolumTolerance < 26) //initial buzz
             {
                 this.energy += 0.003;
                 this.sleep = this.sleepMAX;
@@ -4066,6 +4094,140 @@ function Adventurer()
             if (!this.kolumAddiction && this.kolumTolerance > 10) //tolerance decreases if addiction is gone
             {
                 this.kolumTolerance = Math.max(10, this.kolumTolerance - 0.001);
+            }
+        };
+
+        this.opiumDrug = function()
+        {
+            //drug high fades over time
+            if (this.opioidAddiction >= 20)
+            {
+                this.opiumAddiction = true;
+                this.opiumVomitTime = new Date().getTime();
+            }
+            else if (this.opioidAddiction <= 0)
+            {
+                this.opiumAddiction = false;
+                this.opioidAddiction = 0;
+            }
+
+            if (this.opiumAddiction == true && this.opioidAddiction < 20)
+            {
+                this.health -= 0.005;
+                if (new Date().getTime() - this.opiumVomitTime > 60000)
+                {
+                    if (this.land == true)
+                    {
+                        worldItems.push([new Item("vomit", X, Y), 1]);
+                    }
+                    this.hunger = Math.max(0, this.hunger - 30);
+                    this.energy -= 20;
+                    this.health -= 2;
+                    this.opiumVomitTime = new Date().getTime();
+                }
+            }
+
+
+            if (new Date().getTime() - this.opioidTime > 1000)
+            {
+                this.opioidTime = new Date().getTime();
+                this.opioidTic -= 1;
+                if (this.opioidTic <= 0)
+                {
+                    this.opioidAddiction = Math.max(0, this.opioidAddiction - 0.005);
+                    this.opioidTolerance = Math.max(0, this.opioidTolerance - 0.000005);
+                }
+            }
+            if (this.opioidTic < 0)
+            {
+                this.opioidTic = 0;
+            }
+
+            if (opiumFiction == "superOpium")
+            {
+                opiumFiction = false;
+                this.opioidTime = new Date().getTime();
+                this.opioidTic = Math.max(this.opioidTic, (240 * Math.max(0.4, 1 - this.opioidTolerance)));
+                this.magicalExperience += 4;
+            }
+            else if (opiumFiction == "opium")
+            {
+                opiumFiction = false;
+                this.opioidTime = new Date().getTime();
+                this.opioidTic = Math.max(this.opioidTic, (60 * Math.max(0.4, 1 - this.opioidTolerance)));
+                this.magicalExperience += 1;
+            }
+
+            if (this.opioidTic > 60)
+            {
+                this.sleep = this.sleepMAX;
+                if (opiumOutOfBody == true)
+                {
+                    this.will = Math.min(this.will + 0.4, this.willMAX);
+                    this.health += 0.3;
+                    this.energy += 0.35;
+                    this.experience += 10;
+                    this.magicalExperience += 5;
+                    this.opiumed = true;
+                }
+                else
+                {
+                    this.will = Math.min(this.will + 0.08, this.willMAX);
+                    this.health += 0.01;
+                    if (shiftKey || altKey || eKey)
+                    {
+                        this.stunnedIII = true;
+                        this.stunnedTime = Math.max(this.stunnedTime, 2);
+                    }
+                }
+            }
+            else if (this.opioidTic > 0)
+            {
+                this.sleep = this.sleepMAX;
+                if (opiumOutOfBody == true)
+                {
+                    this.will = Math.min(this.will + 0.2, this.willMAX);
+                    this.health += 0.1;
+                    this.energy += 0.15;
+                    this.experience += 4;
+                    this.magicalExperience += 1;
+                    this.opiumed = true;
+                }
+                else
+                {
+                    this.will = Math.min(this.will + 0.04, this.willMAX);
+                    this.health += 0.005;
+                    if (shiftKey || altKey || eKey)
+                    {
+                        this.stunnedII = true;
+                        this.stunnedTime = Math.max(this.stunnedTime, 2);
+                    }
+                }
+            }
+            else if (this.opiumed == true && opiumOutOfBody == true && opiumHangover != true && this.opioidTic <= 0)
+            {
+                loadType = "quicksave";
+                load();
+
+                opiumOutOfBody = false;
+                opiumHangover = true;
+                saveLock = false;
+            }
+
+            if (opiumHangover == true && this.opiumed != true)
+            {
+                opiumHangover = false;
+
+                if (Math.random() >= 0.45)
+                {
+                    worldItems.push([[new Item("vomit", X, Y), 1]]);
+                    this.hunger = Math.max(0, this.hunger - 10);
+                    this.thirst = Math.max(0, this.thirst - 5);
+                }
+                this.energy = Math.max(-5, this.energy - (9/10 * this.energyMAX));
+                this.sleep = 0;
+                //this.opiumed = false;
+                this.magicalExperience += 24;
             }
         };
 
@@ -4220,6 +4382,7 @@ function Adventurer()
         this.acidify();
         this.poison();
         this.kolumDrug();
+        this.opiumDrug();
         this.alterTime();
         this.recovery();
         this.skillBoost();
@@ -5136,10 +5299,10 @@ function Adventurer()
         }
     };
 
-    //Brain Maggots Notice Function
+    //Kolum Notice Function
     this.kolumChecker = function()
     {
-        if (this.kolumHigh < 0)
+        if (this.kolumHigh <= 0 && this.kolumAddiction == true)
         {
             // at this point the slot should be consistent so it should not have to check again to be entered into a position on the miniNoticeList.
             this.addNotice("Kolum Withdrawal");
@@ -5182,6 +5345,60 @@ function Adventurer()
         {
             //at this point the slot will have been cleared so next time the effect shows up it should have to check again to be entered into a position on the miniNoticeList.
             this.removeNotice("Kolum");
+        }
+    };
+
+    //Opium Notice Function
+    this.opiumChecker = function()
+    {
+        if (this.opioidAddiction < 20 && this.opioidAddiction == true && this.opioidTic <= 0)
+        {
+            // at this point the slot should be consistent so it should not have to check again to be entered into a position on the miniNoticeList.
+            this.addNotice("Opium Withdrawal");
+            //red background
+            XXX.beginPath();
+            XXX.fillStyle = "#ACB996";
+            XXX.lineWidth = 1;
+            XXX.strokeStyle = "black";
+            XXX.rect(this.arrangeNotices("Opium Withdrawal"), 413, 20, 20);
+            XXX.fill();
+            XXX.stroke();
+            XXX.beginPath();
+            XXX.fillStyle = "#576145";
+            XXX.lineWidth = 1;
+            XXX.rect(this.arrangeNotices("Opium Withdrawal"), 413, 20, (Math.min(20, this.opioidAddiction) / 20) * 20);
+            XXX.fill();
+            XXX.drawImage(floras, 972, 401, 20, 31, this.arrangeNotices("Opium Withdrawal"), 412.5, 20, 20);
+        }
+        else
+        {
+            //at this point the slot will have been cleared so next time the effect shows up it should have to check again to be entered into a position on the miniNoticeList.
+            this.removeNotice("Opium Withdrawal");
+        }
+
+        if (this.opioidTic > 0)
+        {
+            // at this point the slot should be consistent so it should not have to check again to be entered into a position on the miniNoticeList.
+            this.addNotice("Opium");
+            //red background
+            XXX.beginPath();
+            XXX.fillStyle = "#ACB996";
+            XXX.lineWidth = 1;
+            XXX.strokeStyle = "black";
+            XXX.rect(this.arrangeNotices("Opium"), 413, 20, 20);
+            XXX.fill();
+            XXX.stroke();
+            XXX.beginPath();
+            XXX.fillStyle = "#DAF3AE";
+            XXX.lineWidth = 1;
+            XXX.rect(this.arrangeNotices("Opium"), 413, 20, (Math.min(60, this.opioidTic) / 60) * 20);
+            XXX.fill();
+            XXX.drawImage(floras, 972, 438, 20, 31, this.arrangeNotices("Opium"), 412.5, 20, 20);
+        }
+        else
+        {
+            //at this point the slot will have been cleared so next time the effect shows up it should have to check again to be entered into a position on the miniNoticeList.
+            this.removeNotice("Opium");
         }
     };
 
@@ -6211,6 +6428,7 @@ function Adventurer()
         this.acidicChecker();
         this.asfixiationChecker();
         this.kolumChecker();
+        this.opiumChecker();
         this.radiationChecker();
     };
 
@@ -7193,13 +7411,13 @@ function Adventurer()
         this.AdDexterity = outfit.dexterityBonus + gloves.dexterityBonus + necklace.dexterityBonus + ring.dexterityBonus + boots.dexterityBonus;
         this.AdSurvivalism = outfit.survivalismBonus + gloves.survivalismBonus + necklace.survivalismBonus + ring.survivalismBonus + boots.survivalismBonus;
         //Extra Stat Bonuses
-        this.AdSleep = outfit.sleepBonus + gloves.sleepBonus + necklace.sleepBonus + ring.sleepBonus + boots.sleepBonus;
+        this.AdSleep = outfit.sleepBonus + gloves.sleepBonus + necklace.sleepBonus + ring.sleepBonus + boots.sleepBonus - this.opioidTolerance;
         this.hungerMAX = this.baseHunger + outfit.hungerBonus + gloves.hungerBonus + necklace.hungerBonus + ring.hungerBonus + boots.hungerBonus - this.kolumDegredation;
         this.thirstMAX = this.baseThirst + outfit.thirstBonus + gloves.thirstBonus + necklace.thirstBonus + ring.thirstBonus + boots.thirstBonus - this.kolumDegredation;
         this.warmthMAX = (this.baseWarmth + (1 * this.getEndurance()) + (4 * this.getToughness())) + outfit.warmthBonus + gloves.warmthBonus + necklace.warmthBonus + ring.warmthBonus + boots.warmthBonus;
         //Magical Stat Bonuses
         this.AdEminence = outfit.eminenceBonus + gloves.eminenceBonus + necklace.eminenceBonus + ring.eminenceBonus + boots.eminenceBonus;
-        this.AdWillpower = outfit.willpowerBonus + gloves.willpowerBonus + necklace.willpowerBonus + ring.willpowerBonus + boots.willpowerBonus;
+        this.AdWillpower = outfit.willpowerBonus + gloves.willpowerBonus + necklace.willpowerBonus + ring.willpowerBonus + boots.willpowerBonus - Math.floor(this.opioidTolerance);
         this.AdKnowledge = outfit.knowledgeBonus + gloves.knowledgeBonus + necklace.knowledgeBonus + ring.knowledgeBonus + boots.knowledgeBonus;
         this.AdConcentration = outfit.concentrationBonus + gloves.concentrationBonus + necklace.concentrationBonus + ring.concentrationBonus + boots.concentrationBonus;
         this.AdMemory = outfit.memoryBonus + gloves.memoryBonus + necklace.memoryBonus + ring.memoryBonus + boots.memoryBonus;
@@ -24423,7 +24641,10 @@ function Adventurer()
         if (mouseX > 299 && mouseX < 320 && mouseY < 549 && mouseY > 527 && clickReleased == true && lowBar != "save")
         {
             clickReleased = false;
-            lowBar = "save";
+            if (saveLock == false)
+            {
+                lowBar = "save";
+            }
             if (gameState == "paused")
             {
                 gameState = "active";
@@ -28766,6 +28987,12 @@ function Adventurer()
     {
         if (lowBar == "save")
         {
+            //saving is not allowed while saveLock variable is not false
+            if (saveLock != false)
+            {
+                lowBar = "information";
+            }
+
             //box 1
             LXX.beginPath();
             LXX.fillStyle = "lightGrey";
@@ -32217,7 +32444,7 @@ function Adventurer()
                                 this.kolumAddiction = true;
                                 if (this.kolumTolerance == 0)
                                 {
-                                    this.kolumTolerance = 10;
+                                    this.kolumTolerance += 5;
                                 }
                                 else
                                 {
@@ -32663,10 +32890,78 @@ function Adventurer()
                                 this.energizeTime = 100;
                                 this.energizeI = true;
                             }
+                            else if (Inventory[i][0].ability == "superOpium") //This is the third level of health regeneration.
+                            {
+                                opiumFiction = "superOpium";
+                                this.opioidTolerance += 0.05;
+                                this.opioidAddiction += 10;
+
+                                if (opiumOutOfBody == false) //&& this.opioidTic <= 0
+                                {
+                                    if (Math.random() > (0.24 + this.opioidTolerance))
+                                    {
+                                        opiumOutOfBody = true;
+                                    }
+                                    else
+                                    {
+                                        opiumOutOfBody = false;
+                                    }
+
+                                    if (opiumOutOfBody == true)
+                                    {
+                                        //make a save for the player
+                                        if (saveLock == false)
+                                        {
+                                            //itemSaveEffect = true; //big save
+                                            itemQuickSaveEffect = true; //quick save
+                                        }
+
+                                        //lock the player out of saving
+                                        saveLock = true;
+                                    }
+                                }
+                            }
+                            else if (Inventory[i][0].ability == "opium") //This is the third level of health regeneration.
+                            {
+                                opiumFiction = "opium";
+                                this.opioidTolerance += 0.005;
+                                this.opioidAddiction += 1;
+
+                                if (opiumOutOfBody == false) //&& this.opioidTic <= 0
+                                {
+                                    if (Math.random() > (0.64 + this.opioidTolerance))
+                                    {
+                                        opiumOutOfBody = true;
+                                    }
+                                    else
+                                    {
+                                        opiumOutOfBody = false;
+                                    }
+
+                                    if (opiumOutOfBody == true)
+                                    {
+                                        //make a save for the player
+                                        if (saveLock == false)
+                                        {
+                                            //itemSaveEffect = true; //big save
+                                            itemQuickSaveEffect = true; //quick save
+                                        }
+
+                                        //lock the player out of saving
+                                        saveLock = true;
+                                    }
+                                }
+                            }
                             else if (Inventory[i][0].ability == "ogardPerfume") //This makes you smell good therefore enchanting those you interact with to like you more and give you better deals... that is if you are not a man.
                             {
                                 this.perfume = "ogard";
                                 this.perfumeTime = 540;
+                                this.perfumeStoreTime = new Date().getTime();
+                            }
+                            else if (Inventory[i][0].ability == "palggaPerfume") //This makes you smell good therefore enchanting those you interact with to like you more and give you better deals... that is if you are not a man.
+                            {
+                                this.perfume = "palgga";
+                                this.perfumeTime = 420;
                                 this.perfumeStoreTime = new Date().getTime();
                             }
                             else if (Inventory[i][0].ability == "ameloyPerfume") //This makes you smell good therefore enchanting those you interact with to like you more and give you better deals... that is if you are not a man.
@@ -33050,6 +33345,27 @@ function Adventurer()
                         else
                         {
                             Inventory[i][1] -= 1;
+                        }
+
+                        //if an item can save the game for the player
+                        if (itemSaveEffect == true)
+                        {
+                            itemSaveEffect = false;
+                            //make a save for the player
+                            doBARSave = false;
+                            saveType = "download";
+                            save();
+                            saveType = null;
+                        }
+
+                        if (itemQuickSaveEffect == true)
+                        {
+                            itemQuickSaveEffect = false;
+                            //make a quicksave for the player
+                            doQuicksave = false;
+                            saveType = "quicksave";
+                            save();
+                            saveType = null;
                         }
                     }
                     else if (Inventory[i][0].utility == "weapon")
@@ -34784,7 +35100,7 @@ function Adventurer()
     {
         if (!this.drowned && this.form != "werewolf")
         {
-            if (this.movingType == 4 && this.inCombat == false && spaceKey == false && this.attacking == false && this.health < this.healthMAX && this.health > (this.healthMAX * 1/5) && this.energy >= 1/3 * this.energyMAX && this.hunger >= (3/10 * this.hungerMAX) && this.thirst >= (3/10 * this.thirstMAX) && this.fleshMites == false && this.bandaged || this.movingType == 1 && this.inCombat == false && spaceKey == false && this.attacking == false && this.health < this.healthMAX && this.health > (this.healthMAX * 1/5) && this.energy >= 1/3 * this.energyMAX && this.hunger >= (3/10 * this.hungerMAX) && this.thirst >= (3/10 * this.thirstMAX) && this.fleshMites == false && this.bandaged || this.movingType == 0 && this.inCombat == false && spaceKey == false && this.attacking == false && this.health < this.healthMAX && this.health > (this.healthMAX * 1/5) && this.energy >= 1/3 * this.energyMAX && this.hunger >= (3/10 * this.hungerMAX) && this.thirst >= (3/10 * this.thirstMAX) && this.fleshMites == false && this.bandaged || this.wobea == true && this.bandaged) //Restore health faster if not in combat and not moving and well watered and fed, and only if above 3/5 health and full energy: A bandage must be used.
+            if (this.movingType == 4 && this.inCombat == false && spaceKey == false && this.attacking == false && this.health < this.healthMAX && this.health > (this.healthMAX * 1/5) && this.energy >= 1/3 * this.energyMAX && this.hunger >= (3/10 * this.hungerMAX) && this.thirst >= (3/10 * this.thirstMAX) && this.fleshMites == false && this.bandaged || this.movingType == 1 && this.inCombat == false && spaceKey == false && this.attacking == false && this.health < this.healthMAX && this.health > (this.healthMAX * 1/5) && this.energy >= 1/3 * this.energyMAX && this.hunger >= (3/10 * this.hungerMAX) && this.thirst >= (3/10 * this.thirstMAX) && this.fleshMites == false && this.bandaged || this.movingType == 0 && this.inCombat == false && spaceKey == false && this.attacking == false && this.health < this.healthMAX && this.health > (this.healthMAX * 1/5) && this.energy >= 1/3 * this.energyMAX && this.hunger >= (3/10 * this.hungerMAX) && this.thirst >= (3/10 * this.thirstMAX) && this.fleshMites == false && this.bandaged || this.wobea == true && this.bandaged || this.opioidTic > 0 && this.bandaged) //Restore health faster if not in combat and not moving and well watered and fed, and only if above 3/5 health and full energy: A bandage must be used.
             {
                 this.health += 6 * (TTD / (45000 - 420 * Math.min(58.333, this.getEndurance()) * 2));
             }

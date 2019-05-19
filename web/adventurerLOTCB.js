@@ -7,6 +7,8 @@ function Adventurer()
 {
     //Character related variables (non-code focused)
     this.name = "Name";
+    //gamespeed
+    this.slowItDown = true;
     //Location
     this.dmx = map;
     //Leveling
@@ -4462,18 +4464,7 @@ function Adventurer()
                 //trying to run will make you lose your skin
                 if (wKey && shiftKey && this.land)
                 {
-                    for (var i = 0; i < Inventory.length; i++)
-                    {
-                        if (Inventory[i][0].utility == "weapon" || Inventory[i][0].utility == "ranged" || Inventory[i][0].utility == "worn")
-                        {
-                            Inventory[i][0].equipped = false;
-                        }
-                    }
-                    this.isArmourEquipped = false;
-                    this.ammoLoaded = false; //if a ranged weapon is in the middle of shooting this counters that
-                    this.outfitEquipped = "none";
-                    this.isWeaponEquipped = false;
-                    this.weaponEquipped = "none";
+                    clearEquipped();
                     this.subtlety = false;
                     for (var ll = 0; ll < Inventory.length; ll++)
                     {
@@ -4589,9 +4580,7 @@ function Adventurer()
                         Inventory[i][0].equipped = false;
                     }
                 }
-                this.ammoLoaded = false; //if a ranged weapon is in the middle of shooting this counters that
-                this.outfitEquipped = "none";
-                this.isArmourEquipped = false;
+                clearEquipped();
                 this.weaponEquipped = "vampire";
             }
         }
@@ -4640,9 +4629,7 @@ function Adventurer()
                         Inventory[i][0].equipped = false;
                     }
                 }
-                this.ammoLoaded = false; //if a ranged weapon is in the middle of shooting this counters that
-                this.isArmourEquipped = false;
-                this.outfitEquipped = "none";
+                clearEquipped();
                 this.weaponEquipped = "werewolf";
                 this.subtlety = false;
             }
@@ -4683,16 +4670,7 @@ function Adventurer()
 
                 //unequip weapon and armour then...
                 //set outfit to venandi
-                for (var i = 0; i < Inventory.length; i++)
-                {
-                    if (Inventory[i][0].utility == "weapon" || Inventory[i][0].utility == "ranged" || Inventory[i][0].utility == "worn")
-                    {
-                        Inventory[i][0].equipped = false;
-                    }
-                }
-                this.ammoLoaded = false; //if a ranged weapon is in the middle of shooting this counters that
-                this.isArmourEquipped = false;
-                this.outfitEquipped = "none";
+                clearEquipped();
                 this.weaponEquipped = "venandi";
                 this.subtlety = false;
             }
@@ -37123,4 +37101,29 @@ function Adventurer()
             }
         }
     };
+}
+
+function clearEquipped()
+{
+    for (var i = 0; i < Inventory.length; i++)
+    {
+        if (Inventory[i][0].utility == "weapon" || Inventory[i][0].utility == "ranged" || Inventory[i][0].utility == "worn")
+        {
+            Inventory[i][0].equipped = false;
+        }
+    }
+
+    player.areBootsEquipped = false;
+    player.bootsEquipped = "none";
+    player.areGlovesEquipped = false;
+    player.glovesEquipped = "none";
+    player.isNecklaceEquipped = false;
+    player.necklaceEquipped = "none";
+    player.isRingEquipped = false;
+    player.ringEquipped = "none";
+    player.isArmourEquipped = false;
+    player.outfitEquipped = "none";
+    player.isWeaponEquipped = false;
+    player.weaponEquipped = "none";
+    player.ammoLoaded = false;
 }

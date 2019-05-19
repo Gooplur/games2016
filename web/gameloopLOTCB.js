@@ -307,4 +307,5 @@ function gameloopOfDestiny(time)
     {
         requestAnimationFrame(gameloopOfDestiny, CCC);
     }
+    firstIdSet = false;
 }

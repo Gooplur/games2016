@@ -1008,6 +1008,16 @@ function cheats()
         {
             player.will = 0;
         }
+        else if (cheatcode.toLowerCase() == "sslow")
+        {
+            player.slowItDown = true;
+            console.log("game pace: slow");
+        }
+        else if (cheatcode.toLowerCase() == "ffast")
+        {
+            player.slowItDown = false;
+            console.log("game pace: fast");
+        }
         else if (cheatcode == "MRB")
         {
             player.race = "#999966";

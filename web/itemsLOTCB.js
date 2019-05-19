@@ -2,6 +2,7 @@
  * Created by skyeguy on 1/21/17.
  */
 //ALL ITEMS FOR LOTCB GAME
+var firstIdSet = true; //this allows the game to set item ID's in the very first moment of the game.
 
 function Item(type, x, y)
 {
@@ -57419,7 +57420,10 @@ function Item(type, x, y)
 
     this.operations = function()
     {
-        this.setItemID(); //this constantly redefines the item's stats and/or details based on the players skills (for the items that use that kind of adjustment.
+        if (player.slowItDown == true || firstIdSet == true || gameLoopNumber % 50 == 0)
+        {
+            this.setItemID(); //this constantly redefines the item's stats and/or details based on the players skills (for the items that use that kind of adjustment.
+        }
 
         if (this.X != false && this.Y != false) //this only lets an item draw if it has coordinates other than false.
         {

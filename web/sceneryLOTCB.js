@@ -14330,6 +14330,72 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 this.activate = false;
             }
         }
+        else if (this.type == "vardanianThrowingSpear")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 70;
+            if (typeof(this.owned) != "null" && typeof(this.owned) != "boolean")
+            {
+                this.size = this.owned;
+            }
+            else
+            {
+                this.size = 1;
+            }
+            this.zIndex = 2;
+
+            //DRAWSELF
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(ribak, 972, 6, 78, 15, -(1/2 * 78 * this.size), -(1/2 * 15 * this.size), 78 * this.size, 15 * this.size);
+            XXX.restore();
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 25;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+                give("vardanianThrowingSpear", 1);
+                scenicList.splice(scenicList.indexOf(this), 1);
+            }
+        }
+        else if (this.type == "throwingStar")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 75;
+            if (typeof(this.owned) != "null" && typeof(this.owned) != "boolean")
+            {
+                this.size = this.owned;
+            }
+            else
+            {
+                this.size = 1;
+            }
+            this.zIndex = 2;
+
+            //DRAWSELF
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(theCrack, 207, 402, 5, 9, -(1/2 * 5 * this.size), -(1/2 * 9 * this.size), 5 * this.size, 9 * this.size);
+            XXX.restore();
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 6;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+                give("throwingStar", 1);
+                scenicList.splice(scenicList.indexOf(this), 1);
+            }
+        }
         else if (this.type == "deadNaaprid")
         {
             //TRAITS

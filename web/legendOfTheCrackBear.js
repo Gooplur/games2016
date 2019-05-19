@@ -3913,6 +3913,12 @@ function theLegend()
     allWeapons.push(new Item("shortSword"));//94
     allWeapons.push(new Item("silverDagger"));//95
     allWeapons.push(new Item("thorn"));//96
+    allWeapons.push(new Item("zetianBlowgun"));//97
+    allWeapons.push(new Item("vardanianThrowingSpear"));//98
+    allWeapons.push(new Item("throwingStar"));//99
+    allWeapons.push(new Item("zetianBlowdart"));//100
+    allWeapons.push(new Item("zetianRattlerBlowdart"));//101
+    allWeapons.push(new Item("zetianRattlerBlowdartThick"));//102
 
 
 
@@ -4191,11 +4197,14 @@ function theLegend()
     smithing.push(new Item("vardanDagger", false));
     smithing.push(new Item("vardanSword", false));
     smithing.push(new Item("vardanGreatSword", false));
+    smithing.push(new Item("vardanianThrowingSpear", false));
     smithing.push(new Item("serratedNechroviteGreatBlade", false));
     smithing.push(new Item("thenganBascinetArmour", false));
     smithing.push(new Item("greatPlateArmour", false));
     smithing.push(new Item("cephrianFlail", false));
     smithing.push(new Item("zetianWarPick", false));
+    smithing.push(new Item("zetianBlowgun", false));
+    smithing.push(new Item("throwingStar", false));
 
 
 //Foods (Items cooked at either a stove, an oven, or a campfire)
@@ -4523,6 +4532,7 @@ function theLegend()
     alchemy.push(new Item("cephrianTincturePotOfungicideTincture", false));
     alchemy.push(new Item("jinnDust", false));
     alchemy.push(new Item("mimicFilament", false));
+    alchemy.push(new Item("palggaPerfume", false));
     alchemy.push(new Item("sauerkraut", false));
 
 //Brewing (alcohols, liquid fermentation, etc.)

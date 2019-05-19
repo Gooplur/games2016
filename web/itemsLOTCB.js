@@ -29880,6 +29880,39 @@ function Item(type, x, y)
             this.buyValue = 155 - Math.floor(player.getCharisma() / 5.55555555); // at max, buy for 146.
             this.sellValue = 140 + Math.floor(player.getCharisma() / 8.333); // at max, sell for 146.
         }
+        else if (this.type == "zetianBlowgun")
+        {
+            //For All Items
+            this.identity = "Zetian Blowgun";
+            this.weight = 2.3;
+            this.size = 25;
+            this.description = "A zetian style blowgun.";
+            this.intForDes = 3;
+            this.intDescription = "It is made from the carved carapace of a Voaia.";
+
+            //Define Utility
+            this.utility = "ranged";
+            //Sub Utility
+            this.subUtility = "blowgun";
+
+            //Utility Focused
+            this.range = 600 + (300 * player.getRanged() / 50);
+            //this.rate = Math.max(0.1, 35 - (34 * player.getRanged() / 50));
+            this.speed = 6 + (2 * player.getRanged() / 50);
+            this.negateArmour = 4 + (2 * player.getRanged() / 50);
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 26;
+            this.ingredients = [["Voaia Carapace", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 19 - Math.floor(player.getCharisma() / 12.5); // at max, buy for 15.
+            this.sellValue = 14 + Math.floor(player.getCharisma() / 50); // at max, sell for 15.
+        }
         else if (this.type == "zetianBlowdart")
         {
             //For All Items
@@ -29943,6 +29976,38 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 6; // at max, buy for 6.
             this.sellValue = 5; // at max, sell for 5.
+        }
+        else if (this.type == "zetianRattlerBlowdartThick")
+        {
+            //For All Items
+            this.identity = "Thick Rattler Venom Dipped Zetian Blowdart";
+            this.weight = 0.01;
+            this.size = 4;
+            this.description = "A zetian style blowdart twice dipped in the red venom of a rattler and dried after each time.";
+            this.intForDes = 1;
+            this.intDescription = "Zetians use this kind of blowdart to exaust and slowly kill their prey or their enemies.";
+
+            //Define Utility
+            this.utility = "ammunition";
+            //Sub Utility
+            this.subUtility = "dart";
+            this.subUtilityName = "Dart";
+
+            //Utility Focused
+            this.damage = (1.5) * (1 + player.getRanged() / 50);
+            this.magicalDamage = 0;
+
+            //ability
+            this.ability = "poisonIII";
+
+            //Crafting
+            this.yield = 2;
+            this.intForCraft = 2;
+            this.ingredients = [["Zetian Blowdart", 2], ["Rattler Venom Gland", 2]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 10; // at max, buy for 10.
+            this.sellValue = 9; // at max, sell for 9.
         }
         else if (this.type == "vardanianCrossbow")
         {
@@ -39103,6 +39168,101 @@ function Item(type, x, y)
             this.buyValue = 19 - Math.floor(player.getCharisma() / 5); // at max, buy for 9.
             this.sellValue = 7 + Math.floor(player.getCharisma() / 25); // at max, sell for 9.
         }
+        else if (this.type == "vardanianThrowingSpear")
+        {
+            //For All Items
+            this.identity = "Vardanian Throwing Spear";
+            this.weight = 0.8;
+            this.size = 24;
+            this.description = "A Vardanian spear of wood and iron that is designed to be thrown.";
+            this.intForDes = 1;
+            this.intDescription = "Throwing weapons can be recollected once they have been thrown.";
+
+            //Define Utility
+            this.utility = "weapon";
+            this.subUtility = "thrown";
+
+            //Utility Focused
+            this.energyCost = 5;
+            this.range = 350 + (175 * player.getRanged() / 50) + (275 * player.getStrength() / 50);
+            this.speed = 5 + (2 * player.getRanged() / 50) + (1 * player.getStrength() / 50);
+            this.rate = (150 - Math.max(Math.min(30, 30 * player.getRanged() / 50), 0)) - Math.max(Math.min(20, 20 * player.getStrength() / 50), 0);
+            if (player.getRanged() >= 25)
+            {
+                this.damage = (2.5 - this.damageHandicap * 2) * (this.leveledDamageMultiple / 25) + ((1/50) * player.getStrength()) + 5 + ((5/50) * player.getRanged());
+                this.negateArmour = 8;
+            }
+            else
+            {
+                this.damage = (2 - this.damageHandicap * 2) * (this.leveledDamageMultiple / 25) + ((1/50) * player.getStrength()) + 5 + ((5/50) * player.getRanged());
+                this.negateArmour = 6;
+            }
+            this.magicalDamage = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 3;
+            this.intForCraft = 20;
+            this.ingredients = [["Ashai Wood", 3], ["Iron", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 20 - Math.floor(player.getCharisma() / 5); // at max, buy for 10.
+            this.sellValue = 8 + Math.floor(player.getCharisma() / 25); // at max, sell for 10.
+        }
+        else if (this.type == "throwingStar")
+        {
+            //For All Items
+            this.identity = "Throwing Star";
+            this.weight = 0.07;
+            this.size = 6;
+            this.description = "A flat steel aerodynamic circle with four sharp blades that is meant to be thrown.";
+            this.intForDes = 1;
+            this.intDescription = "Throwing weapons can be recollected once they have been thrown.";
+
+            //Define Utility
+            this.utility = "weapon";
+            this.subUtility = "thrown";
+
+            //Utility Focused
+            if (player.getDexterity() < 11)
+            {
+                this.energyCost = 2;
+            }
+            else if (player.getDexterity() < 25)
+            {
+                this.energyCost = 1;
+            }
+            else
+            {
+                this.energyCost = 0.5;
+            }
+            this.range = 250 + (150 * player.getRanged() / 50) + (200 * player.getDexterity() / 50);
+            this.speed = 7 + (2 * player.getRanged() / 50) + (2 * player.getDexterity() / 50);
+            this.rate = (115 - Math.max(Math.min(20, 20 * player.getRanged() / 50), 0)) - Math.max(Math.min(20, 20 * player.getDexterity() / 50), 0);
+            if (player.getRanged() >= 25)
+            {
+                this.damage = (2.5) + ((2/50) * player.getDexterity()) + ((1/50) * player.getRanged());
+                this.negateArmour = 4;
+            }
+            else
+            {
+                this.damage = (1.5) + ((1.5/50) * player.getDexterity()) + ((0.5/50) * player.getRanged());
+                this.negateArmour = 3;
+            }
+            this.magicalDamage = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 11;
+            this.intForCraft = 25;
+            this.ingredients = [["Steel", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5 - Math.floor(player.getCharisma() / 50); // at max, buy for 4.
+            this.sellValue = 3 + Math.floor(player.getCharisma() / 50); // at max, sell for 4.
+        }
         else if (this.type == "vardanianAxe")
         {
             //For All Items
@@ -41212,6 +41372,16 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "throwingStar")
+        {
+            XXX.beginPath();
+            XXX.drawImage(theCrack, 207, 402, 9, 9, X - this.X + (1/2 * CCC.width) - (1/2 * 9 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 9 * 1.4), 9 * 1.4, 9 * 1.4);
+        }
+        else if (this.type == "vardanianThrowingSpear")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mimi, 358, 324, 47, 90, X - this.X + (1/2 * CCC.width) - (1/2 * 47 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 90 * 1), 47 * 1, 90 * 1);
+        }
         else if (this.type == "mustard")
         {
             XXX.beginPath();
@@ -41558,7 +41728,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(raed, 525, 114, 12, 27, X - this.X + (1/2 * CCC.width) - (1/2 * 12 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 27 * 1), 12 * 1, 27 * 1);
         }
-        else if (this.type == "zetianRattlerBlowdart")
+        else if (this.type == "zetianRattlerBlowdart" || this.type == "zetianRattlerBlowdartThick")
         {
             XXX.beginPath();
             XXX.drawImage(raed, 542, 114, 12, 27, X - this.X + (1/2 * CCC.width) - (1/2 * 12 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 27 * 1), 12 * 1, 27 * 1);
@@ -46598,6 +46768,16 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
+        else if (this.type == "throwingStar")
+        {
+            LXX.beginPath();
+            LXX.drawImage(theCrack, 207, 402, 9, 9, this.invX - (1/2 * 9 * 1.4), this.invY - (1/2 * 9 * 1.4), 9 * 1.4, 9 * 1.4);
+        }
+        else if (this.type == "vardanianThrowingSpear")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mimi, 358, 324, 47, 90, this.invX - (1/2 * 47 * 0.8), this.invY - (1/2 * 90 * 0.8), 47 * 0.8, 90 * 0.8);
+        }
         else if (this.type == "mustard")
         {
             LXX.beginPath();
@@ -46944,7 +47124,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(raed, 525, 114, 12, 27, this.invX - (1/2 * 12 * 1), this.invY - (1/2 * 27 * 1), 12 * 1, 27 * 1);
         }
-        else if (this.type == "zetianRattlerBlowdart")
+        else if (this.type == "zetianRattlerBlowdart" || this.type == "zetianRattlerBlowdartThick")
         {
             LXX.beginPath();
             LXX.drawImage(raed, 542, 114, 12, 27, this.invX - (1/2 * 12 * 1), this.invY - (1/2 * 27 * 1), 12 * 1, 27 * 1);
@@ -51955,6 +52135,16 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
+        else if (this.type == "throwingStar")
+        {
+            XXX.beginPath();
+            XXX.drawImage(theCrack, 207, 402, 9, 9, this.invX - (1/2 * 9 * 1.4), this.invY - (1/2 * 9 * 1.4), 9 * 1.4, 9 * 1.4);
+        }
+        else if (this.type == "vardanianThrowingSpear")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mimi, 358, 324, 47, 90, this.invX - (1/2 * 47 * 0.8), this.invY - (1/2 * 90 * 0.8), 47 * 0.8, 90 * 0.8);
+        }
         else if (this.type == "mustard")
         {
             XXX.beginPath();
@@ -52301,7 +52491,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(raed, 525, 114, 12, 27, this.invX - (1/2 * 12 * 1), this.invY - (1/2 * 27 * 1), 12 * 1, 27 * 1);
         }
-        else if (this.type == "zetianRattlerBlowdart")
+        else if (this.type == "zetianRattlerBlowdart" || this.type == "zetianRattlerBlowdartThick")
         {
             XXX.beginPath();
             XXX.drawImage(raed, 542, 114, 12, 27, this.invX - (1/2 * 12 * 1), this.invY - (1/2 * 27 * 1), 12 * 1, 27 * 1);

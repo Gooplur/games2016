@@ -947,6 +947,14 @@ function applySelectionsButton()
         {
             Inventory.push([new Item("aldrekiiBlade", false, false), 1]);
         }
+        else if (player.class == "Fighter" && player.raceName == "Zetian")
+        {
+            Inventory.push([new Item("zetianWarPick", false, false), 1]);
+        }
+        else if (player.class == "Fighter" && player.raceName == "Cephrite")
+        {
+            Inventory.push([new Item("cephrianFlail", false, false), 1]);
+        }
         else if (player.class == "Fighter" && player.raceName == "Orgell")
         {
             if (player.title == "Vagabond" || player.title == "Peasant" || player.title == "Commoner")
@@ -1000,11 +1008,48 @@ function applySelectionsButton()
                 Inventory.push([new Item("aldrekiiLongbow", false, false), 1], [new Item("aldrekiiArrow", false, false), 50]);
             }
         }
+        else if (player.class == "Ranger" && player.raceName == "Orgell")
+        {
+            if (player.title == "Vagabond" || player.title == "Peasant" || player.title == "Commoner")
+            {
+                Inventory.push([new Item("throwingStar", false, false), 5]);
+            }
+            else if (player.title == "Tradefolk")
+            {
+                Inventory.push([new Item("throwingStar", false, false), 9]);
+            }
+            else if (player.title == "Highfolk")
+            {
+                Inventory.push([new Item("throwingStar", false, false), 20]);
+            }
+            else
+            {
+                Inventory.push([new Item("throwingStar", false, false), 36]);
+            }
+        }
+        else if (player.class == "Ranger" && player.raceName == "Zetian")
+        {
+            if (player.title == "Vagabond" || player.title == "Peasant" || player.title == "Commoner")
+            {
+                Inventory.push([new Item("zetianBlowgun", false, false), 1], [new Item("zetianBlowdart", false, false), 30]);
+            }
+            else if (player.title == "Tradefolk")
+            {
+                Inventory.push([new Item("zetianBlowgun", false, false), 1], [new Item("zetianBlowdart", false, false), 20], [new Item("zetianRattlerBlowdart", false, false), 15]);
+            }
+            else if (player.title == "Highfolk")
+            {
+                Inventory.push([new Item("zetianBlowgun", false, false), 1], [new Item("zetianBlowdart", false, false), 25], [new Item("zetianRattlerBlowdart", false, false), 20], [new Item("zetianRattlerBlowdartThick", false, false), 10]);
+            }
+            else
+            {
+                Inventory.push([new Item("zetianBlowgun", false, false), 1], [new Item("zetianBlowdart", false, false), 35], [new Item("zetianRattlerBlowdart", false, false), 30], [new Item("zetianRattlerBlowdartThick", false, false), 25]);
+            }
+        }
         else if (player.class == "Ranger" && player.raceName == "Nirwaden")
         {
             if (player.title == "Vagabond" || player.title == "Peasant" || player.title == "Commoner" || player.title == "Tradefolk")
             {
-                //todo add a weak crossbow that can only use a special type of weak bolt and give it to the lower class Nirinese to start with if they are a ranger.
                 Inventory.push([new Item("longbow", false, false), 1], [new Item("arrow", false, false), 20]);
                 if (player.title == "Tradefolk")
                 {

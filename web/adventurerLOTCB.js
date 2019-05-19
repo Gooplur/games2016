@@ -22696,7 +22696,7 @@ function Adventurer()
                 }
                 XXX.drawImage(raed, 1043, 242, 129, 103, -1/2 * 129 + 9, -1/2 * 103, 129, 103);
                 XXX.restore();
-                this.readyForToFire = 15;
+                this.readyForToFire = 24;
             }
         }
         //MUSKET

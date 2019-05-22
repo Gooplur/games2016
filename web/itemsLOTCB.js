@@ -20475,15 +20475,18 @@ function Item(type, x, y)
             this.ability = "none";
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
-            if (player.title == "Nobility" || player.title == "Royalty" || player.title == "Highfolk" || shopkeeper.ultra.faction != "Nirwaden" && shopkeeper.ultra.faction != "EstolGang")
+            if (shopkeeper != "none")
             {
-                this.buyValue = 20; // at max, buy for 20.
-                this.sellValue = 20; // at max, sell for 20.
-            }
-            else
-            {
-                this.buyValue = 20; // at max, buy for 20.
-                this.sellValue = 0; // at max, sell for 0.
+                if (player.title == "Nobility" || player.title == "Royalty" || player.title == "Highfolk" || shopkeeper.ultra.faction != "Nirwaden" && shopkeeper.ultra.faction != "EstolGang")
+                {
+                    this.buyValue = 20; // at max, buy for 20.
+                    this.sellValue = 20; // at max, sell for 20.
+                }
+                else
+                {
+                    this.buyValue = 20; // at max, buy for 20.
+                    this.sellValue = 0; // at max, sell for 0.
+                }
             }
         }
         else if (this.type == "mofuFeather")
@@ -41537,7 +41540,7 @@ function Item(type, x, y)
                 XXX.drawImage(floras, 808, 14, 29, 31, X - this.X + (1/2 * CCC.width) - (1/2 * 29 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 31 * 1), 29 * 1, 31 * 1);
                 this.turn = 0;
             }
-            this.turn += 1;
+            this.turn += 0.4;
         }
         else if (this.type == "desertPoppyFlower")
         {
@@ -46933,7 +46936,7 @@ function Item(type, x, y)
                 LXX.drawImage(floras, 808, 14, 29, 31, this.invX - (1/2 * 29 * 1), this.invY - (1/2 * 31 * 1), 29 * 1, 31 * 1);
                 this.turn = 0;
             }
-            this.turn += 1;
+            this.turn += 0.4;
         }
         else if (this.type == "desertPoppyFlower")
         {
@@ -52300,7 +52303,7 @@ function Item(type, x, y)
                 XXX.drawImage(floras, 808, 14, 29, 31, this.invX - (1/2 * 29 * 1), this.invY - (1/2 * 31 * 1), 29 * 1, 31 * 1);
                 this.turn = 0;
             }
-            this.turn += 1;
+            this.turn += 0.4;
         }
         else if (this.type == "desertPoppyFlower")
         {
@@ -57420,7 +57423,7 @@ function Item(type, x, y)
 
     this.operations = function()
     {
-        if (player.slowItDown == true || firstIdSet == true || gameLoopNumber % 50 == 0)
+        if (player.slowItDown == true || firstIdSet == true || gameLoopNumber % 200 == 0)
         {
             this.setItemID(); //this constantly redefines the item's stats and/or details based on the players skills (for the items that use that kind of adjustment.
         }

@@ -415,6 +415,20 @@ function worldBuilder()
             outlineBuilder( 34, 1, "stonePath", -4, 14);
             //outlineBuilder( 1, 1, "forest", -4, 14);
         }
+        // mapS1W1
+        if (Y > -14144 && Y < -3328 && X < 17891 && X > 6299) //X-1
+        {
+            elevation = 0;
+            region = "s1w1";
+            outlineBuilder( 34, 34, "crag", -54, 14);
+            outlineBuilder( 4, 1, "greenGrass", -22, 16);
+            outlineBuilder( 34, 2, "greenGrass", -22, 14);
+            outlineBuilder( 1, 1, "greenGrass", -25, 28);
+            outlineBuilder( 34, 2, "greenGrass", -22, 14);
+            outlineBuilder( 25, 2, "greenGrass", -24, 20);
+            outlineBuilder( 3, 3, "greenGrass", -25, 45);
+            outlineBuilder( 1, 1, "greenGrass", -26, 47);
+        }
         //mapS1W4
         if (Y > -14144 && Y < -3328 && X < 48510 && X > 36883) //X-4
         {
@@ -777,10 +791,15 @@ function worldBuilder()
             outlineBuilder( 2, 8, "frost", 140, -33);
             outlineBuilder( 1, 5, "frost", 142, -31);
             outlineBuilder( 1, 2, "frost", 144, -30);
+
             //outlineBuilder( 34, 34, "outline", 116, -54);
             outlineBuilder( 34, 17, "sea", 122, -54);
             outlineBuilder( 1, 5, "forest", 117, -21);
             outlineBuilder( 1, 2, "forest", 119, -22);
+
+            outlineBuilder( 1, 3, "snow", 141, -36);
+
+            outlineBuilder( 2, 1, "snow", 146, -36);
         }
         //mapN1E5 //Atalin City (castle)
         if (Y > 6290 && Y < 17073 && X < -43292 && X > -54937) //X5
@@ -801,6 +820,10 @@ function worldBuilder()
             outlineBuilder( 4, 1, "nirRoad", 150, -24); //garden road L
             outlineBuilder( 4, 1, "nirRoad", 156, -24); //garden road R
 
+            outlineBuilder( 1, 7, "snow", 152, -36);
+            outlineBuilder( 2, 3, "snow", 163, -36);
+            outlineBuilder( 1, 2, "snow", 166, -36);
+            outlineBuilder( 1, 3, "snow", 174, -36);
         }
         //layer 2 (frosty region): elev 1
         //mapN2

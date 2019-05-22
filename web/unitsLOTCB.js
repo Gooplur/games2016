@@ -14134,12 +14134,12 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.armour = 0;
                 this.speed = 2.8 + (Math.floor(Math.random() * 4) / 10);
                 this.rangeOfSight = 400; //This is just to set the variable initially. The rest is variable.
-                this.rotationSpeed = 0.1; // 0.01 is a standard turn speed.
+                this.rotationSpeed = 0.075; // 0.01 is a standard turn speed.
                 this.engagementRadius = 42;
                 this.sizeRadius = 17;
                 this.negateArmour = 0;
                 this.attackWait = 0.55;
-                this.beastEntry = {intReq: 3, name: "Frich", health: "4 - 7", armour: 0, damage: "1 - 4", negate: 0, ability: "None", fireProof: -1, habitat: "Underground / Grasslands", sight: 431, alpha: "Alpha", magicProof: 0, size: 17, speed: "2.8 - 3.1", rotation: 0.1, rate: 0.55, experience: 15, description: ["A Frich is a grey haired rodent that has a bare unfurred face. Friches tend to prefer cooler temperatures and thusly live both underground and in", "temperate climates. They scavenge leftover carrion when it is available and when not they hunt small critters or ransack a farm if there is one nearby.", "Friches are often found in small packs that hunt together, but it is also common enough to see a lone frich seeking out food."], image: ["verse", 1290, 5, 83, 33, 0, 0, 83 * 1.5 / 3, 33 * 1.5 / 3]};
+                this.beastEntry = {intReq: 3, name: "Frich", health: "4 - 7", armour: 0, damage: "1 - 4", negate: 0, ability: "None", fireProof: -1, habitat: "Underground / Grasslands", sight: 431, alpha: "Alpha", magicProof: 0, size: 17, speed: "2.8 - 3.1", rotation: 0.075, rate: 0.55, experience: 15, description: ["A Frich is a grey haired rodent that has a bare unfurred face. Friches tend to prefer cooler temperatures and thusly live both underground and in", "temperate climates. They scavenge leftover carrion when it is available and when not they hunt small critters or ransack a farm if there is one nearby.", "Friches are often found in small packs that hunt together, but it is also common enough to see a lone frich seeking out food."], image: ["verse", 1290, 5, 83, 33, 0, 0, 83 * 1.5 / 3, 33 * 1.5 / 3]};
 
                 //alpha has a larger size body and skills.
                 this.alphaSize = 1.2; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -14159,12 +14159,12 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.armour = 0;
                 this.speed = 3.3 + (Math.floor(Math.random() * 3) / 10);
                 this.rangeOfSight = 525; //This is just to set the variable initially. The rest is variable.
-                this.rotationSpeed = 0.1; // 0.01 is a standard turn speed.
+                this.rotationSpeed = 0.075; // 0.01 is a standard turn speed.
                 this.engagementRadius = 49;
                 this.sizeRadius = 19;
                 this.negateArmour = 1;
                 this.attackWait = 0.80;
-                this.beastEntry = {intReq: 6, name: "Frich", health: "12 - 19", armour: 0, damage: "2 - 7", negate: 1, ability: "None", fireProof: -1, habitat: "Underground / Grasslands", sight: 525, alpha: "Massive", magicProof: 0, size: 19, speed: "3.3 - 3.5", rotation: 0.1, rate: 0.80, experience: 33, description: ["A Frich is a grey haired rodent that has a bare unfurred face. Friches tend to prefer cooler temperatures and thusly live both underground and in", "Massive friches tend to be more likely than others to actively seek out human flesh for their diet. They tend to be found in small groups of at the most", "up to three or four, but more often are found hunting alone or in pairs."], image: ["verse", 1290, 5, 83, 33, 0, 0, 83 * 1.9 / 3, 33 * 1.9 / 3]};
+                this.beastEntry = {intReq: 6, name: "Frich", health: "12 - 19", armour: 0, damage: "2 - 7", negate: 1, ability: "None", fireProof: -1, habitat: "Underground / Grasslands", sight: 525, alpha: "Massive", magicProof: 0, size: 19, speed: "3.3 - 3.5", rotation: 0.075, rate: 0.80, experience: 33, description: ["A Frich is a grey haired rodent that has a bare unfurred face. Friches tend to prefer cooler temperatures and thusly live both underground and in", "Massive friches tend to be more likely than others to actively seek out human flesh for their diet. They tend to be found in small groups of at the most", "up to three or four, but more often are found hunting alone or in pairs."], image: ["verse", 1290, 5, 83, 33, 0, 0, 83 * 1.9 / 3, 33 * 1.9 / 3]};
 
                 //alpha has a larger size body and skills.
                 this.alphaSize = 1.6; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -14185,12 +14185,12 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.armour = 0;
                 this.speed = 2.6 + (Math.floor(Math.random() * 5) / 10);
                 this.rangeOfSight = 385; //This is just to set the variable initially. The rest is variable.
-                this.rotationSpeed = 0.1; // 0.01 is a standard turn speed.
+                this.rotationSpeed = 0.075; // 0.01 is a standard turn speed.
                 this.engagementRadius = 40;
                 this.sizeRadius = 15;
                 this.negateArmour = 0;
                 this.attackWait = 0.55;
-                this.beastEntry = {intReq: 2, name: "Frich", health: "3 - 5", armour: 0, damage: "1 - 2", negate: 0, ability: "None", fireProof: -1, habitat: "Underground / Grasslands", sight: 400, alpha: "Normal", magicProof: 0, size: 15, speed: "2.6 - 3", rotation: 0.1, rate: 0.55, experience: 11, description: ["A Frich is a grey haired rodent that has a bare unfurred face. Friches tend to prefer cooler temperatures and thusly live both underground and in", "temperate climates. They scavenge leftover carrion when it is available and when not they hunt small critters or ransack a farm if there is one nearby.", "Friches are often found in small packs that hunt together, but it is also common enough to see a lone frich seeking out food."], image: ["verse", 1290, 5, 83, 33, 0, 0, 83 * 1.15 / 3, 33 * 1.15 / 3]};
+                this.beastEntry = {intReq: 2, name: "Frich", health: "3 - 5", armour: 0, damage: "1 - 2", negate: 0, ability: "None", fireProof: -1, habitat: "Underground / Grasslands", sight: 400, alpha: "Normal", magicProof: 0, size: 15, speed: "2.6 - 3", rotation: 0.075, rate: 0.55, experience: 11, description: ["A Frich is a grey haired rodent that has a bare unfurred face. Friches tend to prefer cooler temperatures and thusly live both underground and in", "temperate climates. They scavenge leftover carrion when it is available and when not they hunt small critters or ransack a farm if there is one nearby.", "Friches are often found in small packs that hunt together, but it is also common enough to see a lone frich seeking out food."], image: ["verse", 1290, 5, 83, 33, 0, 0, 83 * 1.15 / 3, 33 * 1.15 / 3]};
 
                 //this multiplies the draw image skew numbers by 1 so that it stays the same
                 this.alphaSize = 1;
@@ -14218,12 +14218,12 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.armour = 0;
                 this.speed = 3.6 + (Math.floor(Math.random() * 4) / 10);
                 this.rangeOfSight = 625; //This is just to set the variable initially. The rest is variable.
-                this.rotationSpeed = 0.1; // 0.01 is a standard turn speed.
+                this.rotationSpeed = 0.03; // 0.01 is a standard turn speed.
                 this.engagementRadius = 50;
                 this.sizeRadius = 19;
                 this.negateArmour = 2;
                 this.attackWait = 0.85;
-                this.beastEntry = {intReq: 8, name: "Mountain Frich", health: "47 - 62", armour: 0, damage: "3 - 10", negate: 2, ability: "None", fireProof: -1, habitat: "Craglands / Mountains", sight: 625, alpha: "Alpha", magicProof: 0, size: 19, speed: "3.6 - 3.9", rotation: 0.1, rate: 0.85, experience: 58, description: ["Mountain Friches are extremely large black haired rodents that clamber thoughout rocky crags and across jagged mountainsides often taking shelter in", "caves or between large rocks. Mountain friches eat whichever unfortunate creature finds itself before them; they eat their prey bones and all, they are", "not picky in the least."], image: ["oldverse", 1290, 5, 83, 33, 0, 0, 83 * 2.2 / 3, 33 * 2.2 / 3]};
+                this.beastEntry = {intReq: 8, name: "Mountain Frich", health: "47 - 62", armour: 0, damage: "3 - 10", negate: 2, ability: "None", fireProof: -1, habitat: "Craglands / Mountains", sight: 625, alpha: "Alpha", magicProof: 0, size: 19, speed: "3.6 - 3.9", rotation: 0.03, rate: 0.85, experience: 58, description: ["Mountain Friches are extremely large black haired rodents that clamber thoughout rocky crags and across jagged mountainsides often taking shelter in", "caves or between large rocks. Mountain friches eat whichever unfortunate creature finds itself before them; they eat their prey bones and all, they are", "not picky in the least."], image: ["oldverse", 1290, 5, 83, 33, 0, 0, 83 * 2.2 / 3, 33 * 2.2 / 3]};
 
                 //alpha has a larger size body and skills.
                 this.alphaSize = 2; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -14243,12 +14243,12 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.armour = 0;
                 this.speed = 4.1 + (Math.floor(Math.random() * 3) / 10);
                 this.rangeOfSight = 725; //This is just to set the variable initially. The rest is variable.
-                this.rotationSpeed = 0.1; // 0.01 is a standard turn speed.
+                this.rotationSpeed = 0.025; // 0.01 is a standard turn speed.
                 this.engagementRadius = 51;
                 this.sizeRadius = 24;
                 this.negateArmour = 3;
                 this.attackWait = 0.90;
-                this.beastEntry = {intReq: 14, name: "Mountain Frich", health: "73 - 94", armour: 0, damage: "4 - 14", negate: 3, ability: "None", fireProof: -1, habitat: "Craglands / Mountains", sight: 725, alpha: "Massive", magicProof: 0, size: 24, speed: "4.1 - 4.3", rotation: 0.1, rate: 0.90, experience: 90, description: ["Mountain Friches are extremely large black haired rodents that clamber thoughout rocky crags and across jagged mountainsides often taking shelter in", "caves or between large rocks. Mountain friches eat whichever unfortunate creature finds itself before them; they eat their prey bones and all, they are", "not picky in the least."], image: ["oldverse", 1290, 5, 83, 33, 0, 0, 83 * 2.6 / 3, 33 * 2.6 / 3]};
+                this.beastEntry = {intReq: 14, name: "Mountain Frich", health: "73 - 94", armour: 0, damage: "4 - 14", negate: 3, ability: "None", fireProof: -1, habitat: "Craglands / Mountains", sight: 725, alpha: "Massive", magicProof: 0, size: 24, speed: "4.1 - 4.3", rotation: 0.025, rate: 0.90, experience: 90, description: ["Mountain Friches are extremely large black haired rodents that clamber thoughout rocky crags and across jagged mountainsides often taking shelter in", "caves or between large rocks. Mountain friches eat whichever unfortunate creature finds itself before them; they eat their prey bones and all, they are", "not picky in the least."], image: ["oldverse", 1290, 5, 83, 33, 0, 0, 83 * 2.6 / 3, 33 * 2.6 / 3]};
 
                 //alpha has a larger size body and skills.
                 this.alphaSize = 2.5; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -14268,12 +14268,12 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.armour = 0;
                 this.speed = 3.2 + (Math.floor(Math.random() * 5) / 10);
                 this.rangeOfSight = 525; //This is just to set the variable initially. The rest is variable.
-                this.rotationSpeed = 0.1; // 0.01 is a standard turn speed.
+                this.rotationSpeed = 0.03; // 0.01 is a standard turn speed.
                 this.engagementRadius = 46;
                 this.sizeRadius = 18;
                 this.negateArmour = 1;
                 this.attackWait = 0.8;
-                this.beastEntry = {intReq: 7, name: "Mountain Frich", health: "30 - 36", armour: 0, damage: "2 - 7", negate: 1, ability: "None", fireProof: -1, habitat: "Craglands / Mountains", sight: 525, alpha: "Normal", magicProof: 0, size: 18, speed: "3.2 - 3.6", rotation: 0.1, rate: 0.8, experience: 41, description: ["Mountain Friches are extremely large black haired rodents that clamber thoughout rocky crags and across jagged mountainsides often taking shelter in", "caves or between large rocks. Mountain friches eat whichever unfortunate creature finds itself before them; they eat their prey bones and all, they are", "not picky in the least."], image: ["oldverse", 1290, 5, 83, 33, 0, 0, 83 * 1.8 / 3, 33 * 1.8 / 3]};
+                this.beastEntry = {intReq: 7, name: "Mountain Frich", health: "30 - 36", armour: 0, damage: "2 - 7", negate: 1, ability: "None", fireProof: -1, habitat: "Craglands / Mountains", sight: 525, alpha: "Normal", magicProof: 0, size: 18, speed: "3.2 - 3.6", rotation: 0.03, rate: 0.8, experience: 41, description: ["Mountain Friches are extremely large black haired rodents that clamber thoughout rocky crags and across jagged mountainsides often taking shelter in", "caves or between large rocks. Mountain friches eat whichever unfortunate creature finds itself before them; they eat their prey bones and all, they are", "not picky in the least."], image: ["oldverse", 1290, 5, 83, 33, 0, 0, 83 * 1.8 / 3, 33 * 1.8 / 3]};
 
                 //this multiplies the draw image skew numbers by 1 so that it stays the same
                 this.alphaSize = 1.5;
@@ -18628,7 +18628,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.armour = 0;
                 this.speed = 5 + (Math.floor(Math.random() * 4) / 10);
                 this.rangeOfSight = 625;
-                this.rotationSpeed = 0.1;
+                this.rotationSpeed = 0.075;
                 this.engagementRadius = 70;
                 this.sizeRadius = 33;
                 this.negateArmour = 3;
@@ -18652,7 +18652,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.armour = 0;
                 this.speed = 6 + (Math.floor(Math.random() * 4) / 10);
                 this.rangeOfSight = 900;
-                this.rotationSpeed = 0.1;
+                this.rotationSpeed = 0.075;
                 this.engagementRadius = 96;
                 this.sizeRadius = 60;
                 this.negateArmour = 6;
@@ -18676,7 +18676,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.armour = 0;
                 this.speed = 4 + (Math.floor(Math.random() * 4) / 10);
                 this.rangeOfSight = 575;
-                this.rotationSpeed = 0.1;
+                this.rotationSpeed = 0.075;
                 this.engagementRadius = 55;
                 this.sizeRadius = 23;
                 this.negateArmour = 1;
@@ -20595,7 +20595,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.armour = 0;
                 this.speed = 4 + (Math.floor(Math.random() * 4) / 10);
                 this.rangeOfSight = 340; //This is just to set the variable initially. The rest is variable.
-                this.rotationSpeed = 0.1;
+                this.rotationSpeed = 0.085;
                 this.engagementRadius = 71;
                 this.sizeRadius = 20;
                 this.negateArmour = 3.5;
@@ -20619,7 +20619,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.armour = 0;
                 this.speed = 3.6 + (Math.floor(Math.random() * 4) / 10);
                 this.rangeOfSight = 300; //This is just to set the variable initially. The rest is variable.
-                this.rotationSpeed = 0.1;
+                this.rotationSpeed = 0.085;
                 this.engagementRadius = 55;
                 this.sizeRadius = 18;
                 this.negateArmour = 2.5;
@@ -20662,7 +20662,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.armour = 5.5;
                 this.speed = 1.2;
                 this.rangeOfSight = 340; //This is just to set the variable initially. The rest is variable.
-                this.rotationSpeed = 0.025;
+                this.rotationSpeed = 0.01;
                 this.engagementRadius = 103;
                 this.sizeRadius = 57;
                 this.negateArmour = 200;
@@ -20686,7 +20686,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.armour = 2.5;
                 this.speed = 0.65;
                 this.rangeOfSight = 300; //This is just to set the variable initially. The rest is variable.
-                this.rotationSpeed = 0.025;
+                this.rotationSpeed = 0.01;
                 this.engagementRadius = 41;
                 this.sizeRadius = 19;
                 this.negateArmour = 90;
@@ -20711,7 +20711,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.armour = 4;
                 this.speed = 0.9;
                 this.rangeOfSight = 300; //This is just to set the variable initially. The rest is variable.
-                this.rotationSpeed = 0.025;
+                this.rotationSpeed = 0.01;
                 this.engagementRadius = 90;
                 this.sizeRadius = 50;
                 this.negateArmour = 170;

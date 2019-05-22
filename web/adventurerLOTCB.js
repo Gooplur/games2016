@@ -8,7 +8,7 @@ function Adventurer()
     //Character related variables (non-code focused)
     this.name = "Name";
     //gamespeed
-    this.slowItDown = true;
+    this.slowItDown = false;
     //Location
     this.dmx = map;
     //Leveling
@@ -573,6 +573,14 @@ function Adventurer()
     this.opiumAddiction = false;
     this.opiumVomitTime = new Date().getTime();
     this.opiumed = false;
+    this.dizzyTime = 0;
+    this.dizzyKeepTime = new Date().getTime();
+    this.dizzyI = false;
+    this.dizzyII = false;
+    this.dizzyIII = false;
+    this.dizzyIV = false;
+    this.dizzyV = false;
+    this.dizzyVI = false;
 
         //faction variables
     this.factionToggle = false;
@@ -3789,6 +3797,30 @@ function Adventurer()
             }
         };
 
+        this.mentalImpairment = function()
+        {
+            //dizziness
+            if (this.dizzyTime > 0)
+            {
+                if (new Date().getTime() - this.dizzyKeepTime < 100)
+                {
+                    this.dizzyKeepTime = new Date().getTime();
+                    this.dizzyTime -= 0.1;
+                }
+            }
+            else
+            {
+                this.dizzyKeepTime = new Date().getTime();
+                this.dizzyTime = 0;
+                this.dizzyI = false;
+                this.dizzyII = false;
+                this.dizzyIII = false;
+                this.dizzyIV = false;
+                this.dizzyV = false;
+                this.dizzyVI = false;
+            }
+        };
+
         this.poison = function()
         {
             if (this.silvered && this.lycanthropy == true && this.vamprism == false)
@@ -4382,6 +4414,7 @@ function Adventurer()
         //minor game effects
         this.sightSeeing();
         this.lungs();
+        this.mentalImpairment();
         this.perfumed();
         this.swollen();
         this.tepprekliaFungalFever();
@@ -5190,6 +5223,30 @@ function Adventurer()
         {
             //at this point the slot will have been cleared so next time the effect shows up it should have to check again to be entered into a position on the miniNoticeList.
             this.removeNotice("Starvation");
+        }
+    };
+
+    //Dizziness Notice Function
+    this.dizzinessChecker = function()
+    {
+        if (this.dizzyTime > 0)
+        {
+            // at this point the slot should be consistent so it should not have to check again to be entered into a position on the miniNoticeList.
+            this.addNotice("Dizziness");
+            //red background
+            XXX.beginPath();
+            XXX.fillStyle = "cornsilk";
+            XXX.lineWidth = 1;
+            XXX.strokeStyle = "black";
+            XXX.rect(this.arrangeNotices("Dizziness"), 413, 20, 20);
+            XXX.fill();
+            XXX.stroke();
+            XXX.drawImage(raed, 1170, 769, 20, 19, this.arrangeNotices("Dizziness"), 412.5, 20, 20);
+        }
+        else
+        {
+            //at this point the slot will have been cleared so next time the effect shows up it should have to check again to be entered into a position on the miniNoticeList.
+            this.removeNotice("Dizziness");
         }
     };
 
@@ -6420,6 +6477,7 @@ function Adventurer()
         this.kolumChecker();
         this.opiumChecker();
         this.radiationChecker();
+        this.dizzinessChecker();
     };
 
     //MOVEMENT ANIMATION
@@ -13313,8 +13371,8 @@ function Adventurer()
         {
             var szx = 1.25;
 
-            console.log("stage: " + this.stage);
-            console.log("wc: " + this.wolfChange);
+            //console.log("stage: " + this.stage);
+            //console.log("wc: " + this.wolfChange);
             if (this.wolfChange == "transform")
             {
                 //this.animator(10, 0.10, false);

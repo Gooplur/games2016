@@ -203,3 +203,23 @@ thenganTemperateFishingSpot - A fishing spot that hosts 5 different Thengan fish
 thenganSewerFishingSpot - A fishing spot in a thengan sewer
 vardanianThrowingSpear - A throwing spear lodged in the ground (lootable)
 throwingStar - A throwing star lodged in the ground (lootable)
+vardanBuilding1 - a north facing Vardanian orphanage
+vardanBuilding2 - an east facing Vardanian hall
+vardanBuilding3 - a west facing inn
+vardanBuilding4 - a south facing inn
+vardanBuilding5 - a west facing two bedroom building (right angle shaped)
+vardanBuilding6 - an east facing two bedroom building (right angle shaped)
+vardanBuilding7 - a north facing two bedroom building (right angle shaped)
+vardanBuilding8 - a south facing two bedroom building (right angle shaped)
+vardanBuilding9 - a south facing cathedral
+vardanBuilding10 - a north facing long church
+vardanBuilding11 - an east facing long church
+vardanBuilding12 - a west facing church
+vardanBuilding13 - a south facing church
+vardanBuilding14 - an east facing church
+vardanBuilding15 - a south facing chapel
+vardanBuilding16 - a north facing chapel
+vardanBuilding17 - an east facing chapel
+vardanBuilding18 - a west facing chapel
+
+

@@ -21,6 +21,10 @@ function Barrier(x, y, h, w, dev, info)
             //console.log("myX: " + playerProjectiles[ii].X + " myY: " + playerProjectiles[ii].Y + " barrierX: " + this.X + " barrierY: " + this.Y);
             if (playerProjectiles[ii].X <= this.X + this.width && playerProjectiles[ii].X >= this.X && playerProjectiles[ii].Y <= this.Y + this.height && playerProjectiles[ii].Y >= this.Y)
             {
+                if (playerProjectiles[ii].thrown == true && playerProjectiles[ii].isPlayerProjectile == true && playerProjectiles[ii].thrownID != "none")
+                {
+                    scenicList.push(new Scenery(playerProjectiles[ii].thrownID, playerProjectiles[ii].X, playerProjectiles[ii].Y, playerProjectiles[ii].thrownRotation, false));
+                }
                 cosasParaErradicar.push(ii);
             }
         }

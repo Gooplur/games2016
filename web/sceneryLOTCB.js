@@ -2796,6 +2796,21 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     XXX.rotate(this.rotation);
                     XXX.drawImage(cypher, 233, 73, 101, 44, (-1/2 * 101 * this.size), (-1/2 * 44 * this.size), 101 * this.size, 44 * this.size);
                     XXX.restore();
+                    if (this.primed)
+                    {
+                        var deleteList = [];
+                        for (var l = 0; l < barrierList.length; l++)
+                        {
+                            if (barrierList[l].info == this.clave)
+                            {
+                                deleteList.push(l);
+                            }
+                        }
+                        for (var l = deleteList.length - 1; l > -1; l--)
+                        {
+                            barrierList.splice(deleteList[l], 1);
+                        }
+                    }
                 }
                 else if (this.phase == 0)
                 {
@@ -2870,6 +2885,21 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     XXX.rotate(this.rotation);
                     XXX.drawImage(cypher, 345, 72, 101, 44, (-1/2 * 101 * this.size), (-1/2 * 44 * this.size), 101 * this.size, 44 * this.size);
                     XXX.restore();
+                    if (this.primed)
+                    {
+                        var deleteList = [];
+                        for (var l = 0; l < barrierList.length; l++)
+                        {
+                            if (barrierList[l].info == this.clave)
+                            {
+                                deleteList.push(l);
+                            }
+                        }
+                        for (var l = deleteList.length - 1; l > -1; l--)
+                        {
+                            barrierList.splice(deleteList[l], 1);
+                        }
+                    }
                 }
                 else if (this.phase == 0)
                 {
@@ -2944,6 +2974,21 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     XXX.rotate(this.rotation);
                     XXX.drawImage(cypher, 465, 73, 101, 44, (-1/2 * 101 * this.size), (-1/2 * 44 * this.size), 101 * this.size, 44 * this.size);
                     XXX.restore();
+                    if (this.primed)
+                    {
+                        var deleteList = [];
+                        for (var l = 0; l < barrierList.length; l++)
+                        {
+                            if (barrierList[l].info == this.clave)
+                            {
+                                deleteList.push(l);
+                            }
+                        }
+                        for (var l = deleteList.length - 1; l > -1; l--)
+                        {
+                            barrierList.splice(deleteList[l], 1);
+                        }
+                    }
                 }
                 else if (this.phase == 0)
                 {
@@ -3018,6 +3063,21 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     XXX.rotate(this.rotation);
                     XXX.drawImage(cypher, 572, 72, 101, 44, (-1/2 * 101 * this.size), (-1/2 * 44 * this.size), 101 * this.size, 44 * this.size);
                     XXX.restore();
+                    if (this.primed)
+                    {
+                        var deleteList = [];
+                        for (var l = 0; l < barrierList.length; l++)
+                        {
+                            if (barrierList[l].info == this.clave)
+                            {
+                                deleteList.push(l);
+                            }
+                        }
+                        for (var l = deleteList.length - 1; l > -1; l--)
+                        {
+                            barrierList.splice(deleteList[l], 1);
+                        }
+                    }
                 }
                 else if (this.phase == 0)
                 {
@@ -3155,6 +3215,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     else if (player.getStrength() >= 16) //break down the door
                     {
                         this.locked = "broken";
+                        this.primed = true;
                     }
                 }
                 //CONDITIONS TO ACTIVATE
@@ -6965,6 +7026,1226 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
             this.radius = 1;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "vardanBuilding1")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 135;
+
+            //507.0879104605792, -91.03240507375267
+            //-523.4892397975268, -287.09271423521204
+
+            //DRAWSELF
+            if (X > (this.X + 307.8740403679676) - 232 && X < (this.X + 307.8740403679676) && Y > (this.Y + 297.6115969253251) - 590 && Y < (this.Y + 297.6115969253251) || X > (this.X + 127.6920794056532) - 263 && X < (this.X + 127.6920794056532) && Y > (this.Y + 279.61062485348066) - 587 && Y < (this.Y + 279.61062485348066) || X > (this.X - 110.78107779158563) - 200 && X < (this.X - 110.78107779158563) && Y > (this.Y + 305.8353380940607) - 597 && Y < (this.Y + 305.8353380940607) || X > (this.X + 507.0879104605792) - 1030 && X < (this.X + 507.0879104605792) && Y > (this.Y - 91.03240507375267) - 196 && Y < (this.Y - 91.03240507375267))
+            {
+                this.zIndex = 1;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(hydra, 979, 1135, 602, 329, -(1/2 * 602 * 2), -(1/2 *329 * 2), 602 * 2, 329 * 2);
+                XXX.restore();
+            }
+            else
+            {
+                this.zIndex = 6;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(hydra, 979, 1135, 602, 329, -(1/2 * 602 * 2), -(1/2 *329 * 2), 602 * 2, 329 * 2);
+                XXX.restore();
+                //roof
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(hydra, 983, 806, 602, 329, -(1/2 * 602 * 2), -(1/2 *329 * 2), 602 * 2, 329 * 2);
+                XXX.restore();
+            }
+
+
+            //barrierList.push(new Barrier(this.X -117, this.Y - 105, 209, 230, false)); // a square that covers the entire building
+
+            //BARRIERS
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+                barrierList.push(new Barrier((this.X - 328), (this.Y - 119), 440, 21, true)); //right wall
+                barrierList.push(new Barrier((this.X + 304), (this.Y - 123), 444, 21, true)); //left wall
+
+                barrierList.push(new Barrier((this.X - 113.5), (this.Y - 103), 68, 21, true)); //midUpR
+                barrierList.push(new Barrier((this.X - 113.5 + 214), (this.Y - 100), 62, 21, true)); //midUpL
+
+                barrierList.push(new Barrier((this.X - 208), (this.Y - 97), 21, 414, true)); //midhoz
+
+                barrierList.push(new Barrier((this.X - 205), (this.Y - 131), 45, 21, true)); //midDnR
+                barrierList.push(new Barrier((this.X - 113.5 + 296), (this.Y - 131), 45, 21, true)); //midDnL
+
+                barrierList.push(new Barrier((this.X - 205), (this.Y - 312), 102, 21, true)); //bottomMidipR
+                barrierList.push(new Barrier((this.X - 113.5 + 296), (this.Y - 312), 102, 21, true)); //bottomMidipL
+
+                barrierList.push(new Barrier((this.X - 540), (this.Y - 308), 21, 1080, true)); //bottom
+
+                barrierList.push(new Barrier((this.X - 534), (this.Y - 308), 220, 21, true)); //botR
+                barrierList.push(new Barrier((this.X - 534 + 1051), (this.Y - 308), 220, 21, true)); //botL
+
+                barrierList.push(new Barrier((this.X - 534), (this.Y - 88), 21, 210, true)); //botRtop
+
+                barrierList.push(new Barrier((this.X - 534 + 855), (this.Y - 92), 21, 219, true)); //botLtop
+
+                barrierList.push(new Barrier((this.X - 322), (this.Y - 300), 108, 21, true)); //bottom mid right vertical
+
+                barrierList.push(new Barrier((this.X - 322 + 622), (this.Y - 300), 104, 21, true)); //bottom mid left vertical
+
+                barrierList.push(new Barrier((this.X - 320), (this.Y - 0 + 293), 21, 222, true)); //topR
+                barrierList.push(new Barrier((this.X - 320 + 410), (this.Y - 0 + 293), 21, 222, true)); //topL
+
+                barrierList.push(new Barrier((this.X - 320 + 410), (this.Y - 0 + 36), 267, 21, true));//topmidleft
+                barrierList.push(new Barrier((this.X - 320 + 207), (this.Y - 0 + 36), 273, 21, true));//topmidright
+
+                barrierList.push(new Barrier((this.X - 320 + 220), (this.Y - 0 + 269), 21, 56, true)); //entryR
+                barrierList.push(new Barrier((this.X - 320 + 354), (this.Y - 0 + 269), 21, 64, true)); //entryL
+
+                barrierList.push(new Barrier((this.X - 320), (this.Y - 0 + 78), 21, 102, true)); //topishmiddoorR-R
+                barrierList.push(new Barrier((this.X - 147), (this.Y - 0 + 78), 21, 50, true)); //topishmiddoorR-L
+
+                barrierList.push(new Barrier((this.X - 320 + 534), (this.Y - 0 + 78), 21, 107, true)); //topishmiddoorL-L
+                barrierList.push(new Barrier((this.X - 147 + 255), (this.Y - 0 + 78), 21, 32, true)); //topishmiddoorL-R
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "vardanBuilding2")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 135;
+
+            //DRAWSELF
+            if (X > (this.X + 415.28482419599186) - 847 && X < (this.X + 415.28482419599186) && Y > (this.Y + 314.4329308889155) - 214 && Y < (this.Y + 314.4329308889155) || X > (this.X + 413.04176678976273) - 815 && X < (this.X + 413.04176678976273) && Y > (this.Y + 157.72532805669562) - 310 && Y < (this.Y + 157.72532805669562) || X > (this.X + 417.7449228227297) - 852 && X < (this.X + 417.7449228227297) && Y > (this.Y - 106.02522087985562) - 209 && Y < (this.Y - 106.02522087985562))
+            {
+                this.zIndex = 1;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(hydra, 1579, 1137, 474, 340, -(1/2 * 474 * 2), -(1/2 * 340 * 2), 474 * 2, 340 * 2);
+                XXX.restore();
+            }
+            else
+            {
+                this.zIndex = 6;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(hydra, 1579, 1137, 474, 340, -(1/2 * 474 * 2), -(1/2 * 340 * 2), 474 * 2, 340 * 2);
+                XXX.restore();
+                //roof
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(hydra, 1574, 797, 474, 340, -(1/2 * 474 * 2), -(1/2 * 340 * 2), 474 * 2, 340 * 2);
+                XXX.restore();
+            }
+
+
+            //barrierList.push(new Barrier(this.X -117, this.Y - 105, 209, 230, false)); // a square that covers the entire building
+
+            //BARRIERS
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+
+                barrierList.push(new Barrier((this.X - 441.4452611925635), (this.Y - 321.19243736651515), 215, 21, true)); //right wall low low
+                barrierList.push(new Barrier((this.X - 442.00833621565334), (this.Y + 91.18758665902578), 220, 21, true)); //right wall hi hi
+
+                barrierList.push(new Barrier((this.X - 418.75463439251416), (this.Y + 37.53173451153452), 70, 21, true)); //right wall hi
+                barrierList.push(new Barrier((this.X - 415.84071506396594), (this.Y - 98.74401780763947), 60, 21, true)); //right wall low
+
+                barrierList.push(new Barrier((this.X - 437.61777468693344), (this.Y + 88.8610651446902), 21, 220, true)); //right interior high
+                barrierList.push(new Barrier((this.X - 440.6323526275187), (this.Y - 113.54506782785847), 21, 220, true)); //right interior low
+
+                barrierList.push(new Barrier((this.X + 407.3497203885445), (this.Y - 319.81867333856826), 650, 21, true)); //left wall
+
+                barrierList.push(new Barrier((this.X - 442.81432004089766), (this.Y - 321.90573678095143), 21, 855, true)); //bottom wall
+                barrierList.push(new Barrier((this.X - 441.0963553481711), (this.Y + 308.3690812156369), 21, 855, true)); //top wall
+
+                barrierList.push(new Barrier((this.X + 192.48213192251387), (this.Y - 203.74477735683058), 394, 21, true)); //deep interior vertical wall
+
+                barrierList.push(new Barrier((this.X + 195.27856604135832), (this.Y + 183.63200152761056), 21, 49, true)); //interior top right door frame
+                barrierList.push(new Barrier((this.X + 327.271337136719), (this.Y + 183.51446863377214), 21, 95, true)); //interior top left door frame
+
+                barrierList.push(new Barrier((this.X + 195.68028584698095), (this.Y - 202.1095012535102), 21, 49, true)); //interior bottom right door frame
+                barrierList.push(new Barrier((this.X + 325.7785293061115), (this.Y - 203.84860945750506), 21, 95, true)); //interior bottom left door frame
+
+                barrierList.push(new Barrier((this.X - 224.80827395349388), (this.Y + 85.99002066569255), 54, 21, true)); //front interieror top low door frame
+                barrierList.push(new Barrier((this.X -224.66702430447822), (this.Y + 211.87348479019192), 110, 21, true)); //front interieror top high door frame
+
+                barrierList.push(new Barrier((this.X - 224.62718911241882), (this.Y - 323.60513100990875), 110, 21, true)); //front interieror bottom low door frame
+                barrierList.push(new Barrier((this.X - 226.87296465752752), (this.Y - 141.96278839037086), 46, 21, true)); //front interieror bottom high door frame
+
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //if (lKey == true) //this is a helpful tool for getting coords quickly for making buildings: remember barriers build (bottom right -> top left) For adding roof start in the top left and end in the bottom right
+            //{
+            //    lKey = false;
+            //    console.log((X - this.X) + ", " + (Y - this.Y));
+            //}
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "vardanBuilding3")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 135;
+
+            //DRAWSELF
+            if (X > (this.X + 155.2514627003411) - 306 && X < (this.X + 155.2514627003411) && Y > (this.Y + 257.36359545717505) - 516 && Y < (this.Y + 257.36359545717505))
+            {
+                this.zIndex = 1;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(1/2 * Math.PI);
+                XXX.drawImage(hydra, 39, 820, 357, 227, -(1/2 * 357 * 1.6), -(1/2 * 227 * 1.6), 357 * 1.6, 227 * 1.6);
+                XXX.restore();
+            }
+            else
+            {
+                this.zIndex = 6;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(1/2 * Math.PI);
+                XXX.drawImage(hydra, 39, 820, 357, 227, -(1/2 * 357 * 1.6), -(1/2 * 227 * 1.6), 357 * 1.6, 227 * 1.6);
+                XXX.restore();
+                //roof
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(1/2 * Math.PI);
+                XXX.drawImage(hydra, 39, 1048, 357, 227, -(1/2 * 357 * 1.6), -(1/2 * 227 * 1.6), 357 * 1.6, 227 * 1.6);
+                XXX.restore();
+            }
+
+
+            //barrierList.push(new Barrier(this.X -117, this.Y - 105, 209, 230, false)); // a square that covers the entire building
+
+            //BARRIERS
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+
+                barrierList.push(new Barrier((this.X - 163.2744995084213), (this.Y - 267.126525758812), 525, 21, true)); //right wall
+
+                barrierList.push(new Barrier((this.X + 156.51470208352384), (this.Y - 272.2869274593754), 400, 21, true)); //left wall low
+                barrierList.push(new Barrier((this.X + 149.12191709435047), (this.Y + 179.53617218641284), 94, 21, true)); //left wall hi
+
+                barrierList.push(new Barrier((this.X - 163.2744995084213), (this.Y - 267.126525758812), 21, 340, true)); //bottom wall
+                barrierList.push(new Barrier((this.X - 166.9973903522532), (this.Y + 253.3024928607706), 21, 340, true)); //top wall
+
+                barrierList.push(new Barrier((this.X - 157.63683638745897), (this.Y - 96.0437442237835), 21, 42, true)); //interior hoz right
+                barrierList.push(new Barrier((this.X - 61.299527799201314), (this.Y - 94.62523223082462), 21, 103, true)); //interior hoz mid
+                barrierList.push(new Barrier((this.X + 96.07991137173576), (this.Y - 90.06426783090546), 21, 70, true)); //interior hoz left
+                barrierList.push(new Barrier((this.X + -18.06751088197143), (this.Y - 262.86797259739114), 175, 25, true)); //interior vert
+
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "vardanBuilding4")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 135;
+
+            //DRAWSELF
+            if (X > (this.X + 259.118124029289) - 521 && X < (this.X + 259.118124029289) && Y > (this.Y + 160.63074919957444) - 321 && Y < (this.Y + 160.63074919957444))
+            {
+                this.zIndex = 1;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(hydra, 39, 820, 357, 227, -(1/2 * 357 * 1.6), -(1/2 * 227 * 1.6), 357 * 1.6, 227 * 1.6);
+                XXX.restore();
+            }
+            else
+            {
+                this.zIndex = 6;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(hydra, 39, 820, 357, 227, -(1/2 * 357 * 1.6), -(1/2 * 227 * 1.6), 357 * 1.6, 227 * 1.6);
+                XXX.restore();
+                //roof
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(hydra, 39, 1048, 357, 227, -(1/2 * 357 * 1.6), -(1/2 * 227 * 1.6), 357 * 1.6, 227 * 1.6);
+                XXX.restore();
+            }
+
+
+            //barrierList.push(new Barrier(this.X -117, this.Y - 105, 209, 230, false)); // a square that covers the entire building
+
+            //BARRIERS
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+
+                var xj = -97;
+                var yj = -50;
+
+                barrierList.push(new Barrier((this.X + -178.89459812307632) + xj, (this.Y + -122.35680773497006) + yj, 23, 397, true));
+                barrierList.push(new Barrier((this.X + -173.89459812307632) + xj, (this.Y + 201.64319226502994) + yj, 19, 537, true));
+                barrierList.push(new Barrier((this.X + -173.89459812307632) + xj, (this.Y + 54.64319226502994) + yj, 19, 193, true));
+                barrierList.push(new Barrier((this.X + -177.89459812307632) + xj, (this.Y + -121.35680773497006) + yj, 336, 22, true));
+                barrierList.push(new Barrier((this.X + 344.1054018769237) + xj, (this.Y + -115.35680773497006) + yj, 336, 22, true));
+                barrierList.push(new Barrier((this.X + 1.105401876923679) + xj, (this.Y + 7.643192265029938) + yj, 107, 19, true));
+                barrierList.push(new Barrier((this.X + 2.105401876923679) + xj, (this.Y + -120.35680773497006) + yj, 78, 19, true));
+                barrierList.push(new Barrier((this.X + 0.10540187692367908) + xj, (this.Y + 173.64319226502994) + yj, 46, 19, true));
+                barrierList.push(new Barrier((this.X + 272.1054018769237) + xj, (this.Y + -116.35680773497006) + yj, 20, 92, true));
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //barrierCreator(this.X, this.Y); //for easily setting barriers when making buildings
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "vardanBuilding5")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 135;
+
+            //DRAWSELF
+            if (X > (this.X + 201.5921538188959) - 404 && X < (this.X + 201.5921538188959) && Y > (this.Y + 281.7782119737917) - 164 && Y < (this.Y + 281.7782119737917) || X > (this.X - 25.48576382921692) - 169 && X < (this.X - 25.48576382921692) && Y > (this.Y + 126.73334807111496) - 404 && Y < (this.Y + 126.73334807111496))
+            {
+                this.zIndex = 1;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(1/2 * Math.PI);
+                XXX.drawImage(hydra, 463, 1110, 404, 296, -(1/2 * 404 * 1.5), -(1/2 * 296 * 1.5), 404 * 1.5, 296 * 1.5);
+                XXX.restore();
+            }
+            else
+            {
+                this.zIndex = 6;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(1/2 * Math.PI);
+                XXX.drawImage(hydra, 463, 1110, 404, 296, -(1/2 * 404 * 1.5), -(1/2 * 296 * 1.5), 404 * 1.5, 296 * 1.5);
+                XXX.restore();
+                //roof
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(1/2 * Math.PI);
+                XXX.drawImage(hydra, 466, 815, 404, 296, -(1/2 * 404 * 1.5), -(1/2 * 296 * 1.5), 404 * 1.5, 296 * 1.5);
+                XXX.restore();
+            }
+
+
+            //barrierList.push(new Barrier(this.X -117, this.Y - 105, 209, 230, false)); // a square that covers the entire building
+
+            //BARRIERS
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+
+                barrierList.push(new Barrier((this.X + -35.26486613261568), (this.Y + 102.7329031680606), 18, 239, true));
+                barrierList.push(new Barrier((this.X + -201.6478234070746), (this.Y + -286.37791862627637), 18, 181, true));
+                barrierList.push(new Barrier((this.X + -204.6478234070746), (this.Y + -124.37791862627637), 18, 42, true));
+                barrierList.push(new Barrier((this.X + -106.64782340707461), (this.Y + -123.37791862627637), 18, 88, true));
+                barrierList.push(new Barrier((this.X + -210.95143662700866), (this.Y + 268.54325383451305), 18, 418, true));
+                barrierList.push(new Barrier((this.X + 187.04856337299134), (this.Y + 104.54325383451305), 183, 18, true));
+                barrierList.push(new Barrier((this.X + -39.309823652163686), (this.Y + -288.18865925164664), 183, 18, true));
+
+                barrierList.push(new Barrier((this.X + -206.2068669464843), (this.Y + -283.47000756502393), 553, 18, true)); //right wall
+
+                barrierList.push(new Barrier((this.X + -35.42477167091329), (this.Y + -59.2379349483499), 178, 18, true));
+                barrierList.push(new Barrier((this.X + 23.575228329086713), (this.Y + 200.7620650516501), 86, 18, true));
+                barrierList.push(new Barrier((this.X + 23.575228329086713), (this.Y + 101.7620650516501), 43, 18, true));
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //barrierCreator(this.X, this.Y); //for easily setting barriers when making buildings
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "vardanBuilding6")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 135;
+
+            //DRAWSELF
+            if (X > (this.X + 190.41889302637264) - 161 && X < (this.X + 190.41889302637264) && Y > (this.Y + 278.0333812498907) - 554 && Y < (this.Y + 278.0333812498907) || X > (this.X + 203.21218516523186) - 401 && X < (this.X + 203.21218516523186) && Y > (this.Y - 104.3242106166249) - 175 && Y < (this.Y - 104.3242106166249))
+            {
+                this.zIndex = 1;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(-1/2 * Math.PI);
+                XXX.drawImage(hydra, 463, 1110, 404, 296, -(1/2 * 404 * 1.5), -(1/2 * 296 * 1.5), 404 * 1.5, 296 * 1.5);
+                XXX.restore();
+            }
+            else
+            {
+                this.zIndex = 6;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(-1/2 * Math.PI);
+                XXX.drawImage(hydra, 463, 1110, 404, 296, -(1/2 * 404 * 1.5), -(1/2 * 296 * 1.5), 404 * 1.5, 296 * 1.5);
+                XXX.restore();
+                //roof
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(-1/2 * Math.PI);
+                XXX.drawImage(hydra, 466, 815, 404, 296, -(1/2 * 404 * 1.5), -(1/2 * 296 * 1.5), 404 * 1.5, 296 * 1.5);
+                XXX.restore();
+            }
+
+            //BARRIERS
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+
+                barrierList.push(new Barrier((this.X + -207.09835960871987), (this.Y + -285.530104320042), 19, 417, true));
+                barrierList.push(new Barrier((this.X + -205.09835960871987), (this.Y + -119.53010432004203), 17, 240, true));
+                barrierList.push(new Barrier((this.X + 20.344330000960326), (this.Y + 269.2707546028355), 17, 185, true));
+                barrierList.push(new Barrier((this.X + 17.24929370580685), (this.Y + 106.27081577964736), 17, 89, true));
+                barrierList.push(new Barrier((this.X + 162.24929370580685), (this.Y + 105.27081577964736), 17, 44, true));
+
+                barrierList.push(new Barrier((this.X + 189.62127478626644), (this.Y + -285.9277933494359), 577, 20, true)); //left wall
+
+                barrierList.push(new Barrier((this.X + 15.823649492807817), (this.Y + -118.72821587644648), 180, 20, true));
+                barrierList.push(new Barrier((this.X + -207.5478639043913), (this.Y + -286.17584942490475), 180, 20, true));
+                barrierList.push(new Barrier((this.X + 18.909029743375868), (this.Y + 109.52274170785631), 180, 20, true));
+                barrierList.push(new Barrier((this.X + -43.457075172492296), (this.Y + -288.6412846537546), 89, 20, true));
+                barrierList.push(new Barrier((this.X + -43.457075172492296), (this.Y + -144.6412846537546), 45, 20, true));
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //barrierCreator(this.X, this.Y); //for easily setting barriers when making buildings
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "vardanBuilding7")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 135;
+
+            //DRAWSELF
+            if (X > (this.X + -115.79755456029397) - 163 && X < (this.X + -115.79755456029397) && Y > (this.Y + 193.38875951023556) - 393 && Y < (this.Y + 193.38875951023556) || X > (this.X + 276.202445439706) - 552 && X < (this.X + 276.202445439706) && Y > (this.Y + -33.61124048976444) - 168 && Y < (this.Y + -33.61124048976444))
+            {
+                this.zIndex = 1;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(Math.PI);
+                XXX.drawImage(hydra, 463, 1110, 404, 296, -(1/2 * 404 * 1.5), -(1/2 * 296 * 1.5), 404 * 1.5, 296 * 1.5);
+                XXX.restore();
+            }
+            else
+            {
+                this.zIndex = 6;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(Math.PI);
+                XXX.drawImage(hydra, 463, 1110, 404, 296, -(1/2 * 404 * 1.5), -(1/2 * 296 * 1.5), 404 * 1.5, 296 * 1.5);
+                XXX.restore();
+                //roof
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(Math.PI);
+                XXX.drawImage(hydra, 466, 815, 404, 296, -(1/2 * 404 * 1.5), -(1/2 * 296 * 1.5), 404 * 1.5, 296 * 1.5);
+                XXX.restore();
+            }
+
+            //BARRIERS
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+
+                barrierList.push(new Barrier((this.X + -120.79755456029397), (this.Y + -35.61124048976444), 18, 181, true));
+                barrierList.push(new Barrier((this.X + 104.20244543970603), (this.Y + -36.61124048976444), 18, 184, true));
+                barrierList.push(new Barrier((this.X + -288.797554560294), (this.Y + 189.38875951023556), 18, 184, true));
+                barrierList.push(new Barrier((this.X + -287.797554560294), (this.Y + -206.61124048976444), 18, 572, true));
+                barrierList.push(new Barrier((this.X + -287.797554560294), (this.Y + 25.38875951023556), 18, 88, true));
+                barrierList.push(new Barrier((this.X + -143.79755456029397), (this.Y + 23.38875951023556), 18, 38, true));
+                barrierList.push(new Barrier((this.X + 268.202445439706), (this.Y + -197.61124048976444), 176, 18, true));
+                barrierList.push(new Barrier((this.X + -120.79755456029397), (this.Y + -33.61124048976444), 236, 18, true));
+                barrierList.push(new Barrier((this.X + -286.797554560294), (this.Y + -208.61124048976444), 416, 18, true));
+                barrierList.push(new Barrier((this.X + 105.76241103815846), (this.Y + -198.08582769160603), 36, 17, true));
+                barrierList.push(new Barrier((this.X + 105.76241103815846), (this.Y + -105.08582769160603), 71, 17, true));
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //barrierCreator(this.X, this.Y); //for easily setting barriers when making buildings
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "vardanBuilding8")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 135;
+
+            //DRAWSELF
+            if (X > (this.X + 275.2823249291623) - 554 && X < (this.X + 275.2823249291623) && Y > (this.Y + 197.45500487529625) - 171 && Y < (this.Y + 197.45500487529625) || X > (this.X + 274.2823249291623) - 163 && X < (this.X + 274.2823249291623) && Y > (this.Y + 196.45500487529625) - 393 && Y < (this.Y + 196.45500487529625))
+            {
+                this.zIndex = 1;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(hydra, 463, 1110, 404, 296, -(1/2 * 404 * 1.5), -(1/2 * 296 * 1.5), 404 * 1.5, 296 * 1.5);
+                XXX.restore();
+            }
+            else
+            {
+                this.zIndex = 6;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(hydra, 463, 1110, 404, 296, -(1/2 * 404 * 1.5), -(1/2 * 296 * 1.5), 404 * 1.5, 296 * 1.5);
+                XXX.restore();
+                //roof
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(hydra, 466, 815, 404, 296, -(1/2 * 404 * 1.5), -(1/2 * 296 * 1.5), 404 * 1.5, 296 * 1.5);
+                XXX.restore();
+            }
+
+            //BARRIERS
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+
+                barrierList.push(new Barrier((this.X + -123.71767507083769), (this.Y + 162.45500487529625), 42, 17, true));
+                barrierList.push(new Barrier((this.X + -122.71767507083769), (this.Y + 18.455004875296254), 88, 17, true));
+                barrierList.push(new Barrier((this.X + -285.7176750708377), (this.Y + 20.455004875296254), 180, 17, true));
+                barrierList.push(new Barrier((this.X + 103.28232492916231), (this.Y + -205.54499512470375), 242, 17, true));
+                barrierList.push(new Barrier((this.X + 268.2823249291623), (this.Y + -206.54499512470375), 416, 17, true));
+                barrierList.push(new Barrier((this.X + 105.28232492916231), (this.Y + -206.54499512470375), 19, 180, true));
+                barrierList.push(new Barrier((this.X + -288.7176750708377), (this.Y + 19.455004875296254), 19, 183, true));
+                barrierList.push(new Barrier((this.X + -286.7176750708377), (this.Y + 187.45500487529625), 19, 573, true));
+                barrierList.push(new Barrier((this.X + 103.28232492916231), (this.Y + -41.544995124703746), 17, 40, true));
+                barrierList.push(new Barrier((this.X + 199.28232492916231), (this.Y + -41.544995124703746), 17, 85, true));
+                barrierList.push(new Barrier((this.X + -60.64241123597003), (this.Y + 16.33163223335896), 19, 170, true));
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //barrierCreator(this.X, this.Y); //for easily setting barriers when making buildings
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "vardanBuilding9")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 135;
+
+            //524.7609084368105, 290.8102823078116
+            //-525.9918048696964, 78.70717869768669
+
+            //312.29388195410957, 292.9869236737941
+            //103.67578404948199, -302.1825300562441
+
+            //-100.09155562348224, 293.82965071951776
+            //-319.32180098553454, -304.96752241378135
+
+            //172.07615889443423, 391.3494361214389
+            //-175.6298642760612, -273.6250034114819
+
+            //DRAWSELF
+            if (X > (this.X + 172.07615889443423) - 347 && X < (this.X + 172.07615889443423) && Y > (this.Y + 391.3494361214389) - 664 && Y < (this.Y + 391.3494361214389) || X > (this.X + -100.09155562348224) - 219 && X < (this.X + -100.09155562348224) && Y > (this.Y + 293.82965071951776) - 597 && Y < (this.Y + 293.82965071951776) || X > (this.X + 312.29388195410957) - 209 && X < (this.X + 312.29388195410957) && Y > (this.Y + 292.9869236737941) - 594 && Y < (this.Y + 292.9869236737941) || X > (this.X + 524.7609084368105) - 1049 && X < (this.X + 524.7609084368105) && Y > (this.Y + 290.8102823078116) - 212 && Y < (this.Y + 290.8102823078116))
+            {
+                this.zIndex = 1;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(Math.PI);
+                XXX.drawImage(hydra, 979, 1135, 602, 329, -(1/2 * 602 * 2), -(1/2 *329 * 2), 602 * 2, 329 * 2);
+                XXX.restore();
+
+                //churchy addon
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(Math.PI);
+                XXX.drawImage(hydra, 2219, 986, 161, 97, -(1/2 * 161 * 2.7), -(1/2 *97 * 2.35) + 320, 161 * 2.7, 97 * 2.35);
+                XXX.restore();
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(Math.PI);
+                XXX.drawImage(hydra, 2262, 1161, 101, 250, -(1/2 * 101 * 2.3) -10, -(1/2 *250 * 2.3) + 45, 101 * 2.45, 250 * 2.3);
+                XXX.restore();
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(Math.PI);
+                XXX.drawImage(hydra, 1970, 1186, 35, 33, -(1/2 * 35 * 1) - 133, -(1/2 *33 * 1) -88, 35 * 1, 33 * 1);
+                XXX.restore();
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(Math.PI);
+                XXX.drawImage(hydra, 1970, 1186, 35, 33, -(1/2 * 35 * 1) + 135, -(1/2 *33 * 1) -88, 35 * 1, 33 * 1);
+                XXX.restore();
+            }
+            else
+            {
+                this.zIndex = 6;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(Math.PI);
+                XXX.drawImage(hydra, 979, 1135, 602, 329, -(1/2 * 602 * 2), -(1/2 *329 * 2), 602 * 2, 329 * 2);
+                XXX.restore();
+                //churchy addon
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(Math.PI);
+                XXX.drawImage(hydra, 2219, 986, 161, 97, -(1/2 * 161 * 2.7), -(1/2 *97 * 2.35) + 320, 161 * 2.7, 97 * 2.35);
+                XXX.restore();
+                //roof
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(Math.PI);
+                XXX.drawImage(hydra, 983, 806, 602, 329, -(1/2 * 602 * 2), -(1/2 *329 * 2), 602 * 2, 329 * 2);
+                XXX.restore();
+                //churchy addon roof
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(Math.PI);
+                XXX.drawImage(hydra, 2062, 987, 161, 97, -(1/2 * 161 * 2.7), -(1/2 *97 * 2.3) + 320, 161 * 2.7, 97 * 2.3);
+                XXX.restore();
+                //churchy addon roof
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(Math.PI);
+                XXX.drawImage(hydra, 2062, 987, 161, 97, -(1/2 * 161 * 2.3), -(1/2 *97 * 2.3) + 142, 161 * 2.3, 97 * 2.3);
+                XXX.restore();
+            }
+
+
+            //barrierList.push(new Barrier(this.X -117, this.Y - 105, 209, 230, false)); // a square that covers the entire building
+
+            //BARRIERS
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+
+                barrierList.push(new Barrier((this.X + 187.96573585123042), (this.Y + 281.3334586692522), 25, 351, true));
+                barrierList.push(new Barrier((this.X + -541.0342641487696), (this.Y + 285.3334586692522), 25, 356, true));
+                barrierList.push(new Barrier((this.X + -192.03426414876958), (this.Y + 380.3334586692522), 25, 379, true));
+                barrierList.push(new Barrier((this.X + -206.03426414876958), (this.Y + 73.3334586692522), 25, 79, true));
+                barrierList.push(new Barrier((this.X + 121.96573585123042), (this.Y + 74.3334586692522), 25, 87, true));
+                barrierList.push(new Barrier((this.X + -308.85699636914705), (this.Y + -97.56784625307273), 20, 94, true));
+                barrierList.push(new Barrier((this.X + 217.14300363085295), (this.Y + -98.56784625307273), 20, 94, true));
+                barrierList.push(new Barrier((this.X + -328.69689666313843), (this.Y + -315.085359301439), 24, 239, true));
+                barrierList.push(new Barrier((this.X + 93.30310333686157), (this.Y + -316.085359301439), 24, 239, true));
+                barrierList.push(new Barrier((this.X + -90.69689666313843), (this.Y + -289.085359301439), 24, 54, true));
+                barrierList.push(new Barrier((this.X + 41.30310333686157), (this.Y + -291.085359301439), 24, 54, true));
+                barrierList.push(new Barrier((this.X + -75.93214843930309), (this.Y + 292.97053899260754), 24, 139, true));
+                barrierList.push(new Barrier((this.X + 141.0678515606969), (this.Y + 206.97053899260754), 108, 69, true));
+                barrierList.push(new Barrier((this.X + -205.9321484393031), (this.Y + 204.97053899260754), 106, 64, true));
+                barrierList.push(new Barrier((this.X + 142.0678515606969), (this.Y + 301.97053899260754), 106, 43, true));
+                barrierList.push(new Barrier((this.X + -192.9321484393031), (this.Y + 299.97053899260754), 106, 51, true));
+                barrierList.push(new Barrier((this.X + -319.9321484393031), (this.Y + 193.97053899260754), 97, 19, true));
+                barrierList.push(new Barrier((this.X + 301.0678515606969), (this.Y + 190.97053899260754), 97, 19, true));
+                barrierList.push(new Barrier((this.X + -319.9321484393031), (this.Y + 67.97053899260754), 54, 19, true));
+                barrierList.push(new Barrier((this.X + 302.0678515606969), (this.Y + 63.970538992607544), 54, 19, true));
+
+                barrierList.push(new Barrier((this.X + 305.59675533596874), (this.Y + -291.9987233519969), 377, 24, true));
+                barrierList.push(new Barrier((this.X + -328.40324466403126), (this.Y + -294.9987233519969), 384, 24, true));
+                barrierList.push(new Barrier((this.X + -538.3317813290378), (this.Y + 66.02838023301501), 229, 24, true));
+                barrierList.push(new Barrier((this.X + 514.2367943396075), (this.Y + 65.90033925825855), 229, 24, true));
+                barrierList.push(new Barrier((this.X + 183.98406547112245), (this.Y + 95.53446404492979), 34, 24, true));
+                barrierList.push(new Barrier((this.X + -204.01593452887755), (this.Y + 94.53446404492979), 34, 24, true));
+                barrierList.push(new Barrier((this.X + 318.8709704203011), (this.Y + 62.77455554903554), 23, 221, true));
+                barrierList.push(new Barrier((this.X + -539.1290295796989), (this.Y + 67.77455554903554), 23, 221, true));
+
+                barrierList.push(new Barrier((this.X + 89.39957807452811), (this.Y + -291.9431919849367), 48, 25, true));
+                barrierList.push(new Barrier((this.X + -110.60042192547189), (this.Y + -290.9431919849367), 48, 25, true));
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //barrierCreator(this.X, this.Y); //for easily setting barriers when making buildings
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "vardanBuilding10")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 135;
+
+            //DRAWSELF
+            if (X > (this.X + 107.52654430015718) - 214 && X < (this.X + 107.52654430015718) && Y > (this.Y + 243.60217780520316) - 495 && Y < (this.Y + 243.60217780520316))
+            {
+                this.zIndex = 1;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(hydra, 2233, 1134, 158, 323, -(1/2 * 158 * 1.75), -(1/2 * 323 * 1.75), 158 * 1.75, 323 * 1.75);
+                XXX.restore();
+            }
+            else
+            {
+                this.zIndex = 6;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(hydra, 2233, 1134, 158, 323, -(1/2 * 158 * 1.75), -(1/2 * 323 * 1.75), 158 * 1.75, 323 * 1.75);
+                XXX.restore();
+                //roof
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(hydra, 2071, 1133, 158, 323, -(1/2 * 158 * 1.75), -(1/2 * 323 * 1.75), 158 * 1.75, 323 * 1.75);
+                XXX.restore();
+            }
+
+            //BARRIERS
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+
+                barrierList.push(new Barrier((this.X + -122.11371358497126), (this.Y + 249.41908270643444), 15, 90, true));
+                barrierList.push(new Barrier((this.X + 24.886286415028735), (this.Y + 248.41908270643444), 15, 98, true));
+                barrierList.push(new Barrier((this.X + -122.29148042384804), (this.Y + -261.56606292176366), 20, 245, true));
+                barrierList.push(new Barrier((this.X + -123.75030393936413), (this.Y + -262.32007970404993), 525, 18, true));
+                barrierList.push(new Barrier((this.X + 105.24969606063587), (this.Y + -262.32007970404993), 525, 18, true));
+                barrierList.push(new Barrier((this.X + -48.75030393936413), (this.Y + -190.32007970404993), 18, 100, true));
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //barrierCreator(this.X, this.Y); //for easily setting barriers when making buildings
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "vardanBuilding11")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 135;
+
+            //DRAWSELF
+            if (X > (this.X + 250.29366999417016) - 506 && X < (this.X + 250.29366999417016) && Y > (this.Y + 111.35213004841535) - 223 && Y < (this.Y + 111.35213004841535))
+            {
+                this.zIndex = 1;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(1/2 * Math.PI);
+                XXX.drawImage(hydra, 2233, 1134, 158, 323, -(1/2 * 158 * 1.75), -(1/2 * 323 * 1.75), 158 * 1.75, 323 * 1.75);
+                XXX.restore();
+            }
+            else
+            {
+                this.zIndex = 6;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(1/2 * Math.PI);
+                XXX.drawImage(hydra, 2233, 1134, 158, 323, -(1/2 * 158 * 1.75), -(1/2 * 323 * 1.75), 158 * 1.75, 323 * 1.75);
+                XXX.restore();
+                //roof
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(1/2 * Math.PI);
+                XXX.drawImage(hydra, 2071, 1133, 158, 323, -(1/2 * 158 * 1.75), -(1/2 * 323 * 1.75), 158 * 1.75, 323 * 1.75);
+                XXX.restore();
+            }
+
+            //BARRIERS
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+
+                barrierList.push(new Barrier((this.X + -265.70633000582984), (this.Y + 102.35213004841535), 20, 525, true));
+                barrierList.push(new Barrier((this.X + -264.70633000582984), (this.Y + -123.64786995158465), 20, 527, true));
+                barrierList.push(new Barrier((this.X + 168.29366999417016), (this.Y + -46.64786995158465), 97, 22, true));
+                barrierList.push(new Barrier((this.X + 243.29366999417016), (this.Y + -119.64786995158465), 243, 20, true));
+                barrierList.push(new Barrier((this.X + -264.70633000582984), (this.Y + -121.64786995158465), 88, 17, true));
+                barrierList.push(new Barrier((this.X + -264.70633000582984), (this.Y + 24.352130048415347), 99, 17, true));
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //barrierCreator(this.X, this.Y); //for easily setting barriers when making buildings
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "vardanBuilding12")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 135;
+
+            //DRAWSELF
+            if (X > (this.X + 168.54317121663007) - 339 && X < (this.X + 168.54317121663007) && Y > (this.Y + 113.02374242583392) - 224 && Y < (this.Y + 113.02374242583392))
+            {
+                this.zIndex = 1;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(-1/2 * Math.PI);
+                XXX.drawImage(hydra, 1306, 552, 158, 227, -(1/2 * 158 * 1.75), -(1/2 * 227 * 1.75), 158 * 1.75, 227 * 1.75);
+                XXX.restore();
+            }
+            else
+            {
+                this.zIndex = 6;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(-1/2 * Math.PI);
+                XXX.drawImage(hydra, 1306, 552, 158, 227, -(1/2 * 158 * 1.75), -(1/2 * 227 * 1.75), 158 * 1.75, 227 * 1.75);
+                XXX.restore();
+                //roof
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(-1/2 * Math.PI);
+                XXX.drawImage(hydra, 1150, 552, 158, 227, -(1/2 * 158 * 1.75), -(1/2 * 227 * 1.75), 158 * 1.75, 227 * 1.75);
+                XXX.restore();
+            }
+
+            //BARRIERS
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+
+                barrierList.push(new Barrier((this.X + -182.63423996480014), (this.Y + 106.38456501138853), 16, 361, true));
+                barrierList.push(new Barrier((this.X + -181.63423996480014), (this.Y + -120.61543498861147), 16, 363, true));
+                barrierList.push(new Barrier((this.X + -109.63423996480014), (this.Y + -52.61543498861147), 100, 19, true));
+                barrierList.push(new Barrier((this.X + 160.36576003519986), (this.Y + -121.61543498861147), 96, 19, true));
+                barrierList.push(new Barrier((this.X + 160.36576003519986), (this.Y + 29.38456501138853), 96, 19, true));
+                barrierList.push(new Barrier((this.X + -181.63423996480014), (this.Y + -122.61543498861147), 244, 19, true));
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //barrierCreator(this.X, this.Y); //for easily setting barriers when making buildings
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "vardanBuilding13")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 135;
+
+            //DRAWSELF
+            if (X > (this.X + 112.71179067206776) - 225 && X < (this.X + 112.71179067206776) && Y > (this.Y + 171.00482685314955) - 339 && Y < (this.Y + 171.00482685314955))
+            {
+                this.zIndex = 1;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(Math.PI);
+                XXX.drawImage(hydra, 1306, 552, 158, 227, -(1/2 * 158 * 1.75), -(1/2 * 227 * 1.75), 158 * 1.75, 227 * 1.75);
+                XXX.restore();
+            }
+            else
+            {
+                this.zIndex = 6;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(Math.PI);
+                XXX.drawImage(hydra, 1306, 552, 158, 227, -(1/2 * 158 * 1.75), -(1/2 * 227 * 1.75), 158 * 1.75, 227 * 1.75);
+                XXX.restore();
+                //roof
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(Math.PI);
+                XXX.drawImage(hydra, 1150, 552, 158, 227, -(1/2 * 158 * 1.75), -(1/2 * 227 * 1.75), 158 * 1.75, 227 * 1.75);
+                XXX.restore();
+            }
+
+            //BARRIERS
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+
+                barrierList.push(new Barrier((this.X + 104.71179067206776), (this.Y + -179.99517314685045), 363, 18, true));
+                barrierList.push(new Barrier((this.X + -122.28820932793224), (this.Y + -182.99517314685045), 363, 18, true));
+                barrierList.push(new Barrier((this.X + -123.28820932793224), (this.Y + -181.99517314685045), 23, 98, true));
+                barrierList.push(new Barrier((this.X + 32.711790672067764), (this.Y + -182.99517314685045), 23, 89, true));
+                barrierList.push(new Barrier((this.X + -51.288209327932236), (this.Y + 88.00482685314955), 23, 99, true));
+                barrierList.push(new Barrier((this.X + -124.28820932793224), (this.Y + 160.00482685314955), 21, 244, true));
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //barrierCreator(this.X, this.Y); //for easily setting barriers when making buildings
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "vardanBuilding14")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 135;
+
+            //DRAWSELF
+            if (X > (this.X + 168.74052803302402) - 339 && X < (this.X + 168.74052803302402) && Y > (this.Y + 111.54791149307493) - 224 && Y < (this.Y + 111.54791149307493))
+            {
+                this.zIndex = 1;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(1/2 * Math.PI);
+                XXX.drawImage(hydra, 1306, 552, 158, 227, -(1/2 * 158 * 1.75), -(1/2 * 227 * 1.75), 158 * 1.75, 227 * 1.75);
+                XXX.restore();
+            }
+            else
+            {
+                this.zIndex = 6;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(1/2 * Math.PI);
+                XXX.drawImage(hydra, 1306, 552, 158, 227, -(1/2 * 158 * 1.75), -(1/2 * 227 * 1.75), 158 * 1.75, 227 * 1.75);
+                XXX.restore();
+                //roof
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(1/2 * Math.PI);
+                XXX.drawImage(hydra, 1150, 552, 158, 227, -(1/2 * 158 * 1.75), -(1/2 * 227 * 1.75), 158 * 1.75, 227 * 1.75);
+                XXX.restore();
+            }
+
+            //BARRIERS
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+
+                barrierList.push(new Barrier((this.X + -179.25947196697598), (this.Y + 102.54791149307493), 20, 358, true));
+                barrierList.push(new Barrier((this.X + -182.25947196697598), (this.Y + -122.45208850692507), 20, 365, true));
+                barrierList.push(new Barrier((this.X + 162.74052803302402), (this.Y + -119.45208850692507), 241, 19, true));
+                barrierList.push(new Barrier((this.X + 90.74052803302402), (this.Y + -49.452088506925065), 101, 19, true));
+                barrierList.push(new Barrier((this.X + -179.25947196697598), (this.Y + -124.45208850692507), 92, 19, true));
+                barrierList.push(new Barrier((this.X + -180.25947196697598), (this.Y + 24.547911493074935), 100, 19, true));
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //barrierCreator(this.X, this.Y); //for easily setting barriers when making buildings
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "vardanBuilding15")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 135;
+
+            //DRAWSELF
+            if (X > (this.X + 95.45407383155543) - 191 && X < (this.X + 95.45407383155543) && Y > (this.Y + 63.334181093194275) - 128 && Y < (this.Y + 63.334181093194275))
+            {
+                this.zIndex = 1;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(Math.PI);
+                XXX.drawImage(hydra, 2221, 964, 156, 116, -(1/2 * 156 * 1.5), -(1/2 * 116 * 1.5), 156 * 1.5, 116 * 1.5);
+                XXX.restore();
+            }
+            else
+            {
+                this.zIndex = 6;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(Math.PI);
+                XXX.drawImage(hydra, 2221, 964, 156, 116, -(1/2 * 156 * 1.5), -(1/2 * 116 * 1.5), 156 * 1.5, 116 * 1.5);
+                XXX.restore();
+                //roof
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(Math.PI);
+                XXX.drawImage(hydra, 2064, 964, 156, 116, -(1/2 * 156 * 1.5), -(1/2 * 116 * 1.5), 156 * 1.5, 116 * 1.5);
+                XXX.restore();
+            }
+
+            //BARRIERS
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+
+                barrierList.push(new Barrier((this.X + -105.54592616844457), (this.Y + -73.66581890680573), 18, 84, true));
+                barrierList.push(new Barrier((this.X + 26.454073831555434), (this.Y + -74.66581890680573), 18, 78, true));
+                barrierList.push(new Barrier((this.X + -106.54592616844457), (this.Y + 57.334181093194275), 18, 211, true));
+                barrierList.push(new Barrier((this.X + -105.54592616844457), (this.Y + -73.66581890680573), 147, 16, true));
+                barrierList.push(new Barrier((this.X + 90.45407383155543), (this.Y + -73.66581890680573), 147, 14, true));
+                barrierList.push(new Barrier((this.X + 956.7608906427004), (this.Y + -4.269618451041424), 17, 84, true));
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //barrierCreator(this.X, this.Y); //for easily setting barriers when making buildings
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "vardanBuilding16")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 135;
+
+            //DRAWSELF
+            if (X > (this.X + 95.24670278892972) - 191 && X < (this.X + 95.24670278892972) && Y > (this.Y + 62.16489049688698) - 129 && Y < (this.Y + 62.16489049688698))
+            {
+                this.zIndex = 1;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(hydra, 2221, 964, 156, 116, -(1/2 * 156 * 1.5), -(1/2 * 116 * 1.5), 156 * 1.5, 116 * 1.5);
+                XXX.restore();
+            }
+            else
+            {
+                this.zIndex = 6;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(hydra, 2221, 964, 156, 116, -(1/2 * 156 * 1.5), -(1/2 * 116 * 1.5), 156 * 1.5, 116 * 1.5);
+                XXX.restore();
+                //roof
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(hydra, 2064, 964, 156, 116, -(1/2 * 156 * 1.5), -(1/2 * 116 * 1.5), 156 * 1.5, 116 * 1.5);
+                XXX.restore();
+            }
+
+            //BARRIERS
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+
+                barrierList.push(new Barrier((this.X + -103.75329721107028), (this.Y + -73.83510950311302), 16, 209, true));
+                barrierList.push(new Barrier((this.X + -43.753297211070276), (this.Y + -11.835109503113017), 16, 89, true));
+                barrierList.push(new Barrier((this.X + -104.75329721107028), (this.Y + 58.16489049688698), 16, 74, true));
+                barrierList.push(new Barrier((this.X + 21.246702788929724), (this.Y + 57.16489049688698), 16, 83, true));
+                barrierList.push(new Barrier((this.X + 87.24670278892972), (this.Y + -75.83510950311302), 153, 18, true));
+                barrierList.push(new Barrier((this.X + -106.75329721107028), (this.Y + -76.83510950311302), 153, 18, true));
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //barrierCreator(this.X, this.Y); //for easily setting barriers when making buildings
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "vardanBuilding17")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 135;
+
+            //DRAWSELF
+            if (X > (this.X + 63.96013173793108) - 129 && X < (this.X + 63.96013173793108) && Y > (this.Y + 92.8934687298729) - 188 && Y < (this.Y + 92.8934687298729))
+            {
+                this.zIndex = 1;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(1/2 * Math.PI);
+                XXX.drawImage(hydra, 2221, 964, 156, 116, -(1/2 * 156 * 1.5), -(1/2 * 116 * 1.5), 156 * 1.5, 116 * 1.5);
+                XXX.restore();
+            }
+            else
+            {
+                this.zIndex = 6;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(1/2 * Math.PI);
+                XXX.drawImage(hydra, 2221, 964, 156, 116, -(1/2 * 156 * 1.5), -(1/2 * 116 * 1.5), 156 * 1.5, 116 * 1.5);
+                XXX.restore();
+                //roof
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(1/2 * Math.PI);
+                XXX.drawImage(hydra, 2064, 964, 156, 116, -(1/2 * 156 * 1.5), -(1/2 * 116 * 1.5), 156 * 1.5, 116 * 1.5);
+                XXX.restore();
+            }
+
+            //BARRIERS
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+                barrierList.push(new Barrier((this.X + 55.57645178898201), (this.Y + -103.72556220711022), 210, 19, true));
+                barrierList.push(new Barrier((this.X + -5.423548211017987), (this.Y + -40.725562207110215), 85, 19, true));
+                barrierList.push(new Barrier((this.X + -75.42354821101799), (this.Y + -104.72556220711022), 76, 19, true));
+                barrierList.push(new Barrier((this.X + -75.42354821101799), (this.Y + 20.274437792889785), 86, 19, true));
+                barrierList.push(new Barrier((this.X + -75.42354821101799), (this.Y + 87.27443779288978), 20, 148, true));
+                barrierList.push(new Barrier((this.X + -75.42354821101799), (this.Y + -105.72556220711022), 20, 148, true));
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //barrierCreator(this.X, this.Y); //for easily setting barriers when making buildings
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "vardanBuilding18")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 135;
+
+            //DRAWSELF
+            if (X > (this.X + 63.3949349993718) - 129 && X < (this.X + 63.3949349993718) && Y > (this.Y + 95.18100222003932) - 189 && Y < (this.Y + 95.18100222003932))
+            {
+                this.zIndex = 1;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(-1/2 * Math.PI);
+                XXX.drawImage(hydra, 2221, 964, 156, 116, -(1/2 * 156 * 1.5), -(1/2 * 116 * 1.5), 156 * 1.5, 116 * 1.5);
+                XXX.restore();
+            }
+            else
+            {
+                this.zIndex = 6;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(-1/2 * Math.PI);
+                XXX.drawImage(hydra, 2221, 964, 156, 116, -(1/2 * 156 * 1.5), -(1/2 * 116 * 1.5), 156 * 1.5, 116 * 1.5);
+                XXX.restore();
+                //roof
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(-1/2 * Math.PI);
+                XXX.drawImage(hydra, 2064, 964, 156, 116, -(1/2 * 156 * 1.5), -(1/2 * 116 * 1.5), 156 * 1.5, 116 * 1.5);
+                XXX.restore();
+            }
+
+            //BARRIERS
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+
+                barrierList.push(new Barrier((this.X + -75.59424181805025), (this.Y + 90.08083140656254), 16, 152, true));
+                barrierList.push(new Barrier((this.X + -76.59424181805025), (this.Y + -105.91916859343746), 16, 152, true));
+                barrierList.push(new Barrier((this.X + -74.59424181805025), (this.Y + -105.91916859343746), 210, 20, true));
+                barrierList.push(new Barrier((this.X + -13.59424181805025), (this.Y + -44.91916859343746), 87, 17, true));
+                barrierList.push(new Barrier((this.X + 56.40575818194975), (this.Y + -107.91916859343746), 87, 17, true));
+                barrierList.push(new Barrier((this.X + 57.40575818194975), (this.Y + 29.080831406562538), 76, 17, true));
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //barrierCreator(this.X, this.Y); //for easily setting barriers when making buildings
 
             //INTERACTION
             if (this.activate == true)

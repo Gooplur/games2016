@@ -604,6 +604,150 @@ function screenCover()
         XXX.restore();
     }
 
+    //Dizziness
+    if (player.dizzyTime > 0 && gameState == "active" && player.dizzyVI == true)
+    {
+        dizzySpin += 0.06;
+        XXX.save();
+        XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+        XXX.scale(3.1, 3.1);
+        XXX.rotate(dizzySpin);
+        XXX.globalAlpha = 1;
+        XXX.drawImage(CCC, -1/2 * CCC.width, -1/2 * CCC.height);
+        XXX.restore();
+    }
+    else if (player.dizzyTime > 0 && gameState == "active" && player.dizzyV == true)
+    {
+        dizzySpin += 0.02;
+        XXX.save();
+        XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+        XXX.scale(3, 3);
+        XXX.rotate(dizzySpin);
+        XXX.globalAlpha = 1;
+        XXX.drawImage(CCC, -1/2 * CCC.width, -1/2 * CCC.height);
+        XXX.restore();
+    }
+    else if (player.dizzyTime > 0 && gameState == "active" && player.dizzyIV == true)
+    {
+        dizzySpin += 0.01;
+        XXX.save();
+        XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+        XXX.scale(2.9, 2.9);
+        XXX.rotate(dizzySpin);
+        XXX.globalAlpha = 0.95;
+        XXX.drawImage(CCC, -1/2 * CCC.width, -1/2 * CCC.height);
+        XXX.restore();
+    }
+    else if (player.dizzyTime > 0 && gameState == "active" && player.dizzyIII == true)
+    {
+        if (dizzySpinDir == 0)
+        {
+            dizzySpin += 0.005;
+            if (dizzySpin >= 0.25)
+            {
+                dizzySpinDir = 1;
+            }
+        }
+        else if (dizzySpinDir == 1)
+        {
+            dizzySpin -= 0.005;
+            if (dizzySpin <= -0.25)
+            {
+                dizzySpinDir = 0;
+            }
+        }
+
+        XXX.save();
+        XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+        XXX.scale(2.8, 2.8);
+        XXX.rotate(dizzySpin);
+        XXX.globalAlpha = 0.95;
+        XXX.drawImage(CCC, -1/2 * CCC.width, -1/2 * CCC.height);
+        XXX.restore();
+    }
+    else if (player.dizzyTime > 0 && gameState == "active" && player.dizzyII == true)
+    {
+        if (dizzySpinDir == 0)
+        {
+            dizzySpin += 0.0025;
+            if (dizzySpin >= 0.2)
+            {
+                dizzySpinDir = 1;
+            }
+        }
+        else if (dizzySpinDir == 1)
+        {
+            dizzySpin -= 0.0025;
+            if (dizzySpin <= -0.2)
+            {
+                dizzySpinDir = 0;
+            }
+        }
+
+        XXX.save();
+        XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+        XXX.scale(1.65, 1.65);
+        XXX.rotate(dizzySpin);
+        XXX.globalAlpha = 0.95;
+        XXX.drawImage(CCC, -1/2 * CCC.width, -1/2 * CCC.height);
+        XXX.restore();
+    }
+    else if (player.dizzyTime > 0 && gameState == "active" && player.dizzyI == true)
+    {
+        if (dizzySpinDir == 0)
+        {
+            dizzySpin += 0.0012;
+            if (dizzySpin >= 0.1)
+            {
+                dizzySpinDir = 1;
+            }
+        }
+        else if (dizzySpinDir == 1)
+        {
+            dizzySpin -= 0.0012;
+            if (dizzySpin <= -0.1)
+            {
+                dizzySpinDir = 0;
+            }
+        }
+
+        XXX.save();
+        XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+        XXX.scale(1.2, 1.2);
+        XXX.rotate(dizzySpin);
+        XXX.globalAlpha = 0.95;
+        XXX.drawImage(CCC, -1/2 * CCC.width, -1/2 * CCC.height);
+        XXX.restore();
+    }
+    else if (player.dizzyTime > 0 && gameState == "active")
+    {
+        if (dizzySpinDir == 0)
+        {
+            dizzySpin += 0.0006;
+            if (dizzySpin >= 0.05)
+            {
+                dizzySpinDir = 1;
+            }
+        }
+        else if (dizzySpinDir == 1)
+        {
+            dizzySpin -= 0.0006;
+            if (dizzySpin <= -0.05)
+            {
+                dizzySpinDir = 0;
+            }
+        }
+
+        XXX.save();
+        XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+        XXX.scale(1.08, 1.08);
+        XXX.rotate(dizzySpin);
+        XXX.globalAlpha = 0.95;
+        XXX.drawImage(CCC, -1/2 * CCC.width, -1/2 * CCC.height);
+        XXX.restore();
+    }
+
+
     //cyberNightVision
     if (player.cyberToggle == 1 || player.cyberToggle == 3) //cyber night vision
     {
@@ -1344,5 +1488,150 @@ function give(itemType, quantity) //gives items in a certain quantity to the pla
     if (hits == Inventory.length)
     {
         Inventory.push([new Item(itemType, false, false), quantity]);
+    }
+}
+
+function barrierCreator(xx, yy)
+{
+    if (typeof(xx) != "undefined")
+    {
+        barrX = (X - mouseX + 1/2 * CCC.width) - xx;
+        barrY = (Y - mouseY + 1/2 * CCC.height) - yy;
+    }
+    else
+    {
+        barrX = (X - mouseX + 1/2 * CCC.width);
+        barrY = (Y - mouseY + 1/2 * CCC.height);
+    }
+
+    if (lKey == true) //this is a helpful tool for getting coords quickly for making buildings: remember barriers build (bottom right -> top left) For adding roof start in the top left and end in the bottom right
+    {
+        lKey = false;
+        barrW = 10;
+        barrH = 10;
+
+        if (typeof(xx) != "undefined")
+        {
+            console.log(((X - mouseX + 1/2 * CCC.width) - xx) + ", " + ((Y - mouseY + 1/2 * CCC.height) - yy));
+        }
+        else
+        {
+            console.log((X - mouseX + 1/2 * CCC.width) + ", " + (Y - mouseY + 1/2 * CCC.height));
+        }
+    }
+
+    if (zKey == true) //this is a helpful tool for getting coords quickly for making buildings: remember barriers build (bottom right -> top left) For adding roof start in the top left and end in the bottom right
+    {
+        zKey = false;
+        barrW = 10;
+        barrH = 10;
+    }
+
+    if (rKey)
+    {
+        rKey = false;
+
+        if (toggleBarrWH == true)
+        {
+            toggleBarrWH = false;
+        }
+        else
+        {
+            toggleBarrWH = true;
+        }
+    }
+
+    if (tKey)
+    {
+        tKey = false;
+        if (shiftKey)
+        {
+            if (toggleBarrWH == true)
+            {
+                barrW = Math.max(1, barrW - 5);
+            }
+            else
+            {
+                barrH = Math.max(1, barrH - 5);
+            }
+        }
+        else if (altKey)
+        {
+            if (toggleBarrWH == true)
+            {
+                barrW = Math.max(0, barrW - 300);
+            }
+            else
+            {
+                barrH = Math.max(0, barrH - 300);
+            }
+        }
+        else
+        {
+            if (toggleBarrWH == true)
+            {
+                barrW = Math.max(1, barrW - 1);
+            }
+            else
+            {
+                barrH = Math.max(1, barrH - 1);
+            }
+        }
+    }
+
+    if (yKey)
+    {
+        yKey = false;
+
+        if (shiftKey)
+        {
+            if (toggleBarrWH == true)
+            {
+                barrW += 5;
+            }
+            else
+            {
+                barrH += 5;
+            }
+        }
+        else if (altKey)
+        {
+            if (toggleBarrWH == true)
+            {
+                barrW += 300;
+            }
+            else
+            {
+                barrH += 300;
+            }
+        }
+        else
+        {
+            if (toggleBarrWH == true)
+            {
+                barrW += 1;
+            }
+            else
+            {
+                barrH += 1;
+            }
+        }
+    }
+
+    XXX.beginPath();
+    XXX.fillStyle = "orange";
+    XXX.fillRect(mouseX, mouseY, -barrW, -barrH);
+
+    if (cKey)
+    {
+        cKey = false;
+        if (typeof(xx) != "undefined")
+        {
+            console.log('barrierList.push(new Barrier((this.X + ' + barrX + '), (this.Y + ' + barrY + '), ' + barrH + ', ' + barrW + ', true));');
+        }
+        else
+        {
+            console.log('barrierList.push(new Barrier((' + barrX + '), (' + barrY + '), ' + barrH + ', ' + barrW + ', true));');
+        }
     }
 }

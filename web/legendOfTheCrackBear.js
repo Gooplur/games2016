@@ -2314,6 +2314,7 @@ var decayTime = new Date().getTime();
 var perfectArmour = false;
 var foePerfectArmour = false;
 var xKey = false;
+var lKey = false;
 var cyberArTog = false;
 var buildMode = false;
 var buildToggle = 0;
@@ -2328,6 +2329,13 @@ var opiumHangover = false; //this is a trigger for the after effects of taking o
 var opiumSave = false; //this tells the game whether or not the opium triggered item save has taken effect yet
 var itemQuickSaveEffect = false; //this allows items to save the game when consumed: quick save
 var itemSaveEffect = false; //this allows items to save the game when consumed: big save
+var barrX = 0;
+var barrY = 0;
+var barrW = 10;
+var barrH = 10;
+var toggleBarrWH = true;
+var dizzySpin = 0;
+var dizzySpinDir = 0;
 
 //This sets the items that are in shops.
 function shopItemIDSetter()
@@ -2725,6 +2733,11 @@ function keyReleased(event)
         xKey = false;
     }
 
+    if (key == 76)
+    {
+        lKey = false;
+    }
+
     if (key == 32)
     {
         spaceKey = false;
@@ -2883,6 +2896,11 @@ function keyHeld(event)
     if (key == 88)
     {
         xKey = true;
+    }
+
+    if (key == 76)
+    {
+        lKey = true;
     }
 
     if (key == 32)

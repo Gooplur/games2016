@@ -150,7 +150,7 @@ temperateFishingSpot - A rippling part of the water where the fishing system can
 southFishingSpot - A rippling part of the water where the fishing system can be accessed with a fishingpole (savannah fish types found here)
 temperatePondFishingSpot - A rippling part of the water where the fishing system can be accessed with a fishingpole (limited eastern temperate varieties found here)
 vardanianMueble - A variety of Vardanian Furnishings (0-21)
-vardanianFloorDeco - rugs, mats, and rags (0-7)
+vardanianFloorDeco - rugs, mats, and rags, and royal/rebel carpets (0-16)
 viudaTunnel - A mound that hosts a webbed tunnel in which the Viuda spider makes its home. //scenicList.push(new Scenery("viudaTunnel", x, y, rotation, hasSpider?, isAlpha?));
 vinePatch - a foliage barrier that can be degraded upon being attacked. //scenicList.push(new Scenery("vinePatch", x, y, rotation, size));
 alzkwayaBuilding1 - A down facing mofu feather decorated kellish building made from grass and dried mud brick
@@ -207,10 +207,10 @@ vardanBuilding1 - a north facing Vardanian orphanage
 vardanBuilding2 - an east facing Vardanian hall
 vardanBuilding3 - a west facing inn
 vardanBuilding4 - a south facing inn
-vardanBuilding5 - a west facing two bedroom building (right angle shaped)
-vardanBuilding6 - an east facing two bedroom building (right angle shaped)
-vardanBuilding7 - a north facing two bedroom building (right angle shaped)
-vardanBuilding8 - a south facing two bedroom building (right angle shaped)
+vardanBuilding5 - a west facing two room building (right angle shaped)
+vardanBuilding6 - an east facing two room building (right angle shaped)
+vardanBuilding7 - a north facing two room building (right angle shaped)
+vardanBuilding8 - a south facing two room building (right angle shaped)
 vardanBuilding9 - a south facing cathedral
 vardanBuilding10 - a north facing long church
 vardanBuilding11 - an east facing long church
@@ -221,5 +221,28 @@ vardanBuilding15 - a south facing chapel
 vardanBuilding16 - a north facing chapel
 vardanBuilding17 - an east facing chapel
 vardanBuilding18 - a west facing chapel
+vardanBuilding19 - a south facing two part building (large square)
+vardanBuilding20 - a north facing two part building (large square)
+vardanBuilding21 - a west facing two part building (large square)
+vardanBuilding22 - an east facing two part building (large square)
+vardanBuilding23 - an east facing medium rectangle building with the door on the side
+vardanBuilding24 - a west facing medium rectangle building with the door on the side
+vardanBuilding25 - a south facing medium rectangle building with the door on the side
+vardanBuilding26 - a north facing medium rectangle building with the door on the side
+vardanBuilding27 - an east facing medium rectangle building with the door on the front
+vardanBuilding28 - a west facing medium rectangle building with the door on the front
+vardanBuilding29 - a north facing medium rectangle building with the door on the front
+vardanBuilding30 - a south facing medium rectangle building with the door on the front
+vardanBuilding31 - a small south facing square building (stilt house)
+vardanBuilding32 - a small north facing square building (stilt house)
+vardanBuilding33 - a small east facing square building  (stilt house)
+vardanBuilding34 - a small west facing square building  (stilt house)
+vardanBuilding35 - a medium-small south facing square building (stilt house)
+vardanBuilding36 - a medium-small north facing square building (stilt house)
+vardanBuilding37 - a medium-small east facing square building (stilt house)
+vardanBuilding38 - a medium-small west facing square building (stilt house)
+vardanBuilding39 - a burnt down square building (size adjustable, rotatable, stilt house) (longevity/temporary changes size) //scenicList.push(new Scenery("vardanBuilding39", 4500, 2400, Math.PI, 1.5));
+vardanBuilding40 - a burnt down square building (size adjustable, rotatable, stilt house) (longevity/temporary changes size) //scenicList.push(new Scenery("vardanBuilding40", 4500, 2400, 1/2 * Math.PI, 1.8));
+
 
 

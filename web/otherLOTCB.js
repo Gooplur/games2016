@@ -1618,6 +1618,24 @@ function barrierCreator(xx, yy)
         }
     }
 
+    if (vKey == true)
+    {
+        vKey = false;
+
+        var storrrBarrr = barrW;
+        barrW = barrH;
+        barrH = storrrBarrr;
+
+        if (toggleBarrWH == true)
+        {
+            toggleBarrWH = false;
+        }
+        else
+        {
+            toggleBarrWH = true;
+        }
+    }
+
     XXX.beginPath();
     XXX.fillStyle = "orange";
     XXX.fillRect(mouseX, mouseY, -barrW, -barrH);

@@ -155,7 +155,28 @@ function buildMaster()
                 //scenicList.push(new Scenery("vardanBuilding16", 4500, 2400, 0, true));
                 //scenicList.push(new Scenery("vardanBuilding17", 4500, 2400, 0, true));
                 //scenicList.push(new Scenery("vardanBuilding18", 4500, 2400, 0, true));
-
+                //scenicList.push(new Scenery("vardanBuilding19", 4500, 2400, 0, true));
+                //scenicList.push(new Scenery("vardanBuilding20", 4500, 2400, 0, true));
+                //scenicList.push(new Scenery("vardanBuilding21", 4500, 2400, 0, true));
+                //scenicList.push(new Scenery("vardanBuilding22", 4500, 2400, 0, true));
+                //scenicList.push(new Scenery("vardanBuilding23", 4500, 2400, 0, true));
+                //scenicList.push(new Scenery("vardanBuilding24", 4500, 2400, 0, true));
+                //scenicList.push(new Scenery("vardanBuilding25", 4500, 2400, 0, true));
+                //scenicList.push(new Scenery("vardanBuilding26", 4500, 2400, 0, true));
+                //scenicList.push(new Scenery("vardanBuilding27", 4500, 2400, 0, true));
+                //scenicList.push(new Scenery("vardanBuilding28", 4500, 2400, 0, true));
+                //scenicList.push(new Scenery("vardanBuilding29", 4500, 2400, 0, true));
+                //scenicList.push(new Scenery("vardanBuilding30", 4500, 2400, 0, true));
+                //scenicList.push(new Scenery("vardanBuilding31", 4500, 2400, 0, true));
+                //scenicList.push(new Scenery("vardanBuilding32", 4500, 2400, 0, true));
+                //scenicList.push(new Scenery("vardanBuilding33", 4500, 2400, 0, true));
+                //scenicList.push(new Scenery("vardanBuilding34", 4500, 2400, 0, true));
+                //scenicList.push(new Scenery("vardanBuilding35", 4500, 2400, 0, true));
+                //scenicList.push(new Scenery("vardanBuilding36", 4500, 2400, 0, true));
+                //scenicList.push(new Scenery("vardanBuilding37", 4500, 2400, 0, true));
+                //scenicList.push(new Scenery("vardanBuilding38", 4500, 2400, 0, true));
+                //scenicList.push(new Scenery("vardanBuilding39", 4500, 2400, -1/2 * Math.PI, 1));
+                //scenicList.push(new Scenery("vardanBuilding40", 4500, 2400, Math.PI, 1.5));
 
                 //scenicList.push(new Scenery("dethMasterHut", 3600, 2500, 0, 0, "deth1"));
                 //scenicList.push(new Scenery("dethTotem", 3600, 3400, 0, 0, "deth1"));

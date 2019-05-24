@@ -18163,6 +18163,42 @@ function Item(type, x, y)
             this.buyValue = 340 - Math.floor(player.getCharisma() / 1); // at max, buy for 290.
             this.sellValue = 240 + Math.floor(player.getCharisma() / 1); // at max, sell for 290.
         }
+        else if (this.type == "tascalSalve")
+        {
+            //For All Items
+            this.identity = "Tascal Salve";
+            this.weight = 0.65;
+            this.size = 6;
+            this.description = "A thick red pasty salve that is primarily used for extracting flesh mites from one's skin.";
+            this.intForDes = 0;
+            this.intDescription = "The salve gives you an uncomfortable tingling sensation when it is applied to bare skin.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["potionGlass", 1]];
+
+            //Utility Focused
+            this.isRegenerative = true; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = -0.25; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "fleshMiteAway";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 24;
+            this.ingredients = [["Vial of Water", 1], ["Borgal Eye", 1], ["Marigold Flower", 2], ["Swamp Lily", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 50 - Math.floor(player.getCharisma() / 10); // at max, buy for 45.
+            this.sellValue = 40 + Math.floor(player.getCharisma() / 10); // at max, sell for 45.
+        }
         else if (this.type == "mightPotionI")
         {
             //For All Items
@@ -21973,6 +22009,81 @@ function Item(type, x, y)
             this.buyValue = 18 - Math.floor(player.getCharisma() / 12); // at max, buy for 14.
             this.sellValue = 9 + Math.floor(player.getCharisma() / 10); // at max, sell for 14.
         }
+        else if (this.type == "rawBorgalFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Borgal Flesh";
+            this.weight = 0.75;
+            this.size = 10;
+            this.description = "The tough and lean flesh of a borgal.";
+            this.intForDes = 0;
+            if (player.getIntelligence() >= 5)
+            {
+                this.intDescription = "It has a somewhat wild and gamey smell to it. This flesh is crawling with flesh mites.";
+            }
+            else
+            {
+                this.intDescription = "It has a somewhat wild and gamey smell to it.";
+            }
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0.3; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "fleshMites";
+
+            //Crafting
+            this.yield = 22;
+            this.intForCraft = 3;
+            this.ingredients = [["Borgal Leg", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3 - Math.floor(player.getCharisma() / 50); // at max, buy for 2.
+            this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+        }
+        else if (this.type == "borgalMeat")
+        {
+            //For All Items
+            this.identity = "Borgal Meat";
+            this.weight = 0.7;
+            this.size = 10;
+            this.description = "The tough, gamey, and lean meat of a borgal.";
+            this.intForDes = 0;
+            this.intDescription = "It has a particular strong, wild, and gamey aroma that unique to borgals.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 3; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 1; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 3;
+            this.ingredients = [["Raw Borgal Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 4 - Math.floor(player.getCharisma() / 50); // at max, buy for 3.
+            this.sellValue = 2 + Math.floor(player.getCharisma() / 50); // at max, sell for 3.
+        }
         else if (this.type == "avrakMeat")
         {
             //For All Items
@@ -24293,6 +24404,106 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 2; // at max, buy for 2.
             this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "cirmusidicCompound")
+        {
+            //For All Items
+            this.identity = "Cirmusidic Compound";
+            this.weight = 0.6;
+            this.size = 7;
+            this.description = "The chemically deformed ooze remains from a cirmusid.";
+            this.intForDes = 7;
+            this.intDescription = "The ooze of cirmusids can negatively alter one's mental state.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 2; // at max, sell for 2.
+        }
+        else if (this.type == "borgalLeg")
+        {
+            //For All Items
+            this.identity = "Borgal Leg";
+            this.weight = 22.75;
+            this.size = 16;
+            this.description = "The bloody, muscular, severed leg, of a borgal.";
+            this.intForDes = 3;
+            this.intDescription = "This should be cut into smaller pieces before being cooked into anything.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 20; // at max, buy for 20.
+            this.sellValue = 20; // at max, sell for 20.
+        }
+        else if (this.type == "borgalEye")
+        {
+            //For All Items
+            this.identity = "Borgal Eye";
+            this.weight = 0.55;
+            this.size = 16;
+            this.description = "The eye of a borgal.";
+            this.intForDes = 6;
+            this.intDescription = "Borgal eye can be mixed with herbs to make a traditional Thengan cure for flesh mites.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 6; // at max, buy for 6.
+            this.sellValue = 6; // at max, sell for 6.
+        }
+        else if (this.type == "borgalPelt")
+        {
+            //For All Items
+            this.identity = "Borgal Pelt";
+            this.weight = 10;
+            this.size = 16;
+            this.description = "The dark thick fur of a borgal on a tough somewhat wrinkly skin.";
+            this.intForDes = 2;
+            this.intDescription = "This can be used to make rugs and apparel.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 40 - Math.floor(player.getCharisma() / 5); // at max, buy for 30.
+            this.sellValue = 15 + Math.floor(player.getCharisma() / 3); // at max, sell for 30.
+        }
+        else if (this.type == "borgalHead")
+        {
+            //For All Items
+            this.identity = "Borgal Head";
+            this.weight = 108.5;
+            this.size = 26;
+            this.description = "The lifeless severed head of a borgal.";
+            this.intForDes = 1;
+            this.intDescription = "This is a testament to having killed a borgal of gargantuan proportions.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 57 - Math.floor(player.getCharisma() / 12.5); // at max, buy for 53.
+            this.sellValue = 50 + Math.floor(player.getCharisma() / 15); // at max, sell for 53.
         }
         else if (this.type == "haeflower")
         {
@@ -28305,6 +28516,26 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 42 - Math.floor(player.getCharisma() / 5); // at max, buy for 32.
             this.sellValue = 22 + Math.floor(player.getCharisma() / 5); // at max, sell for 32.
+        }
+        else if (this.type == "mornidOozeRemains")
+        {
+            //For All Items
+            this.identity = "Mornid Ooze Remains";
+            this.weight = 11;
+            this.size = 14;
+            this.description = "A hunk of lifeless grey ooze.";
+            this.intForDes = 15;
+            this.intDescription = "Mornids are one of the few oozes that are completely safe to touch; they produce acid as needed to digest prey, but otherwise are not acidic.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5 - Math.floor(player.getCharisma() / 50); // at max, buy for 4.
+            this.sellValue = 3 + Math.floor(player.getCharisma() / 50); // at max, sell for 4.
         }
         else if (this.type == "shehidOozeSml")
         {
@@ -41376,6 +41607,46 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "mornidOozeRemains")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ribak, 1024, 616, 41, 30, X - this.X + (1/2 * CCC.width) - (1/2 * 41 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 30 * 1), 41 * 1, 30 * 1);
+        }
+        else if (this.type == "borgalLeg")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 6, 593, 63, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 63 * 1.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 1.6), 63 * 1.6, 24 * 1.6);
+        }
+        else if (this.type == "borgalHead")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 32, 447, 31, 27, X - this.X + (1/2 * CCC.width) - (1/2 * 31 * 2.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 27 * 2.5), 31 * 2.5, 27 * 2.5);
+        }
+        else if (this.type == "borgalEye")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 21, 570, 22, 20, X - this.X + (1/2 * CCC.width) - (1/2 * 22 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 20 * 1), 22 * 1, 20 * 1);
+        }
+        else if (this.type == "borgalPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 20, 490, 58, 37, X - this.X + (1/2 * CCC.width) - (1/2 * 58 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 37 * 1), 58 * 1, 37 * 1);
+        }
+        else if (this.type == "rawBorgalFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 10, 626, 15, 12, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 12 * 1), 15 * 1, 12 * 1);
+        }
+        else if (this.type == "borgalMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 28, 626, 15, 12, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 12 * 1), 15 * 1, 12 * 1);
+        }
+        else if (this.type == "cirmusidicCompound")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 649, 93, 33, 25, X - this.X + (1/2 * CCC.width) - (1/2 * 33 * 0.85), Y - this.Y + (1/2 * CCC.height) - (1/2 * 25 * 0.85), 33 * 0.85, 25 * 0.85);
+        }
         else if (this.type == "throwingStar")
         {
             XXX.beginPath();
@@ -45420,7 +45691,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(oldverse, 1775, 183, 9, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 9), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17), 9, 17);
         }
-        else if (this.type == "mightPotionI" || this.type == "mightPotionII" || this.type == "mightPotionIII" || this.type == "mightPotionIV" || this.type == "mightPotionV")
+        else if (this.type == "mightPotionI" || this.type == "mightPotionII" || this.type == "mightPotionIII" || this.type == "mightPotionIV" || this.type == "mightPotionV" || this.type == "tascalSalve")
         {
             XXX.beginPath();
             XXX.drawImage(oldverse, 1788, 183, 9, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 9), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16), 9, 16);
@@ -46771,6 +47042,46 @@ function Item(type, x, y)
         {
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "mornidOozeRemains")
+        {
+            LXX.beginPath();
+            LXX.drawImage(ribak, 1024, 616, 41, 30, this.invX - (1/2 * 41 * 1), this.invY - (1/2 * 30 * 1), 41 * 1, 30 * 1);
+        }
+        else if (this.type == "borgalLeg")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nognog, 6, 593, 63, 24, this.invX - (1/2 * 63 * 0.9), this.invY - (1/2 * 24 * 0.9), 63 * 0.9, 24 * 0.9);
+        }
+        else if (this.type == "borgalHead")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nognog, 32, 447, 31, 27, this.invX - (1/2 * 31 * 1.2), this.invY - (1/2 * 27 * 1.2), 31 * 1.2, 27 * 1.2);
+        }
+        else if (this.type == "borgalEye")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nognog, 21, 570, 22, 20, this.invX - (1/2 * 22 * 1), this.invY - (1/2 * 20 * 1), 22 * 1, 20 * 1);
+        }
+        else if (this.type == "borgalPelt")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nognog, 20, 490, 58, 37, this.invX - (1/2 * 58 * 1), this.invY - (1/2 * 37 * 1), 58 * 1, 37 * 1);
+        }
+        else if (this.type == "rawBorgalFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nognog, 10, 626, 15, 12, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 12 * 1), 15 * 1, 12 * 1);
+        }
+        else if (this.type == "borgalMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nognog, 28, 626, 15, 12, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 12 * 1), 15 * 1, 12 * 1);
+        }
+        else if (this.type == "cirmusidicCompound")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nognog, 649, 93, 33, 25, this.invX - (1/2 * 33 * 0.85), this.invY - (1/2 * 25 * 0.85), 33 * 0.85, 25 * 0.85);
         }
         else if (this.type == "throwingStar")
         {
@@ -50908,7 +51219,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(oldverse, 1775, 183, 9, 17, this.invX - (1/2 * 9), this.invY - (1/2 * 17), 9, 17);
         }
-        else if (this.type == "mightPotionI" || this.type == "mightPotionII" || this.type == "mightPotionIII" || this.type == "mightPotionIV" || this.type == "mightPotionV")
+        else if (this.type == "mightPotionI" || this.type == "mightPotionII" || this.type == "mightPotionIII" || this.type == "mightPotionIV" || this.type == "mightPotionV" || this.type == "tascalSalve")
         {
             LXX.beginPath();
             LXX.drawImage(oldverse, 1788, 183, 9, 16, this.invX - (1/2 * 9), this.invY - (1/2 * 16), 9, 16);
@@ -52138,6 +52449,46 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "mornidOozeRemains")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ribak, 1024, 616, 41, 30, this.invX - (1/2 * 41 * 1), this.invY - (1/2 * 30 * 1), 41 * 1, 30 * 1);
+        }
+        else if (this.type == "borgalLeg")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 6, 593, 63, 24, this.invX - (1/2 * 63 * 0.9), this.invY - (1/2 * 24 *  0.9), 63 *  0.9, 24 *  0.9);
+        }
+        else if (this.type == "borgalHead")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 32, 447, 31, 27, this.invX - (1/2 * 31 * 1.2), this.invY - (1/2 * 27 * 1.2), 31 * 1.2, 27 * 1.2);
+        }
+        else if (this.type == "borgalEye")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 21, 570, 22, 20, this.invX - (1/2 * 22 * 1), this.invY - (1/2 * 20 * 1), 22 * 1, 20 * 1);
+        }
+        else if (this.type == "borgalPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 20, 490, 58, 37, this.invX - (1/2 * 58 * 1), this.invY - (1/2 * 37 * 1), 58 * 1, 37 * 1);
+        }
+        else if (this.type == "rawBorgalFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 10, 626, 15, 12, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 12 * 1), 15 * 1, 12 * 1);
+        }
+        else if (this.type == "borgalMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 28, 626, 15, 12, this.invX - (1/2 * 15 * 1), this.invY - (1/2 * 12 * 1), 15 * 1, 12 * 1);
+        }
+        else if (this.type == "cirmusidicCompound")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nognog, 649, 93, 33, 25, this.invX - (1/2 * 33 * 0.85), this.invY - (1/2 * 25 * 0.85), 33 * 0.85, 25 * 0.85);
         }
         else if (this.type == "throwingStar")
         {
@@ -56273,7 +56624,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(oldverse, 1775, 183, 9, 17, this.invX - (1/2 * 9), this.invY - (1/2 * 17), 9, 17);
         }
-        else if (this.type == "mightPotionI" || this.type == "mightPotionII" || this.type == "mightPotionIII" || this.type == "mightPotionIV" || this.type == "mightPotionV")
+        else if (this.type == "mightPotionI" || this.type == "mightPotionII" || this.type == "mightPotionIII" || this.type == "mightPotionIV" || this.type == "mightPotionV" || this.type == "tascalSalve")
         {
             XXX.beginPath();
             XXX.drawImage(oldverse, 1788, 183, 9, 16, this.invX - (1/2 * 9), this.invY - (1/2 * 16), 9, 16);

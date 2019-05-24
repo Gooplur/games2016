@@ -4376,6 +4376,7 @@ function theLegend()
     foods.push(new Item("cresAndGreens", false));
     foods.push(new Item("tilmuk", false));
     foods.push(new Item("opium", false));
+    foods.push(new Item("borgalMeat", false));
 
 
 //Tailoring (Items crafted at a weaving, sewing, dying, etc. tailor's work bench thing)
@@ -4552,6 +4553,7 @@ function theLegend()
     alchemy.push(new Item("mimicFilament", false));
     alchemy.push(new Item("palggaPerfume", false));
     alchemy.push(new Item("sauerkraut", false));
+    alchemy.push(new Item("tascalSalve", false));
 
 //Brewing (alcohols, liquid fermentation, etc.)
     brewing = [];
@@ -4713,6 +4715,7 @@ function theLegend()
     handcrafted.push(new Item("sausageCombo", false));
     handcrafted.push(new Item("hetlaukWormPlatter", false));
     handcrafted.push(new Item("sausageAndGreens", false));
+    handcrafted.push(new Item("rawBorgalFlesh", false));
 
     //Activate Important Game Functions Here:
     itemPlacer();

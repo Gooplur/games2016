@@ -177,6 +177,9 @@ function buildMaster()
                 //scenicList.push(new Scenery("vardanBuilding38", 4500, 2400, 0, true));
                 //scenicList.push(new Scenery("vardanBuilding39", 4500, 2400, -1/2 * Math.PI, 1));
                 //scenicList.push(new Scenery("vardanBuilding40", 4500, 2400, Math.PI, 1.5));
+                //ArtificialIntelligenceAccess.push(new Unit(4000, 2500, "Cirmusid", false, "Sluch"));
+                //ArtificialIntelligenceAccess.push(new Unit(4000, 2500, "Borgal", false, "Sluch"));
+                //ArtificialIntelligenceAccess.push(new Unit(4000, 2500, "Mornid", false, "Slewuch"));
 
                 //scenicList.push(new Scenery("dethMasterHut", 3600, 2500, 0, 0, "deth1"));
                 //scenicList.push(new Scenery("dethTotem", 3600, 3400, 0, 0, "deth1"));

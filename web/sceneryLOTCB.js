@@ -4031,12 +4031,20 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.drawImage(hydra, 754, 1410, 90, 65, -(1/2 * 90 * this.information), -(1/2 * 65 * this.information), 90 * this.information, 65 * this.information);
                 XXX.restore();
             }
-            else if (this.temporary >= 16)//rebel tiny rug
+            else if (this.temporary == 16)//rebel tiny rug
             {
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
                 XXX.drawImage(hydra, 853, 1409, 90, 65, -(1/2 * 90 * this.information), -(1/2 * 65 * this.information), 90 * this.information, 65 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary >= 17)//borgal fur rug (thengaria)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(nognog, 19, 490, 61, 38, -(1/2 * 61 * this.information), -(1/2 * 38 * this.information), 61 * this.information, 38 * this.information);
                 XXX.restore();
             }
 

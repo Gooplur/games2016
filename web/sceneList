@@ -150,7 +150,7 @@ temperateFishingSpot - A rippling part of the water where the fishing system can
 southFishingSpot - A rippling part of the water where the fishing system can be accessed with a fishingpole (savannah fish types found here)
 temperatePondFishingSpot - A rippling part of the water where the fishing system can be accessed with a fishingpole (limited eastern temperate varieties found here)
 vardanianMueble - A variety of Vardanian Furnishings (0-21)
-vardanianFloorDeco - rugs, mats, and rags, and royal/rebel carpets (0-16)
+vardanianFloorDeco - rugs, mats, and rags, and royal/rebel carpets, borgal rug (0-17)
 viudaTunnel - A mound that hosts a webbed tunnel in which the Viuda spider makes its home. //scenicList.push(new Scenery("viudaTunnel", x, y, rotation, hasSpider?, isAlpha?));
 vinePatch - a foliage barrier that can be degraded upon being attacked. //scenicList.push(new Scenery("vinePatch", x, y, rotation, size));
 alzkwayaBuilding1 - A down facing mofu feather decorated kellish building made from grass and dried mud brick

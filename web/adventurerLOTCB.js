@@ -3802,7 +3802,7 @@ function Adventurer()
             //dizziness
             if (this.dizzyTime > 0)
             {
-                if (new Date().getTime() - this.dizzyKeepTime < 100)
+                if (new Date().getTime() - this.dizzyKeepTime > 100)
                 {
                     this.dizzyKeepTime = new Date().getTime();
                     this.dizzyTime -= 0.1;
@@ -33111,6 +33111,10 @@ function Adventurer()
                             else if (Inventory[i][0].ability == "bahabII")
                             {
                                 this.bahabTime = 370;
+                            }
+                            else if (Inventory[i][0].ability == "fleshMiteAway")
+                            {
+                                this.fleshMites = false;
                             }
                             else if (Inventory[i][0].ability == "satiate" || Inventory[i][0].ability == "satiation") //Food with this effect will keep you fed for a little bit.
                             {

@@ -182,9 +182,9 @@ function buildMaster()
                 //ArtificialIntelligenceAccess.push(new Unit(4000, 2500, "Mornid", false, "Slewuch"));
                 //scenicList.push(new Scenery("ribbackWeb", 4500, 2400, 0, 1));
                 //scenicList.push(new Scenery("ribbackNest", 4500, 2400, 0, 1));
-                ArtificialIntelligenceAccess.push(new Unit(4100, 3200, "Ribback", false, "humpi"));
-                ArtificialIntelligenceAccess.push(new Unit(4000, 2500, "Ribback", false, "humphump"));
-                ArtificialIntelligenceAccess.push(new Unit(5000, 2400, "Ribback", true, "humpa"));
+                //ArtificialIntelligenceAccess.push(new Unit(4100, 3200, "Ribback", false, "humpi"));
+                //ArtificialIntelligenceAccess.push(new Unit(4000, 2500, "Ribback", false, "humphump"));
+                //ArtificialIntelligenceAccess.push(new Unit(5000, 2400, "Ribback", true, "humpa"));
 
                 //scenicList.push(new Scenery("dethMasterHut", 3600, 2500, 0, 0, "deth1"));
                 //scenicList.push(new Scenery("dethTotem", 3600, 3400, 0, 0, "deth1"));

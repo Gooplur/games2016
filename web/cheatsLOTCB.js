@@ -1554,8 +1554,8 @@ function cheats()
         }
         else if (cheatcode.toLowerCase() == "gankthemvamps")
         {
-            this.baseHunger = 50;
-            this.baseThirst = 20;
+            player.baseHunger = 50;
+            player.baseThirst = 20;
         }
         else if (cheatcode.toLowerCase() == "ratsinthewhitecity") //turns off content filter
         {

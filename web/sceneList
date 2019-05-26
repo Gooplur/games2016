@@ -243,6 +243,8 @@ vardanBuilding37 - a medium-small east facing square building (stilt house)
 vardanBuilding38 - a medium-small west facing square building (stilt house)
 vardanBuilding39 - a burnt down square building (size adjustable, rotatable, stilt house) (longevity/temporary changes size) //scenicList.push(new Scenery("vardanBuilding39", 4500, 2400, Math.PI, 1.5));
 vardanBuilding40 - a burnt down square building (size adjustable, rotatable, stilt house) (longevity/temporary changes size) //scenicList.push(new Scenery("vardanBuilding40", 4500, 2400, 1/2 * Math.PI, 1.8));
+ribbackWeb - a thick web spun by ribback spiders (temporary ajusts size)
+ribbackNest - a webbed ribback burrow wherein dwells the mama ribback and her young
 
 
 

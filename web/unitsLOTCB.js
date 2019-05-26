@@ -783,7 +783,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
         for (var i = 0; i < scenicList.length; i++)
         {
-            if (this.team != "neutral" && scenicList[i].type == "web" || this.team != "neutral" && scenicList[i].type == "matnaWeb")
+            if (this.team != "neutral" && scenicList[i].type == "web" || this.team != "neutral" && scenicList[i].type == "matnaWeb" || this.team != "neutral" && scenicList[i].type == "ribbackWeb" || this.team != "neutral" && scenicList[i].type == "ribbackNest")
             {
                 for (var k = 0; k < scenicList[i].webbed.length; k++)
                 {
@@ -1586,6 +1586,8 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.allys.push("silteria");
             this.allys.push("mimic");
             this.allys.push("borgalia");
+            this.allys.push("ribback");
+            this.allys.push("ribbackia");
         }
         if (this.team == "gribia")
         {
@@ -1624,6 +1626,21 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.allys.push("ulgoyia");
         }
         if (this.team == "viuda")
+        {
+            this.allys.push("docile");
+            this.allys.push("shehidia");
+            this.allys.push("clamia");
+            this.allys.push("ulgoyia");
+        }
+        if (this.team == "ribback")
+        {
+            this.allys.push("docile");
+            this.allys.push("shehidia");
+            this.allys.push("clamia");
+            this.allys.push("ulgoyia");
+            this.allys.push("ribbackia");
+        }
+        if (this.team == "ribbackia")
         {
             this.allys.push("docile");
             this.allys.push("shehidia");
@@ -7898,6 +7915,12 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                                 {
                                     player.poisonI = true;
                                 }
+                                else if (this.effect == "ribbackPoison" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
+                                {
+                                    player.poisonI = true;
+                                    player.asfixiationI = true;
+                                    player.asfixiationTime = Math.max(20, player.asfixiationTime);
+                                }
                                 else if (this.effect == "dizzyI" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
                                 {
                                     player.dizzyTime = 30;
@@ -8577,6 +8600,12 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                                     this.target.acidTime = new Date().getTime() + 120000;
                                     this.target.killNotByPlayer = true;
                                 }
+                            }
+                            else if (this.effect == "ribbackPoison" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
+                            {
+                                this.target.acidI = true;
+                                this.target.acidTime = new Date().getTime() + 300000;
+                                this.target.killNotByPlayer = true;
                             }
                             else if (this.effect == "poisonI" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
                             {
@@ -15049,6 +15078,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         }
         else if (this.type == "Mornid")
         {
+            this.resistances = ["acid", "stun", "blinded"];
             this.damageFrame = "manual";
             this.followThrough = true; //this unit follows through with its attacks even if the player moves out of range.
             this.team = "shehidia";
@@ -15775,6 +15805,261 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.yAdjustment = 2.5;
                 this.xAdjustment = 1;
             }
+        }
+        else if (this.type == "Ribback") //ribbackribback
+        {
+            this.haste = true;
+            this.resistances = ["web", "night"];
+            this.damageFrame = "automatic";
+            this.team = "ribback";
+            if (this.ID == "docile")
+            {
+                this.team = "docile";
+            }
+            this.baseTeam = this.team;
+            this.tameable = false;
+
+            this.gender = "primordial";
+            this.lifetime = 0;
+            this.effect = "ribbackPoison";
+
+            this.partner = "none";
+            this.mate = "none";
+            this.horny = 0;
+            this.calledOut = false;
+            this.chosen42Mate = false;
+            this.prego = 0;
+            this.getaway = "none";
+            this.mated = false;
+            this.awayCount = 0;
+            this.hornyStamina = 0;
+            this.nest = "none";
+            this.nestDir = 2*Math.PI*Math.random();
+            this.goHome = false;
+            this.nestMakeCount = 0;
+
+            if (this.alpha == true) //mama
+            {
+                this.baseTeam = "ribbackia";
+                this.team = "ribbackia";
+                this.lifetime = 19;
+                this.gender = 0;
+                this.magicalResistance = 0;
+                this.heatResistance = -0.1;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = Math.floor(Math.random() * 8) + 59;
+                this.health = this.healthMAX;
+                this.armour = 2.6;
+                this.speed = 4 + (Math.floor(Math.random() * 3) / 10);
+                this.rangeOfSight = 400; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.22;
+                this.engagementRadius = 68;
+                this.sizeRadius = 26;
+                this.negateArmour = 7;
+                this.attackWait = 1.6;
+
+                //alpha has a larger size body and skills.
+                this.alphaSize = 1.2;
+                this.yAdjustment = 0;
+                this.xAdjustment = 0;
+            }
+            else if (this.alpha == "baby") //young
+            {
+                this.baseTeam = "ribbackia";
+                this.team = "ribbackia";
+                this.headStart = 20;
+                if (Math.random() < 0.25)
+                {
+                    this.gender = 0;
+                }
+                else
+                {
+                    this.gender = 1;
+                }
+
+                if (this.gender == 0)
+                {
+                    this.magicalResistance = 0;
+                    this.heatResistance = -0.1;
+                    this.attackStyle = "chunked";
+                    this.attackRate = 0;  //this is for rapid style combat only.
+                    this.healthMAX = 9;
+                    this.health = this.healthMAX;
+                    this.armour = 0.26;
+                    this.speed = 2 + (Math.floor(Math.random() * 3) / 10);
+                    this.rangeOfSight = 200; //This is just to set the variable initially. The rest is variable.
+                    this.rotationSpeed = 0.22;
+                    this.engagementRadius = 22;
+                    this.sizeRadius = 12;
+                    this.negateArmour = 2.44;
+                    this.attackWait = 1.4;
+
+                    //alpha has a larger size body and skills.
+                    this.alphaSize = 0.56;
+                    this.yAdjustment = 0;
+                    this.xAdjustment = 0;
+                }
+                else
+                {
+                    this.magicalResistance = 0;
+                    this.heatResistance = -0.15;
+                    this.attackStyle = "chunked";
+                    this.attackRate = 0;  //this is for rapid style combat only.
+                    this.healthMAX = 4;
+                    this.health = this.healthMAX;
+                    this.armour = 0.16;
+                    this.speed = 2.5;
+                    this.rangeOfSight = 400; //This is just to set the variable initially. The rest is variable.
+                    this.rotationSpeed = 0.25;
+                    this.engagementRadius = 18;
+                    this.sizeRadius = 9;
+                    this.negateArmour = 1.26;
+                    this.attackWait = 1.3;
+
+                    //alpha has a larger size body and skills.
+                    this.alphaSize = 0.45;
+                    this.yAdjustment = 0;
+                    this.xAdjustment = 0;
+                }
+            }
+            else if (this.alpha == "kid") //grown
+            {
+                this.lifetime = 8;
+                this.gender = Math.round(Math.random());
+                if (this.gender == 0)
+                {
+                    this.magicalResistance = 0;
+                    this.heatResistance = -0.1;
+                    this.attackStyle = "chunked";
+                    this.attackRate = 0;  //this is for rapid style combat only.
+                    this.healthMAX = 34;
+                    this.health = this.healthMAX;
+                    this.armour = 1.8;
+                    this.speed = 3.2 + (Math.floor(Math.random() * 3) / 10);
+                    this.rangeOfSight = 340; //This is just to set the variable initially. The rest is variable.
+                    this.rotationSpeed = 0.22;
+                    this.engagementRadius = 43;
+                    this.sizeRadius = 18;
+                    this.negateArmour = 5.5;
+                    this.attackWait = 1.55;
+
+                    //alpha has a larger size body and skills.
+                    this.alphaSize = 0.88;
+                    this.yAdjustment = 0;
+                    this.xAdjustment = 0;
+                }
+                else
+                {
+                    this.magicalResistance = 0;
+                    this.heatResistance = -0.15;
+                    this.attackStyle = "chunked";
+                    this.attackRate = 0;  //this is for rapid style combat only.
+                    this.healthMAX = Math.floor(Math.random() * 3) + 11;
+                    this.health = this.healthMAX;
+                    this.armour = 1.35;
+                    this.speed = 4.5;
+                    this.rangeOfSight = 800; //This is just to set the variable initially. The rest is variable.
+                    this.rotationSpeed = 0.25;
+                    this.engagementRadius = 29;
+                    this.sizeRadius = 12;
+                    this.negateArmour = 3.6;
+                    this.attackWait = 1.35;
+
+                    //alpha has a larger size body and skills.
+                    this.alphaSize = 0.77;
+                    this.yAdjustment = 0;
+                    this.xAdjustment = 0;
+                }
+            }
+            else //papa
+            {
+                this.lifetime = 19;
+                this.gender = 1;
+                //STATS (non-variable)
+                this.magicalResistance = 0;
+                this.heatResistance = -0.15;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = Math.floor(Math.random() * 4) + 18;
+                this.health = this.healthMAX;
+                this.armour = 1.7;
+                this.speed = 4.9;
+                this.rangeOfSight = 900; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.25;
+                this.engagementRadius = 38;
+                this.sizeRadius = 16;
+                this.negateArmour = 4;
+                this.attackWait = 1.4;
+
+                //alpha has a larger size body and skills.
+                this.alphaSize = 0.9;
+                this.yAdjustment = 0;
+                this.xAdjustment = 0;
+
+            }
+            this.swimSpeed = this.speed * 0.4;
+        }
+        else if (this.type == "Fegil")
+        {
+            this.damageFrame = "automatic";
+            this.team = "herd";
+            if (this.ID == "docile")
+            {
+                this.team = "docile";
+            }
+            this.baseTeam = this.team;
+            this.tameREQ = 4;
+
+            if (this.alpha == true)
+            {
+                this.magicalResistance = 0;
+                this.heatResistance = -1;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = Math.floor(Math.random() * 5) + 10;
+                this.health = this.healthMAX;
+                this.armour = 0;
+                this.speed = 3.2 + (Math.floor(Math.random() * 5) / 10);
+                this.rangeOfSight = 525; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.1;
+                this.engagementRadius = 41.5;
+                this.sizeRadius = 19;
+                this.negateArmour = 0;
+                this.attackWait = 0.5;
+
+                //alpha has a larger size body and skills.
+                this.alphaSize = 1.45; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                // this is the adjustment the alpha type of Etyr needs to be centered.
+                this.yAdjustment = 1; //was - 3.5
+                this.xAdjustment = 6; //was 6
+            }
+            else
+            {
+                //STATS (non-variable)
+                this.magicalResistance = 0;
+                this.heatResistance = -1;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = Math.floor(Math.random() * 4) + 7;
+                this.health = this.healthMAX;
+                this.armour = 0;
+                this.speed = 2.9 + (Math.floor(Math.random() * 6) / 10);
+                this.rangeOfSight = 450; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.1;
+                this.engagementRadius = 38.5;
+                this.sizeRadius = 18;
+                this.negateArmour = 0;
+                this.attackWait = 0.5;
+
+                //this multiplies the draw image skew numbers by 1 so that it stays the same
+                this.alphaSize = 1.3;
+                // this is the adjustment the alpha type of Etyr needs to be centered.
+                this.yAdjustment = 0; //was -34
+                this.xAdjustment = 0; //was - 26
+
+            }
+            this.swimSpeed = this.speed * 0.8;
         }
         else if (this.type == "Varn")
         {
@@ -17663,7 +17948,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.heatResistance = -3;
                 this.attackStyle = "chunked";
                 this.attackRate = 0;  //this is for rapid style combat only.
-                this.healthMAX = Math.floor(Math.random() * 91) + 410;
+                this.healthMAX = Math.floor(Math.random() * 91) + 510;
                 this.health = this.healthMAX;
                 this.armour = 0;
                 this.speed = 4 + (Math.floor(Math.random() * 6) / 10);
@@ -17687,7 +17972,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.heatResistance = -3;
                 this.attackStyle = "chunked";
                 this.attackRate = 0;  //this is for rapid style combat only.
-                this.healthMAX = Math.floor(Math.random() * 20) + 111;
+                this.healthMAX = Math.floor(Math.random() * 20) + 121;
                 this.health = this.healthMAX;
                 this.armour = 0;
                 this.speed = 3 + (Math.floor(Math.random() * 3) / 10);
@@ -30738,6 +31023,20 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         if (scenicList[oop].type == "ashaiTree")
                         {
                             if (this.DTU(scenicList[oop]) < 80)
+                            {
+                                tryUgin = true;
+                            }
+                        }
+                        if (scenicList[oop].type == "ribbackNest")
+                        {
+                            if (this.DTU(scenicList[oop]) < 100)
+                            {
+                                tryUgin = true;
+                            }
+                        }
+                        if (scenicList[oop].type == "ribbackWeb")
+                        {
+                            if (this.DTU(scenicList[oop]) < 100)
                             {
                                 tryUgin = true;
                             }
@@ -53642,6 +53941,1454 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             else
             {
                 this.drawUnit(lodo, 315, 82, 60, 30, -1/2 * 60 * this.alphaSize - this.xAdjustment, -1/2 * 30 * this.alphaSize - this.yAdjustment, 60 * this.alphaSize, 30 * this.alphaSize);
+            }
+        }
+        //RIBBACK
+        if (this.type == "Ribback") //ribbackribback
+        {
+            //Set Drops and experience
+            if (this.alpha == true)
+            {
+                if (Math.max(0, 15.5 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 140 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = (140 * ((player.getIntelligence() / 50) + 1)) / 10;
+                }
+
+                this.drops = [[new Item("etnaVenomSac", this.X, this.Y), 1]];
+            }
+            else if (this.alpha == "baby")
+            {
+                if (Math.max(0, 2 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 2 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = (2 * ((player.getIntelligence() / 50) + 1)) / 10;
+                }
+
+                this.drops = [];
+            }
+            else if (this.alpha == "kid")
+            {
+                if (Math.max(0, 6 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 30 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = (30 * ((player.getIntelligence() / 50) + 1)) / 10;
+                }
+
+                this.drops = [];
+            }
+            else
+            {
+                if (Math.max(0, 8 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 70 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = 70 * ((player.getIntelligence() / 50) + 1) / 10;
+                }
+
+                this.drops = [[new Item("etnaVenomSac", this.X, this.Y), 1]];
+            }
+
+            //RANGE OF SIGHT (anything related to range of sight)
+            if (this.alpha == true)
+            {
+                this.rangeOfSightCalculator(400, false);
+            }
+            else if (this.alpha == "baby")
+            {
+                if (this.gender == 0)
+                {
+                    this.rangeOfSightCalculator(200, true);
+                }
+                else
+                {
+                    this.rangeOfSightCalculator(400, true);
+                }
+            }
+            else if (this.alpha == "kid")
+            {
+                if (this.gender == 0)
+                {
+                    this.rangeOfSightCalculator(340, true);
+                }
+                else
+                {
+                    this.rangeOfSightCalculator(800, true);
+                }
+            }
+            else
+            {
+                this.rangeOfSightCalculator(900, true);
+            }
+
+            if (this.flying == true)
+            {
+                this.zIndex = 3;
+            }
+            else
+            {
+                this.zIndex = 2;
+            }
+
+            //AI
+            if (this.alive == true)
+            {
+                if (this.alpha == "baby")
+                {
+                    if (this.headStart > 0)
+                    {
+                        this.headStart -= 0.2;
+                    }
+                    else
+                    {
+                        this.baseTeam = "ribback";
+                        this.team = "ribback";
+                        this.headStart = 0;
+                    }
+                }
+                //aging system
+                this.lifetime += 0.002;
+                if (this.lifetime >= 19 && this.alpha == "kid")
+                {
+                    if (this.gender == 0)
+                    {
+                        this.baseTeam = "ribbackia";
+                        this.team = "ribbackia";
+                        this.magicalResistance = 0;
+                        this.heatResistance = -0.1;
+                        this.attackStyle = "chunked";
+                        this.attackRate = 0;  //this is for rapid style combat only.
+                        this.healthMAX = Math.floor(Math.random() * 8) + 59;
+                        this.health = this.healthMAX;
+                        this.armour = 2.6;
+                        this.speed = 4 + (Math.floor(Math.random() * 3) / 10);
+                        this.rangeOfSight = 400; //This is just to set the variable initially. The rest is variable.
+                        this.rotationSpeed = 0.22;
+                        this.engagementRadius = 68;
+                        this.sizeRadius = 26;
+                        this.negateArmour = 7;
+                        this.attackWait = 1.6;
+
+                        //alpha has a larger size body and skills.
+                        this.alphaSize = 1.2;
+                    }
+                    else
+                    {
+                        //STATS (non-variable)
+                        this.magicalResistance = 0;
+                        this.heatResistance = -0.15;
+                        this.attackStyle = "chunked";
+                        this.attackRate = 0;  //this is for rapid style combat only.
+                        this.healthMAX = Math.floor(Math.random() * 4) + 18;
+                        this.health = this.healthMAX;
+                        this.armour = 1.7;
+                        this.speed = 4.9;
+                        this.rangeOfSight = 900; //This is just to set the variable initially. The rest is variable.
+                        this.rotationSpeed = 0.25;
+                        this.engagementRadius = 38;
+                        this.sizeRadius = 16;
+                        this.negateArmour = 4;
+                        this.attackWait = 1.4;
+
+                        //alpha has a larger size body and skills.
+                        this.alphaSize = 0.9;
+                    }
+                }
+                else if (this.lifetime >= 8 && this.alpha == "baby")
+                {
+                    this.alpha = "kid";
+                    if (this.gender == 0)
+                    {
+                        this.magicalResistance = 0;
+                        this.heatResistance = -0.1;
+                        this.attackStyle = "chunked";
+                        this.attackRate = 0;  //this is for rapid style combat only.
+                        this.healthMAX = 34;
+                        this.health = this.healthMAX;
+                        this.armour = 1.8;
+                        this.speed = 3.2 + (Math.floor(Math.random() * 3) / 10);
+                        this.rangeOfSight = 340; //This is just to set the variable initially. The rest is variable.
+                        this.rotationSpeed = 0.22;
+                        this.engagementRadius = 43;
+                        this.sizeRadius = 18;
+                        this.negateArmour = 5.5;
+                        this.attackWait = 1.55;
+
+                        //alpha has a larger size body and skills.
+                        this.alphaSize = 0.88;
+                    }
+                    else
+                    {
+                        this.magicalResistance = 0;
+                        this.heatResistance = -0.15;
+                        this.attackStyle = "chunked";
+                        this.attackRate = 0;  //this is for rapid style combat only.
+                        this.healthMAX = Math.floor(Math.random() * 3) + 11;
+                        this.health = this.healthMAX;
+                        this.armour = 1.35;
+                        this.speed = 4.5;
+                        this.rangeOfSight = 800; //This is just to set the variable initially. The rest is variable.
+                        this.rotationSpeed = 0.25;
+                        this.engagementRadius = 29;
+                        this.sizeRadius = 12;
+                        this.negateArmour = 3.6;
+                        this.attackWait = 1.35;
+
+                        //alpha has a larger size body and skills.
+                        this.alphaSize = 0.77;
+                    }
+                }
+
+                //this.deathChecker();
+                this.disturbedTimer();
+                this.visibleSight();
+                this.friendDecider();
+                if (this.gender == 0)
+                {
+                    this.webTargeting(); //this type of targeting makes it so this unit only targets units or players stuck in web.
+                    if (this.target == "none")
+                    {
+                        this.targeting();
+                    }
+                }
+                else
+                {
+                    this.targeting();
+                }
+
+
+                this.moving = false;
+
+                if (this.alpha == true)
+                {
+                    this.Attack(9, 6.5);
+                }
+                else if (this.alpha == "baby")
+                {
+                    if (this.gender == 0)
+                    {
+                        this.Attack(2, 2);
+                    }
+                    else
+                    {
+                        this.Attack(1, 1.25);
+                        this.callForNearbyHelpFromType(100, "Ribback");
+                    }
+                }
+                else if (this.alpha == "kid")
+                {
+                    if (this.gender == 0)
+                    {
+                        this.Attack(6, 4);
+                    }
+                    else
+                    {
+                        this.Attack(3, 2.5);
+                        this.callForNearbyHelpFromType(250, "Ribback");
+                    }
+                }
+                else
+                {
+                    this.Attack(5, 3);
+                    this.callForNearbyHelpFromType(400, "Ribback");
+                }
+
+                //partner elaboration
+                var nesty = "none";
+                var matey = "none";
+                var pattyner = "none";
+                var dtptner = 1000000000000000;
+                var mateyDist = 1000000000000000;
+                var mateyNum = -1;
+                var dtptnerNum = -1;
+                var dentroNum = -1;
+                var unpartneredDudes = 0;
+                var virginSpideys = 0;
+
+                if (this.gender == 1 && this.alpha == false)
+                {
+                    this.horny += 0.025;
+                }
+                if (this.alpha == false && this.chosen42Mate == false && this.partner != "none")
+                {
+                    var hittz = false;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].type == "Ribback" && ArtificialIntelligenceAccess[i].alpha == false && ArtificialIntelligenceAccess[i].gender == 1)
+                        {
+                            if (ArtificialIntelligenceAccess[i].partner == this.barcode)
+                            {
+                                hittz = true;
+                                pattyner = ArtificialIntelligenceAccess[i];
+                                dtptner = this.DTU(ArtificialIntelligenceAccess[i]);
+                            }
+                        }
+                    }
+                    if (hittz == false)
+                    {
+                        this.partner = "none";
+                    }
+                }
+
+                if (this.partner == "none" && this.alpha == false)
+                {
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i] !== this && ArtificialIntelligenceAccess[i].type == "Ribback" && ArtificialIntelligenceAccess[i].alpha == false && ArtificialIntelligenceAccess[i].gender == 1)
+                        {
+                            if (this.DTU(ArtificialIntelligenceAccess[i]) < 10900)
+                            {
+                                unpartneredDudes += 1;
+                            }
+                        }
+                    }
+                }
+                else if (this.mate == "none" && this.alpha == false)
+                {
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].type == "Ribback" && ArtificialIntelligenceAccess[i].alpha == true && ArtificialIntelligenceAccess[i].gender == 0 && ArtificialIntelligenceAccess[i].prego == false)
+                        {
+                            if (this.DTU(ArtificialIntelligenceAccess[i]) < 100000)
+                            {
+                                virginSpideys += 1;
+                            }
+                        }
+                    }
+                }
+
+                if (this.alpha == true && this.nest != "none")
+                {
+                    var hittz = false;
+                    for (var oop = 0; oop < scenicList.length; oop++)
+                    {
+                        if (scenicList[oop].type == "ribbackNest")
+                        {
+                            if (scenicList[oop].nestID == this.barcode)
+                            {
+                                hittz = true;
+                                nesty = scenicList[oop];
+                            }
+                        }
+                    }
+                    if (hittz == false)
+                    {
+                        this.nest = "none";
+                    }
+                }
+
+                if (this.nest != "none" && nesty != "none" && this.alpha == true && this.gender == 0)
+                {
+                    if (this.DTU(nesty) > 490)
+                    {
+                        this.goHome = true;
+                    }
+                }
+
+                if (this.alpha == true && this.gender == 0)
+                {
+                    if (this.prego > 0)
+                    {
+                        this.prego += 0.05;
+                    }
+
+                    if (this.prego >= 100)
+                    {
+                        this.prego = 0;
+                        for (var i = 0; i < 8; i++)
+                        {
+                            var anglesedFleeRibback = Math.PI * 2 * Math.random();
+                            var babyRibbyBacky = new Unit(this.X + Math.cos(anglesedFleeRibback) * 60, this.Y + Math.sin(anglesedFleeRibback) * 60, "Ribback", "baby", "unitGeneratedRibback");
+                            babyRibbyBacky.getout = Math.PI * 2 * Math.random();
+
+                            ArtificialIntelligenceAccess.push(babyRibbyBacky);
+                        }
+                    }
+                }
+
+                if (this.alpha == false && this.mate != "none")
+                {
+                    var hittz = false;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].type == "Ribback" && ArtificialIntelligenceAccess[i].alpha == true && ArtificialIntelligenceAccess[i].gender == 0 && ArtificialIntelligenceAccess[i].barcode == this.mate)
+                        {
+                            if (ArtificialIntelligenceAccess[i].prego == 0)
+                            {
+                                hittz = true;
+                                matey = ArtificialIntelligenceAccess[i];
+                                mateyDist = this.DTU(ArtificialIntelligenceAccess[i]);
+                            }
+                        }
+
+                    }
+                    for (var i = 0; i < scenicList.length; i++)
+                    {
+                        if (scenicList[i].type == "ribbackNest" && scenicList[i].ribbackInside == true && scenicList[i].ribbackDentro.barcode == this.mate && scenicList[i].ribbackDentro.prego == 0)
+                        {
+                            hittz = true;
+                            scenicList[i].ribbackDentro.calledOut = true;
+                        }
+
+                    }
+                    if (hittz == false)
+                    {
+                        this.mate = "none";
+                    }
+                }
+
+                if (this.target == player)
+                {
+                    var ddttpp = this.DTP();
+                    if (this.getaway != "none")
+                    {
+                        var awayishDir = {X: this.X + Math.cos(this.getaway) * 200, Y: this.X + Math.sin(this.getaway) * 200};
+                        this.pointTowards(awayishDir);
+                        this.moveInRelationToThing(awayishDir, 10000);
+                        this.awayCount += 1;
+                        if (this.awayCount > 25)
+                        {
+                            this.getaway = "none";
+                            this.mated = false;
+                            this.awayCount = 0;
+                        }
+                    }
+                    else if (this.alpha == false && this.partner == "none" && this.chosen42Mate == false && unpartneredDudes > 0) //find partner (r i b b a c k ' s pair up in order to present themselves to a female ribback whom they wish to spawn with: she picks only one)
+                    {
+                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                        {
+                            if (ArtificialIntelligenceAccess[i] !== this && ArtificialIntelligenceAccess[i].type == "Ribback" && ArtificialIntelligenceAccess[i].alpha == false && ArtificialIntelligenceAccess[i].gender == 1)
+                            {
+                                if (ArtificialIntelligenceAccess[i].partner == "none" && ArtificialIntelligenceAccess[i].chosen42Mate == false)
+                                {
+                                    if (this.DTU(ArtificialIntelligenceAccess[i]) < dtptner)
+                                    {
+                                        dtptner = this.DTU(ArtificialIntelligenceAccess[i]);
+                                        dtptnerNum = i;
+                                    }
+                                }
+                            }
+                        }
+                        if (dtptnerNum > -1)
+                        {
+                            ArtificialIntelligenceAccess[dtptnerNum].partner = this.barcode;
+                            this.partner = ArtificialIntelligenceAccess[dtptnerNum].barcode;
+                        }
+                    }
+                    else if (this.alpha == false && pattyner != "none" && dtptner > 240 && this.chosen42Mate == false) //if a male pair is too far apart bring them back
+                    {
+                        this.pointTowards(pattyner);
+                        this.moveInRelationToThing(pattyner, 10000);
+                    }
+                    else if (this.alpha == false && pattyner != "none" && this.mate == "none" && this.horny >= 100 && pattyner.horny >= 100 && virginSpideys > 0 || this.flying == true && this.mate == "none")
+                    {
+                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                        {
+                            if (ArtificialIntelligenceAccess[i].type == "Ribback" && ArtificialIntelligenceAccess[i].alpha == true && ArtificialIntelligenceAccess[i].gender == 0)
+                            {
+                                if (ArtificialIntelligenceAccess[i].prego == 0)
+                                {
+                                    if (this.DTU(ArtificialIntelligenceAccess[i]) < mateyDist)
+                                    {
+                                        mateyDist = this.DTU(ArtificialIntelligenceAccess[i]);
+                                        mateyNum = i;
+                                    }
+                                }
+                            }
+                        }
+                        for (var i = 0; i < scenicList.length; i++)
+                        {
+                            if (scenicList[i].type == "ribbackNest" && scenicList[i].ribbackInside == true)
+                            {
+                                if (ArtificialIntelligenceAccess[i].prego == 0)
+                                {
+                                    if (this.DTU(scenicList[i]) < mateyDist)
+                                    {
+                                        mateyDist = this.DTU(scenicList[i]);
+                                        mateyNum = -1;
+                                        dentroNum = i;
+                                        scenicList[i].ribbackDentro.calledOut = true;
+                                    }
+                                }
+                            }
+                        }
+                        if (mateyNum > -1)
+                        {
+                            this.mate = ArtificialIntelligenceAccess[mateyNum].barcode;
+                            pattyner.mate = this.mate;
+                        }
+                        if (dentroNum > -1)
+                        {
+                            scenicList[dentroNum].ribbackDentro.calledOut = true;
+                        }
+                    }
+                    else if (this.alpha == false && matey != "none" && this.horny >= 100 || this.flying == true && matey != "none") //mating
+                    {
+                        if (pattyner != "none" && this.flying == false)
+                        {
+                            pattyner.mate = this.mate;
+                            pattyner.horny = this.horny;
+
+                            if (mateyDist < (this.engagementRadius + 120) && pattyner.chosen42Mate == false && this.chosen42Mate == false)
+                            {
+                                if (this.health == pattyner.health)
+                                {
+                                    if (Math.round(Math.random()))
+                                    {
+                                        this.chosen42Mate = true;
+                                    }
+                                    else
+                                    {
+                                        pattyner.chosen42Mate = true;
+                                    }
+                                }
+                                else if (this.health > pattyner.health)
+                                {
+                                    this.chosen42Mate = true;
+                                }
+                                else
+                                {
+                                    pattyner.chosen42Mate = true;
+                                }
+                            }
+                        }
+
+                        matey.calledOut = true;
+                        for (var i = 0; i < scenicList.length; i++)
+                        {
+                            if (scenicList[i].type == "ribbackNest" && scenicList[i].nestID == matey.barcode && scenicList[i].ribbackInside == true)
+                            {
+                                var ribbyBacky = new Unit(this.X, this.Y, "Ribback", true, "bigMamaRibback");
+                                ribbyBacky.healthMAX = scenicList[i].ribbackDentro.healthMAX;
+                                ribbyBacky.health = scenicList[i].ribbackDentro.health;
+                                ribbyBacky.speed = scenicList[i].ribbackDentro.speed;
+                                ribbyBacky.prego = scenicList[i].ribbackDentro.prego;
+                                ribbyBacky.barcode = scenicList[i].ribbackDentro.barcode;
+                                ribbyBacky.lifetime = scenicList[i].ribbackDentro.lifetime;
+                                ribbyBacky.calledOut = scenicList[i].ribbackDentro.calledOut;
+                                ribbyBacky.nest = scenicList[i].ribbackDentro.nest;
+                                ribbyBacky.gender = 0;
+
+                                ArtificialIntelligenceAccess.push(ribbyBacky);
+                                scenicList[i].ribbackInside = false;
+                                scenicList[i].ribbackDentro = {health: 0, healthMAX: 0, speed: 0, prego: 0, barcode: 0, lifetime: 0, calledOut: 0, nest: 0};
+                            }
+                        }
+                        this.pointTowards(matey);
+                        this.moveInRelationToThing(matey, 100000);
+                        if (this.chosen42Mate == true && mateyDist < 150)
+                        {
+                            this.baseTeam = "ribbackia";
+                            this.team = "ribbackia";
+                            this.X = matey.X;
+                            this.Y = matey.Y;
+                            this.flying = true;
+                            this.hornyStamina += 0.05;
+                            if (this.hornyStamina > 20)
+                            {
+                                this.hornyStamina = 0;
+                                matey.prego = 1;
+                                this.baseTeam = "ribback";
+                                this.team = "ribback";
+                                this.chosen42Mate = false;
+                                this.horny = 0;
+                                this.getaway = 2*Math.random();
+                                this.X += Math.cos(this.getaway) * 200;
+                                this.Y += Math.sin(this.getaway) * 200;
+                                this.flying = false;
+                                //this.mated = matey.barcode;
+                                matey.calledOut = false;
+                            }
+                        }
+                        //matey.prego = 1;
+                        //this.hornyStamina += 0.05;
+                        //matey.calledOut = true;
+                        //
+                        //if (this.hornyStamina > 50)
+                        //{
+                        //    console.log("halo");
+                        //    this.hornyStamina = 0;
+                        //    this.baseTeam = "ribback";
+                        //    this.team = "ribback";
+                        //    this.chosen42Mate = false;
+                        //    this.horny = 0;
+                        //    this.getaway = 2*Math.random();
+                        //    this.X += Math.cos(getaway) * 200;
+                        //    this.Y += Math.sin(getaway) * 200;
+                        //    this.flying = false;
+                        //    this.mated = matey.barcode;
+                        //    matey.calledOut = false;
+                        //}
+
+                        //if (this.flying == true && matey != "none" || mateyDist < 150 && this.chosen42Mate == true && this.partner == "none")
+                        //{
+                        //    console.log("hilo");
+                        //    this.baseTeam = "ribbackia";
+                        //    this.team = "ribbackia";
+                        //    this.X = matey.X;
+                        //    this.Y = matey.Y;
+                        //    this.flying = true;
+                        //    matey.prego = 1;
+                        //    this.hornyStamina += 0.05;
+                        //    matey.calledOut = true;
+                        //
+                        //    if (this.hornyStamina > 50)
+                        //    {
+                        //        console.log("halo");
+                        //        this.hornyStamina = 0;
+                        //        this.baseTeam = "ribback";
+                        //        this.team = "ribback";
+                        //        this.chosen42Mate = false;
+                        //        this.horny = 0;
+                        //        this.getaway = 2*Math.random();
+                        //        this.X += Math.cos(getaway) * 200;
+                        //        this.Y += Math.sin(getaway) * 200;
+                        //        this.flying = false;
+                        //        this.mated = matey.barcode;
+                        //        matey.calledOut = false;
+                        //    }
+                        //}
+                        //else
+                        //{
+                        //    console.log(mateyDist);
+                        //    matey.calledOut = true;
+                        //    this.pointTowards(matey);
+                        //    this.moveInRelationToThing(matey, 100000);
+                        //}
+                    }
+                    else if (this.alpha == false && pattyner != "none" && dtptner > 80 && ddttpp > this.rangeOfSight && this.chosen42Mate == false) //when not occupied by anything else male pairs will draw nearer
+                    {
+                        this.pointTowards(pattyner);
+                        this.moveInRelationToThing(pattyner, 10000);
+                    }
+                    else if (ddttpp > this.rangeOfSight && this.calledOut != true && this.gender == 0 && this.alpha == true && this.nest != "none" && this.nesty != "none" || this.goHome == true)
+                    {
+                        this.pointTowards(nesty);
+                        this.moveInRelationToThing(nesty, 10000);
+
+                        if (this.DTU(nesty) < (this.engagementRadius + 1))
+                        {
+                            this.goHome = false;
+                            nesty.ribbackDentro = {healthMAX: this.healthMAX, health: this.health, speed: this.speed, prego: this.prego, barcode: this.barcode, lifetime: this.lifetime, calledOut: this.calledOut, nest: this.nest};
+                            nesty.ribbackInside = true;
+                            ArtificialIntelligenceAccess.splice(ArtificialIntelligenceAccess.indexOf(this), 1);
+                        }
+                    }
+                    else if (this.nest == "none" && this.gender == 0 && this.alpha == true)
+                    {
+                        var nestMakeDir = {X: this.X + Math.cos(this.nestDir) * 360, Y: this.Y + Math.sin(this.nestDir) * 360};
+                        this.pointTowards(nestMakeDir);
+                        this.moveInRelationToThing(nestMakeDir, 10000);
+                        this.nestMakeCount += 1;
+
+                        if (this.nestMakeCount > 70)
+                        {
+                            this.nestMakeCount = 0;
+
+                            var tryUgin = false;
+                            for (var oop = 0; oop < scenicList.length; oop++)
+                            {
+                                if (scenicList[oop].type == "dalgerNest")
+                                {
+                                    if (this.DTU(scenicList[oop]) < 250)
+                                    {
+                                        tryUgin = true;
+                                    }
+                                }
+                                if (scenicList[oop].type == "ribbackNest")
+                                {
+                                    if (this.DTU(scenicList[oop]) < 300)
+                                    {
+                                        tryUgin = true;
+                                    }
+                                }
+                                if (scenicList[oop].type == "ribbackWeb")
+                                {
+                                    if (this.DTU(scenicList[oop]) < 300)
+                                    {
+                                        tryUgin = true;
+                                    }
+                                }
+                            }
+
+                            if (tryUgin == false && !this.attacking)
+                            {
+                                for (var i = 0; i < Math.round(Math.random() * 5); i++)
+                                {
+                                    var wbAngDir = 2 * Math.PI * Math.random()
+                                    var wbsizzz = 0.8 + (0.6 * Math.random());
+                                    scenicList.unshift(new Scenery("ribbackWeb", this.X + Math.cos(wbAngDir) * ((100 + 80 * Math.random()) * wbsizzz), this.Y + Math.sin(wbAngDir) * ((100 + 80 * Math.random()) * wbsizzz), 2 * Math.PI * Math.random(), wbsizzz));
+                                    if (Math.random() > 0.65)
+                                    {
+                                        var wbsizz = 0.7 + (0.5 * Math.random());
+                                        scenicList.unshift(new Scenery("ribbackWeb", this.X + Math.cos(wbAngDir) * (((80 + 80 * Math.random()) * wbsizzz) + ((80 + 80 * Math.random()) * wbsizz)), this.Y + Math.sin(wbAngDir) * (((80 + 80 * Math.random()) * wbsizzz) + ((80 + 80 * Math.random()) * wbsizz)), 2 * Math.PI * Math.random(), wbsizz));
+
+                                    }
+                                }
+                                var nestoodle = new Scenery("ribbackNest", this.X, this.Y, 2 * Math.PI * Math.random(), this.barcode)
+                                nestoodle.nestID = this.barcode;
+                                scenicList.unshift(nestoodle);
+                                this.nest = true;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        this.pointTowardsPlayer();
+                        this.moveInRelationToPlayer();
+                    }
+                }
+                else if (this.target != "none")
+                {
+                    var ddttpp = this.DTU(this.target);
+
+                    if (this.getaway != "none")
+                    {
+                        var awayishDir = {X: this.X + Math.cos(this.getaway) * 200, Y: this.X + Math.sin(this.getaway) * 200};
+                        this.pointTowards(awayishDir);
+                        this.moveInRelationToThing(awayishDir, 10000);
+                        this.awayCount += 1;
+                        if (this.awayCount > 25)
+                        {
+                            this.getaway = "none";
+                            this.mated = false;
+                            this.awayCount = 0;
+                        }
+                    }
+                    else if (this.alpha == false && this.partner == "none" && this.chosen42Mate == false && unpartneredDudes > 0) //find partner (r i b b a c k ' s pair up in order to present themselves to a female ribback whom they wish to spawn with: she picks only one)
+                    {
+                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                        {
+                            if (ArtificialIntelligenceAccess[i] !== this && ArtificialIntelligenceAccess[i].type == "Ribback" && ArtificialIntelligenceAccess[i].alpha == false && ArtificialIntelligenceAccess[i].gender == 1)
+                            {
+                                if (ArtificialIntelligenceAccess[i].partner == "none" && ArtificialIntelligenceAccess[i].chosen42Mate == false)
+                                {
+                                    if (this.DTU(ArtificialIntelligenceAccess[i]) < dtptner)
+                                    {
+                                        dtptner = this.DTU(ArtificialIntelligenceAccess[i]);
+                                        dtptnerNum = i;
+                                    }
+                                }
+                            }
+                        }
+                        if (dtptnerNum > -1)
+                        {
+                            ArtificialIntelligenceAccess[dtptnerNum].partner = this.barcode;
+                            this.partner = ArtificialIntelligenceAccess[dtptnerNum].barcode;
+                        }
+                    }
+                    else if (this.alpha == false && pattyner != "none" && dtptner > 240 && this.chosen42Mate == false) //if a male pair is too far apart bring them back
+                    {
+                        this.pointTowards(pattyner);
+                        this.moveInRelationToThing(pattyner, 10000);
+                    }
+                    else if (this.alpha == false && pattyner != "none" && this.mate == "none" && this.horny >= 100 && pattyner.horny >= 100 && this.chosen42Mate == false && virginSpideys > 0 || this.flying == true && this.mate == "none")
+                    {
+                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                        {
+                            if (ArtificialIntelligenceAccess[i].type == "Ribback" && ArtificialIntelligenceAccess[i].alpha == true && ArtificialIntelligenceAccess[i].gender == 0)
+                            {
+                                if (ArtificialIntelligenceAccess[i].prego == 0)
+                                {
+                                    if (this.DTU(ArtificialIntelligenceAccess[i]) < mateyDist)
+                                    {
+                                        mateyDist = this.DTU(ArtificialIntelligenceAccess[i]);
+                                        mateyNum = i;
+                                    }
+                                }
+                            }
+                        }
+                        for (var i = 0; i < scenicList.length; i++)
+                        {
+                            if (scenicList[i].type == "ribbackNest" && scenicList[i].ribbackInside == true)
+                            {
+                                if (scenicList[i].ribbackDentro.prego == 0)
+                                {
+                                    if (this.DTU(scenicList[i]) < mateyDist)
+                                    {
+                                        mateyDist = this.DTU(scenicList[i]);
+                                        mateyNum = -1;
+                                        dentroNum = i;
+                                        scenicList[i].ribbackDentro.calledOut = true;
+                                    }
+                                }
+                            }
+                        }
+                        if (mateyNum > -1)
+                        {
+                            this.mate = ArtificialIntelligenceAccess[mateyNum].barcode;
+                            pattyner.mate = this.mate;
+                        }
+                        if (dentroNum > -1)
+                        {
+                            scenicList[dentroNum].ribbackDentro.calledOut = true;
+                        }
+                    }
+                    else if (this.alpha == false && matey != "none" && this.horny >= 100 || this.flying == true && matey != "none") //mating
+                    {
+
+                        if (pattyner != "none" && this.flying == false)
+                        {
+                            pattyner.mate = this.mate;
+                            pattyner.horny = this.horny;
+
+                            if (mateyDist < (this.engagementRadius + 120) && pattyner.chosen42Mate == false && this.chosen42Mate == false)
+                            {
+                                if (this.health == pattyner.health)
+                                {
+                                    if (Math.round(Math.random()))
+                                    {
+                                        this.chosen42Mate = true;
+                                    }
+                                    else
+                                    {
+                                        pattyner.chosen42Mate = true;
+                                    }
+                                }
+                                else if (this.health > pattyner.health)
+                                {
+                                    this.chosen42Mate = true;
+                                }
+                                else
+                                {
+                                    pattyner.chosen42Mate = true;
+                                }
+                            }
+                        }
+
+                        matey.calledOut = true;
+                        for (var i = 0; i < scenicList.length; i++)
+                        {
+                            if (scenicList[i].type == "ribbackNest" && scenicList[i].nestID == matey.barcode && scenicList[i].ribbackInside == true)
+                            {
+                                var ribbyBacky = new Unit(this.X, this.Y, "Ribback", true, "bigMamaRibback");
+                                ribbyBacky.healthMAX = scenicList[i].ribbackDentro.healthMAX;
+                                ribbyBacky.health = scenicList[i].ribbackDentro.health;
+                                ribbyBacky.speed = scenicList[i].ribbackDentro.speed;
+                                ribbyBacky.prego = scenicList[i].ribbackDentro.prego;
+                                ribbyBacky.barcode = scenicList[i].ribbackDentro.barcode;
+                                ribbyBacky.lifetime = scenicList[i].ribbackDentro.lifetime;
+                                ribbyBacky.calledOut = scenicList[i].ribbackDentro.calledOut;
+                                ribbyBacky.nest = scenicList[i].ribbackDentro.nest;
+                                ribbyBacky.gender = 0;
+
+                                ArtificialIntelligenceAccess.push(ribbyBacky);
+                                scenicList[i].ribbackInside = false;
+                                scenicList[i].ribbackDentro = {health: 0, healthMAX: 0, speed: 0, prego: 0, barcode: 0, lifetime: 0, calledOut: 0, nest: 0};
+                            }
+                        }
+                        this.pointTowards(matey);
+                        this.moveInRelationToThing(matey, 100000);
+                        if (this.chosen42Mate == true && mateyDist < 150)
+                        {
+                            this.baseTeam = "ribbackia";
+                            this.team = "ribbackia";
+                            this.X = matey.X;
+                            this.Y = matey.Y;
+                            this.flying = true;
+                            this.hornyStamina += 0.05;
+                            if (this.hornyStamina > 20)
+                            {
+                                this.hornyStamina = 0;
+                                matey.prego = 1;
+                                this.baseTeam = "ribback";
+                                this.team = "ribback";
+                                this.chosen42Mate = false;
+                                this.horny = 0;
+                                this.getaway = 2*Math.random();
+                                this.X += Math.cos(this.getaway) * 200;
+                                this.Y += Math.sin(this.getaway) * 200;
+                                this.flying = false;
+                                //this.mated = matey.barcode;
+                                matey.calledOut = false;
+                            }
+                        }
+                        //matey.prego = 1;
+                        //this.hornyStamina += 0.05;
+                        //matey.calledOut = true;
+                        //
+                        //if (this.hornyStamina > 50)
+                        //{
+                        //    this.hornyStamina = 0;
+                        //    this.baseTeam = "ribback";
+                        //    this.team = "ribback";
+                        //    this.chosen42Mate = false;
+                        //    this.horny = 0;
+                        //    this.getaway = 2*Math.random();
+                        //    this.X += Math.cos(getaway) * 200;
+                        //    this.Y += Math.sin(getaway) * 200;
+                        //    this.flying = false;
+                        //    this.mated = matey.barcode;
+                        //    matey.calledOut = false;
+                        //}
+
+                        //if (this.flying == true && matey != "none" || mateyDist < 120 && this.partner == "none" && this.chosen42Mate == true)
+                        //{
+                        //    console.log("hilo");
+                        //    this.baseTeam = "ribbackia";
+                        //    this.team = "ribbackia";
+                        //    this.X = matey.X;
+                        //    this.Y = matey.Y;
+                        //    this.flying = true;
+                        //    matey.prego = 1;
+                        //    this.hornyStamina += 0.05;
+                        //    matey.calledOut = true;
+                        //
+                        //    if (this.hornyStamina > 50)
+                        //    {
+                        //        console.log("halo");
+                        //        this.hornyStamina = 0;
+                        //        this.baseTeam = "ribback";
+                        //        this.team = "ribback";
+                        //        this.chosen42Mate = false
+                        //        this.horny = 0;
+                        //        this.getaway = 2*Math.random();
+                        //        this.X += Math.cos(getaway) * 200;
+                        //        this.Y += Math.sin(getaway) * 200;
+                        //        this.flying = false;
+                        //        this.mated = matey.barcode;
+                        //        matey.calledOut = false;
+                        //    }
+                        //}
+                        //else
+                        //{
+                        //    console.log(mateyDist);
+                        //    matey.calledOut = true;
+                        //    this.pointTowards(matey);
+                        //    this.moveInRelationToThing(matey, 100000);
+                        //}
+                    }
+                    else if (this.alpha == false && pattyner != "none" && dtptner > 80 && ddttpp > this.rangeOfSight && this.chosen42Mate == false) //when not occupied by anything else male pairs will draw nearer
+                    {
+                        this.pointTowards(pattyner);
+                        this.moveInRelationToThing(pattyner, 10000);
+                    }
+                    else if (ddttpp > this.rangeOfSight && this.calledOut != true && this.gender == 0 && this.alpha == true && this.nest != "none" && this.nesty != "none" || this.goHome == true)
+                    {
+                        this.pointTowards(nesty);
+                        this.moveInRelationToThing(nesty, 10000);
+
+                        if (this.DTU(nesty) < (this.engagementRadius + 1))
+                        {
+                            this.goHome = false;
+                            nesty.ribbackDentro = {healthMAX: this.healthMAX, health: this.health, speed: this.speed, prego: this.prego, barcode: this.barcode, lifetime: this.lifetime, calledOut: this.calledOut, nest: this.nest};
+                            nesty.ribbackInside = true;
+
+                            ArtificialIntelligenceAccess.splice(ArtificialIntelligenceAccess.indexOf(this), 1);
+                        }
+                    }
+                    else if (this.nest == "none" && this.gender == 0 && this.alpha == true)
+                    {
+                        var nestMakeDir = {X: this.X + Math.cos(this.nestDir) * 360, Y: this.Y + Math.sin(this.nestDir) * 360};
+                        this.pointTowards(nestMakeDir);
+                        this.moveInRelationToThing(nestMakeDir, 10000);
+                        this.nestMakeCount += 1;
+
+                        if (this.nestMakeCount > 70)
+                        {
+                            this.nestMakeCount = 0;
+
+                            var tryUgin = false;
+                            for (var oop = 0; oop < scenicList.length; oop++)
+                            {
+                                if (scenicList[oop].type == "dalgerNest")
+                                {
+                                    if (this.DTU(scenicList[oop]) < 250)
+                                    {
+                                        tryUgin = true;
+                                    }
+                                }
+                                if (scenicList[oop].type == "ribbackNest")
+                                {
+                                    if (this.DTU(scenicList[oop]) < 300)
+                                    {
+                                        tryUgin = true;
+                                    }
+                                }
+                                if (scenicList[oop].type == "ribbackWeb")
+                                {
+                                    if (this.DTU(scenicList[oop]) < 300)
+                                    {
+                                        tryUgin = true;
+                                    }
+                                }
+                            }
+
+                            if (tryUgin == false && !this.attacking)
+                            {
+                                for (var i = 0; i < Math.round(Math.random() * 5); i++)
+                                {
+                                    var wbAngDir = 2 * Math.PI * Math.random()
+                                    var wbsizzz = 0.8 + (0.6 * Math.random());
+                                    scenicList.unshift(new Scenery("ribbackWeb", this.X + Math.cos(wbAngDir) * ((100 + 80 * Math.random()) * wbsizzz), this.Y + Math.sin(wbAngDir) * ((100 + 80 * Math.random()) * wbsizzz), 2 * Math.PI * Math.random(), wbsizzz));
+                                    if (Math.random() > 0.65)
+                                    {
+                                        var wbsizz = 0.7 + (0.5 * Math.random());
+                                        scenicList.unshift(new Scenery("ribbackWeb", this.X + Math.cos(wbAngDir) * (((80 + 80 * Math.random()) * wbsizzz) + ((80 + 80 * Math.random()) * wbsizz)), this.Y + Math.sin(wbAngDir) * (((80 + 80 * Math.random()) * wbsizzz) + ((80 + 80 * Math.random()) * wbsizz)), 2 * Math.PI * Math.random(), wbsizz));
+
+                                    }
+                                }
+                                var nestoodle = new Scenery("ribbackNest", this.X, this.Y, 2 * Math.PI * Math.random(), this.barcode)
+                                nestoodle.nestID = this.barcode;
+                                scenicList.unshift(nestoodle);
+                                this.nest = true;
+                            }
+                        }
+                    }
+                    else if (this.target.type != "Ribback" || this.target.type == "Ribback" && this.target.getaway == "none")
+                    {
+                        this.pointTowards(this.target);
+                        this.moveInRelationToThing(this.target);
+                    }
+                }
+                else
+                {
+                    var ddttpp = 100000000000000;
+                    if (this.getaway != "none")
+                    {
+                        var awayishDir = {X: this.X + Math.cos(this.getaway) * 200, Y: this.X + Math.sin(this.getaway) * 200};
+                        this.pointTowards(awayishDir);
+                        this.moveInRelationToThing(awayishDir, 10000);
+                        this.awayCount += 1;
+                        if (this.awayCount > 25)
+                        {
+                            this.getaway = "none";
+                            this.mated = false;
+                            this.awayCount = 0;
+                        }
+                    }
+                    else if (this.alpha == false && this.partner == "none" && this.chosen42Mate == false && unpartneredDudes > 0) //find partner (r i b b a c k ' s pair up in order to present themselves to a female ribback whom they wish to spawn with: she picks only one)
+                    {
+                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                        {
+                            if (ArtificialIntelligenceAccess[i] !== this && ArtificialIntelligenceAccess[i].type == "Ribback" && ArtificialIntelligenceAccess[i].alpha == false && ArtificialIntelligenceAccess[i].gender == 1)
+                            {
+                                if (ArtificialIntelligenceAccess[i].partner == "none" && ArtificialIntelligenceAccess[i].chosen42Mate == false)
+                                {
+                                    if (this.DTU(ArtificialIntelligenceAccess[i]) < dtptner)
+                                    {
+                                        dtptner = this.DTU(ArtificialIntelligenceAccess[i]);
+                                        dtptnerNum = i;
+                                    }
+                                }
+                            }
+                        }
+                        if (dtptnerNum > -1)
+                        {
+                            ArtificialIntelligenceAccess[dtptnerNum].partner = this.barcode;
+                            this.partner = ArtificialIntelligenceAccess[dtptnerNum].barcode;
+                        }
+                    }
+                    else if (this.alpha == false && pattyner != "none" && dtptner > 240 && this.chosen42Mate == false) //if a male pair is too far apart bring them back
+                    {
+                        this.pointTowards(pattyner);
+                        this.moveInRelationToThing(pattyner, 10000);
+                    }
+                    else if (this.alpha == false && pattyner != "none" && this.mate == "none" && this.horny >= 100 && pattyner.horny >= 100 && this.chosen42Mate == false && virginSpideys > 0 || this.flying == true && this.mate == "none")
+                    {
+                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                        {
+                            if (ArtificialIntelligenceAccess[i].type == "Ribback" && ArtificialIntelligenceAccess[i].alpha == true && ArtificialIntelligenceAccess[i].gender == 0)
+                            {
+                                if (ArtificialIntelligenceAccess[i].prego == 0)
+                                {
+                                    if (this.DTU(ArtificialIntelligenceAccess[i]) < mateyDist)
+                                    {
+                                        mateyDist = this.DTU(ArtificialIntelligenceAccess[i]);
+                                        mateyNum = i;
+                                    }
+                                }
+                            }
+                        }
+                        for (var i = 0; i < scenicList.length; i++)
+                        {
+                            if (scenicList[i].type == "ribbackNest" && scenicList[i].ribbackInside == true)
+                            {
+                                if (ArtificialIntelligenceAccess[i].prego == 0)
+                                {
+                                    if (this.DTU(scenicList[i]) < mateyDist)
+                                    {
+                                        mateyDist = this.DTU(scenicList[i]);
+                                        mateyNum = -1;
+                                        dentroNum = i;
+                                        scenicList[i].ribbackDentro.calledOut = true;
+                                    }
+                                }
+                            }
+                        }
+                        if (mateyNum > -1)
+                        {
+                            this.mate = ArtificialIntelligenceAccess[mateyNum].barcode;
+                            pattyner.mate = this.mate;
+                        }
+                        if (dentroNum > -1)
+                        {
+                            scenicList[dentroNum].ribbackDentro.calledOut = true;
+                        }
+                    }
+                    else if (this.alpha == false && matey != "none" && this.horny >= 100 || this.flying == true && matey != "none") //mating
+                    {
+                        if (pattyner != "none" && this.flying == false)
+                        {
+                            pattyner.mate = this.mate;
+                            pattyner.horny = this.horny;
+
+                            if (mateyDist < (this.engagementRadius + 120) && pattyner.chosen42Mate == false && this.chosen42Mate == false)
+                            {
+                                if (this.health == pattyner.health)
+                                {
+                                    if (Math.round(Math.random()))
+                                    {
+                                        this.chosen42Mate = true;
+                                    }
+                                    else
+                                    {
+                                        pattyner.chosen42Mate = true;
+                                    }
+                                }
+                                else if (this.health > pattyner.health)
+                                {
+                                    this.chosen42Mate = true;
+                                }
+                                else
+                                {
+                                    pattyner.chosen42Mate = true;
+                                }
+                            }
+                        }
+
+                        matey.calledOut = true;
+                        for (var i = 0; i < scenicList.length; i++)
+                        {
+                            if (scenicList[i].type == "ribbackNest" && scenicList[i].nestID == matey.barcode && scenicList[i].ribbackInside == true)
+                            {
+                                var ribbyBacky = new Unit(this.X, this.Y, "Ribback", true, "bigMamaRibback");
+                                ribbyBacky.healthMAX = scenicList[i].ribbackDentro.healthMAX;
+                                ribbyBacky.health = scenicList[i].ribbackDentro.health;
+                                ribbyBacky.speed = scenicList[i].ribbackDentro.speed;
+                                ribbyBacky.prego = scenicList[i].ribbackDentro.prego;
+                                ribbyBacky.barcode = scenicList[i].ribbackDentro.barcode;
+                                ribbyBacky.lifetime = scenicList[i].ribbackDentro.lifetime;
+                                ribbyBacky.calledOut = scenicList[i].ribbackDentro.calledOut;
+                                ribbyBacky.nest = scenicList[i].ribbackDentro.nest;
+                                ribbyBacky.gender = 0;
+
+                                ArtificialIntelligenceAccess.push(ribbyBacky);
+                                scenicList[i].ribbackInside = false;
+                                scenicList[i].ribbackDentro = {health: 0, healthMAX: 0, speed: 0, prego: 0, barcode: 0, lifetime: 0, calledOut: 0, nest: 0};
+                            }
+                        }
+                        this.pointTowards(matey);
+                        this.moveInRelationToThing(matey, 100000);
+                        if (this.chosen42Mate == true && mateyDist < 150)
+                        {
+                            this.baseTeam = "ribbackia";
+                            this.team = "ribbackia";
+                            this.X = matey.X;
+                            this.Y = matey.Y;
+                            this.flying = true;
+                            this.hornyStamina += 0.05;
+                            if (this.hornyStamina > 20)
+                            {
+                                this.hornyStamina = 0;
+                                matey.prego = 1;
+                                this.baseTeam = "ribback";
+                                this.team = "ribback";
+                                this.chosen42Mate = false;
+                                this.horny = 0;
+                                this.getaway = 2*Math.random();
+                                this.X += Math.cos(this.getaway) * 100;
+                                this.Y += Math.sin(this.getaway) * 100;
+                                this.flying = false;
+                                //this.mated = matey.barcode;
+                                matey.calledOut = false;
+                            }
+                        }
+
+                        //matey.prego = 1;
+                        //this.hornyStamina += 0.05;
+                        //matey.calledOut = true;
+
+                        //if (this.hornyStamina > 50)
+                        //{
+                        //    this.hornyStamina = 0;
+                        //    this.baseTeam = "ribback";
+                        //    this.team = "ribback";
+                        //    this.chosen42Mate = false;
+                        //    this.horny = 0;
+                        //    this.getaway = 2*Math.random();
+                        //    this.X += Math.cos(getaway) * 200;
+                        //    this.Y += Math.sin(getaway) * 200;
+                        //    this.flying = false;
+                        //    this.mated = matey.barcode;
+                        //    matey.calledOut = false;
+                        //}
+
+                        //if (this.flying == true && matey != "none" || mateyDist < 150 && this.chosen42Mate == true  && this.partner == "none")
+                        //{
+                        //    console.log("hilo");
+                        //    this.baseTeam = "ribbackia";
+                        //    this.team = "ribbackia";
+                        //    this.X = matey.X;
+                        //    this.Y = matey.Y;
+                        //    this.flying = true;
+                        //    matey.prego = 1;
+                        //    this.hornyStamina += 0.05;
+                        //    matey.calledOut = true;
+                        //
+                        //    if (this.hornyStamina > 50)
+                        //    {
+                        //        console.log("halo");
+                        //        this.hornyStamina = 0;
+                        //        this.baseTeam = "ribback";
+                        //        this.team = "ribback";
+                        //        this.chosen42Mate = false;
+                        //        this.horny = 0;
+                        //        this.getaway = 2*Math.random();
+                        //        this.X += Math.cos(getaway) * 200;
+                        //        this.Y += Math.sin(getaway) * 200;
+                        //        this.flying = false;
+                        //        this.mated = matey.barcode;
+                        //        matey.calledOut = false;
+                        //    }
+                        //}
+                        //else
+                        //{
+                        //    console.log(mateyDist);
+                        //    matey.calledOut = true;
+                        //    this.pointTowards(matey);
+                        //    this.moveInRelationToThing(matey, 100000);
+                        //}
+                    }
+                    else if (this.alpha == false && pattyner != "none" && dtptner > 80 && ddttpp > this.rangeOfSight && this.chosen42Mate == false) //when not occupied by anything else male pairs will draw nearer
+                    {
+                        this.pointTowards(pattyner);
+                        this.moveInRelationToThing(pattyner, 10000);
+                    }
+                    else if (ddttpp > this.rangeOfSight && this.calledOut != true && this.gender == 0 && this.alpha == true && this.nest != "none" && this.nesty != "none" || this.goHome == true)
+                    {
+                        this.pointTowards(nesty);
+                        this.moveInRelationToThing(nesty, 10000);
+
+                        if (this.DTU(nesty) < (this.engagementRadius + 1))
+                        {
+                            this.goHome = false;
+                            nesty.ribbackDentro = {healthMAX: this.healthMAX, health: this.health, speed: this.speed, prego: this.prego, barcode: this.barcode, lifetime: this.lifetime, calledOut: this.calledOut, nest: this.nest};
+                            nesty.ribbackInside = true;
+                            ArtificialIntelligenceAccess.splice(ArtificialIntelligenceAccess.indexOf(this), 1);
+                        }
+                    }
+                    else if (this.nest == "none" && this.gender == 0 && this.alpha == true)
+                    {
+                        var nestMakeDir = {X: this.X + Math.cos(this.nestDir) * 360, Y: this.Y + Math.sin(this.nestDir) * 360};
+                        this.pointTowards(nestMakeDir);
+                        this.moveInRelationToThing(nestMakeDir, 10000);
+                        this.nestMakeCount += 1;
+
+                        if (this.nestMakeCount > 70)
+                        {
+                            this.nestMakeCount = 0;
+
+                            var tryUgin = false;
+                            for (var oop = 0; oop < scenicList.length; oop++)
+                            {
+                                if (scenicList[oop].type == "dalgerNest")
+                                {
+                                    if (this.DTU(scenicList[oop]) < 250)
+                                    {
+                                        tryUgin = true;
+                                    }
+                                }
+                                if (scenicList[oop].type == "ribbackNest")
+                                {
+                                    if (this.DTU(scenicList[oop]) < 300)
+                                    {
+                                        tryUgin = true;
+                                    }
+                                }
+                                if (scenicList[oop].type == "ribbackWeb")
+                                {
+                                    if (this.DTU(scenicList[oop]) < 300)
+                                    {
+                                        tryUgin = true;
+                                    }
+                                }
+                            }
+
+                            if (tryUgin == false && !this.attacking)
+                            {
+                                for (var i = 0; i < Math.round(Math.random() * 5); i++)
+                                {
+                                    var wbAngDir = 2 * Math.PI * Math.random()
+                                    var wbsizzz = 0.8 + (0.6 * Math.random());
+                                    scenicList.unshift(new Scenery("ribbackWeb", this.X + Math.cos(wbAngDir) * ((100 + 80 * Math.random()) * wbsizzz), this.Y + Math.sin(wbAngDir) * ((100 + 80 * Math.random()) * wbsizzz), 2 * Math.PI * Math.random(), wbsizzz));
+                                    if (Math.random() > 0.65)
+                                    {
+                                        var wbsizz = 0.7 + (0.5 * Math.random());
+                                        scenicList.unshift(new Scenery("ribbackWeb", this.X + Math.cos(wbAngDir) * (((80 + 80 * Math.random()) * wbsizzz) + ((80 + 80 * Math.random()) * wbsizz)), this.Y + Math.sin(wbAngDir) * (((80 + 80 * Math.random()) * wbsizzz) + ((80 + 80 * Math.random()) * wbsizz)), 2 * Math.PI * Math.random(), wbsizz));
+
+                                    }
+                                }
+                                var nestoodle = new Scenery("ribbackNest", this.X, this.Y, 2 * Math.PI * Math.random(), this.barcode)
+                                nestoodle.nestID = this.barcode;
+                                scenicList.unshift(nestoodle);
+                                this.nest = true;
+                            }
+                        }
+                    }
+                }
+            }
+
+            //ANIMATIONS
+            var szx = 0.7;
+            if (this.alive == true)
+            {
+                if (this.gender == 0)
+                {
+                    if (this.target != "none")
+                    {
+                        if (this.moving && !this.attacking) //If moving and not attacking initiate moving animation...
+                        {
+                            this.costumeEngine(3, 0.14, true);
+                        }
+                        else if (this.attacking) //otherwise if it is attacking then initiate attacking animation, and if neither...
+                        {
+                            if (new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000 / timeSpeed * this.timeResistance))
+                            {
+                                this.costumeEngine(3, 0.11, true);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        this.costume = 0;
+                    }
+
+                    // the frames/stages/costumes of the animation.
+                    var theCostume = Math.floor( this.costume ); //This rounds this.costume down to the nearest whole number.
+
+                    if (theCostume <= 0)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(ribak, 40, 1, 215, 218, -1/2 * 215 * this.alphaSize * szx - this.xAdjustment, -1/2 * 218 * this.alphaSize * szx - this.yAdjustment, 215 * this.alphaSize * szx, 218 * this.alphaSize * szx);
+                        }
+                        else if (this.moving == true)
+                        {
+                            this.drawUnit(ribak, 288, 4, 215, 218, -1/2 * 215 * this.alphaSize * szx - this.xAdjustment, -1/2 * 218 * this.alphaSize * szx - this.yAdjustment, 215 * this.alphaSize * szx, 218 * this.alphaSize * szx);
+                        }
+                        else
+                        {
+                            this.drawUnit(ribak, 40, 1, 215, 218, -1/2 * 215 * this.alphaSize * szx - this.xAdjustment, -1/2 * 218 * this.alphaSize * szx - this.yAdjustment, 215 * this.alphaSize * szx, 218 * this.alphaSize * szx);
+                        }
+                    }
+                    else if (theCostume <= 1)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(ribak, 35, 226, 215, 218, -1/2 * 215 * this.alphaSize * szx - this.xAdjustment, -1/2 * 218 * this.alphaSize * szx - this.yAdjustment, 215 * this.alphaSize * szx, 218 * this.alphaSize * szx);
+                        }
+                        else
+                        {
+                            this.drawUnit(ribak, 40, 1, 215, 218, -1/2 * 215 * this.alphaSize * szx - this.xAdjustment, -1/2 * 218 * this.alphaSize * szx - this.yAdjustment, 215 * this.alphaSize * szx, 218 * this.alphaSize * szx);
+                        }
+                    }
+                    else if (theCostume >= 2)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(ribak, 283, 230, 215, 218, -1/2 * 215 * this.alphaSize * szx - this.xAdjustment, -1/2 * 218 * this.alphaSize * szx - this.yAdjustment, 215 * this.alphaSize * szx, 218 * this.alphaSize * szx);
+                        }
+                        else
+                        {
+                            this.drawUnit(ribak, 549, 4, 215, 218, -1/2 * 215 * this.alphaSize * szx - this.xAdjustment, -1/2 * 218 * this.alphaSize * szx - this.yAdjustment, 215 * this.alphaSize * szx, 218 * this.alphaSize * szx);
+                        }
+                    }
+                }
+                else
+                {
+                    if (this.target != "none")
+                    {
+                        if (this.moving && !this.attacking) //If moving and not attacking initiate moving animation...
+                        {
+                            this.costumeEngine(3, 0.17, true);
+                        }
+                        else if (this.attacking) //otherwise if it is attacking then initiate attacking animation, and if neither...
+                        {
+                            if(new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000 / timeSpeed * this.timeResistance))
+                            {
+                                this.costumeEngine(3, 0.12, true);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        this.costume = 0;
+                    }
+
+                    // the frames/stages/costumes of the animation.
+                    var theCostume = Math.floor( this.costume ); //This rounds this.costume down to the nearest whole number.
+
+                    if (theCostume <= 0)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(ribak, 29, 448, 215, 218, -1/2 * 215 * this.alphaSize * szx - this.xAdjustment, -1/2 * 218 * this.alphaSize * szx - this.yAdjustment, 215 * this.alphaSize * szx, 218 * this.alphaSize * szx);
+                        }
+                        else if (this.moving == true)
+                        {
+                            this.drawUnit(ribak, 248, 446, 215, 218, -1/2 * 215 * this.alphaSize * szx - this.xAdjustment, -1/2 * 218 * this.alphaSize * szx - this.yAdjustment, 215 * this.alphaSize * szx, 218 * this.alphaSize * szx);
+                        }
+                        else
+                        {
+                            this.drawUnit(ribak, 29, 448, 215, 218, -1/2 * 215 * this.alphaSize * szx - this.xAdjustment, -1/2 * 218 * this.alphaSize * szx - this.yAdjustment, 215 * this.alphaSize * szx, 218 * this.alphaSize * szx);
+                        }
+                    }
+                    else if (theCostume <= 1)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(ribak, 33, 672, 215, 218, -1/2 * 215 * this.alphaSize * szx - this.xAdjustment, -1/2 * 218 * this.alphaSize * szx - this.yAdjustment, 215 * this.alphaSize * szx, 218 * this.alphaSize * szx);
+                        }
+                        else
+                        {
+                            this.drawUnit(ribak, 29, 448, 215, 218, -1/2 * 215 * this.alphaSize * szx - this.xAdjustment, -1/2 * 218 * this.alphaSize * szx - this.yAdjustment, 215 * this.alphaSize * szx, 218 * this.alphaSize * szx);
+                        }
+                    }
+                    else if (theCostume >= 2)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(ribak, 244, 679, 215, 218, -1/2 * 215 * this.alphaSize * szx - this.xAdjustment, -1/2 * 218 * this.alphaSize * szx - this.yAdjustment, 215 * this.alphaSize * szx, 218 * this.alphaSize * szx);
+                        }
+                        else
+                        {
+                            this.drawUnit(ribak, 482, 454, 215, 218, -1/2 * 215 * this.alphaSize * szx - this.xAdjustment, -1/2 * 218 * this.alphaSize * szx - this.yAdjustment, 215 * this.alphaSize * szx, 218 * this.alphaSize * szx);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if (this.gender == 0)
+                {
+                    this.drawUnit(ribak, 553, 211, 215, 218, -1/2 * 215 * this.alphaSize * szx - this.xAdjustment, -1/2 * 218 * this.alphaSize * szx - this.yAdjustment, 215 * this.alphaSize * szx, 218 * this.alphaSize * szx);
+                }
+                else
+                {
+                    this.drawUnit(ribak, 479, 676, 215, 218, -1/2 * 215 * this.alphaSize * szx - this.xAdjustment, -1/2 * 218 * this.alphaSize * szx - this.yAdjustment, 215 * this.alphaSize * szx, 218 * this.alphaSize * szx);
+                }
             }
         }
         //ETNA

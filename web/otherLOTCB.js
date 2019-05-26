@@ -1653,3 +1653,25 @@ function barrierCreator(xx, yy)
         }
     }
 }
+
+function reiniciar()
+{
+    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+    {
+        dialogueReset(ArtificialIntelligenceAccess[i]);
+    }
+    //Delete All Non-native AI Units
+    for (var i =  ArtificialIntelligenceAccess.length - 1; i >= 0; i--)
+    {
+        if (!ArtificialIntelligenceAccess[i].guarantee)
+        {
+            ArtificialIntelligenceAccess.splice(i, 1);
+        }
+    }
+    //Delete All Non-native Scenery
+    scenicList = [];
+    //Delete All Barriers
+    barrierList = [];
+
+    change = "reiniciar";
+}

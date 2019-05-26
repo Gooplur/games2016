@@ -3653,7 +3653,7 @@ function theLegend()
         imaginaryFriendAdopted: false,
         imaginaryFriendBreadTime: 0,
 
-        //QUEST: Duende Infestation ---- given by
+        //QUEST: Duende Infestation ---- given by Hidalgo ...
         duendeInfestationQuest: false,
         duendeInfestationCompletionStyle: false,
         duendeInfestationKillCount: 0,

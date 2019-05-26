@@ -107,6 +107,10 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
         {
             this.massive = true;
         }
+        if (this.type == "ribbackNest")
+        {
+            this.massive = true;
+        }
         if (this.type == "event")
         {
             this.massive = true;
@@ -495,6 +499,163 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
             this.radius = 17;
 
+        }
+        else if (this.type == "ribbackWeb")
+        {
+            //TRAITS
+            this.solid = false;
+
+            //DRAWSELF
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(ribak, 898, 303, 160, 171, -(1/2 * 160 * 1.2 * this.temporary), -(1/2 * 171 * 1.2 * this.temporary), 160 * 1.2 * this.temporary, 171 * 1.2 * this.temporary);
+            XXX.restore();
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 77 * this.temporary;
+
+            //stick player and units in the web then store the data for spiders to access.
+            this.webbed = [];
+            if (this.playerer <= this.radius)
+            {
+                player.webbedNum = 3;
+                player.webbedTime = new Date().getTime();
+                this.webbed.push(player);
+            }
+            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+            {
+                var unitDist = Math.sqrt((ArtificialIntelligenceAccess[i].X - this.X)*(ArtificialIntelligenceAccess[i].X - this.X) + (ArtificialIntelligenceAccess[i].Y - this.Y)*(ArtificialIntelligenceAccess[i].Y - this.Y));
+                if (unitDist <= this.radius)
+                {
+                    ArtificialIntelligenceAccess[i].webbedNum = 3;
+                    ArtificialIntelligenceAccess[i].webbedTime = new Date().getTime();
+                    this.webbed.push(ArtificialIntelligenceAccess[i]);
+                }
+            }
+        }
+        else if (this.type == "ribbackNest")
+        {
+            //TRAITS
+            this.nestID = this.temporary;
+            this.solid = false;
+
+            //DRAWSELF
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(ribak, 813, 80, 254, 221, -(1/2 * 254 * 1.2 * 1), -(1/2 * 221 * 1.2 * 1), 254 * 1.2 * 1, 221 * 1.2 * 1);
+            XXX.restore();
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 112;
+
+            if (this.runOneTime == true)
+            {
+                this.runOneTime = false;
+                this.tic = 0;
+                this.tac = 0;
+                if (typeof(this.information) != "undefined" && typeof(this.information) != "boolean")
+                {
+                    this.ribbackInside = this.information[0];
+                    this.ribbackDentro = this.information[1];
+                }
+                else
+                {
+                    this.ribbackInside = false;
+                    this.ribbackDentro = {health: 0, healthMAX: 0, speed: 0, prego: 0, barcode: 0, lifetime: 0, calledOut: 0, nest: 0};
+                }
+            }
+            var nearbyEnemy = false;
+
+            if (this.ribbackInside == true)
+            {
+                if (this.ribbackDentro.prego > 0)
+                {
+                    this.ribbackDentro.prego += 0.05;
+                    console.log(this.ribbackDentro.prego);
+                }
+
+                if (this.ribbackDentro.prego >= 100)
+                {
+                    this.ribbackDentro.prego = 0;
+                    for (var i = 0; i < 8; i++)
+                    {
+                        var babyRibbyBacky = new Unit(this.X, this.Y, "Ribback", "baby", "unitGeneratedRibback");
+                        babyRibbyBacky.getout = Math.PI * 2 * Math.random();
+
+                        ArtificialIntelligenceAccess.push(babyRibbyBacky);
+                    }
+                }
+
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    if (ArtificialIntelligenceAccess[i].team != "docile" && ArtificialIntelligenceAccess[i].team != "ribbackia" && ArtificialIntelligenceAccess[i].team != "ulgoyia" && ArtificialIntelligenceAccess[i].team != "shehidia")
+                    {
+                        if (ArtificialIntelligenceAccess[i].type != "Ribback" || ArtificialIntelligenceAccess[i].getaway == "none")
+                        {
+                            if (this.dst(ArtificialIntelligenceAccess[i].X, ArtificialIntelligenceAccess[i].Y) <= 300)
+                            {
+                                nearbyEnemy = true;
+                                this.tic += 1;
+                            }
+                        }
+                    }
+                }
+
+                if (this.playerer <= 300)
+                {
+                    this.tac += 1;
+                }
+
+                if (this.playerer > 300)
+                {
+                    this.tac = 0;
+                }
+
+                if (nearbyEnemy == false)
+                {
+                    this.tic = 0;
+                }
+
+                if (this.ribbackDentro.calledOut == true || this.tic > 90 || this.tac > 90)
+                {
+                    var ribbyBacky = new Unit(this.X, this.Y, "Ribback", true, "bigMamaRibback");
+                    ribbyBacky.healthMAX = this.ribbackDentro.healthMAX;
+                    ribbyBacky.health = this.ribbackDentro.health;
+                    ribbyBacky.speed = this.ribbackDentro.speed;
+                    ribbyBacky.prego = this.ribbackDentro.prego;
+                    ribbyBacky.barcode = this.ribbackDentro.barcode;
+                    ribbyBacky.lifetime = this.ribbackDentro.lifetime;
+                    ribbyBacky.calledOut = this.ribbackDentro.calledOut;
+                    ribbyBacky.nest = this.ribbackDentro.nest;
+                    ribbyBacky.gender = 0;
+
+                    ArtificialIntelligenceAccess.push(ribbyBacky);
+                    this.ribbackInside = false;
+                    this.ribbackDentro = {health: 0, healthMAX: 0, speed: 0, prego: 0, barcode: 0, lifetime: 0, calledOut: 0, nest: 0};
+                }
+            }
+            //todo make it so that the spider can live in and exit the nest and have babies while in the nest
+
+            //stick player and units in the web then store the data for spiders to access.
+            this.webbed = [];
+            if (this.playerer <= this.radius)
+            {
+                player.webbedNum = 3;
+                player.webbedTime = new Date().getTime();
+                this.webbed.push(player);
+            }
+            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+            {
+                var unitDist = Math.sqrt((ArtificialIntelligenceAccess[i].X - this.X)*(ArtificialIntelligenceAccess[i].X - this.X) + (ArtificialIntelligenceAccess[i].Y - this.Y)*(ArtificialIntelligenceAccess[i].Y - this.Y));
+                if (unitDist <= this.radius)
+                {
+                    ArtificialIntelligenceAccess[i].webbedNum = 3;
+                    ArtificialIntelligenceAccess[i].webbedTime = new Date().getTime();
+                    this.webbed.push(ArtificialIntelligenceAccess[i]);
+                }
+            }
         }
         else if (this.type == "matnaWeb")
         {

@@ -935,6 +935,60 @@ function cheats()
             uniqueChars.hildegardLDS = true;
             uniqueChars.axelLDS = true;
         }
+        else if (cheatcode == "renewBakeryQuest")
+        {
+            quests.imaginaryFriendQuest = false;
+            quests.imaginaryFriendCompletionStyle = false;
+            quests.imaginaryFriendMentioned = false;
+            quests.imaginaryFriendAdopted = false;
+            uniqueChars.lelailaLDS = true;
+            uniqueChars.velaLDS = true;
+            uniqueChars.boggartLezarLDS = true;
+        }
+        else if (cheatcode == "renewDuendeQuest")
+        {
+            quests.duendeInfestationQuest = false;
+            quests.duendeInfestationCompletionStyle = false;
+            quests.duendeInfestationKillCount = 0;
+            quests.duendeInfestationDuendeLoad = 0;
+            quests.duendeInfestationKindness = false;
+            quests.duendeInfestationPay = 0;
+            uniqueChars.luceliusLDS = true;
+        }
+        else if (cheatcode == "renewFeastQuest")
+        {
+            quests.aFeastForFewerQuest = false;
+            quests.aFeastForFewerCompletionStyle = false;
+            quests.aFeastForFewerInfiltrator = false;
+            quests.aFeastForFewerBelgos = false;
+            uniqueChars.lailionaLDS = true;
+            uniqueChars.belgosLDS = true;
+            uniqueChars.altezorInfiltratorLDS = true;
+            uniqueChars.mecheloLDS = true;
+            uniqueChars.emyliaLDS = true;
+        }
+        else if (cheatcode == "renewInventorQuest")
+        {
+            quests.inventorsFeudQuest = false;
+            quests.inventorsFeudCompletionStyle = false;
+            quests.inventorsFeudStage = false;
+            uniqueChars.ernestoLDS = true;
+            uniqueChars.hugoLDS = true;
+        }
+        else if (cheatcode == "renewChangelingQuest")
+        {
+            quests.aFairyInBoysClothingQuest = false;
+            quests.aFairyInBoysClothingCompletionStyle = false;
+            quests.aFairyInBoysClothingFall = false;
+            quests.aFairyInBoysClothingRude = false;
+            quests.aFairyInBoysClothingPayed = false;
+            quests.aFairyInBoysClothingNatalia = false;
+            quests.aFairyInBoysClothingEvid = false;
+            uniqueChars.nataliaLDS = true;
+            uniqueChars.giomardoLDS = true;
+            uniqueChars.elmaLDS = true;
+            uniqueChars.ebaroLDS = true;
+        }
         else if (cheatcode.toLowerCase() == "greaty")
         {
             var lesky = Y;
@@ -1431,6 +1485,28 @@ function cheats()
             player.merchPosition -= 1;
             alert(player.merchPosition);
         }
+        else if (cheatcode.toLowerCase() == "hornyspiders")
+        {
+            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+            {
+                if (ArtificialIntelligenceAccess[i].type == "Ribback" && ArtificialIntelligenceAccess[i].gender == 1)
+                {
+                    console.log(ArtificialIntelligenceAccess[i].horny);
+                    ArtificialIntelligenceAccess[i].horny = 100;
+                }
+            }
+        }
+        else if (cheatcode.toLowerCase() == "ribbackpreggers")
+        {
+            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+            {
+                if (ArtificialIntelligenceAccess[i].type == "Ribback" && ArtificialIntelligenceAccess[i].gender == 0)
+                {
+                    console.log(ArtificialIntelligenceAccess[i].prego);
+                    ArtificialIntelligenceAccess[i].prego = 99;
+                }
+            }
+        }
         else if (cheatcode.toLowerCase() == "serpytheserpent")
         {
             ArtificialIntelligenceAccess.push(new Unit(X + 40, Y, "Viper", false, "Serpy the Serpent"));
@@ -1475,6 +1551,11 @@ function cheats()
         else if (cheatcode.toLowerCase() == "wallachia") //resets all magical stats to 0
         {
             player.vamprism = true;
+        }
+        else if (cheatcode.toLowerCase() == "gank_them_vamps")
+        {
+            this.baseHunger = 50;
+            this.baseThirst = 20;
         }
         else if (cheatcode.toLowerCase() == "ratsinthewhitecity") //turns off content filter
         {

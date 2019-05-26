@@ -1552,7 +1552,7 @@ function cheats()
         {
             player.vamprism = true;
         }
-        else if (cheatcode.toLowerCase() == "gank_them_vamps")
+        else if (cheatcode.toLowerCase() == "gankthemvamps")
         {
             this.baseHunger = 50;
             this.baseThirst = 20;

@@ -189,6 +189,8 @@ function buildMaster()
                 //ArtificialIntelligenceAccess.push(new Unit(3900, 2900, "Fegil", true, "hik"));
                 //scenicList.push(new Scenery("item", 3900, 2900, 0, "freynor", ["iron", 1, -7]));
 
+                scenicList.push(new Scenery("mrbAssets", 4500, 2400, 0, 9, 2));
+
                 //scenicList.push(new Scenery("dethMasterHut", 3600, 2500, 0, 0, "deth1"));
                 //scenicList.push(new Scenery("dethTotem", 3600, 3400, 0, 0, "deth1"));
                 //scenicList.push(new Scenery("dethArmory", 4000, 3000, 0, true, "deth1"));
@@ -4322,6 +4324,78 @@ function buildMaster()
                 //REGION CREATION
                 scenicList.push(new Scenery("stone", 15581.783302907124, -8466.604787251705,7, 3, 2)); //copied s-1-w-1
 
+                ArtificialIntelligenceAccess.push(new Unit(18074.298222875015, -4220.837450451144, "GreyWolf", false ,"pinkyur1" ));
+                ArtificialIntelligenceAccess.push(new Unit(18409.120334690117, -4184.414080460234, "GreyWolf", false ,"pinkyur2" ));
+                ArtificialIntelligenceAccess.push(new Unit(22950.587571046195, -6324.466699282466, "GreyWolf", false ,"pinkyuru1" ));
+                ArtificialIntelligenceAccess.push(new Unit(23332.6497385427, -6152.1607738458615, "GreyWolf", false ,"pinkyuru2" ));
+                ArtificialIntelligenceAccess.push(new Unit(23126.793941697277, -6393.686180066117, "GreyWolf", false ,"pinkyuru3" ));
+                ArtificialIntelligenceAccess.push(new Unit(19548.104157009057, -6599.932978698763, "GreyWolf", false ,"pinkyurg1" ));
+                ArtificialIntelligenceAccess.push(new Unit(19763.425144257577, -6688.171440388522, "GreyWolf", false ,"pinkyurg2" ));
+                ArtificialIntelligenceAccess.push(new Unit(19980.89725740351, -6515.06948244012, "GreyWolf", false ,"pinkyurg3" ));
+                ArtificialIntelligenceAccess.push(new Unit(19812.36165131242, -6584.896734721646, "GreyWolf", true ,"pinkyurg4" ));
+                ArtificialIntelligenceAccess.push(new Unit(26290.24463086286, -4681.913776164111, "GreyWolf", false ,"pinkyurh1" ));
+                ArtificialIntelligenceAccess.push(new Unit(26105.647856356944, -4573.783616160428, "GreyWolf", false ,"pinkyurh2" ));
+                ArtificialIntelligenceAccess.push(new Unit(26161.483772615535, -4399.29845896852, "GreyWolf", false ,"pinkyurh3" ));
+                ArtificialIntelligenceAccess.push(new Unit(23321.503360309176, -13507.861046515007, "GreyWolf", false ,"pinkyurk1" ));
+                ArtificialIntelligenceAccess.push(new Unit(23082.840459371128, -13341.076479162399, "GreyWolf", false ,"pinkyurk2" ));
+                ArtificialIntelligenceAccess.push(new Unit(23824.872149842227, -10716.492237486329, "GreyWolf", false ,"pinkyurt1" ));
+                ArtificialIntelligenceAccess.push(new Unit(23723.431721997324, -10828.57566136228, "GreyWolf", false ,"pinkyurt2" ));
+                ArtificialIntelligenceAccess.push(new Unit(23963.415935613863, -10927.588939564781, "GreyWolf", false ,"pinkyurt3" ));
+
+
+                ArtificialIntelligenceAccess.push(new Unit(23132.960055000272, -5081.850320770147, "StoneGolem", false ,"dsoftwne1" ));
+                ArtificialIntelligenceAccess.push(new Unit(21411.85857251847, -6293.4959494184895, "StoneGolem", true ,"dsoftwne2" ));
+                ArtificialIntelligenceAccess.push(new Unit(20370.865344154863, -7081.28745305883, "StoneGolem", "baby" ,"dsoftwne3" ));
+                ArtificialIntelligenceAccess.push(new Unit(18599.717130899295, -9344.585231179442, "StoneGolem", false ,"dsoftwne4" ));
+                ArtificialIntelligenceAccess.push(new Unit(23682.010887651966, -11485.704383904002, "StoneGolem", false ,"dsoftwne5" ));
+
+
+                ArtificialIntelligenceAccess.push(new Unit(25597.63966771881, -9230.566640861609, "Beruln", false ,"kainstien1" ));
+                ArtificialIntelligenceAccess.push(new Unit(21137.74976639098, -12085.484369403091, "Beruln", true ,"kainstien2" ));
+
+
+                ArtificialIntelligenceAccess.push(new Unit(21091.181399887602, -7922.457475544878, "MountainFrich", true, "runrunfarm1"));
+                ArtificialIntelligenceAccess.push(new Unit(19381.40192835468, -7483.468157282767, "MountainFrich", false, "runrunfarm2"));
+                ArtificialIntelligenceAccess.push(new Unit(17759.82373631438, -5571.593343650006, "MountainFrich", false, "runrunfarm3"));
+                ArtificialIntelligenceAccess.push(new Unit(26508.075605854072, -6523.373617560634, "MountainFrich", false, "runrunfarm4"));
+                ArtificialIntelligenceAccess.push(new Unit(24601.22563038774, -8049.422640657682, "MountainFrich", false, "runrunfarm5"));
+                ArtificialIntelligenceAccess.push(new Unit(18401.47093009515, -13312.069748147673, "MountainFrich", "baby", "runrunfarm6"));
+                ArtificialIntelligenceAccess.push(new Unit(23456.289198224906, -4060.3982833234054, "MountainFrich", false, "runrunfarm7"));
+                ArtificialIntelligenceAccess.push(new Unit(19836.27676170634, -10105.943371067755, "MountainFrich", false, "runrunfarm8"));
+                ArtificialIntelligenceAccess.push(new Unit(20018.39907436036, -9626.454835616358, "MountainFrich", true, "runrunfarm9"));
+
+
+                ArtificialIntelligenceAccess.push(new Unit(23096.483163670157, -9067.90230357754, "Nog", false ,"hegatin1" ));
+                ArtificialIntelligenceAccess.push(new Unit(25497.85543527431, -12862.153939754944, "Nog", true ,"hegatin2" ));
+                ArtificialIntelligenceAccess.push(new Unit(25767.88175545148, -12780.942406767508, "Nog", false ,"hegatin3" ));
+                ArtificialIntelligenceAccess.push(new Unit(25751.68905053711, -12832.011706882051, "Nog", true ,"hegatin4" ));
+                ArtificialIntelligenceAccess.push(new Unit(25836.331136147837, -12973.826399412681, "Nog", false ,"hegatin5" ));
+                ArtificialIntelligenceAccess.push(new Unit(21157.927268179476, -9348.999282991244, "Nog", true ,"hegatin6" ));
+
+
+                scenicList.push(new Scenery("haeflowerPlant", 22342.615016701082, -6509.42349964253, 5, true));
+                scenicList.push(new Scenery("haeflowerPlant", 22843.397179644384, -11220.735959975116, 2, true));
+
+
+                scenicList.push(new Scenery("ashStone", 21395.252132045855, -7724.760403136383, 2, 4.5, 3));
+                scenicList.push(new Scenery("ashStone", 19594.541638782583, -7666.897055094933, 1, 1.5, 2));
+
+                scenicList.push(new Scenery("darkStone", 19748.58070443285, -9466.65584216338, 1, 0.5, 2));
+                scenicList.push(new Scenery("darkStone", 24968.20681216339, -9369.457139694605, -4, 2, 2));
+                scenicList.push(new Scenery("darkStone", 25362.580066785882, -8524.768052938854, -2, 2.5, 1));
+                scenicList.push(new Scenery("darkStone", 25146.77113970494, -8661.469333527531, 1, 1.5, 3));
+                scenicList.push(new Scenery("darkStone", 19900.10695616608, -9862.31103173586, 9, 3, 1));
+                scenicList.push(new Scenery("darkStone", 21620.824752549917, -6607.6400337590985, -1, 2.5, 2));
+                scenicList.push(new Scenery("darkStone", 26138.962788150013, -5305.3864939601945, 3, 2, 1));
+
+                scenicList.push(new Scenery("Stone", 26499.792573056682, -9196.264916320315, 2, 2, 3));
+                scenicList.push(new Scenery("Stone", 18969.450502411833, -5951.7179284594695, 8, 1.5, 2));
+                scenicList.push(new Scenery("Stone", 24258.977758016936, -12128.792403672722, 3, 2, 1));
+                scenicList.push(new Scenery("Stone", 26082.680601300726, -12649.786936172404, 6, 1.5, 3));
+                scenicList.push(new Scenery("Stone", 24447.914933263906, -6619.120935027706, 4, 2.5, 1));
+                scenicList.push(new Scenery("Stone", 21815.34499658098, -12243.839455072994, 1, 3, 1));
+                scenicList.push(new Scenery("Stone", 19025.371348644767, -10091.830356988197, -5, 1, 1));
+                scenicList.push(new Scenery("Stone", 18339.4665164278, -7542.4181545669135, -3, 1.5, 2));
 
                 change = "s1w2";
             }

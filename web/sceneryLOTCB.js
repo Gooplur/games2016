@@ -90,6 +90,8 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
     this.built = 0;
     //ghoulden variables
     this.pop = 0;
+    //other
+    this.etapa = 0;
 
     //Scenery Item
 
@@ -17389,14 +17391,17 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             //TRAITS
             this.solid = false;
             this.interactionRange = 1;
-            //if (typeof(this.owned) != "null" && typeof(this.owned) != "boolean")
-            //{
-            //    this.size = this.owned;
-            //}
-            //else
-            //{
-            //    this.size = 1;
-            //}
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 1;
+            this.size = 1;
+
+            if (this.runOneTime)
+            {
+                this.runOneTime = false;
+                this.phase = 0;
+                this.primed = true;
+                this.clave = "door" + (Math.random() + Math.random()) + "door";
+            }
 
             if (this.temporary == 0) //storage container
             {
@@ -17420,43 +17425,224 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             }
             else if (this.temporary == 5) //short wall
             {
+                this.size = this.information;
                 //DRAWSELF
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
                 XXX.drawImage(gent, 584, 403, 90, 29, -(1/2 * 90 * this.size), -(1/2 * 29 * this.size), 90 * this.size, 29 * this.size);
                 XXX.restore();
+                if (this.putBarriers)
+                {
+                    this.putBarriers = false;
+                    if (this.rotation == 0 || this.rotation == Math.PI)
+                    {
+                        barrierList.push(new Barrier(this.X + (4462.34488573912 - this.X) * this.size, this.Y + (2393.6030380538054 - this.Y) * this.size, 13 * this.size, 74 * this.size, true));
+                    }
+                    else if (this.rotation == 1/2 * Math.PI || this.rotation == -1/2 * Math.PI)
+                    {
+                        barrierList.push(new Barrier(this.X + (4493.228781468251 - this.X) * this.size, this.Y + (2361.9563418705266 - this.Y) * this.size, 74 * this.size, 14 * this.size, true));
+                    }
+                }
             }
             else if (this.temporary == 6) //short window
             {
+                this.size = this.information;
                 //DRAWSELF
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
                 XXX.drawImage(gent, 583, 374, 90, 29, -(1/2 * 90 * this.size), -(1/2 * 29 * this.size), 90 * this.size, 29 * this.size);
                 XXX.restore();
+                if (this.putBarriers)
+                {
+                    this.putBarriers = false;
+                    if (this.rotation == 0 || this.rotation == Math.PI)
+                    {
+                        barrierList.push(new Barrier(this.X + (4462.34488573912 - this.X) * this.size, this.Y + (2393.6030380538054 - this.Y) * this.size, 13 * this.size, 74 * this.size, true));
+                    }
+                    else if (this.rotation == 1/2 * Math.PI || this.rotation == -1/2 * Math.PI)
+                    {
+                        barrierList.push(new Barrier(this.X + (4493.228781468251 - this.X) * this.size, this.Y + (2361.9563418705266 - this.Y) * this.size, 74 * this.size, 14 * this.size, true));
+                    }
+                }
             }
             else if (this.temporary == 7) //long wall
             {
+                this.size = this.information;
                 //DRAWSELF
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
                 XXX.drawImage(gent, 455, 349, 172, 27, -(1/2 * 172 * this.size), -(1/2 * 27 * this.size), 172 * this.size, 27 * this.size);
                 XXX.restore();
+                if (this.putBarriers)
+                {
+                    this.putBarriers = false;
+                    if (this.rotation == 0 || this.rotation == Math.PI)
+                    {
+                        barrierList.push(new Barrier(this.X + (4421.809383806344 - this.X) * this.size, this.Y + (2392.038795639516 - this.Y) * this.size, 14 * this.size, 156 * this.size, true));
+                    }
+                    else if (this.rotation == 1/2 * Math.PI || this.rotation == -1/2 * Math.PI)
+                    {
+                        barrierList.push(new Barrier(this.X + (4492.397373168849 - this.X) * this.size, this.Y + (2321.9872048626344 - this.Y) * this.size, 155 * this.size, 15 * this.size, true));
+                    }
+                }
             }
             else if (this.temporary == 8) //long window
             {
+                this.size = this.information;
                 //DRAWSELF
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
                 XXX.drawImage(gent, 623, 349, 172, 27, -(1/2 * 172 * this.size), -(1/2 * 27 * this.size), 172 * this.size, 27 * this.size);
                 XXX.restore();
+                if (this.putBarriers)
+                {
+                    this.putBarriers = false;
+                    if (this.rotation == 0 || this.rotation == Math.PI)
+                    {
+                        barrierList.push(new Barrier(this.X + (4421.809383806344 - this.X) * this.size, this.Y + (2392.038795639516 - this.Y) * this.size, 14 * this.size, 156 * this.size, true));
+                    }
+                    else if (this.rotation == 1/2 * Math.PI || this.rotation == -1/2 * Math.PI)
+                    {
+                        barrierList.push(new Barrier(this.X + (4492.397373168849 - this.X) * this.size, this.Y + (2321.9872048626344 - this.Y) * this.size, 155 * this.size, 15 * this.size, true));
+                    }
+                }
             }
             else if (this.temporary == 9) //lifting door
             {
+                this.size = this.information;
+                this.interactionRange = 70 * this.size;
+                this.radius = 50 * this.size;
 
+                if (this.phase == 1)
+                {
+                    if (this.playerer < 50 * this.size)
+                    {
+                        if (this.etapa == 0)
+                        {
+                            this.putBarriers = true;
+                        }
+
+                        this.etapa = 1;
+                    }
+                    else
+                    {
+                        if (this.etapa == 1)
+                        {
+                            this.putBarriers = true;
+                        }
+
+                        this.etapa = 0;
+                    }
+
+                    if (this.etapa == 1)
+                    {
+                        //DRAWSELF
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(gent, 692, 407, 85, 24, -(1/2 * 85 * this.size), -(1/2 * 24 * this.size), 85 * this.size, 24 * this.size);
+                        XXX.restore();
+                        if (this.putBarriers)
+                        {
+                            this.putBarriers = false;
+                            var deleteList = [];
+                            for (var l = 0; l < barrierList.length; l++)
+                            {
+                                if (barrierList[l].info == this.clave)
+                                {
+                                    deleteList.push(l);
+                                }
+                            }
+                            for (var l = deleteList.length - 1; l > -1; l--)
+                            {
+                                barrierList.splice(deleteList[l], 1);
+                            }
+
+                            if (this.rotation == 0 || this.rotation == Math.PI)
+                            {
+                                barrierList.push(new Barrier(this.X + (4463.173259482574 - this.X) * this.size, this.Y + (2391.9341650252877 - this.Y) * this.size, 14 * this.size, 10 * this.size, true, this.clave));
+                                barrierList.push(new Barrier(this.X + (4527.173259482574 - this.X) * this.size, this.Y + (2392.9341650252877 - this.Y) * this.size, 14 * this.size, 10 * this.size, true, this.clave));
+                            }
+                            else if (this.rotation == 1/2 * Math.PI || this.rotation == -1/2 * Math.PI)
+                            {
+                                barrierList.push(new Barrier(this.X + (4492.694292445081 - this.X) * this.size, this.Y + (2361.944120708304 - this.Y) * this.size, 10 * this.size, 14 * this.size, true, this.clave));
+                                barrierList.push(new Barrier(this.X + (4492.694292445081 - this.X) * this.size, this.Y + (2426.944120708304 - this.Y) * this.size, 10 * this.size, 14 * this.size, true, this.clave));
+                            }
+                        }
+                    }
+                    else
+                    {
+                        //DRAWSELF
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(gent, 692, 380, 85, 24, -(1/2 * 85 * this.size), -(1/2 * 24 * this.size), 85 * this.size, 24 * this.size);
+                        XXX.restore();
+                        if (this.putBarriers)
+                        {
+                            this.putBarriers = false;
+                            var deleteList = [];
+                            for (var l = 0; l < barrierList.length; l++)
+                            {
+                                if (barrierList[l].info == this.clave)
+                                {
+                                    deleteList.push(l);
+                                }
+                            }
+                            for (var l = deleteList.length - 1; l > -1; l--)
+                            {
+                                barrierList.splice(deleteList[l], 1);
+                            }
+
+                            if (this.rotation == 0 || this.rotation == Math.PI)
+                            {
+                                barrierList.push(new Barrier(this.X + (4461.69897109389 - this.X) * this.size, this.Y + (2392.946975982273 - this.Y) * this.size, 14 * this.size, 75 * this.size, true, this.clave));
+                            }
+                            else if (this.rotation == 1/2 * Math.PI || this.rotation == -1/2 * Math.PI)
+                            {
+                                barrierList.push(new Barrier(this.X + (4491.694292445081 - this.X) * this.size, this.Y + (2360.944120708304 - this.Y) * this.size, 76 * this.size, 15 * this.size, true, this.clave));
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    //DRAWSELF
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(gent, 692, 380, 85, 24, -(1/2 * 85 * this.size), -(1/2 * 24 * this.size), 85 * this.size, 24 * this.size);
+                    XXX.restore();
+                    if (this.putBarriers)
+                    {
+                        this.putBarriers = false;
+                        var deleteList = [];
+                        for (var l = 0; l < barrierList.length; l++)
+                        {
+                            if (barrierList[l].info == this.clave)
+                            {
+                                deleteList.push(l);
+                            }
+                        }
+                        for (var l = deleteList.length - 1; l > -1; l--)
+                        {
+                            barrierList.splice(deleteList[l], 1);
+                        }
+
+                        if (this.rotation == 0 || this.rotation == Math.PI)
+                        {
+                            barrierList.push(new Barrier(this.X + (4461.69897109389 - this.X) * this.size, this.Y + (2392.946975982273 - this.Y) * this.size, 14 * this.size, 75 * this.size, true, this.clave));
+                        }
+                        else if (this.rotation == 1/2 * Math.PI || this.rotation == -1/2 * Math.PI)
+                        {
+                            barrierList.push(new Barrier(this.X + (4491.694292445081 - this.X) * this.size, this.Y + (2360.944120708304 - this.Y) * this.size, 76 * this.size, 15 * this.size, true, this.clave));
+                        }
+                    }
+                }
             }
             else if (this.temporary == 10) //data cataloger
             {
@@ -17466,14 +17652,29 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             {
 
             }
+            else if (this.temporary == 12) //shelf
+            {
 
-            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
-            this.radius = 1;
+            }
+
+            barrierCreator();
 
             //INTERACTION
             if (this.activate == true)
             {
                 this.activate = false;
+                if (this.temporary == 9)
+                {
+                    this.putBarriers = true;
+                    if (this.phase == 1)
+                    {
+                        this.phase = 0;
+                    }
+                    else
+                    {
+                        this.phase = 1;
+                    }
+                }
             }
         }
         else if (this.type == "deadNaaprid")

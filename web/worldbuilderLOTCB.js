@@ -434,14 +434,14 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s1w2";
-            outlineBuilder( 34, 34, "outline", -88, 14); //todo crag
+            outlineBuilder( 34, 34, "crag", -88, 14);
         }
         // mapS1W3
         if (Y > -14144 && Y < -3328 && X < 38616 && X > 26689) //X-3
         {
             elevation = 0;
             region = "s1w3";
-            outlineBuilder( 34, 34, "greenGrass", -122, 14); //todo crag
+            outlineBuilder( 34, 34, "outline", -122, 14); //todo crag
         }
         //mapS1W4
         if (Y > -14144 && Y < -3328 && X < 48510 && X > 36883) //X-4

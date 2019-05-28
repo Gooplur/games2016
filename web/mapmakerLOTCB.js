@@ -186,6 +186,9 @@ function buildMaster()
                 //ArtificialIntelligenceAccess.push(new Unit(4000, 2500, "Ribback", false, "humphump"));
                 //ArtificialIntelligenceAccess.push(new Unit(5000, 2400, "Ribback", true, "humpa"));
 
+                //ArtificialIntelligenceAccess.push(new Unit(3900, 2900, "Fegil", true, "hik"));
+                //scenicList.push(new Scenery("item", 3900, 2900, 0, "freynor", ["iron", 1, -7]));
+
                 //scenicList.push(new Scenery("dethMasterHut", 3600, 2500, 0, 0, "deth1"));
                 //scenicList.push(new Scenery("dethTotem", 3600, 3400, 0, 0, "deth1"));
                 //scenicList.push(new Scenery("dethArmory", 4000, 3000, 0, true, "deth1"));
@@ -4280,6 +4283,96 @@ function buildMaster()
 
 
                 change = "s1w1";
+            }
+        }
+        else if (region == "s1w2")
+        {
+            if (change != "s1w2")
+            {
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
+                //Delete All Non-native AI Units
+                for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Structures
+                //todo when structures are created add their list's refresh sequence here.
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
+
+                //REGION CREATION
+                scenicList.push(new Scenery("stone", 15581.783302907124, -8466.604787251705,7, 3, 2)); //copied s-1-w-1
+
+
+                change = "s1w2";
+            }
+        }
+        else if (region == "s1w3")
+        {
+            if (change != "s1w3")
+            {
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
+                //Delete All Non-native AI Units
+                for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Structures
+                //todo when structures are created add their list's refresh sequence here.
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
+
+                //REGION CREATION
+                scenicList.push(new Scenery("stone", 35121, -3247,3, 1, 1)); //copied w-3
+                scenicList.push(new Scenery("stone", 36318, -3039,2, 2, 1)); //copied w-3
+                scenicList.push(new Scenery("darkStone", 38453, -13492,49, 0.5, 3)); //copied s1w4
+                scenicList.push(new Scenery("darkStone", 38342, -8908,-49, 1, 3)); //copied s-1-w-4
+                scenicList.push(new Scenery("ashStone", 38457, -3905,-4.45, 1, 2)); //copied s-1-w-4
+                scenicList.push(new Scenery("ashStone", 38828, -5130,4.45, 2, 3)); //copied s-1-w-4
+                scenicList.push(new Scenery("stone", 38418, -5354,35, 0.5, 1)); //copied s-1-w-4
+                scenicList.push(new Scenery("stone", 38928, -8059,25, 1, 3)); //copied s-1-w-4
+                scenicList.push(new Scenery("stone", 38507, -12978,-28, 2.5, 2)); //copied s-1-w-4
+
+
+                change = "s1w3";
             }
         }
         else if (region == "w1") //Y > 6290 && Y < 32370

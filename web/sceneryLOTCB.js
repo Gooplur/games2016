@@ -17324,6 +17324,158 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 scenicList.splice(scenicList.indexOf(this), 1);
             }
         }
+        else if (this.type == "fegilMound")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+
+            if (this.runOneTime)
+            {
+                this.runOneTime = false;
+
+                this.health = 7;
+            }
+
+            //DRAWSELF
+            if (this.health > 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jungho, 226, 978, 39, 39, -(1/2 * 39), -(1/2 * 39), 39, 39);
+                XXX.restore();
+            }
+            else
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jungho, 184, 978, 39, 39, -(1/2 * 39), -(1/2 * 39), 39, 39);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 24;
+
+            if (player.cutcut == true && this.playerer < 500)
+            {
+                var distFromCutCut = Math.sqrt((this.X - player.bubbleOfDamageX)*(this.X - player.bubbleOfDamageX) + (this.Y - player.bubbleOfDamageY)*(this.Y - player.bubbleOfDamageY));
+                if (distFromCutCut <= player.weapon.distance)
+                {
+                    if (player.weaponEquipped == "spade")
+                    {
+                        this.health -= 8;
+                    }
+                    else if (player.weaponEquipped == "pickaxe")
+                    {
+                        this.health -= 4;
+                    }
+                    else
+                    {
+                        this.health -= 3;
+                    }
+                }
+            }
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+        }
+        else if (this.type == "mrbAssets")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+            //if (typeof(this.owned) != "null" && typeof(this.owned) != "boolean")
+            //{
+            //    this.size = this.owned;
+            //}
+            //else
+            //{
+            //    this.size = 1;
+            //}
+
+            if (this.temporary == 0) //storage container
+            {
+
+            }
+            else if (this.temporary == 1) //teleporter
+            {
+
+            }
+            else if (this.temporary == 2) //empty desk
+            {
+
+            }
+            else if (this.temporary == 3) //science-l a b
+            {
+
+            }
+            else if (this.temporary == 4) //computer
+            {
+
+            }
+            else if (this.temporary == 5) //short wall
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(gent, 584, 403, 90, 29, -(1/2 * 90 * this.size), -(1/2 * 29 * this.size), 90 * this.size, 29 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 6) //short window
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(gent, 583, 374, 90, 29, -(1/2 * 90 * this.size), -(1/2 * 29 * this.size), 90 * this.size, 29 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 7) //long wall
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(gent, 455, 349, 172, 27, -(1/2 * 172 * this.size), -(1/2 * 27 * this.size), 172 * this.size, 27 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 8) //long window
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(gent, 623, 349, 172, 27, -(1/2 * 172 * this.size), -(1/2 * 27 * this.size), 172 * this.size, 27 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 9) //lifting door
+            {
+
+            }
+            else if (this.temporary == 10) //data cataloger
+            {
+
+            }
+            else if (this.temporary == 11) //vending machine
+            {
+
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 1;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+        }
         else if (this.type == "deadNaaprid")
         {
             //TRAITS

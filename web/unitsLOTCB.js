@@ -16011,55 +16011,108 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.baseTeam = this.team;
             this.tameREQ = 4;
 
-            if (this.alpha == true)
+            this.genes = {str: 3 + (3 * Math.random()), spd: 3 + (3 * Math.random()), con: 3 + (3 * Math.random()), per: 3 + (3 * Math.random())};
+
+            this.horny = 0;
+            this.pregs = 0;
+            this.lifetime = 0;
+            this.faGenes = {};
+
+            this.fegilBase = "none";
+            this.hotsuper = 0; //how good lookin it looks to potential mates
+
+            if (this.alpha == true) //male
             {
+                this.lifetime = 5;
+                this.alphaSize = 1 + 0.015 * this.genes.con + 0.015 * this.genes.str;
                 this.magicalResistance = 0;
-                this.heatResistance = -1;
+                this.heatResistance = -2;
                 this.attackStyle = "chunked";
                 this.attackRate = 0;  //this is for rapid style combat only.
-                this.healthMAX = Math.floor(Math.random() * 5) + 10;
+                this.healthMAX = 1 + 0.4 * (this.genes.con - 3);
                 this.health = this.healthMAX;
                 this.armour = 0;
-                this.speed = 3.2 + (Math.floor(Math.random() * 5) / 10);
-                this.rangeOfSight = 525; //This is just to set the variable initially. The rest is variable.
-                this.rotationSpeed = 0.1;
-                this.engagementRadius = 41.5;
-                this.sizeRadius = 19;
+                this.speed = 2.2 + (Math.floor(Math.random() * 3) / 10) + (0.2 * this.genes.spd);
+                this.rangeOfSight = 310 + 30 * this.genes.per; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.6;
+                this.engagementRadius = 15 * this.alphaSize;
+                this.sizeRadius = 7 * this.alphaSize;
                 this.negateArmour = 0;
-                this.attackWait = 0.5;
+                this.attackWait = 1;
 
-                //alpha has a larger size body and skills.
-                this.alphaSize = 1.45; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
-                // this is the adjustment the alpha type of Etyr needs to be centered.
-                this.yAdjustment = 1; //was - 3.5
-                this.xAdjustment = 6; //was 6
+                this.carryCap = 0.75 * this.genes.str;
+                this.carryPac = 0;
+                this.stomachCap = 1 + (this.genes.con / 3);
+                this.stomachPac = 0;
+
+                this.hungerMAX = 5 * this.genes.con;
+                this.hunger = this.hungerMAX;
+
+                this.yAdjustment = 0;
+                this.xAdjustment = 0;
             }
-            else
+            else if (this.alpha == "baby") //baby
             {
+                this.lifetime = 0;
+                this.alphaSize = 0.5 + 0.005 * this.genes.con + 0.005 * this.genes.str;
+                this.magicalResistance = 0;
+                this.heatResistance = -2;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = 0.2 + 0.2 * (this.genes.con - 3);
+                this.health = this.healthMAX;
+                this.armour = 0;
+                this.speed = 1 + (Math.floor(Math.random() * 2) / 10) + (0.05 * this.genes.spd);
+                this.rangeOfSight = 160 + 10 * this.genes.per; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.6;
+                this.engagementRadius = 15 * this.alphaSize;
+                this.sizeRadius = 7 * this.alphaSize;
+                this.negateArmour = 0;
+                this.attackWait = 1;
+
+                this.carryCap = 0.1;
+                this.carryPac = 0;
+                this.stomachCap = 0;
+                this.stomachPac = 0;
+
+                this.hungerMAX = 2 * this.genes.con;
+                this.hunger = this.hungerMAX;
+
+                this.yAdjustment = 0;
+                this.xAdjustment = 0;
+            }
+            else //female
+            {
+                this.lifetime = 5;
                 //STATS (non-variable)
+                this.alphaSize = 0.9 + 0.01 * this.genes.con + 0.01 * this.genes.str;
                 this.magicalResistance = 0;
-                this.heatResistance = -1;
+                this.heatResistance = -2;
                 this.attackStyle = "chunked";
                 this.attackRate = 0;  //this is for rapid style combat only.
-                this.healthMAX = Math.floor(Math.random() * 4) + 7;
+                this.healthMAX = 1 + 0.21 * (this.genes.con - 3);
                 this.health = this.healthMAX;
                 this.armour = 0;
-                this.speed = 2.9 + (Math.floor(Math.random() * 6) / 10);
-                this.rangeOfSight = 450; //This is just to set the variable initially. The rest is variable.
-                this.rotationSpeed = 0.1;
-                this.engagementRadius = 38.5;
-                this.sizeRadius = 18;
+                this.speed = 2.3 + (Math.floor(Math.random() * 3) / 10) + (0.22 * this.genes.spd);
+                this.rangeOfSight = 310 + 50 * this.genes.per; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.6;
+                this.engagementRadius = 15 * this.alphaSize;
+                this.sizeRadius = 7 * this.alphaSize;
                 this.negateArmour = 0;
-                this.attackWait = 0.5;
+                this.attackWait = 1;
 
-                //this multiplies the draw image skew numbers by 1 so that it stays the same
-                this.alphaSize = 1.3;
-                // this is the adjustment the alpha type of Etyr needs to be centered.
-                this.yAdjustment = 0; //was -34
-                this.xAdjustment = 0; //was - 26
+                this.carryCap = 0.5 * this.genes.str;
+                this.carryPac = 0;
+                this.stomachCap = 1 + Math.round(this.genes.con / 2);
+                this.stomachPac = 0;
 
+                this.hungerMAX = 4 * this.genes.con;
+                this.hunger = this.hungerMAX;
+
+                this.yAdjustment = 0;
+                this.xAdjustment = 0;
             }
-            this.swimSpeed = this.speed * 0.8;
+            this.swimSpeed = this.speed * 0.54;
         }
         else if (this.type == "Varn")
         {
@@ -33290,6 +33343,358 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     this.moveInRelationToThing(this.target);
                 }
 
+            }
+
+            //ANIMATIONS
+
+            if (this.alive == true)
+            {
+                if (this.moving && !this.attacking) //If moving and not attacking initiate moving animation...
+                {
+                    this.costumeEngine(3, 0.085, false);
+                }
+                else if (this.attacking) //otherwise if it is attacking then initiate attacking animation, and if neither...
+                {
+                    if(new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000 / timeSpeed * this.timeResistance))
+                    {
+                        this.costumeEngine(3, 0.110, true);
+                    }
+                }
+
+                // the frames/stages/costumes of the animation.
+                var theCostume = Math.floor( this.costume ); //This rounds this.costume down to the nearest whole number.
+
+                if (theCostume <= 0)
+                {
+                    if (this.attacking)
+                    {
+                        this.drawUnit(verse, 3095, 254, 54, 32, -35 - this.xAdjustment, -22 - this.yAdjustment, 54 * this.alphaSize, 32 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(verse, 2933, 254, 54, 32, -35 - this.xAdjustment, -22 - this.yAdjustment, 54 * this.alphaSize, 32 * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 1)
+                {
+                    if (this.attacking)
+                    {
+                        this.drawUnit(verse, 3154, 254, 54, 32, -35 - this.xAdjustment, -21 - this.yAdjustment, 54 * this.alphaSize, 32 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(verse, 2985, 254, 54, 32, -35 - this.xAdjustment, -21 - this.yAdjustment, 54 * this.alphaSize, 32 * this.alphaSize);
+                    }
+                }
+                else if (theCostume >= 2)
+                {
+                    if (this.attacking)
+                    {
+                        this.drawUnit(verse, 3214, 254, 54, 32, -35 - this.xAdjustment, -21 - this.yAdjustment, 54 * this.alphaSize, 32 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(verse, 3037, 254, 54, 32, -35 - this.xAdjustment, -21 - this.yAdjustment, 54 * this.alphaSize, 32 * this.alphaSize);
+                    }
+                }
+            }
+            else
+            {
+                this.drawUnit(verse, 2929, 283, 54, 32, -35 - this.xAdjustment, -22 - this.yAdjustment, 54 * this.alphaSize, 32 * this.alphaSize);
+            }
+        }
+        //FEGIL
+        if (this.type == "Fegil")
+        {
+            //Set Drops and experience
+            if (this.alpha == true)
+            {
+                if (Math.max(0, 20 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 3 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = (3 * ((player.getIntelligence() / 50) + 1)) / 10;
+                }
+
+                this.drops = [];
+            }
+            else if (this.alpha == "baby")
+            {
+                if (Math.max(0, 20 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 1 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = (1 * ((player.getIntelligence() / 50) + 1)) / 10;
+                }
+
+                this.drops = [];
+            }
+            else
+            {
+                if (Math.max(0, 20 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 2 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = 2 * ((player.getIntelligence() / 50) + 1) / 10;
+                }
+
+                this.drops = [];
+            }
+
+            //RANGE OF SIGHT (anything related to range of sight)
+            if (this.alpha == true)
+            {
+                this.rangeOfSightCalculator(310 + 30 * this.genes.per, false);
+            }
+            else if (this.alpha == "baby")
+            {
+                this.rangeOfSightCalculator(160 + 10 * this.genes.per, false);
+            }
+            else
+            {
+                this.rangeOfSightCalculator(310 + 50 * this.genes.per, false);
+            }
+
+            //AI
+            if (this.alive == true)
+            {
+                var superhot = 0;
+                //growing up
+                this.lifetime += 0.005;
+                if (this.alpha == "baby" && this.lifetime >= 5)
+                {
+                    this.alpha = Math.round(Math.random());
+                    if (this.alpha == true) //male
+                    {
+                        this.lifetime = 5;
+                        this.alphaSize = 1 + 0.015 * this.genes.con + 0.015 * this.genes.str;
+                        this.magicalResistance = 0;
+                        this.heatResistance = -2;
+                        this.attackStyle = "chunked";
+                        this.attackRate = 0;  //this is for rapid style combat only.
+                        this.healthMAX = 1 + 0.4 * (this.genes.con - 3);
+                        this.health = this.healthMAX;
+                        this.armour = 0;
+                        this.speed = 2.2 + (Math.floor(Math.random() * 3) / 10) + (0.2 * this.genes.spd);
+                        this.rangeOfSight = 310 + 30 * this.genes.per; //This is just to set the variable initially. The rest is variable.
+                        this.rotationSpeed = 0.6;
+                        this.engagementRadius = 15 * this.alphaSize;
+                        this.sizeRadius = 7 * this.alphaSize;
+                        this.negateArmour = 0;
+                        this.attackWait = 1;
+
+                        this.carryCap = 0.75 * this.genes.str;
+                        this.carryPac = 0;
+                        this.stomachCap = 1 + (this.genes.con / 3);
+                        this.stomachPac = 0;
+
+                        this.hungerMAX = 5 * this.genes.con;
+                        this.hunger = this.hungerMAX;
+
+                        this.yAdjustment = 0;
+                        this.xAdjustment = 0;
+                    }
+                    else //female
+                    {
+                        this.lifetime = 5;
+                        //STATS (non-variable)
+                        this.alphaSize = 0.9 + 0.01 * this.genes.con + 0.01 * this.genes.str;
+                        this.magicalResistance = 0;
+                        this.heatResistance = -2;
+                        this.attackStyle = "chunked";
+                        this.attackRate = 0;  //this is for rapid style combat only.
+                        this.healthMAX = 1 + 0.21 * (this.genes.con - 3);
+                        this.health = this.healthMAX;
+                        this.armour = 0;
+                        this.speed = 2.3 + (Math.floor(Math.random() * 3) / 10) + (0.22 * this.genes.spd);
+                        this.rangeOfSight = 310 + 50 * this.genes.per; //This is just to set the variable initially. The rest is variable.
+                        this.rotationSpeed = 0.6;
+                        this.engagementRadius = 15 * this.alphaSize;
+                        this.sizeRadius = 7 * this.alphaSize;
+                        this.negateArmour = 0;
+                        this.attackWait = 1;
+
+                        this.carryCap = 0.5 * this.genes.str;
+                        this.carryPac = 0;
+                        this.stomachCap = 1 + Math.round(this.genes.con / 2);
+                        this.stomachPac = 0;
+
+                        this.hungerMAX = 4 * this.genes.con;
+                        this.hunger = this.hungerMAX;
+
+                        this.yAdjustment = 0;
+                        this.xAdjustment = 0;
+                    }
+                    this.swimSpeed = this.speed * 0.54;
+                }
+
+                //hunger system
+                this.hunger -= 0.00025;
+                if (this.hunger <= 0)
+                {
+                    this.hunger = 0;
+                    this.health -= 0.05;
+                    this.killNotByPlayer = true;
+                }
+
+                if (this.alpha == true && this.fegilBase == "none")
+                {
+                    this.fegilBase = true;
+                    scenicList.push(new Scenery("fegilMound", this.X, this.Y, true, this.barcode));
+                    this.initX = this.X;
+                    this.initY = this.Y;
+                }
+
+                if (this.fegilBase == true)
+                {
+                    var organizara = false; //todo was false
+                    for (var i = 0; i < scenicList.length; i++)
+                    {
+                        if (scenicList[i].type == "fegilMound" && scenicList[i].information)
+                        {
+                            superhot += 5;
+                            if (this.DTU(scenicList[i]) < 100) //nearness to the mound allows the fegil to organize the items they have collected.
+                            {
+                                organizara = true;
+                            }
+                            break;
+                        }
+                    }
+                    var plxer = 30;
+                    var rotexr = 0;
+                    var hitzi = 0;
+                    for (var i = 0; i < scenicList.length; i++)
+                    {
+                        if (scenicList[i].type == "item" && scenicList[i].dst(this.initX, this.initY) < 440)
+                        {
+                            hitzi += 1;
+                            rotexr = (1/10*Math.PI) * hitzi;
+                            if ((30 + 5 * hitzi) >= 440)
+                            {
+                                plxer = (440 - (5 * hitzi));
+                            }
+                            else
+                            {
+                                plxer = (30 + (5 * hitzi));
+                            }
+                            var thisItem = new Item(scenicList[i].information[0], scenicList[i].X, scenicList[i].Y);
+                            thisItem.setItemID();
+                            if (thisItem.type == "coins")
+                            {
+                                superhot += 0.5 * scenicList[i].information[1];
+                            }
+                            else
+                            {
+                                superhot += thisItem.weight * scenicList[i].information[1];
+                            }
+
+                            if (organizara == true && thisItem.type != "coins") //actually organize the items near the fegil's mound
+                            {
+                                if (this.DTP() > 1260) //if the player cannot see the nest then the fegil will organize it
+                                {
+                                    scenicList[i].X = this.initX + Math.cos(rotexr) * plxer;
+                                    scenicList[i].Y = this.initY + Math.sin(rotexr) * plxer;
+                                }
+                            }
+                        }
+                    }
+                    this.hotsuper = superhot;
+                }
+
+                //this.deathChecker();
+                this.disturbedTimer();
+                this.visibleSight();
+                this.friendDecider();
+                this.targeting();
+
+                this.moving = false;
+
+                //object finders
+                var itemToCollect = "none";
+                if (this.alpha == true)
+                {
+                    for (var i = 0; i < worldItems.length; i++)
+                    {
+                        if (worldItems[i][0].dmx == this.dmx && worldItems[i][0].questy != true && worldItems[i][0].utility != "questItem")
+                        {
+                            if ((worldItems[i][0].weight + this.carryPac) <= this.carryCap)
+                            {
+                                if (this.DTU(worldItems[i][0]) < 6 * this.rangeOfSight)
+                                {
+                                    itemToCollect = worldItems[i];
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+                var bodyToHarvest = "none";
+                if (this.alpha != "baby")
+                {
+                    for (var i = 0; i < deadAIList.length; i++)
+                    {
+                        if (this.DTU(deadAIList[i]) < 8 * this.rangeOfSight)
+                        {
+                            bodyToHarvest = deadAIList[i];
+                            break;
+                        }
+                    }
+                }
+
+                if (this.target == player)
+                {
+                    var ddttpp = this.DTP();
+
+                    if (this.disturbed != true && player.getSurvivalism() >= 5 && player.weaponEquipped == "none" && ddttpp < this.rangeOfSight)
+                    {
+                        this.pointTowardsPlayer();
+
+                        if (ddttpp > 100) //keep a safe distance
+                        {
+                            this.moveInRelationToPlayer();
+                        }
+                    }
+                    else if (ddttpp < 300)
+                    {
+                        this.pointAwayFromPlayer();
+                        this.moveInRelationToPlayer();
+                    }
+                    else if (ddttpp) //todo if female try to collect dalger eggs
+                    {
+
+                    }
+                    else if (this.hunger < 3/4 * this.hungerMAX && bodyToHarvest != "none" && this.alpha != "baby" || this.stomachPac < this.stomachCap && bodyToHarvest != "none" && this.alpha != "baby") //todo collect items and food by scavenging dead bodies that are on the ground (males will take meterials and meat, whereas females just take meat)
+                    {
+
+                    }
+                    else if (this.alpha == true && itemToCollect != "none") //todo if male collect items that are on the ground
+                    {
+
+                    }
+                    else if (ddttpp) //todo if male collect items and food by scavenging plant material that are on the ground
+                    {
+
+                    }
+                    else
+                    {
+                        var startPoint = {X: this.initX, Y: this.initY};
+                        this.pointTowards(startPoint);
+                        this.moveInRelationToThing(startPoint);
+                    }
+
+
+                }
+                else if (this.target != "none")
+                {
+                    this.pointTowards(this.target);
+                    this.moveInRelationToThing(this.target);
+                }
             }
 
             //ANIMATIONS

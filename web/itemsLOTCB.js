@@ -2934,6 +2934,36 @@ function Item(type, x, y)
             this.buyValue = 3 - Math.floor(player.getCharisma() / 25); // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
         }
+        else if (this.type == "fegilRegurgitation")
+        {
+            //For All Items
+            this.identity = "Fegil Regurgitation";
+            this.weight = 0.5;
+            this.size = 8;
+            this.description = "The premasticated, partially digested, brown slop that is leftover from a fegil's last meal.";
+            this.intForDes = 1;
+            this.intDescription = "Fegils have an extra stomach just for producing this substance which they regurgitate for their babies to eat.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 2; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = -0.01; //heals health.
+            this.generation = -2; //recoops lost energy.
+            this.replenish = -3; //restores will.
+
+
+            //ability
+            this.ability = "foodPoisoning";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 0; // at max, buy for 0.
+            this.sellValue = 0; // at max, sell for 0.
+        }
         else if (this.type == "rawSilterFlesh")
         {
             //For All Items
@@ -41607,6 +41637,11 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "fegilRegurgitation")
+        {
+            XXX.beginPath();
+            XXX.drawImage(theng, 734, 876, 50, 41, X - this.X + (1/2 * CCC.width) - (1/2 * 50 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 41 * 0.8), 50 * 0.8, 41 * 0.8);
+        }
         else if (this.type == "mornidOozeRemains")
         {
             XXX.beginPath();
@@ -47043,6 +47078,11 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
+        else if (this.type == "fegilRegurgitation")
+        {
+            LXX.beginPath();
+            LXX.drawImage(theng, 734, 876, 50, 41, this.invX - (1/2 * 50 * 0.8), this.invY - (1/2 * 41 * 0.8), 50 * 0.8, 41 * 0.8);
+        }
         else if (this.type == "mornidOozeRemains")
         {
             LXX.beginPath();
@@ -52449,6 +52489,11 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "fegilRegurgitation")
+        {
+            XXX.beginPath();
+            XXX.drawImage(theng, 734, 876, 50, 41, this.invX - (1/2 * 50 * 0.8), this.invY - (1/2 * 41 * 0.8), 50 * 0.8, 41 * 0.8);
         }
         else if (this.type == "mornidOozeRemains")
         {

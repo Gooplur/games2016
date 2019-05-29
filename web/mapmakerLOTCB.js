@@ -185,11 +185,10 @@ function buildMaster()
                 //ArtificialIntelligenceAccess.push(new Unit(4100, 3200, "Ribback", false, "humpi"));
                 //ArtificialIntelligenceAccess.push(new Unit(4000, 2500, "Ribback", false, "humphump"));
                 //ArtificialIntelligenceAccess.push(new Unit(5000, 2400, "Ribback", true, "humpa"));
+                //ArtificialIntelligenceAccess.push(new Unit(3900, 2900, "Fegil", false, "hik"));
+                //ArtificialIntelligenceAccess.push(new Unit(3700, 2800, "Fegil", true, "hik"));
 
-                //ArtificialIntelligenceAccess.push(new Unit(3900, 2900, "Fegil", true, "hik"));
-                //scenicList.push(new Scenery("item", 3900, 2900, 0, "freynor", ["iron", 1, -7]));
-
-                scenicList.push(new Scenery("mrbAssets", 4500, 2400, 0, 9, 2));
+                //scenicList.push(new Scenery("mrbAssets", 4500, 2400, 0, 9, 2));
 
                 //scenicList.push(new Scenery("dethMasterHut", 3600, 2500, 0, 0, "deth1"));
                 //scenicList.push(new Scenery("dethTotem", 3600, 3400, 0, 0, "deth1"));
@@ -4444,6 +4443,82 @@ function buildMaster()
                 scenicList.push(new Scenery("stone", 38418, -5354,35, 0.5, 1)); //copied s-1-w-4
                 scenicList.push(new Scenery("stone", 38928, -8059,25, 1, 3)); //copied s-1-w-4
                 scenicList.push(new Scenery("stone", 38507, -12978,-28, 2.5, 2)); //copied s-1-w-4
+
+                ArtificialIntelligenceAccess.push(new Unit(33443.99874806966, -4329.908461053988, "Beruln", false ,"lzefurecon1"));
+                ArtificialIntelligenceAccess.push(new Unit(29464.009994560187, -6323.814025334209, "Beruln", true ,"lzefurecon2"));
+                ArtificialIntelligenceAccess.push(new Unit(30487.77582924173, -12139.53327954826, "Beruln", false ,"lzefurecon3"));
+                ArtificialIntelligenceAccess.push(new Unit(34508.88956814979, -11776.809334985592, "Beruln", false ,"lzefurecon4"));
+                ArtificialIntelligenceAccess.push(new Unit(31651.778034291063, -10385.545455549694, "Beruln", true ,"lzefurecon5"));
+                ArtificialIntelligenceAccess.push(new Unit(31754.994368712545, -7043.08834404736, "Beruln", false ,"lzefurecon6"));
+                ArtificialIntelligenceAccess.push(new Unit(32550.570603463286, -9213.079176774309, "Beruln", true ,"lzefurecon7"));
+                ArtificialIntelligenceAccess.push(new Unit(28610.756771413842, -10524.31293566551, "Beruln", false ,"lzefurecon8"));
+                ArtificialIntelligenceAccess.push(new Unit(30145.53658709277, -8150.856800313581, "Beruln", true ,"lzefurecon9"));
+
+
+                ArtificialIntelligenceAccess.push(new Unit(29422.70681958786, -10918.417474509653, "StoneGolem", false ,"idhrtbtdot1"));
+                ArtificialIntelligenceAccess.push(new Unit(29885.763734618416, -10441.053429139198, "StoneGolem", true ,"idhrtbtdot2"));
+                ArtificialIntelligenceAccess.push(new Unit(31016.294851415285, -5715.243948836595, "StoneGolem", "baby" ,"idhrtbtdot3"));
+                ArtificialIntelligenceAccess.push(new Unit(34237.39329016012, -6899.58585156638, "StoneGolem", false ,"idhrtbtdot4"));
+
+
+                ArtificialIntelligenceAccess.push(new Unit(35845.75064552452, -5594.641126701124, "MountainFrich", true, "shesalittlernawy1"));
+                ArtificialIntelligenceAccess.push(new Unit(29672.5811182259, -8958.470913967683, "MountainFrich", false, "shesalittlernawy2"));
+                ArtificialIntelligenceAccess.push(new Unit(35594.45555836797, -5858.825348653329, "MountainFrich", false, "shesalittlernawy3"));
+                ArtificialIntelligenceAccess.push(new Unit(30417.79004051657, -4328.913609758368, "MountainFrich", false, "shesalittlernawy3"));
+
+
+                ArtificialIntelligenceAccess.push(new Unit(32139.303070871538, -5832.157095416019, "GreyWolf", false ,"bsktplug1"));
+                ArtificialIntelligenceAccess.push(new Unit(32272.658734047163, -5939.101500108321, "GreyWolf", false ,"bsktplug2"));
+                ArtificialIntelligenceAccess.push(new Unit(32459.121317435056, -5850.232766805705, "GreyWolf", false ,"bsktplug3"));
+                ArtificialIntelligenceAccess.push(new Unit(36491.92250801385, -13251.542265475337, "GreyWolf", false ,"bsktplug3"));
+                ArtificialIntelligenceAccess.push(new Unit(36592.0642246696, -13192.17331313752, "GreyWolf", false ,"bsktplug3"));
+                ArtificialIntelligenceAccess.push(new Unit(36332.54225557709, -13174.579063531372, "GreyWolf", false ,"bsktplug3"));
+
+
+                ArtificialIntelligenceAccess.push(new Unit(33341.99011926019, -13256.157828203312, "Nog", true ,"deeeby1"));
+                ArtificialIntelligenceAccess.push(new Unit(33554.83281536385, -13194.210792410877, "Nog", true ,"deeeby2"));
+                ArtificialIntelligenceAccess.push(new Unit(32883.20569311604, -13019.621311163342, "Nog", false ,"deeeby3"));
+                ArtificialIntelligenceAccess.push(new Unit(35776.20248216203, -10029.628270189685, "Nog", true ,"deeezby1"));
+                ArtificialIntelligenceAccess.push(new Unit(35912.152759252815, -10140.062083769373, "Nog", false ,"deeezby2"));
+                ArtificialIntelligenceAccess.push(new Unit(35899.88100739941, -10191.157751922712, "Nog", true ,"deeezby3"));
+                ArtificialIntelligenceAccess.push(new Unit(36113.60914222368, -10084.479597143863, "Nog", true ,"deeezby4"));
+                ArtificialIntelligenceAccess.push(new Unit(35990.397882440215, -10018.228972855108, "Nog", false ,"deeezby5"));
+
+                scenicList.push(new Scenery("blood", 29460.23261923192, -6510.047672551112, 4, 1, 2));
+                scenicList.push(new Scenery("blood", 30040.649121284867, -8397.399257398487, 1.5, 2, 3));
+
+                scenicList.push(new Scenery("ashStone", 30595.151021132584, -10196.284846308965, -7.775, 2, 1));
+                scenicList.push(new Scenery("ashStone", 32662.470054519898, -11625.257614707987, -5.2, 1.5, 3));
+                scenicList.push(new Scenery("ashStone", 34170.64116524535, -7892.121602545835, -1.2, 1, 1));
+                scenicList.push(new Scenery("ashStone", 32690.56879613539, -8709.552689094433, 8.2, 3, 2));
+                scenicList.push(new Scenery("ashStone", 33645.70580110074, -12781.399589158453, 1.27, 2, 1));
+                scenicList.push(new Scenery("ashStone", 30361.86453120979, -13182.813371414188, 5.98, 1.5, 2));
+                scenicList.push(new Scenery("ashStone", 33638.236129350764, -4828.311673232744, 2.38, 1, 1));
+
+                scenicList.push(new Scenery("darkStone", 29220.12125778782, -10716.583633603199, -1, 4.5, 1));
+                scenicList.push(new Scenery("darkStone", 29549.26417417856, -10838.821813297303, -6, 1.5, 2));
+                scenicList.push(new Scenery("darkStone", 29663.639509956407, -8177.201496845512, -1, 4, 1));
+                scenicList.push(new Scenery("darkStone", 30413.564335977757, -8329.818101900031, -3.4, 2, 3));
+                scenicList.push(new Scenery("darkStone", 28647.627357401107, -9190.314686419812, 1.4, 1.5, 2));
+                scenicList.push(new Scenery("darkStone", 29530.700547533357, -8378.584793454256, -4.4, 1.5, 2));
+                scenicList.push(new Scenery("darkStone", 36518.40969074776, -9080.444250851524, -2.82, 1.5, 1));
+
+                scenicList.push(new Scenery("stone", 32171.829584707117, -5316.653312021226, -8.4, 2.5, 2));
+                scenicList.push(new Scenery("stone", 28213.06652223242, -7262.856175551138, 2.74, 1.5, 1));
+                scenicList.push(new Scenery("stone", 29376.004084556494, -6554.701954962197, 6.74, 2, 2));
+                scenicList.push(new Scenery("stone", 34907.181901520824, -9655.275947962777, 8.14, 1.5, 3));
+                scenicList.push(new Scenery("stone", 33547.69233008615, -10321.320004160285, -5.14, 2.5, 1));
+                scenicList.push(new Scenery("stone", 30830.047186264863, -6850.2971161714995, -4.93, 3.5, 2));
+
+                scenicList.push(new Scenery("skeleton", 30078.15616180353, -8405.53820770738, 1, 1.5));
+                scenicList.push(new Scenery("skeleton", 29974.675044607324, -8439.584471480513, 5, 1));
+
+
+                scenicList.push(new Scenery("haeflowerPlant", 31781.14644276998, -9020.726642155629, 7.3, true));
+                scenicList.push(new Scenery("haeflowerPlant", 31993.875023944827, -10927.822997819754, 2.34, true));
+                scenicList.push(new Scenery("haeflowerPlant", 34825.3280675003, -6373.809924982022, 1.324, true));
+
+                scenicList.push(new Scenery("cave", 31085, -8887, 0.8, [932, 36], "olkrinCave"));
 
 
                 change = "s1w3";
@@ -25122,6 +25197,98 @@ function buildMaster()
             if (Y < -10750)
             {
                 Y = 11800;
+            }
+        }
+    }
+    else if (map == "olkrinCave")
+    {
+        if (region == "olkrinCave")
+        {
+            if (change != "olkrinCave")
+            {
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
+                //Delete All Non-native AI Units
+                for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (!ArtificialIntelligenceAccess[i].guarantee)
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Structures
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
+
+                //barriers
+                barrierList.push(new Barrier((699.2775959526685), (-626.4157589439692), 610, 55, true));
+                barrierList.push(new Barrier((53.525631205374566), (-625.4873771085416), 599, 46, true));
+                barrierList.push(new Barrier((59.525631205374566), (-665.4873771085416), 40, 678, true));
+                barrierList.push(new Barrier((-201.30830598087573), (-58.62361297357552), 34, 300, true));
+                barrierList.push(new Barrier((700.5657995280674), (-59.358577294819156), 34, 300, true));
+                barrierList.push(new Barrier((-245.4796189509459), (-69.44429392578598), 944, 45, true));
+                barrierList.push(new Barrier((-253.19519507655968), (875.750368990627), 49, 427, true));
+                barrierList.push(new Barrier((98.80480492344032), (574.750368990627), 342, 49, true));
+                barrierList.push(new Barrier((99.78854284546219), (574.5061676967189), 49, 957, true));
+                barrierList.push(new Barrier((997.0312725235607), (-79.25240342488746), 1016, 49, true));
+
+                //REGION CREATION
+                //Build AI Units
+
+                //first room
+                var rndx = Math.random();
+                if (currentSeason == "Frost")
+                {
+                    if (rndx >= 0.55)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-35.91479298993537, 718.2031138716949, "Olkrin", false, "Vonklaove"));
+                    }
+                    else if (rndx >= 0.25)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(801.7774826257606, 252.92874679398903, "Olkrin", "baby", "Vonklaove"));
+                    }
+                    else if (rndx >= 0.15)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(407.2402681626587, -361.597244535653, "Olkrin", false, "Vonklaove"));
+                    }
+                    else
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(425.5992467516493, 357.74979540429297, "Olkrin", "baby", "Vonklaove"));
+                        ArtificialIntelligenceAccess.push(new Unit(411.9739910131497, 145.78208294963602, "Olkrin", "baby", "Vonklaove"));
+                    }
+                }
+                else
+                {
+                    if (rndx <= 0.25)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(425.5992467516493, 357.74979540429297, "Olkrin", "baby", "Vonklaove"));
+                    }
+                    else if (rndx <= 0.05)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(801.7774826257606, 252.92874679398903, "Olkrin", false, "Vonklaove"));
+                    }
+                }
+
+
+                //Build Scenery
+                scenicList.push(new Scenery("caveExit", 959, 16, 3.3/4 * Math.PI, [31111.6597044643, -8937.125409297807], "world"));
+
+                change = "olkrinCave";
             }
         }
     }

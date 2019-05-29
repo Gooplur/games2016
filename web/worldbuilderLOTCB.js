@@ -441,7 +441,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s1w3";
-            outlineBuilder( 34, 34, "outline", -122, 14); //todo crag
+            outlineBuilder( 34, 34, "crag", -122, 14);
         }
         //mapS1W4
         if (Y > -14144 && Y < -3328 && X < 48510 && X > 36883) //X-4
@@ -1258,6 +1258,17 @@ function worldBuilder()
         region = "sagesTrap";
 
         outlineBuilder( 80, 80, "molten", -40, -40);
+    }
+    else if (map == "olkrinCave") //This is a dungeon found in map W3
+    {
+        player.dmx = map;
+        player.underground = true;
+        elevation = -1; //underground temperatures are consistently -1 unless there is a certain closeness to magma...
+        region = "olkrinCave";
+        //starting chamber
+        outlineBuilder( 2, 4, "rock", 0, 0);
+        outlineBuilder( 2, 2, "rock", 1, 2);
+        outlineBuilder( 1, 1, "rock", 3, -1);
     }
     else if (map == "lethikCityPrison")
     {

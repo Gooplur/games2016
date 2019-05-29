@@ -16017,9 +16017,19 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.pregs = 0;
             this.lifetime = 0;
             this.faGenes = {};
+            this.babyDaddy = "none";
+
+            this.inv = [];
 
             this.fegilBase = "none";
             this.hotsuper = 0; //how good lookin it looks to potential mates
+            this.mamama = "none";
+            this.papapa = "none";
+            this.spitupGap = 0;
+
+            this.fegilKiddos = 0;
+
+            this.honkinRot = (2 * Math.random() * Math.PI);
 
             if (this.alpha == true) //male
             {
@@ -33419,6 +33429,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 }
 
                 this.drops = [];
+                for (var i = 0; i < this.inv.length; i++)
+                {
+                    this.drops.push([new Item(this.inv[i][0], this.X, this.Y), this.inv[i][1]]);
+                }
             }
             else if (this.alpha == "baby")
             {
@@ -33466,7 +33480,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 var superhot = 0;
                 //growing up
-                this.lifetime += 0.005;
+                this.lifetime += 0.001;
                 if (this.alpha == "baby" && this.lifetime >= 5)
                 {
                     this.alpha = Math.round(Math.random());
@@ -33535,7 +33549,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 }
 
                 //hunger system
-                this.hunger -= 0.00025;
+                this.hunger -= 0.0025;
                 if (this.hunger <= 0)
                 {
                     this.hunger = 0;
@@ -33543,23 +33557,44 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     this.killNotByPlayer = true;
                 }
 
+                //count the daddy fegil's (kids + 1 each) and expected (kids + 0.5 each)
+                if (this.alpha == true && this.aiTimer > 2)
+                {
+                    this.fegilKiddos = 0;
+                    this.aiTimer = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].type == "Fegil")
+                        {
+                            if (ArtificialIntelligenceAccess[i].alpha == false && ArtificialIntelligenceAccess[i].babyDaddy == this.barcode)
+                            {
+                                this.fegilKiddos += 1;
+                            }
+                            else if (ArtificialIntelligenceAccess[i].alpha == "baby" && ArtificialIntelligenceAccess[i].papapa == this.barcode)
+                            {
+                                this.fegilKiddos += 1;
+                            }
+                        }
+                    }
+                }
+
                 if (this.alpha == true && this.fegilBase == "none")
                 {
                     this.fegilBase = true;
-                    scenicList.push(new Scenery("fegilMound", this.X, this.Y, true, this.barcode));
+                    scenicList.push(new Scenery("fegilMound", this.X, this.Y, 2*Math.random()*Math.PI, true, this.barcode));
                     this.initX = this.X;
                     this.initY = this.Y;
                 }
 
                 if (this.fegilBase == true)
                 {
-                    var organizara = false; //todo was false
+                    var organizara = false;
                     for (var i = 0; i < scenicList.length; i++)
                     {
-                        if (scenicList[i].type == "fegilMound" && scenicList[i].information)
+                        if (scenicList[i].type == "fegilMound" && scenicList[i].information == this.barcode)
                         {
                             superhot += 5;
-                            if (this.DTU(scenicList[i]) < 100) //nearness to the mound allows the fegil to organize the items they have collected.
+                            if (this.DTU(scenicList[i]) < 200) //nearness to the mound allows the fegil to organize the items they have collected.
                             {
                                 organizara = true;
                             }
@@ -33585,6 +33620,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             }
                             var thisItem = new Item(scenicList[i].information[0], scenicList[i].X, scenicList[i].Y);
                             thisItem.setItemID();
+
                             if (thisItem.type == "coins")
                             {
                                 superhot += 0.5 * scenicList[i].information[1];
@@ -33594,7 +33630,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                                 superhot += thisItem.weight * scenicList[i].information[1];
                             }
 
-                            if (organizara == true && thisItem.type != "coins") //actually organize the items near the fegil's mound
+                            if (organizara == true && thisItem.type != "coins" && thisItem.type != "fegilRegurgitation") //actually organize the items near the fegil's mound
                             {
                                 if (this.DTP() > 1260) //if the player cannot see the nest then the fegil will organize it
                                 {
@@ -33617,6 +33653,8 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
                 //object finders
                 var itemToCollect = "none";
+                var nearestItem = 1000000000;
+                var nearItmId = -1;
                 if (this.alpha == true)
                 {
                     for (var i = 0; i < worldItems.length; i++)
@@ -33625,33 +33663,289 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         {
                             if ((worldItems[i][0].weight + this.carryPac) <= this.carryCap)
                             {
-                                if (this.DTU(worldItems[i][0]) < 6 * this.rangeOfSight)
+                                var dddtttuuu = this.DTU(worldItems[i][0]);
+                                if (dddtttuuu < 3 * this.rangeOfSight)
                                 {
-                                    itemToCollect = worldItems[i];
-                                    break;
+                                    if (dddtttuuu < nearestItem)
+                                    {
+                                        nearestItem = dddtttuuu;
+                                        nearItmId = i;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    if (nearItmId > -1)
+                    {
+                        itemToCollect = worldItems[nearItmId];
+                    }
+                }
+                var bodyToHarvest = "none";
+                var bodyNearest = 10000000000000000;
+                var bodIdd = - 1;
+                if (this.alpha != "baby")
+                {
+                    for (var i = 0; i < deadAIList.length; i++)
+                    {
+                        if (deadAIList[i].vamprism != true)
+                        {
+                            var dddtttuuu = this.DTU(deadAIList[i]);
+                            if (dddtttuuu < 4 * this.rangeOfSight)
+                            {
+                                if (dddtttuuu < bodyNearest)
+                                {
+                                    bodIdd = i;
+                                    bodyNearest = dddtttuuu;
+                                }
+                            }
+                        }
+                    }
+                    if (bodIdd > -1)
+                    {
+                        bodyToHarvest = deadAIList[bodIdd];
+                    }
+                }
+                var dalegg = "none";
+                var dalgeggNear = 100000000000000000;
+                var dalgerEggIdd = -1;
+                if (this.alpha == false)
+                {
+                    for (var i = 0; i < scenicList.length; i++)
+                    {
+                        if (scenicList[i].type == "dalgerEgg" && scenicList[i].phase == 1)
+                        {
+                            var dddtttuuu = this.DTU(scenicList[i])
+                            if (dddtttuuu < 5 * this.rangeOfSight)
+                            {
+                                if (dddtttuuu < dalgeggNear)
+                                {
+                                    dalgeggNear = dddtttuuu;
+                                    dalgerEggIdd = i;
+                                }
+                            }
+                        }
+                    }
+                    if (dalgerEggIdd > -1)
+                    {
+                        dalegg = scenicList[dalgerEggIdd];
+                    }
+                }
+
+                var hungryYung = "none";
+                var isMama = false;
+                if (this.alpha != "baby")
+                {
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].type == "Fegil" && ArtificialIntelligenceAccess[i].alpha == "baby")
+                        {
+                            if (this.barcode == ArtificialIntelligenceAccess[i].mamama || this.barcode == ArtificialIntelligenceAccess[i].papapa)
+                            {
+                                if (this.alpha == false)
+                                {
+                                    isMama = true;
+                                }
+
+                                if (ArtificialIntelligenceAccess[i].hunger <= 1/2 * ArtificialIntelligenceAccess[i].hungerMAX)
+                                {
+                                    hungryYung = ArtificialIntelligenceAccess[i];
                                 }
                             }
                         }
                     }
                 }
-                var bodyToHarvest = "none";
-                if (this.alpha != "baby")
+                var spitupYummies = "none";
+                var spitupNearness = 100000000000000000;
+                var spituppId = -1;
+                for (var i = 0; i < scenicList.length; i++)
                 {
-                    for (var i = 0; i < deadAIList.length; i++)
+                    if (scenicList[i].type == "item")
                     {
-                        if (this.DTU(deadAIList[i]) < 8 * this.rangeOfSight)
+                        if (scenicList[i].information[0] == "fegilRegurgitation")
                         {
-                            bodyToHarvest = deadAIList[i];
-                            break;
+                            var dddttuuu = this.DTU(scenicList[i])
+                            if (dddttuuu < 3 * this.rangeOfSight)
+                            {
+                                if (dddttuuu < spitupNearness)
+                                {
+                                    spitupNearness = dddttuuu;
+                                    spituppId = i;
+                                }
+                            }
                         }
                     }
+                }
+                if (spituppId > -1)
+                {
+                    spitupYummies = scenicList[spituppId];
+                }
+
+                var mate = "none";
+                if (this.alpha == false)
+                {
+                    var higghestHots = 0;
+                    var hesAKeeper = -1;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].type == "Fegil" && ArtificialIntelligenceAccess[i].alpha == true)
+                        {
+                            if (this.papapa != ArtificialIntelligenceAccess[i].barcode && ArtificialIntelligenceAccess[i].mamama != this)
+                            {
+                                if (this.babyDaddy == ArtificialIntelligenceAccess[i].barcode || (ArtificialIntelligenceAccess[i].hotsuper - this.fegilKiddos) > higghestHots || higghestHots == 0)
+                                {
+                                    hesAKeeper = i;
+                                    higghestHots = ArtificialIntelligenceAccess[i].hotsuper;
+                                    if (this.babyDaddy == ArtificialIntelligenceAccess[i].barcode)
+                                    {
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    if (hesAKeeper > -1)
+                    {
+                        mate = ArtificialIntelligenceAccess[hesAKeeper];
+                    }
+                }
+
+                if (this.pregs >= 62 && mate != this.babyDaddy)
+                {
+                    var bbyDad = "none";
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].type == "Fegil")
+                        {
+                            if (ArtificialIntelligenceAccess[i].barcode == this.babyDaddy)
+                            {
+                                bbyDad = ArtificialIntelligenceAccess[i];
+                                break;
+                            }
+                        }
+                    }
+
+                    this.pregs = 0;
+                    for (var i = 0; i < 2; i++)
+                    {
+                        var fegilBubby = new Unit(this.X + spacer(12), this.Y + spacer(12), "Fegil", "baby", this.ID);
+                        fegilBubby.genes.str = (this.genes.str + this.faGenes.str) / 2;
+                        fegilBubby.genes.con = (this.genes.con + this.faGenes.con) / 2;
+                        fegilBubby.genes.spd = (this.genes.spd + this.faGenes.spd) / 2;
+                        fegilBubby.genes.per = (this.genes.per + this.faGenes.per) / 2;
+                        fegilBubby.mamama = this.barcode;
+                        fegilBubby.papapa = this.babyDaddy;
+                        fegilBubby.baseTeam = this.baseTeam;
+                        if (bbyDad != "none")
+                        {
+                            fegilBubby.initX = bbyDad.initX;
+                            fegilBubby.initY = bbyDad.initY;
+                        }
+
+                        ArtificialIntelligenceAccess.push(fegilBubby);
+                    }
+                    this.babyDaddy = "none";
+                    this.faGenes = {};
+                }
+
+                if (this.alpha == false)
+                {
+                    this.horny += 0.02;
+                    if (this.pregs > 0)
+                    {
+                        this.pregs += 0.015;
+                        this.horny = -130;
+                    }
+                }
+
+                if (itemToCollect != "none" && this.alpha == true && this.DTU({X: this.initX, Y: this.initY}) < 20)
+                {
+                    for (var i = 0; i < this.inv.length; i++)
+                    {
+                        scenicList.push(new Scenery("item", this.X + spacer(25), this.Y + spacer(25), 0, false, [this.inv[i][0], this.inv[i][1], 0]));
+                    }
+                    this.carryPac = 0;
+                    this.inv = [];
                 }
 
                 if (this.target == player)
                 {
                     var ddttpp = this.DTP();
 
-                    if (this.disturbed != true && player.getSurvivalism() >= 5 && player.weaponEquipped == "none" && ddttpp < this.rangeOfSight)
+                    if (this.lifeTime >= 4.7 && this.alpha == "baby")
+                    {
+                        var honkurit = {X: this.initX + Math.cos(this.honkinRot) * 820, Y: this.initY + Math.sin(this.honkinRot) * 820};
+                        this.pointTowards(honkurit);
+                        this.moveInRelationToThing(honkurit, 100000);
+                        this.hunger = this.hungerMAX;
+                    }
+                    else if (hungryYung != "none" && this.stomachPac >= 1 && this.alpha != "baby") //restore food to hungry babies
+                    {
+                        this.spitupGap -= 1;
+                        this.pointTowards(hungryYung);
+                        this.moveInRelationToThing(hungryYung, 100000);
+                        if (this.DTU(hungryYung) <= this.engagementRadius + 12 && this.spitupGap <= 0)
+                        {
+                            this.spitupGap = 100;
+                            this.stomachPac -= 1;
+                            scenicList.push(new Scenery("item", this.X + spacer(10), this.Y + spacer(10), 0, false, ["fegilRegurgitation", 1, 0]));
+                        }
+                    }
+                    else if (this.alpha == false && this.pregs >= 62 && mate != "none") //birthing at the father's nest
+                    {
+                        var mateHome = {X: mate.initX, Y: mate.initY}
+                        this.pointTowards(mateHome);
+                        this.moveInRelationToThing(mateHome, 100000);
+                        if (this.DTU(mateHome) <= this.engagementRadius + 2)
+                        {
+                            this.pregs = 0;
+                            for (var i = 0; i < 2; i++)
+                            {
+                                var fegilBubby = new Unit(this.X + spacer(12), this.Y + spacer(12), "Fegil", "baby", this.ID);
+                                fegilBubby.genes.str = (this.genes.str + this.faGenes.str) / 2;
+                                fegilBubby.genes.con = (this.genes.con + this.faGenes.con) / 2;
+                                fegilBubby.genes.spd = (this.genes.spd + this.faGenes.spd) / 2;
+                                fegilBubby.genes.per = (this.genes.per + this.faGenes.per) / 2;
+                                fegilBubby.mamama = this.barcode;
+                                fegilBubby.papapa = this.babyDaddy;
+                                fegilBubby.baseTeam = this.baseTeam;
+                                fegilBubby.initX = mate.initX;
+                                fegilBubby.initY = mate.initY;
+
+                                ArtificialIntelligenceAccess.push(fegilBubby);
+                            }
+                            this.babyDaddy = "none";
+                            this.faGenes = {};
+
+                        }
+                    }
+                    else if (this.alpha == false && this.horny >= 50 && this.pregs == 0 && mate != "none") //sleep around with the richest guy
+                    {
+                        this.pointTowards(mate);
+                        this.moveInRelationToThing(mate, 100000);
+                        if (this.DTU(mate) <= this.engagementRadius + 2)
+                        {
+                            this.X = mate.X;
+                            this.Y = mate.Y;
+                            this.horny = -130;
+                            this.pregs = 1;
+                            this.babyDaddy = mate.barcode;
+                            this.faGenes = mate.genes;
+
+                        }
+                    }
+                    else if (this.alpha == "baby" && this.hunger <= 1/2 * this.hungerMAX && spitupYummies != "none") //baby eating
+                    {
+                        this.pointTowards(spitupYummies);
+                        this.moveInRelationToThing(spitupYummies, 100000);
+                        if (this.DTU(spitupYummies) <= this.engagementRadius + 2)
+                        {
+                            this.hunger = this.hungerMAX;
+                            this.stomachPac = this.stomachCap;
+                            this.health = this.healthMAX;
+                            scenicList.splice(scenicList.indexOf(spitupYummies), 1);
+                        }
+                    }
+                    else if (this.alpha != "baby" && this.disturbed != true && player.getSurvivalism() >= 5 && player.weaponEquipped == "none" && ddttpp < this.rangeOfSight) //interest in the player
                     {
                         this.pointTowardsPlayer();
 
@@ -33660,40 +33954,597 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             this.moveInRelationToPlayer();
                         }
                     }
-                    else if (ddttpp < 300)
+                    else if (ddttpp < 100) //fear of the player
                     {
                         this.pointAwayFromPlayer();
                         this.moveInRelationToPlayer();
                     }
-                    else if (ddttpp) //todo if female try to collect dalger eggs
+                    else if (this.alpha == false && dalegg != "none" && this.stomachPac <= 0) //females harvest eggs from dalgers
                     {
-
+                        this.pointTowards(dalegg);
+                        this.moveInRelationToThing(dalegg, 100000);
+                        if (this.DTU(dalegg) <= this.engagementRadius + 2)
+                        {
+                            dalegg.phase = 0;
+                            this.stomachPac = this.stomachCap;
+                            this.hunger = this.hungerMAX;
+                        }
                     }
-                    else if (this.hunger < 3/4 * this.hungerMAX && bodyToHarvest != "none" && this.alpha != "baby" || this.stomachPac < this.stomachCap && bodyToHarvest != "none" && this.alpha != "baby") //todo collect items and food by scavenging dead bodies that are on the ground (males will take meterials and meat, whereas females just take meat)
+                    else if (this.hunger < 3/4 * this.hungerMAX && bodyToHarvest != "none" && this.alpha != "baby" || this.stomachPac <= 0 && bodyToHarvest != "none" && this.alpha != "baby") //collect items and food by scavenging dead bodies that are on the ground (males will take materials and eat the corpse, females just eat the corpse)
                     {
+                        this.pointTowards(bodyToHarvest);
+                        this.moveInRelationToThing(bodyToHarvest, 100000);
+                        if (this.DTU(bodyToHarvest) <= this.engagementRadius + 2)
+                        {
+                            if (bodyToHarvest.healthMAX >= (((this.hungerMAX - this.hunger) / 2) + (this.stomachCap - this.stomachPac)))
+                            {
+                                bodyToHarvest.healthMAX -= (((this.hungerMAX - this.hunger) / 2) + (this.stomachCap - this.stomachPac));
+                                this.hunger = this.hungerMAX;
+                                this.stomachPac = this.stomachCap;
+                            }
+                            else if (bodyToHarvest.healthMAX >= ((this.hungerMAX - this.hunger) / 2))
+                            {
+                                this.hunger = this.hungerMAX;
+                                bodyToHarvest.healthMAX -= ((this.hungerMAX - this.hunger) / 2);
+                                this.stomachPac += Math.min(this.stomachCap, bodyToHarvest.healthMAX);
+                            }
+                            else
+                            {
+                                this.hunger += bodyToHarvest.healthMAX;
+                                bodyToHarvest.healthMAX = 0;
+                            }
 
+                            //take their stuff and delete their body if their max health is used up (if male)
+                            if (this.alpha == true)
+                            {
+                                for (var i = 0; i < bodyToHarvest.drops.length; i++)
+                                {
+                                    for (var k = 0; k < bodyToHarvest.drops[i][1]; k++)
+                                    {
+                                        if (bodyToHarvest.drops[i][0].utility != "food" && bodyToHarvest.drops[i][0].utility != "questItem" && bodyToHarvest.drops[i][0].questy != true && (bodyToHarvest.drops[i][0].weight + this.carryPac) <= this.carryCap && bodyToHarvest.drops[i][1] >= 1)
+                                        {
+                                            var hitz = false;
+                                            this.carryPac += bodyToHarvest.drops[i][0].weight;
+                                            for (var j = 0; j < this.inv; j++)
+                                            {
+                                                if (this.inv[j][0] == bodyToHarvest.drops[i][0].type)
+                                                {
+                                                    bodyToHarvest.drops[i][1] -= 1;
+                                                    this.inv[j][1] += 1;
+                                                    hitz = true;
+                                                    break;
+                                                }
+                                            }
+
+                                            if (hitz == false)
+                                            {
+                                                this.inv.push([bodyToHarvest.drops[i][0].type], 1);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            if (bodyToHarvest.healthMAX <= 0)
+                            {
+                                deadAIList.splice(deadAIList.indexOf(bodyToHarvest), 1);
+                            }
+                        }
                     }
-                    else if (this.alpha == true && itemToCollect != "none") //todo if male collect items that are on the ground
+                    else if (this.alpha == true && itemToCollect != "none") //males collect items that are on the ground
                     {
+                        this.pointTowards(itemToCollect[0]);
+                        this.moveInRelationToThing(itemToCollect[0], 100000);
+                        if (this.DTU(itemToCollect[0]) <= this.engagementRadius + 2)
+                        {
+                            if (itemToCollect[0].utility == "food" && itemToCollect[0].subUtility != "reusable")
+                            {
+                                this.hunger = this.hungerMAX;
+                                this.stomachPac = this.stomachCap;
+                                worldItems.splice(worldItems.indexOf(itemToCollect), 1);
+                            }
+                            else
+                            {
+                                if ((itemToCollect[0].weight + this.carryPac) <= this.carryCap && itemToCollect[1] >= 1)
+                                {
+                                    var hitz = false;
+                                    this.carryPac += itemToCollect[0].weight;
+                                    for (var j = 0; j < this.inv.length; j++)
+                                    {
+                                        if (this.inv[j][0] == itemToCollect[0].type)
+                                        {
+                                            itemToCollect[1] -= 1;
+                                            this.inv[j][1] += 1;
+                                            hitz = true;
+                                            break;
+                                        }
+                                    }
 
+                                    if (hitz == false)
+                                    {
+                                        itemToCollect[1] -= 1;
+                                        this.inv.push([itemToCollect[0].type, 1]);
+                                    }
+                                }
+                                if (itemToCollect[1] <= 0)
+                                {
+                                    worldItems.splice(worldItems.indexOf(itemToCollect), 1);
+                                }
+                            }
+                        }
                     }
-                    else if (ddttpp) //todo if male collect items and food by scavenging plant material that are on the ground
+                    else if (this.hunger < 1/3 * this.hungerMAX && this.stomachPac > 0) //eat one of the backup food storage
                     {
-
+                        this.stomachPac -= 1;
+                        this.hunger = this.hungerMAX;
                     }
-                    else
+                    else //go home and drop off goods
                     {
                         var startPoint = {X: this.initX, Y: this.initY};
-                        this.pointTowards(startPoint);
-                        this.moveInRelationToThing(startPoint);
+
+                        if (this.DTU(startPoint) <= this.engagementRadius + 2)
+                        {
+                            if (this.inv.length > 0 && this.alpha == true)
+                            {
+                                for (var i = 0; i < this.inv.length; i++)
+                                {
+                                    scenicList.push(new Scenery("item", this.X + spacer(25), this.Y + spacer(25), 0, false, [this.inv[i][0], this.inv[i][1], 0]));
+                                }
+                                this.carryPac = 0;
+                                this.inv = [];
+                            }
+                            this.moving = false;
+                        }
+                        else
+                        {
+                            this.pointTowards(startPoint);
+                            this.moveInRelationToThing(startPoint, 100000);
+                        }
                     }
-
-
                 }
                 else if (this.target != "none")
                 {
-                    this.pointTowards(this.target);
-                    this.moveInRelationToThing(this.target);
+                    var ddttpp = this.DTU(this.target);
+
+                    if (this.lifeTime >= 4.7 && this.alpha == "baby")
+                    {
+                        var honkurit = {X: this.initX + Math.cos(this.honkinRot) * 820, Y: this.initY + Math.sin(this.honkinRot) * 820};
+                        this.pointTowards(honkurit);
+                        this.moveInRelationToThing(honkurit, 100000);
+                        this.hunger = this.hungerMAX;
+                    }
+                    else if (hungryYung != "none" && this.stomachPac >= 1 && this.alpha != "baby") //restore food to hungry babies
+                    {
+                        this.spitupGap -= 1;
+                        this.pointTowards(hungryYung);
+                        this.moveInRelationToThing(hungryYung, 100000);
+                        if (this.DTU(hungryYung) <= this.engagementRadius + 12 && this.spitupGap <= 0)
+                        {
+                            this.spitupGap = 100;
+                            this.stomachPac -= 1;
+                            scenicList.push(new Scenery("item", this.X + spacer(10), this.Y + spacer(10), 0, false, ["fegilRegurgitation", 1, 0]));
+                        }
+                    }
+                    else if (this.alpha == false && this.pregs >= 62 && mate != "none") //birthing at the father's nest
+                    {
+                        var mateHome = {X: mate.initX, Y: mate.initY}
+                        this.pointTowards(mateHome);
+                        this.moveInRelationToThing(mateHome, 100000);
+                        if (this.DTU(mateHome) <= this.engagementRadius + 2)
+                        {
+                            this.pregs = 0;
+                            for (var i = 0; i < 2; i++)
+                            {
+                                var fegilBubby = new Unit(this.X + spacer(12), this.Y + spacer(12), "Fegil", "baby", this.ID);
+                                fegilBubby.genes.str = (this.genes.str + this.faGenes.str) / 2;
+                                fegilBubby.genes.con = (this.genes.con + this.faGenes.con) / 2;
+                                fegilBubby.genes.spd = (this.genes.spd + this.faGenes.spd) / 2;
+                                fegilBubby.genes.per = (this.genes.per + this.faGenes.per) / 2;
+                                fegilBubby.mamama = this.barcode;
+                                fegilBubby.papapa = this.babyDaddy;
+                                fegilBubby.baseTeam = this.baseTeam;
+                                fegilBubby.initX = mate.initX;
+                                fegilBubby.initY = mate.initY;
+
+                                ArtificialIntelligenceAccess.push(fegilBubby);
+                            }
+                            this.babyDaddy = "none";
+                            this.faGenes = {};
+
+                        }
+                    }
+                    else if (this.alpha == false && this.horny >= 50 && this.pregs == 0 && mate != "none") //sleep around with the richest guy
+                    {
+                        this.pointTowards(mate);
+                        this.moveInRelationToThing(mate, 100000);
+                        if (this.DTU(mate) <= this.engagementRadius + 2)
+                        {
+                            this.X = mate.X;
+                            this.Y = mate.Y;
+                            this.horny = -130;
+                            this.pregs = 1;
+                            this.babyDaddy = mate.barcode;
+                            this.faGenes = mate.genes;
+
+                        }
+                    }
+                    else if (this.alpha == "baby" && this.hunger <= 1/2 * this.hungerMAX && spitupYummies != "none") //baby eating
+                    {
+                        this.pointTowards(spitupYummies);
+                        this.moveInRelationToThing(spitupYummies, 100000);
+                        if (this.DTU(spitupYummies) <= this.engagementRadius + 2)
+                        {
+                            this.hunger = this.hungerMAX;
+                            this.stomachPac = this.stomachCap;
+                            this.health = this.healthMAX;
+                            scenicList.splice(scenicList.indexOf(spitupYummies), 1);
+                        }
+                    }
+                    else if (this.alpha == true && ddttpp < 100 || this.alpha == false && this.target.type == "Dalger" && ddttpp < 50 || this.alpha == false && this.target.type != "Dalger" && ddttpp < 90) //fear of the player
+                    {
+                        this.pointAway(this.target);
+                        this.moveInRelationToThing(this.target, 100000);
+                    }
+                    else if (this.alpha == false && dalegg != "none" && this.stomachPac <= 0) //females harvest eggs from dalgers
+                    {
+                        this.pointTowards(dalegg);
+                        this.moveInRelationToThing(dalegg, 100000);
+                        if (this.DTU(dalegg) <= this.engagementRadius + 2)
+                        {
+                            dalegg.phase = 0;
+                            this.stomachPac = this.stomachCap;
+                            this.hunger = this.hungerMAX;
+                        }
+                    }
+                    else if (this.hunger < 3/4 * this.hungerMAX && bodyToHarvest != "none" && this.alpha != "baby" || this.stomachPac <= 0 && bodyToHarvest != "none" && this.alpha != "baby") //collect items and food by scavenging dead bodies that are on the ground (males will take materials and eat the corpse, females just eat the corpse)
+                    {
+                        this.pointTowards(bodyToHarvest);
+                        this.moveInRelationToThing(bodyToHarvest, 100000);
+                        if (this.DTU(bodyToHarvest) <= this.engagementRadius + 2)
+                        {
+                            if (bodyToHarvest.healthMAX >= (((this.hungerMAX - this.hunger) / 2) + (this.stomachCap - this.stomachPac)))
+                            {
+                                bodyToHarvest.healthMAX -= (((this.hungerMAX - this.hunger) / 2) + (this.stomachCap - this.stomachPac));
+                                this.hunger = this.hungerMAX;
+                                this.stomachPac = this.stomachCap;
+                            }
+                            else if (bodyToHarvest.healthMAX >= ((this.hungerMAX - this.hunger) / 2))
+                            {
+                                this.hunger = this.hungerMAX;
+                                bodyToHarvest.healthMAX -= ((this.hungerMAX - this.hunger) / 2);
+                                this.stomachPac += Math.min(this.stomachCap, bodyToHarvest.healthMAX);
+                            }
+                            else
+                            {
+                                this.hunger += bodyToHarvest.healthMAX;
+                                bodyToHarvest.healthMAX = 0;
+                            }
+
+                            //take their stuff and delete their body if their max health is used up (if male)
+                            if (this.alpha == true)
+                            {
+                                for (var i = 0; i < bodyToHarvest.drops.length; i++)
+                                {
+                                    for (var k = 0; k < bodyToHarvest.drops[i][1]; k++)
+                                    {
+                                        if (bodyToHarvest.drops[i][0].utility != "food" && bodyToHarvest.drops[i][0].utility != "questItem" && bodyToHarvest.drops[i][0].questy != true && (bodyToHarvest.drops[i][0].weight + this.carryPac) <= this.carryCap && bodyToHarvest.drops[i][1] >= 1)
+                                        {
+                                            var hitz = false;
+                                            this.carryPac += bodyToHarvest.drops[i][0].weight;
+                                            for (var j = 0; j < this.inv; j++)
+                                            {
+                                                if (this.inv[j][0] == bodyToHarvest.drops[i][0].type)
+                                                {
+                                                    bodyToHarvest.drops[i][1] -= 1;
+                                                    this.inv[j][1] += 1;
+                                                    hitz = true;
+                                                    break;
+                                                }
+                                            }
+
+                                            if (hitz == false)
+                                            {
+                                                this.inv.push([bodyToHarvest.drops[i][0].type], 1);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            if (bodyToHarvest.healthMAX <= 0)
+                            {
+                                deadAIList.splice(deadAIList.indexOf(bodyToHarvest), 1);
+                            }
+                        }
+                    }
+                    else if (this.alpha == true && itemToCollect != "none") //males collect items that are on the ground
+                    {
+                        this.pointTowards(itemToCollect[0]);
+                        this.moveInRelationToThing(itemToCollect[0], 100000);
+                        if (this.DTU(itemToCollect[0]) <= this.engagementRadius + 2)
+                        {
+                            if (itemToCollect[0].utility == "food" && itemToCollect[0].subUtility != "reusable")
+                            {
+                                this.hunger = this.hungerMAX;
+                                this.stomachPac = this.stomachCap;
+                                worldItems.splice(worldItems.indexOf(itemToCollect), 1);
+                            }
+                            else
+                            {
+                                if ((itemToCollect[0].weight + this.carryPac) <= this.carryCap && itemToCollect[1] >= 1)
+                                {
+                                    var hitz = false;
+                                    this.carryPac += itemToCollect[0].weight;
+                                    for (var j = 0; j < this.inv.length; j++)
+                                    {
+                                        if (this.inv[j][0] == itemToCollect[0].type)
+                                        {
+                                            itemToCollect[1] -= 1;
+                                            this.inv[j][1] += 1;
+                                            hitz = true;
+                                            break;
+                                        }
+                                    }
+
+                                    if (hitz == false)
+                                    {
+                                        itemToCollect[1] -= 1;
+                                        this.inv.push([itemToCollect[0].type, 1]);
+                                    }
+                                }
+                                if (itemToCollect[1] <= 0)
+                                {
+                                    worldItems.splice(worldItems.indexOf(itemToCollect), 1);
+                                }
+                            }
+                        }
+                    }
+                    else if (this.hunger < 1/3 * this.hungerMAX && this.stomachPac > 0) //eat one of the backup food storage
+                    {
+                        this.stomachPac -= 1;
+                        this.hunger = this.hungerMAX;
+                    }
+                    else //go home and drop off goods
+                    {
+                        var startPoint = {X: this.initX, Y: this.initY};
+
+                        if (this.DTU(startPoint) <= this.engagementRadius + 2)
+                        {
+                            if (this.inv.length > 0 && this.alpha == true)
+                            {
+                                for (var i = 0; i < this.inv.length; i++)
+                                {
+                                    scenicList.push(new Scenery("item", this.X + spacer(25), this.Y + spacer(25), 0, false, [this.inv[i][0], this.inv[i][1], 0]));
+                                }
+                                this.carryPac = 0;
+                                this.inv = [];
+                            }
+                            this.moving = false;
+                        }
+                        else
+                        {
+                            this.pointTowards(startPoint);
+                            this.moveInRelationToThing(startPoint, 100000);
+                        }
+                    }
+                }
+                else
+                {
+                    var ddttpp = 1000000000000000000;
+
+                    if (this.lifeTime >= 4.7 && this.alpha == "baby")
+                    {
+                        var honkurit = {X: this.initX + Math.cos(this.honkinRot) * 820, Y: this.initY + Math.sin(this.honkinRot) * 820};
+                        this.pointTowards(honkurit);
+                        this.moveInRelationToThing(honkurit, 100000);
+                        this.hunger = this.hungerMAX;
+                    }
+                    else if (hungryYung != "none" && this.stomachPac >= 1 && this.alpha != "baby") //restore food to hungry babies
+                    {
+                        this.spitupGap -= 1;
+                        this.pointTowards(hungryYung);
+                        this.moveInRelationToThing(hungryYung, 100000);
+                        if (this.DTU(hungryYung) <= this.engagementRadius + 12 && this.spitupGap <= 0)
+                        {
+                            this.spitupGap = 100;
+                            this.stomachPac -= 1;
+                            scenicList.push(new Scenery("item", this.X + spacer(10), this.Y + spacer(10), 0, false, ["fegilRegurgitation", 1, 0]));
+                        }
+                    }
+                    else if (this.alpha == false && this.pregs >= 62 && mate != "none") //birthing at the father's nest
+                    {
+                        var mateHome = {X: mate.initX, Y: mate.initY}
+                        this.pointTowards(mateHome);
+                        this.moveInRelationToThing(mateHome, 100000);
+                        if (this.DTU(mateHome) <= this.engagementRadius + 2)
+                        {
+                            this.pregs = 0;
+                            for (var i = 0; i < 2; i++)
+                            {
+                                var fegilBubby = new Unit(this.X + spacer(12), this.Y + spacer(12), "Fegil", "baby", this.ID);
+                                fegilBubby.genes.str = (this.genes.str + this.faGenes.str) / 2;
+                                fegilBubby.genes.con = (this.genes.con + this.faGenes.con) / 2;
+                                fegilBubby.genes.spd = (this.genes.spd + this.faGenes.spd) / 2;
+                                fegilBubby.genes.per = (this.genes.per + this.faGenes.per) / 2;
+                                fegilBubby.mamama = this.barcode;
+                                fegilBubby.papapa = this.babyDaddy;
+                                fegilBubby.baseTeam = this.baseTeam;
+                                fegilBubby.initX = mate.initX;
+                                fegilBubby.initY = mate.initY;
+
+                                ArtificialIntelligenceAccess.push(fegilBubby);
+                            }
+                            this.babyDaddy = "none";
+                            this.faGenes = {};
+
+                        }
+                    }
+                    else if (this.alpha == false && this.horny >= 50 && this.pregs == 0 && mate != "none") //sleep around with the richest guy
+                    {
+                        this.pointTowards(mate);
+                        this.moveInRelationToThing(mate, 100000);
+                        if (this.DTU(mate) <= this.engagementRadius + 2)
+                        {
+                            this.X = mate.X;
+                            this.Y = mate.Y;
+                            this.horny = -130;
+                            this.pregs = 1;
+                            this.babyDaddy = mate.barcode;
+                            this.faGenes = mate.genes;
+
+                        }
+                    }
+                    else if (this.alpha == "baby" && this.hunger <= 1/2 * this.hungerMAX && spitupYummies != "none") //baby eating
+                    {
+                        this.pointTowards(spitupYummies);
+                        this.moveInRelationToThing(spitupYummies, 100000);
+                        if (this.DTU(spitupYummies) <= this.engagementRadius + 2)
+                        {
+                            this.hunger = this.hungerMAX;
+                            this.stomachPac = this.stomachCap;
+                            this.health = this.healthMAX;
+                            scenicList.splice(scenicList.indexOf(spitupYummies), 1);
+                        }
+                    }
+                    else if (this.alpha == false && dalegg != "none" && this.stomachPac <= 0) //females harvest eggs from dalgers
+                    {
+                        this.pointTowards(dalegg);
+                        this.moveInRelationToThing(dalegg, 100000);
+                        if (this.DTU(dalegg) <= this.engagementRadius + 2)
+                        {
+                            dalegg.phase = 0;
+                            this.stomachPac = this.stomachCap;
+                            this.hunger = this.hungerMAX;
+                        }
+                    }
+                    else if (this.hunger < 3/4 * this.hungerMAX && bodyToHarvest != "none" && this.alpha != "baby" || this.stomachPac <= 0 && bodyToHarvest != "none" && this.alpha != "baby") //collect items and food by scavenging dead bodies that are on the ground (males will take materials and eat the corpse, females just eat the corpse)
+                    {
+                        this.pointTowards(bodyToHarvest);
+                        this.moveInRelationToThing(bodyToHarvest, 100000);
+                        if (this.DTU(bodyToHarvest) <= this.engagementRadius + 2)
+                        {
+                            if (bodyToHarvest.healthMAX >= (((this.hungerMAX - this.hunger) / 2) + (this.stomachCap - this.stomachPac)))
+                            {
+                                bodyToHarvest.healthMAX -= (((this.hungerMAX - this.hunger) / 2) + (this.stomachCap - this.stomachPac));
+                                this.hunger = this.hungerMAX;
+                                this.stomachPac = this.stomachCap;
+                            }
+                            else if (bodyToHarvest.healthMAX >= ((this.hungerMAX - this.hunger) / 2))
+                            {
+                                this.hunger = this.hungerMAX;
+                                bodyToHarvest.healthMAX -= ((this.hungerMAX - this.hunger) / 2);
+                                this.stomachPac += Math.min(this.stomachCap, bodyToHarvest.healthMAX);
+                            }
+                            else
+                            {
+                                this.hunger += bodyToHarvest.healthMAX;
+                                bodyToHarvest.healthMAX = 0;
+                            }
+
+                            //take their stuff and delete their body if their max health is used up (if male)
+                            if (this.alpha == true)
+                            {
+                                for (var i = 0; i < bodyToHarvest.drops.length; i++)
+                                {
+                                    for (var k = 0; k < bodyToHarvest.drops[i][1]; k++)
+                                    {
+                                        if (bodyToHarvest.drops[i][0].utility != "food" && bodyToHarvest.drops[i][0].utility != "questItem" && bodyToHarvest.drops[i][0].questy != true && (bodyToHarvest.drops[i][0].weight + this.carryPac) <= this.carryCap && bodyToHarvest.drops[i][1] >= 1)
+                                        {
+                                            var hitz = false;
+                                            this.carryPac += bodyToHarvest.drops[i][0].weight;
+                                            for (var j = 0; j < this.inv; j++)
+                                            {
+                                                if (this.inv[j][0] == bodyToHarvest.drops[i][0].type)
+                                                {
+                                                    bodyToHarvest.drops[i][1] -= 1;
+                                                    this.inv[j][1] += 1;
+                                                    hitz = true;
+                                                    break;
+                                                }
+                                            }
+
+                                            if (hitz == false)
+                                            {
+                                                this.inv.push([bodyToHarvest.drops[i][0].type], 1);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            if (bodyToHarvest.healthMAX <= 0)
+                            {
+                                deadAIList.splice(deadAIList.indexOf(bodyToHarvest), 1);
+                            }
+                        }
+                    }
+                    else if (this.alpha == true && itemToCollect != "none") //males collect items that are on the ground
+                    {
+                        this.pointTowards(itemToCollect[0]);
+                        this.moveInRelationToThing(itemToCollect[0], 100000);
+                        if (this.DTU(itemToCollect[0]) <= this.engagementRadius + 2)
+                        {
+                            if (itemToCollect[0].utility == "food" && itemToCollect[0].subUtility != "reusable")
+                            {
+                                this.hunger = this.hungerMAX;
+                                this.stomachPac = this.stomachCap;
+                                worldItems.splice(worldItems.indexOf(itemToCollect), 1);
+                            }
+                            else
+                            {
+                                if ((itemToCollect[0].weight + this.carryPac) <= this.carryCap && itemToCollect[1] >= 1)
+                                {
+                                    var hitz = false;
+                                    this.carryPac += itemToCollect[0].weight;
+                                    for (var j = 0; j < this.inv.length; j++)
+                                    {
+                                        if (this.inv[j][0] == itemToCollect[0].type)
+                                        {
+                                            itemToCollect[1] -= 1;
+                                            this.inv[j][1] += 1;
+                                            hitz = true;
+                                            break;
+                                        }
+                                    }
+
+                                    if (hitz == false)
+                                    {
+                                        itemToCollect[1] -= 1;
+                                        this.inv.push([itemToCollect[0].type, 1]);
+                                    }
+                                }
+                                if (itemToCollect[1] <= 0)
+                                {
+                                    worldItems.splice(worldItems.indexOf(itemToCollect), 1);
+                                }
+                            }
+                        }
+                    }
+                    else if (this.hunger < 1/3 * this.hungerMAX && this.stomachPac > 0) //eat one of the backup food storage
+                    {
+                        this.stomachPac -= 1;
+                        this.hunger = this.hungerMAX;
+                    }
+                    else //go home and drop off goods
+                    {
+                        var startPoint = {X: this.initX, Y: this.initY};
+
+                        if (this.DTU(startPoint) <= this.engagementRadius + 2)
+                        {
+                            if (this.inv.length > 0 && this.alpha == true)
+                            {
+                                for (var i = 0; i < this.inv.length; i++)
+                                {
+                                    scenicList.push(new Scenery("item", this.X + spacer(25), this.Y + spacer(25), 0, false, [this.inv[i][0], this.inv[i][1], 0]));
+                                }
+                                this.carryPac = 0;
+                                this.inv = [];
+                            }
+                            this.moving = false;
+                        }
+                        else
+                        {
+                            this.pointTowards(startPoint);
+                            this.moveInRelationToThing(startPoint, 100000);
+                        }
+                    }
                 }
             }
 
@@ -33701,58 +34552,42 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
             if (this.alive == true)
             {
-                if (this.moving && !this.attacking) //If moving and not attacking initiate moving animation...
-                {
-                    this.costumeEngine(3, 0.085, false);
-                }
-                else if (this.attacking) //otherwise if it is attacking then initiate attacking animation, and if neither...
-                {
-                    if(new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000 / timeSpeed * this.timeResistance))
-                    {
-                        this.costumeEngine(3, 0.110, true);
-                    }
-                }
+
+                this.costumeEngine(3, 0.19, true);
 
                 // the frames/stages/costumes of the animation.
-                var theCostume = Math.floor( this.costume ); //This rounds this.costume down to the nearest whole number.
+                var theCostume = Math.floor(this.costume); //This rounds this.costume down to the nearest whole number.
 
                 if (theCostume <= 0)
                 {
-                    if (this.attacking)
+                    if (this.moving == true)
                     {
-                        this.drawUnit(verse, 3095, 254, 54, 32, -35 - this.xAdjustment, -22 - this.yAdjustment, 54 * this.alphaSize, 32 * this.alphaSize);
+                        this.drawUnit(jungho, 66, 975, 46, 23, -1/2 * 46 * this.alphaSize - this.xAdjustment, -1/2 * 23 * this.alphaSize - this.yAdjustment, 46 * this.alphaSize, 23 * this.alphaSize);
                     }
                     else
                     {
-                        this.drawUnit(verse, 2933, 254, 54, 32, -35 - this.xAdjustment, -22 - this.yAdjustment, 54 * this.alphaSize, 32 * this.alphaSize);
+                        this.drawUnit(jungho, 12, 974, 46, 23, -1/2 * 46 * this.alphaSize - this.xAdjustment, -1/2 * 23 * this.alphaSize - this.yAdjustment, 46 * this.alphaSize, 23 * this.alphaSize);
                     }
                 }
                 else if (theCostume <= 1)
                 {
-                    if (this.attacking)
-                    {
-                        this.drawUnit(verse, 3154, 254, 54, 32, -35 - this.xAdjustment, -21 - this.yAdjustment, 54 * this.alphaSize, 32 * this.alphaSize);
-                    }
-                    else
-                    {
-                        this.drawUnit(verse, 2985, 254, 54, 32, -35 - this.xAdjustment, -21 - this.yAdjustment, 54 * this.alphaSize, 32 * this.alphaSize);
-                    }
+                    this.drawUnit(jungho, 12, 974, 46, 23, -1/2 * 46 * this.alphaSize - this.xAdjustment, -1/2 * 23 * this.alphaSize - this.yAdjustment, 46 * this.alphaSize, 23 * this.alphaSize);
                 }
                 else if (theCostume >= 2)
                 {
-                    if (this.attacking)
-                    {
-                        this.drawUnit(verse, 3214, 254, 54, 32, -35 - this.xAdjustment, -21 - this.yAdjustment, 54 * this.alphaSize, 32 * this.alphaSize);
-                    }
-                    else
-                    {
-                        this.drawUnit(verse, 3037, 254, 54, 32, -35 - this.xAdjustment, -21 - this.yAdjustment, 54 * this.alphaSize, 32 * this.alphaSize);
-                    }
+                    this.drawUnit(jungho, 122, 976, 46, 23, -1/2 * 46 * this.alphaSize - this.xAdjustment, -1/2 * 23 * this.alphaSize - this.yAdjustment, 46 * this.alphaSize, 23 * this.alphaSize);
+                }
+
+                for (var i = 0; i < this.inv.length; i++)
+                {
+                    var itemForTwoDraw = new Item(this.inv[i][0], this.X, this.Y);
+                    itemForTwoDraw.setItemID();
+                    itemForTwoDraw.drawItem();
                 }
             }
             else
             {
-                this.drawUnit(verse, 2929, 283, 54, 32, -35 - this.xAdjustment, -22 - this.yAdjustment, 54 * this.alphaSize, 32 * this.alphaSize);
+                this.drawUnit(jungho, 13, 948, 46, 23, -1/2 * 46 * this.alphaSize - this.xAdjustment, -1/2 * 23 * this.alphaSize - this.yAdjustment, 46 * this.alphaSize, 23 * this.alphaSize);
             }
         }
         //HYDRA

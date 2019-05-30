@@ -187,8 +187,14 @@ function buildMaster()
                 //ArtificialIntelligenceAccess.push(new Unit(5000, 2400, "Ribback", true, "humpa"));
                 //ArtificialIntelligenceAccess.push(new Unit(3900, 2900, "Fegil", false, "hik"));
                 //ArtificialIntelligenceAccess.push(new Unit(3700, 2800, "Fegil", true, "hik"));
+                //ArtificialIntelligenceAccess.push(new Unit(3700, 2800, "Palinsyda", true, "Monm"));
+                //scenicList.push(new Scenery("vardanianWell", 3500, 2400, 0, true));
+                //scenicList.push(new Scenery("vardanianMueble", 3500, 2400, 0, 22, 1)); //flag stand royal
+                //scenicList.push(new Scenery("vardanianMueble", 3500, 2400, 0, 23, 1)); //flag stand rebel
+                //scenicList.push(new Scenery("vardanCastle1", 5800, 2700, 0, 2.4));
+                //scenicList.push(new Scenery("vardanBed", 5800, 2700, 0, [true, 0.8], 3));
 
-                //scenicList.push(new Scenery("mrbAssets", 4500, 2400, 0, 9, 2));
+                //scenicList.push(new Scenery("mrbAssets", 4900, 2400, 0, 9, 2));
 
                 //scenicList.push(new Scenery("dethMasterHut", 3600, 2500, 0, 0, "deth1"));
                 //scenicList.push(new Scenery("dethTotem", 3600, 3400, 0, 0, "deth1"));

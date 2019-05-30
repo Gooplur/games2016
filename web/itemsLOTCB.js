@@ -2934,6 +2934,71 @@ function Item(type, x, y)
             this.buyValue = 3 - Math.floor(player.getCharisma() / 25); // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
         }
+        else if (this.type == "rawRibbackFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Ribback Flesh";
+            this.weight = 0.8;
+            this.size = 6;
+            this.description = "The spongey light-bodied flesh of a ribback.";
+            this.intForDes = 0;
+            this.intDescription = "It is safe to eat, but it is by no means appetizing; its sort of like a fat wad of blood flavoured gum...";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1.5; //satisfies hunger.
+            this.thirst = 1.5; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -10; //recoops lost energy.
+            this.replenish = -2; //restores will.
+
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "ribbackMeat")
+        {
+            //For All Items
+            this.identity = "Ribback Meat";
+            this.weight = 0.75;
+            this.size = 6;
+            this.description = "This meat has a firm but spongey texture and a relatively bland flavour.";
+            this.intForDes = 0;
+            this.intDescription = "It is a bit chewy and tough.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 7; //satisfies hunger.
+            this.thirst = 0.5; //quenches thirst.
+            this.warmth = 1.5; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -2.5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 9;
+            this.ingredients = [["Raw Ribback Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 4; // at max, buy for 4.
+            this.sellValue = 4; // at max, sell for 4.
+        }
         else if (this.type == "fegilRegurgitation")
         {
             //For All Items
@@ -3193,6 +3258,66 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 15 - Math.floor(player.getCharisma() / 25); // at max, buy for 13.
             this.sellValue = 8 + Math.floor(player.getCharisma() / 25); // at max, sell for 10.
+        }
+        else if (this.type == "ribbackSpinneret")
+        {
+            //For All Items
+            this.identity = "Ribback Spinneret";
+            this.weight = 1.6;
+            this.size = 12;
+            this.description = "The web spinning organ from a ribback";
+            this.intForDes = 1;
+            this.intDescription = "This serves as a changer in alchemy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 11; // at max, buy for 11.
+            this.sellValue = 9 + Math.floor(player.getCharisma() / 25); // at max, sell for 11.
+        }
+        else if (this.type == "ribbackFangs")
+        {
+            //For All Items
+            this.identity = "Ribback Fangs";
+            this.weight = 0.7;
+            this.size = 9;
+            this.description = "The long pointed fangs of a ribback";
+            this.intForDes = 1;
+            this.intDescription = "This is a trophy that demonstrates ones prowess for having defeated a ribback.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5; // at max, buy for 5.
+            this.sellValue = 3 + Math.floor(player.getCharisma() / 25); // at max, sell for 5.
+        }
+        else if (this.type == "fegilPelt")
+        {
+            //For All Items
+            this.identity = "Fegil Pelt";
+            this.weight = 0.4;
+            this.size = 6;
+            this.description = "The messy grey furred pelt of a fegil.";
+            this.intForDes = 5;
+            this.intDescription = "Fegil pelts can be made into low class apparel and clothing.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
         }
         else if (this.type == "juniperBerries")
         {
@@ -14839,7 +14964,7 @@ function Item(type, x, y)
 
             //Utility Focused
             this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
-            this.hunger = 5; //satisfies hunger.
+            this.hunger = 0; //satisfies hunger.
             this.thirst = 17.5; //quenches thirst.
             this.warmth = 0; //warms player.
             this.heal = 0; //heals health.
@@ -26239,6 +26364,491 @@ function Item(type, x, y)
             this.buyValue = 8 - Math.floor(player.getCharisma() / 25); // at max, buy for 15.
             this.sellValue = 5 + Math.floor(player.getCharisma() / 50); // at max, sell for 6.
         }
+        else if (this.type == "rawTaggler")
+        {
+            //For All Items
+            this.identity = "Raw Taggler";
+            this.weight = 1.5;
+            this.size = 8;
+            this.description = "A greyish-black bottom feeder native to Vardania.";
+            this.intForDes = 4;
+            this.intDescription = "Eating these raw is not safe because the flesh may be host to gut worms.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1.5; //satisfies hunger.
+            this.thirst = 2; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "gutworms";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+        }
+        else if (this.type == "taggler")
+        {
+            //For All Items
+            this.identity = "Taggler";
+            this.weight = 1.5;
+            this.size = 8;
+            this.description = "A cooked and sliced greyish-black bottom feeding fish with light pink flesh.";
+            this.intForDes = 0;
+            this.intDescription = "It has a watery and bland flavour, with just a hint of fishiness.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 8; //satisfies hunger.
+            this.thirst = 1.9; //quenches thirst.
+            this.warmth = 2; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 8;
+            this.ingredients = [["Raw Taggler", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 9; // at max, buy for 9.
+            this.sellValue = 6 + Math.floor(player.getCharisma() / 15); // at max, sell for 9.
+        }
+        else if (this.type == "smokedTaggler")
+        {
+            //For All Items
+            this.identity = "Smoked Taggler";
+            this.weight = 1.5;
+            this.size = 8;
+            this.description = "A cooked and sliced greyish-black bottom feeding fish with light pink flesh.";
+            this.intForDes = 0;
+            this.intDescription = "It has a watery and bland flavour, and it has a strong smokiness to it.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 10; //satisfies hunger.
+            this.thirst = 2; //quenches thirst.
+            this.warmth = 4; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 10;
+            this.ingredients = [["Raw Taggler", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 12 - Math.floor(player.getCharisma() / 50); // at max, buy for 11.
+            this.sellValue = 9 + Math.floor(player.getCharisma() / 25); // at max, sell for 11.
+        }
+        else if (this.type == "rawApoi")
+        {
+            //For All Items
+            this.identity = "Raw Apoi";
+            this.weight = 3.5;
+            this.size = 8;
+            this.description = "A small cartilaginous marine mammal that inhabits Vardanian rivers, lakes, and ponds.";
+            this.intForDes = 6;
+            this.intDescription = "Their flesh has a bacteria that causes food poisoning, so it must be cooked before being eaten.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 2.5; //satisfies hunger.
+            this.thirst = 1.5; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "foodPoisoning";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5 - Math.floor(player.getCharisma() / 50); // at max, buy for 4.
+            this.sellValue = 2 + Math.floor(player.getCharisma() / 25); // at max, sell for 4.
+        }
+        else if (this.type == "apoi")
+        {
+            //For All Items
+            this.identity = "Apoi";
+            this.weight = 3.4;
+            this.size = 8;
+            this.description = "A large cut of white meat from an apoi";
+            this.intForDes = 0;
+            this.intDescription = "The meat has a firm texture, and a mostly bland flavour except for its unique aftertaste.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 13; //satisfies hunger.
+            this.thirst = 1; //quenches thirst.
+            this.warmth = 4; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "satiation";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 18;
+            this.ingredients = [["Raw Apoi", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 15 - Math.floor(player.getCharisma() / 50); // at max, buy for 14.
+            this.sellValue = 10 + Math.floor(player.getCharisma() / 12.5); // at max, sell for 14.
+        }
+        else if (this.type == "smokedApoi")
+        {
+            //For All Items
+            this.identity = "Smoked Apoi";
+            this.weight = 3.4;
+            this.size = 8;
+            this.description = "A large cut of smoked white meat from an apoi";
+            this.intForDes = 0;
+            this.intDescription = "The meat has a firm texture, a smokey flavour, and a unique aftertaste.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 15; //satisfies hunger.
+            this.thirst = 2; //quenches thirst.
+            this.warmth = 6; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "satiation";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 19;
+            this.ingredients = [["Raw Apoi", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 17 - Math.floor(player.getCharisma() / 50); // at max, buy for 16.
+            this.sellValue = 13 + Math.floor(player.getCharisma() / 15); // at max, sell for 16.
+        }
+        else if (this.type == "rawSkig")
+        {
+            //For All Items
+            this.identity = "Raw Skig";
+            this.weight = 0.9;
+            this.size = 6;
+            this.description = "A small darkish green fish that is common in Vardanian waters all the way west to the cost. It has a strongly fishy smell to it.";
+            this.intForDes = 5;
+            this.intDescription = "It is unsafe to eat raw due to gut worms.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0.75; //satisfies hunger.
+            this.thirst = 0.15; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "gutworms";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "skig")
+        {
+            //For All Items
+            this.identity = "Skig";
+            this.weight = 0.8;
+            this.size = 6;
+            this.description = "A small roasted Vardanian fish that has an orangish pink flesh. It has a moderately fishy smell to it.";
+            this.intForDes = 0;
+            this.intDescription = "It has a strong flavour with a sharp fishiness to it.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 5.5; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 3;
+            this.ingredients = [["Raw Skig", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3; // at max, buy for 3.
+            this.sellValue = 3; // at max, sell for 3.
+        }
+        else if (this.type == "rawCrilp")
+        {
+            //For All Items
+            this.identity = "Raw Crilp";
+            this.weight = 0.9;
+            this.size = 6;
+            this.description = "A Vardanian crustacean that tends to crawl about the bottom of lakes and streams eating bugs and detritus.";
+            this.intForDes = 5;
+            this.intDescription = "It is bound to pinch you if you try to eat it live... plus it doesn't taste very good raw.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0.9; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = -2; //heals health.
+            this.generation = -2; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "crilp")
+        {
+            //For All Items
+            this.identity = "Crilp";
+            this.weight = 0.9;
+            this.size = 6;
+            this.description = "A roasted Vardanian crustacean that has been delimbed and decapitated for your eating pleasure...";
+            this.intForDes = 0;
+            this.intDescription = "The meat has a moist, tender and stringy mouthfeel, and its flesh has a tinge of sweetness to it.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 3; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 1; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.1; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "satiate";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 12;
+            this.ingredients = [["Raw Crilp", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3; // at max, buy for 3.
+            this.sellValue = 3; // at max, sell for 3.
+        }
+        else if (this.type == "smokedCrilp")
+        {
+            //For All Items
+            this.identity = "Smoked Crilp";
+            this.weight = 0.9;
+            this.size = 6;
+            this.description = "A smoked Vardanian crustacean that has been delimbed and decapitated for your eating pleasure...";
+            this.intForDes = 0;
+            this.intDescription = "The meat has a moist, tender and stringy mouthfeel, and its smokey tasting flesh has a tinge of sweetness to it.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 4.5; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 2; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.15; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "satiate";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 13;
+            this.ingredients = [["Raw Crilp", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 4; // at max, buy for 4.
+            this.sellValue = 3; // at max, sell for 3.
+        }
+        else if (this.type == "rawMulstish")
+        {
+            //For All Items
+            this.identity = "Raw Mulstish";
+            this.weight = 2.4;
+            this.size = 6;
+            this.description = "A Vardanian freshwater eel. Its skin exudes a dark oil that is particularly savoury and fishy.";
+            this.intForDes = 0;
+            this.intDescription = "It can be eaten raw; It has a certain fattiness and it tastes extremely savoury.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 6; //satisfies hunger.
+            this.thirst = 0.5; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.1; //recoops lost energy.
+            this.replenish = 0.1; //restores will.
+
+            //ability
+            this.ability = "satiation";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 6; // at max, buy for 6.
+            this.sellValue = 5; // at max, sell for 5.
+        }
+        else if (this.type == "slicedRawMulstish")
+        {
+            //For All Items
+            this.identity = "Sliced Raw Mulstish";
+            this.weight = 1.2;
+            this.size = 6;
+            this.description = "A slice of Vardanian eel. Its skin exudes a dark oil that is particularly savoury and fishy.";
+            this.intForDes = 0;
+            this.intDescription = "It can be eaten raw; It has a certain fattiness and it tastes extremely savoury.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 4; //satisfies hunger.
+            this.thirst = 0.3; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.065; //recoops lost energy.
+            this.replenish = 0.05; //restores will.
+
+            //ability
+            this.ability = "satiation";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 2;
+            this.ingredients = [["Raw Mulstish", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 4; // at max, buy for 4.
+            this.sellValue = 3; // at max, sell for 3.
+        }
+        else if (this.type == "slicedMulstish")
+        {
+            //For All Items
+            this.identity = "Sliced Mulstish";
+            this.weight = 1.2;
+            this.size = 6;
+            this.description = "A slice of roasted Vardanian eel that smells strongly of savoury fish essence.";
+            this.intForDes = 0;
+            this.intDescription = "It is fatty and tender, and it tastes extremely savoury.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 9; //satisfies hunger.
+            this.thirst = 0.2; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.1; //recoops lost energy.
+            this.replenish = 0.075; //restores will.
+
+            //ability
+            this.ability = "satiation";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 12;
+            this.ingredients = [["Raw Sliced Mulstish", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 8; // at max, buy for 8.
+            this.sellValue = 7; // at max, sell for 7.
+        }
+        else if (this.type == "slicedSmokedMulstish")
+        {
+            //For All Items
+            this.identity = "Sliced Smoked Mulstish";
+            this.weight = 1.2;
+            this.size = 6;
+            this.description = "A slice of roasted Vardanian eel that smells strongly of savoury fish essence and smoke.";
+            this.intForDes = 0;
+            this.intDescription = "It is fatty, tender and smokey, and it tastes extremely savoury.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 10; //satisfies hunger.
+            this.thirst = 0.3; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.15; //recoops lost energy.
+            this.replenish = 0.1; //restores will.
+
+            //ability
+            this.ability = "satiation";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 14;
+            this.ingredients = [["Raw Sliced Mulstish", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 10; // at max, buy for 10.
+            this.sellValue = 9; // at max, sell for 9.
+        }
         else if (this.type == "dyedMufCloth")
         {
             //For All Items
@@ -30145,6 +30755,46 @@ function Item(type, x, y)
             this.buyValue = 155 - Math.floor(player.getCharisma() / 5.55555555); // at max, buy for 146.
             this.sellValue = 140 + Math.floor(player.getCharisma() / 8.333); // at max, sell for 146.
         }
+        else if (this.type == "palinsydaFlesh")
+        {
+            //For All Items
+            this.identity = "Palinsyda Flesh";
+            this.weight = 5;
+            this.size = 13;
+            this.description = "The body of a palinsyda worm that has been decapitated and has had its thick skin peeled from it.";
+            this.intForDes = 2;
+            this.intDescription = "This can be used in in alchemy as a former.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 9 - Math.floor(player.getCharisma() / 25); // at max, buy for 7.
+            this.sellValue = 6 + Math.floor(player.getCharisma() / 50); // at max, sell for 7.
+        }
+        else if (this.type == "palinsydaTongues")
+        {
+            //For All Items
+            this.identity = "Palinsyda Tongues";
+            this.weight = 0.3;
+            this.size = 7;
+            this.description = "The three tongues of a palinsyda.";
+            this.intForDes = 2;
+            this.intDescription = "This can be used in alchemy as a former.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 4 - Math.floor(player.getCharisma() / 50); // at max, buy for 3.
+            this.sellValue = 3; // at max, sell for 3.
+        }
         else if (this.type == "zetianBlowgun")
         {
             //For All Items
@@ -34048,6 +34698,144 @@ function Item(type, x, y)
             this.buyValue = 1725 - Math.floor(player.getCharisma() / 1); // at max, buy for 1675.
             this.sellValue = 1625 + Math.floor(player.getCharisma() / 1); // at max, sell for 1675.
         }
+        else if (this.type == "eliteNechrovitePlateArmour")
+        {
+            //For All Items
+            this.identity = "Elite Nechrovite Plate Armour";
+            this.weight = 100;
+            this.size = 29;
+            this.description = "Heavy Vardanian plate armour.";
+            this.intForDes = 0;
+            this.intDescription = "This style of armour carries a certain prestige in Vardania.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "armour";
+            //Utility Focused
+            //protections
+            this.protection = 17 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 16;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 2;
+            this.thirstRetention = 0;
+            this.shockResist = -13;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 29;
+            this.rangedBonus = -18;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = -40;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 6;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            if (player.strength >= 30 && player.dexterity >= 15)
+            {
+                this.ability = "none";
+            }
+            else if (player.strength >= 20 && player.dexterity >= 10)
+            {
+                this.ability = "hefty";
+            }
+            else
+            {
+                this.ability = "heavy";
+            }
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 50;
+            this.ingredients = [["Nechrovite", 18], ["Akaton", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3100 - Math.floor(player.getCharisma() / 1); // at max, buy for 3050.
+            this.sellValue = 3000 + Math.floor(player.getCharisma() / 1); // at max, sell for 3050.
+        }
+        else if (this.type == "eliteNechrovitePlateArmourPlumed")
+        {
+            //For All Items
+            this.identity = "Elite Nechrovite Plate Armour";
+            this.weight = 100;
+            this.size = 30;
+            this.description = "Heavy Vardanian plate armour with black plumage.";
+            this.intForDes = 0;
+            this.intDescription = "This style of armour is the same which the high count woar when he directed his forces during the Vardanian Civil War.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "armour";
+            //Utility Focused
+            //protections
+            this.protection = 17 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 16;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 2;
+            this.thirstRetention = 0;
+            this.shockResist = -13;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 30;
+            this.rangedBonus = -17;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = -40;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 6;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            if (player.strength >= 30 && player.dexterity >= 15)
+            {
+                this.ability = "none";
+            }
+            else if (player.strength >= 20 && player.dexterity >= 10)
+            {
+                this.ability = "hefty";
+            }
+            else
+            {
+                this.ability = "heavy";
+            }
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 50;
+            this.ingredients = [["Nechrovite", 18], ["Akaton", 1], ["Corvo Feather", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3150 - Math.floor(player.getCharisma() / 1); // at max, buy for 3100.
+            this.sellValue = 3050 + Math.floor(player.getCharisma() / 1); // at max, sell for 3100.
+        }
         else if (this.type == "fineNechrovitePlateArmour")
         {
             //For All Items
@@ -34185,6 +34973,75 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 1240 - Math.floor(player.getCharisma() / 1); // at max, buy for 1190.
             this.sellValue = 1140 + Math.floor(player.getCharisma() / 1); // at max, sell for 1190.
+        }
+        else if (this.type == "kerPlateArmour")
+        {
+            //For All Items
+            this.identity = "Ker Plate Armour";
+            this.weight = 75;
+            this.size = 27;
+            this.description = "Vardanian plate armour made out of forged ker shell.";
+            this.intForDes = 3;
+            this.intDescription = "It is forged in the style of elite vardanian armour.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "armour";
+            //Utility Focused
+            //protections
+            this.protection = 13 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 12;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 2;
+            this.thirstRetention = 0;
+            this.shockResist = -10;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 17;
+            this.rangedBonus = -13;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = -28;
+            this.survivalismBonus = 2;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 5;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            if (player.strength >= 30 && player.dexterity >= 15)
+            {
+                this.ability = "none";
+            }
+            else if (player.strength >= 20 && player.dexterity >= 10)
+            {
+                this.ability = "hefty";
+            }
+            else
+            {
+                this.ability = "heavy";
+            }
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 40;
+            this.ingredients = [["Ker Shell", 11], ["Akaton", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 400 - Math.floor(player.getCharisma() / 3); // at max, buy for 385.
+            this.sellValue = 370 + Math.floor(player.getCharisma() / 3); // at max, sell for 385.
         }
         else if (this.type == "ancientArmour")
         {
@@ -39964,7 +40821,7 @@ function Item(type, x, y)
             this.identity = "Aldrekii Bardiche";
             this.weight = 11;
             this.size = 32;
-            this.description = "A long reaching pole axe forged by the Aldrek.";
+            this.description = "A long reaching pole axe forged by the Aldrekii.";
             this.intForDes = 2;
             this.intDescription = "This weapon is used to attack enemies whilst maintaining a safe distance from them.";
 
@@ -39972,24 +40829,28 @@ function Item(type, x, y)
             this.utility = "weapon";
 
             //Utility Focused
-            if (player.getEndurance() >= 50)
+            if (player.getEndurance() >= 39)
             {
-                this.energyCost = 18;
+                this.energyCost = 12;
             }
-            else if (player.getEndurance() > 34)
+            else if (player.getEndurance() > 32)
             {
-                this.energyCost = 22;
+                this.energyCost = 14;
+            }
+            else if (player.getEndurance() > 24)
+            {
+                this.energyCost = 15;
             }
             else
             {
-                this.energyCost = 24;
+                this.energyCost = 17;
             }
             this.distance = 55 + (this.range * 7);
             this.range = 3.6;
             this.rate = 165;
-            this.damage = (20 - this.damageHandicap * 5) * (this.leveledDamageMultiple / 25) + Math.floor(((1/6.6) * player.getStrength()));
+            this.damage = (14 - this.damageHandicap * 4) * (this.leveledDamageMultiple / 25) + Math.floor(((1/6.6) * player.getStrength()));
             this.magicalDamage = 0;
-            this.negateArmour = 0;
+            this.negateArmour = 3;
 
             //ability
             this.ability = "none";
@@ -41636,6 +42497,131 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
+        }
+        else if (this.type == "rawSkig")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 572, 117, 48, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 48 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 48 * 1, 23 * 1);
+        }
+        else if (this.type == "skig")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 720, 206, 48, 23, X - this.X + (1/2 * CCC.width) - (1/2 * 48 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 23 * 1), 48 * 1, 23 * 1);
+        }
+        else if (this.type == "rawMulstish")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 708, 118, 59, 30, X - this.X + (1/2 * CCC.width) - (1/2 * 59 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 30 * 1), 59 * 1, 30 * 1);
+        }
+        else if (this.type == "slicedRawMulstish")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 708, 188, 27, 20, X - this.X + (1/2 * CCC.width) - (1/2 * 27 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 20 * 1), 27 * 1, 20 * 1);
+        }
+        else if (this.type == "slicedMulstish")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 737, 187, 27, 20, X - this.X + (1/2 * CCC.width) - (1/2 * 27 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 20 * 1), 27 * 1, 20 * 1);
+        }
+        else if (this.type == "slicedSmokedMulstish")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 679, 190, 27, 20, X - this.X + (1/2 * CCC.width) - (1/2 * 27 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 20 * 1), 27 * 1, 20 * 1);
+        }
+        else if (this.type == "rawApoi")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 626, 148, 68, 42, X - this.X + (1/2 * CCC.width) - (1/2 * 68 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 42 * 1), 68 * 1, 42 * 1);
+        }
+        else if (this.type == "apoi")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 730, 161, 29, 21, X - this.X + (1/2 * CCC.width) - (1/2 * 29 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21 * 1), 29 * 1, 21 * 1);
+        }
+        else if (this.type == "smokedApoi")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 696, 159, 29, 21, X - this.X + (1/2 * CCC.width) - (1/2 * 29 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21 * 1), 29 * 1, 21 * 1);
+        }
+        else if (this.type == "rawTaggler")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 631, 118, 60, 28, X - this.X + (1/2 * CCC.width) - (1/2 * 60 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 28 * 1), 60 * 1, 28 * 1);
+        }
+        else if (this.type == "taggler")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 720, 229, 53, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 53 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19 * 1), 53 * 1, 19 * 1);
+        }
+        else if (this.type == "smokedTaggler")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 721, 248, 53, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 53 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19 * 1), 53 * 1, 19 * 1);
+        }
+        else if (this.type == "rawCrilp")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 567, 152, 50, 34, X - this.X + (1/2 * CCC.width) - (1/2 * 50 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 34 * 1), 50 * 1, 34 * 1);
+        }
+        else if (this.type == "crilp")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 772, 230, 21, 36, X - this.X + (1/2 * CCC.width) - (1/2 * 21 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 36 * 1), 21 * 1, 36 * 1);
+        }
+        else if (this.type == "smokedCrilp")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 775, 193, 21, 36, X - this.X + (1/2 * CCC.width) - (1/2 * 21 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 36 * 1), 21 * 1, 36 * 1);
+        }
+        else if (this.type == "kerPlateArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(milk, 613, 489, 68, 108, X - this.X + (1/2 * CCC.width) - (1/2 * 68 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 108 * 1), 68 * 1, 108 * 1);
+        }
+        else if (this.type == "eliteNechrovitePlateArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(milk, 422, 485, 65, 115, X - this.X + (1/2 * CCC.width) - (1/2 * 65 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 115 * 1), 65 * 1, 115 * 1);
+        }
+        else if (this.type == "eliteNechrovitePlateArmourPlumed")
+        {
+            XXX.beginPath();
+            XXX.drawImage(milk, 517, 475, 65, 123, X - this.X + (1/2 * CCC.width) - (1/2 * 65 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 123 * 1), 65 * 1, 123 * 1);
+        }
+        else if (this.type == "rawRibbackFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ribak, 797, 35, 43, 51, X - this.X + (1/2 * CCC.width) - (1/2 * 43 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 51 * 1), 43 * 1, 51 * 1);
+        }
+        else if (this.type == "ribbackMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ribak, 843, 34, 43, 51, X - this.X + (1/2 * CCC.width) - (1/2 * 43 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 51 * 1), 43 * 1, 51 * 1);
+        }
+        else if (this.type == "ribbackSpinneret")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ribak, 900, 31, 43, 51, X - this.X + (1/2 * CCC.width) - (1/2 * 43 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 51 * 1), 43 * 1, 51 * 1);
+        }
+        else if (this.type == "ribbackFangs")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ribak, 955, 25, 43, 51, X - this.X + (1/2 * CCC.width) - (1/2 * 43 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 51 * 1), 43 * 1, 51 * 1);
+        }
+        else if (this.type == "fegilPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 14, 981, 30, 10, X - this.X + (1/2 * CCC.width) - (1/2 * 30 * 1.1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 10 * 1.1), 30 * 1.1, 10 * 1.1);
+        }
+        else if (this.type == "palinsydaTongues")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ion, 1, 163, 22, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 22 * 1.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19 * 1.8), 22 * 1.8, 19 * 1.8);
+        }
+        else if (this.type == "palinsydaFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ion, 1207, 477, 42, 25, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 25 * 1), 42 * 1, 25 * 1);
         }
         else if (this.type == "fegilRegurgitation")
         {
@@ -47078,6 +48064,131 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
+        else if (this.type == "rawSkig")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 572, 117, 48, 23, this.invX - (1/2 * 48 * 1), this.invY - (1/2 * 23 * 1), 48 * 1, 23 * 1);
+        }
+        else if (this.type == "skig")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 720, 206, 48, 23, this.invX - (1/2 * 48 * 1), this.invY - (1/2 * 23 * 1), 48 * 1, 23 * 1);
+        }
+        else if (this.type == "rawMulstish")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 708, 118, 59, 30, this.invX - (1/2 * 59 * 1), this.invY - (1/2 * 30 * 1), 59 * 1, 30 * 1);
+        }
+        else if (this.type == "slicedRawMulstish")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 708, 188, 27, 20, this.invX - (1/2 * 27 * 1), this.invY - (1/2 * 20 * 1), 27 * 1, 20 * 1);
+        }
+        else if (this.type == "slicedMulstish")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 737, 187, 27, 20, this.invX - (1/2 * 27 * 1), this.invY - (1/2 * 20 * 1), 27 * 1, 20 * 1);
+        }
+        else if (this.type == "slicedSmokedMulstish")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 679, 190, 27, 20, this.invX - (1/2 * 27 * 1), this.invY - (1/2 * 20 * 1), 27 * 1, 20 * 1);
+        }
+        else if (this.type == "rawApoi")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 626, 148, 68, 42, this.invX - (1/2 * 68 * 1), this.invY - (1/2 * 42 * 1), 68 * 1, 42 * 1);
+        }
+        else if (this.type == "apoi")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 730, 161, 29, 21, this.invX - (1/2 * 29 * 1), this.invY - (1/2 * 21 * 1), 29 * 1, 21 * 1);
+        }
+        else if (this.type == "smokedApoi")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 696, 159, 29, 21, this.invX - (1/2 * 29 * 1), this.invY - (1/2 * 21 * 1), 29 * 1, 21 * 1);
+        }
+        else if (this.type == "rawTaggler")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 631, 118, 60, 28, this.invX - (1/2 * 60 * 1), this.invY - (1/2 * 28 * 1), 60 * 1, 28 * 1);
+        }
+        else if (this.type == "taggler")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 720, 229, 53, 19, this.invX - (1/2 * 53 * 1), this.invY - (1/2 * 19 * 1), 53 * 1, 19 * 1);
+        }
+        else if (this.type == "smokedTaggler")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 721, 248, 53, 19, this.invX - (1/2 * 53 * 1), this.invY - (1/2 * 19 * 1), 53 * 1, 19 * 1);
+        }
+        else if (this.type == "rawCrilp")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 567, 152, 50, 34, this.invX - (1/2 * 50 * 1), this.invY - (1/2 * 34 * 1), 50 * 1, 34 * 1);
+        }
+        else if (this.type == "crilp")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 772, 230, 21, 36, this.invX - (1/2 * 21 * 1), this.invY - (1/2 * 36 * 1), 21 * 1, 36 * 1);
+        }
+        else if (this.type == "smokedCrilp")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 775, 193, 21, 36, this.invX - (1/2 * 21 * 1), this.invY - (1/2 * 36 * 1), 21 * 1, 36 * 1);
+        }
+        else if (this.type == "kerPlateArmour")
+        {
+            LXX.beginPath();
+            LXX.drawImage(milk, 613, 489, 68, 108, this.invX - (1/2 * 68 * 0.7), this.invY - (1/2 * 108 * 0.7), 68 * 0.7, 108 * 0.7);
+        }
+        else if (this.type == "eliteNechrovitePlateArmour")
+        {
+            LXX.beginPath();
+            LXX.drawImage(milk, 422, 485, 65, 115, this.invX - (1/2 * 65 * 0.7), this.invY - (1/2 * 115 * 0.7), 65 * 0.7, 115 * 0.7);
+        }
+        else if (this.type == "eliteNechrovitePlateArmourPlumed")
+        {
+            LXX.beginPath();
+            LXX.drawImage(milk, 517, 475, 65, 123, this.invX - (1/2 * 65 * 0.65), this.invY - (1/2 * 123 * 0.65), 65 * 0.65, 123 * 0.65);
+        }
+        else if (this.type == "rawRibbackFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(ribak, 797, 35, 43, 51, this.invX - (1/2 * 43 * 1), this.invY - (1/2 * 51 * 1), 43 * 1, 51 * 1);
+        }
+        else if (this.type == "ribbackMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(ribak, 843, 34, 43, 51, this.invX - (1/2 * 43 * 1), this.invY - (1/2 * 51 * 1), 43 * 1, 51 * 1);
+        }
+        else if (this.type == "ribbackSpinneret")
+        {
+            LXX.beginPath();
+            LXX.drawImage(ribak, 900, 31, 43, 51, this.invX - (1/2 * 43 * 1), this.invY - (1/2 * 51 * 1), 43 * 1, 51 * 1);
+        }
+        else if (this.type == "ribbackFangs")
+        {
+            LXX.beginPath();
+            LXX.drawImage(ribak, 955, 25, 43, 51, this.invX - (1/2 * 43 * 1), this.invY - (1/2 * 51 * 1), 43 * 1, 51 * 1);
+        }
+        else if (this.type == "fegilPelt")
+        {
+            LXX.beginPath();
+            LXX.drawImage(jungho, 14, 981, 30, 10, this.invX - (1/2 * 30 * 1.1), this.invY - (1/2 * 10 * 1.1), 30 * 1.1, 10 * 1.1);
+        }
+        else if (this.type == "palinsydaTongues")
+        {
+            LXX.beginPath();
+            LXX.drawImage(ion, 1, 163, 22, 19, this.invX - (1/2 * 22 * 1.8), this.invY - (1/2 * 19 * 1.8), 22 * 1.8, 19 * 1.8);
+        }
+        else if (this.type == "palinsydaFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(ion, 1207, 477, 42, 25, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 25 * 1), 42 * 1, 25 * 1);
+        }
         else if (this.type == "fegilRegurgitation")
         {
             LXX.beginPath();
@@ -52489,6 +53600,131 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "rawSkig")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 572, 117, 48, 23, this.invX - (1/2 * 48 * 1), this.invY - (1/2 * 23 * 1), 48 * 1, 23 * 1);
+        }
+        else if (this.type == "skig")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 720, 206, 48, 23, this.invX - (1/2 * 48 * 1), this.invY - (1/2 * 23 * 1), 48 * 1, 23 * 1);
+        }
+        else if (this.type == "rawMulstish")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 708, 118, 59, 30, this.invX - (1/2 * 59 * 1), this.invY - (1/2 * 30 * 1), 59 * 1, 30 * 1);
+        }
+        else if (this.type == "slicedRawMulstish")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 708, 188, 27, 20, this.invX - (1/2 * 27 * 1), this.invY - (1/2 * 20 * 1), 27 * 1, 20 * 1);
+        }
+        else if (this.type == "slicedMulstish")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 737, 187, 27, 20, this.invX - (1/2 * 27 * 1), this.invY - (1/2 * 20 * 1), 27 * 1, 20 * 1);
+        }
+        else if (this.type == "slicedSmokedMulstish")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 679, 190, 27, 20, this.invX - (1/2 * 27 * 1), this.invY - (1/2 * 20 * 1), 27 * 1, 20 * 1);
+        }
+        else if (this.type == "rawApoi")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 626, 148, 68, 42, this.invX - (1/2 * 68 * 1), this.invY - (1/2 * 42 * 1), 68 * 1, 42 * 1);
+        }
+        else if (this.type == "apoi")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 730, 161, 29, 21, this.invX - (1/2 * 29 * 1), this.invY - (1/2 * 21 * 1), 29 * 1, 21 * 1);
+        }
+        else if (this.type == "smokedApoi")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 696, 159, 29, 21, this.invX - (1/2 * 29 * 1), this.invY - (1/2 * 21 * 1), 29 * 1, 21 * 1);
+        }
+        else if (this.type == "rawTaggler")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 631, 118, 60, 28, this.invX - (1/2 * 60 * 1), this.invY - (1/2 * 28 * 1), 60 * 1, 28 * 1);
+        }
+        else if (this.type == "taggler")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 720, 229, 53, 19, this.invX - (1/2 * 53 * 1), this.invY - (1/2 * 19 * 1), 53 * 1, 19 * 1);
+        }
+        else if (this.type == "smokedTaggler")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 721, 248, 53, 19, this.invX - (1/2 * 53 * 1), this.invY - (1/2 * 19 * 1), 53 * 1, 19 * 1);
+        }
+        else if (this.type == "rawCrilp")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 567, 152, 50, 34, this.invX - (1/2 * 50 * 1), this.invY - (1/2 * 34 * 1), 50 * 1, 34 * 1);
+        }
+        else if (this.type == "crilp")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 772, 230, 21, 36, this.invX - (1/2 * 21 * 1), this.invY - (1/2 * 36 * 1), 21 * 1, 36 * 1);
+        }
+        else if (this.type == "smokedCrilp")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 775, 193, 21, 36, this.invX - (1/2 * 21 * 1), this.invY - (1/2 * 36 * 1), 21 * 1, 36 * 1);
+        }
+        else if (this.type == "kerPlateArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(milk, 613, 489, 68, 108, this.invX - (1/2 * 68 * 0.7), this.invY - (1/2 * 108 * 0.7), 68 * 0.7, 108 * 0.7);
+        }
+        else if (this.type == "eliteNechrovitePlateArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(milk, 422, 485, 65, 115, this.invX - (1/2 * 65 * 0.7), this.invY - (1/2 * 115 * 0.7), 65 * 0.7, 115 * 0.7);
+        }
+        else if (this.type == "eliteNechrovitePlateArmourPlumed")
+        {
+            XXX.beginPath();
+            XXX.drawImage(milk, 517, 475, 65, 123, this.invX - (1/2 * 65 * 0.65), this.invY - (1/2 * 123 * 0.65), 65 * 0.65, 123 * 0.65);
+        }
+        else if (this.type == "rawRibbackFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ribak, 797, 35, 43, 51, this.invX - (1/2 * 43 * 1), this.invY - (1/2 * 51 * 1), 43 * 1, 51 * 1);
+        }
+        else if (this.type == "ribbackMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ribak, 843, 34, 43, 51, this.invX - (1/2 * 43 * 1), this.invY - (1/2 * 51 * 1), 43 * 1, 51 * 1);
+        }
+        else if (this.type == "ribbackSpinneret")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ribak, 900, 31, 43, 51, this.invX - (1/2 * 43 * 1), this.invY - (1/2 * 51 * 1), 43 * 1, 51 * 1);
+        }
+        else if (this.type == "ribbackFangs")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ribak, 955, 25, 43, 51, this.invX - (1/2 * 43 * 1), this.invY - (1/2 * 51 * 1), 43 * 1, 51 * 1);
+        }
+        else if (this.type == "fegilPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 14, 981, 30, 10, this.invX - (1/2 * 30 * 1.1), this.invY - (1/2 * 10 * 1.1), 30 * 1.1, 10 * 1.1);
+        }
+        else if (this.type == "palinsydaTongues")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ion, 1, 163, 22, 19, this.invX - (1/2 * 22 * 1.8), this.invY - (1/2 * 19 * 1.8), 22 * 1.8, 19 * 1.8);
+        }
+        else if (this.type == "palinsydaFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ion, 1207, 477, 42, 25, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 25 * 1), 42 * 1, 25 * 1);
         }
         else if (this.type == "fegilRegurgitation")
         {

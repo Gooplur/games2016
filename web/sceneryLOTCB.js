@@ -101,19 +101,23 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
         {
             this.massive = true;
         }
-        if (this.type == "ghoulDen")
+        else if (this.type == "vardanCastle1")
         {
             this.massive = true;
         }
-        if (this.type == "ghoulEggs")
+        else if (this.type == "ghoulDen")
         {
             this.massive = true;
         }
-        if (this.type == "ribbackNest")
+        else if (this.type == "ghoulEggs")
         {
             this.massive = true;
         }
-        if (this.type == "event")
+        else if (this.type == "ribbackNest")
+        {
+            this.massive = true;
+        }
+        else if (this.type == "event")
         {
             this.massive = true;
         }
@@ -2225,6 +2229,63 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 this.activate = false;
             }
         }
+        else if (this.type == "vardanBed")
+        {
+            var szx = this.temporary[1];
+            //TRAITS
+            this.solid = true;
+            this.interactionRange = 50 * szx;
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 24 * szx;
+
+            //DRAWSELF
+            if (this.information == 1)
+            {
+                this.interactionRange = 50 * szx;
+                //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+                this.radius = 24 * szx;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 889, 563, 62, 26, -(1/2 * 62 * 2 * szx), -(1/2 * 26 * 2 * szx), 62 * 2 * szx, 26 * 2 * szx);
+                XXX.restore();
+            }
+            else if (this.information == 2)
+            {
+                this.interactionRange = 100 * szx;
+                //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+                this.radius = 43 * szx;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 870, 515, 85, 46, -(1/2 * 85 * 2 * szx), -(1/2 * 46 * 2 * szx), 85 * 2 * szx, 46 * 2 * szx);
+                XXX.restore();
+            }
+            else
+            {
+                this.interactionRange = 100 * szx;
+                //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+                this.radius = 45 * szx;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 84, 833, 95, 60, -(1/2 * 95 * 2 * szx), -(1/2 * 60 * 2 * szx), 95 * 2 * szx, 60 * 2 * szx);
+                XXX.restore();
+            }
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                if (this.temporary[0] == true)
+                {
+                    sleep();
+                }
+                this.activate = false;
+            }
+        }
         else if (this.type == "trollScraps")
         {
             //TRAITS
@@ -4227,6 +4288,16 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             this.solid = false;
             this.interactionRange = 1;
 
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 1;
+
+            if (this.runOneTime == true)
+            {
+                this.runOneTime = false;
+
+                this.tic = 0;
+            }
+
             this.zIndex = 1;
             if (this.temporary == 0) //decorated crate corner
             {
@@ -4396,7 +4467,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.drawImage(toad, 322, 832, 63, 66, -(1/2 * 63 * this.information), -(1/2 * 66 * this.information), 63 * this.information, 66 * this.information);
                 XXX.restore();
             }
-            else if (this.temporary >= 21)//royal elk throne
+            else if (this.temporary == 21)//royal elk throne
             {
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -4404,10 +4475,110 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.drawImage(toad, 248, 832, 67, 67, -(1/2 * 67 * this.information), -(1/2 * 67 * this.information), 67 * this.information, 67 * this.information);
                 XXX.restore();
             }
+            else if (this.temporary == 22)//royal flag
+            {
+                this.solid = true;
+                this.radius = 24;
+                this.tic += 1;
 
+                if (this.tic < 122)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(hydra, 489, 568, 73, 122, -(1/2 * 73 * this.information), -(1/2 * 122 * this.information), 73 * this.information, 122 * this.information);
+                    XXX.restore();
+                }
+                else if (this.tic < 127)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(hydra, 582, 571, 103, 121, -(1/2 * 103 * this.information), -(1/2 * 121 * this.information) - 1, 103 * this.information, 121 * this.information);
+                    XXX.restore();
+                }
+                else if (this.tic < 134)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(hydra, 684, 570, 103, 121, -(1/2 * 103 * this.information), -(1/2 * 121 * this.information) - 1.5, 103 * this.information, 121 * this.information);
+                    XXX.restore();
+                }
+                else if (this.tic < 136)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(hydra, 582, 571, 103, 121, -(1/2 * 103 * this.information), -(1/2 * 121 * this.information) - 1, 103 * this.information, 121 * this.information);
+                    XXX.restore();
+                }
+                else
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(hydra, 582, 571, 103, 121, -(1/2 * 103 * this.information), -(1/2 * 121 * this.information) - 1, 103 * this.information, 121 * this.information);
+                    XXX.restore();
+                    this.tic = 0;
+                }
+            }
+            else if (this.temporary >= 23)//rebel flag
+            {
+                this.solid = true;
+                this.radius = 24;
+                this.tic += 1;
 
-            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
-            this.radius = 1;
+                if (this.tic < 122)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(hydra, 2061, 818, 103, 121, -(1/2 * 103 * this.information), -(1/2 * 121 * this.information), 103 * this.information, 121 * this.information);
+                    XXX.restore();
+                }
+                else if (this.tic < 127)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(hydra, 2168, 820, 103, 121, -(1/2 * 103 * this.information), -(1/2 * 121 * this.information) - 1, 103 * this.information, 121 * this.information);
+                    XXX.restore();
+                }
+                else if (this.tic < 134)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(hydra, 2269, 822, 103, 121, -(1/2 * 103 * this.information), -(1/2 * 121 * this.information) + 1.5, 103 * this.information, 121 * this.information);
+                    XXX.restore();
+                }
+                else if (this.tic < 136)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(hydra, 2168, 820, 103, 121, -(1/2 * 103 * this.information), -(1/2 * 121 * this.information) - 1, 103 * this.information, 121 * this.information);
+                    XXX.restore();
+                }
+                else
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(hydra, 2168, 820, 103, 121, -(1/2 * 103 * this.information), -(1/2 * 121 * this.information) - 1, 103 * this.information, 121 * this.information);
+                    XXX.restore();
+                    this.tic = 0;
+                }
+            }
+            else if (this.temporary == 24)//fishrack
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 646, 277, 68, 40, -(1/2 * 68 * this.information), -(1/2 * 40 * this.information), 68 * this.information, 40 * this.information);
+                XXX.restore();
+            }
 
             //INTERACTION
             if (this.activate == true)
@@ -6077,6 +6248,154 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 }
             }
         }
+        else if (this.type == "vardanianTemperateFishingSpot")
+        {
+            //TRAITS
+            this.fishery = true;
+            this.solid = false;
+            this.interactionRange = 1;
+
+            //Establish Rock Load
+            if (this.runOneTime == true)
+            {
+                this.runOneTime = false;
+                this.health = 14 + Math.floor(Math.random() * 21);
+                this.rockLoad = [];
+                for (var looop = 0; looop < 50; looop++)
+                {
+                    this.rockLoad.push({type: "rawSkig", quantity: 1});
+                }
+                for (var looop = 0; looop < 15; looop++)
+                {
+                    this.rockLoad.push({type: "rawCrilp", quantity: 1});
+                }
+                for (var looop = 0; looop < 20 + player.miningLuck; looop++)
+                {
+                    this.rockLoad.push({type: "rawTaggler", quantity: 1});
+                }
+                for (var looop = 0; looop < 10 + player.miningLuck; looop++)
+                {
+                    this.rockLoad.push({type: "rawMulstish", quantity: 1});
+                }
+                for (var looop = 0; looop < 5 + player.miningLuck; looop++)
+                {
+                    this.rockLoad.push({type: "rawApoi", quantity: 1});
+                }
+            }
+
+            //DRAWSELF
+            this.phase += 0.10;
+
+            if (this.phase <= 1)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.globalAlpha = 0.4;
+                XXX.drawImage(norc, 48, 292, 35, 29, -(1/2 * 35 * 2), -(1/2 * 29 * 2), 35 * 2, 29 * 2);
+                XXX.restore();
+            }
+            else if (this.phase <= 2)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(norc, 0, 257, 35, 29, -(1/2 * 35 * 2), -(1/2 * 29 * 2), 35 * 2, 29 * 2);
+                XXX.restore();
+            }
+            else if (this.phase <= 3)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(norc, 29, 259, 35, 29, -(1/2 * 35 * 2), -(1/2 * 29 * 2), 35 * 2, 29 * 2);
+                XXX.restore();
+            }
+            else if (this.phase <= 4)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(norc, 63, 260, 35, 29, -(1/2 * 35 * 2), -(1/2 * 29 * 2), 35 * 2, 29 * 2);
+                XXX.restore();
+            }
+            else if (this.phase <= 5)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(norc, 3, 291, 35, 29, -(1/2 * 35 * 2), -(1/2 * 29 * 2), 35 * 2, 29 * 2);
+                XXX.restore();
+            }
+            else if (this.phase <= 6 || this.phase > 6)
+            {
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(norc, 48, 292, 35, 29, -(1/2 * 35 * 2), -(1/2 * 29 * 2), 35 * 2, 29 * 2);
+                XXX.restore();
+
+                if (this.phase >= 5.9)
+                {
+                    this.phase = 0;
+                }
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 100;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+
+
+            //console.log(player.finalAttackStage);
+            if (player.weaponEquipped == "fishingpole" && player.fishingFrame == true)//player.cutcut == true)
+            {
+                var distFromCutCut = Math.sqrt((this.X - player.bubbleOfDamageX)*(this.X - player.bubbleOfDamageX) + (this.Y - player.bubbleOfDamageY)*(this.Y - player.bubbleOfDamageY));
+                console.log(distFromCutCut);
+                if (distFromCutCut <= player.weapon.range * 7 + 125)
+                {
+                    player.fishing = true;
+                    player.fishingID = (this.hiveID + "_fishing");
+                    player.fishingTime = new Date().getTime();
+                    player.fishingFrame = false;
+                }
+            }
+
+            if (player.fishing == true && player.fishingID == (this.hiveID + "_fishing"))
+            {
+                if (new Date().getTime() - player.fishingTime > 41000)
+                {
+                    if (Math.round(Math.random()))
+                    {
+                        this.health -= 1;
+                        this.rockLoader(this.rockLoad); //this gives the player a fish (but only half of the time)
+                    }
+                    else
+                    {
+                        if (this.health >= 3)
+                        {
+                            this.health -= 1;
+                        }
+                    }
+
+                    if (this.temporary != true)
+                    {
+                        if (this.health <= 0)
+                        {
+                            scenicList.splice(scenicList.indexOf(this), 1);
+                        }
+                    }
+
+                    player.fishing = false;
+                    player.fishingID = false;
+                }
+            }
+        }
         else if (this.type == "southFishingSpot")
         {
             //TRAITS
@@ -7269,6 +7588,73 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
             this.radius = 1;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "vardanCastle1")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+            //this.massive = true; //this is set by the is_Massive method.
+
+            this.size = this.temporary;
+            //DRAWSELF
+            this.zIndex = 4;
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(0);
+            XXX.drawImage(hydra, 1544, 3, 848, 793, -(1/2 * 848 * this.size), -(1/2 * 793 * this.size), 848 * this.size, 793 * this.size);
+            XXX.restore();
+
+            //BARRIERS
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+                barrierList.push(new Barrier((this.X + -415.88979677365296 * this.size), (this.Y + 369.6202486465645 * this.size), 20 * this.size, 833 * this.size, true));
+                barrierList.push(new Barrier((this.X + -416.0698352497857 * this.size), (this.Y + -392.19735272209846 * this.size), 20 * this.size, 833 * this.size, true));
+                barrierList.push(new Barrier((this.X + 383.81183066298945 * this.size), (this.Y + -392.0235755111703 * this.size), 765 * this.size, 34 * this.size, true));
+                barrierList.push(new Barrier((this.X + -417.1091043859824 * this.size), (this.Y + 154.8908321578283 * this.size), 236 * this.size, 34 * this.size, true));
+                barrierList.push(new Barrier((this.X + -415.71645321512733 * this.size), (this.Y + -391.11341628464015 * this.size), 236 * this.size, 34 * this.size, true));
+                barrierList.push(new Barrier((this.X + -415.7200857976386 * this.size), (this.Y + -156.12056894197167 * this.size), 75 * this.size, 34 * this.size, true));
+                barrierList.push(new Barrier((this.X + -416.7200857976386 * this.size), (this.Y + 79.87943105802833 * this.size), 75 * this.size, 34 * this.size, true));
+
+                barrierList.push(new Barrier((this.X + -668.0009117981035 * (this.size / 2.4)), (this.Y + -794.3378020405371 * (this.size / 2.4)), 210 * (this.size / 2.4), 27 * (this.size / 2.4), true));
+                barrierList.push(new Barrier((this.X + -836.0009117981035 * (this.size / 2.4)), (this.Y + -611.3378020405371 * (this.size / 2.4)), 27 * (this.size / 2.4), 195 * (this.size / 2.4), true));
+                barrierList.push(new Barrier((this.X + 629.6553275855758 * (this.size / 2.4)), (this.Y + -608.8500269366396 * (this.size / 2.4)), 27 * (this.size / 2.4), 195 * (this.size / 2.4), true));
+                barrierList.push(new Barrier((this.X + 633.6553275855758 * (this.size / 2.4)), (this.Y + -791.8500269366398 * (this.size / 2.4)), 209 * (this.size / 2.4), 27 * (this.size / 2.4), true));
+                barrierList.push(new Barrier((this.X + 638.9796347178308 * (this.size / 2.4)), (this.Y + 579.6711940142286 * (this.size / 2.4)), 27 * (this.size / 2.4), 184 * (this.size / 2.4), true));
+                barrierList.push(new Barrier((this.X + 638.9796347178308 * (this.size / 2.4)), (this.Y + 583.6711940142286 * (this.size / 2.4)), 229 * (this.size / 2.4), 27 * (this.size / 2.4), true));
+                barrierList.push(new Barrier((this.X + -670.4068077053753 * (this.size / 2.4)), (this.Y + 577.6662912354104 * (this.size / 2.4)), 234 * (this.size / 2.4), 27 * (this.size / 2.4), true));
+                barrierList.push(new Barrier((this.X + -835.4068077053753 * (this.size / 2.4)), (this.Y + 578.6662912354104 * (this.size / 2.4)), 27 * (this.size / 2.4), 194 * (this.size / 2.4), true));
+
+                if (this.size >= 1)
+                {
+                    barrierList.push(new Barrier((this.X + 332.60336489567544* this.size), (this.Y + -243.16325149274644* this.size), 485* this.size, 10* this.size, true));
+                    barrierList.push(new Barrier((this.X + -269.25818120207805* this.size), (this.Y + -330.9804484197848* this.size), 10* this.size, 534* this.size, true));
+                    barrierList.push(new Barrier((this.X + -267.4720146986947* this.size), (this.Y + 328.71541728009333* this.size), 10* this.size, 534* this.size, true));
+                    barrierList.push(new Barrier((this.X + -381.71994922885915* this.size), (this.Y + -103.208369772904* this.size), 22* this.size, 45* this.size, true));
+                    barrierList.push(new Barrier((this.X + -382.71994922885915* this.size), (this.Y + 78.791630227096* this.size), 22* this.size, 45* this.size, true));
+                    barrierList.push(new Barrier((this.X + -347.71994922885915* this.size), (this.Y + -244.208369772904* this.size), 163* this.size, 10* this.size, true));
+                    barrierList.push(new Barrier((this.X + -347.9930189261531* this.size), (this.Y + 78.85130740588647* this.size), 163* this.size, 10* this.size, true));
+                }
+
+                if (this.size > 1.5)
+                {
+                    barrierList.push(new Barrier((this.X + -416.31595152935097 * this.size), (this.Y + -80.83049355028606 * this.size), 40 * this.size, 80 * this.size, true));
+                    barrierList.push(new Barrier((this.X + -417.31595152935097 * this.size), (this.Y + 41.169506449713936 * this.size), 40 * this.size, 80 * this.size, true));
+                }
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 1;
+
+            barrierCreator(this.X, this.Y);
 
             //INTERACTION
             if (this.activate == true)
@@ -13795,6 +14181,142 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 }
             }
         }
+        else if (this.type == "vardanianWell")
+        {
+            //TRAITS
+            this.solid = true;
+            this.interactionRange = 100;
+
+            //DRAWSELF
+
+            if (this.wellChange == true)
+            {
+                this.wellListo = false;
+                if (this.toggleWell == true)
+                {
+                    this.frameLoop([[hydra, 7, 602, 51, 42, 51 * 1.6, 42 * 1.6], [hydra, 65, 601, 51, 42, 51 * 1.6, 42 * 1.6], [hydra, 122, 600, 51, 42, 51 * 1.6, 42 * 1.6], [hydra, 175, 600, 51, 42, 51 * 1.6, 42 * 1.6], [hydra, 226, 599, 51, 42, 51 * 1.6, 42 * 1.6], [hydra, 228, 641, 51, 42, 51 * 1.6, 42 * 1.6], [hydra, 175, 641, 51, 42, 51 * 1.6, 42 * 1.6], [hydra, 118, 642, 51, 42, 51 * 1.6, 42 * 1.6], [hydra, 60, 643, 51, 42, 51 * 1.6, 42 * 1.6]], 8, 18, false);
+                    if (this.frameLoopComplete == true)
+                    {
+                        this.wellChange = false;
+                        this.wellUp = true;
+                        this.wellListo = true;
+                    }
+                }
+                else if (this.toggleWell == false)
+                {
+                    this.frameLoop([[hydra, 60, 643, 51, 42, 51 * 1.6, 42 * 1.6], [hydra, 118, 642, 51, 42, 51 * 1.6, 42 * 1.6], [hydra, 175, 641, 51, 42, 51 * 1.6, 42 * 1.6], [hydra, 228, 641, 51, 42, 51 * 1.6, 42 * 1.6], [hydra, 226, 599, 51, 42, 51 * 1.6, 42 * 1.6], [hydra, 175, 600, 51, 42, 51 * 1.6, 42 * 1.6], [hydra, 122, 600, 51, 42, 51 * 1.6, 42 * 1.6], [hydra, 65, 601, 51, 42, 51 * 1.6, 42 * 1.6], [hydra, 7, 602, 51, 42, 51 * 1.6, 42 * 1.6]], 8, 18, false);
+                    if (this.frameLoopComplete == true)
+                    {
+                        this.wellChange = false;
+                        this.wellUp = false;
+                        this.wellListo = true;
+                    }
+                }
+            }
+
+            if (this.wellChange == false)
+            {
+                if (this.wellUp == true)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(hydra, 8, 643, 51, 42, -(1/2 * 51 * 1.6), -(1/2 * 42 * 1.6), 51 * 1.6, 42 * 1.6);
+                    XXX.restore();
+                }
+                else if (this.wellUp == false)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(hydra, 7, 563, 51, 42, -(1/2 * 51 * 1.6), -(1/2 * 42 * 1.6), 51 * 1.6, 42 * 1.6);
+                    XXX.restore();
+                }
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 27;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+                if (this.wellListo)
+                {
+                    this.wellChange = true;
+                    this.loopNum = 0;
+                    this.loopRate = 0;
+                    this.frameLoopComplete = false;
+
+                    //fill container with water
+                    if (this.wellUp == true)
+                    {
+                        this.doBreak = false;
+                        this.yaTiene = false;
+
+                        for (var i = 0; i < Inventory.length; i++)
+                        {
+                            for (var j = 0; j < wellConversionList.length; j++)
+                            {
+                                //console.log(Inventory[i][0].type + " v.s. "  + wellConversionList[j][0]);
+                                if (Inventory[i][0].type == wellConversionList[j][0])
+                                {
+                                    for (var k = 0; k < Inventory.length; k++)
+                                    {
+                                        if (Inventory[k][0].type == wellConversionList[j][1])
+                                        {
+                                            this.yaTiene = k;
+                                        }
+                                    }
+
+                                    if (Inventory[i][1] > 1)
+                                    {
+                                        Inventory[i][1] -= 1;
+                                        if (this.yaTiene == false)
+                                        {
+                                            Inventory.push([new Item(wellConversionList[j][1], false, false), 1]);
+                                        }
+                                        else
+                                        {
+                                            Inventory[this.yaTiene][1] +=1;
+                                        }
+                                        this.doBreak = true;
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        if (this.yaTiene == false)
+                                        {
+                                            Inventory.splice(i, 1);
+                                            Inventory.push([new Item(wellConversionList[j][1], false, false), 1]);
+                                        }
+                                        else
+                                        {
+                                            Inventory[this.yaTiene][1] +=1;
+                                            Inventory.splice(i, 1);
+                                        }
+                                        this.doBreak = true;
+                                        break;
+                                    }
+                                }
+                            }
+                            if (this.doBreak == true)
+                            {
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (this.toggleWell == false && this.wellListo)
+                {
+                    this.toggleWell = true;
+                }
+                else if (this.toggleWell == true && this.wellListo)
+                {
+                    this.toggleWell = false;
+                }
+            }
+        }
         else if (this.type == "thenganWell")
         {
             //TRAITS
@@ -17657,7 +18179,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
 
             }
 
-            barrierCreator();
+            //barrierCreator(this.X, this.Y);
 
             //INTERACTION
             if (this.activate == true)

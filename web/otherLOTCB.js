@@ -1491,12 +1491,12 @@ function give(itemType, quantity) //gives items in a certain quantity to the pla
     }
 }
 
-function barrierCreator(xx, yy)
+function barrierCreator(objxx, objyy)
 {
-    if (typeof(xx) != "undefined")
+    if (typeof(objxx) != "undefined")
     {
-        barrX = (X - mouseX + 1/2 * CCC.width) - xx;
-        barrY = (Y - mouseY + 1/2 * CCC.height) - yy;
+        barrX = (X - mouseX + 1/2 * CCC.width) - objxx;
+        barrY = (Y - mouseY + 1/2 * CCC.height) - objyy;
     }
     else
     {
@@ -1510,9 +1510,9 @@ function barrierCreator(xx, yy)
         barrW = 10;
         barrH = 10;
 
-        if (typeof(xx) != "undefined")
+        if (typeof(objxx) != "undefined")
         {
-            console.log(((X - mouseX + 1/2 * CCC.width) - xx) + ", " + ((Y - mouseY + 1/2 * CCC.height) - yy));
+            console.log(((X - mouseX + 1/2 * CCC.width) - objxx) + ", " + ((Y - mouseY + 1/2 * CCC.height) - objyy));
         }
         else
         {
@@ -1643,7 +1643,7 @@ function barrierCreator(xx, yy)
     if (cKey)
     {
         cKey = false;
-        if (typeof(xx) != "undefined")
+        if (typeof(objxx) != "undefined")
         {
             console.log('barrierList.push(new Barrier((this.X + ' + barrX + '), (this.Y + ' + barrY + '), ' + barrH + ', ' + barrW + ', true));');
         }

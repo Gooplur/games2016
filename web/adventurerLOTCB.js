@@ -7298,6 +7298,18 @@ function Adventurer()
         {
             outfit = allWorn[137];
         }
+        else if (this.outfitEquipped == "kerPlateArmour")
+        {
+            outfit = allWorn[138];
+        }
+        else if (this.outfitEquipped == "eliteNechrovitePlateArmour")
+        {
+            outfit = allWorn[139];
+        }
+        else if (this.outfitEquipped == "eliteNechrovitePlateArmourPlumed")
+        {
+            outfit = allWorn[140];
+        }
         else
         {
             outfit = allWorn[0];
@@ -7547,6 +7559,45 @@ function Adventurer()
                 XXX.globalAlpha = 0.4;
             }
             XXX.drawImage(cypher, 746, 812, 56, 51, -(1 / 2 * 56 * 1) + 2, -(1 / 2 * 51 * 1) - 0, 56 * 1, 51 * 1);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "kerPlateArmour")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(milk, 636, 433, 34, 33, -(1 / 2 * 34 * 1.2) + 0, -(1 / 2 * 33 * 1.2) - 0, 34 * 1.2, 33 * 1.2);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "eliteNechrovitePlateArmour")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(milk, 443, 432, 34, 33, -(1 / 2 * 34 * 1.23) + 0, -(1 / 2 * 33 * 1.23) - 0, 34 * 1.23, 33 * 1.23);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "eliteNechrovitePlateArmourPlumed")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(milk, 530, 433, 50, 33, -(1 / 2 * 50 * 1.23) + 0, -(1 / 2 * 33 * 1.23) - 0, 50 * 1.23, 33 * 1.23);
             XXX.restore();
         }
         else if (this.outfitEquipped == "alitkaArmour")

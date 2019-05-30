@@ -4081,6 +4081,9 @@ function theLegend()
     allWorn.push(new Item("magusRobesM", false)); //135
     allWorn.push(new Item("thenganBascinetArmour", false)); //136
     allWorn.push(new Item("alitkaArmour", false)); //137
+    allWorn.push(new Item("kerPlateArmour", false)); //138
+    allWorn.push(new Item("eliteNechrovitePlateArmour", false)); //139
+    allWorn.push(new Item("eliteNechrovitePlateArmourPlumed", false)); //140
 
     scenicList = [];
 
@@ -4223,6 +4226,9 @@ function theLegend()
     smithing.push(new Item("zetianWarPick", false));
     smithing.push(new Item("zetianBlowgun", false));
     smithing.push(new Item("throwingStar", false));
+    smithing.push(new Item("kerPlateArmour", false));
+    smithing.push(new Item("eliteNechrovitePlateArmour", false));
+    smithing.push(new Item("eliteNechrovitePlateArmourPlumed", false));
 
 
 //Foods (Items cooked at either a stove, an oven, or a campfire)

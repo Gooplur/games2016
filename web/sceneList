@@ -149,7 +149,7 @@ vardanianSwampBrush - swamp foliage that is variable in size based on a manual i
 temperateFishingSpot - A rippling part of the water where the fishing system can be accessed with a fishingpole (west-central, central, and eastern temperate fish types found here)
 southFishingSpot - A rippling part of the water where the fishing system can be accessed with a fishingpole (savannah fish types found here)
 temperatePondFishingSpot - A rippling part of the water where the fishing system can be accessed with a fishingpole (limited eastern temperate varieties found here)
-vardanianMueble - A variety of Vardanian Furnishings (0-21)
+vardanianMueble - A variety of Vardanian Furnishings (0-24)
 vardanianFloorDeco - rugs, mats, and rags, and royal/rebel carpets, borgal rug (0-17)
 viudaTunnel - A mound that hosts a webbed tunnel in which the Viuda spider makes its home. //scenicList.push(new Scenery("viudaTunnel", x, y, rotation, hasSpider?, isAlpha?));
 vinePatch - a foliage barrier that can be degraded upon being attacked. //scenicList.push(new Scenery("vinePatch", x, y, rotation, size));
@@ -245,6 +245,12 @@ vardanBuilding39 - a burnt down square building (size adjustable, rotatable, sti
 vardanBuilding40 - a burnt down square building (size adjustable, rotatable, stilt house) (longevity/temporary changes size) //scenicList.push(new Scenery("vardanBuilding40", 4500, 2400, 1/2 * Math.PI, 1.8));
 ribbackWeb - a thick web spun by ribback spiders (temporary ajusts size)
 ribbackNest - a webbed ribback burrow wherein dwells the mama ribback and her young
+vardanianWell - a well much like the Freydic one, but with a slightly darker hue.
+mrbAssets - A number of assets for the MRB alternate play mode
+vardanCastle1 - A large castle that is vardanian... (temporary makes it bigger) //scenicList.push(new Scenery("vardanCastle1", 5800, 2700, 0, 2.4));
+vardanBed - A selection of three different beds for Vardania ~ temporary = [canSleepInIt?, size] information = type selector (1: basic, 2: double, 3: count) //scenicList.push(new Scenery("vardanBed", 5800, 2700, 0, [true, 0.8], 3));
+vardanianTemperateFishingSpot - A Vardanian freshwater fishing spot that has: mulstish, apoi, skig, taggler, crilp
+
 
 
 

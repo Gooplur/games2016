@@ -5459,6 +5459,287 @@ function Item(type, x, y)
             this.buyValue = 11; // at max, buy for 11.
             this.sellValue = 10; // at max, sell for 10.
         }
+        else if (this.type == "bovodo")
+        {
+            //For All Items
+            this.identity = "Wheel of Bovodo Cheese";
+            this.weight = 6;
+            this.size = 13;
+            this.description = "A thick wheel of cheese made from bovine milk.";
+            this.intForDes = 1;
+            this.intDescription = "Bovodo cheese is meant to be eaten alongside main coarses, or eaten paired with fruit or with alcohol.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 50; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 2;
+            this.intForCraft = 43;
+            this.biproducts = [[new Item("vardanianPot", false), 1]];
+            this.ingredients = [["Vardanian Pot of Bovine Milk", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 30 - Math.floor(player.getCharisma() / 25); // at max, buy for 28.
+            this.sellValue = 26 + Math.floor(player.getCharisma() / 25); // at max, sell for 28.
+        }
+        else if (this.type == "bovodoWedge")
+        {
+            //For All Items
+            this.identity = "Wedge of Bovodo Cheese";
+            this.weight = 0.75;
+            this.size = 5;
+            this.description = "A wedge of cheese made from bovine milk.";
+            this.intForDes = 1;
+            this.intDescription = "Bovodo cheese is meant to be eaten alongside main coarses, or eaten paired with fruit or with alcohol.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 6.5; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 8;
+            this.intForCraft = 0;
+            this.ingredients = [["Wheel of Bovodo Cheese", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 8 - Math.floor(player.getCharisma() / 50); // at max, buy for 7.
+            this.sellValue = 6 + Math.floor(player.getCharisma() / 50); // at max, sell for 7.
+        }
+        else if (this.type == "vardanianPieDough")
+        {
+            //For All Items
+            this.identity = "Vardanian Pie Dough";
+            this.weight = 0.25;
+            this.size = 6;
+            this.description = "A dough made from wheat flower, bovine butter, and borsht sugar.";
+            this.intForDes = 1;
+            this.intDescription = "It is used to make pastries such as... pies.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 10;
+            this.ingredients = [["Wheat Flour", 4], ["Bovine Butter", 1], ["Borsht", 2]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 12; // at max, buy for 12.
+            this.sellValue = 12; // at max, sell for 12.
+        }
+        else if (this.type == "uncookedChyoulBerryPie")
+        {
+            //For All Items
+            this.identity = "Uncooked Chyoul Berry Pie";
+            this.weight = 4.65;
+            this.size = 6;
+            this.description = "A ready-to-bake pie filled with chyoul berries mashed with borsht sugar.";
+            this.intForDes = 1;
+            this.intDescription = "Just cook it and you'll have yourself a pie!";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 25;
+            this.ingredients = [["Vardanian Pie Dough", 2], ["Bovine Butter", 1], ["Borsht", 1], ["Chyoul Berries", 10]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 55 - Math.floor(player.getCharisma() / 50); // at max, buy for 54.
+            this.sellValue = 52 + Math.floor(player.getCharisma() / 25); // at max, sell for 54.
+        }
+        else if (this.type == "chyoulBerryPie")
+        {
+            //For All Items
+            this.identity = "Chyoul Berry Pie";
+            this.weight = 4.5;
+            this.size = 6;
+            this.description = "An exquisite chyoul berry pie.";
+            this.intForDes = 0;
+            this.intDescription = "It has a thickly sweet throat coating flavour, it has a buttery crispness to its texture, and it makes your lips purple.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 40; //satisfies hunger.
+            this.thirst = 14; //quenches thirst.
+            this.warmth = 9; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 2; //recoops lost energy.
+            this.replenish = 2; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 12;
+            this.ingredients = [["Uncooked Chyoul Berry Pie", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 60 - Math.floor(player.getCharisma() / 50); // at max, buy for 59.
+            this.sellValue = 55 + Math.floor(player.getCharisma() / 12); // at max, sell for 59.
+        }
+        else if (this.type == "chyoulBerryPieSlice")
+        {
+            //For All Items
+            this.identity = "Slice of Chyoul Berry Pie";
+            this.weight = 1.125;
+            this.size = 9;
+            this.description = "A slice of exquisite chyoul berry pie.";
+            this.intForDes = 0;
+            this.intDescription = "It has a thickly sweet throat coating flavour, it has a buttery crispness to its texture, and it makes your lips purple.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 12; //satisfies hunger.
+            this.thirst = 4; //quenches thirst.
+            this.warmth = 3; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.5; //recoops lost energy.
+            this.replenish = 0.5; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 4;
+            this.intForCraft = 0;
+            this.ingredients = [["Chyoul Berry Pie", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 15 - Math.floor(player.getCharisma() / 50); // at max, buy for 14.
+            this.sellValue = 12 + Math.floor(player.getCharisma() / 25); // at max, sell for 14.
+        }
+        else if (this.type == "bovineButter")
+        {
+            //For All Items
+            this.identity = "Bovine Butter";
+            this.weight = 0.1;
+            this.size = 4;
+            this.description = "A watery emulsification of fat, milk solid, and water.";
+            this.intForDes = 1;
+            this.intDescription = "Bovine butter is mostly used to make pastries and desserts, but is occasionally used in other contexts.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 32;
+            this.intForCraft = 22;
+            this.biproducts = [[new Item("vardanianPot", false), 1]];
+            this.ingredients = [["Vardanian Pot of Bovine Milk", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 6; // at max, buy for 6.
+            this.sellValue = 5; // at max, sell for 5.
+        }
+        else if (this.type == "smokedBovodo")
+        {
+            //For All Items
+            this.identity = "Wheel of Smoked Bovodo Cheese";
+            this.weight = 6;
+            this.size = 13;
+            this.description = "A thick wheel of smoked cheese made from bovine milk.";
+            this.intForDes = 1;
+            this.intDescription = "Smoked bovodo cheese is meant to be eaten alongside main coarses, or eaten paired with fruit or with alcohol.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 69; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 47;
+            this.ingredients = [["Wheel of Bovodo Cheese", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 50 - Math.floor(player.getCharisma() / 15); // at max, buy for 47.
+            this.sellValue = 45 + Math.floor(player.getCharisma() / 25); // at max, sell for 47.
+        }
+        else if (this.type == "smokedBovodoWedge")
+        {
+            //For All Items
+            this.identity = "Wedge of Smoked Bovodo Cheese";
+            this.weight = 0.75;
+            this.size = 5;
+            this.description = "A wedge of smoked cheese made from bovine milk.";
+            this.intForDes = 1;
+            this.intDescription = "Smoked bovodo cheese is meant to be eaten alongside main coarses, or eaten paired with fruit or with alcohol.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 11; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 2; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 8;
+            this.intForCraft = 0;
+            this.ingredients = [["Wheel of Smoked Bovodo Cheese", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 12 - Math.floor(player.getCharisma() / 50); // at max, buy for 11.
+            this.sellValue = 10 + Math.floor(player.getCharisma() / 50); // at max, sell for 11.
+        }
         else if (this.type == "apotlPepper")
         {
             //For All Items
@@ -6744,6 +7025,48 @@ function Item(type, x, y)
             this.buyValue = 3; // at max, buy for 3.
             this.sellValue = 2 + Math.floor(player.getCharisma() / 50); // at max, sell for 3.
         }
+        else if (this.type == "elkAntler")
+        {
+            //For All Items
+            this.identity = "Elk Antler";
+            this.weight = 3.6;
+            this.size = 15;
+            this.description = "The antler of a Vardanian Elk.";
+            this.intForDes = 1;
+            this.intDescription = "Antlers are often used for home decoration; they have also been used in crafting and making elaborate furnishings.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 4; // at max, buy for 4.
+            this.sellValue = 2 + Math.floor(player.getCharisma() / 25); // at max, sell for 4.
+        }
+        else if (this.type == "elkPelt")
+        {
+            //For All Items
+            this.identity = "Elk Pelt";
+            this.weight = 2.5;
+            this.size = 15;
+            this.description = "The soft grey furred pelt of an elk.";
+            this.intForDes = 1;
+            this.intDescription = "Elk pelts are used to make Vardanian apparel, blankets, and beds.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //Utility Focused
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 16 - Math.floor(player.getCharisma() / 25);; // at max, buy for 14.
+            this.sellValue = 10 + Math.floor(player.getCharisma() / 12.5); // at max, sell for 14.
+        }
         else if (this.type == "fermentedUtTentacle")
         {
             //For All Items
@@ -6756,8 +7079,6 @@ function Item(type, x, y)
 
             //Define Utility
             this.utility = "material";
-
-            //Utility Focused
 
             //ability
             this.ability = "none";
@@ -7846,6 +8167,103 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "rawVenison")
+        {
+            //For All Items
+            this.identity = "Raw Venison";
+            this.weight = 1.4;
+            this.size = 10;
+            this.description = "The raw flesh from a hoofed ruminant mammal of the family Cervinae.";
+            this.intForDes = 3;
+            this.intDescription = "A thick cut of flesh that is potentially infected with flesh mites.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1.5; //satisfies hunger.
+            this.thirst = 0.5; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -0.9; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "fleshMites";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3; // at max, buy for 3.
+            this.sellValue = 3; // at max, sell for 3.
+        }
+        else if (this.type == "venison")
+        {
+            //For All Items
+            this.identity = "Venison";
+            this.weight = 1.4;
+            this.size = 10;
+            this.description = "The cooked meat from a hoofed ruminant mammal of the family Cervinae.";
+            this.intForDes = 0;
+            this.intDescription = "A nicely marbled cut of meat that tastes savoury, and hearty, and it has a particularly venison-like flavour..";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 13; //satisfies hunger.
+            this.thirst = 0.3; //quenches thirst.
+            this.warmth = 6; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.05; //recoops lost energy.
+            this.replenish = 0.01; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 16;
+            this.ingredients = [["Raw Venison", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 12; // at max, buy for 12.
+            this.sellValue = 12; // at max, sell for 12.
+        }
+        else if (this.type == "smokedVenison")
+        {
+            //For All Items
+            this.identity = "Smoked Venison";
+            this.weight = 1.4;
+            this.size = 10;
+            this.description = "The smoked meat from a hoofed ruminant mammal of the family Cervinae.";
+            this.intForDes = 0;
+            this.intDescription = "A nicely marbled cut of meat that tastes smokey, and hearty, and it has a particularly venison-like flavour..";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 15; //satisfies hunger.
+            this.thirst = 0.5; //quenches thirst.
+            this.warmth = 8; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.07; //recoops lost energy.
+            this.replenish = 0.015; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 17;
+            this.ingredients = [["Raw Venison", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 14; // at max, buy for 14.
+            this.sellValue = 14; // at max, sell for 14.
         }
         else if (this.type == "rawMudToad")
         {
@@ -14746,6 +15164,631 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 37; // at max, buy for 37.
             this.sellValue = 37; // at max, sell for 37.
+        }
+        else if (this.type == "vardanianBowlOfMushroomStrogonoff") //a vardanian bowl holds half as much as a bucket
+        {
+            //For All Items
+            this.identity = "Vardanian Bowl of Mushroom Strogonoff and Spaetzle";
+            this.weight = 4; //1
+            this.size = 12;
+            this.description = "An iron bowl filled with mushrooms and spaetzle in a lightly spiced sour cream sauce.";
+            this.intForDes = 0;
+            this.intDescription = "It is savoury and creamy and the spaetzle gives it some texture.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["vardanianBowl", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 15; //satisfies hunger.
+            this.thirst = 6; //quenches thirst.
+            this.warmth = 7; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.25; //recoops lost energy.
+            this.replenish = 0.25; //restores will.
+
+            //ability
+            this.ability = "satiation";
+
+            //Crafting
+            this.yield = 4;
+            this.intForCraft = 0;
+            this.biproducts = [[new Item("vardanianPot", false), 1]];
+            this.ingredients = [["Vardanian Pot of Mushroom Strogonoff and Spaetzle", 1], ["Vardanian Bowl", 4]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 16 - Math.floor(player.getCharisma() / 50); // at max, buy for 15.
+            this.sellValue = 13 + Math.floor(player.getCharisma() / 25); // at max, sell for 15.
+        }
+        else if (this.type == "vardanianPotOfMushroomStrogonoff") //holds 2 buckets of content or 4 vardanian bowls or approximately 1 kellish clay pot
+        {
+            //For All Items
+            this.identity = "Vardanian Pot of Mushroom Strogonoff and Spaetzle";
+            this.weight = 26; //14
+            this.size = 14;
+            this.description = "An iron pot filled with mushrooms and spaetzle in a lightly spiced sour cream sauce.";
+            this.intForDes = 0;
+            this.intDescription = "It is savoury and creamy and the spaetzle gives it some texture.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 13;
+            this.biproducts = [[new Item("vardanianBowl", false), 2]];
+            this.ingredients = [["Vardanian Pot", 1], ["Kozlyak Mushrooms", 5], ["Vardanian Bowl of Sour Cream", 2], ["Wheat Flour", 3]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 80; // at max, buy for 80.
+            this.sellValue = 78; // at max, sell for 78.
+        }
+        else if (this.type == "vardanianBowlOfBorshtSoup") //a vardanian bowl holds half as much as a bucket
+        {
+            //For All Items
+            this.identity = "Vardanian Bowl of Borsht Soup";
+            this.weight = 4; //1
+            this.size = 12;
+            this.description = "An iron bowl filled with chopped borsht in broth with a hefty dallop of sour cream.";
+            this.intForDes = 0;
+            this.intDescription = "It is brothy and sweet, and the sour cream adds a bit of sour and fat.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["vardanianBowl", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 10; //satisfies hunger.
+            this.thirst = 8; //quenches thirst.
+            this.warmth = 4; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.05; //recoops lost energy.
+            this.replenish = 0.05; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 4;
+            this.intForCraft = 0;
+            this.biproducts = [[new Item("vardanianPot", false), 1]];
+            this.ingredients = [["Vardanian Pot of Borsht Soup", 1], ["Vardanian Bowl", 4]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for) //3
+            this.buyValue = 12 - Math.floor(player.getCharisma() / 50); // at max, buy for 11.
+            this.sellValue = 10 + Math.floor(player.getCharisma() / 50); // at max, sell for 11.
+        }
+        else if (this.type == "vardanianPotOfBorshtSoup") //holds 2 buckets of content or 4 vardanian bowls or approximately 1 kellish clay pot
+        {
+            //For All Items
+            this.identity = "Vardanian Pot of Borsht Soup";
+            this.weight = 26; //14
+            this.size = 14;
+            this.description = "An iron pot filled with chopped borsht in broth with a lot of sour cream.";
+            this.intForDes = 0;
+            this.intDescription = "It is brothy and sweet, and the sour cream adds a bit of sour and fat.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 11;
+            this.biproducts = [[new Item("vardanianBowl", false), 1]];
+            this.ingredients = [["Vardanian Pot of Water", 1], ["Borsht", 14], ["Vardanian Bowl of Sour Cream", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for) //14
+            this.buyValue = 55; // at max, buy for 55.
+            this.sellValue = 53; // at max, sell for 53.
+        }
+        else if (this.type == "vardanianBowlOfCabbageSoup") //a vardanian bowl holds half as much as a bucket
+        {
+            //For All Items
+            this.identity = "Vardanian Bowl of Cabbage Soup";
+            this.weight = 4; //1
+            this.size = 12;
+            this.description = "An iron bowl filled with broth, cabbage, and potatoes.";
+            this.intForDes = 0;
+            this.intDescription = "It is warming, brothy, and wholesome.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["vardanianBowl", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 8; //satisfies hunger.
+            this.thirst = 11; //quenches thirst.
+            this.warmth = 6; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.05; //recoops lost energy.
+            this.replenish = 0.05; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 4;
+            this.intForCraft = 0;
+            this.biproducts = [[new Item("vardanianPot", false), 1]];
+            this.ingredients = [["Vardanian Pot of Cabbage Soup", 1], ["Vardanian Bowl", 4]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for) //3
+            this.buyValue = 10 - Math.floor(player.getCharisma() / 50); // at max, buy for 9.
+            this.sellValue = 8 + Math.floor(player.getCharisma() / 50); // at max, sell for 9.
+        }
+        else if (this.type == "vardanianPotOfCabbageSoup") //holds 2 buckets of content or 4 vardanian bowls or approximately 1 kellish clay pot
+        {
+            //For All Items
+            this.identity = "Vardanian Pot of Cabbage Soup";
+            this.weight = 26; //14
+            this.size = 14;
+            this.description = "An iron pot filled with broth, cabbage, and potatoes.";
+            this.intForDes = 0;
+            this.intDescription = "It is warming, brothy, and wholesome.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 10;
+            this.ingredients = [["Vardanian Pot of Water", 1], ["Cabbage", 9], ["Potato", 8]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for) //14
+            this.buyValue = 42; // at max, buy for 42.
+            this.sellValue = 36; // at max, sell for 36.
+        }
+        else if (this.type == "vardanianBowlOfCreamyVenisonStew") //a vardanian bowl holds half as much as a bucket
+        {
+            //For All Items
+            this.identity = "Vardanian Bowl of Creamy Venison Stew";
+            this.weight = 4; //1
+            this.size = 12;
+            this.description = "An iron bowl filled with a creamy stew of venison, cabbage, and potatoes.";
+            this.intForDes = 0;
+            this.intDescription = "It is hearty, creamy, and gamey.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["vardanianBowl", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 19; //satisfies hunger.
+            this.thirst = 9; //quenches thirst.
+            this.warmth = 7; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.2; //recoops lost energy.
+            this.replenish = 0.1; //restores will.
+
+            //ability
+            this.ability = "satiation";
+
+            //Crafting
+            this.yield = 4;
+            this.intForCraft = 0;
+            this.biproducts = [[new Item("vardanianPot", false), 1]];
+            this.ingredients = [["Vardanian Pot of Creamy Venison Stew", 1], ["Vardanian Bowl", 4]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for) //3
+            this.buyValue = 21 - Math.floor(player.getCharisma() / 50); // at max, buy for 20.
+            this.sellValue = 19 + Math.floor(player.getCharisma() / 50); // at max, sell for 20.
+        }
+        else if (this.type == "vardanianPotOfCreamyVenisonStew") //holds 2 buckets of content or 4 vardanian bowls or approximately 1 kellish clay pot
+        {
+            //For All Items
+            this.identity = "Vardanian Pot of Creamy Venison Stew";
+            this.weight = 26; //14
+            this.size = 14;
+            this.description = "An iron pot filled with a creamy stew of venison, cabbage, and potatoes.";
+            this.intForDes = 0;
+            this.intDescription = "It is hearty, creamy, and gamey.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 24;
+            this.biproducts = [[new Item("vardanianBowl", false), 1]];
+            this.ingredients = [["Vardanian Pot of Water", 1], ["Vardanian Bowl of Sour Cream", 1], ["Cabbage", 7], ["Potato", 7], ["Raw Venison", 2]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for) //14
+            this.buyValue = 70; // at max, buy for 70.
+            this.sellValue = 66; // at max, sell for 66.
+        }
+        else if (this.type == "vardanianBowlOfBovineAndPierogiStew") //a vardanian bowl holds half as much as a bucket
+        {
+            //For All Items
+            this.identity = "Vardanian Bowl of Bovine and Pierogi Stew";
+            this.weight = 4; //1
+            this.size = 12;
+            this.description = "An iron bowl filled with a stew of stuffed pierogis and tender chunks of bovine meat.";
+            this.intForDes = 0;
+            this.intDescription = "The smokey bovodo cheese and potato stuffed pierogi with the thick savoury bovine broth has a gloriously rich flavour.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["vardanianBowl", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 35; //satisfies hunger.
+            this.thirst = 15; //quenches thirst.
+            this.warmth = 13; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 1.5; //recoops lost energy.
+            this.replenish = 0.5; //restores will.
+
+            //ability
+            this.ability = "satiation";
+
+            //Crafting
+            this.yield = 4;
+            this.intForCraft = 0;
+            this.biproducts = [[new Item("vardanianPot", false), 1]];
+            this.ingredients = [["Vardanian Pot of Bovine and Pierogi Stew", 1], ["Vardanian Bowl", 4]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for) //3
+            this.buyValue = 43 - Math.floor(player.getCharisma() / 15); // at max, buy for 40.
+            this.sellValue = 27 + Math.floor(player.getCharisma() / 15); // at max, sell for 30.
+        }
+        else if (this.type == "vardanianPotOfBovineAndPierogiStew") //holds 2 buckets of content or 4 vardanian bowls or approximately 1 kellish clay pot
+        {
+            //For All Items
+            this.identity = "Vardanian Pot of Bovine and Pierogi Stew";
+            this.weight = 26; //14
+            this.size = 14;
+            this.description = "An iron pot filled with a stew of stuffed pierogis and tender chunks of bovine meat.";
+            this.intForDes = 0;
+            this.intDescription = "The smokey bovodo cheese and potato stuffed pierogi with the thick savoury bovine broth has a gloriously rich flavour.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 34;
+            this.ingredients = [["Vardanian Pot of Water", 1], ["Wedge of Smoked Bovodo Cheese", 3], ["Potato", 9], ["Raw Bovine Ribs", 3]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for) //14
+            this.buyValue = 137; // at max, buy for 117.
+            this.sellValue = 109; // at max, sell for 109.
+        }
+        else if (this.type == "vardanianBowlOfBovineStrogonoff") //a vardanian bowl holds half as much as a bucket
+        {
+            //For All Items
+            this.identity = "Vardanian Bowl of Bovine Strogonoff and Spaetzle";
+            this.weight = 4; //1
+            this.size = 12;
+            this.description = "An iron bowl filled with chunks of bovine and spaetzle in a lightly spiced sour cream sauce.";
+            this.intForDes = 0;
+            this.intDescription = "It is savoury, meaty, and creamy and the spaetzle gives it some texture.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["vardanianBowl", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 25; //satisfies hunger.
+            this.thirst = 8; //quenches thirst.
+            this.warmth = 9; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 1; //recoops lost energy.
+            this.replenish = 0.25; //restores will.
+
+            //ability
+            this.ability = "satiation";
+
+            //Crafting
+            this.yield = 4;
+            this.intForCraft = 0;
+            this.biproducts = [[new Item("vardanianPot", false), 1]];
+            this.ingredients = [["Vardanian Pot of Bovine Strogonoff and Spaetzle", 1], ["Vardanian Bowl", 4]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 22 - Math.floor(player.getCharisma() / 25); // at max, buy for 20.
+            this.sellValue = 19 + Math.floor(player.getCharisma() / 50); // at max, sell for 20.
+        }
+        else if (this.type == "vardanianPotOfBovineStrogonoff") //holds 2 buckets of content or 4 vardanian bowls or approximately 1 kellish clay pot
+        {
+            //For All Items
+            this.identity = "Vardanian Pot of Bovine Strogonoff and Spaetzle";
+            this.weight = 26; //14
+            this.size = 14;
+            this.description = "An iron pot filled with chunks of bovine and spaetzle in a lightly spiced sour cream sauce.";
+            this.intForDes = 0;
+            this.intDescription = "It is savoury, meaty, and creamy and the spaetzle gives it some texture.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 23;
+            this.biproducts = [[new Item("vardanianBowl", false), 2]];
+            this.ingredients = [["Vardanian Pot", 1], ["Raw Bovine Ribs", 3], ["Vardanian Bowl of Sour Cream", 2], ["Wheat Flour", 3]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 96; // at max, buy for 96.
+            this.sellValue = 88; // at max, sell for 88.
+        }
+        else if (this.type == "vardanianBowlOfTagglerStew") //a vardanian bowl holds half as much as a bucket
+        {
+            //For All Items
+            this.identity = "Vardanian Bowl of Taggler Stew";
+            this.weight = 4; //1
+            this.size = 12;
+            this.description = "An iron bowl filled with broth, sliced taggler, borsht, potato, and cabbage.";
+            this.intForDes = 0;
+            this.intDescription = "It has a wholesome, warming, and hearty flavour.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["vardanianBowl", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 16; //satisfies hunger.
+            this.thirst = 16; //quenches thirst.
+            this.warmth = 12; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 1; //recoops lost energy.
+            this.replenish = 0.25; //restores will.
+
+            //ability
+            this.ability = "satiation";
+
+            //Crafting
+            this.yield = 4;
+            this.intForCraft = 0;
+            this.biproducts = [[new Item("vardanianPot", false), 1]];
+            this.ingredients = [["Vardanian Pot of Taggler Stew", 1], ["Vardanian Bowl", 4]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 20 - Math.floor(player.getCharisma() / 15); // at max, buy for 17.
+            this.sellValue = 12 + Math.floor(player.getCharisma() / 15); // at max, sell for 15.
+        }
+        else if (this.type == "vardanianPotOfTagglerStew") //holds 2 buckets of content or 4 vardanian bowls or approximately 1 kellish clay pot
+        {
+            //For All Items
+            this.identity = "Vardanian Pot of Taggler Stew";
+            this.weight = 26; //14
+            this.size = 14;
+            this.description = "An iron pot filled with broth, sliced taggler, borsht, potato, and cabbage.";
+            this.intForDes = 0;
+            this.intDescription = "It has a wholesome, warming, and hearty flavour.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 21;
+            this.ingredients = [["Vardanian Pot of Water", 1], ["Raw Taggler", 4], ["Borsht", 6], ["Potato", 6], ["Cabbage", 6]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 68; // at max, buy for 68.
+            this.sellValue = 60; // at max, sell for 60.
+        }
+        else if (this.type == "vardanianBowlOfMulstishStew") //a vardanian bowl holds half as much as a bucket
+        {
+            //For All Items
+            this.identity = "Vardanian Bowl of Mulstish Stew";
+            this.weight = 4; //1
+            this.size = 12;
+            this.description = "An iron bowl filled with broth, chopped mulstish, and cabbage.";
+            this.intForDes = 0;
+            this.intDescription = "It has an extremely strong savoury flavour with a moderate amount of fishiness.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["vardanianBowl", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 15; //satisfies hunger.
+            this.thirst = 8; //quenches thirst.
+            this.warmth = 6; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.5; //recoops lost energy.
+            this.replenish = 0.15; //restores will.
+
+            //ability
+            this.ability = "satiation";
+
+            //Crafting
+            this.yield = 4;
+            this.intForCraft = 0;
+            this.biproducts = [[new Item("vardanianPot", false), 1]];
+            this.ingredients = [["Vardanian Pot of Mulstish Stew", 1], ["Vardanian Bowl", 4]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 18 - Math.floor(player.getCharisma() / 25); // at max, buy for 16.
+            this.sellValue = 10 + Math.floor(player.getCharisma() / 25); // at max, sell for 12.
+        }
+        else if (this.type == "vardanianPotOfMulstishStew") //holds 2 buckets of content or 4 vardanian bowls or approximately 1 kellish clay pot
+        {
+            //For All Items
+            this.identity = "Vardanian Pot of Mulstish Stew";
+            this.weight = 26; //14
+            this.size = 14;
+            this.description = "An iron pot filled with broth, chopped mulstish, and cabbage.";
+            this.intForDes = 0;
+            this.intDescription = "It has an extremely strong savoury flavour with a moderate amount of fishiness.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 20;
+            this.ingredients = [["Vardanian Pot of Water", 1], ["Sliced Raw Mulstish", 5], ["Cabbage", 7]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 50; // at max, buy for 50.
+            this.sellValue = 40; // at max, sell for 40.
+        }
+        else if (this.type == "vardanianBowlOfToadStew") //a vardanian bowl holds half as much as a bucket
+        {
+            //For All Items
+            this.identity = "Vardanian Bowl of Toad Stew";
+            this.weight = 4; //1
+            this.size = 12;
+            this.description = "An iron bowl filled with broth, toad meat, cabbage, and borsht.";
+            this.intForDes = 0;
+            this.intDescription = "The toad meat has a bit of a rubberiness to it which makes it a bit of an effort to chew.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["vardanianBowl", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 14; //satisfies hunger.
+            this.thirst = 5; //quenches thirst.
+            this.warmth = 5; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -2.5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 4;
+            this.intForCraft = 0;
+            this.biproducts = [[new Item("vardanianPot", false), 1]];
+            this.ingredients = [["Vardanian Pot of Toad Stew", 1], ["Vardanian Bowl", 4]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 10 - Math.floor(player.getCharisma() / 50); // at max, buy for 9.
+            this.sellValue = 8 + Math.floor(player.getCharisma() / 50); // at max, sell for 9.
+        }
+        else if (this.type == "vardanianPotOfToadStew") //holds 2 buckets of content or 4 vardanian bowls or approximately 1 kellish clay pot
+        {
+            //For All Items
+            this.identity = "Vardanian Pot of Toad Stew";
+            this.weight = 26; //14
+            this.size = 14;
+            this.description = "An iron pot filled with broth, toad meat, cabbage, and borsht.";
+            this.intForDes = 0;
+            this.intDescription = "The toad meat has a bit of a rubberiness to it which makes it a bit of an effort to chew.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 9;
+            this.ingredients = [["Vardanian Pot of Water", 1], ["Toad Meat", 4], ["Cabbage", 6], ["Borsht", 3]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 47; // at max, buy for 47.
+            this.sellValue = 45; // at max, sell for 45.
+        }
+        else if (this.type == "vardanianBowlOfSlowBraisedKoivaya") //a vardanian bowl holds half as much as a bucket
+        {
+            //For All Items
+            this.identity = "Vardanian Bowl of Slow Braised Koivaya";
+            this.weight = 2.7; //1
+            this.size = 12;
+            this.description = "An iron bowl filled with cheesey bovodo potatoes, cabbage, and a large helping of slow braised koivaya meat topped with a dollop of sour cream.";
+            this.intForDes = 0;
+            this.intDescription = "It tastes amazing!";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["vardanianBowl", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 30; //satisfies hunger.
+            this.thirst = 0.75; //quenches thirst.
+            this.warmth = 7; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 1; //recoops lost energy.
+            this.replenish = 0.3; //restores will.
+
+            //ability
+            this.ability = "satiation";
+
+            //Crafting
+            this.yield = 4;
+            this.intForCraft = 0;
+            this.biproducts = [[new Item("vardanianPot", false), 1]];
+            this.ingredients = [["Vardanian Pot of Slow Braised Koivaya", 1], ["Vardanian Bowl", 4]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 27 - Math.floor(player.getCharisma() / 25); // at max, buy for 25.
+            this.sellValue = 22 + Math.floor(player.getCharisma() / 25); // at max, sell for 24.
+        }
+        else if (this.type == "vardanianPotOfSlowBraisedKoivaya") //holds 2 buckets of content or 4 vardanian bowls or approximately 1 kellish clay pot
+        {
+            //For All Items
+            this.identity = "Vardanian Pot of Slow Braised Koivaya";
+            this.weight = 20.8; //14
+            this.size = 14;
+            this.description = "An iron pot filled with cheesey bovodo potatoes, cabbage, and a large helping of slow braised koivaya meat topped with a dollop of sour cream";
+            this.intForDes = 0;
+            this.intDescription = "It tastes amazing!";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 28;
+            this.biproducts = [[new Item("vardanianBowl", false), 1]];
+            this.ingredients = [["Vardanian Pot", 1], ["Raw Koivaya Flesh", 4], ["Vardanian Bowl of Sour Cream", 1], ["Cabbage", 3], ["Potato", 5], ["Wedge of Bovodo Cheese", 2]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 110; // at max, buy for 110.
+            this.sellValue = 100; // at max, sell for 100.
         }
         else if (this.type == "vardanianBowlOfBovineMilk")
         {
@@ -42498,6 +43541,126 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "bovodo")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 846, 436, 20, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 20 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19 * 1.5), 20 * 1.5, 19 * 1.5);
+        }
+        else if (this.type == "smokedBovodo")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 913, 433, 22, 20, X - this.X + (1/2 * CCC.width) - (1/2 * 22 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 20 * 1.5), 22 * 1.5, 20 * 1.5);
+        }
+        else if (this.type == "bovodoWedge")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 888, 433, 22, 20, X - this.X + (1/2 * CCC.width) - (1/2 * 22 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 20 * 1.5), 22 * 1.5, 20 * 1.5);
+        }
+        else if (this.type == "smokedBovodoWedge")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 957, 431, 22, 20, X - this.X + (1/2 * CCC.width) - (1/2 * 22 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 20 * 1.5), 22 * 1.5, 20 * 1.5);
+        }
+        else if (this.type == "vardanianPieDough")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 934, 451, 22, 20, X - this.X + (1/2 * CCC.width) - (1/2 * 22 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 20 * 1.5), 22 * 1.5, 20 * 1.5);
+        }
+        else if (this.type == "uncookedChyoulBerryPie")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 916, 452, 18, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 18 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19 * 1.5), 18 * 1.5, 19 * 1.5);
+        }
+        else if (this.type == "chyoulBerryPie")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 898, 453, 18, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 18 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19 * 1.5), 18 * 1.5, 19 * 1.5);
+        }
+        else if (this.type == "chyoulBerryPieSlice")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 882, 458, 18, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 18 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19 * 1.5), 18 * 1.5, 19 * 1.5);
+        }
+        else if (this.type == "bovineButter")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 867, 456, 18, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 18 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19 * 1.5), 18 * 1.5, 19 * 1.5);
+        }
+        else if (this.type == "rawVenison")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 564, 496, 18, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 18 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19 * 1.5), 18 * 1.5, 19 * 1.5);
+        }
+        else if (this.type == "venison")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 545, 497, 18, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 18 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19 * 1.5), 18 * 1.5, 19 * 1.5);
+        }
+        else if (this.type == "smokedVenison")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 527, 498, 18, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 18 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19 * 1.5), 18 * 1.5, 19 * 1.5);
+        }
+        else if (this.type == "elkAntler")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 490, 508, 36, 35, X - this.X + (1/2 * CCC.width) - (1/2 * 36 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 35 * 1.5), 36 * 1.5, 35 * 1.5);
+        }
+        else if (this.type == "elkPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 534, 524, 41, 22, X - this.X + (1/2 * CCC.width) - (1/2 * 41 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 22 * 1.5), 41 * 1.5, 22 * 1.5);
+        }
+        else if (this.type == "vardanianBowlOfMushroomStrogonoff")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 474, 583, 25, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 25 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 1.5), 25 * 1.5, 24 * 1.5);
+        }
+        else if (this.type == "vardanianBowlOfBorshtSoup")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 540, 554, 25, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 25 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 1.5), 25 * 1.5, 24 * 1.5);
+        }
+        else if (this.type == "vardanianBowlOfCabbageSoup")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 541, 580, 25, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 25 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 1.5), 25 * 1.5, 24 * 1.5);
+        }
+        else if (this.type == "vardanianBowlOfCreamyVenisonStew")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 609, 554, 25, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 25 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 1.5), 25 * 1.5, 24 * 1.5);
+        }
+        else if (this.type == "vardanianBowlOfBovineAndPierogiStew")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 609, 580, 25, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 25 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 1.5), 25 * 1.5, 24 * 1.5);
+        }
+        else if (this.type == "vardanianBowlOfBovineStrogonoff")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 610, 611, 25, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 25 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 1.5), 25 * 1.5, 24 * 1.5);
+        }
+        else if (this.type == "vardanianBowlOfTagglerStew")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 671, 581, 25, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 25 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 1.5), 25 * 1.5, 24 * 1.5);
+        }
+        else if (this.type == "vardanianBowlOfMulstishStew")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 671, 608, 25, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 25 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 1.5), 25 * 1.5, 24 * 1.5);
+        }
+        else if (this.type == "vardanianBowlOfToadStew")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 740, 581, 25, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 25 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 1.5), 25 * 1.5, 24 * 1.5);
+        }
+        else if (this.type == "vardanianBowlOfSlowBraisedKoivaya")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 741, 609, 25, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 25 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 1.5), 25 * 1.5, 24 * 1.5);
+        }
         else if (this.type == "rawSkig")
         {
             XXX.beginPath();
@@ -43826,11 +44989,6 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 125, 93, 48, 50, X - this.X + (1/2 * CCC.width) - (1/2 * 48 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 50 * 1.4), 48 * 1.4, 50 * 1.4);
         }
-        else if (this.type == "slicedBorsht")
-        {
-            XXX.beginPath();
-            XXX.drawImage(toad, 125, 93, 48, 50, X - this.X + (1/2 * CCC.width) - (1/2 * 48 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 50 * 1.4), 48 * 1.4, 50 * 1.4);
-        }
         else if (this.type == "swampLily")
         {
             XXX.beginPath();
@@ -43861,7 +45019,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(hydra, 35, 525, 15, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16 * 1.5), 15 * 1.5, 16 * 1.5);
         }
-        else if (this.type == "vardanianPot" || this.type == "vardanianPotOfWater" || this.type == "vardanianPotOfBovineMilk" || this.type == "vardanianPotOfWaantiMilk" || this.type == "vardanianPotOfNaapridMilk" || this.type == "vardanianPotOfSourCream" || this.type == "vardanianPotOfMandrake")
+        else if (this.type == "vardanianPot" || this.type == "vardanianPotOfWater" || this.type == "vardanianPotOfBovineMilk" || this.type == "vardanianPotOfWaantiMilk" || this.type == "vardanianPotOfNaapridMilk" || this.type == "vardanianPotOfSourCream" || this.type == "vardanianPotOfMandrake" || this.type == "vardanianPotOfMushroomStrogonoff" || this.type == "vardanianPotOfBorshtSoup" || this.type == "vardanianPotOfCabbageSoup" || this.type == "vardanianPotOfCreamyVenisonStew" || this.type == "vardanianPotOfBovineAndPierogiStew" || this.type == "vardanianPotOfBovineStrogonoff" || this.type == "vardanianPotOfTagglerStew" || this.type == "vardanianPotOfMulstishStew" || this.type == "vardanianPotOfToadStew" || this.type == "vardanianPotOfSlowBraisedKoivaya")
         {
             XXX.beginPath();
             XXX.drawImage(toad, 612, 527, 27, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 27 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19 * 1.5), 27 * 1.5, 19 * 1.5);
@@ -48064,6 +49222,126 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
+        else if (this.type == "bovodo")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 846, 436, 20, 19, this.invX - (1/2 * 20 * 1.5), this.invY - (1/2 * 19 * 1.5), 20 * 1.5, 19 * 1.5);
+        }
+        else if (this.type == "smokedBovodo")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 913, 433, 22, 20, this.invX - (1/2 * 22 * 1.5), this.invY - (1/2 * 20 * 1.5), 22 * 1.5, 20 * 1.5);
+        }
+        else if (this.type == "bovodoWedge")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 888, 433, 22, 20, this.invX - (1/2 * 22 * 1.5), this.invY - (1/2 * 20 * 1.5), 22 * 1.5, 20 * 1.5);
+        }
+        else if (this.type == "smokedBovodoWedge")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 957, 431, 22, 20, this.invX - (1/2 * 22 * 1.5), this.invY - (1/2 * 20 * 1.5), 22 * 1.5, 20 * 1.5);
+        }
+        else if (this.type == "vardanianPieDough")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 934, 451, 22, 20, this.invX - (1/2 * 22 * 1.5), this.invY - (1/2 * 20 * 1.5), 22 * 1.5, 20 * 1.5);
+        }
+        else if (this.type == "uncookedChyoulBerryPie")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 916, 452, 18, 19, this.invX - (1/2 * 18 * 1.5), this.invY - (1/2 * 19 * 1.5), 18 * 1.5, 19 * 1.5);
+        }
+        else if (this.type == "chyoulBerryPie")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 898, 453, 18, 19, this.invX - (1/2 * 18 * 1.5), this.invY - (1/2 * 19 * 1.5), 18 * 1.5, 19 * 1.5);
+        }
+        else if (this.type == "chyoulBerryPieSlice")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 882, 458, 18, 19, this.invX - (1/2 * 18 * 1.5), this.invY - (1/2 * 19 * 1.5), 18 * 1.5, 19 * 1.5);
+        }
+        else if (this.type == "bovineButter")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 867, 456, 18, 19, this.invX - (1/2 * 18 * 1.5), this.invY - (1/2 * 19 * 1.5), 18 * 1.5, 19 * 1.5);
+        }
+        else if (this.type == "rawVenison")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 564, 496, 18, 19, this.invX - (1/2 * 18 * 1.5), this.invY - (1/2 * 19 * 1.5), 18 * 1.5, 19 * 1.5);
+        }
+        else if (this.type == "venison")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 545, 497, 18, 19, this.invX - (1/2 * 18 * 1.5), this.invY - (1/2 * 19 * 1.5), 18 * 1.5, 19 * 1.5);
+        }
+        else if (this.type == "smokedVenison")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 527, 498, 18, 19, this.invX - (1/2 * 18 * 1.5), this.invY - (1/2 * 19 * 1.5), 18 * 1.5, 19 * 1.5);
+        }
+        else if (this.type == "elkAntler")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 490, 508, 36, 35, this.invX - (1/2 * 36 * 1.5), this.invY - (1/2 * 35 * 1.5), 36 * 1.5, 35 * 1.5);
+        }
+        else if (this.type == "elkPelt")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 534, 524, 41, 22, this.invX - (1/2 * 41 * 1.5), this.invY - (1/2 * 22 * 1.5), 41 * 1.5, 22 * 1.5);
+        }
+        else if (this.type == "vardanianBowlOfMushroomStrogonoff")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 443, 583, 25, 24, this.invX - (1/2 * 25 * 1.5), this.invY - (1/2 * 24 * 1.5), 25 * 1.5, 24 * 1.5);
+        }
+        else if (this.type == "vardanianBowlOfBorshtSoup")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 509, 554, 25, 24, this.invX - (1/2 * 25 * 1.5), this.invY - (1/2 * 24 * 1.5), 25 * 1.5, 24 * 1.5);
+        }
+        else if (this.type == "vardanianBowlOfCabbageSoup")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 510, 580, 25, 24, this.invX - (1/2 * 25 * 1.5), this.invY - (1/2 * 24 * 1.5), 25 * 1.5, 24 * 1.5);
+        }
+        else if (this.type == "vardanianBowlOfCreamyVenisonStew")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 578, 554, 25, 24, this.invX - (1/2 * 25 * 1.5), this.invY - (1/2 * 24 * 1.5), 25 * 1.5, 24 * 1.5);
+        }
+        else if (this.type == "vardanianBowlOfBovineAndPierogiStew")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 578, 580, 25, 24, this.invX - (1/2 * 25 * 1.5), this.invY - (1/2 * 24 * 1.5), 25 * 1.5, 24 * 1.5);
+        }
+        else if (this.type == "vardanianBowlOfBovineStrogonoff")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 579, 610, 25, 24, this.invX - (1/2 * 25 * 1.5), this.invY - (1/2 * 24 * 1.5), 25 * 1.5, 24 * 1.5);
+        }
+        else if (this.type == "vardanianBowlOfTagglerStew")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 640, 580, 25, 24, this.invX - (1/2 * 25 * 1.5), this.invY - (1/2 * 24 * 1.5), 25 * 1.5, 24 * 1.5);
+        }
+        else if (this.type == "vardanianBowlOfMulstishStew")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 640, 608, 25, 24, this.invX - (1/2 * 25 * 1.5), this.invY - (1/2 * 24 * 1.5), 25 * 1.5, 24 * 1.5);
+        }
+        else if (this.type == "vardanianBowlOfToadStew")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 709, 580, 25, 24, this.invX - (1/2 * 25 * 1.5), this.invY - (1/2 * 24 * 1.5), 25 * 1.5, 24 * 1.5);
+        }
+        else if (this.type == "vardanianBowlOfSlowBraisedKoivaya")
+        {
+            LXX.beginPath();
+            LXX.drawImage(toad, 710, 609, 25, 24, this.invX - (1/2 * 25 * 1.5), this.invY - (1/2 * 24 * 1.5), 25 * 1.5, 24 * 1.5);
+        }
         else if (this.type == "rawSkig")
         {
             LXX.beginPath();
@@ -49388,11 +50666,6 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(toad, 125, 93, 48, 50, this.invX - (1/2 * 48 * 1.4), this.invY - (1/2 * 50 * 1.4), 48 * 1.4, 50 * 1.4);
         }
-        else if (this.type == "slicedBorsht")
-        {
-            LXX.beginPath();
-            LXX.drawImage(toad, 125, 93, 48, 50, this.invX - (1/2 * 48 * 1.4), this.invY - (1/2 * 50 * 1.4), 48 * 1.4, 50 * 1.4);
-        }
         else if (this.type == "swampLily")
         {
             LXX.beginPath();
@@ -49423,7 +50696,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(hydra, 58, 524, 15, 32, this.invX - (1/2 * 15 * 1.5), this.invY - (1/2 * 32 * 1.5), 15 * 1.5, 32 * 1.5);
         }
-        else if (this.type == "vardanianPot" || this.type == "vardanianPotOfWater" || this.type == "vardanianPotOfBovineMilk" || this.type == "vardanianPotOfWaantiMilk" || this.type == "vardanianPotOfNaapridMilk" || this.type == "vardanianPotOfSourCream" || this.type == "vardanianPotOfMandrake")
+        else if (this.type == "vardanianPot" || this.type == "vardanianPotOfWater" || this.type == "vardanianPotOfBovineMilk" || this.type == "vardanianPotOfWaantiMilk" || this.type == "vardanianPotOfNaapridMilk" || this.type == "vardanianPotOfSourCream" || this.type == "vardanianPotOfMandrake" || this.type == "vardanianPotOfMushroomStrogonoff" || this.type == "vardanianPotOfBorshtSoup" || this.type == "vardanianPotOfCabbageSoup" || this.type == "vardanianPotOfCreamyVenisonStew" || this.type == "vardanianPotOfBovineAndPierogiStew" || this.type == "vardanianPotOfBovineStrogonoff" || this.type == "vardanianPotOfTagglerStew" || this.type == "vardanianPotOfMulstishStew" || this.type == "vardanianPotOfToadStew" || this.type == "vardanianPotOfSlowBraisedKoivaya")
         {
             LXX.beginPath();
             LXX.drawImage(toad, 584, 525, 26, 22, this.invX - (1/2 * 26 * 1.5), this.invY - (1/2 * 22 * 1.5), 26 * 1.5, 22 * 1.5);
@@ -53601,6 +54874,126 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
+        else if (this.type == "bovodo")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 846, 436, 20, 19, this.invX - (1/2 * 20 * 1.5), this.invY - (1/2 * 19 * 1.5), 20 * 1.5, 19 * 1.5);
+        }
+        else if (this.type == "smokedBovodo")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 913, 433, 22, 20, this.invX - (1/2 * 22 * 1.5), this.invY - (1/2 * 20 * 1.5), 22 * 1.5, 20 * 1.5);
+        }
+        else if (this.type == "bovodoWedge")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 888, 433, 22, 20, this.invX - (1/2 * 22 * 1.5), this.invY - (1/2 * 20 * 1.5), 22 * 1.5, 20 * 1.5);
+        }
+        else if (this.type == "smokedBovodoWedge")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 957, 431, 22, 20, this.invX - (1/2 * 22 * 1.5), this.invY - (1/2 * 20 * 1.5), 22 * 1.5, 20 * 1.5);
+        }
+        else if (this.type == "vardanianPieDough")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 934, 451, 22, 20, this.invX - (1/2 * 22 * 1.5), this.invY - (1/2 * 20 * 1.5), 22 * 1.5, 20 * 1.5);
+        }
+        else if (this.type == "uncookedChyoulBerryPie")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 916, 452, 18, 19, this.invX - (1/2 * 18 * 1.5), this.invY - (1/2 * 19 * 1.5), 18 * 1.5, 19 * 1.5);
+        }
+        else if (this.type == "chyoulBerryPie")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 898, 453, 18, 19, this.invX - (1/2 * 18 * 1.5), this.invY - (1/2 * 19 * 1.5), 18 * 1.5, 19 * 1.5);
+        }
+        else if (this.type == "chyoulBerryPieSlice")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 882, 458, 18, 19, this.invX - (1/2 * 18 * 1.5), this.invY - (1/2 * 19 * 1.5), 18 * 1.5, 19 * 1.5);
+        }
+        else if (this.type == "bovineButter")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 867, 456, 18, 19, this.invX - (1/2 * 18 * 1.5), this.invY - (1/2 * 19 * 1.5), 18 * 1.5, 19 * 1.5);
+        }
+        else if (this.type == "rawVenison")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 564, 496, 18, 19, this.invX - (1/2 * 18 * 1.5), this.invY - (1/2 * 19 * 1.5), 18 * 1.5, 19 * 1.5);
+        }
+        else if (this.type == "venison")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 545, 497, 18, 19, this.invX - (1/2 * 18 * 1.5), this.invY - (1/2 * 19 * 1.5), 18 * 1.5, 19 * 1.5);
+        }
+        else if (this.type == "smokedVenison")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 527, 498, 18, 19, this.invX - (1/2 * 18 * 1.5), this.invY - (1/2 * 19 * 1.5), 18 * 1.5, 19 * 1.5);
+        }
+        else if (this.type == "elkAntler")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 490, 508, 36, 35, this.invX - (1/2 * 36 * 1.5), this.invY - (1/2 * 35 * 1.5), 36 * 1.5, 35 * 1.5);
+        }
+        else if (this.type == "elkPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 534, 524, 41, 22, this.invX - (1/2 * 41 * 1.5), this.invY - (1/2 * 22 * 1.5), 41 * 1.5, 22 * 1.5);
+        }
+        else if (this.type == "vardanianBowlOfMushroomStrogonoff")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 443, 583, 25, 24, this.invX - (1/2 * 25 * 1.5), this.invY - (1/2 * 24 * 1.5), 25 * 1.5, 24 * 1.5);
+        }
+        else if (this.type == "vardanianBowlOfBorshtSoup")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 509, 554, 25, 24, this.invX - (1/2 * 25 * 1.5), this.invY - (1/2 * 24 * 1.5), 25 * 1.5, 24 * 1.5);
+        }
+        else if (this.type == "vardanianBowlOfCabbageSoup")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 510, 580, 25, 24, this.invX - (1/2 * 25 * 1.5), this.invY - (1/2 * 24 * 1.5), 25 * 1.5, 24 * 1.5);
+        }
+        else if (this.type == "vardanianBowlOfCreamyVenisonStew")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 578, 554, 25, 24, this.invX - (1/2 * 25 * 1.5), this.invY - (1/2 * 24 * 1.5), 25 * 1.5, 24 * 1.5);
+        }
+        else if (this.type == "vardanianBowlOfBovineAndPierogiStew")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 578, 580, 25, 24, this.invX - (1/2 * 25 * 1.5), this.invY - (1/2 * 24 * 1.5), 25 * 1.5, 24 * 1.5);
+        }
+        else if (this.type == "vardanianBowlOfBovineStrogonoff")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 579, 610, 25, 24, this.invX - (1/2 * 25 * 1.5), this.invY - (1/2 * 24 * 1.5), 25 * 1.5, 24 * 1.5);
+        }
+        else if (this.type == "vardanianBowlOfTagglerStew")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 640, 580, 25, 24, this.invX - (1/2 * 25 * 1.5), this.invY - (1/2 * 24 * 1.5), 25 * 1.5, 24 * 1.5);
+        }
+        else if (this.type == "vardanianBowlOfMulstishStew")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 640, 608, 25, 24, this.invX - (1/2 * 25 * 1.5), this.invY - (1/2 * 24 * 1.5), 25 * 1.5, 24 * 1.5);
+        }
+        else if (this.type == "vardanianBowlOfToadStew")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 709, 580, 25, 24, this.invX - (1/2 * 25 * 1.5), this.invY - (1/2 * 24 * 1.5), 25 * 1.5, 24 * 1.5);
+        }
+        else if (this.type == "vardanianBowlOfSlowBraisedKoivaya")
+        {
+            XXX.beginPath();
+            XXX.drawImage(toad, 710, 609, 25, 24, this.invX - (1/2 * 25 * 1.5), this.invY - (1/2 * 24 * 1.5), 25 * 1.5, 24 * 1.5);
+        }
         else if (this.type == "rawSkig")
         {
             XXX.beginPath();
@@ -54925,11 +56318,6 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 125, 93, 48, 50, this.invX - (1/2 * 48 * 1.4), this.invY - (1/2 * 50 * 1.4), 48 * 1.4, 50 * 1.4);
         }
-        else if (this.type == "slicedBorsht")
-        {
-            XXX.beginPath();
-            XXX.drawImage(toad, 125, 93, 48, 50, this.invX - (1/2 * 48 * 1.4), this.invY - (1/2 * 50 * 1.4), 48 * 1.4, 50 * 1.4);
-        }
         else if (this.type == "swampLily")
         {
             XXX.beginPath();
@@ -54960,7 +56348,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(hydra, 58, 524, 15, 32, this.invX - (1/2 * 15 * 1.5), this.invY - (1/2 * 32 * 1.5), 15 * 1.5, 32 * 1.5);
         }
-        else if (this.type == "vardanianPot" || this.type == "vardanianPotOfWater" || this.type == "vardanianPotOfBovineMilk" || this.type == "vardanianPotOfWaantiMilk" || this.type == "vardanianPotOfNaapridMilk" || this.type == "vardanianPotOfSourCream" || this.type == "vardanianPotOfMandrake")
+        else if (this.type == "vardanianPot" || this.type == "vardanianPotOfWater" || this.type == "vardanianPotOfBovineMilk" || this.type == "vardanianPotOfWaantiMilk" || this.type == "vardanianPotOfNaapridMilk" || this.type == "vardanianPotOfSourCream" || this.type == "vardanianPotOfMandrake" || this.type == "vardanianPotOfMushroomStrogonoff" || this.type == "vardanianPotOfBorshtSoup" || this.type == "vardanianPotOfCabbageSoup" || this.type == "vardanianPotOfCreamyVenisonStew" || this.type == "vardanianPotOfBovineAndPierogiStew" || this.type == "vardanianPotOfBovineStrogonoff" || this.type == "vardanianPotOfTagglerStew" || this.type == "vardanianPotOfMulstishStew" || this.type == "vardanianPotOfToadStew" || this.type == "vardanianPotOfSlowBraisedKoivaya")
         {
             XXX.beginPath();
             XXX.drawImage(toad, 584, 525, 26, 22, this.invX - (1/2 * 26 * 1.5), this.invY - (1/2 * 22 * 1.5), 26 * 1.5, 22 * 1.5);

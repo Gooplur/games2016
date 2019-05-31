@@ -702,7 +702,7 @@ function worldBuilder()
             outlineBuilder( 4, 1, "greenGrass", -21, -17);
 
         }
-        //mapW2 //TODO make the map
+        //mapW2
         if (Y > -3919 && Y < 6870 && X < 28129 && X > 16474) //X-2
         {
             elevation = 0;
@@ -856,6 +856,13 @@ function worldBuilder()
             region = "n3";
             outlineBuilder(34, 34, "frost", -20, -122);
             outlineBuilder(34, 1, "stonePath", -3, -122);
+        }
+        //mapN3E1
+        if (Y > 26650 && Y < 37456 && X < -2423 && X > -14153) //X1
+        {
+            elevation = 1;
+            region = "n3e1";
+            outlineBuilder(34, 34, "outline", 14, -122); //todo frost
         }
         //layer 4 (frosty region): elev 1
         //mapN4W1
@@ -1818,6 +1825,11 @@ function outlineBuilder(width, length, terrain, extraX, extraY)
                     over("landing", j, i, extraX, extraY);
 
                     XXX.drawImage(swampBL, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "sewage")
+                {
+                    over("sea", j, i, extraX, extraY);
+                    XXX.drawImage(sewageEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
                 }
             }
         }

@@ -193,6 +193,7 @@ function buildMaster()
                 //scenicList.push(new Scenery("vardanianMueble", 3500, 2400, 0, 23, 1)); //flag stand rebel
                 //scenicList.push(new Scenery("vardanCastle1", 5800, 2700, 0, 2.4));
                 //scenicList.push(new Scenery("vardanBed", 5800, 2700, 0, [true, 0.8], 3));
+                //scenicList.push(new Scenery("vardanianHearth", 3500, 2400, 2/3 * Math.PI, true));
 
                 //scenicList.push(new Scenery("mrbAssets", 4900, 2400, 0, 9, 2));
 
@@ -2082,6 +2083,47 @@ function buildMaster()
                 //scenicList.push(new Scenery("hyelingSkeleton", 10071 , 8788, 0.12, true));
 
                 change = "n3";
+            }
+        }
+        else if (region == "n3e1")
+        {
+            if (change != "n3e1")
+            {
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
+                //Delete All Non-native AI Units
+                for (var i =  ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
+
+                //REGION CREATION
+                //Build AI Units
+                scenicList.push(new Scenery("bushkaPlant", -2366, 35548,-2.75, true)); //copied n-3
+                scenicList.push(new Scenery("bushkaPlant", -2182, 34319,2.75, true)); //copied n-3
+                scenicList.push(new Scenery("tyrniPlant", -12270, 38406,0.4, true)); //copied n-4-e-1
+
+
+                change = "n3e1";
             }
         }
         else if (region == "n4w1")

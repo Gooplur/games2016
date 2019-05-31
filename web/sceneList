@@ -40,7 +40,7 @@ northernFishingSpot - A rippling part of the water where the fishing system can 
 lostPaddle - an oar for a boat
 crashedBoat - a rowboat that is in ruin
 barrel - decorative barrels (one with a spigot the other without)
-crate - decorative and storage-system-capable varieties of crates in two color schemes dark-wood and light-wood
+crate - decorative and storage-system-capable varieties of crates in three color schemes dark-wood (1, 3), light-wood (2, 4), and ashai wood (0, 5) //scenicList.push(new Scenery("crate", 1142, 1700, -3/4 * Math.PI, 1, [1.5])); //scenicList.push(new Scenery("crate", 2731, 2080, 3.5/4 * Math.PI, 3, [1.2, "crateName", 6, [[new Item("woodenBowl", false, false), 7]], false, 0]));
 blood - 11 different bloodstain options for spilled blood (7, 8, 9, 10, and 11 are darkened to a more Vardanian tone)
 thenganSandbox - A sandpit arena in the thengan style
 thenganBuilding1 - a thengan building
@@ -149,7 +149,7 @@ vardanianSwampBrush - swamp foliage that is variable in size based on a manual i
 temperateFishingSpot - A rippling part of the water where the fishing system can be accessed with a fishingpole (west-central, central, and eastern temperate fish types found here)
 southFishingSpot - A rippling part of the water where the fishing system can be accessed with a fishingpole (savannah fish types found here)
 temperatePondFishingSpot - A rippling part of the water where the fishing system can be accessed with a fishingpole (limited eastern temperate varieties found here)
-vardanianMueble - A variety of Vardanian Furnishings (0-24)
+vardanianMueble - A variety of mostly Vardanian Furnishings, but some thengan stuff too (0-29)
 vardanianFloorDeco - rugs, mats, and rags, and royal/rebel carpets, borgal rug (0-17)
 viudaTunnel - A mound that hosts a webbed tunnel in which the Viuda spider makes its home. //scenicList.push(new Scenery("viudaTunnel", x, y, rotation, hasSpider?, isAlpha?));
 vinePatch - a foliage barrier that can be degraded upon being attacked. //scenicList.push(new Scenery("vinePatch", x, y, rotation, size));
@@ -250,6 +250,7 @@ mrbAssets - A number of assets for the MRB alternate play mode
 vardanCastle1 - A large castle that is vardanian... (temporary makes it bigger) //scenicList.push(new Scenery("vardanCastle1", 5800, 2700, 0, 2.4));
 vardanBed - A selection of three different beds for Vardania ~ temporary = [canSleepInIt?, size] information = type selector (1: basic, 2: double, 3: count) //scenicList.push(new Scenery("vardanBed", 5800, 2700, 0, [true, 0.8], 3));
 vardanianTemperateFishingSpot - A Vardanian freshwater fishing spot that has: mulstish, apoi, skig, taggler, crilp
+vardanianHearth - A Vardanian Fireplace that runs on ashai wood, it burns longer and wider but with less heat //scenicList.push(new Scenery("vardanianHearth", 3500, 2400, 2/3 * Math.PI, true)); //"lit" = stays on fire but the player cannot use it to cook with, false = remains unlit and the player cannot use it at all, true = player can operate it manually
 
 
 

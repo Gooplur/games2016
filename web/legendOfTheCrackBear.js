@@ -1310,6 +1310,10 @@ function envPack()
     brickRoadEnv.src = ("images/brickRoad.jpg");
     window.brickRoadEnv = brickRoadEnv;
 
+    var sewageEnv = new Image();
+    sewageEnv.src = ("images/sewage.png");
+    window.sewageEnv = sewageEnv;
+
     var snowyEnv = new Image();
     snowyEnv.src = ("images/permaFrost.jpg");
     window.snowyEnv = snowyEnv;
@@ -4383,6 +4387,30 @@ function theLegend()
     foods.push(new Item("tilmuk", false));
     foods.push(new Item("opium", false));
     foods.push(new Item("borgalMeat", false));
+    foods.push(new Item("ribbackMeat", false));
+    foods.push(new Item("skig", false));
+    foods.push(new Item("slicedMulstish", false));
+    foods.push(new Item("slicedSmokedMulstish", false));
+    foods.push(new Item("apoi", false));
+    foods.push(new Item("smokedApoi", false));
+    foods.push(new Item("taggler", false));
+    foods.push(new Item("smokedTaggler", false));
+    foods.push(new Item("crilp", false));
+    foods.push(new Item("smokedCrilp", false));
+    foods.push(new Item("vardanianPotOfMushroomStrogonoff", false));
+    foods.push(new Item("vardanianPotOfBorshtSoup", false));
+    foods.push(new Item("vardanianPotOfCabbageSoup", false));
+    foods.push(new Item("vardanianPotOfCreamyVenisonStew", false));
+    foods.push(new Item("vardanianPotOfBovineAndPierogiStew", false));
+    foods.push(new Item("vardanianPotOfBovineStrogonoff", false));
+    foods.push(new Item("vardanianPotOfTagglerStew", false));
+    foods.push(new Item("vardanianPotOfMulstishStew", false));
+    foods.push(new Item("vardanianPotOfToadStew", false));
+    foods.push(new Item("vardanianPotOfSlowBraisedKoivaya", false));
+    foods.push(new Item("smokedBovodo", false));
+    foods.push(new Item("venison", false));
+    foods.push(new Item("smokedVenison", false));
+    foods.push(new Item("chyoulBerryPie", false));
 
 
 //Tailoring (Items crafted at a weaving, sewing, dying, etc. tailor's work bench thing)
@@ -4537,6 +4565,7 @@ function theLegend()
     alchemy.push(new Item("driedDuendeEsophagus", false));
     alchemy.push(new Item("duendePowder", false));
     alchemy.push(new Item("naapricha", false));
+    alchemy.push(new Item("bovodo", false));
     alchemy.push(new Item("copperDust", false));
     alchemy.push(new Item("brittleGhoulFlyStomach", false));
     alchemy.push(new Item("ghoulFlyPowder", false));
@@ -4613,6 +4642,7 @@ function theLegend()
     handcrafted.push(new Item("wobeaSlice", false));
     handcrafted.push(new Item("naapridButter", false));
     handcrafted.push(new Item("waantiButter", false));
+    handcrafted.push(new Item("bovineButter", false));
     handcrafted.push(new Item("butteredHarstBread", false));
     handcrafted.push(new Item("butteredPumpkinBread", false));
     handcrafted.push(new Item("butteredSanthBread", false));
@@ -4675,6 +4705,8 @@ function theLegend()
     handcrafted.push(new Item("boarMeat", false));
     handcrafted.push(new Item("curedPork", false));
     handcrafted.push(new Item("naaprichaWedge", false));
+    handcrafted.push(new Item("bovodoWedge", false));
+    handcrafted.push(new Item("smokedBovodoWedge", false));
     handcrafted.push(new Item("erguerPaste", false));
     handcrafted.push(new Item("bucketOfErguerPaste", false));
     handcrafted.push(new Item("erguerWine", false));
@@ -4722,6 +4754,20 @@ function theLegend()
     handcrafted.push(new Item("hetlaukWormPlatter", false));
     handcrafted.push(new Item("sausageAndGreens", false));
     handcrafted.push(new Item("rawBorgalFlesh", false));
+    handcrafted.push(new Item("slicedRawMulstish", false));
+    handcrafted.push(new Item("vardanianBowlOfMushroomStrogonoff", false));
+    handcrafted.push(new Item("vardanianBowlOfBorshtSoup", false));
+    handcrafted.push(new Item("vardanianBowlOfCabbageSoup", false));
+    handcrafted.push(new Item("vardanianBowlOfCreamyVenisonStew", false));
+    handcrafted.push(new Item("vardanianBowlOfBovineAndPierogiStew", false));
+    handcrafted.push(new Item("vardanianBowlOfBovineStrogonoff", false));
+    handcrafted.push(new Item("vardanianBowlOfTagglerStew", false));
+    handcrafted.push(new Item("vardanianBowlOfMulstishStew", false));
+    handcrafted.push(new Item("vardanianBowlOfToadStew", false));
+    handcrafted.push(new Item("vardanianBowlOfSlowBraisedKoivaya", false));
+    handcrafted.push(new Item("vardanianPieDough", false));
+    handcrafted.push(new Item("uncookedChyoulBerryPie", false));
+    handcrafted.push(new Item("chyoulBerryPieSlice", false));
 
     //Activate Important Game Functions Here:
     itemPlacer();

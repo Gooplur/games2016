@@ -4478,7 +4478,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             else if (this.temporary == 22)//royal flag
             {
                 this.solid = true;
-                this.radius = 24;
+                this.radius = 24 * this.information;
                 this.tic += 1;
 
                 if (this.tic < 122)
@@ -4523,10 +4523,10 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     this.tic = 0;
                 }
             }
-            else if (this.temporary >= 23)//rebel flag
+            else if (this.temporary == 23)//rebel flag
             {
                 this.solid = true;
-                this.radius = 24;
+                this.radius = 24 * this.information;
                 this.tic += 1;
 
                 if (this.tic < 122)
@@ -4573,10 +4573,62 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             }
             else if (this.temporary == 24)//fishrack
             {
+                this.solid = true;
+                this.radius = 18 * this.information;
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
                 XXX.drawImage(toad, 646, 277, 68, 40, -(1/2 * 68 * this.information), -(1/2 * 40 * this.information), 68 * this.information, 40 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 25)//vardanian barrel worn
+            {
+                this.solid = true;
+                this.radius = 23 * this.information;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 752, 316, 43, 43, -(1/2 * 43 * this.information), -(1/2 * 43 * this.information), 43 * this.information, 43 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 26)//vardanian barrel new
+            {
+                this.solid = true;
+                this.radius = 23 * this.information;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 699, 315, 43, 43, -(1/2 * 43 * this.information), -(1/2 * 43 * this.information), 43 * this.information, 43 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 27)//thengan barrel new
+            {
+                this.solid = true;
+                this.radius = 23 * this.information;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 549, 277, 43, 43, -(1/2 * 43 * this.information), -(1/2 * 43 * this.information), 43 * this.information, 43 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 28)//thengan barrel worn
+            {
+                this.solid = true;
+                this.radius = 23 * this.information;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 602, 278, 43, 43, -(1/2 * 43 * this.information), -(1/2 * 43 * this.information), 43 * this.information, 43 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 29)//vardanian barrel overturned
+            {
+                this.solid = true;
+                this.radius = 28 * this.information;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 646, 326, 41, 56, -(1/2 * 41 * this.information), -(1/2 * 56 * this.information), 41 * this.information, 56 * this.information);
                 XXX.restore();
             }
 
@@ -6797,6 +6849,9 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             this.solid = false;
             this.interactionRange = 35 + 35 * this.information[0];
 
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 35 * this.information[0];
+
             this.zIndex = 1;
             if (this.temporary == 1 || this.temporary == 3)
             {
@@ -6836,9 +6891,26 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     XXX.restore();
                 }
             }
-
-            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
-            this.radius = 35 * this.information[0];
+            else if (this.temporary == 0 || this.temporary == 5) //vardanian crate
+            {
+                this.radius = 15 * this.information[0];
+                if (this.phase == 0)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(toad, 699, 368, 29, 26, -(1/2 * 29 * this.information[0]), -(1/2 * 26 * this.information[0]), 29 * this.information[0], 26 * this.information[0]);
+                    XXX.restore();
+                }
+                else if (this.phase == "opened")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(toad, 734, 369, 29, 26, -(1/2 * 29 * this.information[0]), -(1/2 * 26 * this.information[0]), 29 * this.information[0], 26 * this.information[0]);
+                    XXX.restore();
+                }
+            }
 
             //INTERACTION
             if (this.activate == true)
@@ -31049,7 +31121,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     XXX.drawImage(theng, 444, 319, 47, 26, -(1/2 * 47 * 1.6), -(1/2 * 26 * 1.6), 47 * 1.6, 26 * 1.6);
                     XXX.restore();
                 }
-                else if ("empty")
+                else if (this.burnt == "empty")
                 {
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -31166,6 +31238,205 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                             break;
                         }
                         else if (Inventory[i][0].identity == "Wood" && Inventory[i][1] == 1)
+                        {
+                            Inventory.splice(i, 1);
+                            this.burnt = false;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        else if (this.type == "vardanianHearth")
+        {
+            //TRAITS
+            if (this.lit)
+            {
+                this.solid = true;
+            }
+            else
+            {
+                this.solid = false;
+            }
+            this.interactionRange = 50;
+
+            if (this.runOneTime)
+            {
+                if (this.temporary == "lit" || this.temporary == "flame")
+                {
+                    this.lit = true;
+                    this.campFireTime = 0;
+                }
+                else if (this.temporary == "ash")
+                {
+                    this.burnt = true;
+                    this.burntTime = 0;
+                }
+                else
+                {
+                    this.runOneTime = false;
+                    this.burnt = "empty";
+                }
+            }
+
+            //animate
+            if (this.lit == true)
+            {
+                lights.push({X:this.X, Y: this.Y, size: 260, extraStops: true, GRD: 0.05, Alpha: 0.8, showMe: false});
+                this.fireCostume += 1;
+                this.campFireTime += 1;
+
+                //die out over time
+                if (this.campFireTime >= 16000)
+                {
+                    this.campFireTime = 0;
+                    this.lit = false;
+                    this.burnt = true;
+                }
+            }
+
+            if (this.burnt == true)
+            {
+                this.burntTime += 1;
+
+                if (this.burntTime >= 1000)
+                {
+                    this.burntTime = 0;
+                    this.burnt = "empty";
+                }
+            }
+
+            //DRAWSELF
+            if (this.lit == false)
+            {
+                if (this.burnt == false)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(toad, 242, 509, 44, 31, -(1/2 * 44 * 1.6), -(1/2 * 31 * 1.6), 44 * 1.6, 31 * 1.6);
+                    XXX.restore();
+                }
+                else if (this.burnt == "empty")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(toad, 293, 509, 44, 31, -(1/2 * 44 * 1.6), -(1/2 * 31 * 1.6), 44 * 1.6, 31 * 1.6);
+                    XXX.restore();
+                }
+                else
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(toad, 242, 509, 44, 31, -(1/2 * 44 * 1.6), -(1/2 * 31 * 1.6), 44 * 1.6, 31 * 1.6);
+                    XXX.restore();
+                }
+            }
+            else if (this.fireCostume <= 8)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 193, 510, 44, 31, -(1/2 * 44 * 1.6), -(1/2 * 31 * 1.6), 44 * 1.6, 31 * 1.6);
+                XXX.restore();
+            }
+            else if (this.fireCostume > 8 && this.fireCostume <= 16)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 140, 511, 44, 31, -(1/2 * 44 * 1.6), -(1/2 * 31 * 1.6), 44 * 1.6, 31 * 1.6);
+                XXX.restore();
+            }
+            else if (this.fireCostume > 16 && this.fireCostume <= 24)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 90, 511, 44, 31, -(1/2 * 44 * 1.6), -(1/2 * 31 * 1.6), 44 * 1.6, 31 * 1.6);
+                XXX.restore();
+            }
+            else
+            {
+                if (this.fireCostume > 32)
+                {
+                    this.fireCostume = 0;
+                }
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 41, 512, 44, 31, -(1/2 * 44 * 1.6), -(1/2 * 31 * 1.6), 44 * 1.6, 31 * 1.6);
+                XXX.restore();
+            }
+
+            if (this.playerer <= this.radius && this.lit == true) //fire burns the player but heat resistance can reduce the damage it does.
+            {
+                if (player.mageShield > 0)
+                {
+                    player.mageShield -= 0.125;
+                    player.warmth += Math.max(0, (1 - (player.heatResistance / 200)));
+                }
+                else
+                {
+                    player.health += player.mageShield;
+                    player.mageShield = 0;
+
+                    player.health -= Math.max(0, (0.125 - (player.heatResistance / 200)));
+                    player.warmth += Math.max(0, (1 - (player.heatResistance / 200)));
+                    player.burningTime = new Date().getTime();
+                }
+            }
+            else if (this.playerer <= 140 && this.lit == true)
+            {
+                player.warmth += Math.max(0, (0.55 - (player.heatResistance / 200)));
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 20;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+
+                if (this.lit == false && this.burnt == false)
+                {
+                    for (var i = 0; i < Inventory.length; i++)
+                    {
+                        if (Inventory[i][0].identity == "Fire-Starter")
+                        {
+                            this.gotFireStarter = true;
+                        }
+                    }
+
+                    if (this.gotFireStarter)
+                    {
+                        this.burntTime = 0;
+                        this.lit = true;
+                    }
+                }
+                else if (this.lit == true && this.burnt == false && this.temporary != "lit")
+                {
+                    player.craftPosition = 0;
+                    craftScroll = 0;
+                    crafting = "foods";
+                    lowBar = "crafting";
+                    gameState = "paused";
+                }
+
+                if (this.burnt == "empty" && this.lit == false && this.temporary || this.burnt && this.lit == false && this.temporary)
+                {
+                    for (var i = 0; i < Inventory.length; i++)
+                    {
+                        if (Inventory[i][0].identity == "Ashai Wood" && Inventory[i][1] > 1)
+                        {
+                            Inventory[i][1] -= 1;
+                            this.burnt = false;
+                            break;
+                        }
+                        else if (Inventory[i][0].identity == "Ashai Wood" && Inventory[i][1] == 1)
                         {
                             Inventory.splice(i, 1);
                             this.burnt = false;

@@ -194,6 +194,9 @@ function buildMaster()
                 //scenicList.push(new Scenery("vardanCastle1", 5800, 2700, 0, 2.4));
                 //scenicList.push(new Scenery("vardanBed", 5800, 2700, 0, [true, 0.8], 3));
                 //scenicList.push(new Scenery("vardanianHearth", 3500, 2400, 2/3 * Math.PI, true));
+                //sscenicList.push(new Scenery("thenganBuilding6", 4500, 2400, 0, 2));
+                //ArtificialIntelligenceAccess.push(new Unit(4100, 2300, "GreyHorse", false, "player"));
+                //ArtificialIntelligenceAccess.push(new Unit(4100, 2300, "BlackBeruln", true, "Hutu"));
 
                 //scenicList.push(new Scenery("mrbAssets", 4900, 2400, 0, 9, 2));
 
@@ -10635,7 +10638,7 @@ function buildMaster()
 
                 for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--)
                 {
-                    if (ArtificialIntelligenceAccess[i].X < -45609 && ArtificialIntelligenceAccess[i].type != "Shehid" && ArtificialIntelligenceAccess[i].type != "Lizard")
+                    if (ArtificialIntelligenceAccess[i].X < -45609 && ArtificialIntelligenceAccess[i].type != "Shehid" && ArtificialIntelligenceAccess[i].type != "Lizard" && !ArtificialIntelligenceAccess[i].guarantee && ArtificialIntelligenceAccess[i].team != "player")
                     {
                         ArtificialIntelligenceAccess.splice(i, 1);
                     }
@@ -19414,7 +19417,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-47207, 1318, "Person", false, "Master Blacksmith Quixote", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingM", 0], weapon: ["hammer", [4, 3], 2.5, 10, 1.5], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-47164, 1319]], merchant: true, merchandise: [[new Item("coins", false, false), 150], [new Item("nirineseSabre", false, false), 8], [new Item("crossbow", false, false), 6], [new Item("steelBolt", false, false), 110], [new Item("estoc", false, false), 2], [new Item("nirwadenSabreAndShield", false, false), 1], [new Item("nirineseSpear", false, false), 5], [new Item("mace", false, false), 2], [new Item("sickle", false, false), 3], [new Item("hammer", false, false), 2], [new Item("timberAxe", false, false), 1], [new Item("spade", false, false), 3], [new Item("pickaxe", false, false), 4], [new Item("nirwadenLance", false, false), 1], [new Item("chainArmour", false, false), 2], [new Item("nirwadenMorionArmour", false, false), 6], [new Item("nirwadenPlateArmour", false, false), 3]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-47207, 1318, "Person", false, "Master Blacksmith Quixote", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["nirwadenClothingM", 0], weapon: ["hammer", [4, 3], 2.5, 10, 1.5], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[-47164, 1319]], merchant: true, merchandise: [[new Item("coins", false, false), 150], [new Item("nirineseSabre", false, false), 8], [new Item("crossbow", false, false), 6], [new Item("steelBolt", false, false), 110], [new Item("estoc", false, false), 2], [new Item("nirwadenSabreAndShield", false, false), 1], [new Item("nirineseSpear", false, false), 5], [new Item("mace", false, false), 2], [new Item("sickle", false, false), 3], [new Item("hammer", false, false), 2], [new Item("timberAxe", false, false), 1], [new Item("spade", false, false), 3], [new Item("pickaxe", false, false), 4], [new Item("nirwadenLance", false, false), 1], [new Item("chainArmour", false, false), 2], [new Item("nirwadenMorionArmour", false, false), 6], [new Item("nirwadenPlateArmour", false, false), 3], [new Item("steelHorseArmour", false, false), 1], [new Item("horseArmourRemover", false, false), 4]]}));
                     }
                 }
 
@@ -28345,7 +28348,7 @@ function generator(seedA, seedB, seedC, seedD, seedE, biome, xSt, ySt, dontInclu
     {
         for (var trimm = ArtificialIntelligenceAccess.length - 1; trimm >= 0; trimm--)
         {
-            if (ArtificialIntelligenceAccess[trimm].ID == genID && !ArtificialIntelligenceAccess[trimm].guarantee)
+            if (ArtificialIntelligenceAccess[trimm].ID == genID && !ArtificialIntelligenceAccess[trimm].guarantee && ArtificialIntelligenceAccess[trimm].team != "player")
             {
                 ArtificialIntelligenceAccess.splice(trimm, 1);
             }
@@ -28359,7 +28362,7 @@ function trimmer(x1, y1, x2, y2, safe)
     {
         for (var trimm = ArtificialIntelligenceAccess.length - 1; trimm >= 0; trimm--)
         {
-            if (ArtificialIntelligenceAccess[trimm].playerSeen == false && !ArtificialIntelligenceAccess[trimm].guarantee && ArtificialIntelligenceAccess[trimm].savified != true)
+            if (ArtificialIntelligenceAccess[trimm].playerSeen == false && !ArtificialIntelligenceAccess[trimm].guarantee && ArtificialIntelligenceAccess[trimm].savified != true && ArtificialIntelligenceAccess[trimm].team != "player")
             {
                 if (ArtificialIntelligenceAccess[trimm].X <= x1 && ArtificialIntelligenceAccess[trimm].X >= x2 && ArtificialIntelligenceAccess[trimm].Y <= y1 && ArtificialIntelligenceAccess[trimm].Y >= y2)
                 {
@@ -28383,7 +28386,7 @@ function trimmer(x1, y1, x2, y2, safe)
     {
         for (var trimm = ArtificialIntelligenceAccess.length - 1; trimm >= 0; trimm--)
         {
-            if (!ArtificialIntelligenceAccess[trimm].guarantee)
+            if (!ArtificialIntelligenceAccess[trimm].guarantee && ArtificialIntelligenceAccess[trimm].team != "player")
             {
                 if (ArtificialIntelligenceAccess[trimm].X <= x1 && ArtificialIntelligenceAccess[trimm].X >= x2 && ArtificialIntelligenceAccess[trimm].Y <= y1 && ArtificialIntelligenceAccess[trimm].Y >= y2)
                 {
@@ -28408,7 +28411,7 @@ function cropper(x1, y1, x2, y2, safe, salvo)
     {
         for (var cropp = ArtificialIntelligenceAccess.length - 1; cropp >= 0; cropp--)
         {
-            if (ArtificialIntelligenceAccess[cropp].playerSeen == false && !ArtificialIntelligenceAccess[cropp].guarantee && ArtificialIntelligenceAccess[cropp].savified != true)
+            if (ArtificialIntelligenceAccess[cropp].playerSeen == false && !ArtificialIntelligenceAccess[cropp].guarantee && ArtificialIntelligenceAccess[cropp].savified != true && ArtificialIntelligenceAccess[cropp].team != "player")
             {
                 if (ArtificialIntelligenceAccess[cropp].X > x1 || ArtificialIntelligenceAccess[cropp].X < x2 || ArtificialIntelligenceAccess[cropp].Y > y1 || ArtificialIntelligenceAccess[cropp].Y < y2)
                 {
@@ -28440,7 +28443,7 @@ function cropper(x1, y1, x2, y2, safe, salvo)
     {
         for (var cropp = ArtificialIntelligenceAccess.length - 1; cropp >= 0; cropp--)
         {
-            if (!ArtificialIntelligenceAccess[cropp].guarantee)
+            if (!ArtificialIntelligenceAccess[cropp].guarantee && ArtificialIntelligenceAccess[cropp].team != "player")
             {
                 if (ArtificialIntelligenceAccess[cropp].X > x1 || ArtificialIntelligenceAccess[cropp].X < x2 || ArtificialIntelligenceAccess[cropp].Y > y1 || ArtificialIntelligenceAccess[cropp].Y < y2)
                 {

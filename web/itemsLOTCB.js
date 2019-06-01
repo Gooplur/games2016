@@ -8538,6 +8538,55 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 0; // at max, sell for 0.
         }
+        else if (this.type == "salaFlower")
+        {
+            //For All Items
+            this.identity = "Sala Flower";
+            this.weight = 0.05;
+            this.size = 4;
+            this.description = "A red wildflower native to Nirwaden.";
+            this.intForDes = 1;
+            this.intDescription = "It is a pretty flower... what more could you need?";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "heyolBerries")
+        {
+            //For All Items
+            this.identity = "Heyol Berries";
+            this.weight = 0.03;
+            this.size = 5;
+            this.description = "Small light green berries that are hard and firm.";
+            this.intForDes = 8;
+            this.intDescription = "These crunchy, bitter tasting berries are medicinal: eating them somewhat reduces swelling.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = true; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0.2; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -0.5; //recoops lost energy.
+            this.replenish = -0.5; //restores will.
+
+            //ability
+            this.ability = "swellReductionI";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 2; // at max, sell for 2.
+        }
         else if (this.type == "palggaFlowers")
         {
             //For All Items
@@ -9732,6 +9781,66 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 4 - Math.floor(player.getCharisma() / 50); // at max, buy for 3.
             this.sellValue = 2 + Math.floor(player.getCharisma() / 50); // at max, sell for 3.
+        }
+        else if (this.type == "horseArmourRemover")
+        {
+            //For All Items
+            this.identity = "Horse Armour Tool";
+            this.weight = 0.25;
+            this.size = 6;
+            this.description = "A tool that is used for unlatching horse armour.";
+            this.intForDes = 0;
+            this.intDescription = "Use near a horse that you own in order to unequip the armour they are wearing.";
+
+            //Define Utility
+            this.utility = "tool";
+
+            //ability
+            this.ability = "horseArmour";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3 - Math.floor(player.getCharisma() / 50); // at max, buy for 2.
+            this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+        }
+        else if (this.type == "steelHorseArmour")
+        {
+            //For All Items
+            this.identity = "Steel Horse Armour";
+            this.weight = 190;
+            this.size = 32;
+            this.description = "Thick steel plate armour built for horses.";
+            this.intForDes = 1;
+            this.intDescription = "Use near a horse that you own in order to equip the armour for them.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "horseArmour";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2300 - Math.floor(player.getCharisma() / 0.16666666666666666666666666666); // at max, buy for 2000.
+            this.sellValue = 1900 + Math.floor(player.getCharisma() / 0.5); // at max, sell for 2000.
+        }
+        else if (this.type == "nechroviteHorseArmour")
+        {
+            //For All Items
+            this.identity = "Nechrovite Horse Armour";
+            this.weight = 240;
+            this.size = 33;
+            this.description = "Thick nechrovite plate armour built for horses.";
+            this.intForDes = 1;
+            this.intDescription = "Use near a horse that you own in order to equip the armour for them.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "horseArmour";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3200 - Math.floor(player.getCharisma() / 0.125); // at max, buy for 2800.
+            this.sellValue = 3700 + Math.floor(player.getCharisma() / 0.5); // at max, sell for 2800.
         }
         else if (this.type == "bovineMammaryGlands")
         {
@@ -23690,6 +23799,98 @@ function Item(type, x, y)
             this.buyValue = 50 - Math.floor(player.getCharisma() / 10); // at max, buy for 45.
             this.sellValue = 40 + Math.floor(player.getCharisma() / 10); // at max, sell for 45.
         }
+        else if (this.type == "floortrap")
+        {
+            //For All Items
+            this.identity = "Floor-Trap";
+            this.weight = 20;
+            this.size = 25;
+            this.description = "A buried spiked trap that propels sharpened rods upwards into the prey.";
+            this.intForDes = 0;
+            this.intDescription = "Advice: Don't spring your own trap!";
+
+            //Define Utility
+            this.utility = "trap";
+            //subUtility
+            this.subUtility = "floortrap";
+
+            //Utility Focused
+            this.damage = Math.floor(15 + 40 / 50 * player.getSurvivalism());
+            this.negate = 5;
+            this.range = 25;
+            this.survReq = 18;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 38;
+            this.ingredients = [["Iron", 18], ["Steel", 2]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 142 - Math.floor(player.getCharisma() / 5); // at max, buy for 132.
+            this.sellValue = 122 + Math.floor(player.getCharisma() / 5); // at max, sell for 132.
+        }
+        else if (this.type == "firetrap")
+        {
+            //For All Items
+            this.identity = "Fire-Trap";
+            this.weight = 1.5;
+            this.size = 9;
+            this.description = "An oil based igniter that draws in air to spit flames out toward the prey.";
+            this.intForDes = 0;
+            this.intDescription = "Advice: Don't spring your own trap!";
+
+            //Define Utility
+            this.utility = "trap";
+            //subUtility
+            this.subUtility = "firetrap";
+
+            //Utility Focused
+            this.damage = "fire";
+            this.negate = "n/a";
+            this.range = 23;
+            this.survReq = 13;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 2;
+            this.intForCraft = 0;
+            this.biproducts = [[new Item("glassJar", false), 1]];
+            this.ingredients = [["Fire-Trap (empty)", 2], ["Jar of Oil", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 70 - Math.floor(player.getCharisma() / 5); // at max, buy for 60.
+            this.sellValue = 40 + Math.floor(player.getCharisma() / 0.4); // at max, sell for 60.
+        }
+        else if (this.type == "firetrapEmpty")
+        {
+            //For All Items
+            this.identity = "Fire-Trap (empty)";
+            this.weight = 1;
+            this.size = 9;
+            this.description = "A fire-trap that has no fuel.";
+            this.intForDes = 3;
+            this.intDescription = "A fire-trap needs a half of a jar of oil in order to be able to function.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 45;
+            this.ingredients = [["Iron", 2], ["Fire Starter", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 60 - Math.floor(player.getCharisma() / 5); // at max, buy for 50.
+            this.sellValue = 30 + Math.floor(player.getCharisma() / 0.4); // at max, sell for 50.
+        }
         else if (this.type == "jacks")
         {
             //For All Items
@@ -25522,6 +25723,46 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 136 - Math.floor(player.getCharisma() / 1); // at max, buy for 86.
             this.sellValue = 34 + Math.floor(player.getCharisma() / 1.25); // at max, sell for 74.
+        }
+        else if (this.type == "bigBlackBerulnPelt")
+        {
+            //For All Items
+            this.identity = "Large Black Beruln Pelt";
+            this.weight = 6;
+            this.size = 33;
+            this.description = "The pelt of a black beruln.";
+            this.intForDes = 19;
+            this.intDescription = "Black beruln fur can be used to make warm clothing as well as to line Thengan Armours.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 46 - Math.floor(player.getCharisma() / 2); // at max, buy for 21.
+            this.sellValue = 19 + Math.floor(player.getCharisma() / 25); // at max, sell for 21.
+        }
+        else if (this.type == "blackBerulnPelt")
+        {
+            //For All Items
+            this.identity = "Black Beruln Pelt";
+            this.weight = 5;
+            this.size = 26;
+            this.description = "The pelt of a black beruln.";
+            this.intForDes = 19;
+            this.intDescription = "Black beruln fur can be used to make warm clothing as well as to line Thengan Armours.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 37 - Math.floor(player.getCharisma() / 0.46); // at max, buy for 14.
+            this.sellValue = 11 + Math.floor(player.getCharisma() / 15); // at max, sell for 14.
         }
         else if (this.type == "berulnSkull")
         {
@@ -31384,7 +31625,7 @@ function Item(type, x, y)
 
             //Utility Focused
             this.energyCost = 12;
-            this.distance = 56.5 + (this.range * 7);
+            this.distance = 176 + (this.range * 7);
             this.range = 4;
             this.rate = (400);
             if (wKey == true)
@@ -40054,7 +40295,14 @@ function Item(type, x, y)
             }
 
             //ability
-            this.ability = "nechroCombo";
+            if (player.getEminence() >= 3)
+            {
+                this.ability = "nechroCombo";
+            }
+            else
+            {
+                this.ability = "none";
+            }
 
             this.yield = 2;
             if (player.eminence >= 15)
@@ -40070,6 +40318,73 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 50 - Math.floor(player.getCharisma() / 10); // at max, buy for 45.
             this.sellValue = 42 + Math.floor(player.getCharisma() / 15); // at max, sell for 45.
+        }
+        else if (this.type == "lichRobe")
+        {
+            //For All Items
+            this.identity = "Lich Robe";
+            this.weight = 1;
+            this.size = 26;
+            this.description = "A fearsome black hooded robe decorated with bones of the fallen.";
+            this.intForDes = 5;
+            this.intDescription = "This robe was worn by a lich: a mage who has achieved immortality through embodying an eternal state of undeath.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 9;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0;
+            this.thirstRetention = 0.5;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 19;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = -8;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 24;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            if (player.getEminence() >= 9)
+            {
+                this.eminenceBonus = 0;
+                this.willpowerBonus = 0;
+                this.knowledgeBonus = 0;
+                this.concentrationBonus = 6;
+                this.memoryBonus = 2;
+
+                //ability
+                this.ability = "nechroComboII";
+            }
+            else
+            {
+                this.eminenceBonus = 0;
+                this.willpowerBonus = 0;
+                this.knowledgeBonus = 0;
+                this.concentrationBonus = 0;
+                this.memoryBonus = 0;
+
+                //ability
+                this.ability = "hefty";
+            }
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 200 - Math.floor(player.getCharisma() / 1.2); // at max, buy for 140.
+            this.sellValue = 90 + Math.floor(player.getCharisma() / 1); // at max, sell for 140.
         }
         else if (this.type == "pyromothSilkRobe")
         {
@@ -43540,6 +43855,46 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
+        }
+        else if (this.type == "horseArmourRemover")
+        {
+            XXX.beginPath();
+            XXX.drawImage(tomb, 587, 35, 12, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 12 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16 * 1), 12 * 1, 16 * 1);
+        }
+        else if (this.type == "lichRobe")
+        {
+            XXX.beginPath();
+            XXX.drawImage(tomb, 47, 675, 93, 127, X - this.X + (1/2 * CCC.width) - (1/2 * 93 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 127 * 0.8), 93 * 0.8, 127 * 0.8);
+        }
+        else if (this.type == "floortrap")
+        {
+            XXX.beginPath();
+            XXX.drawImage(trapper, 257, 1, 38, 35, X - this.X + (1/2 * CCC.width) - (1/2 * 38 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 35 * 1.5), 38 * 1.5, 35 * 1.5);
+        }
+        else if (this.type == "firetrap" || this.type == "firetrapEmpty")
+        {
+            XXX.beginPath();
+            XXX.drawImage(trapper, 212, 88, 17, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19 * 2), 17 * 2, 19 * 2);
+        }
+        else if (this.type == "salaFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(freeverse, 339, 43, 10, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 10 * 1.25), Y - this.Y + (1/2 * CCC.height) - (1/2 * 14 * 1.25), 10 * 1.25, 14 * 1.25);
+        }
+        else if (this.type == "heyolBerries")
+        {
+            XXX.beginPath();
+            XXX.drawImage(freeverse, 367, 20, 10, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 10 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 14 * 2), 10 * 2, 14 * 2);
+        }
+        else if (this.type == "steelHorseArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bogg, 209, 1042, 176, 61, X - this.X + (1/2 * CCC.width) - (1/2 * 176 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 61 * 1), 176 * 1, 61 * 1);
+        }
+        else if (this.type == "nechroviteHorseArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bogg, 221, 1180, 148, 61, X - this.X + (1/2 * CCC.width) - (1/2 * 148 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 61 * 1), 148 * 1, 61 * 1);
         }
         else if (this.type == "bovodo")
         {
@@ -48975,6 +49330,16 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polyPNG, 465, 1, 51, 30, X - this.X + (1/2 * CCC.width) - (1/2 * 102), Y - this.Y + (1/2 * CCC.height) - (1/2 * 60), 102, 60);
         }
+        else if (this.type == "bigBlackBerulnPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 17, 721, 56, 34, X - this.X + (1/2 * CCC.width) - (1/2 * 56 * 2 * 0.9), Y - this.Y + (1/2 * CCC.height) - (1/2 * 34 * 2 * 0.9), 56 * 2 * 0.9, 34 * 2 * 0.9);
+        }
+        else if (this.type == "blackBerulnPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 17, 721, 56, 34, X - this.X + (1/2 * CCC.width) - (1/2 * 56 * 2 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 34 * 2 * 0.8), 56 * 2 * 0.8, 34 * 2 * 0.8);
+        }
         else if (this.type == "longbow")
         {
             XXX.beginPath();
@@ -49221,6 +49586,46 @@ function Item(type, x, y)
         {
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "horseArmourRemover")
+        {
+            LXX.beginPath();
+            LXX.drawImage(tomb, 587, 35, 12, 16, this.invX - (1/2 * 12 * 1), this.invY - (1/2 * 16 * 1), 12 * 1, 16 * 1);
+        }
+        else if (this.type == "lichRobe")
+        {
+            LXX.beginPath();
+            LXX.drawImage(tomb, 47, 675, 93, 127, this.invX - (1/2 * 93 * 0.6), this.invY - (1/2 * 127 * 0.6), 93 * 0.6, 127 * 0.6);
+        }
+        else if (this.type == "floortrap")
+        {
+            LXX.beginPath();
+            LXX.drawImage(trapper, 257, 1, 38, 35, this.invX - (1/2 * 38 * 1.5), this.invY - (1/2 * 35 * 1.5), 38 * 1.5, 35 * 1.5);
+        }
+        else if (this.type == "firetrap" || this.type == "firetrapEmpty")
+        {
+            LXX.beginPath();
+            LXX.drawImage(trapper, 212, 88, 17, 19, this.invX - (1/2 * 17 * 1.5), this.invY - (1/2 * 19 * 1.5), 17 * 1.5, 19 * 1.5);
+        }
+        else if (this.type == "salaFlower")
+        {
+            LXX.beginPath();
+            LXX.drawImage(freeverse, 339, 43, 10, 14, this.invX - (1/2 * 10 * 1.25), this.invY - (1/2 * 14 * 1.25), 10 * 1.25, 14 * 1.25);
+        }
+        else if (this.type == "heyolBerries")
+        {
+            LXX.beginPath();
+            LXX.drawImage(freeverse, 367, 20, 10, 14, this.invX - (1/2 * 10 * 2), this.invY - (1/2 * 14 * 2), 10 * 2, 14 * 2);
+        }
+        else if (this.type == "steelHorseArmour")
+        {
+            LXX.beginPath();
+            LXX.drawImage(bogg, 209, 1042, 176, 61, this.invX - (1/2 * 176 * 0.5), this.invY - (1/2 * 61 * 0.5), 176 * 0.5, 61 * 0.5);
+        }
+        else if (this.type == "nechroviteHorseArmour")
+        {
+            LXX.beginPath();
+            LXX.drawImage(bogg, 221, 1180, 148, 61, this.invX - (1/2 * 148 * 0.5), this.invY - (1/2 * 61 * 0.5), 148 * 0.5, 61 * 0.5);
         }
         else if (this.type == "bovodo")
         {
@@ -54658,6 +55063,16 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(polyPNG, 465, 1, 51, 30, this.invX - (1/2 * 66.3), this.invY - (1/2 * 39), 66.3, 39);
         }
+        else if (this.type == "bigBlackBerulnPelt")
+        {
+            LXX.beginPath();
+            LXX.drawImage(norc, 17, 721, 56, 34, this.invX - (1/2 * 56 * 1.5 * 0.9), this.invY - (1/2 * 34 * 1.5 * 0.9), 56 * 1.5 * 0.9, 34 * 1.5 * 0.9);
+        }
+        else if (this.type == "blackBerulnPelt")
+        {
+            LXX.beginPath();
+            LXX.drawImage(norc, 17, 721, 56, 34, this.invX - (1/2 * 56 * 1.5 * 0.8), this.invY - (1/2 * 34 * 1.5 * 0.8), 56 * 1.5 * 0.8, 34 * 1.5 * 0.8);
+        }
         else if (this.type == "longbow")
         {
             LXX.beginPath();
@@ -54873,6 +55288,46 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "horseArmourRemover")
+        {
+            XXX.beginPath();
+            XXX.drawImage(tomb, 587, 35, 12, 16, this.invX - (1/2 * 12 * 1), this.invY - (1/2 * 16 * 1), 12 * 1, 16 * 1);
+        }
+        else if (this.type == "lichRobe")
+        {
+            XXX.beginPath();
+            XXX.drawImage(tomb, 47, 675, 93, 127, this.invX - (1/2 * 93 * 0.6), this.invY - (1/2 * 127 * 0.6), 93 * 0.6, 127 * 0.6);
+        }
+        else if (this.type == "floortrap")
+        {
+            XXX.beginPath();
+            XXX.drawImage(trapper, 257, 1, 38, 35, this.invX - (1/2 * 38 * 1.5), this.invY - (1/2 * 35 * 1.5), 38 * 1.5, 35 * 1.5);
+        }
+        else if (this.type == "firetrap" || this.type == "firetrapEmpty")
+        {
+            XXX.beginPath();
+            XXX.drawImage(trapper, 212, 88, 17, 19, this.invX - (1/2 * 17 * 1.5), this.invY - (1/2 * 19 * 1.5), 17 * 1.5, 19 * 1.5);
+        }
+        else if (this.type == "salaFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(freeverse, 339, 43, 10, 14, this.invX - (1/2 * 10 * 1.25), this.invY - (1/2 * 14 * 1.25), 10 * 1.25, 14 * 1.25);
+        }
+        else if (this.type == "heyolBerries")
+        {
+            XXX.beginPath();
+            XXX.drawImage(freeverse, 367, 20, 10, 14, this.invX - (1/2 * 10 * 2), this.invY - (1/2 * 14 * 2), 10 * 2, 14 * 2);
+        }
+        else if (this.type == "steelHorseArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bogg, 209, 1042, 176, 61, this.invX - (1/2 * 176 * 0.5), this.invY - (1/2 * 61 * 0.5), 176 * 0.5, 61 * 0.5);
+        }
+        else if (this.type == "nechroviteHorseArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bogg, 221, 1180, 148, 61, this.invX - (1/2 * 148 * 0.5), this.invY - (1/2 * 61 * 0.5), 148 * 0.5, 61 * 0.5);
         }
         else if (this.type == "bovodo")
         {
@@ -60303,6 +60758,16 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(polyPNG, 465, 1, 51, 30, this.invX - (1/2 * 66.3), this.invY - (1/2 * 39), 66.3, 39);
+        }
+        else if (this.type == "bigBlackBerulnPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 17, 721, 56, 34, this.invX - (1/2 * 56 * 1.5 * 0.9), this.invY - (1/2 * 34 * 1.5 * 0.9), 56 * 1.5 * 0.9, 34 * 1.5 * 0.9);
+        }
+        else if (this.type == "blackBerulnPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(norc, 17, 721, 56, 34, this.invX - (1/2 * 56 * 1.5 * 0.8), this.invY - (1/2 * 34 * 1.5 * 0.8), 56 * 1.5 * 0.8, 34 * 1.5 * 0.8);
         }
         else if (this.type == "longbow")
         {

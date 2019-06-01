@@ -1132,6 +1132,7 @@ function Adventurer()
             var spikedHandsFlag = false;
             var extraDrainFlag = false;
             var nechroComboFlag = false;
+            var nechroComboIIFlag = false;
             var obscurityFlag = false;
             var cyborgFlag = false;
             var airFilterFlag = false;
@@ -1159,6 +1160,10 @@ function Adventurer()
                 if (this.AdAbility[i] == "nechroCombo")
                 {
                     nechroComboFlag = true;
+                }
+                if (this.AdAbility[i] == "nechroComboII")
+                {
+                    nechroComboIIFlag = true;
                 }
                 if (this.AdAbility[i] == "resistDisease")
                 {
@@ -1273,7 +1278,7 @@ function Adventurer()
             }
 
             //resistDisease
-            if (resistDiseaseFlag || nechroComboFlag || cyborgFlag)
+            if (resistDiseaseFlag || nechroComboFlag || cyborgFlag || nechroComboIIFlag)
             {
                 this.resistDisease = true;
             }
@@ -1283,7 +1288,7 @@ function Adventurer()
             }
 
             //extraDraining
-            if (extraDrainFlag || nechroComboFlag)
+            if (extraDrainFlag || nechroComboFlag || nechroComboIIFlag)
             {
                 this.extraDraining = true;
             }
@@ -1321,6 +1326,12 @@ function Adventurer()
             if (drainPlayerFlag)
             {
                 this.health -= 0.11;
+            }
+
+            //heal player
+            if (nechroComboIIFlag)
+            {
+                this.health += 0.0025;
             }
 
             //drain corpse
@@ -7310,6 +7321,10 @@ function Adventurer()
         {
             outfit = allWorn[140];
         }
+        else if (this.outfitEquipped == "lichRobe")
+        {
+            outfit = allWorn[141];
+        }
         else
         {
             outfit = allWorn[0];
@@ -7572,6 +7587,19 @@ function Adventurer()
                 XXX.globalAlpha = 0.4;
             }
             XXX.drawImage(milk, 636, 433, 34, 33, -(1 / 2 * 34 * 1.2) + 0, -(1 / 2 * 33 * 1.2) - 0, 34 * 1.2, 33 * 1.2);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "lichRobe")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(tomb, 66, 613, 52, 36, -(1 / 2 * 52 * 0.92) + 0, -(1 / 2 * 36 * 0.92) - 0, 52 * 0.92, 36 * 0.92);
             XXX.restore();
         }
         else if (this.outfitEquipped == "eliteNechrovitePlateArmour")
@@ -16276,7 +16304,7 @@ function Adventurer()
         //NIRWADEN LANCE
         if (this.weaponEquipped == "nirwadenLance")
         {
-            this.stageEngine(4, 0.15, false); //This cycles through the stages of the attack for four stages (ending at five) and at a rate of 4 * 16.75 miliseconds
+            this.stageEngine(4, 0.25, false); //This cycles through the stages of the attack for four stages (ending at five) and at a rate of 4 * 16.75 miliseconds
 
             //ATTACK ANIMATION
             if (Math.floor(this.stage) <= 0)
@@ -23769,8 +23797,8 @@ function Adventurer()
             this.weapon = allWeapons[72];
 
             //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
-            this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.5/5 * Math.PI) * (this.mySize + 170);
-            this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.5/5 * Math.PI) * (this.mySize + 170);
+            this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.5/5 * Math.PI) * (this.mySize + 176);
+            this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.5/5 * Math.PI) * (this.mySize + 176);
         }
         else if (this.weaponEquipped == "werewolf")
         {
@@ -33063,6 +33091,18 @@ function Adventurer()
                                 this.poisonIV = false;
                                 this.poisonV = false;
                             }
+                            else if (Inventory[i][0].ability == "swellReductionI")
+                            {
+                                this.swollenTime = Math.max(player.swollenTime - 50, 0);
+                            }
+                            else if (Inventory[i][0].ability == "swellReductionII")
+                            {
+                                this.swollenTime = Math.max(player.swollenTime - 100, 0);
+                            }
+                            else if (Inventory[i][0].ability == "swellReductionIII")
+                            {
+                                this.swollenTime = Math.max(player.swollenTime - 200, 0);
+                            }
                             else if (Inventory[i][0].ability == "swellingI")
                             {
                                 this.swollenI = true;
@@ -34667,6 +34707,82 @@ function Adventurer()
                                 }
                                 break;
                         }
+                        else if (Inventory[i][0].ability == "horseArmour")
+                        {
+                            var horsey = -1;
+                            for (var j = 0; j < ArtificialIntelligenceAccess.length; j++)
+                            {
+                                if (ArtificialIntelligenceAccess[j].team == "player" && ArtificialIntelligenceAccess[j].type == "Horse" || ArtificialIntelligenceAccess[j].team == "player" && ArtificialIntelligenceAccess[j].type == "GreyHorse")
+                                {
+                                    if (ArtificialIntelligenceAccess[j].DTP() < 90)
+                                    {
+                                        if (Inventory[i][0].type == "steelHorseArmour")
+                                        {
+                                            if (ArtificialIntelligenceAccess[j].horseArmour != "steel")
+                                            {
+                                                horsey = j;
+                                            }
+                                        }
+                                        else if (Inventory[i][0].type == "nechroviteHorseArmour")
+                                        {
+                                            if (ArtificialIntelligenceAccess[j].horseArmour != "nechrovite")
+                                            {
+                                                horsey = j;
+                                            }
+                                        }
+                                        else if (Inventory[i][0].type == "horseArmourRemover")
+                                        {
+                                            horsey = j;
+                                        }
+                                    }
+                                }
+                            }
+
+                            var armorOnYa = false;
+                            if (horsey > -1)
+                            {
+                                if (ArtificialIntelligenceAccess[horsey].horseArmour != "none" && Inventory[i][0].type == "horseArmourRemover")
+                                {
+                                    armorOnYa = true;
+                                    if (ArtificialIntelligenceAccess[horsey].horseArmour == "steel")
+                                    {
+                                        worldItems.push([new Item("steelHorseArmour", ArtificialIntelligenceAccess[horsey].X, ArtificialIntelligenceAccess[horsey].Y), 1]);
+                                    }
+                                    else if (ArtificialIntelligenceAccess[horsey].horseArmour == "nechrovite")
+                                    {
+                                        worldItems.push([new Item("nechroviteHorseArmour", ArtificialIntelligenceAccess[horsey].X, ArtificialIntelligenceAccess[horsey].Y), 1]);
+                                    }
+                                    ArtificialIntelligenceAccess[horsey].horseArmour = "none";
+                                }
+
+                                if (Inventory[i][0].type == "horseArmourRemover")
+                                {
+                                    armorOnYa = true;
+                                }
+
+                                if (armorOnYa == false && ArtificialIntelligenceAccess[horsey].horseArmour == "none")
+                                {
+                                    if (Inventory[i][0].type == "steelHorseArmour")
+                                    {
+                                        ArtificialIntelligenceAccess[horsey].horseArmour = "steel";
+                                    }
+                                    else if (Inventory[i][0].type == "nechroviteHorseArmour")
+                                    {
+                                        ArtificialIntelligenceAccess[horsey].horseArmour = "nechrovite";
+                                    }
+
+                                    if (Inventory[i][1] - 1 <= 0)
+                                    {
+                                        Inventory.splice(i, 1);
+                                    }
+                                    else
+                                    {
+                                        Inventory[i][1] -= 1;
+                                    }
+                                    break;
+                                }
+                            }
+                        }
                         else if (Inventory[i][0].subUtility == "campFire")
                         {
                             var canPlace = true;
@@ -34873,6 +34989,82 @@ function Adventurer()
                             if (canPlace == true)
                             {
                                 scenicList.push(new Scenery("bearTrap", inFrontX, inFrontY, (this.rotation), false));
+
+                                if (Inventory[i][1] - 1 <= 0)
+                                {
+                                    Inventory.splice(i, 1);
+                                }
+                                else
+                                {
+                                    Inventory[i][1] -= 1;
+                                }
+                                break;
+                            }
+                        }
+                        else if (Inventory[i][0].subUtility == "floortrap" && player.getSurvivalism() >= 18)
+                        {
+                            var canPlace = true;
+                            var hits = 0;
+                            var inFrontY = Y + Math.sin(this.rotation + 1/2 * Math.PI) * 40;
+                            var inFrontX = X + Math.cos(this.rotation + 1/2 * Math.PI) * 40;
+                            for (var j = 0; j < scenicList.length; j++)
+                            {
+                                //42 is the radius of tent Scenery Object.
+                                if (scenicList[j].X - 22 <= inFrontX + scenicList[j].radius && scenicList[j].X + 22 >= inFrontX - scenicList[j].radius && scenicList[j].Y - 22 <= inFrontY + scenicList[j].radius && scenicList[j].Y + 22 >= inFrontY - scenicList[j].radius)
+                                {
+                                    canPlace = false;
+                                }
+                            }
+                            for (var j = 0; j < ArtificialIntelligenceAccess.length; j++)
+                            {
+                                //42 is the radius of tent Scenery Object.
+                                if (ArtificialIntelligenceAccess[j].X - (ArtificialIntelligenceAccess[j].sizeRadius * 2 + 26) <= inFrontX + ArtificialIntelligenceAccess[j].sizeRadius && ArtificialIntelligenceAccess[j].X + (ArtificialIntelligenceAccess[j].sizeRadius * 2 + 26) >= inFrontX - ArtificialIntelligenceAccess[j].sizeRadius && ArtificialIntelligenceAccess[j].Y - (ArtificialIntelligenceAccess[j].sizeRadius * 2 + 26) <= inFrontY + ArtificialIntelligenceAccess[j].sizeRadius && ArtificialIntelligenceAccess[j].Y + (ArtificialIntelligenceAccess[j].sizeRadius * 2 + 26) >= inFrontY - ArtificialIntelligenceAccess[j].sizeRadius)
+                                {
+                                    canPlace = false;
+                                }
+                            }
+
+                            if (canPlace == true)
+                            {
+                                scenicList.push(new Scenery("floorTrap", inFrontX, inFrontY, (this.rotation), false));
+
+                                if (Inventory[i][1] - 1 <= 0)
+                                {
+                                    Inventory.splice(i, 1);
+                                }
+                                else
+                                {
+                                    Inventory[i][1] -= 1;
+                                }
+                                break;
+                            }
+                        }
+                        else if (Inventory[i][0].subUtility == "firetrap" && player.getSurvivalism() >= 13)
+                        {
+                            var canPlace = true;
+                            var hits = 0;
+                            var inFrontY = Y + Math.sin(this.rotation + 1/2 * Math.PI) * 35;
+                            var inFrontX = X + Math.cos(this.rotation + 1/2 * Math.PI) * 35;
+                            for (var j = 0; j < scenicList.length; j++)
+                            {
+                                //42 is the radius of tent Scenery Object.
+                                if (scenicList[j].X - 5 <= inFrontX + scenicList[j].radius && scenicList[j].X + 5 >= inFrontX - scenicList[j].radius && scenicList[j].Y - 5 <= inFrontY + scenicList[j].radius && scenicList[j].Y + 5 >= inFrontY - scenicList[j].radius)
+                                {
+                                    canPlace = false;
+                                }
+                            }
+                            for (var j = 0; j < ArtificialIntelligenceAccess.length; j++)
+                            {
+                                //42 is the radius of tent Scenery Object.
+                                if (ArtificialIntelligenceAccess[j].X - (ArtificialIntelligenceAccess[j].sizeRadius * 2 + 30) <= inFrontX + ArtificialIntelligenceAccess[j].sizeRadius && ArtificialIntelligenceAccess[j].X + (ArtificialIntelligenceAccess[j].sizeRadius * 2 + 30) >= inFrontX - ArtificialIntelligenceAccess[j].sizeRadius && ArtificialIntelligenceAccess[j].Y - (ArtificialIntelligenceAccess[j].sizeRadius * 2 + 30) <= inFrontY + ArtificialIntelligenceAccess[j].sizeRadius && ArtificialIntelligenceAccess[j].Y + (ArtificialIntelligenceAccess[j].sizeRadius * 2 + 30) >= inFrontY - ArtificialIntelligenceAccess[j].sizeRadius)
+                                {
+                                    canPlace = false;
+                                }
+                            }
+
+                            if (canPlace == true)
+                            {
+                                scenicList.push(new Scenery("fireTrap", inFrontX, inFrontY, (this.rotation), false));
 
                                 if (Inventory[i][1] - 1 <= 0)
                                 {

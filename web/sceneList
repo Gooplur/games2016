@@ -48,6 +48,7 @@ thenganBuilding2 - a thengan building
 thenganBuilding3 - a thengan building
 thenganBuilding4 - a thengan building
 thenganBuilding5 - a thengan building
+thenganBuilding6 - a down facing thengan temple that can be varied in size with (longevity)
 freydicBuilding1 - a freydic building (down facing inn)
 freydicBuilding2 - a freydic building (up-right facing sml home)
 freydicBuilding3 - a freydic building (left facing med square)
@@ -251,7 +252,7 @@ vardanCastle1 - A large castle that is vardanian... (temporary makes it bigger) 
 vardanBed - A selection of three different beds for Vardania ~ temporary = [canSleepInIt?, size] information = type selector (1: basic, 2: double, 3: count) //scenicList.push(new Scenery("vardanBed", 5800, 2700, 0, [true, 0.8], 3));
 vardanianTemperateFishingSpot - A Vardanian freshwater fishing spot that has: mulstish, apoi, skig, taggler, crilp
 vardanianHearth - A Vardanian Fireplace that runs on ashai wood, it burns longer and wider but with less heat //scenicList.push(new Scenery("vardanianHearth", 3500, 2400, 2/3 * Math.PI, true)); //"lit" = stays on fire but the player cannot use it to cook with, false = remains unlit and the player cannot use it at all, true = player can operate it manually
-
+floortrap - A floor based trap that forces spikes up from below the victim (longevity: true is non-player, false is player)
 
 
 

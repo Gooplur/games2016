@@ -1245,7 +1245,7 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                                     ArtificialIntelligenceAccess[i].blindedTime = new Date().getTime() + (1000 * (this.cnx / 5));;
                                 }
 
-                                if (kind != "blinding" || kind != "blindingChokeII" || kind != "blindingChokeI")
+                                if (kind != "blinding" && kind != "blindingChokeII" && kind != "blindingChokeI")
                                 {
                                     ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
                                     ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
@@ -3218,7 +3218,7 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
             //SMOKE
             if (this.spellType == "smoke")
             {
-                this.contactDamage(true, 17 * this.size, 0, 90,  "blindingChokeII", "blinding");
+                this.contactDamage(true, 17 * this.size, 0, 90, "blindingChokeII", "blinding");
                 //move
                 this.X += Math.cos(this.rotation) * 0.2;
                 this.Y += Math.sin(this.rotation) * 0.2;

@@ -6,11 +6,9 @@
 
 //TODO LIST
 //top priority
-//todo ---fish to add to southern fishing spot---- saskriit, riulpo, kald, polxetp, tridite
-//todo add the new fish to the seal unit's diet
+//todo add all of the new fish to the seal unit's diet
 
 //things to add to the next image i'm adding:
-//todo add armoured horses
 
 //Kerib Update
 //todo add the karib tribe's village (zarbu themed tribe)
@@ -28,10 +26,10 @@
 //todo add shark-like creatures with crazy pointed teeth called 'Taebure'
 //todo add northern jellyfish creatures called 'Holn' -- they electrocute and stun their victim and when they die are converting into a scenery object that can be collected with gloves to avoid the same stun shock which would result in getting 'holn lappets' (the tentacle-like stuff)
 //todo add a scenery object that mimics the dead versions of the jellyfish monster
-//todo add Frajek Island in elevation two area and put city there
+//todo add Frajek Island in elevation 2 area and put a city there
 //todo add a small northern island with a village
 //todo create and add Margul - White furred, large, carnivorous, arctic beast with a tail and a long neck...
-//todo create and add large bare-faced furry snow trolls to the north
+//todo create and add bare-faced long-nosed furry snow trolls to the north (medium-small, pack trolls)
 //todo add ponds and ice holes
 //todo add the freydic hatchet from the balkur img sheet
 //todo add glass of Waanti milk
@@ -40,9 +38,6 @@
 //Lethik Patch
 //todo add a bountyhunt quest that the captain gives (if he is still alive of course)
 //todo make Lethik city property purchasable at the bank.
-//todo add hops and the red flower from 'freeverse' IMG
-//todo add the strange light greenish plant from 'nognog' IMG
-//todo add slop from  'theng' IMG for Vardanian the fegils as pre-chewed food stuff
 //todo add dialogue for all of the characters in the estate to the south (including player child)
 
 //Cephrian/Jungle Update
@@ -65,6 +60,7 @@
 //Cranheim Update
 //todo add the city Cranheim to the west of Lethik in Thengaria
 //todo add haunted foggy woods: it will be populated with sprites, cheshires, grey trolls, skols, wearwolfs + the usual herbivores...
+//use the original thengan forest texture for it
 //todo add wearwolf quest
 
 //Vardania Update
@@ -88,13 +84,13 @@
 //todo finish adding the beast journal.
 //todo add interesting and immersive options for player children interaction (like: feeding, arming, praising, getting to know about them, teaching them spells, punishment, loving comments)
 //todo add more alchemy stuff: potions, salves
-//todo finish adding sickness system //add Lodotos, a sickness that one can get in the kellish mud bog. //add sicknesses and symptons (dizziness, pox, fever, fatigue, etc.) ex: make dizziness spin the screen, make pox weaken players constitution etc., make fever decrease thirst.
+//todo finish adding sickness system //add Lodotos, a sickness that one can get in the kellish mud bog. //add sicknesses and symptons (pox, fever, etc.) ex: make pox weaken players constitution etc., make fever decrease thirst.
 //todo add brain flies from 'poly' img.
 //todo the freydic capital city is called Tor-Ruhn-Tel
 //todo add hangover, and soarness effects as well as their mini notices.
 //todo add a rest without bed button on the UI that uses a homemade confirm popup to ask if you are sure you want to sleep. Add the nappy closed eye for the sleepButton. (it's on poly)
 //todo add lv 25 = side-jumping (more levels slightly increase the time before the enemy reacts to your new position)
-//todo add throwing stars for the orgel
+//todo add poisoned throwing stars for the orgel
 //todo add grenades and smoke bombs
 //todo make alpha Olkrin's death animation line up slightly more.
 //todo add options menu with button: it will allow you to toggle certain settings like mouse combat mode, game coordinates, and other such features.
@@ -1473,6 +1469,10 @@ function envPack()
     var woodsEnv = new Image();
     woodsEnv.src = ("images/thenganWoods.jpg");
     window.woodsEnv = woodsEnv;
+
+    var mistywoodsEnv = new Image();
+    mistywoodsEnv.src = ("images/mistywoods.jpg");
+    window.mistywoodsEnv = mistywoodsEnv;
 
     var nirRoad = new Image();
     nirRoad.src = ("images/nirwadenRoad.jpg");
@@ -4088,6 +4088,7 @@ function theLegend()
     allWorn.push(new Item("kerPlateArmour", false)); //138
     allWorn.push(new Item("eliteNechrovitePlateArmour", false)); //139
     allWorn.push(new Item("eliteNechrovitePlateArmourPlumed", false)); //140
+    allWorn.push(new Item("lichRobe", false)); //141
 
     scenicList = [];
 
@@ -4233,6 +4234,8 @@ function theLegend()
     smithing.push(new Item("kerPlateArmour", false));
     smithing.push(new Item("eliteNechrovitePlateArmour", false));
     smithing.push(new Item("eliteNechrovitePlateArmourPlumed", false));
+    smithing.push(new Item("firetrapEmpty", false));
+    smithing.push(new Item("floortrap", false));
 
 
 //Foods (Items cooked at either a stove, an oven, or a campfire)
@@ -4768,6 +4771,7 @@ function theLegend()
     handcrafted.push(new Item("vardanianPieDough", false));
     handcrafted.push(new Item("uncookedChyoulBerryPie", false));
     handcrafted.push(new Item("chyoulBerryPieSlice", false));
+    handcrafted.push(new Item("firetrap", false));
 
     //Activate Important Game Functions Here:
     itemPlacer();

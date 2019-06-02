@@ -1070,6 +1070,12 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                                 ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].heatResistance);
                                 ArtificialIntelligenceAccess[i].burningTime = new Date().getTime();
                             }
+                            else if (kind == "decay")
+                            {
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                ArtificialIntelligenceAccess[i].decayTime = new Date().getTime();
+                                ArtificialIntelligenceAccess[i].decayTime2 = new Date().getTime();
+                            }
                             else if (kind == "electricity")
                             {
                                 ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - (19 * ArtificialIntelligenceAccess[i].magicalResistance));
@@ -1103,10 +1109,13 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                                 ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
                                 ArtificialIntelligenceAccess[i].blindedTime = new Date().getTime() + (1000 * (this.cnx / 5));
                             }
-                            if (kind != "blinding")
+                            if (kind != "blinding" )
                             {
                                 ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
-                                ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                if (caster == true)
+                                {
+                                    ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                }
                             }
 
                             if (caster == true)
@@ -1131,6 +1140,12 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                                     this.shieldFactoring(Math.max(0, damage - player.heatResistance));
                                     player.thirst -= Math.max(0, damage - player.heatResistance);
                                     player.burningTime = new Date().getTime();
+                                }
+                                else if (kind == "decay")
+                                {
+                                    this.shieldFactoring(Math.max(0, damage - player.magicalResistanceTotal));
+                                    player.decayTime = new Date().getTime();
+                                    player.decayTime2 = new Date().getTime();
                                 }
                                 else if (kind == "electricity")
                                 {
@@ -1211,6 +1226,12 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                                     ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].heatResistance);
                                     ArtificialIntelligenceAccess[i].burningTime = new Date().getTime();
                                 }
+                                else if (kind == "decay")
+                                {
+                                    ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                    ArtificialIntelligenceAccess[i].decayTime = new Date().getTime();
+                                    ArtificialIntelligenceAccess[i].decayTime2 = new Date().getTime();
+                                }
                                 else if (kind == "electricity")
                                 {
                                     ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - (19 * ArtificialIntelligenceAccess[i].magicalResistance));
@@ -1274,6 +1295,12 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                                 player.health -= Math.max(0, damage - player.heatResistance);
                                 player.thirst -= Math.max(0, damage - player.heatResistance);
                                 player.burningTime = new Date().getTime();
+                            }
+                            else if (kind == "decay")
+                            {
+                                this.shieldFactoring(Math.max(0, damage - player.magicalResistanceTotal));
+                                player.decayTime = new Date().getTime();
+                                player.decayTime2 = new Date().getTime();
                             }
                             else if (kind == "electricity")
                             {
@@ -1609,6 +1636,37 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
         {
             this.orientToCaster(23, 1 / 2 * Math.PI);
             this.drawWithRotation(polypol, 1691, 184, 24, 23, 29, 26, player.rotation, -1 / 2 * 24, -1 / 2 * 23);
+        }
+        //Decay I
+        if (this.spellType == "decayI")
+        {
+            if (caster)
+            {
+                this.orientToCaster(19, 1 / 2 * Math.PI);
+            }
+            else
+            {
+                if (this.orders == "left")
+                {
+                    this.orientToCaster(24, 11 / 16 * Math.PI);
+                }
+                else if (this.orders == "right")
+                {
+                    this.orientToCaster(18, -5 / 16 * Math.PI);
+                }
+                else if (this.orders == "farLeft")
+                {
+                    this.orientToCaster(30, 11 / 16 * Math.PI);
+                }
+                else if (this.orders == "farRight")
+                {
+                    this.orientToCaster(24, -5 / 16 * Math.PI);
+                }
+                else
+                {
+                    this.orientToCaster(19, 1 / 2 * Math.PI);
+                }
+            }
         }
         //SHADOW SWITCH
         if (this.spellType == "shadowSwitch")
@@ -3461,6 +3519,38 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                 else
                 {
                     //Todo add the Ai part of this spell...
+                }
+            }
+
+            if (this.spellType == "decayI")
+            {
+                if (caster)
+                {
+                    if (this.cnx >= 40)
+                    {
+                        this.contactDamage(false, 21, ((Math.random() * 4 + 3) + 0.2 * this.cnx) / 5, 100,  "decay", "none");
+                        this.flashAnimate(90, false, 0.95, [{image: tomb, imgX: 598, imgY: 253, portionW: 56, portionH: 59, adjX: -1 / 2 * ((56 / 1.4)/10) * 11, adjY: -1 / 2 * ((59 /1.4)/10) * 11, width: ((56 / 1.4)/10) * 11, height: ((59 /1.4)/10) * 11}, {image: tomb, imgX: 503, imgY: 238, portionW: 86, portionH: 91, adjX: -1 / 2 * ((86 / 2.6)/10) * 11, adjY: -1 / 2 * ((91 / 2.6)/10) * 11, width: ((86 / 2.6)/10) * 11, height: ((91 / 2.6)/10) * 11}, {image: tomb, imgX: 402, imgY: 231, portionW: 96, portionH: 97, adjX: -1 / 2 * ((96 / 2.7)/10) * 11, adjY: -1 / 2 * ((97 / 2.7)/10) * 11, width: ((96 / 2.7)/10) * 11, height: ((97 / 2.7)/10) * 11}]);
+                    }
+                    else
+                    {
+                        this.contactDamage(false, 15, ((Math.random() * 2 + 1) + 0.2 * this.cnx) / 5, 100,  "decay", "none");
+                        this.flashAnimate(90, false, 0.95, [{image: tomb, imgX: 598, imgY: 253, portionW: 56, portionH: 59, adjX: -1 / 2 * ((56 / 1.4)/10) * 6.6, adjY: -1 / 2 * ((59 /1.4)/10) * 6.6, width: ((56 / 1.4)/10) * 6.6, height: ((59 /1.4)/10) * 6.6}, {image: tomb, imgX: 503, imgY: 238, portionW: 86, portionH: 91, adjX: -1 / 2 * ((86 / 2.6)/10) * 6.6, adjY: -1 / 2 * ((91 / 2.6)/10) * 6.6, width: ((86 / 2.6)/10) * 6.6, height: ((91 / 2.6)/10) * 6.6}, {image: tomb, imgX: 402, imgY: 231, portionW: 96, portionH: 97, adjX: -1 / 2 * ((96 / 2.7)/10) * 6.6, adjY: -1 / 2 * ((97 / 2.7)/10) * 6.6, width: ((96 / 2.7)/10) * 6.6, height: ((97 / 2.7)/10) * 6.6}]);
+                    }
+                    this.project(this.playerRotation + 1/2 * Math.PI, 190 * ((50 + 2 * this.cnx) / 50), 5 * ((50 + this.cnx) / 50), true);
+                }
+                else
+                {
+                    if (this.cnx >= 40)
+                    {
+                        this.contactDamage(true, 21, ((Math.random() * 4 + 3) + 0.2 * this.cnx) / 5, 100,  "decay", "none");
+                        this.flashAnimate(90, false, 0.95, [{image: tomb, imgX: 598, imgY: 253, portionW: 56, portionH: 59, adjX: -1 / 2 * ((56 / 1.4)/10) * 11, adjY: -1 / 2 * ((59 /1.4)/10) * 11, width: ((56 / 1.4)/10) * 11, height: ((59 /1.4)/10) * 11}, {image: tomb, imgX: 503, imgY: 238, portionW: 86, portionH: 91, adjX: -1 / 2 * ((86 / 2.6)/10) * 11, adjY: -1 / 2 * ((91 / 2.6)/10) * 11, width: ((86 / 2.6)/10) * 11, height: ((91 / 2.6)/10) * 11}, {image: tomb, imgX: 402, imgY: 231, portionW: 96, portionH: 97, adjX: -1 / 2 * ((96 / 2.7)/10) * 11, adjY: -1 / 2 * ((97 / 2.7)/10) * 11, width: ((96 / 2.7)/10) * 11, height: ((97 / 2.7)/10) * 11}]);
+                    }
+                    else
+                    {
+                        this.contactDamage(true, 15, ((Math.random() * 2 + 1) + 0.2 * this.cnx) / 5, 100,  "decay", "none");
+                        this.flashAnimate(90, false, 0.95, [{image: tomb, imgX: 598, imgY: 253, portionW: 56, portionH: 59, adjX: -1 / 2 * ((56 / 1.4)/10) * 6.6, adjY: -1 / 2 * ((59 /1.4)/10) * 6.6, width: ((56 / 1.4)/10) * 6.6, height: ((59 /1.4)/10) * 6.6}, {image: tomb, imgX: 503, imgY: 238, portionW: 86, portionH: 91, adjX: -1 / 2 * ((86 / 2.6)/10) * 6.6, adjY: -1 / 2 * ((91 / 2.6)/10) * 6.6, width: ((86 / 2.6)/10) * 6.6, height: ((91 / 2.6)/10) * 6.6}, {image: tomb, imgX: 402, imgY: 231, portionW: 96, portionH: 97, adjX: -1 / 2 * ((96 / 2.7)/10) * 6.6, adjY: -1 / 2 * ((97 / 2.7)/10) * 6.6, width: ((96 / 2.7)/10) * 6.6, height: ((97 / 2.7)/10) * 6.6}]);
+                    }
+                    this.project(this.unitRotation, 190 * ((50 + 2 * this.cnx) / 50), 5 * ((50 + this.cnx) / 50), true);
                 }
             }
 

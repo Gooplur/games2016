@@ -581,6 +581,9 @@ function Adventurer()
     this.dizzyIV = false;
     this.dizzyV = false;
     this.dizzyVI = false;
+    this.decay = 0;
+    this.decayTime = 0;
+    this.decayTime2 = new Date().getTime();
 
         //faction variables
     this.factionToggle = false;
@@ -854,6 +857,38 @@ function Adventurer()
         };
         this.onFire();
 
+        this.onDecay = function()
+        {
+            if (new Date().getTime() - this.decayTime <= 30000 && (1.2 - this.magicalResistance) > 0)
+            {
+                this.flashAnimate(90, this.rotation, 0.86, [{image: tomb, imgX: 598, imgY: 253, portionW: 56, portionH: 59, adjX: -1 / 2 * ((56 / 1.4)/10) * this.mySize, adjY: -1 / 2 * ((59 /1.4)/10) * this.mySize, width: ((56 / 1.4)/10) * this.mySize, height: ((59 /1.4)/10) * this.mySize}, {image: tomb, imgX: 503, imgY: 238, portionW: 86, portionH: 91, adjX: -1 / 2 * ((86 / 2.6)/10) * this.mySize, adjY: -1 / 2 * ((91 / 2.6)/10) * this.mySize, width: ((86 / 2.6)/10) * this.mySize, height: ((91 / 2.6)/10) * this.mySize}, {image: tomb, imgX: 402, imgY: 231, portionW: 96, portionH: 97, adjX: -1 / 2 * ((96 / 2.7)/10) * this.mySize, adjY: -1 / 2 * ((97 / 2.7)/10) * this.mySize, width: ((96 / 2.7)/10) * this.mySize, height: ((97 / 2.7)/10) * this.mySize}]);
+                if (new Date().getTime() - this.decayTime2 >= 200)
+                {
+                    this.decayTime2 = new Date().getTime();
+                    this.health -= Math.max(0, 0.3 - (this.magicalResistance / 50));
+                    if (Math.max(0, 0.3 - (this.magicalResistance / 50)) > 0)
+                    {
+                        this.decay += 0.05;
+                    }
+                }
+            }
+            else
+            {
+                this.decay = Math.max(0, this.decay - (0.0005 + ((0.0015 / 50) * player.getEndurance())));
+            }
+
+            if (this.decay < 0)
+            {
+                this.decay = 0;
+            }
+
+            if (this.decay > this.healthMAX)
+            {
+                this.decay = this.healthMAX;
+            }
+        };
+        this.onDecay();
+
         this.onIce = function()
         {
             if (this.warmthProtection < 100 && new Date().getTime() - this.frozenTime <= 4500)
@@ -1021,7 +1056,7 @@ function Adventurer()
         this.armourTotal = this.naturalArmour + this.armour + this.shielding;
         this.willMAX = (0.1 + this.getWillpower()) - this.bindedWill;
         this.energyMAX = 6 + (5 * this.getStamina());
-        this.healthMAX = 0.1 + (4 * this.getConstitution());
+        this.healthMAX = (0.1 + (4 * this.getConstitution())) - this.decay;
         this.naturalMagicalResistance = this.getEminence() / 5;
         this.magicalResistanceTotal = this.naturalMagicalResistance + this.magicalResistance;
         //this.hungerMAX = this.baseHunger - this.kolumDegredation;
@@ -4537,6 +4572,7 @@ function Adventurer()
         if (this.vamprism && this.venandi < 400)
         {
             this.venandi = 0;
+            this.decay = 0;
             //vampires can survive without feeding much longer than humans can
             if (this.baseHunger < 90)
             {
@@ -5258,6 +5294,31 @@ function Adventurer()
         {
             //at this point the slot will have been cleared so next time the effect shows up it should have to check again to be entered into a position on the miniNoticeList.
             this.removeNotice("Dizziness");
+        }
+    };
+
+    //Decay Notice Function
+    this.decayChecker = function()
+    {
+        //console.log(this.decay);
+        if (this.decay > 0)
+        {
+            // at this point the slot should be consistent so it should not have to check again to be entered into a position on the miniNoticeList.
+            this.addNotice("Decay");
+            //red background
+            XXX.beginPath();
+            XXX.fillStyle = "#1F2612";
+            XXX.lineWidth = 1;
+            XXX.strokeStyle = "black";
+            XXX.rect(this.arrangeNotices("Decay"), 413, 20, 20);
+            XXX.fill();
+            XXX.stroke();
+            XXX.drawImage(tomb, 214, 14, 29, 31, this.arrangeNotices("Decay") + 1.5, 414, 16, 16);
+        }
+        else
+        {
+            //at this point the slot will have been cleared so next time the effect shows up it should have to check again to be entered into a position on the miniNoticeList.
+            this.removeNotice("Decay");
         }
     };
 
@@ -6489,6 +6550,7 @@ function Adventurer()
         this.opiumChecker();
         this.radiationChecker();
         this.dizzinessChecker();
+        this.decayChecker();
     };
 
     //MOVEMENT ANIMATION
@@ -33713,6 +33775,7 @@ function Adventurer()
                                     this.venandi = 0;
                                 }
                                 this.fungalFever = false;
+                                this.decay -= 2;
 
                                 //breaks down drug compounds
                                 this.cyrinthilimTime = 0;
@@ -33749,6 +33812,7 @@ function Adventurer()
                                     this.poisonV = false;
                                     this.poisonI = true;
                                 }
+                                this.decay -= 1;
                                 this.fungalFever = false;
                                 this.cyrinthilimTime = 0;
                                 this.haeflowerTime = 0;
@@ -33805,6 +33869,7 @@ function Adventurer()
                                 this.watered = true;
                                 this.fed = true;
 
+                                this.decay = 0;
                                 this.radiation = 0;
 
                                 this.gojiiTimer = 0;
@@ -35597,15 +35662,24 @@ function Adventurer()
         XXX.rect(1, 527, 150, 22);
         XXX.fill();
         XXX.stroke();
+
+        if (this.decay > 0)
+        {
+            XXX.beginPath();
+            XXX.fillStyle = "#919982";
+            XXX.rect((this.healthMAX / (this.healthMAX + this.decay)) * 150, 527, (this.decay / (this.healthMAX + this.decay)) * 150, 22);
+            XXX.fill();
+        }
+
         //This is the layer that shows how much has been lost in the current fight.
         XXX.beginPath();
         XXX.fillStyle = "red";
-        XXX.rect((this.health / this.healthMAX) * 151, 527, (this.decreaseInHealth / this.healthMAX) * 150, 22);
+        XXX.rect((this.health / (this.healthMAX + this.decay)) * 151, 527, Math.min((this.healthMAX / (this.healthMAX + this.decay)), (this.decreaseInHealth / (this.healthMAX + this.decay))) * 150, 22);
         XXX.fill();
         //This is the layer that changes to represent the amount.
         XXX.beginPath();
         XXX.fillStyle = "lightGreen";
-        XXX.rect(1, 527, (this.health / this.healthMAX) * 150, 22);
+        XXX.rect(1, 527, (this.health / (this.healthMAX + this.decay)) * 150, 22);
         XXX.fill();
 
         // When the mouse hovers over it says its type.

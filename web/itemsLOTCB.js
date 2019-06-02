@@ -32079,6 +32079,46 @@ function Item(type, x, y)
             this.buyValue = 4 - Math.floor(player.getCharisma() / 50); // at max, buy for 3.
             this.sellValue = 3; // at max, sell for 3.
         }
+        else if (this.type == "cursedBoneMeal")
+        {
+            //For All Items
+            this.identity = "Cursed Bone Meal";
+            this.weight = 0.75;
+            this.size = 8;
+            this.description = "Powdered bone fragments from a reanimated skeleton.";
+            this.intForDes = 10;
+            this.intDescription = "It acts as a catalyst, a changer, and a former depending on the alchemic recipe it is used in: it is a rare and sought after ingredient.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 21 - Math.floor(player.getCharisma() / 3); // at max, buy for 6.
+            this.sellValue = 3 + Math.floor(player.getCharisma() / 15); // at max, sell for 6.
+        }
+        else if (this.type == "corpseGolemHeart")
+        {
+            //For All Items
+            this.identity = "Corpse Golem Heart";
+            this.weight = 2.9;
+            this.size = 7;
+            this.description = "A skull that was hexed to unite bone and form a magical being from the inanimate.";
+            this.intForDes = 29;
+            this.intDescription = "Unlike most other golems, corpse golems are not alive, they are simply inhabited by a bewitched soul. This skull belonged to that poor sod...";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 8 - Math.floor(player.getCharisma() / 50); // at max, buy for 7.
+            this.sellValue = 5 + Math.floor(player.getCharisma() / 25); // at max, sell for 7.
+        }
         else if (this.type == "zetianBlowgun")
         {
             //For All Items
@@ -43856,6 +43896,16 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "cursedBoneMeal")
+        {
+            XXX.beginPath();
+            XXX.drawImage(tomb, 270, 17, 22, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 22 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16 * 1.4), 22 * 1.4, 16 * 1.4);
+        }
+        else if (this.type == "corpseGolemHeart")
+        {
+            XXX.beginPath();
+            XXX.drawImage(tomb, 214, 14, 29, 31, X - this.X + (1/2 * CCC.width) - (1/2 * 29 * 1.06), Y - this.Y + (1/2 * CCC.height) - (1/2 * 31 * 1.06), 29 * 1.06, 31 * 1.06);
+        }
         else if (this.type == "horseArmourRemover")
         {
             XXX.beginPath();
@@ -49587,6 +49637,16 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
+        else if (this.type == "cursedBoneMeal")
+        {
+            LXX.beginPath();
+            LXX.drawImage(tomb, 270, 17, 22, 16, this.invX - (1/2 * 22 * 1.4), this.invY - (1/2 * 16 * 1.4), 22 * 1.4, 16 * 1.4);
+        }
+        else if (this.type == "corpseGolemHeart")
+        {
+            LXX.beginPath();
+            LXX.drawImage(tomb, 214, 14, 29, 31, this.invX - (1/2 * 29 * 1.25), this.invY - (1/2 * 31 * 1.25), 29 * 1.25, 31 * 1.25);
+        }
         else if (this.type == "horseArmourRemover")
         {
             LXX.beginPath();
@@ -55288,6 +55348,16 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "cursedBoneMeal")
+        {
+            XXX.beginPath();
+            XXX.drawImage(tomb, 270, 17, 22, 16, this.invX - (1/2 * 22 * 1.4), this.invY - (1/2 * 16 * 1.4), 22 * 1.4, 16 * 1.4);
+        }
+        else if (this.type == "corpseGolemHeart")
+        {
+            XXX.beginPath();
+            XXX.drawImage(tomb, 214, 14, 29, 31, this.invX - (1/2 * 29 * 1.25), this.invY - (1/2 * 31 * 1.25), 29 * 1.25, 31 * 1.25);
         }
         else if (this.type == "horseArmourRemover")
         {

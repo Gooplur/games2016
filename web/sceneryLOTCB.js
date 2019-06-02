@@ -16130,6 +16130,127 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 this.activate = false;
             }
         }
+        else if (this.type == "bones")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+            if (typeof(this.owned) != "null" && typeof(this.owned) != "boolean")
+            {
+                this.size = this.owned;
+            }
+            else
+            {
+                this.size = 0.94 * 1.3;
+            }
+
+            //DRAWSELF
+            if (this.information == 0) //small bone pile ribs
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(tomb, 348, 25, 41, 48, -(1/2 * 41 * this.size), -(1/2 * 48 * this.size), 41 * this.size, 48 * this.size);
+                XXX.restore();
+            }
+            else if (this.information == 1) //small bone pile no ribs
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(tomb, 410, 44, 41, 48, -(1/2 * 41 * this.size), -(1/2 * 48 * this.size), 41 * this.size, 48 * this.size);
+                XXX.restore();
+            }
+            else if (this.information == 2) //small bone pile no ribs no skull
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(tomb, 416, 95, 41, 48, -(1/2 * 41 * this.size), -(1/2 * 48 * this.size), 41 * this.size, 48 * this.size);
+                XXX.restore();
+            }
+            else if (this.information == 3) //skull
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(tomb, 208, 7, 41, 48, -(1/2 * 41 * this.size), -(1/2 * 48 * this.size), 41 * this.size, 48 * this.size);
+                XXX.restore();
+            }
+            else if (this.information == 4) //skeleton
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(tomb, 484, 89, 81, 48, -(1/2 * 81 * this.size), -(1/2 * 48 * this.size), 81 * this.size, 48 * this.size);
+                XXX.restore();
+            }
+            else if (this.information == 5) //sitting skeleton
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(tomb, 563, 85, 81, 48, -(1/2 * 81 * this.size), -(1/2 * 48 * this.size), 81 * this.size, 48 * this.size);
+                XXX.restore();
+            }
+            else if (this.information == 6) //skeleton with sword
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(tomb, 1742, 25, 81, 48, -(1/2 * 81 * this.size), -(1/2 * 48 * this.size), 81 * this.size, 48 * this.size);
+                XXX.restore();
+            }
+            else if (this.information == 7) //sitting skeleton with sword
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(tomb, 1716, 96, 81, 48, -(1/2 * 81 * this.size), -(1/2 * 48 * this.size), 81 * this.size, 48 * this.size);
+                XXX.restore();
+            }
+            else if (this.information == 8) //crushed-bone-golem
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(tomb, 1396, 23, 141, 131, -(1/2 * 141 * this.size), -(1/2 * 131 * this.size), 141 * this.size, 131 * this.size);
+                XXX.restore();
+            }
+            else if (this.information == 9) //bone pile
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(tomb, 1041, 26, 141, 131, -(1/2 * 141 * this.size), -(1/2 * 131 * this.size), 141 * this.size, 131 * this.size);
+                XXX.restore();
+            }
+            else if (this.information == 10) //bone pile spread
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(tomb, 878, 43, 113, 106, -(1/2 * 113 * this.size), -(1/2 * 106 * this.size), 113 * this.size, 106 * this.size);
+                XXX.restore();
+            }
+            else if (this.information == 11) //bone pile compact
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(tomb, 741, 37, 113, 106, -(1/2 * 113 * this.size), -(1/2 * 106 * this.size), 113 * this.size, 106 * this.size);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 1;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+        }
         else if (this.type == "propWagon")
         {
             //TRAITS

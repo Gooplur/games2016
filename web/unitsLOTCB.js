@@ -39,6 +39,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     this.undying = false; //this allows the unit to completely avoid death when their health is zero or below, instead they will be instantly given 1/11th of their full health
     this.nonDetect = false; //this if true makes it so that no unit can target this.
     this.noSink = false; //this keeps the body from being deleted in water without the need for the flotation variable.
+    this.deathWalker = false; //this allows a unit to have undying not automatically set to false
 
     //timers for AI
     this.aiTimer = 0; //the total time a unit has been in existence (unless reset)
@@ -294,6 +295,8 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     this.resistDisease = false; //this deterimines resistance to several airborne effects (this is changed in effects or by gsmasked)
     this.gasmasked = false; //an alternate way to flag resist disease
     this.hazmatted = false; //an alternate way to flag radiation resistance
+    this.decayTime = 0;
+    this.decayTime2 = new Date().getTime();
 
     //Artificial Intelligence
     this.setTeamByID = function()
@@ -1588,6 +1591,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.allys.push("borgalia");
             this.allys.push("ribback");
             this.allys.push("ribbackia");
+            this.allys.push("palinsydia");
         }
         if (this.team == "gribia")
         {
@@ -1604,6 +1608,12 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.allys.push("shehidia");
             this.allys.push("clamia");
             this.allys.push("narthwarpia");
+        }
+        if (this.team == "palinsydia")
+        {
+            this.allys.push("docile");
+            this.allys.push("shehidia");
+            this.allys.push("clamia");
         }
         if (this.team == "salisea")
         {
@@ -8282,10 +8292,21 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             this.damage = (Math.floor(Math.random() * (randomDamage + 1)) + setDamage) * this.buffout;
                             //console.log(this.damage + " is the damage done by " + this.ID + " through an armour total of " + player.armourTotal + ". The resulting damage was " + Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) * (TTD / 16.75) + ".");
 
-                            this.target.health -= Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour));
-                            this.target.lessEXP += this.target.experience * (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) / this.target.healthMAX);
+                            if (perfectArmour == true || Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > (this.damage / 35))
+                            {
+                                this.target.health -= Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour));
+                                this.target.lessEXP += this.target.experience * (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) / this.target.healthMAX);
+                            }
+                            else //the player takes damage through his/her/its armour
+                            {
+                                this.target.health -= (this.damage / 35);
+                                this.target.lessEXP += this.target.experience * ((this.damage / 35) / this.target.healthMAX);
+                            }
+                            //this.target.health -= Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour));
+                            //this.target.lessEXP += this.target.experience * (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) / this.target.healthMAX);
                             this.target.offended = true;
-                            if (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour) > 0))
+
+                            if (perfectArmour != true || Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour) > 0))
                             {
                                 if (this.team == "player")
                                 {
@@ -8728,6 +8749,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         var radResistance = false;
         var radiationResistance = false;
         var breathResistance = false;
+        var decayResistance = false;
 
         //for loop to check for resistance
         for (var i = 0; i < resistancesList.length; i++)
@@ -8799,6 +8821,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             else if (resistancesList[i] == "breath")
             {
                 breathResistance = true;
+            }
+            else if (resistancesList[i] == "decay")
+            {
+                decayResistance = true;
             }
             else if (resistancesList[i] == "rads") //can not absorb rads naturally
             {
@@ -9044,6 +9070,17 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         if (this.water == true && this.land != true) //being in water puts out fire
         {
             this.burningTime = 0;
+        }
+
+        //Decaying Effect
+        if (decayResistance == false && new Date().getTime() - this.decayTime <= 30000 && this.team != "undead" && this.vamprism != true)
+        {
+            this.flashAnimate(90, false, 0.86, [{image: tomb, imgX: 598, imgY: 253, portionW: 56, portionH: 59, adjX: -1 / 2 * ((56 / 1.4)/10) * this.sizeRadius, adjY: -1 / 2 * ((59 /1.4)/10) * this.sizeRadius, width: ((56 / 1.4)/10) * this.sizeRadius, height: ((59 /1.4)/10) * this.sizeRadius}, {image: tomb, imgX: 503, imgY: 238, portionW: 86, portionH: 91, adjX: -1 / 2 * ((86 / 2.6)/10) * this.sizeRadius, adjY: -1 / 2 * ((91 / 2.6)/10) * this.sizeRadius, width: ((86 / 2.6)/10) * this.sizeRadius, height: ((91 / 2.6)/10) * this.sizeRadius}, {image: tomb, imgX: 402, imgY: 231, portionW: 96, portionH: 97, adjX: -1 / 2 * ((96 / 2.7)/10) * this.sizeRadius, adjY: -1 / 2 * ((97 / 2.7)/10) * this.sizeRadius, width: ((96 / 2.7)/10) * this.sizeRadius, height: ((97 / 2.7)/10) * this.sizeRadius}]);
+            if (new Date().getTime() - this.decayTime2 >= 200)
+            {
+                this.decayTime2 = new Date().getTime();
+                this.health -= Math.max(0, 0.3 - (this.magicalResistance / 50));
+            }
         }
 
         //Shock Effect
@@ -11506,12 +11543,15 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 }
             }
         }
-        else if (this.undying == true)
+        else if (this.undying == true && this.deathWalker != true)
         {
             this.health = 1/11 * this.healthMAX;
         }
 
-        this.undying = false;
+        if (this.deathWalker != true)
+        {
+            this.undying = false;
+        }
     };
 
     //draw X and Y point.
@@ -11535,7 +11575,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     //if damaged a mini health bar will be displayed.
     this.showHealthWhenHurt = function()
     {
-        if (!this.petrified)
+        if (!this.petrified && !this.deathWalker || !this.petrified && this.health > 0)
         {
             if (this.health < this.healthMAX && (new Date().getTime() - this.healthShownTime) < 5000 || (new Date().getTime() - this.showHealthTime) < 250)
             {
@@ -16251,6 +16291,148 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
             this.swimSpeed = this.speed * 0.8;
         }
+        else if (this.type == "Skeleton") //esqueleto
+        {
+            this.resistances = ["acid", "water", "petrification", "basilisk", "night"];
+            this.deathWalker = true;
+            this.undying = true;
+            this.lives = 4 + Math.floor(Math.random() * 10);
+            this.getupFrame = 0;
+            this.bonesType = 0;
+            this.getupWait = 29 + Math.floor(Math.random() * 191);
+
+            this.damageFrame = "automatic";
+            this.team = "undead";
+            if (this.ID == "docile")
+            {
+                this.team = "docile";
+            }
+            else if (this.ID == "player")
+            {
+                this.team = "player";
+            }
+            this.baseTeam = this.team;
+            this.tameable = false;
+
+            if (this.alpha == true) //half giant
+            {
+                this.magicalResistance = -1;
+                this.heatResistance = 0.5;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = Math.floor(Math.random() * 10) + 24;
+                this.health = this.healthMAX;
+                this.armour = 3;
+                this.speed = 1.5 + (Math.floor(Math.random() * 5) / 10);
+                this.rangeOfSight = 900; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.4;
+                this.engagementRadius = 70;
+                this.sizeRadius = 20;
+                this.negateArmour = 2;
+                this.attackWait = 1.8;
+
+                //alpha has a larger size body and skills.
+                this.alphaSize = 1.2; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                // this is the adjustment the alpha type of Etyr needs to be centered.
+                this.yAdjustment = 0;
+                this.xAdjustment = 0;
+            }
+            else //human
+            {
+                this.magicalResistance = -1;
+                this.heatResistance = 0.5;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = Math.floor(Math.random() * 8) + 12;
+                this.health = this.healthMAX;
+                this.armour = 1.5;
+                this.speed = 1.05 + (Math.floor(Math.random() * 5) / 10);
+                this.rangeOfSight = 800; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.5;
+                this.engagementRadius = 57;
+                this.sizeRadius = 12;
+                this.negateArmour = 0;
+                this.attackWait = 1.1;
+
+                //alpha has a larger size body and skills.
+                this.alphaSize = 0.94; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                // this is the adjustment the alpha type of Etyr needs to be centered.
+                this.yAdjustment = 0;
+                this.xAdjustment = 0;
+            }
+            this.swimSpeed = this.speed * 0.15;
+        }
+        else if (this.type == "Lich") //mago esquelético
+        {
+            this.resistances = ["acid", "water", "petrification", "basilisk", "night"];
+            this.deathWalker = true;
+            this.undying = true;
+            this.lives = 9 + Math.floor(Math.random() * 11);
+            this.getupFrame = 0;
+            this.bonesType = 0;
+            this.getupWait = 19 + Math.floor(Math.random() * 371);
+
+            this.damageFrame = "automatic";
+            this.team = "undead";
+            if (this.ID == "docile")
+            {
+                this.team = "docile";
+            }
+            else if (this.ID == "player")
+            {
+                this.team = "player";
+            }
+            this.baseTeam = this.team;
+            this.tameable = false;
+
+            if (this.alpha == true) //half giant
+            {
+                this.magicalResistance = 1;
+                this.heatResistance = 0.3;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = Math.floor(Math.random() * 12) + 27;
+                this.health = this.healthMAX;
+                this.armour = 4;
+                this.speed = 1.35 + (Math.floor(Math.random() * 4) / 10);
+                this.rangeOfSight = 900; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.4;
+                this.engagementRadius = 390;
+                this.sizeRadius = 20;
+                this.negateArmour = 0;
+                this.attackWait = 2.2;
+
+                //alpha has a larger size body and skills.
+                this.alphaSize = 1.2; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                // this is the adjustment the alpha type of Etyr needs to be centered.
+                this.yAdjustment = 0;
+                this.xAdjustment = 0;
+            }
+            else //human
+            {
+                this.magicalResistance = 1;
+                this.heatResistance = 0.3;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = Math.floor(Math.random() * 9) + 13;
+                this.health = this.healthMAX;
+                this.armour = 2;
+                this.speed = 0.9 + (Math.floor(Math.random() * 4) / 10);
+                this.rangeOfSight = 800; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.5;
+                this.engagementRadius = 287;
+                this.sizeRadius = 12;
+                this.negateArmour = 0;
+                this.attackWait = 1.9;
+
+                //alpha has a larger size body and skills.
+                this.alphaSize = 0.94; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                // this is the adjustment the alpha type of Etyr needs to be centered.
+                this.yAdjustment = 0;
+                this.xAdjustment = 0;
+            }
+            this.swimSpeed = this.speed * 0.2;
+        }
         else if (this.type == "Borgal")
         {
             this.damageFrame = "manual";
@@ -20870,11 +21052,77 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
             }
         }
+        else if (this.type == "CorpseGolem")
+        {
+            this.nonDetect = true;
+            this.haste = true;
+
+            this.regressATK = false;
+
+            this.wokedenUp = false;
+            this.wigglez = 0;
+
+            this.damageFrame = "manual";
+            this.resistances = ["shock", "petrification", "acid", "basilisk", "night"];
+            this.team = "undead";
+            this.baseTeam = this.team;
+            this.tamable = false;
+
+            if (this.alpha == true)
+            {
+                this.magicalResistance = -2;
+                this.heatResistance = 0.4;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = Math.floor(Math.random() * 47) + 199;
+                this.health = this.healthMAX;
+                this.armour = 9;
+                this.speed = 6.3 + (Math.floor(Math.random() * 5) / 10);
+                this.rangeOfSight = 1000; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.09; // 0.01 is a standard turn speed.
+                this.engagementRadius = 190;
+                this.sizeRadius = 60;
+                this.negateArmour = 29;
+                this.attackWait = 6;
+                this.effect = "smashbackIII";
+
+
+                //alpha has a larger size body and skills.
+                this.alphaSize = 1.3; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                // this is the adjustment the alpha type of Etyr needs to be centered.
+                this.yAdjustment = 0; //was - 10
+                this.xAdjustment = 0; //was 30
+            }
+            else
+            {
+                this.magicalResistance = -2;
+                this.heatResistance = 0.4;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = Math.floor(Math.random() * 26) + 100;
+                this.health = this.healthMAX;
+                this.armour = 6.5;
+                this.speed = 5.7 + (Math.floor(Math.random() * 3) / 10);
+                this.rangeOfSight = 950; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.09; // 0.01 is a standard turn speed.
+                this.engagementRadius = 167;
+                this.sizeRadius = 43;
+                this.negateArmour = 18;
+                this.attackWait = 5.5;
+                this.effect = "smashbackII";
+
+                //alpha has a larger size body and skills.
+                this.alphaSize = 1; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                // this is the adjustment the alpha type of Etyr needs to be centered.
+                this.yAdjustment = 0; //was - 10
+                this.xAdjustment = 0; //was 30
+            }
+        }
         else if (this.type == "StoneGolem")
         {
             this.damageFrame = "automatic";
             this.state = "resting";
-            this.resistances = ["shock", "petrification", "acid", "basilisk", "burning", "night"];
+            this.resistances = ["water", "shock", "petrification", "acid", "basilisk", "burning", "night"];
             this.team = "neutral";
             this.baseTeam = this.team;
             this.tamable = false;
@@ -33663,6 +33911,580 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.drawUnit(verse, 2929, 283, 54, 32, -35 - this.xAdjustment, -22 - this.yAdjustment, 54 * this.alphaSize, 32 * this.alphaSize);
             }
         }
+        //SKELETON
+        if (this.type == "Skeleton") //esqueleto
+        {
+            //Set Drops and experience
+            if (this.alpha == true)
+            {
+                if (Math.max(0, 23 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 100 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = (100 * ((player.getIntelligence() / 50) + 1)) / 10;
+                }
+
+                this.drops = [[new Item("cursedBoneMeal", this.X, this.Y), 4 + Math.floor(Math.random() * 3)]];
+            }
+            else
+            {
+                if (Math.max(0, 9 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 60 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = 60 * ((player.getIntelligence() / 50) + 1) / 10;
+                }
+
+                this.drops = [[new Item("cursedBoneMeal", this.X, this.Y), 1 + Math.floor(Math.random() * 3)]];
+                if (Math.random() > 0.94)
+                {
+                    this.drops.push([new Item("shortSword", this.X, this.Y), 1]);
+                }
+            }
+
+            //RANGE OF SIGHT (anything related to range of sight)
+            if (this.alpha == true)
+            {
+                this.rangeOfSightCalculator(700, true);
+            }
+            else
+            {
+                this.rangeOfSightCalculator(600, true);
+            }
+
+            //AI
+            if (this.alive == true)
+            {
+                if (this.alpha == true)
+                {
+                    this.Attack(14, 9);
+                    this.callForNearbyHelpFromType(200, "Lich");
+                    this.callForNearbyHelpFromType(200, "Skeleton");
+                    this.callForNearbyHelpFromType(100, "CorpseGolem");
+                }
+                else
+                {
+                    this.Attack(3, 6);
+                    this.callForNearbyHelpFromType(400, "Lich");
+                    this.callForNearbyHelpFromType(400, "Skeleton");
+                    this.callForNearbyHelpFromType(200, "CorpseGolem");
+                }
+
+                //this.deathChecker();
+                this.disturbedTimer();
+                this.visibleSight();
+                this.friendDecider();
+                this.targeting();
+
+                this.moving = false;
+
+                if (this.health > 0)
+                {
+                    if (this.target == player)
+                    {
+                        this.pointTowardsPlayer();
+                        this.moveInRelationToPlayer();
+                    }
+                    else if (this.target != "none")
+                    {
+                        this.pointTowards(this.target);
+                        this.moveInRelationToThing(this.target);
+                    }
+                }
+            }
+
+            //ANIMATIONS
+
+            if (this.alive == true && this.health > 0 && this.getupFrame == 0)
+            {
+                this.tangible = true;
+
+                if (this.moving && !this.attacking) //If moving and not attacking initiate moving animation...
+                {
+                    this.costumeEngine(3, 0.09, true);
+                }
+                else if (this.attacking) //otherwise if it is attacking then initiate attacking animation, and if neither...
+                {
+                    if(new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000 / timeSpeed * this.timeResistance))
+                    {
+                        this.costumeEngine(6, 0.16, true);
+                    }
+                }
+
+                // the frames/stages/costumes of the animation.
+                var theCostume = Math.floor(this.costume); //This rounds this.costume down to the nearest whole number.
+
+                if (theCostume <= 0)
+                {
+                    if (this.attacking)
+                    {
+                        this.drawUnit(tomb, 192, 110, 107, 119, -1/2 * 107 * this.alphaSize - this.xAdjustment, -1/2 * 119 * this.alphaSize - this.yAdjustment, 107 * this.alphaSize, 119 * this.alphaSize);
+                    }
+                    else if (this.moving)
+                    {
+                        //left forward
+                        this.drawUnit(tomb, 762, 60, 50, 9, -1/2 * 50 * 1.4 * this.alphaSize - this.xAdjustment + 5 * this.alphaSize, -1/2 * 9 * 0.6 * this.alphaSize - this.yAdjustment - 8 * this.alphaSize, 50 * 1.4 * this.alphaSize, 9 * 0.6 * this.alphaSize); //l
+                        this.drawUnit(tomb, 762, 60, 50, 9, -1/2 * 50 * 1.4 * this.alphaSize - this.xAdjustment + 5 * this.alphaSize, -1/2 * 9 * 0.6 * this.alphaSize - this.yAdjustment - 8 * this.alphaSize, 50 * 1.4 * this.alphaSize, 9 * 0.6 * this.alphaSize, Math.PI); //r
+                        this.drawUnit(tomb, 192, 110, 107, 119, -1/2 * 107 * this.alphaSize - this.xAdjustment, -1/2 * 119 * this.alphaSize - this.yAdjustment, 107 * this.alphaSize, 119 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(tomb, 192, 110, 107, 119, -1/2 * 107 * this.alphaSize - this.xAdjustment, -1/2 * 119 * this.alphaSize - this.yAdjustment, 107 * this.alphaSize, 119 * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 1)
+                {
+                    if (this.attacking)
+                    {
+                        this.drawUnit(tomb, 179, 243, 121, 113, -1/2 * 121 * this.alphaSize - this.xAdjustment, -1/2 * 113 * this.alphaSize - this.yAdjustment, 121 * this.alphaSize, 113 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(tomb, 192, 110, 107, 119, -1/2 * 107 * this.alphaSize - this.xAdjustment, -1/2 * 119 * this.alphaSize - this.yAdjustment, 107 * this.alphaSize, 119 * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 2)
+                {
+                    if (this.attacking)
+                    {
+                        this.drawUnit(tomb, 181, 349, 121, 113, -1/2 * 121 * this.alphaSize - this.xAdjustment, -1/2 * 113 * this.alphaSize - this.yAdjustment, 121 * this.alphaSize, 113 * this.alphaSize);
+                    }
+                    else
+                    {
+                        //right forward
+                        this.drawUnit(tomb, 762, 60, 50, 9, -1/2 * 50 * 1.4 * this.alphaSize - this.xAdjustment + 5 * this.alphaSize, -1/2 * 9 * 0.6 * this.alphaSize - this.yAdjustment + 8 * this.alphaSize, 50 * 1.4 * this.alphaSize, 9 * 0.6 * this.alphaSize); //r
+                        this.drawUnit(tomb, 762, 60, 50, 9, -1/2 * 50 * 1.4 * this.alphaSize - this.xAdjustment + 5 * this.alphaSize, -1/2 * 9 * 0.6 * this.alphaSize - this.yAdjustment + 8 * this.alphaSize, 50 * 1.4 * this.alphaSize, 9 * 0.6 * this.alphaSize, Math.PI); //l
+                        this.drawUnit(tomb, 192, 110, 107, 119, -1/2 * 107 * this.alphaSize - this.xAdjustment, -1/2 * 119 * this.alphaSize - this.yAdjustment, 107 * this.alphaSize, 119 * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 3)
+                {
+                    if (this.attacking)
+                    {
+                        this.drawUnit(tomb, 182, 451, 121, 113, -1/2 * 121 * this.alphaSize - this.xAdjustment, -1/2 * 113 * this.alphaSize - this.yAdjustment, 121 * this.alphaSize, 113 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(tomb, 192, 110, 107, 119, -1/2 * 107 * this.alphaSize - this.xAdjustment, -1/2 * 119 * this.alphaSize - this.yAdjustment, 107 * this.alphaSize, 119 * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 4)
+                {
+                    if (this.attacking)
+                    {
+                        this.drawUnit(tomb, 163, 558, 151, 112, -1/2 * 151 * this.alphaSize - this.xAdjustment, -1/2 * 112 * this.alphaSize - this.yAdjustment, 151 * this.alphaSize, 112 * this.alphaSize);
+                    }
+                    else
+                    {
+                        //left forward
+                        this.drawUnit(tomb, 762, 60, 50, 9, -1/2 * 50 * 1.4 * this.alphaSize - this.xAdjustment + 5 * this.alphaSize, -1/2 * 9 * 0.6 * this.alphaSize - this.yAdjustment - 9 * this.alphaSize, 50 * 1.4 * this.alphaSize, 9 * 0.6 * this.alphaSize); //l
+                        this.drawUnit(tomb, 762, 60, 50, 9, -1/2 * 50 * 1.4 * this.alphaSize - this.xAdjustment + 5 * this.alphaSize, -1/2 * 9 * 0.6 * this.alphaSize - this.yAdjustment + 9 * this.alphaSize, 50 * 1.4 * this.alphaSize, 9 * 0.6 * this.alphaSize, Math.PI); //r
+                        this.drawUnit(tomb, 192, 110, 107, 119, -1/2 * 107 * this.alphaSize - this.xAdjustment, -1/2 * 119 * this.alphaSize - this.yAdjustment, 107 * this.alphaSize, 119 * this.alphaSize);
+                    }
+                }
+                else if (theCostume >= 5)
+                {
+                    if (this.attacking)
+                    {
+                        this.drawUnit(tomb, 161, 666, 151, 112, -1/2 * 151 * this.alphaSize - this.xAdjustment, -1/2 * 112 * this.alphaSize - this.yAdjustment, 151 * this.alphaSize, 112 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(tomb, 192, 110, 107, 119, -1/2 * 107 * this.alphaSize - this.xAdjustment, -1/2 * 119 * this.alphaSize - this.yAdjustment, 107 * this.alphaSize, 119 * this.alphaSize);
+                    }
+                }
+            }
+            else if (this.alive == true)
+            {
+                this.tangible = false;
+                this.getupFrame += 1;
+                if (this.getupFrame < this.getupWait)
+                {
+                    this.drawUnit(tomb, 1728, 19, 107, 61, -1/2 * 107 * this.alphaSize * 1.3 - this.xAdjustment, -1/2 * 61 * this.alphaSize * 1.3 - this.yAdjustment, 107 * this.alphaSize * 1.3, 61 * this.alphaSize * 1.3);
+                    this.bonesType = Math.floor(Math.random() * 3);
+                    if (player.getStrength() >= 8)
+                    {
+                        if (this.DTM() < 24 && dClick == true && this.DTP() <= 56)
+                        {
+                            this.lives = 0;
+                        }
+                    }
+                    else if (player.getStrength() >= 6)
+                    {
+                        if (this.DTM() < 24 && dClick == true && this.DTP() <= 56)
+                        {
+                            this.lives -= 4;
+                        }
+                    }
+                    else if (player.getStrength() >= 4)
+                    {
+                        if (this.DTM() < 24 && dClick == true && this.DTP() <= 56)
+                        {
+                            this.lives -= 2;
+                        }
+                    }
+                    else if (player.getStrength() >= 2)
+                    {
+                        if (this.DTM() < 24 && dClick == true && this.DTP() <= 56)
+                        {
+                            this.lives -= 1;
+                        }
+                    }
+
+                    if (this.lives <= 0)
+                    {
+                        this.undying = false;
+                    }
+                }
+                else if (this.getupFrame < (this.getupWait + 10))
+                {
+                    this.drawUnit(tomb, 1713, 89, 107, 61, -1/2 * 107 * this.alphaSize * 1.3 - this.xAdjustment, -1/2 * 61 * this.alphaSize * 1.3 - this.yAdjustment, 107 * this.alphaSize * 1.3, 61 * this.alphaSize * 1.3);
+                }
+                else if (this.getupFrame < (this.getupWait + 19))
+                {
+                    this.drawUnit(tomb, 1717, 158, 107, 61, -1/2 * 107 * this.alphaSize * 1.3 - this.xAdjustment, -1/2 * 61 * this.alphaSize * 1.3 - this.yAdjustment, 107 * this.alphaSize * 1.3, 61 * this.alphaSize * 1.3);
+                }
+                else
+                {
+                    this.drawUnit(tomb, 1717, 158, 107, 61, -1/2 * 107 * this.alphaSize * 1.3 - this.xAdjustment, -1/2 * 61 * this.alphaSize * 1.3 - this.yAdjustment, 107 * this.alphaSize * 1.3, 61 * this.alphaSize * 1.3);
+
+                    this.getupFrame = 0;
+                    this.healthMAX += 2;
+                    this.speed += 0.05;
+                    this.health = this.healthMAX;
+                    this.lives -= 1;
+                    this.getupWait = 29 + Math.floor(Math.random() * 191);
+                }
+            }
+            else
+            {
+                if (this.bonesType == 0)
+                {
+                    this.drawUnit(tomb, 347, 26, 41, 48, -1/2 * 41 * this.alphaSize * 1.3 - this.xAdjustment, -1/2 * 48 * this.alphaSize * 1.3 - this.yAdjustment, 41 * 1.3 * this.alphaSize, 48 * 1.3 * this.alphaSize, -1/2 * Math.PI);
+                }
+                else if (this.bonesType == 1)
+                {
+                    this.drawUnit(tomb, 410, 44, 41, 48, -1/2 * 41 * this.alphaSize * 1.3 - this.xAdjustment, -1/2 * 48 * this.alphaSize * 1.3 - this.yAdjustment, 41 * 1.3 * this.alphaSize, 48 * 1.3 * this.alphaSize);
+                }
+                else
+                {
+                    this.drawUnit(tomb, 415, 95, 41, 48, -1/2 * 41 * this.alphaSize * 1.3 - this.xAdjustment, -1/2 * 48 * this.alphaSize * 1.3 - this.yAdjustment, 41 * 1.3 * this.alphaSize, 48 * 1.3 * this.alphaSize);
+                }
+            }
+        }
+        //LICH
+        if (this.type == "Lich") //mago esquelético
+        {
+            //Set Drops and experience
+            if (player.getEminence() >= 4)
+            {
+                if (this.alpha == true)
+                {
+                    if (Math.max(0, 100 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                    {
+                        this.experience = 141 * ((player.getIntelligence() / 50) + 1);
+                    }
+                    else
+                    {
+                        this.experience = (141 * ((player.getIntelligence() / 50) + 1)) / 10;
+                    }
+
+                    this.drops = [[new Item("cursedBoneMeal", this.X, this.Y), 4 + Math.floor(Math.random() * 3)]];
+                }
+                else
+                {
+                    if (Math.max(0, 100 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                    {
+                        this.experience = 91 * ((player.getIntelligence() / 50) + 1);
+                    }
+                    else
+                    {
+                        this.experience = 91 * ((player.getIntelligence() / 50) + 1) / 10;
+                    }
+
+                    this.drops = [[new Item("cursedBoneMeal", this.X, this.Y), 1 + Math.floor(Math.random() * 3)]];
+                    if (Math.random() > 0.99)
+                    {
+                        this.drops.push([new Item("lichRobe", this.X, this.Y), 1]);
+                    }
+                }
+            }
+            else
+            {
+                if (this.alpha == true)
+                {
+                    if (Math.max(0, 100 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                    {
+                        this.experience = 1313 * ((player.getIntelligence() / 50) + 1);
+                    }
+                    else
+                    {
+                        this.experience = (1313 * ((player.getIntelligence() / 50) + 1)) / 10;
+                    }
+
+                    this.drops = [[new Item("cursedBoneMeal", this.X, this.Y), 4 + Math.floor(Math.random() * 3)]];
+                }
+                else
+                {
+                    if (Math.max(0, 100 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                    {
+                        this.experience = 666 * ((player.getIntelligence() / 50) + 1);
+                    }
+                    else
+                    {
+                        this.experience = 666 * ((player.getIntelligence() / 50) + 1) / 10;
+                    }
+
+                    this.drops = [[new Item("cursedBoneMeal", this.X, this.Y), 1 + Math.floor(Math.random() * 3)]];
+                    if (Math.random() > 0.99)
+                    {
+                        this.drops.push([new Item("lichRobe", this.X, this.Y), 1]);
+                    }
+                }
+            }
+
+            //RANGE OF SIGHT (anything related to range of sight)
+            if (this.alpha == true)
+            {
+                this.rangeOfSightCalculator(900, true);
+            }
+            else
+            {
+                this.rangeOfSightCalculator(800, true);
+            }
+
+            //AI
+            if (this.alive == true)
+            {
+                if (this.alpha == true)
+                {
+                    this.Attack(0, 0);
+                    this.callForNearbyHelpFromType(100, "Lich");
+                    this.callForNearbyHelpFromType(600, "Skeleton");
+                    this.callForNearbyHelpFromType(250, "CorpseGolem");
+                }
+                else
+                {
+                    this.Attack(0, 0);
+                    this.callForNearbyHelpFromType(150, "Lich");
+                    this.callForNearbyHelpFromType(500, "Skeleton");
+                    this.callForNearbyHelpFromType(300, "CorpseGolem");
+                }
+
+                //this.deathChecker();
+                this.disturbedTimer();
+                this.visibleSight();
+                this.friendDecider();
+                this.targeting();
+
+                this.moving = false;
+
+                if (this.health > 0)
+                {
+                    if (this.target == player)
+                    {
+                        this.pointTowardsPlayer();
+                        this.moveInRelationToPlayer();
+                    }
+                    else if (this.target != "none")
+                    {
+                        this.pointTowards(this.target);
+                        this.moveInRelationToThing(this.target);
+                    }
+                }
+            }
+
+            //ANIMATIONS
+
+            if (this.alive == true && this.health > 0 && this.getupFrame == 0)
+            {
+                this.tangible = true;
+
+                if (this.moving && !this.attacking) //If moving and not attacking initiate moving animation...
+                {
+                    this.costumeEngine(3, 0.09, true);
+                }
+                else if (this.attacking) //otherwise if it is attacking then initiate attacking animation, and if neither...
+                {
+                    if(new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000 / timeSpeed * this.timeResistance))
+                    {
+                        this.costumeEngine(5, 0.15, true);
+                    }
+                }
+
+                // the frames/stages/costumes of the animation.
+                var theCostume = Math.floor(this.costume); //This rounds this.costume down to the nearest whole number.
+
+                if (theCostume <= 0)
+                {
+                    if (this.attacking)
+                    {
+                        this.other = true;
+                        this.drawUnit(tomb, 9, 114, 151, 112, -1/2 * 151 * this.alphaSize - this.xAdjustment, -1/2 * 112 * this.alphaSize - this.yAdjustment, 151 * this.alphaSize, 112 * this.alphaSize);
+                    }
+                    else if (this.moving)
+                    {
+                        //left forward
+                        this.drawUnit(tomb, 762, 60, 50, 9, -1/2 * 50 * 1.4 * this.alphaSize - this.xAdjustment + 5 * this.alphaSize, -1/2 * 9 * 0.6 * this.alphaSize - this.yAdjustment - 8 * this.alphaSize, 50 * 1.4 * this.alphaSize, 9 * 0.6 * this.alphaSize); //l
+                        this.drawUnit(tomb, 762, 60, 50, 9, -1/2 * 50 * 1.4 * this.alphaSize - this.xAdjustment + 5 * this.alphaSize, -1/2 * 9 * 0.6 * this.alphaSize - this.yAdjustment - 8 * this.alphaSize, 50 * 1.4 * this.alphaSize, 9 * 0.6 * this.alphaSize, Math.PI); //r
+                        this.drawUnit(tomb, 9, 114, 151, 112, -1/2 * 151 * this.alphaSize - this.xAdjustment, -1/2 * 112 * this.alphaSize - this.yAdjustment, 151 * this.alphaSize, 112 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(tomb, 9, 114, 151, 112, -1/2 * 151 * this.alphaSize - this.xAdjustment, -1/2 * 112 * this.alphaSize - this.yAdjustment, 151 * this.alphaSize, 112 * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 1)
+                {
+                    if (this.attacking)
+                    {
+                        this.drawUnit(tomb, 10, 236, 151, 112, -1/2 * 151 * this.alphaSize - this.xAdjustment, -1/2 * 112 * this.alphaSize - this.yAdjustment, 151 * this.alphaSize, 112 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(tomb, 9, 114, 151, 112, -1/2 * 151 * this.alphaSize - this.xAdjustment, -1/2 * 112 * this.alphaSize - this.yAdjustment, 151 * this.alphaSize, 112 * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 2)
+                {
+                    if (this.attacking)
+                    {
+                        this.drawUnit(tomb, 13, 350, 151, 112, -1/2 * 151 * this.alphaSize - this.xAdjustment, -1/2 * 112 * this.alphaSize - this.yAdjustment, 151 * this.alphaSize, 112 * this.alphaSize);
+                    }
+                    else
+                    {
+                        //right forward
+                        this.drawUnit(tomb, 762, 60, 50, 9, -1/2 * 50 * 1.4 * this.alphaSize - this.xAdjustment + 5 * this.alphaSize, -1/2 * 9 * 0.6 * this.alphaSize - this.yAdjustment + 8 * this.alphaSize, 50 * 1.4 * this.alphaSize, 9 * 0.6 * this.alphaSize); //r
+                        this.drawUnit(tomb, 762, 60, 50, 9, -1/2 * 50 * 1.4 * this.alphaSize - this.xAdjustment + 5 * this.alphaSize, -1/2 * 9 * 0.6 * this.alphaSize - this.yAdjustment + 8 * this.alphaSize, 50 * 1.4 * this.alphaSize, 9 * 0.6 * this.alphaSize, Math.PI); //l
+                        this.drawUnit(tomb, 9, 114, 151, 112, -1/2 * 151 * this.alphaSize - this.xAdjustment, -1/2 * 112 * this.alphaSize - this.yAdjustment, 151 * this.alphaSize, 112 * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 3)
+                {
+                    if (this.attacking)
+                    {
+                        this.drawUnit(tomb, 17, 453, 151, 112, -1/2 * 151 * this.alphaSize - this.xAdjustment, -1/2 * 112 * this.alphaSize - this.yAdjustment, 151 * this.alphaSize, 112 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(tomb, 9, 114, 151, 112, -1/2 * 151 * this.alphaSize - this.xAdjustment, -1/2 * 112 * this.alphaSize - this.yAdjustment, 151 * this.alphaSize, 112 * this.alphaSize);
+                    }
+                }
+                else if (theCostume >= 4)
+                {
+                    if (this.attacking)
+                    {
+                        if (this.other == true)
+                        {
+                            this.other = false;
+                            if (this.alpha == true)
+                            {
+                                magicList.push(new Magic({ID: "decayI", CNX: 50}, false, "farLeft", this, true));
+                                magicList.push(new Magic({ID: "decayI", CNX: 50}, false, "farRight", this, true));
+                            }
+                            else
+                            {
+                                magicList.push(new Magic({ID: "decayI", CNX: 30}, false, "left", this, true));
+                                magicList.push(new Magic({ID: "decayI", CNX: 30}, false, "right", this, true));
+                            }
+                        }
+                        this.drawUnit(tomb, 17, 453, 151, 112, -1/2 * 151 * this.alphaSize - this.xAdjustment, -1/2 * 112 * this.alphaSize - this.yAdjustment, 151 * this.alphaSize, 112 * this.alphaSize);
+                    }
+                    else
+                    {
+                        //left forward
+                        this.drawUnit(tomb, 762, 60, 50, 9, -1/2 * 50 * 1.4 * this.alphaSize - this.xAdjustment + 5 * this.alphaSize, -1/2 * 9 * 0.6 * this.alphaSize - this.yAdjustment - 9 * this.alphaSize, 50 * 1.4 * this.alphaSize, 9 * 0.6 * this.alphaSize); //l
+                        this.drawUnit(tomb, 762, 60, 50, 9, -1/2 * 50 * 1.4 * this.alphaSize - this.xAdjustment + 5 * this.alphaSize, -1/2 * 9 * 0.6 * this.alphaSize - this.yAdjustment + 9 * this.alphaSize, 50 * 1.4 * this.alphaSize, 9 * 0.6 * this.alphaSize, Math.PI); //r
+                        this.drawUnit(tomb, 9, 114, 151, 112, -1/2 * 151 * this.alphaSize - this.xAdjustment, -1/2 * 112 * this.alphaSize - this.yAdjustment, 151 * this.alphaSize, 112 * this.alphaSize);
+                    }
+                }
+            }
+            else if (this.alive == true)
+            {
+                this.tangible = false;
+                this.getupFrame += 1;
+                if (this.getupFrame < this.getupWait)
+                {
+                    this.drawUnit(tomb, 483, 165, 108, 62, -1/2 * 108 * this.alphaSize * 1.3 - this.xAdjustment, -1/2 * 62 * this.alphaSize * 1.3 - this.yAdjustment, 108 * this.alphaSize * 1.3, 62 * this.alphaSize * 1.3);
+                    this.bonesType = Math.floor(Math.random() * 3);
+
+                    if (player.getEminence() >= 4)
+                    {
+                        if (player.getStrength() >= 8)
+                        {
+                            if (this.DTM() < 24 && dClick == true && this.DTP() <= 56)
+                            {
+                                this.lives = 0;
+                            }
+                        }
+                        else if (player.getStrength() >= 6)
+                        {
+                            if (this.DTM() < 24 && dClick == true && this.DTP() <= 56)
+                            {
+                                this.lives -= 4;
+                            }
+                        }
+                        else if (player.getStrength() >= 4)
+                        {
+                            if (this.DTM() < 24 && dClick == true && this.DTP() <= 56)
+                            {
+                                this.lives -= 2;
+                            }
+                        }
+                        else if (player.getStrength() >= 2)
+                        {
+                            if (this.DTM() < 24 && dClick == true && this.DTP() <= 56)
+                            {
+                                this.lives -= 1;
+                            }
+                        }
+                    }
+
+                    if (this.lives <= 0)
+                    {
+                        this.undying = false;
+                    }
+                }
+                else if (this.getupFrame < (this.getupWait + 10))
+                {
+                    this.drawUnit(tomb, 586, 158, 88, 62, -1/2 * 88 * this.alphaSize * 1.3 - this.xAdjustment, -1/2 * 62 * this.alphaSize * 1.3 - this.yAdjustment, 88 * this.alphaSize * 1.3, 62 * this.alphaSize * 1.3);
+                }
+                else if (this.getupFrame < (this.getupWait + 19))
+                {
+                    this.drawUnit(tomb, 672, 157, 88, 62, -1/2 * 88 * this.alphaSize * 1.3 - this.xAdjustment, -1/2 * 62 * this.alphaSize * 1.3 - this.yAdjustment, 88 * this.alphaSize * 1.3, 62 * this.alphaSize * 1.3);
+                }
+                else
+                {
+                    this.drawUnit(tomb, 672, 157, 88, 62, -1/2 * 88 * this.alphaSize * 1.3 - this.xAdjustment, -1/2 * 62 * this.alphaSize * 1.3 - this.yAdjustment, 88 * this.alphaSize * 1.3, 62 * this.alphaSize * 1.3);
+
+                    this.getupFrame = 0;
+                    this.healthMAX += 2;
+                    this.speed += 0.05;
+                    this.health = this.healthMAX;
+                    this.lives -= 1;
+                    this.getupWait = 29 + Math.floor(Math.random() * 191);
+                }
+            }
+            else
+            {
+                if (this.bonesType == 0)
+                {
+                    this.drawUnit(tomb, 347, 26, 41, 48, -1/2 * 41 * this.alphaSize * 1.3 - this.xAdjustment, -1/2 * 48 * this.alphaSize * 1.3 - this.yAdjustment, 41 * 1.3 * this.alphaSize, 48 * 1.3 * this.alphaSize, -1/2 * Math.PI);
+                }
+                else if (this.bonesType == 1)
+                {
+                    this.drawUnit(tomb, 410, 44, 41, 48, -1/2 * 41 * this.alphaSize * 1.3 - this.xAdjustment, -1/2 * 48 * this.alphaSize * 1.3 - this.yAdjustment, 41 * 1.3 * this.alphaSize, 48 * 1.3 * this.alphaSize);
+                }
+                else
+                {
+                    this.drawUnit(tomb, 415, 95, 41, 48, -1/2 * 41 * this.alphaSize * 1.3 - this.xAdjustment, -1/2 * 48 * this.alphaSize * 1.3 - this.yAdjustment, 41 * 1.3 * this.alphaSize, 48 * 1.3 * this.alphaSize);
+                }
+            }
+        }
         //FEGIL
         if (this.type == "Fegil")
         {
@@ -36361,6 +37183,248 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         this.drawUnit(ribak, 990, 786, 110, 95, -1/2 * 110 * this.alphaSize - this.xAdjustment, -1/2 * 95 * this.alphaSize - this.yAdjustment, 110 * this.alphaSize, 95 * this.alphaSize);
                     }
                 }
+            }
+        }
+        //CORPSE GOLEM
+        if (this.type == "CorpseGolem")
+        {
+            //Set Drops and experience
+
+            if (this.alpha == true)
+            {
+                if (Math.max(0, 51 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 2000 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = (2000 * ((player.getIntelligence() / 50) + 1)) / 10;
+                }
+                this.drops = [[new Item("corpseGolemHeart", this.X, this.Y), 1]];
+
+                //RANGE OF SIGHT (anything related to range of sight)
+                this.rangeOfSightCalculator(1000, true);
+            }
+            else
+            {
+                if (Math.max(0, 38 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 1000 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = (1000 * ((player.getIntelligence() / 50) + 1)) / 10;
+                }
+                this.drops = [[new Item("corpseGolemHeart", this.X, this.Y), 1]];
+
+                //RANGE OF SIGHT (anything related to range of sight)
+                this.rangeOfSightCalculator(950, true);
+            }
+
+            //AI
+            if (this.alive == true)
+            {
+                if (this.nonDetect == false)
+                {
+                    if (this.alpha == true)
+                    {
+                        this.Attack(13, 38);
+                    }
+                    else
+                    {
+                        this.Attack(9, 29);
+                    }
+                }
+
+                //this.deathChecker();
+                this.disturbedTimer();
+                this.visibleSight();
+                this.friendDecider();
+                this.targeting();
+
+                this.moving = false;
+
+                if (this.disturbed || this.offended || this.target == player && this.DTP() <= 170 || this.target != player && this.target != "none" && this.DTU(this.target) <= 170)
+                {
+                    if (this.nonDetect == true)
+                    {
+                        this.wokedenUp = true;
+                    }
+                }
+
+                if (this.nonDetect == true)
+                {
+                    this.tangible = false;
+                }
+                else
+                {
+                    this.tangible = true;
+                }
+
+                if (this.target == player)
+                {
+                    if (this.nonDetect == false)
+                    {
+                        this.pointTowardsPlayer();
+                        this.moveInRelationToPlayer();
+                    }
+                }
+                else if (this.target != "none")
+                {
+                    if (this.nonDetect == false)
+                    {
+                        this.pointTowards(this.target);
+                        this.moveInRelationToThing(this.target);
+                    }
+                }
+            }
+
+            //ANIMATIONS
+            if (this.wokedenUp && this.nonDetect == true)
+            {
+                this.wigglez += 1;
+            }
+            if (this.alive == true)
+            {
+                if (this.nonDetect == true)
+                {
+                    if (this.wigglez < 20)
+                    {
+                        this.drawUnit(tomb, 747, 37, 106, 107, -1/2 * 106 * this.alphaSize - this.xAdjustment, -1/2 * 107 * this.alphaSize - this.yAdjustment, 106 * this.alphaSize, 107 * this.alphaSize);
+                    }
+                    else if (this.wigglez < 26)
+                    {
+                        this.drawUnit(tomb, 1058, 37, 106, 107, -1/2 * 106 * this.alphaSize - this.xAdjustment, -1/2 * 107 * this.alphaSize - this.yAdjustment, 106 * this.alphaSize, 107 * this.alphaSize);
+                    }
+                    else if (this.wigglez < 32)
+                    {
+                        this.drawUnit(tomb, 1225, 16, 128, 149, -1/2 * 128 * this.alphaSize - this.xAdjustment, -1/2 * 149 * this.alphaSize - this.yAdjustment, 128 * this.alphaSize, 149 * this.alphaSize);
+                    }
+                    else if (this.wigglez < 38)
+                    {
+                        this.drawUnit(tomb, 808, 190, 128, 149, -1/2 * 128 * this.alphaSize - this.xAdjustment, -1/2 * 149 * this.alphaSize - this.yAdjustment, 128 * this.alphaSize, 149 * this.alphaSize);
+                    }
+                    else if (this.wigglez < 44)
+                    {
+                        this.drawUnit(tomb, 999, 191, 149, 149, -1/2 * 128 * this.alphaSize - this.xAdjustment, -1/2 * 149 * this.alphaSize - this.yAdjustment, 149 * this.alphaSize, 149 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(tomb, 1244, 191, 149, 149, -1/2 * 128 * this.alphaSize - this.xAdjustment, -1/2 * 149 * this.alphaSize - this.yAdjustment, 149 * this.alphaSize, 149 * this.alphaSize);
+                        this.nonDetect = false;
+                    }
+                }
+                else
+                {
+                    this.wokedenUp = false;
+                    this.wigglez = 0;
+                    if (this.moving && !this.attacking && this.regressATK != true) //If moving and not attacking initiate moving animation...
+                    {
+                        this.costumeEngine(3, 0.15, true);
+                    }
+                    else if (this.attacking || this.regressATK) //otherwise if it is attacking then initiate attacking animation, and if neither...
+                    {
+                        if (this.regressATK == true)
+                        {
+                            if (this.finalAttackCostume == true)
+                            {
+                                this.costumeEngine(5, 0.21, true);
+                            }
+
+                            if (this.costume > 0)
+                            {
+                                this.costume -= 0.14;
+                            }
+                            else if (this.costume <= 0)
+                            {
+                                this.costume = 0;
+                                this.regressATK = false;
+                            }
+                        }
+                        else
+                        {
+                            if (new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000 / timeSpeed * this.timeResistance))
+                            {
+                                this.costumeEngine(5, 0.21, true);
+                            }
+                        }
+                    }
+
+                    // the frames/stages/costumes of the animation.
+                    var theCostume = Math.floor(this.costume); //This rounds this.costume down to the nearest whole number.
+
+                    if (theCostume <= 0)
+                    {
+                        this.damageDealt = false;
+                        if (this.attacking || this.regressATK)
+                        {
+                            this.drawUnit(tomb, 1244, 191, 149, 149, -1/2 * 128 * this.alphaSize - this.xAdjustment, -1/2 * 149 * this.alphaSize - this.yAdjustment, 149 * this.alphaSize, 149 * this.alphaSize);
+                        }
+                        else if (this.moving)
+                        {
+                            this.drawUnit(tomb, 53, 814, 181, 175, -1/2 * 181 * this.alphaSize - this.xAdjustment, -1/2 * 175 * this.alphaSize - this.yAdjustment, 181 * this.alphaSize, 175 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(tomb, 1244, 191, 149, 149, -1/2 * 128 * this.alphaSize - this.xAdjustment, -1/2 * 149 * this.alphaSize - this.yAdjustment, 149 * this.alphaSize, 149 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume <= 1)
+                    {
+                        if (this.attacking || this.regressATK)
+                        {
+                            this.drawUnit(tomb, 526, 800, 218, 175, -1/2 * 218 * this.alphaSize - this.xAdjustment, -1/2 * 175 * this.alphaSize - this.yAdjustment, 218 * this.alphaSize, 175 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(tomb, 1244, 191, 149, 149, -1/2 * 128 * this.alphaSize - this.xAdjustment, -1/2 * 149 * this.alphaSize - this.yAdjustment, 149 * this.alphaSize, 149 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume <= 2)
+                    {
+                        if (this.attacking || this.regressATK)
+                        {
+                            this.drawUnit(tomb, 786, 803, 223, 175, -1/2 * 223 * this.alphaSize - this.xAdjustment, -1/2 * 175 * this.alphaSize - this.yAdjustment, 223 * this.alphaSize, 175 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(tomb, 273, 813, 181, 175, -1/2 * 181 * this.alphaSize - this.xAdjustment, -1/2 * 175 * this.alphaSize - this.yAdjustment, 181 * this.alphaSize, 175 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume <= 3)
+                    {
+                        if (this.attacking || this.regressATK)
+                        {
+                            this.drawUnit(tomb, 1008, 814, 293, 175, -1/2 * 293 * this.alphaSize - this.xAdjustment, -1/2 * 175 * this.alphaSize - this.yAdjustment, 293 * this.alphaSize, 175 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(tomb, 53, 814, 181, 175, -1/2 * 181 * this.alphaSize - this.xAdjustment, -1/2 * 175 * this.alphaSize - this.yAdjustment, 181 * this.alphaSize, 175 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume >= 4)
+                    {
+                        if (this.attacking || this.regressATK)
+                        {
+                            if (this.damageDealt == false) // if the Unit has not yet dealt damage to its target then...
+                            {
+                                this.regressATK = true;
+                                this.timeBetweenAttacks = new Date().getTime();
+                                this.finalAttackCostume = true; //deal the damage!
+                                this.damageDealt = true; //tell the loop that the Unit has already dealt the damage for this attack.
+                            }
+                            this.drawUnit(tomb, 1302, 813, 315, 175, -1/2 * 315 * this.alphaSize - this.xAdjustment - 10, -1/2 * 175 * this.alphaSize - this.yAdjustment, 315 * this.alphaSize, 175 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(tomb, 273, 813, 181, 175, -1/2 * 181 * this.alphaSize - this.xAdjustment, -1/2 * 175 * this.alphaSize - this.yAdjustment, 181 * this.alphaSize, 175 * this.alphaSize);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                this.drawUnit(tomb, 1396, 17, 146, 137, -1/2 * 146 * this.alphaSize - this.xAdjustment, -1/2 * 137 * this.alphaSize - this.yAdjustment, 146 * this.alphaSize, 137 * this.alphaSize);
             }
         }
         //PALINSYDA

@@ -197,6 +197,9 @@ function buildMaster()
                 //sscenicList.push(new Scenery("thenganBuilding6", 4500, 2400, 0, 2));
                 //ArtificialIntelligenceAccess.push(new Unit(4100, 2300, "GreyHorse", false, "player"));
                 //ArtificialIntelligenceAccess.push(new Unit(4100, 2300, "BlackBeruln", true, "Hutu"));
+                //ArtificialIntelligenceAccess.push(new Unit(4100, 2500, "Skeleton", false, "Boneboy"));
+                //ArtificialIntelligenceAccess.push(new Unit(4100, 2500, "Lich", true, "Boneman"));
+                //ArtificialIntelligenceAccess.push(new Unit(4100, 2500, "CorpseGolem", false, "Boneburg"));
 
                 //scenicList.push(new Scenery("mrbAssets", 4900, 2400, 0, 9, 2));
 
@@ -14785,19 +14788,6 @@ function buildMaster()
                 scenicList.push(new Scenery("pineTree", -31892 , 3756, 3, true));
                 scenicList.push(new Scenery("pineTree", -32197 , 3614, 1, true));
                 scenicList.push(new Scenery("pineTree", -31604 , 3529, 5.3, true));
-
-
-
-                //TEST (vardanian creatures in black space)
-                ArtificialIntelligenceAccess.push(new Unit(-27601 , -8380, "GhoulFly", true, "Chalkorumn"));
-                ArtificialIntelligenceAccess.push(new Unit(-29355 , -8346, "Leech", true, "Jaina"));
-                ArtificialIntelligenceAccess.push(new Unit(-29358 , -8348, "Leech", true, "Jaina"));
-                ArtificialIntelligenceAccess.push(new Unit(-29360 , -8350, "Leech", true, "Jaina"));
-                ArtificialIntelligenceAccess.push(new Unit(-29365 , -8361, "Leech", true, "Jaina"));
-                ArtificialIntelligenceAccess.push(new Unit(-29345 , -8362, "Leech", true, "Jaina"));
-                ArtificialIntelligenceAccess.push(new Unit(-29340 , -8364, "Leech", true, "Jaina"));
-                ArtificialIntelligenceAccess.push(new Unit(-29343 , -8359, "Leech", true, "Jaina"));
-                ArtificialIntelligenceAccess.push(new Unit(-29349 , -8369, "Leech", true, "Jaina"));
 
                 //beasts of the wuntol woods
                 ArtificialIntelligenceAccess.push(new Unit(-26262 , 3589, "Shehid", true, "Ulugla"));

@@ -794,7 +794,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "n1e4";
-            outlineBuilder( 20, 6, "snow", 116, -54);
+            outlineBuilder( 20, 6, "frost", 116, -54);
             outlineBuilder( 18, 11, "snow", 139, -54);
 
             outlineBuilder( 14, 6, "frost", 116, -34);
@@ -848,6 +848,49 @@ function worldBuilder()
             outlineBuilder(34, 34, "frost", -20, -88);
             outlineBuilder(34, 1, "stonePath", -3, -88);
         }
+        //mapN2E3
+        if (Y > 16445 && Y < 27296 && X < -22859 && X > -34534) //X3
+        {
+            elevation = 1;
+            region = "n2e3";
+            outlineBuilder(34, 34, "outline", 82, -88); //todo frost/snow?
+        }
+        //mapN2E4
+        if (Y > 16445 && Y < 27296 && X < -33084 && X > -44714) //X4
+        {
+            elevation = 1;
+            region = "n2e4";
+            //outlineBuilder(34, 34, "outline", 116, -88);
+
+            outlineBuilder(1, 24, "sea", 116, -88);
+            outlineBuilder(3, 23, "sea", 117, -87);
+            outlineBuilder(5, 22, "sea", 118, -84);
+            outlineBuilder(5, 21, "sea", 118, -79);
+            outlineBuilder(8, 21, "sea", 120, -74);
+            outlineBuilder(7, 20, "sea", 121, -66);
+            outlineBuilder(5, 18, "sea", 122, -59);
+
+            outlineBuilder(5, 6, "frost", 116, -59);
+            outlineBuilder(7, 5, "frost", 116, -66);
+            outlineBuilder(8, 4, "frost", 116, -74);
+            outlineBuilder(10, 2, "frost", 116, -84);
+            outlineBuilder(3, 1, "frost", 116, -87);
+            outlineBuilder(9, 10, "snow", 140, -88);
+            outlineBuilder(25, 11, "snow", 139, -79);
+
+            outlineBuilder(1, 1, "seaCornerBR", 140, -88);
+            outlineBuilder(1, 1, "seaCornerBR", 139, -79);
+
+            outlineBuilder(1, 1, "seaCornerBL", 121, -59);
+            outlineBuilder(1, 1, "seaCornerBL", 120, -66);
+            outlineBuilder(1, 1, "seaCornerBL", 119, -74);
+            outlineBuilder(1, 1, "seaCornerBL", 117, -84);
+            outlineBuilder(1, 1, "seaCornerBL", 116, -87);
+
+            outlineBuilder(1, 6, "searock", 142, -88);
+            outlineBuilder(2, 4, "searock", 143, -87);
+            outlineBuilder(1, 2, "searock", 144, -85);
+        }
         //layer 3 (frosty region): elev 1
         //mapN3
         if (Y > 26650 && Y < 37456 && X < 7726 && X > -3910) //X0
@@ -862,7 +905,72 @@ function worldBuilder()
         {
             elevation = 1;
             region = "n3e1";
-            outlineBuilder(34, 34, "outline", 14, -122); //todo frost
+            outlineBuilder(34, 34, "frost", 14, -122);
+        }
+        //mapN3E3
+        if (Y > 26650 && Y < 37456 && X < -22859 && X > -34534) //X3
+        {
+            elevation = 1;
+            region = "n3e3";
+            //outlineBuilder(34, 34, "outline", 82, -122);
+
+            outlineBuilder(11, 4, "sea", 112, -122);
+
+            outlineBuilder(1, 3, "sea", 113, -111);
+            outlineBuilder(4, 1, "sea", 115, -110);
+
+            outlineBuilder(34, 26, "frost", 82, -122);
+
+            outlineBuilder(18, 1, "frost", 108, -106);
+            outlineBuilder(1, 2, "frost", 109, -104);
+            outlineBuilder(1, 2, "frost", 110, -102);
+            outlineBuilder(1, 4, "frost", 110, -101);
+            outlineBuilder(4, 5, "frost", 110, -101);
+            outlineBuilder(13, 5, "frost", 110, -101);
+            outlineBuilder(11, 1, "frost", 115, -99);
+            outlineBuilder(16, 1, "frost", 109, -104);
+
+            outlineBuilder(12, 8, "searock", 104, -122);
+            outlineBuilder(6, 4, "searock", 100, -122);
+            outlineBuilder(3, 2, "searock", 102, -116);
+            outlineBuilder(2, 1, "searock", 103, -113);
+
+            outlineBuilder(4, 1, "searock", 99, -122);
+            outlineBuilder(4, 8, "searock", 107, -110);
+            outlineBuilder(2, 7, "searock", 109, -106);
+
+            outlineBuilder(1, 1, "searock", 112, -111);
+            outlineBuilder(1, 1, "seaCornerBL", 112, -111);
+            outlineBuilder(1, 1, "seaCornerBL", 114, -110);
+
+            outlineBuilder(1, 4, "searock", 111, -104);
+            outlineBuilder(1, 6, "searock", 110, -103);
+            outlineBuilder(1, 1, "seaCornerBL", 115, -103);
+            outlineBuilder(1, 1, "sea", 115, -104);
+
+            outlineBuilder(2, 2, "searock", 114, -102);
+            outlineBuilder(4, 1, "searock", 115, -100);
+            outlineBuilder(1, 2, "searock", 112, -102);
+            outlineBuilder(1, 1, "seaCornerBL", 113, -103);
+        }
+        //mapN3E4
+        if (Y > 26650 && Y < 37456 && X < -33084 && X > -44714) //X4
+        {
+            elevation = 1;
+            region = "n3e4";
+            //outlineBuilder(34, 34, "outline", 116, -122);
+
+            outlineBuilder(34, 25, "sea", 116, -122);
+
+            outlineBuilder(3, 7, "searock", 143, -122);
+            outlineBuilder(1, 1, "seaCornerBR", 143, -122);
+            outlineBuilder(22, 8, "searock", 142, -119);
+            outlineBuilder(1, 1, "seaCornerBR", 142, -119);
+            outlineBuilder(9, 9, "searock", 141, -97);
+            outlineBuilder(1, 1, "seaCornerBR", 141, -97);
+
+            outlineBuilder(3, 1, "sea", 142, -122);
+            outlineBuilder(25, 1, "sea", 141, -122);
         }
         //layer 4 (frosty region): elev 1
         //mapN4W1
@@ -1106,6 +1214,36 @@ function worldBuilder()
             outlineBuilder(4, 5, "sea", 111, -128);
             outlineBuilder(2, 4, "sea", 112, -124);
         }
+        //mapN4E4
+        if (Y > 36878 && Y < 47662 && X < -33084 && X > -44714) //rivermouth//X4
+        {
+            elevation = 1;
+            region = "n4e4";
+            //outlineBuilder(34, 34, "outline", 116, -156);
+
+            outlineBuilder(34, 30, "sea", 116, -156);
+
+            outlineBuilder(27, 4, "sea", 146, -156);
+            outlineBuilder(1, 3, "sea", 146, -129);
+            outlineBuilder(1, 1, "sea", 146, -128);
+            outlineBuilder(1, 1, "sea", 147, -128);
+            outlineBuilder(1, 1, "sea", 146, -127);
+            outlineBuilder(1, 1, "sea", 145, -126);
+            outlineBuilder(1, 1, "shallow", 148, -128);
+            outlineBuilder(1, 1, "shallow", 147, -127);
+            outlineBuilder(1, 1, "shallow", 146, -126);
+            outlineBuilder(1, 2, "shallow", 144, -125);
+            outlineBuilder(2, 1, "shallow", 144, -124);
+            outlineBuilder(2, 1, "searock", 149, -129);
+            outlineBuilder(1, 2, "searock", 148, -127);
+            outlineBuilder(4, 3, "searock", 147, -126);
+            outlineBuilder(3, 1, "searock", 146, -125);
+            outlineBuilder(2, 1, "searock", 145, -124);
+            outlineBuilder(1, 1, "seaCornerBR", 146, -125);
+            outlineBuilder(1, 1, "seaCornerBR", 147, -126);
+            outlineBuilder(1, 1, "seaCornerBR", 148, -127);
+            outlineBuilder(1, 1, "seaCornerBR", 149, -129);
+        }
         //layer 5 (frosty region): elev 1
         //mapN5W1
         if (Y > 47071 && Y < 57864 && X < 17903 && X > 6294)//North Sea//X-1
@@ -1218,6 +1356,13 @@ function worldBuilder()
             elevation = 1;
             region = "n5e3";
             outlineBuilder(34, 34, "sea", 82, -190);
+        }
+        //mapN5E4
+        if (Y > 47071 && Y < 57864 && X < -33084 && X > -44714)//North Sea//X4
+        {
+            elevation = 1;
+            region = "n5e4";
+            outlineBuilder(34, 34, "sea", 116, -190);
         }
     } //ALTERNATE DIMENSIONS
     else if (map == "sagesCache") //This is a dungeon found in map W3

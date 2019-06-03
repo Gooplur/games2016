@@ -2128,6 +2128,82 @@ function buildMaster()
                 scenicList.push(new Scenery("bushkaPlant", -2182, 34319,2.75, true)); //copied n-3
                 scenicList.push(new Scenery("tyrniPlant", -12270, 38406,0.4, true)); //copied n-4-e-1
 
+                ArtificialIntelligenceAccess.push(new Unit(-6594.548123905186, 34395.87516001048, "WinterWolf", false, "magicmantrty1"));
+                ArtificialIntelligenceAccess.push(new Unit(-6402.9162373760755, 34298.07859537538, "WinterWolf", false, "magicmantrty2"));
+                ArtificialIntelligenceAccess.push(new Unit(-7342.786479590106, 28032.411261432484, "WinterWolf", false, "magicmantrt1"));
+                ArtificialIntelligenceAccess.push(new Unit(-7161.446259501089, 28142.0415370401, "WinterWolf", false, "magicmantrt2"));
+                ArtificialIntelligenceAccess.push(new Unit(-7518.7273323387635, 28132.110805093063, "WinterWolf", false, "magicmantrt3"));
+                ArtificialIntelligenceAccess.push(new Unit(-7481.193771158077, 28049.037828083056, "WinterWolf", false, "magicmantrt4"));
+                ArtificialIntelligenceAccess.push(new Unit(-6226.50515357677, 32289.240062358083, "WinterWolf", false, "magicmantre1"));
+                ArtificialIntelligenceAccess.push(new Unit(-5992.850502575595, 32363.91489732386, "WinterWolf", false, "magicmantre2"));
+                ArtificialIntelligenceAccess.push(new Unit(-6076.461293128425, 32442.971879488203, "WinterWolf", false, "magicmantrte3"));
+                ArtificialIntelligenceAccess.push(new Unit(-12593.742137168469, 27905.233704785045, "WinterWolf", false, "magicmantrtr1"));
+                ArtificialIntelligenceAccess.push(new Unit(-12452.756042594201, 27982.405040762547, "WinterWolf", false, "magicmantrtr2"));
+                ArtificialIntelligenceAccess.push(new Unit(-12490.174766136717, 28081.417425018735, "WinterWolf", false, "magicmantrtr3"));
+                ArtificialIntelligenceAccess.push(new Unit(-12376.928637991152, 28063.920791104607, "WinterWolf", false, "magicmantrtr4"));
+                ArtificialIntelligenceAccess.push(new Unit(-12274.935028666405, 27982.15226392913, "WinterWolf", false, "magicmantrtr5"));
+                ArtificialIntelligenceAccess.push(new Unit(-4188.712078244745, 30521.25036802544, "WinterWolf", false, "magicmantru1"));
+                ArtificialIntelligenceAccess.push(new Unit(-4260.643068573382, 30628.33249476115, "WinterWolf", false, "magicmantru2"));
+                ArtificialIntelligenceAccess.push(new Unit(-4458.084877726978, 30489.692432171647, "WinterWolf", false, "magicmantru3"));
+                ArtificialIntelligenceAccess.push(new Unit(-6560.7591269710665, 29951.177212853796, "WinterWolf", false, "magicmantru4"));
+                ArtificialIntelligenceAccess.push(new Unit(-6667.609730478248, 29868.672014598505, "WinterWolf", false, "magicmantru5"));
+                ArtificialIntelligenceAccess.push(new Unit(-12259.155193158167, 34153.577892206624, "WinterWolf", false, "magicmantry1"));
+                ArtificialIntelligenceAccess.push(new Unit(-12334.1895170149, 34296.79708529342, "WinterWolf", false, "magicmantry2"));
+                ArtificialIntelligenceAccess.push(new Unit(-12220.541001465752, 34378.367199496606, "WinterWolf", false, "magicmantry3"));
+                ArtificialIntelligenceAccess.push(new Unit(-12377.302428770507, 34357.8027508203, "WinterWolf", false, "magicmantry4"));
+                ArtificialIntelligenceAccess.push(new Unit(-4314.329468875088, 33852.634934001195, "WinterWolf", false, "magicmantry5"));
+                ArtificialIntelligenceAccess.push(new Unit(-4471.613106744669, 33944.30876489119, "WinterWolf", false, "magicmantry6"));
+                ArtificialIntelligenceAccess.push(new Unit(-7184.269394650553, 30171.609849255543, "WinterWolf", false, "magicmantrw1"));
+                ArtificialIntelligenceAccess.push(new Unit(-7067.5994171469665, 30328.008756573032, "WinterWolf", false, "magicmantrw2"));
+                ArtificialIntelligenceAccess.push(new Unit(-7193.627202096532, 30309.3146614275, "WinterWolf", false, "magicmantrw3"));
+
+
+                ArtificialIntelligenceAccess.push(new Unit(-8397.625202412219, 33024.76254476069, "Waanti", false, "gotetdot1"));
+                ArtificialIntelligenceAccess.push(new Unit(-8308.948107922957, 32974.837155598936, "Waanti", true, "gotetdot2"));
+                ArtificialIntelligenceAccess.push(new Unit(-8199.566961830593, 33065.30123440185, "Waanti", "baby", "gotetdot3"));
+                ArtificialIntelligenceAccess.push(new Unit(-4858.480393969366, 27509.116219504736, "Waanti", false, "gotetdoto1"));
+                ArtificialIntelligenceAccess.push(new Unit(-4747.031821693755, 27564.249543707167, "Waanti", true, "gotetdoto2"));
+                ArtificialIntelligenceAccess.push(new Unit(-4703.555595557247, 27705.623028886304, "Waanti", "baby", "gotetdoto3"));
+                ArtificialIntelligenceAccess.push(new Unit(-4610.047992260398, 27659.46911033468, "Waanti", false, "gotetdoto4"));
+                ArtificialIntelligenceAccess.push(new Unit(-8750.443761386332, 33394.66527243566, "Waanti", false, "gotetdotoo1"));
+                ArtificialIntelligenceAccess.push(new Unit(-8894.311241039855, 33453.557989100445, "Waanti", true, "gotetdotoo2"));
+                ArtificialIntelligenceAccess.push(new Unit(-8935.141687680236, 33397.42474829503, "Waanti", "baby", "gotetdotoo3"));
+                ArtificialIntelligenceAccess.push(new Unit(-8945.942018561283, 33579.20292161423, "Waanti", "baby", "gotetdotoo4"));
+                ArtificialIntelligenceAccess.push(new Unit(-10411.19076846095, 27585.16544975032, "Waanti", "baby", "gotetdoto5"));
+                ArtificialIntelligenceAccess.push(new Unit(-10321.646102323266, 27652.024031738347, "Waanti", false, "gotetdoto6"));
+                ArtificialIntelligenceAccess.push(new Unit(-8765.721889882363, 32953.68094195766, "Waanti", true, "gotetdotoo2"));
+
+
+                ArtificialIntelligenceAccess.push(new Unit(-11289.652797686398, 32309.008802314052, "Balkur", false, "onofangoo1"));
+                ArtificialIntelligenceAccess.push(new Unit(-9958.834319219719, 30999.05514875268, "Balkur", true, "onofangoo2"));
+                ArtificialIntelligenceAccess.push(new Unit(-9480.810261361903, 36394.138313717565, "Balkur", false, "onofangoo3"));
+
+
+                ArtificialIntelligenceAccess.push(new Unit(-7619.233094074731, 36046.80342991437, "Glutid", false, "nontthintern1"));
+
+
+                ArtificialIntelligenceAccess.push(new Unit(-11626.931345371848, 31495.13739942016, "Koobu", false, "nontthintern2"));
+
+
+                scenicList.push(new Scenery("tyrniPlant", -11542.707841740761, 34651.58370915247, 5, true));
+                scenicList.push(new Scenery("tyrniPlant", -8778.192150375602, 28491.313632465168, 2, true));
+
+
+                scenicList.push(new Scenery("wightbloomPlant", -11643.275901334484, 28642.70650974215, 2.3, true));
+                scenicList.push(new Scenery("wightbloomPlant", -9536.46853963971, 35580.79217535402, 2.7, true));
+
+
+                scenicList.push(new Scenery("bushkaPlant", -6787.447368237949, 35252.422335468604, 2, true));
+                scenicList.push(new Scenery("bushkaPlant", -4656.421725646723, 30725.247571784173, 2.7, true));
+                scenicList.push(new Scenery("bushkaPlant", -10400.352071066496, 27904.77441159803, 3.1, true));
+                scenicList.push(new Scenery("bushkaPlant", -9354.11673140219, 31121.187468650434, 4.5, true));
+                scenicList.push(new Scenery("bushkaPlant", -8487.432399296966, 32673.89932783247, 7.32, true));
+
+
+                scenicList.push(new Scenery("stone", -10780.86358615623, 33407.02725397667, 2.47, 1.5, 1));
+                scenicList.push(new Scenery("stone", -4655.321152171745, 28949.77082195361, 4.83, 1, 2));
+
+
 
                 change = "n3e1";
             }
@@ -15695,10 +15771,10 @@ function buildMaster()
                 scenicList.push(new Scenery("sign", -41127, 184, 1/2 * Math.PI, 3, "Wooden Wonders"));
                 scenicList.push(new Scenery("sign", -41000, 2886, 1/2 * Math.PI, 3, "Riverfront Storage"));
                 scenicList.push(new Scenery("sign", -40664, 2772, -1/2 * Math.PI, 3, "Harbour Office"));
-                scenicList.push(new Scenery("sign", -40662, -89, -1/2 * Math.PI, 3, "Átalin Customs House"));
-                scenicList.push(new Scenery("sign", -41234, 1942, 0, 3, "Átalin City Bank"));
-                scenicList.push(new Scenery("sign", -40666, 1716, -1/2 * Math.PI, 3, "Átalin Barracks: Riverfront"));
-                scenicList.push(new Scenery("sign", -40906, 1624, 1/2 * Math.PI, 3, "Átalin City Prison"));
+                scenicList.push(new Scenery("sign", -40662, -89, -1/2 * Math.PI, 3, "Atalin Customs House"));
+                scenicList.push(new Scenery("sign", -41234, 1942, 0, 3, "Atalin City Bank"));
+                scenicList.push(new Scenery("sign", -40666, 1716, -1/2 * Math.PI, 3, "Atalin Barracks: Riverfront"));
+                scenicList.push(new Scenery("sign", -40906, 1624, 1/2 * Math.PI, 3, "Atalin City Prison"));
                 scenicList.push(new Scenery("sign", -41493, 1627, -1/2 * Math.PI, 3, "Riverfront Outfitter's"));
                 scenicList.push(new Scenery("sign", -41476, 2351, -1/2 * Math.PI, 3, "The Atalin Medical Clinic"));
 
@@ -16202,7 +16278,7 @@ function buildMaster()
                 scenicList.push(new Scenery("nirwadenGoods", -44279, -2312, 9, 23)); //hops
                 scenicList.push(new Scenery("nirwadenGoods", -44306, -2312, 6.5, 23)); //hops
                 scenicList.push(new Scenery("barrel", -44377, -2317, 4.5, 2));
-                scenicList.push(new Scenery("sign", -44221, -2145, 1/2 * Math.PI, 3, "Átalin Brewery"));
+                scenicList.push(new Scenery("sign", -44221, -2145, 1/2 * Math.PI, 3, "Atalin Brewery"));
                 var hits = 0;
                 for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
                 {
@@ -16720,7 +16796,7 @@ function buildMaster()
                 //poor res interiors
 
                 //plaza buildings interiors
-                scenicList.push(new Scenery("sign", -44226, 82, -1/2 * Math.PI, 3, "Átalin Barracks: Market"));
+                scenicList.push(new Scenery("sign", -44226, 82, -1/2 * Math.PI, 3, "Atalin Barracks: Market"));
                 scenicList.push(new Scenery("bed", -44160, 261, 1/2 *  Math.PI, false));
                 scenicList.push(new Scenery("bed", -44066, 46, -1/2 *  Math.PI, false));
                 scenicList.push(new Scenery("bed", -44190, 75, 1 *  Math.PI, false));
@@ -16736,7 +16812,7 @@ function buildMaster()
                 if (quests.atalinShopOwned == true)
                 {
                     scenicList.push(new Scenery("crate", -44717, 421, 0.1, 4, [1.4, "atalinShopCrate", 15, [], false, 0]));
-                    scenicList.push(new Scenery("sign", -44873, 376, 0 * Math.PI, 3, "The Átalin Supply"));
+                    scenicList.push(new Scenery("sign", -44873, 376, 0 * Math.PI, 3, "The Atalin Supply"));
                     var hits = 0;
                     for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
                     {
@@ -16859,7 +16935,7 @@ function buildMaster()
                 scenicList.push(new Scenery("nirwadenMueble", -44353, 909, -1/2 * Math.PI, 2)); //sqr table
                 scenicList.push(new Scenery("nirwadenMueble", -44489, 713, -1/2 * Math.PI, 2)); //sqr table
 
-                scenicList.push(new Scenery("sign", -44417, 660, 0 * Math.PI, 3, "The Átalin Merchant's Guild"));
+                scenicList.push(new Scenery("sign", -44417, 660, 0 * Math.PI, 3, "The Atalin Merchant's Guild"));
                 scenicList.push(new Scenery("sign", -45587, 682, 0 * Math.PI, 3, "Silver Keep Banking"));
 
                 scenicList.push(new Scenery("nirwadenStadium", -45043, 2535, 0, true));
@@ -19268,9 +19344,9 @@ function buildMaster()
                 }
 
                 //
-                scenicList.push(new Scenery("sign", -44221, -2145, 1/2 * Math.PI, 3, "Átalin Brewery"));
-                scenicList.push(new Scenery("sign", -44226, 82, -1/2 * Math.PI, 3, "Átalin Barracks: Market"));
-                scenicList.push(new Scenery("sign", -46743, 1464, 0 * Math.PI, 3, "Átalin Stables"));
+                scenicList.push(new Scenery("sign", -44221, -2145, 1/2 * Math.PI, 3, "Atalin Brewery"));
+                scenicList.push(new Scenery("sign", -44226, 82, -1/2 * Math.PI, 3, "Atalin Barracks: Market"));
+                scenicList.push(new Scenery("sign", -46743, 1464, 0 * Math.PI, 3, "Atalin Stables"));
 
                 scenicList.push(new Scenery("nirwadenMueble", -45726, 1343, 1/2 * Math.PI, 1)); //bench
                 scenicList.push(new Scenery("nirwadenGoods", -45634, 1428, 18, 9));
@@ -19293,7 +19369,7 @@ function buildMaster()
                 if (quests.atalinShopOwned == true)
                 {
                     scenicList.push(new Scenery("crate", -44717, 421, 0.1, 4, [1.4, "atalinShopCrate", 15, [], false, 0]));
-                    scenicList.push(new Scenery("sign", -44873, 376, 0 * Math.PI, 3, "The Átalin Supply"));
+                    scenicList.push(new Scenery("sign", -44873, 376, 0 * Math.PI, 3, "The Atalin Supply"));
                     var hits = 0;
                     for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
                     {
@@ -19378,7 +19454,7 @@ function buildMaster()
                 scenicList.push(new Scenery("nirwadenMueble", -47253, 1281, -1/2 * Math.PI, 3)); //rect table
                 scenicList.push(new Scenery("nirwadenMueble", -47207, 1227, 1 * Math.PI, 3)); //rect table
 
-                scenicList.push(new Scenery("sign", -44417, 660, 0 * Math.PI, 3, "The Átalin Merchant's Guild"));
+                scenicList.push(new Scenery("sign", -44417, 660, 0 * Math.PI, 3, "The Atalin Merchant's Guild"));
                 scenicList.push(new Scenery("sign", -45587, 682, 0 * Math.PI, 3, "Silver Keep Banking"));
 
                 if (uniqueChars.quixoteLDS)
@@ -19608,7 +19684,7 @@ function buildMaster()
                 scenicList.push(new Scenery("item", -45997, -1212, 0, "nirwaden", ["harstBread", 1, -12]));
 
 
-                scenicList.push(new Scenery("sign", -47071, 1392, 1/2 * Math.PI, 3, "The Átalin City Smithy"));
+                scenicList.push(new Scenery("sign", -47071, 1392, 1/2 * Math.PI, 3, "The Atalin City Smithy"));
                 scenicList.push(new Scenery("sign", -46346, 714, 1/2 * Math.PI, 3, "The Royal Order of the Inquisition"));
                 scenicList.push(new Scenery("sign", -46874, -29, 1/2 * Math.PI, 3, "The Church of the Everlasting Spirit"));
                 scenicList.push(new Scenery("sign", -46380, 1293, -1/2 * Math.PI, 3, "Property of the Inquisition: entry restricted"));

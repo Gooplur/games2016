@@ -9814,6 +9814,7 @@ function Item(type, x, y)
 
             //Define Utility
             this.utility = "material";
+            this.questy = true;
 
             //ability
             this.ability = "horseArmour";
@@ -9834,6 +9835,7 @@ function Item(type, x, y)
 
             //Define Utility
             this.utility = "material";
+            this.questy = true;
 
             //ability
             this.ability = "horseArmour";
@@ -12807,8 +12809,8 @@ function Item(type, x, y)
             this.ability = "none";
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
-            this.buyValue = 4 - Math.floor(player.getCharisma() / 25); // at max, buy for 2.
-            this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+            this.buyValue = 3 - Math.floor(player.getCharisma() / 25); // at max, buy for 1.
+            this.sellValue = 0 + Math.floor(player.getCharisma() / 50); // at max, sell for 1.
         }
         else if (this.type == "wyrLeaf")
         {
@@ -32107,7 +32109,7 @@ function Item(type, x, y)
             this.size = 7;
             this.description = "A skull that was hexed to unite bone and form a magical being from the inanimate.";
             this.intForDes = 29;
-            this.intDescription = "Unlike most other golems, corpse golems are not alive, they are simply inhabited by a bewitched soul. This skull belonged to that poor sod...";
+            this.intDescription = "Unlike most other golems, corpse golems are not alive, they are simply inhabited by a bewitched soul.";
 
             //Define Utility
             this.utility = "material";

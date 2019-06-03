@@ -1604,6 +1604,18 @@ function scorpPack()
 
     scorp.onload = function()
     {
+        bloatPack();
+    };
+}
+
+function bloatPack()
+{
+    var bloat = new Image();
+    bloat.src = ("images/bloat.png");
+    window.bloat = bloat;
+
+    bloat.onload = function()
+    {
         scorpionPack();
     };
 }

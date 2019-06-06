@@ -21,6 +21,8 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
     this.radius = 4;
     this.thrown = false;
     this.doNada = false;
+    this.notShotByPlayer = nonPlayer;
+    this.tipo = type;
 
     //thrown variables
     this.thrownID = "none";

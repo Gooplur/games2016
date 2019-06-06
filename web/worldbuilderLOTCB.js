@@ -853,7 +853,7 @@ function worldBuilder()
         {
             elevation = 1;
             region = "n2e3";
-            outlineBuilder(34, 34, "outline", 82, -88); //todo frost/snow?
+            outlineBuilder(34, 34, "frost", 82, -88);
         }
         //mapN2E4
         if (Y > 16445 && Y < 27296 && X < -33084 && X > -44714) //X4
@@ -866,9 +866,9 @@ function worldBuilder()
             outlineBuilder(3, 23, "sea", 117, -87);
             outlineBuilder(5, 22, "sea", 118, -84);
             outlineBuilder(5, 21, "sea", 118, -79);
-            outlineBuilder(8, 21, "sea", 120, -74);
-            outlineBuilder(7, 20, "sea", 121, -66);
-            outlineBuilder(5, 18, "sea", 122, -59);
+            outlineBuilder(8, 19, "sea", 120, -74); //21
+            outlineBuilder(7, 18, "sea", 121, -66); //20
+            outlineBuilder(5, 17, "sea", 122, -59); //18
 
             outlineBuilder(5, 6, "frost", 116, -59);
             outlineBuilder(7, 5, "frost", 116, -66);

@@ -4523,7 +4523,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 this.activate = false;
             }
         }
-        else if (this.type == "vardanianFloorDeco")
+        else if (this.type == "floorDeco")
         {
             //TRAITS
             this.solid = false;
@@ -4666,12 +4666,28 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.drawImage(hydra, 853, 1409, 90, 65, -(1/2 * 90 * this.information), -(1/2 * 65 * this.information), 90 * this.information, 65 * this.information);
                 XXX.restore();
             }
-            else if (this.temporary >= 17)//borgal fur rug (thengaria)
+            else if (this.temporary == 17)//borgal fur rug (thengaria)
             {
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
                 XXX.drawImage(nognog, 19, 490, 61, 38, -(1/2 * 61 * this.information), -(1/2 * 38 * this.information), 61 * this.information, 38 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 18)//fox pelt rug (thengaria)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(bloat, 10, 550, 58, 57, -(1/2 * 58 * this.information), -(1/2 * 57 * this.information), 58 * this.information, 57 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary >= 19)//arctic fox pelt rug (thengaria)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(bloat, 9, 487, 58, 57, -(1/2 * 58 * this.information), -(1/2 * 57 * this.information), 58 * this.information, 57 * this.information);
                 XXX.restore();
             }
 
@@ -4685,7 +4701,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 this.activate = false;
             }
         }
-        else if (this.type == "vardanianMueble")
+        else if (this.type == "westMueble")
         {
             //TRAITS
             this.solid = false;
@@ -5032,6 +5048,126 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
                 XXX.drawImage(toad, 646, 326, 41, 56, -(1/2 * 41 * this.information), -(1/2 * 56 * this.information), 41 * this.information, 56 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 30)//thengan corner counter
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(bloat, 843, 780, 52, 42, -(1/2 * 52 * this.information), -(1/2 * 42 * this.information), 52 * this.information, 42 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 31)//thengan large table
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(bloat, 969, 832, 56, 62, -(1/2 * 56 * this.information), -(1/2 * 62 * this.information), 56 * this.information, 62 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 32)//thengan medium squeezy table
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(bloat, 1032, 832, 56, 62, -(1/2 * 56 * this.information), -(1/2 * 62 * this.information), 56 * this.information, 62 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 33)//thengan big round table
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(bloat, 1318, 812, 54, 53, -(1/2 * 54 * this.information), -(1/2 * 53 * this.information), 54 * this.information, 53 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 34)//thengan small round table
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(bloat, 1370, 825, 28, 27, -(1/2 * 28 * this.information), -(1/2 * 27 * this.information), 28 * this.information, 27 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 35)//thengan gallows (empty)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(bloat, 1171, 870, 126, 23, -(1/2 * 126 * this.information), -(1/2 * 23 * this.information), 126 * this.information, 23 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 36)//thick thengan bench
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(bloat, 1089, 835, 59, 22, -(1/2 * 59 * this.information), -(1/2 * 22 * this.information), 59 * this.information, 22 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 37)//fat thengan bench //med rect thengan table
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(bloat, 1090, 860, 42, 28, -(1/2 * 42 * this.information), -(1/2 * 28 * this.information), 42 * this.information, 28 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 38)//very long table
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(bloat, 836, 863, 129, 29, -(1/2 * 129 * this.information), -(1/2 * 29 * this.information), 129 * this.information, 29 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 39)//thengan seat 1
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(bloat, 1315, 868, 20, 24, -(1/2 * 20 * this.information), -(1/2 * 24 * this.information), 20 * this.information, 24 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 40)//thengan seat 2
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(bloat, 1336, 866, 20, 24, -(1/2 * 20 * this.information), -(1/2 * 24 * this.information), 20 * this.information, 24 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 41)//thengan seat 3
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(bloat, 1357, 867, 21, 24, -(1/2 * 21 * this.information), -(1/2 * 24 * this.information), 21 * this.information, 24 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 42)//thengan short stub bench
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(bloat, 1380, 865, 16, 27, -(1/2 * 16 * this.information), -(1/2 * 27 * this.information), 16 * this.information, 27 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 43)//thengan hay pile
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(bloat, 688, 426, 85, 79, -(1/2 * 85 * this.information), -(1/2 * 79 * this.information), 85 * this.information, 79 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 44)//thengan hay bale
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(bloat, 697, 500, 59, 35, -(1/2 * 59 * this.information), -(1/2 * 35 * this.information), 59 * this.information, 35 * this.information);
                 XXX.restore();
             }
 
@@ -11175,6 +11311,112 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             this.radius = 90;
 
             barrierCreator(this.X, this.Y); //for easily setting barriers when making buildings
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "thenganBuilding7")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 135;
+            this.size = this.temporary;
+
+            //DRAWSELF
+            if (this.rotation == 1/2 * Math.PI || this.rotation == -1/2 * Math.PI)
+            {
+                if (X > (this.X - 69.79889495199404 * this.size) && X < (this.X - 69.79889495199404 * this.size) + 145 * this.size && Y > (this.Y - 113.38441219092329 * this.size) && Y < (this.Y - 113.38441219092329 * this.size) + 232 * this.size)
+                {
+                    this.zIndex = 1;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(bloat, 11, 804, 132, 84, -(1/2 * 132 * 1.95 * this.size), -(1/2 * 84 * 1.95 * this.size), 132 * 1.95 * this.size, 84 * 1.95 * this.size);
+                    XXX.restore();
+                }
+                else
+                {
+                    this.zIndex = 6;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(bloat, 11, 804, 132, 84, -(1/2 * 132 * 1.95 * this.size), -(1/2 * 84 * 1.95 * this.size), 132 * 1.95 * this.size, 84 * 1.95 * this.size);
+                    XXX.restore();
+                    //roof
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(bloat, 156, 802, 132, 84, -(1/2 * 132 * 1.95 * this.size), -(1/2 * 84 * 1.95 * this.size), 132 * 1.95 * this.size, 84 * 1.95 * this.size);
+                    XXX.restore();
+                }
+            }
+            else
+            {
+                if (X > (this.X - 114.56060697503335 * this.size) && X < (this.X - 114.56060697503335 * this.size) + 233 * this.size && Y > (this.Y - 72.79074720013477 * this.size) && Y < (this.Y - 72.79074720013477 * this.size) + 143 * this.size)
+                {
+                    this.zIndex = 1;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(bloat, 11, 804, 132, 84, -(1/2 * 132 * 1.95 * this.size), -(1/2 * 84 * 1.95 * this.size), 132 * 1.95 * this.size, 84 * 1.95 * this.size);
+                    XXX.restore();
+                }
+                else
+                {
+                    this.zIndex = 6;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(bloat, 11, 804, 132, 84, -(1/2 * 132 * 1.95 * this.size), -(1/2 * 84 * 1.95 * this.size), 132 * 1.95 * this.size, 84 * 1.95) * this.size;
+                    XXX.restore();
+                    //roof
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(bloat, 156, 802, 132, 84, -(1/2 * 132 * 1.95 * this.size), -(1/2 * 84 * 1.95 * this.size), 132 * 1.95 * this.size, 84 * 1.95 * this.size);
+                    XXX.restore();
+                }
+            }
+
+            //BARRIERS
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+
+                if (this.rotation == -1/2 * Math.PI)
+                {
+                    barrierList.push(new Barrier((this.X + -78.20110504800596 * this.size), (this.Y + 107.38441219092329 * this.size), 14 * this.size, 156 * this.size, true));
+                    barrierList.push(new Barrier((this.X + -79.20110504800596 * this.size), (this.Y + -123.61558780907671 * this.size), 14 * this.size, 157 * this.size, true));
+                    barrierList.push(new Barrier((this.X + 63.79889495199404 * this.size), (this.Y + -123.61558780907671 * this.size), 244 * this.size, 1 * this.size, true));
+                }
+                else if (this.rotation == 1/2 * Math.PI)
+                {
+                    barrierList.push(new Barrier((this.X + -78.86008188622782 * this.size), (this.Y + 111.11088654869036 * this.size), 14 * this.size, 157 * this.size, true));
+                    barrierList.push(new Barrier((this.X + -77.86008188622782 * this.size), (this.Y + -120.88911345130964 * this.size), 14 * this.size, 157 * this.size, true));
+                    barrierList.push(new Barrier((this.X + -78.86008188622782 * this.size), (this.Y + -121.88911345130964 * this.size), 247 * this.size, 14 * this.size, true));
+                }
+                else if (this.rotation == Math.PI)
+                {
+                    barrierList.push(new Barrier((this.X + 107.56060697503335 * this.size), (this.Y + -78.20925279986523 * this.size), 157 * this.size, 14 * this.size, true));
+                    barrierList.push(new Barrier((this.X + -124.43939302496665 * this.size), (this.Y + -79.20925279986523 * this.size), 157 * this.size, 14 * this.size, true));
+                    barrierList.push(new Barrier((this.X + -124.43939302496665 * this.size), (this.Y + -78.20925279986523 * this.size), 14 * this.size, 245 * this.size, true));
+                }
+                else
+                {
+                    barrierList.push(new Barrier((this.X + 111.09035537028922 * this.size), (this.Y + -78.46845810049581 * this.size), 158 * this.size, 14 * this.size, true));
+                    barrierList.push(new Barrier((this.X + -121.90964462971078 * this.size), (this.Y + -77.46845810049581 * this.size), 158 * this.size, 14 * this.size, true));
+                    barrierList.push(new Barrier((this.X + -120.90964462971078 * this.size), (this.Y + 63.53154189950419 * this.size), 14 * this.size, 245 * this.size, true));
+                }
+            }
+
+            //barrierCreator(this.X, this.Y); //for easily setting barriers when making buildings
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
 
             //INTERACTION
             if (this.activate == true)
@@ -18901,6 +19143,139 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                         this.phase = 1;
                     }
                 }
+            }
+        }
+        else if (this.type == "trainingDummy")
+        {
+            //TRAITS
+            this.solid = true;
+            this.interactionRange = 1;
+            if (typeof(this.owned) != "null" && typeof(this.owned) != "boolean")
+            {
+                this.size = this.owned;
+            }
+            else
+            {
+                this.size = 1.5;
+            }
+
+            if (this.runOneTime)
+            {
+                this.runOneTime = false;
+
+                this.health = Math.round(15 * this.size);
+            }
+
+            //DRAWSELF
+            if (this.health <= 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(bloat, 1032, 807, 35, 24, -(1/2 * 35 * this.size), -(1/2 * 24 * this.size), 35 * this.size, 24 * this.size);
+                XXX.restore();
+            }
+            else
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(bloat, 1102, 810, 35, 24, -(1/2 * 35 * this.size), -(1/2 * 24 * this.size), 35 * this.size, 24 * this.size);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 7.5 * this.size;
+
+            //damage sensing
+            if (this.health > 0)
+            {
+                if (player.cutcut == true && this.playerer < 400)
+                {
+                    var distFromCutCut = Math.sqrt((this.X - player.bubbleOfDamageX)*(this.X - player.bubbleOfDamageX) + (this.Y - player.bubbleOfDamageY)*(this.Y - player.bubbleOfDamageY));
+                    console.log(distFromCutCut);
+                    if (distFromCutCut <= player.weapon.distance)
+                    {
+                        player.experience += Math.min((0.2 * player.weapon.damage), this.health * 0.2);
+                        this.health -= player.weapon.damage;
+                    }
+                }
+            }
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+        }
+        else if (this.type == "rangedTarget")
+        {
+            //TRAITS
+            this.zIndex = 1;
+            this.solid = false;
+            this.interactionRange = 1;
+            if (typeof(this.owned) != "null" && typeof(this.owned) != "boolean")
+            {
+                this.size = this.owned;
+            }
+            else
+            {
+                this.size = 1.5;
+            }
+
+            if (this.runOneTime)
+            {
+                this.runOneTime = false;
+
+                this.health = Math.round(4 * this.size);
+            }
+
+            //DRAWSELF
+            if (this.health <= 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(bloat, 1077, 810, 26, 27, -(1/2 * 26 * this.size), -(1/2 * 27 * this.size), 26 * this.size, 27 * this.size);
+                XXX.restore();
+            }
+            else
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(bloat, 1147, 812, 26, 27, -(1/2 * 26 * this.size), -(1/2 * 27 * this.size), 26 * this.size, 27 * this.size);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 12 * this.size;
+
+            //projectile sensing
+            for (var i = 0; i < playerProjectiles.length; i++)
+            {
+                if (playerProjectiles[i].notShotByPlayer != true)
+                {
+                    var distAProyectil = this.dst(playerProjectiles[i].X, playerProjectiles[i].Y);
+                    if (distAProyectil <= this.radius)
+                    {
+                        worldItems.push([new Item(playerProjectiles[i].tipo, this.X, this.Y), 1]);
+                        if (this.health > 0)
+                        {
+                            player.experience += 1;
+                            this.health -= 1;
+                        }
+                        playerProjectiles.splice(i, 1);
+                        break;
+                    }
+                }
+            }
+
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
             }
         }
         else if (this.type == "deadNaaprid")

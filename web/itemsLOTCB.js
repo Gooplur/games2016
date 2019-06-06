@@ -6831,6 +6831,174 @@ function Item(type, x, y)
             this.buyValue = 40; // at max, buy for 40.
             this.sellValue = 32; // at max, sell for 32.
         }
+        else if (this.type == "foxPelt")
+        {
+            //For All Items
+            this.identity = "Fox Pelt";
+            this.weight = 1;
+            this.size = 10;
+            this.description = "The orangish furred pelt of a fox.";
+            this.intForDes = 6;
+            this.intDescription = "Fox fur apparel is particularly desirable, some nobles are even known to wear fox pelts.";
+
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 19 - Math.floor(player.getCharisma() / 25); // at max, buy for 17.
+            this.sellValue = 15 + Math.floor(player.getCharisma() / 25); // at max, sell for 17.
+        }
+        else if (this.type == "arcticFoxPelt")
+        {
+            //For All Items
+            this.identity = "Arctic Fox Pelt";
+            this.weight = 1.1;
+            this.size = 10;
+            this.description = "The white furred pelt of an arctic fox.";
+            this.intForDes = 3;
+            this.intDescription = "Arctic Fox fur apparel is traditionally worn by northern Thengans.";
+
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 10 - Math.floor(player.getCharisma() / 25); // at max, buy for 8.
+            this.sellValue = 4 + Math.floor(player.getCharisma() / 12.5); // at max, sell for 8.
+        }
+        else if (this.type == "rawArcticFoxFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Arctic Fox Flesh";
+            this.weight = 1.2;
+            this.size = 7;
+            this.description = "The raw flesh of an arctic fox.";
+            this.intForDes = 4;
+            this.intDescription = "Eating this raw might give you gut worms...";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1; //satisfies hunger.
+            this.thirst = 0.44; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -1.8; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "gutWorms";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "arcticFoxMeat")
+        {
+            //For All Items
+            this.identity = "Arctic Fox Meat";
+            this.weight = 1.1;
+            this.size = 8;
+            this.description = "The cooked meat of an arctic fox.";
+            this.intForDes = 1;
+            this.intDescription = "Northern fox is mainly eaten by Freydic and Northern Thengan peoples.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 6; //satisfies hunger.
+            this.thirst = 0.34; //quenches thirst.
+            this.warmth = 2; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -0.4; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 9;
+            this.ingredients = [["Raw Arctic Fox Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5; // at max, buy for 5.
+            this.sellValue = 3 + Math.floor(player.getCharisma() / 25); // at max, sell for 5.
+        }
+        else if (this.type == "rawFoxFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Fox Flesh";
+            this.weight = 0.9;
+            this.size = 7;
+            this.description = "The raw flesh of a fox.";
+            this.intForDes = 4;
+            this.intDescription = "Eating this raw might give you gut worms...";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0.6; //satisfies hunger.
+            this.thirst = 0.2; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -1.4; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "gutWorms";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "foxMeat")
+        {
+            //For All Items
+            this.identity = "Fox Meat";
+            this.weight = 0.8;
+            this.size = 7;
+            this.description = "The cooked meat of a fox.";
+            this.intForDes = 0;
+            this.intDescription = "Most Thengans don't consider fox to be a proper food: needless to say it is not found on most dinner tables in Thengaria.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 3; //satisfies hunger.
+            this.thirst = 0.15; //quenches thirst.
+            this.warmth = 1; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -0.9; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 6;
+            this.ingredients = [["Raw Fox Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0 + Math.floor(player.getCharisma() / 50); // at max, sell for 1.
+        }
         else if (this.type == "utMeat")
         {
             //For All Items
@@ -43898,6 +44066,36 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "foxMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bloat, 26, 670, 20, 18, X - this.X + (1/2 * CCC.width) - (1/2 * 20 * 0.9), Y - this.Y + (1/2 * CCC.height) - (1/2 * 18 * 0.9), 20 * 0.9, 18 * 0.9);
+        }
+        else if (this.type == "arcticFoxMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bloat, 54, 670, 20, 18, X - this.X + (1/2 * CCC.width) - (1/2 * 20 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 18 * 1), 20 * 1, 18 * 1);
+        }
+        else if (this.type == "rawArcticFoxFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bloat, 53, 647, 20, 18, X - this.X + (1/2 * CCC.width) - (1/2 * 20 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 18 * 1), 20 * 1, 18 * 1);
+        }
+        else if (this.type == "rawFoxFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bloat, 25, 647, 20, 18, X - this.X + (1/2 * CCC.width) - (1/2 * 20 * 0.9), Y - this.Y + (1/2 * CCC.height) - (1/2 * 18 * 0.9), 20 * 0.9, 18 * 0.9);
+        }
+        else if (this.type == "foxPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bloat, 2, 618, 86, 27, X - this.X + (1/2 * CCC.width) - (1/2 * 86 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 27 * 1), 86 * 1, 27 * 1);
+        }
+        else if (this.type == "arcticFoxPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bloat, 10, 691, 86, 27, X - this.X + (1/2 * CCC.width) - (1/2 * 86 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 27 * 1), 86 * 1, 27 * 1);
+        }
         else if (this.type == "cursedBoneMeal")
         {
             XXX.beginPath();
@@ -49639,6 +49837,36 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
+        else if (this.type == "foxMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(bloat, 26, 670, 20, 18, this.invX - (1/2 * 20 * 0.9), this.invY - (1/2 * 18 * 0.9), 20 * 0.9, 18 * 0.9);
+        }
+        else if (this.type == "arcticFoxMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(bloat, 54, 670, 20, 18, this.invX - (1/2 * 20 * 1), this.invY - (1/2 * 18 * 1), 20 * 1, 18 * 1);
+        }
+        else if (this.type == "rawArcticFoxFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(bloat, 53, 647, 20, 18, this.invX - (1/2 * 20 * 1), this.invY - (1/2 * 18 * 1), 20 * 1, 18 * 1);
+        }
+        else if (this.type == "rawFoxFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(bloat, 25, 647, 20, 18, this.invX - (1/2 * 20 * 0.9), this.invY - (1/2 * 18 * 0.9), 20 * 0.9, 18 * 0.9);
+        }
+        else if (this.type == "foxPelt")
+        {
+            LXX.beginPath();
+            LXX.drawImage(bloat, 2, 618, 86, 27, this.invX - (1/2 * 86 * 1) + 5, this.invY - (1/2 * 27 * 1), 86 * 1, 27 * 1);
+        }
+        else if (this.type == "arcticFoxPelt")
+        {
+            LXX.beginPath();
+            LXX.drawImage(bloat, 10, 691, 86, 27, this.invX - (1/2 * 86 * 1) + 5, this.invY - (1/2 * 27 * 1), 86 * 1, 27 * 1);
+        }
         else if (this.type == "cursedBoneMeal")
         {
             LXX.beginPath();
@@ -55350,6 +55578,36 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "foxMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bloat, 26, 670, 20, 18, this.invX - (1/2 * 20 * 0.9), this.invY - (1/2 * 18 * 0.9), 20 * 0.9, 18 * 0.9);
+        }
+        else if (this.type == "arcticFoxMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bloat, 54, 670, 20, 18, this.invX - (1/2 * 20 * 1), this.invY - (1/2 * 18 * 1), 20 * 1, 18 * 1);
+        }
+        else if (this.type == "rawArcticFoxFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bloat, 53, 647, 20, 18, this.invX - (1/2 * 20 * 1), this.invY - (1/2 * 18 * 1), 20 * 1, 18 * 1);
+        }
+        else if (this.type == "rawFoxFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bloat, 25, 647, 20, 18, this.invX - (1/2 * 20 * 0.9), this.invY - (1/2 * 18 * 0.9), 20 * 0.9, 18 * 0.9);
+        }
+        else if (this.type == "foxPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bloat, 2, 618, 86, 27, this.invX - (1/2 * 86 * 1) + 5, this.invY - (1/2 * 27 * 1), 86 * 1, 27 * 1);
+        }
+        else if (this.type == "arcticFoxPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bloat, 10, 691, 86, 27, this.invX - (1/2 * 86 * 1) + 5, this.invY - (1/2 * 27 * 1), 86 * 1, 27 * 1);
         }
         else if (this.type == "cursedBoneMeal")
         {

@@ -49,6 +49,7 @@ thenganBuilding3 - a thengan building
 thenganBuilding4 - a thengan building
 thenganBuilding5 - a thengan building
 thenganBuilding6 - a down facing thengan temple that can be varied in size with (longevity)
+thenganBuilding7 - a thengan stable (it can be rotated: rotation, and size adjusted: longevity) //scenicList.push(new Scenery("thenganBuilding7", 3900, 2400, 1/2 * Math.PI, 1.4));
 freydicBuilding1 - a freydic building (down facing inn)
 freydicBuilding2 - a freydic building (up-right facing sml home)
 freydicBuilding3 - a freydic building (left facing med square)
@@ -150,8 +151,8 @@ vardanianSwampBrush - swamp foliage that is variable in size based on a manual i
 temperateFishingSpot - A rippling part of the water where the fishing system can be accessed with a fishingpole (west-central, central, and eastern temperate fish types found here)
 southFishingSpot - A rippling part of the water where the fishing system can be accessed with a fishingpole (savannah fish types found here)
 temperatePondFishingSpot - A rippling part of the water where the fishing system can be accessed with a fishingpole (limited eastern temperate varieties found here)
-vardanianMueble - A variety of mostly Vardanian Furnishings, but some thengan stuff too (0-29)
-vardanianFloorDeco - rugs, mats, and rags, and royal/rebel carpets, borgal rug (0-17)
+westMueble - A variety of mostly Vardanian and Thengan Furnishings (0-44)
+floorDeco - rugs, mats, and rags, and royal/rebel carpets, borgal rug, fox rugs... (0-19)
 viudaTunnel - A mound that hosts a webbed tunnel in which the Viuda spider makes its home. //scenicList.push(new Scenery("viudaTunnel", x, y, rotation, hasSpider?, isAlpha?));
 vinePatch - a foliage barrier that can be degraded upon being attacked. //scenicList.push(new Scenery("vinePatch", x, y, rotation, size));
 alzkwayaBuilding1 - A down facing mofu feather decorated kellish building made from grass and dried mud brick
@@ -255,6 +256,7 @@ vardanianHearth - A Vardanian Fireplace that runs on ashai wood, it burns longer
 floortrap - A floor based trap that forces spikes up from below the victim (longevity: true is non-player, false is player)
 firetrap - a fire spitting trap (longevity: true is non-player, false is player)
 bones - a selection of bones for use as macabre decorations... size = longevity, type = information (0-11)
-
+trainingDummy - A cloth and straw dummy that is used to train melee skills
+rangedTarget - A straw stuffed target for shooting at
 
 

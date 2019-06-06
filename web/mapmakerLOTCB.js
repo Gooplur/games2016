@@ -200,6 +200,11 @@ function buildMaster()
                 //ArtificialIntelligenceAccess.push(new Unit(4100, 2500, "Skeleton", false, "Boneboy"));
                 //ArtificialIntelligenceAccess.push(new Unit(4100, 2500, "Lich", true, "Boneman"));
                 //ArtificialIntelligenceAccess.push(new Unit(4100, 2500, "CorpseGolem", false, "Boneburg"));
+                //scenicList.push(new Scenery("trainingDummy", 4000, 2400, 0, 1.5));
+                //scenicList.push(new Scenery("rangedTarget", 3900, 2400, 0, 1.5));
+                //ArtificialIntelligenceAccess.push(new Unit(4100, 2500, "Fox", false, "Berney"));
+                //ArtificialIntelligenceAccess.push(new Unit(4300, 2500, "ArcticFox", true, "Berney"));
+                //scenicList.push(new Scenery("thenganBuilding7", 3900, 2400, 1/2 * Math.PI, 1.4));
 
                 //scenicList.push(new Scenery("mrbAssets", 4900, 2400, 0, 9, 2));
 
@@ -2206,6 +2211,464 @@ function buildMaster()
 
 
                 change = "n3e1";
+            }
+        }
+        else if (region == "n4e4")
+        {
+            if (change != "n4e4")
+            {
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
+                //Delete All Non-native AI Units
+                for (var i =  ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
+
+                //REGION CREATION
+                ArtificialIntelligenceAccess.push(new Unit(-42340.03893392867, 37240.77787414235, "Anemone", true, "stalkerhonn1"));
+                ArtificialIntelligenceAccess.push(new Unit(-42447.86015319768, 37410.40389540804, "Anemone", false, "stalkerhonn2"));
+
+
+                ArtificialIntelligenceAccess.push(new Unit(-43046.19725664218, 37749.928180841576, "Walrus", false, "dordiy1"));
+                ArtificialIntelligenceAccess.push(new Unit(-43462.84744082605, 38045.575833509116, "Walrus", false, "dordiy2"));
+
+
+                ArtificialIntelligenceAccess.push(new Unit(-41705.39754693937, 38064.506014923776, "Cangrejo", "baby", "nonttegym"));
+
+                ArtificialIntelligenceAccess.push(new Unit(-33660.5641054271, 33336.24611237418, "Anemone", false, "docile"));
+                ArtificialIntelligenceAccess.push(new Unit(-33949.90688543095, 33037.498972502995, "Anemone", true, "docile"));
+                ArtificialIntelligenceAccess.push(new Unit(-33705.58092424714, 31423.760184634175, "Anemone", false, "docile"));
+                ArtificialIntelligenceAccess.push(new Unit(-33093.504291548576, 31443.382516252455, "Anemone", false, "docile"));
+
+                scenicList.push(new Scenery("stone", -33214.71309851145, 31190.899376384637, 1.4, 2, 1));
+                scenicList.push(new Scenery("stone", -33492.8574964295, 31511.247832931724, 2.8, 2.5, 2));
+                scenicList.push(new Scenery("stone", -33715.23937013808, 31200.56716837959, 1, 4, 1));
+                scenicList.push(new Scenery("stone", -33680.67264789111, 31296.654563613884, 8, 1, 3));
+                scenicList.push(new Scenery("stone", -42421.383280122565, 34437.64008677247, 2.7, 1.5, 2));
+
+
+                change = "n4e4";
+            }
+        }
+        else if (region == "n3e4")
+        {
+            if (change != "n3e4")
+            {
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
+                //Delete All Non-native AI Units
+                for (var i =  ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
+
+                //REGION CREATION
+
+                ArtificialIntelligenceAccess.push(new Unit(-42111.759180935485, 36114.91901192816, "Walrus", false, "smprfy1"));
+
+                ArtificialIntelligenceAccess.push(new Unit(-42522.75012881963, 35490.253514282536, "Walrus", false, "smprfy2"));
+                ArtificialIntelligenceAccess.push(new Unit(-41993.47000144826, 35703.797511478464, "Walrus", true, "smprfy3"));
+                ArtificialIntelligenceAccess.push(new Unit(-43028.606830714605, 35741.72381453059, "Walrus", false, "smprfy4"));
+                ArtificialIntelligenceAccess.push(new Unit(-42201.860954271935, 34250.4194343319, "Walrus", false, "smprfy5"));
+
+
+                ArtificialIntelligenceAccess.push(new Unit(-33745.3909239559, 32259.710532259825, "Seal", false, "tututuna1"));
+                ArtificialIntelligenceAccess.push(new Unit(-33595.53253569636, 32023.695549282544, "Seal", true, "tututuna2"));
+                ArtificialIntelligenceAccess.push(new Unit(-33689.94035592042, 29728.515889251707, "Seal", false, "tututuna3"));
+                ArtificialIntelligenceAccess.push(new Unit(-33755.575616853406, 30160.594551753507, "Seal", false, "tututuna4"));
+                ArtificialIntelligenceAccess.push(new Unit(-41441.42012652418, 29328.31009889604, "Seal", false, "tututune1"));
+                ArtificialIntelligenceAccess.push(new Unit(-41742.8647434569, 29617.325015934715, "Seal", true, "tututune2"));
+                ArtificialIntelligenceAccess.push(new Unit(-42163.45159170879, 30058.662401196405, "Seal", false, "tututune3"));
+                ArtificialIntelligenceAccess.push(new Unit(-41743.08143147891, 30457.565825181286, "Seal", "baby", "tututune4"));
+                ArtificialIntelligenceAccess.push(new Unit(-41802.209475225616, 29053.088050702063, "Seal", false, "tututunae5"));
+                ArtificialIntelligenceAccess.push(new Unit(-41648.01443241861, 29979.378116739186, "Seal", "baby", "tututunae6"));
+
+
+                ArtificialIntelligenceAccess.push(new Unit(-33660.5641054271, 33336.24611237418, "Anemone", false, "docile"));
+                ArtificialIntelligenceAccess.push(new Unit(-33949.90688543095, 33037.498972502995, "Anemone", true, "docile"));
+                ArtificialIntelligenceAccess.push(new Unit(-33705.58092424714, 31423.760184634175, "Anemone", false, "docile"));
+                ArtificialIntelligenceAccess.push(new Unit(-33093.504291548576, 31443.382516252455, "Anemone", false, "docile"));
+
+
+                ArtificialIntelligenceAccess.push(new Unit(-33370.25901137692, 31353.55269010998, "Cangrejo", false, "vanchezee1"));
+                ArtificialIntelligenceAccess.push(new Unit(-43396.44436703687, 34113.25860501157, "Cangrejo", "baby", "vanchezee2"));
+                ArtificialIntelligenceAccess.push(new Unit(-43364.98142658613, 32262.526149031666, "Cangrejo", "baby", "vanchezee3"));
+
+
+                scenicList.push(new Scenery("stone", -33214.71309851145, 31190.899376384637, 1.4, 2, 1));
+                scenicList.push(new Scenery("stone", -33492.8574964295, 31511.247832931724, 2.8, 2.5, 2));
+                scenicList.push(new Scenery("stone", -33715.23937013808, 31200.56716837959, 1, 4, 1));
+                scenicList.push(new Scenery("stone", -33680.67264789111, 31296.654563613884, 8, 1, 3));
+                scenicList.push(new Scenery("stone", -42421.383280122565, 34437.64008677247, 2.7, 1.5, 2));
+
+
+                change = "n3e4";
+            }
+        }
+        else if (region == "n3e3")
+        {
+            if (change != "n3e3")
+            {
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
+                //Delete All Non-native AI Units
+                for (var i =  ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
+
+                //REGION CREATION
+                ArtificialIntelligenceAccess.push(new Unit(-24967.95942467394, 34904.07320386577, "Balkur", false, "cmpstlker1"));
+                ArtificialIntelligenceAccess.push(new Unit(-29185.656933914248, 28455.918205698195, "Balkur", false, "cmpstlker2"));
+                ArtificialIntelligenceAccess.push(new Unit(-25456.654951844466, 29518.7138493818, "Balkur", true, "cmpstlker3"));
+                ArtificialIntelligenceAccess.push(new Unit(-24893.162323898978, 27667.89608869298, "Balkur", false, "cmpstlker4"));
+
+
+                ArtificialIntelligenceAccess.push(new Unit(-27765.800400812022, 36517.97476152174, "Waanti", false, "tngr1"));
+                ArtificialIntelligenceAccess.push(new Unit(-27630.639007442165, 36645.15265099273, "Waanti", true, "tngr2"));
+                ArtificialIntelligenceAccess.push(new Unit(-27377.056417070977, 36411.324002670655, "Waanti", "baby", "tngr3"));
+                ArtificialIntelligenceAccess.push(new Unit(-27931.343447492814, 36615.14376255685, "Waanti", "baby", "tngr4"));
+                ArtificialIntelligenceAccess.push(new Unit(-27816.011968942392, 36432.869667153696, "Waanti", false, "tngr5"));
+                ArtificialIntelligenceAccess.push(new Unit(-25498.24922768541, 29448.766416831444, "Waanti", "baby", "sacfice1"));
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    if (ArtificialIntelligenceAccess[i].ID == "cmpstlker3")
+                    {
+                        ArtificialIntelligenceAccess[i].speed += 0.8;
+                        ArtificialIntelligenceAccess[i].tamable = false;
+                    }
+                    if (ArtificialIntelligenceAccess[i].ID == "sacfice1")
+                    {
+                        ArtificialIntelligenceAccess[i].health = 0;
+                        ArtificialIntelligenceAccess[i].killNotByPlayer = true;
+                    }
+                }
+                ArtificialIntelligenceAccess.push(new Unit(-27367.712572900316, 32228.10959239897, "Waanti", false, "tngy1"));
+                ArtificialIntelligenceAccess.push(new Unit(-27162.159994063044, 31961.29165783033, "Waanti", true, "tngy2"));
+                ArtificialIntelligenceAccess.push(new Unit(-27461.759247391838, 32058.609165561244, "Waanti", false, "tngy3"));
+
+
+                ArtificialIntelligenceAccess.push(new Unit(-31395.048765221312, 36285.86053319131, "Walrus", false, "scrutiny1"));
+                ArtificialIntelligenceAccess.push(new Unit(-31902.35312359663, 35456.25224430066, "Walrus", false, "scrutiny2"));
+                ArtificialIntelligenceAccess.push(new Unit(-30764.04257803273, 34900.038215475746, "Walrus", false, "scrutiny3"));
+
+
+                ArtificialIntelligenceAccess.push(new Unit(-29235.896462266453, 36482.181020806696, "Cangrejo", "baby", "vouintir1"));
+                ArtificialIntelligenceAccess.push(new Unit(-30668.893172050703, 33721.43176966589, "Cangrejo", "baby", "vouintir2"));
+
+
+                ArtificialIntelligenceAccess.push(new Unit(-32691.237637196624, 33921.65347196153, "Anemone", false, "stalkerhool1"));
+
+
+                ArtificialIntelligenceAccess.push(new Unit(-32706.960467719055, 33359.562733959836, "Seal", false, "wblytmywmy1"));
+
+
+                ArtificialIntelligenceAccess.push(new Unit(-25350.323530124344, 32972.761036110816, "Koobu", false, "itsntcmplcated1"));
+                ArtificialIntelligenceAccess.push(new Unit(-30287.36841990456, 28811.98734587055, "Koobu", true, "itsntcmplcated2"));
+                ArtificialIntelligenceAccess.push(new Unit(-31084.24376777069, 32060.871485880547, "Koobu", false, "itsntcmplcated3"));
+
+                ArtificialIntelligenceAccess.push(new Unit(-32392.372884032484, 30347.110838287772, "WinterWolf", false, "Hzurbo1"));
+                ArtificialIntelligenceAccess.push(new Unit(-32171.775122566265, 30417.753388949455, "WinterWolf", false, "Hzurbo2"));
+                ArtificialIntelligenceAccess.push(new Unit(-26223.312452045066, 30343.25882804846, "WinterWolf", false, "huzurz1"));
+                ArtificialIntelligenceAccess.push(new Unit(-26404.44958262146, 30515.755681089504, "WinterWolf", false, "huzurz2"));
+                ArtificialIntelligenceAccess.push(new Unit(-26536.08880915773, 30448.928101451518, "WinterWolf", false, "huzurz3"));
+                ArtificialIntelligenceAccess.push(new Unit(-26494.945352246457, 30588.555075710472, "WinterWolf", false, "huzurz4"));
+                ArtificialIntelligenceAccess.push(new Unit(-29828.254154540125, 30486.444002092612, "WinterWolf", false, "huzurg1"));
+                ArtificialIntelligenceAccess.push(new Unit(-29941.466619892566, 30380.038747189898, "WinterWolf", false, "huzurg2"));
+                ArtificialIntelligenceAccess.push(new Unit(-30143.3062248042, 30595.62956301059, "WinterWolf", false, "huzurg3"));
+                ArtificialIntelligenceAccess.push(new Unit(-30233.102929329176, 30404.811138338813, "WinterWolf", false, "huzurg4"));
+                ArtificialIntelligenceAccess.push(new Unit(-30318.99846467842, 30282.930647321762, "WinterWolf", false, "huzurg5"));
+                ArtificialIntelligenceAccess.push(new Unit(-32064.438845216286, 27984.982013473324, "WinterWolf", false, "huzurg2"));
+                ArtificialIntelligenceAccess.push(new Unit(-31872.419673779503, 27882.49325325861, "WinterWolf", false, "huzurg3"));
+                ArtificialIntelligenceAccess.push(new Unit(-32075.802163638626, 27691.04517131147, "WinterWolf", false, "huzurg4"));
+                ArtificialIntelligenceAccess.push(new Unit(-31914.295994060154, 27782.3887139283, "WinterWolf", false, "huzurg5"));
+
+
+                ArtificialIntelligenceAccess.push(new Unit(-28462.101959652846, 34818.071087664954, "Glutid", false, "sngpanoman1"));
+                ArtificialIntelligenceAccess.push(new Unit(-28343.54698307122, 33560.04813433556, "Glutid", false, "sngpanoman2"));
+
+
+                scenicList.push(new Scenery("stone", -32447.763967050763, 35175.28294914136, 2.9, 2.5, 2));
+                scenicList.push(new Scenery("stone", -25112.64827629818, 31198.186311487774, 1.8, 1.5, 1));
+                scenicList.push(new Scenery("stone", -29235.39772742259, 29741.92860948029, 8, 1, 2));
+                scenicList.push(new Scenery("stone", -31092.521753799338, 33573.939427528676, 5.8, 2, 3));
+                scenicList.push(new Scenery("stone", -25890.42711273434, 29317.137409856678, 3, 3.5, 1));
+                scenicList.push(new Scenery("stone", -25481.42755807914, 28996.078605749128, 4, 1, 2));
+
+
+                scenicList.push(new Scenery("bushkaPlant", -24856.498904779022, 33587.887711522686, 4.1, true));
+                scenicList.push(new Scenery("bushkaPlant", -29544.362278867964, 27887.011265302477, 1.74, true));
+                scenicList.push(new Scenery("bushkaPlant", -24579.767035972964, 29710.62484832691, 2.4, true));
+                scenicList.push(new Scenery("bushkaPlant", -26096.715330318548, 33985.61101417645, 7.7, true));
+
+
+                scenicList.push(new Scenery("tyrniPlant", -32005.599820848212, 30348.763155454504, 6.5, true));
+                scenicList.push(new Scenery("tyrniPlant", -30582.881968957674, 28936.546094378376, 2.2, true));
+
+
+                scenicList.push(new Scenery("wightbloomPlant", -29493.573989007087, 31708.7908913202, 1.3, true));
+
+                ArtificialIntelligenceAccess.push(new Unit(-33660.5641054271, 33336.24611237418, "Anemone", false, "docile"));
+                ArtificialIntelligenceAccess.push(new Unit(-33949.90688543095, 33037.498972502995, "Anemone", true, "docile"));
+                ArtificialIntelligenceAccess.push(new Unit(-33705.58092424714, 31423.760184634175, "Anemone", false, "docile"));
+                ArtificialIntelligenceAccess.push(new Unit(-33093.504291548576, 31443.382516252455, "Anemone", false, "docile"));
+
+
+                ArtificialIntelligenceAccess.push(new Unit(-33370.25901137692, 31353.55269010998, "Cangrejo", "baby", "vanchezee1"));
+                ArtificialIntelligenceAccess.push(new Unit(-43396.44436703687, 34113.25860501157, "Cangrejo", "baby", "vanchezee2"));
+                ArtificialIntelligenceAccess.push(new Unit(-43364.98142658613, 32262.526149031666, "Cangrejo", "baby", "vanchezee3"));
+
+                scenicList.push(new Scenery("stone", -33214.71309851145, 31190.899376384637, 1.4, 2, 1));
+                scenicList.push(new Scenery("stone", -33492.8574964295, 31511.247832931724, 2.8, 2.5, 2));
+                scenicList.push(new Scenery("stone", -33715.23937013808, 31200.56716837959, 1, 4, 1));
+                scenicList.push(new Scenery("stone", -33680.67264789111, 31296.654563613884, 8, 1, 3));
+                scenicList.push(new Scenery("stone", -42421.383280122565, 34437.64008677247, 2.7, 1.5, 2));
+
+                change = "n3e3";
+            }
+        }
+        else if (region == "n2e3")
+        {
+            if (change != "n2e3")
+            {
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
+                //Delete All Non-native AI Units
+                for (var i =  ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
+
+                //REGION CREATION
+                ArtificialIntelligenceAccess.push(new Unit(-24394.873863380508, 26263.458181243084, "Waanti", false, "tnty1"));
+                ArtificialIntelligenceAccess.push(new Unit(-24556.92669607412, 26325.707141135532, "Waanti", "baby", "tnty2"));
+                ArtificialIntelligenceAccess.push(new Unit(-24729.821260953184, 26182.997014516153, "Waanti", "baby", "tnty3"));
+                ArtificialIntelligenceAccess.push(new Unit(-24545.30077183146, 26003.21316323584, "Waanti", false, "tnty4"));
+                ArtificialIntelligenceAccess.push(new Unit(-25135.568984843852, 26198.336459452876, "Waanti", true, "tnty5"));
+                ArtificialIntelligenceAccess.push(new Unit(-24783.54010627586, 26122.70002406026, "Waanti", false, "tnty6"));
+                ArtificialIntelligenceAccess.push(new Unit(-32668.659491720045, 23722.032962053865, "Waanti", false, "tniy7"));
+                ArtificialIntelligenceAccess.push(new Unit(-32470.802903084674, 23585.62282032213, "Waanti", false, "tniy8"));
+                ArtificialIntelligenceAccess.push(new Unit(-32391.077828056506, 23646.830526770038, "Waanti", false, "tniy9"));
+                ArtificialIntelligenceAccess.push(new Unit(-32334.582997982583, 23843.768424589423, "Waanti", false, "tniy10"));
+                ArtificialIntelligenceAccess.push(new Unit(-32157.29417216764, 23600.182005255738, "Waanti", false, "tniy11"));
+                ArtificialIntelligenceAccess.push(new Unit(-28932.19589410725, 18933.272698348446, "Waanti", false, "tniy12"));
+                ArtificialIntelligenceAccess.push(new Unit(-28764.723287994788, 19006.982312127937, "Waanti", "baby", "tniy13"));
+                ArtificialIntelligenceAccess.push(new Unit(-28724.11997462559, 18920.266936199292, "Waanti", "baby", "tniy14"));
+                ArtificialIntelligenceAccess.push(new Unit(-29033.3938954674, 19129.090214874843, "Waanti", true, "tniy15"));
+                ArtificialIntelligenceAccess.push(new Unit(-31741.103528914744, 22261.891981188135, "Waanti", true, "tniy16"));
+                ArtificialIntelligenceAccess.push(new Unit(-31504.30713662937, 22171.32199300939, "Waanti", false, "tniy17"));
+                ArtificialIntelligenceAccess.push(new Unit(-31564.242690983898, 22069.146063028234, "Waanti", false, "tniy18"));
+                ArtificialIntelligenceAccess.push(new Unit(-31412.546078374744, 22219.46654405548, "Waanti", false, "tniy19"));
+                ArtificialIntelligenceAccess.push(new Unit(-33067.70965035682, 21945.572445948106, "Waanti", false, "tniy20"));
+                ArtificialIntelligenceAccess.push(new Unit(-32954.21054056608, 22064.854008471146, "Waanti", false, "tniy21"));
+
+
+                ArtificialIntelligenceAccess.push(new Unit(-29289.45480711395, 26414.59020870034, "WinterWolf", false, "Hzubo1"));
+                ArtificialIntelligenceAccess.push(new Unit(-29445.859696893767, 26341.686031302117, "WinterWolf", false, "Hzubo2"));
+                ArtificialIntelligenceAccess.push(new Unit(-29548.04168984535, 26470.41339566191, "WinterWolf", false, "Hzubo3"));
+                ArtificialIntelligenceAccess.push(new Unit(-32924.25223983715, 25554.585481024813, "WinterWolf", false, "Hzubo4"));
+                ArtificialIntelligenceAccess.push(new Unit(-32769.834272759465, 25615.69605417635, "WinterWolf", false, "Hzubo5"));
+                ArtificialIntelligenceAccess.push(new Unit(-32926.3126602709, 25442.55756406224, "WinterWolf", false, "Hzubo6"));
+                ArtificialIntelligenceAccess.push(new Unit(-33060.74684061924, 25502.90636489994, "WinterWolf", false, "Hzubo7"));
+                ArtificialIntelligenceAccess.push(new Unit(-26573.424610597325, 20927.594754735277, "WinterWolf", false, "Hzubo8"));
+                ArtificialIntelligenceAccess.push(new Unit(-26607.831259603536, 20803.848417534275, "WinterWolf", false, "Hzubo9"));
+                ArtificialIntelligenceAccess.push(new Unit(-26669.086201327274, 21034.58953969123, "WinterWolf", false, "Hzubo11"));
+                ArtificialIntelligenceAccess.push(new Unit(-28610.912412843325, 23663.285200944156, "WinterWolf", false, "Hzubo12"));
+                ArtificialIntelligenceAccess.push(new Unit(-28789.026492502828, 23609.460613553343, "WinterWolf", false, "Hzubo13"));
+                ArtificialIntelligenceAccess.push(new Unit(-28952.618215435697, 23730.853118405837, "WinterWolf", false, "Hzubo14"));
+                ArtificialIntelligenceAccess.push(new Unit(-28727.576188102146, 23303.124270510543, "WinterWolf", false, "Hzubo15"));
+                ArtificialIntelligenceAccess.push(new Unit(-28365.056648295216, 23385.364952609816, "WinterWolf", false, "Hzubo16"));
+                ArtificialIntelligenceAccess.push(new Unit(-28411.117738601915, 23587.08023635718, "WinterWolf", false, "Hzubo17"));
+                ArtificialIntelligenceAccess.push(new Unit(-28461.92988986958, 23442.1077420702, "WinterWolf", true, "Hzubo18"));
+                ArtificialIntelligenceAccess.push(new Unit(-24465.182165151044, 22593.429802619765, "WinterWolf", false, "Hzubo19"));
+                ArtificialIntelligenceAccess.push(new Unit(-24584.615643652756, 22501.566214192142, "WinterWolf", false, "Hzubo20"));
+
+
+                ArtificialIntelligenceAccess.push(new Unit(-30726.45319272623, 25061.062426296052, "Koobu", false, "itcarenono1"));
+
+
+                ArtificialIntelligenceAccess.push(new Unit(-31560.98926858056, 18959.310001778125, "Balkur", true, "crmpsinmibck1"));
+                ArtificialIntelligenceAccess.push(new Unit(-30333.896456414106, 21084.181520593902, "Balkur", true, "crmpsinmibck2"));
+
+
+                scenicList.push(new Scenery("bushkaPlant", -31618.878109125275, 22395.717538808563, 1.7, true));
+                scenicList.push(new Scenery("bushkaPlant", -27090.03605111447, 18608.78509760645, 1.3, true));
+                scenicList.push(new Scenery("bushkaPlant", -25565.95726347849, 23237.58390571455, 4.9, true));
+
+
+                scenicList.push(new Scenery("wightbloomPlant", -28854.710505786046, 24339.73083299406, 1.3, true));
+                scenicList.push(new Scenery("wightbloomPlant", -31576.62936184594, 19867.944981955723, 8.1, true));
+
+
+                scenicList.push(new Scenery("stone", -29131.932890356777, 18604.82658462505, 3.69, 1.5, 2));
+                scenicList.push(new Scenery("stone", -29176.675163637476, 24275.852516896208, 7.59, 2, 1));
+                scenicList.push(new Scenery("stone", -29072.773987733963, 24163.835112436973, 3.21, 1, 1));
+
+
+                ArtificialIntelligenceAccess.push(new Unit(-24898.17018574119, 18265.605674861054, "Glutid", true, "idntwnja1", {patrolStops: 3, patrolLoop: true, route:[[-25059.60864539978, 18152.15040859906],[-24581.247073860417, 17443.8952333381],[-24289.567315336546, 18362.951400317117]]}));
+                ArtificialIntelligenceAccess.push(new Unit(-24636.39109868669, 17888.938536115613, "Glutid", false, "idntwnja2", {patrolStops: 3, patrolLoop: true, route:[[-24802.823186399695, 17814.22611192361],[-25487.430681586964, 17766.065139931878],[-25990.307583110935, 17418.963998206244]]}));
+                ArtificialIntelligenceAccess.push(new Unit(-26495.673907745586, 25189.75023394599, "Glutid", false, "idntwnja3", {patrolStops: 3, patrolLoop: true, route:[[-26264.998781461793, 24920.973223177218],[-26821.138786631887, 24861.554783505497],[-27470.673902695988, 25373.661417930907]]}));
+                ArtificialIntelligenceAccess.push(new Unit(-26442.356883331893, 24908.6064531166, "Glutid", false, "idntwnja4", {patrolStops: 3, patrolLoop: true, route:[[-26482.9470021397, 24522.720911514105],[-25480.4984705612, 24817.976509546166],[-27498.828241206007, 24918.193322836312]]}));
+                ArtificialIntelligenceAccess.push(new Unit(-32512.408514735576, 17427.14388751892, "Glutid", false, "idntwnja5", {patrolStops: 3, patrolLoop: true, route:[[-31952.92971121277, 17173.38663560203],[-33093.19964476192, 17201.544250355513],[-33174.803278232226, 18012.76812964399]]}));
+
+                change = "n2e3";
+            }
+        }
+        else if (region == "n2e4")
+        {
+            if (change != "n2e4")
+            {
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
+                //Delete All Non-native AI Units
+                for (var i =  ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
+
+                //REGION CREATION
+
+                ArtificialIntelligenceAccess.push(new Unit(-42385.22403954498, 26350.63303092983, "Seal", false, "tannban1"));
+
+
+                ArtificialIntelligenceAccess.push(new Unit(-41294.64712565839, 25017.284098555483, "WinterWolf", false, "horponoodle1"));
+                ArtificialIntelligenceAccess.push(new Unit(-41456.65574082972, 24843.244286716956, "WinterWolf", false, "horponoodle2"));
+                ArtificialIntelligenceAccess.push(new Unit(-41659.660920375536, 24915.380274234943, "WinterWolf", false, "horponoodle3"));
+                ArtificialIntelligenceAccess.push(new Unit(-42425.188574745225, 20029.906670258468, "WinterWolf", false, "hyrponoodle1"));
+                ArtificialIntelligenceAccess.push(new Unit(-42588.2849968137, 20123.011917271502, "WinterWolf", false, "hyrponoodle2"));
+                ArtificialIntelligenceAccess.push(new Unit(-42690.659723232704, 19872.931013618836, "WinterWolf", false, "hyrponoodle3"));
+                ArtificialIntelligenceAccess.push(new Unit(-42555.70673152464, 20231.299117753544, "WinterWolf", false, "hyrponoodle4"));
+                ArtificialIntelligenceAccess.push(new Unit(-42829.47253791309, 20094.793357523333, "WinterWolf", false, "hyrponoodle5"));
+                ArtificialIntelligenceAccess.push(new Unit(-42590.95889973786, 19969.966818944256, "WinterWolf", true, "hyrponoodle6"));
+                ArtificialIntelligenceAccess.push(new Unit(-34983.191801807436, 20195.833411108517, "WinterWolf", false, "hupupy1"));
+                ArtificialIntelligenceAccess.push(new Unit(-34934.46054563522, 20007.92664872743, "WinterWolf", false, "hupupy2"));
+                ArtificialIntelligenceAccess.push(new Unit(-34803.817327115314, 20120.655827132112, "WinterWolf", false, "hupupy3"));
+
+
+                ArtificialIntelligenceAccess.push(new Unit(-43402.78237227514, 23422.013190550308, "Waanti", false, "tnguu1"));
+                ArtificialIntelligenceAccess.push(new Unit(-43026.34066899121, 23443.0056315027 , "Waanti", true, "tnguu2"));
+                ArtificialIntelligenceAccess.push(new Unit(-43331.75665099093, 23577.22596962192, "Waanti", "baby", "tnguu3"));
+                ArtificialIntelligenceAccess.push(new Unit(-42657.84674774035, 22666.61716467939, "Waanti", false, "tnguu4"));
+                ArtificialIntelligenceAccess.push(new Unit(-42871.258437328004, 22497.818471987463, "Waanti", false, "tnguu5"));
+                ArtificialIntelligenceAccess.push(new Unit(-41194.97666637915, 18758.84193507348, "Waanti", false, "tnguu4"));
+                ArtificialIntelligenceAccess.push(new Unit(-41068.79784516783, 18914.676475811466, "Waanti", false, "tnguu5"));
+
+
+                scenicList.push(new Scenery("bushkaPlant", -42329.73856150902, 25132.679061400213, 3.7, true));
+                scenicList.push(new Scenery("bushkaPlant", -41424.78866313792, 21415.844668066857, 2, true));
+                scenicList.push(new Scenery("bushkaPlant", -42350.6775887099, 17924.70656695527, 2.87, true));
+
+
+                ArtificialIntelligenceAccess.push(new Unit(-40574.82001502175, 23439.388805878618, "Cangrejo", "baby", "hidnbtlshp1"));
+
+
+                ArtificialIntelligenceAccess.push(new Unit(-43615.2866734504, 18133.822488451544, "Glutid", false, "idntwnna1"));
+                ArtificialIntelligenceAccess.push(new Unit(-42981.554246904096, 17447.890261400073, "Glutid", false, "idntwnna2", {patrolStops: 2, patrolLoop: true, route:[[-43020.97907953195, 17439.815875368033],[-41912.751353404725, 17676.683132880364]]}));
+
+
+                ArtificialIntelligenceAccess.push(new Unit(-34759.27983289633, 17774.442251530327, "Balkur", true, "meahmor1"));
+
+
+                ArtificialIntelligenceAccess.push(new Unit(-34545.129363006614, 23522.319400106324, "Anemone", false, "nonayermoreno1"));
+
+
+                change = "n2e4";
             }
         }
         else if (region == "n4w1")

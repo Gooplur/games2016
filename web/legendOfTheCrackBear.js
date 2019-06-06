@@ -1247,11 +1247,11 @@ function envPack()
     window.swampTR = swampTR;
 
     var swampBR = new Image();
-    swampBR.src = ("images/lowR.png");
+    swampBR.src = ("images/LowR.png");
     window.swampBR = swampBR;
 
     var swampBL = new Image();
-    swampBL.src = ("images/lowL.png");
+    swampBL.src = ("images/LowL.png");
     window.swampBL = swampBL;
 
     var kellsStone = new Image();

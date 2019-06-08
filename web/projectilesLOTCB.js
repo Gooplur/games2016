@@ -24,6 +24,8 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
     this.notShotByPlayer = nonPlayer;
     this.tipo = type;
 
+    this.timeSinceShot = new Date().getTime();
+
     //thrown variables
     this.thrownID = "none";
     this.thrownRotation = 0;

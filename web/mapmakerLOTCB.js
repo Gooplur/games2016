@@ -205,6 +205,12 @@ function buildMaster()
                 //ArtificialIntelligenceAccess.push(new Unit(4100, 2500, "Fox", false, "Berney"));
                 //ArtificialIntelligenceAccess.push(new Unit(4300, 2500, "ArcticFox", true, "Berney"));
                 //scenicList.push(new Scenery("thenganBuilding7", 3900, 2400, 1/2 * Math.PI, 1.4));
+                //scenicList.push(new Scenery("thenganBuilding8", 3900, 2400, 1/2 * Math.PI, 1));
+                //scenicList.push(new Scenery("bloatGas", 4900, 2400, 0, true, 2));
+                //scenicList.push(new Scenery("bloatGas", 4500, 2400, 0, false));
+                //scenicList.push(new Scenery("thenganBuilding9", 3900, 2400, 0, 1));
+
+                //scenicList.push(new Scenery("thenganBridges", 3900, 2400, 1/2 * Math.PI, 1, 0));
 
                 //scenicList.push(new Scenery("mrbAssets", 4900, 2400, 0, 9, 2));
 

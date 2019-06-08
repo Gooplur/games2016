@@ -21,11 +21,15 @@ function Barrier(x, y, h, w, dev, info)
             //console.log("myX: " + playerProjectiles[ii].X + " myY: " + playerProjectiles[ii].Y + " barrierX: " + this.X + " barrierY: " + this.Y);
             if (playerProjectiles[ii].X <= this.X + this.width && playerProjectiles[ii].X >= this.X && playerProjectiles[ii].Y <= this.Y + this.height && playerProjectiles[ii].Y >= this.Y)
             {
-                if (playerProjectiles[ii].thrown == true && playerProjectiles[ii].isPlayerProjectile == true && playerProjectiles[ii].thrownID != "none")
+                if (new Date().getTime() - playerProjectiles[ii].timeSinceShot > 200 || this.info != "cover")
                 {
-                    scenicList.push(new Scenery(playerProjectiles[ii].thrownID, playerProjectiles[ii].X, playerProjectiles[ii].Y, playerProjectiles[ii].thrownRotation, false));
+                    if (playerProjectiles[ii].thrown == true && playerProjectiles[ii].isPlayerProjectile == true && playerProjectiles[ii].thrownID != "none")
+                    {
+                        scenicList.push(new Scenery(playerProjectiles[ii].thrownID, playerProjectiles[ii].X, playerProjectiles[ii].Y, playerProjectiles[ii].thrownRotation, false));
+                    }
+
+                    cosasParaErradicar.push(ii);
                 }
-                cosasParaErradicar.push(ii);
             }
         }
         //delete what needs to be deleted from the above list and then reset.
@@ -41,7 +45,10 @@ function Barrier(x, y, h, w, dev, info)
         {
             if (unitProjectiles[ii].X <= this.X + this.width && unitProjectiles[ii].X >= this.X && unitProjectiles[ii].Y <= this.Y + this.height && unitProjectiles[ii].Y >= this.Y)
             {
-                cosasParaErradicar.push(ii);
+                if (new Date().getTime() - playerProjectiles[ii].timeSinceShot > 200 || this.info != "cover")
+                {
+                    cosasParaErradicar.push(ii);
+                }
             }
         }
         //delete what needs to be deleted from the above list and then reset.
@@ -88,6 +95,9 @@ function Barrier(x, y, h, w, dev, info)
         {
             this.drawSelfForTest();
         }
-        this.deleteMissile();
+        if (this.info != "phase")
+        {
+            this.deleteMissile();
+        }
     };
 }

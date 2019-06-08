@@ -1628,6 +1628,18 @@ function scorpionPack()
 
     ion.onload = function()
     {
+        wendigoPack();
+    };
+}
+
+function wendigoPack()
+{
+    var wendi = new Image();
+    wendi.src = ("images/wendi.png");
+    window.wendi = wendi;
+
+    wendi.onload = function()
+    {
         tribalPack();
     };
 }

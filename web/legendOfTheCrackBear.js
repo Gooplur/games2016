@@ -758,32 +758,6 @@ function legendaryPrerequisites()
     var kedwinGobblin = new Audio("sounds/polySounds/kedwinGobblin.mp3");
     window.kedwinGobblin = kedwinGobblin;
 
-        //HILDEGARD CHARACTER: voice acting
-
-    var hildegardWait = new Audio("sounds/polySounds/hildegardWait.mp3");
-    window.hildegardWait = hildegardWait;
-
-    var hildegardVardan = new Audio("sounds/polySounds/hildegardVardan.mp3");
-    window.hildegardVardan = hildegardVardan;
-
-    var hildegardISwear = new Audio("sounds/polySounds/hildegardISwear.mp3");
-    window.hildegardISwear = hildegardISwear;
-
-    var hildegardSweety = new Audio("sounds/polySounds/hildegardSweety.mp3");
-    window.hildegardSweety = hildegardSweety;
-
-    var hildegardSinging = new Audio("sounds/polySounds/hildegardSinging.mp3");
-    window.hildegardSinging = hildegardSinging;
-
-    var hildegardNow = new Audio("sounds/polySounds/hildegardNow.mp3");
-    window.hildegardNow = hildegardNow;
-
-    var hildegardCried = new Audio("sounds/polySounds/hildegardCried.mp3");
-    window.hildegardCried = hildegardCried;
-
-    var hildegardNasty = new Audio("sounds/polySounds/hildegardNasty.mp3");
-    window.hildegardNasty = hildegardNasty;
-
         //MARKOS CHARACTER: voice acting
 
     var markosRightAway = new Audio("sounds/polySounds/markosRightAway.mp3");
@@ -2364,6 +2338,10 @@ var barrH = 10;
 var toggleBarrWH = true;
 var dizzySpin = 0;
 var dizzySpinDir = 0;
+var optionList = []; //the list of options that the player can adjust
+var showTheStatsBars = false;
+var doTheStatsHighlights = false;
+var showUiIcons = false;
 
 //This sets the items that are in shops.
 function shopItemIDSetter()
@@ -4438,6 +4416,7 @@ function theLegend()
     foods.push(new Item("venison", false));
     foods.push(new Item("smokedVenison", false));
     foods.push(new Item("chyoulBerryPie", false));
+    foods.push(new Item("humanMeat", false));
 
 
 //Tailoring (Items crafted at a weaving, sewing, dying, etc. tailor's work bench thing)

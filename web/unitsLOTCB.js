@@ -92,7 +92,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     this.killByPlayerTeam = false; //if killed by a player controlled unit.
     this.killedByCompanion = false; //if killed by a player companion.
     //AI and sensing variables
-    this.closestDistance; //this is the distance away from this unit that the closest other unit is.
+    this.closestDistance; //this is the distance^2 away from this unit that the closest other unit is.
     this.closestUnit; // this is the exact unit that is the closest at the moment.
     this.playerSeen = false; //This shows whether or not this unit currently sees the player.
     this.extraRange = 0; //This is range that is added to rangeOfSight so that a unit can see the player if a packmember does.
@@ -11433,19 +11433,45 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         {
                             if (!this.water || this.flotation || this.land) //items are lost to the water unless the creature can float
                             {
-                                if (player.form != "werewolf" && this.type != "Changeling")
+                                if (player.form != "werewolf" && this.type != "Changeling" && player.form != "wendigo")
                                 {
                                     if (this.revived != true)
                                     {
                                         chanced = true;
                                         for (var i = 0; i < this.drops.length; i++)
                                         {
-                                            worldItems.push([this.drops[i][0], this.drops[i][1]]);
+                                            var unitDroppedItem = this.drops[i][0];
+                                            unitDroppedItem.setItemID();
+                                            worldItems.push([unitDroppedItem, this.drops[i][1]]);
+                                        }
+                                        //if the player chooses to be a cannibal humans will drop flesh
+                                        if (player.cannibalism == true)
+                                        {
+                                            if (this.type == "Person" || this.type == "Soldier")
+                                            {
+                                                if (this.type != "Soldier" || this.ID != "Doppelganger" && this.ID != "Unhinged Doppelganger")
+                                                {
+                                                    if (typeof(this.ultra) != "undefined")
+                                                    {
+                                                        if (typeof(this.ultra.race) != "undefined")
+                                                        {
+                                                            if (this.ultra.race != "Humpty")
+                                                            {
+                                                                var unitDroppedItem = new Item("rawHumanFlesh", this.X, this.Y);
+                                                                unitDroppedItem.setItemID();
+                                                                worldItems.push([unitDroppedItem, 1]);
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
                                         }
                                     }
                                     else
                                     {
-                                        worldItems.push([new Item("nechromanticDust", this.X, this.Y), 1 + Math.floor(this.healthMAX / 35)]);
+                                        var unitDroppedItem = new Item("nechromanticDust", this.X, this.Y);
+                                        unitDroppedItem.setItemID();
+                                        worldItems.push([unitDroppedItem, 1 + Math.floor(this.healthMAX / 35)]);
                                     }
                                 }
                                 else if (this.type == "Changeling")
@@ -11454,7 +11480,9 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                                     {
                                         for (var i = 0; i < this.drops.length; i++)
                                         {
-                                            worldItems.push([this.drops[i][0], this.drops[i][1]]);
+                                            var unitDroppedItem = this.drops[i][0];
+                                            unitDroppedItem.setItemID();
+                                            worldItems.push([unitDroppedItem, this.drops[i][1]]);
                                         }
                                     }
                                 }
@@ -11499,7 +11527,9 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                                     this.drops[i][0].setItemID();
                                     if (this.drops[i][0].questy == true || this.drops[i][0].utility == "questItem")
                                     {
-                                        worldItems.push([this.drops[i][0], this.drops[i][1]]);
+                                        var unitDroppedItem = this.drops[i][0];
+                                        unitDroppedItem.setItemID();
+                                        worldItems.push([unitDroppedItem, this.drops[i][1]]);
                                     }
                                 }
                             }
@@ -11597,7 +11627,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     {
         for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
         {
-            var distanceToOther = Math.sqrt((ArtificialIntelligenceAccess[i].X - this.X) * (ArtificialIntelligenceAccess[i].X - this.X) + (ArtificialIntelligenceAccess[i].Y - this.Y) * (ArtificialIntelligenceAccess[i].Y - this.Y)); // this is the distance formula and in this line it is being used to find the distance each Unit is away from this one...
+            var distanceToOther = (ArtificialIntelligenceAccess[i].X - this.X) * (ArtificialIntelligenceAccess[i].X - this.X) + (ArtificialIntelligenceAccess[i].Y - this.Y) * (ArtificialIntelligenceAccess[i].Y - this.Y); // this is the distance formula and in this line it is being used to find the distance each Unit is away from this one...
             if (this.closestDistance == null && ArtificialIntelligenceAccess[i] != this) // if the process is just starting there will not have been a closest yet to compare with so it is set to the first unit in the list.
             {
                 this.closestDistance = distanceToOther;
@@ -11614,12 +11644,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     //This function finds all nearby units within a certain range and puts them in a given list. This is a function called by other functions.
     this.findNearbyUnitTypeGroup = function(range, type, list)
     {
-
         for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
         {
-            var distanceToOther = Math.sqrt((ArtificialIntelligenceAccess[i].X - this.X) * (ArtificialIntelligenceAccess[i].X - this.X) + (ArtificialIntelligenceAccess[i].Y - this.Y) * (ArtificialIntelligenceAccess[i].Y - this.Y)); // this is the distance formula and in this line it is being used to find the distance each Unit is away from this one...
+            var distanceToOther = (ArtificialIntelligenceAccess[i].X - this.X) * (ArtificialIntelligenceAccess[i].X - this.X) + (ArtificialIntelligenceAccess[i].Y - this.Y) * (ArtificialIntelligenceAccess[i].Y - this.Y); // this is the distance formula and in this line it is being used to find the distance each Unit is away from this one...
 
-            if (ArtificialIntelligenceAccess[i] !== this && ArtificialIntelligenceAccess[i].type == type && distanceToOther <= range)
+            if (ArtificialIntelligenceAccess[i] !== this && ArtificialIntelligenceAccess[i].type == type && distanceToOther <= (range*range))
             {
                 list.push(ArtificialIntelligenceAccess[i]);
             }

@@ -11769,13 +11769,168 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             this.size = this.temporary;
 
             //DRAWSELF
-            if (this.information == 0)
+            if (this.information == 0) //fat bridge
             {
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
                 XXX.drawImage(bloat, 291, 652, 93, 133, -(1/2 * 93 * 1.95 * this.size), -(1/2 * 133 * 1.95 * this.size), 93 * 1.95 * this.size, 133 * 1.95 * this.size);
                 XXX.restore();
+            }
+            else if (this.information == 1) //bridge
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(bloat, 677, 846, 129, 48, -(1/2 * 129 * 1.95 * this.size), -(1/2 * 48 * 1.95 * this.size), 129 * 1.95 * this.size, 48 * 1.95 * this.size);
+                XXX.restore();
+            }
+            else if (this.information == 2) //wide half bridge
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(bloat, 677, 795, 129, 48, -(1/2 * 129 * 1.95 * this.size), -(1/2 * 48 * 1.95 * this.size), 129 * 1.95 * this.size, 48 * 1.95 * this.size);
+                XXX.restore();
+            }
+            else if (this.information == 3) //rail-less wide bridge
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(bloat, 899, 781, 129, 41, -(1/2 * 129 * 1.95 * this.size), -(1/2 * 41 * 1.95 * this.size), 129 * 1.95 * this.size, 41 * 1.95 * this.size);
+                XXX.restore();
+            }
+            else if (this.information == 4) //half bridge
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(bloat, 835, 830, 130, 30, -(1/2 * 130 * 1.95 * this.size), -(1/2 * 30 * 1.95 * this.size), 130 * 1.95 * this.size, 30 * 1.95 * this.size);
+                XXX.restore();
+            }
+            else if (this.information == 5) //rail-less half bridge
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(bloat, 835, 863, 130, 30, -(1/2 * 130 * 1.95 * this.size), -(1/2 * 30 * 1.95 * this.size), 130 * 1.95 * this.size, 30 * 1.95 * this.size);
+                XXX.restore();
+            }
+
+            if (this.information == 0)
+            {
+                if (this.rotation == 0 || this.rotation == Math.PI)
+                {
+                    if (X > (this.X + 74.37327952072064 * this.size) - 149 * this.size && X < (this.X + 74.37327952072064 * this.size) && Y > (this.Y + 116.97828163059148 * this.size) - 236 * this.size && Y < (this.Y + 116.97828163059148 * this.size))
+                    {
+                        player.land = true;
+                        player.water = false;
+                    }
+                }
+                else
+                {
+                    if (X > (this.X + 120.22028192781272 * this.size) - 241 * this.size && X < (this.X + 120.22028192781272 * this.size) && Y > (this.Y + 74.90872893132064 * this.size) - 151 * this.size && Y < (this.Y + 74.90872893132064 * this.size))
+                    {
+                        player.land = true;
+                        player.water = false;
+                    }
+                }
+            }
+            else if (this.information == 1)
+            {
+                if (this.rotation == 0 || this.rotation == Math.PI)
+                {
+                    if (X > (this.X + 118.80872291392916 * this.size) - 239 * this.size && X < (this.X + 118.80872291392916 * this.size) && Y > (this.Y + 35.110415715371346 * this.size) - 67 * this.size && Y < (this.Y + 35.110415715371346 * this.size))
+                    {
+                        player.land = true;
+                        player.water = false;
+                    }
+                }
+                else
+                {
+                    if (X > (this.X + 34.522144045557525 * this.size) - 69 * this.size && X < (this.X + 34.522144045557525 * this.size) && Y > (this.Y + 116.72089731869437 * this.size) - 238 * this.size && Y < (this.Y + 116.72089731869437 * this.size))
+                    {
+                        player.land = true;
+                        player.water = false;
+                    }
+                }
+            }
+            else if (this.information == 2)
+            {
+                if (this.rotation == 0 || this.rotation == Math.PI)
+                {
+                    if (X > (this.X + 118.80872291392916 * this.size) - 239 * this.size && X < (this.X + 118.80872291392916 * this.size) && Y > (this.Y + 35.110415715371346 * this.size) - 67 * this.size && Y < (this.Y + 35.110415715371346 * this.size))
+                    {
+                        player.land = true;
+                        player.water = false;
+                    }
+                }
+                else
+                {
+                    if (X > (this.X + 34.522144045557525 * this.size) - 69 * this.size && X < (this.X + 34.522144045557525 * this.size) && Y > (this.Y + 116.72089731869437 * this.size) - 238 * this.size && Y < (this.Y + 116.72089731869437 * this.size))
+                    {
+                        player.land = true;
+                        player.water = false;
+                    }
+                }
+            }
+            else if (this.information == 3)
+            {
+                if (this.rotation == 0 || this.rotation == Math.PI)
+                {
+                    if (X > (this.X + 118.80872291392916 * this.size) - 239 * this.size && X < (this.X + 118.80872291392916 * this.size) && Y > (this.Y + 35.110415715371346 * this.size) - 67 * this.size && Y < (this.Y + 35.110415715371346 * this.size))
+                    {
+                        player.land = true;
+                        player.water = false;
+                    }
+                }
+                else
+                {
+                    if (X > (this.X + 34.522144045557525 * this.size) - 69 * this.size && X < (this.X + 34.522144045557525 * this.size) && Y > (this.Y + 116.72089731869437 * this.size) - 238 * this.size && Y < (this.Y + 116.72089731869437 * this.size))
+                    {
+                        player.land = true;
+                        player.water = false;
+                    }
+                }
+            }
+            else if (this.information == 4)
+            {
+                if (this.rotation == 0 || this.rotation == Math.PI)
+                {
+                    if (X > (this.X + 119.07816547916582 * this.size) - 236 * this.size && X < (this.X + 119.07816547916582 * this.size) && Y > (this.Y + 17.70960740564351 * this.size) - 36 * this.size && Y < (this.Y + 17.70960740564351 * this.size))
+                    {
+                        player.land = true;
+                        player.water = false;
+                    }
+                }
+                else
+                {
+                    if (X > (this.X + 19.572103613434592 * this.size) - 38 * this.size && X < (this.X + 19.572103613434592 * this.size) && Y > (this.Y + 115.80407678485835 * this.size) - 236 * this.size && Y < (this.Y + 115.80407678485835 * this.size))
+                    {
+                        player.land = true;
+                        player.water = false;
+                    }
+                }
+            }
+            else if (this.information == 5)
+            {
+                if (this.rotation == 0 || this.rotation == Math.PI)
+                {
+                    if (X > (this.X + 119.07816547916582 * this.size) - 236 * this.size && X < (this.X + 119.07816547916582 * this.size) && Y > (this.Y + 17.70960740564351 * this.size) - 36 * this.size && Y < (this.Y + 17.70960740564351 * this.size))
+                    {
+                        player.land = true;
+                        player.water = false;
+                    }
+                }
+                else
+                {
+                    if (X > (this.X + 19.572103613434592 * this.size) - 38 * this.size && X < (this.X + 19.572103613434592 * this.size) && Y > (this.Y + 115.80407678485835 * this.size) - 236 * this.size && Y < (this.Y + 115.80407678485835 * this.size))
+                    {
+                        player.land = true;
+                        player.water = false;
+                    }
+                }
             }
 
             //BARRIERS
@@ -11787,26 +11942,69 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 {
                     if (this.rotation == 0 || this.rotation == Math.PI)
                     {
-                        if (X > (this.X + 46.566102830332966 * this.size) - 101 * this.size && X < (this.X + 46.566102830332966 * this.size) && Y > (this.Y + 41.55209704253048 * this.size) - 82 * this.size && Y < (this.Y + 41.55209704253048 * this.size))
-                        {
-                            //todo is player is on bridge if so set water to true
-                        }
                         barrierList.push(new Barrier((this.X + 69.83807543732746 * this.size), (this.Y + -120.22706668289811 * this.size), 240 * this.size, 11 * this.size, true));
                         barrierList.push(new Barrier((this.X + -80.16192456267254 * this.size), (this.Y + -120.22706668289811 * this.size), 240 * this.size, 11 * this.size, true));
                     }
                     else
                     {
-                        if (X > (this.X + 46.566102830332966 * this.size) - 101 * this.size && X < (this.X + 46.566102830332966 * this.size) && Y > (this.Y + 41.55209704253048 * this.size) - 82 * this.size && Y < (this.Y + 41.55209704253048 * this.size))
-                        {
-
-                        }
                         barrierList.push(new Barrier((this.X + -120.16192456267254 * this.size), (this.Y + 69.77293331710189 * this.size), 11 * this.size, 241 * this.size, true));
                         barrierList.push(new Barrier((this.X + -121.16192456267254 * this.size), (this.Y + -80.22706668289811 * this.size), 11 * this.size, 241 * this.size, true));
                     }
                 }
+                else if (this.information == 1)
+                {
+                    if (this.rotation == 0 || this.rotation == Math.PI)
+                    {
+                        barrierList.push(new Barrier((this.X + -121.72699083443467 * this.size), (this.Y + -40.84263995903666 * this.size), 12 * this.size, 242 * this.size, true));
+                        barrierList.push(new Barrier((this.X + -121.72699083443467 * this.size), (this.Y + 29.15736004096334 * this.size), 12 * this.size, 242 * this.size, true));
+                    }
+                    else
+                    {
+                        barrierList.push(new Barrier((this.X + -41.477855954442475 * this.size), (this.Y + -120.27910268130563 * this.size), 241 * this.size, 12 * this.size, true));
+                        barrierList.push(new Barrier((this.X + 29.522144045557525 * this.size), (this.Y + -121.27910268130563 * this.size), 241 * this.size, 12 * this.size, true));
+                    }
+                }
+                else if (this.information == 2)
+                {
+                    if (this.rotation == 0)
+                    {
+                        barrierList.push(new Barrier((this.X + -121.72699083443467 * this.size), (this.Y + 29.15736004096334 * this.size) - 6 * this.size, 12 * this.size, 242 * this.size, true));
+                    }
+                    else if (this.rotation == Math.PI)
+                    {
+                        barrierList.push(new Barrier((this.X + -121.72699083443467 * this.size), (this.Y + -40.84263995903666 * this.size) + 6 * this.size, 12 * this.size, 242 * this.size, true));
+                    }
+                    else if (this.rotation == -1/2 * Math.PI)
+                    {
+                        barrierList.push(new Barrier((this.X + 29.522144045557525 * this.size) - 6 * this.size, (this.Y + -121.27910268130563 * this.size), 241 * this.size, 12 * this.size, true));
+                    }
+                    else
+                    {
+                        barrierList.push(new Barrier((this.X + -41.477855954442475 * this.size) + 6 * this.size, (this.Y + -120.27910268130563 * this.size), 241 * this.size, 12 * this.size, true));
+                    }
+                }
+                else if (this.information == 4)
+                {
+                    if (this.rotation == 0)
+                    {
+                        barrierList.push(new Barrier((this.X + -121.87491602174123 * this.size), (this.Y + 10.581549253093272 * this.size), 13 * this.size, 242 * this.size, true));
+                    }
+                    else if (this.rotation == Math.PI)
+                    {
+                        barrierList.push(new Barrier((this.X + -118.92183452083418 * this.size), (this.Y + -24.29039259435649 * this.size), 14 * this.size, 240 * this.size, true));
+                    }
+                    else if (this.rotation == -1/2 * Math.PI)
+                    {
+                        barrierList.push(new Barrier((this.X + 10.572103613434592 * this.size), (this.Y + -119.19592321514165 * this.size), 240 * this.size, 13 * this.size, true));
+                    }
+                    else
+                    {
+                        barrierList.push(new Barrier((this.X + -23.427896386565408 * this.size), (this.Y + -121.19592321514165 * this.size), 240 * this.size, 12 * this.size, true));
+                    }
+                }
             }
 
-            barrierCreator(this.X, this.Y); //for easily setting barriers when making buildings
+            //barrierCreator(this.X, this.Y); //for easily setting barriers when making buildings
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
             this.radius = 90;
@@ -19769,6 +19967,60 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 }
             }
 
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+        }
+        else if (this.type == "wendigoCircle")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+            this.size = 1;
+
+            if (this.runOneTime)
+            {
+                this.runOneTime = false;
+
+                this.tic = 0;
+            }
+
+            if (this.playerer <= this.radius && this.tic < 5)
+            {
+                if (new Date().getTime() - player.timeSinceHumanFleshConsumed < 20 * 1000 * 60)
+                {
+                    this.tic = 5;
+                }
+            }
+
+            if (this.tic >= 5)
+            {
+                this.tic += 1;
+            }
+
+            //DRAWSELF
+            if (this.tic < 5)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(wendi, 217, 1663, 157, 153, -(1/2 * 157 * this.size), -(1/2 * 153 * this.size), 157 * this.size, 153 * this.size);
+                XXX.restore();
+            }
+            else if (this.tic < 10)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(wendi, 217, 1663, 157, 153, -(1/2 * 157 * this.size), -(1/2 * 153 * this.size), 157 * this.size, 153 * this.size);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 1;
 
             //INTERACTION
             if (this.activate == true)

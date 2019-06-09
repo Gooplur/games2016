@@ -10725,6 +10725,170 @@ function Item(type, x, y)
             this.buyValue = 600; // at max, buy for 600.
             this.sellValue = 600; // at max, sell for 600.
         }
+        else if (this.type == "rawHumanFlesh")
+        {
+            //For All Items
+            if (player.cannibalism == true || player.getIntelligence() >= 28 && player.matureContentFilter == false)
+            {
+                this.identity = "Raw Human Flesh";
+                this.weight = 1;
+                this.size = 9;
+                this.description = "A cut of flesh from a human.";
+                this.intForDes = 2;
+                if (player.form == false)
+                {
+                    this.intDescription = "Eating human flesh brands you a cannibal; you can sell it at markets: most people assume it is from another sort of animal";
+                }
+                else
+                {
+                    this.intDescription = "Human flesh is oftentimes the most delectable to mythical beasts of lore.";
+                }
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 1; //satisfies hunger.
+                this.thirst = 0.25; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 0.1; //recoops lost energy.
+                this.replenish = 0.1; //restores will.
+
+                //ability
+                if (player.form == false)
+                {
+                    this.ability = "cannibal";
+                }
+                else
+                {
+                    this.ability = "none";
+                }
+            }
+            else
+            {
+                this.identity = "Raw Flesh";
+                this.weight = 1;
+                this.size = 9;
+                this.description = "A cut of uncooked flesh.";
+                this.intForDes = 0;
+                this.intDescription = "It is not clear what animal this flesh is from, but it looks fine enough to eat.";
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 1; //satisfies hunger.
+                this.thirst = 0.25; //quenches thirst.
+                this.warmth = 0; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 0.1; //recoops lost energy.
+                this.replenish = 0.1; //restores will.
+
+                //ability
+                if (player.form == false)
+                {
+                    this.ability = "cannibal";
+                }
+                else
+                {
+                    this.ability = "none";
+                }
+            }
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 4 - Math.floor(player.getCharisma() / 50); // at max, buy for 3.
+            this.sellValue = 2 + Math.floor(player.getCharisma() / 50); // at max, sell for 3.
+        }
+        else if (this.type == "humanMeat")
+        {
+            //For All Items
+            if (player.cannibalism == true || player.getIntelligence() >= 28 && player.matureContentFilter == false)
+            {
+                this.identity = "Human Meat";
+                this.weight = 1;
+                this.size = 9;
+                this.description = "A cut of cooked meat from a human.";
+                this.intForDes = 2;
+                if (player.form == false)
+                {
+                    this.intDescription = "Eating human meat brands you a cannibal; you can sell it at markets: most people assume it is from another sort of animal";
+                }
+                else
+                {
+                    this.intDescription = "The meat is lean, but flavorful.";
+                }
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 9; //satisfies hunger.
+                this.thirst = 0.2; //quenches thirst.
+                this.warmth = 4; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 0.2; //recoops lost energy.
+                this.replenish = 0.05; //restores will.
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 4;
+                this.ingredients = [["Raw Human Flesh", 1]];
+
+                //ability
+                if (player.form == false)
+                {
+                    this.ability = "cannibalSatiation";
+                }
+                else
+                {
+                    this.ability = "satiation";
+                }
+            }
+            else
+            {
+                this.identity = "Meat";
+                this.weight = 1;
+                this.size = 9;
+                this.description = "A cut of cooked meat.";
+                this.intForDes = 0;
+                this.intDescription = "Lean meat that is tender, and that smells quite flavorful.";
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 9; //satisfies hunger.
+                this.thirst = 0.2; //quenches thirst.
+                this.warmth = 4; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 0.2; //recoops lost energy.
+                this.replenish = 0.05; //restores will.
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 4;
+                this.ingredients = [["Raw Flesh", 1]];
+
+                //ability
+                if (player.form == false)
+                {
+                    this.ability = "cannibalSatiation";
+                }
+                else
+                {
+                    this.ability = "satiation";
+                }
+            }
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5 - Math.floor(player.getCharisma() / 50); // at max, buy for 4.
+            this.sellValue = 3 + Math.floor(player.getCharisma() / 50); // at max, sell for 4.
+        }
         else if (this.type == "rawBearFlesh")
         {
             //For All Items
@@ -48725,6 +48889,16 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 1773, 3, 28, 30, X - this.X + (1/2 * CCC.width) - (1/2 * 28), Y - this.Y + (1/2 * CCC.height) - (1/2 * 30), 28, 30);
         }
+        else if (this.type == "rawHumanFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polypol, 731, 9, 25, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 24), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16 * 1.5), 24, 16 * 1.5);
+        }
+        else if (this.type == "humanMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polypol, 731, 27, 25, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 24), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16 * 1.5), 24, 16 * 1.5);
+        }
         else if (this.type == "rawBearFlesh")
         {
             XXX.beginPath();
@@ -54553,6 +54727,16 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(polypol, 1844, 64, 37, 32, this.invX - (1/2 * 37), this.invY - (1/2 * 32), 37, 32);
         }
+        else if (this.type == "rawHumanFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(polypol, 731, 9, 25, 16, this.invX - (1/2 * 24), this.invY - (1/2 * 16 * 1.5), 24, 16 * 1.5);
+        }
+        else if (this.type == "humanMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(polypol, 731, 27, 25, 16, this.invX - (1/2 * 24), this.invY - (1/2 * 16 * 1.5), 24, 16 * 1.5);
+        }
         else if (this.type == "rawBearFlesh")
         {
             LXX.beginPath();
@@ -60292,6 +60476,16 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1844, 64, 37, 32, this.invX - (1/2 * 37), this.invY - (1/2 * 32), 37, 32);
+        }
+        else if (this.type == "rawHumanFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polypol, 731, 9, 25, 16, this.invX - (1/2 * 24), this.invY - (1/2 * 16 * 1.5), 24, 16 * 1.5);
+        }
+        else if (this.type == "humanMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polypol, 731, 27, 25, 16, this.invX - (1/2 * 24), this.invY - (1/2 * 16 * 1.5), 24, 16 * 1.5);
         }
         else if (this.type == "rawBearFlesh")
         {

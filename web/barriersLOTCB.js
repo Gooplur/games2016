@@ -45,7 +45,7 @@ function Barrier(x, y, h, w, dev, info)
         {
             if (unitProjectiles[ii].X <= this.X + this.width && unitProjectiles[ii].X >= this.X && unitProjectiles[ii].Y <= this.Y + this.height && unitProjectiles[ii].Y >= this.Y)
             {
-                if (new Date().getTime() - playerProjectiles[ii].timeSinceShot > 200 || this.info != "cover")
+                if (new Date().getTime() - unitProjectiles[ii].timeSinceShot > 200 || this.info != "cover")
                 {
                     cosasParaErradicar.push(ii);
                 }

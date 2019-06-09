@@ -261,4 +261,4 @@ bones - a selection of bones for use as macabre decorations... size = longevity,
 trainingDummy - A cloth and straw dummy that is used to train melee skills
 rangedTarget - A straw stuffed target for shooting at
 bloatGas - A toxic greenish grey gas released by Skindlers that decays flesh (temporary determines if it self deletes or not: false = delete, true = no delete) (information determines its size) //scenicList.push(new Scenery("bloatGas", 4900, 2400, 0, false)); //scenicList.push(new Scenery("bloatGas", 4900, 2400, 0, true, 2));
-thenganBridges - a selection of thengan bridges
+thenganBridges - a selection of thengan bridges (information: 0-5) they can be rotated (rotation), and size adjusted (temporary)

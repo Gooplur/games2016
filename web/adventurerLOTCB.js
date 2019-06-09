@@ -273,6 +273,9 @@ function Adventurer()
     //saving
     this.autosaveEnabled = false; //determines if the game will save automatically or not. starts out off.
     this.autosaveFrequency = 200;
+    //options
+    this.optionsToggle = 0;
+    this.showStatBars = true;
     //swimming/boating
     this.waterVelocityX = 0;
     this.waterVelocityY = 0;
@@ -584,6 +587,9 @@ function Adventurer()
     this.decay = 0;
     this.decayTime = 0;
     this.decayTime2 = new Date().getTime();
+    this.timeSinceHumanFleshConsumed = 0;
+    this.cannibalism = false;
+    this.cannibal = false;
 
         //faction variables
     this.factionToggle = false;
@@ -5195,24 +5201,27 @@ function Adventurer()
 
     this.showNoticeName = function()
     {
-        if (mouseY > 413 && mouseY < 413 + 20)
+        if (this.showStatBars || showTheStatsBars)
         {
-            for (var i = 0; i < this.miniNoticeList.length; i++)
+            if (mouseY > 413 && mouseY < 413 + 20)
             {
-                //this lets the player see the name of the effect that is affecting them.
-                if (mouseX >= (1 + (21 * i)) && mouseX <= (1 + (21 * i)) + 20)
+                for (var i = 0; i < this.miniNoticeList.length; i++)
                 {
-                    XXX.textAlign = "left";
-                    if (timeOfDay == "Day" && this.underground != true)
+                    //this lets the player see the name of the effect that is affecting them.
+                    if (mouseX >= (1 + (21 * i)) && mouseX <= (1 + (21 * i)) + 20)
                     {
-                        XXX.fillStyle = "black";
+                        XXX.textAlign = "left";
+                        if (timeOfDay == "Day" && this.underground != true)
+                        {
+                            XXX.fillStyle = "black";
+                        }
+                        else
+                        {
+                            XXX.fillStyle = "white";
+                        }
+                        XXX.font = "bold 22px Book Antiqua";
+                        XXX.fillText(this.miniNoticeList[i], 1, 407);
                     }
-                    else
-                    {
-                        XXX.fillStyle = "white";
-                    }
-                    XXX.font = "bold 22px Book Antiqua";
-                    XXX.fillText(this.miniNoticeList[i], 1, 407);
                 }
             }
         }
@@ -25050,16 +25059,49 @@ function Adventurer()
     //The bar for the UI buttons
     this.buildUIBar = function ()
     {
-        XXX.beginPath();
-        if (mouseY < 526 && lowBar != "skills" && lowBar != "shop" && lowBar != "bank" && lowBar != "crafting" && lowBar != "spellbook" && lowBar != "beastJournal" && lowBar != "questLog" && lowBar != "reading" && lowBar != "storage" && lowBar != "factionMenu")
+        var menuBarLock = true;
+        if (lowBar != "skills" && lowBar != "shop" && lowBar != "bank" && lowBar != "crafting" && lowBar != "spellbook" && lowBar != "beastJournal" && lowBar != "questLog" && lowBar != "reading" && lowBar != "storage" && lowBar != "factionMenu" && lowBar != "options")
         {
-            XXX.fillStyle = "rgba(211, 211, 211, 0.1)";
-            XXX.strokeStyle = "rgba(211, 211, 211, 0.1)"
+            menuBarLock = false;
+        }
+        XXX.beginPath();
+        if (mouseY < 526 && !menuBarLock)
+        {
+            if (this.showStatBars)
+            {
+                XXX.fillStyle = "rgba(211, 211, 211, 0.1)";
+                XXX.strokeStyle = "rgba(211, 211, 211, 0.1)";
+            }
+            else
+            {
+                XXX.fillStyle = "rgba(211, 211, 211, 0)";
+                XXX.strokeStyle = "rgba(211, 211, 211, 0)";
+                if (mouseX > 151 || mouseY < 400)
+                {
+                    showTheStatsBars = false;
+                }
+                doTheStatsHighlights = false;
+                showUiIcons = false;
+            }
         }
         else
         {
             XXX.fillStyle = "lightGrey";
             XXX.strokeStyle = "black";
+            if (!menuBarLock)
+            {
+                if (!this.showStatBars && mouseX > 151)
+                {
+                    showTheStatsBars = true;
+                    doTheStatsHighlights = true;
+                }
+                else if (!this.showStatBars && !showUiIcons)
+                {
+                    doTheStatsHighlights = false;
+                    XXX.fillStyle = "rgba(211, 211, 211, 0)";
+                    XXX.strokeStyle = "rgba(211, 211, 211, 0)";
+                }
+            }
         }
         XXX.rect(140, 527, 1259, 22);
         XXX.fill();
@@ -25068,7 +25110,7 @@ function Adventurer()
     //UI Buttons
     this.uiButton = function ()
     {
-        if (mouseY > 526 || lowBar == "skills" || lowBar == "shop" || lowBar == "bank" || lowBar == "crafting" || lowBar == "spellbook" || lowBar == "beastJournal" || lowBar == "questLog" || lowBar == "reading" || lowBar == "storage" || lowBar == "factionMenu")
+        if (this.showStatBars && mouseY > 526 || !this.showStatBars && mouseY > 526 && mouseX > 151 || !this.showStatBars && showUiIcons || lowBar == "skills" || lowBar == "shop" || lowBar == "bank" || lowBar == "crafting" || lowBar == "spellbook" || lowBar == "beastJournal" || lowBar == "questLog" || lowBar == "reading" || lowBar == "storage" || lowBar == "factionMenu"  || lowBar == "options")
         {
             //inventory button
             XXX.beginPath();
@@ -25149,6 +25191,16 @@ function Adventurer()
             XXX.fill();
             XXX.stroke();
             XXX.drawImage(polyPNG, 663, 1, 31, 24, 299, 530, 21, 15.6);
+
+            //Options menu button
+            XXX.beginPath();
+            XXX.strokeStyle = "black";
+            XXX.lineWidth = 1;
+            XXX.fillStyle = "#DDC5B6";
+            XXX.rect(320, 527, 20, 22);
+            XXX.fill();
+            XXX.stroke();
+            XXX.drawImage(poly, 411, 101, 17, 18, 320 + 1.5, 530, 17, 18);
 
             //Game Clock
             XXX.beginPath();
@@ -25314,6 +25366,20 @@ function Adventurer()
             lowBar = "information";
             gameState = "active";
         }
+
+        //When the save button is clicked the lowbar shows the player the eight saving slots to choose from.
+        if (mouseX > 320 && mouseX < 341 && mouseY < 549 && mouseY > 527 && clickReleased == true && lowBar != "options")
+        {
+            clickReleased = false;
+            lowBar = "options";
+            gameState = "paused";
+        }
+        else if (mouseX > 320 && mouseX < 341 && mouseY < 549 && mouseY > 527 && clickReleased == true && lowBar == "options")
+        {
+            clickReleased = false;
+            lowBar = "information";
+            gameState = "active";
+        }
     };
 
     //highlight the selected icon in the user interface.
@@ -25366,6 +25432,12 @@ function Adventurer()
             XXX.beginPath();
             XXX.fillStyle = "rgba(255, 215, 0, 0.35)";
             XXX.fillRect(299, 527, 20, 23);
+        }
+        else if (lowBar == "options")
+        {
+            XXX.beginPath();
+            XXX.fillStyle = "rgba(255, 215, 0, 0.35)";
+            XXX.fillRect(320, 527, 20, 23);
         }
     };
 
@@ -26688,7 +26760,6 @@ function Adventurer()
                         }
                         else if (mouseX > listOfInvX1Coords[i] && mouseX < listOfInvX2Coords[i] && mouseY > invY1Coord && mouseY < invY2Coord) //give the name of the Item and its stats when hovered over.
                         {
-
                             //The Name of the Item
                             XXX.font = "bold 40px Book Antiqua";
                             XXX.fillStyle = "black";
@@ -30201,6 +30272,315 @@ function Adventurer()
         }
     };
 
+    //OPTIONS MENU
+    this.displayOptionsMenu = function()
+    {
+
+        if (lowBar == "options")
+        {
+            //MAIN BACKGROUND
+            XXX.beginPath();
+            //XXX.fillStyle = "lightGrey";
+            XXX.fillStyle = "black";
+            XXX.strokeStyle = "black";
+            XXX.lineWidth = 1;
+            XXX.rect(1, 1, 1398, 526);
+            XXX.fill();
+            XXX.stroke();
+
+            //Scrolling
+            //the button part
+            if (mouseX > 2 && mouseX < 2 + 74 && mouseY > 529 && mouseY < 529 + 20)
+            {
+                XXX.beginPath();
+                XXX.fillStyle = "gold";
+                XXX.strokeStyle = "black";
+                XXX.lineWidth = 3;
+                XXX.rect(2, 529, 74, 20);
+                XXX.fill();
+                XXX.stroke();
+
+                if (clicked == true)
+                {
+                    clicked = false;
+                    this.optionsToggle = Math.max(0, this.optionsToggle - 1);
+                }
+            }
+            else
+            {
+                XXX.beginPath();
+                XXX.fillStyle = "#E8E8E8";
+                XXX.strokeStyle = "black";
+                XXX.lineWidth = 3;
+                XXX.rect(2, 529, 74, 20);
+                XXX.fill();
+                XXX.stroke();
+            }
+
+            if (mouseX > 76 && mouseX < 76 + 74 && mouseY > 529 && mouseY < 529 + 20)
+            {
+                XXX.beginPath();
+                XXX.fillStyle = "gold";
+                XXX.strokeStyle = "black";
+                XXX.lineWidth = 3;
+                XXX.rect(76, 529, 74, 20);
+                XXX.fill();
+                XXX.stroke();
+
+                if (clicked == true)
+                {
+                    clicked = false;
+                    this.optionsToggle = Math.min((optionList.length - 1), this.optionsToggle + 1);
+                }
+            }
+            else
+            {
+                XXX.beginPath();
+                XXX.fillStyle = "#E8E8E8";
+                XXX.strokeStyle = "black";
+                XXX.lineWidth = 3;
+                XXX.rect(76, 529, 74, 20);
+                XXX.fill();
+                XXX.stroke();
+            }
+            //the text part
+            XXX.font = "12px Book Antiqua";
+            XXX.fillStyle = "black";
+            XXX.textAlign = "center";
+            XXX.fillText(">", 37 + 74, 542);
+            //the text part
+            XXX.font = "12px Book Antiqua";
+            XXX.fillStyle = "black";
+            XXX.textAlign = "center";
+            XXX.fillText("<", 37, 542);
+
+            if (this.matureContentFilter == true)
+            {
+                optionList = [{title: "Coordinates", value: tellCoords, type: "bool"}, {title: "Content Filter", value: this.matureContentFilter, type: "bool"}, {title: "Display Informational UI", value: this.showStatBars, type: "bool"}, {title: "Game Speed", value: !player.slowItDown, type: "bool"}, {title: "Test Units", value: testingUnitCenters, type: "bool"}, {title: "Attack Bubble", value: showPlayerAttackBubble, type: "bool"}]
+            }
+            else
+            {
+                optionList = [{title: "Coordinates", value: tellCoords, type: "bool"}, {title: "Content Filter", value: this.matureContentFilter, type: "bool"}, {title: "Cannibalism", value: this.cannibalism, type: "bool"}, {title: "Display Informational UI", value: this.showStatBars, type: "bool"}, {title: "Game Speed", value: !player.slowItDown, type: "bool"}, {title: "Test Units", value: testingUnitCenters, type: "bool"}, {title: "Attack Bubble", value: showPlayerAttackBubble, type: "bool"}]
+            }
+
+            //fill low bar with black
+            LXX.beginPath();
+            LXX.fillStyle = "black";
+            LXX.fillRect(0, 0, 1400, 80);
+
+            //show options toggle progress
+            for (var i = 0; i < optionList.length; i++)
+            {
+                LXX.beginPath();
+                if (this.optionsToggle == i)
+                {
+                    LXX.fillStyle = "gold";
+                }
+                else
+                {
+                    LXX.fillStyle = "darkGrey";
+                }
+                LXX.fillRect(i * (1400 / optionList.length) + i, 0, ((1400 - optionList.length) / optionList.length), 80);
+            }
+
+            //toggle options
+            for (var i = Math.min(this.optionsToggle, optionList.length - 4); i < optionList.length; i++)
+            {
+                var ii = i - Math.min(this.optionsToggle, optionList.length - 4);
+                //box
+                XXX.beginPath();
+                XXX.strokeStyle = "black";
+                XXX.fillStyle = "#E8E8E8";
+                XXX.lineWidth = 4;
+                XXX.rect(ii * 350 + ii, 2, 349, 522);
+                XXX.fill();
+                XXX.stroke();
+
+                //title
+                XXX.font = "24px Bold Book Antiqua";
+                XXX.fillStyle = "black";
+                XXX.textAlign = "center";
+                XXX.fillText(optionList[i].title, ii * 350 + ii + 175, 75);
+
+                if (optionList[i].type == "bool")
+                {
+                    XXX.beginPath();
+                    if (optionList[i].value == true)
+                    {
+                        XXX.fillStyle = "green";
+                    }
+                    else
+                    {
+                        XXX.fillStyle = "darkGrey";
+                    }
+
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 4;
+                    XXX.rect(ii * 350 + ii + 130, 100, 90, 40);
+                    XXX.fill();
+                    XXX.stroke();
+
+                    if (optionList[i].value == true)
+                    {
+                        XXX.font = "20px Italic Book Antiqua";
+                        XXX.fillStyle = "black";
+                        XXX.textAlign = "center";
+                        XXX.fillText("On", ii * 350 + ii + 175, 126);
+                    }
+                    else
+                    {
+                        XXX.font = "20px Book Antiqua";
+                        XXX.fillStyle = "black";
+                        XXX.textAlign = "center";
+                        XXX.fillText("Off", ii * 350 + ii + 175, 126);
+                    }
+
+                    //boolean knob
+                    XXX.beginPath();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 4;
+                    XXX.fillStyle = "grey";
+                    XXX.arc(ii * 350 + ii + 175, 280, 60, 0, 2*Math.PI);
+                    XXX.fill();
+                    XXX.stroke();
+
+                    XXX.beginPath();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 4;
+                    XXX.fillStyle = "lightGrey";
+                    XXX.arc(ii * 350 + ii + 175, 280, 55, 0, 2*Math.PI);
+                    XXX.fill();
+                    XXX.stroke();
+
+                    XXX.save();
+                    XXX.beginPath();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 4;
+                    XXX.fillStyle = "gray";
+                    XXX.translate(ii * 350 + ii + 175, 280)
+                    if (optionList[i].value == true)
+                    {
+                        XXX.rotate(4/6 * 2 * Math.PI);
+                    }
+                    else
+                    {
+                        XXX.rotate(-4/6 * 2 * Math.PI);
+                    }
+                    XXX.rect(-7.5, 0, 15, 95);
+                    XXX.fill();
+                    XXX.stroke();
+                    XXX.restore();
+
+
+                    var knobbbX = ii * 350 + ii + 175;
+                    var knobbbY = 280;
+                    var knobbbDist = (mouseX - knobbbX)*(mouseX - knobbbX) + (mouseY - knobbbY)*(mouseY - knobbbY);
+                    if (knobbbDist < 50 * 50 && clicked == true)
+                    {
+                        clicked = false;
+
+                        //change boolean value
+                        if (optionList[i].title == "Coordinates")
+                        {
+                            if (optionList[i].value == false)
+                            {
+                                tellCoords = true;
+                                optionList[i].value = true;
+                            }
+                            else
+                            {
+                                tellCoords = false;
+                                optionList[i].value = false;
+                            }
+                        }
+                        else if (optionList[i].title == "Content Filter")
+                        {
+                            if (optionList[i].value == false)
+                            {
+                                this.matureContentFilter = true;
+                                optionList[i].value = true;
+                            }
+                            else
+                            {
+                                this.matureContentFilter = false;
+                                optionList[i].value = false;
+                            }
+                        }
+                        else if (optionList[i].title == "Cannibalism")
+                        {
+                            if (optionList[i].value == false)
+                            {
+                                this.cannibalism = true;
+                                optionList[i].value = true;
+                            }
+                            else
+                            {
+                                this.cannibalism = false;
+                                optionList[i].value = false;
+                            }
+                        }
+                        else if (optionList[i].title == "Game Speed")
+                        {
+                            if (optionList[i].value == false)
+                            {
+                                player.slowItDown = false;
+                                optionList[i].value = true;
+                            }
+                            else
+                            {
+                                player.slowItDown = true;
+                                optionList[i].value = false;
+                            }
+                        }
+                        else if (optionList[i].title == "Test Units")
+                        {
+                            if (optionList[i].value == false)
+                            {
+                                testingUnitCenters = true;
+                                testingUnitSizes = true;
+                                showUnitAttackBubble = true;
+                                optionList[i].value = true;
+                            }
+                            else
+                            {
+                                testingUnitCenters = false;
+                                testingUnitSizes = false;
+                                showUnitAttackBubble = false;
+                                optionList[i].value = false;
+                            }
+                        }
+                        else if (optionList[i].title == "Attack Bubble")
+                        {
+                            if (optionList[i].value == false)
+                            {
+                                showPlayerAttackBubble = true;
+                                optionList[i].value = true;
+                            }
+                            else
+                            {
+                                showPlayerAttackBubble = false;
+                                optionList[i].value = false;
+                            }
+                        }
+                        else if (optionList[i].title == "Display Informational UI")
+                        {
+                            if (optionList[i].value == false)
+                            {
+                                this.showStatBars = true;
+                                optionList[i].value = true;
+                            }
+                            else
+                            {
+                                this.showStatBars = false;
+                                optionList[i].value = false;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    };
+
     //SHOP
     this.displayShop = function()
     {
@@ -32874,19 +33254,25 @@ function Adventurer()
                     {
                         Inventory[i][0].X = X;
                         Inventory[i][0].Y = Y;
-                        worldItems.push([new Item(Inventory[i][0].type, X, Y), 1]);
+                        var playerDroppedItem = new Item(Inventory[i][0].type, X, Y);
+                        playerDroppedItem.setItemID();
+                        worldItems.push([playerDroppedItem, 1]);
 
                         Inventory.splice(i, 1);
                     }
                     else
                     {
-                        worldItems.push([new Item(Inventory[i][0].type, X, Y), 1]);
+                        var playerDroppedItem = new Item(Inventory[i][0].type, X, Y);
+                        playerDroppedItem.setItemID();
+                        worldItems.push([playerDroppedItem, 1]);
                     }
                 }
                 else if (shiftKey == true && lowBar == "inventory"  && clickReleased == true && lMouseX > listOfInvX1Coords[i] + 64 && lMouseX < listOfInvX2Coords[i] && lMouseY > 3 && lMouseY < 20 && Inventory[i][0].equipped == false && this.REQB == false && canDrop) //Drop all items when the X button is pressed.
                 {
                     clickReleased = false;
-                    worldItems.push([new Item(Inventory[i][0].type, X, Y), Inventory[i][1] + cheatItem]);
+                    var playerDroppedItem = new Item(Inventory[i][0].type, X, Y);
+                    playerDroppedItem.setItemID();
+                    worldItems.push([playerDroppedItem, Inventory[i][1] + cheatItem]);
                     Inventory.splice(i, 1);
                 }
                 else if (clickReleased == true && lowBar == "inventory" && lMouseX > listOfInvX1Coords[i] && lMouseX < listOfInvX2Coords[i] && lMouseY > invY1Coord && lMouseY < invY2Coord && this.REQB == false && canUse) //When you click on an item you either access its utility or you equip it.
@@ -33272,6 +33658,15 @@ function Adventurer()
                             else if (Inventory[i][0].ability == "satiate" || Inventory[i][0].ability == "satiation") //Food with this effect will keep you fed for a little bit.
                             {
                                 this.fed = true;
+                            }
+                            else if (Inventory[i][0].ability == "cannibal" || Inventory[i][0].ability == "cannibalSatiation")
+                            {
+                                this.timeSinceHumanFleshConsumed = new Date().getTime();
+                                this.cannibal = true;
+                                if (Inventory[i][0].ability == "cannibalSatiation")
+                                {
+                                    this.fed = true;
+                                }
                             }
                             else if (Inventory[i][0].ability == "quench") //Food with this effect will keep you quenched for a little bit.
                             {
@@ -35298,6 +35693,7 @@ function Adventurer()
                 }
                 else if (lowBar == "inventory" && lMouseX > listOfInvX1Coords[i] && lMouseX < listOfInvX2Coords[i] && lMouseY > invY1Coord && lMouseY < invY2Coord) //give the name of the Item and its stats when hovered over.
                 {
+                    showUiIcons = true; //shows ui icons no matter what if an item description is being shown
                     itemDescriptionBox = true;
                     //this allows intelligence based descriptions if the player's character meets the correct requirements in intelligence.
                     var regProps;
@@ -35878,19 +36274,25 @@ function Adventurer()
         //UI Bar
         this.buildUIBar(); //#UI Bar
         this.uiButton(); //#Inventory
-        this.highlightSelectedUI(); //#UI Bar
+        if (this.showStatBars || doTheStatsHighlights)
+        {
+            this.highlightSelectedUI(); //#UI Bar
+        }
         this.toggleUIIcon(); //#UI Bar
 
         //Stat Bars
         if (gameState == "active" || gameState == "stopTime" || gameState == "popUp")
         {
             XXX.textAlign = "left";
-            this.drawWillBar(); //#Stat Bar
-            this.drawHungerBar(); //#Stat Bar
-            this.drawStaminaBar(); //#Stat Bar
-            this.drawHealthBar(); //#Stat Bar
-            this.drawThirstBar(); //#Stat Bar
-            this.drawMageShieldBar();
+            if (this.showStatBars == true || showTheStatsBars)
+            {
+                this.drawWillBar(); //#Stat Bar
+                this.drawHungerBar(); //#Stat Bar
+                this.drawStaminaBar(); //#Stat Bar
+                this.drawHealthBar(); //#Stat Bar
+                this.drawThirstBar(); //#Stat Bar
+                this.drawMageShieldBar();
+            }
         }
         this.drawAntiVenomBar(); //#Stat Bar //this is a developer stat bar only and it also is used to take the fall for an animation glitch that only affects the last stat bar drawn.
 
@@ -35932,6 +36334,9 @@ function Adventurer()
 
         //Saves
         this.displaySaves(); //#Saves
+
+        //Options Menu
+        this.displayOptionsMenu(); //#OptionsMenu
 
         //Inventory
         if (lowBar != "beastJournal" && lowBar != "factionMenu")
@@ -37455,7 +37860,10 @@ function Adventurer()
             if (zindex == 6)
             {
                 //effect notices, and deveoper functions, etc.
-                this.miniNotices();
+                if (this.showStatBars || showTheStatsBars)
+                {
+                    this.miniNotices();
+                }
 
                 //Stat recharging
                 this.statRecharge();

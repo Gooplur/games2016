@@ -907,6 +907,13 @@ function worldBuilder()
             region = "n3e1";
             outlineBuilder(34, 34, "frost", 14, -122);
         }
+        //mapN3E2
+        if (Y > 26650 && Y < 37456 && X < -12680 && X > -24308) //X2
+        {
+            elevation = 1;
+            region = "n3e2";
+            outlineBuilder(34, 34, "outline", 48, -122); //todo frost
+        }
         //mapN3E3
         if (Y > 26650 && Y < 37456 && X < -22859 && X > -34534) //X3
         {

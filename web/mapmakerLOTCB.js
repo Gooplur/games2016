@@ -2229,6 +2229,67 @@ function buildMaster()
                 change = "n3e1";
             }
         }
+        else if (region == "n3e2")
+        {
+            if (change != "n3e2")
+            {
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
+                //Delete All Non-native AI Units
+                for (var i =  ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
+
+                //REGION CREATION
+                //Build AI Units
+                scenicList.push(new Scenery("tyrniPlant", -12270, 38406,0.4, true, undefined)); //copied n3e1
+                scenicList.push(new Scenery("tyrniPlant", -18577, 37887,12, true, undefined)); //copied n4e2
+                scenicList.push(new Scenery("bushkaPlant", -24579.767035972964, 29710.62484832691,2.4, true, undefined)); //copied n3e3
+
+                //scenicList.push(new Scenery("bushkaPlant", -2366, 35548,-2.75, true));
+                //scenicList.push(new Scenery("tyrniPlant", -12270, 38406,0.4, true));
+                //scenicList.push(new Scenery("wightbloomPlant", -11643.275901334484, 28642.70650974215, 2.3, true));
+
+                //ArtificialIntelligenceAccess.push(new Unit(-6594.548123905186, 34395.87516001048, "WinterWolf", false, "magicmantrty1"));
+
+                //ArtificialIntelligenceAccess.push(new Unit(-8308.948107922957, 32974.837155598936, "Waanti", true, "gotetdot2"));
+
+                //ArtificialIntelligenceAccess.push(new Unit(-11289.652797686398, 32309.008802314052, "Balkur", false, "onofangoo1"));
+
+                //ArtificialIntelligenceAccess.push(new Unit(-7619.233094074731, 36046.80342991437, "Glutid", false, "nontthintern1"));
+
+
+                //ArtificialIntelligenceAccess.push(new Unit(-11626.931345371848, 31495.13739942016, "Koobu", false, "nontthintern2"));
+
+                //scenicList.push(new Scenery("stone", -4655.321152171745, 28949.77082195361, 4.83, 1, 2));
+
+                //ArtificialIntelligenceAccess.push(new Unit(-20419, 42113, "Person", false, "Freynor Villager", {race: "Freynor", faction: "Freynor", personality: "scared", outfit: ["sealSkinClothing", 0], weapon: ["none", [0.3, 0.5], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: false, route:[[-20419, 42070]]}));
+
+
+
+                change = "n3e2";
+            }
+        }
         else if (region == "n4e4")
         {
             if (change != "n4e4")

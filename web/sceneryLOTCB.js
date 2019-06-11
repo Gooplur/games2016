@@ -19979,26 +19979,39 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             //TRAITS
             this.solid = false;
             this.interactionRange = 1;
-            this.size = 1;
+            this.size = 1.1;
 
             if (this.runOneTime)
             {
                 this.runOneTime = false;
 
                 this.tic = 0;
+                this.victim = "none";
             }
 
-            if (this.playerer <= this.radius && this.tic < 5)
+            if (this.playerer <= this.radius && this.tic < 5 && player.wendigo != true && this.victim == "none" && player.vamprism != true && player.lycanthropy != true && player.venandi < 400)
             {
                 if (new Date().getTime() - player.timeSinceHumanFleshConsumed < 20 * 1000 * 60)
                 {
                     this.tic = 5;
+                    this.victim = "player";
                 }
+            }
+
+            if (this.victim == "player")
+            {
+                this.zIndex = 4;
+                this.X = X;
+                this.Y = Y;
+                this.rotation = player.rotation - 1/2 * Math.PI;
+                clearEquipped();
+                player.stunnedXV = true;
+                player.stunnedTime = 1;
             }
 
             if (this.tic >= 5)
             {
-                this.tic += 1;
+                this.tic += 0.75;
             }
 
             //DRAWSELF
@@ -20016,6 +20029,199 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
                 XXX.drawImage(wendi, 217, 1663, 157, 153, -(1/2 * 157 * this.size), -(1/2 * 153 * this.size), 157 * this.size, 153 * this.size);
+                XXX.restore();
+            }
+            else if (this.tic < 15)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(wendi, 646, 1660, 157, 153, -(1/2 * 157 * this.size), -(1/2 * 153 * this.size), 157 * this.size, 153 * this.size);
+                XXX.restore();
+            }
+            else if (this.tic < 20)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(wendi, 673, 1816, 108, 104, -(1/2 * 108 * this.size), -(1/2 * 104 * this.size), 108 * this.size, 104 * this.size);
+                XXX.restore();
+            }
+            else if (this.tic < 25)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(wendi, 559, 1824, 108, 104, -(1/2 * 108 * this.size), -(1/2 * 104 * this.size), 108 * this.size, 104 * this.size);
+                XXX.restore();
+            }
+            else if (this.tic < 30)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(wendi, 457, 1827, 108, 104, -(1/2 * 108 * this.size), -(1/2 * 104 * this.size), 108 * this.size, 104 * this.size);
+                XXX.restore();
+            }
+            else if (this.tic < 35)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(wendi, 321, 1826, 108, 104, -(1/2 * 108 * this.size), -(1/2 * 104 * this.size), 108 * this.size, 104 * this.size);
+                XXX.restore();
+            }
+            else if (this.tic < 40)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(wendi, 216, 1825, 108, 104, -(1/2 * 108 * this.size), -(1/2 * 104 * this.size), 108 * this.size, 104 * this.size);
+                XXX.restore();
+            }
+            else if (this.tic < 45)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(wendi, 115, 1826, 108, 104, -(1/2 * 108 * this.size), -(1/2 * 104 * this.size), 108 * this.size, 104 * this.size);
+                XXX.restore();
+            }
+            else if (this.tic < 50)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(wendi, 0, 1827, 108, 104, -(1/2 * 108 * this.size), -(1/2 * 104 * this.size), 108 * this.size, 104 * this.size);
+                XXX.restore();
+            }
+            else if (this.tic < 55)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(wendi, 1, 1925, 108, 104, -(1/2 * 108 * this.size), -(1/2 * 104 * this.size), 108 * this.size, 104 * this.size);
+                XXX.restore();
+            }
+            else if (this.tic < 60)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(wendi, 109, 1931, 108, 104, -(1/2 * 108 * this.size), -(1/2 * 104 * this.size), 108 * this.size, 104 * this.size);
+                XXX.restore();
+            }
+            else if (this.tic < 65)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(wendi, 223, 1938, 108, 104, -(1/2 * 108 * this.size), -(1/2 * 104 * this.size), 108 * this.size, 104 * this.size);
+                XXX.restore();
+            }
+            else if (this.tic < 70)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(wendi, 327, 1940, 108, 104, -(1/2 * 108 * this.size), -(1/2 * 104 * this.size), 108 * this.size, 104 * this.size);
+                XXX.restore();
+            }
+            else if (this.tic < 75)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(wendi, 433, 1943, 108, 104, -(1/2 * 108 * this.size), -(1/2 * 104 * this.size), 108 * this.size, 104 * this.size);
+                XXX.restore();
+            }
+            else if (this.tic < 80)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(wendi, 535, 1946, 108, 104, -(1/2 * 108 * this.size), -(1/2 * 104 * this.size), 108 * this.size, 104 * this.size);
+                XXX.restore();
+            }
+            else if (this.tic < 85)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(wendi, 538, 2040, 108, 104, -(1/2 * 108 * this.size), -(1/2 * 104 * this.size), 108 * this.size, 104 * this.size);
+                XXX.restore();
+            }
+            else if (this.tic < 90)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(wendi, 438, 2037, 108, 104, -(1/2 * 108 * this.size), -(1/2 * 104 * this.size), 108 * this.size, 104 * this.size);
+                XXX.restore();
+            }
+            else if (this.tic < 95)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(wendi, 304, 2037, 108, 104, -(1/2 * 108 * this.size), -(1/2 * 104 * this.size), 108 * this.size, 104 * this.size);
+                XXX.restore();
+            }
+            else
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(wendi, 168, 2037, 122, 97, -(1/2 * 122 * this.size), -(1/2 * 97 * this.size), 122 * this.size, 97 * this.size);
+                XXX.restore();
+                if (this.victim == "player")
+                {
+                    player.wendigo = true;
+                    player.form = "wendigo";
+                    player.hunger = 10;
+                    player.wendigoChange = "remaining";
+                    scenicList.splice(scenicList.indexOf(this), 1);
+                }
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 60;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+        }
+        else if (this.type == "deadDeer")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+            if (typeof(this.owned) != "null" && typeof(this.owned) != "boolean")
+            {
+                this.size = this.owned;
+            }
+            else
+            {
+                this.size = 1.1;
+            }
+
+            //DRAWSELF
+            if (this.information == true)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(wendi, 114, 1117, 105, 86, -(1/2 * 105 * this.size), -(1/2 * 86 * this.size), 105 * this.size, 86 * this.size);
+                XXX.restore();
+            }
+            else //eviscerated deer
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(wendi, 663, 2779, 177, 206, -(1/2 * 177 * this.size), -(1/2 * 206 * this.size), 177 * this.size, 206 * this.size);
                 XXX.restore();
             }
 
@@ -22161,6 +22367,59 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 if (hits == Inventory.length)
                 {
                     Inventory.push([new Item("neprilneBerries", false, false), 1]);
+                }
+            }
+        }
+        else if (this.type == "jollePlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.nectar(9);
+            this.solid = false;
+            this.interactionRange = 96;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(wendi, 333, 957, 55, 50, -(1/2 * 55), -(1/2 * 50), 55, 50);
+                XXX.restore();
+            }
+            else if (this.phase == "picked")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(wendi, 335, 1024, 55, 50, -(1/2 * 55), -(1/2 * 50), 55, 50);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 20;
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0)
+            {
+                this.activate = false;
+                this.phase = "picked";
+                var hits = 0;
+                for (var i = 0; i < Inventory.length; i ++)
+                {
+                    if (Inventory[i][0].type == "jolleFlower")
+                    {
+                        Inventory[i][1] += (1 + Math.round(Math.random() * 7));
+                        break;
+                    }
+                    else
+                    {
+                        hits += 1;
+                    }
+                }
+                if (hits == Inventory.length)
+                {
+                    Inventory.push([new Item("jolleFlower", false, false), (1 + Math.round(Math.random() * 7))]);
                 }
             }
         }

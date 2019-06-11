@@ -769,19 +769,22 @@ function screenCover()
         NDX.clearRect(0, 0, NDC.width, NDC.height);
 
         //light up miniNotices at night
-        NDX.fillStyle = "rgba(255, 255, 255, 1)";
-        NDX.beginPath();
-        NDX.rect(0, NDC.height - 137, 21 * player.miniNoticeList.length, 21);
-        NDX.fill();
+        if (player.showStatBars || showTheStatsBars)
+        {
+            NDX.fillStyle = "rgba(255, 255, 255, 1)";
+            NDX.beginPath();
+            NDX.rect(0, NDC.height - 137, 21 * player.miniNoticeList.length, 21);
+            NDX.fill();
 
-        //light up stats at night
-        NDX.fillStyle = "rgba(255, 255, 255, 1)";
-        NDX.beginPath();
-        NDX.rect(0, NDC.height - 115, 151, 115);
-        NDX.fill();
+            //light up stats at night
+            NDX.fillStyle = "rgba(255, 255, 255, 1)";
+            NDX.beginPath();
+            NDX.rect(0, NDC.height - 115, 151, 115);
+            NDX.fill();
+        }
 
         //light up UI at night
-        if (mouseY > 526)
+        if (player.showStatBars && mouseY > 526 || !player.showStatBars && mouseY > 526 && mouseX > 151)
         {
             NDX.fillStyle = "rgba(255, 255, 255, 1)";
             NDX.beginPath();

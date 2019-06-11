@@ -232,6 +232,46 @@ function Item(type, x, y)
             //ability
             this.ability = "vampireCurse";
         }
+        else if (this.type == "wendigo")
+        {
+            //For All Items
+            this.identity = "Wendigo";
+            this.weight = 0;
+            this.size = 10;
+            this.description = "You have been cursed by a leshen for cannibalizing your own kind.";
+            this.intForDes = 4;
+            this.intDescription = "You enter your beast form no matter what if your hunger is at 10 or below.";
+
+            //Define Utility
+            this.utility = "weapon";
+
+            if (eKey && spaceKey != true || player.powerAttack == true && player.attacking)
+            {
+                //Utility Focused
+                this.energyCost = 9;
+                this.range = 1 + 5/7;
+                this.rate = (120 / 1.5);
+                this.damage = (33 / 1.5);
+                this.magicalDamage = 0;
+                this.negateArmour = (6.5 / 1.5);
+
+                //ability
+                this.ability = "none";
+            }
+            else
+            {
+                //Utility Focused
+                this.energyCost = 15;
+                this.range = 3 + 1/7;
+                this.rate = 220;
+                this.damage = 18;
+                this.magicalDamage = 0;
+                this.negateArmour = 30;
+
+                //ability
+                this.ability = "knockbackI";
+            }
+        }
         else if (this.type == "selkieSkin")
         {
             //For All Items
@@ -5534,7 +5574,7 @@ function Item(type, x, y)
             this.identity = "Vardanian Pie Dough";
             this.weight = 0.25;
             this.size = 6;
-            this.description = "A dough made from wheat flower, bovine butter, and borsht sugar.";
+            this.description = "A dough made from wheat flour, bovine butter, and borsht sugar.";
             this.intForDes = 1;
             this.intDescription = "It is used to make pastries such as... pies.";
 
@@ -7232,8 +7272,52 @@ function Item(type, x, y)
             this.ability = "none";
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
-            this.buyValue = 16 - Math.floor(player.getCharisma() / 25);; // at max, buy for 14.
+            this.buyValue = 16 - Math.floor(player.getCharisma() / 25); // at max, buy for 14.
             this.sellValue = 10 + Math.floor(player.getCharisma() / 12.5); // at max, sell for 14.
+        }
+        else if (this.type == "deerPelt")
+        {
+            //For All Items
+            this.identity = "Deer Pelt";
+            this.weight = 2.5;
+            this.size = 15;
+            this.description = "The soft white spotted brown furred pelt of a deer.";
+            this.intForDes = 1;
+            this.intDescription = "Deer pelts are used to make Thengan apparel and other useful stuff like that.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //Utility Focused
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 15 - Math.floor(player.getCharisma() / 15); // at max, buy for 12.
+            this.sellValue = 9 + Math.floor(player.getCharisma() / 15); // at max, sell for 12.
+        }
+        else if (this.type == "deerAntler")
+        {
+            //For All Items
+            this.identity = "Deer Antler";
+            this.weight = 1;
+            this.size = 15;
+            this.description = "An antler from a deer.";
+            this.intForDes = 4;
+            this.intDescription = "Deer antlers can be used as either a trophy, a decoration, or in making certain apparel.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //Utility Focused
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3 - Math.floor(player.getCharisma() / 50); // at max, buy for 2.
+            this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
         }
         else if (this.type == "fermentedUtTentacle")
         {
@@ -8313,7 +8397,7 @@ function Item(type, x, y)
             this.identity = "Raw Frich Flesh";
             this.weight = 1;
             this.size = 12;
-            this.description = "The raw flesh from a Frich.";
+            this.description = "The raw flesh from a frich.";
             this.intForDes = 4;
             this.intDescription = "It is tough, slimy with curdling blood, and finished with an occasional gut worm here or there.";
 
@@ -8334,6 +8418,69 @@ function Item(type, x, y)
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "rawBadgerFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Badger Flesh";
+            this.weight = 0.44;
+            this.size = 4;
+            this.description = "The raw flesh of a badger.";
+            this.intForDes = 2;
+            this.intDescription = "It has flesh mites while raw; it is actually good meat when its cooked, it just is not very filling.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0.45; //satisfies hunger.
+            this.thirst = 0.12; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "fleshMites";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "badgerMeat")
+        {
+            //For All Items
+            this.identity = "Badger Meat";
+            this.weight = 0.4;
+            this.size = 4;
+            this.description = "The cooked meat of a badger.";
+            this.intForDes = 0;
+            this.intDescription = "Its not half bad... It tastes, well, not bad. So, that's good. Right?";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 2.25; //satisfies hunger.
+            this.thirst = 0.1; //quenches thirst.
+            this.warmth = 1.5; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.05; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 1;
+            this.ingredients = [["Raw Badger Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
             this.sellValue = 1; // at max, sell for 1.
         }
         else if (this.type == "rawVenison")
@@ -8706,6 +8853,147 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 0; // at max, sell for 0.
         }
+        else if (this.type == "stovolBeetleMandable")
+        {
+            //For All Items
+            this.identity = "Stovol Beetle Mandible";
+            this.weight = 2.6;
+            this.size = 16;
+            this.description = "The long dark Mandible of a stovol beetle.";
+            this.intForDes = 2;
+            this.intDescription = "The stovol beetle uses its mandibles not only to defend itself and to eat larger prey, but also to turn up soil to eat insects below.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "raggedGrizzlyPelt")
+        {
+            //For All Items
+            this.identity = "Ragged Grizzly Pelt";
+            this.weight = 3;
+            this.size = 15;
+            this.description = "A pelt that has been badly cut and shredded in parts.";
+            this.intForDes = 0;
+            this.intDescription = "It was like this before you took it off of the bear...";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "grizzlyBearPeltLarge")
+        {
+            //For All Items
+            this.identity = "Grizzly Bear Pelt";
+            this.weight = 3.8;
+            this.size = 15;
+            this.description = "The thick brown furred pelt of a grizzly bear.";
+            this.intForDes = 6;
+            this.intDescription = "Grizzly bear pelts can be crafted into light leather armour and can be used to make other apparel as well.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 32 - Math.floor(player.getCharisma() / 4.166666666666666); // at max, buy for 20.
+            this.sellValue = 16 + Math.floor(player.getCharisma() / 12.5); // at max, sell for 20.
+        }
+        else if (this.type == "grizzlyBearPeltSmall")
+        {
+            //For All Items
+            this.identity = "Grizzly Bear Pelt";
+            this.weight = 3.6;
+            this.size = 14;
+            this.description = "The thick brown furred pelt of a grizzly bear.";
+            this.intForDes = 6;
+            this.intDescription = "Grizzly bear pelts can be crafted into light leather armour and can be used to make other apparel as well.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 30 - Math.floor(player.getCharisma() / 4.5454545454545); // at max, buy for 19.
+            this.sellValue = 14 + Math.floor(player.getCharisma() / 10); // at max, sell for 19.
+        }
+        else if (this.type == "badgerPelt")
+        {
+            //For All Items
+            this.identity = "Badger Pelt";
+            this.weight = 0.8;
+            this.size = 16;
+            this.description = "The grey furred pelt of a badger.";
+            this.intForDes = 2;
+            this.intDescription = "This is used to make rugs and cheap apparel.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3 - Math.floor(player.getCharisma() / 25); // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "kagsHead")
+        {
+            //For All Items
+            this.identity = "Kag's Head";
+            this.weight = 10;
+            this.size = 16;
+            this.description = "The hulking head of a ferocious grizzly bear with a scar across its right eye.";
+            this.intForDes = 0;
+            this.intDescription = "In life, this bear once devoured an entire party of Balgur Mercenaries.";
+
+            //Define Utility
+            this.utility = "material";
+            this.questy = true;
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 21; // at max, buy for 21.
+            this.sellValue = 21; // at max, sell for 21.
+        }
+        else if (this.type == "wendigoHead")
+        {
+            //For All Items
+            this.identity = "Wendigo Head";
+            this.weight = 7.5;
+            this.size = 16;
+            this.description = "The severed head of a wendigo; a wendigo was once a human, but was cursed for consuming human flesh.";
+            this.intForDes = 0;
+            this.intDescription = "This trophy shows that you have bested a most vile and murderous Wendigo and lived to brag about it.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 45; // at max, buy for 45.
+            this.sellValue = 45; // at max, sell for 45.
+        }
         else if (this.type == "salaFlower")
         {
             //For All Items
@@ -8725,6 +9013,49 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "jolleFlower")
+        {
+            //For All Items
+            this.identity = "Jolle Flower";
+            this.weight = 0.02;
+            this.size = 4;
+            this.description = "A delicate blue wildflower native to Thengaria.";
+            this.intForDes = 0;
+            if (player.getIntelligence() >= 4)
+            {
+                this.intDescription = "It has a soft herbal scent; its smell can attract certain animals, it can also be used in herbal remedies.";
+            }
+            else
+            {
+                this.intDescription = "It has a soft herbal scent.";
+            }
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            if (shopkeeper != "none")
+            {
+                if (shopkeeper.ultra.faction != "Thengar" && shopkeeper.ultra.race != "Thengar")
+                {
+                    this.buyValue = 5 - Math.floor(player.getCharisma() / 25); // at max, buy for 3.
+                    this.sellValue = 2 + Math.floor(player.getCharisma() / 50); // at max, sell for 3.
+                }
+                else
+                {
+                    this.buyValue = 2; // at max, buy for 2.
+                    this.sellValue = 0; // at max, sell for 0.
+                }
+            }
+            else
+            {
+                this.buyValue = 2; // at max, buy for 2.
+                this.sellValue = 0; // at max, sell for 0.
+            }
         }
         else if (this.type == "heyolBerries")
         {
@@ -10749,8 +11080,17 @@ function Item(type, x, y)
 
                 //Utility Focused
                 this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
-                this.hunger = 1; //satisfies hunger.
-                this.thirst = 0.25; //quenches thirst.
+                if (player.wendigo == true)
+                {
+                    this.hunger = 100; //satisfies hunger.
+                    this.thirst = 40; //quenches thirst.
+                }
+                else
+                {
+                    this.hunger = 1; //satisfies hunger.
+                    this.thirst = 0.25; //quenches thirst.
+                }
+
                 this.warmth = 0; //warms player.
                 this.heal = 0; //heals health.
                 this.generation = 0.1; //recoops lost energy.
@@ -10826,8 +11166,16 @@ function Item(type, x, y)
 
                 //Utility Focused
                 this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
-                this.hunger = 9; //satisfies hunger.
-                this.thirst = 0.2; //quenches thirst.
+                if (player.wendigo == true)
+                {
+                    this.hunger = 60; //satisfies hunger.
+                    this.thirst = 20; //quenches thirst.
+                }
+                else
+                {
+                    this.hunger = 9; //satisfies hunger.
+                    this.thirst = 0.2; //quenches thirst.
+                }
                 this.warmth = 4; //warms player.
                 this.heal = 0; //heals health.
                 this.generation = 0.2; //recoops lost energy.
@@ -44230,6 +44578,86 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "deerPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wendi, 64, 788, 51, 25, X - this.X + (1/2 * CCC.width) - (1/2 * 51 * 1.1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 25 * 1.1), 51 * 1.1, 25 * 1.1);
+        }
+        else if (this.type == "deerAntler")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wendi, 57, 831, 22, 25, X - this.X + (1/2 * CCC.width) - (1/2 * 51 * 1.1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 25 * 1.1), 51 * 1.1, 25 * 1.1);
+        }
+        else if (this.type == "badgerPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wendi, 5, 829, 28, 27, X - this.X + (1/2 * CCC.width) - (1/2 * 28 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 27 * 1), 28 * 1, 27 * 1);
+        }
+        else if (this.type == "rawBadgerFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wendi, 38, 835, 15, 13, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 13 * 1), 15 * 1, 13 * 1);
+        }
+        else if (this.type == "badgerMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wendi, 38, 849, 15, 13, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 13 * 1), 15 * 1, 13 * 1);
+        }
+        else if (this.type == "stovolBeetleMandable")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wendi, 33, 1177, 43, 20, X - this.X + (1/2 * CCC.width) - (1/2 * 43 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 20 * 1), 43 * 1, 20 * 1);
+        }
+        else if (this.type == "sceptreOfRadiance")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wendi, 795, 1077, 37, 56, X - this.X + (1/2 * CCC.width) - (1/2 * 37 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 56 * 1), 37 * 1, 56 * 1);
+        }
+        else if (this.type == "cultistScythe")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wendi, 789, 1023, 37, 56, X - this.X + (1/2 * CCC.width) - (1/2 * 37 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 56 * 1), 37 * 1, 56 * 1);
+        }
+        else if (this.type == "longBone")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wendi, 771, 969, 37, 56, X - this.X + (1/2 * CCC.width) - (1/2 * 37 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 56 * 1), 37 * 1, 56 * 1);
+        }
+        else if (this.type == "pitchfork")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wendi, 786, 886, 41, 72, X - this.X + (1/2 * CCC.width) - (1/2 * 41 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 72 * 1), 41 * 1, 72 * 1);
+        }
+        else if (this.type == "jolleFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wendi, 347, 1088, 30, 26, X - this.X + (1/2 * CCC.width) - (1/2 * 30 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 26 * 1), 30 * 1, 26 * 1);
+        }
+        else if (this.type == "kagsHead")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wendi, 72, 986, 31, 29, X - this.X + (1/2 * CCC.width) - (1/2 * 31 * 1.95), Y - this.Y + (1/2 * CCC.height) - (1/2 * 29 * 1.95), 31 * 1.95, 29 * 1.95);
+        }
+        else if (this.type == "raggedGrizzlyPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wendi, 138, 912, 55, 37, X - this.X + (1/2 * CCC.width) - (1/2 * 55 * 1.95), Y - this.Y + (1/2 * CCC.height) - (1/2 * 37 * 1.95), 55 * 1.95, 37 * 1.95);
+        }
+        else if (this.type == "grizzlyBearPeltLarge")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wendi, 137, 872, 56, 37, X - this.X + (1/2 * CCC.width) - (1/2 * 56 * 1.85), Y - this.Y + (1/2 * CCC.height) - (1/2 * 37 * 1.85), 56 * 1.85, 37 * 1.85);
+        }
+        else if (this.type == "grizzlyBearPeltSmall")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wendi, 137, 872, 56, 37, X - this.X + (1/2 * CCC.width) - (1/2 * 56 * 1.75), Y - this.Y + (1/2 * CCC.height) - (1/2 * 37 * 1.75), 56 * 1.75, 37 * 1.75);
+        }
+        else if (this.type == "wendigoHead")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wendi, 784, 2075, 54, 75, X - this.X + (1/2 * CCC.width) - (1/2 * 54 * 1.1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 75 * 1.1), 54 * 1.1, 75 * 1.1);
+        }
         else if (this.type == "foxMeat")
         {
             XXX.beginPath();
@@ -50011,6 +50439,86 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
+        else if (this.type == "deerPelt")
+        {
+            LXX.beginPath();
+            LXX.drawImage(wendi, 64, 788, 51, 25, this.invX - (1/2 * 51 * 0.9), this.invY - (1/2 * 25 * 0.9), 51 * 0.9, 25 * 0.9);
+        }
+        else if (this.type == "deerAntler")
+        {
+            LXX.beginPath();
+            LXX.drawImage(wendi, 57, 831, 22, 25, this.invX - (1/2 * 51 * 1), this.invY - (1/2 * 25 * 1), 51 * 1, 25 * 1);
+        }
+        else if (this.type == "badgerPelt")
+        {
+            LXX.beginPath();
+            LXX.drawImage(wendi, 5, 829, 28, 27, this.invX - (1/2 * 28 * 1), this.invY - (1/2 * 27 * 1), 28 * 1, 27 * 1);
+        }
+        else if (this.type == "rawBadgerFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(wendi, 38, 835, 15, 13, this.invX - (1/2 * 15 * 1.2), this.invY - (1/2 * 13 * 1.2), 15 * 1.2, 13 * 1.2);
+        }
+        else if (this.type == "badgerMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(wendi, 38, 849, 15, 13, this.invX - (1/2 * 15 * 1.2), this.invY - (1/2 * 13 * 1.2), 15 * 1.2, 13 * 1.2);
+        }
+        else if (this.type == "stovolBeetleMandable")
+        {
+            LXX.beginPath();
+            LXX.drawImage(wendi, 33, 1177, 43, 20, this.invX - (1/2 * 43 * 0.87), this.invY - (1/2 * 20 * 0.87), 43 * 0.87, 20 * 0.87);
+        }
+        else if (this.type == "sceptreOfRadiance")
+        {
+            LXX.beginPath();
+            LXX.drawImage(wendi, 795, 1077, 37, 56, this.invX - (1/2 * 37 * 0.95), this.invY - (1/2 * 56 * 0.95), 37 * 0.95, 56 * 0.95);
+        }
+        else if (this.type == "cultistScythe")
+        {
+            LXX.beginPath();
+            LXX.drawImage(wendi, 789, 1023, 37, 56, this.invX - (1/2 * 37 * 0.9), this.invY - (1/2 * 56 * 0.9), 37 * 0.9, 56 * 0.9);
+        }
+        else if (this.type == "longBone")
+        {
+            LXX.beginPath();
+            LXX.drawImage(wendi, 771, 969, 37, 56, this.invX - (1/2 * 37 * 0.9), this.invY - (1/2 * 56 * 0.9), 37 * 0.9, 56 * 0.9);
+        }
+        else if (this.type == "pitchfork")
+        {
+            LXX.beginPath();
+            LXX.drawImage(wendi, 786, 886, 41, 72, this.invX - (1/2 * 41 * 1), this.invY - (1/2 * 72 * 1), 41 * 1, 72 * 1);
+        }
+        else if (this.type == "jolleFlower")
+        {
+            LXX.beginPath();
+            LXX.drawImage(wendi, 347, 1088, 30, 26, this.invX - (1/2 * 30 * 1.15), this.invY - (1/2 * 26 * 1.15), 30 * 1.15, 26 * 1.15);
+        }
+        else if (this.type == "kagsHead")
+        {
+            LXX.beginPath();
+            LXX.drawImage(wendi, 72, 986, 31, 29, this.invX - (1/2 * 31 * 1.4), this.invY - (1/2 * 29 * 1.4), 31 * 1.4, 29 * 1.4);
+        }
+        else if (this.type == "raggedGrizzlyPelt")
+        {
+            LXX.beginPath();
+            LXX.drawImage(wendi, 138, 912, 55, 37, this.invX - (1/2 * 55 * 1.15), this.invY - (1/2 * 37 * 1.15), 55 * 1.15, 37 * 1.15);
+        }
+        else if (this.type == "grizzlyBearPeltLarge")
+        {
+            LXX.beginPath();
+            LXX.drawImage(wendi, 137, 872, 56, 37, this.invX - (1/2 * 56 * 1.10), this.invY - (1/2 * 37 * 1.10), 56 * 1.10, 37 * 1.10);
+        }
+        else if (this.type == "grizzlyBearPeltSmall")
+        {
+            LXX.beginPath();
+            LXX.drawImage(wendi, 137, 872, 56, 37, this.invX - (1/2 * 56 * 1.05), this.invY - (1/2 * 37 * 1.05), 56 * 1.05, 37 * 1.05);
+        }
+        else if (this.type == "wendigoHead")
+        {
+            LXX.beginPath();
+            LXX.drawImage(wendi, 784, 2075, 54, 75, this.invX - (1/2 * 54 * 1), this.invY - (1/2 * 75 * 1), 54 * 1, 75 * 1);
+        }
         else if (this.type == "foxMeat")
         {
             LXX.beginPath();
@@ -55762,6 +56270,86 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "deerPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wendi, 64, 788, 51, 25, this.invX - (1/2 * 51 * 0.9), this.invY - (1/2 * 25 * 0.9), 51 * 0.9, 25 * 0.9);
+        }
+        else if (this.type == "deerAntler")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wendi, 57, 831, 22, 25, this.invX - (1/2 * 51 * 1), this.invY - (1/2 * 25 * 1), 51 * 1, 25 * 1);
+        }
+        else if (this.type == "badgerPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wendi, 5, 829, 28, 27, this.invX - (1/2 * 28 * 1), this.invY - (1/2 * 27 * 1), 28 * 1, 27 * 1);
+        }
+        else if (this.type == "rawBadgerFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wendi, 38, 835, 15, 13, this.invX - (1/2 * 15 * 1.2), this.invY - (1/2 * 13 * 1.2), 15 * 1.2, 13 * 1.2);
+        }
+        else if (this.type == "badgerMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wendi, 38, 849, 15, 13, this.invX - (1/2 * 15 * 1.2), this.invY - (1/2 * 13 * 1.2), 15 * 1.2, 13 * 1.2);
+        }
+        else if (this.type == "stovolBeetleMandable")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wendi, 33, 1177, 43, 20, this.invX - (1/2 * 43 * 0.87), this.invY - (1/2 * 20 * 0.87), 43 * 0.87, 20 * 0.87);
+        }
+        else if (this.type == "sceptreOfRadiance")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wendi, 795, 1077, 37, 56, this.invX - (1/2 * 37 * 0.95), this.invY - (1/2 * 56 * 0.95), 37 * 0.95, 56 * 0.95);
+        }
+        else if (this.type == "cultistScythe")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wendi, 789, 1023, 37, 56, this.invX - (1/2 * 37 * 0.9), this.invY - (1/2 * 56 * 0.9), 37 * 0.9, 56 * 0.9);
+        }
+        else if (this.type == "longBone")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wendi, 771, 969, 37, 56, this.invX - (1/2 * 37 * 0.9), this.invY - (1/2 * 56 * 0.9), 37 * 0.9, 56 * 0.9);
+        }
+        else if (this.type == "pitchfork")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wendi, 786, 886, 41, 72, this.invX - (1/2 * 41 * 1), this.invY - (1/2 * 72 * 1), 41 * 1, 72 * 1);
+        }
+        else if (this.type == "jolleFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wendi, 347, 1088, 30, 26, this.invX - (1/2 * 30 * 1.15), this.invY - (1/2 * 26 * 1.15), 30 * 1.15, 26 * 1.15);
+        }
+        else if (this.type == "kagsHead")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wendi, 72, 986, 31, 29, this.invX - (1/2 * 31 * 1.4), this.invY - (1/2 * 29 * 1.4), 31 * 1.4, 29 * 1.4);
+        }
+        else if (this.type == "raggedGrizzlyPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wendi, 138, 912, 55, 37, this.invX - (1/2 * 55 * 1.15), this.invY - (1/2 * 37 * 1.15), 55 * 1.15, 37 * 1.15);
+        }
+        else if (this.type == "grizzlyBearPeltLarge")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wendi, 137, 872, 56, 37, this.invX - (1/2 * 56 * 1.10), this.invY - (1/2 * 37 * 1.10), 56 * 1.10, 37 * 1.10);
+        }
+        else if (this.type == "grizzlyBearPeltSmall")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wendi, 137, 872, 56, 37, this.invX - (1/2 * 56 * 1.05), this.invY - (1/2 * 37 * 1.05), 56 * 1.05, 37 * 1.05);
+        }
+        else if (this.type == "wendigoHead")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wendi, 784, 2075, 54, 75, this.invX - (1/2 * 54 * 1), this.invY - (1/2 * 75 * 1), 54 * 1, 75 * 1);
         }
         else if (this.type == "foxMeat")
         {

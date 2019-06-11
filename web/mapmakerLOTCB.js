@@ -210,6 +210,14 @@ function buildMaster()
                 //scenicList.push(new Scenery("bloatGas", 4500, 2400, 0, false));
                 //scenicList.push(new Scenery("thenganBuilding9", 3900, 2400, 0, 1));
                 //scenicList.push(new Scenery("thenganBridges", 3900, 2400, 1/2 * Math.PI, 1, 0));
+                //scenicList.push(new Scenery("deadDeer", 3200, 2200, 0.25, true, false));
+                //ArtificialIntelligenceAccess.push(new Unit(4100, 2500, "Deer", true, "Iclom"));
+                //ArtificialIntelligenceAccess.push(new Unit(3900, 2600, "Badger", false, "Malta"));
+                //scenicList.push(new Scenery("jollePlant", 3400, 2400, 0.2, true));
+                //ArtificialIntelligenceAccess.push(new Unit(4200, 2500, "GrizzlyBear", "kag", "Kag the scarred devourer"));
+                //ArtificialIntelligenceAccess.push(new Unit(4200, 2500, "GrizzlyBear", true, "Kaaguf"));
+
+                //scenicList.push(new Scenery("wendigoCircle", 3900, 2400, 0.38, true));
 
                 //scenicList.push(new Scenery("mrbAssets", 4900, 2400, 0, 9, 2));
 
@@ -16248,16 +16256,19 @@ function buildMaster()
 
                 if (player.gamemode == "protagonist" || player.matureContentFilter == true)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(-41501, 998, "Person", false, "Buddy", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["northernClothing", 0], weapon: ["none", [0.35, 0.6], 0, 1, 0.5 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[-41562, 1135]]}));
-                    ArtificialIntelligenceAccess.push(new Unit(-41562, 1139, "Person", false, "Buddy", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.15, 0.3], 0, 0, 0.5 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: true, route:[[-41562, 1135]]}));
-
                     if (player.gamemode == "protagonist")
                     {
                         scenicList.push(new Scenery("sign", -41290, 1187, Math.PI, 3, "The Super Buddy Fun House")); //owned by estol gang
+                        ArtificialIntelligenceAccess.push(new Unit(-41501, 998, "Person", false, "Buddy", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["northernClothing", 0], weapon: ["none", [0.35, 0.6], 0, 1, 0.5 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[-41562, 1135]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-41562, 1139, "Person", false, "Buddy", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.15, 0.3], 0, 0, 0.5 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: true, route:[[-41562, 1135]]}));
+
                     }
                     else
                     {
                         scenicList.push(new Scenery("sign", -41290, 1187, Math.PI, 3, "The Riverfront Inn")); //owned by estol gang
+                        ArtificialIntelligenceAccess.push(new Unit(-41501, 998, "Person", false, "Traveler", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["northernClothing", 0], weapon: ["none", [0.35, 0.6], 0, 1, 0.5 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[-41562, 1135]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-41562, 1139, "Person", false, "Nirwaden Villager", {race: "Nirwaden", faction: "Nirwaden", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.15, 0.3], 0, 0, 0.5 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: true, route:[[-41562, 1135]]}));
+
                     }
                 }
                 else

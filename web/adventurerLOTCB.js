@@ -590,6 +590,8 @@ function Adventurer()
     this.timeSinceHumanFleshConsumed = 0;
     this.cannibalism = false;
     this.cannibal = false;
+    this.wendigo = false;
+    this.wendigoChange = false;
 
         //faction variables
     this.factionToggle = false;
@@ -2698,6 +2700,10 @@ function Adventurer()
                 {
                     lights.push({X:X, Y: Y, size: 900, extraStops: true, GRD: 0, Alpha: 0.3, showMe: true});
                 }
+                else if (this.form == "wendigo")
+                {
+                    lights.push({X:X, Y: Y, size: 700, extraStops: true, GRD: 0, Alpha: 0.15, showMe: true});
+                }
                 else if (this.form == "vampire")
                 {
                     lights.push({X:X, Y: Y, size: 1000, extraStops: true, GRD: 0, Alpha: 0.2, showMe: true});
@@ -4575,7 +4581,7 @@ function Adventurer()
             }
         }
         //Vamprism
-        if (this.vamprism && this.venandi < 400)
+        if (this.vamprism && this.venandi < 400 && this.wendigo == false)
         {
             this.venandi = 0;
             this.decay = 0;
@@ -4672,7 +4678,7 @@ function Adventurer()
         }
 
         //Lycanthropy
-        if (this.lycanthropy && this.venandi < 200)
+        if (this.lycanthropy && this.venandi < 200 && this.wendigo == false)
         {
             this.venandi = 0;
             if (timeOfDay == "Night")
@@ -4728,6 +4734,67 @@ function Adventurer()
                     this.energy = -5;
                     player.energilTime = 180;
                     player.fatigueV = true;
+                }
+            }
+        }
+
+        //Wendigo (a cannibal cursed by a leshen)
+        if (this.wendigo && this.venandi < 400)
+        {
+            this.venandi = 0;
+            if (this.hunger <= 10 && this.form == false || zKey == true && shiftKey && this.wendigoChange == "waiting")
+            {
+                if (this.wendigoChange != "becoming" && this.wendigoChange != "remaining" && this.wendigoChange != "unbecoming")
+                {
+                    this.stage = 0;
+                    this.wendigoChange = "becoming";
+                }
+                this.form = "wendigo";
+            }
+
+            //where all that wendigo jazz occurs
+            if (this.form == "wendigo")
+            {
+                if (player.form == "wendigo" && spaceKey == false && this.attacking == false && this.health < this.healthMAX && this.hunger >= 2)
+                {
+                    this.health += 11 * (TTD / (45000 - 420 * Math.min(58.333, this.getEndurance()) * 2));
+                }
+
+                if (zKey && shiftKey && this.hunger > 10 && this.wendigoChange != "becoming")
+                {
+                    zKey = false;
+                    this.stage = 0;
+                    this.wendigoChange = "unbecoming";
+                }
+
+                this.mageShield = 0;
+                for (var ll = 0; ll < ArtificialIntelligenceAccess.length; ll++)
+                {
+                    if (ArtificialIntelligenceAccess[ll].team != "player" && ArtificialIntelligenceAccess[ll].type == "Soldier" || ArtificialIntelligenceAccess[ll].team != "player" && ArtificialIntelligenceAccess[ll].type == "Person")
+                    {
+                        ArtificialIntelligenceAccess[ll].disturbed = true;
+                    }
+                }
+
+                //unequip weapon and armour then...
+                //set outfit to wendigo
+                for (var i = 0; i < Inventory.length; i++)
+                {
+                    if (Inventory[i][0].utility == "weapon" || Inventory[i][0].utility == "ranged" || Inventory[i][0].utility == "worn")
+                    {
+                        Inventory[i][0].equipped = false;
+                    }
+                }
+                clearEquipped();
+                this.weaponEquipped = "wendigo";
+                this.subtlety = false;
+            }
+            else
+            {
+                if (this.wendigoChange == "unbecoming") //lo que nomás pasa una vez al cambiar en humano
+                {
+                    this.wendigoChange = "waiting";
+                    this.health = this.healthMAX * this.formHealthPercent;
                 }
             }
         }
@@ -4906,7 +4973,11 @@ function Adventurer()
         {
             return 35;
         }
-        if (this.form == "vampire") //Increases Both health and energy Quickly, but health much more quickly than energy.
+        else if (this.form == "wendigo") //Increases Both health and energy Quickly, but health much more quickly than energy.
+        {
+            return 40;
+        }
+        else if (this.form == "vampire") //Increases Both health and energy Quickly, but health much more quickly than energy.
         {
             if (this.hunger > 10)
             {
@@ -4946,6 +5017,10 @@ function Adventurer()
         {
             return 100;
         }
+        else if (this.form == "wendigo")
+        {
+            return 90;
+        }
         else if (this.form == "selkie")
         {
             return 0;
@@ -4969,6 +5044,10 @@ function Adventurer()
         else if (this.form == "werewolf")
         {
             return 75;
+        }
+        else if (this.form == "wendigo")
+        {
+            return 23;
         }
         else if (this.form == "vampire")
         {
@@ -5005,6 +5084,10 @@ function Adventurer()
             //If developerMode "incredibleHulk" is on the players constitution will be five times its normal maximum.
             return Math.max(0, Math.min(86, (this.dexterity + this.AdDexterity + this.dexBoost + this.swollenDEX) / 12));
         }
+        else if (this.form == "wendigo")
+        {
+            return 225;
+        }
         else if (this.form == "werewolf")
         {
             return 200;
@@ -5033,6 +5116,10 @@ function Adventurer()
         {
             return 99;
         }
+        else if (this.form == "wendigo")
+        {
+            return 60;
+        }
         else if (this.form == "selkie")
         {
             return 1;
@@ -5059,7 +5146,7 @@ function Adventurer()
 
     this.getSurvivalism = function()
     {
-        if (this.form == "werewolf" || this.form == "vampire" || this.form == "selkie" || this.form == "venandi")
+        if (this.form == "werewolf" || this.form == "vampire" || this.form == "selkie" || this.form == "venandi" || this.form == "wendigo")
         {
             return 0;
         }
@@ -5071,7 +5158,7 @@ function Adventurer()
 
     this.getIntelligence = function()
     {
-        if (this.form == "werewolf" || this.form == "venandi")
+        if (this.form == "werewolf" || this.form == "venandi" || this.form == "wendigo")
         {
             return 0;
         }
@@ -5083,7 +5170,7 @@ function Adventurer()
 
     this.getCharisma = function()
     {
-        if (this.form == "werewolf" || this.form == "venandi")
+        if (this.form == "werewolf" || this.form == "venandi" || this.form == "wendigo")
         {
             return 0;
         }
@@ -5095,7 +5182,7 @@ function Adventurer()
 
     this.getWillpower = function()
     {
-        if (this.form == "werewolf" || this.form == "selkie" || this.form == "venandi")
+        if (this.form == "werewolf" || this.form == "selkie" || this.form == "venandi" || this.form == "wendigo")
         {
             return 0;
         }
@@ -5112,7 +5199,7 @@ function Adventurer()
 
     this.getMemory = function()
     {
-        if (this.form == "werewolf" || this.form == "venandi")
+        if (this.form == "werewolf" || this.form == "venandi" || this.form == "wendigo")
         {
             return 0;
         }
@@ -5133,7 +5220,7 @@ function Adventurer()
 
     this.getKnowledge = function()
     {
-        if (this.form == "werewolf" || this.form == "venandi")
+        if (this.form == "werewolf" || this.form == "venandi" || this.form == "wendigo")
         {
             return 0;
         }
@@ -9336,6 +9423,7 @@ function Adventurer()
         //ATTACK INITIATOR [this triggers the attack when the player presses the space key]
         if (spaceKey == true && this.getCanAttack())
         {
+            this.weapon.setItemID();
             if (this.weaponIsRanged == false && new Date().getTime() - this.attackCooldown >= 10 * this.weapon.rate && this.spell == "none")
             {
                 if (this.form != "vampire" || this.vampDead == false)
@@ -9592,7 +9680,8 @@ function Adventurer()
         //POWER ATTACK INITIATOR
         if (eKey == true && this.getCanAttack())
         {
-            if (player.form == "werewolf" || player.form == "vampire") //werewolves use power attack as one of their normal attacks
+            this.weapon.setItemID();
+            if (player.form == "werewolf" || player.form == "vampire" || player.form == "wendigo") //werewolves use power attack as one of their normal attacks
             {
                 if (new Date().getTime() - this.attackCooldown >= 15 * this.weapon.rate)
                 {
@@ -9718,7 +9807,7 @@ function Adventurer()
                     {
                         if (bothwaysBool == false) // if the animation is one way it ends here...
                         {
-                            if (this.weapon.subUtility != "thrown" && this.weaponEquipped != "flail" && this.weaponEquipped != "vardanianHalberd" && this.weaponEquipped != "aldrekiiClaws" && this.weaponEquipped != "theUndyingEdge" && this.weaponEquipped != "cero" && this.weaponEquipped != "werewolf" && this.weaponEquipped != "vampire" && this.weaponEquipped != "cephrianFlail")
+                            if (this.weapon.subUtility != "thrown" && this.weaponEquipped != "flail" && this.weaponEquipped != "vardanianHalberd" && this.weaponEquipped != "aldrekiiClaws" && this.weaponEquipped != "theUndyingEdge" && this.weaponEquipped != "cero" && this.weaponEquipped != "werewolf" && this.weaponEquipped != "vampire" && this.weaponEquipped != "wendigo" && this.weaponEquipped != "cephrianFlail")
                             {
                                 self.finalAttackStage = true;
                                 self.attackCooldown = new Date().getTime();
@@ -9730,7 +9819,7 @@ function Adventurer()
                         }
                         else if (bothwaysBool == true) //but if it is two directional it swings back to frame zero.
                         {
-                            if (this.weapon.subUtility != "thrown" && this.weaponEquipped != "flail" && this.weaponEquipped != "vardanianHalberd" && this.weaponEquipped != "aldrekiiClaws" && this.weaponEquipped != "theUndyingEdge" && this.weaponEquipped != "cero" && this.weaponEquipped != "werewolf" && this.weaponEquipped != "vampire" && this.weaponEquipped != "cephrianFlail")
+                            if (this.weapon.subUtility != "thrown" && this.weaponEquipped != "flail" && this.weaponEquipped != "vardanianHalberd" && this.weaponEquipped != "aldrekiiClaws" && this.weaponEquipped != "theUndyingEdge" && this.weaponEquipped != "cero" && this.weaponEquipped != "werewolf" && this.weaponEquipped != "vampire" && this.weaponEquipped != "wendigo" && this.weaponEquipped != "cephrianFlail")
                             {
                                 if (this.frameOrder == "positive")
                                 {
@@ -13915,7 +14004,7 @@ function Adventurer()
 
                     for (var ll = 0; ll < ArtificialIntelligenceAccess.length; ll++)
                     {
-                        if (ArtificialIntelligenceAccess[ll].healthMAX < 25 && ArtificialIntelligenceAccess[ll].undeath != true && ArtificialIntelligenceAccess[ll].team != "player" && ArtificialIntelligenceAccess[ll].team != "wolf")
+                        if (ArtificialIntelligenceAccess[ll].healthMAX < 25 && ArtificialIntelligenceAccess[ll].undeath != true && ArtificialIntelligenceAccess[ll].team != "player" && ArtificialIntelligenceAccess[ll].team != "wolf" && ArtificialIntelligenceAccess[ll].team != "undead")
                         {
                             ArtificialIntelligenceAccess[ll].scared = true;
                             ArtificialIntelligenceAccess[ll].pointAwayFromPlayer();
@@ -13991,7 +14080,7 @@ function Adventurer()
                             {
                                 if (deadAIList[ll].petrified != true && deadAIList[ll].undeath != true && deadAIList[ll].type != "werewolf" && deadAIList[ll].baseTeam != "wolf")
                                 {
-                                    if (deadAIList[ll].healthMAX < 100 || deadAIList[ll].type == "Person" || deadAIList[ll].type == "Soldier" || deadAIList[ll].type == "StoneGolem")
+                                    if (deadAIList[ll].healthMAX < 100 && deadAIList[ll].type != "StoneGolem" || deadAIList[ll].type == "Person" || deadAIList[ll].type == "Soldier")
                                     {
                                         if (new Date().getTime() - deadAIList[ll].timeSinceDead > 2000 || deadAIList[ll].healthMAX < 6)
                                         {
@@ -14329,6 +14418,1043 @@ function Adventurer()
                         XXX.globalAlpha = 0.4;
                     }
                     XXX.drawImage(folw, 256, 15, 121, 106, -1/2 * 121 * szx, -1/2 * 106 * szx, 121 * szx, 106 * szx);
+                    XXX.restore();
+                }
+            }
+        }
+        //WENDIGO (form)
+        if (this.weaponEquipped == "wendigo")
+        {
+            this.will = 0;
+            var szx = 1.1;
+
+            //console.log("stage: " + this.stage);
+            //console.log("wc: " + this.wolfChange);
+            if (this.wendigoChange == "becoming")
+            {
+                player.stunnedXV = true;
+                player.stunnedTime = 1;
+                //this.animator(10, 0.10, false);
+                this.stage += 0.2;
+
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY); //Translate resets the coordinates to the arguements mentioned (x, y).
+                XXX.rotate(this.rotation);
+                XXX.beginPath();
+                if (this.water && !this.land)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.lineWidth = 1;
+                XXX.arc(0, 0, this.mySize, 0, 2 * Math.PI);
+                XXX.strokeStyle = "black";
+                XXX.fillStyle = this.race;
+                XXX.stroke();
+                XXX.fill();
+                XXX.restore();
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.water && !this.land)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(polyPNG, 631, 55, 92, 30, -22, -17, 46, 22);
+                XXX.restore();
+
+                if (Math.floor(this.stage) <= 1) //p
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(wendi, 646, 1660, 157, 153, -(1/2 * 157 * szx), -(1/2 * 153 * szx), 157 * szx, 153 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 2) //o
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(wendi, 673, 1816, 108, 104, -(1/2 * 108 * szx), -(1/2 * 104 * szx), 108 * szx, 104 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 3) //n
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(wendi, 559, 1824, 108, 104, -(1/2 * 108 * szx), -(1/2 * 104 * szx), 108 * szx, 104 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 4) //m
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(wendi, 457, 1827, 108, 104, -(1/2 * 108 * szx), -(1/2 * 104 * szx), 108 * szx, 104 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 5) //l
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(wendi, 321, 1826, 108, 104, -(1/2 * 108 * szx), -(1/2 * 104 * szx), 108 * szx, 104 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 6) //k
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(wendi, 216, 1825, 108, 104, -(1/2 * 108 * szx), -(1/2 * 104 * szx), 108 * szx, 104 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 7) //j
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(wendi, 115, 1826, 108, 104, -(1/2 * 108 * szx), -(1/2 * 104 * szx), 108 * szx, 104 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 8) //i
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(wendi, 0, 1827, 108, 104, -(1/2 * 108 * szx), -(1/2 * 104 * szx), 108 * szx, 104 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 9) //h
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(wendi, 1, 1925, 108, 104, -(1/2 * 108 * szx), -(1/2 * 104 * szx), 108 * szx, 104 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 10) //g
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(wendi, 109, 1931, 108, 104, -(1/2 * 108 * szx), -(1/2 * 104 * szx), 108 * szx, 104 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 11) //f
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(wendi, 223, 1938, 108, 104, -(1/2 * 108 * szx), -(1/2 * 104 * szx), 108 * szx, 104 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 12) //e
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(wendi, 327, 1940, 108, 104, -(1/2 * 108 * szx), -(1/2 * 104 * szx), 108 * szx, 104 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 13) //d
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(wendi, 433, 1943, 108, 104, -(1/2 * 108 * szx), -(1/2 * 104 * szx), 108 * szx, 104 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 14) //c
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(wendi, 535, 1946, 108, 104, -(1/2 * 108 * szx), -(1/2 * 104 * szx), 108 * szx, 104 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 15) //b
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(wendi, 538, 2040, 108, 104, -(1/2 * 108 * szx), -(1/2 * 104 * szx), 108 * szx, 104 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 17) //a
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(wendi, 438, 2037, 108, 104, -(1/2 * 108 * szx), -(1/2 * 104 * szx), 108 * szx, 104 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 18)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(wendi, 304, 2037, 108, 104, -(1/2 * 108 * szx), -(1/2 * 104 * szx), 108 * szx, 104 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) >= 19 || Math.floor(this.stage) < 19)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(wendi, 168, 2037, 122, 97, -(1/2 * 122 * szx), -(1/2 * 97 * szx), 122 * szx, 97 * szx);
+                    XXX.restore();
+                    this.wendigoChange = "remaining";
+                    this.stage = 0;
+                    this.health = this.healthMAX * this.healthPercent;
+                    this.energy = 1/6 * this.energyMAX;
+                    this.respiration = this.respirationMAX;
+                }
+            }
+            else if (this.wendigoChange == "unbecoming" && this.deerTear != true)
+            {
+                player.stunnedXV = true;
+                player.stunnedTime = 1;
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY); //Translate resets the coordinates to the arguements mentioned (x, y).
+                XXX.rotate(this.rotation);
+                XXX.beginPath();
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.2;
+                }
+                XXX.lineWidth = 1;
+                XXX.arc(0, 0, this.mySize, 0, 2 * Math.PI);
+                XXX.strokeStyle = "black";
+                XXX.fillStyle = this.race;
+                XXX.stroke();
+                XXX.fill();
+                XXX.restore();
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.water && !this.land)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(polyPNG, 631, 55, 92, 30, -22, -17, 46, 22);
+                XXX.restore();
+
+                this.animator(18, 0.05, true);
+
+                if (Math.floor(this.stage) <= 1) //a
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(wendi, 438, 2037, 108, 104, -(1/2 * 108 * szx), -(1/2 * 104 * szx), 108 * szx, 104 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 2) //b
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(wendi, 538, 2040, 108, 104, -(1/2 * 108 * szx), -(1/2 * 104 * szx), 108 * szx, 104 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 3) //c
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(wendi, 535, 1946, 108, 104, -(1/2 * 108 * szx), -(1/2 * 104 * szx), 108 * szx, 104 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 4) //d
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(wendi, 433, 1943, 108, 104, -(1/2 * 108 * szx), -(1/2 * 104 * szx), 108 * szx, 104 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 5) //e
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(wendi, 327, 1940, 108, 104, -(1/2 * 108 * szx), -(1/2 * 104 * szx), 108 * szx, 104 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 6) //f
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(wendi, 223, 1938, 108, 104, -(1/2 * 108 * szx), -(1/2 * 104 * szx), 108 * szx, 104 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 7) //g
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(wendi, 109, 1931, 108, 104, -(1/2 * 108 * szx), -(1/2 * 104 * szx), 108 * szx, 104 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 8) //h
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(wendi, 1, 1925, 108, 104, -(1/2 * 108 * szx), -(1/2 * 104 * szx), 108 * szx, 104 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 9) //i
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(wendi, 0, 1827, 108, 104, -(1/2 * 108 * szx), -(1/2 * 104 * szx), 108 * szx, 104 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 10) //j
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(wendi, 115, 1826, 108, 104, -(1/2 * 108 * szx), -(1/2 * 104 * szx), 108 * szx, 104 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 11) //k
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(wendi, 216, 1825, 108, 104, -(1/2 * 108 * szx), -(1/2 * 104 * szx), 108 * szx, 104 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 12) //l
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(wendi, 321, 1826, 108, 104, -(1/2 * 108 * szx), -(1/2 * 104 * szx), 108 * szx, 104 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 13) //m
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(wendi, 457, 1827, 108, 104, -(1/2 * 108 * szx), -(1/2 * 104 * szx), 108 * szx, 104 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 14) //n
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(wendi, 559, 1824, 108, 104, -(1/2 * 108 * szx), -(1/2 * 104 * szx), 108 * szx, 104 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 15) //o
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(wendi, 673, 1816, 108, 104, -(1/2 * 108 * szx), -(1/2 * 104 * szx), 108 * szx, 104 * szx);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) >= 16 || Math.floor(this.stage) < 16)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(wendi, 646, 1660, 157, 153, -(1/2 * 157 * szx), -(1/2 * 153 * szx), 157 * szx, 153 * szx);
+                    XXX.restore();
+                    this.form = false;
+                    this.weaponEquipped = "none";
+                }
+            }
+            else
+            {
+                if (wKey && this.deerTear != true)
+                {
+                    if (shiftKey)
+                    {
+                        this.animator(4, 0.12, false); //movement
+
+                        for (var ll = 0; ll < ArtificialIntelligenceAccess.length; ll++)
+                        {
+                            if (ArtificialIntelligenceAccess[ll].haste == false && ArtificialIntelligenceAccess[ll].healthMAX < 52 && ArtificialIntelligenceAccess[ll].team != "player")
+                            {
+                                if (ArtificialIntelligenceAccess[ll].DTP() <= 70)
+                                {
+                                    ArtificialIntelligenceAccess[ll].stunTime = new Date().getTime();
+                                    ArtificialIntelligenceAccess[ll].stunTimer = 2;
+                                    ArtificialIntelligenceAccess[ll].stunII = true;
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        this.animator(4, 0.10, false); //movement
+
+                        for (var ll = 0; ll < ArtificialIntelligenceAccess.length; ll++)
+                        {
+                            if (ArtificialIntelligenceAccess[ll].haste == false && ArtificialIntelligenceAccess[ll].healthMAX < 37 && ArtificialIntelligenceAccess[ll].team != "player")
+                            {
+                                if (ArtificialIntelligenceAccess[ll].DTP() <= 60)
+                                {
+                                    ArtificialIntelligenceAccess[ll].stunTime = new Date().getTime();
+                                    ArtificialIntelligenceAccess[ll].stunTimer = 2;
+                                    ArtificialIntelligenceAccess[ll].stunI = true;
+                                }
+                            }
+                        }
+                    }
+                    //ANIMATION
+                    if (Math.floor(this.stage) <= 0)
+                    {
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation - 1/2 * Math.PI);
+                        if (this.water && !this.land)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
+                        XXX.drawImage(wendi, 168, 2037, 122, 97, -1/2 * 122 * szx, -1/2 * 97 * szx, 122 * szx, 97 * szx);
+                        XXX.restore();
+                    }
+                    else if (Math.floor(this.stage) <= 1)
+                    {
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation - 1/2 * Math.PI);
+                        if (this.water && !this.land)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
+                        XXX.drawImage(wendi, 198, 2159, 141, 97, -1/2 * 141 * szx, -1/2 * 97 * szx, 141 * szx, 97 * szx);
+                        XXX.restore();
+                    }
+                    else if (Math.floor(this.stage) <= 2)
+                    {
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation - 1/2 * Math.PI);
+                        if (this.water && !this.land)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
+                        XXX.drawImage(wendi, 168, 2037, 122, 97, -1/2 * 122 * szx, -1/2 * 97 * szx, 122 * szx, 97 * szx);
+                        XXX.restore();
+                    }
+                    else if (Math.floor(this.stage) >= 3)
+                    {
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation - 1/2 * Math.PI);
+                        if (this.water && !this.land)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
+                        XXX.drawImage(wendi, 3, 2157, 160, 97, -1/2 * 160 * szx, -1/2 * 97 * szx, 160 * szx, 97 * szx);
+                        XXX.restore();
+                    }
+                }
+                else if (qKey || this.deerTear == true) //tear deer in half
+                {
+                    //this.deerTear = true;
+                    if (this.deerTear != true)
+                    {
+                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                        {
+                            if (ArtificialIntelligenceAccess[i].type == "Deer" && ArtificialIntelligenceAccess[i].alpha != "baby" && ArtificialIntelligenceAccess[i].DTP() < 90)
+                            {
+                                ArtificialIntelligenceAccess.splice(i, 1);
+                                this.deerTear = true;
+                                this.deerAlph = ArtificialIntelligenceAccess[i].alpha;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (this.deerTear == true)
+                    {
+                        this.animator(9, 0.05, false);
+
+                        //ANIMATION
+                        if (Math.floor(this.stage) <= 2)
+                        {
+                            XXX.save();
+                            XXX.translate(this.myScreenX, this.myScreenY);
+                            XXX.rotate(this.rotation - 1/2 * Math.PI);
+                            if (this.water && !this.land)
+                            {
+                                XXX.globalAlpha = 0.4;
+                            }
+                            XXX.drawImage(wendi, 52, 2594, 236, 135, -1/2 * 236 * szx, -1/2 * 135 * szx, 236 * szx, 135 * szx);
+                            XXX.restore();
+                        }
+                        else if (Math.floor(this.stage) <= 3)
+                        {
+                            XXX.save();
+                            XXX.translate(this.myScreenX, this.myScreenY);
+                            XXX.rotate(this.rotation - 1/2 * Math.PI);
+                            if (this.water && !this.land)
+                            {
+                                XXX.globalAlpha = 0.4;
+                            }
+                            XXX.drawImage(wendi, 288, 2600, 236, 135, -1/2 * 236 * szx, -1/2 * 135 * szx, 236 * szx, 135 * szx);
+                            XXX.restore();
+                        }
+                        else if (Math.floor(this.stage) <= 4)
+                        {
+                            XXX.save();
+                            XXX.translate(this.myScreenX, this.myScreenY);
+                            XXX.rotate(this.rotation - 1/2 * Math.PI);
+                            if (this.water && !this.land)
+                            {
+                                XXX.globalAlpha = 0.4;
+                            }
+                            XXX.drawImage(wendi, 507, 2601, 236, 135, -1/2 * 236 * szx, -1/2 * 135 * szx, 236 * szx, 135 * szx);
+                            XXX.restore();
+                        }
+                        else if (Math.floor(this.stage) <= 5)
+                        {
+                            XXX.save();
+                            XXX.translate(this.myScreenX, this.myScreenY);
+                            XXX.rotate(this.rotation - 1/2 * Math.PI);
+                            if (this.water && !this.land)
+                            {
+                                XXX.globalAlpha = 0.4;
+                            }
+                            XXX.drawImage(wendi, 7, 2779, 220, 186, -1/2 * 220 * szx, -1/2 * 186 * szx, 220 * szx, 186 * szx);
+                            XXX.restore();
+                        }
+                        else if (Math.floor(this.stage) <= 6)
+                        {
+                            XXX.save();
+                            XXX.translate(this.myScreenX, this.myScreenY);
+                            XXX.rotate(this.rotation - 1/2 * Math.PI);
+                            if (this.water && !this.land)
+                            {
+                                XXX.globalAlpha = 0.4;
+                            }
+                            XXX.drawImage(wendi, 244, 2782, 220, 186, -1/2 * 220 * szx, -1/2 * 186 * szx, 220 * szx, 186 * szx);
+                            XXX.restore();
+                        }
+                        else if (Math.floor(this.stage) <= 7)
+                        {
+                            XXX.save();
+                            XXX.translate(this.myScreenX, this.myScreenY);
+                            XXX.rotate(this.rotation - 1/2 * Math.PI);
+                            if (this.water && !this.land)
+                            {
+                                XXX.globalAlpha = 0.4;
+                            }
+                            XXX.drawImage(wendi, 431, 2779, 205, 186, -1/2 * 205 * szx, -1/2 * 186 * szx, 205 * szx, 186 * szx);
+                            XXX.restore();
+                        }
+                        else if (Math.floor(this.stage) >= 8)
+                        {
+                            XXX.save();
+                            XXX.translate(this.myScreenX, this.myScreenY);
+                            XXX.rotate(this.rotation - 1/2 * Math.PI);
+                            if (this.water && !this.land)
+                            {
+                                XXX.globalAlpha = 0.4;
+                            }
+                            XXX.drawImage(wendi, 431, 2779, 205, 186, -1/2 * 205 * szx, -1/2 * 186 * szx, 205 * szx, 186 * szx);
+                            XXX.restore();
+                            this.stage = 0;
+                            if (this.deerAlph == true)
+                            {
+                                scenicList.push(new Scenery("deadDeer", X, Y,(this.rotation - 1/2 * Math.PI), 1.2, false));
+                            }
+                            else
+                            {
+                                scenicList.push(new Scenery("deadDeer", X, Y,(this.rotation - 1/2 * Math.PI), true, false));
+                            }
+                            if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                            {
+                                player.magicalExperience += 9;
+                            }
+                            else
+                            {
+                                player.experience += 25;
+                            }
+                            this.deerTear = false;
+                        }
+                    }
+                    else
+                    {
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation - 1/2 * Math.PI);
+                        if (this.water && !this.land)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
+                        XXX.drawImage(wendi, 307, 2037, 116, 97, -1/2 * 116 * szx, -1/2 * 97 * szx, 116 * szx, 97 * szx);
+                        XXX.restore();
+                    }
+                }
+                else if (this.powerAttack == true && this.attacking && this.energy >= 9 || this.powerAttack == true && this.attacking && this.hunger <= 5)
+                {
+                    this.stageEngine(7, 0.14, false); //bite
+
+                    //ATTACK ANIMATION
+                    if (Math.floor(this.stage) <= 0)
+                    {
+                        if (this.attackManual)
+                        {
+                            this.attackManual = false;
+                            this.finalAttackStage = true;
+                            this.attackCooldown = new Date().getTime();
+                            this.energy -= 9;
+
+                            for (var ll = 0; ll < deadAIList.length; ll++)
+                            {
+                                if (deadAIList[ll].petrified != true && deadAIList[ll].undeath != true)
+                                {
+                                    if (deadAIList[ll].healthMAX < 64 && deadAIList[ll].type != "StoneGolem" || deadAIList[ll].type == "Person" || deadAIList[ll].type == "Soldier")
+                                    {
+                                        if (new Date().getTime() - deadAIList[ll].timeSinceDead > 2000 || deadAIList[ll].healthMAX < 5)
+                                        {
+                                            if (deadAIList[ll].DTU({X: this.bubbleOfDamageX, Y: this.bubbleOfDamageY}) < this.weapon.range * 7 + (deadAIList[ll].sizeRadius * 0.6))
+                                            {
+                                                if (deadAIList[ll].type == "Person" || deadAIList[ll].type == "Soldier")
+                                                {
+                                                    this.hunger = Math.min(this.hungerMAX, this.hunger + (deadAIList[ll].healthMAX / 0.5));
+                                                    this.thirst = Math.min(this.thirstMAX, this.thirst + (deadAIList[ll].healthMAX / 1));
+
+                                                    this.health += (deadAIList[ll].healthMAX / 9);
+                                                    this.energy = Math.min(this.energyMAX, this.energy + (deadAIList[ll].healthMAX / 9));
+                                                    this.fed = true;
+                                                    this.watered = true;
+                                                }
+                                                else
+                                                {
+                                                    this.hunger = Math.min(this.hungerMAX, this.hunger + (deadAIList[ll].healthMAX / 50));
+                                                    this.thirst = Math.min(this.thirstMAX, this.thirst + (deadAIList[ll].healthMAX / 50));
+
+                                                    this.health += (deadAIList[ll].healthMAX / 12);
+                                                    this.energy = Math.min(this.energyMAX, this.energy + (deadAIList[ll].healthMAX / 12));
+                                                }
+                                                deadAIList.splice(ll, 1);
+                                                break;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation - 1/2 * Math.PI);
+                        if (this.water && !this.land)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
+                        XXX.drawImage(wendi, 307, 2037, 116, 97, -1/2 * 116 * szx, -1/2 * 97 * szx, 116 * szx, 97 * szx);
+                        XXX.restore();
+                    }
+                    else if (Math.floor(this.stage) <= 1)
+                    {
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation - 1/2 * Math.PI);
+                        if (this.water && !this.land)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
+                        XXX.drawImage(wendi, 325, 2158, 126, 97, -1/2 * 126 * szx, -1/2 * 97 * szx, 126 * szx, 97 * szx);
+                        XXX.restore();
+                    }
+                    else if (Math.floor(this.stage) <= 2)
+                    {
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation - 1/2 * Math.PI);
+                        if (this.water && !this.land)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
+                        XXX.drawImage(wendi, 461, 2158, 126, 97, -1/2 * 126 * szx, -1/2 * 97 * szx, 126 * szx, 97 * szx);
+                        XXX.restore();
+                    }
+                    else if (Math.floor(this.stage) <= 3)
+                    {
+                        this.attackManual = true;
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation - 1/2 * Math.PI);
+                        if (this.water && !this.land)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
+                        XXX.drawImage(wendi, 612, 2155, 126, 97, -1/2 * 126 * szx, -1/2 * 97 * szx, 126 * szx, 97 * szx);
+                        XXX.restore();
+                    }
+                    else if (Math.floor(this.stage) <= 4)
+                    {
+                        this.attackManual = true;
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation - 1/2 * Math.PI);
+                        if (this.water && !this.land)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
+                        XXX.drawImage(wendi, 660, 2275, 126, 97, -1/2 * 126 * szx, -1/2 * 97 * szx, 126 * szx, 97 * szx);
+                        XXX.restore();
+                    }
+                    else if (Math.floor(this.stage) >= 5)
+                    {
+                        this.attackManual = true;
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation - 1/2 * Math.PI);
+                        if (this.water && !this.land)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
+                        XXX.drawImage(wendi, 469, 2271, 126, 97, -1/2 * 126 * szx, -1/2 * 97 * szx, 126 * szx, 97 * szx);
+                        XXX.restore();
+                    }
+                }
+                else if (spaceKey && this.energy >= 15 || this.attacking && this.energy >= 15)
+                {
+                    this.stageEngine(15, 0.20, true); //slash
+
+                    //ATTACK ANIMATION
+                    if (Math.floor(this.stage) <= 0)
+                    {
+                        if (this.attackManual == "done")
+                        {
+                            this.attackCooldown = new Date().getTime();
+                        }
+                        this.attackManual = true;
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation - 1/2 * Math.PI);
+                        if (this.water && !this.land)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
+                        XXX.drawImage(wendi, 307, 2037, 116, 97, -1/2 * 116 * szx, -1/2 * 97 * szx, 116 * szx, 97 * szx);
+                        XXX.restore();
+                    }
+                    else if (Math.floor(this.stage) <= 1)
+                    {
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation - 1/2 * Math.PI);
+                        if (this.water && !this.land)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
+                        XXX.drawImage(wendi, 301, 2037, 126, 97, -1/2 * 126 * szx, -1/2 * 97 * szx, 126 * szx, 97 * szx);
+                        XXX.restore();
+                    }
+                    else if (Math.floor(this.stage) <= 2)
+                    {
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation - 1/2 * Math.PI);
+                        if (this.water && !this.land)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
+                        XXX.drawImage(wendi, 431, 2040, 126, 97, -1/2 * 126 * szx, -1/2 * 97 * szx, 126 * szx, 97 * szx);
+                        XXX.restore();
+                    }
+                    else if (Math.floor(this.stage) <= 3)
+                    {
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation - 1/2 * Math.PI);
+                        if (this.water && !this.land)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
+                        XXX.drawImage(wendi, 8, 2246, 126, 135, -1/2 * 126 * szx, -1/2 * 135 * szx, 126 * szx, 135 * szx);
+                        XXX.restore();
+                    }
+                    else if (Math.floor(this.stage) <= 4)
+                    {
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation - 1/2 * Math.PI);
+                        if (this.water && !this.land)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
+                        XXX.drawImage(wendi, 12, 2382, 126, 135, -1/2 * 126 * szx, -1/2 * 135 * szx, 126 * szx, 135 * szx);
+                        XXX.restore();
+                    }
+                    else if (Math.floor(this.stage) <= 5)
+                    {
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation - 1/2 * Math.PI);
+                        if (this.water && !this.land)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
+                        XXX.drawImage(wendi, 135, 2385, 126, 135, -1/2 * 126 * szx, -1/2 * 135 * szx, 126 * szx, 135 * szx);
+                        XXX.restore();
+                    }
+                    else if (Math.floor(this.stage) <= 6)
+                    {
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation - 1/2 * Math.PI);
+                        if (this.water && !this.land)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
+                        XXX.drawImage(wendi, 135, 2385, 126, 135, -1/2 * 126 * szx, -1/2 * 135 * szx, 126 * szx, 135 * szx);
+                        XXX.restore();
+                    }
+                    else if (Math.floor(this.stage) <= 7)
+                    {
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation - 1/2 * Math.PI);
+                        if (this.water && !this.land)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
+                        XXX.drawImage(wendi, 12, 2382, 126, 135, -1/2 * 126 * szx, -1/2 * 135 * szx, 126 * szx, 135 * szx);
+                        XXX.restore();
+                    }
+                    else if (Math.floor(this.stage) <= 8)
+                    {
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation - 1/2 * Math.PI);
+                        if (this.water && !this.land)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
+                        XXX.drawImage(wendi, 8, 2246, 126, 135, -1/2 * 126 * szx, -1/2 * 135 * szx, 126 * szx, 135 * szx);
+                        XXX.restore();
+                    }
+                    else if (Math.floor(this.stage) <= 9)
+                    {
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation - 1/2 * Math.PI);
+                        if (this.water && !this.land)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
+                        XXX.drawImage(wendi, 431, 2040, 126, 97, -1/2 * 126 * szx, -1/2 * 97 * szx, 126 * szx, 97 * szx);
+                        XXX.restore();
+                    }
+                    else if (Math.floor(this.stage) <= 10)
+                    {
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation - 1/2 * Math.PI);
+                        if (this.water && !this.land)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
+                        XXX.drawImage(wendi, 268, 2396, 140, 134, -1/2 * 140 * szx, -1/2 * 134 * szx, 140 * szx, 134 * szx);
+                        XXX.restore();
+                    }
+                    else if (Math.floor(this.stage) <= 11)
+                    {
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation - 1/2 * Math.PI);
+                        if (this.water && !this.land)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
+                        XXX.drawImage(wendi, 428, 2396, 140, 134, -1/2 * 140 * szx, -1/2 * 134 * szx, 140 * szx, 134 * szx);
+                        XXX.restore();
+                    }
+                    else if (Math.floor(this.stage) <= 12)
+                    {
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation - 1/2 * Math.PI);
+                        if (this.water && !this.land)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
+                        XXX.drawImage(wendi, 577, 2388, 140, 134, -1/2 * 140 * szx, -1/2 * 134 * szx, 140 * szx, 134 * szx);
+                        XXX.restore();
+                    }
+                    else if (Math.floor(this.stage) >= 13)
+                    {
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation - 1/2 * Math.PI);
+                        if (this.water && !this.land)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
+                        XXX.drawImage(wendi, 702, 2386, 122, 135, -1/2 * 122 * szx, -1/2 * 135 * szx, 122 * szx, 135 * szx);
+                        XXX.restore();
+                        if (this.attackManual === true)
+                        {
+                            this.attackManual = "done";
+                            this.finalAttackStage = true;
+                        }
+                    }
+                }
+                else
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.water && !this.land)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(wendi, 168, 2037, 122, 97, -1/2 * 122 * szx, -1/2 * 97 * szx, 122 * szx, 97 * szx);
                     XXX.restore();
                 }
             }
@@ -24031,6 +25157,22 @@ function Adventurer()
             this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.25 / 5 * Math.PI) * (this.mySize + 33);
             this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.25 / 5 * Math.PI) * (this.mySize + 33);
         }
+        else if (this.weaponEquipped == "wendigo")
+        {
+            this.weapon = allWeapons[103];
+
+            //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+            if (player.powerAttack == true && player.attacking)
+            {
+                this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.5 / 5 * Math.PI) * (this.mySize + 46);
+                this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.5 / 5 * Math.PI) * (this.mySize + 46);
+            }
+            else
+            {
+                this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.5 / 5 * Math.PI) * (this.mySize + 25);
+                this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.5 / 5 * Math.PI) * (this.mySize + 25);
+            }
+        }
     };
 
     //BLOCKING FUNCTION
@@ -24159,13 +25301,17 @@ function Adventurer()
                             {
                                 ArtificialIntelligenceAccess[i].killNotByPlayer = true; //werewolves do not lose faction relation for killing
                             }
+                            else if (this.form == "wendigo")
+                            {
+                                ArtificialIntelligenceAccess[i].killNotByPlayer = true; //wendigos do not lose faction relation for killing
+                            }
                             else if (this.form == "vampire")
                             {
                                 ArtificialIntelligenceAccess[i].killNotByPlayer = true; //vampires do not lose faction relation for killing
                             }
                             else if (this.form == "venandi")
                             {
-                                ArtificialIntelligenceAccess[i].killNotByPlayer = true; //vampires do not lose faction relation for killing
+                                ArtificialIntelligenceAccess[i].killNotByPlayer = true; //venandi do not lose faction relation for killing
                             }
                             else
                             {
@@ -24497,11 +25643,14 @@ function Adventurer()
                     {
                         if (focusUnit.healthMAX >= 100 && this.form == "werewolf" || this.form != "werewolf")
                         {
-                            if (this.form != "vampire")
+                            if (focusUnit.healthMAX >= 72 && this.form == "wendigo" || this.form != "wendigo")
                             {
-                                if (focusUnit.insect == false)
+                                if (this.form != "vampire")
                                 {
-                                    return true; //d == this.sizeRadius + focusUnit.sizeRadius :: this is the point at which the two units would be exactly touching eachother with no overlap.
+                                    if (focusUnit.insect == false)
+                                    {
+                                        return true; //d == this.sizeRadius + focusUnit.sizeRadius :: this is the point at which the two units would be exactly touching eachother with no overlap.
+                                    }
                                 }
                             }
                         }
@@ -33343,10 +34492,20 @@ function Adventurer()
                             }
                             else
                             {
-                                this.hunger = Math.min(this.hungerMAX, this.hunger + Inventory[i][0].hunger);
-                                this.thirst = Math.min(this.thirstMAX, this.thirst + Inventory[i][0].thirst);
-                                this.sleep = Math.min(this.sleepMAX, this.sleep + Inventory[i][0].wake);
-                                this.warmth = Math.min(this.warmthMAX, this.warmth + Inventory[i][0].warmth);
+                                if (player.wendigo && Inventory[i][0].type != "rawHumanFlesh" && Inventory[i][0].type != "humanMeat")
+                                {
+                                    this.hunger = Math.min(this.hungerMAX, this.hunger + Inventory[i][0].hunger / 11);
+                                    this.thirst = Math.min(this.thirstMAX, this.thirst + Inventory[i][0].thirst / 11);
+                                    this.sleep = Math.min(this.sleepMAX, this.sleep + Inventory[i][0].wake);
+                                    this.warmth = Math.min(this.warmthMAX, this.warmth + Inventory[i][0].warmth);
+                                }
+                                else
+                                {
+                                    this.hunger = Math.min(this.hungerMAX, this.hunger + Inventory[i][0].hunger);
+                                    this.thirst = Math.min(this.thirstMAX, this.thirst + Inventory[i][0].thirst);
+                                    this.sleep = Math.min(this.sleepMAX, this.sleep + Inventory[i][0].wake);
+                                    this.warmth = Math.min(this.warmthMAX, this.warmth + Inventory[i][0].warmth);
+                                }
                             }
                         }
 
@@ -33599,14 +34758,14 @@ function Adventurer()
                             {
                                 if (this.petrificationResistanceTime <= 0)
                                 {
-                                    this.petrification = true;
+                                    this.petrified = true;
                                 }
                             }
                             else if (Inventory[i][0].ability == "gargoyleHeart")
                             {
                                 if (this.petrificationResistanceTime <= 0)
                                 {
-                                    this.petrification = true;
+                                    this.petrified = true;
                                 }
                                 if (this.class == "Mage" || this.class == "Priest" || this.getEminence() >= 2)
                                 {
@@ -33657,7 +34816,10 @@ function Adventurer()
                             }
                             else if (Inventory[i][0].ability == "satiate" || Inventory[i][0].ability == "satiation") //Food with this effect will keep you fed for a little bit.
                             {
-                                this.fed = true;
+                                if (this.wendigo != true)
+                                {
+                                    this.fed = true;
+                                }
                             }
                             else if (Inventory[i][0].ability == "cannibal" || Inventory[i][0].ability == "cannibalSatiation")
                             {
@@ -33666,24 +34828,40 @@ function Adventurer()
                                 if (Inventory[i][0].ability == "cannibalSatiation")
                                 {
                                     this.fed = true;
+                                    if (this.wendigo)
+                                    {
+                                        this.watered = true;
+                                    }
                                 }
                             }
                             else if (Inventory[i][0].ability == "quench") //Food with this effect will keep you quenched for a little bit.
                             {
-                                this.watered = true;
+                                if (this.wendigo != true)
+                                {
+                                    this.watered = true;
+                                }
                             }
                             else if (Inventory[i][0].ability == "bigQuench")
                             {
-                                this.wateredClock = 100 + 1/2 * this.getEndurance() * 2;
+                                if (this.wendigo != true)
+                                {
+                                    this.wateredClock = 100 + 1/2 * this.getEndurance() * 2;
+                                }
                             }
                             else if (Inventory[i][0].ability == "superQuench") //Food with this effect will keep you quenched for a little bit.
                             {
-                                this.wateredClock = 200 + this.getEndurance() * 2;
+                                if (this.wendigo != true)
+                                {
+                                    this.wateredClock = 200 + this.getEndurance() * 2;
+                                }
                             }
                             else if (Inventory[i][0].ability == "sensational") //Food with this effect will keep you fed and quenched for a little bit.
                             {
-                                this.watered = true;
-                                this.fed = true;
+                                if (this.wendigo != true)
+                                {
+                                    this.watered = true;
+                                    this.fed = true;
+                                }
                             }
                             else if (Inventory[i][0].ability == "repelente") //Keeps away certain flesh eating insects
                             {
@@ -36424,6 +37602,11 @@ function Adventurer()
 
         if (this.movingType != 2 && this.movingType != "swimming" && !paddlingBoat)
         {
+            if (this.form == "wendigo" && !this.attacking && spaceKey != true && eKey != true)
+            {
+                this.energy += 2 * (TTD / (6000 - 57 * Math.min(52, this.getEndurance()) * 2));
+            }
+
             //ENERGY REGENERATION
             if (this.hunger > 1/10 * this.hungerMAX) //if the hunger is greater than 1/10 regeneration is allowed.
             {
@@ -36455,6 +37638,10 @@ function Adventurer()
                 if (this.form == "werewolf")
                 {
                     this.energy -= 20 * energil * (TTD / (1300 + 50 * Math.min(52, this.getEndurance()) * 2));
+                }
+                else if (this.form == "wendigo")
+                {
+                    this.energy -= 17 * energil * (TTD / (1300 + 50 * Math.min(52, this.getEndurance()) * 2));
                 }
                 else
                 {
@@ -36513,10 +37700,14 @@ function Adventurer()
             {
                 this.hunger -= 4 * (TTD / (40000));
             }
+            else if (this.wendigo)
+            {
+                this.hunger -= 2 * (TTD / (40000));
+            }
 
             if (this.hunger <= 1/10 * this.hungerMAX && this.hunger > -10) // at 1/10 of hunger the player loses the use of energy... That means no attacks.
             {
-                if (player.vamprism != true)
+                if (player.vamprism != true && player.form != "wendigo")
                 {
                     this.energy = Math.max(-5, this.energy - 1 * (TTD / (1000 + 100 * this.getEndurance() * 2)));
                 }
@@ -36527,6 +37718,11 @@ function Adventurer()
                 {
                     this.hunger = 0;
                     this.health -= 10 * (TTD / (1000));
+                }
+                if (this.form == "wendigo")
+                {
+                    this.hunger = 0;
+                    this.health -= 4 * (TTD / (1000));
                 }
                 else
                 {
@@ -37894,7 +39090,7 @@ function clearEquipped()
 {
     for (var i = 0; i < Inventory.length; i++)
     {
-        if (Inventory[i][0].utility == "weapon" || Inventory[i][0].utility == "ranged" || Inventory[i][0].utility == "worn")
+        if (Inventory[i][0].utility == "weapon" || Inventory[i][0].utility == "ranged" || Inventory[i][0].utility == "worn" || Inventory[i][0].utility == "ammunition")
         {
             Inventory[i][0].equipped = false;
         }
@@ -37913,4 +39109,5 @@ function clearEquipped()
     player.isWeaponEquipped = false;
     player.weaponEquipped = "none";
     player.ammoLoaded = false;
+    player.isAmmoEquipped = false;
 }

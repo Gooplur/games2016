@@ -3503,7 +3503,8 @@ function theLegend()
         hanzChildLDS: true,
         bellaLDS: true,
         mesekLDS: true,
-        aleksiLDS: true
+        aleksiLDS: true,
+        kagBearLDS: true
     };
 //QUESTS
     quests =
@@ -3926,7 +3927,7 @@ function theLegend()
     allWeapons.push(new Item("nirwadenSabreAndShield"));//83
     allWeapons.push(new Item("vardanianCrossbow"));//84
     allWeapons.push(new Item("ironBolt"));//85
-    allWeapons.push(new Item("venandi"));//86
+    allWeapons.push(new Item("venandi"));//86 //FORM
     allWeapons.push(new Item("serratedNechroviteGreatBlade"));//87
     allWeapons.push(new Item("cephrianFlail"));//88
     allWeapons.push(new Item("vardanSword"));//89
@@ -3943,6 +3944,7 @@ function theLegend()
     allWeapons.push(new Item("zetianBlowdart"));//100
     allWeapons.push(new Item("zetianRattlerBlowdart"));//101
     allWeapons.push(new Item("zetianRattlerBlowdartThick"));//102
+    allWeapons.push(new Item("wendigo", false)); //103 //FORM
 
 
 
@@ -4417,6 +4419,9 @@ function theLegend()
     foods.push(new Item("smokedVenison", false));
     foods.push(new Item("chyoulBerryPie", false));
     foods.push(new Item("humanMeat", false));
+    foods.push(new Item("foxMeat", false));
+    foods.push(new Item("arcticFoxMeat", false));
+    foods.push(new Item("badgerMeat", false));
 
 
 //Tailoring (Items crafted at a weaving, sewing, dying, etc. tailor's work bench thing)

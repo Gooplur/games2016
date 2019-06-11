@@ -2266,26 +2266,144 @@ function buildMaster()
                 scenicList.push(new Scenery("tyrniPlant", -18577, 37887,12, true, undefined)); //copied n4e2
                 scenicList.push(new Scenery("bushkaPlant", -24579.767035972964, 29710.62484832691,2.4, true, undefined)); //copied n3e3
 
-                //scenicList.push(new Scenery("bushkaPlant", -2366, 35548,-2.75, true));
-                //scenicList.push(new Scenery("tyrniPlant", -12270, 38406,0.4, true));
-                //scenicList.push(new Scenery("wightbloomPlant", -11643.275901334484, 28642.70650974215, 2.3, true));
+                scenicList.push(new Scenery("freydicBuilding6", -16999.333841996897, 29550.19655674712, 0, true));
+                scenicList.push(new Scenery("freydicBuilding2", -17403.198628943817, 29219.711923635354, 0, true));
+                scenicList.push(new Scenery("freydicBuilding5", -18199.882971324358, 29682.498852227724 , 0, true));
+                scenicList.push(new Scenery("hearth", -16997.59397932014, 29446.717361504663, Math.PI, "lit"));
+                scenicList.push(new Scenery("bed", -17052.817148408816, 29630.54686097753, 1/2 * Math.PI, false));
+                scenicList.push(new Scenery("smallTable", -16932.95947478025, 29608.009611099435, 0, true));
+                scenicList.push(new Scenery("stumpStoolSml", -16897.95947478025, 29608.009611099435, 0, true));
+                scenicList.push(new Scenery("stumpStoolSml", -16937.714270816454, 29639.07174475587, 0.5, true));
+                scenicList.push(new Scenery("walrusHideRug", -16999.12072315639, 29505.366760894154, 0, true));
 
-                //ArtificialIntelligenceAccess.push(new Unit(-6594.548123905186, 34395.87516001048, "WinterWolf", false, "magicmantrty1"));
+                if (uniqueChars.borjeLDS == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Borje")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-16915.5408401604, 29483.2507404696, "Person", false, "Borje", {race: "Freynor", faction: "Freynor", personality: "calculated", outfit: ["northernClothing", 0], weapon: ["none", [0.5, 0.5], 0, 3, 1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[-16923.114490790205, 29492.464466580546]]}));
+                    }
+                }
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    if (ArtificialIntelligenceAccess[i].ID == "Borje")
+                    {
+                        ArtificialIntelligenceAccess[i].healthMAX = 9;
+                        ArtificialIntelligenceAccess[i].health = 9;
+                    }
+                }
 
-                //ArtificialIntelligenceAccess.push(new Unit(-8308.948107922957, 32974.837155598936, "Waanti", true, "gotetdot2"));
+                if (uniqueChars.toraanLDS == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Toraan")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(-17189.08953497796, 29438.435636632497, "Soldier", false, "Toraan", {race: "Freynor", faction: "Freynor", con: 8, speed: 1.2, outfit: ["walrusLeatherArmour", 4.5], weapon: ["freydicSword", [12, 10], 0, 27, 1.2], ranged: [false, "arrow", 10, 1700, 9, 10, 0, "none", 3], patrolStops: 0, patrolLoop: false, route:[[2197, 29577]]}));
+                    }
+                }
 
-                //ArtificialIntelligenceAccess.push(new Unit(-11289.652797686398, 32309.008802314052, "Balkur", false, "onofangoo1"));
+                ArtificialIntelligenceAccess.push(new Unit(-18384.652280093153, 29290.965093653027, "Person", false, "Freydic Villager", {race: "Freynor", faction: "Freynor", personality: "scared", outfit: ["sealSkinClothing", 0], weapon: ["none", [0.3, 0.5], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 4, patrolLoop: true, route:[[-18384.652280093153, 29290.965093653027],[-18162.53496075678, 29292.5353367585], [-18177.797361137065, 29581.22725435828], [-18021.250168647108, 29281.649856888424]]}));
+                ArtificialIntelligenceAccess.push(new Unit(-17424.897529045953, 29205.92363122701, "Person", false, "Freydic Boy", {race: "Freynor", faction: "Freynor", personality: "scared", outfit: ["frichFurClothing", 0], weapon: ["none", [0.3, 0.5], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[-17424.897529045953, 29210.92363122701]], kid: true}));
+                ArtificialIntelligenceAccess.push(new Unit(-17772.9250363152, 29971.29155378809, "Person", false, "Freydic Villager", {race: "Freynor", faction: "Freynor", personality: "scared", outfit: ["sealSkinClothing", 0], weapon: ["none", [0.3, 0.5], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[ -17762.507932356035, 29987.798579446793]]}));
 
-                //ArtificialIntelligenceAccess.push(new Unit(-7619.233094074731, 36046.80342991437, "Glutid", false, "nontthintern1"));
+                scenicList.push(new Scenery("crate", -17083.386291740775, 29467.21453515712, 0.689, 1, [1.2]));
+                scenicList.push(new Scenery("crate", -18240.851154442997, 29594.184108439156, 1.689, 1, [1.4]));
+                scenicList.push(new Scenery("campFire", -18222.626531827413, 29688.13490756426, Math.PI, "permaLit"));
+                scenicList.push(new Scenery("campFire", -17404.670538184117, 29258.48042091994, 0, "permaLit"));
+                scenicList.push(new Scenery("item", -18207.732914567543, 29718.552312377895, 0, "freynor", ["waantiPelt", 1, -16]));
+                scenicList.push(new Scenery("well", -17874.899358456736, 29386.097299878875, 4, true));
+                scenicList.push(new Scenery("stumpStoolSml", -17502.596107243986, 29239.520895409903, 1.3, true));
+                scenicList.push(new Scenery("walrusHideRug", -17390.00570656015, 29199.216000570297, 0.5, 0.8));
 
+                scenicList.push(new Scenery("harstPlant", -17628.02503613716, 30002.25915250937, 0, true));
+                scenicList.push(new Scenery("harstPlant", -17625.678590794094, 30051.046322867707, 4.2, true));
+                scenicList.push(new Scenery("harstPlant", -17627.89493186588, 30103.524806157264, 7.765, true));
+                scenicList.push(new Scenery("harstPlant", -17627.415345148213, 30154.818325482247, 0.954, true));
+                scenicList.push(new Scenery("harstPlant", -17629.287618118728, 30204.693568548522, 2.122, true));
+                scenicList.push(new Scenery("harstPlant", -17633.190124577955, 30252.532039793634, 1, true));
+                scenicList.push(new Scenery("harstPlant", -17712.20807270571, 30249.701183657075, 2.6, true));
+                scenicList.push(new Scenery("harstPlant", -17711.42241526334, 30206.22742625111, 6.777, true));
+                scenicList.push(new Scenery("harstPlant", -17711.395948377376, 30161.44104499505, 1.231, true));
+                scenicList.push(new Scenery("harstPlant", -17711.711256798528, 30101.310001628535, 2.211, true));
+                scenicList.push(new Scenery("harstPlant", -17709.416137803724, 30043.217131603782, 4.445, true));
+                scenicList.push(new Scenery("harstPlant", -17708.329061945788, 29997.8155779444, 1.9, true));
+                scenicList.push(new Scenery("harstPlant", -18464.419543636734, 29341.89243409437, 0, true));
+                scenicList.push(new Scenery("harstPlant", -18462.773636756243, 29291.24230853304, 7.4, true));
+                scenicList.push(new Scenery("harstPlant", -18466.56083565042, 29240.896047624672, 1, true));
+                scenicList.push(new Scenery("harstPlant", -18461.234581376517, 29190.599890673977, 3, true));
+                scenicList.push(new Scenery("harstPlant", -18465.908660605317, 29138.57179689397, 2.55, true));
+                scenicList.push(new Scenery("harstPlant", -18384.067326395645, 29108.920098870658, 2.244, true));
+                scenicList.push(new Scenery("harstPlant", -18381.68912532967, 29169.122272558903, 9,03, true));
+                scenicList.push(new Scenery("harstPlant", -18384.480567314935, 29231.642051379793, 5.05, true));
+                scenicList.push(new Scenery("harstPlant", -18318.20061845351, 29232.660487131172, 1.33, true));
+                scenicList.push(new Scenery("harstPlant", -18317.791102503186, 29178.306123897124, 9.5, true));
+                scenicList.push(new Scenery("harstPlant", -18314.21945861911, 29114.268232902516, 0.76, true));
 
-                //ArtificialIntelligenceAccess.push(new Unit(-11626.931345371848, 31495.13739942016, "Koobu", false, "nontthintern2"));
+                scenicList.push(new Scenery("suuliPlant", -17821.6382860251, 30019.906998498067, 9.5, true));
+                scenicList.push(new Scenery("suuliPlant", -17826.04588175291, 30091.773145810635, 8.788, true));
+                scenicList.push(new Scenery("suuliPlant", -17823.255955263634, 30157.854162425305, 4.738, true));
+                scenicList.push(new Scenery("suuliPlant", -17823.193135248093, 30238.165932009226, 7.338, true));
 
-                //scenicList.push(new Scenery("stone", -4655.321152171745, 28949.77082195361, 4.83, 1, 2));
+                scenicList.push(new Scenery("carrotPlant", -18238.74294008849, 29332.624998767486, 0, true));
+                scenicList.push(new Scenery("carrotPlant", -18262.7006704118, 29330.624548291795, 1.6, true));
+                scenicList.push(new Scenery("carrotPlant", -18284.095445119812, 29331.09998772974, 7.333, true));
+                scenicList.push(new Scenery("carrotPlant", -18295.678064850785, 29332.54781519611, 1.621, true));
+                scenicList.push(new Scenery("carrotPlant", -18313.650874913, 29330.44634371044, 2.33, true));
+                scenicList.push(new Scenery("carrotPlant", -18336.800486107302, 29330.653244710273, 3.3, true));
+                scenicList.push(new Scenery("carrotPlant", -18358.22648800877, 29330.381416151537, 9.5, true));
+                scenicList.push(new Scenery("carrotPlant", -18381.55740351884, 29330.749187968962, 2.5, true));
+                scenicList.push(new Scenery("carrotPlant", -18394.47075952721, 29330.31758623863, 6.8, true));
+                scenicList.push(new Scenery("carrotPlant", -18410.646844177885, 29330.379951051185, 1.3, true));
 
-                //ArtificialIntelligenceAccess.push(new Unit(-20419, 42113, "Person", false, "Freynor Villager", {race: "Freynor", faction: "Freynor", personality: "scared", outfit: ["sealSkinClothing", 0], weapon: ["none", [0.3, 0.5], 0, 0, 0.40 + (Math.floor(Math.random() * 6) / 10)], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: false, route:[[-20419, 42070]]}));
+                scenicList.push(new Scenery("potatoPlant", -18244.06934031433, 29143.75550909314, 1.99, true));
+                scenicList.push(new Scenery("potatoPlant", -18243.38323484635, 29161.251198526454, 2.559, true));
+                scenicList.push(new Scenery("potatoPlant", -18243.78177795084, 29123.38883763527, 1.766, true));
+                scenicList.push(new Scenery("potatoPlant", -18244.60085822076, 29186.676084564187, 4.9, true));
+                scenicList.push(new Scenery("potatoPlant", -18246.63455538746, 29202.161929041486, 9.99, true));
+                scenicList.push(new Scenery("potatoPlant",  -18244.00044580451, 29225.308171119595, 4, true));
+                scenicList.push(new Scenery("potatoPlant", -18245.83493040452, 29248.581493932415, 3.088, true));
 
+                scenicList.push(new Scenery("bushkaPlant", -16360.882919327933, 28110.89668745125, 2.28, true));
+                scenicList.push(new Scenery("bushkaPlant", -16861.05448739995, 34154.355816149146, 7.68, true));
 
+                scenicList.push(new Scenery("tyrniPlant", -20649.520715525316, 33111.60752248434, 3.08, true));
+
+                ArtificialIntelligenceAccess.push(new Unit(-22313.28488298986, 27918.38328116592, "WinterWolf", false, "solngsofar1"));
+                ArtificialIntelligenceAccess.push(new Unit(-22434.73946077224, 28038.781732184965, "WinterWolf", false, "solngsofar2"));
+                ArtificialIntelligenceAccess.push(new Unit(-22221.99344814038, 28027.83086941942, "WinterWolf", false, "solngsofar3"));
+                ArtificialIntelligenceAccess.push(new Unit(-17831.169330501307, 34472.58610217072, "WinterWolf", false, "solngsofar4"));
+                ArtificialIntelligenceAccess.push(new Unit(-17680.108680600177, 34272.85045837649, "WinterWolf", false, "solngsofar5"));
+                ArtificialIntelligenceAccess.push(new Unit(-14094.218479237996, 32685.076346327503, "WinterWolf", false, "solngsofar6"));
+                ArtificialIntelligenceAccess.push(new Unit(-14263.56774346841, 32762.75233659766, "WinterWolf", false, "solngsofar7"));
+                ArtificialIntelligenceAccess.push(new Unit(-14392.101175224283, 32678.17721971114, "WinterWolf", false, "solngsofar8"));
+                ArtificialIntelligenceAccess.push(new Unit(-14473.883092172104, 32855.060189854266, "WinterWolf", false, "solngsofar9"));
+
+                ArtificialIntelligenceAccess.push(new Unit(-20367.30359751636, 30778.127382746818, "Waanti", false, "tupipn1"));
+                ArtificialIntelligenceAccess.push(new Unit(-20509.67778950778, 30835.234155921553, "Waanti", false, "tupipn2"));
+                ArtificialIntelligenceAccess.push(new Unit(-20563.67909886312, 31006.824077790476, "Waanti", true, "tupipn3"));
+                ArtificialIntelligenceAccess.push(new Unit(-20810.994938219123, 30895.90751596053, "Waanti", false, "tupipn4"));
+                ArtificialIntelligenceAccess.push(new Unit(-20619.940714965443, 30798.23747565065, "Waanti", "baby", "tupipn5"));
+                ArtificialIntelligenceAccess.push(new Unit(-18678.31980563123, 32075.86910498143, "Waanti", false, "tupipn6"));
+                ArtificialIntelligenceAccess.push(new Unit(-18492.492229056876, 31980.496358006716, "Waanti", false, "tupipn7"));
+
+                ArtificialIntelligenceAccess.push(new Unit(-14826.946888724635, 35459.609090473976, "Koobu", false, "evrnonymre1"));
+                ArtificialIntelligenceAccess.push(new Unit(-22698.263178172656, 32660.06591951922, "Koobu", false, "evrnonymre2"));
+
+                ArtificialIntelligenceAccess.push(new Unit(-21545.132260316503, 35648.642978940836, "Balkur", false, "thnghtisalmstdy1"));
 
                 change = "n3e2";
             }

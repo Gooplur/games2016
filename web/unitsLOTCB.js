@@ -8199,9 +8199,19 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                                     player.blindedStoreTime = new Date().getTime();
                                     player.blindedTime = 13;
                                 }
+                                else if (this.effect == "radiate")
+                                {
+                                    if (player.radProof != true)
+                                    {
+                                        player.radiation += 10;
+                                    }
+                                }
                                 else if (this.effect == "xormid" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
                                 {
-                                    player.radiation += this.damage * 1/5;
+                                    if (player.radProof != true)
+                                    {
+                                        player.radiation += this.damage * 1/5;
+                                    }
                                 }
                                 else if (this.effect == "quarterAcid" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
                                 {
@@ -8429,9 +8439,19 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                                 this.target.stunTime = new Date().getTime();
                                 this.target.frozenTime = new Date().getTime();
                             }
+                            else if (this.effect == "radiate")
+                            {
+                                if (this.target.radProof != true)
+                                {
+                                    this.target.radiation += 10;
+                                }
+                            }
                             else if (this.effect == "xormid" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
                             {
-                                this.target.radiation += this.damage * 1/5;
+                                if (this.target.radProof != true)
+                                {
+                                    this.target.radiation += this.damage * 1/5;
+                                }
                                 if (this.target.health <= 0 && this.target.invisible != true && this.target.vamprism != true && this.target.undying != true)
                                 {
                                     if (this.target.type != "Xormid")
@@ -70950,6 +70970,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 this.drops = [[new Item("coins", this.X, this.Y), 115]];
             }
+            else if (this.ID == "Borje")
+            {
+                this.drops = [[new Item("coins", this.X, this.Y), 5], [new Item("harstBread", this.X, this.Y), 1]];
+            }
             else if (this.ID == "Madam Bella")
             {
                 if (quests.spouseTrackerCompletionStyle != "bienEscort")
@@ -71829,6 +71853,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         if (this.killNotByPlayer == false || this.killByPlayerTeam)
                         {
                             player.freynorFaction -= 14;
+                        }
+                    }
+                    else if (this.ID == "Borje")
+                    {
+                        uniqueChars.borjeLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.freynorFaction -= 9;
                         }
                     }
                     else if (this.ID == "Madam Bella")
@@ -72730,6 +72762,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             {
                                 this.drops = [[new Item("iceSpikes", this.X, this.Y), 1]];
                             }
+                        }
+                        else if (this.ID == "Toraan")
+                        {
+                            this.drops = [[new Item("freydicSword", this.X, this.Y), 1]];
                         }
                         else if (this.ID == "Stambjord Soldier")
                         {
@@ -74084,6 +74120,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         if (this.killNotByPlayer == false || this.killByPlayerTeam)
                         {
                             player.freynorFaction -= 100;
+                        }
+                    }
+                    else if (this.ID == "Toraan")
+                    {
+                        uniqueChars.toraanLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.freynorFaction -= 7;
                         }
                     }
                     else if (this.ID == "Ser Olis Pynske")

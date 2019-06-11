@@ -393,7 +393,7 @@ function worldBuilder()
             outlineBuilder( 6, 1, "brickRoad", -233, 48);
         }
         //Layer -1 (cold region): elev 0
-        //mapS1E1 //TODO finish the map
+        //mapS1E1
         if (Y > -14144 && Y < -3328 && X < - 2490 && X > -14114) //X1
         {
             elevation = 0;
@@ -907,12 +907,14 @@ function worldBuilder()
             region = "n3e1";
             outlineBuilder(34, 34, "frost", 14, -122);
         }
-        //mapN3E2
+        //mapN3E2 //Jalsirsted (hamlet)
         if (Y > 26650 && Y < 37456 && X < -12680 && X > -24308) //X2
         {
             elevation = 1;
             region = "n3e2";
-            outlineBuilder(34, 34, "outline", 48, -122); //todo frost
+            outlineBuilder(34, 34, "frost", 48, -122);
+            outlineBuilder(1, 1, "farmland", 62, -99);
+            outlineBuilder(1, 1, "farmland", 64, -96);
         }
         //mapN3E3
         if (Y > 26650 && Y < 37456 && X < -22859 && X > -34534) //X3

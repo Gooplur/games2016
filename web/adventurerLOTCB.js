@@ -18,6 +18,8 @@ function Adventurer()
     this.skillPoints = 4; //you gain skill points every level that you can put into your skills. (4 points per level)
     this.totalSkillPoints = (4 * this.level) + 4;
     this.levelBonusSkillPoints = 0;
+    this.levelLock = false; //prevents the player from gaining regular levels
+    this.magicLevelLock = false; //prevents the player from gaining magical levels
     //Magical Leveling
     this.magicLevel = 0;
     this.magicalExperience = 0;
@@ -794,6 +796,21 @@ function Adventurer()
                     player.radiation += 0.01;
                 }
             }
+            else if (Inventory[iiiiii][0].type == "sceptreOfRadiance") //radioactive sceptre
+            {
+                if (player.radProof != true)
+                {
+                    player.radiation += 0.05;
+                }
+
+                if (Inventory[iiiiii][0].equipped == true)
+                {
+                    if (player.underground || timeOfDay != "Day")
+                    {
+                        lights.push({X:X, Y: Y, size: 100, extraStops: true, GRD: 0, Alpha: 0.3, showMe: true});
+                    }
+                }
+            }
         }
     };
 
@@ -1013,7 +1030,7 @@ function Adventurer()
             this.experienceRequiredToLevel = 19000 + (1200 * (this.level - 1));
         }
 
-        if (this.experience >= this.experienceRequiredToLevel)
+        if (this.experience >= this.experienceRequiredToLevel && this.levelLock == false)
         {
             this.experience -= this.experienceRequiredToLevel;
             this.level += 1;
@@ -1029,7 +1046,7 @@ function Adventurer()
             //console.log("You are now level " + this.level + ", and now have " + this.skillPoints + " skill points to spend!");
         }
 
-        if (this.magicalExperience >= this.magicalExperienceRequiredToLevel)
+        if (this.magicalExperience >= this.magicalExperienceRequiredToLevel && this.magicLevelLock == false)
         {
             this.magicalExperience -= this.magicalExperienceRequiredToLevel;
             this.magicLevel += 1;
@@ -16646,6 +16663,238 @@ function Adventurer()
                 XXX.restore();
             }
         }
+        //PITCHFORK
+        if (this.weaponEquipped == "pitchfork")
+        {
+            this.stageEngine(6, 0.15, true); //This cycles through the stages of the attack for four stages (ending at five) and at a rate of 4 * 16.75 miliseconds
+
+            //ATTACK ANIMATION
+            if (Math.floor(this.stage) <= 0)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(wendi, 25, 1375, 111, 108, -1/2 * 111, -1/2 * 108, 111, 108);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 1)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(wendi, 111, 1373, 111, 120, -1/2 * 111, -1/2 * 120, 111, 120);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 2)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(wendi, 199, 1360, 111, 141, -1/2 * 111, -1/2 * 141, 111, 141);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(wendi, 292, 1348, 112, 165, -1/2 * 112, -1/2 * 165, 112, 165);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) >= 4)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(wendi, 406, 1353, 111, 169, -1/2 * 111, -1/2 * 169, 111, 169);
+                XXX.restore();
+            }
+        }
+        //LONG BONE
+        if (this.weaponEquipped == "longBone")
+        {
+            this.stageEngine(5, 0.125, true); //This cycles through the stages of the attack for four stages (ending at five) and at a rate of 4 * 16.75 miliseconds
+
+            //ATTACK ANIMATION
+            if (Math.floor(this.stage) <= 0)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(wendi, 521, 1377, 93, 131, -1/2 * 93, -1/2 * 131, 93, 131);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 1)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(wendi, 622, 1378, 93, 131, -1/2 * 93, -1/2 * 131, 93, 131);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 2)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(wendi, 725, 1394, 94, 102, -1/2 * 94, -1/2 * 102, 94, 102);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) >= 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(wendi, 726, 1495, 93, 113, -1/2 * 93, -1/2 * 113, 93, 113);
+                XXX.restore();
+            }
+        }
+        //CULTIST SCYTHE
+        if (this.weaponEquipped == "cultistScythe")
+        {
+            this.stageEngine(5, 0.135, true); //This cycles through the stages of the attack for four stages (ending at five) and at a rate of 4 * 16.75 miliseconds
+
+            //ATTACK ANIMATION
+            if (Math.floor(this.stage) <= 0)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(wendi, 328, 1514, 91, 140, -1/2 * 91, -1/2 * 140, 91, 140);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 1)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(wendi, 421, 1511, 96, 141, -1/2 * 96, -1/2 * 141, 96, 141);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 2)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(wendi, 516, 1513, 96, 141, -1/2 * 96, -1/2 * 141, 96, 141);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) >= 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(wendi, 627, 1511, 96, 141, -1/2 * 96, -1/2 * 141, 96, 141);
+                XXX.restore();
+            }
+        }
+        //SCEPTRE OF RADIANCE
+        if (this.weaponEquipped == "sceptreOfRadiance")
+        {
+            this.stageEngine(5, 0.11, true); //This cycles through the stages of the attack for four stages (ending at five) and at a rate of 4 * 16.75 miliseconds
+
+            //ATTACK ANIMATION
+            if (Math.floor(this.stage) <= 0)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(wendi, 10, 1536, 96, 101, -1/2 * 96, -1/2 * 101, 96, 101);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 1)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(wendi, 86, 1638, 117, 107, -1/2 * 117, -1/2 * 107, 117, 107);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 2)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(wendi, 105, 1521, 93, 131, -1/2 * 93, -1/2 * 131, 93, 131);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) >= 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(wendi, 201, 1521, 93, 131, -1/2 * 93, -1/2 * 131, 93, 131);
+                XXX.restore();
+            }
+        }
         //VARDANIAN THROWING SPEAR
         if (this.weaponEquipped == "vardanianThrowingSpear")
         {
@@ -25173,6 +25422,38 @@ function Adventurer()
                 this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.5 / 5 * Math.PI) * (this.mySize + 25);
             }
         }
+        else if (this.weaponEquipped == "pitchfork")
+        {
+            this.weapon = allWeapons[104];
+
+            //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+            this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.3 / 5 * Math.PI) * (this.mySize + 64);
+            this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.3 / 5 * Math.PI) * (this.mySize + 64);
+        }
+        else if (this.weaponEquipped == "cultistScythe")
+        {
+            this.weapon = allWeapons[105];
+
+            //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+            this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.55 / 5 * Math.PI) * (this.mySize + 26);
+            this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.55 / 5 * Math.PI) * (this.mySize + 26);
+        }
+        else if (this.weaponEquipped == "sceptreOfRadiance")
+        {
+            this.weapon = allWeapons[106];
+
+            //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+            this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.95 / 5 * Math.PI) * (this.mySize + 26);
+            this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.95 / 5 * Math.PI) * (this.mySize + 26);
+        }
+        else if (this.weaponEquipped == "longBone")
+        {
+            this.weapon = allWeapons[107];
+
+            //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+            this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.66 / 5 * Math.PI) * (this.mySize + 24);
+            this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.66 / 5 * Math.PI) * (this.mySize + 24);
+        }
     };
 
     //BLOCKING FUNCTION
@@ -25356,6 +25637,13 @@ function Adventurer()
                             if (Math.random() > 0.677)
                             {
                                 ArtificialIntelligenceAccess[i].blindedTime = new Date().getTime() + (1000);
+                            }
+                        }
+                        else if (this.weapon.ability == "radiate")
+                        {
+                            if (ArtificialIntelligenceAccess[i].radProof != true)
+                            {
+                                ArtificialIntelligenceAccess[i].radiation += 10;
                             }
                         }
                         else if (this.weapon.ability == "leeching")
@@ -31479,7 +31767,7 @@ function Adventurer()
                 if (clicked == true)
                 {
                     clicked = false;
-                    this.optionsToggle = Math.min((optionList.length - 1), this.optionsToggle + 1);
+                    this.optionsToggle = Math.min((optionList.length - 4), this.optionsToggle + 1);
                 }
             }
             else
@@ -31505,11 +31793,11 @@ function Adventurer()
 
             if (this.matureContentFilter == true)
             {
-                optionList = [{title: "Coordinates", value: tellCoords, type: "bool"}, {title: "Content Filter", value: this.matureContentFilter, type: "bool"}, {title: "Display Informational UI", value: this.showStatBars, type: "bool"}, {title: "Game Speed", value: !player.slowItDown, type: "bool"}, {title: "Test Units", value: testingUnitCenters, type: "bool"}, {title: "Attack Bubble", value: showPlayerAttackBubble, type: "bool"}]
+                optionList = [{title: "Coordinates", value: tellCoords, type: "bool"}, {title: "Content Filter", value: this.matureContentFilter, type: "bool"}, {title: "Display Informational UI", value: this.showStatBars, type: "bool"}, {title: "Game Speed", value: !player.slowItDown, type: "bool"}, {title: "Lock Standard Leveling", value: this.levelLock, type: "bool"}, {title: "Lock Magic Leveling", value: this.magicLevelLock, type: "bool"}, {title: "Test Units", value: testingUnitCenters, type: "bool"}, {title: "Attack Bubble", value: showPlayerAttackBubble, type: "bool"}]
             }
             else
             {
-                optionList = [{title: "Coordinates", value: tellCoords, type: "bool"}, {title: "Content Filter", value: this.matureContentFilter, type: "bool"}, {title: "Cannibalism", value: this.cannibalism, type: "bool"}, {title: "Display Informational UI", value: this.showStatBars, type: "bool"}, {title: "Game Speed", value: !player.slowItDown, type: "bool"}, {title: "Test Units", value: testingUnitCenters, type: "bool"}, {title: "Attack Bubble", value: showPlayerAttackBubble, type: "bool"}]
+                optionList = [{title: "Coordinates", value: tellCoords, type: "bool"}, {title: "Content Filter", value: this.matureContentFilter, type: "bool"}, {title: "Cannibalism", value: this.cannibalism, type: "bool"}, {title: "Display Informational UI", value: this.showStatBars, type: "bool"}, {title: "Game Speed", value: !player.slowItDown, type: "bool"}, {title: "Lock Standard Leveling", value: this.levelLock, type: "bool"}, {title: "Lock Magic Leveling", value: this.magicLevelLock, type: "bool"}, {title: "Test Units", value: testingUnitCenters, type: "bool"}, {title: "Attack Bubble", value: showPlayerAttackBubble, type: "bool"}]
             }
 
             //fill low bar with black
@@ -31521,7 +31809,7 @@ function Adventurer()
             for (var i = 0; i < optionList.length; i++)
             {
                 LXX.beginPath();
-                if (this.optionsToggle == i)
+                if (this.optionsToggle == i || this.optionsToggle + 1 == i  || this.optionsToggle + 2 == i   || this.optionsToggle + 3 == i)
                 {
                     LXX.fillStyle = "gold";
                 }
@@ -31678,6 +31966,32 @@ function Adventurer()
                             else
                             {
                                 player.slowItDown = true;
+                                optionList[i].value = false;
+                            }
+                        }
+                        else if (optionList[i].title == "Lock Standard Leveling")
+                        {
+                            if (optionList[i].value == false)
+                            {
+                                this.levelLock = true;
+                                optionList[i].value = true;
+                            }
+                            else
+                            {
+                                this.levelLock = false;
+                                optionList[i].value = false;
+                            }
+                        }
+                        else if (optionList[i].title == "Lock Magic Leveling")
+                        {
+                            if (optionList[i].value == false)
+                            {
+                                this.magicLevelLock = true;
+                                optionList[i].value = true;
+                            }
+                            else
+                            {
+                                this.magicLevelLock = false;
                                 optionList[i].value = false;
                             }
                         }
@@ -37970,7 +38284,7 @@ function Adventurer()
                 }
 
                 //this is rare, but some weapons draw below the body layer.
-                if (this.wepLayer == "under" || this.weaponEquipped == "swimming" || this.weaponEquipped == "boat" || this.weaponEquipped == "blunderbuss" || this.weaponEquipped == "musket" || this.weaponEquipped == "cutlass" || this.weaponEquipped == "freydicSword" || this.weaponEquipped == "freydicGreatSword" || this.weaponEquipped == "theNorthernGem" || this.weaponEquipped == "longbow" || this.weaponEquipped == "crossbow" || this.weaponEquipped == "nirineseSpear" || this.weaponEquipped == "iceBlade" || this.weaponEquipped == "kellishClaymore" || this.weaponEquipped == "smashStick" || this.weaponEquipped == "burningSmashStick" || this.weaponEquipped == "lightningCorseque" || this.weaponEquipped == "staff" || this.weaponEquipped == "estoc" || this.weaponEquipped == "scimitar" || this.weaponEquipped == "nirwadenLance" || this.weaponEquipped == "vardanianHalberd" || this.weaponEquipped == "shotgun" || this.weaponEquipped == "sickle" || this.weaponEquipped == "vardanianCrossbow" || this.weaponEquipped == "throwingStar") //add more cases for more overhead weapons.
+                if (this.wepLayer == "under" || this.weaponEquipped == "swimming" || this.weaponEquipped == "boat" || this.weaponEquipped == "blunderbuss" || this.weaponEquipped == "musket" || this.weaponEquipped == "cutlass" || this.weaponEquipped == "freydicSword" || this.weaponEquipped == "freydicGreatSword" || this.weaponEquipped == "theNorthernGem" || this.weaponEquipped == "longbow" || this.weaponEquipped == "crossbow" || this.weaponEquipped == "nirineseSpear" || this.weaponEquipped == "iceBlade" || this.weaponEquipped == "kellishClaymore" || this.weaponEquipped == "smashStick" || this.weaponEquipped == "burningSmashStick" || this.weaponEquipped == "lightningCorseque" || this.weaponEquipped == "staff" || this.weaponEquipped == "estoc" || this.weaponEquipped == "scimitar" || this.weaponEquipped == "nirwadenLance" || this.weaponEquipped == "vardanianHalberd" || this.weaponEquipped == "shotgun" || this.weaponEquipped == "sickle" || this.weaponEquipped == "vardanianCrossbow" || this.weaponEquipped == "throwingStar" || this.weaponEquipped == "pitchfork" || this.weaponEquipped == "cultistScythe" || this.weaponEquipped == "sceptreOfRadiance" || this.weaponEquipped == "longBone") //add more cases for more overhead weapons.
                 {
                     this.drawArms();
                 }
@@ -38874,7 +39188,7 @@ function Adventurer()
                 }
 
                 //most weapons draw beneath the armour layer.
-                if (this.wepLayer == "standard" || this.wepLayer != "under" && this.wepLayer != "over" && this.weaponEquipped != "swimming" && this.weaponEquipped != "boat" && this.weaponEquipped != "blunderbuss" && this.weaponEquipped != "musket" && this.weaponEquipped != "cutlass" && this.weaponEquipped != "nirineseSabre" && this.weaponEquipped != "longSpikedMorningStar" && this.weaponEquipped != "freydicSword" && this.weaponEquipped != "freydicGreatSword" && this.weaponEquipped != "theNorthernGem" && this.weaponEquipped != "longbow" && this.weaponEquipped != "crossbow" && this.weaponEquipped != "nirineseSpear" && this.weaponEquipped != "iceBlade" && this.weaponEquipped != "kellishClaymore" && this.weaponEquipped != "smashStick" && this.weaponEquipped != "burningSmashStick" && this.weaponEquipped != "lightningCorseque" && this.weaponEquipped != "staff" && this.weaponEquipped != "estoc" && this.weaponEquipped != "scimitar" && this.weaponEquipped != "nirwadenLance" && this.weaponEquipped != "vardanianHalberd" && this.weaponEquipped != "shotgun" && this.weaponEquipped != "sickle" && this.weaponEquipped != "vardanianCrossbow" && this.weaponEquipped != "throwingStar") //add more cases for more overhead weapons.
+                if (this.wepLayer == "standard" || this.wepLayer != "under" && this.wepLayer != "over" && this.weaponEquipped != "swimming" && this.weaponEquipped != "boat" && this.weaponEquipped != "blunderbuss" && this.weaponEquipped != "musket" && this.weaponEquipped != "cutlass" && this.weaponEquipped != "nirineseSabre" && this.weaponEquipped != "longSpikedMorningStar" && this.weaponEquipped != "freydicSword" && this.weaponEquipped != "freydicGreatSword" && this.weaponEquipped != "theNorthernGem" && this.weaponEquipped != "longbow" && this.weaponEquipped != "crossbow" && this.weaponEquipped != "nirineseSpear" && this.weaponEquipped != "iceBlade" && this.weaponEquipped != "kellishClaymore" && this.weaponEquipped != "smashStick" && this.weaponEquipped != "burningSmashStick" && this.weaponEquipped != "lightningCorseque" && this.weaponEquipped != "staff" && this.weaponEquipped != "estoc" && this.weaponEquipped != "scimitar" && this.weaponEquipped != "nirwadenLance" && this.weaponEquipped != "vardanianHalberd" && this.weaponEquipped != "shotgun" && this.weaponEquipped != "sickle" && this.weaponEquipped != "vardanianCrossbow" && this.weaponEquipped != "throwingStar" && this.weaponEquipped != "pitchfork" && this.weaponEquipped != "cultistScythe" && this.weaponEquipped != "sceptreOfRadiance" && this.weaponEquipped != "longBone") //add more cases for more overhead weapons.
                 {
                     this.drawArms();
                 }

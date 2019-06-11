@@ -3292,7 +3292,9 @@ function theLegend()
         masterHanz: ["MasterHanz", 0],
         madamBella: ["Bella", 0],
         mesek: ["Mesek", 0],
-        aleksi: ["Aleksi", 0]
+        aleksi: ["Aleksi", 0],
+        borje: ["Borje", 0],
+        toraan: ["Toraan", 0]
     };
 
 //time Tracker Variables
@@ -3504,7 +3506,9 @@ function theLegend()
         bellaLDS: true,
         mesekLDS: true,
         aleksiLDS: true,
-        kagBearLDS: true
+        kagBearLDS: true,
+        toraanLDS: true,
+        borjeLDS: true,
     };
 //QUESTS
     quests =
@@ -3945,6 +3949,10 @@ function theLegend()
     allWeapons.push(new Item("zetianRattlerBlowdart"));//101
     allWeapons.push(new Item("zetianRattlerBlowdartThick"));//102
     allWeapons.push(new Item("wendigo", false)); //103 //FORM
+    allWeapons.push(new Item("pitchfork"));//104
+    allWeapons.push(new Item("cultistScythe"));//105
+    allWeapons.push(new Item("sceptreOfRadiance"));//106
+    allWeapons.push(new Item("longBone"));//107
 
 
 
@@ -4240,7 +4248,7 @@ function theLegend()
     smithing.push(new Item("eliteNechrovitePlateArmourPlumed", false));
     smithing.push(new Item("firetrapEmpty", false));
     smithing.push(new Item("floortrap", false));
-
+    smithing.push(new Item("pitchfork", false));
 
 //Foods (Items cooked at either a stove, an oven, or a campfire)
     foods = [];

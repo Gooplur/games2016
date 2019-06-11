@@ -24895,7 +24895,7 @@ function Item(type, x, y)
             this.ability = "none";
 
             //radioactive in world
-            if (this.X != false)
+            if (this.X !== false)
             {
                 if (player.radProof != true)
                 {
@@ -32368,6 +32368,167 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 300 - Math.floor(player.getCharisma() / 1); // at max, buy for 250.
             this.sellValue = 200 + Math.floor(player.getCharisma() / 1); // at max, sell for 250.
+        }
+        else if (this.type == "pitchfork")
+        {
+            //For All Items
+            this.identity = "Pitchfork";
+            this.weight = 2.5;
+            this.size = 16;
+            this.description = "An iron pitchfork.";
+            this.intForDes = 1;
+            this.intDescription = "Pitchforks are often used for moving hay bails, but they are also sometimes used by angry peasants for more violent means...";
+
+            //Define Utility
+            this.utility = "weapon";
+
+            //Utility Focused
+            this.energyCost = 5;
+            this.distance = 64 + (this.range * 7);
+            this.range = 2;
+            this.rate = 200;
+            this.damage = (3.5 - this.damageHandicap * 1) * (this.leveledDamageMultiple / 25) + ((4/50) * player.getStrength());
+            this.magicalDamage = 0;
+            this.negateArmour = 6 + ((4/50) * player.getStrength());
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 23;
+            this.ingredients = [["Iron", 1], ["Wood", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 16 - Math.floor(player.getCharisma() / 25); // at max, buy for 14.
+            this.sellValue = 10 + Math.floor(player.getCharisma() / 12.5); // at max, sell for 14.
+        }
+        else if (this.type == "cultistScythe")
+        {
+            //For All Items
+            this.identity = "Cultist Scythe";
+            this.weight = 1.5;
+            this.size = 14;
+            this.description = "A scythe used by the the followers of the cult of the Radiant Spirit.";
+            this.intForDes = 5;
+            this.intDescription = "It is made with a withered bog troll rib.";
+
+            //Define Utility
+            this.utility = "weapon";
+
+            //Utility Focused
+            this.energyCost = 2.5;
+            this.distance = 26 + (this.range * 7);
+            this.range = 3;
+            if (player.getDexterity() >= 9)
+            {
+                this.rate = 95;
+            }
+            else
+            {
+                this.rate = 110;
+            }
+            this.damage = (3 - this.damageHandicap * 1) * (this.leveledDamageMultiple / 25) + ((6/50) * player.getStrength());
+            this.magicalDamage = 0;
+            this.negateArmour = 0.5;
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 30 - Math.floor(player.getCharisma() / 10); // at max, buy for 25.
+            this.sellValue = 20 + Math.floor(player.getCharisma() / 10); // at max, sell for 25.
+        }
+        else if (this.type == "sceptreOfRadiance")
+        {
+            //For All Items
+            this.identity = "Sceptre Of Radiance";
+            this.weight = 6;
+            this.size = 17;
+            this.description = "The high priest of the cult of the Radiant Spirit wields this holy sceptre.";
+            this.intForDes = 0;
+            if (player.getIntelligence() > 6)
+            {
+                this.intDescription = "According to the cult, the sceptre contains within it the glowing presence of the Radiant Spirit.";
+            }
+            else
+            {
+                this.intDescription = "The sceptre contains within it the glowing presence of the Radiant Spirit. You should venerate this holy relic and treat it with care.";
+            }
+
+            //Define Utility
+            this.utility = "weapon";
+
+            //Utility Focused
+            this.energyCost = 9;
+            this.distance = 26 + (this.range * 7);
+            this.range = 5 + 3/7;
+            this.rate = 300;
+            this.damage = (6 - this.damageHandicap * 2) * (this.leveledDamageMultiple / 25) + ((6/50) * player.getStrength());
+            this.magicalDamage = 0;
+            this.negateArmour = 6.5;
+
+            //ability
+            this.ability = "radiate";
+
+            //radioactive in world
+            if (this.X !== false)
+            {
+                if (player.radProof != true)
+                {
+                    var pluyaDista = (X - this.X) * (X - this.X) + (Y - this.Y) * (Y - this.Y);
+                    if (pluyaDista <= (113 * 113))
+                    {
+                        player.radiation += 0.05;
+                    }
+                }
+
+                for (var iiiii = 0; iiiii < ArtificialIntelligenceAccess.length; iiiii++)
+                {
+                    if (ArtificialIntelligenceAccess[iiiii].radProof != true)
+                    {
+                        var pluyaDista = (ArtificialIntelligenceAccess[iiiii].X - this.X) * (ArtificialIntelligenceAccess[iiiii].X - this.X) + (ArtificialIntelligenceAccess[iiiii].Y - this.Y) * (ArtificialIntelligenceAccess[iiiii].Y - this.Y);
+                        if (pluyaDista <= (113 * 113))
+                        {
+                            ArtificialIntelligenceAccess[iiiii].radiation += 0.05;
+                        }
+                    }
+                }
+            }
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 60 - Math.floor(player.getCharisma() / 10); // at max, buy for 55.
+            this.sellValue = 45 + Math.floor(player.getCharisma() / 5); // at max, sell for 55.
+        }
+        else if (this.type == "longBone")
+        {
+            //For All Items
+            this.identity = "Long Bone";
+            this.weight = 0.5;
+            this.size = 17;
+            this.description = "A hollow withered piece of rib bone from a bog troll.";
+            this.intForDes = 2;
+            this.intDescription = "This was more than likely scavenged from the corpse of a rotting bog troll.";
+
+
+            //Define Utility
+            this.utility = "weapon";
+
+            //Utility Focused
+            this.energyCost = 1;
+            this.distance = 24 + (this.range * 7);
+            this.range = 3;
+            this.rate = 100;
+            this.damage = (2 - this.damageHandicap * 0.5) * (this.leveledDamageMultiple / 25) + ((3/50) * player.getStrength());
+            this.magicalDamage = 0;
+            this.negateArmour = 1;
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 8 - Math.floor(player.getCharisma() / 50); // at max, buy for 7.
+            this.sellValue = 5 + Math.floor(player.getCharisma() / 25); // at max, sell for 7.
         }
         else if (this.type == "nirineseSpear")
         {
@@ -44637,6 +44798,10 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(wendi, 795, 1077, 37, 56, X - this.X + (1/2 * CCC.width) - (1/2 * 37 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 56 * 1), 37 * 1, 56 * 1);
+            if (timeOfDay != "Day" || player.underground == true)
+            {
+                lights.push({X:this.X, Y: this.Y, size: 100, extraStops: true, GRD: 0, Alpha: 0.3, showMe: false});
+            }
         }
         else if (this.type == "cultistScythe")
         {
@@ -50517,7 +50682,7 @@ function Item(type, x, y)
         else if (this.type == "pitchfork")
         {
             LXX.beginPath();
-            LXX.drawImage(wendi, 786, 886, 41, 72, this.invX - (1/2 * 41 * 1), this.invY - (1/2 * 72 * 1), 41 * 1, 72 * 1);
+            LXX.drawImage(wendi, 786, 886, 41, 72, this.invX - (1/2 * 41 * 0.9), this.invY - (1/2 * 72 * 0.9), 41 * 0.9, 72 * 0.9);
         }
         else if (this.type == "jolleFlower")
         {
@@ -56354,7 +56519,7 @@ function Item(type, x, y)
         else if (this.type == "pitchfork")
         {
             XXX.beginPath();
-            XXX.drawImage(wendi, 786, 886, 41, 72, this.invX - (1/2 * 41 * 1), this.invY - (1/2 * 72 * 1), 41 * 1, 72 * 1);
+            XXX.drawImage(wendi, 786, 886, 41, 72, this.invX - (1/2 * 41 * 0.9), this.invY - (1/2 * 72 * 0.9), 41 * 0.9, 72 * 0.9);
         }
         else if (this.type == "jolleFlower")
         {

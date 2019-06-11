@@ -2833,6 +2833,314 @@ function interaction(me)
                         }
                     }
 
+                    if (self.ID == "Borje" || conversationID[0] == "Borje")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Borje";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Greetings.", false, "a"], ["You must be the man to talk to around here.", false, "b"], ["I need supplies.", false, "c"], ["I need supplies, would you be willing to part with any?", false, "c"], ["Can you tell me anything about this hamlet?", false, "d"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            setMsg("Welcome to Jalsirsted, Traveller.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            setMsg("One might put it that way. My great great grandfather established this hamlet when he arrived after the great southern voyage. So yes, under the rule of Jarl Stambjord I am the holder of these lands.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            if (player.areGlovesEquipped != true)
+                            {
+                                setMsg("You are welcome to use my well, and you can warm your hands by my hearth, and you can cook whatever meat you have in the fire. If you seek sustanance I am afraid to say I can not help you. The Jarl takes a sizable cut of the produce I grow here at harvest, and the rest I sell in the market at Venning to buy food, clothing, and furs. Remember this though, the gods help those who forge their own path through the snow, may you persevere.");
+                            }
+                            else
+                            {
+                                setMsg("You are welcome to use my well, and you can warm yourself by my hearth, and you can cook whatever meat you have in the fire. If you seek sustanance I am afraid to say I can not help you. The Jarl takes a sizable cut of the produce I grow here at harvest, and the rest I sell in the market at Venning to buy food, clothing, and furs. Remember this though, the gods help those who forge their own path through the snow, may you persevere.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            setMsg("My family has lived in Jalsirsted since the time of the great southern voyage over a century ago. My great great grandfather had claimed land much farther south, but the Echlin Kels forced him and his compatriots north. It was there that he founded Jalsirsted in his name. Ever since then my family has carried on his legacy, and we have learned that no wise Freydic man should set foot where his boot will not sink into frost, for the south is home to many men weaker in character, but the north is ours. There is hardly a soul that would elect to live in the north but for a freydic man!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Toraan" || conversationID[0] == "Toraan")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Toraan";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Good day.", false, "a"], ["Do you live out here?", false, "b"], ["How far away am I from the nearest township?", false, "c"], ["You look like you've seen a battle or two... what's your story?", false, "d"], ["Where am I?", false, "e"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            setMsg("...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            setMsg("Yes. My father Borje owns the large house and the farm plot in the north part of Jalsirsted.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            setMsg("Venning City is just north of here... but tread carefully, for there are winter wolves, and there is a balkur that oft wanders through these parts.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            setMsg("No, I've seen no battles, I spent my youth sailing around the north. There are beasts up there with which no human battle can compare... I just hope I don't become a soft man now that I am back home in this southern weather.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            //text dialogue
+                            if (region == "n3e2")
+                            {
+                                setMsg("You are in Jalsirsted. I would welcome you, but that is my father's perogative, he lives in the large house.");
+                            }
+                            else if (region == "n2e2")
+                            {
+                                setMsg("You are just south of Jalsirsted, and if you venture farther north you will find the port city of Venning.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
                     if (self.ID == "High Magus Aleksi" || conversationID[0] == "Aleksi")
                     {
                         lowBar = "dialogue";

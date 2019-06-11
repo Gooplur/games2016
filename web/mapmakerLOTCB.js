@@ -216,6 +216,7 @@ function buildMaster()
                 //scenicList.push(new Scenery("jollePlant", 3400, 2400, 0.2, true));
                 //ArtificialIntelligenceAccess.push(new Unit(4200, 2500, "GrizzlyBear", "kag", "Kag the scarred devourer"));
                 //ArtificialIntelligenceAccess.push(new Unit(4200, 2500, "GrizzlyBear", true, "Kaaguf"));
+                //ArtificialIntelligenceAccess.push(new Unit(4200, 2500, "StovolBeetle", false, "escarabajo"));
 
                 //scenicList.push(new Scenery("wendigoCircle", 3900, 2400, 0.38, true));
 

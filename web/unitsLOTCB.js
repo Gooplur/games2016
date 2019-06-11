@@ -16320,6 +16320,68 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
             this.swimSpeed = this.speed * 0.8;
         }
+        else if (this.type == "StovolBeetle")
+        {
+            this.bugger = true;
+            this.damageFrame = "automatic";
+            this.team = "wild";
+            if (this.ID == "docile")
+            {
+                this.team = "docile";
+            }
+            this.baseTeam = this.team;
+            this.tameREQ = 14;
+
+            if (this.alpha == true)
+            {
+                this.magicalResistance = 0;
+                this.heatResistance = 2;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = 3;
+                this.health = this.healthMAX;
+                this.armour = 2.5;
+                this.speed = 1.35 + (Math.floor(Math.random() * 3) / 10);
+                this.rangeOfSight = 415; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.05;
+                this.engagementRadius = 43;
+                this.sizeRadius = 8;
+                this.negateArmour = 3;
+                this.attackWait = 1.2;
+
+                //alpha has a larger size body and skills.
+                this.alphaSize = 1; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                // this is the adjustment the alpha type of Etyr needs to be centered.
+                this.yAdjustment = 0; //was - 3.5
+                this.xAdjustment = 0; //was 6
+            }
+            else
+            {
+                //STATS (non-variable)
+                this.magicalResistance = 0;
+                this.heatResistance = 2;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = 2.5;
+                this.health = this.healthMAX;
+                this.armour = 2;
+                this.speed = 1.1 + (Math.floor(Math.random() * 3) / 10);
+                this.rangeOfSight = 390; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.05;
+                this.engagementRadius = 41;
+                this.sizeRadius = 7;
+                this.negateArmour = 2.5;
+                this.attackWait = 1.2;
+
+                //this multiplies the draw image skew numbers by 1 so that it stays the same
+                this.alphaSize = 0.9;
+                // this is the adjustment the alpha type of Etyr needs to be centered.
+                this.yAdjustment = 0; //was -34
+                this.xAdjustment = 0; //was - 26
+
+            }
+            this.swimSpeed = this.speed * 0.8;
+        }
         else if (this.type == "Badger")
         {
             this.damageFrame = "automatic";
@@ -34319,6 +34381,156 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             else
             {
                 this.drawUnit(verse, 2929, 283, 54, 32, -35 - this.xAdjustment, -22 - this.yAdjustment, 54 * this.alphaSize, 32 * this.alphaSize);
+            }
+        }
+        //STOVOL BEETLE
+        if (this.type == "StovolBeetle")
+        {
+            //Set Drops and experience
+            if (this.alpha == true)
+            {
+                if (Math.max(0, 2.4 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 6 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = (6 * ((player.getIntelligence() / 50) + 1)) / 10;
+                }
+
+                this.drops = [[new Item("stovolBeetleMandable", this.X, this.Y), 1]];
+            }
+            else
+            {
+                if (Math.max(0, 1.9 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 5 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = 5 * ((player.getIntelligence() / 50) + 1) / 10;
+                }
+
+                this.drops = [[new Item("stovolBeetleMandable", this.X, this.Y), 1]];
+            }
+
+            //RANGE OF SIGHT (anything related to range of sight)
+            if (this.alpha == true)
+            {
+                this.rangeOfSightCalculator(415, true);
+            }
+            else
+            {
+                this.rangeOfSightCalculator(390, true);
+            }
+
+            //AI
+            if (this.alive == true)
+            {
+                if (this.alpha == true)
+                {
+                    this.Attack(1, 1.4);
+                }
+                else
+                {
+                    this.Attack(1, 0.9);
+                }
+
+                //this.deathChecker();
+                this.disturbedTimer();
+                this.visibleSight();
+                this.friendDecider();
+                this.targeting();
+                this.moving = false;
+
+                if (this.target == player)
+                {
+                    this.pointTowardsPlayer();
+                    this.moveInRelationToPlayer();
+                }
+                else if (this.target != "none")
+                {
+                    this.pointTowards(this.target);
+                    this.moveInRelationToThing(this.target);
+                }
+
+            }
+
+            //ANIMATIONS
+
+            if (this.alive == true)
+            {
+                if (this.moving && !this.attacking) //If moving and not attacking initiate moving animation...
+                {
+                    this.costumeEngine(4, 0.09, false);
+                }
+                else if (this.attacking) //otherwise if it is attacking then initiate attacking animation, and if neither...
+                {
+                    if(new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000 / timeSpeed * this.timeResistance))
+                    {
+                        this.costumeEngine(5, 0.125, true);
+                    }
+                }
+                else
+                {
+                    this.costume = 0;
+                }
+
+                // the frames/stages/costumes of the animation.
+                var theCostume = Math.floor(this.costume); //This rounds this.costume down to the nearest whole number.
+
+                if (theCostume <= 0)
+                {
+                    if (this.attacking)
+                    {
+                        this.drawUnit(wendi, 2, 1281, 108, 55, -1/2 * 108 * this.alphaSize - this.xAdjustment, -1/2 * 55 * this.alphaSize - this.yAdjustment, 108 * this.alphaSize, 55 * this.alphaSize);
+                    }
+                    else if (this.moving)
+                    {
+                        this.drawUnit(wendi, 107, 1281, 107, 56, -1/2 * 107 * this.alphaSize - this.xAdjustment, -1/2 * 56 * this.alphaSize - this.yAdjustment, 107 * this.alphaSize, 56 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(wendi, 2, 1281, 108, 55, -1/2 * 108 * this.alphaSize - this.xAdjustment, -1/2 * 55 * this.alphaSize - this.yAdjustment, 108 * this.alphaSize, 55 * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 1)
+                {
+                    if (this.attacking)
+                    {
+                        this.drawUnit(wendi, 632, 1281, 100, 55, -1/2 * 100 * this.alphaSize - this.xAdjustment, -1/2 * 55 * this.alphaSize - this.yAdjustment, 100 * this.alphaSize, 55 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(wendi, 211, 1281, 99, 55, -1/2 * 99 * this.alphaSize - this.xAdjustment, -1/2 * 55 * this.alphaSize - this.yAdjustment, 99 * this.alphaSize, 55 * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 2)
+                {
+                    if (this.attacking)
+                    {
+                        this.drawUnit(wendi, 2, 1281, 108, 55, -1/2 * 108 * this.alphaSize - this.xAdjustment, -1/2 * 55 * this.alphaSize - this.yAdjustment, 108 * this.alphaSize, 55 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(wendi, 309, 1281, 100, 55, -1/2 * 100 * this.alphaSize - this.xAdjustment, -1/2 * 55 * this.alphaSize - this.yAdjustment, 100 * this.alphaSize, 55 * this.alphaSize);
+                    }
+                }
+                else if (theCostume >= 3)
+                {
+                    if (this.attacking)
+                    {
+                        this.drawUnit(wendi, 526, 1281, 100, 55, -1/2 * 100 * this.alphaSize - this.xAdjustment, -1/2 * 55 * this.alphaSize - this.yAdjustment, 100 * this.alphaSize, 55 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(wendi, 418, 1281, 100, 55, -1/2 * 100 * this.alphaSize - this.xAdjustment, -1/2 * 55 * this.alphaSize - this.yAdjustment, 100 * this.alphaSize, 55 * this.alphaSize);
+                    }
+                }
+            }
+            else
+            {
+                this.drawUnit(wendi, 730, 1280, 100, 55, -1/2 * 100 * this.alphaSize - this.xAdjustment, -1/2 * 55 * this.alphaSize - this.yAdjustment, 100 * this.alphaSize, 55 * this.alphaSize);
             }
         }
         //BADGER

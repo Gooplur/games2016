@@ -8861,7 +8861,7 @@ function Item(type, x, y)
             this.size = 16;
             this.description = "The long dark Mandible of a stovol beetle.";
             this.intForDes = 2;
-            this.intDescription = "The stovol beetle uses its mandibles not only to defend itself and to eat larger prey, but also to turn up soil to eat insects below.";
+            this.intDescription = "The stovol beetle uses its mandibles not only to defend itself and to eat larger prey, but also to turn up soil to eat insects that dwell below.";
 
             //Define Utility
             this.utility = "material";

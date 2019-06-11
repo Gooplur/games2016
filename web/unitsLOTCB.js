@@ -16382,6 +16382,70 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
             this.swimSpeed = this.speed * 0.8;
         }
+        else if (this.type == "Skindler")
+        {
+            this.resistances = ["acid", "water", "decay", "night"];
+            this.damageFrame = "automatic";
+            this.team = "bloat";
+            if (this.ID == "docile")
+            {
+                this.team = "docile";
+            }
+            this.baseTeam = this.team;
+            this.tamable = false;
+
+            this.lastHP = this.healthMAX;
+
+            if (this.alpha == true) //grendle
+            {
+                this.magicalResistance = 0.4;
+                this.heatResistance = 0.4;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = Math.floor(Math.random() * 7) + 110;
+                this.health = this.healthMAX;
+                this.armour = 0;
+                this.speed = 2.2 + (Math.floor(Math.random() * 5) / 10);
+                this.rangeOfSight = 1200; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.09;
+                this.engagementRadius = 129;
+                this.sizeRadius = 69;
+                this.negateArmour = 9;
+                this.attackWait = 3.4;
+
+                //alpha has a larger size body and skills.
+                this.alphaSize = 1; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                // this is the adjustment the alpha type of Etyr needs to be centered.
+                this.yAdjustment = 0; //was - 3.5
+                this.xAdjustment = 0; //was 6
+            }
+            else //bloathead
+            {
+                //STATS (non-variable)
+                this.magicalResistance = 0.25;
+                this.heatResistance = 0.25;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = Math.floor(Math.random() * 11) + 30;
+                this.health = this.healthMAX;
+                this.armour = 0;
+                this.speed = 1.6 + (Math.floor(Math.random() * 2) / 10);
+                this.rangeOfSight = 800; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.09;
+                this.engagementRadius = 87;
+                this.sizeRadius = 34;
+                this.negateArmour = 2.5;
+                this.attackWait = 2.4;
+
+                //this multiplies the draw image skew numbers by 1 so that it stays the same
+                this.alphaSize = 0.6;
+                // this is the adjustment the alpha type of Etyr needs to be centered.
+                this.yAdjustment = 0; //was -34
+                this.xAdjustment = 0; //was - 26
+
+            }
+            this.swimSpeed = this.speed * 0.46;
+        }
         else if (this.type == "Badger")
         {
             this.damageFrame = "automatic";
@@ -34381,6 +34445,353 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             else
             {
                 this.drawUnit(verse, 2929, 283, 54, 32, -35 - this.xAdjustment, -22 - this.yAdjustment, 54 * this.alphaSize, 32 * this.alphaSize);
+            }
+        }
+        //SKINDLER
+        if (this.type == "Skindler")
+        {
+            //Set Drops and experience
+            if (!sKey && this.explotado != true)
+            {
+                if (this.alpha == true)
+                {
+                    if (Math.max(0, 40 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                    {
+                        this.experience = 550 * ((player.getIntelligence() / 50) + 1);
+                    }
+                    else
+                    {
+                        this.experience = (550 * ((player.getIntelligence() / 50) + 1)) / 10;
+                    }
+
+                    this.drops = [[new Item("skindlerIntestines", this.X, this.Y), 3]];
+                }
+                else
+                {
+                    if (Math.max(0, 10 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                    {
+                        this.experience = 80 * ((player.getIntelligence() / 50) + 1);
+                    }
+                    else
+                    {
+                        this.experience = 80 * ((player.getIntelligence() / 50) + 1) / 10;
+                    }
+
+                    this.drops = [[new Item("skindlerIntestines", this.X, this.Y), 1]];
+                }
+            }
+            else
+            {
+                if (this.alpha == true)
+                {
+                    if (Math.max(0, 40 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                    {
+                        this.experience = 300 * ((player.getIntelligence() / 50) + 1);
+                    }
+                    else
+                    {
+                        this.experience = (300 * ((player.getIntelligence() / 50) + 1)) / 10;
+                    }
+
+                    this.drops = [[new Item("skindlerIntestines", this.X, this.Y), 3]];
+                }
+                else
+                {
+                    if (Math.max(0, 10 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                    {
+                        this.experience = 40 * ((player.getIntelligence() / 50) + 1);
+                    }
+                    else
+                    {
+                        this.experience = 40 * ((player.getIntelligence() / 50) + 1) / 10;
+                    }
+
+                    this.drops = [[new Item("skindlerIntestines", this.X, this.Y), 1]];
+                }
+            }
+
+            //RANGE OF SIGHT (anything related to range of sight)
+            if (this.alpha == true)
+            {
+                this.rangeOfSightCalculator(1200, true);
+            }
+            else
+            {
+                this.rangeOfSightCalculator(800, true);
+            }
+
+            //AI
+            if (this.alive == true)
+            {
+                this.dedBumNum = 0;
+
+                if (this.disturbed == true && !shiftKey)
+                {
+                    if (sKey)
+                    {
+                        this.explotado = true;
+                    }
+                }
+
+                if (this.alpha == true)
+                {
+                    this.Attack(8, 36);
+                }
+                else
+                {
+                    this.Attack(4, 9);
+                }
+
+                //this.deathChecker();
+                this.disturbedTimer();
+                this.visibleSight();
+                this.friendDecider();
+                this.targeting();
+                this.moving = false;
+
+                if (this.bummed != true)
+                {
+                    if (this.target == player)
+                    {
+                        this.pointTowardsPlayer();
+                        this.moveInRelationToPlayer();
+                    }
+                    else if (this.target != "none")
+                    {
+                        this.pointTowards(this.target);
+                        this.moveInRelationToThing(this.target);
+                    }
+
+                    if (this.aiTimer > 20)
+                    {
+                        this.aiTimer = 0;
+                        if (this.alpha == true)
+                        {
+                            if (this.attacking == true)
+                            {
+                                scenicList.push(new Scenery("bloatGas", this.X + Math.cos(this.rotation) * -36 * 2 * this.alphaSize, this.Y + Math.sin(this.rotation) * -36 * 2 * this.alphaSize, 2 * Math.PI * Math.random(), false));
+                            }
+                            else
+                            {
+                                if (this.moving)
+                                {
+                                    scenicList.push(new Scenery("bloatGas", this.X + Math.cos(this.rotation) * -22 * 2 * this.alphaSize, this.Y + Math.sin(this.rotation) * -22 * 2 * this.alphaSize, 2 * Math.PI * Math.random(), false));
+                                }
+                                else
+                                {
+                                    scenicList.push(new Scenery("bloatGas", this.X + Math.cos(this.rotation) * -22 * 2 * this.alphaSize + Math.cos(this.rotation) * -this.speed, this.Y + Math.sin(this.rotation) * -22 * 2 * this.alphaSize + Math.sin(this.rotation) * -this.speed, 2 * Math.PI * Math.random(), false));
+                                }
+                            }
+                        }
+
+                        if (this.attacking == true)
+                        {
+                            scenicList.push(new Scenery("bloatGas", this.X + Math.cos(this.rotation) * -36 * 2 * this.alphaSize, this.Y + Math.sin(this.rotation) * -36 * 2 * this.alphaSize, 2 * Math.PI * Math.random(), false));
+                        }
+                        else
+                        {
+                            if (this.moving)
+                            {
+                                scenicList.push(new Scenery("bloatGas", this.X + Math.cos(this.rotation) * -22 * 2 * this.alphaSize, this.Y + Math.sin(this.rotation) * -22 * 2 * this.alphaSize, 2 * Math.PI * Math.random(), false));
+                            }
+                            else
+                            {
+                                scenicList.push(new Scenery("bloatGas", this.X + Math.cos(this.rotation) * -22 * 2 * this.alphaSize + Math.cos(this.rotation) * -this.speed, this.Y + Math.sin(this.rotation) * -22 * 2 * this.alphaSize + Math.sin(this.rotation) * -this.speed, 2 * Math.PI * Math.random(), false));
+                            }
+                        }
+                    }
+
+                    if (this.alpha == true)
+                    {
+                        if (this.lastHP > (this.health + 17 + (9 * Math.random())))
+                        {
+                            this.bummed = true;
+                            this.lastHP = this.health;
+                        }
+                        else
+                        {
+                            this.lastHP = this.health;
+                        }
+                    }
+                    else
+                    {
+                        if (this.lastHP > (this.health + 9 + (4 * Math.random())))
+                        {
+                            this.bummed = true;
+                            this.lastHP = this.health;
+                        }
+                        else
+                        {
+                            this.lastHP = this.health;
+                        }
+                    }
+                }
+
+            }
+
+            //ANIMATIONS
+
+            if (this.alive == true)
+            {
+                if (this.bummed == true)
+                {
+                    this.costume = 0;
+                }
+                else if (this.moving && !this.attacking) //If moving and not attacking initiate moving animation...
+                {
+                    this.costumeEngine(3, 0.10, true);
+                }
+                else if (this.attacking) //otherwise if it is attacking then initiate attacking animation, and if neither...
+                {
+                    if(new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000 / timeSpeed * this.timeResistance))
+                    {
+                        this.costumeEngine(8, 0.09, false);
+                    }
+                }
+                else
+                {
+                    this.costume = 0;
+                }
+
+                // the frames/stages/costumes of the animation.
+                var theCostume = Math.floor(this.costume); //This rounds this.costume down to the nearest whole number.
+
+                if (this.bummed != true)
+                {
+                    if (theCostume <= 0)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(bloat, 179, 203, 199, 174, -1/2 * 199 * this.alphaSize - this.xAdjustment, -1/2 * 174 * this.alphaSize - this.yAdjustment, 199 * this.alphaSize, 174 * this.alphaSize);
+                        }
+                        else if (this.moving)
+                        {
+                            this.drawUnit(bloat, 0, 201, 199, 174, -1/2 * 199 * this.alphaSize - this.xAdjustment + 30, -1/2 * 174 * this.alphaSize - this.yAdjustment, 199 * this.alphaSize, 174 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(bloat, 179, 203, 199, 174, -1/2 * 199 * this.alphaSize - this.xAdjustment, -1/2 * 174 * this.alphaSize - this.yAdjustment, 199 * this.alphaSize, 174 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume <= 1)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(bloat, 0, 0, 199, 174, -1/2 * 199 * this.alphaSize - this.xAdjustment + 48, -1/2 * 174 * this.alphaSize - this.yAdjustment, 199 * this.alphaSize, 174 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(bloat, 179, 203, 199, 174, -1/2 * 199 * this.alphaSize - this.xAdjustment, -1/2 * 174 * this.alphaSize - this.yAdjustment, 199 * this.alphaSize, 174 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume <= 2)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(bloat, 218, 0, 199, 182, -1/2 * 199 * this.alphaSize - this.xAdjustment + 37, -1/2 * 182 * this.alphaSize - this.yAdjustment + 5, 199 * this.alphaSize, 182 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(bloat, 419, 205, 199, 174, -1/2 * 199 * this.alphaSize - this.xAdjustment, -1/2 * 174 * this.alphaSize - this.yAdjustment, 199 * this.alphaSize, 174 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume <= 3)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(bloat, 416, 4, 199, 182, -1/2 * 199 * this.alphaSize - this.xAdjustment + 0, -1/2 * 182 * this.alphaSize - this.yAdjustment + 0, 199 * this.alphaSize, 182 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(bloat, 419, 205, 199, 174, -1/2 * 199 * this.alphaSize - this.xAdjustment, -1/2 * 174 * this.alphaSize - this.yAdjustment, 199 * this.alphaSize, 174 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume <= 4)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(bloat, 651, 14, 199, 182, -1/2 * 199 * this.alphaSize - this.xAdjustment + 25, -1/2 * 182 * this.alphaSize - this.yAdjustment + 0, 199 * this.alphaSize, 182 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(bloat, 419, 205, 199, 174, -1/2 * 199 * this.alphaSize - this.xAdjustment, -1/2 * 174 * this.alphaSize - this.yAdjustment, 199 * this.alphaSize, 174 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume <= 6)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(bloat, 886, 20, 199, 182, -1/2 * 199 * this.alphaSize - this.xAdjustment + 36, -1/2 * 182 * this.alphaSize - this.yAdjustment + 0, 199 * this.alphaSize, 182 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(bloat, 419, 205, 199, 174, -1/2 * 199 * this.alphaSize - this.xAdjustment, -1/2 * 174 * this.alphaSize - this.yAdjustment, 199 * this.alphaSize, 174 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume >= 7)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(bloat, 1100, 14, 199, 182, -1/2 * 199 * this.alphaSize - this.xAdjustment + 37, -1/2 * 182 * this.alphaSize - this.yAdjustment + 0, 199 * this.alphaSize, 182 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(bloat, 419, 205, 199, 174, -1/2 * 199 * this.alphaSize - this.xAdjustment, -1/2 * 174 * this.alphaSize - this.yAdjustment, 199 * this.alphaSize, 174 * this.alphaSize);
+                        }
+                    }
+                }
+                else
+                {
+                    this.lastHP = this.health;
+                    if (typeof(this.bumNum) == "undefined")
+                    {
+                        this.bumNum = 0;
+                    }
+                    else
+                    {
+                        this.bumNum += 1;
+                    }
+
+                    if (this.bumNum <= 6)
+                    {
+                        this.drawUnit(bloat, 653, 227, 336, 174, -1/2 * 336 * this.alphaSize - this.xAdjustment, -1/2 * 174 * this.alphaSize - this.yAdjustment, 336 * this.alphaSize, 174 * this.alphaSize);
+                    }
+                    if (this.bumNum <= 28)
+                    {
+                        this.drawUnit(bloat, 1003, 214, 336, 174, -1/2 * 336 * this.alphaSize - this.xAdjustment, -1/2 * 174 * this.alphaSize - this.yAdjustment, 336 * this.alphaSize, 174 * this.alphaSize);
+                    }
+                    else if (this.bumNum <= 36)
+                    {
+                        this.drawUnit(bloat, 653, 227, 336, 174, -1/2 * 336 * this.alphaSize - this.xAdjustment, -1/2 * 174 * this.alphaSize - this.yAdjustment, 336 * this.alphaSize, 174 * this.alphaSize);
+                    }
+                    else if (this.bumNum <= 44)
+                    {
+                        this.drawUnit(bloat, 390, 206, 286, 173, -1/2 * 286 * this.alphaSize - this.xAdjustment, -1/2 * 173 * this.alphaSize - this.yAdjustment, 286 * this.alphaSize, 173 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(bloat, 390, 206, 286, 173, -1/2 * 286 * this.alphaSize - this.xAdjustment, -1/2 * 173 * this.alphaSize - this.yAdjustment, 286 * this.alphaSize, 173 * this.alphaSize);
+                        this.bumNum = 0;
+                        this.bummed = false;
+                    }
+                }
+            }
+            else
+            {
+                this.dedBumNum += 1;
+
+                if (this.dedBumNum <= 6)
+                {
+                    this.drawUnit(bloat, 653, 227, 336, 174, -1/2 * 336 * this.alphaSize - this.xAdjustment, -1/2 * 174 * this.alphaSize - this.yAdjustment, 336 * this.alphaSize, 174 * this.alphaSize);
+                }
+                else if (this.dedBumNum <= 12)
+                {
+                    this.drawUnit(bloat, 1003, 214, 336, 174, -1/2 * 336 * this.alphaSize - this.xAdjustment, -1/2 * 174 * this.alphaSize - this.yAdjustment, 336 * this.alphaSize, 174 * this.alphaSize);
+                }
+                else
+                {
+                    this.drawUnit(bloat, 348, 374, 307, 182, -1/2 * 307 * this.alphaSize - this.xAdjustment, -1/2 * 182 * this.alphaSize - this.yAdjustment, 307 * this.alphaSize, 182 * this.alphaSize);
+                }
             }
         }
         //STOVOL BEETLE

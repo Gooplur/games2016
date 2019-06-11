@@ -8893,6 +8893,26 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 0; // at max, sell for 0.
         }
+        else if (this.type == "skindlerIntestines")
+        {
+            //For All Items
+            this.identity = "Skindler Intestines";
+            this.weight = 4;
+            this.size = 12;
+            this.description = "The intestines of a Skindler.";
+            this.intForDes = 0;
+            this.intDescription = "It reeks of a gut twisting fetid boquet of decaying flesh and excriment. Skindlers are also called bloatheads because of their large head-like stomach sack.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 0; // at max, buy for 0.
+            this.sellValue = 0; // at max, sell for 0.
+        }
         else if (this.type == "grizzlyBearPeltLarge")
         {
             //For All Items
@@ -44578,6 +44598,11 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "skindlerIntestines")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bloat, 31, 400, 45, 45, X - this.X + (1/2 * CCC.width) - (1/2 * 45 * 0.7), Y - this.Y + (1/2 * CCC.height) - (1/2 * 45 * 0.7), 45 * 0.7, 45 * 0.7);
+        }
         else if (this.type == "deerPelt")
         {
             XXX.beginPath();
@@ -50439,6 +50464,11 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
+        else if (this.type == "skindlerIntestines")
+        {
+            LXX.beginPath();
+            LXX.drawImage(bloat, 31, 400, 45, 45, this.invX - (1/2 * 45 * 0.7), this.invY - (1/2 * 45 * 0.7), 45 * 0.7, 45 * 0.7);
+        }
         else if (this.type == "deerPelt")
         {
             LXX.beginPath();
@@ -56270,6 +56300,11 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "skindlerIntestines")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bloat, 31, 400, 45, 45, this.invX - (1/2 * 45 * 0.7), this.invY - (1/2 * 45 * 0.7), 45 * 0.7, 45 * 0.7);
         }
         else if (this.type == "deerPelt")
         {

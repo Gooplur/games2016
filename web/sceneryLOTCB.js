@@ -16380,9 +16380,9 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             {
                 if (this.dst(X, Y) <= this.radius)
                 {
-                    player.decay += 0.0025;
+                    player.decay += 0.0055;
                     player.health -= 0.025;
-                    player.energy -= 0.025;
+                    player.energy -= 0.055;
                 }
             }
 
@@ -16394,7 +16394,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     {
                         if (ArtificialIntelligenceAccess[j].resistDisease != true)
                         {
-                            ArtificialIntelligenceAccess[j].health -= 0.05;
+                            ArtificialIntelligenceAccess[j].health -= 0.1;
                         }
                     }
                 }

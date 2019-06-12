@@ -219,10 +219,15 @@ function buildMaster()
                 //ArtificialIntelligenceAccess.push(new Unit(4200, 2500, "StovolBeetle", false, "escarabajo"));
                 //ArtificialIntelligenceAccess.push(new Unit(4200, 2500, "Skindler", false, "bloathead"));
                 //ArtificialIntelligenceAccess.push(new Unit(4300, 2450, "Skindler", true, "grendle"));
+                //scenicList.push(new Scenery("thenganorCastles", 4500, 2600, 1/2 * Math.PI, 2.6, 3));
 
                 //scenicList.push(new Scenery("wendigoCircle", 3900, 2400, 0.38, true));
 
-                //scenicList.push(new Scenery("mrbAssets", 4900, 2400, 0, 9, 2));
+                //scenicList.push(new Scenery("mrbAssets", 4900, 2100, 1/2 * Math.PI, 5, 2)); //wall sml
+                //scenicList.push(new Scenery("mrbAssets", 4900, 2100, 1/2 * Math.PI, 6, 2)); //window sml
+                //scenicList.push(new Scenery("mrbAssets", 4900, 2100, 1/2 * Math.PI, 7, 2)); //wall lrg
+                //scenicList.push(new Scenery("mrbAssets", 4900, 2100, 1/2 * Math.PI, 8, 2)); //window lrg
+                //scenicList.push(new Scenery("mrbAssets", 4900, 2100, 1/2 * Math.PI, 9, 2)); //door
 
                 //scenicList.push(new Scenery("dethMasterHut", 3600, 2500, 0, 0, "deth1"));
                 //scenicList.push(new Scenery("dethTotem", 3600, 3400, 0, 0, "deth1"));
@@ -234,6 +239,10 @@ function buildMaster()
                 //ArtificialIntelligenceAccess.push(new Unit(3475, 2030, "Deth", false, "deth1", {age: 3, CON: 16, DEX: 19, APR: 20, PER: 12, ING: 4}));
                 //ArtificialIntelligenceAccess.push(new Unit(3400, 2000, "Deth", false, "deth1", {age: 4, CON: 14, DEX: 18, APR: 12, PER: 15, ING: 16}));
 
+                if (player.gamemode == "MRB")
+                {
+                    scenicList.push(new Scenery("mrbAssets", 2116, 2253, 1/2 * Math.PI, 1, [2, 6960.7891866820155, -232268.61677319987, "mrbHQ"]));
+                }
 
                 //Friches in the plains
                 ArtificialIntelligenceAccess.push(new Unit(2921, -1125, "Frich", false, "Fuzzy Wuzzy"));
@@ -26120,6 +26129,50 @@ function buildMaster()
                 ArtificialIntelligenceAccess.push(new Unit(780, 338, "Soldier", false, "Prisoner", {race: "Freynor", faction: "arena2", con: 2, speed: 1.5, outfit: ["none", 0], weapon: ["none", [0.45, 0.3], 0, 0, 1], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
 
                 change = "venningCityPrison";
+            }
+        }
+    }
+    else if (map == "mrbHQ")
+    {
+        if (region == "mrbHQ")
+        {
+            if (change != "mrbHQ")
+            {
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
+                //Delete All Non-native AI Units
+                for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (!ArtificialIntelligenceAccess[i].guarantee)
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Structures
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
+
+                //barriers
+
+                //scenery
+                scenicList.push(new Scenery("mrbAssets", 6960.7891866820155, -232268.61677319987, 1/2 * Math.PI, 1, [2, 2116, 2253, "world"]));
+
+                change = "mrbHQ";
             }
         }
     }

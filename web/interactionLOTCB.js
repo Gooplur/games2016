@@ -21995,10 +21995,10 @@ function interaction(me)
                                             player.dialogueOptions.push(["(proposition 15 coins)", false, "a"]);
                                         }
                                     }
-                                    if (player.getStrength() >= 10)
-                                    {
-                                        player.dialogueOptions.push(["(impose yourself)", false, "b"]);
-                                    }
+                                    //if (player.getStrength() >= 10)
+                                    //{
+                                    //    player.dialogueOptions.push(["(impose yourself)", false, "b"]);
+                                    //}
                                 }
                             }
                             else if (player.dialogueChoiceMade == true)

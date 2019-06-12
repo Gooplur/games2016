@@ -2711,6 +2711,24 @@ function Adventurer()
 
         this.light = function()
         {
+            //Certain areas have lighting
+            if (region == "mrbHQ")
+            {
+                if (quests.mrbLights > 1)
+                {
+                    quests.mrbLights = 1;
+                }
+                if (quests.mrbLights < 0)
+                {
+                    quests.mrbLights = 0;
+                }
+
+                if (quests.mrbLights > 0)
+                {
+                    lights.push({X:X, Y: Y, size: 1500, extraStops: true, GRD: 1, Alpha: quests.mrbLights, showMe: true});
+                }
+            }
+
             if (this.form != false)
             {
                 if (this.form == "werewolf")
@@ -3723,6 +3741,16 @@ function Adventurer()
 
         this.cheatPowers = function()
         {
+            if (this.gamemode == "MRB")
+            {
+                player.constitution = 1;
+                player.toughness = 4;
+                if (player.strength < 10)
+                {
+                    player.strength = 10;
+                }
+            }
+
             if (this.urgeless == true)
             {
                 this.fed = true;

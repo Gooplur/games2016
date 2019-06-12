@@ -1467,6 +1467,20 @@ function applySelectionsButton()
             player.interestRate = 0.26;
         }
 
+        if (player.gamemode == "MRB")
+        {
+            X = 6960.7891866820155;
+            Y = -232268.61677319987;
+            player.race = "#999966";
+            player.raceName = "Empiric";
+            player.title = "MRB Agent";
+            player.constitution = 1;
+            player.toughness = 4;
+            Inventory = [[new Item("mrbTacticalArmour", false, false), 1], [new Item("m16Carbine", false, false), 1], [new Item("shotgun", false, false), 1], [new Item("shotgunAmmo", false, false), 20], [new Item("m16CarbineClip", false, false), 20]];
+            map = "mrbHQ";
+            player.class = "Clearance Level B";
+        }
+
         //respawnStyleDeath
         player.spawnX = X;
         player.spawnY = Y;
@@ -3333,7 +3347,7 @@ function Selector(bX, bY, type, selNumMAX)
                 XXX.fillStyle = "black";
                 XXX.font = "20px Impact";
                 XXX.textAlign = "center";
-                XXX.fillText("Magical Retention Bureau (sci-fi Mode)", bX + 105, bY + 23);
+                XXX.fillText("Magical Retention Bureau", bX + 105, bY + 23);
 
                 player.gamemode = "MRB";
             }

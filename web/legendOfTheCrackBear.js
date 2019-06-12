@@ -1602,6 +1602,18 @@ function scorpionPack()
 
     ion.onload = function()
     {
+        leshenPack();
+    };
+}
+
+function leshenPack()
+{
+    var leshen = new Image();
+    leshen.src = ("images/leshen.png");
+    window.leshen = leshen;
+
+    leshen.onload = function()
+    {
         wendigoPack();
     };
 }

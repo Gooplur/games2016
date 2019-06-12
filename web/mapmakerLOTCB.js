@@ -239,11 +239,6 @@ function buildMaster()
                 //ArtificialIntelligenceAccess.push(new Unit(3475, 2030, "Deth", false, "deth1", {age: 3, CON: 16, DEX: 19, APR: 20, PER: 12, ING: 4}));
                 //ArtificialIntelligenceAccess.push(new Unit(3400, 2000, "Deth", false, "deth1", {age: 4, CON: 14, DEX: 18, APR: 12, PER: 15, ING: 16}));
 
-                if (player.gamemode == "MRB")
-                {
-                    scenicList.push(new Scenery("mrbAssets", 2116, 2253, 1/2 * Math.PI, 1, [2, 6960.7891866820155, -232268.61677319987, "mrbHQ"]));
-                }
-
                 //Friches in the plains
                 ArtificialIntelligenceAccess.push(new Unit(2921, -1125, "Frich", false, "Fuzzy Wuzzy"));
                 ArtificialIntelligenceAccess.push(new Unit(2683, -1204, "Frich", false, "Ruby Soho"));
@@ -1507,6 +1502,11 @@ function buildMaster()
                 scenicList.push(new Scenery("techiPlant", 2937 , 5977, Math.PI * 0.66, true));
                 scenicList.push(new Scenery("techiPlant", -1057 , 2813, Math.PI * 3.8, true));
                 scenicList.push(new Scenery("techiPlant", -62 , -46, Math.PI * -62.46, true));
+
+                if (player.gamemode == "MRB")
+                {
+                    scenicList.push(new Scenery("mrbAssets", 2116, 2253, 1/2 * Math.PI, 1, [2, 6960.7891866820155, -232268.61677319987, "mrbHQ"]));
+                }
 
                 change = "central";
             }

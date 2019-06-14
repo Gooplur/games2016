@@ -16620,6 +16620,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                         if (ArtificialIntelligenceAccess[j].resistDisease != true)
                         {
                             ArtificialIntelligenceAccess[j].health -= 0.1;
+                            ArtificialIntelligenceAccess[j].killNotByPlayer = true;
                         }
                     }
                 }

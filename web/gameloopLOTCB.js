@@ -130,6 +130,7 @@ function gameloopOfDestiny(time)
             }
         }
     }
+    playerJuju = false; //a flag that magical things cast by the player can trigger so that others know that the player is up to some sort of magical juju
     player.land = true;
     player.water = false;
     player.toll = false;

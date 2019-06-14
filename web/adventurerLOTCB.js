@@ -1269,6 +1269,10 @@ function Adventurer()
                     radResFlag = true;
                     resistDiseaseFlag = true;
                 }
+                if (this.AdAbility[i] == "antiRad")
+                {
+                    radResFlag = true;
+                }
             }
 
             //EXECUTE EFFECTS
@@ -3933,10 +3937,13 @@ function Adventurer()
                 player.stunnedTime = 1;
             }
 
-            if (new Date().getTime() - this.lycanthropyTime > 180 * 1000 && this.lycanthropyTime != 0)
+            if (this.wendigo != true)
             {
-                this.lycanthropy = true;
-                this.lycanthropyTime = 0;
+                if (new Date().getTime() - this.lycanthropyTime > 180 * 1000 && this.lycanthropyTime != 0)
+                {
+                    this.lycanthropy = true;
+                    this.lycanthropyTime = 0;
+                }
             }
 
             //This enables the poisoned mini notice if any type of any category of poison is in effect.
@@ -7528,6 +7535,54 @@ function Adventurer()
         {
             outfit = allWorn[141];
         }
+        else if (this.outfitEquipped == "foxClothingF")
+        {
+            outfit = allWorn[142];
+        }
+        else if (this.outfitEquipped == "foxClothingM")
+        {
+            outfit = allWorn[143];
+        }
+        else if (this.outfitEquipped == "foxFurDress")
+        {
+            outfit = allWorn[144];
+        }
+        else if (this.outfitEquipped == "thenganArcticClothing")
+        {
+            outfit = allWorn[145];
+        }
+        else if (this.outfitEquipped == "thenganHunterOutfit")
+        {
+            outfit = allWorn[146];
+        }
+        else if (this.outfitEquipped == "cultistRobes")
+        {
+            outfit = allWorn[147];
+        }
+        else if (this.outfitEquipped == "cultistHighPriestRobes")
+        {
+            outfit = allWorn[148];
+        }
+        else if (this.outfitEquipped == "stagArmour")
+        {
+            outfit = allWorn[149];
+        }
+        else if (this.outfitEquipped == "grizzlyLeatherArmour")
+        {
+            outfit = allWorn[150];
+        }
+        else if (this.outfitEquipped == "badgerFurClothing")
+        {
+            outfit = allWorn[153];
+        }
+        else if (this.outfitEquipped == "deerHideArmour")
+        {
+            outfit = allWorn[154];
+        }
+        else if (this.outfitEquipped == "thenganWorkmansApron")
+        {
+            outfit = allWorn[155];
+        }
         else
         {
             outfit = allWorn[0];
@@ -7579,6 +7634,10 @@ function Adventurer()
         {
             gloves = allWorn[113];
         }
+        else if (this.glovesEquipped == "grizzlyLeatherGloves")
+        {
+            gloves = allWorn[152];
+        }
         else
         {
             gloves = allWorn[0];
@@ -7625,6 +7684,10 @@ function Adventurer()
         else if (this.bootsEquipped == "jesterShoes")
         {
             boots = allWorn[114];
+        }
+        else if (this.bootsEquipped == "grizzlyLeatherBoots")
+        {
+            boots = allWorn[151];
         }
         else
         {
@@ -8260,6 +8323,97 @@ function Adventurer()
             XXX.drawImage(atal, 594, 868, 85, 49, -(1 / 2 * 85 * 0.61) + 0.5, -(1 / 2 * 49 * 0.61) - 1.4, 85 * 0.61, 49 * 0.61);
             XXX.restore();
         }
+        else if (this.outfitEquipped == "stagArmour")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - 1/2 * Math.PI);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(wendi, 759, 1, 52, 51, -(1 / 2 * 52 * 1.2) + 4, -(1 / 2 * 51 * 1.2) + 0, 52 * 1.2, 51 * 1.2);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "deerHideArmour")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - 1/2 * Math.PI);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(wendi, 772, 143, 51, 53, -(1 / 2 * 51 * 1.37) + 0, -(1 / 2 * 53 * 1.37) + 0, 51 * 1.37, 53 * 1.37);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "badgerFurClothing")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - 1/2 * Math.PI);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(wendi, 710, 5, 51, 43, -(1 / 2 * 51 * 1.2) + 0, -(1 / 2 * 43 * 1.2) + 0, 51 * 1.2, 43 * 1.2);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "thenganWorkmansApron")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - 1/2 * Math.PI);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(wendi, 780, 462, 51, 43, -(1 / 2 * 51 * 1.09) - 0.5, -(1 / 2 * 43 * 1.09) + 0, 51 * 1.09, 43 * 1.09);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "grizzlyLeatherArmour")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - 1/2 * Math.PI);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(wendi, 789, 302, 43, 45, -(1 / 2 * 43 * 1.19) - 0, -(1 / 2 * 45 * 1.19) - 0.75, 43 * 1.19, 45 * 1.19);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "cultistRobes")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - 1/2 * Math.PI);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(wendi, 773, 1172, 50, 33, -(1 / 2 * 50 * 1.19) - 0, -(1 / 2 * 33 * 1.19) - 0, 50 * 1.19, 33 * 1.19);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "cultistHighPriestRobes")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - 1/2 * Math.PI);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(wendi, 760, 1142, 73, 33, -(1 / 2 * 73 * 1.24) - 1, -(1 / 2 * 33 * 1.24) - 0, 73 * 1.24, 33 * 1.24);
+            XXX.restore();
+        }
         else if (this.outfitEquipped == "nirwadenPriestRobes")
         {
             this.outfitZ = true;
@@ -8624,6 +8778,34 @@ function Adventurer()
                     XXX.globalAlpha = 0.4;
                 }
                 XXX.drawImage(verse, 3182, 206, 38, 42, -(1 / 2 * 38) + 0.3, -(1 / 2 * 42) + 5.3, 38, 42);
+                XXX.restore();
+            }
+        }
+        else if (this.outfitEquipped == "foxFurDress")
+        {
+            this.outfitZ = false;
+            if (this.movingType == 0 || this.movingType == 4 || this.movingType == 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation - 1/2 * Math.PI);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(bloat, 281, 577, 40, 28, -(1 / 2 * 40 * 2.15) + 0, -(1 / 2 * 28 * 2.15) + 0, 40 * 2.15, 28 * 2.15);
+                XXX.restore();
+            }
+            else
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation - 1/2 * Math.PI);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(bloat, 282, 604, 40, 28, -(1 / 2 * 40 * 2.15) - 0, -(1 / 2 * 28 * 2.15) + 1.5, 40 * 2.15, 28 * 2.15);
                 XXX.restore();
             }
         }
@@ -9456,6 +9638,204 @@ function Adventurer()
             else if (this.outfitState == 1)
             {
                 this.flashAnimate(120, this.rotation - 1/2 * Math.PI, translucence, [{image: polpol, imgX: 4, imgY: 214, portionW: 41, portionH: 22, adjX: -(1 / 2 * 41 * 1.7) - 4, adjY: -(1 / 2 * 22 * 1.7) - 0.2, width: 41 * 1.7, height: 22 * 1.7}, {image: polpol, imgX: 4, imgY: 319, portionW: 41, portionH: 22, adjX: -(1 / 2 * 41 * 1.7) - 3.5, adjY: -(1 / 2 * 22 * 1.7) - 0.2, width: 41 * 1.7, height: 22 * 1.7}, {image: polpol, imgX: 3.4, imgY: 300, portionW: 41, portionH: 22, adjX: -(1 / 2 * 41 * 1.7) - 4, adjY: -(1 / 2 * 22 * 1.7) - 0.2, width: 41 * 1.7, height: 22 * 1.7}, {image: polpol, imgX: 4, imgY: 279, portionW: 41, portionH: 22, adjX: -(1 / 2 * 41 * 1.7) - 3.3, adjY: -(1 / 2 * 22 * 1.7) - 0.2, width: 41 * 1.7, height: 22 * 1.7}]);
+            }
+        }
+        else if (this.outfitEquipped == "foxClothingM" || this.outfitEquipped == "foxClothingF")
+        {
+            var szx = 1.8;
+            var translucence = 1;
+            if (this.subtlety)
+            {
+                translucence = 0.4;
+            }
+            this.outfitZ = true;
+            if (this.movingType == 0 || this.movingType == 1 || this.movingType == 4 || this.freeze > 1.5 || this.movingType == 3)
+            {
+                if (this.outfitState == 1)
+                {
+                    if (this.flashAnimate(250, this.rotation - 1/2 * Math.PI, translucence, [{image: bloat, imgX: 71, imgY: 581, portionW: 68, portionH: 21, adjX: -(1 / 2 * 68 * szx) - 0, adjY: -(1 / 2 * 21 * szx) - 0, width: 68 * szx, height: 21 * szx}, {image: bloat, imgX: 71, imgY: 603, portionW: 68, portionH: 21, adjX: -(1 / 2 * 68 * szx) - 0, adjY: -(1 / 2 * 21 * szx) - 0, width: 68 * szx, height: 21 * szx}], true))
+                    {
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation - 1/2 * Math.PI);
+                        if (this.subtlety)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
+                        XXX.drawImage(bloat, 69, 558, 68, 21, -(1 / 2 * 68 * szx) - 0, -(1 / 2 * 21 * szx) - 0, 68 * szx, 21 * szx);
+                        XXX.restore();
+                        this.outfitState = 0;
+                    }
+                }
+                else
+                {
+                    this.outfitState = 0;
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(bloat, 69, 558, 68, 21, -(1 / 2 * 68 * szx) - 0, -(1 / 2 * 21 * szx) - 0, 68 * szx, 21 * szx);
+                    XXX.restore();
+                }
+            }
+            else if (this.outfitState == 0)
+            {
+                if (this.flashAnimate(250, this.rotation - 1/2 * Math.PI, translucence, [{image: bloat, imgX: 71, imgY: 581, portionW: 68, portionH: 21, adjX: -(1 / 2 * 68 * szx) - 0, adjY: -(1 / 2 * 21 * szx) - 0, width: 68 * szx, height: 21 * szx}, {image: bloat, imgX: 71, imgY: 603, portionW: 68, portionH: 21, adjX: -(1 / 2 * 68 * szx) - 0, adjY: -(1 / 2 * 21 * szx) - 0, width: 68 * szx, height: 21 * szx}], true))
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(bloat, 69, 558, 68, 21, -(1 / 2 * 68 * szx) - 0, -(1 / 2 * 21 * szx) - 0, 68 * szx, 21 * szx);
+                    XXX.restore();
+                    this.outfitState = 1;
+                }
+            }
+            else if (this.outfitState == 1)
+            {
+                this.flashAnimate(250, this.rotation - 1/2 * Math.PI, translucence, [{image: bloat, imgX: 71, imgY: 581, portionW: 68, portionH: 21, adjX: -(1 / 2 * 68 * szx) - 0, adjY: -(1 / 2 * 21 * szx) - 0, width: 68 * szx, height: 21 * szx}, {image: bloat, imgX: 71, imgY: 603, portionW: 68, portionH: 21, adjX: -(1 / 2 * 68 * szx) - 0, adjY: -(1 / 2 * 21 * szx) - 0, width: 68 * szx, height: 21 * szx}]);
+            }
+        }
+        else if (this.outfitEquipped == "thenganArcticClothing")
+        {
+            var szx = 1.8;
+            var translucence = 1;
+            if (this.subtlety)
+            {
+                translucence = 0.4;
+            }
+            this.outfitZ = true;
+            if (this.movingType == 0 || this.movingType == 1 || this.movingType == 4 || this.freeze > 1.5 || this.movingType == 3)
+            {
+                if (this.outfitState == 1)
+                {
+                    if (this.flashAnimate(250, this.rotation - 1/2 * Math.PI, translucence, [{image: bloat, imgX: 206, imgY: 582.5, portionW: 68, portionH: 21, adjX: -(1 / 2 * 68 * szx) - 0, adjY: -(1 / 2 * 21 * szx) - 0, width: 68 * szx, height: 21 * szx}, {image: bloat, imgX: 206, imgY: 605.5, portionW: 68, portionH: 21, adjX: -(1 / 2 * 68 * szx) - 0, adjY: -(1 / 2 * 21 * szx) - 0, width: 68 * szx, height: 21 * szx}], true))
+                    {
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation - 1/2 * Math.PI);
+                        if (this.subtlety)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
+                        XXX.drawImage(bloat, 206, 557.5, 68, 21, -(1 / 2 * 68 * szx) - 0, -(1 / 2 * 21 * szx) - 0, 68 * szx, 21 * szx);
+                        XXX.restore();
+                        this.outfitState = 0;
+                    }
+                }
+                else
+                {
+                    this.outfitState = 0;
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(bloat, 206, 557.5, 68, 21, -(1 / 2 * 68 * szx) - 0, -(1 / 2 * 21 * szx) - 0, 68 * szx, 21 * szx);
+                    XXX.restore();
+                }
+            }
+            else if (this.outfitState == 0)
+            {
+                if (this.flashAnimate(250, this.rotation - 1/2 * Math.PI, translucence, [{image: bloat, imgX: 206, imgY: 582.5, portionW: 68, portionH: 21, adjX: -(1 / 2 * 68 * szx) - 0, adjY: -(1 / 2 * 21 * szx) - 0, width: 68 * szx, height: 21 * szx}, {image: bloat, imgX: 206, imgY: 605.5, portionW: 68, portionH: 21, adjX: -(1 / 2 * 68 * szx) - 0, adjY: -(1 / 2 * 21 * szx) - 0, width: 68 * szx, height: 21 * szx}], true))
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(bloat, 206, 557.5, 68, 21, -(1 / 2 * 68 * szx) - 0, -(1 / 2 * 21 * szx) - 0, 68 * szx, 21 * szx);
+                    XXX.restore();
+                    this.outfitState = 1;
+                }
+            }
+            else if (this.outfitState == 1)
+            {
+                this.flashAnimate(250, this.rotation - 1/2 * Math.PI, translucence, [{image: bloat, imgX: 206, imgY: 582.5, portionW: 68, portionH: 21, adjX: -(1 / 2 * 68 * szx) - 0, adjY: -(1 / 2 * 21 * szx) - 0, width: 68 * szx, height: 21 * szx}, {image: bloat, imgX: 206, imgY: 605.5, portionW: 68, portionH: 21, adjX: -(1 / 2 * 68 * szx) - 0, adjY: -(1 / 2 * 21 * szx) - 0, width: 68 * szx, height: 21 * szx}]);
+            }
+        }
+        else if (this.outfitEquipped == "thenganHunterOutfit")
+        {
+            var szx = 1.5;
+            var translucence = 1;
+            if (this.subtlety)
+            {
+                translucence = 0.4;
+            }
+            this.outfitZ = true;
+            if (this.movingType == 0 || this.movingType == 1 || this.movingType == 4 || this.freeze > 1.5 || this.movingType == 3)
+            {
+                if (this.outfitState == 1)
+                {
+                    if (this.flashAnimate(250, this.rotation - 1/2 * Math.PI, translucence, [{image: bloat, imgX: 141, imgY: 582, portionW: 66, portionH: 21, adjX: -(1 / 2 * 66 * szx) - 0, adjY: -(1 / 2 * 21 * szx) - 0, width: 66 * szx, height: 21 * szx}, {image: bloat, imgX: 143, imgY: 604, portionW: 64, portionH: 21, adjX: -(1 / 2 * 64 * szx) - 0, adjY: -(1 / 2 * 21 * szx) - 0, width: 64 * szx, height: 21 * szx}], true))
+                    {
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation - 1/2 * Math.PI);
+                        if (this.subtlety)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
+                        XXX.drawImage(bloat, 139, 559, 68, 21, -(1 / 2 * 68 * szx) - 0, -(1 / 2 * 21 * szx) - 0, 68 * szx, 21 * szx);
+                        XXX.restore();
+                        this.outfitState = 0;
+                    }
+                }
+                else
+                {
+                    this.outfitState = 0;
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(bloat, 139, 559, 68, 21, -(1 / 2 * 68 * szx) - 0, -(1 / 2 * 21 * szx) - 0, 68 * szx, 21 * szx);
+                    XXX.restore();
+                }
+            }
+            else if (this.outfitState == 0)
+            {
+                if (this.flashAnimate(250, this.rotation - 1/2 * Math.PI, translucence, [{image: bloat, imgX: 141, imgY: 582, portionW: 66, portionH: 21, adjX: -(1 / 2 * 66 * szx) - 0, adjY: -(1 / 2 * 21 * szx) - 0, width: 66 * szx, height: 21 * szx}, {image: bloat, imgX: 143, imgY: 604, portionW: 64, portionH: 21, adjX: -(1 / 2 * 64 * szx) - 0, adjY: -(1 / 2 * 21 * szx) - 0, width: 64 * szx, height: 21 * szx}], true))
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(bloat, 139, 559, 68, 21, -(1 / 2 * 68 * szx) - 0, -(1 / 2 * 21 * szx) - 0, 68 * szx, 21 * szx);
+                    XXX.restore();
+                    this.outfitState = 1;
+                }
+            }
+            else if (this.outfitState == 1)
+            {
+                this.flashAnimate(250, this.rotation - 1/2 * Math.PI, translucence, [{image: bloat, imgX: 141, imgY: 582, portionW: 66, portionH: 21, adjX: -(1 / 2 * 66 * szx) - 0, adjY: -(1 / 2 * 21 * szx) - 0, width: 66 * szx, height: 21 * szx}, {image: bloat, imgX: 143, imgY: 604, portionW: 64, portionH: 21, adjX: -(1 / 2 * 64 * szx) - 0, adjY: -(1 / 2 * 21 * szx) - 0, width: 64 * szx, height: 21 * szx}]);
+            }
+            else
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation - 1/2 * Math.PI);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(bloat, 139, 559, 68, 21, -(1 / 2 * 68 * szx) - 0, -(1 / 2 * 21 * szx) - 0, 68 * szx, 21 * szx);
+                XXX.restore();
             }
         }
     };
@@ -14965,13 +15345,13 @@ function Adventurer()
 
                         for (var ll = 0; ll < ArtificialIntelligenceAccess.length; ll++)
                         {
-                            if (ArtificialIntelligenceAccess[ll].haste == false && ArtificialIntelligenceAccess[ll].healthMAX < 52 && ArtificialIntelligenceAccess[ll].team != "player")
+                            if (ArtificialIntelligenceAccess[ll].haste == false && ArtificialIntelligenceAccess[ll].healthMAX < 90 && ArtificialIntelligenceAccess[ll].team != "player")
                             {
                                 if (ArtificialIntelligenceAccess[ll].DTP() <= 70)
                                 {
                                     ArtificialIntelligenceAccess[ll].stunTime = new Date().getTime();
                                     ArtificialIntelligenceAccess[ll].stunTimer = 2;
-                                    ArtificialIntelligenceAccess[ll].stunII = true;
+                                    ArtificialIntelligenceAccess[ll].stunIII = true;
                                 }
                             }
                         }
@@ -14982,13 +15362,13 @@ function Adventurer()
 
                         for (var ll = 0; ll < ArtificialIntelligenceAccess.length; ll++)
                         {
-                            if (ArtificialIntelligenceAccess[ll].haste == false && ArtificialIntelligenceAccess[ll].healthMAX < 37 && ArtificialIntelligenceAccess[ll].team != "player")
+                            if (ArtificialIntelligenceAccess[ll].haste == false && ArtificialIntelligenceAccess[ll].healthMAX < 90 && ArtificialIntelligenceAccess[ll].team != "player")
                             {
                                 if (ArtificialIntelligenceAccess[ll].DTP() <= 60)
                                 {
                                     ArtificialIntelligenceAccess[ll].stunTime = new Date().getTime();
                                     ArtificialIntelligenceAccess[ll].stunTimer = 2;
-                                    ArtificialIntelligenceAccess[ll].stunI = true;
+                                    ArtificialIntelligenceAccess[ll].stunII = true;
                                 }
                             }
                         }
@@ -39273,6 +39653,18 @@ function Adventurer()
                         XXX.globalAlpha = 0.4;
                     }
                     XXX.drawImage(hydra, 961, 663, 46, 37, -(1 / 2 * 46 * 1.05) - 0, -(1 / 2 * 37 * 1.05) + 0.21, 46 * 1.05, 37 * 1.05);
+                    XXX.restore();
+                }
+                else if (this.outfitEquipped == "foxFurDress")
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(bloat, 291, 559, 18, 17, -(1 / 2 * 18 * 2.15) - 1, -(1 / 2 * 17 * 2.15) - 0, 18 * 2.15, 17 * 2.15);
                     XXX.restore();
                 }
                 else if (this.outfitEquipped == "vardanWearF")

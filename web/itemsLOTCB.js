@@ -28905,7 +28905,7 @@ function Item(type, x, y)
             this.buyValue = 53; // at max, buy for 53.
             this.sellValue = 53; // at max, sell for 53.
         }
-        else if (this.type == "cloth")
+        else if (this.type == "cloth") //clothcloth
         {
             //For All Items
             this.identity = "Cloth";
@@ -32982,6 +32982,46 @@ function Item(type, x, y)
             this.buyValue = 8 - Math.floor(player.getCharisma() / 50); // at max, buy for 7.
             this.sellValue = 5 + Math.floor(player.getCharisma() / 25); // at max, sell for 7.
         }
+        else if (this.type == "sowtFlemGland")
+        {
+            //For All Items
+            this.identity = "Sowt Flem Gland";
+            this.weight = 0.9;
+            this.size = 7;
+            this.description = "The flem gland of an armoured waste dwelling tripedal Sowt.";
+            this.intForDes = 9;
+            this.intDescription = "Sowts' flem hardens into a sharp brittle substance when it is combined with a certain compound that is also produced by this gland.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 20 - Math.floor(player.getCharisma() / 25); // at max, buy for 18.
+            this.sellValue = 12 + Math.floor(player.getCharisma() / 8); // at max, sell for 18.
+        }
+        else if (this.type == "crowFeather")
+        {
+            //For All Items
+            this.identity = "Crow Feather";
+            this.weight = 0.001;
+            this.size = 4;
+            this.description = "The sleek black feather of a crow.";
+            this.intForDes = 1;
+            this.intDescription = "Crow feathers are often used as quills for writing with, they may also be used decoratively.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
         else if (this.type == "zetianBlowgun")
         {
             //For All Items
@@ -34853,6 +34893,64 @@ function Item(type, x, y)
             this.buyValue = 24 - Math.floor(player.getCharisma() / 3.125); // at max, buy for 8.
             this.sellValue = 8; // at max, sell for 8.
         }
+        else if (this.type == "grizzlyLeatherGloves")
+        {
+            //For All Items
+            this.identity = "Grizzly Leather Gloves";
+            this.weight = 1.6;
+            this.size = 8;
+            this.description = "Hardened leather gloves crafted from grizzy bear pelt.";
+            this.intForDes = 2;
+            this.intDescription = "These gloves will certainly keep your hands warm...";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "gloves";
+            //Utility Focused
+            //protections
+            this.protection = 0.1 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 2;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0.25;
+            this.thirstRetention = -0.1;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 1;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 1;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 5;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 2;
+            this.intForCraft = 39;
+            this.ingredients = [["Grizzly Bear Pelt", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 56 - Math.floor(player.getCharisma() / 2.5); // at max, buy for 26.
+            this.sellValue = 26; // at max, sell for 26.
+        }
         else if (this.type == "drileLeatherArmour")
         {
             //For All Items
@@ -34910,6 +35008,112 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 86 - Math.floor(player.getCharisma() / 2.777777777); // at max, buy for 68.
             this.sellValue = 53 + Math.floor(player.getCharisma() / 3); // at max, sell for 68.
+        }
+        else if (this.type == "stagArmour")
+        {
+            //For All Items
+            this.identity = "The Wendigo's Stag Armour";
+            this.weight = 3;
+            this.size = 26;
+            this.description = "This armour once belonged to the bandit chieftain known as The Wendigo.";
+            this.intForDes = 0;
+            this.intDescription = "Rumors and superstition had convinced many that The Wendigo was a real wendigo, and that his crew were a herd of magical deermen who were beholden to him.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "armour";
+            //Utility Focused
+            //protections
+            this.protection = 2.5 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 2;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 1.45;
+            this.thirstRetention = -0.25;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 7;
+            this.rangedBonus = 3;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 2;
+            this.dexterityBonus = 6;
+            this.survivalismBonus = 5;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = -1;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 150 - Math.floor(player.getCharisma() / 2); // at max, buy for 125.
+            this.sellValue = 100 + Math.floor(player.getCharisma() / 2); // at max, sell for 125.
+        }
+        else if (this.type == "deerHideArmour")
+        {
+            //For All Items
+            this.identity = "Deer Hide Armour";
+            this.weight = 3;
+            this.size = 26;
+            this.description = "This armour is worn by The Wendigo's deermen who live in the woods and are said to eat the passing travellers.";
+            this.intForDes = 0;
+            this.intDescription = "Though the tales of cannibalism are true in regard to The Wendigo and his deermen, the deermen are not actually half deer half man... they are just cannibals.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "armour";
+            //Utility Focused
+            //protections
+            this.protection = 2 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 2;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 1.25;
+            this.thirstRetention = -0.2;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 5;
+            this.rangedBonus = 2;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 1;
+            this.dexterityBonus = 3;
+            this.survivalismBonus = 2;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = -1;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 110 - Math.floor(player.getCharisma() / 3); // at max, buy for 95.
+            this.sellValue = 80 + Math.floor(player.getCharisma() / 3); // at max, sell for 95.
         }
         else if (this.type == "skolLeatherArmour")
         {
@@ -35085,6 +35289,64 @@ function Item(type, x, y)
             this.buyValue = 56 - Math.floor(player.getCharisma() / 5); // at max, buy for 46.
             this.sellValue = 36 + Math.floor(player.getCharisma() / 5); // at max, sell for 46.
         }
+        else if (this.type == "grizzlyLeatherBoots")
+        {
+            //For All Items
+            this.identity = "Grizzly Leather Boots";
+            this.weight = 2.2;
+            this.size = 10;
+            this.description = "Thick and warm leather boots made from grizzly bear pelt.";
+            this.intForDes = 2;
+            this.intDescription = "Sturdy survivalist boots that are great for tromping and trudging...";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "boots";
+            //Utility Focused
+            //protections
+            this.protection = 0.15 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 2;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0.25;
+            this.thirstRetention = -0.1;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 1;
+            this.toughnessBonus = 1;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 1;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 2;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 1;
+            this.thirstBonus = 0;
+            this.warmthBonus = 8;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 38;
+            this.ingredients = [["Grizzly Bear Pelt", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 60 - Math.floor(player.getCharisma() / 5); // at max, buy for 50.
+            this.sellValue = 40 + Math.floor(player.getCharisma() / 5); // at max, sell for 50.
+        }
         else if (this.type == "walrusLeatherArmour")
         {
             //For All Items
@@ -35253,6 +35515,64 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 64 - Math.floor(player.getCharisma() / 12); // at max, buy for 60.
             this.sellValue = 45 + Math.floor(player.getCharisma() / 3); // at max, sell for 60.
+        }
+        else if (this.type == "grizzlyLeatherArmour")
+        {
+            //For All Items
+            this.identity = "Grizzly Leather Armour";
+            this.weight = 5;
+            this.size = 26;
+            this.description = "Armour made from the tanned hardened pelts of a grizzly bear.";
+            this.intForDes = 3;
+            this.intDescription = "This armour is often worn by Thengan warriors and mercenaries.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "armour";
+            //Utility Focused
+            //protections
+            this.protection = 3.5 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 6;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 3.5;
+            this.thirstRetention = -1;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 3;
+            this.enduranceBonus = 1;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 11;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 3;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 1;
+            this.thirstBonus = 0;
+            this.warmthBonus = 30;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 35;
+            this.ingredients = [["Grizzly Bear Pelt", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 85 - Math.floor(player.getCharisma() / 5); // at max, buy for 75.
+            this.sellValue = 25 + Math.floor(player.getCharisma() / 1); // at max, sell for 75.
         }
         else if (this.type == "balgurMercArmour")
         {
@@ -39186,6 +39506,552 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 14 - Math.floor(player.getCharisma() / 10); // at max, buy for 9.
             this.sellValue = 5 + Math.floor(player.getCharisma() / 12); // at max, sell for 9.
+        }
+        else if (this.type == "badgerFurClothing")
+        {
+            //For All Items
+            this.identity = "Badger Fur Clothing";
+            this.weight = 1.1;
+            this.size = 26;
+            this.description = "Clothing sewn from the pelts of badgers.";
+            this.intForDes = 1;
+            this.intDescription = "badger fur clothing is cheap and comfortable.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 1.9;
+            this.thirstRetention = -0.7;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 0;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 13;
+            this.ingredients = [["Badger Pelt", 4]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 15 - Math.floor(player.getCharisma() / 10); // at max, buy for 10.
+            this.sellValue = 6 + Math.floor(player.getCharisma() / 12.5); // at max, sell for 10.
+        }
+        else if (this.type == "thenganWorkmansApron")
+        {
+            //For All Items
+            this.identity = "Thengan Workman's Apron";
+            this.weight = 1.5;
+            this.size = 26;
+            this.description = "An outfit commonly worn by Thengan Artisans.";
+            this.intForDes = 0;
+            this.intDescription = "In Thengaria, artisanry, apart from tailoring, is regarded as a more masculine form of labour.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 1.8;
+            this.thirstRetention = -0.6;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 3;
+            if (player.gender == "Male")
+            {
+                this.charismaBonus = 0;
+            }
+            else
+            {
+                this.charismaBonus = -25;
+            }
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 4;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 2;
+            this.intForCraft = 16;
+            this.ingredients = [["Grizzly Bear Pelt", 1], ["Deer Pelt", 1], ["Cloth", 2]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 28 - Math.floor(player.getCharisma() / 12.5); // at max, buy for 24.
+            this.sellValue = 20 + Math.floor(player.getCharisma() / 12.5); // at max, sell for 24.
+        }
+        else if (this.type == "cultistRobes")
+        {
+            //For All Items
+            this.identity = "Cultist Robes";
+            this.weight = 1.9;
+            this.size = 26;
+            this.description = "A dark outfit with a silver mask that is worn by the followers of the Radiant Spirit.";
+            this.intForDes = 7;
+            this.intDescription = "Those who have true faith in the Radiant Spirit are protected from the light of its glow.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 2;
+            this.magicalProtection = 1;
+            this.warmthRetention = 0.2;
+            this.thirstRetention = 0.2;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 1;
+            this.charismaBonus = 12;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 24;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            if (player.getEminence() >= 2)
+            {
+                this.eminenceBonus = 1;
+                this.willpowerBonus = 0;
+                this.knowledgeBonus = 0;
+                this.concentrationBonus = 1;
+                this.memoryBonus = 0;
+            }
+
+            //ability
+            this.ability = "antiRad";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 152 - Math.floor(player.getCharisma() / 25); // at max, buy for 150.
+            this.sellValue = 146 + Math.floor(player.getCharisma() / 12.5); // at max, sell for 150.
+        }
+        else if (this.type == "cultistHighPriestRobes")
+        {
+            //For All Items
+            if (player.gender == "Female")
+            {
+                this.identity = "Cultist High Priestess Robes";
+            }
+            else
+            {
+                this.identity = "Cultist High Priest Robes";
+            }
+            this.weight = 1.9;
+            this.size = 26;
+            this.description = "A dark outfit with a silver mask and a tall pointed cap that has a silver emblem of the everlasting spirit atop.";
+            this.intForDes = 7;
+            this.intDescription = "Those who have true faith in the Radiant Spirit are protected from the light of its glow.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 2;
+            this.magicalProtection = 1;
+            this.warmthRetention = 0.2;
+            this.thirstRetention = 0.2;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 2;
+            this.charismaBonus = 22;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 48;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            if (player.getEminence() >= 2)
+            {
+                this.eminenceBonus = 2;
+                this.willpowerBonus = 0;
+                this.knowledgeBonus = 0;
+                this.concentrationBonus = 4;
+                this.memoryBonus = 0;
+            }
+
+            //ability
+            this.ability = "antiRad";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 204 - Math.floor(player.getCharisma() / 25); // at max, buy for 202.
+            this.sellValue = 198 + Math.floor(player.getCharisma() / 12.5); // at max, sell for 202.
+        }
+        else if (this.type == "foxClothingM")
+        {
+            //For All Items
+            this.identity = "Fox Clothing";
+            this.weight = 1;
+            this.size = 26;
+            this.description = "Clothing sewn from deer skin and fox pelt.";
+            this.intForDes = 4;
+            this.intDescription = "Fox clothing is highly desirable in Thengaria, because it is considered wealthy to wear the pelt of a fox.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 1.65;
+            this.thirstRetention = -0.2;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            if (player.gender == "Male")
+            {
+                this.charismaBonus = 8;
+            }
+            else
+            {
+                this.charismaBonus = -25;
+            }
+            this.rangedBonus = 1;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 1;
+            //Extra Stat Bonuses
+            this.sleepBonus = 1;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 1;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 14;
+            this.ingredients = [["Fox Pelt", 1], ["Deer Pelt", 1], ["Cloth", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 42 - Math.floor(player.getCharisma() / 15); // at max, buy for 39.
+            this.sellValue = 34 + Math.floor(player.getCharisma() / 10); // at max, sell for 39.
+        }
+        else if (this.type == "foxClothingF")
+        {
+            //For All Items
+            this.identity = "Fox Clothing";
+            this.weight = 1;
+            this.size = 26;
+            this.description = "Clothing sewn from deer skin and fox pelt.";
+            this.intForDes = 4;
+            this.intDescription = "Fox clothing is highly desirable in Thengaria, because it is considered wealthy to wear the pelt of a fox.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 1.7;
+            this.thirstRetention = -0.25;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            if (player.gender == "Male")
+            {
+                this.charismaBonus = -50;
+            }
+            else
+            {
+                this.charismaBonus = 10;
+            }
+            this.rangedBonus = 1;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 1;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 2;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 15;
+            this.ingredients = [["Fox Pelt", 1], ["Deer Pelt", 1], ["Cloth", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 45 - Math.floor(player.getCharisma() / 10); // at max, buy for 40.
+            this.sellValue = 36 + Math.floor(player.getCharisma() / 12.5); // at max, sell for 40.
+        }
+        else if (this.type == "foxFurDress")
+        {
+            //For All Items
+            this.identity = "Fox Fur Dress";
+            this.weight = 1;
+            this.size = 26;
+            this.description = "A dress sewn from fox pelts.";
+            this.intForDes = 2;
+            this.intDescription = "She who can afford to wear such a fine dress surely will garner some high level of prestige from her peers.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 1.8;
+            this.thirstRetention = -0.25;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            if (player.gender == "Male")
+            {
+                this.charismaBonus = -50;
+            }
+            else
+            {
+                this.charismaBonus = 16;
+            }
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 1;
+            this.survivalismBonus = 1;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 3;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "hefty";
+
+            this.yield = 1;
+            this.intForCraft = 21;
+            this.ingredients = [["Fox Pelt", 4]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 90 - Math.floor(player.getCharisma() / 10); // at max, buy for 85.
+            this.sellValue = 80 + Math.floor(player.getCharisma() / 10); // at max, sell for 85.
+        }
+        else if (this.type == "thenganHunterOutfit")
+        {
+            //For All Items
+            this.identity = "Thengan Hunter Outfit";
+            this.weight = 1;
+            this.size = 26;
+            this.description = "Clothing sewn from deer skin and fox pelt.";
+            this.intForDes = 5;
+            this.intDescription = "Many thengan hunters wear this sort of outfit in order to better hunt foxes.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 1.7;
+            this.thirstRetention = -0.25;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 6;
+            this.rangedBonus = 1;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 1;
+            this.survivalismBonus = 1;
+            //Extra Stat Bonuses
+            this.sleepBonus = 1;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 2;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 15;
+            this.ingredients = [["Fox Pelt", 1], ["Deer Pelt", 1], ["Cloth", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 45 - Math.floor(player.getCharisma() / 10); // at max, buy for 40.
+            this.sellValue = 36 + Math.floor(player.getCharisma() / 12.5); // at max, sell for 40.
+        }
+        else if (this.type == "thenganArcticClothing")
+        {
+            //For All Items
+            this.identity = "Thengan Arctic Clothing";
+            this.weight = 2.2;
+            this.size = 26;
+            this.description = "Clothing sewn from deer skin and arctic fox pelts.";
+            this.intForDes = 5;
+            this.intDescription = "Many thengan hunters wear this sort of outfit in order to better hunt foxes.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 3.6;
+            this.thirstRetention = -0.65;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 1;
+            this.toughnessBonus = 1;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 2;
+            this.rangedBonus = 1;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 2;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 18;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 19;
+            this.ingredients = [["Arctic Fox Pelt", 2], ["Deer Pelt", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 44 - Math.floor(player.getCharisma() / 15); // at max, buy for 44.
+            this.sellValue = 32 + Math.floor(player.getCharisma() / 5.555555555555555555555); // at max, sell for 41.
         }
         else if (this.type == "vreckFurClothing")
         {
@@ -44758,6 +45624,86 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
+        }
+        else if (this.type == "foxClothingM")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bloat, 824, 417, 34, 78, X - this.X + (1/2 * CCC.width) - (1/2 * 34 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 78 * 1.4), 34 * 1.4, 78 * 1.4);
+        }
+        else if (this.type == "foxClothingF")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bloat, 785, 415, 34, 78, X - this.X + (1/2 * CCC.width) - (1/2 * 34 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 78 * 1.4), 34 * 1.4, 78 * 1.4);
+        }
+        else if (this.type == "thenganHunterOutfit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bloat, 59, 716, 42, 78, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 78 * 1.4), 42 * 1.4, 78 * 1.4);
+        }
+        else if (this.type == "thenganArcticClothing")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bloat, 13, 720, 43, 80, X - this.X + (1/2 * CCC.width) - (1/2 * 43 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 80 * 1.4), 43 * 1.4, 80 * 1.4);
+        }
+        else if (this.type == "foxFurDress")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bloat, 329, 569, 43, 80, X - this.X + (1/2 * CCC.width) - (1/2 * 43 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 80 * 2), 43 * 2, 80 * 2);
+        }
+        else if (this.type == "grizzlyLeatherArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wendi, 775, 505, 64, 102, X - this.X + (1/2 * CCC.width) - (1/2 * 64 * 1.1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 102 * 1.1), 64 * 1.1, 102 * 1.1);
+        }
+        else if (this.type == "grizzlyLeatherBoots")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wendi, 787, 643, 43, 40, X - this.X + (1/2 * CCC.width) - (1/2 * 43 * 1.1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 40 * 1.1), 43 * 1.1, 40 * 1.1);
+        }
+        else if (this.type == "grizzlyLeatherGloves")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wendi, 787, 614, 43, 32, X - this.X + (1/2 * CCC.width) - (1/2 * 43 * 1.1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 32 * 1.1), 43 * 1.1, 32 * 1.1);
+        }
+        else if (this.type == "thenganWorkmansApron")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wendi, 774, 359, 64, 102, X - this.X + (1/2 * CCC.width) - (1/2 * 64 * 1.0), Y - this.Y + (1/2 * CCC.height) - (1/2 * 102 * 1.0), 64 * 1.0, 102 * 1.0);
+        }
+        else if (this.type == "deerHideArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wendi, 772, 197, 61, 91, X - this.X + (1/2 * CCC.width) - (1/2 * 61 * 1.15), Y - this.Y + (1/2 * CCC.height) - (1/2 * 91 * 1.15), 61 * 1.15, 91 * 1.15);
+        }
+        else if (this.type == "stagArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wendi, 765, 51, 61, 91, X - this.X + (1/2 * CCC.width) - (1/2 * 61 * 1.15), Y - this.Y + (1/2 * CCC.height) - (1/2 * 91 * 1.15), 61 * 1.15, 91 * 1.15);
+        }
+        else if (this.type == "badgerFurClothing")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wendi, 706, 41, 56, 91, X - this.X + (1/2 * CCC.width) - (1/2 * 56 * 1.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 91 * 1.3), 56 * 1.3, 91 * 1.3);
+        }
+        else if (this.type == "cultistRobes")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wendi, 786, 701, 45, 77, X - this.X + (1/2 * CCC.width) - (1/2 * 45 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 77 * 1.5), 45 * 1.5, 77 * 1.5);
+        }
+        else if (this.type == "cultistHighPriestRobes")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wendi, 783, 780, 45, 85, X - this.X + (1/2 * CCC.width) - (1/2 * 45 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 85 * 1.5), 45 * 1.5, 85 * 1.5);
+        }
+        else if (this.type == "crowFeather")
+        {
+            XXX.beginPath();
+            XXX.drawImage(leshen, 389, 3, 26, 29, X - this.X + (1/2 * CCC.width) - (1/2 * 26 * 0.9), Y - this.Y + (1/2 * CCC.height) - (1/2 * 29 * 0.9), 26 * 0.9, 29 * 0.9);
+        }
+        else if (this.type == "sowtFlemGland")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bloat, 43, 450, 17, 22, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 1.1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 22 * 1.1), 17 * 1.1, 22 * 1.1);
         }
         else if (this.type == "skindlerIntestines")
         {
@@ -50629,6 +51575,86 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
+        else if (this.type == "foxClothingM")
+        {
+            LXX.beginPath();
+            LXX.drawImage(bloat, 824, 417, 34, 78, this.invX - (1/2 * 34 * 1), this.invY - (1/2 * 78 * 1), 34 * 1, 78 * 1);
+        }
+        else if (this.type == "foxClothingF")
+        {
+            LXX.beginPath();
+            LXX.drawImage(bloat, 785, 415, 34, 78, this.invX - (1/2 * 34 * 1), this.invY - (1/2 * 78 * 1), 34 * 1, 78 * 1);
+        }
+        else if (this.type == "thenganHunterOutfit")
+        {
+            LXX.beginPath();
+            LXX.drawImage(bloat, 59, 716, 42, 78, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 78 * 1), 42 * 1, 78 * 1);
+        }
+        else if (this.type == "thenganArcticClothing")
+        {
+            LXX.beginPath();
+            LXX.drawImage(bloat, 13, 720, 43, 80, this.invX - (1/2 * 43 * 0.9), this.invY - (1/2 * 80 * 0.9), 43 * 0.9, 80 * 0.9);
+        }
+        else if (this.type == "foxFurDress")
+        {
+            LXX.beginPath();
+            LXX.drawImage(bloat, 329, 569, 43, 80, this.invX - (1/2 * 43 * 1.55), this.invY - (1/2 * 80 * 1.55), 43 * 1.55, 80 * 1.55);
+        }
+        else if (this.type == "grizzlyLeatherArmour")
+        {
+            LXX.beginPath();
+            LXX.drawImage(wendi, 775, 505, 64, 102, this.invX - (1/2 * 64 * 0.8), this.invY - (1/2 * 102 * 0.8), 64 * 0.8, 102 * 0.8);
+        }
+        else if (this.type == "grizzlyLeatherBoots")
+        {
+            LXX.beginPath();
+            LXX.drawImage(wendi, 787, 643, 43, 40, this.invX - (1/2 * 43 * 1.1), this.invY - (1/2 * 40 * 1.1), 43 * 1.1, 40 * 1.1);
+        }
+        else if (this.type == "grizzlyLeatherGloves")
+        {
+            LXX.beginPath();
+            LXX.drawImage(wendi, 787, 614, 43, 32, this.invX - (1/2 * 43 * 1.15), this.invY - (1/2 * 32 * 1.15), 43 * 1.15, 32 * 1.15);
+        }
+        else if (this.type == "thenganWorkmansApron")
+        {
+            LXX.beginPath();
+            LXX.drawImage(wendi, 774, 359, 64, 102, this.invX - (1/2 * 64 * 0.7), this.invY - (1/2 * 102 * 0.7), 64 * 0.7, 102 * 0.7);
+        }
+        else if (this.type == "deerHideArmour")
+        {
+            LXX.beginPath();
+            LXX.drawImage(wendi, 772, 197, 61, 91, this.invX - (1/2 * 61 * 0.85), this.invY - (1/2 * 91 * 0.85), 61 * 0.85, 91 * 0.85);
+        }
+        else if (this.type == "stagArmour")
+        {
+            LXX.beginPath();
+            LXX.drawImage(wendi, 765, 51, 61, 91, this.invX - (1/2 * 61 * 0.85), this.invY - (1/2 * 91 * 0.85), 61 * 0.85, 91 * 0.85);
+        }
+        else if (this.type == "badgerFurClothing")
+        {
+            LXX.beginPath();
+            LXX.drawImage(wendi, 706, 41, 56, 91, this.invX - (1/2 * 56 * 0.95), this.invY - (1/2 * 91 * 0.95), 56 * 0.95, 91 * 0.95);
+        }
+        else if (this.type == "cultistRobes")
+        {
+            LXX.beginPath();
+            LXX.drawImage(wendi, 786, 701, 45, 77, this.invX - (1/2 * 45 * 1.15), this.invY - (1/2 * 77 * 1.15), 45 * 1.15, 77 * 1.15);
+        }
+        else if (this.type == "cultistHighPriestRobes")
+        {
+            LXX.beginPath();
+            LXX.drawImage(wendi, 783, 780, 45, 85, this.invX - (1/2 * 45 * 0.95), this.invY - (1/2 * 85 * 0.95), 45 * 0.95, 85 * 0.95);
+        }
+        else if (this.type == "crowFeather")
+        {
+            LXX.beginPath();
+            LXX.drawImage(leshen, 389, 3, 26, 29, this.invX - (1/2 * 26 * 1), this.invY - (1/2 * 29 * 1), 26 * 1, 29 * 1);
+        }
+        else if (this.type == "sowtFlemGland")
+        {
+            LXX.beginPath();
+            LXX.drawImage(bloat, 43, 450, 17, 22, this.invX - (1/2 * 17 * 1.2), this.invY - (1/2 * 22 * 1.2), 17 * 1.2, 22 * 1.2);
+        }
         else if (this.type == "skindlerIntestines")
         {
             LXX.beginPath();
@@ -56465,6 +57491,86 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "foxClothingM")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bloat, 824, 417, 34, 78, this.invX - (1/2 * 34 * 1), this.invY - (1/2 * 78 * 1), 34 * 1, 78 * 1);
+        }
+        else if (this.type == "foxClothingF")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bloat, 785, 415, 34, 78, this.invX - (1/2 * 34 * 1), this.invY - (1/2 * 78 * 1), 34 * 1, 78 * 1);
+        }
+        else if (this.type == "thenganHunterOutfit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bloat, 59, 716, 42, 78, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 78 * 1), 42 * 1, 78 * 1);
+        }
+        else if (this.type == "thenganArcticClothing")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bloat, 13, 720, 43, 80, this.invX - (1/2 * 43 * 0.9), this.invY - (1/2 * 80 * 0.9), 43 * 0.9, 80 * 0.9);
+        }
+        else if (this.type == "foxFurDress")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bloat, 329, 569, 43, 80, this.invX - (1/2 * 43 * 1.55), this.invY - (1/2 * 80 * 1.55), 43 * 1.55, 80 * 1.55);
+        }
+        else if (this.type == "grizzlyLeatherArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wendi, 775, 505, 64, 102, this.invX - (1/2 * 64 * 0.8), this.invY - (1/2 * 102 * 0.8), 64 * 0.8, 102 * 0.8);
+        }
+        else if (this.type == "grizzlyLeatherBoots")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wendi, 787, 643, 43, 40, this.invX - (1/2 * 43 * 1.1), this.invY - (1/2 * 40 * 1.1), 43 * 1.1, 40 * 1.1);
+        }
+        else if (this.type == "grizzlyLeatherGloves")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wendi, 787, 614, 43, 32, this.invX - (1/2 * 43 * 1.15), this.invY - (1/2 * 32 * 1.15), 43 * 1.15, 32 * 1.15);
+        }
+        else if (this.type == "thenganWorkmansApron")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wendi, 774, 359, 64, 102, this.invX - (1/2 * 64 * 0.7), this.invY - (1/2 * 102 * 0.7), 64 * 0.7, 102 * 0.7);
+        }
+        else if (this.type == "deerHideArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wendi, 772, 197, 61, 91, this.invX - (1/2 * 61 * 0.85), this.invY - (1/2 * 91 * 0.85), 61 * 0.85, 91 * 0.85);
+        }
+        else if (this.type == "stagArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wendi, 765, 51, 61, 91, this.invX - (1/2 * 61 * 0.85), this.invY - (1/2 * 91 * 0.85), 61 * 0.85, 91 * 0.85);
+        }
+        else if (this.type == "badgerFurClothing")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wendi, 706, 41, 56, 91, this.invX - (1/2 * 56 * 0.95), this.invY - (1/2 * 91 * 0.95), 56 * 0.95, 91 * 0.95);
+        }
+        else if (this.type == "cultistRobes")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wendi, 786, 701, 45, 77, this.invX - (1/2 * 45 * 1.15), this.invY - (1/2 * 77 * 1.15), 45 * 1.15, 77 * 1.15);
+        }
+        else if (this.type == "cultistHighPriestRobes")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wendi, 783, 780, 45, 85, this.invX - (1/2 * 45 * 0.95), this.invY - (1/2 * 85 * 0.95), 45 * 0.95, 85 * 0.95);
+        }
+        else if (this.type == "crowFeather")
+        {
+            XXX.beginPath();
+            XXX.drawImage(leshen, 389, 3, 26, 29, this.invX - (1/2 * 26 * 1), this.invY - (1/2 * 29 * 1), 26 * 1, 29 * 1);
+        }
+        else if (this.type == "sowtFlemGland")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bloat, 43, 450, 17, 22, this.invX - (1/2 * 17 * 1.2), this.invY - (1/2 * 22 * 1.2), 17 * 1.2, 22 * 1.2);
         }
         else if (this.type == "skindlerIntestines")
         {

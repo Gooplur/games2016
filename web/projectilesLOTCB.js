@@ -109,7 +109,7 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
     {
         if (this.doNada == false)
         {
-            if (list == playerProjectiles)
+            if (list == playerProjectiles && this.isPlayerProjectile)
             {
                 if (this.statsSet == false)
                 {
@@ -136,7 +136,7 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
                     }
                 }
             }
-            else if (list == unitProjectiles)
+            else if (list == unitProjectiles || list == playerProjectiles && !this.isPlayerProjectile)
             {
                 if (this.statsSet == false)
                 {
@@ -287,6 +287,21 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
                                     ArtificialIntelligenceAccess[i].frozenTime = new Date().getTime();
                                 }
                             }
+                            else if (this.ability == "sowt")
+                            {
+                                if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
+                                {
+                                    ArtificialIntelligenceAccess[i].acidI = true;
+                                    ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 90000;
+                                    if (nonPlayer)
+                                    {
+                                        ArtificialIntelligenceAccess[i].killNotByPlayer = true;
+                                    }
+                                    ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
+                                    ArtificialIntelligenceAccess[i].stunTimer = 7;
+                                    ArtificialIntelligenceAccess[i].stunIV = true;
+                                }
+                            }
                             else if (this.ability == "poisonI")
                             {
                                 if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
@@ -409,6 +424,17 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
                             if (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
                             {
                                 player.frozenTime = new Date().getTime();
+                            }
+                        }
+                        else if (this.ability == "sowt")
+                        {
+                            if (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                            {
+                                player.poisonI = true;
+                                player.stunnedIII = true;
+                                player.stunnedTime = 5;
+                                player.energilTime = Math.max(player.energilTime, 555);
+                                player.fatigueIII = true;
                             }
                         }
                         else if (this.ability == "poisonI")
@@ -831,6 +857,80 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
                 XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
                 XXX.rotate(this.rotation + (1 / 2 * Math.PI));
                 XXX.drawImage(mofu, 66, 21, 22, 9, 0, 0, 33, 13.5);
+                XXX.restore();
+            }
+        }
+        else if (type == "sowtFlemDartSmall")
+        {
+            if (list == playerProjectiles && this.isPlayerProjectile)
+            {
+                //WHAT IT WILL DO...
+                player.projYAd = 0;
+                player.projXAd = 0;
+                this.setStats();
+                this.shoot();
+                this.impact();
+
+                this.ability = "sowt";
+                //HOW IT WILL DRAW...
+                XXX.save();
+                XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+                XXX.drawImage(bloat, 13, 450, 18, 9, -1/2 * 18, -1/2 * 9, 18, 9);
+                XXX.restore();
+            }
+            else if (list == unitProjectiles || list == playerProjectiles && !this.isPlayerProjectile)
+            {
+                //WHAT IT WILL DO...
+                player.projYAd = 0;
+                player.projXAd = 0;
+                this.setStats();
+                this.ability = "sowt";
+                this.shoot();
+                this.impact();
+
+                //HOW IT WILL DRAW...
+                XXX.save();
+                XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                XXX.rotate(this.rotation + (1 / 2 * Math.PI));
+                XXX.drawImage(bloat, 13, 450, 18, 9, -1/2 * 18, -1/2 * 9, 18, 9);
+                XXX.restore();
+            }
+        }
+        else if (type == "sowtFlemDartLarge")
+        {
+            if (list == playerProjectiles && this.isPlayerProjectile)
+            {
+                //WHAT IT WILL DO...
+                player.projYAd = 0;
+                player.projXAd = 0;
+                this.setStats();
+                this.shoot();
+                this.impact();
+
+                this.ability = "sowt";
+                //HOW IT WILL DRAW...
+                XXX.save();
+                XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+                XXX.drawImage(bloat, 13, 450, 18, 9, -1/2 * 18 * 1.3, -1/2 * 9 * 1.3, 18 * 1.3, 9 * 1.3);
+                XXX.restore();
+            }
+            else if (list == unitProjectiles || list == playerProjectiles && !this.isPlayerProjectile)
+            {
+                //WHAT IT WILL DO...
+                player.projYAd = 0;
+                player.projXAd = 0;
+                this.setStats();
+                this.ability = "sowt";
+                this.shoot();
+                this.impact();
+
+                //HOW IT WILL DRAW...
+                XXX.save();
+                XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                XXX.rotate(this.rotation + (1 / 2 * Math.PI));
+                XXX.drawImage(bloat, 13, 450, 18, 9, -1/2 * 18 * 1.3, -1/2 * 9 * 1.3, 18 * 1.3, 9 * 1.3);
                 XXX.restore();
             }
         }

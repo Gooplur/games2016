@@ -1530,6 +1530,18 @@ function sticPack()
 
     stic.onload = function()
     {
+        alfombraPack();
+    };
+}
+
+function alfombraPack()
+{
+    var alfombra = new Image();
+    alfombra.src = ("images/alfombra.png");
+    window.alfombra = alfombra;
+
+    alfombra.onload = function()
+    {
         florasPack();
     };
 }
@@ -2354,6 +2366,7 @@ var optionList = []; //the list of options that the player can adjust
 var showTheStatsBars = false;
 var doTheStatsHighlights = false;
 var showUiIcons = false;
+var playerJuju = false;
 
 //This sets the items that are in shops.
 function shopItemIDSetter()
@@ -4110,6 +4123,23 @@ function theLegend()
     allWorn.push(new Item("eliteNechrovitePlateArmour", false)); //139
     allWorn.push(new Item("eliteNechrovitePlateArmourPlumed", false)); //140
     allWorn.push(new Item("lichRobe", false)); //141
+    allWorn.push(new Item("foxClothingF", false)); //142
+    allWorn.push(new Item("foxClothingM", false)); //143
+    allWorn.push(new Item("foxFurDress", false)); //144
+    allWorn.push(new Item("thenganArcticClothing", false)); //145
+    allWorn.push(new Item("thenganHunterOutfit", false)); //146
+    allWorn.push(new Item("cultistRobes", false)); //147
+    allWorn.push(new Item("cultistHighPriestRobes", false)); //148
+    allWorn.push(new Item("stagArmour", false)); //149
+    allWorn.push(new Item("grizzlyLeatherArmour", false)); //150
+    allWorn.push(new Item("grizzlyLeatherBoots", false)); //151
+    allWorn.push(new Item("grizzlyLeatherGloves", false)); //152
+    allWorn.push(new Item("badgerFurClothing", false)); //153
+    allWorn.push(new Item("deerHideArmour", false)); //154
+    allWorn.push(new Item("thenganWorkmansApron", false)); //155
+
+
+
 
     scenicList = [];
 

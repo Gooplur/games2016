@@ -220,6 +220,10 @@ function buildMaster()
                 //ArtificialIntelligenceAccess.push(new Unit(4200, 2500, "Skindler", false, "bloathead"));
                 //ArtificialIntelligenceAccess.push(new Unit(4300, 2450, "Skindler", true, "grendle"));
                 //scenicList.push(new Scenery("thenganorCastles", 4500, 2600, 1/2 * Math.PI, 2.6, 3));
+                //ArtificialIntelligenceAccess.push(new Unit(4100, 2500, "Sowt", false, "Sosluk"));
+                //ArtificialIntelligenceAccess.push(new Unit(4500, 2500, "Wendigo", false, "wendy"));
+                //ArtificialIntelligenceAccess.push(new Unit(4500, 2500, "Crow", true, "Seven"));
+                //ArtificialIntelligenceAccess.push(new Unit(4520, 2550, "Crow", "shadow", "Eight"));
 
                 //scenicList.push(new Scenery("wendigoCircle", 3900, 2400, 0.38, true));
 
@@ -6482,11 +6486,11 @@ function buildMaster()
                         {
                             if (quests.swordDeliveryFight)
                             {
-                                ArtificialIntelligenceAccess.push(new Unit(51493, -8252, "Soldier", false, "Adolf the Pit Fighter", {race: "Thengar", faction: "arena1", con: 10, speed: 1.45, outfit: ["skolLeatherArmour", 3], weapon: ["thenganSword", [9, 4], 0, 16, 1.4], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 0, patrolLoop: true, route:[[-514, 277], [-514, 277]]}));
+                                ArtificialIntelligenceAccess.push(new Unit(51493, -8252, "Soldier", false, "Adolf the Pit Fighter", {race: "Thengar", faction: "arena1", con: 10, speed: 1.45, outfit: ["skolLeatherArmour", 3], weapon: ["longsword", [9, 4], 0, 16, 1.4], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 0, patrolLoop: true, route:[[-514, 277], [-514, 277]]}));
                             }
                             else
                             {
-                                ArtificialIntelligenceAccess.push(new Unit(51645, -8388, "Soldier", false, "Adolf the Pit Fighter", {race: "Thengar", faction: "Thengar", con: 10, speed: 1.45, outfit: ["skolLeatherArmour", 3], weapon: ["thenganSword", [9, 4], 0, 16, 1.4], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 0, patrolLoop: true, route:[[-514, 277], [-514, 277]]}));
+                                ArtificialIntelligenceAccess.push(new Unit(51645, -8388, "Soldier", false, "Adolf the Pit Fighter", {race: "Thengar", faction: "Thengar", con: 10, speed: 1.45, outfit: ["skolLeatherArmour", 3], weapon: ["longsword", [9, 4], 0, 16, 1.4], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 0, patrolLoop: true, route:[[-514, 277], [-514, 277]]}));
                             }
                         }
                         else
@@ -6524,7 +6528,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(53108, -6704, "Soldier", false, "Rutgar the Warden", {race: "Thengar", faction: "Thengar", con: 19, speed: 0.74, outfit: ["thenganPlateArmour", 14], weapon: ["thenganSword", [12, 8], 0, 16, 1.25], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 0, patrolLoop: true, route:[[-514, 277], [-514, 277]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(53108, -6704, "Soldier", false, "Rutgar the Warden", {race: "Thengar", faction: "Thengar", con: 19, speed: 0.74, outfit: ["thenganPlateArmour", 14], weapon: ["longsword", [12, 8], 0, 16, 1.25], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 0, patrolLoop: true, route:[[-514, 277], [-514, 277]]}));
                     }
                 }
 
@@ -6589,7 +6593,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(51270, -9539, "Person", false, "Dagmar the Smith", {race: "Thengar", faction: "Thengar", personality: "violent", outfit: ["none", 0], weapon: ["thenganSword", [8, 5], 0, 16, 1.45], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 240], [new Item("steel", false, false), 6], [new Item("iron", false, false), 4], [new Item("mace", false, false), 4], [new Item("thenganDagger", false, false), 3], [new Item("longsword", false, false), 4], [new Item("thenganSwordAndShield", false, false), 1], [new Item("longSpikedMorningStar", false, false), 2], [new Item("thenganWarhammer", false, false), 1], [new Item("flail", false, false), 1], [new Item("smashStick", false, false), 1], [new Item("thenganPlateArmour", false, false), 1], [new Item("timberAxe", false, false), 1], [new Item("pickaxe", false, false), 2]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(51270, -9539, "Person", false, "Dagmar the Smith", {race: "Thengar", faction: "Thengar", personality: "violent", outfit: ["none", 0], weapon: ["longsword", [8, 5], 0, 16, 1.45], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[2049, 1021], [1943, 1127], [1690, 1021]], merchant: true, merchandise: [[new Item("coins", false, false), 240], [new Item("steel", false, false), 6], [new Item("iron", false, false), 4], [new Item("mace", false, false), 4], [new Item("thenganDagger", false, false), 3], [new Item("longsword", false, false), 4], [new Item("thenganSwordAndShield", false, false), 1], [new Item("longSpikedMorningStar", false, false), 2], [new Item("thenganWarhammer", false, false), 1], [new Item("flail", false, false), 1], [new Item("smashStick", false, false), 1], [new Item("thenganPlateArmour", false, false), 1], [new Item("timberAxe", false, false), 1], [new Item("pickaxe", false, false), 2]]}));
                         ArtificialIntelligenceAccess[i].health = 46;
                     }
                     ArtificialIntelligenceAccess.push(new Unit(51352, -9394, "Person", false, "Blacksmith's Apprentice", {race: "Thengar", faction: "Thengar", personality: "violent", outfit: ["none", 0], weapon: ["hammer", [2, 1.5], 3, 12, 1.35], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[1793, 314]]}));

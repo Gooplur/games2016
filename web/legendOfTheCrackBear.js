@@ -6,6 +6,7 @@
 
 //TODO LIST
 //top priority
+//todo add the new Thengan outfits to the crafting system
 //todo add all of the new fish to the seal unit's diet
 
 //things to add to the next image i'm adding:
@@ -1541,6 +1542,18 @@ function alfombraPack()
     window.alfombra = alfombra;
 
     alfombra.onload = function()
+    {
+        abanicoPack();
+    };
+}
+
+function abanicoPack()
+{
+    var abanico = new Image();
+    abanico.src = ("images/beubeu.png");
+    window.abanico = abanico;
+
+    abanico.onload = function()
     {
         florasPack();
     };
@@ -3975,6 +3988,10 @@ function theLegend()
     allWeapons.push(new Item("cultistScythe"));//105
     allWeapons.push(new Item("sceptreOfRadiance"));//106
     allWeapons.push(new Item("longBone"));//107
+    allWeapons.push(new Item("redFan"));//108
+    allWeapons.push(new Item("purpleFan"));//109
+    allWeapons.push(new Item("beulingerrPike"));//110
+    allWeapons.push(new Item("theWendigosCleaver"));//111
 
 
 
@@ -4137,6 +4154,12 @@ function theLegend()
     allWorn.push(new Item("badgerFurClothing", false)); //153
     allWorn.push(new Item("deerHideArmour", false)); //154
     allWorn.push(new Item("thenganWorkmansApron", false)); //155
+    allWorn.push(new Item("thenganNobleOutfitM", false)); //156
+    allWorn.push(new Item("thenganNobleOutfitF", false)); //157
+    allWorn.push(new Item("thenganHose", false)); //158
+    allWorn.push(new Item("thenganCommonwear", false)); //159
+    allWorn.push(new Item("beulingerrDress", false)); //160
+    allWorn.push(new Item("beulingerrOutfit", false)); //161
 
 
 
@@ -4569,6 +4592,18 @@ function theLegend()
     tailoring.push(new Item("pyromothSilkRobe", false));
     tailoring.push(new Item("magusRobesM", false));
     tailoring.push(new Item("magusRobesF", false));
+    tailoring.push(new Item("foxClothingF", false));
+    tailoring.push(new Item("foxClothingM", false));
+    tailoring.push(new Item("foxFurDress", false));
+    tailoring.push(new Item("thenganArcticClothing", false));
+    tailoring.push(new Item("thenganHunterOutfit", false));
+    tailoring.push(new Item("grizzlyLeatherArmour", false));
+    tailoring.push(new Item("grizzlyLeatherBoots", false));
+    tailoring.push(new Item("grizzlyLeatherGloves", false));
+    tailoring.push(new Item("badgerFurClothing", false));
+    tailoring.push(new Item("thenganWorkmansApron", false));
+    tailoring.push(new Item("thenganHose", false));
+    tailoring.push(new Item("thenganCommonwear", false));
 
 //Jewelry (Items crafted at a jewler's station, rings, necklaces, cutting gems, glassblowing etc.)
     jewelry = [];

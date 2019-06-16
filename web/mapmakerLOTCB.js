@@ -224,6 +224,8 @@ function buildMaster()
                 //ArtificialIntelligenceAccess.push(new Unit(4500, 2500, "Wendigo", false, "wendy"));
                 //ArtificialIntelligenceAccess.push(new Unit(4500, 2500, "Crow", true, "Seven"));
                 //ArtificialIntelligenceAccess.push(new Unit(4520, 2550, "Crow", "shadow", "Eight"));
+                //scenicList.push(new Scenery("sewer", 3400, 2400, 0, [0, 0], "world"));
+                //scenicList.push(new Scenery("metalLadder", 0, 0, 0, [3400, 2400], "world"));
 
                 //scenicList.push(new Scenery("wendigoCircle", 3900, 2400, 0.38, true));
 

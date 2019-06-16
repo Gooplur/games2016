@@ -7583,6 +7583,26 @@ function Adventurer()
         {
             outfit = allWorn[155];
         }
+        else if (this.outfitEquipped == "thenganNobleOutfitM")
+        {
+            outfit = allWorn[156];
+        }
+        else if (this.outfitEquipped == "thenganNobleOutfitF")
+        {
+            outfit = allWorn[157];
+        }
+        else if (this.outfitEquipped == "thenganCommonwear")
+        {
+            outfit = allWorn[159];
+        }
+        else if (this.outfitEquipped == "beulingerrDress")
+        {
+            outfit = allWorn[160];
+        }
+        else if (this.outfitEquipped == "beulingerrOutfit")
+        {
+            outfit = allWorn[161];
+        }
         else
         {
             outfit = allWorn[0];
@@ -7688,6 +7708,10 @@ function Adventurer()
         else if (this.bootsEquipped == "grizzlyLeatherBoots")
         {
             boots = allWorn[151];
+        }
+        else if (this.bootsEquipped == "thenganHose")
+        {
+            boots = allWorn[158];
         }
         else
         {
@@ -8347,6 +8371,101 @@ function Adventurer()
                 XXX.globalAlpha = 0.4;
             }
             XXX.drawImage(wendi, 772, 143, 51, 53, -(1 / 2 * 51 * 1.37) + 0, -(1 / 2 * 53 * 1.37) + 0, 51 * 1.37, 53 * 1.37);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "beulingerrOutfit")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - 1/2 * Math.PI);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(abanico, 876, 24, 86, 68, -(1 / 2 * 86 * 0.86) - 0.75, -(1 / 2 * 68 * 0.86) + 0, 86 * 0.86, 68 * 0.86);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "thenganNobleOutfitM")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - 1/2 * Math.PI);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(alfombra, 61, 66, 45, 40, -(1 / 2 * 45 * 1) + 0, -(1 / 2 * 40 * 1) + 0, 45 * 1, 40 * 1);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "thenganNobleOutfitF")
+        {
+            this.outfitZ = false;
+            if (this.movingType == 0 || this.movingType == 4 || this.movingType == 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation + Math.PI);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(abanico, 127, 287, 65, 84, -(1 / 2 * 65 * 0.85) + 0, -(1 / 2 * 84 * 0.85) + 0, 65 * 0.85, 84 * 0.85);
+                XXX.restore();
+            }
+            else
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation + Math.PI);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(abanico, 47, 286, 65, 84, -(1 / 2 * 65 * 0.85) + 0, -(1 / 2 * 84 * 0.85) + 0, 65 * 0.85, 84 * 0.85);
+                XXX.restore();
+            }
+        }
+        else if (this.outfitEquipped == "beulingerrDress")
+        {
+            this.outfitZ = false;
+            if (this.movingType == 0 || this.movingType == 4 || this.movingType == 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation + Math.PI);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(abanico, 69, 364, 65, 84, -(1 / 2 * 65 * 1.56) + 0, -(1 / 2 * 84 * 1.56) + 0, 65 * 1.56, 84 * 1.56);
+                XXX.restore();
+            }
+            else
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation + Math.PI);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(abanico, 10, 364, 65, 84, -(1 / 2 * 65 * 1.56) + 0, -(1 / 2 * 84 * 1.56) + 0, 65 * 1.56, 84 * 1.56);
+                XXX.restore();
+            }
+        }
+        else if (this.outfitEquipped == "thenganCommonwear")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - 1/2 * Math.PI);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(alfombra, 68, 20, 30, 30, -(1 / 2 * 30 * 1.05) - 0.75, -(1 / 2 * 30 * 1.05) + 0, 30 * 1.05, 30 * 1.05);
             XXX.restore();
         }
         else if (this.outfitEquipped == "badgerFurClothing")
@@ -17068,6 +17187,370 @@ function Adventurer()
                     XXX.globalAlpha = 0.4;
                 }
                 XXX.drawImage(polyPNG, 520, 59, 105, 69, -28, -43, 72, 47);
+                XXX.restore();
+            }
+        }
+        //THE WENDIGO'S CLEAVER
+        if (this.weaponEquipped == "theWendigosCleaver")
+        {
+            this.stageEngine(6, 0.19, true); //This cycles through the stages of the attack for four stages (ending at five) and at a rate of 4 * 16.75 miliseconds
+
+            //ATTACK ANIMATION
+            if (Math.floor(this.stage) <= 0)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(abanico, 190, 326, 160, 147, -1/2 * 160, -1/2 * 147, 160, 147);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 1)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(abanico, 354, 315, 158, 165, -1/2 * 158, -1/2 * 165, 158, 165);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 2)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(abanico, 508, 317, 158, 165, -1/2 * 158, -1/2 * 165, 158, 165);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(abanico, 690, 314, 109, 164, -1/2 * 109, -1/2 * 164, 109, 164);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) >= 4)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(abanico, 782, 312, 185, 164, -1/2 * 185, -1/2 * 164, 185, 164);
+                XXX.restore();
+            }
+        }
+        //RED FAN
+        if (this.weaponEquipped == "redFan")
+        {
+            this.stageEngine(9, 0.17, true); //This cycles through the stages of the attack for four stages (ending at five) and at a rate of 4 * 16.75 miliseconds
+
+            //ATTACK ANIMATION
+            if (Math.floor(this.stage) <= 0)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(abanico, 6, 517, 64, 80, -1/2 * 64, -1/2 * 80, 64, 80);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 1)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(abanico, 115, 514, 64, 80, -1/2 * 64, -1/2 * 80, 64, 80);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 2)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(abanico, 223, 513, 64, 80, -1/2 * 64, -1/2 * 80, 64, 80);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(abanico, 336, 514, 64, 80, -1/2 * 64, -1/2 * 80, 64, 80);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 4)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(abanico, 441, 513, 64, 80, -1/2 * 64, -1/2 * 80, 64, 80);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 5)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(abanico, 336, 514, 64, 80, -1/2 * 64, -1/2 * 80, 64, 80);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 6)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(abanico, 223, 513, 64, 80, -1/2 * 64, -1/2 * 80, 64, 80);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 7)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(abanico, 336, 514, 64, 80, -1/2 * 64, -1/2 * 80, 64, 80);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) >= 8)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(abanico, 441, 513, 64, 80, -1/2 * 64, -1/2 * 80, 64, 80);
+                XXX.restore();
+            }
+        }
+        //PURPLE FAN
+        if (this.weaponEquipped == "purpleFan")
+        {
+            this.stageEngine(9, 0.17, true); //This cycles through the stages of the attack for four stages (ending at five) and at a rate of 4 * 16.75 miliseconds
+
+            //ATTACK ANIMATION
+            if (Math.floor(this.stage) <= 0)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(abanico, 501, 514, 64, 80, -1/2 * 64, -1/2 * 80, 64, 80);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 1)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(abanico, 611, 511, 64, 80, -1/2 * 64, -1/2 * 80, 64, 80);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 2)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(abanico, 718, 510, 64, 80, -1/2 * 64, -1/2 * 80, 64, 80);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(abanico, 831, 511, 64, 80, -1/2 * 64, -1/2 * 80, 64, 80);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 4)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(abanico, 938, 510, 62, 80, -1/2 * 62, -1/2 * 80, 62, 80);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 5)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(abanico, 831, 511, 64, 80, -1/2 * 64, -1/2 * 80, 64, 80);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 6)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(abanico, 718, 510, 64, 80, -1/2 * 64, -1/2 * 80, 64, 80);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 7)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(abanico, 831, 511, 64, 80, -1/2 * 64, -1/2 * 80, 64, 80);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) >= 8)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(abanico, 938, 510, 62, 80, -1/2 * 62, -1/2 * 80, 62, 80);
+                XXX.restore();
+            }
+        }
+        //BEULINGERR PIKE
+        if (this.weaponEquipped == "beulingerrPike")
+        {
+            this.stageEngine(7, 0.16, true); //This cycles through the stages of the attack for four stages (ending at five) and at a rate of 4 * 16.75 miliseconds
+
+            //ATTACK ANIMATION
+            if (Math.floor(this.stage) <= 0)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(abanico, 231, 13, 126, 308, -1/2 * 126, -1/2 * 308, 126, 308);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 1)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(abanico, 338, 8, 126, 308, -1/2 * 126, -1/2 * 308, 126, 308);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 2)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(abanico, 452, 5, 126, 308, -1/2 * 126, -1/2 * 308, 126, 308);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(abanico, 584, 5, 126, 308, -1/2 * 126, -1/2 * 308, 126, 308);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) >= 4)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(abanico, 702, 5, 126, 308, -1/2 * 126, -1/2 * 308, 126, 308);
                 XXX.restore();
             }
         }
@@ -25861,6 +26344,36 @@ function Adventurer()
             //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
             this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.66 / 5 * Math.PI) * (this.mySize + 24);
             this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.66 / 5 * Math.PI) * (this.mySize + 24);
+        }
+        else if (this.weaponEquipped == "redFan")
+        {
+            this.weapon = allWeapons[108];
+
+            this.bubbleOfDamageX = X;
+            this.bubbleOfDamageY = Y;
+        }
+        else if (this.weaponEquipped == "purpleFan")
+        {
+            this.weapon = allWeapons[109];
+
+            this.bubbleOfDamageX = X;
+            this.bubbleOfDamageY = Y;
+        }
+        else if (this.weaponEquipped == "beulingerrPike")
+        {
+            this.weapon = allWeapons[110];
+
+            //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+            this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.5 / 5 * Math.PI) * (this.mySize + 115);
+            this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.5 / 5 * Math.PI) * (this.mySize + 115);
+        }
+        else if (this.weaponEquipped == "theWendigosCleaver")
+        {
+            this.weapon = allWeapons[111];
+
+            //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+            this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.5 / 5 * Math.PI) * (this.mySize + 24);
+            this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.5 / 5 * Math.PI) * (this.mySize + 24);
         }
     };
 
@@ -37633,16 +38146,33 @@ function Adventurer()
                     XXX.fillText(Inventory[i][0].identity, 157, 474);
 
                     //The description of the item and perhaps also the intelligence description...
-                    XXX.font="italic 15px Book Antiqua";
-                    XXX.fillStyle = "black";
-                    XXX.textAlign="left"; //this is to reset it to the standard for the rest to come.
-                    if (intDes == true)
+                    if (Inventory[i][0].smallText == true)
                     {
-                        XXX.fillText( " - " + Inventory[i][0].description + "   ' " + Inventory[i][0].intDescription + " ' ", 157, 490);
+                        XXX.font="italic 13px Book Antiqua";
+                        XXX.fillStyle = "black";
+                        XXX.textAlign="left"; //this is to reset it to the standard for the rest to come.
+                        if (intDes == true)
+                        {
+                            XXX.fillText( " - " + Inventory[i][0].description + "   ' " + Inventory[i][0].intDescription + " ' ", 157, 490);
+                        }
+                        else
+                        {
+                            XXX.fillText( " - " + Inventory[i][0].description, 157, 490);
+                        }
                     }
                     else
                     {
-                        XXX.fillText( " - " + Inventory[i][0].description, 157, 490);
+                        XXX.font="italic 15px Book Antiqua";
+                        XXX.fillStyle = "black";
+                        XXX.textAlign="left"; //this is to reset it to the standard for the rest to come.
+                        if (intDes == true)
+                        {
+                            XXX.fillText( " - " + Inventory[i][0].description + "   ' " + Inventory[i][0].intDescription + " ' ", 157, 490);
+                        }
+                        else
+                        {
+                            XXX.fillText( " - " + Inventory[i][0].description, 157, 490);
+                        }
                     }
 
                     //Based on the utility of the item, different information is displayed to the player.
@@ -38692,7 +39222,7 @@ function Adventurer()
                 }
 
                 //this is rare, but some weapons draw below the body layer.
-                if (this.wepLayer == "under" || this.weaponEquipped == "swimming" || this.weaponEquipped == "boat" || this.weaponEquipped == "blunderbuss" || this.weaponEquipped == "musket" || this.weaponEquipped == "cutlass" || this.weaponEquipped == "freydicSword" || this.weaponEquipped == "freydicGreatSword" || this.weaponEquipped == "theNorthernGem" || this.weaponEquipped == "longbow" || this.weaponEquipped == "crossbow" || this.weaponEquipped == "nirineseSpear" || this.weaponEquipped == "iceBlade" || this.weaponEquipped == "kellishClaymore" || this.weaponEquipped == "smashStick" || this.weaponEquipped == "burningSmashStick" || this.weaponEquipped == "lightningCorseque" || this.weaponEquipped == "staff" || this.weaponEquipped == "estoc" || this.weaponEquipped == "scimitar" || this.weaponEquipped == "nirwadenLance" || this.weaponEquipped == "vardanianHalberd" || this.weaponEquipped == "shotgun" || this.weaponEquipped == "sickle" || this.weaponEquipped == "vardanianCrossbow" || this.weaponEquipped == "throwingStar" || this.weaponEquipped == "pitchfork" || this.weaponEquipped == "cultistScythe" || this.weaponEquipped == "sceptreOfRadiance" || this.weaponEquipped == "longBone") //add more cases for more overhead weapons.
+                if (this.wepLayer == "under" || this.weaponEquipped == "swimming" || this.weaponEquipped == "boat" || this.weaponEquipped == "blunderbuss" || this.weaponEquipped == "musket" || this.weaponEquipped == "cutlass" || this.weaponEquipped == "freydicSword" || this.weaponEquipped == "freydicGreatSword" || this.weaponEquipped == "theNorthernGem" || this.weaponEquipped == "longbow" || this.weaponEquipped == "crossbow" || this.weaponEquipped == "nirineseSpear" || this.weaponEquipped == "iceBlade" || this.weaponEquipped == "kellishClaymore" || this.weaponEquipped == "smashStick" || this.weaponEquipped == "burningSmashStick" || this.weaponEquipped == "lightningCorseque" || this.weaponEquipped == "staff" || this.weaponEquipped == "estoc" || this.weaponEquipped == "scimitar" || this.weaponEquipped == "nirwadenLance" || this.weaponEquipped == "vardanianHalberd" || this.weaponEquipped == "shotgun" || this.weaponEquipped == "sickle" || this.weaponEquipped == "vardanianCrossbow" || this.weaponEquipped == "throwingStar" || this.weaponEquipped == "pitchfork" || this.weaponEquipped == "cultistScythe" || this.weaponEquipped == "sceptreOfRadiance" || this.weaponEquipped == "longBone" || this.weaponEquipped == "theWendigosCleaver" || this.weaponEquipped == "beulingerrPike") //add more cases for more overhead weapons.
                 {
                     this.drawArms();
                 }
@@ -39596,7 +40126,7 @@ function Adventurer()
                 }
 
                 //most weapons draw beneath the armour layer.
-                if (this.wepLayer == "standard" || this.wepLayer != "under" && this.wepLayer != "over" && this.weaponEquipped != "swimming" && this.weaponEquipped != "boat" && this.weaponEquipped != "blunderbuss" && this.weaponEquipped != "musket" && this.weaponEquipped != "cutlass" && this.weaponEquipped != "nirineseSabre" && this.weaponEquipped != "longSpikedMorningStar" && this.weaponEquipped != "freydicSword" && this.weaponEquipped != "freydicGreatSword" && this.weaponEquipped != "theNorthernGem" && this.weaponEquipped != "longbow" && this.weaponEquipped != "crossbow" && this.weaponEquipped != "nirineseSpear" && this.weaponEquipped != "iceBlade" && this.weaponEquipped != "kellishClaymore" && this.weaponEquipped != "smashStick" && this.weaponEquipped != "burningSmashStick" && this.weaponEquipped != "lightningCorseque" && this.weaponEquipped != "staff" && this.weaponEquipped != "estoc" && this.weaponEquipped != "scimitar" && this.weaponEquipped != "nirwadenLance" && this.weaponEquipped != "vardanianHalberd" && this.weaponEquipped != "shotgun" && this.weaponEquipped != "sickle" && this.weaponEquipped != "vardanianCrossbow" && this.weaponEquipped != "throwingStar" && this.weaponEquipped != "pitchfork" && this.weaponEquipped != "cultistScythe" && this.weaponEquipped != "sceptreOfRadiance" && this.weaponEquipped != "longBone") //add more cases for more overhead weapons.
+                if (this.wepLayer == "standard" || this.wepLayer != "under" && this.wepLayer != "over" && this.weaponEquipped != "swimming" && this.weaponEquipped != "boat" && this.weaponEquipped != "blunderbuss" && this.weaponEquipped != "musket" && this.weaponEquipped != "cutlass" && this.weaponEquipped != "nirineseSabre" && this.weaponEquipped != "longSpikedMorningStar" && this.weaponEquipped != "freydicSword" && this.weaponEquipped != "freydicGreatSword" && this.weaponEquipped != "theNorthernGem" && this.weaponEquipped != "longbow" && this.weaponEquipped != "crossbow" && this.weaponEquipped != "nirineseSpear" && this.weaponEquipped != "iceBlade" && this.weaponEquipped != "kellishClaymore" && this.weaponEquipped != "smashStick" && this.weaponEquipped != "burningSmashStick" && this.weaponEquipped != "lightningCorseque" && this.weaponEquipped != "staff" && this.weaponEquipped != "estoc" && this.weaponEquipped != "scimitar" && this.weaponEquipped != "nirwadenLance" && this.weaponEquipped != "vardanianHalberd" && this.weaponEquipped != "shotgun" && this.weaponEquipped != "sickle" && this.weaponEquipped != "vardanianCrossbow" && this.weaponEquipped != "throwingStar" && this.weaponEquipped != "pitchfork" && this.weaponEquipped != "cultistScythe" && this.weaponEquipped != "sceptreOfRadiance" && this.weaponEquipped != "longBone" && this.weaponEquipped != "theWendigosCleaver" && this.weaponEquipped != "beulingerrPike") //add more cases for more overhead weapons.
                 {
                     this.drawArms();
                 }
@@ -39617,6 +40147,28 @@ function Adventurer()
                         XXX.globalAlpha = 0.4;
                     }
                     XXX.drawImage(verse, 3228, 215, 33, 15, -(1 / 2 * 38) + 2.7, -(1 / 2 * 42) + 12.5, 33, 15);
+                    XXX.restore();
+                }
+                else if (this.outfitEquipped == "beulingerrDress")
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation + Math.PI);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(abanico, 19, 455, 59, 31, -(1 / 2 * 59 * 0.9) + 0, -(1 / 2 * 31 * 0.9) + 2, 59 * 0.9, 31 * 0.9);
+                    XXX.restore();
+
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - (1/2 * Math.PI));
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(abanico, 887, 88, 68, 62, -(1 / 2 * 68 * 0.7) + 0, -(1 / 2 * 62 * 0.7) + 0, 68 * 0.7, 62 * 0.7);
                     XXX.restore();
                 }
                 else if (this.outfitEquipped == "vardanianRoyalAttireF")
@@ -39689,6 +40241,18 @@ function Adventurer()
                         XXX.globalAlpha = 0.4;
                     }
                     XXX.drawImage(toad, 911, 298, 27, 24, -(1 / 2 * 27 * 1.45) + 0.2, -(1 / 2 * 24 * 1.45) - 0, 27 * 1.45, 24 * 1.45);
+                    XXX.restore();
+                }
+                else if (this.outfitEquipped == "thenganNobleOutfitF")
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(alfombra, 292, 12, 45, 40, -(1 / 2 * 45 * 1) - 2, -(1 / 2 * 40 * 1) + 0, 45 * 1, 40 * 1);
                     XXX.restore();
                 }
                 else if (this.outfitEquipped == "nirwadenNobleDress")

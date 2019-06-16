@@ -21,6 +21,7 @@ function Item(type, x, y)
     this.questy = false;
     this.fireProofing = 0;
     this.ingredients = [];
+    this.smallText = false;
 
     this.decay = 0;
     this.decayable = false;
@@ -32530,6 +32531,155 @@ function Item(type, x, y)
             this.buyValue = 8 - Math.floor(player.getCharisma() / 50); // at max, buy for 7.
             this.sellValue = 5 + Math.floor(player.getCharisma() / 25); // at max, sell for 7.
         }
+        else if (this.type == "redFan")
+        {
+            //For All Items
+            this.identity = "Red Fan";
+            this.weight = 0.1;
+            this.size = 9;
+            this.description = "A finely crafted elaborately decorated handheld fan of orgish design.";
+            this.intForDes = 3;
+            this.intDescription = "Fans of this quality are almost exlusively used by the noble classes.";
+
+
+            //Define Utility
+            this.utility = "weapon";
+
+            //Utility Focused
+            this.energyCost = 0;
+            this.distance = 0 + (this.range * 7);
+            this.range = 0;
+            this.rate = 100;
+            this.damage = 0;
+            this.magicalDamage = 0;
+            this.negateArmour = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 90 - Math.floor(player.getCharisma() / 15); // at max, buy for 87.
+            this.sellValue = 84 + Math.floor(player.getCharisma() / 15); // at max, sell for 87.
+        }
+        else if (this.type == "purpleFan")
+        {
+            //For All Items
+            this.identity = "Purple Fan";
+            this.weight = 0.1;
+            this.size = 9;
+            this.description = "A finely crafted elaborately decorated handheld fan of orgish design.";
+            this.intForDes = 3;
+            this.intDescription = "Fans of this quality are almost exlusively used by the noble classes.";
+
+
+            //Define Utility
+            this.utility = "weapon";
+
+            //Utility Focused
+            this.energyCost = 0;
+            this.distance = 0 + (this.range * 7);
+            this.range = 0;
+            this.rate = 100;
+            this.damage = 0;
+            this.magicalDamage = 0;
+            this.negateArmour = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 92 - Math.floor(player.getCharisma() / 15); // at max, buy for 89.
+            this.sellValue = 86 + Math.floor(player.getCharisma() / 15); // at max, sell for 89.
+        }
+        else if (this.type == "theWendigosCleaver")
+        {
+            //For All Items
+            this.identity = "The Wendigo's Cleaver";
+            this.weight = 3.25;
+            this.size = 16;
+            this.description = "A steel blade that curves into a spike toward the end.";
+            this.intForDes = 0;
+            if (player.gamemode != "protagonist")
+            {
+                this.intDescription = "The bandit chieftain known as The Wendigo used to use this to carve and butcher his many victims' flesh in order to make his supper.";
+            }
+            else
+            {
+                this.intDescription = "This is a little large for cutting turnips... but it will do.";
+            }
+
+            //Define Utility
+            this.utility = "weapon";
+
+            //Utility Focused
+            if (new Date().getTime() - player.timeSinceHumanFleshConsumed < 1000 * 30) //weapon bonus after cannibalizing
+            {
+                this.energyCost = 4.5;
+                this.distance = 24 + (this.range * 7);
+                this.range = 7 + 2/7;
+                this.rate = Math.max(0.9, (125 - player.getDexterity()));
+                this.damage = (8 - this.damageHandicap * 3) * (this.leveledDamageMultiple / 25) + ((14/50) * player.getStrength());
+                this.magicalDamage = 0;
+                this.negateArmour = 7 + ((4/50) * player.getStrength());
+            }
+            else
+            {
+                this.distance = 24 + (this.range * 7);
+                this.range = 7 + 2/7;
+                if (player.cannibalism == true && player.cannibal == true) //if hungering for a cannibals supper the cleaver gets a slight buff
+                {
+                    this.energyCost = 5;
+                    this.damage = (7.5 - this.damageHandicap * 1) * (this.leveledDamageMultiple / 25) + ((10/50) * player.getStrength());
+                    this.negateArmour = 5.5 + ((3/50) * player.getStrength());
+                    this.rate = Math.max(0.95, (130 - player.getDexterity()));
+                }
+                else //otherwise these are the cleaver's base stats
+                {
+                    this.energyCost = 6;
+                    this.damage = (7 - this.damageHandicap * 2) * (this.leveledDamageMultiple / 25) + ((9/50) * player.getStrength());
+                    this.negateArmour = 5 + ((2/50) * player.getStrength());
+                    this.rate = Math.max(1, (135 - player.getDexterity()));
+                }
+
+                this.magicalDamage = 0;
+            }
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 35000 - Math.floor(player.getCharisma() / 0.1); // at max, buy for 34500.
+            this.sellValue = 34000 + Math.floor(player.getCharisma() / 0.1); // at max, sell for 34500.
+        }
+        else if (this.type == "beulingerrPike")
+        {
+            //For All Items
+            this.identity = "The Silver Pike of House Beulingerr";
+            this.weight = 12;
+            this.size = 19;
+            this.description = "A decorative silver pike inlaid with rubies, polished amethysts, and gold.";
+            this.intForDes = 0;
+            this.intDescription = "This pike has been passed down through the male line in the Beulingerr family for generations; it is strictly decorative.";
+
+            //Define Utility
+            this.utility = "weapon";
+
+            //Utility Focused
+            this.energyCost = 10;
+            this.distance = 115 + (this.range * 7);
+            this.range = 3 + 2/7;
+            this.rate = (320 - player.getDexterity());
+            this.damage = (6 - this.damageHandicap) * (this.leveledDamageMultiple / 25) + ((1/10) * player.getStrength());
+            this.magicalDamage = 0;
+            this.negateArmour = 14 + ((6/50) * player.getStrength());
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 35000 - Math.floor(player.getCharisma() / 0.1); // at max, buy for 34500.
+            this.sellValue = 34000 + Math.floor(player.getCharisma() / 0.1); // at max, sell for 34500.
+        }
         else if (this.type == "nirineseSpear")
         {
             //For All Items
@@ -38386,6 +38536,233 @@ function Item(type, x, y)
             this.buyValue = 1000; // at max, buy for 1000.
             this.sellValue = 900 + Math.floor(player.getCharisma() / 0.5); // at max, sell for 1000.
         }
+        else if (this.type == "beulingerrOutfit")
+        {
+            //For All Items
+            this.identity = "Great Baron Outfit";
+            this.weight = 2.6;
+            this.size = 26;
+            this.description = "A finely tailored and decorated lordly outfit of dyed velvet with inlaid gold and jewels.";
+            this.intForDes = 1;
+            this.intDescription = "This has the noble heraldry of the Great Baron of house Beulingerr who is known to be one of the wealthiest lords in the land.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 1.3;
+            this.thirstRetention = 0;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 37;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 16000 - Math.floor(player.getCharisma() / 0.1); // at max, buy for 15500.
+            this.sellValue = 15000 + Math.floor(player.getCharisma() / 0.1); // at max, sell for 15500.
+        }
+        else if (this.type == "beulingerrDress")
+        {
+            //For All Items
+            this.identity = "Great Baroness Dress";
+            this.weight = 4.6;
+            this.size = 26;
+            this.description = "An extravagent dress for noble ladies of house Beulingerr.";
+            this.intForDes = 9;
+            this.intDescription = "This dress was designed by an Aldrekii master tailor and was imported through an expensive, politically complicated process that involved no small amount of smuggling.";
+            this.smallText = true;
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 1;
+            this.thirstRetention = 0.5;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            if (player.gender == "Male")
+            {
+                this.charismaBonus = -50;
+            }
+            else
+            {
+                this.charismaBonus = 45;
+            }
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 2;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "hefty";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 23000 - Math.floor(player.getCharisma() / 0.1); // at max, buy for 22500.
+            this.sellValue = 22000 + Math.floor(player.getCharisma() / 0.1); // at max, sell for 22500.
+        }
+        else if (this.type == "thenganNobleOutfitM")
+        {
+            //For All Items
+            this.identity = "Great Baron Outfit";
+            this.weight = 3;
+            this.size = 26;
+            this.description = "An elaborate heraldic outfit with a fox pelt that is worn as a scarf.";
+            this.intForDes = 1;
+            this.intDescription = "The lords of Thengaria are known as 'The Great Barons'.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 1.4;
+            this.thirstRetention = 0;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 38;
+            this.rangedBonus = 2;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 1;
+            this.survivalismBonus = 1;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 9000 - Math.floor(player.getCharisma() / 0.1); // at max, buy for 8500.
+            this.sellValue = 8000 + Math.floor(player.getCharisma() / 0.1); // at max, sell for 8500.
+        }
+        else if (this.type == "thenganNobleOutfitF")
+        {
+            //For All Items
+            this.identity = "Great Baroness Dress";
+            this.weight = 3;
+            this.size = 26;
+            this.description = "An elaborate Thengan noble lady dress with a fine flowered hat.";
+            this.intForDes = 2;
+            this.intDescription = "The great baronesses of Thengaria are known for their exquisite taste in fashion.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0.9;
+            this.thirstRetention = 0;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            if (player.gender == "Male")
+            {
+                this.charismaBonus = -50;
+            }
+            else
+            {
+                this.charismaBonus = 40;
+            }
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "hefty";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 13000 - Math.floor(player.getCharisma() / 0.1); // at max, buy for 12500.
+            this.sellValue = 12000 + Math.floor(player.getCharisma() / 0.1); // at max, sell for 12500.
+        }
         else if (this.type == "jesterOutfit")
         {
             //For All Items
@@ -39506,6 +39883,63 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 14 - Math.floor(player.getCharisma() / 10); // at max, buy for 9.
             this.sellValue = 5 + Math.floor(player.getCharisma() / 12); // at max, sell for 9.
+        }
+        else if (this.type == "thenganCommonwear")
+        {
+            //For All Items
+            this.identity = "Thengan Commonwear";
+            this.weight = 1;
+            this.size = 26;
+            this.description = "An ordinary outfit worn by commoners and tradefolk in Thengaria.";
+            this.intForDes = 1;
+            this.intDescription = "The hat keeps the sun out of your eyes and protects you from the sun somewhat.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 1.3;
+            this.thirstRetention = 0.15;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 1;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 1;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 14;
+            this.ingredients = [["Cloth", 2], ["Deer Pelt", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 25 - Math.floor(player.getCharisma() / 25); // at max, buy for 23.
+            this.sellValue = 22 + Math.floor(player.getCharisma() / 50); // at max, sell for 23.
         }
         else if (this.type == "badgerFurClothing")
         {
@@ -41386,6 +41820,64 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 20; // at max, buy for 20.
             this.sellValue = 20; // at max, sell for 20.
+        }
+        else if (this.type == "thenganHose")
+        {
+            //For All Items
+            this.identity = "Thengan Hose";
+            this.weight = 0.9;
+            this.size = 9;
+            this.description = "Pointed shoes made with cloth and dyed deer hide.";
+            this.intForDes = 1;
+            this.intDescription = "Ordinary shoes for a Thengan commoner to wear.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "boots";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0.09;
+            this.thirstRetention = 0;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 1;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 1;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 3;
+            this.intForCraft = 12;
+            this.ingredients = [["Cloth", 1], ["Deer Pelt", 1], ["Black Dye", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 8; // at max, buy for 8.
+            this.sellValue = 6; // at max, sell for 6.
         }
         else if (this.type == "northernClothing")
         {
@@ -45624,6 +46116,56 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
+        }
+        else if (this.type == "beulingerrDress")
+        {
+            XXX.beginPath();
+            XXX.drawImage(abanico, 858, 153, 115, 140, X - this.X + (1/2 * CCC.width) - (1/2 * 115 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 140 * 1), 115 * 1, 140 * 1);
+        }
+        else if (this.type == "beulingerrOutfit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(abanico, 57, 3, 77, 127, X - this.X + (1/2 * CCC.width) - (1/2 * 77 * 0.88), Y - this.Y + (1/2 * CCC.height) - (1/2 * 127 * 0.88), 77 * 0.88, 127 * 0.88);
+        }
+        else if (this.type == "theWendigosCleaver")
+        {
+            XXX.beginPath();
+            XXX.drawImage(abanico, 15, 8, 29, 79, X - this.X + (1/2 * CCC.width) - (1/2 * 29 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 79 * 1), 29 * 1, 79 * 1);
+        }
+        else if (this.type == "beulingerrPike")
+        {
+            XXX.beginPath();
+            XXX.drawImage(abanico, 26, 140, 136, 90, X - this.X + (1/2 * CCC.width) - (1/2 * 136 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 90 * 1), 136 * 1, 90 * 1);
+        }
+        else if (this.type == "redFan")
+        {
+            XXX.beginPath();
+            XXX.drawImage(abanico, 108, 463, 23, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 23 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 1), 23 * 1, 24 * 1);
+        }
+        else if (this.type == "purpleFan")
+        {
+            XXX.beginPath();
+            XXX.drawImage(abanico, 0, 103, 23, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 23 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 1), 23 * 1, 24 * 1);
+        }
+        else if (this.type == "thenganHose")
+        {
+            XXX.beginPath();
+            XXX.drawImage(alfombra, 5, 116, 48, 26, X - this.X + (1/2 * CCC.width) - (1/2 * 48 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 26 * 1), 48 * 1, 26 * 1);
+        }
+        else if (this.type == "thenganCommonwear")
+        {
+            XXX.beginPath();
+            XXX.drawImage(alfombra, 0, 8, 57, 97, X - this.X + (1/2 * CCC.width) - (1/2 * 57 * 1.05), Y - this.Y + (1/2 * CCC.height) - (1/2 * 97 * 1.05), 57 * 1.05, 97 * 1.05);
+        }
+        else if (this.type == "thenganNobleOutfitM")
+        {
+            XXX.beginPath();
+            XXX.drawImage(alfombra, 116, 8, 69, 115, X - this.X + (1/2 * CCC.width) - (1/2 * 69 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 115 * 1), 69 * 1, 115 * 1);
+        }
+        else if (this.type == "thenganNobleOutfitF")
+        {
+            XXX.beginPath();
+            XXX.drawImage(alfombra, 202, 8, 69, 115, X - this.X + (1/2 * CCC.width) - (1/2 * 69 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 115 * 1), 69 * 1, 115 * 1);
         }
         else if (this.type == "foxClothingM")
         {
@@ -51575,6 +52117,56 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
+        else if (this.type == "beulingerrDress")
+        {
+            LXX.beginPath();
+            LXX.drawImage(abanico, 858, 153, 115, 140, this.invX - (1/2 * 115 * 0.5), this.invY - (1/2 * 140 * 0.5), 115 * 0.5, 140 * 0.5);
+        }
+        else if (this.type == "beulingerrOutfit")
+        {
+            LXX.beginPath();
+            LXX.drawImage(abanico, 57, 3, 77, 127, this.invX - (1/2 * 77 * 0.5), this.invY - (1/2 * 127 * 0.5), 77 * 0.5, 127 * 0.5);
+        }
+        else if (this.type == "theWendigosCleaver")
+        {
+            LXX.beginPath();
+            LXX.drawImage(abanico, 15, 8, 29, 79, this.invX - (1/2 * 29 * 0.9), this.invY - (1/2 * 79 * 0.9), 29 * 0.9, 79 * 0.9);
+        }
+        else if (this.type == "beulingerrPike")
+        {
+            LXX.beginPath();
+            LXX.drawImage(abanico, 26, 140, 136, 90, this.invX - (1/2 * 136 * 0.65), this.invY - (1/2 * 90 * 0.65), 136 * 0.65, 90 * 0.65);
+        }
+        else if (this.type == "redFan")
+        {
+            LXX.beginPath();
+            LXX.drawImage(abanico, 108, 463, 23, 24, this.invX - (1/2 * 23 * 1), this.invY - (1/2 * 24 * 1), 23 * 1, 24 * 1);
+        }
+        else if (this.type == "purpleFan")
+        {
+            LXX.beginPath();
+            LXX.drawImage(abanico, 0, 103, 23, 24, this.invX - (1/2 * 23 * 1), this.invY - (1/2 * 24 * 1), 23 * 1, 24 * 1);
+        }
+        else if (this.type == "thenganHose")
+        {
+            LXX.beginPath();
+            LXX.drawImage(alfombra, 5, 116, 48, 26, this.invX - (1/2 * 48 * 0.9), this.invY - (1/2 * 26 * 0.9), 48 * 0.9, 26 * 0.9);
+        }
+        else if (this.type == "thenganCommonwear")
+        {
+            LXX.beginPath();
+            LXX.drawImage(alfombra, 0, 8, 57, 97, this.invX - (1/2 * 57 * 0.7), this.invY - (1/2 * 97 * 0.7), 57 * 0.7, 97 * 0.7);
+        }
+        else if (this.type == "thenganNobleOutfitM")
+        {
+            LXX.beginPath();
+            LXX.drawImage(alfombra, 116, 8, 69, 115, this.invX - (1/2 * 69 * 0.65), this.invY - (1/2 * 115 * 0.65), 69 * 0.65, 115 * 0.65);
+        }
+        else if (this.type == "thenganNobleOutfitF")
+        {
+            LXX.beginPath();
+            LXX.drawImage(alfombra, 202, 8, 69, 115, this.invX - (1/2 * 69 * 0.65), this.invY - (1/2 * 115 * 0.65), 69 * 0.65, 115 * 0.65);
+        }
         else if (this.type == "foxClothingM")
         {
             LXX.beginPath();
@@ -57491,6 +58083,56 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "beulingerrDress")
+        {
+            XXX.beginPath();
+            XXX.drawImage(abanico, 858, 153, 115, 140, this.invX - (1/2 * 115 * 0.5), this.invY - (1/2 * 140 * 0.5), 115 * 0.5, 140 * 0.5);
+        }
+        else if (this.type == "beulingerrOutfit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(abanico, 57, 3, 77, 127, this.invX - (1/2 * 77 * 0.5), this.invY - (1/2 * 127 * 0.5), 77 * 0.5, 127 * 0.5);
+        }
+        else if (this.type == "theWendigosCleaver")
+        {
+            XXX.beginPath();
+            XXX.drawImage(abanico, 15, 8, 29, 79, this.invX - (1/2 * 29 * 0.9), this.invY - (1/2 * 79 * 0.9), 29 * 0.9, 79 * 0.9);
+        }
+        else if (this.type == "beulingerrPike")
+        {
+            XXX.beginPath();
+            XXX.drawImage(abanico, 26, 140, 136, 90, this.invX - (1/2 * 136 * 0.65), this.invY - (1/2 * 90 * 0.65), 136 * 0.65, 90 * 0.65);
+        }
+        else if (this.type == "redFan")
+        {
+            XXX.beginPath();
+            XXX.drawImage(abanico, 138, 450, 29, 39, this.invX - (1/2 * 29 * 1), this.invY - (1/2 * 39 * 1), 29 * 1, 39 * 1);
+        }
+        else if (this.type == "purpleFan")
+        {
+            XXX.beginPath();
+            XXX.drawImage(abanico, 29, 91, 29, 39, this.invX - (1/2 * 29 * 1), this.invY - (1/2 * 39 * 1), 29 * 1, 39 * 1);
+        }
+        else if (this.type == "thenganHose")
+        {
+            XXX.beginPath();
+            XXX.drawImage(alfombra, 5, 116, 48, 26, this.invX - (1/2 * 48 * 0.9), this.invY - (1/2 * 26 * 0.9), 48 * 0.9, 26 * 0.9);
+        }
+        else if (this.type == "thenganCommonwear")
+        {
+            XXX.beginPath();
+            XXX.drawImage(alfombra, 0, 8, 57, 97, this.invX - (1/2 * 57 * 0.7), this.invY - (1/2 * 97 * 0.7), 57 * 0.7, 97 * 0.7);
+        }
+        else if (this.type == "thenganNobleOutfitM")
+        {
+            XXX.beginPath();
+            XXX.drawImage(alfombra, 116, 8, 69, 115, this.invX - (1/2 * 69 * 0.65), this.invY - (1/2 * 115 * 0.65), 69 * 0.65, 115 * 0.65);
+        }
+        else if (this.type == "thenganNobleOutfitF")
+        {
+            XXX.beginPath();
+            XXX.drawImage(alfombra, 202, 8, 69, 115, this.invX - (1/2 * 69 * 0.65), this.invY - (1/2 * 115 * 0.65), 69 * 0.65, 115 * 0.65);
         }
         else if (this.type == "foxClothingM")
         {

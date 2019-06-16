@@ -139,7 +139,7 @@ fog - 0-3 variations of fog that can be altered in size (above the player, below
 pyre - a large outdoor bonfire station (used for systematically executing people who fail to meet certain societal expectations. Setting longevity to true makes it the kind that can be used in a quest, otherwise it randomly chooses at the start of the map if it is either burnt or aflame.
 drawerA - 2 models of lighter colored wooden drawers for storage (light and pinkish-tan)
 drawerB - 2 models of darker colored wooden drawers for storage (reddish and brown)
-fineBed - (0 = black, 1 = white, 2 = blue, 3 = red, 4 = purple, 5 = green) Fancy colorful beds
+fineBed - (0 = black, 1 = white, 2 = blue, 3 = red, 4 = purple, 5 = green, 6 = Beulingerr) Fancy colorful beds
 furRug - (0, 1) rugs made of thick generic animal fur
 molteTrophy - A wall trophy of a molte's head (moltes are a carnivorous woodland creature found in the continental northeast/east)
 nirwadenMuebleOver - a version that can go above buildings
@@ -153,8 +153,8 @@ vardanianSwampBrush - swamp foliage that is variable in size based on a manual i
 temperateFishingSpot - A rippling part of the water where the fishing system can be accessed with a fishingpole (west-central, central, and eastern temperate fish types found here)
 southFishingSpot - A rippling part of the water where the fishing system can be accessed with a fishingpole (savannah fish types found here)
 temperatePondFishingSpot - A rippling part of the water where the fishing system can be accessed with a fishingpole (limited eastern temperate varieties found here)
-westMueble - A variety of mostly Vardanian and Thengan Furnishings (0-44)
-floorDeco - rugs, mats, and rags, and royal/rebel carpets, borgal rug, fox rugs... (0-19)
+westMueble - A variety of Vardanian and Thengan Furnishings (0-47)
+floorDeco - rugs, mats, and rags, and royal/rebel carpets, borgal rug, fox rugs, noble beulingerr rugs... (0-25)
 viudaTunnel - A mound that hosts a webbed tunnel in which the Viuda spider makes its home. //scenicList.push(new Scenery("viudaTunnel", x, y, rotation, hasSpider?, isAlpha?));
 vinePatch - a foliage barrier that can be degraded upon being attacked. //scenicList.push(new Scenery("vinePatch", x, y, rotation, size));
 alzkwayaBuilding1 - A down facing mofu feather decorated kellish building made from grass and dried mud brick
@@ -264,3 +264,5 @@ bloatGas - A toxic greenish grey gas released by Skindlers that decays flesh (te
 thenganBridges - a selection of thengan bridges (information: 0-5) they can be rotated (rotation), and size adjusted (temporary)
 deadDeer - a dead deer (temporary = size information: true = basic, false = eviscerated)
 thenganorCastles - a selection of Freydic and Thengan Castles
+metalLadder - just like latter (portal) but made of metal. //scenicList.push(new Scenery("metalLadder", 0, 0, 0, [3400, 2400], "world"));
+sewer - just like trap door except that it can be opened and closed like a sewer grate. //scenicList.push(new Scenery("sewer", 3400, 2400, 0, [0, 0], "world"));

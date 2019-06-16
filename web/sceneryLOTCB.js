@@ -2573,6 +2573,9 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             this.solid = true;
             this.interactionRange = 50;
 
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 24;
+
             //DRAWSELF
             if (this.information == 1)
             {
@@ -2614,6 +2617,16 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.drawImage(folw, 125, 434, 18, 32, -(1/2 * 18 * 2.2 * szx), -(1/2 * 32 * 2.2 * szx), 18 * 2.2 * szx, 32 * 2.2 * szx);
                 XXX.restore();
             }
+            else if (this.information == 6)
+            {
+                szx = 1;
+                this.radius = 34;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(alfombra, 59, 233, 93, 53, -(1/2 * 93 * szx), -(1/2 * 53 * szx), 93 * szx, 53 * szx);
+                XXX.restore();
+            }
             else
             {
                 XXX.save();
@@ -2622,9 +2635,6 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.drawImage(folw, 19, 432, 18, 32, -(1/2 * 18 * 2.2 * szx), -(1/2 * 32 * 2.2 * szx), 18 * 2.2 * szx, 32 * 2.2 * szx);
                 XXX.restore();
             }
-
-            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
-            this.radius = 24;
 
             //INTERACTION
             if (this.activate == true)
@@ -4686,12 +4696,76 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.drawImage(bloat, 10, 550, 58, 57, -(1/2 * 58 * this.information), -(1/2 * 57 * this.information), 58 * this.information, 57 * this.information);
                 XXX.restore();
             }
-            else if (this.temporary >= 19)//arctic fox pelt rug (thengaria)
+            else if (this.temporary == 19)//arctic fox pelt rug (thengaria)
             {
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
                 XXX.drawImage(bloat, 9, 487, 58, 57, -(1/2 * 58 * this.information), -(1/2 * 57 * this.information), 58 * this.information, 57 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 19)//deer pelt rug (thengaria)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(wendi, 115, 780, 65, 40, -(1/2 * 65 * this.information), -(1/2 * 40 * this.information), 65 * this.information, 40 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 19)//badger fur rug (thengaria)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(wendi, 8, 780, 52, 48, -(1/2 * 52 * this.information), -(1/2 * 48 * this.information), 52 * this.information, 48 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 20)//grizzly fur rug (thengaria)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(wendi, 673, 1139, 90, 67, -(1/2 * 90 * this.information), -(1/2 * 67 * this.information), 90 * this.information, 67 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 21)//beulingerr aldrekii embroidered rug [rectangle] (thengaria)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(alfombra, 45, 161, 119, 69, -(1/2 * 119 * this.information), -(1/2 * 69 * this.information), 119 * this.information, 69 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 22)//beulingerr aldrekii embroidered rug [square] (thengaria)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(alfombra, 177, 172, 116, 117, -(1/2 * 116 * this.information), -(1/2 * 117 * this.information), 116 * this.information, 117 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 23)//beulingerr aldrekii embroidered rug [hallway] (thengaria)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(alfombra, 313, 63, 78, 221, -(1/2 * 78 * this.information), -(1/2 * 221 * this.information), 78 * this.information, 221 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 24)//beulingerr aldrekii embroidered rug [mantel] (thengaria)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(alfombra, 177, 132, 118, 37, -(1/2 * 118 * this.information), -(1/2 * 37 * this.information), 118 * this.information, 37 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 25)//beulingerr aldrekii floor pillow (thengaria)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(alfombra, 83, 135, 31, 18, -(1/2 * 31 * this.information), -(1/2 * 18 * this.information), 31 * this.information, 18 * this.information);
                 XXX.restore();
             }
 
@@ -5172,6 +5246,30 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
                 XXX.drawImage(bloat, 697, 500, 59, 35, -(1/2 * 59 * this.information), -(1/2 * 35 * this.information), 59 * this.information, 35 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 45)//thengan floral arrangement (west)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(alfombra, 340, 6, 60, 50, -(1/2 * 60 * this.information), -(1/2 * 50 * this.information), 60 * this.information, 50 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 46)//thengan floral arrangement (east)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(alfombra, 0, 175, 37, 42, -(1/2 * 37 * this.information), -(1/2 * 42 * this.information), 37 * this.information, 42 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 47)//thengan floral arrangement (east + west mix)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(alfombra, 1, 238, 49, 43, -(1/2 * 49 * this.information), -(1/2 * 43 * this.information), 49 * this.information, 43 * this.information);
                 XXX.restore();
             }
 
@@ -15009,6 +15107,81 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 X = this.temporary[0];
                 Y = this.temporary[1];
                 map = this.information;
+            }
+        }
+        else if (this.type == "metalLadder")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 60;
+
+            //DRAWSELF
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(chupa, 587, 260, 42, 59, -(1/2 * 42 * 1.5), -(1/2 * 59 * 1.5), 42 * 1.5, 59 * 1.5);
+            XXX.restore();
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 45;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+                X = this.temporary[0];
+                Y = this.temporary[1];
+                map = this.information;
+            }
+        }
+        else if (this.type == "sewer")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 70;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(chupa, 642, 269, 37, 34, -(1/2 * 37 * 2.3), -(1/2 * 34 * 2.3), 37 * 2.3, 34 * 2.3);
+                XXX.restore();
+            }
+            else
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(chupa, 681, 271, 37, 34, -(1/2 * 37 * 2.3), -(1/2 * 34 * 2.3), 37 * 2.3, 34 * 2.3);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 20;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+                if (this.phase == 1)
+                {
+                    if (this.playerer <= 25)
+                    {
+                        X = this.temporary[0];
+                        Y = this.temporary[1];
+                        map = this.information;
+                    }
+                    else
+                    {
+                        this.phase = 0;
+                    }
+                }
+                else
+                {
+                    this.phase = 1;
+                }
             }
         }
         else if (this.type == "event")

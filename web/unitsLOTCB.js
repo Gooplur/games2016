@@ -9834,6 +9834,36 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.effect = "none";
                 this.costumeEngine(5, 0.19, true);
             }
+            else if (this.weapon == "theWendigosCleaver")
+            {
+                this.effect = "none";
+                this.costumeEngine(6, 0.19, true);
+            }
+            else if (this.weapon == "beulingerrPike")
+            {
+                this.effect = "none";
+                this.costumeEngine(7, 0.16, true);
+            }
+            else if (this.weapon == "katana")
+            {
+                this.effect = "none";
+                this.costumeEngine(11, 0.5, true);
+            }
+            else if (this.weapon == "dualCurvedDaggers")
+            {
+                this.effect = "none";
+                this.costumeEngine(7, 0.30, true);
+            }
+            else if (this.weapon == "curvedDagger")
+            {
+                this.effect = "none";
+                this.costumeEngine(7, 0.35, true);
+            }
+            else if (this.weapon == "aldrekiiBlade")
+            {
+                this.effect = "none";
+                this.costumeEngine(6, 0.2, true);
+            }
         }
     };
 
@@ -10169,6 +10199,106 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.drawUnit(polyPNG, 717, 583, 40, 43, -17, -38.5, 50, 53.75, 1 / 2 * Math.PI);
             }
         }
+        else if (this.weapon == "redFan")
+        {
+            if (typeof(this.fanTic) == "undefined")
+            {
+                this.fanTic = 0;
+            }
+
+            if (this.fanTic <= 165)
+            {
+                this.drawUnit(abanico, 6, 517, 64, 80, -1/2 * 64, -1/2 * 80, 64, 80, 1 / 2 * Math.PI);
+            }
+            else if (this.fanTic <= 170)
+            {
+                this.drawUnit(abanico, 115, 514, 64, 80, -1/2 * 64, -1/2 * 80, 64, 80, 1 / 2 * Math.PI);
+            }
+            else if (this.fanTic <= 175)
+            {
+                this.drawUnit(abanico, 223, 513, 64, 80, -1/2 * 64, -1/2 * 80, 64, 80, 1 / 2 * Math.PI);
+            }
+            else if (this.fanTic <= 180)
+            {
+                this.drawUnit(abanico, 336, 514, 64, 80, -1/2 * 64, -1/2 * 80, 64, 80, 1 / 2 * Math.PI);
+            }
+            else if (this.fanTic <= 185)
+            {
+                this.drawUnit(abanico, 441, 513, 64, 80, -1/2 * 64, -1/2 * 80, 64, 80, 1 / 2 * Math.PI);
+            }
+            else if (this.fanTic <= 190)
+            {
+                this.drawUnit(abanico, 336, 514, 64, 80, -1/2 * 64, -1/2 * 80, 64, 80, 1 / 2 * Math.PI);
+            }
+            else if (this.fanTic <= 195)
+            {
+                this.drawUnit(abanico, 223, 513, 64, 80, -1/2 * 64, -1/2 * 80, 64, 80, 1 / 2 * Math.PI);
+            }
+            else if (this.fanTic <= 200)
+            {
+                this.drawUnit(abanico, 336, 514, 64, 80, -1/2 * 64, -1/2 * 80, 64, 80, 1 / 2 * Math.PI);
+            }
+            else if (this.fanTic <= 205)
+            {
+                this.drawUnit(abanico, 441, 513, 64, 80, -1/2 * 64, -1/2 * 80, 64, 80, 1 / 2 * Math.PI);
+            }
+            else
+            {
+                this.drawUnit(abanico, 441, 513, 64, 80, -1/2 * 64, -1/2 * 80, 64, 80, 1 / 2 * Math.PI);
+                this.fanTic = 0;
+            }
+            this.fanTic += 2;
+        }
+        else if (this.weapon == "purpleFan")
+        {
+            if (typeof(this.fanTic) == "undefined")
+            {
+                this.fanTic = 0;
+            }
+
+            if (this.fanTic <= 165)
+            {
+                this.drawUnit(abanico, 501, 514, 64, 80, -1/2 * 64, -1/2 * 80, 64, 80, 1 / 2 * Math.PI);
+            }
+            else if (this.fanTic <= 170)
+            {
+                this.drawUnit(abanico, 611, 511, 64, 80, -1/2 * 64, -1/2 * 80, 64, 80, 1 / 2 * Math.PI);
+            }
+            else if (this.fanTic <= 175)
+            {
+                this.drawUnit(abanico, 718, 510, 64, 80, -1/2 * 64, -1/2 * 80, 64, 80, 1 / 2 * Math.PI);
+            }
+            else if (this.fanTic <= 180)
+            {
+                this.drawUnit(abanico, 831, 511, 64, 80, -1/2 * 64, -1/2 * 80, 64, 80, 1 / 2 * Math.PI);
+            }
+            else if (this.fanTic <= 185)
+            {
+                this.drawUnit(abanico, 938, 510, 62, 80, -1/2 * 62, -1/2 * 80, 62, 80, 1 / 2 * Math.PI);
+            }
+            else if (this.fanTic <= 190)
+            {
+                this.drawUnit(abanico, 831, 511, 64, 80, -1/2 * 64, -1/2 * 80, 64, 80, 1 / 2 * Math.PI);
+            }
+            else if (this.fanTic <= 195)
+            {
+                this.drawUnit(abanico, 718, 510, 64, 80, -1/2 * 64, -1/2 * 80, 64, 80, 1 / 2 * Math.PI);
+            }
+            else if (this.fanTic <= 200)
+            {
+                this.drawUnit(abanico, 831, 511, 64, 80, -1/2 * 64, -1/2 * 80, 64, 80, 1 / 2 * Math.PI);
+            }
+            else if (this.fanTic <= 205)
+            {
+                this.drawUnit(abanico, 938, 510, 62, 80, -1/2 * 62, -1/2 * 80, 62, 80, 1 / 2 * Math.PI);
+            }
+            else
+            {
+                this.drawUnit(abanico, 938, 510, 62, 80, -1/2 * 62, -1/2 * 80, 62, 80, 1 / 2 * Math.PI);
+                this.fanTic = 0;
+            }
+            this.fanTic += 2;
+        }
         else if (this.weapon == "m16Carbine")
         {
             if (theCostume <= 0)
@@ -10411,6 +10541,194 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             else if (theCostume >= 4)
             {
                 this.drawUnit(floras, 771, 262, 159, 154, -1/2 * 159 * 1.1, -1/2 * 154 * 1.1 - 7, 159 * 1.1, 154 * 1.1, 1 / 2 * Math.PI);
+            }
+        }
+        else if (this.weapon == "aldrekiiBlade")
+        {
+            this.damageFrame = "automatic";
+            if (theCostume <= 0)
+            {
+                this.drawUnit(oldverse, 2206, 75, 60, 52, -13, -51, 72, 64.8, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 1)
+            {
+                this.drawUnit(oldverse, 2271, 74, 60, 52, -22.5, -54, 72, 64.8, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 2)
+            {
+                this.drawUnit(oldverse, 2334, 71, 60, 52, -35, -54, 72, 64.8, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 3)
+            {
+                this.drawUnit(oldverse, 2397, 69, 60, 52, -47, -56, 72, 64.8, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 4)
+            {
+                this.drawUnit(oldverse, 2458, 67, 60, 52, -54, -54.5, 72, 64.8, 1 / 2 * Math.PI);
+            }
+            else if (theCostume >= 5)
+            {
+                this.drawUnit(oldverse, 2515, 66, 60, 52, -60.5, -51, 72, 64.8, 1 / 2 * Math.PI);
+            }
+        }
+        else if (this.weapon == "curvedDagger")
+        {
+            this.damageFrame = "automatic";
+            if (theCostume <= 0)
+            {
+                this.drawUnit(verse, 3552, 657, 50, 34, -30.25, -20, 50, 34, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 1)
+            {
+                this.drawUnit(verse, 3618, 652, 50, 34, -31, -24, 50, 34, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 2)
+            {
+                this.drawUnit(verse, 3683, 650, 50, 34, -30.25, -26, 50, 34, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 3)
+            {
+                this.drawUnit(verse, 3745, 650, 50, 34, -27.5, -25, 50, 34, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 4)
+            {
+                this.drawUnit(verse, 3811, 650, 50, 34, -22.5, -27, 50, 34, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 5)
+            {
+                this.drawUnit(verse, 3875, 650, 50, 34, -16, -28.5, 50, 34, 1 / 2 * Math.PI);
+            }
+            else if (theCostume >= 6)
+            {
+                this.drawUnit(verse, 3937, 645, 50, 34, -17, -33.5, 50, 34, 1 / 2 * Math.PI);
+            }
+        }
+        else if (this.weapon == "dualCurvedDaggers")
+        {
+            this.damageFrame = "automatic";
+            if (theCostume <= 0)
+            {
+                this.drawUnit(verse, 3585, 595, 73, 51, -41.25, -40, 73, 51, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 1)
+            {
+                this.drawUnit(verse, 3660, 595, 73, 51, -37.25, -40, 73, 51, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 2)
+            {
+                this.drawUnit(verse, 3729, 595, 73, 51, -35.25, -41, 73, 51, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 3)
+            {
+                this.drawUnit(verse, 3797, 592, 58, 51, -24.25, -47, 58, 51, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 4)
+            {
+                this.drawUnit(verse, 3847, 595, 58, 51, -23.5, -46, 58, 51, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 5)
+            {
+                this.drawUnit(verse, 3893, 595, 58, 51, -23, -49, 58, 51, 1 / 2 * Math.PI);
+            }
+            else if (theCostume >= 6)
+            {
+                this.drawUnit(verse, 3942, 595, 58, 51, -21.5, -48.5, 58, 51, 1 / 2 * Math.PI);
+            }
+        }
+        else if (this.weapon == "katana")
+        {
+            this.damageFrame = "automatic";
+            if (theCostume <= 0)
+            {
+                this.drawUnit(verse, 3909, 453, 57, 66, -41, -78, 89.1, 97.2, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 1)
+            {
+                this.drawUnit(verse, 3841, 449, 57, 66, -29, -85, 89.1, 97.2, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 2)
+            {
+                this.drawUnit(verse, 3772, 449, 57, 66, -33, -83.75, 89.1, 97.2, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 3)
+            {
+                this.drawUnit(verse, 3701, 449, 57, 66, -34, -82, 89.1, 97.2, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 4)
+            {
+                this.drawUnit(verse, 3645, 449, 57, 66, -32.5, -83, 89.1, 97.2, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 5)
+            {
+                this.drawUnit(verse, 3591, 449, 57, 66, -40, -81.5, 89.1, 97.2, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 6)
+            {
+                this.drawUnit(verse, 3541, 449, 57, 66, -48.25, -79, 89.1, 97.2, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 7)
+            {
+                this.drawUnit(verse, 3496, 449, 57, 66, -59, -75, 89.1, 97.2, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 8)
+            {
+                this.drawUnit(verse, 3453, 449, 57, 66, -65, -74, 89.1, 97.2, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 9)
+            {
+                this.drawUnit(verse, 3402, 449, 57, 66, -74, -72.5, 89.1, 97.2, 1 / 2 * Math.PI);
+            }
+            else if (theCostume >= 10)
+            {
+                this.drawUnit(verse, 3333, 449, 57, 66, -89.5, -71, 89.1, 97.2, 1 / 2 * Math.PI);
+            }
+        }
+        else if (this.weapon == "beulingerrPike")
+        {
+            this.damageFrame = "automatic";
+            if (theCostume <= 0)
+            {
+                this.drawUnit(abanico, 231, 13, 126, 308, -1/2 * 126, -1/2 * 308, 126, 308, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 1)
+            {
+                this.drawUnit(abanico, 338, 8, 126, 308, -1/2 * 126, -1/2 * 308, 126, 308, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 2)
+            {
+                this.drawUnit(abanico, 452, 5, 126, 308, -1/2 * 126, -1/2 * 308, 126, 308, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 3)
+            {
+                this.drawUnit(abanico, 584, 5, 126, 308, -1/2 * 126, -1/2 * 308, 126, 308, 1 / 2 * Math.PI);
+            }
+            else if (theCostume >= 4)
+            {
+                this.drawUnit(abanico, 702, 5, 126, 308, -1/2 * 126, -1/2 * 308, 126, 308, 1 / 2 * Math.PI);
+            }
+        }
+        else if (this.weapon == "theWendigosCleaver")
+        {
+            this.damageFrame = "automatic";
+            if (theCostume <= 0)
+            {
+                this.drawUnit(abanico, 190, 326, 160, 147, -1/2 * 160, -1/2 * 147, 160, 147, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 1)
+            {
+                this.drawUnit(abanico, 354, 315, 158, 165, -1/2 * 158, -1/2 * 165, 158, 165, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 2)
+            {
+                this.drawUnit(abanico, 508, 317, 158, 165, -1/2 * 158, -1/2 * 165, 158, 165, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 3)
+            {
+                this.drawUnit(abanico, 690, 314, 109, 164, -1/2 * 109, -1/2 * 164, 109, 164, 1 / 2 * Math.PI);
+            }
+            else if (theCostume >= 4)
+            {
+                this.drawUnit(abanico, 782, 312, 185, 164, -1/2 * 185, -1/2 * 164, 185, 164, 1 / 2 * Math.PI);
             }
         }
         else if (this.weapon == "zetianWarPick")
@@ -13010,7 +13328,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 XXX.rotate(this.rotation);
                 XXX.drawImage(atal, 830, 866, 44, 46, -(1 / 2 * 44 * 0.62) - 1.5, -(1 / 2 * 46 * 0.62) - 0, 44 * 0.62, 46 * 0.62);
             }
-            else if (outfit == "inquisitionOutfit")
+            else if (outfit == "inquisitionOutfit" || outfit == "witchHunterOutfit")
             {
                 XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
                 if (this.kid)
@@ -13099,26 +13417,6 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 }
                 XXX.rotate(this.rotation);
                 XXX.drawImage(cypher, 746, 812, 56, 51, -(1 / 2 * 56 * 1) + 2, -(1 / 2 * 51 * 1) - 0, 56 * 1, 51 * 1);
-            }
-            else if (outfit == "ghoulMercArmour")
-            {
-                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
-                if (this.kid)
-                {
-                    XXX.scale(this.kidSize, this.kidSize);
-                }
-                XXX.rotate(this.rotation);
-                XXX.drawImage(gul, 1007, 203, 41, 40, -(1 / 2 * 41 * 0.9) + 0, -(1 / 2 * 40 * 0.9) - 0, 41 * 0.9, 40 * 0.9);
-            }
-            else if (outfit == "vreckFurClothing")
-            {
-                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
-                if (this.kid)
-                {
-                    XXX.scale(this.kidSize, this.kidSize);
-                }
-                XXX.rotate(this.rotation);
-                XXX.drawImage(gul, 13, 843, 34, 31, -(1 / 2 * 34 * 1.38) + 2.4, -(1 / 2 * 31 * 1.38) - 0, 34 * 1.38, 31 * 1.38);
             }
             else if (outfit == "fineNechrovitePlateArmour")
             {
@@ -13317,26 +13615,6 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 }
                 XXX.rotate(this.rotation - 1/2 * Math.PI);
                 XXX.drawImage(theCrack, 128, 584, 21, 19, -(1 / 2 * 21 * 1.55) - 0, -(1 / 2 * 19 * 1.55) -0, 21 * 1.55, 19 * 1.55);
-            }
-            else if (outfit == "greatPlateArmour")
-            {
-                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
-                if (this.kid)
-                {
-                    XXX.scale(this.kidSize, this.kidSize);
-                }
-                XXX.rotate(this.rotation);
-                XXX.drawImage(cypher, 346, 145, 29, 37, -(1 / 2 * 29 * 1.32) - 0.58, -(1 / 2 * 37 * 1.32) - 0, 29 * 1.32, 37 * 1.32);
-            }
-            else if (outfit == "wolthgarPlateArmour")
-            {
-                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
-                if (this.kid)
-                {
-                    XXX.scale(this.kidSize, this.kidSize);
-                }
-                XXX.rotate(this.rotation);
-                XXX.drawImage(cypher, 392, 125, 28, 64, -(1 / 2 * 28 * 1.32) - 1, -(1 / 2 * 64 * 1.32) - 0, 28 * 1.32, 64 * 1.32);
             }
             else if (outfit == "vardanianRoyalDress")
             {
@@ -13866,6 +14144,126 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 XXX.rotate(this.rotation);
                 XXX.drawImage(bloat, 139, 559, 68, 21, -(1 / 2 * 68 * 1.5) - 0, -(1 / 2 * 21 * 1.5) - 0, 68 * 1.5, 21 * 1.5);
             }
+            else if (outfit == "thenganNobleOutfitM")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(alfombra, 61, 66, 45, 40, -(1 / 2 * 45 * 1) + 0, -(1 / 2 * 40 * 1) + 0, 45 * 1, 40 * 1);
+            }
+            else if (outfit == "thenganNobleOutfitF")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(alfombra, 292, 12, 45, 40, -(1 / 2 * 45 * 1) - 2, -(1 / 2 * 40 * 1) + 0, 45 * 1, 40 * 1);
+            }
+            else if (outfit == "thenganCommonwear")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(alfombra, 68, 20, 30, 30, -(1 / 2 * 30 * 1.05) - 0.75, -(1 / 2 * 30 * 1.05) + 0, 30 * 1.05, 30 * 1.05);
+            }
+            else if (outfit == "thenganBascinetArmour")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(floras, 663, 64, 34, 39, -(1 / 2 * 34 * 1.3) + 0, -(1 / 2 * 39 * 1.3) - 0, 34 * 1.3, 39 * 1.3);
+            }
+            else if (outfit == "alitkaArmour")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(floras, 623, 64, 34, 39, -(1 / 2 * 34 * 1.3) + 0, -(1 / 2 * 39 * 1.3) - 0, 34 * 1.3, 39 * 1.3);
+            }
+            else if (outfit == "ghoulMercArmour")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(gul, 1007, 203, 41, 40, -(1 / 2 * 41 * 0.9) + 0, -(1 / 2 * 40 * 0.9) - 0, 41 * 0.9, 40 * 0.9);
+            }
+            else if (outfit == "greatPlateArmour")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(cypher, 346, 145, 29, 37, -(1 / 2 * 29 * 1.32) - 0.58, -(1 / 2 * 37 * 1.32) - 0, 29 * 1.32, 37 * 1.32);
+            }
+            else if (outfit == "wolthgarPlateArmour")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(cypher, 392, 125, 28, 64, -(1 / 2 * 28 * 1.32) - 1, -(1 / 2 * 64 * 1.32) - 0, 28 * 1.32, 64 * 1.32);
+            }
+            else if (outfit == "beulingerrDress")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation - 1/2 * Math.PI);
+                XXX.drawImage(abanico, 19, 455, 59, 31, -(1 / 2 * 59 * 0.9) + 0, -(1 / 2 * 31 * 0.9) + 2, 59 * 0.9, 31 * 0.9);
+                XXX.restore();
+
+                XXX.save();
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(abanico, 887, 88, 68, 62, -(1 / 2 * 68 * 0.7) + 0, -(1 / 2 * 62 * 0.7) + 0, 68 * 0.7, 62 * 0.7);
+            }
+            else if (outfit == "vreckFurClothing")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(gul, 13, 843, 34, 31, -(1 / 2 * 34 * 1.38) + 2.4, -(1 / 2 * 31 * 1.38) - 0, 34 * 1.38, 31 * 1.38);
+            }
+            else if (outfit == "beulingerrOutfit")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(abanico, 876, 24, 86, 68, -(1 / 2 * 86 * 0.86) - 0.75, -(1 / 2 * 68 * 0.86) + 0, 86 * 0.86, 68 * 0.86);
+            }
             XXX.restore();
         }
     };
@@ -13885,6 +14283,26 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 }
                 XXX.rotate(this.rotation);
                 XXX.drawImage(atal, 449, 827, 127, 157, -(1 / 2 * 127 * 0.55) + 0, -(1 / 2 * 157 * 0.55) -3, 127 * 0.55, 157 * 0.55);
+            }
+            else if (outfit == "thenganNobleOutfitF")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation + 1/2 * Math.PI);
+                XXX.drawImage(abanico, 127, 287, 65, 84, -(1 / 2 * 65 * 0.85) + 0, -(1 / 2 * 84 * 0.85) + 0, 65 * 0.85, 84 * 0.85);
+            }
+            else if (outfit == "beulingerrDress")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation - 1/2 * Math.PI);
+                XXX.drawImage(abanico, 69, 364, 65, 84, -(1 / 2 * 65 * 1.56) + 0, -(1 / 2 * 84 * 1.56) + 0, 65 * 1.56, 84 * 1.56);
             }
             else if (outfit == "vardanianRoyalDress")
             {
@@ -50947,7 +51365,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     }
                     this.drawHumanOutfitBelow(this.outfit, false);
                     //draw some weapons underneath the body
-                    if (this.wepLayer == "under" || this.weapon == "freydicSword" || this.weapon == "longbow" || this.weapon == "crossbow" || this.weapon == "kellishClaymore" || this.weapon == "estoc" || this.weapon == "vardanianHalberd" || this.weapon == "shotgun" || this.weapon == "m16Carbine" || this.weapon == "sickle" || this.weapon == "nirineseSpear")
+                    if (this.wepLayer == "under" || this.weapon == "freydicSword" || this.weapon == "longbow" || this.weapon == "crossbow" || this.weapon == "kellishClaymore" || this.weapon == "estoc" || this.weapon == "vardanianHalberd" || this.weapon == "shotgun" || this.weapon == "m16Carbine" || this.weapon == "sickle" || this.weapon == "nirineseSpear" || this.weapon == "theWendigosCleaver" || this.weapon == "beulingerrPike")
                     {
                         this.drawHumanArms();
                     }
@@ -50989,7 +51407,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     }
 
                     //draw the others over it.
-                    if (this.wepLayer == "standard" || this.weapon != "freydicSword" && this.weapon != "longbow" && this.weapon != "crossbow" && this.weapon != "longSpikedMorningStar" && this.weapon != "kellishClaymore" && this.weapon != "estoc" && this.weapon != "vardanianHalberd" && this.weapon != "shotgun" && this.weapon != "m16Carbine" && this.weapon != "sickle" && this.weapon != "nirineseSpear")
+                    if (this.wepLayer == "standard" || this.weapon != "freydicSword" && this.weapon != "longbow" && this.weapon != "crossbow" && this.weapon != "longSpikedMorningStar" && this.weapon != "kellishClaymore" && this.weapon != "estoc" && this.weapon != "vardanianHalberd" && this.weapon != "shotgun" && this.weapon != "m16Carbine" && this.weapon != "sickle" && this.weapon != "nirineseSpear" && this.weapon != "theWendigosCleaver" && this.weapon != "beulingerrPike")
                     {
                         this.drawHumanArms();
                     }

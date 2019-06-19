@@ -219,7 +219,7 @@ function worldBuilder()
             outlineBuilder( 34, 34, "greenGrass", -20, 388);
             outlineBuilder( 34, 1, "stonePath", -6, 388);
         }
-        //Layer -11 (temperate region): elev -1
+        //Layer -11 (temperate region): elev -1 | (cold region) past w-28: elev 0
         //mapS11
         if (Y > -116103 && Y < -105338 && X < 7687 && X > - 3901) //X0
         {
@@ -227,6 +227,30 @@ function worldBuilder()
             region = "s11";
             outlineBuilder( 34, 34, "greenGrass", -20, 354);
             outlineBuilder( 34, 1, "stonePath", -6, 354);
+        }
+        //mapS11W34 //MORROW (city)
+        if (Y > -116103 && Y < -105338 && X < 354544 && X > 342860) //X-34 //todo add map
+        {
+            elevation = 0;
+            region = "s11w34";
+            outlineBuilder(34, 34, "vardanianGrass", -1176, 354);
+            outlineBuilder( 29, 33, "stonePath", -1176, 325 + 34); //todo vardanianStone
+        }
+        //mapS11W35 //MORROW (city)
+        if (Y > -116103 && Y < -105338 && X < 364713 && X > 353021) //X-35 //todo add map
+        {
+            elevation = 0;
+            region = "s11w35";
+            outlineBuilder(34, 34, "vardanianGrass", -1210, 354);
+            outlineBuilder( 5, 1, "vardanianStone", -1196, 320 + 34);
+            outlineBuilder( 29, 33, "vardanianStone", -1209, 325 + 34);
+        }
+        //mapS11W36
+        if (Y > -116103 && Y < -105338 && X < 374956 && X > 363245) //X-36 //todo add map
+        {
+            elevation = 0;
+            region = "s11w36";
+            outlineBuilder(34, 34, "vardanianGrass", -1244, 354);
         }
         //Layer -10 (temperate region): elev -1  | (cold region) past w-28: elev 0
         //mapS10
@@ -237,22 +261,27 @@ function worldBuilder()
             outlineBuilder( 34, 34, "greenGrass", -20, 320);
             outlineBuilder( 34, 1, "stonePath", -6, 320);
         }
-        //mapS10W35 //MORROW (city)
-        if (Y > -105953 && Y < -95142 && X < 364713 && X > 353021) //X-35 //todo add map
-        {
-            elevation = 0;
-            region = "s10w35";
-            outlineBuilder(34, 34, "vardanianGrass", -1210, 320);
-            outlineBuilder( 5, 1, "vardanianStone", -1196, 320);
-            outlineBuilder( 29, 33, "vardanianStone", -1209, 325);
-        }
-        //mapS10W34 //MORROW (city)
+        //mapS10W34
         if (Y > -105953 && Y < -95142 && X < 354544 && X > 342860) //X-34 //todo add map
         {
             elevation = 0;
             region = "s10w34";
-            outlineBuilder(34, 34, "vardanianGrass", -1176, 320);
-            outlineBuilder( 29, 33, "stonePath", -1176, 325); //todo vardanianStone
+            outlineBuilder(34, 34, "outline", -1176, 320); //todo vardanianForest
+        }
+        //mapS10W35
+        if (Y > -105953 && Y < -95142 && X < 364713 && X > 353021) //X-35 //todo add map
+        {
+            elevation = 0;
+            region = "s10w35";
+            outlineBuilder(34, 34, "vardanianForest", -1210, 320);
+            outlineBuilder( 34, 1, "vardanianStone", -1196, 320);
+        }
+        //mapS10W36
+        if (Y > -105953 && Y < -95142 && X < 374956 && X > 363245) //X-36 //todo add map
+        {
+            elevation = 0;
+            region = "s10w36";
+            outlineBuilder(34, 34, "outline", -1244, 320); //todo vardanianForest
         }
         //Layer -9 (temperate region): elev -1  | (cold region) past w-28: elev 0
         //mapS9

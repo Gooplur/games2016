@@ -18591,7 +18591,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                     XXX.rotate(this.rotation);
-                    XXX.drawImage(gul, 246, 255, 97, 84, -(1/2 * 97 * this.size * 1.5), -(1/2 * 84 * this.size * 1.5), 97 * this.size * 1.5, 84 * this.size * 1.5);
+                    XXX.drawImage(gul, 246, 255, 97, 84, -(1/2 * 97 * this.size * 1.65), -(1/2 * 84 * this.size * 1.65), 97 * this.size * 1.65, 84 * this.size * 1.65);
                     XXX.restore();
                 }
                 else if (this.temporary[0] == "Koivaya")
@@ -18676,7 +18676,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                     XXX.rotate(this.rotation);
-                    XXX.drawImage(gul, 245, 349, 97, 84, -(1/2 * 97 * this.size * 1.5), -(1/2 * 84 * this.size * 1.5), 97 * this.size * 1.5, 84 * this.size * 1.5);
+                    XXX.drawImage(gul, 245, 349, 97, 84, -(1/2 * 97 * this.size * 1.65), -(1/2 * 84 * this.size * 1.65), 97 * this.size * 1.65, 84 * this.size * 1.65);
                     XXX.restore();
                 }
                 else if (this.temporary[0] == "Koivaya")
@@ -29481,7 +29481,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             //rejuvenation
             if (this.phase == "picked")
             {
-                this.ticc += 1;
+                this.ticc += 0.1;
 
                 if (this.ticc > 100)
                 {

@@ -227,6 +227,12 @@ function buildMaster()
                 //scenicList.push(new Scenery("sewer", 3400, 2400, 0, [0, 0], "world"));
                 //scenicList.push(new Scenery("metalLadder", 0, 0, 0, [3400, 2400], "world"));
                 //scenicList.push(new Scenery("thenganorCastleParts", 4500, 2600, 1/2 * Math.PI, 1, 4));
+                ArtificialIntelligenceAccess.push(new Unit(4500, 2500, "Elk", true, "Nihg"));
+                ArtificialIntelligenceAccess.push(new Unit(4600, 2500, "Elk", false, "Nishg"));
+                ArtificialIntelligenceAccess.push(new Unit(4400, 2500, "Elk", "baby", "Nihgi"));
+
+                scenicList.push(new Scenery("meklePlant", 4700, 2406, 0.2, true));
+                scenicList.push(new Scenery("meklePlant", 4300, 2406, 2, true));
 
                 //scenicList.push(new Scenery("wendigoCircle", 3900, 2400, 0.38, true));
 

@@ -75,6 +75,7 @@ Sowt - An armoured tripedal creature that lives in sewage, muck, or waste (detri
 Wendigo - A powerful cursed being which primarily feasts on human flesh, they have long fangs and even longer claws. They can change between wendigo and human form at will. Wendigos are formed when a human consumes the flesh of another human (cannibalism) then either enters a trap set by a leshy (Woodland Spirit), or meets a leshy in person. Wendigos constantly face a ceaseless hunger that drags them in to a deep madness that drives them to kill. Wendigos do not like their curse: in order to get back at the spirit that cursed them they brutalize deer (which are Leshen's favorite protectee).
 Crow - A black feathered bird that is highly social. If it sees the player kill one of its fellows it will fly away.
     ShadowCrow - A living embodiment of shadow magicin the form of a crow, it unfurls its shadow self upon completing its  attack which damageas the enemy with magic and destroys the physical crow shell the magical entity was using. (this can be made by setting a crow's alpha to "shadow")
+Elk - A vardanian quadruped that uses its antlers for self defense, seeks out plants to eat, mates, and can give birth to up to two children at a time.
 
 //ALREADY IN THE GAME
 

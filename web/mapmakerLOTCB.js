@@ -226,6 +226,7 @@ function buildMaster()
                 //ArtificialIntelligenceAccess.push(new Unit(4520, 2550, "Crow", "shadow", "Eight"));
                 //scenicList.push(new Scenery("sewer", 3400, 2400, 0, [0, 0], "world"));
                 //scenicList.push(new Scenery("metalLadder", 0, 0, 0, [3400, 2400], "world"));
+                //scenicList.push(new Scenery("thenganorCastleParts", 4500, 2600, 1/2 * Math.PI, 1, 4));
 
                 //scenicList.push(new Scenery("wendigoCircle", 3900, 2400, 0.38, true));
 
@@ -2478,6 +2479,428 @@ function buildMaster()
 
 
                 change = "n4e4";
+            }
+        }
+        else if (region == "s4w14")
+        {
+            if (change != "s4w14")
+            {
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
+                //Delete All Non-native AI Units
+                for (var i =  ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
+
+                //REGION CREATION
+                //Build AI Units
+
+                scenicList.push(new Scenery("thenganorCastleParts", 139673.18302162958 + 783, -33839.42356589397 + 65 + 95, 0, 2, 1)); //low 1
+                scenicList.push(new Scenery("thenganorCastleParts", 141073.18302162958 + 783, -33839.42356589397 + 65 + 95, 0, 2, 1)); //low 2
+
+                scenicList.push(new Scenery("thenganorCastleParts", 139080.28850764598 + 590, -36120.825984448726 + 1700, 1/2 * Math.PI, 2, 1)); //left wall 6
+                scenicList.push(new Scenery("thenganorCastleParts", 139673.18302162958 + 75, -33839.42356589397 + 95, Math.PI, 2, 5)); //left wall inter corner
+
+                scenicList.push(new Scenery("thenganorCastleParts", 148676.79947148258 - 30, -33935.42356589397 + 95 + 700, -1/2 * Math.PI, 2, 1)); //lefter
+
+                scenicList.push(new Scenery("thenganorCastleParts", 142473.18302162958 + 783, -33839.42356589397 + 65 + 95, 0, 2, 1)); //low 3
+                scenicList.push(new Scenery("thenganorCastleParts", 143873.18302162958 + 783, -33839.42356589397 + 65 + 95, 0, 2, 1)); //low 4
+                scenicList.push(new Scenery("thenganorCastleParts", 145273.18302162958 + 783, -33839.42356589397 + 65 + 95, 0, 2, 1)); //low 5
+                scenicList.push(new Scenery("thenganorCastleParts", 146673.18302162958 + 783, -33839.42356589397 + 65 + 95, 0, 2, 1)); //low 6
+                scenicList.push(new Scenery("thenganorCastleParts", 146673.18302162958 + 783 + 720, -33839.42356589397 + 65 + 95, 0, 2, 3)); //low 7
+                scenicList.push(new Scenery("thenganorCastleParts", 148676.79947148258, -33839.42356589397 + 95, Math.PI, 2, 5)); //lefter wall inter corner
+
+                scenicList.push(new Scenery("thenganorCastleParts", 148676.79947148258 - 30, -32535.42356589397 + 95 + 700, -1/2 * Math.PI, 2, 1)); //lefter 2
+                scenicList.push(new Scenery("thenganorCastleParts", 148676.79947148258 - 30, -31135.42356589397 + 95 + 700, -1/2 * Math.PI, 2, 1)); //lefter 3
+
+                scenicList.push(new Scenery("thenganorCastleParts", 138280.28850764598, -43120.825984448726 - 700, Math.PI, 2, 1)); //bottom wall 5
+                scenicList.push(new Scenery("thenganorCastleParts", 139080.28850764598, -43120.825984448726 - 700, Math.PI, 2, 1)); //bottom wall 6
+
+                scenicList.push(new Scenery("thenganorCastleParts", 139080.28850764598 + 590, -43120.825984448726, 1/2 * Math.PI, 2, 1)); //left wall
+                scenicList.push(new Scenery("thenganorCastleParts", 139673.18302162958, -43120.825984448726 - 700, Math.PI, 2, 5)); //bottom wall left corner
+
+                scenicList.push(new Scenery("thenganorCastleParts", 139080.28850764598 + 590, -41720.825984448726, 1/2 * Math.PI, 2, 1)); //left wall 1
+                scenicList.push(new Scenery("thenganorCastleParts", 139080.28850764598 + 590, -40320.825984448726, 1/2 * Math.PI, 2, 1)); //left wall 2
+                scenicList.push(new Scenery("thenganorCastleParts", 139080.28850764598 + 590, -38920.825984448726, 1/2 * Math.PI, 2, 1)); //left wall 3
+                scenicList.push(new Scenery("thenganorCastleParts", 139080.28850764598 + 590, -38920.825984448726 + 1700, 1/2 * Math.PI, 2, 1)); //left wall 4
+                scenicList.push(new Scenery("thenganorCastleParts", 139080.28850764598 + 590, -37520.825984448726 + 1700, 1/2 * Math.PI, 2, 1)); //left wall 5
+
+                scenicList.push(new Scenery("thenganorCastleParts", 139080.28850764598 + 590, -36120.825984448726 + 1700, 1/2 * Math.PI, 2, 1)); //left wall 6
+                scenicList.push(new Scenery("thenganorCastleParts", 139673.18302162958 + 75, -33839.42356589397 + 95, Math.PI, 2, 5)); //left wall inter corner
+
+                change = "s4w14";
+            }
+        }
+        else if (region == "s8w32") //RAUKE (town)
+        {
+            if (change != "s8w32")
+            {
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
+                //Delete All Non-native AI Units
+                for (var i =  ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
+
+                //REGION CREATION
+                //Build AI Units
+                scenicList.push(new Scenery("item", 332343.3578798146 + 6, -78754.46924239473, 0, "thengar", ["wood", 2, -10]));
+                scenicList.push(new Scenery("item", 332343.3578798146 - 7, -78754.46924239473, 0, "thengar", ["wood", 2, -10]));
+
+                scenicList.push(new Scenery("thenganorCastles", 325727.6495212461 + 380, -78020.72888584489, Math.PI, 1.2, 0));
+
+                scenicList.push(new Scenery("thenganBuilding1", 332248.8179455171 - 45, -78853.82713643383 + 20, 0, true));
+                scenicList.push(new Scenery("thenganBuilding1", 332420.2954388018 + 55, -78854.6321950877 + 20, 0, true));
+
+                scenicList.push(new Scenery("thenganorCastleParts", 333276.47793273884, -79132.66954680806, Math.PI, 1.5, 5));
+                scenicList.push(new Scenery("thenganorCastleParts", 333282.0822471068, -79596.4063713545, Math.PI, 1.5, 5));
+                scenicList.push(new Scenery("thenganorCastleParts", 333275.9698962499, -78491.27298204975, Math.PI, 1.5, 5));
+                scenicList.push(new Scenery("thenganorCastleParts", 333270.94759744126, -80186.28940149961, Math.PI, 1.5, 5));
+
+                scenicList.push(new Scenery("thenganorCastleParts", 332340.7709146808, -78686.67478406538, Math.PI, 1.2, 3));
+                scenicList.push(new Scenery("thenganorCastlePartsHigh", 332557.33092875936, -78917.75978127756, 1/2 * Math.PI, 1.5, 3));
+                scenicList.push(new Scenery("thenganorCastlePartsHigh", 332117.43928714143, -78922.7304288764, 1/2 * Math.PI, 1.5, 3));
+                scenicList.push(new Scenery("thenganorCastlePartsHigh", 332553.35675567127, -79157.34516197117, Math.PI, 1.3, 5));
+                scenicList.push(new Scenery("thenganorCastlePartsHigh", 332116.72818188544, -79161.07686940521, Math.PI, 1.3, 5));
+
+
+                change = "s8w32";
+            }
+        }
+        else if (region == "s8w33") //vardanian refugee camp
+        {
+            if (change != "s8w33")
+            {
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
+                //Delete All Non-native AI Units
+                for (var i =  ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
+
+                //REGION CREATION
+                //Build AI Units
+                scenicList.push(new Scenery("item", 332343.3578798146 + 6, -78754.46924239473, 0, "thengar", ["wood", 2, -10]));
+                scenicList.push(new Scenery("item", 332343.3578798146 - 7, -78754.46924239473, 0, "thengar", ["wood", 2, -10]));
+
+                scenicList.push(new Scenery("thenganBuilding1", 332248.8179455171 - 45, -78853.82713643383 + 20, 0, true));
+                scenicList.push(new Scenery("thenganBuilding1", 332420.2954388018 + 55, -78854.6321950877 + 20, 0, true));
+
+                scenicList.push(new Scenery("thenganorCastleParts", 333276.47793273884, -79132.66954680806, Math.PI, 1.5, 5));
+                scenicList.push(new Scenery("thenganorCastleParts", 333282.0822471068, -79596.4063713545, Math.PI, 1.5, 5));
+                scenicList.push(new Scenery("thenganorCastleParts", 333275.9698962499, -78491.27298204975, Math.PI, 1.5, 5));
+                scenicList.push(new Scenery("thenganorCastleParts", 333270.94759744126, -80186.28940149961, Math.PI, 1.5, 5));
+
+                scenicList.push(new Scenery("thenganorCastleParts", 332340.7709146808, -78686.67478406538, Math.PI, 1.2, 3));
+                scenicList.push(new Scenery("thenganorCastlePartsHigh", 332557.33092875936, -78917.75978127756, 1/2 * Math.PI, 1.5, 3));
+                scenicList.push(new Scenery("thenganorCastlePartsHigh", 332117.43928714143, -78922.7304288764, 1/2 * Math.PI, 1.5, 3));
+                scenicList.push(new Scenery("thenganorCastlePartsHigh", 332553.35675567127, -79157.34516197117, Math.PI, 1.3, 5));
+                scenicList.push(new Scenery("thenganorCastlePartsHigh", 332116.72818188544, -79161.07686940521, Math.PI, 1.3, 5));
+
+                change = "s8w33";
+            }
+        }
+        else if (region == "s3w14") //CRANHEIM
+        {
+            if (change != "s3w14")
+            {
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
+                //Delete All Non-native AI Units
+                for (var i =  ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
+
+                //REGION CREATION
+                //Build AI Units
+
+
+                scenicList.push(new Scenery("thenganorCastleParts", 139680.28850764598, -23950.825984448726, Math.PI, 2, 1)); //top wall - 5
+
+                scenicList.push(new Scenery("thenganorCastleParts", 139673.18302162958 + 783, -33839.42356589397 + 65 + 95, 0, 2, 1)); //low 1
+                scenicList.push(new Scenery("thenganorCastleParts", 141073.18302162958 + 783, -33839.42356589397 + 65 + 95, 0, 2, 1)); //low 2
+
+                scenicList.push(new Scenery("thenganorCastleParts", 139080.28850764598 + 590, -36120.825984448726 + 1700, 1/2 * Math.PI, 2, 1)); //left wall 6
+                scenicList.push(new Scenery("thenganorCastleParts", 139673.18302162958 + 75, -33839.42356589397 + 95, Math.PI, 2, 5)); //left wall inter corner
+
+                scenicList.push(new Scenery("thenganorCastleParts", 148676.79947148258 - 30, -33935.42356589397 + 95 + 700, -1/2 * Math.PI, 2, 1)); //lefter
+
+                scenicList.push(new Scenery("thenganorCastleParts", 142473.18302162958 + 783, -33839.42356589397 + 65 + 95, 0, 2, 1)); //low 3
+                scenicList.push(new Scenery("thenganorCastleParts", 143873.18302162958 + 783, -33839.42356589397 + 65 + 95, 0, 2, 1)); //low 4
+                scenicList.push(new Scenery("thenganorCastleParts", 145273.18302162958 + 783, -33839.42356589397 + 65 + 95, 0, 2, 1)); //low 5
+                scenicList.push(new Scenery("thenganorCastleParts", 146673.18302162958 + 783, -33839.42356589397 + 65 + 95, 0, 2, 1)); //low 6
+                scenicList.push(new Scenery("thenganorCastleParts", 146673.18302162958 + 783 + 720, -33839.42356589397 + 65 + 95, 0, 2, 3)); //low 7
+                scenicList.push(new Scenery("thenganorCastleParts", 148676.79947148258, -33839.42356589397 + 95, Math.PI, 2, 5)); //lefter wall inter corner
+
+                scenicList.push(new Scenery("thenganorCastleParts", 148676.79947148258 - 30, -32535.42356589397 + 95 + 700, -1/2 * Math.PI, 2, 1)); //lefter 2
+                scenicList.push(new Scenery("thenganorCastleParts", 148676.79947148258 - 30, -31135.42356589397 + 95 + 700, -1/2 * Math.PI, 2, 1)); //lefter 3
+                scenicList.push(new Scenery("thenganorCastleParts", 148676.79947148258 - 30, -29735.42356589397 + 95 + 700, -1/2 * Math.PI, 2, 1)); //lefter 4
+                scenicList.push(new Scenery("thenganorCastleParts", 148676.79947148258 - 30, -28335.42356589397 + 95 + 700, -1/2 * Math.PI, 2, 1)); //lefter 5
+                scenicList.push(new Scenery("thenganorCastleParts", 148676.79947148258 - 30, -26935.42356589397 + 95 + 700, -1/2 * Math.PI, 2, 1)); //lefter 6
+                scenicList.push(new Scenery("thenganorCastleParts", 148676.79947148258 - 30, -25535.42356589397 + 95 + 700, -1/2 * Math.PI, 2, 1)); //lefter 7
+                scenicList.push(new Scenery("thenganorCastleParts", 148676.79947148258 + 25, -23950.26322963163 + 50, Math.PI, 2, 5)); //lefter wall inter corner
+
+                scenicList.push(new Scenery("thenganorCastleParts", 139680.28850764598 + 1400, -23950.825984448726, Math.PI, 2, 1)); //top wall - 6
+                scenicList.push(new Scenery("thenganorCastleParts", 139680.28850764598 + 2800, -23950.825984448726, Math.PI, 2, 1)); //top wall - 7
+                scenicList.push(new Scenery("thenganorCastleParts", 139680.28850764598 + 4200, -23950.825984448726, Math.PI, 2, 1)); //top wall - 8
+                scenicList.push(new Scenery("thenganorCastleParts", 139680.28850764598 + 5600, -23950.825984448726, Math.PI, 2, 1)); //top wall - 9
+                scenicList.push(new Scenery("thenganorCastleParts", 139680.28850764598 + 7000, -23950.825984448726, Math.PI, 2, 1)); //top wall - 10
+                scenicList.push(new Scenery("thenganorCastleParts", 139680.28850764598 + 8400, -23950.825984448726, Math.PI, 2, 1)); //top wall - 11
+                scenicList.push(new Scenery("thenganorCastleParts", 148676.79947148258 + 25, -23950.26322963163 + 50, Math.PI, 2, 5)); //lefter wall inter corner
+
+                change = "s3w14";
+            }
+        }
+        else if (region == "s3w13") //CRANHEIM
+        {
+            if (change != "s3w13")
+            {
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
+                //Delete All Non-native AI Units
+                for (var i =  ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
+
+                //REGION CREATION
+                //Build AI Units
+
+                scenicList.push(new Scenery("thenganorCastleParts", 132052.28850764598, -26020.825984448726, 1/2 * Math.PI, 2, 1)); //north wall of the east entrance
+                scenicList.push(new Scenery("thenganorCastleParts", 132052.28850764598, -27720.825984448726, 1/2 * Math.PI, 2, 1)); //south wall of the east entrance
+
+                scenicList.push(new Scenery("thenganorCastleParts", 132052.28850764598, -24620.825984448726, 1/2 * Math.PI, 2, 1)); //+1 north of north wall of the east entrance (1400px long)
+
+                scenicList.push(new Scenery("thenganorCastleParts", 132052.28850764598, -29120.825984448726, 1/2 * Math.PI, 2, 1)); //+1 south of south wall of the east entrance
+                scenicList.push(new Scenery("thenganorCastleParts", 132052.28850764598, -30520.825984448726, 1/2 * Math.PI, 2, 1)); //+2 south of south wall of the east entrance
+                scenicList.push(new Scenery("thenganorCastleParts", 132052.28850764598, -31920.825984448726, 1/2 * Math.PI, 2, 1)); //+3 south of south wall of the east entrance
+                scenicList.push(new Scenery("thenganorCastleParts", 132052.28850764598, -33320.825984448726, 1/2 * Math.PI, 2, 1)); //+4 south of south wall of the east entrance
+                scenicList.push(new Scenery("thenganorCastleParts", 132052.28850764598, -34720.825984448726, 1/2 * Math.PI, 2, 1)); //+5 south of south wall of the east entrance
+
+
+                scenicList.push(new Scenery("thenganorCastles", 136078.35722387285, -27075.849757241544, 0, 2, 1));
+
+                scenicList.push(new Scenery("thenganorCastleParts", 132680.28850764598, -23950.825984448726, Math.PI, 2, 1)); //top wall
+                scenicList.push(new Scenery("thenganorCastleParts", 131980.28850764598, -23950.825984448726, Math.PI, 2, 5)); //top wall right corner
+                scenicList.push(new Scenery("thenganorCastleParts", 134080.28850764598, -23950.825984448726, Math.PI, 2, 1)); //top wall - 1
+                scenicList.push(new Scenery("thenganorCastleParts", 135480.28850764598, -23950.825984448726, Math.PI, 2, 1)); //top wall - 2
+                scenicList.push(new Scenery("thenganorCastleParts", 136880.28850764598, -23950.825984448726, Math.PI, 2, 1)); //top wall - 3
+                scenicList.push(new Scenery("thenganorCastleParts", 138280.28850764598, -23950.825984448726, Math.PI, 2, 1)); //top wall - 4
+                scenicList.push(new Scenery("thenganorCastleParts", 139680.28850764598, -23950.825984448726, Math.PI, 2, 1)); //top wall - 5
+
+                scenicList.push(new Scenery("thenganorCastleParts", 139673.18302162958 + 783, -33839.42356589397 + 65 + 95, 0, 2, 1));
+                scenicList.push(new Scenery("thenganorCastleParts", 141073.18302162958 + 783, -33839.42356589397 + 65 + 95, 0, 2, 1));
+
+                scenicList.push(new Scenery("thenganorCastleParts", 139080.28850764598 + 590, -36120.825984448726 + 1700, 1/2 * Math.PI, 2, 1)); //left wall 6
+                scenicList.push(new Scenery("thenganorCastleParts", 139673.18302162958 + 75, -33839.42356589397 + 95, Math.PI, 2, 5)); //left wall inter corner
+
+                scenicList.push(new Scenery("thenganorCastleParts", 139680.28850764598 + 1400, -23950.825984448726, Math.PI, 2, 1)); //top wall - 6
+                scenicList.push(new Scenery("thenganorCastleParts", 139680.28850764598 + 2800, -23950.825984448726, Math.PI, 2, 1)); //top wall - 7
+
+                change = "s3w13";
+            }
+        }
+        else if (region == "s4w13") //CRANHEIM
+        {
+            if (change != "s4w13")
+            {
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
+                //Delete All Non-native AI Units
+                for (var i =  ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
+
+                //REGION CREATION
+                //Build AI Units
+
+                scenicList.push(new Scenery("thenganorCastleParts", 132052.28850764598, -34720.825984448726, 1/2 * Math.PI, 2, 1)); //+5 south of south wall of the east entrance
+                scenicList.push(new Scenery("thenganorCastleParts", 132052.28850764598, -36120.825984448726, 1/2 * Math.PI, 2, 1)); //+6 south of south wall of the east entrance
+                scenicList.push(new Scenery("thenganorCastleParts", 132052.28850764598, -37520.825984448726, 1/2 * Math.PI, 2, 1)); //+7 south of south wall of the east entrance
+                scenicList.push(new Scenery("thenganorCastleParts", 132052.28850764598, -38920.825984448726, 1/2 * Math.PI, 2, 1)); //+8 south of south wall of the east entrance
+                scenicList.push(new Scenery("thenganorCastleParts", 132052.28850764598, -40320.825984448726, 1/2 * Math.PI, 2, 1)); //+9 south of south wall of the east entrance
+                scenicList.push(new Scenery("thenganorCastleParts", 132052.28850764598, -41720.825984448726, 1/2 * Math.PI, 2, 1)); //+10 south of south wall of the east entrance
+                scenicList.push(new Scenery("thenganorCastleParts", 132052.28850764598, -43120.825984448726, 1/2 * Math.PI, 2, 1)); //+11 south of south wall of the east entrance
+
+                scenicList.push(new Scenery("thenganorCastleParts", 132680.28850764598, -43120.825984448726 - 700, Math.PI, 2, 1)); //bottom wall
+                scenicList.push(new Scenery("thenganorCastleParts", 131980.28850764598, -43120.825984448726 - 700, Math.PI, 2, 5)); //bottom wall right corner
+                scenicList.push(new Scenery("thenganorCastleParts", 134080.28850764598, -43120.825984448726 - 700, Math.PI, 2, 1)); //bottom wall 2
+                scenicList.push(new Scenery("thenganorCastleParts", 135480.28850764598, -43120.825984448726 - 700, Math.PI, 2, 1)); //bottom wall 3
+                scenicList.push(new Scenery("thenganorCastleParts", 136880.28850764598, -43120.825984448726 - 700, Math.PI, 2, 1)); //bottom wall 4
+                scenicList.push(new Scenery("thenganorCastleParts", 138280.28850764598, -43120.825984448726 - 700, Math.PI, 2, 1)); //bottom wall 5
+                scenicList.push(new Scenery("thenganorCastleParts", 139080.28850764598, -43120.825984448726 - 700, Math.PI, 2, 1)); //bottom wall 6
+
+                scenicList.push(new Scenery("thenganorCastleParts", 139080.28850764598 + 590, -43120.825984448726, 1/2 * Math.PI, 2, 1)); //left wall
+                scenicList.push(new Scenery("thenganorCastleParts", 139673.18302162958, -43120.825984448726 - 700, Math.PI, 2, 5)); //bottom wall left corner
+
+                scenicList.push(new Scenery("thenganorCastleParts", 139080.28850764598 + 590, -41720.825984448726, 1/2 * Math.PI, 2, 1)); //left wall 1
+                scenicList.push(new Scenery("thenganorCastleParts", 139080.28850764598 + 590, -40320.825984448726, 1/2 * Math.PI, 2, 1)); //left wall 2
+                scenicList.push(new Scenery("thenganorCastleParts", 139080.28850764598 + 590, -38920.825984448726, 1/2 * Math.PI, 2, 1)); //left wall 3
+                scenicList.push(new Scenery("thenganorCastleParts", 139080.28850764598 + 590, -38920.825984448726 + 1700, 1/2 * Math.PI, 2, 1)); //left wall 4
+                scenicList.push(new Scenery("thenganorCastleParts", 139080.28850764598 + 590, -37520.825984448726 + 1700, 1/2 * Math.PI, 2, 1)); //left wall 5
+
+                scenicList.push(new Scenery("thenganorCastleParts", 139080.28850764598 + 590, -36120.825984448726 + 1700, 1/2 * Math.PI, 2, 1)); //left wall 6
+                scenicList.push(new Scenery("thenganorCastleParts", 139673.18302162958 + 75, -33839.42356589397 + 95, Math.PI, 2, 5)); //left wall inter corner
+
+                change = "s4w13";
+            }
+        }
+        else if (region == "s6w25") //CERGADET
+        {
+            if (change != "s6w25")
+            {
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
+                //Delete All Non-native AI Units
+                for (var i =  ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
+
+                //REGION CREATION
+                //Build AI Units
+
+                scenicList.push(new Scenery("thenganorCastles", 255243.88583527954, -58665.60492560198 + 140, Math.PI, 1.55, 1));
+
+                change = "s6w25";
             }
         }
         else if (region == "n3e4")

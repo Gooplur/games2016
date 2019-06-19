@@ -228,7 +228,7 @@ function worldBuilder()
             outlineBuilder( 34, 34, "greenGrass", -20, 354);
             outlineBuilder( 34, 1, "stonePath", -6, 354);
         }
-        //Layer -10 (temperate region): elev -1
+        //Layer -10 (temperate region): elev -1  | (cold region) past w-28: elev 0
         //mapS10
         if (Y > -105953 && Y < -95142 && X < 7687 && X > - 3901) //X0
         {
@@ -237,7 +237,24 @@ function worldBuilder()
             outlineBuilder( 34, 34, "greenGrass", -20, 320);
             outlineBuilder( 34, 1, "stonePath", -6, 320);
         }
-        //Layer -9 (temperate region): elev -1
+        //mapS10W35 //MORROW (city)
+        if (Y > -105953 && Y < -95142 && X < 364713 && X > 353021) //X-35 //todo add map
+        {
+            elevation = 0;
+            region = "s10w35";
+            outlineBuilder(34, 34, "vardanianGrass", -1210, 320);
+            outlineBuilder( 5, 1, "vardanianStone", -1196, 320);
+            outlineBuilder( 29, 33, "vardanianStone", -1209, 325);
+        }
+        //mapS10W34 //MORROW (city)
+        if (Y > -105953 && Y < -95142 && X < 354544 && X > 342860) //X-34 //todo add map
+        {
+            elevation = 0;
+            region = "s10w34";
+            outlineBuilder(34, 34, "vardanianGrass", -1176, 320);
+            outlineBuilder( 29, 33, "stonePath", -1176, 325); //todo vardanianStone
+        }
+        //Layer -9 (temperate region): elev -1  | (cold region) past w-28: elev 0
         //mapS9
         if (Y > -95730 && Y < -84938 && X < 7687 && X > - 3901) //X0
         {
@@ -248,7 +265,53 @@ function worldBuilder()
             outlineBuilder( 1, 14, "stonePath", -20, 292);
             outlineBuilder( 28, 1, "stonePath", -6, 292);
         }
-        //Layer -8 (temperate region): elev -1
+        //mapS9W32
+        if (Y > -95730 && Y < -84938 && X < 334130 && X > 322464) //X-32 //todo add map
+        {
+            elevation = 0;
+            region = "s9w32";
+            outlineBuilder(34, 34, "crag", -1108, 286);
+        }
+        //mapS9W33
+        if (Y > -95730 && Y < -84938 && X < 344333 && X > 332640) //X-33 //todo add map
+        {
+            elevation = 0;
+            region = "s9w33";
+            outlineBuilder(34, 34, "vardanianWetland", -1142, 286);
+            outlineBuilder( 10, 1, "vardanianStone", -1114, 286);
+            outlineBuilder( 1, 10, "vardanianStone", -1124, 295);
+            outlineBuilder( 12, 1, "vardanianStone", -1124, 295);
+            outlineBuilder( 1, 18, "vardanianStone", -1142, 306);
+        }
+        //mapS9W34
+        if (Y > -95730 && Y < -84938 && X < 354544 && X > 342860) //X-34 //todo add map
+        {
+            elevation = 0;
+            region = "s9w34";
+            outlineBuilder(34, 34, "outline", -1176, 286); //todo vardanianWetland
+            outlineBuilder( 1, 34, "vardanianStone", -1176, 306);
+        }
+        //mapS9W35
+        if (Y > -95730 && Y < -84938 && X < 364713 && X > 353021) //X-35 //todo add map
+        {
+            elevation = 0;
+            region = "s9w35";
+            outlineBuilder(34, 34, "vardanianGrass", -1210, 286);
+            outlineBuilder( 1, 34, "vardanianStone", -1210, 306);
+            outlineBuilder( 14, 1, "vardanianStone", -1196, 306);
+        }
+        //mapS9W36
+        if (Y > -95730 && Y < -84938 && X < 374956 && X > 363245) //X-36 //todo add map
+        {
+            elevation = 0;
+            region = "s9w36";
+            outlineBuilder(34, 34, "vardanianForest", -1244, 286);
+            outlineBuilder( 1, 13, "vardanianStone", -1223, 306);
+            outlineBuilder( 1, 9, "vardanianStone", -1231, 305);
+            outlineBuilder( 1, 5, "vardanianStone", -1235, 304);
+            outlineBuilder( 1, 10, "vardanianStone", -1244, 303);
+        }
+        //Layer -8 (temperate region): elev -1  | (cold region) past w-28: elev 0
         //mapS8
         if (Y > -85605 && Y < -74729 && X < 7687 && X > - 3901) //X0
         {
@@ -256,6 +319,62 @@ function worldBuilder()
             region = "s8";
             outlineBuilder( 34, 34, "greenGrass", -20, 252);
             outlineBuilder( 34, 1, "stonePath", -20, 252);
+        }
+        //mapS8W30
+        if (Y > -85605 && Y < -74729 && X < 313753 && X > 302099) //X-30 //todo add map
+        {
+            elevation = 0;
+            region = "s8w30";
+            outlineBuilder(34, 34, "mistywoods", -1040, 252);
+
+            outlineBuilder( 15, 1, "brickRoad", -1040, 252);
+        }
+        //mapS8W31
+        if (Y > -85605 && Y < -74729 && X < 323936 && X > 312277) //X-31 //todo add map
+        {
+            elevation = 0;
+            region = "s8w31";
+            outlineBuilder(34, 34, "outline", -1074, 252); //todo mistywoods
+
+            outlineBuilder( 1, 34, "brickRoad", -1074, 266);
+        }
+        //mapS8W32 //RAUKE (town)
+        if (Y > -85605 && Y < -74729 && X < 334130 && X > 322464) //X-32 //todo add map
+        {
+            elevation = 0;
+            region = "s8w32";
+            outlineBuilder(34, 34, "mistywoods", -1108, 252);
+
+            outlineBuilder(9, 10, "thenganBrick", -1090, 261);
+            outlineBuilder(4, 6, "thenganBrick", -1092, 266);
+            outlineBuilder(1, 12, "brickRoad", -1091, 260);
+
+            outlineBuilder(1, 12, "brickRoad", -1091, 263);
+
+            outlineBuilder(9, 1, "brickRoad", -1086, 261);
+
+            outlineBuilder(5, 1, "brickRoad", -1091, 261);
+            outlineBuilder(5, 1, "brickRoad", -1093, 266);
+            outlineBuilder(1, 13, "brickRoad", -1092, 270);
+            outlineBuilder(9, 1, "brickRoad", -1080, 261);
+
+            outlineBuilder( 1, 34, "brickRoad", -1108, 266);
+        }
+        //mapS8W33
+        if (Y > -85605 && Y < -74729 && X < 344333 && X > 332640) //X-33 //todo add map
+        {
+            elevation = 0;
+            region = "s8w33";
+            outlineBuilder(34, 34, "outline", -1142, 252); //todo vardanianWetland
+            outlineBuilder( 1, 6, "vardanianStone", -1114, 266);
+            outlineBuilder( 20, 1, "vardanianStone", -1114, 266);
+        }
+        //mapS8W34 //VOZA (village)
+        if (Y > -85605 && Y < -74729 && X < 354544 && X > 342860) //X-34 //todo add map
+        {
+            elevation = 0;
+            region = "s8w34";
+            outlineBuilder(34, 34, "vardanianWetland", -1176, 252);
         }
         //Layer -7 (cold region): elev 0
         //mapS7
@@ -266,6 +385,95 @@ function worldBuilder()
             outlineBuilder( 34, 34, "greenGrass", -20, 218);
             outlineBuilder( 34, 1, "stonePath", -20, 218);
         }
+        //mapS7W25
+        if (Y > -75331 && Y < -64538 && X < 262722 && X > 251041) //X-25 //todo add map
+        {
+            elevation = 0;
+            region = "s7w25";
+            outlineBuilder(34, 34, "mistywoods", -870, 218);
+
+
+            outlineBuilder( 34, 1, "brickRoad", -855, 218);
+        }
+        //mapS7W26
+        if (Y > -75331 && Y < -64538 && X < 272924 && X > 261266) //X-26 //todo add map
+        {
+            elevation = 0;
+            region = "s7w26";
+            outlineBuilder(34, 34, "outline", -904, 218); //todo mistywoods
+
+            outlineBuilder( 16, 1, "brickRoad", -894, 218);
+            outlineBuilder( 1, 11, "brickRoad", -904, 234);
+        }
+        //mapS7W27
+        if (Y > -75331 && Y < -64538 && X < 283157 && X > 271438) //X-27 //todo add map
+        {
+            elevation = 0;
+            region = "s7w27";
+            outlineBuilder(34, 34, "mistywoods", -938, 218);
+
+            outlineBuilder( 1, 34, "brickRoad", -938, 234);
+        }
+        //mapS7W28
+        if (Y > -75331 && Y < -64538 && X < 293338 && X > 281664) //X-28 //todo add map
+        {
+            elevation = 0;
+            region = "s7w28";
+            outlineBuilder(34, 34, "outline", -972, 218); //todo mistywoods
+
+            outlineBuilder( 1, 34, "brickRoad", -972, 234);
+        }
+        //mapS7W29
+        if (Y > -75331 && Y < -64538 && X < 303561 && X > 291852) //X-29 //todo add map
+        {
+            elevation = 0;
+            region = "s7w29";
+            outlineBuilder(34, 34, "mistywoods", -1006, 218);
+
+            outlineBuilder( 1, 28, "brickRoad", -1000, 234);
+            outlineBuilder( 1, 7, "brickRoad", -1006, 235);
+        }
+        //mapS7W30
+        if (Y > -75331 && Y < -64538 && X < 313753 && X > 302099) //X-30 //todo add map
+        {
+            elevation = 0;
+            region = "s7w30";
+            outlineBuilder(34, 34, "outline", -1040, 218); //todo mistywoods
+
+            outlineBuilder( 1, 10, "brickRoad", -1015, 235);
+            outlineBuilder( 1, 10, "brickRoad", -1024, 236);
+            outlineBuilder( 1, 10, "brickRoad", -1033, 237);
+            outlineBuilder( 1, 8, "brickRoad", -1040, 238);
+            outlineBuilder( 13, 1, "brickRoad", -1040, 239);
+        }
+        //mapS7W31
+        if (Y > -75331 && Y < -64538 && X < 323936 && X > 312277) //X-31 //todo add map
+        {
+            elevation = 0;
+            region = "s7w31";
+            outlineBuilder(34, 34, "crag", -1074, 218);
+        }
+        //mapS7W32
+        if (Y > -75331 && Y < -64538 && X < 334130 && X > 322464) //X-32 //todo add map
+        {
+            elevation = 0;
+            region = "s7w32";
+            outlineBuilder(34, 34, "outline", -1108, 218); //todo crag
+        }
+        //mapS7W33
+        if (Y > -75331 && Y < -64538 && X < 344345 && X > 332522) //X-33 //todo add map
+        {
+            elevation = 0;
+            region = "s7w33";
+            outlineBuilder(34, 34, "vardanianWetland", -1142, 218);
+        }
+        //mapS7W34
+        if (Y > -75331 && Y < -64538 && X < 354544 && X > 342860) //X-34 //todo add map
+        {
+            elevation = 0;
+            region = "s7w34";
+            outlineBuilder(34, 34, "outline", -1176, 218); //todo vardanianWetland
+        }
         //Layer -6 (cold region): elev 0
         //mapS6
         if (Y > -65106 && Y < -54332 && X < 7687 && X > - 3901) //X0
@@ -274,6 +482,48 @@ function worldBuilder()
             region = "s6";
             outlineBuilder( 34, 34, "greenGrass", -20, 184);
             outlineBuilder( 34, 1, "stonePath", -20, 184);
+        }
+        //mapS6W25 //Cergadet City
+        if (Y > -65106 && Y < -54332 && X < 262722 && X > 251041) //X-25 //todo add map
+        {
+            elevation = 0;
+            region = "s6w25";
+            outlineBuilder(34, 34, "outline", -870, 184); //todo hotGrass
+
+            outlineBuilder( 9, 9, "thenganBrick", -860, 194);
+            outlineBuilder( 7, 5, "thenganBrick", -851, 196);
+            outlineBuilder( 1, 3, "thenganBrick", -849, 195);
+            outlineBuilder( 1, 10, "brickRoad", -861, 193);
+            outlineBuilder( 10, 1, "brickRoad", -861, 193);
+            outlineBuilder( 1, 12, "brickRoad", -861, 203);
+
+            outlineBuilder( 1, 21, "brickRoad", -870, 197);
+
+            outlineBuilder( 34, 1, "brickRoad", -855, 184);
+
+            outlineBuilder( 3, 1, "brickRoad", -849, 201);
+            outlineBuilder( 1, 4, "brickRoad", -849, 200);
+
+            outlineBuilder( 3, 1, "brickRoad", -846, 201);
+
+            outlineBuilder( 1, 3, "brickRoad", -849, 203);
+
+            outlineBuilder( 1, 1, "brickRoad", -847, 199);
+
+            outlineBuilder( 3, 1, "brickRoad", -858, 194);
+
+            outlineBuilder( 3, 1, "brickRoad", -851, 193);
+            outlineBuilder( 1, 1, "brickRoad", -850, 195);
+        }
+        //mapS6W26
+        if (Y > -65106 && Y < -54332 && X < 272924 && X > 261266) //X-26 //todo add map
+        {
+            elevation = 0;
+            region = "s6w26";
+            outlineBuilder(34, 34, "mistywoods", -904, 184);
+
+            outlineBuilder( 1, 24, "brickRoad", -894, 197);
+            outlineBuilder( 20, 1, "brickRoad", -894, 198);
         }
         //Layer -5 (cold region): elev 0
         //mapS5
@@ -290,6 +540,79 @@ function worldBuilder()
             outlineBuilder( 10, 1, "stonePath", -17, 173);
             outlineBuilder( 1, 4, "stonePath", -20, 183);
         }
+        //mapS5W20
+        if (Y > -54904 && Y < -44148 && X < 211710 && X > 200055) //X-20 //todo add map
+        {
+            elevation = 0;
+            region = "s5w20";
+            outlineBuilder(34, 34, "outline", -700, 150); //todo mistywoods
+
+            outlineBuilder( 17, 1, "brickRoad", -677, 150);
+            outlineBuilder( 1, 23, "brickRoad", -700, 166);
+        }
+        //mapS5W21
+        if (Y > -54904 && Y < -44148 && X < 221940 && X > 210266) //X-21 //todo add map
+        {
+            elevation = 0;
+            region = "s5w21";
+            outlineBuilder(34, 34, "mistywoods", -734, 150);
+
+            outlineBuilder( 1, 30, "brickRoad", -730, 166);
+            outlineBuilder( 1, 5, "brickRoad", -734, 165);
+        }
+        //mapS5W22
+        if (Y > -54904 && Y < -44148 && X < 232101 && X > 220483) //X-22 //todo add map
+        {
+            elevation = 0;
+            region = "s5w22";
+            outlineBuilder(34, 34, "outline", -768, 150); //todo mistywoods
+
+            outlineBuilder( 1, 34, "brickRoad", -768, 165);
+        }
+        //mapS5W23
+        if (Y > -54904 && Y < -44148 && X < 242353 && X > 230643) //X-23 //todo add map
+        {
+            elevation = 0;
+            region = "s5w23";
+            outlineBuilder(34, 34, "hotGrass", -802, 150);
+
+            outlineBuilder( 1, 34, "brickRoad", -802, 165);
+        }
+        //mapS5W24
+        if (Y > -54904 && Y < -44148 && X < 252559 && X > 240873) //X-24 //todo add map
+        {
+            elevation = 0;
+            region = "s5w24";
+            outlineBuilder(34, 34, "outline", -836, 150); //todo hotGrass
+
+            outlineBuilder( 1, 34, "brickRoad", -836, 165);
+        }
+        //mapS5W25
+        if (Y > -54904 && Y < -44148 && X < 262722 && X > 251041) //X-25 //todo add map
+        {
+            elevation = 0;
+            region = "s5w25";
+            outlineBuilder(34, 34, "hotGrass", -870, 150);
+
+            outlineBuilder( 1, 4, "brickRoad", -840, 165);
+
+            outlineBuilder( 1, 2, "brickRoad", -841, 166);
+            outlineBuilder( 1, 2, "brickRoad", -842, 167);
+            outlineBuilder( 1, 2, "brickRoad", -843, 168);
+            outlineBuilder( 1, 2, "brickRoad", -844, 169);
+            outlineBuilder( 1, 2, "brickRoad", -845, 170);
+            outlineBuilder( 1, 2, "brickRoad", -846, 171);
+            outlineBuilder( 1, 2, "brickRoad", -847, 172);
+            outlineBuilder( 1, 2, "brickRoad", -848, 173);
+            outlineBuilder( 1, 2, "brickRoad", -849, 174);
+            outlineBuilder( 1, 2, "brickRoad", -850, 175);
+            outlineBuilder( 1, 2, "brickRoad", -851, 176);
+            outlineBuilder( 1, 2, "brickRoad", -852, 177);
+            outlineBuilder( 1, 2, "brickRoad", -853, 178);
+            outlineBuilder( 1, 2, "brickRoad", -854, 179);
+            outlineBuilder( 1, 2, "brickRoad", -855, 180);
+            outlineBuilder( 3, 1, "brickRoad", -855, 181);
+        }
         //Layer -4 (cold region): elev 0
         //mapS4
         if (Y > -44704 && Y < -33915 && X < 7687 && X > - 3901) //X0
@@ -300,7 +623,253 @@ function worldBuilder()
             outlineBuilder( 1, 4, "stonePath", 3, 116);
             outlineBuilder( 33, 1, "stonePath", 6, 117);
         }
+        //mapS4W13 //CRANHEIM
+        if (Y > -44704 && Y < -33877 && X < 140305 && X > 128660) //X-13 //todo add map
+        {
+            elevation = 0;
+            region = "s4w13";
+            //outlineBuilder(34, 34, "outline", -462, 116);
+            outlineBuilder(32, 25, "thenganBrick", -462, 116);
+            outlineBuilder(2, 25, "hotGrass", -462, 148);
+            outlineBuilder(34, 9, "hotGrass", -437, 116);
+
+            outlineBuilder( 1, 25, "brickRoad", -462, 116);
+
+            outlineBuilder( 1, 25, "brickRoad", -462, 120);
+
+            outlineBuilder( 1, 25, "brickRoad", -462, 124);
+
+            outlineBuilder( 1, 25, "brickRoad", -462, 128);
+
+            outlineBuilder( 1, 25, "brickRoad", -462, 132);
+
+            outlineBuilder( 1, 25, "brickRoad", -462, 136);
+
+            outlineBuilder( 28, 1, "brickRoad", -462, 116);
+            outlineBuilder( 1, 9, "brickRoad", -461, 141);
+            outlineBuilder( 4, 1, "brickRoad", -452, 141);
+            outlineBuilder( 1, 14, "brickRoad", -459, 145);
+            outlineBuilder( 2, 1, "brickRoad", -459, 146);
+            outlineBuilder( 2, 1, "brickRoad", -456, 146);
+            outlineBuilder( 2, 1, "brickRoad", -453, 146);
+            outlineBuilder( 2, 1, "brickRoad", -450, 146);
+            outlineBuilder( 2, 1, "brickRoad", -446, 146);
+
+            outlineBuilder( 25, 1, "brickRoad", -443, 121);
+
+            outlineBuilder( 1, 6, "brickRoad", -443, 146);
+
+            outlineBuilder(32, 1, "brickRoad", -438, 116);
+
+            outlineBuilder(30, 1, "brickRoad", -448, 116);
+
+            outlineBuilder( 1, 2, "brickRoad", -445, 146);
+
+            outlineBuilder( 15, 1, "brickRoad", -455, 121);
+            outlineBuilder( 1, 8, "brickRoad", -445, 141);
+
+            outlineBuilder(3, 1, "brickRoad", -458, 117);
+            outlineBuilder(4, 1, "brickRoad", -459, 120);
+            outlineBuilder(3, 1, "brickRoad", -453, 117);
+            outlineBuilder(1, 1, "brickRoad", -442, 121);
+            outlineBuilder(3, 1, "brickRoad", -441, 117);
+
+        }
+        //mapS4W14
+        if (Y > -44704 && Y < -33877 && X < 150510 && X > 128660) //X-14 //todo add map
+        {
+            elevation = 0;
+            region = "s4w14";
+            outlineBuilder(34, 34, "outline", -496, 116); //todo hotGrass
+
+
+            outlineBuilder( 3, 2, "brickRoad", -464, 127);
+            outlineBuilder( 1, 12, "brickRoad", -476, 129);
+            outlineBuilder( 6, 1, "brickRoad", -476, 130);
+            outlineBuilder( 1, 20, "brickRoad", -496, 135);
+            outlineBuilder( 20, 1, "brickRoad", -470, 130);
+        }
+        //mapS4W15
+        if (Y > -44704 && Y < -33877 && X < 160743 && X > 149080) //X-15 //todo add map
+        {
+            elevation = 0;
+            region = "s4w15";
+            outlineBuilder(34, 34, "desert", -530, 116); //todo hotGrass
+
+            outlineBuilder( 1, 34, "brickRoad", -530, 135);
+        }
+        //mapS4W16
+        if (Y > -44704 && Y < -33877 && X < 170912 && X > 159263) //X-16 //todo add map
+        {
+            elevation = 0;
+            region = "s4w16";
+            outlineBuilder(34, 34, "mistywoods", -564, 116);
+
+            outlineBuilder( 1, 34, "brickRoad", -564, 135);
+        }
+        //mapS4W17
+        if (Y > -44704 && Y < -33877 && X < 181104 && X > 169450) //X-17 //todo add map
+        {
+            elevation = 0;
+            region = "s4w17";
+            outlineBuilder(34, 34, "outline", -598, 116); //todo mistywoods
+
+            outlineBuilder( 1, 34, "brickRoad", -598, 135);
+        }
+        //mapS4W18
+        if (Y > -44704 && Y < -33877 && X < 191342 && X > 179679) //X-18 //todo add map
+        {
+            elevation = 0;
+            region = "s4w18";
+            outlineBuilder(34, 34, "mistywoods", -632, 116);
+
+            outlineBuilder( 1, 16, "brickRoad", -614, 135);
+            outlineBuilder( 1, 19, "brickRoad", -632, 136);
+        }
+        //mapS4W19
+        if (Y > -44704 && Y < -33877 && X < 201526 && X > 189853) //X-19 //todo add map (make this map particularly dangerous to wander offroad on)
+        {
+            elevation = 0;
+            region = "s4w19";
+            outlineBuilder(34, 34, "outline", -666, 116); //todo mistywoods
+
+            outlineBuilder( 1, 7, "brickRoad", -639, 136);
+            outlineBuilder( 7, 1, "brickRoad", -639, 137);
+            outlineBuilder( 1, 27, "brickRoad", -666, 143);
+        }
+        //mapS4W20
+        if (Y > -44704 && Y < -33877 && X < 211710 && X > 200055) //X-20 //todo add map
+        {
+            elevation = 0;
+            region = "s4w20";
+            outlineBuilder(34, 34, "mistywoods", -700, 116);
+
+            outlineBuilder( 1, 11, "brickRoad", -677, 143);
+            outlineBuilder( 6, 1, "brickRoad", -677, 144);
+        }
         //Layer -3 (cold region): elev 0
+        //mapS3W14 //CRANHEIM
+        if (Y > -34556 && Y < -23654 && X < 150510 && X > 128660) //X-14 //todo add map
+        {
+            elevation = 0;
+            region = "s3w14";
+            //outlineBuilder(34, 34, "outline", -496, 82);
+            outlineBuilder(32, 30, "thenganBrick", -492, 82);
+            outlineBuilder(34, 4, "hotGrass", -496, 82);
+            outlineBuilder(2, 32, "hotGrass", -494, 114);
+
+
+            outlineBuilder( 18, 1, "brickRoad", -487, 82);
+            outlineBuilder( 2, 3, "brickRoad", -488, 100);
+
+            outlineBuilder( 18, 1, "brickRoad", -490, 90);
+            outlineBuilder( 1, 30, "brickRoad", -492, 90);
+
+            outlineBuilder( 1, 6, "brickRoad", -492, 82);
+            outlineBuilder( 8, 1, "brickRoad", -492, 82);
+            outlineBuilder( 6, 1, "brickRoad", -492, 108);
+
+            outlineBuilder( 18, 1, "brickRoad", -463, 82);
+            outlineBuilder( 5, 1, "brickRoad", -464, 108);
+            outlineBuilder( 2, 1, "brickRoad", -467, 106);
+            outlineBuilder( 1, 19, "brickRoad", -486, 106);
+            outlineBuilder( 4, 1, "brickRoad", -486, 104);
+            outlineBuilder( 14, 1, "brickRoad", -480, 91);
+            outlineBuilder( 4, 1, "brickRoad", -480, 109);
+
+            outlineBuilder( 1, 30, "brickRoad", -492, 104);
+            outlineBuilder( 1, 30, "brickRoad", -492, 108);
+            outlineBuilder( 1, 30, "brickRoad", -492, 112);
+
+        }
+        //mapS3W13 //CRANHEIM
+        if (Y > -34556 && Y < -23654 && X < 140305 && X > 128660) //X-13 //todo add map
+        {
+            elevation = 0;
+            region = "s3w13";
+            //outlineBuilder(34, 34, "outline", -462, 82);
+            outlineBuilder(34, 25, "thenganBrick", -462, 82);
+            outlineBuilder(34, 9, "hotGrass", -437, 82);
+
+            outlineBuilder( 6, 3, "thenganBrick", -447, 89);
+
+            outlineBuilder( 1, 20, "brickRoad", -448, 91);
+            outlineBuilder( 3, 2, "brickRoad", -437, 90);
+            outlineBuilder( 24, 1, "brickRoad", -438, 82);
+            outlineBuilder( 24, 1, "brickRoad", -441, 82);
+            outlineBuilder( 24, 1, "brickRoad", -444, 82);
+
+            outlineBuilder( 1, 25, "brickRoad", -462, 82);
+            outlineBuilder( 1, 25, "brickRoad", -462, 102);
+
+            outlineBuilder( 1, 18, "brickRoad", -462, 88);
+            outlineBuilder( 1, 18, "brickRoad", -462, 95);
+
+            //outlineBuilder( 6, 5, "thenganBrick", -453, 89);
+            outlineBuilder( 8, 1, "brickRoad", -454, 88);
+            outlineBuilder( 6, 1, "brickRoad", -448, 89);
+
+            outlineBuilder( 1, 25, "brickRoad", -462, 99);
+
+            outlineBuilder( 1, 24, "brickRoad", -462, 105);
+            outlineBuilder( 1, 25, "brickRoad", -462, 85);
+
+            outlineBuilder( 34, 1, "brickRoad", -453, 82);
+
+            outlineBuilder( 34, 1, "brickRoad", -459, 82);
+
+            outlineBuilder( 1, 25, "brickRoad", -462, 108);
+            outlineBuilder( 1, 25, "brickRoad", -462, 112);
+
+            outlineBuilder( 11, 1, "brickRoad", -446, 105);
+            outlineBuilder( 11, 1, "brickRoad", -439, 105);
+            outlineBuilder( 6, 1, "brickRoad", -462, 99);
+        }
+        //mapS3W12
+        if (Y > -34556 && Y < -23654 && X < 130130 && X > 108284) //X-12 //todo add map
+        {
+            elevation = 0;
+            region = "s3w12";
+            outlineBuilder(34, 34, "hotGrass", -428, 82);
+
+
+            outlineBuilder( 1, 34, "brickRoad", -428, 91);
+
+        }
+        //mapS3W11
+        if (Y > -34556 && Y < -23654 && X < 119902 && X > 108284) //X-11 //todo add map
+        {
+            elevation = 0;
+            region = "s3w11";
+            outlineBuilder(34, 34, "desert", -394, 82); //todo hotGrass
+
+
+            outlineBuilder( 1, 34, "brickRoad", -394, 91);
+
+        }
+        //mapS3W10
+        if (Y > -34556 && Y < -23654 && X < 109729 && X > 98077) //X-10 //todo add map
+        {
+            elevation = 0;
+            region = "s3w10";
+            outlineBuilder(34, 34, "outline", -360, 82); //todo woods
+
+
+            outlineBuilder( 1, 34, "brickRoad", -360, 91);
+
+        }
+        //mapS3W9
+        if (Y > -34556 && Y < -23654 && X < 99554 && X > 87882) //X-9 //todo add map
+        {
+            elevation = 0;
+            region = "s3w9";
+            outlineBuilder(34, 34, "desert", -326, 82); //todo woods
+
+
+            outlineBuilder( 10, 1, "brickRoad", -321, 82);
+            outlineBuilder( 1, 5, "brickRoad", -326, 91);
+
+        }
         //mapS3 //Calcutt (town)
         if (Y > -34556 && Y < -23654 && X < 7687 && X > - 3901) //X0
         {
@@ -311,7 +880,7 @@ function worldBuilder()
             outlineBuilder( 4, 4, "thatch", 4, 103);
             outlineBuilder( 1, 1, "farmland", 8, 104);
         }
-        //mapS3 E1
+        //mapS3E1
         if (Y > -34556 && Y < -23654 && X < - 2490 && X > -14114) //X1
         {
             elevation = 0;
@@ -391,6 +960,33 @@ function worldBuilder()
 
             outlineBuilder( 1, 25, "brickRoad", -258, 53);
             outlineBuilder( 6, 1, "brickRoad", -233, 48);
+        }
+        //mapS2W8
+        if (Y > -24704 && Y < -13476 && X < 89314 && X > 77652) //X-8 //todo add map
+        {
+            elevation = 0;
+            region = "s2w8";
+            outlineBuilder(34, 34, "desert", -292, 48); //todo woods
+
+            outlineBuilder( 1, 14, "brickRoad", -272, 53);
+            outlineBuilder( 4, 1, "brickRoad", -272, 54);
+            outlineBuilder( 1, 8, "brickRoad", -280, 57);
+            outlineBuilder( 2, 1, "brickRoad", -280, 58);
+            outlineBuilder( 1, 12, "brickRoad", -291, 60);
+            outlineBuilder( 1, 1, "brickRoad", -291, 61);
+            outlineBuilder( 1, 2, "brickRoad", -292, 62);
+
+        }
+        //mapS2W9
+        if (Y > -24704 && Y < -13476 && X < 99554 && X > 87882) //X-9 //todo add map
+        {
+            elevation = 0;
+            region = "s2w9";
+            outlineBuilder(34, 34, "outline", -326, 48); //todo woods
+
+            outlineBuilder( 1, 28, "brickRoad", -320, 62);
+            outlineBuilder( 34, 1, "brickRoad", -321, 48);
+
         }
         //Layer -1 (cold region): elev 0
         //mapS1E1

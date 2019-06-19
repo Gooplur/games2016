@@ -21,7 +21,7 @@ function Barrier(x, y, h, w, dev, info)
             //console.log("myX: " + playerProjectiles[ii].X + " myY: " + playerProjectiles[ii].Y + " barrierX: " + this.X + " barrierY: " + this.Y);
             if (playerProjectiles[ii].X <= this.X + this.width && playerProjectiles[ii].X >= this.X && playerProjectiles[ii].Y <= this.Y + this.height && playerProjectiles[ii].Y >= this.Y)
             {
-                if (new Date().getTime() - playerProjectiles[ii].timeSinceShot > 200 || this.info != "cover")
+                if (new Date().getTime() - playerProjectiles[ii].timeSinceShot > 200 && this.info != "phase" || this.info != "cover" && this.info != "phase")
                 {
                     if (playerProjectiles[ii].thrown == true && playerProjectiles[ii].isPlayerProjectile == true && playerProjectiles[ii].thrownID != "none")
                     {
@@ -45,7 +45,7 @@ function Barrier(x, y, h, w, dev, info)
         {
             if (unitProjectiles[ii].X <= this.X + this.width && unitProjectiles[ii].X >= this.X && unitProjectiles[ii].Y <= this.Y + this.height && unitProjectiles[ii].Y >= this.Y)
             {
-                if (new Date().getTime() - unitProjectiles[ii].timeSinceShot > 200 || this.info != "cover")
+                if (new Date().getTime() - unitProjectiles[ii].timeSinceShot > 200 && this.info != "phase" || this.info != "cover" && this.info != "phase")
                 {
                     cosasParaErradicar.push(ii);
                 }

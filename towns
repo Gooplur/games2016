@@ -1,0 +1,33 @@
+Definitions:
+Capital = 4+ maps large
+City = 1+ maps large
+Town = 1/4 - 3/4 maps large
+Village - must contain at least 9 homes
+Hamlet - can be as few as two homes
+
+Abreviations:
+IP = in progress - it is currently being added
+TBA = to be added - it is conceptually planned but has not been added in any form
+
+FREYNOR
+Teshir (town) {house: Tor}
+Venning (town) {house: Stambjord}
+Jalsirsted (hamlet) {house: Stambjord}
+
+THENGARIA
+TBA Hawik (town) {house: Beulingerr}
+Lethik (town) {house: Beulingerr}
+IP Cranheim (city) {house: Beulingerr}
+IP Cergadet (town) {house: Thent}
+IP Rauke (town) {house: Hargrave}
+
+NIRWADEN
+Átalin (city) {house: Altezor}
+
+VARDANIA
+TBA Morrow (city) {house: Vorcaneous}
+TBA Voza (town) {house: Vorcaneous}
+
+KEL
+Calcutt (village)
+Inochtihikli (village)

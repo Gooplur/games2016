@@ -9,6 +9,20 @@
 //todo add the new Thengan outfits to the crafting system
 //todo add all of the new fish to the seal unit's diet
 
+//VARDANIA + THENGARIA UPDATE
+//todo name the largest misty woods The Dermohr Forest
+//todo name the smaller misty woods The Schwarza Woods
+//todo add Cranheim (city)
+//todo add Cergadet (town)
+//todo fill in the eastern woods
+//todo fill in The Dermohr Forest
+//todo fill in the plains and farmlands around Cranheim
+//todo fill in the plains and farmlands around Cergadet
+//todo fill in The Schwarza Woods
+//todo add turkeys for the plains
+//todo add vardanian land chunks for the swamp
+//todo (optional) add a burrowing tentacle beast that loses health when you kill the tentacles it spawns to attack you
+
 //things to add to the next image i'm adding:
 
 //Kerib Update

@@ -690,14 +690,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 var testMovY;
                 var testMovFail = 0;
                 this.suspendConflictingPointSystems = true;
-                for (var i = 0; i < 48; i++)
+                for (var evadi = 0; evadi < 48; evadi++)
                 {
-                    testMovX = this.X - Math.cos((this.rotation + ((15 * i) / 360 * Math.PI))) * ((TTD / 16.75) * this.speed) * this.stunned * timeSpeed / this.timeResistance;
-                    testMovY = this.Y - Math.sin((this.rotation + ((15 * i) / 360 * Math.PI))) * ((TTD / 16.75) * this.speed) * this.stunned * timeSpeed / this.timeResistance;
+                    testMovX = this.X - Math.cos((this.rotation + ((15 * evadi) / 360 * Math.PI))) * ((TTD / 16.75) * this.speed) * this.stunned * timeSpeed / this.timeResistance;
+                    testMovY = this.Y - Math.sin((this.rotation + ((15 * evadi) / 360 * Math.PI))) * ((TTD / 16.75) * this.speed) * this.stunned * timeSpeed / this.timeResistance;
 
                     if (!this.isObstructed(testMovX, testMovY))
                     {
-                        testMovFail = i + 1;
+                        testMovFail = evadi + 1;
                         break;
                     }
                 }
@@ -1430,11 +1430,13 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.allys.push("clamia");
             this.allys.push("silteria");
             this.allys.push("walrusia");
+            this.allys.push("ulgoyia");
         }
         if (this.team == "herdia")
         {
             this.allys.push("herd");
             this.allys.push("docile");
+            this.allys.push("ulgoyia");
         }
         if (this.team == "silteria")
         {
@@ -1596,6 +1598,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.allys.push("palinsydia");
             this.allys.push("bloat");
             this.allys.push("bloatia");
+            this.allys.push("ghoul");
+        }
+        if (this.team == "ghoul")
+        {
+            this.allys.push("shehidia");
+            this.allys.push("docile");
+            this.allys.push("ulgoyia");
+            this.allys.push("clamia");
         }
         if (this.team == "gribia")
         {
@@ -1670,7 +1680,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         }
         if (this.team == "ribbackia")
         {
-            this.allys.push("docile");
+            //this.allys.push("docile");
             this.allys.push("shehidia");
             this.allys.push("clamia");
             this.allys.push("ulgoyia");
@@ -19100,7 +19110,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         else if (this.type == "Vreck")
         {
             this.haste = true;
-            this.damageFrame = "automatic";14
+            this.damageFrame = "automatic";
             this.team = "wild";
             if (this.ID == "docile")
             {
@@ -24591,7 +24601,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         else if (this.type == "Varonoi")
         {
             this.damageFrame = "manual";
-            this.team = "herd";
+            this.team = "herdia";
+            if (this.ID == "docile")
+            {
+                this.team = "docile";
+            }
             this.baseTeam = this.team;
             this.tameREQ = 10;
 
@@ -34058,12 +34072,12 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             else if (this.seekNest == true) //go home
                             {
                                 this.pointTowards({X: this.homeX, Y: this.homeY});
-                                this.moveInRelationToThing({X: this.homeX, Y: this.homeY});
+                                this.moveInRelationToThing({X: this.homeX, Y: this.homeY}, 100000);
                             }
                             else if (!this.atHome) //go home if not already there
                             {
                                 this.pointTowards({X: this.homeX, Y: this.homeY});
-                                this.moveInRelationToThing({X: this.homeX, Y: this.homeY});
+                                this.moveInRelationToThing({X: this.homeX, Y: this.homeY}, 100000);
                             }
                             else //look out to be ready to face down predators
                             {
@@ -34085,7 +34099,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             else if (this.seekNest == true) //go home
                             {
                                 this.pointTowards({X: this.homeX, Y: this.homeY});
-                                this.moveInRelationToThing({X: this.homeX, Y: this.homeY});
+                                this.moveInRelationToThing({X: this.homeX, Y: this.homeY}, 100000);
                             }
                         }
                         else if (this.alpha == "kid")
@@ -34115,7 +34129,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             else //go home
                             {
                                 this.pointTowards({X: this.homeX, Y: this.homeY});
-                                this.moveInRelationToThing({X: this.homeX, Y: this.homeY});
+                                this.moveInRelationToThing({X: this.homeX, Y: this.homeY}, 100000);
                             }
                         }
                         else
@@ -34170,13 +34184,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                                     if (ArtificialIntelligenceAccess[oof].type == "Dalger" && ArtificialIntelligenceAccess[oof].gender == "Female" && ArtificialIntelligenceAccess[oof].horny == 0 && ArtificialIntelligenceAccess[oof].mate == this.barcode && this.mate == ArtificialIntelligenceAccess[oof].barcode)
                                     {
                                         this.pointTowards(ArtificialIntelligenceAccess[oof]);
-                                        this.moveInRelationToThing(ArtificialIntelligenceAccess[oof]);
+                                        this.moveInRelationToThing(ArtificialIntelligenceAccess[oof], 100000);
                                         if (this.DTU(ArtificialIntelligenceAccess[oof]) <= (this.engagementRadius + 16))
                                         {
                                             this.X = ArtificialIntelligenceAccess[oof].X;
                                             this.Y = ArtificialIntelligenceAccess[oof].Y;
                                             ArtificialIntelligenceAccess[oof].horny = -1;
                                             this.horny = 0;
+                                            this.seekMate = false;
                                         }
                                         break;
                                     }
@@ -34236,12 +34251,12 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             else if (this.seekNest == true) //go home
                             {
                                 this.pointTowards({X: this.homeX, Y: this.homeY});
-                                this.moveInRelationToThing({X: this.homeX, Y: this.homeY});
+                                this.moveInRelationToThing({X: this.homeX, Y: this.homeY}, 100000);
                             }
                             else if (!this.atHome) //go home if not already there
                             {
                                 this.pointTowards({X: this.homeX, Y: this.homeY});
-                                this.moveInRelationToThing({X: this.homeX, Y: this.homeY});
+                                this.moveInRelationToThing({X: this.homeX, Y: this.homeY}, 100000);
                             }
                             else //look out to be ready to face down predators
                             {
@@ -34263,7 +34278,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             else if (this.seekNest == true) //go home
                             {
                                 this.pointTowards({X: this.homeX, Y: this.homeY});
-                                this.moveInRelationToThing({X: this.homeX, Y: this.homeY});
+                                this.moveInRelationToThing({X: this.homeX, Y: this.homeY}, 100000);
                             }
                         }
                         else if (this.alpha == "kid")
@@ -34293,7 +34308,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             else //go home
                             {
                                 this.pointTowards({X: this.homeX, Y: this.homeY});
-                                this.moveInRelationToThing({X: this.homeX, Y: this.homeY});
+                                this.moveInRelationToThing({X: this.homeX, Y: this.homeY}, 100000);
                             }
                         }
                         else
@@ -34348,13 +34363,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                                     if (ArtificialIntelligenceAccess[oof].type == "Dalger" && ArtificialIntelligenceAccess[oof].gender == "Female" && ArtificialIntelligenceAccess[oof].horny == 0 && ArtificialIntelligenceAccess[oof].mate == this.barcode && this.mate == ArtificialIntelligenceAccess[oof].barcode)
                                     {
                                         this.pointTowards(ArtificialIntelligenceAccess[oof]);
-                                        this.moveInRelationToThing(ArtificialIntelligenceAccess[oof]);
+                                        this.moveInRelationToThing(ArtificialIntelligenceAccess[oof], 100000);
                                         if (this.DTU(ArtificialIntelligenceAccess[oof]) <= (this.engagementRadius + 16))
                                         {
                                             this.X = ArtificialIntelligenceAccess[oof].X;
                                             this.Y = ArtificialIntelligenceAccess[oof].Y;
                                             ArtificialIntelligenceAccess[oof].horny = -1;
                                             this.horny = 0;
+                                            this.seekMate = false;
                                         }
                                         break;
                                     }
@@ -34369,7 +34385,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                                     this.randoY = Math.random() * 600 - 300;
                                 }
                                 this.pointTowards({X: this.homeX + this.randoX, Y: this.homeY + this.randoY});
-                                this.moveInRelationToThing({X: this.homeX + this.randoX, Y: this.homeY + this.randoY});
+                                this.moveInRelationToThing({X: this.homeX + this.randoX, Y: this.homeY + this.randoY}, 10000);
                                 if (this.DTU({X: this.homeX + this.randoX, Y: this.homeY + this.randoY}) <= this.engagementRadius + 10)
                                 {
                                     this.randoUgin = true;
@@ -34463,13 +34479,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                                     if (ArtificialIntelligenceAccess[oof].type == "Dalger" && ArtificialIntelligenceAccess[oof].gender == "Female" && ArtificialIntelligenceAccess[oof].horny == 0 && ArtificialIntelligenceAccess[oof].mate == this.barcode && this.mate == ArtificialIntelligenceAccess[oof].barcode)
                                     {
                                         this.pointTowards(ArtificialIntelligenceAccess[oof]);
-                                        this.moveInRelationToThing(ArtificialIntelligenceAccess[oof]);
+                                        this.moveInRelationToThing(ArtificialIntelligenceAccess[oof], 100000);
                                         if (this.DTU(ArtificialIntelligenceAccess[oof]) <= (this.sizeRadius + this.engagementRadius + 16))
                                         {
                                             this.X = ArtificialIntelligenceAccess[oof].X;
                                             this.Y = ArtificialIntelligenceAccess[oof].Y;
                                             ArtificialIntelligenceAccess[oof].horny = -1;
                                             this.horny = 0;
+                                            this.seekMate = false;
                                         }
                                         break;
                                     }
@@ -34484,7 +34501,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                                     this.randoY = Math.random() * 600 - 300;
                                 }
                                 this.pointTowards({X: this.homeX + this.randoX, Y: this.homeY + this.randoY});
-                                this.moveInRelationToThing({X: this.homeX + this.randoX, Y: this.homeY + this.randoY});
+                                this.moveInRelationToThing({X: this.homeX + this.randoX, Y: this.homeY + this.randoY}, 10000);
                                 if (this.DTU({X: this.homeX + this.randoX, Y: this.homeY + this.randoY}) <= this.engagementRadius + 10)
                                 {
                                     this.randoUgin = true;
@@ -46955,12 +46972,12 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 if (this.alpha == true)
                 {
-                    this.Attack(2, 1.5);
+                    this.Attack(2, 2);
                     this.callForNearbyHelpFromType(300, "KorskBeetle");
                 }
                 else
                 {
-                    this.Attack(1, 1.25);
+                    this.Attack(1, 1.75);
                 }
 
                 //this.deathChecker();
@@ -55564,14 +55581,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         fogs += 1;
                     }
                 }
-                if (fogs <= 22)
+                if (fogs <= 71)
                 {
                     if (new Date().getTime() - this.fogGenTime > 8000)
                     {
                         this.fogGenTime = new Date().getTime();
                         var boop = Math.random();
 
-                        if (boop <= 0.3)
+                        if (boop <= 0.1)
                         {
                             scenicList.push(new Scenery("highFog", this.X + Math.random() * 4400 - 2200, this.Y + Math.random() * 4400 - 2200, Math.random() * 2*Math.PI, 0.55 + Math.random(), Math.min(1, 0.1 + Math.random())));
                         }
@@ -62572,7 +62589,15 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     this.experience = (140 * ((player.getIntelligence() / 50) + 1)) / 10;
                 }
 
-                this.drops = [[new Item("etnaVenomSac", this.X, this.Y), 1]];
+                if (player.getIntelligence() > 10)
+                {
+                    this.drops = [[new Item("rawRibbackFlesh", this.X, this.Y), 4], [new Item("ribbackSpinneret", this.X, this.Y), 1], [new Item("ribbackFangs", this.X, this.Y), 1]];
+                }
+                else
+                {
+                    this.drops = [[new Item("rawRibbackFlesh", this.X, this.Y), 4]];
+                }
+
             }
             else if (this.alpha == "baby")
             {
@@ -62598,7 +62623,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     this.experience = (30 * ((player.getIntelligence() / 50) + 1)) / 10;
                 }
 
-                this.drops = [];
+                this.drops = [[new Item("rawRibbackFlesh", this.X, this.Y), 1]];
             }
             else
             {
@@ -62611,7 +62636,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     this.experience = 70 * ((player.getIntelligence() / 50) + 1) / 10;
                 }
 
-                this.drops = [[new Item("etnaVenomSac", this.X, this.Y), 1]];
+                if (player.getIntelligence() > 10)
+                {
+                    this.drops = [[new Item("rawRibbackFlesh", this.X, this.Y), 2], [new Item("ribbackFangs", this.X, this.Y), 1]];
+                }
+                else
+                {
+                    this.drops = [[new Item("rawRibbackFlesh", this.X, this.Y), 2]];
+                }
             }
 
             //RANGE OF SIGHT (anything related to range of sight)
@@ -66966,7 +66998,6 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 this.rangeOfSightCalculator(400, "very");
             }
-            console.log(this.horny);
 
             //AI
             if (this.alive == true)

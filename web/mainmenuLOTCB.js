@@ -1398,6 +1398,11 @@ function applySelectionsButton()
             X = 51861;
             Y = -8577;
         }
+        else if (player.raceName == "Vardan")
+        {
+            X = 347646;
+            Y = -79380;
+        }
         else if (player.raceName == "Nirwaden")
         {
             X = -40495;

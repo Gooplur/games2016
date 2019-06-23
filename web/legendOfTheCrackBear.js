@@ -6,7 +6,7 @@
 
 //TODO LIST
 //top priority
-//todo add the new Thengan outfits to the crafting system
+//todo fix the mysterious Vardanian forest infinity loop
 //todo add all of the new fish to the seal unit's diet
 
 //VARDANIA + THENGARIA UPDATE
@@ -1222,6 +1222,10 @@ function envPack()
     var vardanianForest = new Image();
     vardanianForest.src = ("images/vardanForest.jpg");
     window.vardanianForest = vardanianForest;
+
+    var vardanianWoods = new Image();
+    vardanianWoods.src = ("images/darkVardanForest.jpg");
+    window.vardanianWoods = vardanianWoods;
 
     var vardanianWetland = new Image();
     vardanianWetland.src = ("images/vardanWetland.jpg");
@@ -2528,19 +2532,19 @@ function magicOperationsManagement(z)
 //This function runs through the list of Units and activates their Operation functions.
 function artificialIntelligenceOperationsManagement(z)
 {
-    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+    for (var aaii = 0; aaii < ArtificialIntelligenceAccess.length; aaii++)
     {
-        if (ArtificialIntelligenceAccess[i].dmx == map)
+        if (ArtificialIntelligenceAccess[aaii].dmx == map)
         {
-            if (ArtificialIntelligenceAccess[i].zIndex == z)
+            if (ArtificialIntelligenceAccess[aaii].zIndex == z)
             {
                 if (gameState == "active")
                 {
-                    ArtificialIntelligenceAccess[i].operation();
+                    ArtificialIntelligenceAccess[aaii].operation();
                 }
-                else if (gameState == "stopTime" && ArtificialIntelligenceAccess[i].timeResistance == true) //when the player uses magic to stop time time resistant creatures will still exist but all others will disapear until time starts again. //TODO this needs to be rearranged if it is ever going to be a real spell for the game. Units would need to be able to take damage and draw during paused time.
+                else if (gameState == "stopTime" && ArtificialIntelligenceAccess[aaii].timeResistance == true) //when the player uses magic to stop time time resistant creatures will still exist but all others will disapear until time starts again. //TODO this needs to be rearranged if it is ever going to be a real spell for the game. Units would need to be able to take damage and draw during paused time.
                 {
-                    ArtificialIntelligenceAccess[i].operation();
+                    ArtificialIntelligenceAccess[aaii].operation();
                 }
             }
         }
@@ -2550,11 +2554,11 @@ function aiIdentify()
 {
     if (gameState == "active")
     {
-        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+        for (var aaii = 0; aaii < ArtificialIntelligenceAccess.length; aaii++)
         {
-            if (ArtificialIntelligenceAccess[i].dmx == map)
+            if (ArtificialIntelligenceAccess[aaii].dmx == map)
             {
-                interaction(ArtificialIntelligenceAccess[i]);
+                interaction(ArtificialIntelligenceAccess[aaii]);
             }
         }
     }
@@ -2562,32 +2566,32 @@ function aiIdentify()
 //This function runs through the list of Units and activates their Operation functions.
 function deadAIOperationsManagement()
 {
-    for (var i = 0; i < deadAIList.length; i++)
+    for (var aaii = 0; aaii < deadAIList.length; aaii++)
     {
-        if (deadAIList[i].dmx == map)
+        if (deadAIList[aaii].dmx == map)
         {
             if (player.gamemode == "protagonist")
             {
-                deadAIList[i].kidModePoofTime += 1;
-                deadAIList[i].rotation += 0.5;
+                deadAIList[aaii].kidModePoofTime += 1;
+                deadAIList[aaii].rotation += 0.5;
 
                 XXX.save();
-                XXX.translate(X - deadAIList[i].X + 1/2 * CCC.width, Y - deadAIList[i].Y + 1/2 * CCC.height);
+                XXX.translate(X - deadAIList[aaii].X + 1/2 * CCC.width, Y - deadAIList[aaii].Y + 1/2 * CCC.height);
                 XXX.scale(0.25, 0.25);
-                XXX.rotate(deadAIList[i].rotation);
+                XXX.rotate(deadAIList[aaii].rotation);
                 XXX.drawImage(rainbowSparkles, 0, 0, 300, 225, -1/2 * 300, -1/2 * 225, 300, 225);
                 XXX.restore();
 
-                if (deadAIList[i].kidModePoofTime > 24)
+                if (deadAIList[aaii].kidModePoofTime > 24)
                 {
-                    worldItems.push([new Item("coins", deadAIList[i].X, deadAIList[i].Y), 5 + Math.floor(25 * Math.random())]);
-                    deadAIList.splice(i, 1);
+                    worldItems.push([new Item("coins", deadAIList[aaii].X, deadAIList[aaii].Y), 5 + Math.floor(25 * Math.random())]);
+                    deadAIList.splice(aaii, 1);
                 }
 
             }
             else
             {
-                deadAIList[i].operation();
+                deadAIList[aaii].operation();
             }
         }
     }

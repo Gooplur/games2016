@@ -2830,13 +2830,25 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             this.zIndex = 4;
             this.solid = false;
             this.interactionRange = 1;
+            if (this.fogTurn != 0 && this.fogTurn != 1)
+            {
+                this.fogTurn = Math.round(Math.random());
+            }
+            if (this.fogTurn == 0)
+            {
+                this.phase -= 0.0004;
+            }
+            else
+            {
+                this.phase += 0.0004;
+            }
 
             //DRAWSELF
             if (this.temporary == 0)
             {
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
-                XXX.rotate(this.rotation);
+                XXX.rotate(this.rotation + this.phase);
                 XXX.globalAlpha = this.information;
                 XXX.drawImage(tomb, 1943, 112, 308, 375, -(1/2 * 308 * 1 * this.temporary), -(1/2 * 375 * 1 * this.temporary), 308 * 1 * this.temporary, 375 * 1 * this.temporary);
                 XXX.restore();
@@ -2845,7 +2857,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             {
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
-                XXX.rotate(this.rotation);
+                XXX.rotate(this.rotation + this.phase);
                 XXX.globalAlpha = this.information;
                 XXX.drawImage(tomb, 1977, 482, 332, 279, -(1/2 * 332 * 1 * this.temporary), -(1/2 * 279 * 1 * this.temporary), 332 * 1 * this.temporary, 279 * 1 * this.temporary);
                 XXX.restore();
@@ -2854,7 +2866,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             {
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
-                XXX.rotate(this.rotation);
+                XXX.rotate(this.rotation + this.phase);
                 XXX.globalAlpha = this.information;
                 XXX.drawImage(tomb, 1685, 720, 255, 275, -(1/2 * 255 * 1 * this.temporary), -(1/2 * 275 * 1 * this.temporary), 255 * 1 * this.temporary, 275 * 1 * this.temporary);
                 XXX.restore();
@@ -2863,7 +2875,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             {
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
-                XXX.rotate(this.rotation);
+                XXX.rotate(this.rotation + this.phase);
                 XXX.globalAlpha = this.information;
                 XXX.drawImage(tomb, 1953, 766, 200, 222, -(1/2 * 200 * 1 * this.temporary), -(1/2 * 222 * 1 * this.temporary), 200 * 1 * this.temporary, 222 * 1 * this.temporary);
                 XXX.restore();
@@ -15626,12 +15638,13 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
                     {
                         var ddttuu = ArtificialIntelligenceAccess[i].DTU(this);
-                        if (ddttuu < 170 && this.spiderHunger < 20 || ddttuu < 140 && player.health < 1/3 * player.healthMAX && player.health < 13 || ddttuu < 140 && player.health < 7)
+                        if (ddttuu < 170 && this.spiderHunger < 20 || ddttuu < 140 && ArtificialIntelligenceAccess[i].health < 1/3 * ArtificialIntelligenceAccess[i].healthMAX && ArtificialIntelligenceAccess[i].health < 13 || ddttuu < 140 && ArtificialIntelligenceAccess[i].health < 7)
                         {
                             this.spider = false;
                             var makeViuda = new Unit(this.X + 40 * Math.cos(this.rotation + Math.PI), this.Y + 40 * Math.sin(this.rotation + Math.PI), "Viuda", this.spiderAlpha, this.spiderId);
                             makeViuda.spiderHunger = this.spiderHunger;
                             ArtificialIntelligenceAccess.push(makeViuda);
+                            break;
                         }
                     }
                 }
@@ -18591,7 +18604,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                     XXX.rotate(this.rotation);
-                    XXX.drawImage(gul, 246, 255, 97, 84, -(1/2 * 97 * this.size * 1.65), -(1/2 * 84 * this.size * 1.65), 97 * this.size * 1.65, 84 * this.size * 1.65);
+                    XXX.drawImage(gul, 246, 255, 97, 84, -(1/2 * 97 * this.size * 1), -(1/2 * 84 * this.size * 1), 97 * this.size * 1, 84 * this.size * 1);
                     XXX.restore();
                 }
                 else if (this.temporary[0] == "Koivaya")
@@ -18676,7 +18689,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                     XXX.rotate(this.rotation);
-                    XXX.drawImage(gul, 245, 349, 97, 84, -(1/2 * 97 * this.size * 1.65), -(1/2 * 84 * this.size * 1.65), 97 * this.size * 1.65, 84 * this.size * 1.65);
+                    XXX.drawImage(gul, 245, 349, 97, 84, -(1/2 * 97 * this.size * 1.5), -(1/2 * 84 * this.size * 1.5), 97 * this.size * 1.5, 84 * this.size * 1.5);
                     XXX.restore();
                 }
                 else if (this.temporary[0] == "Koivaya")
@@ -18736,33 +18749,36 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 //console.log(this.hatch);
                 if (this.hatch > 900)
                 {
-                    for (var i = 0; i < this.eggs; i++)
+                    if (typeof(this.eggs) != "undefined" && this.eggs >= 1)
                     {
-                        var makeGhoul = new Unit(this.X, this.Y, "Ghoul", "baby", "ghoul");
-
-                        var bruzah = false;
-                        var savuj = false;
-                        var fecuntitat = false;
-
-                        if (this.information.genes.bruiser == true || this.information.dadGenes.bruiser == true) //dominant gene
+                        for (var i = 0; i < this.eggs; i++)
                         {
-                            bruzah = true;
-                        }
+                            var makeGhoul = new Unit(this.X, this.Y, "Ghoul", "baby", "ghoul");
 
-                        if (this.information.genes.savage == true && this.information.dadGenes.savage == true) //recessive gene
-                        {
-                            savuj = true;
-                        }
+                            var bruzah = false;
+                            var savuj = false;
+                            var fecuntitat = false;
 
-                        if (this.information.genes.fecundidad == true || this.information.dadGenes.fecundidad == true) //recessive gene
-                        {
-                            fecuntitat = Math.round(Math.random());
-                        }
+                            if (this.information.genes.bruiser == true || this.information.dadGenes.bruiser == true) //dominant gene
+                            {
+                                bruzah = true;
+                            }
 
-                        makeGhoul.genes.bruiser = bruzah;
-                        makeGhoul.genes.fecundidad = fecuntitat;
-                        makeGhoul.genes.savage = savuj;
-                        ArtificialIntelligenceAccess.push(makeGhoul);
+                            if (this.information.genes.savage == true && this.information.dadGenes.savage == true) //recessive gene
+                            {
+                                savuj = true;
+                            }
+
+                            if (this.information.genes.fecundidad == true || this.information.dadGenes.fecundidad == true) //recessive gene
+                            {
+                                fecuntitat = Math.round(Math.random());
+                            }
+
+                            makeGhoul.genes.bruiser = bruzah;
+                            makeGhoul.genes.fecundidad = fecuntitat;
+                            makeGhoul.genes.savage = savuj;
+                            ArtificialIntelligenceAccess.push(makeGhoul);
+                        }
                     }
 
                     this.phase = "popped";
@@ -23725,7 +23741,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                     XXX.rotate(this.rotation);
-                    XXX.drawImage(stic, 41, 464, 30, 25, -(1/2 * 30 * this.size), -(1/2 * 25 * this.size), 30 * this.size, 25 * this.size);
+                    XXX.drawImage(beets, 41, 464, 30, 25, -(1/2 * 30 * this.size), -(1/2 * 25 * this.size), 30 * this.size, 25 * this.size);
                     XXX.restore();
                 }
             }
@@ -23744,7 +23760,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                     XXX.rotate(this.rotation);
-                    XXX.drawImage(stic, 140, 468, 30, 25, -(1/2 * 30 * this.size), -(1/2 * 25 * this.size), 30 * this.size, 25 * this.size);
+                    XXX.drawImage(beets, 140, 468, 30, 25, -(1/2 * 30 * this.size), -(1/2 * 25 * this.size), 30 * this.size, 25 * this.size);
                     XXX.restore();
                 }
             }
@@ -23767,7 +23783,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     }
                     else
                     {
-                        hits += 1 + Math.round(Math.random() * 4);
+                        hits += 1;
                     }
                 }
                 if (hits == Inventory.length)

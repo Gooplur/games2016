@@ -266,14 +266,14 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s10w34";
-            outlineBuilder(34, 34, "outline", -1176, 320); //todo vardanianForest
+            outlineBuilder(34, 34, "vardanianWoods", -1176, 320); //todo vardanianWoods
         }
         //mapS10W35
         if (Y > -105953 && Y < -95142 && X < 364713 && X > 353021) //X-35 //todo add map
         {
             elevation = 0;
             region = "s10w35";
-            outlineBuilder(34, 34, "vardanianForest", -1210, 320);
+            outlineBuilder(34, 34, "vardanianWoods", -1210, 320);
             outlineBuilder( 34, 1, "vardanianStone", -1196, 320);
         }
         //mapS10W36
@@ -281,7 +281,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s10w36";
-            outlineBuilder(34, 34, "outline", -1244, 320); //todo vardanianForest
+            outlineBuilder(34, 34, "outline", -1244, 320); //todo vardanianWoods
         }
         //Layer -9 (temperate region): elev -1  | (cold region) past w-28: elev 0
         //mapS9
@@ -705,7 +705,7 @@ function worldBuilder()
 
         }
         //mapS4W14
-        if (Y > -44704 && Y < -33877 && X < 150510 && X > 128660) //X-14 //todo add map
+        if (Y > -44704 && Y < -33877 && X < 150510 && X > 138886) //X-14 //todo add map
         {
             elevation = 0;
             region = "s4w14";
@@ -728,7 +728,7 @@ function worldBuilder()
             outlineBuilder( 1, 34, "brickRoad", -530, 135);
         }
         //mapS4W16
-        if (Y > -44704 && Y < -33877 && X < 170912 && X > 159263) //X-16 //todo add map
+        if (Y > -44704 && Y < -33877 && X < 170912 && X > 159263) //X-16
         {
             elevation = 0;
             region = "s4w16";
@@ -737,11 +737,11 @@ function worldBuilder()
             outlineBuilder( 1, 34, "brickRoad", -564, 135);
         }
         //mapS4W17
-        if (Y > -44704 && Y < -33877 && X < 181104 && X > 169450) //X-17 //todo add map
+        if (Y > -44704 && Y < -33877 && X < 181104 && X > 169450) //X-17
         {
             elevation = 0;
             region = "s4w17";
-            outlineBuilder(34, 34, "outline", -598, 116); //todo mistywoods
+            outlineBuilder(34, 34, "mistywoods", -598, 116);
 
             outlineBuilder( 1, 34, "brickRoad", -598, 135);
         }
@@ -750,7 +750,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s4w18";
-            outlineBuilder(34, 34, "mistywoods", -632, 116);
+            outlineBuilder(34, 34, "desert", -632, 116);
 
             outlineBuilder( 1, 16, "brickRoad", -614, 135);
             outlineBuilder( 1, 19, "brickRoad", -632, 136);
@@ -778,7 +778,7 @@ function worldBuilder()
         }
         //Layer -3 (cold region): elev 0
         //mapS3W14 //CRANHEIM
-        if (Y > -34556 && Y < -23654 && X < 150510 && X > 128660) //X-14 //todo add map
+        if (Y > -34556 && Y < -23654 && X < 150510 && X > 138886) //X-14 //todo add map
         {
             elevation = 0;
             region = "s3w14";
@@ -2383,6 +2383,10 @@ function outlineBuilder(width, length, terrain, extraX, extraY)
                 else if (terrain == "vardanianForest")
                 {
                     XXX.drawImage(vardanianForest, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "vardanianWoods")
+                {
+                    XXX.drawImage(vardanianWoods, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
                 }
                 else if (terrain == "vardanianGrass")
                 {

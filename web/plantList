@@ -3,50 +3,27 @@
 Garlic - a small green shoot that has a white papery bulb that is very useful in cooking and in alchemy
 Hops - a bush with nice smelling nubs called hops
     //WILD
-Hoil - A rough leaved musky smelling sap filled plant
 Karm - A southern temperate bush that hosts a small green fruit
 Clobe - A plant that grows in temperate regions that has three swollen curved leaves full of a thick green sap
 Tialo - a temperate eastern greens
-Thadine - A black leaved bush that grows in Vardania (two varieties based on longevity input true and false)
-Thegolthorn - A carnivorous thorn plant that is particularly acidic (two sizes based on longevity input true and false)
-Ameloy - A sweet smelling white and black flower bush that grows in Vardania
 Mandrake - human shaped root that when uprooted will let out a scream so terrible that those who hear it will lose their soul (it will literally flee their body to escape the sound; undead are not affected by it)
 SwampLily - A beautiful pink flower that grows on lily pads
 Cabbage - A vardanian food staple that is cultivated in farms
 Cattail - A swamp grass that grows in the Vardanian swamps
-Chyoul - A thorny berry bush that has tiny blue berries that grow in clusters; grows in Vardania
-Cranberry - A berry bush that grows in Thengaria and in parts of Vardania
 Saug - A long tuber plant that has some light hair-like fibers that protrude from the ground
-Porstol - A small berry bush that grows in the north to mid west, particularly in Thengaria; its berries are poisonous
 Gribnoy - A Vardanian mushroom that grows on the trunks of ashai trees
 Poegroon - A variety of Vardanian mushroom that is fairly poisonous, and that produces an alchemically important oil
 Maleot - A large dark grey Vardanian mushroom that is moderately poisonous
 Iod - A green stalk-like fungus that grows in the Vardanian woods; it can be characterized as a carnivorous plant because it actively decomposes nearby carrion for use in its nutrient cycle using limb stalks that it maintains underground most of the time; iod fungus actively seeks to grow the reach of its mycelium, and when it has reached its capacity for growth it duplicates itself at the edge of its mycelium in order to expand even farther.
-AshaiTree - A temperate black Vardanian tree that has white wood. //scenicList.push(new Scenery("ashaiTree", x, y, rotation, size));
-Eyewort - A thengan medicinal herb that has a red stalk with eyelike buds along its length: the stalk is poisonous, the leaves are medicinal.
-Scilt - a hard long leaved bush that grows in thengan woodlands (temporary determines the plant variety, information determines its size)
-Laumin - A small bush with clusters of purple flowers growing from stems; it grows in Thengan woodlands
-Korceida - A large red petalled flowered leafy plant that grows in the Thengan woodlands
-Laicaum - A grey leafy bush that hosts plump black coloured berries; the berries are poisonous, but the plant's leaves have a small amount of special fluid inside them that has healing properties.
 Danzig - A black fern plant that grows in Vardania.
-Mekle - A small green bush that grows in Vardania. It has a rapid growth rate... (when picked it grows back soon after)
 Yaihef - A jungle bush that yields thirst quenching light blue berries
-GreatPineTree - A large variety of pine tree that grows in Thengaria, and in some parts of the North (set information to "snowy" to make it a snow covered tree) (use longevity to adjust its size: 5min - 9max)
 OgoTree - A tropical tree that bears energizing ogo fruits
 AppleTree - A temperate tree that yields apples; apple trees grow almost exclusively in Thengaria
 Wheat - A tropical/temperate grass that yields a wholesome grain that can be milled into bread or fermented.
-Marigold - A temperate Thengan flower bush that yields orange flowers
-BleedingHeart - A temperate Thengan plant that has branches that host drooping heart shaped flowers
-Aberdom - A Thengan variety of mushroom that grows in the misty woods it is poisonous to consume and has white and black stripes encircling the cap
-Ciprin - A white capped mushroom with small black speckles that grows in the Thengan misty woods
-Beunum - a short Thengan mushroom that has a black cap with white dots
 DesertPoppy - A poppy plant that grows in the far south in the burning desert; its seeds can be made into opium
 Mustard - A wild bushy plant that grows in the plains of Thengaria that has little yellow flowers and that hosts seeds that are a flavorful spice
-Palgga - A large flower bush with sweet floral smelling pink flowers that can be made into perfume
-Fallory - A large flower bush that has pinkish red flowers that are used as a large part of romantic culture in Thengaria: they are scattered on the floor for a wedding for instance
 Heyol - A freydic berry bush that hosts small green berries that are bitter and medicinal
 Sala - A red nirwaden wildflower that grows in the grasslands
-Jolle - A Thengan flower bush that has several pretty blue flowers
 
 //ALREADY IN GAME (to create a plant with the scenery class these plants must be made all lowercase)
     //FARM
@@ -60,7 +37,9 @@ ChonaTree - An orchard tree that grows pink fruits
 PolyapaTree - An orchard tree that grows small pear-like fruits
     //WILD
 PineTree - A pine tree
+GreatPineTree - A large variety of pine tree that grows in Thengaria, and in some parts of the North (set information to "snowy" to make it a snow covered tree) (use longevity to adjust its size: 5min - 9max)
 YeolTree - A tree that grows in the savannah and that drops pods that contain 'yeol nuts'
+AshaiTree - A temperate black Vardanian tree that has white wood. //scenicList.push(new Scenery("ashaiTree", x, y, rotation, size));
 Grushweed - A thick bushy temperate plant that grows in the kellish plains
 Neprilne - A temperate woodland plant that has little blue berries that grow along the outer edges of its leaves
 Glin - A brown poisonous temperate woodland mushroom that can be eaten if boiled for a large amount of time
@@ -130,3 +109,24 @@ Valum - A small carnivorous pitcher plant that eats insects and small flying cri
 SonjaTree - A large tree with numerous branches that bear delicious sonja fruits in the seasons Bright, and Frost; it grows in the jungle.
 Crilk - A jungle bush that has blue fruits with yellowish spots: the fruits are squishy because the skin is rubbery; the fruits are filled with a thick liquid goo that suspends the numerous little black seeds inside; they are very poisonous to eat.
 SelvaTree - A large jungle tree with very long twisting branches. jungle trees: 0 = normal, 1 = torper nest, 2 = borea perch //scenicList.push(new Scenery("selvaTree", x, y, rotation, type));
+Marigold - A temperate Thengan flower bush that yields orange flowers
+Jolle - A Thengan flower bush that has several pretty blue flowers
+Palgga - A large flower bush with sweet floral smelling pink flowers that can be made into perfume
+Fallory - A large flower bush that has pinkish red flowers that are used as a large part of romantic culture in Thengaria: they are scattered on the floor for a wedding for instance
+Aberdom - A Thengan variety of mushroom that grows in the misty woods it is poisonous to consume and has white and black stripes encircling the cap
+Ciprin - A white capped mushroom with small black speckles that grows in the Thengan misty woods
+Beunum - a short Thengan mushroom that has a black cap with white dots
+BleedingHeart - A temperate Thengan plant that has branches that host drooping heart shaped flowers
+Eyewort - A thengan medicinal herb that has a red stalk with eyelike buds along its length: the stalk is poisonous, the leaves are medicinal.
+Scilt - a hard long leaved bush that grows in thengan woodlands (temporary determines the plant variety, information determines its size)
+Laumin - A small bush with clusters of purple flowers growing from stems; it grows in Thengan woodlands
+Korceida - A large red petalled flowered leafy plant that grows in the Thengan woodlands
+Hoil - A rough leaved musky smelling sap filled plant
+Porstol - A small berry bush that grows in the north to mid west, particularly in Thengaria; its berries are poisonous
+Cranberry - A berry bush that grows in Thengaria and in parts of Vardania
+Chyoul - A thorny berry bush that has tiny blue berries that grow in clusters; grows in Vardania
+Thegolthorn - A carnivorous thorn plant that is particularly acidic (two sizes based on longevity input true and false)
+Ameloy - A sweet smelling white and black flower bush that grows in Vardania
+Mekle - A small green bush that grows in Vardania. It has a rapid growth rate... (when picked it grows back soon after)
+Laicaum - A grey leafy bush that hosts plump black coloured berries; the berries are poisonous, but the plant's leaves have a small amount of special fluid inside them that has healing properties.
+Thadine - A black leaved bush that grows in Vardania (two varieties based on longevity input true and false)

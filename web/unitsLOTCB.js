@@ -74843,6 +74843,26 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 this.drops = [[new Item("coins", this.X, this.Y), 115]];
             }
+            else if (this.ID == "Master Blacksmith Heinrich")
+            {
+                this.drops = [[new Item("coins", this.X, this.Y), 1240], [new Item("silverDagger", this.X, this.Y), 1]];
+            }
+            else if (this.ID == "Helmut the Trapper")
+            {
+                this.drops = [[new Item("coins", this.X, this.Y), 190], [new Item("thenganDagger", this.X, this.Y), 1]];
+            }
+            else if (this.ID == "Franklin the Merchant")
+            {
+                this.drops = [[new Item("coins", this.X, this.Y), 73], [new Item("hoffalgreFurCloak", this.X, this.Y), 1]];
+            }
+            else if (this.ID == "Emon the Banker")
+            {
+                this.drops = [[new Item("coins", this.X, this.Y), 33], [new Item("hoffalgreFurCloak", this.X, this.Y), 1]];
+            }
+            else if (this.ID == "Ersula the Tailor")
+            {
+                this.drops = [[new Item("coins", this.X, this.Y), 25], [new Item("foxFurDress", this.X, this.Y), 1]];
+            }
             else if (this.ID == "Borje")
             {
                 this.drops = [[new Item("coins", this.X, this.Y), 5], [new Item("harstBread", this.X, this.Y), 1]];
@@ -75726,6 +75746,46 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         if (this.killNotByPlayer == false || this.killByPlayerTeam)
                         {
                             player.freynorFaction -= 14;
+                        }
+                    }
+                    else if (this.ID == "Master Blacksmith Heinrich")
+                    {
+                        uniqueChars.heinrichLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.thengarFaction -= 78;
+                        }
+                    }
+                    else if (this.ID == "Helmut the Trapper")
+                    {
+                        uniqueChars.helmutLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.thengarFaction -= 36;
+                        }
+                    }
+                    else if (this.ID == "Franklin the Merchant")
+                    {
+                        uniqueChars.franklinLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.thengarFaction -= 17;
+                        }
+                    }
+                    else if (this.ID == "Emon the Banker")
+                    {
+                        uniqueChars.emonLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.thengarFaction -= 12;
+                        }
+                    }
+                    else if (this.ID == "Ersula the Tailor")
+                    {
+                        uniqueChars.ersulaLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.thengarFaction -= 19;
                         }
                     }
                     else if (this.ID == "Borje")

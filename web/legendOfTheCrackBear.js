@@ -1231,6 +1231,10 @@ function envPack()
     vardanianWetland.src = ("images/vardanWetland.jpg");
     window.vardanianWetland = vardanianWetland;
 
+    var vardanianMire = new Image();
+    vardanianMire.src = ("images/vardanMire.jpg");
+    window.vardanianMire = vardanianMire;
+
     var swampTL = new Image();
     swampTL.src = ("images/highL.png");
     window.swampTL = swampTL;
@@ -1572,6 +1576,18 @@ function abanicoPack()
     window.abanico = abanico;
 
     abanico.onload = function()
+    {
+        guajolotePack();
+    };
+}
+
+function guajolotePack()
+{
+    var pavo = new Image();
+    pavo.src = ("images/pavo.png");
+    window.pavo = pavo;
+
+    pavo.onload = function()
     {
         florasPack();
     };
@@ -3350,7 +3366,12 @@ function theLegend()
         mesek: ["Mesek", 0],
         aleksi: ["Aleksi", 0],
         borje: ["Borje", 0],
-        toraan: ["Toraan", 0]
+        toraan: ["Toraan", 0],
+        heinrich: ["Heinrich", 0],
+        franklin: ["Franklin", 0],
+        helmut: ["Helmut", 0],
+        emon: ["Emon", 0],
+        ersula: ["Ersula", 0]
     };
 
 //time Tracker Variables
@@ -3557,7 +3578,6 @@ function theLegend()
         lenardLDS: true,
         hanzLDS: true,
         conradLDS: true,
-        vsevolodLDS: true,
         hanzChildLDS: true,
         bellaLDS: true,
         mesekLDS: true,
@@ -3565,6 +3585,11 @@ function theLegend()
         kagBearLDS: true,
         toraanLDS: true,
         borjeLDS: true,
+        heinrichLDS: true,
+        franklinLDS: true,
+        helmutLDS: true,
+        emonLDS: true,
+        ersulaLDS: true
     };
 //QUESTS
     quests =

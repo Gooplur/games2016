@@ -2549,6 +2549,8 @@ function buildMaster()
                 scenicList.push(new Scenery("thenganorCastleParts", 139080.28850764598 + 590, -36120.825984448726 + 1700, 1/2 * Math.PI, 2, 1)); //left wall 6
                 scenicList.push(new Scenery("thenganorCastleParts", 139673.18302162958 + 75, -33839.42356589397 + 95, Math.PI, 2, 5)); //left wall inter corner
 
+                scenicList.push(new Scenery("thenganBuilding7", 139869.27866820985, -37454.18970224297, 0, 1));
+
 
                 change = "s4w14";
             }
@@ -6534,6 +6536,273 @@ function buildMaster()
 
                 scenicList.push(new Scenery("thenganorCastleParts", 139680.28850764598 + 1400, -23950.825984448726, Math.PI, 2, 1)); //top wall - 6
                 scenicList.push(new Scenery("thenganorCastleParts", 139680.28850764598 + 2800, -23950.825984448726, Math.PI, 2, 1)); //top wall - 7
+
+                scenicList.push(new Scenery("thenganBuilding7", 131848.47805507728, -26360.088494718646, 0, 1));
+                scenicList.push(new Scenery("thenganBuilding7", 131852.47805507728, -27396.088494718646, Math.PI, 1));
+
+                scenicList.push(new Scenery("thenganBuilding2", 134988.12995276236 - 34, -26555.869049930345 + 300, 0, 1)); //up
+                scenicList.push(new Scenery("thenganBuilding2", 134685.7642367716 - 34, -26557.087054943695 + 300, 0, 1));
+                scenicList.push(new Scenery("thenganBuilding2", 134375.59001075898 - 34, -26556.667702643714 + 300, 0, 1));
+
+                scenicList.push(new Scenery("thenganBuilding1", 134988.12995276236 -34, -26555.869049930345 - 50, 0, 1)); //down
+                scenicList.push(new Scenery("thenganBuilding1", 134685.7642367716 - 34, -26557.087054943695 - 50, 0, 1));
+                scenicList.push(new Scenery("thenganBuilding1", 134375.59001075898 - 34, -26556.667702643714 - 50, 0, 1));
+
+                scenicList.push(new Scenery("thenganBuilding3", 134311.54443839227 + 124, -27255.288187350474, 0, 1));
+                scenicList.push(new Scenery("thenganBuilding3", 134312.4946195333 + 124, -27594.357131221903, 0, 1)); //left
+
+                scenicList.push(new Scenery("thenganBuilding5", 134958.7097393508, -27596.808973580413, 0, 1));
+                scenicList.push(new Scenery("thenganBuilding5", 134951.98966528493, -27250.718363698907, 0, 1)); //right
+
+                scenicList.push(new Scenery("thenganBuilding8", 134654.03202491582, -27330.101099856653, 1/2 * Math.PI, 1.4)); //up
+                scenicList.push(new Scenery("thenganBuilding8", 134648.23084330212, -27625.729480875652, -1/2 * Math.PI, 1.4)); //down
+
+                //The Silver Keep
+                scenicList.push(new Scenery("thenganBuilding3", 132554.11896028087 + 134, -29730.74502539167 - 85, 0, 1)); //right
+                scenicList.push(new Scenery("countertop", 132585.11944908192, -29723.873984628597, 0, true)); //banking counter
+                var hits = 0;
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    if (ArtificialIntelligenceAccess[i].ID == "Silver Keep Banker")
+                    {
+                        if (typeof(ArtificialIntelligenceAccess[i].ultra.altID) != "undefined")
+                        {
+                            if (ArtificialIntelligenceAccess[i].ultra.altID == "skBanker2")
+                            {
+                                hits += 1;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (hits == 0)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(132582.65499268982, -29677.969586437295, "Person", false, "Silver Keep Banker", {race: "Aldrek", faction: "Thengar", personality: "calculated", outfit: ["aldrekiiHijab", 0], weapon: ["none", [0.4, 0.3], 0, 0, 1.25], ranged: [false, "steelBolt", 19, 2214, 20, 10 /3, 0, "none", 13], patrolStops: 1, patrolLoop: false, route:[[132581.5937671835, -29697.426426710987]], altID: "skBanker2"}));
+                }
+                scenicList.push(new Scenery("crate", 132643.372086918, -29896.743090059346, 9.4/4 * Math.PI, 0, [1.8]));
+                scenicList.push(new Scenery("crate", 132533.22879782753, -29934.07655149653, -9/4 * Math.PI, 2, [1]));
+                scenicList.push(new Scenery("crate", 132526.45239414592, -29861.489477653402, -5.7/4 * Math.PI, 1, [1.2]));
+                scenicList.push(new Scenery("crate", 132651.516214765, -29801.85849147281, -2.1/4 * Math.PI, 1, [1.3]));
+                scenicList.push(new Scenery("crate", 132594.791351544, -29865.68046094056, -3/4 * Math.PI, 2, [1]));
+                scenicList.push(new Scenery("sign", 132462.09661782943 + 12, -29869.902160517056, -1/2 * Math.PI, 3, "Silver Keep Banking"));
+
+                //The Golden Glove
+                scenicList.push(new Scenery("thenganBuilding5", 132832.9493056103 - 20, -29735.957857288548 - 78, 0, 1)); //left
+                scenicList.push(new Scenery("countertop", 132813.61082864078, -29771.936744285304, 0, true)); //banking counter
+                scenicList.push(new Scenery("sign", 132937.3421718879 - 12, -29881.233492804153, 1/2 * Math.PI, 3, "Golden Glove Banking"));
+                if (uniqueChars.emonLDS == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Emon the Banker")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(132813.30050898754, -29700.853151062813, "Person", false, "Emon the Banker", {race: "Orgell", faction: "Thengar", personality: "scared", outfit: ["hoffalgreFurCloak", 0], weapon: ["none", [0.2, 0.2], 0, 0, 1.15], ranged: [false, "arrow", 8, 2000, 1, 6, 0, "none", 0.95], patrolStops: 1, patrolLoop: false, route:[[132814.48543015198, -29747.356286638988]], banker: true}));
+                    }
+                }
+                scenicList.push(new Scenery("crate", 132881.01085775718, -29894.82014059851, 11.11/4 * Math.PI, 0, [2]));
+                scenicList.push(new Scenery("crate", 132824.3919456712, -29928.278881654936, 8.888/4 * Math.PI, 2, [1.1]));
+                scenicList.push(new Scenery("crate", 132762.30165024064, -29933.994621533046, -3.6/4 * Math.PI, 1, [1.5]));
+                scenicList.push(new Scenery("crate", 132750.55078640682, -29871.888630504116, -13.5/4 * Math.PI, 2, [1.35]));
+                scenicList.push(new Scenery("crate", 132747.16245959204, -29803.237995567564, -7.89/4 * Math.PI, 2, [1.15]));
+                scenicList.push(new Scenery("crate", 132809.23987858865, -29873.200078164828, 0.666/4 * Math.PI, 0, [1.6]));
+                scenicList.push(new Scenery("crate", 132763.08728886707, -29726.668872531136, 8.2/4 * Math.PI, 2, [0.8]));
+
+                scenicList.push(new Scenery("thenganBuilding2", 132856.3585073128, -29543.82958239683, 0, 1));
+                scenicList.push(new Scenery("thenganBuilding2", 132564.06581836723 - 20, -29544.83058475615, 0, 1));
+
+
+                scenicList.push(new Scenery("thenganBuilding5", 133749.79608080516 + 30 , -27237.085748290756, 0, 1)); //right
+                scenicList.push(new Scenery("thenganBuilding3", 133480.30087706572 + 40, -27237.923552195487, 0, 1)); //left
+
+                scenicList.push(new Scenery("thenganBuilding5", 133751.7138231356 + 30, -27587.96591690594, 0, 1)); //right
+                scenicList.push(new Scenery("thenganBuilding3", 133478.62544261254 + 40, -27590.875846819807, 0, 1)); //left
+
+                scenicList.push(new Scenery("thenganBuilding5", 133746.24682359034 + 30, -27914.954910637065, 0, 1)); //right
+                scenicList.push(new Scenery("thenganBuilding3", 133478.9827470825 + 40, -27913.5320795301, 0, 1)); //left
+
+                scenicList.push(new Scenery("thenganBuilding3", 133485.18585748333 + 30, -28234.572923526397 - 10, 0, 1)); //right
+                scenicList.push(new Scenery("thenganBuilding5", 133743.08299565356 + 40, -28245.806410337376 - 10, 0, 1)); //left
+
+                scenicList.push(new Scenery("thenganBuilding5", 133743.08299565356 + 40, -28566.76929114056 - 40, 0, 1)); //right
+                scenicList.push(new Scenery("thenganBuilding3", 133485.18585748333 + 30, -28569.55540880055 - 40, 0, 1)); //left
+
+                scenicList.push(new Scenery("thenganBuilding3", 133485.18585748333 + 30, -28877.487028874188 - 70, 0, 1)); //right
+                scenicList.push(new Scenery("thenganBuilding5", 133743.08299565356 + 40, -28873.989123098014 - 70, 0, 1)); //left
+
+                scenicList.push(new Scenery("thenganBuilding1", 133447.93717412077, -26577.413572510428, 0, 1));
+                scenicList.push(new Scenery("thenganBuilding1", 133772.8418601606, -26582.551870874522, 0, 1));
+
+                //master blacksmith
+                scenicList.push(new Scenery("thenganBuilding5", 133433.5146852063, -26276.257354569447, 0, 1)); //left
+                scenicList.push(new Scenery("forge", 133658.1657238357, -26160.792848873683, 0, true));
+                scenicList.push(new Scenery("forge", 133805.9192150547, -26157.09168182166, 0, true)); //top
+                scenicList.push(new Scenery("forge", 133648.98474329436, -26402.598794223584, Math.PI, true)); //bottom
+                scenicList.push(new Scenery("forge", 133807.965112106, -26405.42754350206, Math.PI, true)); //bottom
+                scenicList.push(new Scenery("anvil", 133577.44651511358, -26208.815775718627, Math.PI, true)); //top
+                scenicList.push(new Scenery("anvil", 133576.4123807281, -26348.31616371836, Math.PI, true)); //bottom
+                scenicList.push(new Scenery("anvil", 133731.9901163269, -26160.30212112398, 1/2 * Math.PI, true)); //mid top
+                scenicList.push(new Scenery("anvil", 133731.7029410401, -26403.089416552084, -1/2 * Math.PI, true)); //mid bottom
+                scenicList.push(new Scenery("countertop", 133516.0424252623, -26197.20802020841 + 15, 1/2 * Math.PI, true)); //top left
+                scenicList.push(new Scenery("countertop", 133516.0424252623 - 19, -26197.20802020841 + 15, 1/2 * Math.PI, true)); //top left +
+                scenicList.push(new Scenery("countertop", 133516.97368657155, -26382.3947562553 + 3, 1/2 * Math.PI, true)); //bottom left
+                scenicList.push(new Scenery("countertop", 133516.97368657155 - 19, -26382.3947562553 + 3, 1/2 * Math.PI, true)); //bottom left +
+                scenicList.push(new Scenery("countertop", 133348.79471473038, -26198.58400993545 + 10, 1/2 * Math.PI, true)); //top right
+                scenicList.push(new Scenery("countertop", 133349.25468482616, -26389.966416023643 + 14, 1/2 * Math.PI, true)); //bottom right
+                scenicList.push(new Scenery("countertop", 133349.25468482616, -26389.966416023643 + 104, 1/2 * Math.PI, true)); //mid right
+                scenicList.push(new Scenery("item", 133509.60620471064, -26178.922746971482, 0, "thengar", ["greatPlateArmour", 1, -250]));
+                scenicList.push(new Scenery("item", 133510.048799902, -26382.754272980717, 0, "thengar", ["thenganBascinetArmour", 1, -250]));
+                scenicList.push(new Scenery("item", 133348.3902573207, -26147.42610635784, 0, "thengar", ["silverDagger", 1, -100]));
+                scenicList.push(new Scenery("item", 133349.16304697923, -26209.65664059996, 0, "thengar", ["thenganDagger", 2, -44]));
+                scenicList.push(new Scenery("item", 133348.37918782164, -26271.363271763126, 0, "thengar", ["mace", 2, -44]));
+                scenicList.push(new Scenery("item", 133350.32181353128, -26397.484802650197, 0, "thengar", ["thenganSwordAndShield", 2, -80]));
+                scenicList.push(new Scenery("item", 133347.90924965165, -26179.904772628317, 0, "thengar", ["flail", 2, -140]));
+                scenicList.push(new Scenery("item", 133349.83475168634, -26315.59169324012, 0, "thengar", ["longsword", 2, -66]));
+                scenicList.push(new Scenery("item", 133348.01618393787, -26362.321012035438, 0, "thengar", ["longHammer", 2, -180]));
+                scenicList.push(new Scenery("item", 133348.1925410247, -26248.092592246037, 0, "thengar", ["pickaxe", 2, -38]));
+                scenicList.push(new Scenery("item", 133348.92060539193, -26413.170141140043 - 11, 0, "thengar", ["steel", 3, -45]));
+                scenicList.push(new Scenery("sign", 133514.37522155754 + 32, -26227.03137433062, 1/2 * Math.PI, 3, "The Cranheim Smithy"));
+                if (uniqueChars.heinrichLDS == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Master Blacksmith Heinrich")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(133422.71489011045, -26138.90690081261, "Person", false, "Master Blacksmith Heinrich", {race: "Thengar", faction: "Thengar", personality: "violent", outfit: ["thenganWorkmansApron", 0], weapon: ["silverDagger", [7, 3], 2.5, 11, 1.1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[133420.12247218148, -26177.79316974901]], merchant: true, merchandise: [[new Item("coins", false, false), 1240], [new Item("silver", false, false), 2], [new Item("steel", false, false), 12], [new Item("iron", false, false), 14], [new Item("mace", false, false), 6], [new Item("thenganDagger", false, false), 5], [new Item("silverDagger", false, false), 1], [new Item("silverStake", false, false), 2], [new Item("longsword", false, false), 6], [new Item("thenganSwordAndShield", false, false), 4], [new Item("longSpikedMorningStar", false, false), 5], [new Item("thenganWarhammer", false, false), 2], [new Item("flail", false, false), 3], [new Item("smashStick", false, false), 2], [new Item("longHammer", false, false), 3], [new Item("thenganBascinetArmour", false, false), 2], [new Item("greatPlateArmour", false, false), 2], [new Item("timberAxe", false, false), 3], [new Item("spade", false, false), 3], [new Item("pickaxe", false, false), 3]]}));
+                        ArtificialIntelligenceAccess[i].health = 58;
+                        ArtificialIntelligenceAccess[i].healthMAX = 58;
+                    }
+                    ArtificialIntelligenceAccess.push(new Unit(133628.4177672649, -26349.913722998026, "Person", false, "Blacksmith's Apprentice", {race: "Thengar", faction: "Thengar", personality: "violent", outfit: ["hoffalgreFurCloak", 0], weapon: ["hammer", [3, 2.5], 3, 12, 1.25], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: false, route:[[1793, 314]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(133631.66756111223, -26203.064489889723, "Person", false, "Blacksmith's Apprentice", {race: "Thengar", faction: "Thengar", personality: "violent", outfit: ["hoffalgreFurCloak", 0], weapon: ["hammer", [3, 2.5], 3, 12, 1.25], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: false, route:[[1793, 314]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(133729.53969584178, -26252.18953134094, "Person", false, "Blacksmith's Apprentice", {race: "Thengar", faction: "Thengar", personality: "violent", outfit: ["hoffalgreFurCloak", 0], weapon: ["hammer", [3, 2.5], 3, 12, 1.25], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[133731.88131399866, -26209.385124402692]]}));
+                    ArtificialIntelligenceAccess.push(new Unit(133729.89674166025, -26322.113847017954, "Person", false, "Blacksmith's Apprentice", {race: "Thengar", faction: "Thengar", personality: "violent", outfit: ["hoffalgreFurCloak", 0], weapon: ["hammer", [3, 2.5], 3, 12, 1.25], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[133732.2480212703, -26364.920216625498]]}));
+                }
+
+                //trap shop
+                scenicList.push(new Scenery("countertop", 133532.58449835525, -26579.531371475332 - 18, 1/2 * Math.PI, true)); //left
+                scenicList.push(new Scenery("countertop", 133513.23257709757, -26580.717487638904 - 18, 1/2 * Math.PI, true)); //left +
+                scenicList.push(new Scenery("countertop", 133446.65828189734 + 40, -26496.11834015103 - 6, Math.PI, true)); //top
+                scenicList.push(new Scenery("countertop", 133450.66840461493 + 37, -26524.645203520995 - 6 + 3, Math.PI, true)); //top -
+                scenicList.push(new Scenery("item", 133388.79842387422, -26518.97178598479, 0, "thengar", ["spindletrap", 1, -59]));
+                scenicList.push(new Scenery("item", 133535.9222796106, -26654.16120577278, 0, "thengar", ["clawtrap", 2, -42]));
+                scenicList.push(new Scenery("item", 133509.52132271868 + 12, -26654.333403928424 + 3, 0, "thengar", ["clawtrap", 2, -42]));
+                scenicList.push(new Scenery("item", 133534.77988404722, -26627.831915169547 - 3, 0, "thengar", ["jacks", 12, -44]));
+                scenicList.push(new Scenery("item", 133512.3171957825, -26628.13627443332 - 3, 0, "thengar", ["jacks", 12, -44]));
+                scenicList.push(new Scenery("item", 133516.0862154947, -26557.644377225475, 0, "thengar", ["beartrap", 1, -15]));
+                scenicList.push(new Scenery("item", 133516.0862154947, -26575.182041404576, 0, "thengar", ["beartrap", 1, -15]));
+                scenicList.push(new Scenery("item", 133516.0862154947, -26598.565593643376, 0, "thengar", ["beartrap", 1, -15]));
+                scenicList.push(new Scenery("item", 133516.0862154947, -26618.05188717571, 0, "thengar", ["beartrap", 1, -15]));
+                scenicList.push(new Scenery("item", 133535.55079861658, -26617.13230057153, 0, "thengar", ["beartrap", 1, -15]));
+                scenicList.push(new Scenery("item", 133535.91082495125, -26598.311242678083, 0, "thengar", ["beartrap", 1, -15]));
+                scenicList.push(new Scenery("item", 133534.91026688498, -26576.830473675338, 0, "thengar", ["beartrap", 1, -15]));
+                scenicList.push(new Scenery("item", 133534.53225152957, -26553.75690763596, 0, "thengar", ["beartrap", 1, -15]));
+                scenicList.push(new Scenery("item", 133473.7243903292 + 3, -26513.457985373163, 0, "thengar", ["floortrap", 1, -50]));
+                scenicList.push(new Scenery("item", 133443.86589690007 + 3, -26512.439141756695, 0, "thengar", ["floortrap", 1, -50]));
+                scenicList.push(new Scenery("item", 133535.06391122352, -26496.643416959785, 0, "thengar", ["firetrap", 3, -78]));
+                scenicList.push(new Scenery("item", 133535.54418825175, -26528.194939301906, 0, "thengar", ["firetrap", 3, -78]));
+                scenicList.push(new Scenery("item", 133508.6520575036, -26497.258154335184, 0, "thengar", ["jarOfOil", 3, -100]));
+                scenicList.push(new Scenery("item", 133507.3655131746, -26529.689685958558, 0, "thengar", ["jarOfOil", 3, -100]));
+                if (uniqueChars.helmutLDS == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Helmut the Trapper")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(133369.9420053438, -26644.377856184135, "Person", false, "Helmut the Trapper", {race: "Thengar", faction: "Thengar", personality: "violent", outfit: ["blackBearLeatherArmour", 3.5], weapon: ["thenganDagger", [3, 2], 2.5, 10, 1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[133388.4492571905, -26630.08598823566]], merchant: true, merchandise: [[new Item("coins", false, false), 190], [new Item("jacks", false, false), 14], [new Item("beartrap", false, false), 12], [new Item("clawtrap", false, false), 10], [new Item("firetrap", false, false), 8], [new Item("jarOfOil", false, false), 6], [new Item("spindletrap", false, false), 3], [new Item("floortrap", false, false), 2]]}));
+                        ArtificialIntelligenceAccess[i].health = 26;
+                        ArtificialIntelligenceAccess[i].healthMAX = 26;
+                    }
+                }
+                scenicList.push(new Scenery("sign", 133513.51211520543, -26698.06253239544 + 18, 0, 3, "The Trapper's Dream"));
+
+                //Provisions Shop
+                scenicList.push(new Scenery("countertop", 133773.1791539414 - 40, -26500.732273304482 - 8, Math.PI, true)); //top
+                scenicList.push(new Scenery("countertop", 133772.48468732633 - 40, -26528.00620049073 - 8, Math.PI, true)); //top -
+                scenicList.push(new Scenery("countertop", 133686.32284751732, -26586.828978121543 - 19, 1/2 * Math.PI, true)); //right
+                scenicList.push(new Scenery("countertop", 133711.16402892748, -26587.79720949967- 19, 1/2 * Math.PI, true)); //right +
+                scenicList.push(new Scenery("sign", 133695.79364397496, -26701.92465447341 + 18, 0, 3, "Cranheim Provisions"));
+                scenicList.push(new Scenery("item", 133771.18777070983, -26519.715413259863, 0, "thengar", ["tent", 1, -25]));
+                scenicList.push(new Scenery("item", 133733.66984883405, -26503.769583082416, 0, "thengar", ["hammer", 3, -27]));
+                scenicList.push(new Scenery("item", 133732.23048106994, -26531.01239282951, 0, "thengar", ["pickaxe", 3, -24]));
+                scenicList.push(new Scenery("item", 133690.6229715642, -26523.90397961313, 0, "thengar", ["spade", 3, -46]));
+                scenicList.push(new Scenery("item", 133704.85249296008, -26572.528805521382, 0, "thengar", ["timberAxe", 3, -30]));
+                scenicList.push(new Scenery("item", 133691.2917264958, -26607.272456986826, 0, "thengar", ["bucketOfWater", 2, -16]));
+                scenicList.push(new Scenery("item", 133687.33269717518, -26638.18631013004, 0, "thengar", ["bucketOfWater", 2, -16]));
+                scenicList.push(new Scenery("item", 133686.17200371652, -26585.67714162208, 0, "thengar", ["glassBottle", 3, -9]));
+                scenicList.push(new Scenery("item", 133685.3894967178, -26558.258114999877, 0, "thengar", ["glassBottle", 3, -9]));
+                scenicList.push(new Scenery("item", 133715.63684567812, -26662.45064219387, 0, "thengar", ["wood", 5, -10]));
+                scenicList.push(new Scenery("item", 133688.4985174168, -26660.40465294369, 0, "thengar", ["wood", 5, -10]));
+                scenicList.push(new Scenery("item", 133717.8520973201, -26625.947830448393, 0, "thengar", ["fireStarter", 2, -28]));
+                if (uniqueChars.franklinLDS == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Franklin the Merchant")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(133846.67278987367, -26647.219679602607, "Person", false, "Franklin the Merchant", {race: "Thengar", faction: "Thengar", personality: "violent", outfit: ["hoffalgreFurCloak", 0], weapon: ["none", [0.3, 0.3], 0, 0, 1.1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[133826.46713202563, -26628.618033760547]], merchant: true, merchandise: [[new Item("coins", false, false), 73], [new Item("tent", false, false), 3], [new Item("pickaxe", false, false), 2], [new Item("hammer", false, false), 2], [new Item("spade", false, false), 2], [new Item("timberAxe", false, false), 2], [new Item("bucketOfWater", false, false), 6], [new Item("wood", false, false), 20], [new Item("fireStarter", false, false), 3], [new Item("glassBottle", false, false), 6]]}));
+                        ArtificialIntelligenceAccess[i].health = 6;
+                        ArtificialIntelligenceAccess[i].healthMAX = 6;
+                    }
+                }
+
+                //Ersula's Artisanal Tailoring
+                if (uniqueChars.ersulaLDS == true)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].ID == "Ersula the Tailor")
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(134663.21325387908, -27225.047125454385, "Person", false, "Ersula the Tailor", {race: "Thengar", faction: "Thengar", personality: "scared", outfit: ["foxFurDress", 0], weapon: ["none", [0.1, 0.1], 0, 0, 1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[134705.65069474035, -27221.652165392523]], merchant: true, merchandise: [[new Item("coins", false, false), 25], [new Item("foxClothingF", false, false), 2], [new Item("foxClothingM", false, false), 2], [new Item("thenganHunterOutfit", false, false), 2], [new Item("foxFurDress", false, false), 3], [new Item("thenganCommonwear", false, false), 2]]}));
+                        ArtificialIntelligenceAccess[i].speed = 0.9;
+                        ArtificialIntelligenceAccess[i].health = 3;
+                        ArtificialIntelligenceAccess[i].healthMAX = 3;
+                    }
+                }
+                scenicList.push(new Scenery("mediumTable", 134732.82395254908, -27166.282339323752, 1/2 * Math.PI, true));
+                scenicList.push(new Scenery("mediumTable", 134577.6615917334, -27164.812468944634, 1/2 * Math.PI, true));
+                scenicList.push(new Scenery("mediumTable", 134732.82395254908, -27166.282339323752 + 60, 1/2 * Math.PI, true));
+                scenicList.push(new Scenery("mediumTable", 134577.6615917334, -27164.812468944634 - 60, 1/2 * Math.PI, true));
+                scenicList.push(new Scenery("mediumTable", 134713.51267289423, -27290.279137443067 - 10, Math.PI, true));
+                scenicList.push(new Scenery("mediumTable", 134618.0194606723, -27292.42517462789 - 10, Math.PI, true));
+                scenicList.push(new Scenery("item", 134735.59571152544, -27118.855976254905, 0, "thengar", ["foxFurDress", 2, -45]));
+                scenicList.push(new Scenery("item", 134558.31527889372, -27179.705754946775, 0, "thengar", ["thenganHunterOutfit", 3, -30]));
+                scenicList.push(new Scenery("item", 134591.89687003242, -27181.18692149492, 0, "thengar", ["foxClothingF", 5, -30]));
+                scenicList.push(new Scenery("item", 134696.2633568502 - 7, -27287.434644083336, 0, "thengar", ["foxPelt", 2, -50]));
+                scenicList.push(new Scenery("item", 134695.6290908792 - 7, -27314.70808083982, 0, "thengar", ["foxPelt", 2, -50]));
+                scenicList.push(new Scenery("item", 134598.5462029957 - 7, -27288.11083151629, 0, "thengar", ["foxPelt", 2, -50]));
+                scenicList.push(new Scenery("item", 134599.47466437262 - 7, -27316.14087716852, 0, "thengar", ["foxPelt", 2, -50]));
+                scenicList.push(new Scenery("item", 134749.75338416928, -27314.525564194897, 0, "thengar", ["bucketOfWater", 1, -15]));
+                scenicList.push(new Scenery("loom", 134745.90125797002 + 6, -27227.262811658227, -1/2 * Math.PI, true));
+                scenicList.push(new Scenery("sign", 134561.36071056846, -27019.68782047706 - 10, Math.PI, 3, "Ersula's Artisanal Tailoring"));
 
                 change = "s3w13";
             }

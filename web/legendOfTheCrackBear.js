@@ -1232,7 +1232,7 @@ function envPack()
     window.vardanianWetland = vardanianWetland;
 
     var vardanianMire = new Image();
-    vardanianMire.src = ("images/vardanMire.jpg");
+    vardanianMire.src = ("images/vardanMire.png");
     window.vardanianMire = vardanianMire;
 
     var swampTL = new Image();

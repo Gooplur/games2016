@@ -29048,6 +29048,596 @@ function buildMaster()
                 change = "s26";
             }
         }
+        else if (region == "s26w1") //Silvestre third of the jungle, but a little bit to the left of that actually
+        {
+            if (change != "s26w1")
+            {
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    dialogueReset(ArtificialIntelligenceAccess[i]);
+                }
+                //Delete All Non-native AI Units
+                for (var i = ArtificialIntelligenceAccess.length - 1; i >= 0; i--) //Splice will alter the list so the numbers will be off if you loop through beginning to end, so this for loop goes from the end to the beginning.
+                {
+                    if (ArtificialIntelligenceAccess[i].playerSeen == false && !ArtificialIntelligenceAccess[i].guarantee)
+                    {
+                        ArtificialIntelligenceAccess.splice(i, 1);
+                        //console.log(i + " in list 'AI access' has been deleted. " + ArtificialIntelligenceAccess.length);
+                    }
+                    else
+                    {
+                        //console.log(i + " in list 'AI access' has been saved.");
+                    }
+                }
+
+                //Delete All Non-native Items
+                //worldItems = [];
+
+                //Delete All Non-native Structures
+
+                //Delete All Non-native Scenery
+                scenicList = [];
+
+                //Delete All Barriers
+                barrierList = [];
+
+                scenicList.push(new Scenery("selvaTree", 5979.992737801118, -258200.9576693212,3.6143684631721746, 0, undefined)); //copied s26
+                scenicList.push(new Scenery("selvaTree", 6853.248715529339, -258479.30797243607,5.0301668878086065, 0, undefined)); //copied s26
+                scenicList.push(new Scenery("sonjaTree", 6731.827842214851, -264194.5234148736,0.8609703310231208, 0, undefined)); //copied s26
+                scenicList.push(new Scenery("sonjaTree", 5487.2730912011475, -265407.7385954542,1.2531468967053414, 0, undefined)); //copied s26
+                scenicList.push(new Scenery("selvaTree", 5490.944903023085, -258846.48858048374,1.512365552174078, 0, undefined)); //copied s26
+                scenicList.push(new Scenery("selvaTree", 6119.175267859392, -260235.54987266872,0.06977083489696345, 0, undefined)); //copied s26
+                scenicList.push(new Scenery("selvaTree", 6551.521269377119, -260899.30902816795,5.317558814973565, 0, undefined)); //copied s26
+                scenicList.push(new Scenery("selvaTree", 5848.803867836289, -261425.24655735516,4.039578553812557, 0, undefined)); //copied s26
+                scenicList.push(new Scenery("selvaTree", 6088.737769204111, -262283.7459615118,4.317310202927329, 0, undefined)); //copied s26
+                scenicList.push(new Scenery("selvaTree", 6688.565814340128, -261988.08218684152,4.566412448690218, 0, undefined)); //copied s26
+                scenicList.push(new Scenery("selvaTree", 6602.266478240653, -262698.400026396,2.5060778617117796, 0, undefined)); //copied s26
+                scenicList.push(new Scenery("selvaTree", 6208.593256983087, -263031.61151572026,1.1758949895451105, 0, undefined)); //copied s26
+                scenicList.push(new Scenery("selvaTree", 6660.3952033480655, -263146.6844888692,4.7886084999445115, 0, undefined)); //copied s26
+                scenicList.push(new Scenery("selvaTree", 5871.427300351798, -263710.4076032107,5.8484739560919525, 0, undefined)); //copied s26
+                scenicList.push(new Scenery("selvaTree", 6492.541199503315, -263732.4509544618,5.200480716761086, 0, undefined)); //copied s26
+                scenicList.push(new Scenery("selvaTree", 6137.57736694447, -264304.16455201106,5.903531958944568, 0, undefined)); //copied s26
+                scenicList.push(new Scenery("selvaTree", 5613.459878791194, -262503.0193697893,2.0709090964143213, 0, undefined)); //copied s26
+                scenicList.push(new Scenery("selvaTree", 5745.406068444243, -265904.53787284874,5.502683183032824, 0, undefined)); //copied s26
+                scenicList.push(new Scenery("selvaTree", 6404.459619699003, -266363.74055466056,1.1702395382367137, 0, undefined)); //copied s26
+                scenicList.push(new Scenery("selvaTree", 6332.347041264317, -265288.8916103807,2.040181133275652, 0, undefined)); //copied s26
+                scenicList.push(new Scenery("selvaTree", 6874.90159077363, -265804.3147937464,5.525290724238231, 0, undefined)); //copied s26
+                scenicList.push(new Scenery("selvaTree", 6733.221467170367, -264671.27227349876,4.531561161399204, 0, undefined)); //copied s26
+                scenicList.push(new Scenery("selvaTree", 5639.175504776973, -264960.03320192144,4.312664036560091, 0, undefined)); //copied s26
+                scenicList.push(new Scenery("selvaTree", 6047.753858105574, -267466.03237681254,4.950535944978795, 0, undefined)); //copied s26
+                scenicList.push(new Scenery("selvaTree", 5806.649842990189, -266726.1249391452,3.77507397627468, 0, undefined)); //copied s26
+                scenicList.push(new Scenery("selvaTree", 6462.495337128649, -267133.31192974927,2.1226033235397557, 0, undefined)); //copied s26
+                scenicList.push(new Scenery("selvaTree", 6695.253175854426, -267925.7087083112,2.745276652810543, 0, undefined)); //copied s26
+                scenicList.push(new Scenery("selvaTree", 6341.502541087451, -268532.45661210926,2.1261645006385272, 0, undefined)); //copied s26
+                scenicList.push(new Scenery("selvaTree", 6862.277480314462, -268320.4794127339,3.6725797699518337, 0, undefined)); //copied s26
+                scenicList.push(new Scenery("overVines", 5554.70967462545, -261093.6262693448,3.9707963267948965, 2, 0.4)); //copied s26
+                scenicList.push(new Scenery("overVines", 5523.293297024121, -261102.3185662407,4.070796326794897, 2, 0.4)); //copied s26
+                scenicList.push(new Scenery("overVines", 5556.438227465363, -261060.105011923,3.9207963267948966, 2, 0.5)); //copied s26
+                scenicList.push(new Scenery("vinePatch", 6034.193221243634, -261368.41499466178,1.15, 3.26, undefined)); //copied s26
+                scenicList.push(new Scenery("crilkPlant", 5585.88890123568, -264488.9056430031,-7.5, true, undefined)); //copied s26
+                scenicList.push(new Scenery("bahabPlant", 5999.7624171702555, -260972.48364782424,2, true, undefined)); //copied s26
+                scenicList.push(new Scenery("bahabPlant", 5653.314646302119, -260850.06088074943,2.3, true, undefined)); //copied s26
+                scenicList.push(new Scenery("bahabPlant", 5805.835355466302, -260779.29937380587,5, true, undefined)); //copied s26
+                scenicList.push(new Scenery("bahabPlant", 6131.793424524885, -260723.38847668347,5.6, true, undefined)); //copied s26
+                scenicList.push(new Scenery("bahabPlant", 5865.6681777282065, -260645.9338969951,0, true, undefined)); //copied s26
+                scenicList.push(new Scenery("bahabPlant", 5638.719117251768, -260528.9867876961,0.9, true, undefined)); //copied s26
+                scenicList.push(new Scenery("valumPlant", 5670.036562739987, -259818.15665452258,6, 1, undefined)); //copied s26
+                scenicList.push(new Scenery("decipulaPlant", 5704.174722008882, -262056.70815647295,3.25, false, undefined)); //copied s26
+                scenicList.push(new Scenery("cerebrisPlant", 6030.741485589818, -268183.41342025285,22, 1, undefined)); //copied s26
+                scenicList.push(new Scenery("cerebrisPlant", 5539.154241483463, -267901.619250499,23, 1, undefined)); //copied s26
+
+                //scenicList.push(new Scenery("selvaTree", 5979.992737801118, -258200.9576693212,3.6143684631721746, 0)); //copied s25
+
+                //REGION CREATION
+                //Build AI Units
+                //ArtificialIntelligenceAccess.push(new Unit(3000, 2500, "ZafBeetle", true, "Tzalit"));
+                //scenicList.push(new Scenery("vinePatch", 3500, 2500, 0, 1));
+                //scenicList.push(new Scenery("cerebrisPlant", 3500, 2500, 0, 1));
+                //scenicList.push(new Scenery("gojiiPlant", 3500, 2500, 0, true));
+                //scenicList.push(new Scenery("bahabPlant", 3500, 2500, 0, true));
+                //scenicList.push(new Scenery("araneaDen", 3500, 2500, 0, false, true));
+                //ArtificialIntelligenceAccess.push(new Unit(3000, 2500, "Gorgon", false, "Gra"));
+                //ArtificialIntelligenceAccess.push(new Unit(3000, 2500, "Cruorcca", "massive", "Cruor"));
+                //ArtificialIntelligenceAccess.push(new Unit(3908, 2500, "Kigarii", true, "Apex"));
+                //ArtificialIntelligenceAccess.push(new Unit(3600, 2500, "Crenid", "massive", "Bulgg"));
+                //scenicList.push(new Scenery("athergmPlant", 3990, 2500, 0, 1));
+                //scenicList.push(new Scenery("decipulaBasePlant", 3670, 2500, 0, "massive"));
+                //ArtificialIntelligenceAccess.push(new Unit(3500, 2500, "Zancudo", false, "proboscis"));
+                //ArtificialIntelligenceAccess.push(new Unit(3550, 2500, "Venandi", true, "hunter"));
+                //ArtificialIntelligenceAccess.push(new Unit(3570, 2500, "EtyrVenandi", true, "scout"));
+                //ArtificialIntelligenceAccess.push(new Unit(3570, 2500, "AraneaVenandi", true, "tank"));
+                //scenicList.push(new Scenery("valumPlant", 3990, 2500, 0, 1));
+                //scenicList.push(new Scenery("decipulaPlant", 3670, 2500, 0, true));
+                //ArtificialIntelligenceAccess.push(new Unit(3613, -240174, "Gorgon", false, "Gra"));
+                //ArtificialIntelligenceAccess.push(new Unit(3700, 2500, "Boa", false, "constricto"));
+                //ArtificialIntelligenceAccess.push(new Unit(3600, 2500, "PoisonDartFrog", true, "coqui"));
+                //scenicList.push(new Scenery("sonjaTree", 3600, 2500, 0, true));
+                //ArtificialIntelligenceAccess.push(new Unit(3600, 2500, "Babosa", true, "Glubber", {patrolStops: 3, patrolLoop: true, route:[[3600, 2500], [3500, 2550], [3650, 2600]]}));
+                //scenicList.push(new Scenery("crilkPlant", 3600, 2500, 3.2, true));
+                //ArtificialIntelligenceAccess.push(new Unit(3500, 2500, "BlackTroll", false, "Brufga"));
+                //scenicList.push(new Scenery("overVines", 3600, 2500, 0, 4, 1));
+                //scenicList.push(new Scenery("webVictim", 3600, 2500, 0, 3, 1));
+                //scenicList.push(new Scenery("jungleStuff", 3600, 2500, 0.23, 2, 1));
+                //scenicList.push(new Scenery("selvaTree", 3600, 2500, 0, 0));
+                //ArtificialIntelligenceAccess.push(new Unit(2000, -240000, "Gulfrey", true, "Guld"));
+                //ArtificialIntelligenceAccess.push(new Unit(5012, -240944, "Torper", true, "Shankstripes"));
+                //ArtificialIntelligenceAccess.push(new Unit(1194, -240231, "Etyr", true, "Blackeye"));
+                //scenicList.push(new Scenery("blilPlant", 2389 , -239760, 6.78, true));
+                //scenicList.push(new Scenery("vinePatch", 3500, 2500, 0, 1));
+                //ArtificialIntelligenceAccess.push(new Unit(3550, 2500, "Venandi", true, "hunter"));
+                //ArtificialIntelligenceAccess.push(new Unit(3570, 2500, "EtyrVenandi", true, "scout"));
+                //ArtificialIntelligenceAccess.push(new Unit(3570, 2500, "AraneaVenandi", true, "tank"));
+                //ArtificialIntelligenceAccess.push(new Unit(3500, 2500, "Borea", true, "Ipskwich"));
+                //ArtificialIntelligenceAccess.push(new Unit(3500, 2500, "Salisea", false, "Digit"));
+                //ArtificialIntelligenceAccess.push(new Unit(4918.865336039311, -249334.1191245097, "PetraBeetle", true, "Iga"));
+                //scenicList.push(new Scenery("matnaWeb", 3600, 2500, 0, 2.1));
+                //ArtificialIntelligenceAccess.push(new Unit(3600, 2500, "Matna", false, "deathByter"));
+                //scenicList.push(new Scenery("pyromothWeb", 3700, 2500, 0, 1, true));
+                //ArtificialIntelligenceAccess.push(new Unit(3700, 2500, "Pyromoth", true, "Palomilla de Brasas", {patrolStops: 3, patrolLoop: true, route:[[3600, 2500], [3500, 2550], [3650, 2600]]}));
+
+                scenicList.push(new Scenery("sonjaTree", 8711.759693586524, -265484.6668942399, 2.8028181717422687, 0));
+                scenicList.push(new Scenery("sonjaTree", 8118.968304427456, -265063.4618833693, 2.7310827269693725, 0));
+                scenicList.push(new Scenery("sonjaTree", 9089.09714556853, -264917.2595228358, 0.10720668678271154, 0));
+                scenicList.push(new Scenery("sonjaTree", 10796.864971883875, -268585.4332180695, 3.5456236307634477, 0));
+                scenicList.push(new Scenery("sonjaTree", 7722.1637219309205, -261816.73430376174, 0.7501313289643081, 0));
+                scenicList.push(new Scenery("sonjaTree", 9499.655805334625, -260057.58234240967, 5.931540224559284, 0));
+
+                scenicList.push(new Scenery("selvaTree", 7298.891098694153, -259471.22391159387, 0.67666, 0));
+                scenicList.push(new Scenery("selvaTree", 7855.447256456343, -258977.84061635702, 6.935, 0));
+                scenicList.push(new Scenery("selvaTree", 7963.095355301206, -259558.35014350052, 4.334968935848048, 0));
+                scenicList.push(new Scenery("selvaTree", 7733.601254721195, -260557.67285110857, 5.067580513596619, 0));
+                scenicList.push(new Scenery("selvaTree", 8334.23133896276, -260079.91520713078, 4.022513505883732, 0));
+                scenicList.push(new Scenery("selvaTree", 8385.836706922822, -260528.6265365491, 2.110331623371533, 0));
+                scenicList.push(new Scenery("selvaTree", 8779.343586104473, -260312.74695905723, 1.9713165441741822, 0));
+                scenicList.push(new Scenery("selvaTree", 8070.647431231623, -261171.76919261494, 4.694989629392563, 0));
+                scenicList.push(new Scenery("selvaTree", 7445.329611336628, -261310.08448146618, 5.579102251760134, 0));
+                scenicList.push(new Scenery("selvaTree", 9766.73913397866, -259322.87085972854, 4.170360787482448, 0));
+                scenicList.push(new Scenery("selvaTree", 10163.599850351002, -260465.39204030682, 2.4804855201072833, 0));
+                scenicList.push(new Scenery("selvaTree", 9781.37557258111, -261830.98623076064, 4.747463804769836, 0));
+                scenicList.push(new Scenery("selvaTree", 10928.897350088644, -263074.9272230674, 0.7673284487296281, 0));
+                scenicList.push(new Scenery("selvaTree", 9644.866599626133, -264607.72658969887, 2.8937150247632957, 0));
+                scenicList.push(new Scenery("selvaTree", 8470.483152762263, -266523.4430572679, 2.6311324970413734, 0));
+                scenicList.push(new Scenery("selvaTree", 7533.81903074728, -267125.8831318959, 0.36941014485234325, 0));
+                scenicList.push(new Scenery("selvaTree", 8317.28770379971, -268192.95585087617, 4.42937124852401, 0));
+                scenicList.push(new Scenery("selvaTree", 10154.321761230269, -267157.11768295, 0.38410354226790694, 0));
+                scenicList.push(new Scenery("selvaTree", 13038.253532729965, -266382.3310561237, 2.713798524999263, 0));
+                scenicList.push(new Scenery("selvaTree", 15346.656849077017, -264124.96776692854, 4.540307688964474, 0));
+                scenicList.push(new Scenery("selvaTree", 15158.450653024469, -261818.69211588884, 5.380989591927817, 0));
+                scenicList.push(new Scenery("selvaTree", 16723.036722076406, -259459.72894471488, 5.338238751573885, 0));
+                scenicList.push(new Scenery("selvaTree", 14318.352583732283, -258951.42892433234, 2.9279983703786305, 0));
+                scenicList.push(new Scenery("selvaTree", 12492.511321483395, -259615.08149555363, 4.148438580375659, 0));
+                scenicList.push(new Scenery("selvaTree", 13602.172217138987, -262017.64708037575, 1.8250647682670713, 0));
+                scenicList.push(new Scenery("selvaTree", 9516.88920786571, -263804.2701267916, 0.9435891183845264, 0));
+                scenicList.push(new Scenery("selvaTree", 9819.02450505561, -266237.2566008081, 1.508202009307841, 0));
+                scenicList.push(new Scenery("selvaTree", 10171.213635592008, -266711.5583250037, 2.6096656774647125, 0));
+                scenicList.push(new Scenery("selvaTree", 9461.103558235081, -266613.8640471758, 3.7723741481539723, 0));
+                scenicList.push(new Scenery("selvaTree", 11849.253277103033, -267722.1336945848, 2.7133331639345695, 0));
+                scenicList.push(new Scenery("selvaTree", 12087.796519547599, -266222.0422947857, 1.420816286243595, 0));
+                scenicList.push(new Scenery("selvaTree", 12667.441726546298, -265991.7063602207, 1.2146949396586941, 0));
+                scenicList.push(new Scenery("selvaTree", 13444.467065890405, -265896.1872030175, 1.3399800266316055, 0));
+                scenicList.push(new Scenery("selvaTree", 14290.182081453506, -266386.9775915988, 5.829838377064181, 0));
+                scenicList.push(new Scenery("selvaTree", 14620.732412920715, -267082.86215876864, 4.916584403701245, 0));
+                scenicList.push(new Scenery("selvaTree", 15364.272835978503, -267895.73031756043, 1.423759607789905, 0));
+                scenicList.push(new Scenery("selvaTree", 16326.177506945507, -268338.9286566301, 4.063671877283582, 0));
+                scenicList.push(new Scenery("selvaTree", 14343.374246809872, -268236.34874592314, 3.467209274959934, 0));
+                scenicList.push(new Scenery("selvaTree", 12952.761649332659, -268363.78781632805, 1.9802314439167343, 0));
+                scenicList.push(new Scenery("selvaTree", 11039.20990940252, -268115.48940273025, 4.1614504189194035, 0));
+                scenicList.push(new Scenery("selvaTree", 10079.747643253637, -268268.8788426893, 0.09894172817961085, 0));
+                scenicList.push(new Scenery("selvaTree", 15734.128260829762, -266754.54677287414, 4.31203186544025, 0));
+                scenicList.push(new Scenery("selvaTree", 16202.246608726913, -267676.97459807765, 1.7985610692837626, 0));
+                scenicList.push(new Scenery("selvaTree", 16715.346779265157, -266668.2381529121, 2.7522519865684036, 0));
+                scenicList.push(new Scenery("selvaTree", 15030.857913741898, -265987.8107914039, 0.4757118874299355, 0));
+                scenicList.push(new Scenery("selvaTree", 14825.384092767625, -264744.50612092466, 2.1774832286351393, 0));
+                scenicList.push(new Scenery("selvaTree", 13204.61781063624, -267911.92212335, 1.1691212697687623, 0));
+                scenicList.push(new Scenery("selvaTree", 11861.720321665136, -268567.1688273417, 2.356504486943683, 0));
+                scenicList.push(new Scenery("selvaTree", 9326.335968269968, -268549.0060525843, 4.55648943551902, 0));
+                scenicList.push(new Scenery("selvaTree", 9179.246946967074, -266942.43491850037, 1.5572230491919252, 0));
+                scenicList.push(new Scenery("selvaTree", 7409.330594159564, -267971.5362204457, 4.377901377420078, 0));
+                scenicList.push(new Scenery("selvaTree", 7612.730226842353, -267523.5183535672, 4.614761507493678, 0));
+                scenicList.push(new Scenery("selvaTree", 8214.69064059637, -267690.8397091003, 3.339908875369401, 0));
+                scenicList.push(new Scenery("selvaTree", 7657.881984005219, -268475.63249523565, 3.9956031179745035, 0));
+                scenicList.push(new Scenery("selvaTree", 8794.277541044163, -268568.22864898376, 4.086397875712299, 0));
+                scenicList.push(new Scenery("selvaTree", 8852.02218444405, -268302.4981506884, 3.3877116237608726, 0));
+                scenicList.push(new Scenery("selvaTree", 8954.015391368657, -267844.5961222039, 0.44301579682972325, 0));
+                scenicList.push(new Scenery("selvaTree", 10302.697327632857, -267566.8733381212, 3.0603361307950654, 0));
+                scenicList.push(new Scenery("selvaTree", 9494.984449263426, -267482.91029149597, 2.261015636797855, 0));
+                scenicList.push(new Scenery("selvaTree", 9837.989298464476, -267630.68991449254, 0.2947647985898849, 0));
+                scenicList.push(new Scenery("selvaTree", 9468.650465733057, -268008.8701166224, 1.0717171615396315, 0));
+                scenicList.push(new Scenery("selvaTree", 8622.094666771312, -267346.3991130437, 2.107783613760992, 0));
+                scenicList.push(new Scenery("selvaTree", 8971.912318183602, -267258.84082448203, 5.641349648282927, 0));
+                scenicList.push(new Scenery("selvaTree", 8140.971109315111, -266118.9578685666, 4.461797836231368, 0));
+                scenicList.push(new Scenery("selvaTree", 8535.953763040767, -266236.22133431747, 1.6553783632148018, 0));
+                scenicList.push(new Scenery("selvaTree", 8660.005246561352, -266394.77241532627, 4.046965578844028, 0));
+                scenicList.push(new Scenery("selvaTree", 8463.370497613429, -266033.8452104547, 2.861803690686344, 0));
+                scenicList.push(new Scenery("selvaTree", 8807.715848200354, -265982.7223552534, 5.035976530319316, 0));
+                scenicList.push(new Scenery("selvaTree", 7523.031312653906, -264965.4000852782, 4.098184974427386, 0));
+                scenicList.push(new Scenery("selvaTree", 7542.52216015692, -264280.32781347155, 4.677346359434924, 0));
+                scenicList.push(new Scenery("selvaTree", 7264.559742933161, -263802.4592216272, 4.395171051515943, 0));
+                scenicList.push(new Scenery("selvaTree", 8012.966512625111, -264051.6435438879, 4.689597174081305, 0));
+                scenicList.push(new Scenery("selvaTree", 9122.285316725585, -264105.0400768167, 4.072636841791005, 0));
+                scenicList.push(new Scenery("selvaTree", 8779.300053418661, -263203.7898802193, 1.8609949269404291, 0));
+                scenicList.push(new Scenery("selvaTree", 8662.706682778853, -261553.73190029463, 4.6306921086824975, 0));
+                scenicList.push(new Scenery("selvaTree", 9394.766225282236, -261177.31414214266, 2.8351007272852775, 0));
+                scenicList.push(new Scenery("selvaTree", 9482.057310942402, -260548.16268889385, 0.2813465915570385, 0));
+                scenicList.push(new Scenery("selvaTree", 9005.955651724464, -259899.09249790525, 1.1263696136149013, 0));
+                scenicList.push(new Scenery("selvaTree", 8853.5302080568, -259056.56039649423, 4.447955093664571, 0));
+                scenicList.push(new Scenery("selvaTree", 11827.026207325538, -259151.6827338902, 6.240290541624467, 0));
+                scenicList.push(new Scenery("selvaTree", 11617.999036246638, -260188.45324061278, 5.462420763072754, 0));
+                scenicList.push(new Scenery("selvaTree", 13526.361356247917, -261474.01441717386, 5.057847048460877, 0));
+                scenicList.push(new Scenery("selvaTree", 10214.365155077858, -265068.67544060154, 2.7036957720830923, 0));
+                scenicList.push(new Scenery("selvaTree", 11146.308874023029, -266822.99984714796, 1.1961094463738704, 0));
+                scenicList.push(new Scenery("selvaTree", 11121.526996917532, -267352.7003722346, 5.182615887034737, 0));
+                scenicList.push(new Scenery("selvaTree", 12393.108714092834, -267987.34876638703, 5.709600362154308, 0));
+                scenicList.push(new Scenery("selvaTree", 13465.287886862538, -267304.2129693943, 5.346978781795018, 0));
+                scenicList.push(new Scenery("selvaTree", 14072.426622915658, -267563.25994336343, 3.791909426112557, 0));
+                scenicList.push(new Scenery("selvaTree", 15116.209974002983, -268521.04888405633, 0.8819160038813987, 0));
+                scenicList.push(new Scenery("selvaTree", 16979.35704722781, -267957.2270450506, 5.664765304496606, 0));
+                scenicList.push(new Scenery("selvaTree", 16736.27357384789, -267271.7355756341, 4.4661832198379265, 0));
+                scenicList.push(new Scenery("selvaTree", 16196.831182171725, -267101.4029762362, 0.09078667333708801, 0));
+                scenicList.push(new Scenery("selvaTree", 16283.063058322234, -265110.2087107139, 2.572095281110116, 0));
+                scenicList.push(new Scenery("selvaTree", 16665.82378303784, -265646.9738624431, 4.0290383202887226, 0));
+                scenicList.push(new Scenery("selvaTree", 16145.507077630793, -266166.19332466426, 2.3285671009424815, 0));
+                scenicList.push(new Scenery("selvaTree", 16099.717179302943, -265764.23851044377, 3.9865750501018016, 0));
+                scenicList.push(new Scenery("selvaTree", 16717.313092162043, -264911.6225548765, 5.9576488819099875, 0));
+                scenicList.push(new Scenery("selvaTree", 16536.911475182817, -263432.6733845043, 0.35494314399600285, 0));
+                scenicList.push(new Scenery("selvaTree", 16295.517696287088, -261640.14955963462, 2.782575748692246, 0));
+                scenicList.push(new Scenery("selvaTree", 15777.875840829458, -261241.014792843, 6.023447212525011, 0));
+                scenicList.push(new Scenery("selvaTree", 16537.762658142805, -260715.01002866472, 5.3419253941271885, 0));
+                scenicList.push(new Scenery("selvaTree", 15880.445400133562, -260121.07718097835, 2.121356124600052, 0));
+                scenicList.push(new Scenery("selvaTree", 15079.779347744763, -258999.75381892917, 5.186497178590096, 0));
+                scenicList.push(new Scenery("selvaTree", 14470.331607306745, -259721.3907702262, 1.7833936846388327, 0));
+                scenicList.push(new Scenery("selvaTree", 13625.430043443535, -259408.22436279192, 1.1279880784682448, 0));
+                scenicList.push(new Scenery("selvaTree", 13292.917761924495, -258897.1631740735, 3.165465924378559, 0));
+                scenicList.push(new Scenery("selvaTree", 12728.648200877336, -259022.93391906723, 5.83840423043384, 0));
+                scenicList.push(new Scenery("selvaTree", 12407.127463273615, -258693.4305854976, 1.6928320210890222, 0));
+                scenicList.push(new Scenery("selvaTree", 11163.31097858257, -258940.63828563027, 2.7747105884543886, 0));
+                scenicList.push(new Scenery("selvaTree", 10317.879649909932, -258854.40718396308, 2.1616887030388785, 0));
+                scenicList.push(new Scenery("selvaTree", 7422.534809538577, -262122.1784324811, 2.2355390737574425, 0));
+                scenicList.push(new Scenery("selvaTree", 8328.114672284852, -262755.45958705334, 0.06258679738968677, 0));
+                scenicList.push(new Scenery("selvaTree", 8573.578242706873, -262365.612954953, 5.315332069349272, 0));
+                scenicList.push(new Scenery("selvaTree", 11497.487866916092, -261337.237554089, 2.7869387896838216, 0));
+                scenicList.push(new Scenery("selvaTree", 12607.712116311535, -262438.57926212106, 0.8961137210316908, 0));
+                scenicList.push(new Scenery("selvaTree", 13255.647349194933, -263383.97131796175, 0.6085004331875216, 0));
+                scenicList.push(new Scenery("selvaTree", 14114.330618522254, -264271.05628597405, 1.4485698796853053, 0));
+                scenicList.push(new Scenery("selvaTree", 14572.955071715965, -263789.7705666104, 0.6976996673592829, 0));
+                scenicList.push(new Scenery("selvaTree", 15657.030203322285, -263131.21646957914, 1.392516829438134, 0));
+                scenicList.push(new Scenery("selvaTree", 16398.649996825658, -264361.73819559853, 1.158280707867918, 0));
+                scenicList.push(new Scenery("selvaTree", 15991.468624138111, -262058.18592774647, 2.715837317876232, 0));
+                scenicList.push(new Scenery("selvaTree", 16841.731562567315, -261343.90779616253, 0.6723802947570248, 0));
+                scenicList.push(new Scenery("selvaTree", 16811.208106778122, -262505.62513958564, 2.8031646813342173, 0));
+                scenicList.push(new Scenery("selvaTree", 16318.364351438033, -262905.93512021063, 3.4610592621218608, 0));
+                scenicList.push(new Scenery("selvaTree", 14561.141040427681, -262788.404197379, 5.796065750593366, 0));
+                scenicList.push(new Scenery("selvaTree", 8254.664825501672, -264574.04875710886, 4.1419358532976833, 0));
+                scenicList.push(new Scenery("selvaTree", 9469.15224314182, -265161.8105874146, 0, 0));
+                scenicList.push(new Scenery("selvaTree", 7336.266345603575, -263088.545959501, 3.9384050569662707, 0));
+                scenicList.push(new Scenery("selvaTree", 7565.362182217615, -262705.5250887462, 0.6623338183972799, 0));
+                scenicList.push(new Scenery("selvaTree", 7897.526779500769, -263460.11535209307, 0.6035601130175139, 0));
+                scenicList.push(new Scenery("selvaTree", 9619.319561431184, -263116.77141959086, 5.264291864905394, 0));
+                scenicList.push(new Scenery("selvaTree", 10179.294487970208, -264117.46750793315, 0.11894862300755776, 0));
+                scenicList.push(new Scenery("selvaTree", 10859.79911729273, -264479.1342564319, 1.8297448404684127, 0));
+                scenicList.push(new Scenery("selvaTree", 11035.434728659226, -263904.55814832746, 1.0175203926455672, 0));
+                scenicList.push(new Scenery("selvaTree", 11566.63330780876, -264565.5328990744, 5.2308201345148015, 0));
+                scenicList.push(new Scenery("selvaTree", 10553.896771195588, -265914.22664469376, 1.0736013086914753, 0));
+                scenicList.push(new Scenery("selvaTree", 10771.648067936769, -265411.62521580665, 4.087540381915418, 0));
+                scenicList.push(new Scenery("selvaTree", 11124.440514090944, -265802.76973605185, 2.718560452774538, 0));
+                scenicList.push(new Scenery("selvaTree", 12484.831527461412, -267249.28940431, 2.1861137736109644, 0));
+                scenicList.push(new Scenery("selvaTree", 11929.846294113915, -266952.0460613652, 0.5655959048774044, 0));
+                scenicList.push(new Scenery("selvaTree", 12939.254019215625, -265361.76713243994, 4.144685930280296, 0));
+                scenicList.push(new Scenery("selvaTree", 14494.550829246826, -265483.4159227844, 2.724427924625283, 0));
+                scenicList.push(new Scenery("selvaTree", 14075.81868685736, -265831.8277113604, 0.7176633328416602, 0));
+                scenicList.push(new Scenery("selvaTree", 13748.099925736504, -265278.22921683907, 5.050896000240836, 0));
+                scenicList.push(new Scenery("selvaTree", 14132.942288506298, -264869.7492428329, 0.8280262276383623, 0));
+                scenicList.push(new Scenery("selvaTree", 13382.26599663818, -264587.0069670729, 4.475584494516093, 0));
+                scenicList.push(new Scenery("selvaTree", 14052.235573731192, -263267.7376232223, 2.8563315019651005, 0));
+                scenicList.push(new Scenery("selvaTree", 13694.688468462042, -262954.52693444415, 3.687342707297833, 0));
+                scenicList.push(new Scenery("selvaTree", 13988.070689565951, -262486.25748469145, 5.93981752391926, 0));
+                scenicList.push(new Scenery("selvaTree", 14491.868982423173, -262087.29755053957, 5.9856250360151, 0));
+                scenicList.push(new Scenery("selvaTree", 14456.79886301681, -261075.06654326702, 2.189516708563887, 0));
+                scenicList.push(new Scenery("selvaTree", 15062.71950295081, -260355.26772904705, 6.049340659812883, 0));
+                scenicList.push(new Scenery("selvaTree", 15355.562146733848, -259501.35982063657, 1.2549154461959207, 0));
+                scenicList.push(new Scenery("selvaTree", 16203.329189301698, -259288.38791032755, 3.1178376811683877, 0));
+                scenicList.push(new Scenery("selvaTree", 15313.721464361754, -260781.60801350343, 3.1492719039262527, 0));
+                scenicList.push(new Scenery("selvaTree", 14986.06623941337, -261205.6111788682, 5.393874268018411, 0));
+                scenicList.push(new Scenery("selvaTree", 13216.471639922942, -260053.99865720188, 1.4792860347282626, 0));
+                scenicList.push(new Scenery("selvaTree", 12986.087762897863, -260371.79139822867, 0.054756675140377485, 0));
+                scenicList.push(new Scenery("selvaTree", 13329.091322146478, -260617.14777752783, 3.6095074121048483, 0));
+                scenicList.push(new Scenery("selvaTree", 10517.481410864057, -261228.48707531826, 1.450970441050025, 0));
+                scenicList.push(new Scenery("selvaTree", 10001.258072082539, -261276.22665629452, 5.091131383555768, 0));
+                scenicList.push(new Scenery("selvaTree", 9626.889144362534, -262586.76858549926, 2.5778922035842036, 0));
+                scenicList.push(new Scenery("selvaTree", 11855.32845625729, -263917.8961912834, 2.178244372351786, 0));
+                scenicList.push(new Scenery("selvaTree", 12656.318064119536, -264187.64745672385, 4.536007262714684, 0));
+                scenicList.push(new Scenery("selvaTree", 12669.013074810004, -263642.80635793094, 2.834304384213943, 0));
+                scenicList.push(new Scenery("selvaTree", 11973.062236275133, -263389.4539065085, 5.010204528462767, 0));
+                scenicList.push(new Scenery("selvaTree", 10374.180716843466, -262557.62629910937, 3.0282020567201644, 0));
+                scenicList.push(new Scenery("selvaTree", 10473.670087253033, -262054.28026409625, 1.19594603876247, 0));
+                scenicList.push(new Scenery("selvaTree", 10942.729165155035, -261765.94030210236, 3.5424671196318815, 0));
+                scenicList.push(new Scenery("selvaTree", 11534.741558810249, -262066.71639783075, 5.4510608043221005, 0));
+                scenicList.push(new Scenery("selvaTree", 11479.421799881384, -262531.50435840257, 0.9112553916581501, 0));
+                scenicList.push(new Scenery("selvaTree", 10913.038385415966, -262306.72621978994, 2.066395004949104, 0));
+                scenicList.push(new Scenery("selvaTree", 12236.526125227761, -262846.63726531295, 0.4353894046036031, 0));
+                scenicList.push(new Scenery("selvaTree", 11640.209888234414, -263051.09143507393, 6.27468610428313, 0));
+                scenicList.push(new Scenery("selvaTree", 12547.94925750651, -263262.4263145156, 5.0172434936882375, 0));
+                scenicList.push(new Scenery("selvaTree", 12151.245071136069, -265314.4130835, 3.119987511952034, 0));
+                scenicList.push(new Scenery("selvaTree", 11996.506854870267, -265693.3177033798, 4.992856536604676, 0));
+                scenicList.push(new Scenery("selvaTree", 11360.27911813424, -265276.74129268463, 1.6865569114911643, 0));
+                scenicList.push(new Scenery("selvaTree", 12070.439059415574, -264793.7923355237, 5.55241236315139, 0));
+                scenicList.push(new Scenery("selvaTree", 12685.001491799992, -264555.83757350047, 5.3591377538753235, 0));
+                scenicList.push(new Scenery("selvaTree", 12135.605107116995, -264357.3374979211, 4.769329267183254, 0));
+                scenicList.push(new Scenery("selvaTree", 11496.612002106447, -263547.0824641573, 1.821664817023068, 0));
+                scenicList.push(new Scenery("selvaTree", 10773.067124245916, -262618.5514176373, 1.9533804068742433, 0));
+                scenicList.push(new Scenery("selvaTree", 10515.671163848012, -259756.4802480603, 3.093792538217778, 0));
+                scenicList.push(new Scenery("selvaTree", 11235.383909739525, -259596.1991867478, 4.432176090094036, 0));
+                scenicList.push(new Scenery("selvaTree", 10580.365742746246, -259351.01207067657, 1.9689192469858874, 0));
+                scenicList.push(new Scenery("selvaTree", 12476.390326823594, -260671.40480929086, 4.60594112795178, 0));
+                scenicList.push(new Scenery("selvaTree", 12255.971863455718, -261138.01237086256, 5.521956338615777, 0));
+                scenicList.push(new Scenery("selvaTree", 12815.85022351355, -260999.99566497427, 4.2268048297857534, 0));
+                scenicList.push(new Scenery("selvaTree", 13963.910546740826, -260345.11845618437, 3.5168082346755827, 0));
+                scenicList.push(new Scenery("selvaTree", 14557.012585900458, -260251.3799596852, 0.8108306029328022, 0));
+                scenicList.push(new Scenery("selvaTree", 16650.135392236803, -260129.77693556607, 1.5322556324398384, 0));
+                scenicList.push(new Scenery("selvaTree", 16068.799385521143, -260612.62544100944, 3.564971745343455, 0));
+                scenicList.push(new Scenery("selvaTree", 15750.586733355723, -260710.33150420772, 1.2331387098631388, 0));
+                scenicList.push(new Scenery("selvaTree", 14050.245555633985, -260811.8862292912, 5.779256831616923, 0));
+                scenicList.push(new Scenery("selvaTree", 10824.50451580737, -260501.31338247392, 5.97511147532847, 0));
+                scenicList.push(new Scenery("selvaTree", 11177.181810707165, -260836.24115496903, 0.1023934857594481, 0));
+                scenicList.push(new Scenery("selvaTree", 11202.184258525223, -260466.13466057205, 5.860816437999176, 0));
+                scenicList.push(new Scenery("selvaTree", 10799.863730347268, -260109.17605701508, 2.9009741984506165, 0));
+                scenicList.push(new Scenery("selvaTree", 15308.449767054182, -267389.729584087, 1.2992822765791465, 0));
+                scenicList.push(new Scenery("selvaTree", 14905.60741663066, -267770.9352937627, 1.171316493320412, 0));
+                scenicList.push(new Scenery("selvaTree", 13601.520764909183, -268641.87711113406, 3.6435147932498984, 0));
+                scenicList.push(new Scenery("selvaTree", 15331.013340541382, -265056.73557295545, 0.6197480228399992, 0));
+                scenicList.push(new Scenery("selvaTree", 15234.640652810456, -263277.27079180535, 2.763002057042003, 0));
+                scenicList.push(new Scenery("selvaTree", 15518.933475714206, -262719.05046122236, 2.2742887293013414, 0));
+                scenicList.push(new Scenery("selvaTree", 13466.897426920734, -263752.33114030294, 3.1832331701337884, 0));
+
+                scenicList.push(new Scenery("overVines", 9092.396755124813, -266385.9445682527, -0.4, 3, 2.2));
+                scenicList.push(new Scenery("overVines", 7489.944914379406, -265873.89025202894, 1.4, 2, 1.7));
+                scenicList.push(new Scenery("overVines", 10542.432317719056, -264760.02682787157, -2.4, 4, 1.4));
+                scenicList.push(new Scenery("overVines", 11027.088643639112, -264881.6308179798, 2, 1, 2.4));
+                scenicList.push(new Scenery("overVines", 11244.590565445727, -264931.2517064566, 0.8, 2, 1.4));
+                scenicList.push(new Scenery("overVines", 11200.479581887515, -264960.2187059047, -0.8, 3, 1.7));
+                scenicList.push(new Scenery("overVines", 9140.396795226952, -263455.2752914885, 0.6, 2, 1))
+                scenicList.push(new Scenery("overVines", 9630.844680631593, -261512.8668367236, 0.3, 4, 2.1));
+                scenicList.push(new Scenery("overVines", 9635.844680631593, -261512.8668367236, -0.3, 1, 2.1));
+                scenicList.push(new Scenery("overVines", 11320.910951676728, -263186.7988993511, 0.3, 3, 1.5));
+                scenicList.push(new Scenery("overVines", 14667.614303214876, -266144.47208521084, 0.3, 1, 1.4));
+                scenicList.push(new Scenery("overVines", 14651.29191561787, -265847.1018638777, -1, 3, 1.8));
+                scenicList.push(new Scenery("overVines", 15374.942488142076, -261301.6341999169, -2, 1, 2.3));
+                scenicList.push(new Scenery("overVines", 14832.209756628974, -260840.10768614244, 0.8, 1, 2));
+                scenicList.push(new Scenery("overVines", 8020.3648553651665, -260813.47254190818, 1.8, 1, 2.3));
+                scenicList.push(new Scenery("overVines", 10895.367531640872, -261152.506145356, 1, 3, 2));
+                scenicList.push(new Scenery("overVines", 10208.692709186924, -260880.2330594544, 2, 1, 1.4));
+                scenicList.push(new Scenery("overVines", 10429.46446496851, -260824.6625031607, 2.1, 2, 0.7));
+
+                scenicList.push(new Scenery("vinePatch", 11181.64867751626, -264750.658691312, 0, 2));
+                scenicList.push(new Scenery("vinePatch", 11403.063902072787, -264779.15124836273, 3, 4));
+                scenicList.push(new Scenery("vinePatch", 11883.969670590219, -264739.5867877793, 2, 4));
+                scenicList.push(new Scenery("vinePatch", 11718.017846147262, -264336.10970630357, 2.8, 3));
+                scenicList.push(new Scenery("vinePatch", 11873.813343234086, -264968.5892990154, 2.3, 4.7));
+                scenicList.push(new Scenery("vinePatch", 11970.619238848964, -264847.9769431622, 1, 1.7));
+                scenicList.push(new Scenery("vinePatch", 11950.485725493469, -264226.69113301724, 3, 4));
+                scenicList.push(new Scenery("vinePatch", 12403.189973093557, -264015.870586033, 1.88, 4));
+                scenicList.push(new Scenery("vinePatch", 11169.337136588972, -264598.81201898045, 7.8, 3.8));
+                scenicList.push(new Scenery("vinePatch", 10603.04248068927, -261927.62675692685, 2.82, 4.5));
+                scenicList.push(new Scenery("vinePatch", 11034.05213516014, -261886.8172584766, 1.742, 4.9));
+                scenicList.push(new Scenery("vinePatch", 13063.965411532323, -260762.88747569197, 6.642, 4));
+                scenicList.push(new Scenery("vinePatch", 13258.939319324472, -260720.0969404855, 4.942, 2));
+                scenicList.push(new Scenery("vinePatch", 14931.051775354885, -263596.86761962064, 3.2, 4));
+                scenicList.push(new Scenery("vinePatch", 14738.585119896237, -263698.076737645, 2.2, 4));
+                scenicList.push(new Scenery("vinePatch", 15364.899136604447, -263369.1493115895, 1.638, 3));
+                scenicList.push(new Scenery("vinePatch", 15079.10994209798, -263922.5740664194, 5.638, 3.8));
+                scenicList.push(new Scenery("vinePatch", 14194.876654698437, -263425.91584557726, 3.678, 4.8));
+                scenicList.push(new Scenery("vinePatch", 14196.796870735056, -263611.1608702216, 2.378, 4.2));
+                scenicList.push(new Scenery("vinePatch", 15127.234429064754, -263087.5701661889, 6.3444, 2.8));
+                scenicList.push(new Scenery("vinePatch", 15183.517747794745, -264257.1880169198, 2.34433, 4.8));
+                scenicList.push(new Scenery("vinePatch", 15311.55506084946, -262828.80448826606, 3.222, 1.6));
+                scenicList.push(new Scenery("vinePatch", 14798.334342076674, -263574.1519997594, 3.1122, 1.7));
+                scenicList.push(new Scenery("vinePatch", 15333.329970209586, -263523.7984436697, 1.772, 2.4));
+                scenicList.push(new Scenery("vinePatch", 14465.1109537708, -263105.92137773085, 5.172, 3.4));
+                scenicList.push(new Scenery("vinePatch", 14566.653863438616, -263614.8000359796, 3.152, 1.8));
+                scenicList.push(new Scenery("vinePatch", 14802.784656070926, -263887.2882558304, 1.99, 2.6));
+                scenicList.push(new Scenery("vinePatch", 14578.17826067941, -263693.1934106192, 4.99, 2.8));
+                scenicList.push(new Scenery("vinePatch", 14361.26937070187, -263003.42346738285, 1, 1.5));
+                scenicList.push(new Scenery("vinePatch", 8853.60944937611, -260190.8191253849, 6.3, 2.9));
+                scenicList.push(new Scenery("vinePatch", 8821.79668529295, -259925.01979483943, 2.7, 3.2));
+                scenicList.push(new Scenery("vinePatch", 8642.232117260792, -260089.06712309286, 1.8, 4.6));
+                scenicList.push(new Scenery("vinePatch", 9008.937191398447, -260067.53656018732, 9.4, 2.2));
+                scenicList.push(new Scenery("vinePatch", 8819.54513281647, -260458.8871097564, 0.7, 2.5));
+                scenicList.push(new Scenery("vinePatch", 9109.404389331561, -260097.01946753636, 1.11, 3.1));
+                scenicList.push(new Scenery("vinePatch", 8575.748381585512, -260100.06376703002, 5.9, 1.85));
+                scenicList.push(new Scenery("vinePatch", 14753.434771892189, -261305.7302926744, 4.9, 3.15));
+                scenicList.push(new Scenery("vinePatch", 15069.955623593745, -261335.5238653951, 3.6, 1.75));
+                scenicList.push(new Scenery("vinePatch", 15052.270451563812, -261528.816530763, 2.1, 3.888));
+                scenicList.push(new Scenery("vinePatch", 14941.517636042341, -261450.3486602399, 8.4, 3.445));
+                scenicList.push(new Scenery("vinePatch", 14593.990699538997, -261252.92901200487, 2.6, 4.215));
+                scenicList.push(new Scenery("vinePatch", 15209.929744600771, -261358.34244788365, 7.88, 3.115));
+                scenicList.push(new Scenery("vinePatch", 15212.837368350512, -261508.59540557483, 4.3, 3.0765));
+                scenicList.push(new Scenery("vinePatch", 15176.573460964988, -261094.9685638637, 1.33, 2.15));
+                scenicList.push(new Scenery("vinePatch", 9200.48849606757, -267102.04389805737, 2.23, 2.95));
+                scenicList.push(new Scenery("vinePatch", 9090.354364261078, -267219.50834061287, 5.73, 3.35));
+                scenicList.push(new Scenery("vinePatch", 9343.654525751563, -267337.36726667656, 1.83, 1.75));
+                scenicList.push(new Scenery("vinePatch", 9081.151960226329, -267324.36609290174, 5.93, 2.85));
+                scenicList.push(new Scenery("vinePatch", 9512.97250949908, -266900.5123404455, 1.223, 4.35));
+                scenicList.push(new Scenery("vinePatch", 9327.670268254016, -266829.43819126155, 6.113, 4.15));
+                scenicList.push(new Scenery("vinePatch", 9568.02851212449, -266774.69966391777, 8.33, 1.85));
+                scenicList.push(new Scenery("vinePatch", 9447.43691280791, -267309.67562762526, 2.13, 2.45));
+                scenicList.push(new Scenery("vinePatch", 15106.857412793108, -260953.70848151887, 1.13, 3.15));
+                scenicList.push(new Scenery("vinePatch", 15220.144180953681, -261008.78486364157, 7.77, 1.45));
+
+                scenicList.push(new Scenery("decipulaPlant", 10622.474045522491, -265746.484853591, 2.7, true));
+                scenicList.push(new Scenery("decipulaPlant", 12362.62755423448, -263622.4689356883, 1.86, true));
+                scenicList.push(new Scenery("decipulaPlant", 9331.844420603202, -264607.78080155066, 0.33, true));
+
+                scenicList.push(new Scenery("athergmPlant", 12233.297683562216, -261938.46358263204, 1.8, 1));
+                scenicList.push(new Scenery("athergmPlant", 12838.101517560226, -262122.85542392873, 5.3, 1));
+                scenicList.push(new Scenery("athergmPlant", 12617.331920551565, -261769.8981087213, 7.111, 1));
+                scenicList.push(new Scenery("athergmPlant", 12979.235296218849, -261553.96283353996, 2.23, 1));
+                scenicList.push(new Scenery("athergmPlant", 12001.741105529285, -261590.1251024435, 0.3, 1));
+                scenicList.push(new Scenery("athergmPlant", 12328.730505326848, -266760.061614842, 2.94, 1));
+                scenicList.push(new Scenery("athergmPlant", 9023.344694947724, -262097.7464619297, 8.54, 1));
+                scenicList.push(new Scenery("athergmPlant", 9143.827547210123, -261766.42184481566, 6.14, 1));
+                scenicList.push(new Scenery("athergmPlant", 8146.610015590998, -262085.7550126895, 1.24, 1));
+                scenicList.push(new Scenery("athergmPlant", 8909.059113851175, -262680.34785851615, 5.34, 1));
+                scenicList.push(new Scenery("athergmPlant", 9212.773791923937, -262383.5354415221, 0.334, 1));
+
+                scenicList.push(new Scenery("cerebrisPlant", 12984.911223132383, -259668.3276431325, 6.8, 1));
+                scenicList.push(new Scenery("cerebrisPlant", 13155.56096923165, -259382.38796084648, 2.3, 1));
+                scenicList.push(new Scenery("cerebrisPlant", 11700.336133719538, -268154.9642229551, 1.6, 1));
+                scenicList.push(new Scenery("cerebrisPlant", 11941.776284780664, -259749.24415041457, 2.6, 1));
+                scenicList.push(new Scenery("cerebrisPlant", 11267.014430725807, -268566.9232051612, 7.1, 1));
+                scenicList.push(new Scenery("cerebrisPlant", 12424.763779347584, -260119.10624457884, 2.55, 1));
+
+                scenicList.push(new Scenery("crilkPlant", 8618.308552981265, -259856.7972556402, 1.2, true));
+                scenicList.push(new Scenery("crilkPlant", 10877.98345242653, -261831.9881642188, 4.21, true));
+                scenicList.push(new Scenery("crilkPlant", 11509.643897535108, -267710.8560916306, 3.55, true));
+                scenicList.push(new Scenery("crilkPlant", 15107.586978278896, -265576.5738216444, 2.99, true));
+                scenicList.push(new Scenery("crilkPlant", 15857.44142369725, -268318.8720238119, 4.11, true));
+
+                scenicList.push(new Scenery("gojiiPlant", 15040.010445213393, -263790.8078423967, 1.4, true));
+                scenicList.push(new Scenery("gojiiPlant", 15138.118354360178, -261433.52472764827, 2.1, true));
+
+                scenicList.push(new Scenery("blilPlant", 14006.408338926072, -259821.63567460768, 2.78, true));
+                scenicList.push(new Scenery("blilPlant", 7935.436453946449, -260077.53029660246, 6.228, true));
+                scenicList.push(new Scenery("blilPlant", 13385.644323276052, -266614.20120580494, 1.278, true));
+
+                scenicList.push(new Scenery("morshPlant", 15744.47064728149, -266238.42067687155, 3.558, true));
+                scenicList.push(new Scenery("morshPlant", 13223.856575307347, -262595.2547825084, 2.453, true));
+                scenicList.push(new Scenery("morshPlant", 11411.305703141463, -263917.4693907451, 4.852, true));
+                scenicList.push(new Scenery("morshPlant", 10882.59713503384, -265091.62493487063, 0.116, true));
+                scenicList.push(new Scenery("morshPlant", 7891.414705686507, -268134.42402750737, 6.716, true));
+
+                scenicList.push(new Scenery("yaihefPlant", 9026.652997012077, -263476.1066182719, 1.557, true));
+                scenicList.push(new Scenery("yaihefPlant", 8383.197415282806, -264963.27346899646, 2.337, true));
+                scenicList.push(new Scenery("yaihefPlant", 11696.843822524646, -266587.88970407646, 7.1, true));
+                scenicList.push(new Scenery("yaihefPlant", 9321.114262746958, -267222.47522105806, 6.24, true));
+                scenicList.push(new Scenery("yaihefPlant", 12115.015105102917, -260038.70276564945, 1.1, true));
+
+                scenicList.push(new Scenery("valumPlant", 12431.602493279623, -265639.049038204, 1, 1));
+                scenicList.push(new Scenery("valumPlant", 12970.097826891773, -264740.8962113991, 1.85, 1));
+
+                scenicList.push(new Scenery("bahabPlant", 10136.24945045726, -263610.2437818904, 3.1, 1));
+                scenicList.push(new Scenery("bahabPlant", 10596.039062863894, -263373.45699277706, 4.31, 1));
+                scenicList.push(new Scenery("bahabPlant", 10416.644313833453, -263022.83191768965, 2.33, 1));
+                scenicList.push(new Scenery("bahabPlant", 9858.135813102786, -263356.34333727014, 7.22, 1));
+                scenicList.push(new Scenery("bahabPlant", 10776.180708104273, -263499.78553123167, 0.32, 1));
+                scenicList.push(new Scenery("bahabPlant", 10231.514519649627, -263186.607980672, 2.86, 1));
+                scenicList.push(new Scenery("bahabPlant", 10333.133529028635, -263451.0206626281, 4.74, 1));
+                scenicList.push(new Scenery("bahabPlant", 10617.071349011463, -263701.23644453194, 1.24, 1));
+                scenicList.push(new Scenery("bahabPlant",  12688.526286048895, -267562.3997860501, 7.11, 1));
+
+                ArtificialIntelligenceAccess.push(new Unit(10574.64000786938, -263491.1957839496, "Babosa", false, "Glubbe1", {patrolStops: 0, patrolLoop: false}));
+                ArtificialIntelligenceAccess.push(new Unit(10087.258292159162, -263349.41056650697, "Babosa", true, "Glubbe2", {patrolStops: 0, patrolLoop: false}));
+                ArtificialIntelligenceAccess.push(new Unit(10217.725783186905, -263829.71720088925, "Babosa", true, "Glubbe3", {patrolStops: 0, patrolLoop: false}));
+                ArtificialIntelligenceAccess.push(new Unit(10308.15849079612, -262800.9996245034, "Babosa", false, "Glubbe4", {patrolStops: 0, patrolLoop: false}));
+                ArtificialIntelligenceAccess.push(new Unit(10364.284829470225, -263234.1030887562, "Babosa", true, "Glubbe5", {patrolStops: 0, patrolLoop: false}));
+                ArtificialIntelligenceAccess.push(new Unit(9929.45578924369, -263504.3737019781, "Babosa", false, "Glubbe6", {patrolStops: 0, patrolLoop: false}));
+                ArtificialIntelligenceAccess.push(new Unit(10768.19056068868, -263184.7482197102, "Babosa", true, "Glubbe7", {patrolStops: 0, patrolLoop: false}));
+
+                ArtificialIntelligenceAccess.push(new Unit(15111.46777343692, -261382.1240304371, "Salisea", true, "snykatck1"));
+                ArtificialIntelligenceAccess.push(new Unit(15665.910929845579, -260596.82827313323, "Salisea", false, "snykatck2"));
+                ArtificialIntelligenceAccess.push(new Unit(16645.428941010407, -262257.3378418423, "Salisea", false, "snykatck3"));
+
+                ArtificialIntelligenceAccess.push(new Unit(15776.988081320656, -267433.528607218, "Gorgon", false, "Grakhungy1"));
+                ArtificialIntelligenceAccess.push(new Unit(16608.1765892983, -267598.05527810345, "Gorgon", true, "Grakhungy1"));
+
+                ArtificialIntelligenceAccess.push(new Unit(14558.571130733391, -265592.52555436204, "Boa", false, "constrictohno1"));
+                ArtificialIntelligenceAccess.push(new Unit(13771.387974653959, -260688.10939423591, "Boa", true, "constrictohno2"));
+                ArtificialIntelligenceAccess.push(new Unit(7531.09665538414, -264517.64925672096, "Boa", false, "constrictohno3"));
+                ArtificialIntelligenceAccess.push(new Unit( 7644.811016898702, -268224.94299835566, "Boa", false, "constrictohno4"));
+
+                ArtificialIntelligenceAccess.push(new Unit(9357.205014983192, -267657.58414374886, "Gulfrey", true, "Guldylcks1"));
+                ArtificialIntelligenceAccess.push(new Unit(9717.838307813578, -267446.1854944727, "Gulfrey", false, "Guldylcks2"));
+                ArtificialIntelligenceAccess.push(new Unit(9687.457896865346, -267755.60776622704, "Gulfrey", false, "Guldylcks3"));
+                ArtificialIntelligenceAccess.push(new Unit(9212.712333083262, -267964.6747618307, "Gulfrey", false, "Guldylcks4"));
+                ArtificialIntelligenceAccess.push(new Unit(9573.13637470697, -268085.03740932187, "Gulfrey", false, "Guldylcks5"));
+                ArtificialIntelligenceAccess.push(new Unit(10217.08961870549, -267732.133603679, "Gulfrey", false, "Guldylcks6"));
+                ArtificialIntelligenceAccess.push(new Unit(8967.304933946261, -265054.4370074765, "Gulfrey", true, "Guldylcks7"));
+                ArtificialIntelligenceAccess.push(new Unit(9319.593326557713, -265001.41086767684, "Gulfrey", false, "Guldylcks8"));
+                ArtificialIntelligenceAccess.push(new Unit(9246.648558825347, -265302.63533262, "Gulfrey", false, "Guldylcks9"));
+                ArtificialIntelligenceAccess.push(new Unit(9110.92818820392, -265195.4838334933, "Gulfrey", false, "Guldylcks10"));
+                ArtificialIntelligenceAccess.push(new Unit(9002.773590501285, -264847.68177530705, "Gulfrey", true, "Guldylcks11"));
+                ArtificialIntelligenceAccess.push(new Unit(9521.252054169665, -265080.9637190942, "Gulfrey", false, "Guldylcks12"));
+                ArtificialIntelligenceAccess.push(new Unit(9470.785582288285, -264693.7486704398, "Gulfrey", false, "Guldylcks13"));
+
+                ArtificialIntelligenceAccess.push(new Unit(11054.194525864845, -266259.0706794641, "Etyr", false, "Drklrd1"));
+                ArtificialIntelligenceAccess.push(new Unit(10990.548840085405, -266094.3703855444, "Etyr", false, "Drklrd2"));
+                ArtificialIntelligenceAccess.push(new Unit(11189.087402308412, -265939.5092572754, "Etyr", true, "Drklrd3"));
+                ArtificialIntelligenceAccess.push(new Unit(10857.507134176734, -265968.03658349224, "Etyr", false, "Drklrd4"));
+                ArtificialIntelligenceAccess.push(new Unit(11111.81605300366, -266049.57804886694, "Etyr", true, "Drklrd5"));
+                ArtificialIntelligenceAccess.push(new Unit(11202.75490078686, -266130.4210907603, "Etyr", false, "Drklrd6"));
+                ArtificialIntelligenceAccess.push(new Unit(11832.130051750893, -268093.0302679188, "Etyr", true, "Drklrd7"));
+                ArtificialIntelligenceAccess.push(new Unit(8931.170490102828, -260317.72517571176, "Etyr", true, "Drklrd8"));
+                ArtificialIntelligenceAccess.push(new Unit(9047.333837748867, -260191.56096221053, "Etyr", false, "Drklrd9"));
+                ArtificialIntelligenceAccess.push(new Unit(8632.601101435463, -260294.43697107647, "Etyr", false, "Drklrd10"));
+                ArtificialIntelligenceAccess.push(new Unit(8838.136528074592, -260066.36138308284, "Etyr", false, "Drklrd11"));
+                ArtificialIntelligenceAccess.push(new Unit(9110.686020172883, -259967.92369488487, "Etyr", false, "Drklrd12"));
+                ArtificialIntelligenceAccess.push(new Unit(9207.674663103584, -260130.03332831952, "Etyr", false, "Drklrd13"));
+                ArtificialIntelligenceAccess.push(new Unit(9237.820883292277, -260014.8157141747, "Etyr", true, "Drklrd14"));
+                ArtificialIntelligenceAccess.push(new Unit(7565.3214453481705, -262237.978166962, "Etyr", true, "Drklrd15"));
+                ArtificialIntelligenceAccess.push(new Unit(7468.912900493372, -262023.06739213396, "Etyr", false, "Drklrd16"));
+                ArtificialIntelligenceAccess.push(new Unit(7582.77723347888, -262080.18288772344, "Etyr", true, "Drklrd17"));
+                ArtificialIntelligenceAccess.push(new Unit(7592.228306115385, -261984.82506715693, "Etyr", false, "Drklrd18"));
+                ArtificialIntelligenceAccess.push(new Unit(7667.611383384234, -262093.984236759, "Etyr", true, "Drklrd19"));
+                ArtificialIntelligenceAccess.push(new Unit(11427.700108593737, -268414.55090000166, "Etyr", true, "Drklrd20"));
+                ArtificialIntelligenceAccess.push(new Unit(11419.58347973275, -268522.5869624863, "Etyr", false, "Drklrd21"));
+                ArtificialIntelligenceAccess.push(new Unit( 11611.076176977043, -268269.5568997218, "Etyr", false, "Drklrd22"));
+
+                scenicList.push(new Scenery("araneaDen", 13642.341462007116, -267852.6330985055, 5, false, true));
+                scenicList.push(new Scenery("araneaDen", 13156.819352147464, -267106.4592356964, 2, true, true));
+                scenicList.push(new Scenery("araneaDen", 11521.580052156994, -260820.1803501116, 4, true, true));
+                scenicList.push(new Scenery("araneaDen", 12820.656736800915, -262873.87929264025, 3, false, false));
+                scenicList.push(new Scenery("araneaDen", 12615.184264565847, -267354.70592107286, 7, false, false));
+                scenicList.push(new Scenery("araneaDen", 13076.378559698149, -267805.40266324236, 3.6, false, false));
+                scenicList.push(new Scenery("araneaDen", 13850.917659335306, -267112.0853428192, 0.6, false, false));
+                scenicList.push(new Scenery("araneaDen", 13782.663124959712, -266610.8830396189, 2.33, false, false));
+                scenicList.push(new Scenery("araneaDen", 14065.967666995053, -267653.79478533135, 1.677, false, false));
+
+                ArtificialIntelligenceAccess.push(new Unit(10219.355801230648, -262145.1745211579, "Kigarii", true, "dthbyspks1"));
+                ArtificialIntelligenceAccess.push(new Unit(8149.772203264102, -262953.0908328691, "Kigarii", false, "dthbyspks2"));
+                ArtificialIntelligenceAccess.push(new Unit(10311.122154199265, -259802.26036809065, "Kigarii", true, "dthbyspks3"));
+
+                ArtificialIntelligenceAccess.push(new Unit(13407.076332005872, -264885.75235160213, "Cruorcca", "massive", "Cruorpony1"));
+                ArtificialIntelligenceAccess.push(new Unit(13547.802204458649, -265067.73484071565, "Cruorcca", true, "Cruorpony2"));
+                ArtificialIntelligenceAccess.push(new Unit(13172.743883753083, -265003.54742638784, "Cruorcca", false, "Cruorpony3"));
+                ArtificialIntelligenceAccess.push(new Unit(12882.469281407119, -264914.5728721215, "Cruorcca", true, "Cruorpony4"));
+                ArtificialIntelligenceAccess.push(new Unit(7576.738083100537, -261212.41313602283, "Cruorcca", false, "Cruorpony5"));
+                ArtificialIntelligenceAccess.push(new Unit(7352.42778885247, -261179.59803518566, "Cruorcca", "massive", "Cruorpony6"));
+                ArtificialIntelligenceAccess.push(new Unit(7179.112115976527, -261073.12875143855, "Cruorcca", false, "Cruorpony7"));
+                ArtificialIntelligenceAccess.push(new Unit(7142.10169497471, -261229.47129122025, "Cruorcca", true, "Cruorpony8"));
+
+                ArtificialIntelligenceAccess.push(new Unit(14533.748773652856, -263383.7596063055, "BlackTroll", false, "munsa1"));
+                ArtificialIntelligenceAccess.push(new Unit(14838.437282051354, -263219.347717657, "BlackTroll", true, "munsa2"));
+                ArtificialIntelligenceAccess.push(new Unit(15274.744287141517, -263810.8714818898, "BlackTroll", false, "munsa3"));
+
+                ArtificialIntelligenceAccess.push(new Unit(15815.87914705492, -259544.2365119846, "Torper", false, "brbqueruinr1"));
+                ArtificialIntelligenceAccess.push(new Unit(11698.395105319241, -264549.04729594884, "Torper", true, "brbqueruinr2"));
+
+                ArtificialIntelligenceAccess.push(new Unit(13454.33746893602, -265563.6287313538, "Zancudo", false, "quidprosquito1"));
+                ArtificialIntelligenceAccess.push(new Unit(14853.465539339519, -268355.89688496466, "Zancudo", false, "quidprosquito2"));
+                ArtificialIntelligenceAccess.push(new Unit(16041.935112443842, -266411.7632636614, "Zancudo", true, "quidprosquito3"));
+                ArtificialIntelligenceAccess.push(new Unit(13162.067859181256, -264519.4073174745, "Zancudo", false, "quidprosquito4"));
+                ArtificialIntelligenceAccess.push(new Unit(9473.68801462125, -262741.17772873444, "Zancudo", false, "quidprosquito5"));
+                ArtificialIntelligenceAccess.push(new Unit(12952.96740188501, -261092.76842385603, "Zancudo", false, "quidprosquito6"));
+                ArtificialIntelligenceAccess.push(new Unit(8389.0933678695, -264044.2384706077, "Zancudo", false, "quidprosquito7"));
+                ArtificialIntelligenceAccess.push(new Unit(8467.803276285118, -268347.13190396415, "Zancudo", true, "quidprosquito8"));
+                ArtificialIntelligenceAccess.push(new Unit(9833.065291502115, -268399.30392241635, "Zancudo", false, "quidprosquito9"));
+
+                ArtificialIntelligenceAccess.push(new Unit(8432.821191225508, -263926.53788440174, "PoisonDartFrog", true, "poisnisnotgdforyrhealth1"));
+                ArtificialIntelligenceAccess.push(new Unit(15424.798205458388, -265577.19875071244, "PoisonDartFrog", false, "poisnisnotgdforyrhealth2"));
+                ArtificialIntelligenceAccess.push(new Unit(13179.664748782603, -264127.8734556595, "PoisonDartFrog", false, "poisnisnotgdforyrhealth3"));
+
+                ArtificialIntelligenceAccess.push(new Unit(8094.138286839379, -259038.31827610638, "ZafBeetle", false, "smthinginthewy1"));
+                ArtificialIntelligenceAccess.push(new Unit(11799.945043762069, -262299.1659078734, "ZafBeetle", false, "smthinginthewy2"));
+                ArtificialIntelligenceAccess.push(new Unit(8205.306356461097, -265922.30402330164, "ZafBeetle", false, "smthinginthewy3"));
+
+                ArtificialIntelligenceAccess.push(new Unit(12765.457436660341, -265466.07548573153, "Lizard", true, "thetaledone1"));
+                ArtificialIntelligenceAccess.push(new Unit(11688.784638504694, -262958.5833832433, "Lizard", false, "thetaledone2"));
+                ArtificialIntelligenceAccess.push(new Unit(8885.722488187437, -261194.21454069152, "Lizard", false, "thetaledone3"));
+
+                scenicList.push(new Scenery("decipulaBasePlant", 8227.866611609063, -261541.1101852539, 2.2, "massive"));
+
+                change = "s26w1";
+            }
+        }
         else if (region == "s4")
         {
             if (change != "s4")

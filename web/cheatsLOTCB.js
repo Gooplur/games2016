@@ -1536,6 +1536,17 @@ function cheats()
         {
             player.dexterity = 0;
         }
+        else if (cheatcode.toLowerCase() == "lostintimeandspace")
+        {
+            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+            {
+                if (typeof(ArtificialIntelligenceAccess[i].X) != "number" || typeof(ArtificialIntelligenceAccess[i].Y) != "number")
+                {
+                    ArtificialIntelligenceAccess[i].X = X + spacer(120);
+                    ArtificialIntelligenceAccess[i].Y = Y + spacer(120);
+                }
+            }
+        }
         else if (cheatcode.toLowerCase() == "getfistdamage")
         {
             alert(player.getFistDamage());

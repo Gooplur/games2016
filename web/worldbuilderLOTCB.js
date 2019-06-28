@@ -18,6 +18,13 @@ function worldBuilder()
             region = "s26";
             outlineBuilder( 34, 34, "jungle", -20, 864);
         }
+        //mapS26W1
+        if (Y > -269151 && Y < -258299 && X < 17891 && X > 6299) //X-1
+        {
+            elevation = -3;
+            region = "s26w1";
+            outlineBuilder( 34, 34, "jungle", -54, 864);
+        }
         //Layer -25 (tropical region): elev -3
         //mapS25
         if (Y > -258904 && Y < -248132 && X < 7687 && X > - 3901) //X0

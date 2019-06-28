@@ -1540,7 +1540,7 @@ function cheats()
         {
             for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
             {
-                if (typeof(ArtificialIntelligenceAccess[i].X) != "number" || typeof(ArtificialIntelligenceAccess[i].Y) != "number")
+                if (typeof(ArtificialIntelligenceAccess[i].X) != "number" || typeof(ArtificialIntelligenceAccess[i].Y) != "number" || typeof(ArtificialIntelligenceAccess[i].rotation) != "number")
                 {
                     ArtificialIntelligenceAccess[i].X = X + spacer(120);
                     ArtificialIntelligenceAccess[i].Y = Y + spacer(120);

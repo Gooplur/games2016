@@ -7329,6 +7329,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         {
             this.extraRange = 0;
         }
+        if (typeof(this.extraRange) == "undefined")
+        {
+            this.extraRange = 0;
+        }
         if (this.team == "player" && this.target == player) //this allows the units under the player character's control to see the player at any distance.
         {
             if (fKey || tKey)

@@ -1544,6 +1544,7 @@ function cheats()
                 {
                     ArtificialIntelligenceAccess[i].X = X + spacer(120);
                     ArtificialIntelligenceAccess[i].Y = Y + spacer(120);
+                    ArtificialIntelligenceAccess[i].rotation = 2*Math.PI*Math.random();
                 }
             }
         }

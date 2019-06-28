@@ -1536,6 +1536,16 @@ function cheats()
         {
             player.dexterity = 0;
         }
+        else if (cheatcode.toLowerCase() == "followercheck")
+        {
+            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+            {
+                if (ArtificialIntelligenceAccess[i].team == "player")
+                {
+                    console.log(ArtificialIntelligenceAccess[i]);
+                }
+            }
+        }
         else if (cheatcode.toLowerCase() == "lostintimeandspace")
         {
             for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)

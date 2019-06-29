@@ -1546,19 +1546,48 @@ function cheats()
                 }
             }
         }
+        else if (cheatcode.toLowerCase() == "horseypoo")
+        {
+            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+            {
+                if (ArtificialIntelligenceAccess[i].type == "Horse")
+                {
+                    ArtificialIntelligenceAccess[i].X = X + spacer(120);
+                    ArtificialIntelligenceAccess[i].Y = Y + spacer(120);
+                    ArtificialIntelligenceAccess[i].plantedX = ArtificialIntelligenceAccess[i].X;
+                    ArtificialIntelligenceAccess[i].plantedY = ArtificialIntelligenceAccess[i].Y;
+                    ArtificialIntelligenceAccess[i].rotation = 2*Math.PI*Math.random();
+                    ArtificialIntelligenceAccess[i].rotationSpeed = 0.12;
+                    ArtificialIntelligenceAccess[i].speed = 6;
+                    ArtificialIntelligenceAccess[i].healthMAX = 15;
+                    ArtificialIntelligenceAccess[i].stay = false;
+                    ArtificialIntelligenceAccess[i].costume = 0;
+                    ArtificialIntelligenceAccess[i].keepSpeed = 0;
+                    ArtificialIntelligenceAccess[i].targetDistance = 1000000;
+                    ArtificialIntelligenceAccess[i].baselineRotationSpeed = 0.12;
+                    ArtificialIntelligenceAccess[i].baselineSpeed = 6;
+                    ArtificialIntelligenceAccess[i].baselineHealthMAX = 15;
+                }
+            }
+        }
         else if (cheatcode.toLowerCase() == "lostintimeandspace")
         {
             for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
             {
-                if (typeof(ArtificialIntelligenceAccess[i].X) != "number" || typeof(ArtificialIntelligenceAccess[i].Y) != "number" || typeof(ArtificialIntelligenceAccess[i].rotation) != "number" || typeof(ArtificialIntelligenceAccess[i].rotationSpeed) != "number" || typeof(ArtificialIntelligenceAccess[i].rotationSpeed) != "number")
+                if (typeof(ArtificialIntelligenceAccess[i].X) != "number" || typeof(ArtificialIntelligenceAccess[i].Y) != "number" || typeof(ArtificialIntelligenceAccess[i].rotation) != "number" || typeof(ArtificialIntelligenceAccess[i].rotationSpeed) != "number" || typeof(ArtificialIntelligenceAccess[i].rotationSpeed) != "number" || typeof(ArtificialIntelligenceAccess[i].healthMAX) != "number")
                 {
                     ArtificialIntelligenceAccess[i].X = X + spacer(120);
                     ArtificialIntelligenceAccess[i].Y = Y + spacer(120);
+                    ArtificialIntelligenceAccess[i].plantedX = ArtificialIntelligenceAccess[i].X;
+                    ArtificialIntelligenceAccess[i].plantedY = ArtificialIntelligenceAccess[i].Y;
                     ArtificialIntelligenceAccess[i].rotation = 2*Math.PI*Math.random();
-                    ArtificialIntelligenceAccess[i].rotationSpeed = ArtificialIntelligenceAccess[i].baselineRotationSpeed || 0.12;
-                    ArtificialIntelligenceAccess[i].speed = ArtificialIntelligenceAccess[i].baselineSpeed || ArtificialIntelligenceAccess[i].staySpeed;
+                    ArtificialIntelligenceAccess[i].rotationSpeed = ArtificialIntelligenceAccess[i].baselineRotationSpeed;
+                    ArtificialIntelligenceAccess[i].speed = ArtificialIntelligenceAccess[i].baselineSpeed;
+                    ArtificialIntelligenceAccess[i].healthMAX = ArtificialIntelligenceAccess[i].baselineHealthMAX;
                     ArtificialIntelligenceAccess[i].stay = false;
+                    ArtificialIntelligenceAccess[i].costume = 0;
                     ArtificialIntelligenceAccess[i].keepSpeed = 0;
+                    ArtificialIntelligenceAccess[i].targetDistance = 1000000;
                 }
             }
         }

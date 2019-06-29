@@ -134,6 +134,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     //other extra variables for combat stuff
     this.keepSpeed = 0;
     this.staySpeed = 0;
+    //remember skills so that creatures can be brought back from the glitchworld
+    this.baselineSpeed = 0;
+    this.baselineRotationSpeed = 0;
+    this.baselineHealthMAX = 0;
     //other animations variables
     this.flashFrame = 0;
     this.flashFrameTime = new Date().getTime();
@@ -297,6 +301,8 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     this.hazmatted = false; //an alternate way to flag radiation resistance
     this.decayTime = 0;
     this.decayTime2 = new Date().getTime();
+    this.freezeKeepSpeed = 0;
+
 
     //Artificial Intelligence
     this.setTeamByID = function()
@@ -9174,7 +9180,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         //Frozen Effect
         if (new Date().getTime() - this.frozenTime > 4500)
         {
-            if (this.hasBeenFrozen)
+            if (this.hasBeenFrozen == true)
             {
                 this.speed = this.freezeKeepSpeed;
             }
@@ -17864,6 +17870,28 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.mature = true;
                 this.makeNest = true;
             }
+
+            //STATS (non-variable)
+            this.magicalResistance = 0;
+            this.heatResistance = -0.4;
+            this.attackStyle = "chunked";
+            this.attackRate = 0;  //this is for rapid style combat only.
+            this.healthMAX = 8 * this.alphaSize;
+            if (this.health > this.healthMAX)
+            {
+                this.health = this.healthMAX;
+            }
+            this.armour = 0;
+            this.baseSpeed = 0.5 + 2.4 * this.alphaSize;
+            this.rotationSpeed = 0.13;
+            this.engagementRadius = 28 * this.alphaSize;
+            this.sizeRadius = 10 * this.alphaSize;
+            this.negateArmour = 0.3 * this.alphaSize;
+            this.attackWait = 0.9;
+            this.contraPlayer = false;
+            this.effect = "none";
+            this.yAdjustment = 0;
+            this.xAdjustment = 0;
         }
         else if (this.type == "Crow")
         {
@@ -25795,6 +25823,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.newRotation = -2/3 * Math.PI;
             }
         }
+
+        //BASELINES
+        this.baselineSpeed = this.speed;
+        this.baselineRotationSpeed = this.rotationSpeed;
+        this.baselineHealthMAX = this.healthMAX;
     };
     this.designUnits();
 
@@ -78922,6 +78955,18 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     //OPERATION [all of the functions in this class are activated here]
     this.operation = function()
     {
+        if (gameLoopNumber % 100 == 0)
+        {
+            if (typeof(this.costume) != "number")
+            {
+                this.costume = 0;
+            }
+            if (typeof(this.costume2) != "number")
+            {
+                this.costume2 = 0;
+            }
+        }
+
         //keep variables are set in the beginning
         if (this.doKeepHeatRes == true)
         {

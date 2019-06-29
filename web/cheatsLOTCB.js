@@ -1550,11 +1550,15 @@ function cheats()
         {
             for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
             {
-                if (typeof(ArtificialIntelligenceAccess[i].X) != "number" || typeof(ArtificialIntelligenceAccess[i].Y) != "number" || typeof(ArtificialIntelligenceAccess[i].rotation) != "number")
+                if (typeof(ArtificialIntelligenceAccess[i].X) != "number" || typeof(ArtificialIntelligenceAccess[i].Y) != "number" || typeof(ArtificialIntelligenceAccess[i].rotation) != "number" || typeof(ArtificialIntelligenceAccess[i].rotationSpeed) != "number" || typeof(ArtificialIntelligenceAccess[i].rotationSpeed) != "number")
                 {
                     ArtificialIntelligenceAccess[i].X = X + spacer(120);
                     ArtificialIntelligenceAccess[i].Y = Y + spacer(120);
                     ArtificialIntelligenceAccess[i].rotation = 2*Math.PI*Math.random();
+                    ArtificialIntelligenceAccess[i].rotationSpeed = ArtificialIntelligenceAccess[i].baselineRotationSpeed || 0.12;
+                    ArtificialIntelligenceAccess[i].speed = ArtificialIntelligenceAccess[i].baselineSpeed || ArtificialIntelligenceAccess[i].staySpeed;
+                    ArtificialIntelligenceAccess[i].stay = false;
+                    ArtificialIntelligenceAccess[i].keepSpeed = 0;
                 }
             }
         }

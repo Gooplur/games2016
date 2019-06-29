@@ -1568,6 +1568,8 @@ function cheats()
                     ArtificialIntelligenceAccess[i].baselineSpeed = 6;
                     ArtificialIntelligenceAccess[i].baselineHealthMAX = 15;
                     ArtificialIntelligenceAccess[i].freezeKeepSpeed = 6;
+                    ArtificialIntelligenceAccess[i].baseRotationSpeed = 0.12;
+                    ArtificialIntelligenceAccess[i].baseSpeed = 6;
                 }
             }
         }

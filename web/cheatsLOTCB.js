@@ -1567,6 +1567,7 @@ function cheats()
                     ArtificialIntelligenceAccess[i].baselineRotationSpeed = 0.12;
                     ArtificialIntelligenceAccess[i].baselineSpeed = 6;
                     ArtificialIntelligenceAccess[i].baselineHealthMAX = 15;
+                    ArtificialIntelligenceAccess[i].freezeKeepSpeed = 6;
                 }
             }
         }
@@ -1583,6 +1584,7 @@ function cheats()
                     ArtificialIntelligenceAccess[i].rotation = 2*Math.PI*Math.random();
                     ArtificialIntelligenceAccess[i].rotationSpeed = ArtificialIntelligenceAccess[i].baselineRotationSpeed;
                     ArtificialIntelligenceAccess[i].speed = ArtificialIntelligenceAccess[i].baselineSpeed;
+                    ArtificialIntelligenceAccess[i].freezeKeepSpeed = ArtificialIntelligenceAccess[i].baselineSpeed;
                     ArtificialIntelligenceAccess[i].healthMAX = ArtificialIntelligenceAccess[i].baselineHealthMAX;
                     ArtificialIntelligenceAccess[i].stay = false;
                     ArtificialIntelligenceAccess[i].costume = 0;

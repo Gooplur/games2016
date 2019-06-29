@@ -78955,18 +78955,6 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     //OPERATION [all of the functions in this class are activated here]
     this.operation = function()
     {
-        if (gameLoopNumber % 100 == 0)
-        {
-            if (typeof(this.costume) != "number")
-            {
-                this.costume = 0;
-            }
-            if (typeof(this.costume2) != "number")
-            {
-                this.costume2 = 0;
-            }
-        }
-
         //keep variables are set in the beginning
         if (this.doKeepHeatRes == true)
         {

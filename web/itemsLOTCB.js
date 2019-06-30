@@ -2975,6 +2975,41 @@ function Item(type, x, y)
             this.buyValue = 3 - Math.floor(player.getCharisma() / 25); // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
         }
+        else if (this.type == "cookedTurkeyEgg")
+        {
+            //For All Items
+            this.identity = "Fried Turkey Egg";
+            this.weight = 0.25;
+            this.size = 7;
+            this.description = "A cooked turkey egg.";
+            this.intForDes = 0;
+            this.intDescription = "It is a sort of rich flavour, but otherwise it just tastes like an egg.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 5.25; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 1.5; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 8;
+            this.ingredients = [["Turkey Egg", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 4 - Math.floor(player.getCharisma() / 25); // at max, buy for 2.
+            this.sellValue = 2; // at max, sell for 2.
+        }
         else if (this.type == "rawRibbackFlesh")
         {
             //For All Items
@@ -30601,6 +30636,69 @@ function Item(type, x, y)
             this.buyValue = 3 - Math.floor(player.getCharisma() / 50); // at max, buy for 2.
             this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
         }
+        else if (this.type == "rawTurkeyFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Turkey Carcass";
+            this.weight = 18;
+            this.size = 20;
+            this.description = "The raw carcass of a turkey.";
+            this.intForDes = 2;
+            this.intDescription = "Eating this raw would give you gut worms, and it is pale, moist and slimy. Cook it first... if you can.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 3; //satisfies hunger.
+            this.thirst = 0.9; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "gutWorms";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 13 - Math.floor(player.getCharisma() / 15); // at max, buy for 10.
+            this.sellValue = 7 + Math.floor(player.getCharisma() / 15); // at max, sell for 10.
+        }
+        else if (this.type == "turkeyMeat")
+        {
+            //For All Items
+            this.identity = "Turkey Roast";
+            this.weight = 17;
+            this.size = 20;
+            this.description = "A tender slow roasted whole turkey that is well basted and caramelized.";
+            this.intForDes = 2;
+            this.intDescription = "Turkey is relatively common in Thengaria, but it is eaten at lordly feasts all the same. No traditional Thengan feast is complete without a large roasted turkey...";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 55; //satisfies hunger.
+            this.thirst = 3; //quenches thirst.
+            this.warmth = 20; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 1.5; //recoops lost energy.
+            this.replenish = 0.5; //restores will.
+
+            //ability
+            this.ability = "satiate";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 40;
+            this.ingredients = [["Raw Turkey Carcass", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 73 - Math.floor(player.getCharisma() / 10); // at max, buy for 68.
+            this.sellValue = 63 + Math.floor(player.getCharisma() / 10); // at max, sell for 68.
+        }
         else if (this.type == "rawBoaFlesh")
         {
             //For All Items
@@ -32680,6 +32778,46 @@ function Item(type, x, y)
             this.buyValue = 35000 - Math.floor(player.getCharisma() / 0.1); // at max, buy for 34500.
             this.sellValue = 34000 + Math.floor(player.getCharisma() / 0.1); // at max, sell for 34500.
         }
+        else if (this.type == "sackmansSword")
+        {
+            //For All Items
+
+            this.identity = "Mr. Sackman's Sword";
+            this.weight = 2;
+            this.size = 15;
+            this.description = "A steel sword that once belonged to a mysterious hooded man with a large unweildy sack.";
+            this.intForDes = 0;
+            this.intDescription = "If the sack doesn't stop crying this sword would make it stop...";
+
+            //Define Utility
+            this.utility = "weapon";
+
+            //Utility Focused
+            this.energyCost = 3.5;
+            this.distance = 62 + (this.range * 7);
+            this.range = 2;
+            this.rate = (125 - player.getDexterity());
+            if (player.energy <= 7 || player.energy <= 1/4 * player.energyMAX)
+            {
+                this.identity = "The Sword of Recompense";
+                this.intDescription = "Those poor young souls who were killed by this blade now owe you a favour for ending the sackman...";
+                this.damage = (5 - this.damageHandicap * 0.5) * (this.leveledDamageMultiple / 25) + ((7/50) * player.getStrength());
+            }
+            else
+            {
+                this.damage = (3.5 - this.damageHandicap * 0.5) * (this.leveledDamageMultiple / 25) + ((6/50) * player.getStrength());
+            }
+
+            this.magicalDamage = 0;
+            this.negateArmour = 14 + ((5/50) * player.getStrength());
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 29 - Math.floor(player.getCharisma() / 5); // at max, buy for 19.
+            this.sellValue = 14 + Math.floor(player.getCharisma() / 10); // at max, sell for 19.
+        }
         else if (this.type == "nirineseSpear")
         {
             //For All Items
@@ -33167,6 +33305,46 @@ function Item(type, x, y)
 
             //ability
             this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "turkeyFeathers")
+        {
+            //For All Items
+            this.identity = "Turkey Feathers";
+            this.weight = 0.05;
+            this.size = 8;
+            this.description = "Feathers from a turkey.";
+            this.intForDes = 1;
+            this.intDescription = "Turkey feathers are used both to make elaborate floor decorations and to make a Thengan sage outfit...";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "turkeyEgg")
+        {
+            //For All Items
+            this.identity = "Turkey Egg";
+            this.weight = 0.25;
+            this.size = 8;
+            this.description = "The speckled yellowish tan egg of a turkey.";
+            this.intForDes = 1;
+            this.intDescription = "You can hatch it to make a baby turkey!";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "turkeyHatch";
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 1; // at max, buy for 1.
@@ -39884,6 +40062,184 @@ function Item(type, x, y)
             this.buyValue = 14 - Math.floor(player.getCharisma() / 10); // at max, buy for 9.
             this.sellValue = 5 + Math.floor(player.getCharisma() / 12); // at max, sell for 9.
         }
+        else if (this.type == "thenganSageRobe")
+        {
+            //For All Items
+            this.identity = "Thengan Sage Robe";
+            this.weight = 1;
+            this.size = 26;
+            this.description = "The turkey feather robes worn by the Sages of the Thengan pantheon of Gods.";
+            this.intForDes = 3;
+            this.intDescription = "The turkey feathers symbolize Thengan ancestry, plentifulness, and fertility.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0.45;
+            this.thirstRetention = 0.15;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 1;
+            this.charismaBonus = 3;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 4;
+            //Extra Stat Bonuses
+            this.sleepBonus = 3;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 2;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 11;
+            this.ingredients = [["TurkeyFeathers", 9]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 90 - Math.floor(player.getCharisma() / 3); // at max, buy for 75.
+            this.sellValue = 60 + Math.floor(player.getCharisma() / 3); // at max, sell for 75.
+        }
+        else if (this.type == "sackmansHood")
+        {
+            //For All Items
+            this.identity = "The Sackman's Hood";
+            this.weight = 1;
+            this.size = 26;
+            this.description = "A worn and somewhat ragged old hooded cloak that belonged to The Sackman.";
+            this.intForDes = 0;
+            this.intDescription = "The Sackman is a common legend in Cranheim: when the mysterious man with a big sack comes around, the children start to go missing...";
+            this.smallText = true;
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0.9;
+            this.thirstRetention = 0.16;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 1;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = -11;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 2;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 240;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            if (rKey == true)
+            {
+                this.ability = "fearI";
+            }
+            else
+            {
+                this.ability = "none";
+            }
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 15 - Math.floor(player.getCharisma() / 25); // at max, buy for 13.
+            this.sellValue = 11 + Math.floor(player.getCharisma() / 25); // at max, sell for 13.
+        }
+        else if (this.type == "littleRedRidingHood")
+        {
+            //For All Items
+            this.identity = " Little Rosey Red's Riding Hood";
+            this.weight = 1;
+            this.size = 26;
+            this.description = "A fine red cloak that is decorated with lively, beautiful smelling dark red roses.";
+            this.intForDes = 0;
+            this.intDescription = "The floral design is nothing short of charming.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 1.1;
+            this.thirstRetention = -0.1;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            if (player.gender == "Male")
+            {
+                this.charismaBonus = -50;
+            }
+            else
+            {
+                this.charismaBonus = 22;
+            }
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 2;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 100 - Math.floor(player.getCharisma() / 10); // at max, buy for 95.
+            this.sellValue = 90 + Math.floor(player.getCharisma() / 10); // at max, sell for 95.
+        }
         else if (this.type == "thenganCommonwear")
         {
             //For All Items
@@ -46117,6 +46473,52 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "turkeyEgg")
+        {
+            XXX.beginPath();
+            XXX.drawImage(pavo, 721, 184, 19, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 19 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19 * 1), 19 * 1, 19 * 1);
+        }
+        else if (this.type == "cookedTurkeyEgg")
+        {
+            XXX.beginPath();
+            XXX.drawImage(pavo, 713, 207, 19, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 19 * 1.1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19 * 1.1), 19 * 1.1, 19 * 1.1);
+        }
+        else if (this.type == "turkeyFeathers")
+        {
+            XXX.beginPath();
+            XXX.drawImage(pavo, 747, 305, 38, 26, X - this.X + (1/2 * CCC.width) - (1/2 * 38 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 26 * 1), 38 * 1, 26 * 1);
+        }
+        else if (this.type == "rawTurkeyFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(pavo, 742, 190, 51, 55, X - this.X + (1/2 * CCC.width) - (1/2 * 51 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 55 * 1), 51 * 1, 55 * 1);
+        }
+        else if (this.type == "turkeyMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(pavo, 740, 248, 51, 55, X - this.X + (1/2 * CCC.width) - (1/2 * 51 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 55 * 1), 51 * 1, 55 * 1);
+        }
+        else if (this.type == "thenganSageRobe")
+        {
+            XXX.beginPath();
+            XXX.drawImage(pavo, 633, 61, 57, 108, X - this.X + (1/2 * CCC.width) - (1/2 * 57 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 108 * 1), 57 * 1, 108 * 1);
+        }
+        else if (this.type == "sackmansHood")
+        {
+            XXX.beginPath();
+            XXX.drawImage(pavo, 356, 3, 51, 43, X - this.X + (1/2 * CCC.width) - (1/2 * 51 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 43 * 1), 51 * 1.2, 43 * 1);
+            XXX.drawImage(pavo, 268, 0, 51, 43, X - this.X + (1/2 * CCC.width) - (1/2 * 51 * 0.9), Y - this.Y + (1/2 * CCC.height) - (1/2 * 43 * 1), 51 * 0.9, 43 * 1);
+        }
+        else if (this.type == "littleRedRidingHood")
+        {
+            XXX.beginPath();
+            XXX.drawImage(pavo, 70, 4, 36, 63, X - this.X + (1/2 * CCC.width) - (1/2 * 36 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 63 * 1.5), 36 * 1.5, 63 * 1.5);
+        }
+        else if (this.type == "sackmansSword")
+        {
+            XXX.beginPath();
+            XXX.drawImage(pavo, 24, 131, 56, 67, X - this.X + (1/2 * CCC.width) - (1/2 * 56 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 67 * 1.4), 56 * 1.4, 67 * 1.4);
+        }
         else if (this.type == "beulingerrDress")
         {
             XXX.beginPath();
@@ -52117,6 +52519,52 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
+        else if (this.type == "turkeyEgg")
+        {
+            LXX.beginPath();
+            LXX.drawImage(pavo, 721, 184, 19, 19, this.invX - (1/2 * 19 * 1), this.invY - (1/2 * 19 * 1), 19 * 1, 19 * 1);
+        }
+        else if (this.type == "cookedTurkeyEgg")
+        {
+            LXX.beginPath();
+            LXX.drawImage(pavo, 713, 207, 19, 19, this.invX - (1/2 * 19 * 1.5), this.invY - (1/2 * 19 * 1.5), 19 * 1.5, 19 * 1.5);
+        }
+        else if (this.type == "turkeyFeathers")
+        {
+            LXX.beginPath();
+            LXX.drawImage(pavo, 747, 305, 38, 26, this.invX - (1/2 * 38 * 1), this.invY - (1/2 * 26 * 1), 38 * 1, 26 * 1);
+        }
+        else if (this.type == "rawTurkeyFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(pavo, 742, 190, 51, 55, this.invX - (1/2 * 51 * 1), this.invY - (1/2 * 55 * 1), 51 * 1, 55 * 1);
+        }
+        else if (this.type == "turkeyMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(pavo, 740, 248, 51, 55, this.invX - (1/2 * 51 * 1), this.invY - (1/2 * 55 * 1), 51 * 1, 55 * 1);
+        }
+        else if (this.type == "thenganSageRobe")
+        {
+            LXX.beginPath();
+            LXX.drawImage(pavo, 633, 61, 57, 108, this.invX - (1/2 * 57 * 0.65), this.invY - (1/2 * 108 * 0.65), 57 * 0.65, 108 * 0.65);
+        }
+        else if (this.type == "sackmansHood")
+        {
+            LXX.beginPath();
+            LXX.drawImage(pavo, 356, 3, 51, 43, this.invX - (1/2 * 51 * 1.2), this.invY - (1/2 * 43 * 1), 51 * 1.2, 43 * 1);
+            LXX.drawImage(pavo, 268, 0, 51, 43, this.invX - (1/2 * 51 * 0.9), this.invY - (1/2 * 43 * 1), 51 * 0.9, 43 * 1);
+        }
+        else if (this.type == "littleRedRidingHood")
+        {
+            LXX.beginPath();
+            LXX.drawImage(pavo, 70, 4, 36, 63, this.invX - (1/2 * 36 * 1), this.invY - (1/2 * 63 * 1), 36 * 1, 63 * 1);
+        }
+        else if (this.type == "sackmansSword")
+        {
+            LXX.beginPath();
+            LXX.drawImage(pavo, 24, 131, 56, 67, this.invX - (1/2 * 56 * 1), this.invY - (1/2 * 67 * 1), 56 * 1, 67 * 1);
+        }
         else if (this.type == "beulingerrDress")
         {
             LXX.beginPath();
@@ -58083,6 +58531,52 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "turkeyEgg")
+        {
+            XXX.beginPath();
+            XXX.drawImage(pavo, 721, 184, 19, 19, this.invX - (1/2 * 19 * 1), this.invY - (1/2 * 19 * 1), 19 * 1, 19 * 1);
+        }
+        else if (this.type == "cookedTurkeyEgg")
+        {
+            XXX.beginPath();
+            XXX.drawImage(pavo, 713, 207, 19, 19, this.invX - (1/2 * 19 * 1.5), this.invY - (1/2 * 19 * 1.5), 19 * 1.5, 19 * 1.5);
+        }
+        else if (this.type == "turkeyFeathers")
+        {
+            XXX.beginPath();
+            XXX.drawImage(pavo, 747, 305, 38, 26, this.invX - (1/2 * 38 * 1), this.invY - (1/2 * 26 * 1), 38 * 1, 26 * 1);
+        }
+        else if (this.type == "rawTurkeyFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(pavo, 742, 190, 51, 55, this.invX - (1/2 * 51 * 1), this.invY - (1/2 * 55 * 1), 51 * 1, 55 * 1);
+        }
+        else if (this.type == "turkeyMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(pavo, 740, 248, 51, 55, this.invX - (1/2 * 51 * 1), this.invY - (1/2 * 55 * 1), 51 * 1, 55 * 1);
+        }
+        else if (this.type == "thenganSageRobe")
+        {
+            XXX.beginPath();
+            XXX.drawImage(pavo, 633, 61, 57, 108, this.invX - (1/2 * 57 * 0.65), this.invY - (1/2 * 108 * 0.65), 57 * 0.65, 108 * 0.65);
+        }
+        else if (this.type == "sackmansHood")
+        {
+            XXX.beginPath();
+            XXX.drawImage(pavo, 356, 3, 51, 43, this.invX - (1/2 * 51 * 1.2), this.invY - (1/2 * 43 * 1), 51 * 1.2, 43 * 1);
+            XXX.drawImage(pavo, 268, 0, 51, 43, this.invX - (1/2 * 51 * 0.9), this.invY - (1/2 * 43 * 1), 51 * 0.9, 43 * 1);
+        }
+        else if (this.type == "littleRedRidingHood")
+        {
+            XXX.beginPath();
+            XXX.drawImage(pavo, 70, 4, 36, 63, this.invX - (1/2 * 36 * 1), this.invY - (1/2 * 63 * 1), 36 * 1, 63 * 1);
+        }
+        else if (this.type == "sackmansSword")
+        {
+            XXX.beginPath();
+            XXX.drawImage(pavo, 24, 131, 56, 67, this.invX - (1/2 * 56 * 1), this.invY - (1/2 * 67 * 1), 56 * 1, 67 * 1);
         }
         else if (this.type == "beulingerrDress")
         {

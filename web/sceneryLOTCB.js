@@ -2167,6 +2167,61 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 }
             }
         }
+        else if (this.type == "turkeyEgg")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 55;
+
+            //DRAWSELF
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(pavo, 724, 186, 13, 15, -(1/2 * 13), -(1/2 * 15), 13, 15);
+            XXX.restore();
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 5;
+
+            //HATCHING
+            this.eggHatchTimer += 1 * (TTD / 16.75);
+            if (this.eggHatchTimer >= 8000)
+            {
+                this.eggHatchTimer = -10000000000;
+                if (this.temporary == true)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Turkey", "baby", "Generic Turkey"));
+                }
+                else
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Turkey", "baby", "player"));
+                }
+                for (var i = 0; i < scenicList.length; i++)
+                {
+                    if (scenicList[i] === this)
+                    {
+                        scenicList.splice(i, 1);
+                        break;
+                    }
+                }
+            }
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+                worldItems.push([new Item("turkeyEgg", this.X, this.Y), 1]);
+
+                for (var i = 0; i < scenicList.length; i++)
+                {
+                    if (scenicList[i] === this)
+                    {
+                        scenicList.splice(i, 1);
+                        break;
+                    }
+                }
+            }
+        }
         else if (this.type == "dalgerEgg")
         {
             //TRAITS
@@ -21146,6 +21201,29 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
             XXX.rotate(this.rotation);
             XXX.drawImage(stic, 26, 624, 148, 150, -1/2 * 148 * this.size, -1/2 * 150 * this.size, 148 * this.size, 150 * this.size);
+            XXX.restore();
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 1;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+        }
+        else if (this.type == "turkeyNest")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+            this.size = 1;
+
+            //DRAWSELF
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(pavo, 722, 343, 69, 66, -1/2 * 69 * this.size, -1/2 * 66 * this.size, 69 * this.size, 66 * this.size);
             XXX.restore();
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.

@@ -4035,6 +4035,7 @@ function theLegend()
     allWeapons.push(new Item("purpleFan"));//109
     allWeapons.push(new Item("beulingerrPike"));//110
     allWeapons.push(new Item("theWendigosCleaver"));//111
+    allWeapons.push(new Item("sackmansSword"));//112
 
 
 
@@ -4203,6 +4204,9 @@ function theLegend()
     allWorn.push(new Item("thenganCommonwear", false)); //159
     allWorn.push(new Item("beulingerrDress", false)); //160
     allWorn.push(new Item("beulingerrOutfit", false)); //161
+    allWorn.push(new Item("littleRedRidingHood", false)); //162
+    allWorn.push(new Item("thenganSageRobe", false)); //163
+    allWorn.push(new Item("sackmansHood", false)); //164
 
 
 
@@ -4535,6 +4539,8 @@ function theLegend()
     foods.push(new Item("foxMeat", false));
     foods.push(new Item("arcticFoxMeat", false));
     foods.push(new Item("badgerMeat", false));
+    foods.push(new Item("turkeyMeat", false));
+    foods.push(new Item("cookedTurkeyEgg", false));
 
 
 //Tailoring (Items crafted at a weaving, sewing, dying, etc. tailor's work bench thing)
@@ -4647,6 +4653,7 @@ function theLegend()
     tailoring.push(new Item("thenganWorkmansApron", false));
     tailoring.push(new Item("thenganHose", false));
     tailoring.push(new Item("thenganCommonwear", false));
+    tailoring.push(new Item("thenganSageRobe", false));
 
 //Jewelry (Items crafted at a jewler's station, rings, necklaces, cutting gems, glassblowing etc.)
     jewelry = [];

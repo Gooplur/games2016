@@ -4076,7 +4076,14 @@ function interaction(me)
                             player.dialoguePosition = 0;
                             conversationID[1] = 1;
                             self.SC();
-                            self.disturbed = true;
+                            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                            {
+                                if (ArtificialIntelligenceAccess[i].ID == "Mesek the Runaway" || ArtificialIntelligenceAccess[i].ID == "Madam Bella")
+                                {
+                                    ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                    ArtificialIntelligenceAccess[i].disturbed = true;
+                                }
+                            }
                         }
                         else if (conversationID[1] == "0c")
                         {
@@ -4148,9 +4155,9 @@ function interaction(me)
                                 }
                                 else
                                 {
-                                    if (uniqueChars.spouseTrackerCompletionStyle == false)
+                                    if (quests.spouseTrackerCompletionStyle == false)
                                     {
-                                        uniqueChars.spouseTrackerCompletionStyle = "local";
+                                        quests.spouseTrackerCompletionStyle = "local";
                                     }
                                     player.dialogueOptions = [["I'm here to return you to your husband, come in peace or face the consequences.", false, "b"], ["I know you fled your husband with your lover, I want to help you both escape. How can I help?", false, "d"]];
                                 }
@@ -4224,9 +4231,16 @@ function interaction(me)
 
                                     playersTurnToSpeak = true;
                                     player.dialoguePosition = 0;
-                                    conversationID[1] = 0;
+                                    conversationID[1] = 5;
                                     self.SC();
-                                    self.disturbed = true;
+                                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                                    {
+                                        if (ArtificialIntelligenceAccess[i].ID == "Mesek the Runaway" || ArtificialIntelligenceAccess[i].ID == "Madam Bella")
+                                        {
+                                            ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                            ArtificialIntelligenceAccess[i].disturbed = true;
+                                        }
+                                    }
                                 }
                                 else
                                 {
@@ -4249,7 +4263,7 @@ function interaction(me)
 
                                     if (uniqueChars.bellaLDS == true)
                                     {
-                                        uniqueChars.spouseTrackerCompletionStyle = "spouseCollected";
+                                        quests.spouseTrackerCompletionStyle = "spouseCollected";
                                     }
                                     alert("Upon returning to Lethik the guards arrest Madam Bella and take her to be executed for adultery with a slave and for conspiring to free a slave.");
                                     uniqueChars.bellaLDS = false;
@@ -4287,22 +4301,45 @@ function interaction(me)
                         }
                         else if (conversationID[1] == "0d")
                         {
-                            //text dialogue
-                            setMsg("You want to help? I am am glad to hear it, as help is sorely needed. If there is any way you could escort us to Teshir to the east, I would be ever grateful to you.");
-
-                            //on ended text dialogue
-                            if (tellMessage == "reset")
+                            if (uniqueChars.mesekLDS == true)
                             {
-                                msgReset();
+                                //text dialogue
+                                setMsg("You want to help? I am am glad to hear it, as help is sorely needed. If there is any way you could escort us to Teshir to the east, I would be ever grateful to you.");
 
-                                playersTurnToSpeak = true;
-                                player.dialoguePosition = 0;
-                                conversationID[1] = 3;
-                                self.SC();
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 3;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
                             }
                             else
                             {
-                                self.SC();
+                                //text dialogue
+                                setMsg("My Mesek, my poor Mesek is dead!!");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 5;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
                             }
                         }
                         else if (conversationID[1] == 1)

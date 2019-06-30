@@ -1200,6 +1200,9 @@ function Adventurer()
             var perfectArmourFlag = false;
             var radResFlag = false;
             var aquaFlag = false;
+            var fearIFlag = false;
+            var fearIIFlag = false;
+            var fearIIIFlag = false;
 
             //search worn ability list for abilities
             for (var i = 0; i < this.AdAbility.length; i++)
@@ -1273,9 +1276,80 @@ function Adventurer()
                 {
                     radResFlag = true;
                 }
+                if (this.AdAbility[i] == "fearI")
+                {
+                    fearIFlag = true;
+                }
+                if (this.AdAbility[i] == "fearII")
+                {
+                    fearIIFlag = true;
+                }
+                if (this.AdAbility[i] == "fearIII")
+                {
+                    fearIIIFlag = true;
+                }
             }
 
             //EXECUTE EFFECTS
+
+            //Fear I
+            if (fearIFlag || fearIIFlag || fearIIIFlag)
+            {
+                if (fearIIIFlag)
+                {
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].healthMAX < 65 && ArtificialIntelligenceAccess[i].DTP() < 840 && ArtificialIntelligenceAccess[i].team != "player" && ArtificialIntelligenceAccess[i].team != "undead" && ArtificialIntelligenceAccess[i].team != "sprite" && ArtificialIntelligenceAccess[i].team != "vampire" && ArtificialIntelligenceAccess[i].undeath != true)
+                        {
+                            ArtificialIntelligenceAccess[i].scared = true;
+                            ArtificialIntelligenceAccess[i].pointAwayFromPlayer();
+                            if (ArtificialIntelligenceAccess[i].type == "Person" || ArtificialIntelligenceAccess[i].type == "Soldier")
+                            {
+                                if (ArtificialIntelligenceAccess[i].disturbed != true)
+                                {
+                                    ArtificialIntelligenceAccess[i].moveInRelationToPlayer();
+                                }
+                            }
+                        }
+                    }
+                }
+                else if (fearIIFlag)
+                {
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].healthMAX < 37 && ArtificialIntelligenceAccess[i].DTP() < 840 && ArtificialIntelligenceAccess[i].team != "player" && ArtificialIntelligenceAccess[i].type != "Soldier" && ArtificialIntelligenceAccess[i].team != "undead" && ArtificialIntelligenceAccess[i].team != "sprite" && ArtificialIntelligenceAccess[i].team != "vampire" && ArtificialIntelligenceAccess[i].undeath != true)
+                        {
+                            ArtificialIntelligenceAccess[i].scared = true;
+                            ArtificialIntelligenceAccess[i].pointAwayFromPlayer();
+                            if (ArtificialIntelligenceAccess[i].type == "Person")
+                            {
+                                if (ArtificialIntelligenceAccess[i].disturbed != true)
+                                {
+                                    ArtificialIntelligenceAccess[i].moveInRelationToPlayer();
+                                }
+                            }
+                        }
+                    }
+                }
+                else if (fearIFlag)
+                {
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].healthMAX < 19 && ArtificialIntelligenceAccess[i].DTP() < 840 && ArtificialIntelligenceAccess[i].team != "player" && ArtificialIntelligenceAccess[i].type != "Soldier" && ArtificialIntelligenceAccess[i].team != "undead" && ArtificialIntelligenceAccess[i].team != "sprite" && ArtificialIntelligenceAccess[i].team != "vampire" && ArtificialIntelligenceAccess[i].undeath != true)
+                        {
+                            ArtificialIntelligenceAccess[i].scared = true;
+                            ArtificialIntelligenceAccess[i].pointAwayFromPlayer();
+                            if (ArtificialIntelligenceAccess[i].type == "Person")
+                            {
+                                if (ArtificialIntelligenceAccess[i].disturbed != true)
+                                {
+                                    ArtificialIntelligenceAccess[i].moveInRelationToPlayer();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
 
             //water breathing
             if (aquaFlag)
@@ -7603,6 +7677,18 @@ function Adventurer()
         {
             outfit = allWorn[161];
         }
+        else if (this.outfitEquipped == "littleRedRidingHood")
+        {
+            outfit = allWorn[162];
+        }
+        else if (this.outfitEquipped == "thenganSageRobe")
+        {
+            outfit = allWorn[163];
+        }
+        else if (this.outfitEquipped == "sackmansHood")
+        {
+            outfit = allWorn[164];
+        }
         else
         {
             outfit = allWorn[0];
@@ -7969,6 +8055,87 @@ function Adventurer()
             }
             XXX.drawImage(cypher, 392, 125, 28, 64, -(1 / 2 * 28 * 1.32) - 1, -(1 / 2 * 64 * 1.32) - 0, 28 * 1.32, 64 * 1.32);
             XXX.restore();
+        }
+        else if (this.outfitEquipped == "littleRedRidingHood")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(pavo, 42, 16, 26, 28, -(1 / 2 * 26 * 1.1) - 1.5, -(1 / 2 * 28 * 1.1) - 0, 26 * 1.1, 28 * 1.1);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "thenganSageRobe")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(pavo, 706, 117, 80, 57, -(1 / 2 * 80 * 1) - 0, -(1 / 2 * 57 * 1) + 0.5, 80 * 1, 57 * 1);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "sackmansHood")
+        {
+            var hasSwordo = false;
+            for (var i = 0; i < Inventory.length; i++)
+            {
+                if (Inventory[i][0].type == "sackmansSword" && Inventory[i][0].equipped == false)
+                {
+                    hasSwordo = true;
+                    if (this.form == false && qKey == true && this.attacking == false)
+                    {
+                        //equipping a weapon
+                        for (var j = 0; j < Inventory.length; j++)
+                        {
+                            if (Inventory[j][0].utility == "weapon" || Inventory[j][0].utility == "ranged")
+                            {
+                                Inventory[j][0].equipped = false;
+                            }
+                        }
+                        Inventory[i][0].equipped = true;
+                        this.weaponEquipped = Inventory[i][0].type;
+                        this.weaponIsRanged = false;
+                        this.isWeaponEquipped = true;
+                        this.weaponID = Inventory[i][0].barcode;
+                        this.stage = 0;
+                    }
+                    break;
+                }
+            }
+            if (hasSwordo == true)
+            {
+                this.outfitZ = true;
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(pavo, 427, 0, 48, 53, -(1 / 2 * 48 * 1.3) - 1, -(1 / 2 * 53 * 1.3) -0.25, 48 * 1.3, 53 * 1.3);
+                XXX.restore();
+            }
+            else
+            {
+                this.outfitZ = true;
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(pavo, 509, 0, 48, 49, -(1 / 2 * 48 * 1.3) - 0, -(1 / 2 * 49 * 1.3) -0.25, 48 * 1.3, 49 * 1.3);
+                XXX.restore();
+            }
         }
         else if (this.outfitEquipped == "ghoulMercArmour")
         {
@@ -10351,7 +10518,7 @@ function Adventurer()
                     {
                         if (bothwaysBool == false) // if the animation is one way it ends here...
                         {
-                            if (this.weapon.subUtility != "thrown" && this.weaponEquipped != "flail" && this.weaponEquipped != "vardanianHalberd" && this.weaponEquipped != "aldrekiiClaws" && this.weaponEquipped != "theUndyingEdge" && this.weaponEquipped != "cero" && this.weaponEquipped != "werewolf" && this.weaponEquipped != "vampire" && this.weaponEquipped != "wendigo" && this.weaponEquipped != "cephrianFlail")
+                            if (this.weapon.subUtility != "thrown" && this.weaponEquipped != "flail" && this.weaponEquipped != "vardanianHalberd" && this.weaponEquipped != "aldrekiiClaws" && this.weaponEquipped != "theUndyingEdge" && this.weaponEquipped != "cero" && this.weaponEquipped != "werewolf" && this.weaponEquipped != "vampire" && this.weaponEquipped != "wendigo" && this.weaponEquipped != "cephrianFlail" && this.weaponEquipped != "sackmansSword")
                             {
                                 self.finalAttackStage = true;
                                 self.attackCooldown = new Date().getTime();
@@ -10363,7 +10530,7 @@ function Adventurer()
                         }
                         else if (bothwaysBool == true) //but if it is two directional it swings back to frame zero.
                         {
-                            if (this.weapon.subUtility != "thrown" && this.weaponEquipped != "flail" && this.weaponEquipped != "vardanianHalberd" && this.weaponEquipped != "aldrekiiClaws" && this.weaponEquipped != "theUndyingEdge" && this.weaponEquipped != "cero" && this.weaponEquipped != "werewolf" && this.weaponEquipped != "vampire" && this.weaponEquipped != "wendigo" && this.weaponEquipped != "cephrianFlail")
+                            if (this.weapon.subUtility != "thrown" && this.weaponEquipped != "flail" && this.weaponEquipped != "vardanianHalberd" && this.weaponEquipped != "aldrekiiClaws" && this.weaponEquipped != "theUndyingEdge" && this.weaponEquipped != "cero" && this.weaponEquipped != "werewolf" && this.weaponEquipped != "vampire" && this.weaponEquipped != "wendigo" && this.weaponEquipped != "cephrianFlail" && this.weaponEquipped != "sackmansSword")
                             {
                                 if (this.frameOrder == "positive")
                                 {
@@ -17188,6 +17355,95 @@ function Adventurer()
                 }
                 XXX.drawImage(polyPNG, 520, 59, 105, 69, -28, -43, 72, 47);
                 XXX.restore();
+            }
+        }
+        //THE SACKMAN'S SWORD
+        if (this.weaponEquipped == "sackmansSword")
+        {
+            var szx = 1.2;
+            this.stageEngine(8, 0.17, true); //This cycles through the stages of the attack for four stages (ending at five) and at a rate of 4 * 16.75 miliseconds
+
+            //ATTACK ANIMATION
+            if (Math.floor(this.stage) <= 0)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(pavo, 236, 89, 62, 145, -1/2 * 62 * szx, -1/2 * 145 * szx, 62 * szx, 145 * szx);
+                XXX.restore();
+                this.attackManual = false;
+            }
+            else if (Math.floor(this.stage) <= 2)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(pavo, 119, 87, 62, 145, -1/2 * 62 * szx, -1/2 * 145 * szx, 62 * szx, 145 * szx);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(pavo, 236, 89, 62, 145, -1/2 * 62 * szx, -1/2 * 145 * szx, 62 * szx, 145 * szx);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 4)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(pavo, 336, 90, 62, 145, -1/2 * 62 * szx, -1/2 * 145 * szx, 62 * szx, 145 * szx);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 5)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(pavo, 424, 90, 62, 145, -1/2 * 62 * szx - 1, -1/2 * 145 * szx - 5, 62 * szx, 145 * szx);
+                XXX.restore();
+                this.attackManual = false;
+            }
+            else if (Math.floor(this.stage) >= 6)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(pavo, 525, 89, 62, 145, -1/2 * 62 * szx, -1/2 * 145 * szx - 6, 62 * szx, 145 * szx);
+                XXX.restore();
+
+                if (this.attackManual == false)
+                {
+                    this.attackManual = true;
+                    this.finalAttackStage = true;
+                    this.attackCooldown = new Date().getTime();
+                }
             }
         }
         //THE WENDIGO'S CLEAVER
@@ -26374,6 +26630,14 @@ function Adventurer()
             //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
             this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.5 / 5 * Math.PI) * (this.mySize + 24);
             this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.5 / 5 * Math.PI) * (this.mySize + 24);
+        }
+        else if (this.weaponEquipped == "sackmansSword")
+        {
+            this.weapon = allWeapons[112];
+
+            //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+            this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.65 / 5 * Math.PI) * (this.mySize + 62);
+            this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.65 / 5 * Math.PI) * (this.mySize + 62);
         }
     };
 
@@ -37454,6 +37718,34 @@ function Adventurer()
                                 break;
                             }
                         }
+                        else if (Inventory[i][0].ability == "turkeyHatch")
+                        {
+                            var canPlace = true;
+                            var hits = 0;
+                            for (var j = 0; j < scenicList.length; j++)
+                            {
+                                //6 is the radius of turkeyEgg Scenery Object.
+                                if (scenicList[j].X - 6 <= X + scenicList[j].radius && scenicList[j].X + 6 >= X - scenicList[j].radius && scenicList[j].Y - 6 <= Y + scenicList[j].radius && scenicList[j].Y + 6 >= Y - scenicList[j].radius)
+                                {
+                                    canPlace = false;
+                                }
+                            }
+
+                            if (canPlace == true)
+                            {
+                                scenicList.push(new Scenery("turkeyEgg", X, Y, (Math.random() * (2 * Math.PI)), false));
+
+                                if (Inventory[i][1] - 1 <= 0)
+                                {
+                                    Inventory.splice(i, 1);
+                                }
+                                else
+                                {
+                                    Inventory[i][1] -= 1;
+                                }
+                                break;
+                            }
+                        }
                         else if (Inventory[i][0].ability == "dalgerHatch")
                         {
                             var canPlace = true;
@@ -39222,7 +39514,7 @@ function Adventurer()
                 }
 
                 //this is rare, but some weapons draw below the body layer.
-                if (this.wepLayer == "under" || this.weaponEquipped == "swimming" || this.weaponEquipped == "boat" || this.weaponEquipped == "blunderbuss" || this.weaponEquipped == "musket" || this.weaponEquipped == "cutlass" || this.weaponEquipped == "freydicSword" || this.weaponEquipped == "freydicGreatSword" || this.weaponEquipped == "theNorthernGem" || this.weaponEquipped == "longbow" || this.weaponEquipped == "crossbow" || this.weaponEquipped == "nirineseSpear" || this.weaponEquipped == "iceBlade" || this.weaponEquipped == "kellishClaymore" || this.weaponEquipped == "smashStick" || this.weaponEquipped == "burningSmashStick" || this.weaponEquipped == "lightningCorseque" || this.weaponEquipped == "staff" || this.weaponEquipped == "estoc" || this.weaponEquipped == "scimitar" || this.weaponEquipped == "nirwadenLance" || this.weaponEquipped == "vardanianHalberd" || this.weaponEquipped == "shotgun" || this.weaponEquipped == "sickle" || this.weaponEquipped == "vardanianCrossbow" || this.weaponEquipped == "throwingStar" || this.weaponEquipped == "pitchfork" || this.weaponEquipped == "cultistScythe" || this.weaponEquipped == "sceptreOfRadiance" || this.weaponEquipped == "longBone" || this.weaponEquipped == "theWendigosCleaver" || this.weaponEquipped == "beulingerrPike") //add more cases for more overhead weapons.
+                if (this.wepLayer == "under" || this.weaponEquipped == "swimming" || this.weaponEquipped == "boat" || this.weaponEquipped == "blunderbuss" || this.weaponEquipped == "musket" || this.weaponEquipped == "cutlass" || this.weaponEquipped == "freydicSword" || this.weaponEquipped == "freydicGreatSword" || this.weaponEquipped == "theNorthernGem" || this.weaponEquipped == "longbow" || this.weaponEquipped == "crossbow" || this.weaponEquipped == "nirineseSpear" || this.weaponEquipped == "iceBlade" || this.weaponEquipped == "kellishClaymore" || this.weaponEquipped == "smashStick" || this.weaponEquipped == "burningSmashStick" || this.weaponEquipped == "lightningCorseque" || this.weaponEquipped == "staff" || this.weaponEquipped == "estoc" || this.weaponEquipped == "scimitar" || this.weaponEquipped == "nirwadenLance" || this.weaponEquipped == "vardanianHalberd" || this.weaponEquipped == "shotgun" || this.weaponEquipped == "sickle" || this.weaponEquipped == "vardanianCrossbow" || this.weaponEquipped == "throwingStar" || this.weaponEquipped == "pitchfork" || this.weaponEquipped == "cultistScythe" || this.weaponEquipped == "sceptreOfRadiance" || this.weaponEquipped == "longBone" || this.weaponEquipped == "theWendigosCleaver" || this.weaponEquipped == "beulingerrPike" || this.weaponEquipped == "sackmansSword") //add more cases for more overhead weapons.
                 {
                     this.drawArms();
                 }
@@ -39450,6 +39742,80 @@ function Adventurer()
                                 XXX.globalAlpha = 0.4;
                             }
                             XXX.drawImage(verse, 3962, 384, 20, 30, -(1 / 2 * 26) - 1, -(1 / 2 * 39) + 20.5, 29.5, this.capeFlappiness);
+                            XXX.restore();
+                        }
+                    }
+                }
+                else if (this.outfitEquipped == "littleRedRidingHood")
+                {
+                    if (this.movingType == 2 && this.energy > 0 && this.freeze <= 2)
+                    {
+                        this.wasCapeFlapping = true; //this lets the cape know it was showing so when the player slows down or stops moving the cape will ease back.
+                        this.capeFlappiness += 2; //this is a variable that determines what costume the cape will be.
+                        if (this.capeFlappiness > 100)
+                        {
+                            this.capeFlappiness = 0;
+                        }
+
+                        if (this.capeFlappiness <= 12.5 || this.capeFlappiness > 25 && this.capeFlappiness <= 37.5 || this.capeFlappiness > 50 && this.capeFlappiness <= 62.5 || this.capeFlappiness > 75 && this.capeFlappiness <= 87.5)
+                        {
+                            XXX.save();
+                            XXX.translate(this.myScreenX, this.myScreenY);
+                            XXX.rotate(this.rotation);
+                            if (this.subtlety)
+                            {
+                                XXX.globalAlpha = 0.4;
+                            }
+                            XXX.drawImage(pavo, 15, 4, 23, 44, -(1 / 2 * 23 * 1.2) - 1, -(1 / 2 * 44 * 1.2) + 25, 23 * 1.2, 44 * 1.2);
+                            XXX.restore();
+                        }
+                        else if (this.capeFlappiness > 12.5 && this.capeFlappiness <= 25 || this.capeFlappiness > 37.5 && this.capeFlappiness <= 50 || this.capeFlappiness > 62.5 && this.capeFlappiness <= 75 || this.capeFlappiness > 87.5)
+                        {
+                            XXX.save();
+                            XXX.translate(this.myScreenX, this.myScreenY);
+                            XXX.rotate(this.rotation);
+                            if (this.subtlety)
+                            {
+                                XXX.globalAlpha = 0.4;
+                            }
+                            XXX.drawImage(pavo, 16, 52, 23, 44, -(1 / 2 * 23 * 1.2) - 1, -(1 / 2 * 44 * 1.2) + 25, 23 * 1.2, 44 * 1.2);
+                            XXX.restore();
+                        }
+                    }
+                    else if (this.wasCapeFlapping == true)
+                    {
+                        this.capeFlappiness = 44 * 1.2;
+                        this.wasCapeFlapping = "gooblebunches";
+                        //display the cape while codey stuff happens...
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation);
+                        if (this.subtlety)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
+                        XXX.drawImage(pavo, 15, 4, 23, 44, -(1 / 2 * 23 * 1.2) - 1, -(1 / 2 * 44 * 1.2) + 25, 23 * 1.2, 44 * 1.2);
+                        XXX.restore();
+                    }
+                    else if (this.wasCapeFlapping == "gooblebunches")
+                    {
+                        this.capeFlappiness -= 1; //this time cape flappiness referrs to the cape flapping down on its way out of being displayed.
+                        if (this.capeFlappiness < 1)
+                        {
+                            this.capeFlappiness = 0;
+                            this.wasCapeFlapping = false;
+                        }
+
+                        if (this.capeFlappiness > 0)
+                        {
+                            XXX.save();
+                            XXX.translate(this.myScreenX, this.myScreenY);
+                            XXX.rotate(this.rotation);
+                            if (this.subtlety)
+                            {
+                                XXX.globalAlpha = 0.4;
+                            }
+                            XXX.drawImage(pavo, 15, 4, 23, 44, -(1 / 2 * 23 * 1.2) - 1, -(1 / 2 * 44 * 1.2) + 25, 23 * 1.2, this.capeFlappiness);
                             XXX.restore();
                         }
                     }
@@ -40126,7 +40492,7 @@ function Adventurer()
                 }
 
                 //most weapons draw beneath the armour layer.
-                if (this.wepLayer == "standard" || this.wepLayer != "under" && this.wepLayer != "over" && this.weaponEquipped != "swimming" && this.weaponEquipped != "boat" && this.weaponEquipped != "blunderbuss" && this.weaponEquipped != "musket" && this.weaponEquipped != "cutlass" && this.weaponEquipped != "nirineseSabre" && this.weaponEquipped != "longSpikedMorningStar" && this.weaponEquipped != "freydicSword" && this.weaponEquipped != "freydicGreatSword" && this.weaponEquipped != "theNorthernGem" && this.weaponEquipped != "longbow" && this.weaponEquipped != "crossbow" && this.weaponEquipped != "nirineseSpear" && this.weaponEquipped != "iceBlade" && this.weaponEquipped != "kellishClaymore" && this.weaponEquipped != "smashStick" && this.weaponEquipped != "burningSmashStick" && this.weaponEquipped != "lightningCorseque" && this.weaponEquipped != "staff" && this.weaponEquipped != "estoc" && this.weaponEquipped != "scimitar" && this.weaponEquipped != "nirwadenLance" && this.weaponEquipped != "vardanianHalberd" && this.weaponEquipped != "shotgun" && this.weaponEquipped != "sickle" && this.weaponEquipped != "vardanianCrossbow" && this.weaponEquipped != "throwingStar" && this.weaponEquipped != "pitchfork" && this.weaponEquipped != "cultistScythe" && this.weaponEquipped != "sceptreOfRadiance" && this.weaponEquipped != "longBone" && this.weaponEquipped != "theWendigosCleaver" && this.weaponEquipped != "beulingerrPike") //add more cases for more overhead weapons.
+                if (this.wepLayer == "standard" || this.wepLayer != "under" && this.wepLayer != "over" && this.weaponEquipped != "swimming" && this.weaponEquipped != "boat" && this.weaponEquipped != "blunderbuss" && this.weaponEquipped != "musket" && this.weaponEquipped != "cutlass" && this.weaponEquipped != "nirineseSabre" && this.weaponEquipped != "longSpikedMorningStar" && this.weaponEquipped != "freydicSword" && this.weaponEquipped != "freydicGreatSword" && this.weaponEquipped != "theNorthernGem" && this.weaponEquipped != "longbow" && this.weaponEquipped != "crossbow" && this.weaponEquipped != "nirineseSpear" && this.weaponEquipped != "iceBlade" && this.weaponEquipped != "kellishClaymore" && this.weaponEquipped != "smashStick" && this.weaponEquipped != "burningSmashStick" && this.weaponEquipped != "lightningCorseque" && this.weaponEquipped != "staff" && this.weaponEquipped != "estoc" && this.weaponEquipped != "scimitar" && this.weaponEquipped != "nirwadenLance" && this.weaponEquipped != "vardanianHalberd" && this.weaponEquipped != "shotgun" && this.weaponEquipped != "sickle" && this.weaponEquipped != "vardanianCrossbow" && this.weaponEquipped != "throwingStar" && this.weaponEquipped != "pitchfork" && this.weaponEquipped != "cultistScythe" && this.weaponEquipped != "sceptreOfRadiance" && this.weaponEquipped != "longBone" && this.weaponEquipped != "theWendigosCleaver" && this.weaponEquipped != "beulingerrPike" && this.weaponEquipped != "sackmansSword") //add more cases for more overhead weapons.
                 {
                     this.drawArms();
                 }

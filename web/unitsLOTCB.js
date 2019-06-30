@@ -17818,11 +17818,16 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         }
         else if (this.type == "Turkey")
         {
+            this.bugger = true;
             this.damageFrame = "automatic";
-            this.team = "wild";
+            this.team = "herd";
             if (this.ID == "docile")
             {
                 this.team = "docile";
+            }
+            if (this.ID == "player")
+            {
+                this.team = "player";
             }
             this.baseTeam = this.team;
             this.tameREQ = 14;
@@ -17842,8 +17847,6 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.playerIsScary = false;
             this.plumed = false;
 
-            this.alphaSize = 0.4;
-            this.mature = false;
             if (Math.round(Math.random()))
             {
                 this.gender = "male";
@@ -17855,7 +17858,12 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.alphaSizeMAX = 1;
             }
 
-            if (this.alpha == true)
+            if (this.alpha == "baby")
+            {
+                this.alphaSize = 0.4;
+                this.mature = false;
+            }
+            else if (this.alpha == true)
             {
                 this.gender = "male";
                 this.alphaSizeMAX = 1.15; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -36357,7 +36365,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
             if (this.mature)
             {
-                this.drops = [[new Item("varnPelt", this.X, this.Y), 1]];
+                this.drops = [[new Item("rawTurkeyFlesh", this.X, this.Y), 1], [new Item("turkeyFeathers", this.X, this.Y), 1]];
             }
             else
             {
@@ -36385,9 +36393,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     }
                     this.armour = 0;
                     this.baseSpeed = 0.5 + 2.4 * this.alphaSize;
+                    this.speed = this.baseSpeed;
                     this.rotationSpeed = 0.13;
-                    this.engagementRadius = 28 * this.alphaSize;
-                    this.sizeRadius = 10 * this.alphaSize;
+                    this.engagementRadius = 48 * this.alphaSize;
+                    this.sizeRadius = 19 * this.alphaSize;
                     this.negateArmour = 0.3 * this.alphaSize;
                     this.attackWait = 0.9;
                     this.contraPlayer = false;
@@ -36414,13 +36423,12 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
                 if (this.mature == true)
                 {
-                    this.Attack(0.25, 0.15);
-                    this.callForNearbyHelpFromType(350, "Varn");
+                    this.Attack(0.25, 0.25);
+                    this.callForNearbyHelpFromType(150, "Turkey");
                 }
                 else
                 {
-                    this.Attack(2, 2);
-                    this.callForNearbyHelpFromType(275, "Varn");
+                    this.callForNearbyHelpFromType(100, "Turkey");
                 }
 
                 //this.deathChecker();
@@ -36453,7 +36461,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
                 if (this.gender == "female")
                 {
-                    if (this.egging == 1)
+                    if (this.egging > 0)
                     {
                         this.egging += 0.1;
                     }
@@ -36469,6 +36477,23 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 }
 
                 var mate = "none";
+                var dtMate = 10000000;
+                if (this.gender == "male" && this.horny >= 100 && this.mature == true)
+                {
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].type == "Turkey" && ArtificialIntelligenceAccess[i].mature == true && ArtificialIntelligenceAccess[i].gender == "female" && ArtificialIntelligenceAccess[i].egging == 0)
+                        {
+                            var dttM8 = this.DTU(ArtificialIntelligenceAccess[i]);
+                            if (dtMate > dttM8)
+                            {
+                                dtMate = dttM8;
+                                mate = ArtificialIntelligenceAccess[i];
+                            }
+                        }
+                    }
+                }
+
                 if (this.mature == true)
                 {
                     if (this.gender == "female" && this.makeNest == true)
@@ -36516,39 +36541,24 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             this.makeNest = false;
                             this.initX = this.X;
                             this.initY = this.Y;
+
                             scenicList.unshift(new Scenery("turkeyNest", this.X, this.Y, 2 * Math.PI * Math.random(), this.barcode));
                         }
                     }
-                    else if (this.gender == "male" && this.horny >= 100)
+                    else if (this.gender == "male" && this.horny >= 100 && mate != "none" && dtMate != 10000000)
                     {
-                        var dtMate = 10000000;
-                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                        this.pointTowards(mate);
+                        this.moveInRelationToThing(mate, 100000);
+
+                        if (dtMate < 60)
                         {
-                            if (ArtificialIntelligenceAccess[i].type == "Turkey" && ArtificialIntelligenceAccess[i].mature == true && ArtificialIntelligenceAccess[i].gender == "female" && ArtificialIntelligenceAccess[i].egging == 0)
-                            {
-                                var dttM8 = this.DTU(ArtificialIntelligenceAccess[i]);
-                                if (dtMate > dttM8)
-                                {
-                                    dtMate = dttM8;
-                                    mate = ArtificialIntelligenceAccess[i];
-                                }
-                            }
+                            this.X = mate.X;
+                            this.Y = mate.Y;
+                            mate.egging = 1;
+                            this.horny = -200;
+                            this.initX = this.X;
+                            this.initY = this.Y;
                         }
-
-                        if (mate != "none")
-                        {
-                            this.pointTowards(mate);
-                            this.moveInRelationToThing(mate);
-
-                            if (dtMate < 60)
-                            {
-                                this.X = mate.X;
-                                this.Y = mate.Y;
-                                mate.egging = 1;
-                                this.horny = -200;
-                            }
-                        }
-
                     }
                     else if (this.gender == "female" && this.goToNest == true)
                     {
@@ -36561,17 +36571,41 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             this.Y = this.initY;
                             this.egging = 0;
                             this.goToNest = false;
-                            scenicList.push(new Scenery("turkeyEgg", this.X + spacer(20), this.Y + spacer(20), 2*Math.PI*Math.random(), this.barcode));
+                            if (this.team == "player")
+                            {
+                                scenicList.push(new Scenery("turkeyEgg", this.X + spacer(20), this.Y + spacer(20), 2*Math.PI*Math.random(), false));
+                            }
+                            else
+                            {
+                                scenicList.push(new Scenery("turkeyEgg", this.X + spacer(20), this.Y + spacer(20), 2*Math.PI*Math.random(), true));
+                            }
                         }
                     }
                     else if (this.health < this.healthMAX && ddttpp > 650)
                     {
-                        this.eating = true;
-                        this.plumed = true;
+                        if (this.DTU({X: this.initX, Y: this.initY}) < 250)
+                        {
+                            this.pointAway({X: this.initX + Math.cos(this.nestDir) * 200, Y: this.initY + Math.sin(this.nestDir) * 200});
+                            this.moveInRelationToThing({X: this.initX + Math.cos(this.nestDir) * 200, Y: this.initY + Math.sin(this.nestDir) * 200}, 600);
+                        }
+                        else
+                        {
+                            this.eating = true;
+                            this.plumed = true;
+                        }
+                    }
+                    else if (this.horny < -190 && this.gender == "male")
+                    {
+                        this.pointTowards({X: this.initX + Math.cos(this.nestDir) * 300, Y: this.initY + Math.sin(this.nestDir) * 300});
+                        this.moveInRelationToThing({X: this.initX + Math.cos(this.nestDir) * 300, Y: this.initY + Math.sin(this.nestDir) * 300}, 100000);
+                        if (this.DTU({X: this.initX + Math.cos(this.nestDir) * 300, Y: this.initY + Math.sin(this.nestDir) * 300}) < 60)
+                        {
+                            this.horny = -190;
+                        }
                     }
                     else if (this.target == player)
                     {
-                        if (this.playerIsScary == false && player.armourTotal < 0.15)
+                        if (this.playerIsScary == false && player.armourTotal < 0.25)
                         {
                             this.pointTowardsPlayer();
                             this.moveInRelationToPlayer();
@@ -36587,7 +36621,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     }
                     else if (this.target != "none")
                     {
-                        if (this.target.healthMAX <= 2 && this.target.team != "undead" && this.target.armour < 0.15 || this.target.type == "Person" && this.target.weapon == "none" && this.target.armour < 0.15 || this.target.type == "Soldier" && this.target.weapon == "none" && this.target.armour < 0.15)
+                        if (this.target.healthMAX <= 4 && this.target.team != "undead" && this.target.armour < 0.25 || this.target.type == "Person" && this.target.weapon == "none" && this.target.armour < 0.25 || this.target.type == "Soldier" && this.target.weapon == "none" && this.target.armour < 0.25)
                         {
                             this.pointTowards(this.target);
                             this.moveInRelationToThing(this.target);
@@ -36596,8 +36630,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         }
                         else
                         {
+                            this.attacking = false;
+                            this.fleeing = true;
                             this.pointAway(this.target);
-                            this.moveInRelationToThing(this.target, 200);
+                            this.moveInRelationToThing(this.target, 600);
                             this.plumed = false;
                         }
                     }
@@ -36618,7 +36654,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     else if (this.target != "none")
                     {
                         this.pointAway(this.target);
-                        this.moveInRelationToThing(this.target, 200);
+                        this.moveInRelationToThing(this.target, 600);
                         this.plumed = false;
                     }
                 }
@@ -63676,6 +63712,25 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     }
                 }
 
+                //find partner (r i b b a c k ' s pair up in order to present themselves to a female ribback whom they wish to spawn with: she picks only one)
+                if (this.alpha == false && this.partner == "none" && this.chosen42Mate == false && unpartneredDudes > 0)
+                {
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i] !== this && ArtificialIntelligenceAccess[i].type == "Ribback" && ArtificialIntelligenceAccess[i].alpha == false && ArtificialIntelligenceAccess[i].gender == 1)
+                        {
+                            if (ArtificialIntelligenceAccess[i].partner == "none" && ArtificialIntelligenceAccess[i].chosen42Mate == false)
+                            {
+                                if (this.DTU(ArtificialIntelligenceAccess[i]) < dtptner)
+                                {
+                                    dtptner = this.DTU(ArtificialIntelligenceAccess[i]);
+                                    dtptnerNum = i;
+                                }
+                            }
+                        }
+                    }
+                }
+
                 if (this.target == player)
                 {
                     var ddttpp = this.DTP();
@@ -63692,27 +63747,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             this.awayCount = 0;
                         }
                     }
-                    else if (this.alpha == false && this.partner == "none" && this.chosen42Mate == false && unpartneredDudes > 0) //find partner (r i b b a c k ' s pair up in order to present themselves to a female ribback whom they wish to spawn with: she picks only one)
+                    else if (dtptnerNum > -1) //partner up with another dude (if male)
                     {
-                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
-                        {
-                            if (ArtificialIntelligenceAccess[i] !== this && ArtificialIntelligenceAccess[i].type == "Ribback" && ArtificialIntelligenceAccess[i].alpha == false && ArtificialIntelligenceAccess[i].gender == 1)
-                            {
-                                if (ArtificialIntelligenceAccess[i].partner == "none" && ArtificialIntelligenceAccess[i].chosen42Mate == false)
-                                {
-                                    if (this.DTU(ArtificialIntelligenceAccess[i]) < dtptner)
-                                    {
-                                        dtptner = this.DTU(ArtificialIntelligenceAccess[i]);
-                                        dtptnerNum = i;
-                                    }
-                                }
-                            }
-                        }
-                        if (dtptnerNum > -1)
-                        {
-                            ArtificialIntelligenceAccess[dtptnerNum].partner = this.barcode;
-                            this.partner = ArtificialIntelligenceAccess[dtptnerNum].barcode;
-                        }
+                        ArtificialIntelligenceAccess[dtptnerNum].partner = this.barcode;
+                        this.partner = ArtificialIntelligenceAccess[dtptnerNum].barcode;
                     }
                     else if (this.alpha == false && pattyner != "none" && dtptner > 240 && this.chosen42Mate == false) //if a male pair is too far apart bring them back
                     {
@@ -63994,27 +64032,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             this.awayCount = 0;
                         }
                     }
-                    else if (this.alpha == false && this.partner == "none" && this.chosen42Mate == false && unpartneredDudes > 0) //find partner (r i b b a c k ' s pair up in order to present themselves to a female ribback whom they wish to spawn with: she picks only one)
+                    else if (dtptnerNum > -1) //partner up with another dude (if male)
                     {
-                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
-                        {
-                            if (ArtificialIntelligenceAccess[i] !== this && ArtificialIntelligenceAccess[i].type == "Ribback" && ArtificialIntelligenceAccess[i].alpha == false && ArtificialIntelligenceAccess[i].gender == 1)
-                            {
-                                if (ArtificialIntelligenceAccess[i].partner == "none" && ArtificialIntelligenceAccess[i].chosen42Mate == false)
-                                {
-                                    if (this.DTU(ArtificialIntelligenceAccess[i]) < dtptner)
-                                    {
-                                        dtptner = this.DTU(ArtificialIntelligenceAccess[i]);
-                                        dtptnerNum = i;
-                                    }
-                                }
-                            }
-                        }
-                        if (dtptnerNum > -1)
-                        {
-                            ArtificialIntelligenceAccess[dtptnerNum].partner = this.barcode;
-                            this.partner = ArtificialIntelligenceAccess[dtptnerNum].barcode;
-                        }
+                        ArtificialIntelligenceAccess[dtptnerNum].partner = this.barcode;
+                        this.partner = ArtificialIntelligenceAccess[dtptnerNum].barcode;
                     }
                     else if (this.alpha == false && pattyner != "none" && dtptner > 240 && this.chosen42Mate == false) //if a male pair is too far apart bring them back
                     {

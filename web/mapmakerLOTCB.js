@@ -11181,7 +11181,7 @@ function buildMaster()
                     }
                     else if (rnd > 0.1)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(51491, -8120, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 9, speed: 1.55, outfit: ["boulchomLeatherArmour", 2], weapon: ["thenganSword", [8, 5], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(51491, -8120, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 9, speed: 1.55, outfit: ["boulchomLeatherArmour", 2], weapon: ["longsword", [8, 5], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
                     }
                     else
                     {
@@ -11293,7 +11293,7 @@ function buildMaster()
                         }
                         else if (rnd > 0.1)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(51491, -8120, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 9, speed: 1.55, outfit: ["boulchomLeatherArmour", 2], weapon: ["thenganSword", [8, 5], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(51491, -8120, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 9, speed: 1.55, outfit: ["boulchomLeatherArmour", 2], weapon: ["longsword", [8, 5], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
                         }
                         else
                         {
@@ -11405,7 +11405,7 @@ function buildMaster()
                         var rnd = Math.random();
                         if (rnd > 0.7)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(51486, -8114, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 15, speed: 1.42, outfit: ["blackBearLeatherArmour", 6], weapon: ["thenganSword", [9, 6], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(51486, -8114, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 15, speed: 1.42, outfit: ["blackBearLeatherArmour", 6], weapon: ["longsword", [9, 6], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
                         }
                         else if (rnd > 0.4)
                         {
@@ -11464,7 +11464,7 @@ function buildMaster()
                         }
                         else if (rnd > 0.4)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(51486, -8114, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 13, speed: 1.52, outfit: ["skolLeatherArmour", 3], weapon: ["thenganSword", [10, 7], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(51486, -8114, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 13, speed: 1.52, outfit: ["skolLeatherArmour", 3], weapon: ["longsword", [10, 7], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
                         }
                         else if (rnd > 0.1)
                         {
@@ -11500,7 +11500,7 @@ function buildMaster()
                         }
                         else if (rnd > 0.1)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(51491, -8120, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 9, speed: 1.55, outfit: ["boulchomLeatherArmour", 2], weapon: ["thenganSword", [8, 5], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(51491, -8120, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 9, speed: 1.55, outfit: ["boulchomLeatherArmour", 2], weapon: ["longsword", [8, 5], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
                         }
                         else
                         {
@@ -11535,7 +11535,7 @@ function buildMaster()
                         }
                         else if (rnd > 0.4)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(51538, -8126, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 11, speed: 1.52, outfit: ["skolLeatherArmour", 3], weapon: ["thenganSword", [10, 7], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(51538, -8126, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 11, speed: 1.52, outfit: ["skolLeatherArmour", 3], weapon: ["longsword", [10, 7], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
                         }
                         else if (rnd > 0.1)
                         {
@@ -11557,7 +11557,7 @@ function buildMaster()
                         }
                         else if (rnd > 0.1)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(51005, -8132, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena2", con: 10, speed: 1.55, outfit: ["boulchomLeatherArmour", 2], weapon: ["thenganSword", [8, 6], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(51005, -8132, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena2", con: 10, speed: 1.55, outfit: ["boulchomLeatherArmour", 2], weapon: ["longsword", [8, 6], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
                         }
                         else
                         {
@@ -11573,7 +11573,7 @@ function buildMaster()
                         }
                         else if (rnd > 0.4)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(51538, -8086, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 11, speed: 1.52, outfit: ["skolLeatherArmour", 3], weapon: ["thenganSword", [10, 7], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(51538, -8086, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 11, speed: 1.52, outfit: ["skolLeatherArmour", 3], weapon: ["longsword", [10, 7], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
                         }
                         else if (rnd > 0.1)
                         {
@@ -11595,7 +11595,7 @@ function buildMaster()
                         }
                         else if (rnd > 0.1)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(51538, -8166, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 10, speed: 1.55, outfit: ["boulchomLeatherArmour", 2], weapon: ["thenganSword", [8, 6], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(51538, -8166, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 10, speed: 1.55, outfit: ["boulchomLeatherArmour", 2], weapon: ["longsword", [8, 6], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
                         }
                         else
                         {
@@ -11613,7 +11613,7 @@ function buildMaster()
                         }
                         else if (rnd > 0.1)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(51005, -8092, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena2", con: 10, speed: 1.55, outfit: ["boulchomLeatherArmour", 2], weapon: ["thenganSword", [8, 6], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(51005, -8092, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena2", con: 10, speed: 1.55, outfit: ["boulchomLeatherArmour", 2], weapon: ["longsword", [8, 6], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
                         }
                         else
                         {
@@ -11627,7 +11627,7 @@ function buildMaster()
                         }
                         else if (rnd > 0.4)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(51005, -8172, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena2", con: 11, speed: 1.52, outfit: ["skolLeatherArmour", 3], weapon: ["thenganSword", [10, 7], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(51005, -8172, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena2", con: 11, speed: 1.52, outfit: ["skolLeatherArmour", 3], weapon: ["longsword", [10, 7], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
                         }
                         else if (rnd > 0.1)
                         {
@@ -11647,7 +11647,7 @@ function buildMaster()
                         }
                         else if (rnd > 0.4)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(51538, -8166, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 12, speed: 1.52, outfit: ["skolLeatherArmour", 3], weapon: ["thenganSword", [10, 7], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(51538, -8166, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 12, speed: 1.52, outfit: ["skolLeatherArmour", 3], weapon: ["longsword", [10, 7], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
                         }
                         else if (rnd > 0.1)
                         {
@@ -11669,7 +11669,7 @@ function buildMaster()
                         }
                         else if (rnd > 0.1)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(51538, -8086, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 11, speed: 1.55, outfit: ["boulchomLeatherArmour", 2], weapon: ["thenganSword", [8, 6], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(51538, -8086, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 11, speed: 1.55, outfit: ["boulchomLeatherArmour", 2], weapon: ["longsword", [8, 6], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
                         }
                         else
                         {
@@ -11733,11 +11733,11 @@ function buildMaster()
                         }
                         else if (rnd > 0.1)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(51491, -8120, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 6, speed: 1.55, outfit: ["boulchomLeatherArmour", 2], weapon: ["thenganSword", [8, 5], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(51491, -8120, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 6, speed: 1.55, outfit: ["boulchomLeatherArmour", 2], weapon: ["longsword", [8, 5], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
                         }
                         else
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(51491, -8120, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 5, speed: 0.73, outfit: ["thenganPlateArmour", 14], weapon: ["thenganSword", [9, 6], 0, 16, 1.45], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(51491, -8120, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 5, speed: 0.73, outfit: ["thenganPlateArmour", 14], weapon: ["longsword", [9, 6], 0, 16, 1.45], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
                         }
 
                         rnd = Math.random();
@@ -11768,7 +11768,7 @@ function buildMaster()
                         }
                         else if (rnd > 0.4)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(51538, -8086, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 11, speed: 1.52, outfit: ["skolLeatherArmour", 3], weapon: ["thenganSword", [10, 7], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(51538, -8086, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 11, speed: 1.52, outfit: ["skolLeatherArmour", 3], weapon: ["longsword", [10, 7], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
                         }
                         else if (rnd > 0.1)
                         {
@@ -11790,7 +11790,7 @@ function buildMaster()
                         }
                         else if (rnd > 0.1)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(51538, -8166, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 10, speed: 1.55, outfit: ["boulchomLeatherArmour", 2], weapon: ["thenganSword", [8, 6], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(51538, -8166, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 10, speed: 1.55, outfit: ["boulchomLeatherArmour", 2], weapon: ["longsword", [8, 6], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
                         }
                         else
                         {
@@ -11812,7 +11812,7 @@ function buildMaster()
                         }
                         else
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(51568, -8132, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 7, speed: 0.85, outfit: ["thenganPlateArmour", 20], weapon: ["thenganSword", [10, 7], 0, 16, 1.35], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(51568, -8132, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena1", con: 7, speed: 0.85, outfit: ["thenganPlateArmour", 20], weapon: ["longsword", [10, 7], 0, 16, 1.35], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
                         }
 
                         rnd = Math.random();
@@ -11826,7 +11826,7 @@ function buildMaster()
                         }
                         else if (rnd > 0.1)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(51005, -8092, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena2", con: 10, speed: 1.55, outfit: ["boulchomLeatherArmour", 2], weapon: ["thenganSword", [8, 6], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(51005, -8092, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena2", con: 10, speed: 1.55, outfit: ["boulchomLeatherArmour", 2], weapon: ["longsword", [8, 6], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
                         }
                         else
                         {
@@ -11840,7 +11840,7 @@ function buildMaster()
                         }
                         else if (rnd > 0.4)
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(51005, -8172, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena2", con: 11, speed: 1.52, outfit: ["skolLeatherArmour", 3], weapon: ["thenganSword", [10, 7], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(51005, -8172, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena2", con: 11, speed: 1.52, outfit: ["skolLeatherArmour", 3], weapon: ["longsword", [10, 7], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
                         }
                         else if (rnd > 0.1)
                         {
@@ -11866,7 +11866,7 @@ function buildMaster()
                         }
                         else
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(50949, -8128, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena2", con: 13, speed: 0.85, outfit: ["thenganPlateArmour", 18], weapon: ["thenganSword", [10, 7], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(50949, -8128, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena2", con: 13, speed: 0.85, outfit: ["thenganPlateArmour", 18], weapon: ["longsword", [10, 7], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
                         }
                     }
 
@@ -12003,7 +12003,7 @@ function buildMaster()
                             }
                             else if (rnd > 0.1)
                             {
-                                ArtificialIntelligenceAccess.push(new Unit(51005, -8092, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 7, speed: 1.56, outfit: ["boulchomLeatherArmour", 2], weapon: ["thenganSword", [8, 5], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                ArtificialIntelligenceAccess.push(new Unit(51005, -8092, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 7, speed: 1.56, outfit: ["boulchomLeatherArmour", 2], weapon: ["longsword", [8, 5], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
                             }
                             else
                             {
@@ -12015,7 +12015,7 @@ function buildMaster()
                             var rnd = Math.random();
                             if (rnd > 0.7)
                             {
-                                ArtificialIntelligenceAccess.push(new Unit(51005, -8172, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 16, speed: 1.2, outfit: ["blackBearLeatherArmour", 6], weapon: ["thenganSword", [10, 7], 0, 16, 1.4], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                ArtificialIntelligenceAccess.push(new Unit(51005, -8172, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 16, speed: 1.2, outfit: ["blackBearLeatherArmour", 6], weapon: ["longsword", [10, 7], 0, 16, 1.4], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
                             }
                             else if (rnd > 0.4)
                             {
@@ -12038,7 +12038,7 @@ function buildMaster()
                             var rnd = Math.random();
                             if (rnd > 0.7)
                             {
-                                ArtificialIntelligenceAccess.push(new Unit(51005, -8172, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 16, speed: 1.2, outfit: ["blackBearLeatherArmour", 6], weapon: ["thenganSword", [10, 7], 0, 16, 1.4], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                ArtificialIntelligenceAccess.push(new Unit(51005, -8172, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 16, speed: 1.2, outfit: ["blackBearLeatherArmour", 6], weapon: ["longsword", [10, 7], 0, 16, 1.4], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
                             }
                             else if (rnd > 0.4)
                             {
@@ -12064,7 +12064,7 @@ function buildMaster()
                             }
                             else if (rnd > 0.1)
                             {
-                                ArtificialIntelligenceAccess.push(new Unit(51005, -8092, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 7, speed: 1.56, outfit: ["boulchomLeatherArmour", 2], weapon: ["thenganSword", [8, 5], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                ArtificialIntelligenceAccess.push(new Unit(51005, -8092, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 7, speed: 1.56, outfit: ["boulchomLeatherArmour", 2], weapon: ["longsword", [8, 5], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
                             }
                             else
                             {
@@ -12084,7 +12084,7 @@ function buildMaster()
                             }
                             else if (rnd > 0.1)
                             {
-                                ArtificialIntelligenceAccess.push(new Unit(51005, -8092, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 8, speed: 1.55, outfit: ["boulchomLeatherArmour", 2], weapon: ["thenganSword", [8, 6], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                ArtificialIntelligenceAccess.push(new Unit(51005, -8092, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 8, speed: 1.55, outfit: ["boulchomLeatherArmour", 2], weapon: ["longsword", [8, 6], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
                             }
                             else
                             {
@@ -12106,7 +12106,7 @@ function buildMaster()
                             }
                             else
                             {
-                                ArtificialIntelligenceAccess.push(new Unit(50949, -8128, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 13, speed: 0.85, outfit: ["thenganPlateArmour", 18], weapon: ["thenganSword", [10, 7], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                ArtificialIntelligenceAccess.push(new Unit(50949, -8128, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 13, speed: 0.85, outfit: ["thenganPlateArmour", 18], weapon: ["longsword", [10, 7], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
                             }
                         }
                     }
@@ -12125,7 +12125,7 @@ function buildMaster()
                             }
                             else if (rnd > 0.1)
                             {
-                                ArtificialIntelligenceAccess.push(new Unit(51005, -8092, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 8, speed: 1.55, outfit: ["boulchomLeatherArmour", 2], weapon: ["thenganSword", [8, 6], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                ArtificialIntelligenceAccess.push(new Unit(51005, -8092, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 8, speed: 1.55, outfit: ["boulchomLeatherArmour", 2], weapon: ["longsword", [8, 6], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
                             }
                             else
                             {
@@ -12135,7 +12135,7 @@ function buildMaster()
                             rnd = Math.random();
                             if (rnd > 0.7)
                             {
-                                ArtificialIntelligenceAccess.push(new Unit(51005, -8172, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 15, speed: 1.2, outfit: ["blackBearLeatherArmour", 6], weapon: ["thenganSword", [10, 7], 0, 16, 1.4], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                ArtificialIntelligenceAccess.push(new Unit(51005, -8172, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 15, speed: 1.2, outfit: ["blackBearLeatherArmour", 6], weapon: ["longsword", [10, 7], 0, 16, 1.4], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
                             }
                             else if (rnd > 0.4)
                             {
@@ -12161,7 +12161,7 @@ function buildMaster()
                             }
                             else if (rnd > 0.1)
                             {
-                                ArtificialIntelligenceAccess.push(new Unit(51005, -8172, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 17, speed: 1.4, outfit: ["boulchomLeatherArmour", 2], weapon: ["thenganSword", [8, 6], 0, 16, 1.2], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                ArtificialIntelligenceAccess.push(new Unit(51005, -8172, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 17, speed: 1.4, outfit: ["boulchomLeatherArmour", 2], weapon: ["longsword", [8, 6], 0, 16, 1.2], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
                             }
                             else
                             {
@@ -12181,7 +12181,7 @@ function buildMaster()
                             }
                             else if (rnd > 0.1)
                             {
-                                ArtificialIntelligenceAccess.push(new Unit(51005, -8092, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 10, speed: 1.55, outfit: ["boulchomLeatherArmour", 2], weapon: ["thenganSword", [8, 6], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                ArtificialIntelligenceAccess.push(new Unit(51005, -8092, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 10, speed: 1.55, outfit: ["boulchomLeatherArmour", 2], weapon: ["longsword", [8, 6], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
                             }
                             else
                             {
@@ -12195,7 +12195,7 @@ function buildMaster()
                             }
                             else if (rnd > 0.4)
                             {
-                                ArtificialIntelligenceAccess.push(new Unit(51005, -8172, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 11, speed: 1.52, outfit: ["skolLeatherArmour", 3], weapon: ["thenganSword", [10, 7], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                ArtificialIntelligenceAccess.push(new Unit(51005, -8172, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 11, speed: 1.52, outfit: ["skolLeatherArmour", 3], weapon: ["longsword", [10, 7], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
                             }
                             else if (rnd > 0.1)
                             {
@@ -12221,7 +12221,7 @@ function buildMaster()
                             }
                             else
                             {
-                                ArtificialIntelligenceAccess.push(new Unit(50949, -8128, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 13, speed: 0.85, outfit: ["thenganPlateArmour", 18], weapon: ["thenganSword", [10, 7], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
+                                ArtificialIntelligenceAccess.push(new Unit(50949, -8128, "Soldier", false, "Pit Fighting Champion", {race: "Thengar", faction: "arena3", con: 13, speed: 0.85, outfit: ["thenganPlateArmour", 18], weapon: ["longsword", [10, 7], 0, 16, 1.6], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
                             }
                         }
                     }
@@ -12393,11 +12393,11 @@ function buildMaster()
                 }
 
                 //city guards
-                ArtificialIntelligenceAccess.push(new Unit(51166, -7530, "Soldier", false, "Beulingerr Soldier", {race: "Thengar", faction: "Thengar", con: 5, speed: 1.15, outfit: ["chainArmour", 7], weapon: ["thenganSword", [8, 5], 0, 16, 1.3], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 0, patrolLoop: true, route:[[-514, 277], [-514, 277]]}));
-                ArtificialIntelligenceAccess.push(new Unit(51945, -8393, "Soldier", false, "Beulingerr Soldier", {race: "Thengar", faction: "Thengar", con: 8, speed: 1.34, outfit: ["chainArmour", 6.5], weapon: ["thenganSword", [12, 4], 0, 16, 1.45], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 4, patrolLoop: true, route:[[51945, -10184], [50570, -10156], [50559, -8470], [51972, -8481]]}));
-                ArtificialIntelligenceAccess.push(new Unit(51738, -9966, "Soldier", false, "Beulingerr Soldier", {race: "Thengar", faction: "Thengar", con: 6, speed: 1.27, outfit: ["chainArmour", 7.5], weapon: ["thenganSword", [6, 6], 0, 16, 1.25], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 8, patrolLoop: true, route:[[51724, -9287], [51157, -9272], [51152, -9064], [51747, -9066], [51738, -8679], [50749, -8692], [50750, -9979], [51738, -9966]]}));
-                ArtificialIntelligenceAccess.push(new Unit(52037, -7560, "Soldier", false, "Beulingerr Soldier", {race: "Thengar", faction: "Thengar", con: 7, speed: 1.38, outfit: ["chainArmour", 7], weapon: ["thenganSword", [10, 5], 0, 16, 1.4], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 5, patrolLoop: true, route:[[53457, -7558], [53450, -7776], [50544, -7777], [50548, -6374], [53459, -6369]]}));
-                ArtificialIntelligenceAccess.push(new Unit(53257, -6468, "Soldier", false, "Beulingerr Soldier", {race: "Thengar", faction: "Thengar", con: 9, speed: 1.21, outfit: ["chainArmour", 8], weapon: ["thenganSword", [9, 6], 0, 16, 1.3], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 2, patrolLoop: true, route:[[53267, -7596], [53257, -6468]]}));
+                ArtificialIntelligenceAccess.push(new Unit(51166, -7530, "Soldier", false, "Beulingerr Soldier", {race: "Thengar", faction: "Thengar", con: 5, speed: 1.15, outfit: ["chainArmour", 7], weapon: ["longsword", [8, 5], 0, 16, 1.3], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 0, patrolLoop: true, route:[[-514, 277], [-514, 277]]}));
+                ArtificialIntelligenceAccess.push(new Unit(51945, -8393, "Soldier", false, "Beulingerr Soldier", {race: "Thengar", faction: "Thengar", con: 8, speed: 1.34, outfit: ["chainArmour", 6.5], weapon: ["longsword", [12, 4], 0, 16, 1.45], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 4, patrolLoop: true, route:[[51945, -10184], [50570, -10156], [50559, -8470], [51972, -8481]]}));
+                ArtificialIntelligenceAccess.push(new Unit(51738, -9966, "Soldier", false, "Beulingerr Soldier", {race: "Thengar", faction: "Thengar", con: 6, speed: 1.27, outfit: ["chainArmour", 7.5], weapon: ["longsword", [6, 6], 0, 16, 1.25], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 8, patrolLoop: true, route:[[51724, -9287], [51157, -9272], [51152, -9064], [51747, -9066], [51738, -8679], [50749, -8692], [50750, -9979], [51738, -9966]]}));
+                ArtificialIntelligenceAccess.push(new Unit(52037, -7560, "Soldier", false, "Beulingerr Soldier", {race: "Thengar", faction: "Thengar", con: 7, speed: 1.38, outfit: ["chainArmour", 7], weapon: ["longsword", [10, 5], 0, 16, 1.4], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 5, patrolLoop: true, route:[[53457, -7558], [53450, -7776], [50544, -7777], [50548, -6374], [53459, -6369]]}));
+                ArtificialIntelligenceAccess.push(new Unit(53257, -6468, "Soldier", false, "Beulingerr Soldier", {race: "Thengar", faction: "Thengar", con: 9, speed: 1.21, outfit: ["chainArmour", 8], weapon: ["longsword", [9, 6], 0, 16, 1.3], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 2, patrolLoop: true, route:[[53267, -7596], [53257, -6468]]}));
                 //citizens
                 //grain seller (only one on the map at once)
                 var hits = 0;
@@ -13074,8 +13074,8 @@ function buildMaster()
                 }
 
                 //city guards
-                ArtificialIntelligenceAccess.push(new Unit(51166, -7530, "Soldier", false, "Beulingerr Soldier", {race: "Thengar", faction: "Thengar", con: 5, speed: 1.15, outfit: ["chainArmour", 7], weapon: ["thenganSword", [8, 5], 0, 16, 1.3], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 0, patrolLoop: true, route:[[-514, 277], [-514, 277]]}));
-                ArtificialIntelligenceAccess.push(new Unit(51945, -8393, "Soldier", false, "Beulingerr Soldier", {race: "Thengar", faction: "Thengar", con: 8, speed: 1.34, outfit: ["chainArmour", 6.5], weapon: ["thenganSword", [12, 4], 0, 16, 1.45], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 4, patrolLoop: true, route:[[51945, -10184], [50570, -10156], [50559, -8470], [51972, -8481]]}));
+                ArtificialIntelligenceAccess.push(new Unit(51166, -7530, "Soldier", false, "Beulingerr Soldier", {race: "Thengar", faction: "Thengar", con: 5, speed: 1.15, outfit: ["chainArmour", 7], weapon: ["longsword", [8, 5], 0, 16, 1.3], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 0, patrolLoop: true, route:[[-514, 277], [-514, 277]]}));
+                ArtificialIntelligenceAccess.push(new Unit(51945, -8393, "Soldier", false, "Beulingerr Soldier", {race: "Thengar", faction: "Thengar", con: 8, speed: 1.34, outfit: ["chainArmour", 6.5], weapon: ["longsword", [12, 4], 0, 16, 1.45], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 4, patrolLoop: true, route:[[51945, -10184], [50570, -10156], [50559, -8470], [51972, -8481]]}));
 
                 //Creatures
                 //ArtificialIntelligenceAccess.push(new Unit(48545, -4542, "Nog", false, "Chom-Chom"));
@@ -13141,9 +13141,9 @@ function buildMaster()
                 //signs
                 scenicList.push(new Scenery("sign", 50849, -17395 - 10, Math.PI, 3, "Master Hanz's Estate"));
 
-                ArtificialIntelligenceAccess.push(new Unit(51444.79595695257, -18312.584700259704, "Soldier", false, "Beulingerr Soldier", {race: "Thengar", faction: "Thengar", con: 6, speed: 1.3, outfit: ["chainArmour", 7.5], weapon: ["thenganSword", [10, 6], 0, 16, 1.4], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 0, patrolLoop: false, route:[]}));
-                ArtificialIntelligenceAccess.push(new Unit(51137.4213879315, -17173.24733532316, "Soldier", false, "Beulingerr Soldier", {race: "Thengar", faction: "Thengar", con: 6, speed: 1.3, outfit: ["chainArmour", 7.5], weapon: ["thenganSword", [10, 6], 0, 16, 1.4], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 1, patrolLoop: false, route:[51135.672562431995, -17138.215643546486]}));
-                ArtificialIntelligenceAccess.push(new Unit(50132.33554380641, -18142.16824571496, "Soldier", false, "Beulingerr Soldier", {race: "Thengar", faction: "Thengar", con: 6, speed: 1.3, outfit: ["chainArmour", 7.5], weapon: ["thenganSword", [10, 6], 0, 16, 1.4], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 1, patrolLoop: false, route:[50177.646210515326, -18153.690313679974]}));
+                ArtificialIntelligenceAccess.push(new Unit(51444.79595695257, -18312.584700259704, "Soldier", false, "Beulingerr Soldier", {race: "Thengar", faction: "Thengar", con: 6, speed: 1.3, outfit: ["chainArmour", 7.5], weapon: ["longsword", [10, 6], 0, 16, 1.4], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 0, patrolLoop: false, route:[]}));
+                ArtificialIntelligenceAccess.push(new Unit(51137.4213879315, -17173.24733532316, "Soldier", false, "Beulingerr Soldier", {race: "Thengar", faction: "Thengar", con: 6, speed: 1.3, outfit: ["chainArmour", 7.5], weapon: ["longsword", [10, 6], 0, 16, 1.4], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 1, patrolLoop: false, route:[51135.672562431995, -17138.215643546486]}));
+                ArtificialIntelligenceAccess.push(new Unit(50132.33554380641, -18142.16824571496, "Soldier", false, "Beulingerr Soldier", {race: "Thengar", faction: "Thengar", con: 6, speed: 1.3, outfit: ["chainArmour", 7.5], weapon: ["longsword", [10, 6], 0, 16, 1.4], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 1, patrolLoop: false, route:[50177.646210515326, -18153.690313679974]}));
 
                 //leaping beasts
                 ArtificialIntelligenceAccess.push(new Unit(52851.07680661046, -15566.01196931189, "Boulchom", false, "preBuilt"));
@@ -25641,7 +25641,7 @@ function buildMaster()
                     {
                         if (player.inquisitionRank != "none" && player.inquisitionRank != "Initiate")
                         {
-                            ArtificialIntelligenceAccess.push(new Unit(-46829, 687, "Soldier", false, "Inquisitor Gavilio", {race: "Nirwaden", faction: "Nirwaden", con: 8, speed: 1.5, outfit: ["inquisitionOutfit", 2.5], weapon: ["nirineseSabre", [8, 8], 0, 22, 1], ranged: [false, "steelBolt", 20, 2200, 20, 20 /3, 0, "none", 2.5], patrolStops: 1, patrolLoop: false, route:[[-46834, 707]], merchant: true, merchandise: [[new Item("iron", false, false), 25]]}));
+                            ArtificialIntelligenceAccess.push(new Unit(-46829, 687, "Soldier", false, "Inquisitor Gavilio", {race: "Nirwaden", faction: "Nirwaden", con: 8, speed: 1.5, outfit: ["inquisitionOutfit", 2.5], weapon: ["nirineseSabre", [8, 8], 0, 22, 1], ranged: [false, "steelBolt", 20, 2200, 20, 20 /3, 0, "none", 2.5], patrolStops: 1, patrolLoop: false, route:[[-46834, 707]], merchant: true, merchandise: [[new Item("iron", false, false), 25], [new Item("silverStake", false, false), 5]]}));
                         }
                         else
                         {
@@ -31477,14 +31477,14 @@ function buildMaster()
                 //scenery
                 scenicList.push(new Scenery("ladder", 373, 465, 0 * Math.PI, [53014, -6700], "world"));
                 //units
-                ArtificialIntelligenceAccess.push(new Unit(467, 434, "Soldier", false, "Beulingerr Soldier", {race: "Thengar", faction: "Thengar", con: 7, speed: 1.38, outfit: ["chainArmour", 7], weapon: ["thenganSword", [10, 5], 0, 16, 1.4], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 0, patrolLoop: true, route:[]}));
+                ArtificialIntelligenceAccess.push(new Unit(467, 434, "Soldier", false, "Beulingerr Soldier", {race: "Thengar", faction: "Thengar", con: 7, speed: 1.38, outfit: ["chainArmour", 7], weapon: ["longsword", [10, 5], 0, 16, 1.4], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 0, patrolLoop: true, route:[]}));
                 ArtificialIntelligenceAccess.push(new Unit(852, 495, "Soldier", false, "Slave Man", {race: "Kel", faction: "arena2", con: 1.25, speed: 1, outfit: ["none", 0], weapon: ["none", [0.45, 0.3], 0, 0, 1], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
                 ArtificialIntelligenceAccess.push(new Unit(855, 252, "Soldier", false, "Slave Woman", {race: "Kel", faction: "arena2", con: 1, speed: 1.15, outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.85], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
                 ArtificialIntelligenceAccess.push(new Unit(869, 284, "Soldier", false, "Slave Boy", {race: "Kel", faction: "arena2", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.075, 0.075], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
                 ArtificialIntelligenceAccess.push(new Unit(794, 248, "Soldier", false, "Slave Girl", {race: "Kel", faction: "arena2", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.045, 0.045], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
                 ArtificialIntelligenceAccess.push(new Unit(520, 319, "Soldier", false, "Slave Man", {race: "Kel", faction: "arena2", con: 1.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.45, 0.3], 0, 0, 1], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
                 ArtificialIntelligenceAccess.push(new Unit(178, 505, "Soldier", false, "Slave Man", {race: "Kel", faction: "Kel", con: 1.25, speed: 1, outfit: ["none", 0], weapon: ["none", [0.45, 0.3], 0, 0, 1], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
-                ArtificialIntelligenceAccess.push(new Unit(304, 388, "Soldier", false, "Beulingerr Soldier", {race: "Thengar", faction: "Thengar", con: 7, speed: 1.38, outfit: ["chainArmour", 7], weapon: ["thenganSword", [10, 5], 0, 16, 1.4], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 0, patrolLoop: true, route:[]}));
+                ArtificialIntelligenceAccess.push(new Unit(304, 388, "Soldier", false, "Beulingerr Soldier", {race: "Thengar", faction: "Thengar", con: 7, speed: 1.38, outfit: ["chainArmour", 7], weapon: ["longsword", [10, 5], 0, 16, 1.4], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], rot: -1/2*Math.PI, patrolStops: 0, patrolLoop: true, route:[]}));
                 ArtificialIntelligenceAccess.push(new Unit(374, 192, "Soldier", false, "Slave Woman", {race: "Kel", faction: "arena2", con: 2, speed: 0, outfit: ["none", 0], weapon: ["none", [0.2, 0.2], 0, 0, 0.85], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
                 ArtificialIntelligenceAccess.push(new Unit(389, 114, "Soldier", false, "Slave Girl", {race: "Kel", faction: "arena2", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.045, 0.045], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));
                 ArtificialIntelligenceAccess.push(new Unit(50, 25, "Soldier", false, "Slave Boy", {race: "Kel", faction: "arena2", con: 0.25, speed: 0, outfit: ["none", 0], weapon: ["none", [0.075, 0.075], 0, 0, 0.75], ranged: [false, "arrow", 4, 2000, 1, 6, 0, "none", 1.4], kid: true, patrolStops: 0, patrolLoop: false, route:[[348 - 750, 5428], [391 - 750, 5303], [260 - 750, 5339]]}));

@@ -2833,6 +2833,278 @@ function interaction(me)
                         }
                     }
 
+                    if (self.ID == "Olav the Hermit" || conversationID[0] == "Olav")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Olav";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["How are you?", false, "a"], ["Don't you get lonely living out here?", false, "b"], ["How do you survive out here?", false, "c"]];
+                                if (timeOfDay == "Dusk" || timeOfDay == "Night")
+                                {
+                                    if (player.title != "Nobility" && player.title != "Royalty" && player.title != "Highfolk")
+                                    {
+                                        player.dialogueOptions.push(["Would you shelter a cold and weary traveller for the night?", false, "d"]);
+                                    }
+                                    else if (player.title == "Highfolk")
+                                    {
+                                        player.dialogueOptions.push(["Would you let me get warm by your hearth, good sir? My travels have been long and the wind blows cold...", false, "d"]);
+                                    }
+                                    else
+                                    {
+                                        if (player.gender == "Male")
+                                        {
+                                            player.dialogueOptions.push(["I require lodging, my good man! Will you share your hearth with me?", false, "d"]);
+                                        }
+                                        else
+                                        {
+                                            player.dialogueOptions.push(["I require lodging, sir. Will you share your hearth with me?", false, "d"]);
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    if (player.title != "Nobility" && player.title != "Royalty" && player.title != "Highfolk")
+                                    {
+                                        player.dialogueOptions.push(["Would you shelter a cold and weary traveller?", false, "d"]);
+                                    }
+                                    else if (player.title == "Highfolk")
+                                    {
+                                        player.dialogueOptions.push(["Would you let me get warm by your hearth, good sir? My travels have been long and the wind blows cold...", false, "d"]);
+                                    }
+                                    else
+                                    {
+                                        if (player.gender == "Male")
+                                        {
+                                            player.dialogueOptions.push(["I require lodging, my good man! Will you share your hearth with me?", false, "d"]);
+                                        }
+                                        else
+                                        {
+                                            player.dialogueOptions.push(["I require lodging, sir. Will you share your hearth with me?", false, "d"]);
+                                        }
+                                    }
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            if (player.title != "Nobility" && player.title != "Royalty" && player.title != "Highfolk")
+                            {
+                                setMsg("I'm doing good...");
+                            }
+                            else
+                            {
+                                setMsg("I am well.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            if (player.title != "Nobility" && player.title != "Royalty" && player.title != "Highfolk")
+                            {
+                                setMsg("No. Now, stop asking me questions, and go away!");
+                            }
+                            else
+                            {
+                                setMsg("No, I am never really alone out here. I wake up every morning to the buzzing of bees, the chirping of birds, and the chittering of woodland beasts. At night I fall asleep to the sound of the howling winter wolves. If you listen closely the wind speaks as well. One is never alone in the wild, not really.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            if (player.title != "Nobility" && player.title != "Royalty" && player.title != "Highfolk")
+                            {
+                                setMsg("No. Now, stop asking me questions, and go away!");
+                            }
+                            else
+                            {
+                                setMsg("I have a small garden out front where I grow grains and potatoes. I hunt waanti occasionally for meat, and sometimes I gather berries in the forest just south of here.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            if (player.title != "Nobility" && player.title != "Royalty" && player.title != "Highfolk")
+                            {
+                                //text dialogue
+                                setMsg("My home isn't an inn! Go away!!");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                            else if (player.title == "Highfolk")
+                            {
+                                //text dialogue
+                                if (player.gender != "Female")
+                                {
+                                    setMsg("My home is much too small for the both of us, but you may come in for a moment to warm yourself, sir, then you should be going on your way.");
+                                }
+                                else
+                                {
+                                    setMsg("You may come in long enough to get warm, madam, but then I ask you to be on your way.");
+                                }
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                if (player.gender == "Male")
+                                {
+                                    //text dialogue
+                                    setMsg("Whatever's mine is yours, me lord.");
+
+                                    //on ended text dialogue
+                                    if (tellMessage == "reset")
+                                    {
+                                        msgReset();
+
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                    else
+                                    {
+                                        self.SC();
+                                    }
+                                }
+                                else
+                                {
+                                    //text dialogue
+                                    setMsg("Whatever's mine is yours, me lady.");
+
+                                    //on ended text dialogue
+                                    if (tellMessage == "reset")
+                                    {
+                                        msgReset();
+
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                    else
+                                    {
+                                        self.SC();
+                                    }
+                                }
+                            }
+                        }
+                    }
+
                     if (self.ID == "Borje" || conversationID[0] == "Borje")
                     {
                         lowBar = "dialogue";
@@ -4078,7 +4350,7 @@ function interaction(me)
                             self.SC();
                             for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
                             {
-                                if (ArtificialIntelligenceAccess[i].ID == "Mesek the Runaway" || ArtificialIntelligenceAccess[i].ID == "Madam Bella")
+                                if (ArtificialIntelligenceAccess[i].ID == "Mesek the Runaway")
                                 {
                                     ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
                                     ArtificialIntelligenceAccess[i].disturbed = true;
@@ -4231,7 +4503,7 @@ function interaction(me)
 
                                     playersTurnToSpeak = true;
                                     player.dialoguePosition = 0;
-                                    conversationID[1] = 5;
+                                    conversationID[1] = 0;
                                     self.SC();
                                     for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
                                     {

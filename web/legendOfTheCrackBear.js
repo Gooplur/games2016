@@ -2414,6 +2414,7 @@ var showTheStatsBars = false;
 var doTheStatsHighlights = false;
 var showUiIcons = false;
 var playerJuju = false;
+var loggedGenID = false;
 
 //This sets the items that are in shops.
 function shopItemIDSetter()
@@ -3371,7 +3372,8 @@ function theLegend()
         franklin: ["Franklin", 0],
         helmut: ["Helmut", 0],
         emon: ["Emon", 0],
-        ersula: ["Ersula", 0]
+        ersula: ["Ersula", 0],
+        olav: ["Olav", 0]
     };
 
 //time Tracker Variables
@@ -3589,7 +3591,8 @@ function theLegend()
         franklinLDS: true,
         helmutLDS: true,
         emonLDS: true,
-        ersulaLDS: true
+        ersulaLDS: true,
+        olavLDS: true
     };
 //QUESTS
     quests =
@@ -3646,6 +3649,7 @@ function theLegend()
         venningMapItems: true,
         atalinE4Items: true,
         altezorCastleItems: true,
+        hermitsWood: true,
 
         //EVENTS (non quest)
         ultherFlower: true,

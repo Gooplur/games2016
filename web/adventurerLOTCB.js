@@ -37552,29 +37552,29 @@ function Adventurer()
                                         useLight = false;
                                         if (Inventory[i][0].type == "oilLantern")
                                         {
-                                            scenicList.push(new Scenery("oilLantern", X, Y, Math.random() * Math.PI, false, [1800, 5]));
+                                            scenicList.push(new Scenery("oilLantern", X, Y, Math.random() * Math.PI, false, [2900, 5]));
                                         }
                                         else if (Inventory[i][0].type == "oilLantern4")
                                         {
-                                            scenicList.push(new Scenery("oilLantern", X, Y, Math.random() * Math.PI, false, [1800, 4]));
+                                            scenicList.push(new Scenery("oilLantern", X, Y, Math.random() * Math.PI, false, [2900, 4]));
                                         }
                                         else if (Inventory[i][0].type == "oilLantern3")
                                         {
-                                            scenicList.push(new Scenery("oilLantern", X, Y, Math.random() * Math.PI, false, [1800, 3]));
+                                            scenicList.push(new Scenery("oilLantern", X, Y, Math.random() * Math.PI, false, [2900, 3]));
                                         }
                                         else if (Inventory[i][0].type == "oilLantern2")
                                         {
-                                            scenicList.push(new Scenery("oilLantern", X, Y, Math.random() * Math.PI, false, [1800, 2]));
+                                            scenicList.push(new Scenery("oilLantern", X, Y, Math.random() * Math.PI, false, [2900, 2]));
                                         }
                                         else
                                         {
-                                            scenicList.push(new Scenery("oilLantern", X, Y, Math.random() * Math.PI, false, [1800, 1]));
+                                            scenicList.push(new Scenery("oilLantern", X, Y, Math.random() * Math.PI, false, [2900, 1]));
                                         }
                                     }
                                     else
                                     {
                                         player.timeSinceLightSourceFuelUsed = new Date().getTime();
-                                        player.lightSourceDuration = 1800;
+                                        player.lightSourceDuration = 2800;
                                         player.lightSource = "oilLantern";
                                     }
                                 }
@@ -37585,15 +37585,15 @@ function Adventurer()
                                         useLight = false;
                                         if (Inventory[i][0].type == "oilLamp")
                                         {
-                                            scenicList.push(new Scenery("oilLamp", X, Y, Math.random() * Math.PI, false, [1200, 3]));
+                                            scenicList.push(new Scenery("oilLamp", X, Y, Math.random() * Math.PI, false, [1900, 3]));
                                         }
                                         else if (Inventory[i][0].type == "oilLamp2")
                                         {
-                                            scenicList.push(new Scenery("oilLamp", X, Y, Math.random() * Math.PI, false, [1200, 2]));
+                                            scenicList.push(new Scenery("oilLamp", X, Y, Math.random() * Math.PI, false, [1900, 2]));
                                         }
                                         else
                                         {
-                                            scenicList.push(new Scenery("oilLamp", X, Y, Math.random() * Math.PI, false, [1200, 1]));
+                                            scenicList.push(new Scenery("oilLamp", X, Y, Math.random() * Math.PI, false, [1900, 1]));
                                         }
                                     }
                                     else
@@ -37610,21 +37610,21 @@ function Adventurer()
                                         useLight = false;
                                         if (Inventory[i][0].type == "candle")
                                         {
-                                            scenicList.push(new Scenery("candle", X, Y, Math.random() * Math.PI, false, [180, 3]));
+                                            scenicList.push(new Scenery("candle", X, Y, Math.random() * Math.PI, false, [600, 3]));
                                         }
                                         else if (Inventory[i][0].type == "candle2")
                                         {
-                                            scenicList.push(new Scenery("candle", X, Y, Math.random() * Math.PI, false, [180, 2]));
+                                            scenicList.push(new Scenery("candle", X, Y, Math.random() * Math.PI, false, [600, 2]));
                                         }
                                         else
                                         {
-                                            scenicList.push(new Scenery("candle", X, Y, Math.random() * Math.PI, false, [180, 1]));
+                                            scenicList.push(new Scenery("candle", X, Y, Math.random() * Math.PI, false, [600, 1]));
                                         }
                                     }
                                     else
                                     {
                                         player.timeSinceLightSourceFuelUsed = new Date().getTime();
-                                        player.lightSourceDuration = 180;
+                                        player.lightSourceDuration = 600;
                                         player.lightSource = "candle";
                                     }
                                 }
@@ -37635,21 +37635,21 @@ function Adventurer()
                                         useLight = false;
                                         if (Inventory[i][0].type == "jackOLantern")
                                         {
-                                            scenicList.push(new Scenery("jackOLantern", X, Y, Math.random() * Math.PI, false, [540, 3]));
+                                            scenicList.push(new Scenery("jackOLantern", X, Y, Math.random() * Math.PI, false, [900, 3]));
                                         }
                                         else if (Inventory[i][0].type == "jackOLantern2")
                                         {
-                                            scenicList.push(new Scenery("jackOLantern", X, Y, Math.random() * Math.PI, false, [540, 2]));
+                                            scenicList.push(new Scenery("jackOLantern", X, Y, Math.random() * Math.PI, false, [900, 2]));
                                         }
                                         else
                                         {
-                                            scenicList.push(new Scenery("jackOLantern", X, Y, Math.random() * Math.PI, false, [540, 1]));
+                                            scenicList.push(new Scenery("jackOLantern", X, Y, Math.random() * Math.PI, false, [900, 1]));
                                         }
                                     }
                                     else
                                     {
                                         player.timeSinceLightSourceFuelUsed = new Date().getTime();
-                                        player.lightSourceDuration = 540;
+                                        player.lightSourceDuration = 900;
                                         player.lightSource = "jackOLantern";
                                     }
                                 }

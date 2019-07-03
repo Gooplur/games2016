@@ -6,8 +6,8 @@ function cheats()
 {
     if (buildMode == true)
     {
-        var buildList = ["coords", "Selva Tree", "Sonja Tree", "Gallosh Plant", "Vorlym Plant", "Thueg Unit", "Conejo", "Boulchom", "Great Pine Tree", "Pine Tree", "Snowy Great Pine Tree", "Snowy Pine Tree", "Ashai Tree", "Ghoul", "Ribback", "Vreck", "Dalger", "Varonoi", "Stovol Beetle", "Thegol Thorn", "Elk", "Black Beruln", "Mekle Plant", "Black Bear"];
-        //                  0           1              2               3                4             5           6         7               8               9                  10                    11              12          13       14        15        16        17             18              19         20         21               22            23
+        var buildList = ["coords", "Selva Tree", "Sonja Tree", "Gallosh Plant", "Vorlym Plant", "Thueg", "Conejo", "Boulchom", "Great Pine Tree", "Pine Tree", "Snowy Great Pine Tree", "Snowy Pine Tree", "Ashai Tree", "Ghoul", "Ribback", "Vreck", "Dalger", "Varonoi", "Stovol Beetle", "Thegol Thorn", "Elk", "Black Beruln", "Mekle Plant", "Black Bear", "Turkey", "Skol", "Deer", "Fox", "Badger", "Hoffalgre", "Crow", "Silter", "Scilt Plant", "Korsk Beetle", "Cheshire", "Grizzly Bear", "Borgal", "Lizard", "Koivaya (loner)", "Koivaya (breeder)", "Cranberry Plant", "Eyewort Plant", "Korceida Plant", "Laumin Plant", "Jolle Plant", "Porstol Plant", "Fallory Plant", "Palgga Plant", "Bleeding Heart Plant", "Aberdom Plant", "Beunum Plant", "Ciprin Plant", "Marigold Plant", "Hoil Plant", "Callop Plant", "Darb Plant", "Kofke Plant", "Steugiurne Plant", "Web", "Etna Egg Sack", "Etna"];
+        //                  0           1              2               3                4          5        6           7              8               9                  10                    11              12         13         14       15        16        17             18              19         20          21              22            23          24       25      26      27      28          29        30       31          32             33             34             35         36         37            38                  39                   40                41               42                43             44              45               46               47                 48                   49              50               51               52             53             54             55            56                57            58         59           60
         if (tKey)
         {
             tKey = false;
@@ -618,6 +618,823 @@ function cheats()
                 XXX.restore();
             }
         }
+        else if (buildToggle == 24)
+        {
+            if (xKey)
+            {
+                var alphon = Math.random();
+                if (alphon > 0.5)
+                {
+                    alphon = true;
+                }
+                else
+                {
+                    alphon = false;
+                }
+
+                xKey = false;
+                console.log('ArtificialIntelligenceAccess.push(new Unit(' + X +', ' + Y + ', "Turkey", ' + alphon + ', "preBuilt"));');
+                worldItems.push([new Item("unitMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.drawImage(pavo, 581, 323, 123, 83, -1/2 * 123 * 1,  -1/2 * 83 * 1, 123 * 1, 83 * 1);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 25)
+        {
+            if (xKey)
+            {
+                var alphon = Math.random();
+                if (alphon > 0.9)
+                {
+                    alphon = true;
+                }
+                else
+                {
+                    alphon = false;
+                }
+
+                xKey = false;
+                console.log('ArtificialIntelligenceAccess.push(new Unit(' + X +', ' + Y + ', "Skol", ' + alphon + ', "preBuilt"));');
+                worldItems.push([new Item("unitMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.drawImage(theng, 354, 2, 53, 34, -1/2 * 53 * 2.25, -1/2 * 34 * 2.25, 53 * 2.25, 34 * 2.25);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 26)
+        {
+            if (xKey)
+            {
+                var alphon = Math.random();
+                if (alphon > 0.8)
+                {
+                    alphon = true;
+                }
+                else if (alphon > 0.3)
+                {
+                    alphon = '"baby"';
+                }
+                else
+                {
+                    alphon = false;
+                }
+
+                xKey = false;
+                console.log('ArtificialIntelligenceAccess.push(new Unit(' + X +', ' + Y + ', "Deer", ' + alphon + ', "preBuilt"));');
+                worldItems.push([new Item("unitMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.drawImage(wendi, 0, 1019, 96, 51, -1/2 * 96 * 2 + 2, -1/2 * 51 * 2, 96 * 2, 51 * 2);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 27)
+        {
+            if (xKey)
+            {
+                var alphon = Math.random();
+                if (alphon > 0.6)
+                {
+                    alphon = true;
+                }
+                else
+                {
+                    alphon = false;
+                }
+
+                xKey = false;
+                console.log('ArtificialIntelligenceAccess.push(new Unit(' + X +', ' + Y + ', "Fox", ' + alphon + ', "preBuilt"));');
+                worldItems.push([new Item("unitMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.drawImage(bloat, 95, 697, 83, 27, -1/2 * 83 * 1.2, -1/2 * 27 * 1.2, 83 * 1.2, 27 * 1.2);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 28)
+        {
+            if (xKey)
+            {
+                var alphon = Math.random();
+                if (alphon > 0.54)
+                {
+                    alphon = true;
+                }
+                else
+                {
+                    alphon = false;
+                }
+
+                xKey = false;
+                console.log('ArtificialIntelligenceAccess.push(new Unit(' + X +', ' + Y + ', "Badger", ' + alphon + ', "preBuilt"));');
+                worldItems.push([new Item("unitMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.drawImage(wendi, 7, 908, 52, 31, -1/2 * 52 * 1.75, -1/2 * 31 * 1.75, 52 * 1.75, 31 * 1.75);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 29)
+        {
+            if (xKey)
+            {
+                var alphon = Math.random();
+                if (alphon > 0.45)
+                {
+                    alphon = true;
+                }
+                else
+                {
+                    alphon = false;
+                }
+
+                xKey = false;
+                console.log('ArtificialIntelligenceAccess.push(new Unit(' + X +', ' + Y + ', "Hoffalgre", ' + alphon + ', "preBuilt"));');
+                worldItems.push([new Item("unitMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.drawImage(nognog, 49, 9, 56, 19, -1/2 * 56 * 2.2, -1/2 * 19 * 2.2, 56 * 2.2, 19 * 2.2);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 30)
+        {
+            if (xKey)
+            {
+                var alphon = Math.random();
+                if (alphon > 0.75)
+                {
+                    alphon = true;
+                }
+                else
+                {
+                    alphon = false;
+                }
+
+                xKey = false;
+                console.log('ArtificialIntelligenceAccess.push(new Unit(' + X +', ' + Y + ', "Crow", ' + alphon + ', "preBuilt"));');
+                worldItems.push([new Item("unitMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.drawImage(leshen, 302, 135, 72, 63, -1/2 * 72 * 1.6, -1/2 * 63 * 1.6, 72 * 1.6, 63 * 1.6);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 31)
+        {
+            if (xKey)
+            {
+                var alphon = Math.random();
+                if (alphon > 0.63)
+                {
+                    alphon = true;
+                }
+                else
+                {
+                    alphon = false;
+                }
+
+                xKey = false;
+                console.log('ArtificialIntelligenceAccess.push(new Unit(' + X +', ' + Y + ', "Silter", ' + alphon + ', "preBuilt"));');
+                worldItems.push([new Item("unitMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.drawImage(beets, 361, 5, 124, 103, -1/2 * 124 * 1.4, -1/2 * 103 * 1.4, 124 * 1.4, 103 * 1.4);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 32)
+        {
+            if (xKey)
+            {
+                xKey = false;
+                var randoonSz = 0.8 + 1.7 * Math.random();
+                console.log('scenicList.push(new Scenery("sciltPlant", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', true, ' + randoonSz + '));');
+                worldItems.push([new Item("plantMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(beets, 3, 351, 114, 101, -(1/2 * 114 * 2), -(1/2 * 101 * 2), 114 * 2, 101 * 2);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 33)
+        {
+            if (xKey)
+            {
+                var alphon = Math.random();
+                if (alphon > 0.59)
+                {
+                    alphon = true;
+                }
+                else
+                {
+                    alphon = false;
+                }
+
+                xKey = false;
+                console.log('ArtificialIntelligenceAccess.push(new Unit(' + X +', ' + Y + ', "KorskBeetle", ' + alphon + ', "preBuilt"));');
+                worldItems.push([new Item("unitMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.drawImage(beets, 6, 168, 68, 71, -1/2 * 68 * 1.4, -1/2 * 71 * 1.4, 68 * 1.4, 71 * 1.4);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 34)
+        {
+            if (xKey)
+            {
+                var alphon = Math.random();
+                if (alphon > 0.67)
+                {
+                    alphon = true;
+                }
+                else
+                {
+                    alphon = false;
+                }
+
+                xKey = false;
+                console.log('ArtificialIntelligenceAccess.push(new Unit(' + X +', ' + Y + ', "Cheshire", ' + alphon + ', "preBuilt"));');
+                worldItems.push([new Item("unitMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.drawImage(tomb, 384, 586, 127, 100, -1/2 * 127 * 1, -1/2 * 100 * 1, 127 * 1, 100 * 1);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 35)
+        {
+            if (xKey)
+            {
+                var alphon = Math.random();
+                if (alphon > 0.86)
+                {
+                    alphon = true;
+                }
+                else
+                {
+                    alphon = false;
+                }
+
+                xKey = false;
+                console.log('ArtificialIntelligenceAccess.push(new Unit(' + X +', ' + Y + ', "GrizzlyBear", ' + alphon + ', "preBuilt"));');
+                worldItems.push([new Item("unitMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.drawImage(wendi, 200, 780, 89, 41, -1/2 * 89 * 2, -1/2 * 41 * 2, 89 * 2, 41 * 2);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 36)
+        {
+            if (xKey)
+            {
+                var alphon = Math.random();
+                if (alphon > 0.81)
+                {
+                    alphon = true;
+                }
+                else
+                {
+                    alphon = false;
+                }
+
+                xKey = false;
+                console.log('ArtificialIntelligenceAccess.push(new Unit(' + X +', ' + Y + ', "Borgal", ' + alphon + ', "preBuilt"));');
+                worldItems.push([new Item("unitMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.drawImage(nognog, 90, 440, 145, 114, -1/2 * 145 * 1.7, -1/2 * 114 * 1.7, 145 * 1.7, 114 * 1.7);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 37)
+        {
+            if (xKey)
+            {
+                var alphon = Math.random();
+                if (alphon > 0.7)
+                {
+                    alphon = true;
+                }
+                else
+                {
+                    alphon = false;
+                }
+
+                xKey = false;
+                console.log('ArtificialIntelligenceAccess.push(new Unit(' + X +', ' + Y + ', "Lizard", ' + alphon + ', "preBuilt"));');
+                worldItems.push([new Item("unitMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.drawImage(polypol, 1452, 24, 21, 14, -1/2 * 21 * 2.3, -1/2 * 14 * 2.3, 21 * 2.3, 14 * 2.3);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 38)
+        {
+            if (xKey)
+            {
+                var alphon = Math.random();
+                if (alphon > 0.81)
+                {
+                    alphon = true;
+                }
+                else
+                {
+                    alphon = false;
+                }
+
+                xKey = false;
+                console.log('ArtificialIntelligenceAccess.push(new Unit(' + X +', ' + Y + ', "Koivaya", ' + alphon + ', "loner"));');
+                worldItems.push([new Item("unitMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.drawImage(toad, 109, 193, 78, 57, -1/2 * 78 * 1.1, -1/2 * 57 * 1.1, 78 * 1.1, 57 * 1.1);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 39)
+        {
+            if (xKey)
+            {
+                var alphon = Math.random();
+                if (alphon > 0.81)
+                {
+                    alphon = true;
+                }
+                else
+                {
+                    alphon = false;
+                }
+
+                xKey = false;
+                console.log('ArtificialIntelligenceAccess.push(new Unit(' + X +', ' + Y + ', "Koivaya", ' + alphon + ', "preBuilt"));');
+                worldItems.push([new Item("unitMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.drawImage(toad, 296, 194, 78, 57, -1/2 * 78 * 1.1, -1/2 * 57 * 1.1, 78 * 1.1, 57 * 1.1);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 40)
+        {
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("cranberryPlant", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', 0));');
+                worldItems.push([new Item("plantMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(toad, 812, 107, 29, 28, -(1/2 * 29 * 2.1), -(1/2 * 28 * 2.1), 29 * 2.1, 28 * 2.1);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 41)
+        {
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("eyewortPlant", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', 0));');
+                worldItems.push([new Item("plantMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(beets, 552, 369, 34, 34, -(1/2 * 34 * 2.4), -(1/2 * 34 * 2.4), 34 * 2.4, 34 * 2.4);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 42)
+        {
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("korceidaPlant", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', 0));');
+                worldItems.push([new Item("plantMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(beets, 238, 46, 31, 30, -(1/2 * 31 * 2), -(1/2 * 30 * 2), 31 * 2, 30 * 2);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 43)
+        {
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("lauminPlant", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', 0));');
+                worldItems.push([new Item("plantMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(beets, 237, 132, 31, 30, -(1/2 * 31 * 2), -(1/2 * 30 * 2), 31 * 2, 30 * 2);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 44)
+        {
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("jollePlant", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', 0));');
+                worldItems.push([new Item("plantMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(wendi, 333, 957, 55, 50, -(1/2 * 55 * 2), -(1/2 * 50 * 2), 55 * 2, 50 * 2);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 45)
+        {
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("porstolPlant", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', 0));');
+                worldItems.push([new Item("plantMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(nognog, 568, 223, 31, 26, -(1/2 * 31 * 2), -(1/2 * 26 * 2), 31 * 2, 26 * 2);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 46)
+        {
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("falloryPlant", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', 0));');
+                worldItems.push([new Item("plantMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(floras, 3, 14, 99, 96, -(1/2 * 99 * 1), -(1/2 * 96 * 1), 99 * 1, 96 * 1);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 47)
+        {
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("palggaPlant", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', 0));');
+                worldItems.push([new Item("plantMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(floras, 122, 15, 99, 96, -(1/2 * 99 * 1), -(1/2 * 96 * 1), 99 * 1, 96 * 1);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 48)
+        {
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("bleedingHeartPlant", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', 0));');
+                worldItems.push([new Item("plantMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(floras, 471, 146, 37, 40, -(1/2 * 37 * 2), -(1/2 * 40 * 2), 37 * 2, 40 * 2);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 49)
+        {
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("aberdomPlant", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', 0));');
+                worldItems.push([new Item("plantMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(floras, 856, 166, 22, 27, -(1/2 * 22 * 2), -(1/2 * 27 * 2), 22 * 2, 27 * 2);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 50)
+        {
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("beunumPlant", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', 0));');
+                worldItems.push([new Item("plantMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(floras, 907, 170, 38, 30, -(1/2 * 38 * 2), -(1/2 * 30 * 2), 38 * 2, 30 * 2);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 51)
+        {
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("ciprinPlant", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', 0));');
+                worldItems.push([new Item("plantMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(floras, 948, 172, 33, 30, -(1/2 * 33 * 2), -(1/2 * 30 * 2), 33 * 2, 30 * 2);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 52)
+        {
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("marigoldPlant", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', 0));');
+                worldItems.push([new Item("plantMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(floras, 260, 137, 56, 46, -(1/2 * 56 * 2), -(1/2 * 46 * 2), 56 * 2, 46 * 2);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 53)
+        {
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("hoilPlant", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', 0));');
+                worldItems.push([new Item("plantMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(norc, 13, 360, 18, 16, -(1/2 * 18 * 2.6), -(1/2 * 16 * 2.6), 18 * 2.6, 16 * 2.6);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 54)
+        {
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("callopPlant", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', 0));');
+                worldItems.push([new Item("plantMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(nognog, 36, 366, 13, 12, -(1/2 * 13 * 3), -(1/2 * 12 * 3), 13 * 3, 12 * 3);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 55)
+        {
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("darbPlant", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', 0));');
+                worldItems.push([new Item("plantMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(nognog, 31, 385, 12, 11, -(1/2 * 12 * 3), -(1/2 * 11 * 3), 12 * 3, 11 * 3);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 56)
+        {
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("kofkePlant", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', 0));');
+                worldItems.push([new Item("plantMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(nognog, 9, 295, 17, 16, -(1/2 * 17 * 3), -(1/2 * 16 * 3), 17 * 3, 16 * 3);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 57)
+        {
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("steugiurnePlant", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', 0));');
+                worldItems.push([new Item("plantMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(nognog, 114, 256, 64, 56, -(1/2 * 64 * 3), -(1/2 * 56 * 3), 64 * 3, 56 * 3);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 58)
+        {
+            if (xKey)
+            {
+                xKey = false;
+                var randoonSz = 0.9 + 1.9 * Math.random();
+                console.log('scenicList.push(new Scenery("web", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', ' + randoonSz + '));');
+                worldItems.push([new Item("plantMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(nognog, 739, 351, 70, 62, -(1/2 * 70 * 1.6 * 1.2), -(1/2 * 62 * 1.6 * 1.2), 70 * 1.6 * 1.2, 62 * 1.6 * 1.2);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 59)
+        {
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("etnaEggSac", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', true));');
+                worldItems.push([new Item("plantMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(nognog, 834, 374, 10, 10, -(1/2 * 10 * 3.7), -(1/2 * 10 * 3.7), 10 * 3.7, 10 * 3.7);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 60)
+        {
+            if (xKey)
+            {
+                var alphon = Math.random();
+                if (alphon > 0.7)
+                {
+                    alphon = true;
+                }
+                else
+                {
+                    alphon = false;
+                }
+
+                xKey = false;
+                console.log('ArtificialIntelligenceAccess.push(new Unit(' + X +', ' + Y + ', "Etna", ' + alphon + ', "preBuilt"));');
+                worldItems.push([new Item("unitMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.drawImage(nognog, 289, 358, 39, 37, -1/2 * 39 * 2, -1/2 * 37 * 2, 39 * 2, 37 * 2);
+                XXX.restore();
+            }
+        }
+
     }
     //kids mode silliness
     if (player.gamemode == "protagonist")

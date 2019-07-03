@@ -6862,7 +6862,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                         }
                     }
 
-                    if (this.temporary != true)
+                    if (this.temporary != true)s
                     {
                         if (this.health <= 0)
                         {

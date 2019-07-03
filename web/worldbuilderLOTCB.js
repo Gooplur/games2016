@@ -877,29 +877,40 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s3w11";
-            outlineBuilder(34, 34, "desert", -394, 82); //todo hotGrass
-
+            outlineBuilder(34, 34, "desert", -394, 82); //todo woods
 
             outlineBuilder( 1, 34, "brickRoad", -394, 91);
 
+            outlineBuilder(19, 1, "sea", -382, 82);
+            outlineBuilder(1, 1, "seaCornerBL", -382, 101);
+            outlineBuilder(1, 1, "seaCornerTR", -381, 101);
+            outlineBuilder(8, 1, "sea", -381, 102);
+            outlineBuilder(1, 1, "seaCornerBL", -381, 110);
+            outlineBuilder(1, 1, "seaCornerTR", -380, 110);
+            outlineBuilder(1, 1, "seaCornerBL", -380, 111);
+            outlineBuilder(1, 1, "seaCornerTR", -379, 111);
+            outlineBuilder(1, 1, "sea", -379, 112);
+            outlineBuilder(1, 1, "seaCornerBL", -379, 113);
+            outlineBuilder(1, 1, "seaCornerTR", -378, 113);
+            outlineBuilder(2, 1, "shallow", -378, 114);
         }
         //mapS3W10
-        if (Y > -34556 && Y < -23654 && X < 109729 && X > 98077) //X-10 //todo add map
+        if (Y > -34556 && Y < -23654 && X < 109729 && X > 98077) //X-10
         {
             elevation = 0;
             region = "s3w10";
-            outlineBuilder(34, 34, "outline", -360, 82); //todo woods
+            outlineBuilder(34, 34, "woods", -360, 82);
 
 
             outlineBuilder( 1, 34, "brickRoad", -360, 91);
 
         }
         //mapS3W9
-        if (Y > -34556 && Y < -23654 && X < 99554 && X > 87882) //X-9 //todo add map
+        if (Y > -34556 && Y < -23654 && X < 99554 && X > 87882) //X-9
         {
             elevation = 0;
             region = "s3w9";
-            outlineBuilder(34, 34, "desert", -326, 82); //todo woods
+            outlineBuilder(34, 34, "woods", -326, 82);
 
 
             outlineBuilder( 10, 1, "brickRoad", -321, 82);
@@ -998,11 +1009,11 @@ function worldBuilder()
             outlineBuilder( 6, 1, "brickRoad", -233, 48);
         }
         //mapS2W8
-        if (Y > -24704 && Y < -13476 && X < 89314 && X > 77652) //X-8 //todo add map
+        if (Y > -24704 && Y < -13476 && X < 89314 && X > 77652) //X-8
         {
             elevation = 0;
             region = "s2w8";
-            outlineBuilder(34, 34, "desert", -292, 48); //todo woods
+            outlineBuilder(34, 34, "woods", -292, 48);
 
             outlineBuilder( 1, 14, "brickRoad", -272, 53);
             outlineBuilder( 4, 1, "brickRoad", -272, 54);
@@ -1014,11 +1025,11 @@ function worldBuilder()
 
         }
         //mapS2W9
-        if (Y > -24704 && Y < -13476 && X < 99554 && X > 87882) //X-9 //todo add map
+        if (Y > -24704 && Y < -13476 && X < 99554 && X > 87882) //X-9
         {
             elevation = 0;
             region = "s2w9";
-            outlineBuilder(34, 34, "outline", -326, 48); //todo woods
+            outlineBuilder(34, 34, "woods", -326, 48);
 
             outlineBuilder( 1, 28, "brickRoad", -320, 62);
             outlineBuilder( 34, 1, "brickRoad", -321, 48);
@@ -1420,6 +1431,61 @@ function worldBuilder()
             outlineBuilder(1, 5, "greenGrass", 9, -21);
             outlineBuilder(1, 2, "greenGrass", 10, -22);
             outlineBuilder(34, 1, "stonePath", -3, -54);
+        }
+        //mapN1E1
+        if (Y > 6290 && Y < 17073 && X < -2423 && X > -14153) //X1
+        {
+            elevation = 0;
+            region = "n1e1";
+            outlineBuilder( 34, 34, "frost", 14, -54);
+
+            outlineBuilder( 6, 22, "forest", 26, -26);
+            outlineBuilder( 1, 4, "forest", 26, -27);
+            outlineBuilder( 1, 2, "forest", 28, -28);
+            outlineBuilder( 1, 6, "forest", 39, -27);
+            outlineBuilder( 2, 3, "forest", 44, -28);
+            outlineBuilder( 1, 8, "forest", 42, -27);
+
+            outlineBuilder( 5, 1, "forest", 25, -25);
+            outlineBuilder( 3, 1, "forest", 24, -26);
+        }
+        //mapN1E2
+        if (Y > 6290 && Y < 17073 && X < -12680 && X > -24308) //X2
+        {
+            elevation = 0;
+            region = "n1e2";
+            outlineBuilder( 34, 34, "frost", 48, -54);
+
+            outlineBuilder( 8, 34, "forest", 48, -28);
+            outlineBuilder( 1, 9, "forest", 48, -29);
+            outlineBuilder( 1, 4, "forest", 50, -30);
+            outlineBuilder( 1, 1, "forest", 52, -31);
+
+            outlineBuilder( 1, 6, "forest", 60, -29);
+            outlineBuilder( 1, 3, "forest", 62, -30);
+            outlineBuilder( 1, 2, "forest", 64, -31);
+            outlineBuilder( 1, 1, "forest", 64, -32);
+
+            outlineBuilder( 1, 2, "forest", 74, -29);
+            outlineBuilder( 1, 1, "forest", 69, -29);
+
+            outlineBuilder( 2, 3, "forest", 79, -30);
+            outlineBuilder( 2, 1, "forest", 80, -32);
+        }
+        //mapN1E3
+        if (Y > 6290 && Y < 17073 && X < -22859 && X > -34534) //X3
+        {
+            elevation = 0;
+            region = "n1e3";
+            outlineBuilder( 34, 34, "frost", 82, -54);
+            outlineBuilder( 2, 1, "forest", 82, -29);
+            outlineBuilder( 7, 23, "forest", 82, -27);
+            outlineBuilder( 1, 8, "forest", 88, -28);
+            outlineBuilder( 1, 3, "forest", 90, -29);
+            outlineBuilder( 5, 3, "forest", 105, -25);
+            outlineBuilder( 4, 4, "forest", 108, -24);
+            outlineBuilder( 3, 2, "forest", 112, -23);
+            outlineBuilder( 1, 1, "forest", 114, -21);
         }
         //mapN1E4
         if (Y > 6290 && Y < 17073 && X < -33084 && X > -44714) //X4

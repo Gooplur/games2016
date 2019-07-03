@@ -12798,6 +12798,12 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             {
                                 for (var i = 0; i < this.drops.length; i++)
                                 {
+                                    if (typeof(this.drops[i][0]) == "undefined") //TEST
+                                    {
+                                        console.log(this.type);
+                                        console.log(this.drops[i]);
+                                    }
+
                                     this.drops[i][0].setItemID();
                                     if (this.drops[i][0].questy == true || this.drops[i][0].utility == "questItem")
                                     {
@@ -71500,6 +71506,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 this.drops = [[new Item("fletterWing", this.X, this.Y), Math.round(Math.random() + 1)]];
             }
+            else
+            {
+                this.drops = [];
+            }
 
 
             //RANGE OF SIGHT (anything related to range of sight)
@@ -71663,6 +71673,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         this.drops = [[new Item("hoffalgrePelt", this.X, this.Y), 1], [new Item("rawHoffalgreFlesh", this.X, this.Y), 1], [new Item("hoffalgreTendrils", this.X, this.Y), 2]];
                     }
                 }
+                else
+                {
+                    this.drops = [];
+                }
             }
             else if (this.alpha == "baby")
             {
@@ -71671,6 +71685,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 {
                     this.drops = [[new Item("rawHoffalgreFlesh", this.X, this.Y), 1]];
                 }
+                else
+                {
+                    this.drops = [];
+                }
             }
             else
             {
@@ -71678,6 +71696,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 if (this.hunger > 0)
                 {
                     this.drops = [[new Item("hoffalgrePelt", this.X, this.Y), 1], [new Item("rawHoffalgreFlesh", this.X, this.Y), 1], [new Item("hoffalgreTendrils", this.X, this.Y), 1]];
+                }
+                else
+                {
+                    this.drops = [];
                 }
             }
 
@@ -75522,6 +75544,12 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.customEXP = true;
                 this.experience = 65 * ((player.getIntelligence() / 50) + 1);
             }
+            else if (this.ID == "Olav the Hermit")
+            {
+                this.drops = [[new Item("longbow", this.X, this.Y), 1], [new Item("arrow", this.X, this.Y), 12]];
+                this.customEXP = true;
+                this.experience = 90 * ((player.getIntelligence() / 50) + 1);
+            }
             else if (this.ID == "Axel")
             {
                 this.drops = [[new Item("coins", this.X, this.Y), 33]];
@@ -76441,6 +76469,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         if (this.killNotByPlayer == false || this.killByPlayerTeam)
                         {
                             player.freynorFaction -= 2;
+                        }
+                    }
+                    else if (this.ID == "Olav the Hermit")
+                    {
+                        uniqueChars.olavLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.freynorFaction += 5;
                         }
                     }
                     else if (this.ID == "Maggy the Tailor")

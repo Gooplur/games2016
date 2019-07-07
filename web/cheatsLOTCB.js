@@ -2440,6 +2440,16 @@ function cheats()
         {
             player.haeflowerTime += 60;
         }
+        else if (cheatcode.toLowerCase() == "youdoyoubella")
+        {
+            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+            {
+                if (ArtificialIntelligenceAccess[i].ID == "Madam Bella" || ArtificialIntelligenceAccess[i].ID == "Mesek the Runaway")
+                {
+                    ArtificialIntelligenceAccess[i].ultra.patrolStops = 6;
+                }
+            }
+        }
         else if (cheatcode.toLowerCase() == "iwill")
         {
             player.will = 0;

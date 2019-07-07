@@ -2435,10 +2435,6 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                         }
                     }
                 }
-                else
-                {
-
-                }
             }
         }
         else if (this.type == "grewbleEgg")
@@ -2891,11 +2887,11 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             }
             if (this.fogTurn == 0)
             {
-                this.phase -= 0.0004;
+                this.phase -= 0.0006;
             }
             else
             {
-                this.phase += 0.0004;
+                this.phase += 0.0006;
             }
 
             //DRAWSELF
@@ -2904,8 +2900,8 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation + this.phase);
-                XXX.globalAlpha = this.information;
-                XXX.drawImage(tomb, 1943, 112, 308, 375, -(1/2 * 308 * 1 * this.temporary), -(1/2 * 375 * 1 * this.temporary), 308 * 1 * this.temporary, 375 * 1 * this.temporary);
+                XXX.globalAlpha = this.information[0];
+                XXX.drawImage(tomb, 1943, 112, 308, 375, -(1/2 * 308 * 1 * this.information[1]), -(1/2 * 375 * 1 * this.information[1]), 308 * 1 * this.information[1], 375 * 1 * this.information[1]);
                 XXX.restore();
             }
             else if (this.temporary == 1)
@@ -2913,8 +2909,8 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation + this.phase);
-                XXX.globalAlpha = this.information;
-                XXX.drawImage(tomb, 1977, 482, 332, 279, -(1/2 * 332 * 1 * this.temporary), -(1/2 * 279 * 1 * this.temporary), 332 * 1 * this.temporary, 279 * 1 * this.temporary);
+                XXX.globalAlpha = this.information[0];
+                XXX.drawImage(tomb, 1977, 482, 332, 279, -(1/2 * 332 * 1 * this.information[1]), -(1/2 * 279 * 1 * this.information[1]), 332 * 1 * this.information[1], 279 * 1 * this.information[1]);
                 XXX.restore();
             }
             else if (this.temporary == 2)
@@ -2922,8 +2918,8 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation + this.phase);
-                XXX.globalAlpha = this.information;
-                XXX.drawImage(tomb, 1685, 720, 255, 275, -(1/2 * 255 * 1 * this.temporary), -(1/2 * 275 * 1 * this.temporary), 255 * 1 * this.temporary, 275 * 1 * this.temporary);
+                XXX.globalAlpha = this.information[0];
+                XXX.drawImage(tomb, 1685, 720, 255, 275, -(1/2 * 255 * 1 * this.information[1]), -(1/2 * 275 * 1 * this.information[1]), 255 * 1 * this.information[1], 275 * 1 * this.information[1]);
                 XXX.restore();
             }
             else if (this.temporary == 3)
@@ -2931,8 +2927,8 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation + this.phase);
-                XXX.globalAlpha = this.information;
-                XXX.drawImage(tomb, 1953, 766, 200, 222, -(1/2 * 200 * 1 * this.temporary), -(1/2 * 222 * 1 * this.temporary), 200 * 1 * this.temporary, 222 * 1 * this.temporary);
+                XXX.globalAlpha = this.information[0];
+                XXX.drawImage(tomb, 1953, 766, 200, 222, -(1/2 * 200 * 1 * this.information[1]), -(1/2 * 222 * 1 * this.information[1]), 200 * 1 * this.information[1], 222 * 1 * this.information[1]);
                 XXX.restore();
             }
 
@@ -2952,6 +2948,18 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             this.zIndex = 6;
             this.solid = false;
             this.interactionRange = 1;
+            if (this.fogTurn != 0 && this.fogTurn != 1)
+            {
+                this.fogTurn = Math.round(Math.random());
+            }
+            if (this.fogTurn == 0)
+            {
+                this.phase -= 0.0006;
+            }
+            else
+            {
+                this.phase += 0.0006;
+            }
 
             //DRAWSELF
             if (this.temporary == 0)
@@ -2959,8 +2967,8 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
-                XXX.globalAlpha = this.information;
-                XXX.drawImage(tomb, 1943, 112, 308, 375, -(1/2 * 308 * 1 * this.temporary), -(1/2 * 375 * 1 * this.temporary), 308 * 1 * this.temporary, 375 * 1 * this.temporary);
+                XXX.globalAlpha = this.information[0];
+                XXX.drawImage(tomb, 1943, 112, 308, 375, -(1/2 * 308 * 1 * this.information[1]), -(1/2 * 375 * 1 * this.information[1]), 308 * 1 * this.information[1], 375 * 1 * this.information[1]);
                 XXX.restore();
             }
             else if (this.temporary == 1)
@@ -2968,8 +2976,8 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
-                XXX.globalAlpha = this.information;
-                XXX.drawImage(tomb, 1977, 482, 332, 279, -(1/2 * 332 * 1 * this.temporary), -(1/2 * 279 * 1 * this.temporary), 332 * 1 * this.temporary, 279 * 1 * this.temporary);
+                XXX.globalAlpha = this.information[0];
+                XXX.drawImage(tomb, 1977, 482, 332, 279, -(1/2 * 332 * 1 * this.information[1]), -(1/2 * 279 * 1 * this.information[1]), 332 * 1 * this.information[1], 279 * 1 * this.information[1]);
                 XXX.restore();
             }
             else if (this.temporary == 2)
@@ -2977,8 +2985,8 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
-                XXX.globalAlpha = this.information;
-                XXX.drawImage(tomb, 1685, 720, 255, 275, -(1/2 * 255 * 1 * this.temporary), -(1/2 * 275 * 1 * this.temporary), 255 * 1 * this.temporary, 275 * 1 * this.temporary);
+                XXX.globalAlpha = this.information[0];
+                XXX.drawImage(tomb, 1685, 720, 255, 275, -(1/2 * 255 * 1 * this.information[1]), -(1/2 * 275 * 1 * this.information[1]), 255 * 1 * this.information[1], 275 * 1 * this.information[1]);
                 XXX.restore();
             }
             else if (this.temporary == 3)
@@ -2986,8 +2994,8 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
-                XXX.globalAlpha = this.information;
-                XXX.drawImage(tomb, 1953, 766, 200, 222, -(1/2 * 200 * 1 * this.temporary), -(1/2 * 222 * 1 * this.temporary), 200 * 1 * this.temporary, 222 * 1 * this.temporary);
+                XXX.globalAlpha = this.information[0];
+                XXX.drawImage(tomb, 1953, 766, 200, 222, -(1/2 * 200 * 1 * this.information[1]), -(1/2 * 222 * 1 * this.information[1]), 200 * 1 * this.information[1], 222 * 1 * this.information[1]);
                 XXX.restore();
             }
 
@@ -3007,6 +3015,18 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             this.zIndex = 1;
             this.solid = false;
             this.interactionRange = 1;
+            if (this.fogTurn != 0 && this.fogTurn != 1)
+            {
+                this.fogTurn = Math.round(Math.random());
+            }
+            if (this.fogTurn == 0)
+            {
+                this.phase -= 0.0006;
+            }
+            else
+            {
+                this.phase += 0.0006;
+            }
 
             //DRAWSELF
             if (this.temporary == 0)
@@ -3014,8 +3034,8 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
-                XXX.globalAlpha = this.information;
-                XXX.drawImage(tomb, 1943, 112, 308, 375, -(1/2 * 308 * 1 * this.temporary), -(1/2 * 375 * 1 * this.temporary), 308 * 1 * this.temporary, 375 * 1 * this.temporary);
+                XXX.globalAlpha = this.information[0];
+                XXX.drawImage(tomb, 1943, 112, 308, 375, -(1/2 * 308 * 1 * this.information[1]), -(1/2 * 375 * 1 * this.information[1]), 308 * 1 * this.information[1], 375 * 1 * this.information[1]);
                 XXX.restore();
             }
             else if (this.temporary == 1)
@@ -3023,8 +3043,8 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
-                XXX.globalAlpha = this.information;
-                XXX.drawImage(tomb, 1977, 482, 332, 279, -(1/2 * 332 * 1 * this.temporary), -(1/2 * 279 * 1 * this.temporary), 332 * 1 * this.temporary, 279 * 1 * this.temporary);
+                XXX.globalAlpha = this.information[0];
+                XXX.drawImage(tomb, 1977, 482, 332, 279, -(1/2 * 332 * 1 * this.information[1]), -(1/2 * 279 * 1 * this.information[1]), 332 * 1 * this.information[1], 279 * 1 * this.information[1]);
                 XXX.restore();
             }
             else if (this.temporary == 2)
@@ -3032,8 +3052,8 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
-                XXX.globalAlpha = this.information;
-                XXX.drawImage(tomb, 1685, 720, 255, 275, -(1/2 * 255 * 1 * this.temporary), -(1/2 * 275 * 1 * this.temporary), 255 * 1 * this.temporary, 275 * 1 * this.temporary);
+                XXX.globalAlpha = this.information[0];
+                XXX.drawImage(tomb, 1685, 720, 255, 275, -(1/2 * 255 * 1 * this.information[1]), -(1/2 * 275 * 1 * this.information[1]), 255 * 1 * this.information[1], 275 * 1 * this.information[1]);
                 XXX.restore();
             }
             else if (this.temporary == 3)
@@ -3041,8 +3061,8 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
-                XXX.globalAlpha = this.information;
-                XXX.drawImage(tomb, 1953, 766, 200, 222, -(1/2 * 200 * 1 * this.temporary), -(1/2 * 222 * 1 * this.temporary), 200 * 1 * this.temporary, 222 * 1 * this.temporary);
+                XXX.globalAlpha = this.information[0];
+                XXX.drawImage(tomb, 1953, 766, 200, 222, -(1/2 * 200 * 1 * this.information[1]), -(1/2 * 222 * 1 * this.information[1]), 200 * 1 * this.information[1], 222 * 1 * this.information[1]);
                 XXX.restore();
             }
 

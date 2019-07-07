@@ -2415,6 +2415,7 @@ var doTheStatsHighlights = false;
 var showUiIcons = false;
 var playerJuju = false;
 var loggedGenID = false;
+var canShowSight = true;
 
 //This sets the items that are in shops.
 function shopItemIDSetter()

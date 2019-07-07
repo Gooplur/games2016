@@ -5,25 +5,15 @@ Hops - a bush with nice smelling nubs called hops
     //WILD
 Karm - A southern temperate bush that hosts a small green fruit
 Clobe - A plant that grows in temperate regions that has three swollen curved leaves full of a thick green sap
-Tialo - a temperate eastern greens
 Mandrake - human shaped root that when uprooted will let out a scream so terrible that those who hear it will lose their soul (it will literally flee their body to escape the sound; undead are not affected by it)
 SwampLily - A beautiful pink flower that grows on lily pads
-Cabbage - A vardanian food staple that is cultivated in farms
 Cattail - A swamp grass that grows in the Vardanian swamps
 Saug - A long tuber plant that has some light hair-like fibers that protrude from the ground
-Gribnoy - A Vardanian mushroom that grows on the trunks of ashai trees
-Poegroon - A variety of Vardanian mushroom that is fairly poisonous, and that produces an alchemically important oil
-Maleot - A large dark grey Vardanian mushroom that is moderately poisonous
-Iod - A green stalk-like fungus that grows in the Vardanian woods; it can be characterized as a carnivorous plant because it actively decomposes nearby carrion for use in its nutrient cycle using limb stalks that it maintains underground most of the time; iod fungus actively seeks to grow the reach of its mycelium, and when it has reached its capacity for growth it duplicates itself at the edge of its mycelium in order to expand even farther.
-Danzig - A black fern plant that grows in Vardania.
-Yaihef - A jungle bush that yields thirst quenching light blue berries
 OgoTree - A tropical tree that bears energizing ogo fruits
 AppleTree - A temperate tree that yields apples; apple trees grow almost exclusively in Thengaria
 Wheat - A tropical/temperate grass that yields a wholesome grain that can be milled into bread or fermented.
 DesertPoppy - A poppy plant that grows in the far south in the burning desert; its seeds can be made into opium
-Mustard - A wild bushy plant that grows in the plains of Thengaria that has little yellow flowers and that hosts seeds that are a flavorful spice
 Heyol - A freydic berry bush that hosts small green berries that are bitter and medicinal
-Sala - A red nirwaden wildflower that grows in the grasslands
 
 //ALREADY IN GAME (to create a plant with the scenery class these plants must be made all lowercase)
     //FARM
@@ -35,6 +25,7 @@ Suuli - A sweet northern melon that grows only in northern temperate and souther
 Pumpkin - A northern and temperate orange gourd plant used in certain culinary traditions as well as to make carved gourd lanterns
 ChonaTree - An orchard tree that grows pink fruits
 PolyapaTree - An orchard tree that grows small pear-like fruits
+Cabbage - A vardanian/thengan food staple that is cultivated in farms
     //WILD
 PineTree - A pine tree
 GreatPineTree - A large variety of pine tree that grows in Thengaria, and in some parts of the North (set information to "snowy" to make it a snow covered tree) (use longevity to adjust its size: 5min - 9max)
@@ -130,3 +121,12 @@ Ameloy - A sweet smelling white and black flower bush that grows in Vardania
 Mekle - A small green bush that grows in Vardania. It has a rapid growth rate... (when picked it grows back soon after)
 Laicaum - A grey leafy bush that hosts plump black coloured berries; the berries are poisonous, but the plant's leaves have a small amount of special fluid inside them that has healing properties.
 Thadine - A black leaved bush that grows in Vardania (two varieties based on longevity input true and false)
+Sala - A red nirwaden wildflower that grows in the grasslands
+Gribnoy - A Vardanian mushroom that grows on the trunks of ashai trees
+Poegroon - A variety of Vardanian mushroom that is fairly poisonous, and that produces an alchemically important oil
+Maleot - A large dark grey Vardanian mushroom that is moderately poisonous
+Iod - A green stalk-like fungus that grows in the Vardanian woods; it can be characterized as a carnivorous plant because it actively decomposes nearby carrion for use in its nutrient cycle using limb stalks that it maintains underground most of the time; iod fungus actively seeks to grow the reach of its mycelium, and when it has reached its capacity for growth it duplicates itself at the edge of its mycelium in order to expand even farther.
+Danzig - A black fern plant that grows in Vardania.
+Yaihef - A jungle bush that yields thirst quenching light blue berries
+Tialo - a temperate eastern greens
+Mustard - A wild bushy plant that grows in the plains of Thengaria that has little yellow flowers and that hosts seeds that are a flavorful spice

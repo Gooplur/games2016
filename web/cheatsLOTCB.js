@@ -6,8 +6,8 @@ function cheats()
 {
     if (buildMode == true)
     {
-        var buildList = ["coords", "Selva Tree", "Sonja Tree", "Gallosh Plant", "Vorlym Plant", "Thueg", "Conejo", "Boulchom", "Great Pine Tree", "Pine Tree", "Snowy Great Pine Tree", "Snowy Pine Tree", "Ashai Tree", "Ghoul", "Ribback", "Vreck", "Dalger", "Varonoi", "Stovol Beetle", "Thegol Thorn", "Elk", "Black Beruln", "Mekle Plant", "Black Bear", "Turkey", "Skol", "Deer", "Fox", "Badger", "Hoffalgre", "Crow", "Silter", "Scilt Plant", "Korsk Beetle", "Cheshire", "Grizzly Bear", "Borgal", "Lizard", "Koivaya (loner)", "Koivaya (breeder)", "Cranberry Plant", "Eyewort Plant", "Korceida Plant", "Laumin Plant", "Jolle Plant", "Porstol Plant", "Fallory Plant", "Palgga Plant", "Bleeding Heart Plant", "Aberdom Plant", "Beunum Plant", "Ciprin Plant", "Marigold Plant", "Hoil Plant", "Callop Plant", "Darb Plant", "Kofke Plant", "Steugiurne Plant", "Web", "Etna Egg Sack", "Etna"];
-        //                  0           1              2               3                4          5        6           7              8               9                  10                    11              12         13         14       15        16        17             18              19         20          21              22            23          24       25      26      27      28          29        30       31          32             33             34             35         36         37            38                  39                   40                41               42                43             44              45               46               47                 48                   49              50               51               52             53             54             55            56                57            58         59           60
+        var buildList = ["coords", "Selva Tree", "Sonja Tree", "Gallosh Plant", "Vorlym Plant", "Thueg", "Conejo", "Boulchom", "Great Pine Tree", "Pine Tree", "Snowy Great Pine Tree", "Snowy Pine Tree", "Ashai Tree", "Ghoul", "Ribback", "Vreck", "Dalger", "Varonoi", "Stovol Beetle", "Thegol Thorn", "Elk", "Black Beruln", "Mekle Plant", "Black Bear", "Turkey", "Skol", "Deer", "Fox", "Badger", "Hoffalgre", "Crow", "Silter", "Scilt Plant", "Korsk Beetle", "Cheshire", "Grizzly Bear", "Borgal", "Lizard", "Koivaya (loner)", "Koivaya (breeder)", "Cranberry Plant", "Eyewort Plant", "Korceida Plant", "Laumin Plant", "Jolle Plant", "Porstol Plant", "Fallory Plant", "Palgga Plant", "Bleeding Heart Plant", "Aberdom Plant", "Beunum Plant", "Ciprin Plant", "Marigold Plant", "Hoil Plant", "Callop Plant", "Darb Plant", "Kofke Plant", "Steugiurne Plant", "Web", "Etna Egg Sack", "Etna", "Mustard Plant", "Carrot Plant", "Potato Plant", "Cabbage Plant", "Harst Plant", "Santh Plant", "Wheat Plant", "Suuli Plant"];
+        //                  0           1              2               3                4          5        6           7              8               9                  10                    11              12         13         14       15        16        17             18              19         20          21              22            23          24       25      26      27      28          29        30       31          32             33             34             35         36         37            38                  39                   40                41               42                43             44              45               46               47                 48                   49              50               51               52             53             54             55            56                57            58         59           60           61              62               63              64              65            66             67              68
         if (tKey)
         {
             tKey = false;
@@ -843,7 +843,7 @@ function cheats()
             if (xKey)
             {
                 xKey = false;
-                var randoonSz = 0.8 + 1.7 * Math.random();
+                var randoonSz = 0.8 + 0.8 * Math.random();
                 console.log('scenicList.push(new Scenery("sciltPlant", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', true, ' + randoonSz + '));');
                 worldItems.push([new Item("plantMarker", X, Y), 1]);
             }
@@ -1434,7 +1434,150 @@ function cheats()
                 XXX.restore();
             }
         }
+        else if (buildToggle == 61)
+        {
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("mustardPlant", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', true));');
+                worldItems.push([new Item("plantMarker", X, Y), 1]);
+            }
 
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(floras, 711, 155, 27, 28, -(1/2 * 27 * 1.8), -(1/2 * 28 * 1.8), 27 * 1.8, 28 * 1.8);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 62)
+        {
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("carrotPlant", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', true));');
+                worldItems.push([new Item("plantMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(oldverse, 2892, 73, 13, 12, -(1/2 * 13 * 3.6), -(1/2 * 12 * 3.6), 13 * 3.6, 12 * 3.6);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 63)
+        {
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("potatoPlant", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', true));');
+                worldItems.push([new Item("plantMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(oldverse, 2912, 68, 20, 19, -(1/2 * 20 * 2), -(1/2 * 19 * 2), 20 * 2, 19 * 2);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 64)
+        {
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("cabbagePlant", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', true));');
+                worldItems.push([new Item("plantMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(toad, 0, 5, 23, 24, -(1/2 * 23 * 1.6), -(1/2 * 24 * 1.6), 23 * 1.6, 24 * 1.6);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 65)
+        {
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("harstPlant", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', true));');
+                worldItems.push([new Item("plantMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(freeverse, 240, 27, 17, 19, -(1/2 * 17 * 2.6), -(1/2 * 19 * 2.6), 17 * 2.6, 19 * 2.6);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 66)
+        {
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("santhPlant", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', true));');
+                worldItems.push([new Item("plantMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(oldverse, 2972, 178, 24, 23, -(1/2 * 24 * 1.65), -(1/2 * 23 * 1.65), 24 * 1.65, 23 * 1.65);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 67)
+        {
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("wheatPlant", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', true));');
+                worldItems.push([new Item("plantMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(toad, 718, 268, 39, 39, -(1/2 * 39 * 2), -(1/2 * 39 * 2), 39 * 2, 39 * 2);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 68)
+        {
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("suuliPlant", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', true));');
+                worldItems.push([new Item("plantMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(oldverse, 2878, 92, 49, 50, -(1/2 * 49), -(1/2 * 50), 49, 50);
+                XXX.restore();
+            }
+        }
     }
     //kids mode silliness
     if (player.gamemode == "protagonist")

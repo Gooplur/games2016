@@ -5045,6 +5045,7 @@ function interaction(me)
                                         player.experience += 65;
                                     }
                                     player.fame += 1;
+                                    player.kelFaction += 20;
 
                                     change = "mesekFreedom";
 

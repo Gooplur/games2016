@@ -26142,7 +26142,7 @@ function Item(type, x, y)
             this.replenish = 0.05; //restores will.
 
             //ability
-            this.ability = "none";
+            this.ability = "yumNotYuk";
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 2; // at max, buy for 2.

@@ -10138,7 +10138,10 @@ function Adventurer()
         //ATTACK INITIATOR [this triggers the attack when the player presses the space key]
         if (spaceKey == true && this.getCanAttack())
         {
-            this.weapon.setItemID();
+            if (this.spell == "none")
+            {
+                this.weapon.setItemID();
+            }
             if (this.weaponIsRanged == false && new Date().getTime() - this.attackCooldown >= 10 * this.weapon.rate && this.spell == "none")
             {
                 if (this.form != "vampire" || this.vampDead == false)
@@ -36329,6 +36332,10 @@ function Adventurer()
                             else if (Inventory[i][0].ability == "fleshMiteAway")
                             {
                                 this.fleshMites = false;
+                            }
+                            else if (Inventory[i][0].ability == "yumNotYuk")
+                            {
+                                console.log("You eat the cabbage, Yum!")
                             }
                             else if (Inventory[i][0].ability == "satiate" || Inventory[i][0].ability == "satiation") //Food with this effect will keep you fed for a little bit.
                             {

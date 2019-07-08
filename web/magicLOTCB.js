@@ -1090,9 +1090,13 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                             else if (kind == "frostwind")
                             {
                                 ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
-                                ArtificialIntelligenceAccess[i].frozenTime = new Date().getTime();
+                                ArtificialIntelligenceAccess[i].frozenTime = new Date().getTime() + 4000;
                                 ArtificialIntelligenceAccess[i].X -= ((6 * this.cnx) / 50) * Math.cos(this.playerRotation - 1 / 2 * Math.PI);
                                 ArtificialIntelligenceAccess[i].Y -= ((6 * this.cnx) / 50) * Math.sin(this.playerRotation - 1 / 2 * Math.PI);
+                            }
+                            else if (kind == "airFreeze")
+                            {
+                                ArtificialIntelligenceAccess[i].frozenTime = new Date().getTime() + (80 * this.cnx);
                             }
                             else if (kind == "force")
                             {
@@ -1249,6 +1253,10 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                                     ArtificialIntelligenceAccess[i].frozenTime = new Date().getTime();
                                     ArtificialIntelligenceAccess[i].X -= ((6 * this.cnx) / 50) * Math.cos(this.playerRotation - 1 / 2 * Math.PI);
                                     ArtificialIntelligenceAccess[i].Y -= ((6 * this.cnx) / 50) * Math.sin(this.playerRotation - 1 / 2 * Math.PI);
+                                }
+                                else if (kind == "airFreeze")
+                                {
+                                    ArtificialIntelligenceAccess[i].frozenTime = new Date().getTime() + (80 * this.cnx);
                                 }
                                 else if (kind == "force")
                                 {
@@ -1898,6 +1906,11 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
             {
                 this.orientToCaster(18 + rdxn, 2.05/4 * Math.PI);
             }
+        }
+        //THE FROZEN WORD
+        if (this.spellType == "theFrozenWord")
+        {
+            this.orientToCaster(0, 0);
         }
         //ICE BLAST
         if (this.spellType == "iceBlast")
@@ -2895,6 +2908,28 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                 else
                 {
                     //todo add frostWind spell for AI
+                }
+            }
+            //THE FROZEN WORD
+            if (this.spellType == "theFrozenWord")
+            {
+                if (caster)
+                {
+                    this.spin += 0.22;
+                    this.size = 3 + (0.041 * this.cnx);
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.spin);
+                    XXX.globalAlpha = 0.25;
+                    XXX.drawImage(polypol, 1815, 207, 28, 28, - (1/2 * 28 * this.size * 1.2), - (1/2 * 28 * this.size * 1.2), 28 * this.size * 1.2, 28 * this.size * 1.2);
+                    XXX.restore();
+
+                    this.contactDamage(false , 28 * this.size, 0, 110, "airFreeze", "frostI");
+                    this.spellTimer(2 + 0.2 * this.cnx);
+                }
+                else
+                {
+                    //todo add theFrozenWord spell for AI
                 }
             }
             //REPEL

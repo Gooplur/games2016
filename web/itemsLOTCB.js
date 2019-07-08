@@ -531,6 +531,49 @@ function Item(type, x, y)
             this.spellKnowledgeRequirement = 6;
             this.spellRange = "Near";
         }
+        else if (this.type == "theFrozenWord")
+        {
+            //For All Items
+            if (player.getKnowledge() >= 4)
+            {
+                this.identity = "Tablet of the Frozen Word";
+                this.description = "Studying this magically engraved stone tablet will teach you how to temporarily freeze all those around you.";
+                this.intForDes = 0;
+                this.intDescription = "This tablet is cold to the touch.";
+                this.buyValue = 400 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 300.
+                this.sellValue = 200 + Math.floor(player.getCharisma() / 0.5); // at max, sell for 300.
+            }
+            else
+            {
+                this.identity = "Engraved Stone Tablet";
+                this.description = "There are strange symbols engraved in the stone.";
+                this.intForDes = 6;
+                this.intDescription = "Perhaps this stone is an artifact from an ancient culture.";
+                this.buyValue = 400 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 300.
+                this.sellValue = 65 + Math.floor(player.getCharisma() / 2); // at max, sell for 90.
+            }
+            this.weight = 2.5;
+            this.size = 13;
+
+            //Define Utility
+            this.utility = "spell";
+
+            //ability
+            this.ability = "none";
+
+            //Utility Focused
+            this.damages = false;
+            this.spellCost = Math.max(1, 3 + (2 / 50) * player.getConcentration() - (4 / 50) * player.getEminence());
+            this.spellGroup = "Incantation";
+            this.spellGenre = "Ice";
+            this.spellName = "The Frozen Word";
+            this.spellID = "theFrozenWord";
+            this.spellEXP = 15 * ((50 + player.getMemory()) / 50);
+            this.spellCooldown = Math.max(1, 2 + (3/50) * player.getConcentration() - (6/50) * player.getEminence());
+            this.spellDescription = "Drifts from the caster's breath as an icy gust; it freezes all who surround you."
+            this.spellKnowledgeRequirement = 4;
+            this.spellRange = "Near";
+        }
         else if (this.type == "shadowport")
         {
             //For All Items
@@ -19937,7 +19980,7 @@ function Item(type, x, y)
             //Utility Focused
             this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
             this.hunger = 0; //satisfies hunger.
-            this.thirst = 0; //quenches thirst.
+            this.thirst = 9; //quenches thirst.
             this.warmth = 0; //warms player.
             this.heal = 0; //heals health.
             this.generation = 0; //recoops lost energy.
@@ -19949,7 +19992,7 @@ function Item(type, x, y)
             //Crafting
             this.yield = 1;
             this.intForCraft = 44;
-            this.ingredients = [["Mandrake Juice", 1], ["Dried Bahab Pod", 2], ["Honey", 1], ["Steugiurne Flower", 1], ["Tylun Flower", 2]];
+            this.ingredients = [["Mandrake Juice", 1], ["Dried Bahab Pod", 2], ["Thalis Leaf", 1], ["Honey", 1], ["Steugiurne Flower", 1], ["Tylun Flower", 2]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 600 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 500.
@@ -20134,6 +20177,42 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 225 - Math.floor(player.getCharisma() / 1); // at max, buy for 175.
             this.sellValue = 95 + Math.floor(player.getCharisma() / 2); // at max, sell for 120.
+        }
+        else if (this.type == "reconstructionPotion")
+        {
+            //For All Items
+            this.identity = "Elixer of Reconstruction";
+            this.weight = 2;
+            this.size = 5;
+            this.description = "A light blue liquid substance that refuses to ripple or swirl no matter how much you move it around.";
+            this.intForDes = 0;
+            this.intDescription = "This potion allows a mage to unfocus their magics in order to refocus them differently.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["potionGlass", 1]];
+
+            //Utility Focused
+            this.isRegenerative = true; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 1; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "magicalReconstruction";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 40;
+            this.ingredients = [["Vial of Water", 1], ["Tylun Flower", 1], ["Honey", 1], ["Duende Esophagus", 1], ["Soaked Mandrake", 1], ["Swamp Lily", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 220 - Math.floor(player.getCharisma() / 1); // at max, buy for 170.
+            this.sellValue = 120 + Math.floor(player.getCharisma() / 1); // at max, sell for 170.
         }
         else if (this.type == "tunskBloodPotion")
         {
@@ -20407,6 +20486,69 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 9 - Math.floor(player.getCharisma() / 15); // at max, buy for 6.
             this.sellValue = 2 + Math.floor(player.getCharisma() / 15); // at max, sell for 5.
+        }
+        else if (this.type == "wormz")
+        {
+            //For All Items
+            this.identity = "Fish Bait";
+            this.weight = 0.12;
+            this.size = 6;
+            this.description = "A handful of gut worms.";
+            this.intForDes = 0;
+            if (player.getIntelligence() >= 1)
+            {
+                this.intDescription = "This type of worm is known for its parasitic inhabitance within human digestive tracts; clicking this item separates the worms apart for use.";
+            }
+            else
+            {
+                this.intDescription = "Clicking this item separates the worms apart for use.";
+            }
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["worms", 3]];
+
+            //Utility Focused
+            this.isRegenerative = false;
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 0;
+            this.ingredients = [["Gut Worms", 3]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "worms")
+        {
+            //For All Items
+            this.identity = "Gut Worms";
+            this.weight = 0.04;
+            this.size = 3;
+            this.description = "A couple of gut worms.";
+            this.intForDes = 1;
+            this.intDescription = "These are used as bait for fishing.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
         }
         else if (this.type == "ardilPelt")
         {
@@ -24399,8 +24541,15 @@ function Item(type, x, y)
             this.weight = 6;
             this.size = 15;
             this.description = "A quick-to-set-up inhabitance that provides safe and comfortable rest.";
-            this.intForDes = 1;
-            this.intDescription = "If you have a hammer equipped click the tent in your inventory to place it, and double click on the placed tent to disassemble it.";
+            this.intForDes = 0;
+            if (campout)
+            {
+                this.intDescription = "If you have a hammer equipped click the tent in your inventory to place it, and double click on the placed tent to disassemble it.";
+            }
+            else
+            {
+                this.intDescription = "You are not permitted to use a tent in this location.";
+            }
 
             //Define Utility
             this.utility = "tool";
@@ -24425,8 +24574,15 @@ function Item(type, x, y)
             this.weight = 5;
             this.size = 15;
             this.description = "A quick-to-set-up inhabitance that puts a thin layer of cloth between you and the beasts of the night...";
-            this.intForDes = 1;
-            this.intDescription = "Use a hammer to set up and take down the tent.";
+            this.intForDes = 0;
+            if (campout)
+            {
+                this.intDescription = "Use a hammer to set up and take down the tent.";
+            }
+            else
+            {
+                this.intDescription = "You are not permitted to use a tent in this location.";
+            }
 
             //Define Utility
             this.utility = "tool";
@@ -46473,6 +46629,18 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "worms")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polyPNG, 5, 716, 18, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 18 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16 * 1), 18 * 1, 16 * 1);
+        }
+        else if (this.type == "wormz")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polyPNG, 5, 716, 18, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 18 * 1) + 1, Y - this.Y + (1/2 * CCC.height) - (1/2 * 16 * 1) + 2.5, 18 * 1, 16 * 1);
+            XXX.drawImage(polyPNG, 5, 716, 18, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 18 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16 * 1), 18 * 1, 16 * 1);
+            XXX.drawImage(polyPNG, 5, 716, 18, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 18 * 1) + 4, Y - this.Y + (1/2 * CCC.height) - (1/2 * 16 * 1) - 3, 18 * 1, 16 * 1);
+        }
         else if (this.type == "turkeyEgg")
         {
             XXX.beginPath();
@@ -51167,7 +51335,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(freeverse, 419, 1, 10, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 10), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17), 10, 17);
         }
-        else if (this.type == "vialOfWater" || this.type == "vialOfGojiiPoison")
+        else if (this.type == "vialOfWater" || this.type == "vialOfGojiiPoison" || this.type == "reconstructionPotion")
         {
             XXX.beginPath();
             XXX.drawImage(freeverse, 406, 1, 10, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 10), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16), 10, 16);
@@ -51337,7 +51505,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 535, 411, 40, 72, X - this.X + (1/2 * CCC.width) - (1/2 * 40 / 1.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 72 / 1.3), 40 / 1.3, 72 / 1.3);
         }
-        else if (this.type == "tablet" || this.type == "stolenTablet" || this.type == "iceClaymore" || this.type == "leechingTouch" || this.type == "shadowport")
+        else if (this.type == "tablet" || this.type == "stolenTablet" || this.type == "iceClaymore" || this.type == "leechingTouch" || this.type == "shadowport" || this.type == "theFrozenWord")
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1859, 36, 22, 27, X - this.X + (1/2 * CCC.width) - (1/2 * 22), Y - this.Y + (1/2 * CCC.height) - (1/2 * 27), 22, 27);
@@ -52518,6 +52686,18 @@ function Item(type, x, y)
         {
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "worms")
+        {
+            LXX.beginPath();
+            LXX.drawImage(polyPNG, 5, 716, 18, 16, this.invX - (1/2 * 18 * 1), this.invY - (1/2 * 16 * 1), 18 * 1, 16 * 1);
+        }
+        else if (this.type == "wormz")
+        {
+            LXX.beginPath();
+            LXX.drawImage(polyPNG, 5, 716, 18, 16, this.invX - (1/2 * 18 * 1) + 1, this.invY - (1/2 * 16 * 1) + 2.5, 18 * 1, 16 * 1);
+            LXX.drawImage(polyPNG, 5, 716, 18, 16, this.invX - (1/2 * 18 * 1), this.invY - (1/2 * 16 * 1), 18 * 1, 16 * 1);
+            LXX.drawImage(polyPNG, 5, 716, 18, 16, this.invX - (1/2 * 18 * 1) + 4, this.invY - (1/2 * 16 * 1) - 3, 18 * 1, 16 * 1);
         }
         else if (this.type == "turkeyEgg")
         {
@@ -57301,7 +57481,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(freeverse, 419, 1, 10, 17, this.invX - (1/2 * 10), this.invY - (1/2 * 17), 10, 17);
         }
-        else if (this.type == "vialOfWater" || this.type == "vialOfGojiiPoison")
+        else if (this.type == "vialOfWater" || this.type == "vialOfGojiiPoison" || this.type == "reconstructionPotion")
         {
             LXX.beginPath();
             LXX.drawImage(freeverse, 406, 1, 10, 16, this.invX - (1/2 * 10), this.invY - (1/2 * 16), 10, 16);
@@ -57471,7 +57651,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(polypol, 535, 411, 40, 72, this.invX - (1/2 * 40 / 1.3), this.invY - (1/2 * 72 / 1.3), 40 / 1.3, 72 / 1.3);
         }
-        else if (this.type == "tablet" || this.type == "stolenTablet" || this.type == "iceClaymore" || this.type == "leechingTouch" || this.type == "shadowport")
+        else if (this.type == "tablet" || this.type == "stolenTablet" || this.type == "iceClaymore" || this.type == "leechingTouch" || this.type == "shadowport" || this.type == "theFrozenWord")
         {
             LXX.beginPath();
             LXX.drawImage(polypol, 1859, 36, 22, 27, this.invX - (1/2 * 22), this.invY - (1/2 * 27), 22, 27);
@@ -58531,6 +58711,18 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "worms")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polyPNG, 5, 716, 18, 16, this.invX - (1/2 * 18 * 1), this.invY - (1/2 * 16 * 1), 18 * 1, 16 * 1);
+        }
+        else if (this.type == "wormz")
+        {
+            XXX.beginPath();
+            XXX.drawImage(polyPNG, 5, 716, 18, 16, this.invX - (1/2 * 18 * 1) + 1, this.invY - (1/2 * 16 * 1) + 2.5, 18 * 1, 16 * 1);
+            XXX.drawImage(polyPNG, 5, 716, 18, 16, this.invX - (1/2 * 18 * 1), this.invY - (1/2 * 16 * 1), 18 * 1, 16 * 1);
+            XXX.drawImage(polyPNG, 5, 716, 18, 16, this.invX - (1/2 * 18 * 1) + 4, this.invY - (1/2 * 16 * 1) - 3, 18 * 1, 16 * 1);
         }
         else if (this.type == "turkeyEgg")
         {
@@ -63312,7 +63504,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(freeverse, 419, 1, 10, 17, this.invX - (1/2 * 10), this.invY - (1/2 * 17), 10, 17);
         }
-        else if (this.type == "vialOfWater" || this.type == "vialOfGojiiPoison")
+        else if (this.type == "vialOfWater" || this.type == "vialOfGojiiPoison" || this.type == "reconstructionPotion")
         {
             XXX.beginPath();
             XXX.drawImage(freeverse, 406, 1, 10, 16, this.invX - (1/2 * 10), this.invY - (1/2 * 16), 10, 16);
@@ -63482,7 +63674,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 535, 411, 40, 72, this.invX - (1/2 * 40 / 1.3), this.invY - (1/2 * 72 / 1.3), 40 / 1.3, 72 / 1.3);
         }
-        else if (this.type == "tablet" || this.type == "stolenTablet" || this.type == "iceClaymore" || this.type == "leechingTouch" || this.type == "shadowport")
+        else if (this.type == "tablet" || this.type == "stolenTablet" || this.type == "iceClaymore" || this.type == "leechingTouch" || this.type == "shadowport" || this.type == "theFrozenWord")
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1859, 36, 22, 27, this.invX - (1/2 * 22), this.invY - (1/2 * 27), 22, 27);

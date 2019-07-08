@@ -268,3 +268,4 @@ metalLadder - just like latter (portal) but made of metal. //scenicList.push(new
 sewer - just like trap door except that it can be opened and closed like a sewer grate. //scenicList.push(new Scenery("sewer", 3400, 2400, 0, [0, 0], "world"));
 thenganorCastleParts - castle walls and turrets (longevity determines size, rotations must be multiples of 1/2 * Math.PI) (information ~ long F: 0, long T: 1, short F: 2, short T: 3, turret F: 4, turret T: 5)  //scenicList.push(new Scenery("thenganorCastleParts", X, Y, 1/2 * Math.PI, size, type));
 thenganorCastlePartsHigh - Same thing but is drawn on a higher z-index
+swampIsla - uneven ground to make the Vardanian swamp look unique and rugged -- oooh, how rugged mate! (0: big square, 1: big circle, 2: half square, 3: fourth square, 4: medium rectangle, 5: small circle, 6: small particle square, 7: medium particle circle) It stops you from getting your toes wet in the bog water... [temporary = type, information = size]

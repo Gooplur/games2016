@@ -230,6 +230,7 @@ function buildMaster()
                 //ArtificialIntelligenceAccess.push(new Unit(4400, 2500, "Elk", "baby", "Nihgi"));
 
                 //scenicList.push(new Scenery("wendigoCircle", 3900, 2400, 0.38, true));
+                scenicList.push(new Scenery("swampIsla", 3900, 2400, 0, 7, 1));
 
                 //scenicList.push(new Scenery("mrbAssets", 4900, 2100, 1/2 * Math.PI, 5, 2)); //wall sml
                 //scenicList.push(new Scenery("mrbAssets", 4900, 2100, 1/2 * Math.PI, 6, 2)); //window sml
@@ -5433,6 +5434,29 @@ function buildMaster()
                 //REGION CREATION
                 //Build AI Units
 
+                scenicList.push(new Scenery("galloshPlant", 158805.9807786968, -35383.21621286535,1.5172826050757922, 0, undefined)); //copied s4w15
+                scenicList.push(new Scenery("pineTree", 159918.1062404075, -35295.04707370086, 5.10087091879317, true));
+                scenicList.push(new Scenery("pineTree", 160011.3614536507, -35713.36460206808, 2.7107522903975014, true));
+                scenicList.push(new Scenery("pineTree", 159930.60287580287, -36293.159090964524, 0.29035111679961295, true));
+                scenicList.push(new Scenery("pineTree", 159680.25414277357, -36547.016567909865, 6.067811718294663, true));
+                scenicList.push(new Scenery("pineTree", 159929.9862655876, -36899.75897912614, 3.538274007075972, true));
+                scenicList.push(new Scenery("pineTree", 159575.91722915473, -36782.101441662206, 3.0117641314967916, true));
+                scenicList.push(new Scenery("pineTree", 159678.85327463475, -37134.64571713303, 5.98938175462653, true));
+                scenicList.push(new Scenery("pineTree", 159322.91386168572, -37067.343479178824, 4.951254978076673, true));
+                scenicList.push(new Scenery("pineTree", 159812.98303132213, -37351.807461599135, 0.03267596837854479, true));
+                scenicList.push(new Scenery("pineTree", 160048.42978002614, -37158.98295668921, 1.6135905110899982, true));
+                scenicList.push(new Scenery("pineTree", 160320.5125652256, -37030.39579956098, 2.329282309696552, true));
+                scenicList.push(new Scenery("pineTree", 160445.39067536365, -37323.15688278459, 2.515014582978275, true));
+                scenicList.push(new Scenery("pineTree", 160185.9535759929, -37490.6988865598, 1.671004056284922, true));
+                scenicList.push(new Scenery("pineTree", 160006.32232491462, -37685.19940187562, 3.3420608002980527, true));
+                scenicList.push(new Scenery("pineTree", 160006.67210178688, -39040.34551015477, 4.981040369844634, true));
+                scenicList.push(new Scenery("pineTree", 159694.8416985828, -39248.90286998483, 0.21891097672063267, true));
+                scenicList.push(new Scenery("pineTree", 160075.72053399903, -39332.61782261765, 0.5173881832067808, true));
+                scenicList.push(new Scenery("pineTree", 159726.9876388009, -39487.42401250366, 0.5175867967931235, true));
+                scenicList.push(new Scenery("pineTree", 159897.96501232564, -39781.57268783344, 0.3280334820848725, true));
+                scenicList.push(new Scenery("pineTree", 160150.55258808564, -41602.22423185965, 4.47133385248687, true));
+                scenicList.push(new Scenery("pineTree", 159869.61719773957, -41840.08877917803, 1.0772894388314, true));
+
                 scenicList.push(new Scenery("pineTree", 165615.97001776734, -42089.354288151066, 4.4937110014235815, true));
                 scenicList.push(new Scenery("pineTree", 165171.37469578692, -41953.80792446196, 3.1112355867136228, true));
                 scenicList.push(new Scenery("pineTree", 165676.66760439696, -42392.23507332459, 4.511367473707111, true));
@@ -9483,7 +9507,7 @@ function buildMaster()
                 change = "s4w20";
             }
         }
-        else if (region == "s4w15") //CRANHEIM
+        else if (region == "s4w15")
         {
             if (change != "s4w15")
             {
@@ -9540,6 +9564,155 @@ function buildMaster()
                 scenicList.push(new Scenery("galloshPlant", 148557.2208949342, -36755.32630664784,1.6978112555794096, 0, undefined)); //copied s4w14
                 scenicList.push(new Scenery("galloshPlant", 149301.26900691717, -37745.67818208994,4.005418007528442, 0, undefined)); //copied s4w14
                 scenicList.push(new Scenery("galloshPlant", 147846.73207898054, -38343.617152154344,2.2917453844034825, 0, undefined)); //copied s4w14
+
+                scenicList.push(new Scenery("jollePlant", 154057.7487667938, -39394.850464664756, 0.4133899891601346, 0));
+                scenicList.push(new Scenery("jollePlant", 152129.37386886694, -42897.60739104122, 0.660273498581532, 0));
+                scenicList.push(new Scenery("vorlymPlant", 151670.3873520607, -42738.77970126925, 2.516850247048987, 0));
+                scenicList.push(new Scenery("vorlymPlant", 151824.34305479363, -43350.10442649919, 4.280569612002119, 0));
+                scenicList.push(new Scenery("galloshPlant", 151571.04947768516, -43074.76598010272, 1.476628826688452, 0));
+                scenicList.push(new Scenery("galloshPlant", 152427.2304549822, -42969.225309095295, 5.686767444525905, 0));
+                scenicList.push(new Scenery("galloshPlant", 152328.83945392756, -42620.612218151844, 3.942874144950556, 0));
+                scenicList.push(new Scenery("vorlymPlant", 152675.8765946699, -42793.30859436715, 2.0434417552140007, 0));
+                scenicList.push(new Scenery("galloshPlant", 153510.38012568798, -43511.70982386257, 0.29280883173725886, 0));
+                scenicList.push(new Scenery("vorlymPlant", 153914.1512786692, -43942.37799315917, 1.3692300972475746, 0));
+                scenicList.push(new Scenery("galloshPlant", 154896.9318388623, -43259.517304307956, 0.266514530565039, 0));
+                scenicList.push(new Scenery("vorlymPlant", 155808.50385991437, -42662.8679712938, 0.16890190295285745, 0));
+                scenicList.push(new Scenery("galloshPlant", 156628.93724590223, -43309.87346660041, 6.100150116179137, 0));
+                scenicList.push(new Scenery("vorlymPlant", 157556.14142290945, -42914.217439274245, 5.471278390369227, 0));
+                scenicList.push(new Scenery("galloshPlant", 157155.93376957797, -43812.074938072976, 6.05873655558417, 0));
+                scenicList.push(new Scenery("vorlymPlant", 151832.84726539586, -44033.472114347416, 4.132744436485669, 0));
+                scenicList.push(new Scenery("galloshPlant", 150733.71235823733, -43601.97588193392, 2.423372451376553, 0));
+                scenicList.push(new Scenery("vorlymPlant", 150788.68237225976, -42673.500623479675, 5.963897287262532, 0));
+                scenicList.push(new Scenery("galloshPlant", 151631.13891906498, -41871.50748493031, 5.778157951396016, 0));
+                scenicList.push(new Scenery("vorlymPlant", 153061.76992116476, -40903.9250445823, 0.29697035808287997, 0));
+                scenicList.push(new Scenery("galloshPlant", 153747.04262763888, -40420.902254536006, 1.9799798571663438, 0));
+                scenicList.push(new Scenery("vorlymPlant", 152805.7949901964, -39163.541087573605, 0.6112961006845639, 0));
+                scenicList.push(new Scenery("galloshPlant", 153586.91104787786, -38681.60688427806, 2.8134624275633295, 0));
+                scenicList.push(new Scenery("vorlymPlant", 154608.1157733576, -38979.99032059763, 5.49456846925491, 0));
+                scenicList.push(new Scenery("vorlymPlant", 155891.75865891634, -38002.324688786364, 0.356124731568024, 0));
+                scenicList.push(new Scenery("galloshPlant", 155944.02704473966, -37194.8159235925, 1.7672074700268035, 0));
+                scenicList.push(new Scenery("vorlymPlant", 156406.71352722286, -36531.47809617175, 5.4056241638012175, 0));
+                scenicList.push(new Scenery("galloshPlant", 155580.24982290177, -35625.26495441138, 5.922309391524074, 0));
+                scenicList.push(new Scenery("vorlymPlant", 156500.46012224926, -34666.79880245708, 2.36973684697227, 0));
+                scenicList.push(new Scenery("galloshPlant", 158805.9807786968, -35383.21621286535, 1.5172826050757922, 0));
+                scenicList.push(new Scenery("mustardPlant", 151524.31842617612, -38916.6846001013, 3.9698411990553097, true));
+                scenicList.push(new Scenery("mustardPlant", 152250.50007668466, -37594.356104014514, 5.942098747187781, true));
+                scenicList.push(new Scenery("mustardPlant", 150726.98223665313, -36593.79688187933, 5.6022675650637686, true));
+                scenicList.push(new Scenery("mustardPlant", 155431.93265136282, -36921.74679094763, 4.664980722730037, true));
+                scenicList.push(new Scenery("mustardPlant", 156703.9501141021, -37935.472523351156, 1.3404563737614823, true));
+                scenicList.push(new Scenery("mustardPlant", 156333.03265822804, -39293.80963451041, 3.0553562176218407, true));
+
+                ArtificialIntelligenceAccess.push(new Unit(158154.9332593082, -39509.3316776824, "Thueg", false, "preBuilt"));
+                ArtificialIntelligenceAccess.push(new Unit(156198.904977738, -38611.07358399595, "Thueg", true, "preBuilt"));
+                ArtificialIntelligenceAccess.push(new Unit(154715.46721186678, -38497.440708899645, "Thueg", true, "preBuilt"));
+                ArtificialIntelligenceAccess.push(new Unit(153596.79119873597, -36023.87667292918, "Thueg", "baby", "preBuilt"));
+                ArtificialIntelligenceAccess.push(new Unit(155770.42198668153, -34874.93669795745, "Thueg", "baby", "preBuilt"));
+                ArtificialIntelligenceAccess.push(new Unit(152998.6099694051, -35297.45836300959, "Thueg", false, "preBuilt"));
+                ArtificialIntelligenceAccess.push(new Unit(151811.92509669895, -36195.08023793593, "Thueg", "baby", "preBuilt"));
+                ArtificialIntelligenceAccess.push(new Unit(152017.71085012422, -37884.20781632933, "Conejo", false, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(151404.97049687195, -37468.24693691615, "Conejo", false, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(152370.54233678727, -37130.85655356998, "Conejo", true, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(153424.9889637942, -36733.626255926945, "Conejo", false, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(153298.7445636416, -36072.71098660497, "Conejo", true, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(153986.5874686751, -35485.01337994933, "Conejo", true, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(153670.65791183274, -34903.06281938218, "Conejo", false, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(155837.7534516462, -35313.581444407704, "Conejo", false, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(155668.9147127432, -36037.542124630265, "Conejo", true, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(154872.96157608076, -36706.16170305023, "Conejo", false, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(155641.07845699936, -37275.98047730831, "Conejo", true, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(156728.68673623065, -36956.795272248004, "Conejo", true, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(156764.97457552102, -37901.9041558645, "Conejo", true, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(156946.58074913334, -39151.600945909835, "Conejo", false, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(159156.43874196007, -37241.66433220612, "Conejo", true, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(158433.05461321442, -36320.55201354655, "Conejo", false, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(159088.21555340703, -40766.19780104397, "Conejo", false, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(158702.62943530444, -41997.09574568211, "Conejo", false, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(157369.32708705694, -42770.93982910043, "Conejo", false, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(157112.18793534685, -43671.59099982741, "Conejo", true, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(155910.36890663582, -43412.84137970164, "Conejo", false, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(155060.77627329048, -42581.03358067494, "Conejo", false, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(154163.43409686003, -41966.07724512404, "Conejo", false, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(153380.42379584504, -43841.52475222296, "Conejo", false, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(151012.26408934602, -42901.32204472644, "Conejo", true, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(151599.92441394154, -42356.77208418038, "Conejo", true, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(150516.0169159808, -41649.48770869669, "Conejo", false, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(151278.2185137343, -40804.155101796445, "Conejo", true, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(152611.40311756876, -40468.25963121657, "Conejo", false, "neutral2"));
+                ArtificialIntelligenceAccess.push(new Unit(152734.4114823228, -41647.72348898893, "Thueg", true, "preBuilt"));
+                ArtificialIntelligenceAccess.push(new Unit(155432.19745553096, -44109.875911069284, "Thueg", false, "preBuilt"));
+                ArtificialIntelligenceAccess.push(new Unit(153987.8780117915, -41224.59659827222, "Boulchom", false, "preBuilt"));
+                ArtificialIntelligenceAccess.push(new Unit(152451.8991338503, -38482.577999788096, "Boulchom", false, "preBuilt"));
+                ArtificialIntelligenceAccess.push(new Unit(154802.34105454036, -36064.36412979174, "Boulchom", false, "preBuilt"));
+                ArtificialIntelligenceAccess.push(new Unit(152734.11896907556, -34770.77559967759, "Boulchom", false, "preBuilt"));
+                ArtificialIntelligenceAccess.push(new Unit(151576.86871028962, -43710.95281763626, "Boulchom", false, "preBuilt"));
+
+                ArtificialIntelligenceAccess.push(new Unit(153551.09860106255, -42793.82634432351, "Lombris", true, "rtege"));
+
+                ArtificialIntelligenceAccess.push(new Unit(156236.60830520923, -42134.835638136356, "Lombris", false, "rtege"));
+                ArtificialIntelligenceAccess.push(new Unit(156718.3810090371, -41852.1117933556, "Lombris", false, "rtege"));
+                ArtificialIntelligenceAccess.push(new Unit(156182.5198033993, -41548.750167863116, "Lombris", true, "rtege"));
+                ArtificialIntelligenceAccess.push(new Unit(156680.16504854674, -41355.38936764678, "Lombris", false, "rtege"));
+
+
+                ArtificialIntelligenceAccess.push(new Unit(157989.06764175536, -40960.52673143403, "Lombris", false, "rtege"));
+
+                ArtificialIntelligenceAccess.push(new Unit(158179.1726717783, -38872.21326711784, "Lombris", true, "rtege"));
+                ArtificialIntelligenceAccess.push(new Unit(158177.9680083282, -38399.862150883, "Lombris", false, "rtege"));
+                ArtificialIntelligenceAccess.push(new Unit(158381.86130208272, -38258.66897002642, "Lombris", true, "rtege"));
+                ArtificialIntelligenceAccess.push(new Unit(158809.63567858108, -38855.96806589755, "MudBeetle", false, "rtege"));
+                ArtificialIntelligenceAccess.push(new Unit(158084.47009025636, -38171.080147331435, "Lombris", false, "rtege"));
+                ArtificialIntelligenceAccess.push(new Unit(158229.19604683947, -37820.26786913751, "Lombris", false, "rtege"));
+                ArtificialIntelligenceAccess.push(new Unit(158215.51783373085, -37392.48137977301, "MudBeetle", true, "rtege"));
+                ArtificialIntelligenceAccess.push(new Unit(157727.1024290766, -37166.265404185535, "MudBeetle", false, "rtege"));
+
+                ArtificialIntelligenceAccess.push(new Unit(154507.75021060993, -35251.439891673675, "Lombris", false, "rtege"));
+                ArtificialIntelligenceAccess.push(new Unit(154666.34284011408, -34988.79165049681, "Lombris", true, "rtege"));
+                ArtificialIntelligenceAccess.push(new Unit(153144.5550533591, -37977.07188533975, "MudBeetle", false, "rtege"));
+                ArtificialIntelligenceAccess.push(new Unit(153765.4148528369, -37791.332750403046, "Lombris", false, "rtege"));
+                ArtificialIntelligenceAccess.push(new Unit(153037.57117324503, -37386.78782447347, "Lombris", false, "rtege"));
+                ArtificialIntelligenceAccess.push(new Unit(153709.8796660714, -37400.418417926165, "MudBeetle", true, "rtege"));
+                ArtificialIntelligenceAccess.push(new Unit(153211.6254875848, -37516.51691822556, "MudBeetle", false, "rtege"));
+
+                ArtificialIntelligenceAccess.push(new Unit(158621.90028139876, -42975.13144402518, "Lombris", true, "rtege"));
+                ArtificialIntelligenceAccess.push(new Unit(158693.04584482074, -42784.29568893036, "MudBeetle", true, "rtege"));
+                ArtificialIntelligenceAccess.push(new Unit(158600.794172631, -42523.912980623325, "MudBeetle", true, "rtege"));
+
+                scenicList.push(new Scenery("pineTree", 159918.1062404075, -35295.04707370086, 5.10087091879317, true));
+                scenicList.push(new Scenery("pineTree", 160011.3614536507, -35713.36460206808, 2.7107522903975014, true));
+                scenicList.push(new Scenery("pineTree", 159930.60287580287, -36293.159090964524, 0.29035111679961295, true));
+                scenicList.push(new Scenery("pineTree", 159680.25414277357, -36547.016567909865, 6.067811718294663, true));
+                scenicList.push(new Scenery("pineTree", 159929.9862655876, -36899.75897912614, 3.538274007075972, true));
+                scenicList.push(new Scenery("pineTree", 159575.91722915473, -36782.101441662206, 3.0117641314967916, true));
+                scenicList.push(new Scenery("pineTree", 159678.85327463475, -37134.64571713303, 5.98938175462653, true));
+                scenicList.push(new Scenery("pineTree", 159322.91386168572, -37067.343479178824, 4.951254978076673, true));
+                scenicList.push(new Scenery("pineTree", 159812.98303132213, -37351.807461599135, 0.03267596837854479, true));
+                scenicList.push(new Scenery("pineTree", 160048.42978002614, -37158.98295668921, 1.6135905110899982, true));
+                scenicList.push(new Scenery("pineTree", 160320.5125652256, -37030.39579956098, 2.329282309696552, true));
+                scenicList.push(new Scenery("pineTree", 160445.39067536365, -37323.15688278459, 2.515014582978275, true));
+                scenicList.push(new Scenery("pineTree", 160185.9535759929, -37490.6988865598, 1.671004056284922, true));
+                scenicList.push(new Scenery("pineTree", 160006.32232491462, -37685.19940187562, 3.3420608002980527, true));
+                scenicList.push(new Scenery("pineTree", 160006.67210178688, -39040.34551015477, 4.981040369844634, true));
+                scenicList.push(new Scenery("pineTree", 159694.8416985828, -39248.90286998483, 0.21891097672063267, true));
+                scenicList.push(new Scenery("pineTree", 160075.72053399903, -39332.61782261765, 0.5173881832067808, true));
+                scenicList.push(new Scenery("pineTree", 159726.9876388009, -39487.42401250366, 0.5175867967931235, true));
+                scenicList.push(new Scenery("pineTree", 159897.96501232564, -39781.57268783344, 0.3280334820848725, true));
+                scenicList.push(new Scenery("pineTree", 160150.55258808564, -41602.22423185965, 4.47133385248687, true));
+                scenicList.push(new Scenery("pineTree", 159869.61719773957, -41840.08877917803, 1.0772894388314, true));
+
+                ArtificialIntelligenceAccess.push(new Unit(156011.66534200878, -43337.782859634215, "Turkey", true, "preBuilt"));
+                ArtificialIntelligenceAccess.push(new Unit(155852.53647254562, -43507.30705733671, "Turkey", true, "preBuilt"));
+                ArtificialIntelligenceAccess.push(new Unit(155634.3847258294, -43381.10169961606, "Turkey", false, "preBuilt"));
+                ArtificialIntelligenceAccess.push(new Unit(155313.71650325807, -43167.717668706784, "Turkey", true, "preBuilt"));
+                ArtificialIntelligenceAccess.push(new Unit(155604.41003636946, -42924.40901561723, "Turkey", false, "preBuilt"));
+
+                ArtificialIntelligenceAccess.push(new Unit(158039.77653039584, -35644.640578784936, "Turkey", true, "preBuilt"));
+                ArtificialIntelligenceAccess.push(new Unit(158584.23706723363, -35590.347354920275, "Turkey", false, "preBuilt"));
+                ArtificialIntelligenceAccess.push(new Unit(158252.36632392183, -35228.08248371604, "Turkey", false, "preBuilt"));
+
+                ArtificialIntelligenceAccess.push(new Unit(144943.09617190761, -36538.06505897675, "Turkey", false, "preBuilt"));
+                ArtificialIntelligenceAccess.push(new Unit(145524.19422711933, -36469.44957526096, "Turkey", false, "preBuilt"));
+                ArtificialIntelligenceAccess.push(new Unit(146241.71661113997, -36747.167378618644, "Turkey", true, "preBuilt"));
+                ArtificialIntelligenceAccess.push(new Unit(146025.3141641632, -36088.245233695576, "Turkey", true, "preBuilt"));
 
                 change = "s4w15";
             }
@@ -11300,7 +11473,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-14540, 44796, "Person", false, "Siggi the Harborman", {race: "Freynor", faction: "Freynor", personality: "violent", outfit: ["northernClothing", 0], weapon: ["none", [0.4, 0.8], 0, 0, 0.75], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[-14542, 44796]], merchant: true, merchandise: [[new Item("coins", false, false), 90], [new Item("boat", false, false), 2], [new Item("fishingpole", false, false), 6]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-14540, 44796, "Person", false, "Siggi the Harborman", {race: "Freynor", faction: "Freynor", personality: "violent", outfit: ["northernClothing", 0], weapon: ["none", [0.4, 0.8], 0, 0, 0.75], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 0, patrolLoop: true, route:[[-14542, 44796]], merchant: true, merchandise: [[new Item("coins", false, false), 90], [new Item("boat", false, false), 2], [new Item("fishingpole", false, false), 6], [new Item("wormz", false, false), 8]]}));
                     }
                 }
                 if (uniqueChars.rannukLDS == true)
@@ -26996,7 +27169,7 @@ function buildMaster()
                     }
                     if (hits == 0)
                     {
-                        ArtificialIntelligenceAccess.push(new Unit(-40579, 2721, "Person", false, "Harbourmaster Sebastian", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.1, 0.4], 0, 0, 1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[-40582, 2725]], merchant: true, merchandise: [[new Item("coins", false, false), 250], [new Item("boat", false, false), 5], [new Item("fishingpole", false, false), 3]]}));
+                        ArtificialIntelligenceAccess.push(new Unit(-40579, 2721, "Person", false, "Harbourmaster Sebastian", {race: "Nirwaden", faction: "Nirwaden", personality: "calculated", outfit: ["none", 0], weapon: ["none", [0.1, 0.4], 0, 0, 1], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[-40582, 2725]], merchant: true, merchandise: [[new Item("coins", false, false), 250], [new Item("boat", false, false), 5], [new Item("fishingpole", false, false), 3], [new Item("wormz", false, false), 12]]}));
                     }
                 }
                 if (uniqueChars.ilimoLDS == true)

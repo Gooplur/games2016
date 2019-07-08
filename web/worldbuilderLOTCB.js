@@ -16,6 +16,7 @@ function worldBuilder()
         {
             elevation = -3;
             region = "s26";
+            campout = true;
             outlineBuilder( 34, 34, "jungle", -20, 864);
         }
         //mapS26W1
@@ -23,6 +24,7 @@ function worldBuilder()
         {
             elevation = -3;
             region = "s26w1";
+            campout = true;
             outlineBuilder( 34, 34, "jungle", -54, 864);
         }
         //Layer -25 (tropical region): elev -3
@@ -31,6 +33,7 @@ function worldBuilder()
         {
             elevation = -3;
             region = "s25";
+            campout = true;
             outlineBuilder( 34, 34, "jungle", -20, 830);
         }
         //Layer -24 (tropical region): elev -3
@@ -39,6 +42,7 @@ function worldBuilder()
         {
             elevation = -3;
             region = "s24";
+            campout = true;
             outlineBuilder( 34, 34, "jungle", -20, 796);
         }
         //Layer -23 (warm region): elev -2
@@ -47,6 +51,7 @@ function worldBuilder()
         {
             elevation = -2;
             region = "s23";
+            campout = true;
             outlineBuilder( 34, 34, "savannah", -20, 762);
             outlineBuilder( 2, 2, "savannahDirt", -15, 770);
             outlineBuilder( 3, 1, "savannahDirt", 2, 789);
@@ -67,6 +72,7 @@ function worldBuilder()
         {
             elevation = -2;
             region = "s22";
+            campout = true;
             outlineBuilder( 34, 34, "savannah", -20, 728);
             outlineBuilder( 4, 2, "savannahDirt", -16, 737);
             outlineBuilder( 1, 3, "savannahDirt", 8, 742);
@@ -78,6 +84,7 @@ function worldBuilder()
         {
             elevation = -2;
             region = "s21";
+            campout = true;
             outlineBuilder( 34, 34, "savannah", -20, 694);
             outlineBuilder( 1, 1, "savannahDirt", 2, 700);
             outlineBuilder( 1, 1, "savannahDirt", 6, 712);
@@ -92,6 +99,7 @@ function worldBuilder()
         {
             elevation = -2;
             region = "s20";
+            campout = true;
             outlineBuilder( 34, 34, "savannah", -20, 660);
             outlineBuilder( 2, 2, "savannahDirt", -3, 670);
             outlineBuilder( 1, 2, "savannahDirt", -7, 683);
@@ -105,6 +113,7 @@ function worldBuilder()
         {
             elevation = -2;
             region = "s19";
+            campout = true;
             outlineBuilder( 34, 34, "savannah", -20, 626);
             outlineBuilder( 2, 3, "savannahDirt", -13, 637);
             outlineBuilder( 1, 1, "savannahDirt", -5, 642);
@@ -117,6 +126,7 @@ function worldBuilder()
         {
             elevation = -2;
             region = "s18";
+            campout = true;
             //outlineBuilder( 34, 34, "savannah", -20, 592);
             outlineBuilder( 4, 34, "savannah", -20, 592);
             outlineBuilder( 16, 34, "savannahDirt", -20, 596);
@@ -163,6 +173,7 @@ function worldBuilder()
         {
             elevation = -2;
             region = "s17";
+            campout = true;
             outlineBuilder(34, 34, "savannah", -20, 558);
             outlineBuilder(2, 1, "savannahDirt", -15, 570);
             outlineBuilder(1, 1, "savannahDirt", -2, 579);
@@ -176,6 +187,7 @@ function worldBuilder()
         {
             elevation = -2;
             region = "s16";
+            campout = true;
             outlineBuilder(34, 34, "savannah", -20, 524);
             outlineBuilder(5, 5, "savannahDirt", -20, 533);
             outlineBuilder(8, 1, "stonePath", 0, 524);
@@ -188,6 +200,7 @@ function worldBuilder()
         {
             elevation = -1;
             region = "s15";
+            campout = true;
             outlineBuilder( 34, 34, "greenGrass", -20, 490);
             outlineBuilder(2, 9, "savannah", -20, 522);
             outlineBuilder(1, 4, "savannah", -11, 523);
@@ -203,6 +216,7 @@ function worldBuilder()
         {
             elevation = -1;
             region = "s14";
+            campout = true;
             outlineBuilder( 34, 34, "greenGrass", -20, 456);
             outlineBuilder( 6, 1, "stonePath", -6, 456);
             outlineBuilder( 1, 6, "stonePath", -6, 462);
@@ -214,6 +228,7 @@ function worldBuilder()
         {
             elevation = -1;
             region = "s13";
+            campout = true;
             outlineBuilder( 34, 34, "greenGrass", -20, 422);
             outlineBuilder( 34, 1, "stonePath", -6, 422);
         }
@@ -223,6 +238,7 @@ function worldBuilder()
         {
             elevation = -1;
             region = "s12";
+            campout = true;
             outlineBuilder( 34, 34, "greenGrass", -20, 388);
             outlineBuilder( 34, 1, "stonePath", -6, 388);
         }
@@ -232,6 +248,7 @@ function worldBuilder()
         {
             elevation = -1;
             region = "s11";
+            campout = true;
             outlineBuilder( 34, 34, "greenGrass", -20, 354);
             outlineBuilder( 34, 1, "stonePath", -6, 354);
         }
@@ -240,6 +257,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s11w34";
+            campout = true;
             outlineBuilder(34, 34, "vardanianGrass", -1176, 354);
             outlineBuilder( 29, 33, "stonePath", -1176, 325 + 34); //todo vardanianStone
         }
@@ -248,6 +266,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s11w35";
+            campout = true;
             outlineBuilder(34, 34, "vardanianGrass", -1210, 354);
             outlineBuilder( 5, 1, "vardanianStone", -1196, 320 + 34);
             outlineBuilder( 29, 33, "vardanianStone", -1209, 325 + 34);
@@ -257,6 +276,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s11w36";
+            campout = true;
             outlineBuilder(34, 34, "vardanianGrass", -1244, 354);
         }
         //Layer -10 (temperate region): elev -1  | (cold region) past w-28: elev 0
@@ -265,6 +285,7 @@ function worldBuilder()
         {
             elevation = -1;
             region = "s10";
+            campout = true;
             outlineBuilder( 34, 34, "greenGrass", -20, 320);
             outlineBuilder( 34, 1, "stonePath", -6, 320);
         }
@@ -273,6 +294,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s10w34";
+            campout = true;
             outlineBuilder(34, 34, "vardanianWoods", -1176, 320); //todo vardanianWoods
         }
         //mapS10W35
@@ -280,6 +302,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s10w35";
+            campout = true;
             outlineBuilder(34, 34, "vardanianWoods", -1210, 320);
             outlineBuilder( 34, 1, "vardanianStone", -1196, 320);
         }
@@ -288,6 +311,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s10w36";
+            campout = true;
             outlineBuilder(34, 34, "outline", -1244, 320); //todo vardanianWoods
         }
         //Layer -9 (temperate region): elev -1  | (cold region) past w-28: elev 0
@@ -296,6 +320,7 @@ function worldBuilder()
         {
             elevation = -1;
             region = "s9";
+            campout = true;
             outlineBuilder( 34, 34, "greenGrass", -20, 286);
             outlineBuilder( 6, 1, "stonePath", -20, 286);
             outlineBuilder( 1, 14, "stonePath", -20, 292);
@@ -306,6 +331,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s9w32";
+            campout = true;
             outlineBuilder(34, 34, "crag", -1108, 286);
         }
         //mapS9W33
@@ -313,6 +339,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s9w33";
+            campout = true;
             outlineBuilder(34, 34, "vardanianWetland", -1142, 286);
             outlineBuilder( 10, 1, "vardanianStone", -1114, 286);
             outlineBuilder( 1, 10, "vardanianStone", -1124, 295);
@@ -324,6 +351,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s9w34";
+            campout = true;
             outlineBuilder(34, 34, "outline", -1176, 286); //todo vardanianWetland
             outlineBuilder( 1, 34, "vardanianStone", -1176, 306);
         }
@@ -332,6 +360,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s9w35";
+            campout = true;
             outlineBuilder(34, 34, "vardanianGrass", -1210, 286);
             outlineBuilder( 1, 34, "vardanianStone", -1210, 306);
             outlineBuilder( 14, 1, "vardanianStone", -1196, 306);
@@ -341,6 +370,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s9w36";
+            campout = true;
             outlineBuilder(34, 34, "vardanianForest", -1244, 286);
             outlineBuilder( 1, 13, "vardanianStone", -1223, 306);
             outlineBuilder( 1, 9, "vardanianStone", -1231, 305);
@@ -353,6 +383,7 @@ function worldBuilder()
         {
             elevation = -1;
             region = "s8";
+            campout = true;
             outlineBuilder( 34, 34, "greenGrass", -20, 252);
             outlineBuilder( 34, 1, "stonePath", -20, 252);
         }
@@ -361,6 +392,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s8w30";
+            campout = true;
             outlineBuilder(34, 34, "mistywoods", -1040, 252);
 
             outlineBuilder( 15, 1, "brickRoad", -1040, 252);
@@ -370,6 +402,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s8w31";
+            campout = true;
             outlineBuilder(34, 34, "outline", -1074, 252); //todo mistywoods
 
             outlineBuilder( 1, 34, "brickRoad", -1074, 266);
@@ -379,6 +412,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s8w32";
+            campout = true;
             outlineBuilder(34, 34, "mistywoods", -1108, 252);
 
             outlineBuilder(9, 10, "thenganBrick", -1090, 261);
@@ -401,6 +435,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s8w33";
+            campout = true;
             outlineBuilder(34, 34, "outline", -1142, 252); //todo vardanianWetland
             outlineBuilder( 1, 6, "vardanianStone", -1114, 266);
             outlineBuilder( 20, 1, "vardanianStone", -1114, 266);
@@ -410,6 +445,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s8w34";
+            campout = true;
             outlineBuilder(34, 34, "vardanianWetland", -1176, 252);
         }
         //Layer -7 (cold region): elev 0
@@ -418,6 +454,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s7";
+            campout = true;
             outlineBuilder( 34, 34, "greenGrass", -20, 218);
             outlineBuilder( 34, 1, "stonePath", -20, 218);
         }
@@ -426,6 +463,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s7w25";
+            campout = true;
             outlineBuilder(34, 34, "mistywoods", -870, 218);
 
 
@@ -436,6 +474,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s7w26";
+            campout = true;
             outlineBuilder(34, 34, "outline", -904, 218); //todo mistywoods
 
             outlineBuilder( 16, 1, "brickRoad", -894, 218);
@@ -446,6 +485,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s7w27";
+            campout = true;
             outlineBuilder(34, 34, "mistywoods", -938, 218);
 
             outlineBuilder( 1, 34, "brickRoad", -938, 234);
@@ -455,6 +495,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s7w28";
+            campout = true;
             outlineBuilder(34, 34, "outline", -972, 218); //todo mistywoods
 
             outlineBuilder( 1, 34, "brickRoad", -972, 234);
@@ -464,6 +505,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s7w29";
+            campout = true;
             outlineBuilder(34, 34, "mistywoods", -1006, 218);
 
             outlineBuilder( 1, 28, "brickRoad", -1000, 234);
@@ -474,6 +516,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s7w30";
+            campout = true;
             outlineBuilder(34, 34, "outline", -1040, 218); //todo mistywoods
 
             outlineBuilder( 1, 10, "brickRoad", -1015, 235);
@@ -487,6 +530,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s7w31";
+            campout = true;
             outlineBuilder(34, 34, "crag", -1074, 218);
         }
         //mapS7W32
@@ -494,6 +538,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s7w32";
+            campout = true;
             outlineBuilder(34, 34, "outline", -1108, 218); //todo crag
         }
         //mapS7W33
@@ -501,6 +546,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s7w33";
+            campout = true;
             outlineBuilder(34, 34, "vardanianWetland", -1142, 218);
         }
         //mapS7W34
@@ -508,6 +554,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s7w34";
+            campout = true;
             outlineBuilder(34, 34, "outline", -1176, 218); //todo vardanianWetland
         }
         //Layer -6 (cold region): elev 0
@@ -516,6 +563,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s6";
+            campout = true;
             outlineBuilder( 34, 34, "greenGrass", -20, 184);
             outlineBuilder( 34, 1, "stonePath", -20, 184);
         }
@@ -524,6 +572,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s6w25";
+            campout = false;
             outlineBuilder(34, 34, "outline", -870, 184); //todo hotGrass
 
             outlineBuilder( 9, 9, "thenganBrick", -860, 194);
@@ -556,6 +605,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s6w26";
+            campout = true;
             outlineBuilder(34, 34, "mistywoods", -904, 184);
 
             outlineBuilder( 1, 24, "brickRoad", -894, 197);
@@ -567,6 +617,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s5";
+            campout = true;
             outlineBuilder( 34, 34, "greenGrass", -20, 150);
             outlineBuilder( 1, 26, "stonePath", -19, 150);
             outlineBuilder( 7, 1, "stonePath", -19, 151);
@@ -581,6 +632,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s5w20";
+            campout = true;
             outlineBuilder(34, 34, "outline", -700, 150); //todo mistywoods
 
             outlineBuilder( 17, 1, "brickRoad", -677, 150);
@@ -591,6 +643,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s5w21";
+            campout = true;
             outlineBuilder(34, 34, "mistywoods", -734, 150);
 
             outlineBuilder( 1, 30, "brickRoad", -730, 166);
@@ -601,6 +654,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s5w22";
+            campout = true;
             outlineBuilder(34, 34, "outline", -768, 150); //todo mistywoods
 
             outlineBuilder( 1, 34, "brickRoad", -768, 165);
@@ -610,6 +664,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s5w23";
+            campout = true;
             outlineBuilder(34, 34, "hotGrass", -802, 150);
 
             outlineBuilder( 1, 34, "brickRoad", -802, 165);
@@ -619,6 +674,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s5w24";
+            campout = true;
             outlineBuilder(34, 34, "outline", -836, 150); //todo hotGrass
 
             outlineBuilder( 1, 34, "brickRoad", -836, 165);
@@ -628,6 +684,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s5w25";
+            campout = true;
             outlineBuilder(34, 34, "hotGrass", -870, 150);
 
             outlineBuilder( 1, 4, "brickRoad", -840, 165);
@@ -655,6 +712,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s4";
+            campout = true;
             outlineBuilder( 34, 34, "greenGrass", -20, 116);
             outlineBuilder( 1, 4, "stonePath", 3, 116);
             outlineBuilder( 33, 1, "stonePath", 6, 117);
@@ -664,6 +722,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s4w13";
+            campout = false;
             //outlineBuilder(34, 34, "outline", -462, 116);
             outlineBuilder(32, 25, "thenganBrick", -462, 116);
             outlineBuilder(2, 25, "hotGrass", -462, 148);
@@ -716,6 +775,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s4w14";
+            campout = true;
             outlineBuilder(34, 34, "hotGrass", -496, 116);
 
             outlineBuilder(5, 3, "dirt", -490, 122);
@@ -760,11 +820,23 @@ function worldBuilder()
             outlineBuilder( 20, 1, "brickRoad", -470, 130);
         }
         //mapS4W15
-        if (Y > -44704 && Y < -33877 && X < 160743 && X > 149080) //X-15 //todo add map
+        if (Y > -44704 && Y < -33877 && X < 160743 && X > 149080) //X-15
         {
             elevation = 0;
             region = "s4w15";
-            outlineBuilder(34, 34, "desert", -530, 116); //todo hotGrass
+            campout = true;
+            outlineBuilder(34, 34, "hotGrass", -530, 116);
+
+            outlineBuilder(1, 1, "mistywoods", -530, 116);
+            outlineBuilder(9, 1, "mistywoods", -530, 119);
+            outlineBuilder(4, 1, "mistywoods", -529, 123);
+            outlineBuilder(1, 1, "mistywoods", -528, 125);
+
+            outlineBuilder(5, 1, "mistywoods", -530, 130);
+            outlineBuilder(2, 1, "mistywoods", -529, 132);
+
+            outlineBuilder(3, 1, "mistywoods", -530, 140);
+
             outlineBuilder(6, 2, "dirt", -525, 126);
             outlineBuilder(2, 1, "dirt", -523, 125);
             outlineBuilder(1, 1, "dirt", -526, 129);
@@ -793,6 +865,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s4w16";
+            campout = true;
             outlineBuilder(34, 34, "mistywoods", -564, 116);
 
             outlineBuilder( 1, 34, "brickRoad", -564, 135);
@@ -802,6 +875,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s4w17";
+            campout = true;
             outlineBuilder(34, 34, "mistywoods", -598, 116);
 
             outlineBuilder( 1, 34, "brickRoad", -598, 135);
@@ -811,6 +885,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s4w18";
+            campout = true;
             outlineBuilder(34, 34, "desert", -632, 116);
 
             outlineBuilder( 1, 16, "brickRoad", -614, 135);
@@ -821,6 +896,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s4w19";
+            campout = true;
             outlineBuilder(34, 34, "mistywoods", -666, 116);
 
             outlineBuilder( 1, 7, "brickRoad", -639, 136);
@@ -832,6 +908,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s4w20";
+            campout = true;
             outlineBuilder(34, 34, "mistywoods", -700, 116);
 
             outlineBuilder( 1, 11, "brickRoad", -677, 143);
@@ -843,6 +920,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s3w14";
+            campout = false;
             //outlineBuilder(34, 34, "outline", -496, 82);
             outlineBuilder(32, 30, "thenganBrick", -492, 82);
             outlineBuilder(34, 4, "hotGrass", -496, 82);
@@ -877,6 +955,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s3w13";
+            campout = false;
             //outlineBuilder(34, 34, "outline", -462, 82);
             outlineBuilder(34, 25, "thenganBrick", -462, 82);
             outlineBuilder(34, 9, "outline", -437, 82); //todo hotGrass
@@ -920,6 +999,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s3w12";
+            campout = true;
             outlineBuilder(34, 34, "hotGrass", -428, 82);
 
             outlineBuilder(2, 3, "farmland", -415, 95);
@@ -955,6 +1035,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s3w11";
+            campout = true;
             outlineBuilder(34, 34, "woods", -394, 82);
 
             outlineBuilder( 1, 34, "brickRoad", -394, 91);
@@ -977,6 +1058,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s3w10";
+            campout = true;
             outlineBuilder(34, 34, "woods", -360, 82);
 
 
@@ -988,6 +1070,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s3w9";
+            campout = true;
             outlineBuilder(34, 34, "woods", -326, 82);
 
 
@@ -1000,6 +1083,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s3";
+            campout = true;
             outlineBuilder( 34, 34, "greenGrass", -20, 82);
             outlineBuilder( 34, 1, "stonePath", 3, 82);
             outlineBuilder( 4, 4, "thatch", 4, 103);
@@ -1010,6 +1094,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s3e1";
+            campout = true;
             outlineBuilder( 4, 34, "greenGrass", 14, 82);
             outlineBuilder( 30, 4, "muckgrass", 44, 86);
             outlineBuilder( 30, 6, "greenGrass", 14, 86);
@@ -1038,6 +1123,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s2e1";
+            campout = true;
             outlineBuilder( 34, 34, "greenGrass", 14, 48);
         }
         //mapS2
@@ -1045,6 +1131,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s2";
+            campout = true;
             outlineBuilder( 34, 34, "greenGrass", -20, 48);
             outlineBuilder( 34, 1, "stonePath", 3, 48);
             outlineBuilder( 1, 7, "stonePath", -4, 48);
@@ -1061,6 +1148,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s2w5";
+            campout = true;
 
             outlineBuilder( 34, 34, "hotGrass", -190, 48);
             outlineBuilder( 12, 1, "brickRoad", -167, 48);
@@ -1071,6 +1159,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s2w6";
+            campout = true;
             outlineBuilder( 34, 29, "woods", -224, 48);
             outlineBuilder( 34, 5, "hotGrass", -195, 48);
             outlineBuilder( 1, 1, "hotGrass", -196, 48);
@@ -1088,6 +1177,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s2w7";
+            campout = true;
             outlineBuilder( 34, 34, "woods", -258, 48);
 
             outlineBuilder( 1, 25, "brickRoad", -258, 53);
@@ -1098,6 +1188,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s2w8";
+            campout = true;
             outlineBuilder(34, 34, "woods", -292, 48);
 
             outlineBuilder( 1, 14, "brickRoad", -272, 53);
@@ -1114,6 +1205,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s2w9";
+            campout = true;
             outlineBuilder(34, 34, "woods", -326, 48);
 
             outlineBuilder( 1, 28, "brickRoad", -320, 62);
@@ -1126,6 +1218,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s1e1";
+            campout = true;
             outlineBuilder( 34, 34, "greenGrass", 14, 14);
             outlineBuilder( 1, 22, "forest", 26, 14);
             outlineBuilder( 1, 20, "forest", 28, 15);
@@ -1139,6 +1232,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s1";
+            campout = true;
             outlineBuilder( 34, 34, "greenGrass", -20, 14);
             outlineBuilder( 34, 1, "stonePath", -4, 14);
             //outlineBuilder( 1, 1, "forest", -4, 14);
@@ -1148,6 +1242,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s1w1";
+            campout = true;
             outlineBuilder( 34, 34, "crag", -54, 14);
             outlineBuilder( 4, 1, "greenGrass", -22, 16);
             outlineBuilder( 34, 2, "greenGrass", -22, 14);
@@ -1162,6 +1257,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s1w2";
+            campout = true;
             outlineBuilder( 34, 34, "crag", -88, 14);
         }
         // mapS1W3
@@ -1169,6 +1265,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s1w3";
+            campout = true;
             outlineBuilder( 34, 34, "crag", -122, 14);
         }
         //mapS1W4
@@ -1176,6 +1273,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s1w4";
+            campout = true;
             outlineBuilder( 34, 34, "crag", -156, 14);
             //outlineBuilder( 1, 34, "greenGrass", -156, 14);
         }
@@ -1184,6 +1282,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s1w5";
+            campout = false;
 
             outlineBuilder( 34, 34, "hotGrass", -190, 14);
             outlineBuilder( 8, 5, "thenganBrick", -170, 27);
@@ -1222,6 +1321,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s1w6";
+            campout = true;
             outlineBuilder( 34, 29, "woods", -224, 14);
             outlineBuilder( 34, 5, "hotGrass", -195, 14);
             outlineBuilder( 1, 1, "hotGrass", -196, 14);
@@ -1242,6 +1342,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s1w7";
+            campout = true;
             outlineBuilder( 34, 34, "woods", -258, 14);
 
             outlineBuilder( 1, 9, "brickRoad", -233, 35);
@@ -1252,6 +1353,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s1e4";
+            campout = true;
             //outlineBuilder( 34, 34, "outline", 116, 14);
             outlineBuilder( 34, 8, "greenGrass", 116, 14);
             outlineBuilder( 34, 12, "forest", 138, 14);
@@ -1262,6 +1364,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s1e6";
+            campout = true;
             outlineBuilder( 34, 34, "brightGrass", 184, 14);
         }
         //mapS1E5 Loroka Woods //nirwaden south road
@@ -1269,6 +1372,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "s1e5";
+            campout = true;
             outlineBuilder( 34, 26, "brightGrass", 158, 14);
             outlineBuilder( 34, 8, "forest", 150, 14);
             outlineBuilder( 30, 2, "forest", 150, 14);
@@ -1283,6 +1387,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "e6";
+            campout = true;
             outlineBuilder( 34, 34, "brightGrass", 184, -20);
         }
         //mapE5 //Atalin City
@@ -1290,6 +1395,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "e5";
+            campout = false;
             outlineBuilder( 34, 34, "brightGrass", 150, -20);
             //outlineBuilder( 34, 34, "outline", 150, -20);
             outlineBuilder( 3, 4, "forest", 150, 11);
@@ -1328,6 +1434,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "e4";
+            campout = false;
             //outlineBuilder( 34, 34, "outline", 116, -20);
             outlineBuilder( 34, 8, "forest", 116, -20);
             outlineBuilder( 33, 12, "brightGrass", 138, -20);
@@ -1366,6 +1473,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "e3";
+            campout = true;
             //outlineBuilder( 34, 34, "outline", 82, -20);
             outlineBuilder( 34, 34, "forest", 82, -20);
             outlineBuilder( 1, 34, "stonePath", 82, -3);
@@ -1376,6 +1484,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "e2";
+            campout = true;
             outlineBuilder( 34, 34, "forest", 48, -20);
             outlineBuilder( 1, 34, "stonePath", 48, -3);
         }
@@ -1384,6 +1493,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "e1";
+            campout = true;
             outlineBuilder( 34, 22, "forest", 26, -20);
             outlineBuilder( 7, 2, "greenGrass", 26, -18);
             outlineBuilder( 4, 3, "greenGrass", 28, -17);
@@ -1402,6 +1512,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "central";
+            campout = false;
             outlineBuilder( 14, 6, "greenGrass", -6, -20);
             outlineBuilder( 14, 6, "greenGrass", -6, 0);
             outlineBuilder( 34, 14, "greenGrass", -20, -20);
@@ -1426,6 +1537,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "w1";
+            campout = true;
 
             outlineBuilder( 14, 6, "crag", -40, -20);
             outlineBuilder( 14, 6, "crag", -40, 0);
@@ -1449,6 +1561,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "w2";
+            campout = true;
 
             outlineBuilder( 34, 34, "crag", -88, -20);
             //outlineBuilder( 34, 1, "greenGrass", -55, -20);
@@ -1459,6 +1572,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "w3";
+            campout = true;
 
             outlineBuilder( 34, 34, "crag", -122, -20);
             //outlineBuilder( 34, 1, "greenGrass", -89, -20);
@@ -1469,6 +1583,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "w4";
+            campout = true;
 
             outlineBuilder( 34, 34, "crag", -156, -20);
             //outlineBuilder( 34, 1, "greenGrass", -123, -20);
@@ -1479,6 +1594,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "w5";
+            campout = true;
 
             outlineBuilder( 34, 34, "dirt", -190, -20);
             outlineBuilder( 6, 34, "hotGrass", -190, 8);
@@ -1503,6 +1619,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "n1w1";
+            campout = true;
 
             outlineBuilder(34, 34, "frost", -54, -54);
             outlineBuilder(1, 7, "crag", -49, -21);
@@ -1515,6 +1632,7 @@ function worldBuilder()
         {
             elevation = 1;
             region = "n1";
+            campout = true;
             //outlineBuilder( 20, 83, "frost", -80, -40); //frost
             //outlineBuilder( 80, 83, "snow", -80, -105); //snow
             outlineBuilder(34, 34, "frost", -20, -54);
@@ -1536,6 +1654,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "n1e1";
+            campout = true;
             outlineBuilder( 34, 34, "frost", 14, -54);
 
             outlineBuilder( 6, 22, "forest", 26, -26);
@@ -1553,6 +1672,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "n1e2";
+            campout = true;
             outlineBuilder( 34, 34, "frost", 48, -54);
 
             outlineBuilder( 8, 34, "forest", 48, -28);
@@ -1576,6 +1696,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "n1e3";
+            campout = true;
             outlineBuilder( 34, 34, "frost", 82, -54);
             outlineBuilder( 2, 1, "forest", 82, -29);
             outlineBuilder( 7, 23, "forest", 82, -27);
@@ -1591,6 +1712,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "n1e4";
+            campout = true;
             outlineBuilder( 20, 6, "frost", 116, -54);
             outlineBuilder( 18, 11, "snow", 139, -54);
 
@@ -1617,6 +1739,7 @@ function worldBuilder()
         {
             elevation = 0;
             region = "n1e5";
+            campout = false;
             outlineBuilder( 18, 34, "snow", 150, -54);
             outlineBuilder( 14, 34, "brightGrass", 150, -34);
             outlineBuilder( 2, 34, "frost", 150, -36);
@@ -1642,6 +1765,7 @@ function worldBuilder()
         {
             elevation = 1;
             region = "n2";
+            campout = true;
             outlineBuilder(34, 34, "frost", -20, -88);
             outlineBuilder(34, 1, "stonePath", -3, -88);
         }
@@ -1650,6 +1774,7 @@ function worldBuilder()
         {
             elevation = 1;
             region = "n2e3";
+            campout = true;
             outlineBuilder(34, 34, "frost", 82, -88);
         }
         //mapN2E4
@@ -1657,6 +1782,7 @@ function worldBuilder()
         {
             elevation = 1;
             region = "n2e4";
+            campout = true;
             //outlineBuilder(34, 34, "outline", 116, -88);
 
             outlineBuilder(1, 24, "sea", 116, -88);
@@ -1694,6 +1820,7 @@ function worldBuilder()
         {
             elevation = 1;
             region = "n3";
+            campout = true;
             outlineBuilder(34, 34, "frost", -20, -122);
             outlineBuilder(34, 1, "stonePath", -3, -122);
         }
@@ -1702,6 +1829,7 @@ function worldBuilder()
         {
             elevation = 1;
             region = "n3e1";
+            campout = true;
             outlineBuilder(34, 34, "frost", 14, -122);
         }
         //mapN3E2 //Jalsirsted (hamlet)
@@ -1709,6 +1837,7 @@ function worldBuilder()
         {
             elevation = 1;
             region = "n3e2";
+            campout = true;
             outlineBuilder(34, 34, "frost", 48, -122);
             outlineBuilder(1, 1, "farmland", 62, -99);
             outlineBuilder(1, 1, "farmland", 64, -96);
@@ -1718,6 +1847,7 @@ function worldBuilder()
         {
             elevation = 1;
             region = "n3e3";
+            campout = true;
             //outlineBuilder(34, 34, "outline", 82, -122);
 
             outlineBuilder(11, 4, "sea", 112, -122);
@@ -1764,6 +1894,7 @@ function worldBuilder()
         {
             elevation = 1;
             region = "n3e4";
+            campout = true;
             //outlineBuilder(34, 34, "outline", 116, -122);
 
             outlineBuilder(34, 25, "sea", 116, -122);
@@ -1784,6 +1915,7 @@ function worldBuilder()
         {
             elevation = 1;
             region = "n4w1";
+            campout = true;
             //outlineBuilder(34, 34, "outline", -54, -156);
             outlineBuilder(16, 34, "frost", -54, -138);
             outlineBuilder(14, 34, "greySand", -54, -152); //11 tiles thick of sand
@@ -1803,6 +1935,7 @@ function worldBuilder()
         {
             elevation = 1;
             region = "n4";
+            campout = true;
             outlineBuilder(18, 34, "frost", -20, -140); //-156 is the top of the map //18 tiles thick of snow
 
             outlineBuilder(12, 34, "greySand", -20, -152); //11 tiles thick of sand
@@ -1840,6 +1973,7 @@ function worldBuilder()
         {
             elevation = 1;
             region = "n4e1";
+            campout = true;
             //outlineBuilder(34, 34, "outline", 14, -156);
             outlineBuilder(6, 8, "greySand", 14, -150);
             outlineBuilder(2, 2, "greySand", 14, -152);
@@ -1897,6 +2031,7 @@ function worldBuilder()
         {
             elevation = 1;
             region = "n4e2";
+            campout = true;
             //outlineBuilder(34, 34, "outline", 48, -156);
             outlineBuilder(15, 34, "frost", 48, -137);
             outlineBuilder(1, 7, "greySand", 59, -137);
@@ -1952,6 +2087,7 @@ function worldBuilder()
         {
             elevation = 1;
             region = "n4e3";
+            campout = true;
             //outlineBuilder(34, 34, "outline", 82, -156);
 
             outlineBuilder(15, 18, "frost", 82, -137); //frost
@@ -2025,6 +2161,7 @@ function worldBuilder()
         {
             elevation = 1;
             region = "n4e4";
+            campout = true;
             //outlineBuilder(34, 34, "outline", 116, -156);
 
             outlineBuilder(34, 30, "sea", 116, -156);
@@ -2056,6 +2193,7 @@ function worldBuilder()
         {
             elevation = 1;
             region = "n5w1";
+            campout = true;
             //outlineBuilder(34, 34, "outline", -54, -190);
             outlineBuilder(5, 34, "sea", -54, -190);
             outlineBuilder(19, 11, "sea", -31, -185);
@@ -2140,6 +2278,7 @@ function worldBuilder()
         {
             elevation = 1;
             region = "n5";
+            campout = true;
             outlineBuilder(34, 34, "sea", -20, -190);
         }
         //mapN5E1
@@ -2147,6 +2286,7 @@ function worldBuilder()
         {
             elevation = 1;
             region = "n5e1";
+            campout = true;
             outlineBuilder(34, 34, "sea", 14, -190);
         }
         //mapN5E2
@@ -2154,6 +2294,7 @@ function worldBuilder()
         {
             elevation = 1;
             region = "n5e2";
+            campout = true;
             outlineBuilder(34, 34, "sea", 48, -190);
         }
         //mapN5E3
@@ -2161,6 +2302,7 @@ function worldBuilder()
         {
             elevation = 1;
             region = "n5e3";
+            campout = true;
             outlineBuilder(34, 34, "sea", 82, -190);
         }
         //mapN5E4
@@ -2168,6 +2310,7 @@ function worldBuilder()
         {
             elevation = 1;
             region = "n5e4";
+            campout = true;
             outlineBuilder(34, 34, "sea", 116, -190);
         }
     } //ALTERNATE DIMENSIONS
@@ -2177,6 +2320,7 @@ function worldBuilder()
         player.underground = true;
         elevation = -1; //underground temperatures are consistently -1 unless there is a certain closeness to magma...
         region = "sagesCache";
+        campout = true;
         //starting chamber
         outlineBuilder( 2, 2, "dungeon", 0, 0);
         //north chamber
@@ -2214,6 +2358,7 @@ function worldBuilder()
         player.underground = false;
         elevation = -5; //underground temperatures are consistently -1 unless there is a certain closeness to magma...
         region = "sagesTrap";
+        campout = true;
 
         outlineBuilder( 80, 80, "molten", -40, -40);
     }
@@ -2223,6 +2368,7 @@ function worldBuilder()
         player.underground = true;
         elevation = -1; //underground temperatures are consistently -1 unless there is a certain closeness to magma...
         region = "olkrinCave";
+        campout = true;
         //starting chamber
         outlineBuilder( 2, 4, "rock", 0, 0);
         outlineBuilder( 2, 2, "rock", 1, 2);
@@ -2234,6 +2380,7 @@ function worldBuilder()
         player.underground = false;
         elevation = -1; //underground temperatures are consistently -1 unless there is a certain closeness to magma...
         region = "lethikCityPrison";
+        campout = false;
         //starting chamber
         outlineBuilder( 2, 4, "dungeon", 0, 0);
     }
@@ -2243,6 +2390,7 @@ function worldBuilder()
         player.underground = false;
         elevation = -1; //underground temperatures are consistently -1 unless there is a certain closeness to magma...
         region = "venningCityPrison";
+        campout = false;
         //starting chamber
         outlineBuilder( 2, 2, "dungeon", 0, 0);
     }
@@ -2252,6 +2400,7 @@ function worldBuilder()
         player.underground = true;
         elevation = -1; //underground temperatures are consistently -1 unless there is a certain closeness to magma...
         region = "atalinDrugLab";
+        campout = true;
         //starting chamber
         outlineBuilder( 1, 1, "dockV", 0, 0);
     }
@@ -2261,6 +2410,7 @@ function worldBuilder()
         player.underground = true;
         elevation = -1; //underground temperatures are consistently -1 unless there is a certain closeness to magma...
         region = "estolTunnel";
+        campout = true;
         //starting chamber
         outlineBuilder( 9, 1, "dockV", 0, 0);
         outlineBuilder( 1, 2, "dockV", 1, 0);
@@ -2276,6 +2426,7 @@ function worldBuilder()
         player.underground = true;
         elevation = -1; //underground temperatures are consistently -1 unless there is a certain closeness to magma...
         region = "atalinCityPrison";
+        campout = false;
         //starting chamber
         outlineBuilder( 1, 1, "dockH", 0, 0);
     }
@@ -2285,6 +2436,7 @@ function worldBuilder()
         player.underground = true;
         elevation = -1; //underground temperatures are consistently -1 unless there is a certain closeness to magma...
         region = "atalinTortureChamber";
+        campout = false;
         //starting chamber
         outlineBuilder(1, 1, "dockH", 0, 0);
     }
@@ -2294,6 +2446,7 @@ function worldBuilder()
         player.underground = true;
         elevation = -3;
         region = "mrbHQ";
+        campout = false;
         //starting chamber
         elevation = -3;
         region = "mrbHQ";
@@ -2306,6 +2459,7 @@ function worldBuilder()
         player.underground = true;
         elevation = -1; //underground temperatures are consistently -1 unless there is a certain closeness to magma...
         region = "venningMineshaft";
+        campout = true;
         //starting chamber
         outlineBuilder( 6, 1, "rock", 0, -5);
         outlineBuilder( 3, 1, "rock", 1, -6);
@@ -2323,6 +2477,7 @@ function worldBuilder()
         player.underground = true;
         elevation = -1; //underground temperatures are consistently -1 unless there is a certain closeness to magma...
         region = "arcusMine";
+        campout = false;
         //starting chamber
         outlineBuilder( 6, 1, "rock", 0, 5);
         outlineBuilder( 3, 2, "rock", -1, -3);

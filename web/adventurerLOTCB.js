@@ -10664,6 +10664,17 @@ function Adventurer()
                             this.weaponEquipped = "iceBlade";
                         }
                     }
+                    //The Frozen Word
+                    if (secondarySpells[i].ID == "theFrozenWord")
+                    {
+                        if (new Date().getTime() - this.secondaryCastingCooldown >= (secondarySpells[i].cooldown * 1000) && this.will - secondarySpells[i].cost >= 0)
+                        {
+                            this.will -= secondarySpells[i].cost;
+                            this.magicalExperience += secondarySpells[i].EXP;
+                            magicList.push(new Magic(secondarySpells[i], true));
+                            this.secondaryCastingCooldown = new Date().getTime();
+                        }
+                    }
                     //Repel
                     if (secondarySpells[i].ID == "repel")
                     {
@@ -36337,6 +36348,37 @@ function Adventurer()
                             {
                                 console.log("You eat the cabbage, Yum!")
                             }
+                            else if (Inventory[i][0].ability == "magicalReconstruction")
+                            {
+                                var mem = this.memory;
+                                mem += primarySpells.length;
+                                mem += secondarySpells.length;
+                                mem += tertiarySpells.length;
+
+                                primarySpells = [];
+                                secondarySpells = [];
+                                tertiarySpells = [];
+
+                                var magickPuntos = 0;
+                                if (mem > 100)
+                                {
+                                    magickPuntos += (mem - 100);
+                                    mem = 100;
+                                }
+                                magickPuntos += this.eminence;
+                                magickPuntos += this.concentration;
+                                magickPuntos += this.knowledge;
+                                magickPuntos += this.willpower;
+
+                                this.eminence = 0;
+                                this.concentration = 0;
+                                this.knowledge = 0;
+                                this.willpower = 0;
+                                this.memory = mem;
+
+                                this.magicalSkillPoints += magickPuntos;
+                                this.spell = "none";
+                            }
                             else if (Inventory[i][0].ability == "satiate" || Inventory[i][0].ability == "satiation") //Food with this effect will keep you fed for a little bit.
                             {
                                 if (this.wendigo != true)
@@ -36755,13 +36797,13 @@ function Adventurer()
                                     this.timeSinceBadFoodEaten -= 4000
                                 }
 
-                                this.energilTime = 350;
+                                this.energilTime = Math.max(this.energilTime, 350);
                                 this.fatigueIII = true;
-                                this.experience += 100;
+                                this.experience += 55;
                             }
                             else if (Inventory[i][0].ability == "thuegTripe") //this effect makes the player vomit and lose 22 hunger.
                             {
-                                this.energilTime = 250;
+                                this.energilTime = Math.max(this.energilTime, 250);
                                 this.fatigueII = true;
                                 this.experience += 40;
                             }
@@ -38092,7 +38134,7 @@ function Adventurer()
                                 break;
                             }
                         }
-                        else if (Inventory[i][0].subUtility == "tent" && this.weaponEquipped == "hammer")
+                        else if (Inventory[i][0].subUtility == "tent" && this.weaponEquipped == "hammer" && campout)
                         {
                             var canPlace = true;
                             var hits = 0;
@@ -38122,7 +38164,7 @@ function Adventurer()
                                 break;
                             }
                         }
-                        else if (Inventory[i][0].subUtility == "vardanianTent" && this.weaponEquipped == "hammer")
+                        else if (Inventory[i][0].subUtility == "vardanianTent" && this.weaponEquipped == "hammer" && campout)
                         {
                             var canPlace = true;
                             var hits = 0;

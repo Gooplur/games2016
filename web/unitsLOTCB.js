@@ -14660,7 +14660,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.negateArmour = 5;
                 this.attackWait = 1.80;
                 this.effect = "none";
-                this.beastEntry = {intReq: 22, name: "Thueg", health: "22 - 30", armour: "0 - 25", damage: "8 - 18", negate: "5", ability: "None", fireProof: "0 - 30", habitat: "Northern Plains / Mud Plains", sight: "250 - 1000", alpha: "Alpha", magicProof: 0, size: 26, speed: 4.6, rotation: 0.05, rate: 1.8, experience: 92, description: ["Thueg lie around all day sleeping in the shelter of their protective shell. Other plains creatures sometimes seek shade by them and meet their untimely demise.", "Thueg may rest a lot, but they are not lazy beasts. They can run quickly and wil persue their prey for long distances to catch it.", "Thueg are blind and use echolocation and smell to hunt."], image: ["nognog", 283, 47, 47, 37, 0, 0, 47 * 3 / 3, 37 * 3 / 3]};
+                this.beastEntry = {intReq: 18, name: "Thueg", health: "22 - 30", armour: "0 - 25", damage: "8 - 18", negate: "5", ability: "None", fireProof: "0 - 30", habitat: "Northern Plains / Mud Plains", sight: "250 - 1000", alpha: "Alpha", magicProof: 0, size: 26, speed: 4.6, rotation: 0.05, rate: 1.8, experience: 92, description: ["Thueg lie around all day sleeping in the shelter of their protective shell. Other plains creatures sometimes seek shade by them and meet their untimely demise.", "Thueg may rest a lot, but they are not lazy beasts. They can run quickly and wil persue their prey for long distances to catch it.", "Thueg are blind and use echolocation and smell to hunt."], image: ["nognog", 283, 47, 47, 37, 0, 0, 47 * 3 / 3, 37 * 3 / 3]};
 
                 //alpha has a larger size body and skills.
                 this.alphaSize = 1.4; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
@@ -14686,7 +14686,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.negateArmour = 0.5;
                 this.attackWait = 1.80;
                 this.effect = "none";
-                this.beastEntry = {intReq: 10, name: "Thueg", health: "3", armour: "0 - 5", damage: "1.5 - 2.5", negate: "0.5", ability: "None", fireProof: "0 - 10", habitat: "Northern Plains / Mud Plains", sight: "100 - 360", alpha: "Baby", magicProof: 0, size: 12, speed: 3.5, rotation: 0.05, rate: 1.8, experience: 2, description: ["While still being completely ravenous and vile, baby thueg are notably less so than the older of their species.", "Thueg are blind and use echolocation and smell to hunt."], image: ["nognog", 283, 47, 47, 37, 0, 0, 47 * 1 / 3, 37 * 1 / 3]};
+                this.beastEntry = {intReq: 6, name: "Thueg", health: "3", armour: "0 - 5", damage: "1.5 - 2.5", negate: "0.5", ability: "None", fireProof: "0 - 10", habitat: "Northern Plains / Mud Plains", sight: "100 - 360", alpha: "Baby", magicProof: 0, size: 12, speed: 3.5, rotation: 0.05, rate: 1.8, experience: 2, description: ["While still being completely ravenous and vile, baby thueg are notably less so than the older of their species.", "Thueg are blind and use echolocation and smell to hunt."], image: ["nognog", 283, 47, 47, 37, 0, 0, 47 * 1 / 3, 37 * 1 / 3]};
 
                 //this multiplies the draw image skew numbers by 1 so that it stays the same
                 this.alphaSize = 0.65;
@@ -14714,7 +14714,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.negateArmour = 1.5;
                 this.attackWait = 1.80;
                 this.effect = "none";
-                this.beastEntry = {intReq: 16, name: "Thueg", health: "7 - 11", armour: "0 - 15", damage: "4 - 10", negate: "1.5", ability: "None", fireProof: "0 - 20", habitat: "Northern Plains / Mud Plains", sight: "250 - 1000", alpha: "Normal", magicProof: 0, size: 18, speed: 4.3, rotation: 0.05, rate: 1.8, experience: 23, description: ["Thueg lie around all day sleeping in the shelter of their protective shell. Other plains creatures sometimes seek shade by them and meet their untimely demise.", "Thueg may rest a lot, but they are not lazy beasts. They can run quickly and wil persue their prey for long distances to catch it.", "Thueg are blind and use echolocation and smell to hunt."], image: ["nognog", 283, 47, 47, 37, 0, 0, 47 * 2 / 3, 37 * 2 / 3]};
+                this.beastEntry = {intReq: 12, name: "Thueg", health: "7 - 11", armour: "0 - 15", damage: "4 - 10", negate: "1.5", ability: "None", fireProof: "0 - 20", habitat: "Northern Plains / Mud Plains", sight: "250 - 1000", alpha: "Normal", magicProof: 0, size: 18, speed: 4.3, rotation: 0.05, rate: 1.8, experience: 23, description: ["Thueg lie around all day sleeping in the shelter of their protective shell. Other plains creatures sometimes seek shade by them and meet their untimely demise.", "Thueg may rest a lot, but they are not lazy beasts. They can run quickly and wil persue their prey for long distances to catch it.", "Thueg are blind and use echolocation and smell to hunt."], image: ["nognog", 283, 47, 47, 37, 0, 0, 47 * 2 / 3, 37 * 2 / 3]};
 
                 //this multiplies the draw image skew numbers by 1 so that it stays the same
                 this.alphaSize = 1;
@@ -22326,7 +22326,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
             }
         }
-        else if (this.type == "Nog")
+        else if (this.type == "Nog") //nognognog
         {
             this.damageFrame = "automatic";
             this.team = "wild";

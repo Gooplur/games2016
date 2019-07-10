@@ -1769,6 +1769,22 @@ function worldBuilder()
             outlineBuilder(34, 34, "frost", -20, -88);
             outlineBuilder(34, 1, "stonePath", -3, -88);
         }
+        //mapN2E1
+        if (Y > 16445 && Y < 27296 && X < -2423 && X > -14153) //X1
+        {
+            elevation = 1;
+            region = "n2e1";
+            campout = true;
+            outlineBuilder(34, 34, "outline", 14, -88);
+        }
+        //mapN2E2
+        if (Y > 16445 && Y < 27296 && X < -12680 && X > -24308) //X2
+        {
+            elevation = 1;
+            region = "n2e2";
+            campout = true;
+            outlineBuilder(34, 34, "desert", 48, -88);
+        }
         //mapN2E3
         if (Y > 16445 && Y < 27296 && X < -22859 && X > -34534) //X3
         {

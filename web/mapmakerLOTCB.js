@@ -230,7 +230,7 @@ function buildMaster()
                 //ArtificialIntelligenceAccess.push(new Unit(4400, 2500, "Elk", "baby", "Nihgi"));
 
                 //scenicList.push(new Scenery("wendigoCircle", 3900, 2400, 0.38, true));
-                scenicList.push(new Scenery("swampIsla", 3900, 2400, 0, 7, 1));
+                //scenicList.push(new Scenery("swampIsla", 3900, 2400, 0, 7, 1));
 
                 //scenicList.push(new Scenery("mrbAssets", 4900, 2100, 1/2 * Math.PI, 5, 2)); //wall sml
                 //scenicList.push(new Scenery("mrbAssets", 4900, 2100, 1/2 * Math.PI, 6, 2)); //window sml

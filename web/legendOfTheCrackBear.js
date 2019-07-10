@@ -1505,6 +1505,18 @@ function polypolypolyPack()
 
     poly.onload = function()
     {
+        jeruPack();
+    };
+}
+
+function jeruPack()
+{
+    var jeru = new Image();
+    jeru.src = ("images/jeru.png");
+    window.jeru = jeru;
+
+    jeru.onload = function()
+    {
         humpaPack();
     };
 }

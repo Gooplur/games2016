@@ -1267,6 +1267,10 @@ function envPack()
     savannahEnv.src = ("images/savannah.png");
     window.savannahEnv = savannahEnv;
 
+    var prairyEnv = new Image();
+    prairyEnv.src = ("images/prairyEnv.png");
+    window.prairyEnv = prairyEnv;
+
     var savannahDirtEnv = new Image();
     savannahDirtEnv.src = ("images/savannahDirt.png");
     window.savannahDirtEnv = savannahDirtEnv;
@@ -1516,6 +1520,18 @@ function jeruPack()
     window.jeru = jeru;
 
     jeru.onload = function()
+    {
+        salemPack();
+    };
+}
+
+function salemPack()
+{
+    var salem = new Image();
+    salem.src = ("images/salem.png");
+    window.salem = salem;
+
+    salem.onload = function()
     {
         humpaPack();
     };

@@ -2647,6 +2647,10 @@ function outlineBuilder(width, length, terrain, extraX, extraY)
                 {
                     XXX.drawImage(jungleEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
                 }
+                else if (terrain == "harshGrass")
+                {
+                    XXX.drawImage(harshGrass, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
                 else if (terrain == "crag")
                 {
                     XXX.drawImage(rockyFlatEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);

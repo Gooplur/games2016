@@ -1439,6 +1439,10 @@ function envPack()
     lomita.src = ("images/lomita.jpg");
     window.lomita = lomita;
 
+    var harshGrass = new Image();
+    harshGrass.src = ("images/harshGrass.png");
+    window.harshGrass = harshGrass;
+
     var rainbowSparkles = new Image();
     rainbowSparkles.src = ("images/rainbowSparkles.png");
     window.rainbowSparkles = rainbowSparkles;
@@ -1532,6 +1536,18 @@ function salemPack()
     window.salem = salem;
 
     salem.onload = function()
+    {
+        cefPack();
+    };
+}
+
+function cefPack()
+{
+    var cef = new Image();
+    cef.src = ("images/cef.png");
+    window.cef = cef;
+
+    cef.onload = function()
     {
         humpaPack();
     };

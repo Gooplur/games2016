@@ -2824,6 +2824,22 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.drawImage(freeverse, 449, 515, 37, 16, -(1/2 * 37 * 2), -(1/2 * 16 * 2), 37 * 2, 16 * 2);
                 XXX.restore();
             }
+            else if (this.temporary == 3)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(freeverse, 448, 487, 27, 14, -(1/2 * 27 * 2), -(1/2 * 14 * 2), 27 * 2, 14 * 2);
+                XXX.restore();
+            }
+            else if (this.temporary == 4)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(freeverse, 448, 487, 27, 14, -(1/2 * 27 * 1), -(1/2 * 14 * 1), 27 * 1, 14 * 1);
+                XXX.restore();
+            }
             else
             {
                 XXX.save();
@@ -10401,6 +10417,16 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             this.solid = false;
             this.interactionRange = 135;
 
+            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+            {
+                //ArtificialIntelligenceAccess[i].X
+                //ArtificialIntelligenceAccess[i].Y
+                if (ArtificialIntelligenceAccess[i].X > (this.X + 51.88690083067377) - 107 && ArtificialIntelligenceAccess[i].X < (this.X + 51.88690083067377) && ArtificialIntelligenceAccess[i].Y > (this.Y + 46.01944117860512) - 96 && ArtificialIntelligenceAccess[i].Y < (this.Y + 46.01944117860512))
+                {
+                    ArtificialIntelligenceAccess[i].land = true;
+                }
+            }
+
             //DRAWSELF
             if (X > (this.X + 51.88690083067377) - 107 && X < (this.X + 51.88690083067377) && Y > (this.Y + 46.01944117860512) - 96 && Y < (this.Y + 46.01944117860512))
             {
@@ -10410,7 +10436,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.rotate(0);
                 XXX.drawImage(mimi, 572, 53, 140, 136, -(1/2 * 140 * 1), -(1/2 * 136 * 1), 140 * 1, 136 * 1);
                 XXX.restore();
-                this.land = true;
+                player.land = true;
             }
             else
             {
@@ -10458,6 +10484,16 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             this.solid = false;
             this.interactionRange = 135;
 
+            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+            {
+                //ArtificialIntelligenceAccess[i].X
+                //ArtificialIntelligenceAccess[i].Y
+                if (ArtificialIntelligenceAccess[i].X > (this.X + 51.88690083067377) - 107 && ArtificialIntelligenceAccess[i].X < (this.X + 51.88690083067377) && ArtificialIntelligenceAccess[i].Y > (this.Y + 46.01944117860512) - 96 && ArtificialIntelligenceAccess[i].Y < (this.Y + 46.01944117860512))
+                {
+                    ArtificialIntelligenceAccess[i].land = true;
+                }
+            }
+
             //DRAWSELF
             if (X > (this.X + 51.88690083067377) - 107 && X < (this.X + 51.88690083067377) && Y > (this.Y + 46.01944117860512) - 96 && Y < (this.Y + 46.01944117860512))
             {
@@ -10467,7 +10503,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.rotate(Math.PI);
                 XXX.drawImage(mimi, 572, 53, 140, 136, -(1/2 * 140 * 1), -(1/2 * 136 * 1), 140 * 1, 136 * 1);
                 XXX.restore();
-                this.land = true;
+                player.land = true;
             }
             else
             {
@@ -10515,6 +10551,16 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             this.solid = false;
             this.interactionRange = 135;
 
+            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+            {
+                //ArtificialIntelligenceAccess[i].X
+                //ArtificialIntelligenceAccess[i].Y
+                if (ArtificialIntelligenceAccess[i].X > (this.X + 51.88690083067377) - 107 && ArtificialIntelligenceAccess[i].X < (this.X + 51.88690083067377) && ArtificialIntelligenceAccess[i].Y > (this.Y + 46.01944117860512) - 96 && ArtificialIntelligenceAccess[i].Y < (this.Y + 46.01944117860512))
+                {
+                    ArtificialIntelligenceAccess[i].land = true;
+                }
+            }
+
             //DRAWSELF
             if (X > (this.X + 51.88690083067377) - 107 && X < (this.X + 51.88690083067377) && Y > (this.Y + 46.01944117860512) - 96 && Y < (this.Y + 46.01944117860512))
             {
@@ -10524,7 +10570,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.rotate(-1/2 * Math.PI);
                 XXX.drawImage(mimi, 572, 53, 140, 136, -(1/2 * 140 * 1), -(1/2 * 136 * 1), 140 * 1, 136 * 1);
                 XXX.restore();
-                this.land = true;
+                player.land = true;
             }
             else
             {
@@ -10572,6 +10618,16 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             this.solid = false;
             this.interactionRange = 135;
 
+            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+            {
+                //ArtificialIntelligenceAccess[i].X
+                //ArtificialIntelligenceAccess[i].Y
+                if (ArtificialIntelligenceAccess[i].X > (this.X + 51.88690083067377) - 107 && ArtificialIntelligenceAccess[i].X < (this.X + 51.88690083067377) && ArtificialIntelligenceAccess[i].Y > (this.Y + 46.01944117860512) - 96 && ArtificialIntelligenceAccess[i].Y < (this.Y + 46.01944117860512))
+                {
+                    ArtificialIntelligenceAccess[i].land = true;
+                }
+            }
+
             //DRAWSELF
             if (X > (this.X + 51.88690083067377) - 107 && X < (this.X + 51.88690083067377) && Y > (this.Y + 46.01944117860512) - 96 && Y < (this.Y + 46.01944117860512))
             {
@@ -10581,7 +10637,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.rotate(1/2 * Math.PI);
                 XXX.drawImage(mimi, 572, 53, 140, 136, -(1/2 * 140 * 1), -(1/2 * 136 * 1), 140 * 1, 136 * 1);
                 XXX.restore();
-                this.land = true;
+                player.land = true;
             }
             else
             {
@@ -10629,6 +10685,16 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             this.solid = false;
             this.interactionRange = 135;
 
+            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+            {
+                //ArtificialIntelligenceAccess[i].X
+                //ArtificialIntelligenceAccess[i].Y
+                if (ArtificialIntelligenceAccess[i].X > (this.X + 78.42930398944463) - 160 && ArtificialIntelligenceAccess[i].X < (this.X + 78.42930398944463) && ArtificialIntelligenceAccess[i].Y > (this.Y + 69.38525144702407) - 144 && ArtificialIntelligenceAccess[i].Y < (this.Y + 69.38525144702407))
+                {
+                    ArtificialIntelligenceAccess[i].land = true;
+                }
+            }
+
             //DRAWSELF
             if (X > (this.X + 78.42930398944463) - 160 && X < (this.X + 78.42930398944463) && Y > (this.Y + 69.38525144702407) - 144 && Y < (this.Y + 69.38525144702407))
             {
@@ -10638,7 +10704,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.rotate(0);
                 XXX.drawImage(mimi, 572, 53, 140, 136, -(1/2 * 140 * 1.5), -(1/2 * 136 * 1.5), 140 * 1.5, 136 * 1.5);
                 XXX.restore();
-                this.land = true;
+                player.land = true;
             }
             else
             {
@@ -10686,6 +10752,16 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             this.solid = false;
             this.interactionRange = 135;
 
+            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+            {
+                //ArtificialIntelligenceAccess[i].X
+                //ArtificialIntelligenceAccess[i].Y
+                if (ArtificialIntelligenceAccess[i].X > (this.X + 78.42930398944463) - 160 && ArtificialIntelligenceAccess[i].X < (this.X + 78.42930398944463) && ArtificialIntelligenceAccess[i].Y > (this.Y + 69.38525144702407) - 144 && ArtificialIntelligenceAccess[i].Y < (this.Y + 69.38525144702407))
+                {
+                    ArtificialIntelligenceAccess[i].land = true;
+                }
+            }
+
             //DRAWSELF
             if (X > (this.X + 78.42930398944463) - 160 && X < (this.X + 78.42930398944463) && Y > (this.Y + 69.38525144702407) - 144 && Y < (this.Y + 69.38525144702407))
             {
@@ -10695,7 +10771,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.rotate(Math.PI);
                 XXX.drawImage(mimi, 572, 53, 140, 136, -(1/2 * 140 * 1.5), -(1/2 * 136 * 1.5), 140 * 1.5, 136 * 1.5);
                 XXX.restore();
-                this.land = true;
+                player.land = true;
             }
             else
             {
@@ -10743,6 +10819,16 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             this.solid = false;
             this.interactionRange = 135;
 
+            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+            {
+                //ArtificialIntelligenceAccess[i].X
+                //ArtificialIntelligenceAccess[i].Y
+                if (ArtificialIntelligenceAccess[i].X > (this.X + 78.42930398944463) - 160 && ArtificialIntelligenceAccess[i].X < (this.X + 78.42930398944463) && ArtificialIntelligenceAccess[i].Y > (this.Y + 69.38525144702407) - 144 && ArtificialIntelligenceAccess[i].Y < (this.Y + 69.38525144702407))
+                {
+                    ArtificialIntelligenceAccess[i].land = true;
+                }
+            }
+
             //DRAWSELF
             if (X > (this.X + 78.42930398944463) - 160 && X < (this.X + 78.42930398944463) && Y > (this.Y + 69.38525144702407) - 144 && Y < (this.Y + 69.38525144702407))
             {
@@ -10752,7 +10838,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.rotate(-1/2 * Math.PI);
                 XXX.drawImage(mimi, 572, 53, 140, 136, -(1/2 * 140 * 1.5), -(1/2 * 136 * 1.5), 140 * 1.5, 136 * 1.5);
                 XXX.restore();
-                this.land = true;
+                player.land = true;
             }
             else
             {
@@ -10800,6 +10886,16 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             this.solid = false;
             this.interactionRange = 135;
 
+            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+            {
+                //ArtificialIntelligenceAccess[i].X
+                //ArtificialIntelligenceAccess[i].Y
+                if (ArtificialIntelligenceAccess[i].X > (this.X + 78.42930398944463) - 160 && ArtificialIntelligenceAccess[i].X < (this.X + 78.42930398944463) && ArtificialIntelligenceAccess[i].Y > (this.Y + 69.38525144702407) - 144 && ArtificialIntelligenceAccess[i].Y < (this.Y + 69.38525144702407))
+                {
+                    ArtificialIntelligenceAccess[i].land = true;
+                }
+            }
+
             //DRAWSELF
             if (X > (this.X + 78.42930398944463) - 160 && X < (this.X + 78.42930398944463) && Y > (this.Y + 69.38525144702407) - 144 && Y < (this.Y + 69.38525144702407))
             {
@@ -10809,7 +10905,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.rotate(1/2 * Math.PI);
                 XXX.drawImage(mimi, 572, 53, 140, 136, -(1/2 * 140 * 1.5), -(1/2 * 136 * 1.5), 140 * 1.5, 136 * 1.5);
                 XXX.restore();
-                this.land = true;
+                player.land = true;
             }
             else
             {
@@ -10857,6 +10953,16 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             this.solid = false;
             this.interactionRange = 135;
 
+            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+            {
+                //ArtificialIntelligenceAccess[i].X
+                //ArtificialIntelligenceAccess[i].Y
+                if (ArtificialIntelligenceAccess[i].X > (this.X + 50.168907715307796 * this.temporary) - 100 * this.temporary && ArtificialIntelligenceAccess[i].X < (this.X + 50.168907715307796 * this.temporary) && ArtificialIntelligenceAccess[i].Y > (this.Y + 48.107098850859074 * this.temporary) - 97 * this.temporary && ArtificialIntelligenceAccess[i].Y < (this.Y + 48.107098850859074 * this.temporary))
+                {
+                    ArtificialIntelligenceAccess[i].land = true;
+                }
+            }
+
             //DRAWSELF
             if (X > (this.X + 50.168907715307796 * this.temporary) - 100 * this.temporary && X < (this.X + 50.168907715307796 * this.temporary) && Y > (this.Y + 48.107098850859074 * this.temporary) - 97 * this.temporary && Y < (this.Y + 48.107098850859074 * this.temporary))
             {
@@ -10881,7 +10987,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 }
                 XXX.drawImage(mimi, 730, 523, 140, 136, -(1/2 * 140 * this.temporary), -(1/2 * 136 * this.temporary), 140 * this.temporary, 136 * this.temporary);
                 XXX.restore();
-                this.land = true;
+                player.land = true;
             }
             else
             {
@@ -10986,6 +11092,16 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             this.solid = false;
             this.interactionRange = 135;
 
+            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+            {
+                //ArtificialIntelligenceAccess[i].X
+                //ArtificialIntelligenceAccess[i].Y
+                if (ArtificialIntelligenceAccess[i].X > (this.X + 50.168907715307796 * this.temporary) - 100 * this.temporary && ArtificialIntelligenceAccess[i].X < (this.X + 50.168907715307796 * this.temporary) && ArtificialIntelligenceAccess[i].Y > (this.Y + 48.107098850859074 * this.temporary) - 97 * this.temporary && ArtificialIntelligenceAccess[i].Y < (this.Y + 48.107098850859074 * this.temporary))
+                {
+                    ArtificialIntelligenceAccess[i].land = true;
+                }
+            }
+
             //DRAWSELF
             if (X > (this.X + 50.168907715307796 * this.temporary) - 100 * this.temporary && X < (this.X + 50.168907715307796 * this.temporary) && Y > (this.Y + 48.107098850859074 * this.temporary) - 97 * this.temporary && Y < (this.Y + 48.107098850859074 * this.temporary))
             {
@@ -11010,7 +11126,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 }
                 XXX.drawImage(mimi, 1022, 526, 140, 136, -(1/2 * 140 * this.temporary), -(1/2 * 136 * this.temporary), 140 * this.temporary, 136 * this.temporary);
                 XXX.restore();
-                this.land = true;
+                player.land = true;
             }
             else
             {
@@ -19034,7 +19150,6 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 if (distToPlat <= 150 * this.size * 150 * this.size)
                 {
                     player.land = true;
-                    console.log("onLand");
                 }
 
                 distToPlat = 1000000000000000;
@@ -19069,7 +19184,6 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 if (distToPlat <= 140 * this.size * 140 * this.size)
                 {
                     player.land = true;
-                    console.log("onLand");
                 }
 
                 distToPlat = 1000000000000000;
@@ -19104,7 +19218,6 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 if (distToPlat <= 83 * this.size * 83 * this.size)
                 {
                     player.land = true;
-                    console.log("onLand");
                 }
 
                 distToPlat = 1000000000000000;
@@ -19139,7 +19252,6 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 if (distToPlat <= 49 * this.size * 49 * this.size)
                 {
                     player.land = true;
-                    console.log("onLand");
                 }
 
                 distToPlat = 1000000000000000;
@@ -19174,7 +19286,6 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 if (distToPlat <= 60 * this.size * 60 * this.size)
                 {
                     player.land = true;
-                    console.log("onLand");
                 }
 
                 distToPlat = 1000000000000000;
@@ -19209,7 +19320,6 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 if (distToPlat <= 42 * this.size * 42 * this.size)
                 {
                     player.land = true;
-                    console.log("onLand");
                 }
 
                 distToPlat = 1000000000000000;
@@ -19244,7 +19354,6 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 if (distToPlat <= 45 * this.size * 45 * this.size)
                 {
                     player.land = true;
-                    console.log("onLand");
                 }
 
                 distToPlat = 1000000000000000;
@@ -19279,7 +19388,6 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 if (distToPlat <= 77 * this.size * 77 * this.size)
                 {
                     player.land = true;
-                    console.log("onLand");
                 }
 
                 distToPlat = 1000000000000000;
@@ -19411,7 +19519,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
 
             if (this.temporary == true)
             {
-                this.tic += 2;
+                this.tic += 0.4;
             }
 
             if (this.temporary == true)
@@ -19536,24 +19644,19 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             XXX.save();
             XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
             XXX.rotate(this.rotation);
+            XXX.drawImage(mimi, 755, 34, 244, 235, -(1/2 * 244 * this.size), -(1/2 * 235 * this.size), 244 * this.size, 235 * this.size);
 
             //XXX.beginPath();
-            //XXX.lineWidth = 20;
+            //XXX.lineWidth = 236;
             //XXX.strokeStyle = "black";
-            //XXX.moveTo(0 + Math.cos(0) * 90, 0);
-            //XXX.lineTo(0 + Math.cos(Math.PI) * 90, 0);
+            //XXX.moveTo(0 + Math.cos(0) * 22, 0);
+            //XXX.lineTo(0 + Math.cos(Math.PI) * 22, 0);
             //XXX.stroke();
 
-            //if (player.movingType == "swimming")
-            //{
-            //    XXX.globalAlpha = 0.5;
-            //}
-
-            XXX.drawImage(mimi, 755, 34, 244, 235, -(1/2 * 244 * this.size), -(1/2 * 235 * this.size), 244 * this.size, 235 * this.size);
             XXX.restore();
 
-            var distToPlat = pDist(X, Y, this.X + Math.cos(0 + this.rotation) * 96, this.Y + Math.sin(0 + this.rotation) * 96, this.X + Math.cos(Math.PI + this.rotation) * 96, this.Y + Math.sin(Math.PI + this.rotation) * 96);
-            if (distToPlat <= 94 * 94) // && player.movingType != "swimming"
+            var distToPlat = pDist(X, Y, this.X + Math.cos(0 + this.rotation) * 22, this.Y + Math.sin(0 + this.rotation) * 22, this.X + Math.cos(Math.PI + this.rotation) * 22, this.Y + Math.sin(Math.PI + this.rotation) * 22);
+            if (distToPlat <= 118 * 118) // && player.movingType != "swimming"
             {
                 player.land = true;
             }
@@ -19562,8 +19665,8 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
 
             for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
             {
-                distToPlat = pDist(ArtificialIntelligenceAccess[i].X, ArtificialIntelligenceAccess[i].Y, this.X + Math.cos(0 + this.rotation) * 96, this.Y + Math.sin(0 + this.rotation) * 96, this.X + Math.cos(Math.PI + this.rotation) * 96, this.Y + Math.sin(Math.PI + this.rotation) * 96);
-                if (distToPlat <= 94 * 94)
+                distToPlat = pDist(ArtificialIntelligenceAccess[i].X, ArtificialIntelligenceAccess[i].Y, this.X + Math.cos(0 + this.rotation) * 22, this.Y + Math.sin(0 + this.rotation) * 22, this.X + Math.cos(Math.PI + this.rotation) * 22, this.Y + Math.sin(Math.PI + this.rotation) * 22);
+                if (distToPlat <= 118 * 118)
                 {
                     ArtificialIntelligenceAccess[i].land = true;
                 }
@@ -30882,6 +30985,16 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             {
                 this.activate = false;
                 this.phase = "picked";
+
+                //if the plant is owned and you are noticed by any AI then decrease faction relation for stealing.
+                if (this.owned.length > 1)
+                {
+                    if (player.noticed == true)
+                    {
+                        this.changeFactionRelation(-11);
+                    }
+                }
+
                 var hits = 0;
                 for (var i = 0; i < Inventory.length; i ++)
                 {

@@ -2461,6 +2461,9 @@ var playerJuju = false;
 var loggedGenID = false;
 var canShowSight = true;
 var campout = true;
+var tellMap = false;
+var tellTile = false;
+var tileBuilder = false;
 
 //This sets the items that are in shops.
 function shopItemIDSetter()
@@ -3419,7 +3422,14 @@ function theLegend()
         helmut: ["Helmut", 0],
         emon: ["Emon", 0],
         ersula: ["Ersula", 0],
-        olav: ["Olav", 0]
+        olav: ["Olav", 0],
+        kazimir: ["Kazimir", 0],
+        vanya: ["Vanya", 0],
+        mendel: ["Mendel", 0],
+        anastasiya: ["Anastasiya", 0],
+        valia: ["Valia", 0],
+        demyan: ["Demyan", 0],
+        tatiana: ["Tatiana", 0]
     };
 
 //time Tracker Variables
@@ -3638,7 +3648,14 @@ function theLegend()
         helmutLDS: true,
         emonLDS: true,
         ersulaLDS: true,
-        olavLDS: true
+        olavLDS: true,
+        kazimirLDS: true,
+        vanyaLDS: true,
+        mendelLDS: true,
+        anastasiyaLDS: true,
+        valiaLDS: true,
+        demyanLDS: true,
+        tatianaLDS: true
     };
 //QUESTS
     quests =
@@ -3662,6 +3679,7 @@ function theLegend()
         pitFight: false,
         rutgarSlave: false,
         estolHookup: 0,
+        buyVozaFlame: false,
 
         //TAXES
         taxTime: new Date().getTime(),
@@ -3685,6 +3703,7 @@ function theLegend()
         venningHomeOwned: false,
         atalinHomeOwned: false,
         atalinShopOwned: false,
+        vozaHomeOwned: false,
 
         //ITEM STASH VARIABLES (non quest)
         lonerGuyStash: true,
@@ -3741,6 +3760,13 @@ function theLegend()
         rannukChildName: "Espen",
         hanzChild: false,
         hanzChildName: "Gelna",
+
+        //QUEST: The Cult of Radiant Spirit ---- given by discovering Morrow City
+        theCultOfTheRadiantSpiritQuest: false,
+        theCultOfTheRadiantSpiritCompletionStyle: false,
+        theCultOfTheRadiantSpiritCultistsKilled: 0,
+        theCultOfTheRadiantSpiritSacrifice: false,
+        theCultOfTheRadiantSpiritBishopInformed: false,
 
         //QUEST: Lost Huntress ---- given by Muktu
         lostHuntressQuest: false,

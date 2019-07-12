@@ -32996,11 +32996,11 @@ function Adventurer()
 
             if (this.matureContentFilter == true)
             {
-                optionList = [{title: "Coordinates", value: tellCoords, type: "bool"}, {title: "Content Filter", value: this.matureContentFilter, type: "bool"}, {title: "Display Informational UI", value: this.showStatBars, type: "bool"}, {title: "Game Speed", value: !player.slowItDown, type: "bool"}, {title: "Lock Standard Leveling", value: this.levelLock, type: "bool"}, {title: "Lock Magic Leveling", value: this.magicLevelLock, type: "bool"}, {title: "Test Units", value: testingUnitCenters, type: "bool"}, {title: "Attack Bubble", value: showPlayerAttackBubble, type: "bool"}, {title: "Show Sight: 50 Dexterity", value: canShowSight, type: "bool"}]
+                optionList = [{title: "Coordinates", value: tellCoords, type: "bool"}, {title: "Tiles", value: tellTile, type: "bool"}, {title: "Map", value: tellMap, type: "bool"}, {title: "Content Filter", value: this.matureContentFilter, type: "bool"}, {title: "Display Informational UI", value: this.showStatBars, type: "bool"}, {title: "Game Speed", value: !player.slowItDown, type: "bool"}, {title: "Lock Standard Leveling", value: this.levelLock, type: "bool"}, {title: "Lock Magic Leveling", value: this.magicLevelLock, type: "bool"}, {title: "Test Units", value: testingUnitCenters, type: "bool"}, {title: "Attack Bubble", value: showPlayerAttackBubble, type: "bool"}, {title: "Show Sight: 50 Dexterity", value: canShowSight, type: "bool"}]
             }
             else
             {
-                optionList = [{title: "Coordinates", value: tellCoords, type: "bool"}, {title: "Content Filter", value: this.matureContentFilter, type: "bool"}, {title: "Cannibalism", value: this.cannibalism, type: "bool"}, {title: "Display Informational UI", value: this.showStatBars, type: "bool"}, {title: "Game Speed", value: !player.slowItDown, type: "bool"}, {title: "Lock Standard Leveling", value: this.levelLock, type: "bool"}, {title: "Lock Magic Leveling", value: this.magicLevelLock, type: "bool"}, {title: "Test Units", value: testingUnitCenters, type: "bool"}, {title: "Attack Bubble", value: showPlayerAttackBubble, type: "bool"}, {title: "Show Sight: 50 Dexterity", value: canShowSight, type: "bool"}]
+                optionList = [{title: "Coordinates", value: tellCoords, type: "bool"}, {title: "Tiles", value: tellTile, type: "bool"}, {title: "Map", value: tellMap, type: "bool"}, {title: "Content Filter", value: this.matureContentFilter, type: "bool"}, {title: "Cannibalism", value: this.cannibalism, type: "bool"}, {title: "Display Informational UI", value: this.showStatBars, type: "bool"}, {title: "Game Speed", value: !player.slowItDown, type: "bool"}, {title: "Lock Standard Leveling", value: this.levelLock, type: "bool"}, {title: "Lock Magic Leveling", value: this.magicLevelLock, type: "bool"}, {title: "Test Units", value: testingUnitCenters, type: "bool"}, {title: "Attack Bubble", value: showPlayerAttackBubble, type: "bool"}, {title: "Show Sight: 50 Dexterity", value: canShowSight, type: "bool"}]
             }
 
             //fill low bar with black
@@ -33130,6 +33130,32 @@ function Adventurer()
                             else
                             {
                                 tellCoords = false;
+                                optionList[i].value = false;
+                            }
+                        }
+                        else if (optionList[i].title == "Tiles")
+                        {
+                            if (optionList[i].value == false)
+                            {
+                                tellTile = true;
+                                optionList[i].value = true;
+                            }
+                            else
+                            {
+                                tellTile = false;
+                                optionList[i].value = false;
+                            }
+                        }
+                        else if (optionList[i].title == "Map")
+                        {
+                            if (optionList[i].value == false)
+                            {
+                                tellMap = true;
+                                optionList[i].value = true;
+                            }
+                            else
+                            {
+                                tellMap = false;
                                 optionList[i].value = false;
                             }
                         }
@@ -39527,6 +39553,43 @@ function Adventurer()
             XXX.fillStyle ="gold";
             XXX.font = "30px courier";
             XXX.fillText("X: " + Math.floor(X) + " " + "Y: " + Math.floor(Y), this.myScreenX - 140, this.myScreenY + 60);
+
+            if (tellTile == true)
+            {
+                XXX.beginPath();
+                XXX.fillStyle ="gold";
+                XXX.font = "30px courier";
+                XXX.fillText("Tile X: " + (Math.floor((X - 700) / 300) * -1) + " " + "Tile Y: " + (Math.floor((Y - 275) / 300) * -1), this.myScreenX - 140, this.myScreenY + 120);
+            }
+            if (tellMap == true)
+            {
+                XXX.beginPath();
+                XXX.fillStyle ="gold";
+                XXX.font = "30px courier";
+                XXX.fillText("Map: " + region, this.myScreenX - 140, this.myScreenY + 180);
+            }
+        }
+        else if (tellTile == true)
+        {
+            XXX.beginPath();
+            XXX.fillStyle ="gold";
+            XXX.font = "30px courier";
+            XXX.fillText("Tile X: " + (Math.floor((X - 700) / 300) * -1) + " " + "Tile Y: " + (Math.floor((Y - 275) / 300) * -1), this.myScreenX - 140, this.myScreenY + 60);
+
+            if (tellMap == true)
+            {
+                XXX.beginPath();
+                XXX.fillStyle ="gold";
+                XXX.font = "30px courier";
+                XXX.fillText("Map: " + region, this.myScreenX - 140, this.myScreenY + 120);
+            }
+        }
+        else if (tellMap == true)
+        {
+            XXX.beginPath();
+            XXX.fillStyle ="gold";
+            XXX.font = "30px courier";
+            XXX.fillText("Map: " + region, this.myScreenX - 140, this.myScreenY + 60);
         }
     };
 

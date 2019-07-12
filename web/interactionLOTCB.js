@@ -2833,6 +2833,983 @@ function interaction(me)
                         }
                     }
 
+                    if (self.ID == "Mendel the Banker" || conversationID[0] == "Mendel")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Mendel";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Good day.", false, "a"], ["What are you holding that dagger for?", false, "b"]];
+
+                                if (quests.vozaHomeOwned == false)
+                                {
+                                    player.dialogueOptions.push(["I would like to buy a home.", false, "c"]);
+                                }
+                                if (player.raceName == "Vardan")
+                                {
+                                    player.dialogueOptions.push(["Where are you from?", false, "d"]);
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            if (player.title == "Nobility" || player.title == "Royalty")
+                            {
+                                if (player.raceName == "Vardan")
+                                {
+                                    if (player.gender == "Male")
+                                    {
+                                        setMsg("Good day! How can I be of service to you, my count.");
+                                    }
+                                    else
+                                    {
+                                        setMsg("Good day! How can I be of service to you, my countess.");
+                                    }
+                                }
+                                else
+                                {
+                                    if (player.gender == "Male")
+                                    {
+                                        setMsg("Good day! How can I be of service to you, my lord.");
+                                    }
+                                    else
+                                    {
+                                        setMsg("Good day! How can I be of service to you, my lady.");
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                setMsg("Good day. Do you want to buy more storage space with the Golden Glove Bank, we can transport your goods wherever you go. The price is well worth it!");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            setMsg("Oh this? With the civil war and all the bank is often a target for looters and deserters. As a banker I need to be prepared to defend the bank's assets since the village guards have all left to fight the war.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            setMsg("His lordship Count Vorcaneous informed the bank that there is a small shack here in Voza Village that he would like to lease. It is the one with a for sale sign in front. If you haven't already seen it I recommend taking a look at it before you consider purchasing it. If you decide that you are still interesting in purchasing it will cost you 600 coins.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            setMsg("I'm from Vardania, as are you. I grew up in Morrow city. I only moved to Voza because the Golden Glove Bank offered me a job and asked me to serve at this location. I'm sure you meant to insinuate that I do not belong here, right? It is true that my grandparents moved here from Orgell originally, but my family is just as Vardanian as any other family here. But enough about me... can I interest you in a bank slot?");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 1)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Nevermind.", false, "b"], ["Actually I'd rather not buy the house.", false, "b"]];
+                                if (have("coins", 600))
+                                {
+                                    player.dialogueOptions.unshift(["I'll take it! [pay 600 coins]", false, "a"]);
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1b";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1a")
+                        {
+                            //text dialogue
+                            setMsg("It is yours then, enjoy your new home!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                                take("coins", 600);
+                                quests.vozaHomeOwned = true;
+                                reiniciar();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1b")
+                        {
+                            //text dialogue
+                            setMsg("I'll be here if you reconsider.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Tatiana" || conversationID[0] == "Tatiana")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Tatiana";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["How are you?", false, "a"], ["What do you think about the war?", false, "b"], ["Praise be to the spirit everlasting!", false, "c"]];
+                                if (quests.theCultOfTheRadiantSpiritQuest == false)
+                                {
+                                    player.dialogueOptions.push(["The church feels empty.", false, "d"]);
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            setMsg("Despite all of the corruption and evil deeds that we find ourselves inundated with... I am hopeful that goodness will win in the end, and that makes me happy.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            if (player.title != "Highfolk" && player.title != "Nobility" && player.title != "Royalty")
+                            {
+                                setMsg("The only thing worse than a fragmented nation is a fragmented people. When brother is made to fight against brother for the whim and fancy of the high counts, the void is proving itself to be more powerful than any of us had ever imagined it could be.");
+                            }
+                            else
+                            {
+                                setMsg("The war has taken its toll on our faith and our livelihoods, but it is necessary. Without the True High Count's order, chaos would reign and The Void would gain power.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            if (player.raceName == "Vardan")
+                            {
+                                setMsg("Praise be! May the spirit everlasting bless Vardania! We could use a blessing right about now...");
+                            }
+                            else
+                            {
+                                setMsg("Praise be! May the spirit everlasting bless us all!");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            setMsg("Having most of the men of the village drafted into the royal army will do that... but you speak with reason, for our church lacks even for a priest. We are all starting to worry about the dissapearance of Father Dimitry. Without a priest we have no guidance towards the light. Following ones own volition is just as easily a path devised by The Void as one set forth by The Eternal Spirit. We can no longer know if we walk in the light in these dark times, we need father Dimitri to return now more than ever.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Anastasiya the Merchant" || conversationID[0] == "Anastasiya")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Anastasiya";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Good day.", false, "a"], ["Can you tell me anything about Voza Village?", false, "b"], ["How is business?", false, "d"]];
+                                if (quests.buyVozaFlame == false)
+                                {
+                                    player.dialogueOptions.push(["Can I use your hearth to cook some food?", false, "c"]);
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            setMsg("Its just as gloomy as yesterday to be honest, but at least I have a potential costumer browsing my wears...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            if (quests.theCultOfTheRadiantSpiritQuest == false)
+                            {
+                                setMsg("Our village priest has been missing for a little while now, you don't think that the soldiers can draft a priest into battle can they? Attending church has been my glimmer of hope that goodness exists, but now that the priest is gone I'm not sure I have any hope left at all.");
+                            }
+                            else if (quests.theCultOfTheRadiantSpiritQuest == true)
+                            {
+                                setMsg("Our village priest had gone missing and we were all really worried, but now he came back and he brought new devotees to defend our village. If only everyone could be as faithful and radiant as Father Dimitry and his apostles... then we would live in a more peaceful world.");
+                            }
+                            else if (quests.theCultOfTheRadiantSpiritCompletionStyle == "cult")
+                            {
+                                setMsg("Its funny that you are asking ME! I heard that YOU were accepted as an apostle of the Radiant Spirit by Father Dimitry. You're the talk of the town!");
+                            }
+                            else
+                            {
+                                setMsg("The word is that father Dimitry was acting against the church and that he was secretly a heretic this whole time... I feel so betrayed. Thank you for helping the true church to replace him. Now we might experience the faith is it was meant to be rather than being drawn toward the void's evil ways.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            if (quests.theCultOfTheRadiantSpiritCompletionStyle == "cult")
+                            {
+                                setMsg("Anything for an apostle of The Radiant Spirit!");
+                            }
+                            else if (quests.theCultOfTheRadiantSpiritCompletionStyle == "church")
+                            {
+                                setMsg("What sort of a person would I be if I denied the person who saved our village church from the void's corruption! Go right ahead!");
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    quests.buyVozaFlame = true;
+                                    self.SC();
+                                    reiniciar();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                setMsg("If you want to cook with my hearth then pay me 30 coins.");
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 1;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            if (player.raceName == "Vardanian" && player.gender == "Male" && player.title != "Highfolk" && player.title != "Nobility" && player.title != "Royalty")
+                            {
+                                setMsg("Its going alright provided that most of the men in town have been drafted to die in the civil war... This was my older brother's shop before he left. Now I'm not even sure if he is still alive. [You see the weariness in her eyes as she lingers on those words hopelessly]. You were lucky that you were not in town when the soldiers came around for the draft.");
+                            }
+                            else if (player.raceName == "Vardanian" && player.gender == "Female" && player.title != "Highfolk" && player.title != "Nobility" && player.title != "Royalty")
+                            {
+                                setMsg("Its going alright provided that most of the men in town have been drafted to die in the civil war... This was my older brother's shop before he left. Now I'm not even sure if he is still alive. [You see the weariness in her eyes as she lingers on those words hopelessly]. Its hard work surviving without the men... but we manage don't we.");
+                            }
+                            else
+                            {
+                                setMsg("Its going alright provided that most of the men in town have been drafted to fight the false high count's rebel forces... This was my older brother's shop before he left. Now I'm not even sure if he is still alive. [You see the weariness in her eyes as she lingers on those words hopelessly]. Long live the high count... [She announces just to be safe]");
+                            }
+
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 1)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                if (have("coins", 25) && player.getCharisma() >= 11)
+                                {
+                                    player.dialogueOptions = [["30 coins sounds a bit steep, howabout I pay you 25 and we call it a deal.", false, "a"], ["Nevermind.", false, "b"]];
+                                }
+                                else if (have("coins", 30))
+                                {
+                                    player.dialogueOptions = [["Here you are then. [give 30 coins]", false, "a"], ["Nevermind.", false, "b"]];
+                                }
+                                else
+                                {
+                                    player.dialogueOptions = [["I can't afford to pay you that much.", false, "b"], ["Nevermind.", false, "b"]];
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1b";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1a")
+                        {
+                            //text dialogue
+                            if (have("coins", 25) && player.getCharisma() >= 11)
+                            {
+                                setMsg("25 coins seems fair. Alright, its a deal. You can use my hearth for cooking whenever you need.");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    take("coins", 25);
+                                    quests.buyVozaFlame = true;
+                                    self.SC();
+                                    reiniciar();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                            else if (have("coins", 30))
+                            {
+                                setMsg("Thank you! Now you can use my hearth for cooking whenever you need!");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    take("coins", 30);
+                                    quests.buyVozaFlame = true;
+                                    self.SC();
+                                    reiniciar();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1b")
+                        {
+                            //text dialogue
+                            if (have("coins", 25) && player.getCharisma() >= 11)
+                            {
+                                setMsg("If you change your mind let me know.");
+                            }
+                            else if (have("coins", 30))
+                            {
+                                setMsg("If you change your mind let me know.");
+                            }
+                            else
+                            {
+                                setMsg("Come back when you can afford it if you are still interested in making a deal.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Demyan" || conversationID[0] == "Demyan")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Demyan";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                if (uniqueChars.valiaLDS == true)
+                                {
+                                    player.dialogueOptions = [["Hello there!", false, "a"], ["What are you up to?", false, "b"], ["Are you lost?", false, "c"]];
+                                }
+                                else
+                                {
+                                    player.dialogueOptions = [["Hello there!", false, "a"], ["Are you lost?", false, "c"]];
+                                    if (have("coins", 5) && uniqueChars.demyanLDS == false)
+                                    {
+                                        player.dialogueOptions.push(["[give 5 coins] You look hungry, go buy yourself some food.", false, "b"]);
+                                    }
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            if (uniqueChars.valiaLDS == true)
+                            {
+                                setMsg("We have fresh skig for sale, and tasty tasty mud toad fresh from the swamp! Get some now before we run out.");
+                            }
+                            else
+                            {
+                                if (uniqueChars.demyanLDS == true)
+                                {
+                                    setMsg("Thanks again for the coins.");
+                                }
+                                else
+                                {
+                                    setMsg("I miss my mommy...");
+                                }
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+
+                            if (uniqueChars.valiaLDS == true)
+                            {
+                                //text dialogue
+                                setMsg("I'm helping my mom sell our fish and toads. You want to buy some? Its fresh caught. My mom always says the fishy smell means it's still fresh... it smells super yucky if you let it get old. Buy it now while it's still fresh!");
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                //text dialogue
+                                setMsg("Thank you so much, I was starving!!");
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    take("coins", 5);
+                                    uniqueChars.demyanLDS = true;
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            if (uniqueChars.valiaLDS == true)
+                            {
+                                setMsg("No, I'm not lost, this is my mom's stand! I'm helping her sell the fish and toads we got.");
+                            }
+                            else
+                            {
+                                if (uniqueChars.demyanLDS == true)
+                                {
+                                    setMsg("I'm not lost, but both my parents are dead so I guess that is about the same. At least I have enough coin to buy my next meal.");
+                                }
+                                else
+                                {
+                                    setMsg("My daddy died in the war and my mommy was killed. I'm not lost, I'm just lonely... and hungry.");
+                                }
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Valia the Fishseller" || conversationID[0] == "Valia")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Valia";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["What are you selling today?", false, "a"], ["How's business?", false, "b"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            if (uniqueChars.demyanLDS == true)
+                            {
+                                setMsg("My son Demyan and I caught some mud toads just outside of the village, and I was lucky enough to catch a few fish without the leeches catching scent of me. Don't worry about the stench... that means the catch is fresh, trust me it would smell worse if it weren't.");
+                            }
+                            else
+                            {
+                                setMsg("I caught a few mud toads just outside of the village, and I reeled in a couple of fish...");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            if (uniqueChars.demyanLDS == true)
+                            {
+                                setMsg("I was not raised to be a fishseller... before my husband died protecting Morrow City from the rebels' siege he used to run the business. I had to pick up were he left off. Needless to say, our business is not doing so well anymore. At least half of the fish I hook get away from me... and I have to raise my boy Demyan all on my own.");
+                            }
+                            else
+                            {
+                                setMsg("Both my husband and my son are dead, and I was not raised to be a fishseller. This was my husbands line of work. I am terrible at catching fish, and I am in way over my head. Business couldn't be worse.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
                     if (self.ID == "Olav the Hermit" || conversationID[0] == "Olav")
                     {
                         lowBar = "dialogue";

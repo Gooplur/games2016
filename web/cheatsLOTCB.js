@@ -4,6 +4,14 @@
 //this function contains cheat methods that rely on the gameLoop.
 function cheats()
 {
+    if (tileBuilder == true)
+    {
+        if (xKey)
+        {
+            xKey = false;
+            console.log('outlineBuilder(1, 1, "outline", ' + (Math.floor((X - 700) / 300) * -1) + ', ' + (Math.floor((Y - 275) / 300) * -1) + ');');
+        }
+    }
     if (buildMode == true)
     {
         var buildList = ["coords", "Selva Tree", "Sonja Tree", "Gallosh Plant", "Vorlym Plant", "Thueg", "Conejo", "Boulchom", "Great Pine Tree", "Pine Tree", "Snowy Great Pine Tree", "Snowy Pine Tree", "Ashai Tree", "Ghoul", "Ribback", "Vreck", "Dalger", "Varonoi", "Stovol Beetle", "Thegol Thorn", "Elk", "Black Beruln", "Mekle Plant", "Black Bear", "Turkey", "Skol", "Deer", "Fox", "Badger", "Hoffalgre", "Crow", "Silter", "Scilt Plant", "Korsk Beetle", "Cheshire", "Grizzly Bear", "Borgal", "Lizard", "Koivaya (loner)", "Koivaya (breeder)", "Cranberry Plant", "Eyewort Plant", "Korceida Plant", "Laumin Plant", "Jolle Plant", "Porstol Plant", "Fallory Plant", "Palgga Plant", "Bleeding Heart Plant", "Aberdom Plant", "Beunum Plant", "Ciprin Plant", "Marigold Plant", "Hoil Plant", "Callop Plant", "Darb Plant", "Kofke Plant", "Steugiurne Plant", "Web", "Etna Egg Sack", "Etna", "Mustard Plant", "Carrot Plant", "Potato Plant", "Cabbage Plant", "Harst Plant", "Santh Plant", "Wheat Plant", "Suuli Plant"];
@@ -2761,6 +2769,32 @@ function cheats()
             {
                 tellCoords = true;
             }
+        }
+        else if (cheatcode.toLowerCase() == "tiles")
+        {
+            if (tellTile == true)
+            {
+                tellTile = false;
+            }
+            else
+            {
+                tellTile = true;
+            }
+        }
+        else if (cheatcode.toLowerCase() == "map")
+        {
+            if (tellMap == true)
+            {
+                tellMap = false;
+            }
+            else
+            {
+                tellMap = true;
+            }
+        }
+        else if (cheatcode.toLowerCase() == "tilebuilder" || cheatcode.toLowerCase() == "til")
+        {
+            tileBuilder = true;
         }
         else if (cheatcode.toLowerCase() == "attackbubble")
         {

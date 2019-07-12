@@ -447,6 +447,62 @@ function worldBuilder()
             region = "s8w34";
             campout = true;
             outlineBuilder(34, 34, "vardanianWetland", -1176, 252);
+
+            outlineBuilder(8, 2, "swamp", -1175, 252);
+            outlineBuilder(5, 6, "swamp", -1170, 263);
+            outlineBuilder(3, 2, "swamp", -1165, 258);
+            outlineBuilder(2, 2, "swamp", -1156, 270);
+            outlineBuilder(2, 1, "swamp", -1155, 272);
+            outlineBuilder(4, 7, "swamp", -1155, 274);
+            outlineBuilder(7, 8, "swamp", -1150, 267);
+            outlineBuilder(5, 8, "swamp", -1171, 276);
+            outlineBuilder(3, 4, "swamp", -1148, 279);
+            outlineBuilder(5, 5, "swamp", -1172, 275);
+            outlineBuilder(3, 3, "swamp", -1162, 281);
+            outlineBuilder(1, 3, "swamp", -1165, 281);
+            outlineBuilder(4, 2, "swamp", -1174, 278);
+            outlineBuilder(4, 2, "swamp", -1173, 282);
+            outlineBuilder(2, 5, "swamp", -1174, 283);
+            outlineBuilder(9, 3, "swamp", -1158, 260);
+            outlineBuilder(2, 2, "swamp", -1166, 262);
+            outlineBuilder(3, 6, "swamp", -1159, 256);
+            outlineBuilder(3, 2, "swamp", -1169, 254);
+            outlineBuilder(2, 2, "swamp", -1167, 256);
+            outlineBuilder(2, 2, "swamp", -1174, 260);
+            outlineBuilder(1, 3, "swamp", -1173, 256);
+            outlineBuilder(5, 4, "swamp", -1172, 260);
+            outlineBuilder(2, 8, "swamp", -1174, 266);
+            outlineBuilder(2, 3, "swamp", -1170, 258);
+            outlineBuilder(1, 1, "swamp", -1167, 258);
+            outlineBuilder(6, 2, "swamp", -1162, 258);
+            outlineBuilder(3, 2, "swamp", -1160, 262);
+            outlineBuilder(1, 1, "swampBL", -1160, 261);
+            outlineBuilder(1, 1, "swampTR", -1159, 265);
+            outlineBuilder(1, 1, "swampBL", -1165, 257);
+            outlineBuilder(3, 6, "swamp", -1163, 254);
+            outlineBuilder(1, 1, "swampTR", -1160, 257);
+            outlineBuilder(5, 4, "swamp", -1169, 270);
+            outlineBuilder(2, 2, "swamp", -1165, 271);
+            outlineBuilder(1, 1, "swamp", -1165, 273);
+            outlineBuilder(2, 3, "swamp", -1174, 271);
+            outlineBuilder(3, 2, "swamp", -1175, 273);
+            outlineBuilder(4, 6, "swamp", -1154, 252);
+            outlineBuilder(4, 3, "swamp", -1150, 257);
+            outlineBuilder(1, 2, "swamp", -1149, 264);
+            outlineBuilder(2, 2, "swamp", -1153, 269);
+            outlineBuilder(7, 4, "swamp", -1147, 256);
+            outlineBuilder(2, 3, "swamp", -1145, 264);
+            outlineBuilder(2, 2, "swamp", -1145, 253);
+            outlineBuilder(1, 1, "swamp", -1143, 253);
+            outlineBuilder(1, 1, "swampTL", -1143, 254);
+            outlineBuilder(6, 2, "swamp", -1153, 261);
+            outlineBuilder(1, 4, "swamp", -1154, 267);
+            outlineBuilder(3, 10, "swamp", -1155, 283);
+            outlineBuilder(2, 7, "swamp", -1167, 284);
+            outlineBuilder(2, 1, "swamp", -1173, 268);
+            outlineBuilder(1, 1, "swampTR", -1173, 262);
+            outlineBuilder(1, 1, "swampTL", -1173, 257);
+            outlineBuilder(1, 1, "swampBL", -1157, 255);
         }
         //Layer -7 (cold region): elev 0
         //mapS7
@@ -628,12 +684,12 @@ function worldBuilder()
             outlineBuilder( 1, 4, "stonePath", -20, 183);
         }
         //mapS5W20
-        if (Y > -54904 && Y < -44148 && X < 211710 && X > 200055) //X-20 //todo add map
+        if (Y > -54904 && Y < -44148 && X < 211710 && X > 200055) //X-20
         {
             elevation = 0;
             region = "s5w20";
             campout = true;
-            outlineBuilder(34, 34, "outline", -700, 150); //todo mistywoods
+            outlineBuilder(34, 34, "mistywoods", -700, 150);
 
             outlineBuilder( 17, 1, "brickRoad", -677, 150);
             outlineBuilder( 1, 23, "brickRoad", -700, 166);
@@ -644,7 +700,7 @@ function worldBuilder()
             elevation = 0;
             region = "s5w21";
             campout = true;
-            outlineBuilder(34, 34, "mistywoods", -734, 150);
+            outlineBuilder(34, 34, "desert", -734, 150);
 
             outlineBuilder( 1, 30, "brickRoad", -730, 166);
             outlineBuilder( 1, 5, "brickRoad", -734, 165);
@@ -1775,7 +1831,7 @@ function worldBuilder()
             elevation = 1;
             region = "n2e1";
             campout = true;
-            outlineBuilder(34, 34, "outline", 14, -88);
+            outlineBuilder(34, 34, "frost", 14, -88);
         }
         //mapN2E2
         if (Y > 16445 && Y < 27296 && X < -12680 && X > -24308) //X2
@@ -1783,7 +1839,7 @@ function worldBuilder()
             elevation = 1;
             region = "n2e2";
             campout = true;
-            outlineBuilder(34, 34, "desert", 48, -88);
+            outlineBuilder(34, 34, "frost", 48, -88);
         }
         //mapN2E3
         if (Y > 16445 && Y < 27296 && X < -22859 && X > -34534) //X3

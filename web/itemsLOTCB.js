@@ -28742,7 +28742,7 @@ function Item(type, x, y)
             this.identity = "Raw Skig";
             this.weight = 0.9;
             this.size = 6;
-            this.description = "A small darkish green fish that is common in Vardanian waters all the way west to the cost. It has a strongly fishy smell to it.";
+            this.description = "A small darkish green fish that is common in Vardanian waters all the way west to the coast. It has a strongly fishy smell to it.";
             this.intForDes = 5;
             this.intDescription = "It is unsafe to eat raw due to gut worms.";
 
@@ -46629,6 +46629,11 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "cheshirePaw")
+        {
+            XXX.beginPath();
+            XXX.drawImage(tomb, 901, 3, 35, 31, X - this.X + (1/2 * CCC.width) - (1/2 * 35 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 31 * 1), 35 * 1, 31 * 1);
+        }
         else if (this.type == "worms")
         {
             XXX.beginPath();
@@ -52687,6 +52692,11 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
+        else if (this.type == "cheshirePaw")
+        {
+            LXX.beginPath();
+            LXX.drawImage(tomb, 901, 3, 35, 31, this.invX - (1/2 * 35 * 1), this.invY - (1/2 * 31 * 1), 35 * 1, 31 * 1);
+        }
         else if (this.type == "worms")
         {
             LXX.beginPath();
@@ -58711,6 +58721,11 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "cheshirePaw")
+        {
+            XXX.beginPath();
+            XXX.drawImage(tomb, 901, 3, 35, 31, this.invX - (1/2 * 35 * 1), this.invY - (1/2 * 31 * 1), 35 * 1, 31 * 1);
         }
         else if (this.type == "worms")
         {

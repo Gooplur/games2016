@@ -75579,6 +75579,30 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 this.drops = [[new Item("coins", this.X, this.Y), 115]];
             }
+            else if (this.ID == "Tatiana")
+            {
+                this.drops = [[new Item("vardanWearF", this.X, this.Y), 1]];
+            }
+            else if (this.ID == "Valia the Fishseller")
+            {
+                this.drops = [[new Item("coins", this.X, this.Y), 13], [new Item("vardanWearF", this.X, this.Y), 1]];
+            }
+            else if (this.ID == "Anastasiya the Merchant")
+            {
+                this.drops = [[new Item("coins", this.X, this.Y), 8], [new Item("vardanWearF", this.X, this.Y), 1]];
+            }
+            else if (this.ID == "Mendel the Banker")
+            {
+                this.drops = [[new Item("coins", this.X, this.Y), 98]];
+            }
+            else if (this.ID == "Vanya the Tailor")
+            {
+                this.drops = [[new Item("coins", this.X, this.Y), 9], [new Item("vardanWearF", this.X, this.Y), 1]];
+            }
+            else if (this.ID == "Kazimir the Blacksmith")
+            {
+                this.drops = [[new Item("coins", this.X, this.Y), 20], [new Item("hammer", this.X, this.Y), 1]];
+            }
             else if (this.ID == "Master Blacksmith Heinrich")
             {
                 this.drops = [[new Item("coins", this.X, this.Y), 1240], [new Item("silverDagger", this.X, this.Y), 1]];
@@ -76490,6 +76514,64 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         if (this.killNotByPlayer == false || this.killByPlayerTeam)
                         {
                             player.freynorFaction -= 14;
+                        }
+                    }
+                    else if (this.ID == "Tatiana")
+                    {
+                        uniqueChars.tatianaLDS = false;
+
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.vardanFaction -= 15;
+                        }
+                    }
+                    else if (this.ID == "Demyan")
+                    {
+                        uniqueChars.demyanLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.vardanFaction -= 1;
+                        }
+                    }
+                    else if (this.ID == "Valia the Fishseller")
+                    {
+                        uniqueChars.valiaLDS = false;
+                        uniqueChars.demyanLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.vardanFaction -= 5;
+                        }
+                    }
+                    else if (this.ID == "Anastasiya the Merchant")
+                    {
+                        uniqueChars.anastasiyaLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.vardanFaction -= 7;
+                        }
+                    }
+                    else if (this.ID == "Mendel the Banker")
+                    {
+                        uniqueChars.mendelLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.vardanFaction -= 18;
+                        }
+                    }
+                    else if (this.ID == "Vanya the Tailor")
+                    {
+                        uniqueChars.vanyaLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.vardanFaction -= 12;
+                        }
+                    }
+                    else if (this.ID == "Kazimir the Blacksmith")
+                    {
+                        uniqueChars.kazimirLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.vardanFaction -= 16;
                         }
                     }
                     else if (this.ID == "Master Blacksmith Heinrich")

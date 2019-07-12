@@ -14,6 +14,7 @@ AppleTree - A temperate tree that yields apples; apple trees grow almost exclusi
 Wheat - A tropical/temperate grass that yields a wholesome grain that can be milled into bread or fermented.
 DesertPoppy - A poppy plant that grows in the far south in the burning desert; its seeds can be made into opium
 Heyol - A freydic berry bush that hosts small green berries that are bitter and medicinal
+Borsht - A swamp beet that grows in the Vardanian Swamplands. It grows in water.
 
 //ALREADY IN GAME (to create a plant with the scenery class these plants must be made all lowercase)
     //FARM

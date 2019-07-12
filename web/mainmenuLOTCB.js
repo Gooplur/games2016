@@ -1400,8 +1400,16 @@ function applySelectionsButton()
         }
         else if (player.raceName == "Vardan")
         {
-            X = 347646;
-            Y = -79380;
+            if (player.title == "Tradefolk")
+            {
+                X = 349094.69871311786;
+                Y = -76352.20363863211;
+            }
+            else
+            {
+                X = 347922.77490743285;
+                Y = -75796.09988610973;
+            }
         }
         else if (player.raceName == "Nirwaden")
         {

@@ -448,6 +448,9 @@ function worldBuilder()
             campout = true;
             outlineBuilder(34, 34, "vardanianWetland", -1176, 252);
 
+            outlineBuilder(2, 2, "swamp", -1176, 280);
+            outlineBuilder(2, 1, "swamp", -1163, 259);
+            outlineBuilder(1, 1, "swamp", -1155, 267);
             outlineBuilder(8, 2, "swamp", -1175, 252);
             outlineBuilder(5, 6, "swamp", -1170, 263);
             outlineBuilder(3, 2, "swamp", -1165, 258);
@@ -695,12 +698,12 @@ function worldBuilder()
             outlineBuilder( 1, 23, "brickRoad", -700, 166);
         }
         //mapS5W21
-        if (Y > -54904 && Y < -44148 && X < 221940 && X > 210266) //X-21 //todo add map
+        if (Y > -54904 && Y < -44148 && X < 221940 && X > 210266) //X-21
         {
             elevation = 0;
             region = "s5w21";
             campout = true;
-            outlineBuilder(34, 34, "desert", -734, 150);
+            outlineBuilder(34, 34, "mistywoods", -734, 150);
 
             outlineBuilder( 1, 30, "brickRoad", -730, 166);
             outlineBuilder( 1, 5, "brickRoad", -734, 165);

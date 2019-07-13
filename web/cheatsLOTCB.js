@@ -14,8 +14,8 @@ function cheats()
     }
     if (buildMode == true)
     {
-        var buildList = ["coords", "Selva Tree", "Sonja Tree", "Gallosh Plant", "Vorlym Plant", "Thueg", "Conejo", "Boulchom", "Great Pine Tree", "Pine Tree", "Snowy Great Pine Tree", "Snowy Pine Tree", "Ashai Tree", "Ghoul", "Ribback", "Vreck", "Dalger", "Varonoi", "Stovol Beetle", "Thegol Thorn", "Elk", "Black Beruln", "Mekle Plant", "Black Bear", "Turkey", "Skol", "Deer", "Fox", "Badger", "Hoffalgre", "Crow", "Silter", "Scilt Plant", "Korsk Beetle", "Cheshire", "Grizzly Bear", "Borgal", "Lizard", "Koivaya (loner)", "Koivaya (breeder)", "Cranberry Plant", "Eyewort Plant", "Korceida Plant", "Laumin Plant", "Jolle Plant", "Porstol Plant", "Fallory Plant", "Palgga Plant", "Bleeding Heart Plant", "Aberdom Plant", "Beunum Plant", "Ciprin Plant", "Marigold Plant", "Hoil Plant", "Callop Plant", "Darb Plant", "Kofke Plant", "Steugiurne Plant", "Web", "Etna Egg Sack", "Etna", "Mustard Plant", "Carrot Plant", "Potato Plant", "Cabbage Plant", "Harst Plant", "Santh Plant", "Wheat Plant", "Suuli Plant"];
-        //                  0           1              2               3                4          5        6           7              8               9                  10                    11              12         13         14       15        16        17             18              19         20          21              22            23          24       25      26      27      28          29        30       31          32             33             34             35         36         37            38                  39                   40                41               42                43             44              45               46               47                 48                   49              50               51               52             53             54             55            56                57            58         59           60           61              62               63              64              65            66             67              68
+        var buildList = ["coords", "Selva Tree", "Sonja Tree", "Gallosh Plant", "Vorlym Plant", "Thueg", "Conejo", "Boulchom", "Great Pine Tree", "Pine Tree", "Snowy Great Pine Tree", "Snowy Pine Tree", "Ashai Tree", "Ghoul", "Ribback", "Vreck", "Dalger", "Varonoi", "Stovol Beetle", "Thegol Thorn", "Elk", "Black Beruln", "Mekle Plant", "Black Bear", "Turkey", "Skol", "Deer", "Fox", "Badger", "Hoffalgre", "Crow", "Silter", "Scilt Plant", "Korsk Beetle", "Cheshire", "Grizzly Bear", "Borgal", "Lizard", "Koivaya (loner)", "Koivaya (breeder)", "Cranberry Plant", "Eyewort Plant", "Korceida Plant", "Laumin Plant", "Jolle Plant", "Porstol Plant", "Fallory Plant", "Palgga Plant", "Bleeding Heart Plant", "Aberdom Plant", "Beunum Plant", "Ciprin Plant", "Marigold Plant", "Hoil Plant", "Callop Plant", "Darb Plant", "Kofke Plant", "Steugiurne Plant", "Web", "Etna Egg Sack", "Etna", "Mustard Plant", "Carrot Plant", "Potato Plant", "Cabbage Plant", "Harst Plant", "Santh Plant", "Wheat Plant", "Suuli Plant", "Lilypads"];
+        //                  0           1              2               3                4          5        6           7              8               9                  10                    11              12         13         14       15        16        17             18              19         20          21              22            23          24       25      26      27      28          29        30       31          32             33             34             35         36         37            38                  39                   40                41               42                43             44              45               46               47                 48                   49              50               51               52             53             54             55            56                57            58         59           60           61              62               63              64              65            66             67              68           69
         if (tKey)
         {
             tKey = false;
@@ -1586,6 +1586,37 @@ function cheats()
                 XXX.restore();
             }
         }
+        else if (buildToggle == 69)
+        {
+            if (xKey)
+            {
+                xKey = false;
+                var alphon = Math.random();
+                if (alphon > 0.66)
+                {
+                    alphon = 2;
+                }
+                else if (alphon > 0.33)
+                {
+                    alphon = 1;
+                }
+                else
+                {
+                    alphon = 0;
+                }
+                console.log('scenicList.push(new Scenery("lilypads", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', ' + alphon + '));');
+                worldItems.push([new Item("plantMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(toad, 114, 3, 83, 84, -(1/2 * 83 * 1.2), -(1/2 * 84 * 1.2), 83 * 1.2, 84 * 1.2);
+                XXX.restore();
+            }
+        }
     }
     //kids mode silliness
     if (player.gamemode == "protagonist")
@@ -2891,6 +2922,10 @@ function cheats()
                 }
             }
             player.engagedSenser();
+        }
+        else if (cheatcode.toLowerCase() == "killall")
+        {
+            ArtificialIntelligenceAccess = [];
         }
         else if (cheatcode.toLowerCase() == "change")
         {

@@ -19964,11 +19964,19 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 {
                     if (player.carryWeight < 10)
                     {
-                        this.health -= 0.10;
+                        this.health -= 0.01;
+                    }
+                    else if (player.carryWeight < 20)
+                    {
+                        this.health -= 0.02;
+                    }
+                    else if (player.carryWeight < 30)
+                    {
+                        this.health -= 0.05;
                     }
                     else if (player.carryWeight < 50)
                     {
-                        this.health -= 0.15;
+                        this.health -= 0.10;
                     }
                     else if (player.carryWeight < 100)
                     {
@@ -35380,7 +35388,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             if (this.lit == true)
             {
                 lights.push({X:this.X, Y: this.Y, size: 220, extraStops: true, GRD: 0.15, Alpha: 0.4, showMe: false});
-                this.fireCostume += 5;
+                this.fireCostume += 2;
                 this.campFireTime += 1;
 
                 //die out over time

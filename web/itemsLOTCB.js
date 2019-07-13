@@ -28987,7 +28987,7 @@ function Item(type, x, y)
             //Crafting
             this.yield = 1;
             this.intForCraft = 12;
-            this.ingredients = [["Raw Sliced Mulstish", 1]];
+            this.ingredients = [["Sliced Raw Mulstish", 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 8; // at max, buy for 8.

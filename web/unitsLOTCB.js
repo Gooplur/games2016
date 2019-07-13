@@ -1470,6 +1470,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         if (this.team == "sprite")
         {
             this.allys.push("herd");
+            this.allys.push("herdia");
             this.allys.push("cheshiria");
             this.allys.push("docile");
             this.allys.push("silteria");
@@ -56287,6 +56288,12 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             //AI
             if (this.alive == true)
             {
+                if (campout == false) //it dies if it enters
+                {
+                    this.health = 0;
+                    this.killNotByPlayer = true;
+                    this.deleteBody = true;
+                }
                 //this.timeResistance = timeSpeed; //this makes sprites resistant to time slowing spells etc.
 
                 //sprites don't show their health bar
@@ -56319,15 +56326,15 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
                         if (boop <= 0.1)
                         {
-                            scenicList.push(new Scenery("highFog", this.X + Math.random() * 4400 - 2200, this.Y + Math.random() * 4400 - 2200, Math.random() * 2*Math.PI, Math.floor(Math.random()*4), [Math.min(1, 0.1 + Math.random()), 0.55 + 2.45 * Math.random()]));
+                            scenicList.push(new Scenery("highFog", this.X + Math.random() * 4400 - 2200, this.Y + Math.random() * 4400 - 2200, Math.random() * 2*Math.PI, Math.floor(Math.random()*4), [Math.min(0.7, 0.4 + Math.random()), 2 + Math.random()]));
                         }
                         else if (boop <= 0.9)
                         {
-                            scenicList.push(new Scenery("fog", this.X + Math.random() * 4400 - 2200, this.Y + Math.random() * 4400 - 2200, Math.random() * 2*Math.PI, Math.floor(Math.random()*4), [Math.min(1, 0.1 + Math.random()), 0.55 + 2.45 * Math.random()]));
+                            scenicList.push(new Scenery("fog", this.X + Math.random() * 4400 - 2200, this.Y + Math.random() * 4400 - 2200, Math.random() * 2*Math.PI, Math.floor(Math.random()*4), [Math.min(0.7, 0.4 + Math.random()), 2 + Math.random()]));
                         }
                         else
                         {
-                            scenicList.push(new Scenery("lowFog", this.X + Math.random() * 4400 - 2200, this.Y + Math.random() * 4400 - 2200, Math.random() * 2*Math.PI, Math.floor(Math.random()*4), [Math.min(1, 0.1 + Math.random()), 0.55 + 2.45 * Math.random()]));
+                            scenicList.push(new Scenery("lowFog", this.X + Math.random() * 4400 - 2200, this.Y + Math.random() * 4400 - 2200, Math.random() * 2*Math.PI, Math.floor(Math.random()*4), [Math.min(0.7, 0.4 + Math.random()), 2 + Math.random()]));
                         }
                     }
                 }
@@ -56408,7 +56415,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     {
                         if (this.DTP() < 150)
                         {
-                            if (fogs >= 19)
+                            if (fogs >= 71)
                             {
                                 for (var l = 0; l < scenicList.length; l++)
                                 {
@@ -56423,14 +56430,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             X += (Math.random() * 700 - 350);
                             Y += (Math.random() * 700 - 350);
 
-                            scenicList.push(new Scenery("fog", X, Y, Math.random() * 2*Math.PI, Math.floor(Math.random()*4), [Math.min(1, 0.6 + Math.random()), 0.66 + Math.random()]));
+                            scenicList.push(new Scenery("fog", X, Y, Math.random() * 2*Math.PI, Math.floor(Math.random()*4), [Math.min(0.7, 0.4 + Math.random()), 2 + Math.random()]));
                         }
                     }
                     else if (this.target != "none")
                     {
                         if (this.DTU(this.target) < 150)
                         {
-                            if (fogs >= 19)
+                            if (fogs >= 71)
                             {
                                 for (var l = 0; l < scenicList.length; l++)
                                 {
@@ -56445,7 +56452,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             this.target.X += (Math.random() * 700 - 350);
                             this.target.Y += (Math.random() * 700 - 350);
 
-                            scenicList.push(new Scenery("fog", this.target.X, this.target.Y, Math.random() * 2*Math.PI, Math.floor(Math.random()*4), [Math.min(1, 0.6 + Math.random()), 0.66 + Math.random()]));
+                            scenicList.push(new Scenery("fog", this.target.X, this.target.Y, Math.random() * 2*Math.PI, Math.floor(Math.random()*4), [Math.min(0.7, 0.4 + Math.random()), 2 + Math.random()]));
                         }
                     }
 
@@ -56555,7 +56562,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         this.pointTowardsPlayer();
                         if (this.DTP() < 200)
                         {
-                            if (fogs >= 19)
+                            if (fogs >= 71)
                             {
                                 for (var l = 0; l < scenicList.length; l++)
                                 {
@@ -56568,7 +56575,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             }
                             this.X += (Math.random() * 2800 - 1400);
                             this.Y += (Math.random() * 2800 - 1400);
-                            scenicList.push(new Scenery("fog", this.X, this.Y, Math.random() * 2*Math.PI, Math.floor(Math.random()*4), [Math.min(1, 0.8 + Math.random()), 0.77 + Math.random()]));
+                            scenicList.push(new Scenery("fog", this.X, this.Y, Math.random() * 2*Math.PI, Math.floor(Math.random()*4), [Math.min(0.7, 0.4 + Math.random()), 2 + Math.random()]));
                         }
                     }
                     else if (this.target != "none")
@@ -56576,7 +56583,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         this.pointTowards(this.target);
                         if (this.DTU(this.target) < 200)
                         {
-                            if (fogs >= 19)
+                            if (fogs >= 71)
                             {
                                 for (var l = 0; l < scenicList.length; l++)
                                 {
@@ -56589,13 +56596,13 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             }
                             this.X += (Math.random() * 2800 - 1400);
                             this.Y += (Math.random() * 2800 - 1400);
-                            scenicList.push(new Scenery("fog", this.X, this.Y, Math.random() * 2*Math.PI, Math.floor(Math.random()*4), [Math.min(1, 0.8 + Math.random()), 0.77 + Math.random()]));
+                            scenicList.push(new Scenery("fog", this.X, this.Y, Math.random() * 2*Math.PI, Math.floor(Math.random()*4), [Math.min(0.7, 0.4 + Math.random()), 2 + Math.random()]));
                         }
                     }
 
                     if (this.DTP() > 4000)
                     {
-                        if (fogs >= 22)
+                        if (fogs >= 71)
                         {
                             for (var l = 0; l < scenicList.length; l++)
                             {
@@ -56608,7 +56615,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         }
                         this.X = X + Math.random() * 3200 - 1600;
                         this.Y = Y + Math.random() * 3200 - 1600;
-                        scenicList.push(new Scenery("fog", this.X, this.Y, Math.random() * 2*Math.PI, 1, [Math.min(1, 0.8 + Math.random()), 1]));
+                        scenicList.push(new Scenery("fog", this.X, this.Y, Math.random() * 2*Math.PI, 1, [Math.min(0.7, 0.4 + Math.random()), 2 + Math.random()]));
                     }
                 }
                 else //maniacal

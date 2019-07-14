@@ -3341,8 +3341,34 @@ function Item(type, x, y)
             this.ability = "poisonI";
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
-            this.buyValue = 135 - Math.floor(player.getCharisma() / 2); // at max, buy for 110.
-            this.sellValue = 80 + Math.floor(player.getCharisma() / 2); // at max, sell for 105.
+            if (shopkeeper != "none")
+            {
+                if (shopkeeper.ultra.race == "Cephrite")
+                {
+                    this.buyValue = 90 - Math.floor(player.getCharisma() / 2); // at max, buy for 65.
+                    this.sellValue = 40 + Math.floor(player.getCharisma() / 2); // at max, sell for 65.
+                }
+                else if (shopkeeper.ultra.race == "Vardan" && shopkeeper.ID != "Neculai the Merchant")
+                {
+                    this.buyValue = 80 - Math.floor(player.getCharisma() / 2); // at max, buy for 55.
+                    this.sellValue = 19 + Math.floor(player.getCharisma() / 2); // at max, sell for 44.
+                }
+                else if (shopkeeper.ultra.race == "Thengar")
+                {
+                    this.buyValue = 115 - Math.floor(player.getCharisma() / 3); // at max, buy for 100.
+                    this.sellValue = 70 + Math.floor(player.getCharisma() / 2); // at max, sell for 95.
+                }
+                else
+                {
+                    this.buyValue = 135 - Math.floor(player.getCharisma() / 2); // at max, buy for 110.
+                    this.sellValue = 80 + Math.floor(player.getCharisma() / 2); // at max, sell for 105.
+                }
+            }
+            else
+            {
+                this.buyValue = 135 - Math.floor(player.getCharisma() / 2); // at max, buy for 110.
+                this.sellValue = 80 + Math.floor(player.getCharisma() / 2); // at max, sell for 105.
+            }
         }
         else if (this.type == "trollMeat")
         {
@@ -31074,7 +31100,7 @@ function Item(type, x, y)
             this.identity = "Raw Ghoul Fly Stomach";
             this.weight = 4;
             this.size = 15;
-            this.description = "The raw dripping stomach of a ghoul fly.";
+            this.description = "The raw dripping stomach of a ghoul fly. It is full of digestive gasses that allow ghoul flies to float on the water.";
             this.intForDes = 5;
             this.intDescription = "Ghoul fly stomach can be made brittle by drying it with salt.";
 

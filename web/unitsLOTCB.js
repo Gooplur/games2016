@@ -728,7 +728,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     {
         for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
         {
-            if (gameLoopNumber % 5 == 0 && ArtificialIntelligenceAccess[i] !== this) //todo whilst this is set to == 0 it will not truly ever work but it think i prefer it not working.
+            if (gameLoopNumber % 5 == 0 && ArtificialIntelligenceAccess[i] !== this)
             {
                 var upcX = this.X - Math.cos(this.rotation) * (TTD / 16.75) * this.speed;
                 var upcY = this.Y - Math.sin(this.rotation) * (TTD / 16.75) * this.speed;
@@ -1546,6 +1546,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.allys.push("docile");
             this.allys.push("bloatia");
         }
+        if (this.team == "hydra")
+        {
+            this.allys.push("sprite");
+            this.allys.push("clamia");
+            this.allys.push("ulgoyia");
+            this.allys.push("shehidia");
+            this.allys.push("docile");
+        }
         if (this.team == "cheshiria")
         {
             this.allys.push("lombrisia");
@@ -1606,6 +1614,8 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.allys.push("bloat");
             this.allys.push("bloatia");
             this.allys.push("ghoul");
+            this.allys.push("toadia");
+            this.allys.push("hydra");
         }
         if (this.team == "ghoul")
         {
@@ -1620,6 +1630,12 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.allys.push("narthwarpia");
             this.allys.push("docile");
             this.allys.push("bearia");
+            this.allys.push("ulgoyia");
+            this.allys.push("clamia");
+        }
+        if (this.team == "toadia")
+        {
+            this.allys.push("docile");
             this.allys.push("ulgoyia");
             this.allys.push("clamia");
         }
@@ -18891,7 +18907,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.speed = 2.5 + (Math.floor(Math.random() * 4) / 10);
             this.baseSpeed = this.speed;
             this.rangeOfSight = 825; //This is just to set the variable initially. The rest is variable.
-            this.rotationSpeed = 0.5;
+            this.rotationSpeed = 0.12;
             this.engagementRadius = 70;
             this.sizeRadius = 23;
             this.negateArmour = 5.5;
@@ -19158,6 +19174,8 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
             this.baseTeam = this.team;
             this.tamable = false;
+
+            this.returnHome = false;
 
             if (this.alpha == true)
             {
@@ -20200,6 +20218,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         }
         else if (this.type == "Toad") //toadtoad
         {
+            this.mobile = false; //toads move for no one.
             this.haste = true;
             this.resistances = ["water"];
             this.damageFrame = "automatic";
@@ -41466,6 +41485,15 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             //AI
             if (this.alive == true)
             {
+                if (this.water && this.land == false)
+                {
+                    this.rotationSpeed = 0.5;
+                }
+                else
+                {
+                    this.rotationSpeed = 0.12;
+                }
+
                 if (this.heads == 1)
                 {
                     this.Attack(6, 8);
@@ -41491,13 +41519,13 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     var distFromCutCut = Math.sqrt(((this.X + Math.cos(this.rotation + Math.PI) * 55) - player.bubbleOfDamageX)*((this.X + Math.cos(this.rotation + Math.PI) * 55) - player.bubbleOfDamageX) + ((this.Y + Math.sin(this.rotation + Math.PI) * 55) - player.bubbleOfDamageY)*((this.Y + Math.sin(this.rotation + Math.PI) * 55) - player.bubbleOfDamageY));
                     if (distFromCutCut <= (player.weapon.range + 40))
                     {
-                        console.log(player.weapon);
+                        //console.log(player.weapon);
                         this.headHealth -= Math.max(0, player.weapon.damage - Math.max(0, this.armour - player.weapon.negateArmour));
-                        console.log("headHealth: " + this.headHealth);
+                        //console.log("headHealth: " + this.headHealth);
                     }
                     else
                     {
-                        console.log(distFromCutCut);
+                        //console.log(distFromCutCut);
                     }
                 }
 
@@ -41765,7 +41793,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             else if (this.alive == true && this.headHealth <= 0)
             {
                 this.health = this.healthMAX;
-                this.regenTic += 1;
+                this.regenTic += 0.04;
                 this.speed = 0;
                 if (this.heads == 1)
                 {
@@ -43222,25 +43250,50 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.friendDecider();
                 this.targeting();
 
-                if (this.water == false)
+                if (this.water == false && this.nonDetect == false || this.returnHome == true)
                 {
+                    this.returnHome = true;
                     this.nonDetect = false;
-                    this.moving = false;
                     this.flying = false;
-                    this.killNotByPlayer = true;
-                    this.health -= 0.01;
-                    this.experience = 5;
+                    if (this.water == false)
+                    {
+                        this.killNotByPlayer = true;
+                        this.health -= 0.01;
+                        this.experience = 5;
+                        this.moving = false;
+                    }
 
                     var startPos = {X: this.initX, Y: this.initY};
                     this.pointTowards(startPos);
                     this.moveInRelationToThing(startPos);
-                    if (this.alpha == true)
+
+                    if (this.X > this.initX - 40 && this.X < this.initX + 40 && this.Y > this.initY - 40 && this.Y < this.initY + 40)
                     {
-                        this.speed = 0.2;
+                        this.X = this.initX;
+                        this.Y = this.initY;
+                        this.water = true;
+                        this.returnHome = false;
+                        this.speed = 0;
+                        this.swimSpeed = 0;
+                        this.engagementRadius = this.sizeRadius + (5 * this.alphaSize);
+                        this.nonDetect = true;
+                        this.flying = true;
+                        this.wokedenUp = false;
+                        this.wigglez = 0;
+                        this.disturbed = false;
+                        this.offended = false;
                     }
-                    else
+
+                    if (this.water == false)
                     {
-                        this.speed = 0.3;
+                        if (this.alpha == true)
+                        {
+                            this.speed = 0.2;
+                        }
+                        else
+                        {
+                            this.speed = 0.3;
+                        }
                     }
                 }
 
@@ -43254,7 +43307,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
                 if (this.target == player)
                 {
-                    if (this.water == true)
+                    if (this.water == true && this.returnHome == false)
                     {
                         if (this.nonDetect == true)
                         {
@@ -43277,7 +43330,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 }
                 else if (this.target != "none")
                 {
-                    if (this.water == true)
+                    if (this.water == true && this.returnHome == false)
                     {
                         if (this.nonDetect == true)
                         {
@@ -48951,11 +49004,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         {
                             if (this.alpha)
                             {
-                                player.mageShield -= (10 + Math.round(8 * Math.random()));
+                                player.mageShield -= (32 + Math.round(9 * Math.random()));
                             }
                             else
                             {
-                                player.mageShield -= (7 + Math.round(6 * Math.random()));
+                                player.mageShield -= (20 + Math.round(7 * Math.random()));
                             }
                         }
                         else
@@ -48966,13 +49019,13 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
                             if (this.alpha)
                             {
-                                player.health -= Math.max(0, (16 + Math.round(12 * Math.random())) - Math.max(0, player.armourTotal - (this.negateArmour + 3)));
-                                player.decreaseInHealth += Math.max(0, (16 + Math.round(12 * Math.random())) - Math.max(0, player.armourTotal - (this.negateArmour + 3)));
+                                player.health -= Math.max(0, (36 + Math.round(12 * Math.random())) - Math.max(0, player.armourTotal - (this.negateArmour + 3)));
+                                player.decreaseInHealth += Math.max(0, (36 + Math.round(12 * Math.random())) - Math.max(0, player.armourTotal - (this.negateArmour + 3)));
                             }
                             else
                             {
-                                player.health -= Math.max(0, (11 + Math.round(8 * Math.random())) - Math.max(0, player.armourTotal - (this.negateArmour + 1)));
-                                player.decreaseInHealth += Math.max(0, (11 + Math.round(8 * Math.random())) - Math.max(0, player.armourTotal - (this.negateArmour + 1)));
+                                player.health -= Math.max(0, (23 + Math.round(8 * Math.random())) - Math.max(0, player.armourTotal - (this.negateArmour + 1)));
+                                player.decreaseInHealth += Math.max(0, (23 + Math.round(8 * Math.random())) - Math.max(0, player.armourTotal - (this.negateArmour + 1)));
                             }
                         }
                         this.tongued = false;
@@ -49016,11 +49069,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                                         {
                                             if (this.alpha)
                                             {
-                                                player.mageShield -= (6 + Math.round(4 * Math.random()));
+                                                player.mageShield -= (9 + Math.round(3 * Math.random()));
                                             }
                                             else
                                             {
-                                                player.mageShield -= (3 + Math.round(3 * Math.random()));
+                                                player.mageShield -= (4 + Math.round(2 * Math.random()));
                                             }
                                         }
                                         else
@@ -49031,13 +49084,13 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
                                             if (this.alpha)
                                             {
-                                                player.health -= Math.max(0, (6 + Math.round(4 * Math.random())) - Math.max(0, player.armourTotal - this.negateArmour));
-                                                player.decreaseInHealth += Math.max(0, (6 + Math.round(4 * Math.random())) - Math.max(0, player.armourTotal - this.negateArmour));
+                                                player.health -= Math.max(0, (10 + Math.round(4 * Math.random())) - Math.max(0, player.armourTotal - this.negateArmour));
+                                                player.decreaseInHealth += Math.max(0, (10 + Math.round(4 * Math.random())) - Math.max(0, player.armourTotal - this.negateArmour));
                                             }
                                             else
                                             {
-                                                player.health -= Math.max(0, (7 + Math.round(6 * Math.random())) - Math.max(0, player.armourTotal - this.negateArmour));
-                                                player.decreaseInHealth += Math.max(0, (7 + Math.round(6 * Math.random())) - Math.max(0, player.armourTotal - this.negateArmour));
+                                                player.health -= Math.max(0, (5 + Math.round(3 * Math.random())) - Math.max(0, player.armourTotal - this.negateArmour));
+                                                player.decreaseInHealth += Math.max(0, (5 + Math.round(3 * Math.random())) - Math.max(0, player.armourTotal - this.negateArmour));
                                             }
                                         }
                                         this.health -= 6;
@@ -49049,11 +49102,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                                         {
                                             if (this.alpha)
                                             {
-                                                player.mageShield -= (10 + Math.round(8 * Math.random()));
+                                                player.mageShield -= (12 + Math.round(8 * Math.random()));
                                             }
                                             else
                                             {
-                                                player.mageShield -= (7 + Math.round(6 * Math.random()));
+                                                player.mageShield -= (9 + Math.round(5 * Math.random()));
                                             }
                                         }
                                         else
@@ -49064,13 +49117,13 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
                                             if (this.alpha)
                                             {
-                                                player.health -= Math.max(0, (10 + Math.round(8 * Math.random())) - Math.max(0, player.armourTotal - this.negateArmour));
-                                                player.decreaseInHealth += Math.max(0, (10 + Math.round(8 * Math.random())) - Math.max(0, player.armourTotal - this.negateArmour));
+                                                player.health -= Math.max(0, (14 + Math.round(9 * Math.random())) - Math.max(0, player.armourTotal - this.negateArmour));
+                                                player.decreaseInHealth += Math.max(0, (14 + Math.round(9 * Math.random())) - Math.max(0, player.armourTotal - this.negateArmour));
                                             }
                                             else
                                             {
-                                                player.health -= Math.max(0, (10 + Math.round(8 * Math.random())) - Math.max(0, player.armourTotal - this.negateArmour));
-                                                player.decreaseInHealth += Math.max(0, (10 + Math.round(8 * Math.random())) - Math.max(0, player.armourTotal - this.negateArmour));
+                                                player.health -= Math.max(0, (10 + Math.round(6 * Math.random())) - Math.max(0, player.armourTotal - this.negateArmour));
+                                                player.decreaseInHealth += Math.max(0, (10 + Math.round(6 * Math.random())) - Math.max(0, player.armourTotal - this.negateArmour));
                                             }
                                         }
                                     }
@@ -49082,11 +49135,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                                     {
                                         if (this.alpha)
                                         {
-                                            player.mageShield -= (10 + Math.round(8 * Math.random()));
+                                            player.mageShield -= (13 + Math.round(9 * Math.random()));
                                         }
                                         else
                                         {
-                                            player.mageShield -= (7 + Math.round(6 * Math.random()));
+                                            player.mageShield -= (10 + Math.round(6 * Math.random()));
                                         }
                                     }
                                     else
@@ -49097,13 +49150,13 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
                                         if (this.alpha)
                                         {
-                                            player.health -= Math.max(0, (5 + Math.round(8 * Math.random())) - Math.max(0, player.armourTotal - this.negateArmour));
-                                            player.decreaseInHealth += Math.max(0, (5 + Math.round(8 * Math.random())) - Math.max(0, player.armourTotal - this.negateArmour));
+                                            player.health -= Math.max(0, (15 + Math.round(10 * Math.random())) - Math.max(0, player.armourTotal - this.negateArmour));
+                                            player.decreaseInHealth += Math.max(0, (15 + Math.round(10 * Math.random())) - Math.max(0, player.armourTotal - this.negateArmour));
                                         }
                                         else
                                         {
-                                            player.health -= Math.max(0, (3.5 + Math.round(6 * Math.random())) - Math.max(0, player.armourTotal - this.negateArmour));
-                                            player.decreaseInHealth += Math.max(0, (3.5 + Math.round(6 * Math.random())) - Math.max(0, player.armourTotal - this.negateArmour));
+                                            player.health -= Math.max(0, (11 + Math.round(7 * Math.random())) - Math.max(0, player.armourTotal - this.negateArmour));
+                                            player.decreaseInHealth += Math.max(0, (11 + Math.round(7 * Math.random())) - Math.max(0, player.armourTotal - this.negateArmour));
                                         }
                                     }
                                 }
@@ -49182,7 +49235,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 {
                     if (this.tongueBack != true && new Date().getTime() - this.doTongueTime > 5000)
                     {
-                        if (this.tongued == true && this.target.healthMAX <= 28 && this.DTU(this.target) <= 50 && this.target.team != "undead" && this.target.team != "ghost" && this.target.type != "Changeling" && this.alpha == true || this.tongued == true && this.target.healthMAX <= 10 && this.DTU(this.target) <= 50 && this.target.team != "undead" && this.target.team != "ghost" && this.target.type != "Changeling" && this.alpha == false)
+                        if (this.tongued == true && this.target.healthMAX <= 40 && this.DTU(this.target) <= 50 && this.target.team != "undead" && this.target.team != "ghost" && this.target.type != "Changeling" && this.alpha == true || this.tongued == true && this.target.healthMAX <= 14 && this.DTU(this.target) <= 50 && this.target.team != "undead" && this.target.team != "ghost" && this.target.type != "Changeling" && this.alpha == false)
                         {
                             this.hopTime = new Date().getTime();
                             this.tongued = false;
@@ -49196,11 +49249,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             this.target.killNotByPlayer = true;
                             this.doTongueTime = new Date().getTime();
                         }
-                        else if (this.tongued == true && this.DTU(this.target) <= this.engagementRadius && this.target.healthMAX > 28 || this.tongued == true && this.DTU(this.target) <= this.engagementRadius && this.target.team != "undead" || this.tongued == true && this.DTU(this.target) <= this.engagementRadius && this.target.team != "ghost" || this.tongued == true && this.DTU(this.target) <= this.engagementRadius && this.target.type != "Changeling")
+                        else if (this.tongued == true && this.DTU(this.target) <= this.engagementRadius && this.target.healthMAX > 40 && this.alpha == true && this.target.team != "undead" && this.target.team != "ghost" && this.target.type != "Changeling" || this.tongued == true && this.DTU(this.target) <= this.engagementRadius && this.target.healthMAX > 14 && this.alpha == false && this.target.team != "undead" && this.target.team != "ghost" && this.target.type != "Changeling")
                         {
                             if (this.alpha)
                             {
-                                this.target.health -= Math.max(0, (10 + Math.round(8 * Math.random())) - Math.max(0, this.target.armour - this.negateArmour));
+                                this.target.health -= Math.max(0, (36 + Math.round(12 * Math.random())) - Math.max(0, this.target.armour - (this.negateArmour + 3)));
                                 if (this.target.health <= 0)
                                 {
                                     this.target.killNotByPlayer = true;
@@ -49208,7 +49261,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             }
                             else
                             {
-                                this.target.health -= Math.max(0, (7 + Math.round(6 * Math.random())) - Math.max(0, this.target.armour - this.negateArmour));
+                                this.target.health -= Math.max(0, (23 + Math.round(8 * Math.random())) - Math.max(0, this.target.armour - (this.negateArmour + 1)));
                                 if (this.target.health <= 0)
                                 {
                                     this.target.killNotByPlayer = true;
@@ -49255,7 +49308,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                                     this.tongueBack = true;
                                     if (this.alpha)
                                     {
-                                        this.target.health -= Math.max(0, (10 + Math.round(8 * Math.random())) - Math.max(0, this.target.armour - this.negateArmour));
+                                        this.target.health -= Math.max(0, (12 + Math.round(8 * Math.random())) - Math.max(0, this.target.armour - this.negateArmour));
                                         if (this.target.health <= 0)
                                         {
                                             this.target.killNotByPlayer = true;
@@ -49263,7 +49316,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                                     }
                                     else
                                     {
-                                        this.target.health -= Math.max(0, (7 + Math.round(6 * Math.random())) - Math.max(0, this.target.armour - this.negateArmour));
+                                        this.target.health -= Math.max(0, (8 + Math.round(6 * Math.random())) - Math.max(0, this.target.armour - this.negateArmour));
                                         if (this.target.health <= 0)
                                         {
                                             this.target.killNotByPlayer = true;
@@ -69593,6 +69646,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             //AI
             if (this.alive == true)
             {
+                if (player.water == true && player.land == false)
+                {
+                    this.rangeOfSightCalculator(590, false);
+                }
 
                 this.callForNearbyHelpFromType(320, "Leech");
 
@@ -74557,11 +74614,15 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 if (this.moving && !this.attacking) //If moving and not attacking initiate moving animation...
                 {
                     this.flying = true;
+                    this.water = false;
+                    this.land = true;
                     this.costumeEngine(4, 0.5, true);
                 }
                 else if (this.attacking) //otherwise if it is attacking then initiate attacking animation, and if neither...
                 {
                     this.flying = false;
+                    this.water = false;
+                    this.land = true;
                     if(new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000 / timeSpeed * this.timeResistance))
                     {
                         this.costumeEngine(5, 0.20, false);
@@ -74570,6 +74631,8 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 else
                 {
                     this.flying = false;
+                    this.water = false;
+                    this.land = true;
                 }
 
                 // the frames/stages/costumes of the animation.

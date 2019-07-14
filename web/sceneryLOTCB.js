@@ -27204,19 +27204,60 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
         {
             //TRAITS
             this.variety = "plant";
-            this.solid = true;
             this.interactionRange = 20;
-            this.size = this.temporary;
+
+            if (this.runOneTime)
+            {
+                this.runOneTime = false;
+                this.solid = true;
+                this.size = this.temporary;
+                this.health = 8 * this.size;
+            }
 
             //DRAWSELF
-            XXX.save();
-            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
-            XXX.rotate(this.rotation);
-            XXX.drawImage(toad, 178, 108, 55, 58, -(1/2 * 55 * this.size), -(1/2 * 58 * this.size), 55 * this.size, 58 * this.size);
-            XXX.restore();
+            if (this.health <= 0)
+            {
+                this.solid = false;
+                this.size = 0.4;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 178, 108, 55, 58, -(1/2 * 55 * this.size), -(1/2 * 58 * this.size), 55 * this.size, 58 * this.size);
+                XXX.restore();
+            }
+            else
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 178, 108, 55, 58, -(1/2 * 55 * this.size), -(1/2 * 58 * this.size), 55 * this.size, 58 * this.size);
+                XXX.restore();
+            }
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
-            this.radius = 34 * this.size;
+            this.radius = 24 * this.size;
+
+            //certain enemies break right through it
+            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+            {
+                if (ArtificialIntelligenceAccess[i].type == "BogTroll" || ArtificialIntelligenceAccess[i].type == "Ker" || ArtificialIntelligenceAccess[i].type == "Hydra" || ArtificialIntelligenceAccess[i].healthMAX > 60)
+                {
+                    var disst = (this.X - ArtificialIntelligenceAccess[i].X)*(this.X - ArtificialIntelligenceAccess[i].X) + (this.Y - ArtificialIntelligenceAccess[i].Y)*(this.Y - ArtificialIntelligenceAccess[i].Y);
+                    if (disst < (this.radius * 1.15) * (this.radius * 1.15) + ArtificialIntelligenceAccess[i].sizeRadius * ArtificialIntelligenceAccess[i].sizeRadius)
+                    {
+                        this.health = 0;
+                    }
+                }
+            }
+
+            if (player.cutcut == true)
+            {
+                var distFromCutCut = Math.sqrt((this.X - player.bubbleOfDamageX)*(this.X - player.bubbleOfDamageX) + (this.Y - player.bubbleOfDamageY)*(this.Y - player.bubbleOfDamageY));
+                if (distFromCutCut <= player.weapon.range * 7 + this.radius)
+                {
+                    this.health -= player.weapon.damage;
+                }
+            }
 
             //INTERACTION
             if (this.activate == true && this.phase == 0)
@@ -30995,7 +31036,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 this.phase = "picked";
 
                 //if the plant is owned and you are noticed by any AI then decrease faction relation for stealing.
-                if (this.owned.length > 1)
+                if (typeof(this.owned) != "boolean" && this.owned.length > 1)
                 {
                     if (player.noticed == true)
                     {

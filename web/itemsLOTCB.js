@@ -22835,8 +22835,29 @@ function Item(type, x, y)
             this.ability = "none";
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
-            this.buyValue = 20 - Math.floor(player.getCharisma() / 8); // at max, buy for 14.
-            this.sellValue = 12 + Math.floor(player.getCharisma() / 25); // at max, sell for 14.
+            if (shopkeeper != "none")
+            {
+                if (shopkeeper.ultra.race == "Vardan")
+                {
+                    this.buyValue = 8 - Math.floor(player.getCharisma() / 15); // at max, buy for 5.
+                    this.sellValue = 3 + Math.floor(player.getCharisma() / 25); // at max, sell for 5.
+                }
+                else if (shopkeeper.ultra.race == "Thengar")
+                {
+                    this.buyValue = 10 - Math.floor(player.getCharisma() / 15); // at max, buy for 7.
+                    this.sellValue = 6 + Math.floor(player.getCharisma() / 50); // at max, sell for 7.
+                }
+                else
+                {
+                    this.buyValue = 20 - Math.floor(player.getCharisma() / 8); // at max, buy for 14.
+                    this.sellValue = 12 + Math.floor(player.getCharisma() / 25); // at max, sell for 14.
+                }
+            }
+            else
+            {
+                this.buyValue = 20 - Math.floor(player.getCharisma() / 8); // at max, buy for 14.
+                this.sellValue = 12 + Math.floor(player.getCharisma() / 25); // at max, sell for 14.
+            }
         }
         else if (this.type == "thegolThornLrg")
         {
@@ -22855,8 +22876,29 @@ function Item(type, x, y)
             this.ability = "none";
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
-            this.buyValue = 23 - Math.floor(player.getCharisma() / 8); // at max, buy for 17.
-            this.sellValue = 15 + Math.floor(player.getCharisma() / 25); // at max, sell for 17.
+            if (shopkeeper != "none")
+            {
+                if (shopkeeper.ultra.race == "Vardan")
+                {
+                    this.buyValue = 10 - Math.floor(player.getCharisma() / 15); // at max, buy for 7.
+                    this.sellValue = 5 + Math.floor(player.getCharisma() / 25); // at max, sell for 7.
+                }
+                else if (shopkeeper.ultra.race == "Thengar")
+                {
+                    this.buyValue = 12 - Math.floor(player.getCharisma() / 15); // at max, buy for 9.
+                    this.sellValue = 8 + Math.floor(player.getCharisma() / 50); // at max, sell for 9.
+                }
+                else
+                {
+                    this.buyValue = 23 - Math.floor(player.getCharisma() / 8); // at max, buy for 17.
+                    this.sellValue = 15 + Math.floor(player.getCharisma() / 25); // at max, sell for 17.
+                }
+            }
+            else
+            {
+                this.buyValue = 23 - Math.floor(player.getCharisma() / 8); // at max, buy for 17.
+                this.sellValue = 15 + Math.floor(player.getCharisma() / 25); // at max, sell for 17.
+            }
         }
         else if (this.type == "cheshirePelt")
         {
@@ -24918,8 +24960,24 @@ function Item(type, x, y)
             this.ability = "none";
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
-            this.buyValue = 6 - Math.floor(player.getCharisma() / 25); // at max, buy for 4.
-            this.sellValue = 2 + Math.floor(player.getCharisma() / 25); // at max, sell for 4.
+            if (shopkeeper != "none")
+            {
+                if (shopkeeper.ultra.race == "Vardan")
+                {
+                    this.buyValue = 9 - Math.floor(player.getCharisma() / 15); // at max, buy for 6.
+                    this.sellValue = 4 + Math.floor(player.getCharisma() / 25); // at max, sell for 6.
+                }
+                else
+                {
+                    this.buyValue = 6 - Math.floor(player.getCharisma() / 25); // at max, buy for 4.
+                    this.sellValue = 2 + Math.floor(player.getCharisma() / 25); // at max, sell for 4.
+                }
+            }
+            else
+            {
+                this.buyValue = 6 - Math.floor(player.getCharisma() / 25); // at max, buy for 4.
+                this.sellValue = 2 + Math.floor(player.getCharisma() / 25); // at max, sell for 4.
+            }
         }
         else if (this.type == "ashaiWood") //ashaiashai
         {

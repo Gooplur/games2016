@@ -74486,11 +74486,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 if (Math.max(0, 11 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
                 {
-                    this.experience = 50 * ((player.getIntelligence() / 50) + 1);
+                    this.experience = 99 * ((player.getIntelligence() / 50) + 1);
                 }
                 else
                 {
-                    this.experience = (50 * ((player.getIntelligence() / 50) + 1)) / 10;
+                    this.experience = (99 * ((player.getIntelligence() / 50) + 1)) / 10;
                 }
 
                 this.drops = [[new Item("ghoulFlyWings", this.X, this.Y), 1], [new Item("rawGhoulFlyStomach", this.X, this.Y), 1]];
@@ -74499,11 +74499,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 if (Math.max(0, 35 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
                 {
-                    this.experience = 290 * ((player.getIntelligence() / 50) + 1);
+                    this.experience = 590 * ((player.getIntelligence() / 50) + 1);
                 }
                 else
                 {
-                    this.experience = (290 * ((player.getIntelligence() / 50) + 1)) / 10;
+                    this.experience = (590 * ((player.getIntelligence() / 50) + 1)) / 10;
                 }
 
                 this.drops = [[new Item("ghoulFlyWings", this.X, this.Y), 1], [new Item("rawGhoulFlyStomach", this.X, this.Y), 1]];
@@ -74512,11 +74512,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 if (Math.max(0, 7 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
                 {
-                    this.experience = 16 * ((player.getIntelligence() / 50) + 1);
+                    this.experience = 47 * ((player.getIntelligence() / 50) + 1);
                 }
                 else
                 {
-                    this.experience = (16 * ((player.getIntelligence() / 50) + 1)) / 10;
+                    this.experience = (47 * ((player.getIntelligence() / 50) + 1)) / 10;
                 }
 
                 this.drops = [[new Item("ghoulFlyWings", this.X, this.Y), 1], [new Item("rawGhoulFlyStomach", this.X, this.Y), 1]];

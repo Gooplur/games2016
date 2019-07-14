@@ -5,16 +5,11 @@ Hops - a bush with nice smelling nubs called hops
     //WILD
 Karm - A southern temperate bush that hosts a small green fruit
 Clobe - A plant that grows in temperate regions that has three swollen curved leaves full of a thick green sap
-Mandrake - human shaped root that when uprooted will let out a scream so terrible that those who hear it will lose their soul (it will literally flee their body to escape the sound; undead are not affected by it)
-SwampLily - A beautiful pink flower that grows on lily pads
-Cattail - A swamp grass that grows in the Vardanian swamps
 Saug - A long tuber plant that has some light hair-like fibers that protrude from the ground
 OgoTree - A tropical tree that bears energizing ogo fruits
 AppleTree - A temperate tree that yields apples; apple trees grow almost exclusively in Thengaria
-Wheat - A tropical/temperate grass that yields a wholesome grain that can be milled into bread or fermented.
 DesertPoppy - A poppy plant that grows in the far south in the burning desert; its seeds can be made into opium
 Heyol - A freydic berry bush that hosts small green berries that are bitter and medicinal
-Borsht - A swamp beet that grows in the Vardanian Swamplands. It grows in water.
 
 //ALREADY IN GAME (to create a plant with the scenery class these plants must be made all lowercase)
     //FARM
@@ -27,6 +22,7 @@ Pumpkin - A northern and temperate orange gourd plant used in certain culinary t
 ChonaTree - An orchard tree that grows pink fruits
 PolyapaTree - An orchard tree that grows small pear-like fruits
 Cabbage - A vardanian/thengan food staple that is cultivated in farms
+Wheat - A tropical/temperate grass that yields a wholesome grain that can be milled into bread or fermented.
     //WILD
 PineTree - A pine tree
 GreatPineTree - A large variety of pine tree that grows in Thengaria, and in some parts of the North (set information to "snowy" to make it a snow covered tree) (use longevity to adjust its size: 5min - 9max)
@@ -131,3 +127,7 @@ Danzig - A black fern plant that grows in Vardania.
 Yaihef - A jungle bush that yields thirst quenching light blue berries
 Tialo - a temperate eastern greens
 Mustard - A wild bushy plant that grows in the plains of Thengaria that has little yellow flowers and that hosts seeds that are a flavorful spice
+Mandrake - human shaped root that when uprooted will let out a scream so terrible that those who hear it will lose their soul (it will literally flee their body to escape the sound; undead are not affected by it)
+SwampLily - A beautiful pink flower that grows on lily pads
+Cattail - A swamp grass that grows in the Vardanian swamps
+Borsht - A swamp beet that grows in the Vardanian Swamplands. It grows in water.

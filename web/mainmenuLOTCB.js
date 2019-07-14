@@ -746,7 +746,7 @@ function applySelectionsButton()
             if (player.title == "Royalty")
             {
                 player.stamina = 4;
-                player.dexterity = 2;
+                player.intelligence = 2;
                 if (player.gender == "Male")
                 {
                     Inventory.push([new Item("vardanianRoyalAttireM", false, false), 1]);
@@ -1469,15 +1469,15 @@ function applySelectionsButton()
         //orgell race gets cheaper interest rates while aldrekii and Zetians get higher ones
         if (player.raceName == "Orgell")
         {
-            player.interestRate = 0.12;
+            player.interestRate = 0.26;
         }
-        else if (player.raceName == "Zetian")
+        else if (player.raceName == "Nirwaden")
         {
             player.interestRate = 0.21;
         }
         else if (player.raceName == "Aldrek")
         {
-            player.interestRate = 0.26;
+            player.interestRate = 0.12;
         }
 
         if (player.gamemode == "MRB")
@@ -3039,13 +3039,13 @@ function Selector(bX, bY, type, selNumMAX)
                 player.constitution = 0;
                 player.strength = 0;
                 player.stamina = 0;
-                player.dexterity = 0;
+                player.dexterity = 4;
                 player.ranged = 0;
                 player.survivalism = 0;
-                player.intelligence = 2;
+                player.intelligence = 0;
                 player.endurance = 0;
                 player.toughness = 0;
-                player.charisma = 2;
+                player.charisma = 0;
                 player.willpower = 0;
                 player.knowledge = 0;
                 player.concentration = 0;
@@ -3090,10 +3090,10 @@ function Selector(bX, bY, type, selNumMAX)
                 player.constitution = 0;
                 player.strength = 0;
                 player.stamina = 3;
-                player.dexterity = 1;
+                player.dexterity = 0;
                 player.ranged = 0;
                 player.survivalism = 0;
-                player.intelligence = 0;
+                player.intelligence = 1;
                 player.endurance = 0;
                 player.toughness = 0;
                 player.charisma = 0;

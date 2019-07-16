@@ -7744,6 +7744,26 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     XXX.restore();
                 }
             }
+            else if (this.temporary == -1 || this.temporary == 6) //mrb crate
+            {
+                this.radius = 15 * this.information[0];
+                if (this.phase == 0)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(gent, 150, 367, 99, 61, -(1/2 * 99 * this.information[0]), -(1/2 * 61 * this.information[0]), 99 * this.information[0], 61 * this.information[0]);
+                    XXX.restore();
+                }
+                else if (this.phase == "opened")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(gent, 16, 364, 100, 67, -(1/2 * 100 * this.information[0]), -(1/2 * 67 * this.information[0]), 100 * this.information[0], 67 * this.information[0]);
+                    XXX.restore();
+                }
+            }
 
             //INTERACTION
             if (this.activate == true)
@@ -21281,7 +21301,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 this.tic = 0;
             }
 
-            if (this.temporary == 0) //storage container
+            if (this.temporary == 0) //
             {
 
             }
@@ -21352,15 +21372,27 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             }
             else if (this.temporary == 2) //empty desk
             {
-
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(gent, 16, 446, 104, 46, -(1/2 * 104 * this.size), -(1/2 * 46 * this.size), 104 * this.size, 46 * this.size);
+                XXX.restore();
             }
             else if (this.temporary == 3) //science-l a b
             {
-
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(gent, 150, 446, 104, 46, -(1/2 * 104 * this.size), -(1/2 * 46 * this.size), 104 * this.size, 46 * this.size);
+                XXX.restore();
             }
             else if (this.temporary == 4) //computer
             {
-
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(gent, 280, 446, 104, 46, -(1/2 * 104 * this.size), -(1/2 * 46 * this.size), 104 * this.size, 46 * this.size);
+                XXX.restore();
             }
             else if (this.temporary == 5) //short wall
             {
@@ -21585,15 +21617,27 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             }
             else if (this.temporary == 10) //data cataloger
             {
-
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(gent, 399, 433, 69, 62, -(1/2 * 69 * this.size), -(1/2 * 62 * this.size), 69 * this.size, 62 * this.size);
+                XXX.restore();
             }
             else if (this.temporary == 11) //vending machine
             {
-
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(gent, 415, 383, 50, 29, -(1/2 * 50 * this.size), -(1/2 * 29 * this.size), 50 * this.size, 29 * this.size);
+                XXX.restore();
             }
             else if (this.temporary == 12) //shelf
             {
-
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(gent, 681, 454, 101, 23, -(1/2 * 101 * this.size), -(1/2 * 23 * this.size), 101 * this.size, 23 * this.size);
+                XXX.restore();
             }
 
             //barrierCreator(this.X, this.Y);

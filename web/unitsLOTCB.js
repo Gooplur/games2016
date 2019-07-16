@@ -8018,6 +8018,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                                     player.asfixiationII = true;
                                     player.asfixiationTime = Math.max(3, player.asfixiationTime);
                                 }
+                                else if (this.effect == "skriatok")
+                                {
+                                    map = "skriatok";
+                                    region = "skriatok";
+                                }
                                 else if (this.effect == "magic")
                                 {
                                     player.health -= Math.max(0, this.magicalDamage - player.magicalResistanceTotal);
@@ -8469,6 +8474,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                                         this.target.killNotByPlayer = true;
                                     }
                                 }
+                            }
+                            else if (this.effect == "skriatok")
+                            {
+                                this.target.dmx = "skriatok";
                             }
                             else if (this.effect == "paralyzeI" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
                             {
@@ -17842,6 +17851,68 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
             }
             this.swimSpeed = this.speed * 0.8;
+        }
+        else if (this.type == "Skriatok")
+        {
+            this.flying = true;
+            this.damageFrame = "automatic";
+            this.team = "sprite";
+            if (this.ID == "docile")
+            {
+                this.team = "docile";
+            }
+            this.baseTeam = this.team;
+            this.tamable = false;
+
+            if (this.alpha == true)
+            {
+                this.magicalResistance = 0;
+                this.heatResistance = 100;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = 4;
+                this.health = this.healthMAX;
+                this.armour = 0;
+                this.speed = 9;
+                this.rangeOfSight = 1200; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 1;
+                this.engagementRadius = 80;
+                this.sizeRadius = 20;
+                this.negateArmour = 200;
+                this.attackWait = 0.25;
+
+                //alpha has a larger size body and skills.
+                this.alphaSize = 1.25; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                // this is the adjustment the alpha type of Etyr needs to be centered.
+                this.yAdjustment = 0; //was - 3.5
+                this.xAdjustment = 0; //was 6
+            }
+            else
+            {
+                //STATS (non-variable)
+                this.magicalResistance = 0;
+                this.heatResistance = 100;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = 2;
+                this.health = this.healthMAX;
+                this.armour = 0;
+                this.speed = 8;
+                this.rangeOfSight = 1100; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 1;
+                this.engagementRadius = 80;
+                this.sizeRadius = 14;
+                this.negateArmour = 100;
+                this.attackWait = 0.5;
+
+                //alpha has a larger size body and skills.
+                this.alphaSize = 1; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                // this is the adjustment the alpha type of Etyr needs to be centered.
+                this.yAdjustment = 0; //was - 3.5
+                this.xAdjustment = 0; //was 6
+
+            }
+            this.swimSpeed = this.speed;
         }
         else if (this.type == "Turkey")
         {
@@ -36386,6 +36457,117 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.drawUnit(verse, 2929, 283, 54, 32, -35 - this.xAdjustment, -22 - this.yAdjustment, 54 * this.alphaSize, 32 * this.alphaSize);
             }
         }
+        //SKRIATOK
+        if (this.type == "Skriatok")
+        {
+            //Set Drops and experience
+            if (this.alpha == true)
+            {
+                if (Math.max(0, 7 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 120 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = (120 * ((player.getIntelligence() / 50) + 1)) / 10;
+                }
+
+                this.drops = [];
+            }
+            else
+            {
+                if (Math.max(0, 4 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 100 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = 100 * ((player.getIntelligence() / 50) + 1) / 10;
+                }
+
+                this.drops = [];
+            }
+
+            //RANGE OF SIGHT (anything related to range of sight)
+            if (this.alpha == true)
+            {
+                this.rangeOfSightCalculator(700, true);
+            }
+            else
+            {
+                this.rangeOfSightCalculator(600, true);
+            }
+
+            //AI
+            if (this.alive == true)
+            {
+                if (this.alpha == true)
+                {
+                    this.Attack(0, 0);
+                }
+                else
+                {
+                    this.Attack(0, 0);
+                }
+
+                //this.deathChecker();
+                this.disturbedTimer();
+                this.visibleSight();
+                this.friendDecider();
+                this.targeting();
+
+                this.moving = false;
+
+                if (this.target == player)
+                {
+                    if (player.blinded != true)
+                    {
+                        this.pointTowardsPlayer();
+                        this.moveInRelationToPlayer();
+                    }
+                }
+                else if (this.target != "none")
+                {
+                    if (this.target.blinded != true)
+                    {
+                        this.pointTowards(this.target);
+                        this.moveInRelationToThing(this.target);
+                    }
+                }
+
+            }
+
+            //ANIMATIONS
+
+            if (this.alive == true)
+            {
+                if (player.weaponEquipped == "none" && player.spell == "none" || this.moving == false && this.attacking != true)
+                {
+                    var rndSkriatok = Math.PI();
+
+                    if (rndSkriatok > 0.75)
+                    {
+                        this.drawUnit(tomb, 2211, 804, 27, 26, -1/2 * 27 * this.alphaSize, -1/2 * 26 * this.alphaSize, 27 * this.alphaSize, 26 * this.alphaSize);
+                    }
+                    else if (rndSkriatok > 0.50)
+                    {
+                        this.drawUnit(tomb, 2212, 841, 27, 26, -1/2 * 27 * this.alphaSize, -1/2 * 26 * this.alphaSize, 27 * this.alphaSize, 26 * this.alphaSize);
+                    }
+                    else if (rndSkriatok > 0.25)
+                    {
+                        this.drawUnit(tomb, 2261, 855, 27, 26, -1/2 * 27 * this.alphaSize, -1/2 * 26 * this.alphaSize, 27 * this.alphaSize, 26 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(tomb, 2260, 891, 27, 26, -1/2 * 27 * this.alphaSize, -1/2 * 26 * this.alphaSize, 27 * this.alphaSize, 26 * this.alphaSize);
+                    }
+                }
+            }
+            else
+            {
+                this.drawUnit(tomb, 2251, 796, 51, 47, -1/2 * 51 * this.alphaSize, -1/2 * 47 * this.alphaSize, 51 * this.alphaSize, 47 * this.alphaSize);
+            }
+        }
         //TURKEY
         if (this.type == "Turkey")
         {
@@ -52104,7 +52286,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
                     // the frames/stages/costumes of the animation.
                     var theCostume = Math.floor( this.costume ); //This rounds this.costume down to the nearest whole number.
-                    console.log(this.team == "docile");
+
                     if (this.team == "docile" || this.changelingForm == true && this.offended == true || this.changelingForm == true && this.attacking == true || this.changelingForm == true && this.target == player && this.health > 1/3 * this.healthMAX && player.spell == "none" && player.weaponEquipped == "none" || this.changelingForm == true && this.target == player && this.health > 1/3 * this.healthMAX && dtpp > 150 && dtpp < 220 || this.changelingChanging == true)
                     {
                         if (this.childForm != true)

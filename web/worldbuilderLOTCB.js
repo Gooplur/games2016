@@ -840,7 +840,7 @@ function worldBuilder()
             outlineBuilder( 1, 5, "brickRoad", -734, 165);
         }
         //mapS5W22
-        if (Y > -54904 && Y < -44148 && X < 232101 && X > 220483) //X-22 //todo add map
+        if (Y > -54904 && Y < -44148 && X < 232101 && X > 220483) //X-22
         {
             elevation = 0;
             region = "s5w22";
@@ -850,7 +850,7 @@ function worldBuilder()
             outlineBuilder( 1, 34, "brickRoad", -768, 165);
         }
         //mapS5W23
-        if (Y > -54904 && Y < -44148 && X < 242353 && X > 230643) //X-23 //todo add map
+        if (Y > -54904 && Y < -44148 && X < 242353 && X > 230643) //X-23
         {
             elevation = 0;
             region = "s5w23";
@@ -858,19 +858,51 @@ function worldBuilder()
             outlineBuilder(34, 34, "hotGrass", -802, 150);
 
             outlineBuilder( 1, 34, "brickRoad", -802, 165);
+
+            outlineBuilder( 1, 3, "dirt", -793, 154);
+            outlineBuilder( 1, 2, "dirt", -794, 155);
+            outlineBuilder( 2, 1, "dirt", -793, 156);
+            outlineBuilder( 3, 2, "dirt", -789, 171);
+            outlineBuilder( 2, 1, "dirt", -791, 172);
+            outlineBuilder( 2, 1, "dirt", -789, 174);
+            outlineBuilder( 3, 1, "dirt", -790, 170);
+
+            outlineBuilder( 3, 1, "mistywoods", -769, 150);
+            outlineBuilder( 1, 2, "mistywoods", -770, 154);
+            outlineBuilder( 1, 1, "mistywoods", -769, 157);
+            outlineBuilder( 3, 2, "mistywoods", -770, 158);
+            outlineBuilder( 2, 1, "mistywoods", -769, 162);
+            outlineBuilder( 4, 1, "mistywoods", -769, 168);
+            outlineBuilder( 2, 2, "mistywoods", -770, 173);
+            outlineBuilder( 2, 3, "mistywoods", -771, 175);
+            outlineBuilder( 2, 2, "mistywoods", -770, 177);
+            outlineBuilder( 2, 1, "mistywoods", -769, 180);
+
         }
         //mapS5W24
-        if (Y > -54904 && Y < -44148 && X < 252559 && X > 240873) //X-24 //todo add map
+        if (Y > -54904 && Y < -44148 && X < 252559 && X > 240873) //X-24
         {
             elevation = 0;
             region = "s5w24";
             campout = true;
-            outlineBuilder(34, 34, "outline", -836, 150); //todo hotGrass
+            outlineBuilder(34, 34, "hotGrass", -836, 150);
 
             outlineBuilder( 1, 34, "brickRoad", -836, 165);
+
+            outlineBuilder( 3, 1, "dirt", -824, 154);
+            outlineBuilder( 1, 3, "dirt", -824, 153);
+            outlineBuilder( 3, 1, "dirt", -825, 152);
+            outlineBuilder( 1, 1, "dirt", -823, 154);
+
+            outlineBuilder( 1, 1, "dirt", -818, 155);
+            outlineBuilder( 2, 3, "dirt", -819, 156);
+            outlineBuilder( 3, 1, "dirt", -816, 154);
+            outlineBuilder( 2, 2, "dirt", -820, 158);
+            outlineBuilder( 1, 2, "dirt", -822, 171);
+
         }
         //mapS5W25
-        if (Y > -54904 && Y < -44148 && X < 262722 && X > 251041) //X-25 //todo add map
+        if (Y > -54904 && Y < -44148 && X < 262722 && X > 251041) //X-25
         {
             elevation = 0;
             region = "s5w25";
@@ -895,6 +927,11 @@ function worldBuilder()
             outlineBuilder( 1, 2, "brickRoad", -854, 179);
             outlineBuilder( 1, 2, "brickRoad", -855, 180);
             outlineBuilder( 3, 1, "brickRoad", -855, 181);
+
+            outlineBuilder( 2, 1, "dirt", -860, 165);
+            outlineBuilder( 2, 1, "dirt", -859, 164);
+
+            outlineBuilder( 1, 2, "dirt", -851, 162);
         }
         //Layer -4 (cold region): elev 0
         //mapS4
@@ -2656,8 +2693,96 @@ function worldBuilder()
         //starting chamber
         elevation = -3;
         region = "mrbHQ";
-        outlineBuilder( 1, 1, "lab", -20, 776);
+        outlineBuilder( 2, 3, "lab", -20, 776);
+        outlineBuilder( 6, 1, "lab", -19, 778);
+        outlineBuilder( 1, 1, "lab", -18, 780);
+        outlineBuilder( 2, 2, "lab", -17, 779);
+        outlineBuilder( 3, 3, "lab", -20, 784);
+        outlineBuilder( 1, 6, "lab", -25, 782);
+        outlineBuilder( 3, 1, "lab", -24, 779);
+        outlineBuilder( 2, 1, "lab", -23, 779);
+        outlineBuilder( 3, 2, "lab", -27, 781);
+        outlineBuilder( 1, 1, "lab", -28, 782);
+        outlineBuilder( 3, 3, "lab", -31, 781);
+        outlineBuilder( 50, 1, "lab", -30, 784);
+        outlineBuilder( 1, 50, "lab", -81, 782);
+        outlineBuilder( 50, 1, "lab", -30, 731);
 
+        outlineBuilder( 1, 1, "lab", -33, 781);
+        outlineBuilder( 1, 1, "lab", -33, 783);
+        outlineBuilder( 1, 1, "lab", -35, 781);
+        outlineBuilder( 1, 1, "lab", -35, 783);
+        outlineBuilder( 1, 1, "lab", -37, 781);
+        outlineBuilder( 1, 1, "lab", -37, 783);
+        outlineBuilder( 1, 1, "lab", -39, 781);
+        outlineBuilder( 1, 1, "lab", -39, 783);
+        outlineBuilder( 1, 1, "lab", -41, 781);
+        outlineBuilder( 1, 1, "lab", -41, 783);
+        outlineBuilder( 1, 1, "lab", -43, 781);
+        outlineBuilder( 1, 1, "lab", -43, 783);
+        outlineBuilder( 1, 1, "lab", -45, 781);
+        outlineBuilder( 1, 1, "lab", -45, 783);
+        outlineBuilder( 1, 1, "lab", -47, 781);
+        outlineBuilder( 1, 1, "lab", -47, 783);
+        outlineBuilder( 1, 1, "lab", -49, 781);
+        outlineBuilder( 1, 1, "lab", -49, 783);
+        outlineBuilder( 1, 1, "lab", -51, 781);
+        outlineBuilder( 1, 1, "lab", -51, 783);
+        outlineBuilder( 1, 1, "lab", -53, 781);
+        outlineBuilder( 1, 1, "lab", -53, 783);
+        outlineBuilder( 1, 1, "lab", -55, 781);
+        outlineBuilder( 1, 1, "lab", -55, 783);
+        outlineBuilder( 1, 1, "lab", -57, 781);
+        outlineBuilder( 1, 1, "lab", -57, 783);
+        outlineBuilder( 1, 1, "lab", -59, 781);
+        outlineBuilder( 1, 1, "lab", -59, 783);
+        outlineBuilder( 1, 1, "lab", -61, 781);
+        outlineBuilder( 1, 1, "lab", -61, 783);
+        outlineBuilder( 1, 1, "lab", -63, 781);
+        outlineBuilder( 1, 1, "lab", -63, 783);
+
+        //Skeleton containment cell
+        outlineBuilder( 1, 1, "lab", -31, 785);
+        outlineBuilder( 2, 1, "lab", -32, 785);
+        outlineBuilder( 2, 2, "rock", -34, 785);
+
+        //Hydra containment cell
+        outlineBuilder( 1, 1, "lab", -31, 790);
+        outlineBuilder( 2, 1, "lab", -32, 790);
+        outlineBuilder( 2, 2, "swamp", -34, 790);
+
+        //Mimic containment cell
+        outlineBuilder( 1, 1, "lab", -29, 790);
+        outlineBuilder( 2, 1, "lab", -28, 790);
+        outlineBuilder( 2, 1, "vardanianStone", -27, 790);
+        outlineBuilder( 1, 1, "vardanianWetland", -26, 790);
+        outlineBuilder( 1, 1, "swamp", -26, 791);
+
+        //Venandi containment cell
+        outlineBuilder( 1, 1, "lab", -31, 795);
+        outlineBuilder( 2, 1, "lab", -32, 795);
+        outlineBuilder( 2, 2, "jungle", -34, 795);
+
+        //Xormid containment cell
+        outlineBuilder( 1, 1, "lab", -29, 795);
+        outlineBuilder( 2, 1, "lab", -28, 795);
+        outlineBuilder( 2, 2, "rock", -27, 795);
+
+        //Mandrake containment cell
+        outlineBuilder( 1, 1, "lab", -31, 778);
+        outlineBuilder( 2, 1, "lab", -32, 777);
+        outlineBuilder( 1, 2, "vardanianGrass", -34, 777);
+        outlineBuilder( 1, 2, "vardanianWetland", -34, 778);
+
+        //Neev containment cell
+        outlineBuilder( 1, 1, "lab", -29, 773);
+        outlineBuilder( 2, 1, "lab", -28, 772);
+        outlineBuilder( 2, 2, "woods", -27, 772);
+
+        //changeling containment cell
+        outlineBuilder( 1, 1, "lab", -31, 773);
+        outlineBuilder( 2, 1, "lab", -32, 772);
+        outlineBuilder( 2, 2, "forest", -34, 772);
     }
     else if (map == "venningMineshaft")
     {

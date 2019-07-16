@@ -2464,6 +2464,9 @@ var campout = true;
 var tellMap = false;
 var tellTile = false;
 var tileBuilder = false;
+var buildRot = 0;
+var buildSize = 1;
+var buildClase = 0;
 
 //This sets the items that are in shops.
 function shopItemIDSetter()
@@ -3715,6 +3718,7 @@ function theLegend()
         atalinE4Items: true,
         altezorCastleItems: true,
         hermitsWood: true,
+        zombiVillageStash: true,
 
         //EVENTS (non quest)
         ultherFlower: true,

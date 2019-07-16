@@ -15274,6 +15274,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.resistances = ["water"];
             this.justAttacked = true;
             this.team = "trollia";
+            if (this.ID == "docile")
+            {
+                this.team = "docile";
+            }
             this.baseTeam = this.team;
             this.haste = true;
             this.tameREQ = 66;
@@ -19964,6 +19968,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.xAdjustment = 0;
             }
             this.swimSpeed = this.speed * 0.1;
+            this.baseSpeed = this.speed;
         }
         else if (this.type == "ZafBeetle")
         {
@@ -45864,13 +45869,45 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             //AI
             if (this.alive == true)
             {
-                if (this.aiTimer < 1.2)
+                if (this.ID == "Huntar")
                 {
-                    this.speed = 0;
+                    if (this.aiTimer < 4)
+                    {
+                        this.speed = 0;
+                    }
+                    else if (this.aiTimer < 6)
+                    {
+                        this.speed = this.baseSpeed;
+                    }
                 }
-                else if (this.aiTimer < 2.4)
+                else if (this.ID == "DoorZombi")
                 {
-                    this.speed = this.baseSpeed;
+                    for (var i = 0; i < scenicList.length; i++)
+                    {
+                        if (scenicList[i].type == "door" && scenicList[i].information[1] == "superscooper")
+                        {
+                            if (scenicList[i].locked == "broken" || scenicList[i].locked == false)
+                            {
+                                this.speed = this.baseSpeed;
+                            }
+                            else if (scenicList[i].locked == true)
+                            {
+                                this.speed = 0;
+                            }
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    if (this.aiTimer < 1.2)
+                    {
+                        this.speed = 0;
+                    }
+                    else if (this.aiTimer < 2.4)
+                    {
+                        this.speed = this.baseSpeed;
+                    }
                 }
 
                 if (this.Y >= -237532)
@@ -47005,6 +47042,36 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             //AI
             if (this.alive == true)
             {
+                if (this.ID == "Huntar")
+                {
+                    if (this.aiTimer < 5)
+                    {
+                        this.speed = 0;
+                    }
+                    else if (this.aiTimer < 7)
+                    {
+                        this.speed = this.baseSpeed;
+                    }
+                }
+                if (this.ID == "DoorSpider")
+                {
+                    for (var i = 0; i < scenicList.length; i++)
+                    {
+                        if (scenicList[i].type == "door" && scenicList[i].information[1] == "superscoop")
+                        {
+                            if (scenicList[i].locked == "broken" || scenicList[i].locked == false)
+                            {
+                                this.speed = this.baseSpeed;
+                            }
+                            else if (scenicList[i].locked == true)
+                            {
+                                this.speed = 0;
+                            }
+                            break;
+                        }
+                    }
+                }
+
                 if (this.alpha == true)
                 {
                     this.Attack(7, 12);

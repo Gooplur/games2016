@@ -160,6 +160,7 @@ function Adventurer()
     this.underground = false;
     //attacking variables
     this.stage = 0; //Stage represents which frame in a combat animation the character is on, and it is used to create weapon animations.
+    this.stage2 = 0;
     this.attacking = false; //This variable is triggered by the attack button, when triggered and true it initiates an attack and it will not turn false again until that attack is carried out.
     this.resetFrameOrder = true; //This unlocks the animation for attacking when true, and locks it when false so that internal attack processes can finish up.
     this.wepLayer = false;
@@ -10508,6 +10509,62 @@ function Adventurer()
             }
         };
 
+        this.animator2 = function (maxStage, framerate, bothwaysBool)
+        {
+            if (this.resetFrameOrder == true)
+            {
+                this.frameOrder = "positive"; // this sets the animation frame cycling direction to positive when the attack is initialized.
+                this.resetFrameOrder = false; // this keeps the reset from messing up reverse swings that may come after the primary positive direction attack.
+            }
+            if (this.frameOrder == "positive")
+            {
+                if (this.stage2 >= maxStage) // Once all of the animation stages are completed...
+                {
+                    if (bothwaysBool == false) // if the animation is one way it ends here...
+                    {
+                        this.stage2 = 0;
+                        this.resetFrameOrder = true; //This variable resets the order of the frames so that it always starts cycling through the animations in the positive direction.
+                    }
+                    else if (bothwaysBool == true) //but if it is two directional it swings back to frame zero.
+                    {
+                        this.frameOrder = "negative";
+                    }
+                }
+                else
+                {
+                    if (rapidamente == false && this.form != "vampire")
+                    {
+                        this.stage2 += framerate * TTD / (16.75 - (0.1 / 2 * ((this.getDexterity() / 2) + 0.5))); //This is the part that actually changes the frame in the positive direction.
+                    }
+                    else
+                    {
+                        this.stage2 += framerate * TTD / (16.75 - (0.1 / 2 * 25));
+                    }
+                }
+            }
+
+            if (this.frameOrder == "negative") //This stuff is for the swing back.
+            {
+                if (this.stage2 < 1)
+                {
+                    this.stage2 = 0;
+                    this.resetFrameOrder = true; //This variable resets the order of the frames so that it always starts cycling through the animations in the positive direction.
+
+                }
+                else
+                {
+                    if (rapidamente == false && this.form != "vampire")
+                    {
+                        this.stage2 -= framerate * TTD / (16.75 - (0.1 / 2 * ((this.getDexterity() / 4) + 0.5))); //This is the part that actually changes the frame in the negative direction.
+                    }
+                    else
+                    {
+                        this.stage2 -= framerate * TTD / (16.75 - (0.1 / 2 * 12.5));
+                    }
+                }
+            }
+        };
+
         //STAGE ENGINE [this function allows each type of weapon to cycle through the stages of their attack]
         this.stageEngine = function (maxStage, framerate, bothwaysBool)
         {
@@ -10525,7 +10582,7 @@ function Adventurer()
                     {
                         if (bothwaysBool == false) // if the animation is one way it ends here...
                         {
-                            if (this.weapon.subUtility != "thrown" && this.weaponEquipped != "flail" && this.weaponEquipped != "vardanianHalberd" && this.weaponEquipped != "aldrekiiClaws" && this.weaponEquipped != "theUndyingEdge" && this.weaponEquipped != "cero" && this.weaponEquipped != "werewolf" && this.weaponEquipped != "vampire" && this.weaponEquipped != "wendigo" && this.weaponEquipped != "cephrianFlail" && this.weaponEquipped != "sackmansSword")
+                            if (this.weapon.subUtility != "thrown" && this.weaponEquipped != "flail" && this.weaponEquipped != "vardanianHalberd" && this.weaponEquipped != "aldrekiiClaws" && this.weaponEquipped != "theUndyingEdge" && this.weaponEquipped != "cero" && this.weaponEquipped != "werewolf" && this.weaponEquipped != "vampire" && this.weaponEquipped != "wendigo" && this.weaponEquipped != "cephrianFlail" && this.weaponEquipped != "sackmansSword" && this.weaponEquipped != "venandi")
                             {
                                 self.finalAttackStage = true;
                                 self.attackCooldown = new Date().getTime();
@@ -10537,7 +10594,7 @@ function Adventurer()
                         }
                         else if (bothwaysBool == true) //but if it is two directional it swings back to frame zero.
                         {
-                            if (this.weapon.subUtility != "thrown" && this.weaponEquipped != "flail" && this.weaponEquipped != "vardanianHalberd" && this.weaponEquipped != "aldrekiiClaws" && this.weaponEquipped != "theUndyingEdge" && this.weaponEquipped != "cero" && this.weaponEquipped != "werewolf" && this.weaponEquipped != "vampire" && this.weaponEquipped != "wendigo" && this.weaponEquipped != "cephrianFlail" && this.weaponEquipped != "sackmansSword")
+                            if (this.weapon.subUtility != "thrown" && this.weaponEquipped != "flail" && this.weaponEquipped != "vardanianHalberd" && this.weaponEquipped != "aldrekiiClaws" && this.weaponEquipped != "theUndyingEdge" && this.weaponEquipped != "cero" && this.weaponEquipped != "werewolf" && this.weaponEquipped != "vampire" && this.weaponEquipped != "wendigo" && this.weaponEquipped != "cephrianFlail" && this.weaponEquipped != "sackmansSword" && this.weaponEquipped != "venandi")
                             {
                                 if (this.frameOrder == "positive")
                                 {
@@ -10550,7 +10607,7 @@ function Adventurer()
                     }
                     else
                     {
-                        if (rapidamente == false && this.form != "vampire")
+                        if (rapidamente == false && this.form != "vampire" && this.form != "venandi")
                         {
                             self.stage += framerate * TTD / (16.75 - (0.1 / 2 * ((this.getDexterity() / 2) + 0.5))); //This is the part that actually changes the frame in the positive direction.
                         }
@@ -16441,16 +16498,16 @@ function Adventurer()
             }
         }
         //VENANDI (form)
-        if (this.form == "venandi")
+        if (this.weaponEquipped == "venandi") //this.form == "venandi"
         {
             var szx;
             szx = 1;
 
             if (wKey) //If moving and not attacking initiate moving animation...
             {
-                this.animator(8, 0.23, false);
+                this.animator2(8, 0.23, false);
 
-                if (Math.floor(this.stage) <= 0)
+                if (Math.floor(this.stage2) <= 0)
                 {
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
@@ -16463,7 +16520,7 @@ function Adventurer()
                     //XXX.drawImage(jungho, 364, 460, 82, 86, -1/2 * 82 * szx, -1/2 * 86 * szx, 82 * szx, 86 * szx);
                     XXX.restore();
                 }
-                else if (Math.floor(this.stage) <= 1)
+                else if (Math.floor(this.stage2) <= 1)
                 {
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
@@ -16476,7 +16533,7 @@ function Adventurer()
                     //XXX.drawImage(jungho, 364, 460, 82, 86, -1/2 * 82 * szx, -1/2 * 86 * szx, 82 * szx, 86 * szx);
                     XXX.restore();
                 }
-                else if (Math.floor(this.stage) <= 2)
+                else if (Math.floor(this.stage2) <= 2)
                 {
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
@@ -16489,7 +16546,7 @@ function Adventurer()
                     //XXX.drawImage(jungho, 364, 460, 82, 86, -1/2 * 82 * szx, -1/2 * 86 * szx, 82 * szx, 86 * szx);
                     XXX.restore();
                 }
-                else if (Math.floor(this.stage) <= 3)
+                else if (Math.floor(this.stage2) <= 3)
                 {
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
@@ -16501,7 +16558,7 @@ function Adventurer()
                     //XXX.drawImage(jungho, 364, 460, 82, 86, -1/2 * 82 * szx, -1/2 * 86 * szx, 82 * szx, 86 * szx);
                     XXX.restore();
                 }
-                else if (Math.floor(this.stage) <= 4)
+                else if (Math.floor(this.stage2) <= 4)
                 {
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
@@ -16514,7 +16571,7 @@ function Adventurer()
                     //XXX.drawImage(jungho, 364, 460, 82, 86, -1/2 * 82 * szx, -1/2 * 86 * szx, 82 * szx, 86 * szx);
                     XXX.restore();
                 }
-                else if (Math.floor(this.stage) <= 5)
+                else if (Math.floor(this.stage2) <= 5)
                 {
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
@@ -16527,7 +16584,7 @@ function Adventurer()
                     //XXX.drawImage(jungho, 364, 460, 82, 86, -1/2 * 82 * szx, -1/2 * 86 * szx, 82 * szx, 86 * szx);
                     XXX.restore();
                 }
-                else if (Math.floor(this.stage) <= 6)
+                else if (Math.floor(this.stage2) <= 6)
                 {
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
@@ -16540,7 +16597,7 @@ function Adventurer()
                     //XXX.drawImage(jungho, 364, 460, 82, 86, -1/2 * 82 * szx, -1/2 * 86 * szx, 82 * szx, 86 * szx);
                     XXX.restore();
                 }
-                else if (Math.floor(this.stage) >= 7)
+                else if (Math.floor(this.stage2) >= 7)
                 {
                     XXX.save();
                     XXX.translate(this.myScreenX, this.myScreenY);
@@ -16567,6 +16624,7 @@ function Adventurer()
                     {
                         XXX.globalAlpha = 0.4;
                     }
+                    this.attackManual = true;
                     XXX.drawImage(jungho, 364, 460, 82, 86, -1/2 * 82 * szx, -1/2 * 86 * szx, 82 * szx, 86 * szx);
                     XXX.restore();
                 }
@@ -16579,6 +16637,7 @@ function Adventurer()
                     {
                         XXX.globalAlpha = 0.4;
                     }
+                    this.attackManual = true;
                     XXX.drawImage(jungho, 288, 459, 82, 86, -1/2 * 82 * szx, -1/2 * 86 * szx, 82 * szx, 86 * szx);
                     XXX.restore();
                 }
@@ -16591,6 +16650,7 @@ function Adventurer()
                     {
                         XXX.globalAlpha = 0.4;
                     }
+                    this.attackManual = true;
                     XXX.drawImage(jungho, 364, 460, 82, 86, -1/2 * 82 * szx, -1/2 * 86 * szx, 82 * szx, 86 * szx);
                     XXX.restore();
                 }
@@ -16603,6 +16663,7 @@ function Adventurer()
                     {
                         XXX.globalAlpha = 0.4;
                     }
+                    this.attackManual = true;
                     XXX.drawImage(jungho, 215, 458, 82, 86, -1/2 * 82 * szx, -1/2 * 86 * szx, 82 * szx, 86 * szx);
                     XXX.restore();
                 }
@@ -16615,8 +16676,7 @@ function Adventurer()
                     {
                         XXX.globalAlpha = 0.4;
                     }
-                    this.attackManual = false;
-
+                    this.attackManual = true;
                     XXX.drawImage(jungho, 132, 452, 82, 86, -1/2 * 82 * szx, -1/2 * 86 * szx, 82 * szx, 86 * szx);
                     XXX.restore();
                 }
@@ -16629,9 +16689,9 @@ function Adventurer()
                     {
                         XXX.globalAlpha = 0.4;
                     }
-                    if (this.attackManual == false)
+                    if (this.attackManual == true)
                     {
-                        this.attackManual = true;
+                        this.attackManual = false;
                         this.finalAttackStage = true;
                         this.attackCooldown = new Date().getTime();
                     }
@@ -40903,4 +40963,13 @@ function clearEquipped()
     player.weaponEquipped = "none";
     player.ammoLoaded = false;
     player.isAmmoEquipped = false;
+    player.weaponIsRanged = false;
+    if (typeof(player.stage) != "number")
+    {
+        player.stage = 0;
+    }
+    if (typeof(player.stage2) != "number")
+    {
+        player.stage2 = 0;
+    }
 }

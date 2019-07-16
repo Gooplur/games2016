@@ -40092,7 +40092,7 @@ function Item(type, x, y)
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
-            this.enduranceBonus = 0;
+            this.enduranceBonus = 1;
             this.toughnessBonus = 0;
             this.intelligenceBonus = 0;
             this.charismaBonus = 1;
@@ -40149,7 +40149,7 @@ function Item(type, x, y)
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
-            this.enduranceBonus = 0;
+            this.enduranceBonus = 1;
             this.toughnessBonus = 0;
             this.intelligenceBonus = 0;
             if (player.gender == "Male")

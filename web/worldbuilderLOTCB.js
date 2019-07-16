@@ -10,6 +10,15 @@ function worldBuilder()
     {
         player.dmx = map;
         player.underground = false;
+        //Layer -27 (tropical region): elev -3
+        //mapS27
+        if (Y > -279312 && Y < -268536 && X < 7687 && X > - 3901) //X0
+        {
+            elevation = -3;
+            region = "s27";
+            campout = true;
+            outlineBuilder( 34, 34, "prairy", -20, 898);
+        }
         //Layer -26 (tropical region): elev -3
         //mapS26
         if (Y > -269151 && Y < -258299 && X < 7687 && X > - 3901) //X0
@@ -601,12 +610,134 @@ function worldBuilder()
             outlineBuilder(34, 34, "outline", -1108, 218); //todo crag
         }
         //mapS7W33
-        if (Y > -75331 && Y < -64538 && X < 344345 && X > 332522) //X-33 //todo add map
+        if (Y > -75331 && Y < -64538 && X < 344345 && X > 332522) //X-33
         {
             elevation = 0;
             region = "s7w33";
             campout = true;
             outlineBuilder(34, 34, "vardanianWetland", -1142, 218);
+
+            outlineBuilder(2, 5, "swamp", -1142, 218);
+            outlineBuilder(1, 3, "swamp", -1142, 220);
+            outlineBuilder(2, 5, "swamp", -1131, 218);
+            outlineBuilder(1, 8, "swamp", -1134, 220);
+            outlineBuilder(1, 6, "swamp", -1136, 221);
+            outlineBuilder(1, 3, "swamp", -1136, 222);
+            outlineBuilder(1, 2, "swamp", -1136, 223);
+            outlineBuilder(1, 3, "swamp", -1140, 224);
+            outlineBuilder(1, 4, "swamp", -1141, 225);
+            outlineBuilder(2, 3, "swamp", -1141, 226);
+            outlineBuilder(1, 1, "swamp", -1141, 228);
+            outlineBuilder(4, 1, "swamp", -1124, 220);
+            outlineBuilder(2, 3, "swamp", -1128, 224);
+            outlineBuilder(6, 2, "swamp", -1133, 224);
+            outlineBuilder(2, 1, "swamp", -1131, 224);
+            outlineBuilder(1, 1, "swamp", -1131, 228);
+            outlineBuilder(3, 2, "swamp", -1135, 227);
+            outlineBuilder(1, 2, "swamp", -1137, 229);
+            outlineBuilder(1, 2, "swamp", -1142, 229);
+            outlineBuilder(1, 1, "swamp", -1137, 230);
+            outlineBuilder(4, 5, "swamp", -1142, 230);
+            outlineBuilder(3, 1, "swamp", -1137, 233);
+            outlineBuilder(1, 4, "swamp", -1141, 234);
+            outlineBuilder(2, 2, "swamp", -1139, 235);
+            outlineBuilder(1, 3, "swamp", -1115, 218);
+            outlineBuilder(1, 4, "swamp", -1115, 219);
+            outlineBuilder(1, 4, "swamp", -1115, 220);
+            outlineBuilder(1, 8, "swamp", -1119, 221);
+            outlineBuilder(1, 6, "swamp", -1116, 222);
+            outlineBuilder(2, 7, "swamp", -1116, 223);
+            outlineBuilder(1, 1, "swamp", -1115, 225);
+            outlineBuilder(1, 2, "swamp", -1114, 226);
+            outlineBuilder(1, 1, "swamp", -1120, 219);
+            outlineBuilder(1, 1, "swamp", -1122, 221);
+            outlineBuilder(8, 4, "swamp", -1124, 224);
+            outlineBuilder(1, 1, "swamp", -1125, 227);
+            outlineBuilder(1, 4, "swamp", -1120, 226);
+            outlineBuilder(1, 1, "swamp", -1120, 227);
+            outlineBuilder(1, 5, "swamp", -1120, 231);
+            outlineBuilder(1, 1, "swamp", -1116, 230);
+            outlineBuilder(1, 2, "swamp", -1125, 232);
+            outlineBuilder(1, 1, "swamp", -1125, 231);
+            outlineBuilder(2, 3, "swamp", -1128, 230);
+            outlineBuilder(1, 2, "swamp", -1131, 231);
+            outlineBuilder(1, 9, "swamp", -1134, 234);
+            outlineBuilder(1, 10, "swamp", -1135, 235);
+            outlineBuilder(1, 1, "swamp", -1112, 234);
+            outlineBuilder(3, 2, "swamp", -1114, 234);
+            outlineBuilder(6, 2, "swamp", -1120, 233);
+            outlineBuilder(4, 1, "swamp", -1118, 234);
+            outlineBuilder(3, 1, "swamp", -1117, 235);
+            outlineBuilder(2, 1, "swamp", -1121, 235);
+            outlineBuilder(4, 1, "swamp", -1122, 234);
+            outlineBuilder(5, 1, "swamp", -1123, 234);
+            outlineBuilder(4, 1, "swamp", -1124, 235);
+            outlineBuilder(2, 7, "swamp", -1133, 232);
+            outlineBuilder(3, 2, "swamp", -1130, 236);
+            outlineBuilder(2, 3, "swamp", -1135, 236);
+            outlineBuilder(1, 5, "swamp", -1137, 238);
+            outlineBuilder(2, 4, "swamp", -1137, 239);
+            outlineBuilder(2, 1, "swamp", -1127, 236);
+            outlineBuilder(1, 2, "swamp", -1126, 240);
+            outlineBuilder(1, 5, "swamp", -1127, 241);
+            outlineBuilder(1, 7, "swamp", -1128, 242);
+            outlineBuilder(1, 8, "swamp", -1128, 243);
+            outlineBuilder(1, 4, "swamp", -1127, 244);
+            outlineBuilder(1, 3, "swamp", -1126, 245);
+            outlineBuilder(3, 2, "swamp", -1122, 244);
+            outlineBuilder(1, 7, "swamp", -1122, 247);
+            outlineBuilder(1, 2, "swamp", -1119, 246);
+            outlineBuilder(1, 2, "swamp", -1120, 248);
+            outlineBuilder(1, 5, "swamp", -1117, 249);
+            outlineBuilder(1, 2, "swamp", -1115, 250);
+            outlineBuilder(1, 1, "swamp", -1113, 248);
+            outlineBuilder(3, 1, "swamp", -1110, 242);
+            outlineBuilder(6, 3, "swamp", -1115, 239);
+            outlineBuilder(2, 1, "swamp", -1116, 241);
+            outlineBuilder(2, 1, "swamp", -1112, 240);
+            outlineBuilder(1, 2, "swamp", -1138, 243);
+            outlineBuilder(1, 7, "swamp", -1140, 244);
+            outlineBuilder(1, 8, "swamp", -1140, 245);
+            outlineBuilder(3, 1, "swamp", -1134, 241);
+            outlineBuilder(2, 5, "swamp", -1142, 246);
+            outlineBuilder(2, 6, "swamp", -1142, 248);
+            outlineBuilder(1, 8, "swamp", -1139, 250);
+            outlineBuilder(1, 4, "swamp", -1135, 246);
+            outlineBuilder(3, 1, "swamp", -1132, 247);
+            outlineBuilder(2, 4, "swamp", -1126, 250);
+            outlineBuilder(1, 1, "swamp", -1126, 237);
+            outlineBuilder(2, 1, "swamp", -1125, 237);
+            outlineBuilder(1, 2, "swamp", -1125, 239);
+
+            outlineBuilder(1, 1, "swampTL", -1133, 239);
+            outlineBuilder(1, 1, "swampTR", -1131, 236);
+            outlineBuilder(1, 1, "swampBL", -1123, 223);
+            outlineBuilder(1, 1, "swampTL", -1120, 228);
+            outlineBuilder(1, 1, "swampBR", -1134, 226);
+            outlineBuilder(1, 1, "swampTL", -1140, 228);
+            outlineBuilder(1, 1, "swampTL", -1126, 246);
+            outlineBuilder(1, 1, "swampTR", -1127, 245);
+            outlineBuilder(1, 1, "swampTR", -1129, 225);
+            outlineBuilder(1, 1, "swampBR", -1129, 224);
+            outlineBuilder(1, 1, "swampTR", -1127, 226);
+            outlineBuilder(1, 1, "swampBL", -1131, 227);
+            outlineBuilder(1, 1, "swampTR", -1136, 246);
+
+            outlineBuilder(10, 1, "crag", -1109, 218);
+            outlineBuilder(5, 1, "crag", -1110, 218);
+            outlineBuilder(4, 1, "crag", -1111, 218);
+            outlineBuilder(1, 1, "crag", -1112, 218);
+            outlineBuilder(1, 2, "crag", -1113, 220);
+            outlineBuilder(2, 1, "crag", -1110, 226);
+            outlineBuilder(3, 2, "crag", -1110, 229);
+            outlineBuilder(2, 1, "crag", -1111, 230);
+            outlineBuilder(11, 1, "crag", -1109, 234);
+            outlineBuilder(7, 1, "crag", -1110, 235);
+            outlineBuilder(3, 2, "crag", -1112, 235);
+            outlineBuilder(1, 1, "crag", -1109, 246);
+            outlineBuilder(1, 2, "crag", -1110, 248);
+            outlineBuilder(2, 1, "crag", -1109, 250);
+            outlineBuilder(1, 1, "crag", -1110, 251);
         }
         //mapS7W34
         if (Y > -75331 && Y < -64538 && X < 354544 && X > 342860) //X-34 //todo add map

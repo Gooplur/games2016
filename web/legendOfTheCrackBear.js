@@ -2467,6 +2467,8 @@ var tileBuilder = false;
 var buildRot = 0;
 var buildSize = 1;
 var buildClase = 0;
+var skriatokX = 0;
+var skriatokY = 0;
 
 //This sets the items that are in shops.
 function shopItemIDSetter()

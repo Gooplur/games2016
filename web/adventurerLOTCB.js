@@ -39515,7 +39515,7 @@ function Adventurer()
     //DEATH SENSING
     this.deathSensor = function()
     {
-        if (this.health <= 0 && this.playerDeath != true && this.undying != true)
+        if (this.health <= 0 && this.playerDeath != true && this.undying != true && map != "skriatok")
         {
             if (player.form != "vampire" && player.gamemode != "protagonist" || player.silvered && player.gamemode != "protagonist")
             {
@@ -39561,6 +39561,7 @@ function Adventurer()
                 this.will = this.willMAX;
                 this.warmth = this.warmthMAX;
                 this.antiVenom = this.antiVenomMAX;
+                this.sleep = this.sleepMAX;
 
                 //reset functionality variables
                 this.inCombat = false;
@@ -39595,10 +39596,49 @@ function Adventurer()
                 }
             }
         }
-        else if (this.health <= 0 && this.undying == true)
+        else if (this.health <= 0 && this.undying == true && map != "skriatok")
         {
             this.health = 1/11 * this.healthMAX;
             this.energy = Math.min(1/11 * this.energyMAX, this.energy);
+        }
+        else if (this.health <= 0 && map == "skriatok")
+        {
+            //respawn
+            X = skriatokX;
+            Y = skriatokY;
+
+            //clear effects
+            this.gojiiPoisoned = false;
+            this.gojiiTimer = 0;
+            this.poisoned = false;
+            this.poisonI = false;
+            this.poisonII = false;
+            this.poisonIII = false;
+            this.poisonIV = false;
+            this.poisonV = false;
+            this.gutWorms = false;
+            this.throatTicks = false;
+            this.freezing = false;
+            this.recoveryTime = 0;
+            this.energizeTime = 0;
+            this.timeSinceRawTrollBlood = 0;
+
+            this.radiation = 0;
+
+            //refresh all stats to max
+            this.health = this.healthMAX;
+            this.energy = this.energyMAX;
+            this.hunger = this.hungerMAX;
+            this.will = this.willMAX;
+            this.warmth = this.warmthMAX;
+            this.antiVenom = this.antiVenomMAX;
+            this.sleep = this.sleepMAX;
+
+            //reset functionality variables
+            this.inCombat = false;
+            this.decreaseInHealth = 0;
+
+            change = "skriatokRespawn";
         }
 
         this.undying = false;

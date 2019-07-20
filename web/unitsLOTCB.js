@@ -1447,6 +1447,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         if (this.team == "silteria")
         {
             this.allys.push("sprite");
+            this.allys.push("skriatok");
             this.allys.push("docile");
         }
         if (this.team == "undead")
@@ -1466,6 +1467,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.allys.push("ulgoyia");
             this.allys.push("clamia");
             this.allys.push("sprite");
+            this.allys.push("skriatok");
         }
         if (this.team == "sprite")
         {
@@ -1474,6 +1476,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.allys.push("cheshiria");
             this.allys.push("docile");
             this.allys.push("silteria");
+            this.allys.push("skriatok");
         }
         if (this.team == "clamia")
         {
@@ -1507,6 +1510,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.allys.push("docile");
             this.allys.push("ulgoyia");
             this.allys.push("sprite");
+            this.allys.push("skriatok");
         }
         if (this.team == "ulgoyia")
         {
@@ -1549,6 +1553,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         if (this.team == "hydra")
         {
             this.allys.push("sprite");
+            this.allys.push("skriatok");
             this.allys.push("clamia");
             this.allys.push("ulgoyia");
             this.allys.push("shehidia");
@@ -1558,6 +1563,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         {
             this.allys.push("lombrisia");
             this.allys.push("sprite");
+            this.allys.push("skriatok");
             this.allys.push("etnia");
             this.allys.push("clamia");
             this.allys.push("ulgoyia");
@@ -1616,6 +1622,15 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.allys.push("ghoul");
             this.allys.push("toadia");
             this.allys.push("hydra");
+            this.allys.push("skriatok");
+        }
+        if (this.team == "skriatok")
+        {
+            this.allys.push("docile");
+            this.allys.push("ulgoyia");
+            this.allys.push("clamia");
+            this.allys.push("sprite");
+            this.allys.push("mimic");
         }
         if (this.team == "ghoul")
         {
@@ -8020,8 +8035,22 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                                 }
                                 else if (this.effect == "skriatok")
                                 {
-                                    map = "skriatok";
-                                    region = "skriatok";
+                                    if (map != "skriatok")
+                                    {
+                                        map = "skriatok";
+                                        region = "skriatok";
+                                        skriatokX = X;
+                                        skriatokY = Y;
+                                    }
+                                    else
+                                    {
+                                        player.stunnedI = true;
+                                        player.stunnedTime = Math.max(player.stunnedTime, 2);
+                                        player.sleep -= 10;
+                                        player.energilTime = Math.max(player.energilTime, 1000);
+                                        player.fatigueV = true;
+                                        player.health -= Math.max(0, 0.25 - player.magicalResistanceTotal);
+                                    }
                                 }
                                 else if (this.effect == "magic")
                                 {
@@ -8478,6 +8507,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             else if (this.effect == "skriatok")
                             {
                                 this.target.dmx = "skriatok";
+                                this.target.skriatokian = true;
                             }
                             else if (this.effect == "paralyzeI" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
                             {
@@ -17854,15 +17884,17 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         }
         else if (this.type == "Skriatok")
         {
+            this.resistances = ["time", "shock", "acid", "charm", "strongWeb", "web", "water", "petrification", "stun", "blinded", "burning", "frozen", "buffout", "night"];
             this.flying = true;
             this.damageFrame = "automatic";
-            this.team = "sprite";
+            this.team = "skriatok";
             if (this.ID == "docile")
             {
                 this.team = "docile";
             }
             this.baseTeam = this.team;
             this.tamable = false;
+            this.effect = "skriatok";
 
             if (this.alpha == true)
             {
@@ -36518,38 +36550,130 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
                 this.moving = false;
 
-                if (this.target == player)
+                //scared of iron or anything that has iron in it.
+                var ironThreat = false;
+                var isIron = false;
+
+                for (var i = 0; i < worldItems.length; i++)
                 {
-                    if (player.blinded != true)
+                    if (worldItems[i][0].dmx == this.dmx)
                     {
-                        this.pointTowardsPlayer();
-                        this.moveInRelationToPlayer();
-                    }
-                }
-                else if (this.target != "none")
-                {
-                    if (this.target.blinded != true)
-                    {
-                        this.pointTowards(this.target);
-                        this.moveInRelationToThing(this.target);
+                        isIron = false;
+                        if (worldItems[i][0].type == "silver" || worldItems[i][0].type == "rawSilver")
+                        {
+                            isIron = true;
+                        }
+                        else
+                        {
+                            for (var j = 0; j < worldItems[i][0].ingredients.length; j++)
+                            {
+                                if (worldItems[i][0].ingredients[j][0] == "Silver" || worldItems[i][0].ingredients[j][0] == "Raw Silver")
+                                {
+                                    if (worldItems[i][0].ingredients[j][1] >= worldItems[i][0].ingredients[j][0].yield / 6 && worldItems[i][0].ingredients[j][0] != "Silver") //if item's raw silver content is 0.166 +
+                                    {
+                                        isIron = true;
+                                        break;
+                                    }
+                                    else if (worldItems[i][0].ingredients[j][1] >= worldItems[i][0].ingredients[j][0].yield / 12 && worldItems[i][0].ingredients[j][0] == "Silver") //if pure silver makeup is 0.083 +
+                                    {
+                                        isIron = true;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+
+
+                        if (isIron == true)
+                        {
+                            if (((this.X - worldItems[i][0].X)*(this.X - worldItems[i][0].X)+(this.Y - worldItems[i][0].Y)*(this.Y - worldItems[i][0].Y)) <= 122*122)
+                            {
+                                ironThreat = true;
+                                //this.pointTowards({X: worldItems[i][0].X, Y: worldItems[i][0].Y});
+                                this.rotation = Math.atan2(worldItems[i][0].Y - this.Y, worldItems[i][0].X) + ((1/5 * Math.PI) - (3/5 * Math.PI * Math.random()));
+                                this.moveInRelationToThing({X: worldItems[i][0].X, Y: worldItems[i][0].Y});
+                            }
+                        }
                     }
                 }
 
+                if (this.silvered == true)
+                {
+                    this.health -= 0.025;
+                    this.killNotByPlayer = true;
+                }
+
+                if (ironThreat == false)
+                {
+                    if (this.target == player)
+                    {
+                        if (player.blinded != true && this.silvered != true && player.silvered != true)
+                        {
+                            this.pointTowardsPlayer();
+                            this.moveInRelationToPlayer();
+                        }
+                        else if (player.silvered)
+                        {
+                            this.pointAwayFromPlayer();
+                            this.moveInRelationToPlayer();
+                        }
+                    }
+                    else if (this.target != "none")
+                    {
+                        if (this.target.blinded != true && this.silvered != true && this.target.silvered != true)
+                        {
+                            this.pointTowards(this.target);
+                            this.moveInRelationToThing(this.target);
+                        }
+                        else if (this.target.silvered)
+                        {
+                            this.pointAway(this.target);
+                            this.moveInRelationToThing(this.target);
+                        }
+                    }
+                }
             }
 
             //ANIMATIONS
-
             if (this.alive == true)
             {
-                if (player.weaponEquipped == "none" && player.spell == "none" || this.moving == false && this.attacking != true)
+                if (this.attacking) //otherwise if it is attacking then initiate attacking animation, and if neither...
                 {
-                    var rndSkriatok = Math.PI();
+                    if(new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000 / timeSpeed * this.timeResistance))
+                    {
+                        this.costumeEngine(2, 0.60, false);
+                    }
+                }
+                if (player.weaponEquipped == "none" && player.spell == "none" && player.mageShield <= 0 && player.mageShield <= 0 && player.silvered != true || this.moving == false && this.attacking != true && player.mageShield <= 0 && player.silvered != true)
+                {
+                    var rndSkriatok = Math.random();
+
+                    if (rndSkriatok > 0.9)
+                    {
+                        this.drawUnit(tomb, 2211, 804, 27, 26, -1/2 * 27 * this.alphaSize, -1/2 * 26 * this.alphaSize, 27 * this.alphaSize, 26 * this.alphaSize);
+                    }
+                    else if (rndSkriatok > 0.8)
+                    {
+                        this.drawUnit(tomb, 2212, 841, 27, 26, -1/2 * 27 * this.alphaSize, -1/2 * 26 * this.alphaSize, 27 * this.alphaSize, 26 * this.alphaSize);
+                    }
+                    else if (rndSkriatok > 0.7)
+                    {
+                        this.drawUnit(tomb, 2261, 855, 27, 26, -1/2 * 27 * this.alphaSize, -1/2 * 26 * this.alphaSize, 27 * this.alphaSize, 26 * this.alphaSize);
+                    }
+                    else if (rndSkriatok > 0.6)
+                    {
+                        this.drawUnit(tomb, 2260, 891, 27, 26, -1/2 * 27 * this.alphaSize, -1/2 * 26 * this.alphaSize, 27 * this.alphaSize, 26 * this.alphaSize);
+                    }
+                }
+                else if (this.silvered)
+                {
+                    var rndSkriatok = Math.random();
 
                     if (rndSkriatok > 0.75)
                     {
                         this.drawUnit(tomb, 2211, 804, 27, 26, -1/2 * 27 * this.alphaSize, -1/2 * 26 * this.alphaSize, 27 * this.alphaSize, 26 * this.alphaSize);
                     }
-                    else if (rndSkriatok > 0.50)
+                    else if (rndSkriatok > 0.5)
                     {
                         this.drawUnit(tomb, 2212, 841, 27, 26, -1/2 * 27 * this.alphaSize, -1/2 * 26 * this.alphaSize, 27 * this.alphaSize, 26 * this.alphaSize);
                     }

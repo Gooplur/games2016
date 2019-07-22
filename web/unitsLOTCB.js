@@ -52635,7 +52635,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     }
                     this.drawHumanOutfitBelow(this.outfit, false);
                     //draw some weapons underneath the body
-                    if (this.wepLayer == "under" || this.weapon == "freydicSword" || this.weapon == "longbow" || this.weapon == "crossbow" || this.weapon == "kellishClaymore" || this.weapon == "estoc" || this.weapon == "vardanianHalberd" || this.weapon == "shotgun" || this.weapon == "m16Carbine" || this.weapon == "sickle" || this.weapon == "nirineseSpear" || this.weapon == "theWendigosCleaver" || this.weapon == "beulingerrPike")
+                    if (this.wepLayer == "under" || this.weapon == "freydicSword" || this.weapon == "longbow" || this.weapon == "crossbow" || this.weapon == "kellishClaymore" || this.weapon == "estoc" || this.weapon == "vardanianHalberd" || this.weapon == "shotgun" || this.weapon == "m16Carbine" || this.weapon == "sickle" || this.weapon == "nirineseSpear" || this.weapon == "lightningCorseque" || this.weapon == "theWendigosCleaver" || this.weapon == "beulingerrPike")
                     {
                         this.drawHumanArms();
                     }
@@ -52677,7 +52677,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     }
 
                     //draw the others over it.
-                    if (this.wepLayer == "standard" || this.weapon != "freydicSword" && this.weapon != "longbow" && this.weapon != "crossbow" && this.weapon != "longSpikedMorningStar" && this.weapon != "kellishClaymore" && this.weapon != "estoc" && this.weapon != "vardanianHalberd" && this.weapon != "shotgun" && this.weapon != "m16Carbine" && this.weapon != "sickle" && this.weapon != "nirineseSpear" && this.weapon != "theWendigosCleaver" && this.weapon != "beulingerrPike")
+                    if (this.wepLayer == "standard" || this.weapon != "freydicSword" && this.weapon != "longbow" && this.weapon != "crossbow" && this.weapon != "longSpikedMorningStar" && this.weapon != "kellishClaymore" && this.weapon != "estoc" && this.weapon != "vardanianHalberd" && this.weapon != "shotgun" && this.weapon != "m16Carbine" && this.weapon != "sickle" && this.weapon != "nirineseSpear" && this.weapon != "lightningCorseque" && this.weapon != "theWendigosCleaver" && this.weapon != "beulingerrPike")
                     {
                         this.drawHumanArms();
                     }
@@ -77567,7 +77567,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.drawHumanOutfitBelow(this.outfit, false);
 
                 //draw some weapons underneath the body
-                if (this.wepLayer == "under" || this.weapon == "swimming" || this.weapon == "freydicSword" || this.weapon == "longbow" || this.weapon == "crossbow" || this.weapon == "kellishClaymore" || this.weapon == "estoc" || this.weapon == "vardanianHalberd" || this.weapon == "shotgun" || this.weapon == "m16Carbine" || this.weapon == "sickle" || this.weapon == "nirineseSpear")
+                if (this.wepLayer == "under" || this.weapon == "swimming" || this.weapon == "freydicSword" || this.weapon == "longbow" || this.weapon == "crossbow" || this.weapon == "kellishClaymore" || this.weapon == "estoc" || this.weapon == "vardanianHalberd" || this.weapon == "shotgun" || this.weapon == "m16Carbine" || this.weapon == "sickle" || this.weapon == "nirineseSpear" || this.weapon == "lightningCorseque" || this.weapon == "theWendigosCleaver" || this.weapon == "beulingerrPike")
                 {
                     this.drawHumanArms();
                 }
@@ -77576,7 +77576,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.drawHuman();
 
                 //draw the others over it.
-                if (this.wepLayer == "standard" || this.weapon == "swimming" || this.weapon != "freydicSword" && this.weapon != "longbow" && this.weapon != "crossbow" && this.weapon != "longSpikedMorningStar" && this.weapon != "kellishClaymore" && this.weapon != "estoc" && this.weapon != "vardanianHalberd" && this.weapon != "shotgun" && this.weapon != "m16Carbine" && this.weapon != "sickle" && this.weapon != "nirineseSpear")
+                if (this.wepLayer == "standard" || this.weapon == "swimming" || this.weapon != "freydicSword" && this.weapon != "longbow" && this.weapon != "crossbow" && this.weapon != "longSpikedMorningStar" && this.weapon != "kellishClaymore" && this.weapon != "estoc" && this.weapon != "vardanianHalberd" && this.weapon != "shotgun" && this.weapon != "m16Carbine" && this.weapon != "sickle" && this.weapon != "nirineseSpear" && this.weapon != "lightningCorseque" && this.weapon != "theWendigosCleaver" && this.weapon != "beulingerrPike")
                 {
                     this.drawHumanArms();
                 }
@@ -78440,6 +78440,42 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             this.callForNearbyHelpFromType(this.rangeOfSight, "Soldier");
                         }
                     }
+                    if (this.ID == "Deerman")
+                    {
+                        //RANGE OF SIGHT (anything related to range of sight)
+                        this.rangeOfSightCalculator(280, false);
+
+                        if (Math.random() > 0.85)
+                        {
+                            this.drops = [[new Item("deerHideArmour", this.X, this.Y), 1]];
+                        }
+                        else
+                        {
+                            this.drops = [[new Item("coins", this.X, this.Y), Math.floor(Math.random() * 7) + 2]];
+                        }
+
+                        this.disturbed = true;
+
+                        if (this.disturbed == true)
+                        {
+                            this.callForNearbyHelpFromType(this.rangeOfSight, "Soldier");
+                        }
+                    }
+                    if (this.ID == "The Wendigo")
+                    {
+                        //RANGE OF SIGHT (anything related to range of sight)
+                        this.rangeOfSightCalculator(260, false);
+
+                        this.drops = [[new Item("coins", this.X, this.Y), Math.floor(Math.random() * 61) + 8], [new Item("stagArmour", this.X, this.Y), 1], [new Item("theWendigosCleaver", this.X, this.Y), 1]];
+
+                        this.traverse = true;
+                        this.disturbed = true;
+
+                        if (this.disturbed == true)
+                        {
+                            this.callForNearbyHelpFromType(this.rangeOfSight, "Soldier");
+                        }
+                    }
                     if (this.ID == "Hetmer The Bandit Chief")
                     {
                         //RANGE OF SIGHT (anything related to range of sight)
@@ -79110,6 +79146,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     {
                         uniqueChars.hetmerLDS = false;
                     }
+                    else if (this.ID == "The Wendigo")
+                    {
+                        uniqueChars.theWendigoLDS = false;
+                    }
                     else if (this.ID == "Captain Jalmari Salt-Blood")
                     {
                         uniqueChars.jalmariLDS = false;
@@ -79377,6 +79417,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
                     //track Deaths Of Certain Non-Unique Units During Certain Quests
 
+                    //the wendigo's deermen
+                    if (this.ID == "Deerman")
+                    {
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            quests.theDeermenAndTheWendigoDeermenKilled += 1;
+                        }
+                    }
                     //s-1-e-5 bandit faction (robinhood-like)
                     if (this.ID == "Barracano")
                     {
@@ -79485,7 +79533,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.drawHumanOutfitBelow(this.outfit, false);
 
                 //draw some weapons underneath the body
-                if (this.wepLayer == "under" || this.weapon == "freydicSword" || this.weapon == "longbow" || this.weapon == "crossbow" || this.weapon == "kellishClaymore" || this.weapon == "estoc" || this.weapon == "vardanianHalberd" || this.weapon == "shotgun" || this.weapon == "m16Carbine" || this.weapon == "sickle" || this.weapon == "nirineseSpear" || this.weapon == "lightningCorseque")
+                if (this.wepLayer == "under" || this.weapon == "freydicSword" || this.weapon == "longbow" || this.weapon == "crossbow" || this.weapon == "kellishClaymore" || this.weapon == "estoc" || this.weapon == "vardanianHalberd" || this.weapon == "shotgun" || this.weapon == "m16Carbine" || this.weapon == "sickle" || this.weapon == "nirineseSpear" || this.weapon == "lightningCorseque" || this.weapon == "theWendigosCleaver" || this.weapon == "beulingerrPike")
                 {
                     this.drawHumanArms();
                 }
@@ -79494,7 +79542,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.drawHuman();
 
                 //draw the others over it.
-                if (this.wepLayer == "standard" || this.weapon != "freydicSword" && this.weapon != "longbow" && this.weapon != "crossbow" && this.weapon != "longSpikedMorningStar" && this.weapon != "kellishClaymore" && this.weapon != "estoc" && this.weapon != "vardanianHalberd" && this.weapon != "shotgun" && this.weapon != "m16Carbine" && this.weapon != "sickle" && this.weapon != "nirineseSpear" && this.weapon != "lightningCorseque")
+                if (this.wepLayer == "standard" || this.weapon != "freydicSword" && this.weapon != "longbow" && this.weapon != "crossbow" && this.weapon != "longSpikedMorningStar" && this.weapon != "kellishClaymore" && this.weapon != "estoc" && this.weapon != "vardanianHalberd" && this.weapon != "shotgun" && this.weapon != "m16Carbine" && this.weapon != "sickle" && this.weapon != "nirineseSpear" && this.weapon != "lightningCorseque" && this.weapon != "theWendigosCleaver" && this.weapon != "beulingerrPike")
                 {
                     this.drawHumanArms();
                 }

@@ -1270,12 +1270,12 @@ function worldBuilder()
             outlineBuilder( 1, 34, "brickRoad", -598, 135);
         }
         //mapS4W18
-        if (Y > -44704 && Y < -33877 && X < 191342 && X > 179679) //X-18 //todo add map
+        if (Y > -44704 && Y < -33877 && X < 191342 && X > 179679) //X-18
         {
             elevation = 0;
             region = "s4w18";
             campout = true;
-            outlineBuilder(34, 34, "desert", -632, 116);
+            outlineBuilder(34, 34, "mistywoods", -632, 116);
 
             outlineBuilder( 1, 16, "brickRoad", -614, 135);
             outlineBuilder( 1, 19, "brickRoad", -632, 136);

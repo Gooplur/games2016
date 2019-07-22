@@ -3660,7 +3660,8 @@ function theLegend()
         anastasiyaLDS: true,
         valiaLDS: true,
         demyanLDS: true,
-        tatianaLDS: true
+        tatianaLDS: true,
+        theWendigoLDS: true
     };
 //QUESTS
     quests =
@@ -3766,6 +3767,12 @@ function theLegend()
         rannukChildName: "Espen",
         hanzChild: false,
         hanzChildName: "Gelna",
+
+        //QUEST: The Deermen and the Wendigo ---- given by
+        theDeermenAndTheWendigoQuest: false,
+        theDeermenAndTheWendigoCompletionStyle: false,
+        theDeermenAndTheWendigoDeermenKilled: 0,
+        theDeermenAndTheWendigoSacked: 0,
 
         //QUEST: The Cult of Radiant Spirit ---- given by discovering Morrow City
         theCultOfTheRadiantSpiritQuest: false,

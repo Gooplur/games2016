@@ -35586,6 +35586,7 @@ function Item(type, x, y)
             this.description = "This armour once belonged to the bandit chieftain known as The Wendigo.";
             this.intForDes = 0;
             this.intDescription = "Rumors and superstition had convinced many that The Wendigo was a real wendigo, and that his crew were a herd of magical deermen who were beholden to him.";
+            this.smallText = "tiny";
 
             //Define Utility
             this.utility = "worn";
@@ -35639,6 +35640,7 @@ function Item(type, x, y)
             this.description = "This armour is worn by The Wendigo's deermen who live in the woods and are said to eat the passing travellers.";
             this.intForDes = 0;
             this.intDescription = "Though the tales of cannibalism are true in regard to The Wendigo and his deermen, the deermen are not actually half deer half man... they are just cannibals.";
+            this.smallText = "micro";
 
             //Define Utility
             this.utility = "worn";

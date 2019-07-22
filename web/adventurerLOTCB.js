@@ -38590,7 +38590,35 @@ function Adventurer()
                     XXX.fillText(Inventory[i][0].identity, 157, 474);
 
                     //The description of the item and perhaps also the intelligence description...
-                    if (Inventory[i][0].smallText == true)
+                    if (Inventory[i][0].smallText == "micro")
+                    {
+                        XXX.font="italic 11px Book Antiqua";
+                        XXX.fillStyle = "black";
+                        XXX.textAlign="left"; //this is to reset it to the standard for the rest to come.
+                        if (intDes == true)
+                        {
+                            XXX.fillText( " - " + Inventory[i][0].description + "   ' " + Inventory[i][0].intDescription + " ' ", 157, 490);
+                        }
+                        else
+                        {
+                            XXX.fillText( " - " + Inventory[i][0].description, 157, 490);
+                        }
+                    }
+                    else if (Inventory[i][0].smallText == "tiny")
+                    {
+                        XXX.font="italic 12px Book Antiqua";
+                        XXX.fillStyle = "black";
+                        XXX.textAlign="left"; //this is to reset it to the standard for the rest to come.
+                        if (intDes == true)
+                        {
+                            XXX.fillText( " - " + Inventory[i][0].description + "   ' " + Inventory[i][0].intDescription + " ' ", 157, 490);
+                        }
+                        else
+                        {
+                            XXX.fillText( " - " + Inventory[i][0].description, 157, 490);
+                        }
+                    }
+                    else if (Inventory[i][0].smallText == true)
                     {
                         XXX.font="italic 13px Book Antiqua";
                         XXX.fillStyle = "black";

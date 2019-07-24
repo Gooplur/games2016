@@ -38879,8 +38879,8 @@ function Adventurer()
         {
             if (dClick == true)
             {
-                console.log( "worldItems:" );
-                console.log( worldItems );
+                //console.log( "worldItems:" );
+                //console.log( worldItems );
 
                 for (var i = worldItems.length - 1; i > -1; i -= 1)
                 {

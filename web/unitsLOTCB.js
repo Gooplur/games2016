@@ -65708,6 +65708,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     {
                         quests.theMasterThiefOfTeshirNeevSlain = true;
                     }
+                    else if (this.ID == "Wester")
+                    {
+                        quests.refugeeNeevKilled = true;
+                    }
 
                     this.doOnDeathOnce = false;
                 }

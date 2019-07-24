@@ -3702,6 +3702,7 @@ function theLegend()
         rannukThreatened: false,
         atalinToll: false,
         inquisitionOutfitGiven: false,
+        refugeeNeevKilled: false,
 
         //PLAYER PROPERTY
         teshirHomeOwned: false,

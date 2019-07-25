@@ -1849,6 +1849,12 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
         {
             this.orientToCaster(0, 1 / 2 * Math.PI);
         }
+        //WARD OF CORPORALITY
+        if (this.spellType == "corporalityWard")
+        {
+            this.orientToCaster(0, 1 / 2 * Math.PI);
+            this.spin = ((-Math.random() * 2) + 1) /1200;
+        }
         //SANCTUARY
         if (this.spellType == "sanctuary")
         {
@@ -2954,6 +2960,110 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                 }
 
                 this.spellTimer(0.65);
+            }
+
+            //WARD OF CORPORALITY
+            if (this.spellType == "corporalityWard")
+            {
+                if (caster)
+                {
+                    this.zIndex = 1;
+                    var hasVic = false;
+                    //Heals player's minions
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].team != "player")
+                        {
+                            var distanceToAI = Math.sqrt((ArtificialIntelligenceAccess[i].X - this.X) * (ArtificialIntelligenceAccess[i].X - this.X) + (ArtificialIntelligenceAccess[i].Y - this.Y) * (ArtificialIntelligenceAccess[i].Y - this.Y));
+                            if (distanceToAI <= 77)
+                            {
+                                hasVic = true;
+                                if (this.cnx >= 40)
+                                {
+                                    ArtificialIntelligenceAccess[i].stunIII = true;
+                                    ArtificialIntelligenceAccess[i].stunTimer = Math.max(ArtificialIntelligenceAccess[i].stunTimer, 1);
+                                    ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
+
+                                    ArtificialIntelligenceAccess[i].buffoutTime = new Date().getTime();
+                                    ArtificialIntelligenceAccess[i].buffoutTimer = Math.max(ArtificialIntelligenceAccess[i].buffoutTimer, 1);
+                                    ArtificialIntelligenceAccess[i].initBuffout = Math.min(ArtificialIntelligenceAccess[i].initBuffout, 0.6);
+                                    ArtificialIntelligenceAccess[i].subBuffoutToggle = true;
+
+                                    if (ArtificialIntelligenceAccess[i].spirit == true)
+                                    {
+                                        ArtificialIntelligenceAccess[i].corporial = true;
+                                    }
+                                }
+                                else if (this.cnx >= 25)
+                                {
+                                    ArtificialIntelligenceAccess[i].stunII = true;
+                                    ArtificialIntelligenceAccess[i].stunTimer = Math.max(ArtificialIntelligenceAccess[i].stunTimer, 1);
+                                    ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
+
+                                    ArtificialIntelligenceAccess[i].buffoutTime = new Date().getTime();
+                                    ArtificialIntelligenceAccess[i].buffoutTimer = Math.max(ArtificialIntelligenceAccess[i].buffoutTimer, 1);
+                                    ArtificialIntelligenceAccess[i].initBuffout = Math.min(ArtificialIntelligenceAccess[i].initBuffout, 0.7);
+                                    ArtificialIntelligenceAccess[i].subBuffoutToggle = true;
+
+                                    if (ArtificialIntelligenceAccess[i].spirit == true)
+                                    {
+                                        ArtificialIntelligenceAccess[i].corporial = true;
+                                    }
+                                }
+                                else if (this.cnx >= 10)
+                                {
+                                    ArtificialIntelligenceAccess[i].stunII = true;
+                                    ArtificialIntelligenceAccess[i].stunTimer = Math.max(ArtificialIntelligenceAccess[i].stunTimer, 1);
+                                    ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
+                                    ArtificialIntelligenceAccess[i].buffoutTime = new Date().getTime();
+                                    ArtificialIntelligenceAccess[i].buffoutTimer = Math.max(ArtificialIntelligenceAccess[i].buffoutTimer, 1);
+                                    ArtificialIntelligenceAccess[i].initBuffout = Math.min(ArtificialIntelligenceAccess[i].initBuffout, 0.8);
+                                    ArtificialIntelligenceAccess[i].subBuffoutToggle = true;
+
+                                    if (ArtificialIntelligenceAccess[i].spirit == true)
+                                    {
+                                        ArtificialIntelligenceAccess[i].corporial = true;
+                                    }
+                                }
+                                else
+                                {
+                                    ArtificialIntelligenceAccess[i].stunI = true;
+                                    ArtificialIntelligenceAccess[i].stunTimer = Math.max(ArtificialIntelligenceAccess[i].stunTimer, 1);
+                                    ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
+
+                                    ArtificialIntelligenceAccess[i].buffoutTime = new Date().getTime();
+                                    ArtificialIntelligenceAccess[i].buffoutTimer = Math.max(ArtificialIntelligenceAccess[i].buffoutTimer, 1);
+                                    ArtificialIntelligenceAccess[i].initBuffout = Math.min(ArtificialIntelligenceAccess[i].initBuffout, 0.9);
+                                    ArtificialIntelligenceAccess[i].subBuffoutToggle = true;
+
+                                    if (ArtificialIntelligenceAccess[i].spirit == true)
+                                    {
+                                        ArtificialIntelligenceAccess[i].corporial = true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    this.turn += this.spin;
+                    if (hasVic == false)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.turn);
+                        XXX.globalAlpha = 0.95;
+                        XXX.drawImage(caverna, 282, 7, 62, 61, - (1/2 * 62 * 2.6), - (1/2 * 61 * 2.6), 62 * 2.6, 61 * 2.6);
+                        XXX.restore();
+                    }
+                    else
+                    {
+                        this.flashAnimate(165, this.turn, 0.95, [{image: caverna, imgX: 0, imgY: 1, portionW: 62, portionH: 61, adjX: -1 / 2 * 62 * 2.6, adjY: -1 / 2 * 61 * 2.6, width: 62 * 2.6, height: 61 * 2.6}, {image: caverna, imgX: 67, imgY: 2, portionW: 62, portionH: 61, adjX: -1 / 2 * 62 * 2.6, adjY: -1 / 2 * 61 * 2.6, width: 62 * 2.6, height: 61 * 2.6}, {image: caverna, imgX: 134, imgY: 3, portionW: 62, portionH: 61, adjX: -1 / 2 * 62 * 2.6, adjY: -1 / 2 * 61 * 2.6, width: 62 * 2.6, height: 61 * 2.6}, {image: caverna, imgX: 203, imgY: 5, portionW: 62, portionH: 61, adjX: -1 / 2 * 62 * 2.6, adjY: -1 / 2 * 61 * 2.6, width: 62 * 2.6, height: 61 * 2.6}], true, false);
+                        lights.push({X: this.X, Y: this.Y, size: 83, extraStops: true, GRD: 0.76, Alpha: 0.9, showMe: false});
+                    }
+
+                }
+
+                this.spellTimer(28 + (this.cnx / 2.5));
             }
 
             //SANCTUARY

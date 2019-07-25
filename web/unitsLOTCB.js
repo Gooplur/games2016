@@ -40,6 +40,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     this.noSink = false; //this keeps the body from being deleted in water without the need for the flotation variable.
     this.deathWalker = false; //this allows a unit to have undying not automatically set to false
     this.legion = false; //if true this is disturbed by calls for help from allies (same response as shehids or humans)
+    this.playerProof = false; // is resistant to the player?
+    this.showHP = true; //this determines if the units health bar shows up when this is hurt.
+    this.corporial = false; //this makes spirits vulnerable to physical attacks
+    this.spirit = false; //this means that the unit is a ghost that can not be harmed by physical attacks (you still have to set health and armour to ridiculous numbers)
 
     //timers for AI
     this.aiTimer = 0; //the total time a unit has been in existence (unless reset)
@@ -836,7 +840,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     {
         if (this.targetingHold != true)
         {
-            if (!this.muzzle)
+            if (!this.muzzle && quenHere == false)
             {
                 if (player.lycanthropy != true || this.baseTeam != "wolf" || this.disturbed || this.team == "player")
                 {
@@ -859,7 +863,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 }
             }
 
-            if (this.team == "player" && cKey || this.muzzle || this.boatphobic && player.weaponEquipped == "boat" || this.mounted || player.mounted && this.baseTeam != "player") //charge command player team units will target their master only as a last resort while "C" is pressed
+            if (this.team == "player" && cKey || this.muzzle || this.boatphobic && player.weaponEquipped == "boat" || this.mounted || player.mounted && this.baseTeam != "player" || quenHere == true) //charge command player team units will target their master only as a last resort while "C" is pressed
             {
                 this.targetDistance = 1000000000;
             }
@@ -1104,7 +1108,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         }
         if (this.team == "Freynor")
         {
-            if (player.freynorPeace && player.freynorFaction > -50)
+            if (player.freynorPeace && player.freynorFaction > -50 && this.disturbed != true)
             {
                 this.allys.push("player");
             }
@@ -1134,7 +1138,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         }
         if (this.team == "Vardan")
         {
-            if (player.vardanPeace && player.vardanFaction > -50)
+            if (player.vardanPeace && player.vardanFaction > -50 && this.disturbed != true)
             {
                 this.allys.push("player");
             }
@@ -1154,7 +1158,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         }
         if (this.team == "Kel")
         {
-            if (player.kelPeace && player.kelFaction > -50 && quests.atalinEmpressWarPermission == false)
+            if (player.kelPeace && player.kelFaction > -50 && quests.atalinEmpressWarPermission == false && this.disturbed != true)
             {
                 this.allys.push("player");
             }
@@ -1176,7 +1180,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         }
         if (this.team == "Thengar")
         {
-            if (player.thengarPeace && player.thengarFaction > -50)
+            if (player.thengarPeace && player.thengarFaction > -50 && this.disturbed != true)
             {
                 this.allys.push("player");
             }
@@ -1194,7 +1198,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         }
         if (this.team == "Aldrek")
         {
-            if (player.aldrekPeace && player.aldrekFaction > -50)
+            if (player.aldrekPeace && player.aldrekFaction > -50 && this.disturbed != true)
             {
                 this.allys.push("player");
             }
@@ -1212,7 +1216,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         }
         if (this.team == "Orgell")
         {
-            if (player.orgellPeace && player.orgellFaction > -50)
+            if (player.orgellPeace && player.orgellFaction > -50 && this.disturbed != true)
             {
                 this.allys.push("player");
             }
@@ -1231,7 +1235,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         }
         if (this.team == "Cephrite")
         {
-            if (player.cephritePeace && player.cephriteFaction > -50)
+            if (player.cephritePeace && player.cephriteFaction > -50 && this.disturbed != true)
             {
                 this.allys.push("player");
             }
@@ -1251,7 +1255,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         }
         if (this.team == "Nirwaden")
         {
-            if (player.nirwadenPeace && player.nirwadenFaction > -50)
+            if (player.nirwadenPeace && player.nirwadenFaction > -50 && this.disturbed != true)
             {
                 this.allys.push("player");
             }
@@ -1285,7 +1289,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         }
         if (this.team == "TheBalgurMercenaries")
         {
-            if (player.theBalgurMercenariesPeace && player.theBalgurMercenariesFaction > -50)
+            if (player.theBalgurMercenariesPeace && player.theBalgurMercenariesFaction > -50 && this.disturbed != true)
             {
                 this.allys.push("player");
             }
@@ -1322,7 +1326,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         }
         if (this.team == "EstolGang")
         {
-            if (player.estolGangPeace && player.estolgangFaction > -50)
+            if (player.estolGangPeace && player.estolgangFaction > -50 && this.disturbed != true)
             {
                 this.allys.push("player");
             }
@@ -1344,7 +1348,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         }
         if (this.team == "EstolGang2")
         {
-            if (player.estolGangPeace && player.estolgangFaction > -1)
+            if (player.estolGangPeace && player.estolgangFaction > -1 && this.disturbed != true)
             {
                 this.allys.push("player");
             }
@@ -1363,7 +1367,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     this.allys.splice[ii, 1];
                 }
             }
-            if (player.estolGangPeace && player.estolgangFaction > -1)
+            if (player.estolGangPeace && player.estolgangFaction > -1 && this.disturbed != true)
             {
                 this.allys.push("player");
             }
@@ -1375,7 +1379,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         }
         if (this.team == "Sylkeem")
         {
-            if (player.sylkeemPeace && player.sylkeemRepublicansFaction > -50)
+            if (player.sylkeemPeace && player.sylkeemRepublicansFaction > -50 && this.disturbed != true)
             {
                 this.allys.push("player");
             }
@@ -8442,6 +8446,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             this.justAttacked = true;
 
                             //Special Attacking Effects
+                            if (this.target.corporial == true && this.target.spirit == true)
+                            {
+                                this.target.health -= (1 / Math.max(11, 36 - this.damage)) * this.target.healthMAX;
+                            }
 
                             if (this.effect == "basiliskVenom" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
                             {
@@ -12740,6 +12748,12 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         this.leeches = 0;
                     }
 
+                    //s-h-e-l-l spell goes away on death
+                    if (this.type == "Shell")
+                    {
+                        quenHere = false;
+                    }
+
                     //unmount on death
                     if (this.mounted)
                     {
@@ -12941,7 +12955,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     //if damaged a mini health bar will be displayed.
     this.showHealthWhenHurt = function()
     {
-        if (!this.petrified && !this.deathWalker || !this.petrified && this.health > 0)
+        if (!this.petrified && !this.deathWalker && this.showHP || !this.petrified && this.health > 0 && this.showHP)
         {
             if (this.health < this.healthMAX && (new Date().getTime() - this.healthShownTime) < 5000 || (new Date().getTime() - this.showHealthTime) < 250)
             {
@@ -14444,6 +14458,36 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.rotationSpeed = 0.00001;
             this.engagementRadius = 0;
             this.sizeRadius = 5;
+            this.negateArmour = 0;
+            this.attackWait = 0;
+            this.alphaSize = 1;
+            this.yAdjustment = 0;
+            this.xAdjustment = 0;
+        }
+        else if (this.type == "Shell") //this is not a real unit
+        {
+            this.playerProof = true;
+            this.damageFrame = "automatic";
+            this.team = this.ID;
+            this.baseTeam = this.team;
+            this.tamable = false;
+            this.showHP = false;
+
+            this.removeFromDeath = true;
+            this.zIndex = 4;
+            this.tangible = false;
+            this.magicalResistance = 0;
+            this.heatResistance = 0;
+            this.attackStyle = "chunked";
+            this.attackRate = 0; //this is for rapid style combat only.
+            this.healthMAX = 0.0001;
+            this.health = this.healthMAX;
+            this.armour = 0;
+            this.speed = 0;
+            this.rangeOfSight = 1; //This is just to set the variable initially. The rest is variable.
+            this.rotationSpeed = 0.00001;
+            this.engagementRadius = 20;
+            this.sizeRadius = 24;
             this.negateArmour = 0;
             this.attackWait = 0;
             this.alphaSize = 1;
@@ -20615,6 +20659,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
             this.baseTeam = this.team;
             this.tamable = false;
+            this.spirit = true;
 
             this.magicalResistance = 10;
             this.heatResistance = 10;
@@ -26106,6 +26151,54 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     }
                 }
             }
+        }
+        //SHELL
+        if (this.type == "Shell")
+        {
+            //Set Drops and experience
+            this.drops = [];
+
+            //RANGE OF SIGHT (anything related to range of sight)
+            this.rangeOfSightCalculator(1000, false);
+
+            if (this.petrified == true)
+            {
+                this.health = 0;
+            }
+
+            if (this.health <= 0)
+            {
+                quenHere = false;
+                player.secondaryCastingCooldown = new Date().getTime();
+            }
+
+            //AI
+            if (this.alive == true)
+            {
+                if (this.health > 0)
+                {
+                    quenHere = true;
+                }
+
+                this.muzzle = true;
+                this.X = X;
+                this.Y = Y;
+                if (this.aiTimer > 45 + (1 * player.getConcentration()))
+                {
+                    quenHere = false;
+                    player.secondaryCastingCooldown = new Date().getTime();
+                    ArtificialIntelligenceAccess.splice(ArtificialIntelligenceAccess.indexOf(this), 1);
+                }
+                XXX.save();
+                XXX.beginPath();
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                XXX.globalAlpha = 0.3;
+                XXX.arc(0, 0, 24, 0, 2*Math.PI);
+                XXX.fillStyle = "orange";
+                XXX.fill();
+                XXX.restore();
+            }
+
         }
         //ETYR
         if (this.type == "Etyr") //etyretyr
@@ -49608,7 +49701,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 {
                     if (this.tongueBack != true && new Date().getTime() - this.doTongueTime > 5000)
                     {
-                        if (this.tongued == true && this.target.healthMAX <= 40 && this.DTU(this.target) <= 50 && this.target.team != "undead" && this.target.team != "ghost" && this.target.type != "Changeling" && this.alpha == true || this.tongued == true && this.target.healthMAX <= 14 && this.DTU(this.target) <= 50 && this.target.team != "undead" && this.target.team != "ghost" && this.target.type != "Changeling" && this.alpha == false)
+                        if (this.tongued == true && this.target.healthMAX <= 40 && this.DTU(this.target) <= 50 && this.target.team != "undead" && this.target.spirit != true && this.target.type != "Changeling" && this.alpha == true || this.tongued == true && this.target.healthMAX <= 14 && this.DTU(this.target) <= 50 && this.target.team != "undead" && this.target.spirit != true && this.target.type != "Changeling" && this.alpha == false)
                         {
                             this.hopTime = new Date().getTime();
                             this.tongued = false;
@@ -49622,7 +49715,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             this.target.killNotByPlayer = true;
                             this.doTongueTime = new Date().getTime();
                         }
-                        else if (this.tongued == true && this.DTU(this.target) <= this.engagementRadius && this.target.healthMAX > 40 && this.alpha == true && this.target.team != "undead" && this.target.team != "ghost" && this.target.type != "Changeling" || this.tongued == true && this.DTU(this.target) <= this.engagementRadius && this.target.healthMAX > 14 && this.alpha == false && this.target.team != "undead" && this.target.team != "ghost" && this.target.type != "Changeling")
+                        else if (this.tongued == true && this.DTU(this.target) <= this.engagementRadius && this.target.healthMAX > 40 && this.alpha == true && this.target.team != "undead" && this.target.spirit != true && this.target.type != "Changeling" || this.tongued == true && this.DTU(this.target) <= this.engagementRadius && this.target.healthMAX > 14 && this.alpha == false && this.target.team != "undead" && this.target.spirit != true && this.target.type != "Changeling")
                         {
                             if (this.alpha)
                             {
@@ -51693,6 +51786,21 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.ghost = true;
             this.deleteBody = true;
 
+            if (this.corporial == true)
+            {
+                this.showHP = true;
+            }
+            else
+            {
+                this.showHP = false;
+            }
+
+            if (this.aiTimer > 2)
+            {
+                this.corporial = false;
+                this.aiTimer = 0;
+            }
+
             //kill phantom when its bones are set aflame
             for (var i = 0; i < quests.flamingBones.length; i++)
             {
@@ -51717,6 +51825,13 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 }
             }
 
+            if (this.health <= 0)
+            {
+                if (this.ID == "Gesuldo")
+                {
+                    uniqueChars.gesuldoLDS = false;
+                }
+            }
 
             //Set Drops and experience
             this.experience = 88 * ((player.getIntelligence() / 50) + 1);

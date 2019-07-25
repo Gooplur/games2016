@@ -531,6 +531,49 @@ function Item(type, x, y)
             this.spellKnowledgeRequirement = 6;
             this.spellRange = "Near";
         }
+        else if (this.type == "shell")
+        {
+            //For All Items
+            if (player.getKnowledge() >= 3)
+            {
+                this.identity = "Tablet of Shell";
+                this.description = "Studying this magically engraved stone tablet will teach you how to create a magical shell of energy around the caster.";
+                this.intForDes = 0;
+                this.intDescription = "It blocks all impact from most attacks then goes away.";
+                this.buyValue = 1000 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 800.
+                this.sellValue = 600 + Math.floor(player.getCharisma() / 0.25); // at max, sell for 800.
+            }
+            else
+            {
+                this.identity = "Engraved Stone Tablet";
+                this.description = "There are strange symbols engraved in the stone.";
+                this.intForDes = 6;
+                this.intDescription = "Perhaps this stone is an artifact from an ancient culture.";
+                this.buyValue = 1000 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 800.
+                this.sellValue = 65 + Math.floor(player.getCharisma() / 2); // at max, sell for 90.
+            }
+            this.weight = 2.5;
+            this.size = 13;
+
+            //Define Utility
+            this.utility = "spell";
+
+            //ability
+            this.ability = "none";
+
+            //Utility Focused
+            this.damages = false;
+            this.spellCost = Math.max(1, 2 + (1 / 50) * player.getConcentration() - (2 / 50) * player.getEminence());
+            this.spellGroup = "Incantation";
+            this.spellGenre = "Cosmic";
+            this.spellName = "Shell";
+            this.spellID = "shell";
+            this.spellEXP = 3 * ((50 + player.getMemory()) / 50);
+            this.spellCooldown = Math.max(1, 14 + (1/50) * player.getConcentration() - (8/50) * player.getEminence());
+            this.spellDescription = "Forms a magical bubble of protection that prevents a single attack then disappears.";
+            this.spellKnowledgeRequirement = 3;
+            this.spellRange = "Self";
+        }
         else if (this.type == "theFrozenWord")
         {
             //For All Items
@@ -1631,6 +1674,50 @@ function Item(type, x, y)
             this.spellCooldown = Math.max(60, 60 + (180/50) * player.getConcentration() - (60/50) * player.getEminence());
             this.spellDescription = "A circle of magical sigils that repel all but the caster and their minions from being in the encompassed area.";
             this.spellKnowledgeRequirement = 18;
+            this.spellRange = "Short";
+        }
+        else if (this.type == "corporalityWard")
+        {
+            //For All Items
+            if (player.getKnowledge() >= 8)
+            {
+                this.identity = "Scroll of Corporality Ward";
+                this.description = "Studying this scroll will teach you how to form a magical warding circle that will force all who are not you or your allies out of that area.";
+                this.intForDes = 0;
+                this.intDescription = "";
+                this.buyValue = 1500 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 1400.
+                this.sellValue = 1000 + Math.floor(player.getCharisma() / 0.25); // at max, sell for 1200.
+            }
+            else
+            {
+                this.identity = "Scroll";
+                this.description = "The markings on this scroll are incomprehensible; what a waste of paper!";
+                this.intForDes = 4;
+                this.intDescription = "Scrolls are supposed to be used for storing knowledge or sending messages, it looks like this one wasn't used for either.";
+                this.buyValue = 1500 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 1400.
+                this.sellValue = 1; // at max, sell for 1.
+            }
+            this.weight = 0.02;
+            this.size = 12;
+
+            //Define Utility
+            this.utility = "spell";
+
+            //ability
+            this.ability = "none";
+
+            //Utility Focused
+            this.damages = false;
+            this.spellDamage = 0;
+            this.spellCost = Math.max(2, 4 + (3/50) * player.getConcentration() - (6/50) * player.getEminence());
+            this.spellGroup = "Incantation";
+            this.spellGenre = "Cosmic";
+            this.spellName = "Ward of Corporality";
+            this.spellID = "corporalityWard";
+            this.spellEXP = 9 * ((50 + player.getMemory()) / 50);
+            this.spellCooldown = Math.max(35, 40 + (80/50) * player.getConcentration() - (90/50) * player.getEminence());
+            this.spellDescription = "A circle of magical sigils that weakens, and stuns those that enter it by drawing their soul even more deeply into the physical realm.";
+            this.spellKnowledgeRequirement = 8;
             this.spellRange = "Short";
         }
         else if (this.type == "undyingWard")
@@ -51596,7 +51683,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 535, 411, 40, 72, X - this.X + (1/2 * CCC.width) - (1/2 * 40 / 1.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 72 / 1.3), 40 / 1.3, 72 / 1.3);
         }
-        else if (this.type == "tablet" || this.type == "stolenTablet" || this.type == "iceClaymore" || this.type == "leechingTouch" || this.type == "shadowport" || this.type == "theFrozenWord")
+        else if (this.type == "tablet" || this.type == "stolenTablet" || this.type == "iceClaymore" || this.type == "leechingTouch" || this.type == "shadowport" || this.type == "theFrozenWord" || this.type == "shell")
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1859, 36, 22, 27, X - this.X + (1/2 * CCC.width) - (1/2 * 22), Y - this.Y + (1/2 * CCC.height) - (1/2 * 27), 22, 27);
@@ -51621,7 +51708,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 1967, 67, 33, 26, X - this.X + (1/2 * CCC.width) - (1/2 * 33), Y - this.Y + (1/2 * CCC.height) - (1/2 * 26), 33, 26);
         }
-        else if (this.type == "repel" || this.type == "minorVortex" || this.type == "lifeTap" || this.type == "electricBolt" || this.type == "chargedTouch" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "summonFrich" || this.type == "shadowSwitch")
+        else if (this.type == "repel" || this.type == "minorVortex" || this.type == "lifeTap" || this.type == "electricBolt" || this.type == "chargedTouch" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "summonFrich" || this.type == "shadowSwitch" || this.type == "corporalityWard")
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1922, 4, 23, 32, X - this.X + (1/2 * CCC.width) - (1/2 * 23), Y - this.Y + (1/2 * CCC.height) - (1/2 * 32), 23, 32);
@@ -57747,12 +57834,12 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(polypol, 535, 411, 40, 72, this.invX - (1/2 * 40 / 1.3), this.invY - (1/2 * 72 / 1.3), 40 / 1.3, 72 / 1.3);
         }
-        else if (this.type == "tablet" || this.type == "stolenTablet" || this.type == "iceClaymore" || this.type == "leechingTouch" || this.type == "shadowport" || this.type == "theFrozenWord")
+        else if (this.type == "tablet" || this.type == "stolenTablet" || this.type == "iceClaymore" || this.type == "leechingTouch" || this.type == "shadowport" || this.type == "theFrozenWord" || this.type == "shell")
         {
             LXX.beginPath();
             LXX.drawImage(polypol, 1859, 36, 22, 27, this.invX - (1/2 * 22), this.invY - (1/2 * 27), 22, 27);
         }
-        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind" || this.type == "iceBlast" || this.type == "healingPsalms" || this.type == "summonGriffin" || this.type == "summonDemon" || this.type == "slowTimeI" || this.type == "slowTimeII" || this.type == "slowTimeIII" || this.type == "slowTimeIV" || this.type == "slowTimeV" || this.type == "slowTimeVI" || this.type == "doppelganger" || this.type == "shadowSwitch" || this.type == "eruption" || this.type == "drakeBreath" || this.type == "undyingWard" || this.type == "potatoInvisibility" || this.type == "flamingMissiles" || this.type == "despell" || this.type == "powerDraw" || this.type == "arcaneOrbs")
+        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind" || this.type == "iceBlast" || this.type == "healingPsalms" || this.type == "summonGriffin" || this.type == "summonDemon" || this.type == "slowTimeI" || this.type == "slowTimeII" || this.type == "slowTimeIII" || this.type == "slowTimeIV" || this.type == "slowTimeV" || this.type == "slowTimeVI" || this.type == "doppelganger" || this.type == "shadowSwitch" || this.type == "eruption" || this.type == "drakeBreath" || this.type == "undyingWard" || this.type == "potatoInvisibility" || this.type == "flamingMissiles" || this.type == "despell" || this.type == "powerDraw" || this.type == "arcaneOrbs" || this.type == "corporalityWard")
         {
             LXX.beginPath();
             LXX.drawImage(polypol, 1738, 4, 33, 26, this.invX - (1/2 * 33), this.invY - (1/2 * 26), 33, 26);
@@ -63775,12 +63862,12 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 535, 411, 40, 72, this.invX - (1/2 * 40 / 1.3), this.invY - (1/2 * 72 / 1.3), 40 / 1.3, 72 / 1.3);
         }
-        else if (this.type == "tablet" || this.type == "stolenTablet" || this.type == "iceClaymore" || this.type == "leechingTouch" || this.type == "shadowport" || this.type == "theFrozenWord")
+        else if (this.type == "tablet" || this.type == "stolenTablet" || this.type == "iceClaymore" || this.type == "leechingTouch" || this.type == "shadowport" || this.type == "theFrozenWord" || this.type == "shell")
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1859, 36, 22, 27, this.invX - (1/2 * 22), this.invY - (1/2 * 27), 22, 27);
         }
-        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind" || this.type == "iceBlast" || this.type == "healingPsalms" || this.type == "summonGriffin" || this.type == "summonDemon" || this.type == "slowTimeI" || this.type == "slowTimeII" || this.type == "slowTimeIII" || this.type == "slowTimeIV" || this.type == "slowTimeV" || this.type == "slowTimeVI" || this.type == "doppelganger" || this.type == "shadowSwitch" || this.type == "eruption" || this.type == "drakeBreath" || this.type == "undyingWard" || this.type == "potatoInvisibility" || this.type == "flamingMissiles" || this.type == "despell" || this.type == "powerDraw" || this.type == "arcaneOrbs")
+        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind" || this.type == "iceBlast" || this.type == "healingPsalms" || this.type == "summonGriffin" || this.type == "summonDemon" || this.type == "slowTimeI" || this.type == "slowTimeII" || this.type == "slowTimeIII" || this.type == "slowTimeIV" || this.type == "slowTimeV" || this.type == "slowTimeVI" || this.type == "doppelganger" || this.type == "shadowSwitch" || this.type == "eruption" || this.type == "drakeBreath" || this.type == "undyingWard" || this.type == "potatoInvisibility" || this.type == "flamingMissiles" || this.type == "despell" || this.type == "powerDraw" || this.type == "arcaneOrbs" || this.type == "corporalityWard")
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1738, 4, 33, 26, this.invX - (1/2 * 33), this.invY - (1/2 * 26), 33, 26);

@@ -3516,6 +3516,10 @@ function cheats()
         {
             ArtificialIntelligenceAccess.push(new Unit(X + 40, Y, "Viper", false, "Serpy the Serpent"));
         }
+        else if (cheatcode.toLowerCase() == "phantyphanty")
+        {
+            ArtificialIntelligenceAccess.push(new Unit(X + 500 - 1/2 * CCC.width, Y + 500 - 1/2 * CCC.height, "Phantom", false, "Phanty"));
+        }
         else if (cheatcode.toLowerCase() == "traavinjathetroll")
         {
             ArtificialIntelligenceAccess.push(new Unit(X + 500 - 1/2 * CCC.width, Y + 500 - 1/2 * CCC.height, "BogTroll", false, "Traavinja the Troll"));

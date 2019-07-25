@@ -535,7 +535,10 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             {
                 player.webbedNum = 3;
                 player.webbedTime = new Date().getTime();
-                this.webbed.push(player);
+                if (quenHere == false)
+                {
+                    this.webbed.push(player);
+                }
             }
             for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
             {
@@ -658,7 +661,10 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             {
                 player.webbedNum = 3;
                 player.webbedTime = new Date().getTime();
-                this.webbed.push(player);
+                if (quenHere == false)
+                {
+                    this.webbed.push(player);
+                }
             }
             for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
             {
@@ -697,7 +703,10 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             {
                 player.webbedNum = 3;
                 player.webbedTime = new Date().getTime();
-                this.webbed.push(player);
+                if (quenHere == false)
+                {
+                    this.webbed.push(player);
+                }
             }
             for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
             {
@@ -731,7 +740,10 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             {
                 player.webbedNum = 3;
                 player.webbedTime = new Date().getTime();
-                this.webbed.push(player);
+                if (quenHere == false)
+                {
+                    this.webbed.push(player);
+                }
             }
             for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
             {

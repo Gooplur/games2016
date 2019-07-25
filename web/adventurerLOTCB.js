@@ -10721,6 +10721,37 @@ function Adventurer()
                             this.weaponEquipped = "iceBlade";
                         }
                     }
+                    //Corporality Ward
+                    if (secondarySpells[i].ID == "corporalityWard")
+                    {
+                        if (new Date().getTime() - this.secondaryCastingCooldown >= (secondarySpells[i].cooldown * 1000) && this.will - secondarySpells[i].cost >= 0)
+                        {
+                            this.will -= secondarySpells[i].cost;
+                            this.magicalExperience += secondarySpells[i].EXP;
+
+                            magicList.push(new Magic(secondarySpells[i], true));
+
+                            this.secondaryCastingCooldown = new Date().getTime();
+                        }
+                    }
+                    //Shell
+                    if (secondarySpells[i].ID == "shell")
+                    {
+                        if (new Date().getTime() - this.secondaryCastingCooldown >= (secondarySpells[i].cooldown * 1000) && this.will - secondarySpells[i].cost >= 0)
+                        {
+                            this.will -= secondarySpells[i].cost;
+                            this.magicalExperience += secondarySpells[i].EXP;
+                            for (var sheli = ArtificialIntelligenceAccess.length - 1; sheli >= 0 ; sheli--)
+                            {
+                                if (ArtificialIntelligenceAccess[sheli].type == "Shell" && ArtificialIntelligenceAccess[sheli].ID == "player")
+                                {
+                                    ArtificialIntelligenceAccess[sheli].splice(sheli, 1);
+                                }
+                            }
+                            ArtificialIntelligenceAccess.unshift(new Unit(X, Y, "Shell", true, "player"));
+                            this.secondaryCastingCooldown = new Date().getTime();
+                        }
+                    }
                     //The Frozen Word
                     if (secondarySpells[i].ID == "theFrozenWord")
                     {
@@ -26767,7 +26798,7 @@ function Adventurer()
                 {
                     var dfu = Math.sqrt((ArtificialIntelligenceAccess[i].X - this.bubbleOfDamageX) * (ArtificialIntelligenceAccess[i].X - this.bubbleOfDamageX) + (ArtificialIntelligenceAccess[i].Y - this.bubbleOfDamageY) * (ArtificialIntelligenceAccess[i].Y - this.bubbleOfDamageY)) - ArtificialIntelligenceAccess[i].sizeRadius; //This is the distance from the center of the players attack/damaging bubble to the AI Unit.
 
-                    if (dfu <= this.weapon.range * 7 && this.finalAttackStage == true && !ArtificialIntelligenceAccess[i].underground && ArtificialIntelligenceAccess[i].dmx == this.dmx && ArtificialIntelligenceAccess[i].mounted != true)
+                    if (dfu <= this.weapon.range * 7 && this.finalAttackStage == true && !ArtificialIntelligenceAccess[i].underground && ArtificialIntelligenceAccess[i].dmx == this.dmx && ArtificialIntelligenceAccess[i].mounted != true && !ArtificialIntelligenceAccess[i].playerProof)
                     {
                         var justDealt = 0; //this stores the damage that was just dealt
                         if (this.powerAttack == false)
@@ -26861,6 +26892,12 @@ function Adventurer()
                             {
                                 ArtificialIntelligenceAccess[i].killNotByPlayer = false;
                             }
+                        }
+
+                        //abilities
+                        if (ArtificialIntelligenceAccess[i].corporial == true && ArtificialIntelligenceAccess[i].spirit == true)
+                        {
+                            ArtificialIntelligenceAccess[i].health -= (1 / Math.max(11, 36 - this.weapon.damage)) * ArtificialIntelligenceAccess[i].healthMAX;
                         }
 
                         if (this.weapon.ability == "freeze")
@@ -41040,4 +41077,5 @@ function clearEquipped()
     {
         player.stage2 = 0;
     }
+    quenHere = false;
 }

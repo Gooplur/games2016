@@ -2806,6 +2806,50 @@ function Item(type, x, y)
             this.spellKnowledgeRequirement = 6;
             this.spellRange = "Medium";
         }
+        else if (this.type == "windBlast")
+        {
+            //For All Items
+            if (player.getKnowledge() >= 4)
+            {
+                this.identity = "Scroll of Wind Blast";
+                this.description = "Studying this scroll will teach you how to cast a blast of wind to throw back your foes.";
+                this.intForDes = 0;
+                this.intDescription = "This scroll looks old and withered, but the magical writing is still clear enough to read.";
+                this.buyValue = 945 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 845.
+                this.sellValue = 720 + Math.floor(player.getCharisma() / 0.5); // at max, sell for 820.
+            }
+            else
+            {
+                this.identity = "Scroll";
+                this.description = "The markings on this scroll are incomprehensible; what a waste of paper!";
+                this.intForDes = 2;
+                this.intDescription = "Scrolls are supposed to be used for storing knowledge or sending messages, it looks like this one wasn't used for either.";
+                this.buyValue = 945 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 845.
+                this.sellValue = 1; // at max, sell for 1.
+            }
+            this.weight = 0.02;
+            this.size = 14;
+
+            //Define Utility
+            this.utility = "spell";
+
+            //ability
+            this.ability = "none";
+
+            //Utility Focused
+            this.damages = true;
+            this.spellCost = Math.max(2, 3 + (3 / 50) * player.getConcentration() - (4 / 50) * player.getEminence());
+            this.spellGroup = "Form";
+            this.spellGenre = "Air";
+            this.spellName = "Wind Blast";
+            this.spellID = "windBlast";
+            this.spellDamage = 3 + 0.1 * player.getConcentration();
+            this.spellEXP = 8 * ((50 + player.getMemory()) / 50);
+            this.spellCooldown = Math.max(3, 6 + (4/50) * player.getConcentration() - (7/50) * player.getEminence());
+            this.spellDescription = "A powerful blast of wind that throws all that it hits forceful back.";
+            this.spellKnowledgeRequirement = 4;
+            this.spellRange = "Medium";
+        }
         else if (this.type == "fireballI")
         {
             //For All Items
@@ -3334,6 +3378,26 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 2 - Math.floor(player.getCharisma() / 25); // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "skriatokEssence")
+        {
+            //For All Items
+            this.identity = "SkriatokEssence";
+            this.weight = 0.001;
+            this.size = 9;
+            this.description = "The faded silky essence of a skriatok.";
+            this.intForDes = 0;
+            this.intDescription = "It feels like cold smooth silk, but touching it sends an unsettling shiver through your bones.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 61 - Math.floor(player.getCharisma() / 2); // at max, buy for 36.
+            this.sellValue = 21 + Math.floor(player.getCharisma() / 3); // at max, sell for 36.
         }
         else if (this.type == "hugeBogTrollSkull")
         {
@@ -46802,6 +46866,11 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "skriatokEssence")
+        {
+            XXX.beginPath();
+            XXX.drawImage(tomb, 282, 7, 62, 61, X - this.X + (1/2 * CCC.width) - (1/2 * 62 * 0.45), Y - this.Y + (1/2 * CCC.height) - (1/2 * 61 * 0.45), 62 * 0.45, 61 * 0.45);
+        }
         else if (this.type == "cheshirePaw")
         {
             XXX.beginPath();
@@ -52865,6 +52934,11 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
+        else if (this.type == "skriatokEssence")
+        {
+            LXX.beginPath();
+            LXX.drawImage(tomb, 282, 7, 62, 61, this.invX - (1/2 * 62 * 0.45), this.invY - (1/2 * 61 * 0.45), 62 * 0.45, 61 * 0.45);
+        }
         else if (this.type == "cheshirePaw")
         {
             LXX.beginPath();
@@ -58894,6 +58968,11 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "skriatokEssence")
+        {
+            XXX.beginPath();
+            XXX.drawImage(tomb, 282, 7, 62, 61, this.invX - (1/2 * 62 * 0.45), this.invY - (1/2 * 61 * 0.45), 62 * 0.45, 61 * 0.45);
         }
         else if (this.type == "cheshirePaw")
         {

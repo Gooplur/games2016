@@ -17,7 +17,7 @@ function worldBuilder()
             elevation = -3;
             region = "s29";
             campout = true;
-            outlineBuilder( 34, 34, "desert", -20, 966);
+            outlineBuilder( 34, 34, "outline", -20, 966);
         }
         //mapS28
         if (Y > -289573.87 && Y < -278703.92 && X < 7687 && X > - 3901) //X0
@@ -25,7 +25,7 @@ function worldBuilder()
             elevation = -3;
             region = "s28";
             campout = true;
-            outlineBuilder( 34, 34, "outline", -20, 932);
+            outlineBuilder( 34, 34, "jungle", -20, 932);
         }
         //Layer -27 (tropical region): elev -3
         //mapS27
@@ -199,9 +199,44 @@ function worldBuilder()
             elevation = -2;
             region = "s18e1";
             campout = true;
-            outlineBuilder( 34, 34, "outline", 14, 592);
-            //outlineBuilder( 4, 34, "savannah", -20, 592);
-            //outlineBuilder( 16, 34, "savannahDirt", -20, 596);
+
+            outlineBuilder( 34, 34, "savannah", 14, 592);
+
+            outlineBuilder( 2, 24, "savannahDirt", 14, 595);
+            outlineBuilder( 1, 18, "savannahDirt", 20, 594);
+            outlineBuilder( 1, 9, "savannahDirt", 30, 593);
+            outlineBuilder( 1, 7, "savannahDirt", 34, 592);
+            outlineBuilder( 3, 20, "savannahDirt", 14, 602);
+            outlineBuilder( 1, 15, "savannahDirt", 14, 605);
+            outlineBuilder( 4, 5, "savannahDirt", 34, 600);
+            outlineBuilder( 5, 5, "savannahDirt", 39, 598);
+            outlineBuilder( 5, 4, "savannahDirt", 44, 596);
+
+            outlineBuilder( 7, 7, "sea", 14, 597);
+            outlineBuilder( 6, 2, "sea", 21, 597);
+            outlineBuilder( 7, 9, "sea", 23, 596);
+            outlineBuilder( 7, 4, "sea", 32, 595);
+            outlineBuilder( 1, 1, "seaCornerBR", 21, 603);
+            outlineBuilder( 1, 1, "seaCornerTL", 22, 596);
+            outlineBuilder( 1, 1, "seaCornerTL", 31, 595);
+            outlineBuilder( 1, 1, "seaCornerBR", 32, 602);
+            outlineBuilder( 1, 1, "seaCornerTL", 36, 594);
+            outlineBuilder( 1, 1, "seaCornerTL", 37, 593);
+            outlineBuilder( 1, 1, "seaCornerBR", 36, 601);
+            outlineBuilder( 1, 1, "seaCornerBR", 37, 600);
+            outlineBuilder( 6, 1, "sea", 36, 595);
+            outlineBuilder( 6, 1, "sea", 37, 594);
+            outlineBuilder( 7, 2, "sea", 38, 593);
+            outlineBuilder( 1, 1, "seaCornerTL", 40, 592);
+            outlineBuilder( 1, 1, "seaCornerBR", 40, 599);
+            outlineBuilder( 6, 1, "sea", 40, 593);
+            outlineBuilder( 7, 3, "sea", 41, 592);
+            outlineBuilder( 1, 1, "seaCornerBR", 44, 598);
+            outlineBuilder( 6, 2, "sea", 44, 592);
+            outlineBuilder( 1, 1, "seaCornerBR", 46, 597);
+            outlineBuilder( 1, 1, "seaCornerBR", 47, 596);
+            outlineBuilder( 5, 1, "sea", 46, 592);
+            outlineBuilder( 4, 1, "sea", 47, 592);
         }
         //Layer -17 (warm region): elev -2
         //mapS17
@@ -237,7 +272,95 @@ function worldBuilder()
             elevation = -1;
             region = "s15w2";
             campout = true;
-            outlineBuilder( 34, 34, "outline", -88, 490);
+            outlineBuilder( 34, 34, "greenGrass", -88, 490);
+            outlineBuilder( 1, 34, "savannah", -88, 523);
+            outlineBuilder( 1, 5, "savannah", -88, 522);
+            outlineBuilder( 1, 4, "savannah", -87, 521);
+            outlineBuilder( 1, 24, "savannah", -79, 522);
+            outlineBuilder( 1, 2, "savannah", -77, 521);
+            outlineBuilder( 1, 3, "savannah", -68, 521);
+            outlineBuilder( 1, 5, "savannah", -61, 521);
+
+            outlineBuilder( 2, 1, "muckgrass", -79, 490);
+            outlineBuilder( 1, 4, "muckgrass", -78, 490);
+            outlineBuilder( 4, 1, "muckgrass", -74, 490);
+            outlineBuilder( 3, 1, "muckgrass", -80, 492);
+            outlineBuilder( 3, 3, "muckgrass", -83, 494);
+            outlineBuilder( 1, 1, "muckgrass", -84, 496);
+            outlineBuilder( 5, 2, "muckgrass", -86, 496);
+            outlineBuilder( 5, 1, "muckgrass", -87, 500);
+            outlineBuilder( 7, 1, "muckgrass", -86, 504);
+            outlineBuilder( 3, 1, "muckgrass", -85, 509);
+            outlineBuilder( 1, 6, "muckgrass", -84, 512);
+            outlineBuilder( 1, 4, "muckgrass", -82, 513);
+            outlineBuilder(1, 1, "muckgrass", -79, 511);
+            outlineBuilder(2, 2, "muckgrass", -79, 509);
+            outlineBuilder(4, 1, "muckgrass", -77, 507);
+            outlineBuilder( 3, 2, "muckgrass", -73, 493);
+            outlineBuilder( 1, 3, "muckgrass", -71, 495);
+            outlineBuilder( 5, 1, "muckgrass", -68, 495);
+            outlineBuilder( 4, 1, "muckgrass", -67, 496);
+            outlineBuilder( 3, 3, "muckgrass", -67, 493);
+            outlineBuilder( 5, 2, "muckgrass", -70, 499);
+            outlineBuilder( 4, 1, "muckgrass", -71, 500);
+            outlineBuilder( 5, 2, "muckgrass", -73, 502);
+            outlineBuilder( 11, 1, "muckgrass", -74, 503);
+            outlineBuilder( 1, 1, "muckgrass", -75, 505);
+            outlineBuilder( 2, 1, "muckgrass", -75, 509);
+            outlineBuilder( 1, 1, "muckgrass", -76, 510);
+            outlineBuilder( 3, 1, "muckgrass", -73, 514);
+            outlineBuilder( 1, 2, "muckgrass", -72, 516);
+            outlineBuilder( 2, 1, "muckgrass", -70, 515);
+            outlineBuilder( 1, 2, "muckgrass", -69, 515);
+            outlineBuilder( 2, 1, "muckgrass", -67, 514);
+            outlineBuilder( 1, 1, "muckgrass", -66, 514);
+            outlineBuilder( 2, 1, "muckgrass", -65, 513);
+            outlineBuilder( 1, 1, "muckgrass", -64, 513);
+            outlineBuilder( 2, 3, "muckgrass", -63, 513);
+            outlineBuilder( 1, 1, "muckgrass", -60, 513);
+            outlineBuilder( 3, 1, "muckgrass", -59, 510);
+            outlineBuilder( 4, 1, "muckgrass", -58, 509);
+            outlineBuilder( 2, 1, "muckgrass", -57, 508);
+            outlineBuilder( 3, 1, "muckgrass", -73, 508);
+            outlineBuilder( 2, 2, "muckgrass", -72, 509);
+            outlineBuilder( 3, 1, "muckgrass", -70, 509);
+            outlineBuilder( 4, 1, "muckgrass", -69, 507);
+            outlineBuilder( 1, 2, "muckgrass", -68, 507);
+            outlineBuilder( 3, 1, "muckgrass", -66, 505);
+            outlineBuilder( 3, 1, "muckgrass", -65, 504);
+            outlineBuilder( 1, 1, "muckgrass", -64, 504);
+            outlineBuilder( 2, 2, "muckgrass", -63, 502);
+            outlineBuilder( 3, 1, "muckgrass", -61, 502);
+            outlineBuilder( 1, 1, "muckgrass", -60, 504);
+            outlineBuilder( 2, 1, "muckgrass", -59, 505);
+            outlineBuilder( 4, 1, "muckgrass", -58, 505);
+
+            outlineBuilder( 3, 1, "muck", -86, 501);
+            outlineBuilder( 8, 1, "muck", -85, 501);
+            outlineBuilder( 15, 4, "muck", -84, 497);
+            outlineBuilder( 17, 1, "muck", -80, 495);
+            outlineBuilder( 17, 1, "muck", -79, 492);
+            outlineBuilder( 18, 1, "muck", -78, 491);
+            outlineBuilder( 16, 1, "muck", -77, 491);
+            outlineBuilder( 3, 2, "muck", -70, 496);
+            outlineBuilder( 4, 1, "muck", -71, 496);
+            outlineBuilder( 6, 2, "muck", -73, 496);
+            outlineBuilder( 9, 1, "muck", -74, 494);
+            outlineBuilder( 19, 1, "muck", -76, 491);
+            outlineBuilder( 14, 1, "muck", -75, 491);
+            outlineBuilder( 3, 1, "muck", -75, 506);
+            outlineBuilder( 3, 1, "muck", -73, 511);
+            outlineBuilder( 5, 2, "muck", -72, 511);
+            outlineBuilder( 3, 1, "muck", -70, 512);
+            outlineBuilder( 4, 1, "muck", -69, 511);
+            outlineBuilder( 7, 1, "muck", -68, 508);
+            outlineBuilder( 6, 1, "muck", -67, 508);
+            outlineBuilder( 6, 1, "muck", -66, 508);
+            outlineBuilder( 6, 1, "muck", -65, 507);
+            outlineBuilder( 8, 1, "muck", -64, 505);
+            outlineBuilder( 9, 2, "muck", -63, 504);
+            outlineBuilder( 8, 2, "muck", -61, 505);
+            outlineBuilder( 3, 1, "muck", -59, 507);
         }
         //mapS15W1
         if (Y > -156924 && Y < -146147 && X < 17891 && X > 6299) //X-1
@@ -246,6 +369,17 @@ function worldBuilder()
             region = "s15w1";
             campout = true;
             outlineBuilder( 34, 34, "greenGrass", -54, 490);
+
+            outlineBuilder( 1, 5, "savannah", -53, 523);
+            outlineBuilder( 1, 3, "savannah", -50, 522);
+            outlineBuilder( 1, 4, "savannah", -45, 523);
+            outlineBuilder( 1, 3, "savannah", -44, 522);
+            outlineBuilder( 1, 5, "savannah", -39, 523);
+            outlineBuilder( 1, 2, "savannah", -38, 522);
+            outlineBuilder( 1, 1, "savannah", -38, 521);
+            outlineBuilder( 1, 4, "savannah", -24, 523);
+            outlineBuilder( 2, 3, "savannah", -31, 522);
+            outlineBuilder( 1, 2, "savannah", -28, 523);
         }
         //mapS15
         if (Y > -156924 && Y < -146147 && X < 7687 && X > - 3901) //X0

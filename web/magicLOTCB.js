@@ -939,7 +939,7 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                                     magicList.push(new Magic({ID: "electricBolt", CNX: this.cnx}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
                                 }
                             }
-                            else if (unitSelf[3] !== ArtificialIntelligenceAccess[i] && this.instructions != "aftershocked")
+                            else if (unitSelf[3] !== ArtificialIntelligenceAccess[i]) // && this.orders != "aftershocked"
                             {
                                 this.doDelete = true;
                                 ArtificialIntelligenceAccess[i].health -= Math.max(0, damage -  (19 * ArtificialIntelligenceAccess[i].magicalResistance));
@@ -1101,8 +1101,32 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                             else if (kind == "force")
                             {
                                 ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
-                                ArtificialIntelligenceAccess[i].X -= (2 + 4 * ArtificialIntelligenceAccess[i].speed) * Math.cos(Math.atan(X - ArtificialIntelligenceAccess[i].X, Y - ArtificialIntelligenceAccess[i].Y) - 1 / 2 * Math.PI);
-                                ArtificialIntelligenceAccess[i].Y -= (2 + 4 * ArtificialIntelligenceAccess[i].speed) * Math.sin(Math.atan(X - ArtificialIntelligenceAccess[i].X, Y - ArtificialIntelligenceAccess[i].Y) - 1 / 2 * Math.PI);
+                                ArtificialIntelligenceAccess[i].X -= (2 + 4 * ArtificialIntelligenceAccess[i].speed) * Math.cos(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
+                                ArtificialIntelligenceAccess[i].Y -= (2 + 4 * ArtificialIntelligenceAccess[i].speed) * Math.sin(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
+                            }
+                            else if (kind == "windI")
+                            {
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                ArtificialIntelligenceAccess[i].X -= ((3 + 4 * ArtificialIntelligenceAccess[i].speed) / Math.max(1, (ArtificialIntelligenceAccess[i].healthMAX / 45))) * Math.cos(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
+                                ArtificialIntelligenceAccess[i].Y -= ((3 + 4 * ArtificialIntelligenceAccess[i].speed) / Math.max(1, (ArtificialIntelligenceAccess[i].healthMAX / 45))) * Math.sin(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
+                            }
+                            else if (kind == "windII")
+                            {
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                ArtificialIntelligenceAccess[i].X -= ((6 + 4 * ArtificialIntelligenceAccess[i].speed) / Math.max(1, (ArtificialIntelligenceAccess[i].healthMAX / 50))) * Math.cos(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
+                                ArtificialIntelligenceAccess[i].Y -= ((6 + 4 * ArtificialIntelligenceAccess[i].speed) / Math.max(1, (ArtificialIntelligenceAccess[i].healthMAX / 50))) * Math.sin(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
+                            }
+                            else if (kind == "windIII")
+                            {
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                ArtificialIntelligenceAccess[i].X -= ((10 + 4 * ArtificialIntelligenceAccess[i].speed) / Math.max(1, (ArtificialIntelligenceAccess[i].healthMAX / 55))) * Math.cos(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
+                                ArtificialIntelligenceAccess[i].Y -= ((10 + 4 * ArtificialIntelligenceAccess[i].speed) / Math.max(1, (ArtificialIntelligenceAccess[i].healthMAX / 55))) * Math.sin(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
+                            }
+                            else if (kind == "windIV")
+                            {
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                ArtificialIntelligenceAccess[i].X -= ((14 + 4 * ArtificialIntelligenceAccess[i].speed) / Math.max(1, (ArtificialIntelligenceAccess[i].healthMAX / 65))) * Math.cos(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
+                                ArtificialIntelligenceAccess[i].Y -= ((14 + 4 * ArtificialIntelligenceAccess[i].speed) / Math.max(1, (ArtificialIntelligenceAccess[i].healthMAX / 65))) * Math.sin(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
                             }
                             else if (kind == "magic")
                             {
@@ -1261,8 +1285,32 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                                 else if (kind == "force")
                                 {
                                     ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
-                                    ArtificialIntelligenceAccess[i].X -= (2 + 4 * ArtificialIntelligenceAccess[i].speed) * Math.cos(Math.atan(X - ArtificialIntelligenceAccess[i].X, Y - ArtificialIntelligenceAccess[i].Y) - 1 / 2 * Math.PI);
-                                    ArtificialIntelligenceAccess[i].Y -= (2 + 4 * ArtificialIntelligenceAccess[i].speed) * Math.sin(Math.atan(X - ArtificialIntelligenceAccess[i].X, Y - ArtificialIntelligenceAccess[i].Y) - 1 / 2 * Math.PI);
+                                    ArtificialIntelligenceAccess[i].X -= (2 + 4 * ArtificialIntelligenceAccess[i].speed) * Math.cos(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
+                                    ArtificialIntelligenceAccess[i].Y -= (2 + 4 * ArtificialIntelligenceAccess[i].speed) * Math.sin(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
+                                }
+                                else if (kind == "windI")
+                                {
+                                    ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                    ArtificialIntelligenceAccess[i].X -= ((3 + 4 * ArtificialIntelligenceAccess[i].speed) / Math.max(1, (ArtificialIntelligenceAccess[i].healthMAX / 45))) * Math.cos(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
+                                    ArtificialIntelligenceAccess[i].Y -= ((3 + 4 * ArtificialIntelligenceAccess[i].speed) / Math.max(1, (ArtificialIntelligenceAccess[i].healthMAX / 45))) * Math.sin(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
+                                }
+                                else if (kind == "windII")
+                                {
+                                    ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                    ArtificialIntelligenceAccess[i].X -= ((6 + 4 * ArtificialIntelligenceAccess[i].speed) / Math.max(1, (ArtificialIntelligenceAccess[i].healthMAX / 50))) * Math.cos(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
+                                    ArtificialIntelligenceAccess[i].Y -= ((6 + 4 * ArtificialIntelligenceAccess[i].speed) / Math.max(1, (ArtificialIntelligenceAccess[i].healthMAX / 50))) * Math.sin(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
+                                }
+                                else if (kind == "windIII")
+                                {
+                                    ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                    ArtificialIntelligenceAccess[i].X -= ((10 + 4 * ArtificialIntelligenceAccess[i].speed) / Math.max(1, (ArtificialIntelligenceAccess[i].healthMAX / 55))) * Math.cos(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
+                                    ArtificialIntelligenceAccess[i].Y -= ((10 + 4 * ArtificialIntelligenceAccess[i].speed) / Math.max(1, (ArtificialIntelligenceAccess[i].healthMAX / 55))) * Math.sin(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
+                                }
+                                else if (kind == "windIV")
+                                {
+                                    ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                    ArtificialIntelligenceAccess[i].X -= ((14 + 4 * ArtificialIntelligenceAccess[i].speed) / Math.max(1, (ArtificialIntelligenceAccess[i].healthMAX / 65))) * Math.cos(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
+                                    ArtificialIntelligenceAccess[i].Y -= ((14 + 4 * ArtificialIntelligenceAccess[i].speed) / Math.max(1, (ArtificialIntelligenceAccess[i].healthMAX / 65))) * Math.sin(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
                                 }
                                 else if (kind == "magic")
                                 {
@@ -1638,6 +1686,14 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
         if (this.spellType == "minorVortex")
         {
             this.orientToCaster(0, 1 / 2 * Math.PI);
+        }
+        //WIND BLAST
+        if (this.spellType == "windBlast")
+        {
+            if (this.orders == true)
+            {
+                this.orientToCaster(26, 1 / 2 * Math.PI);
+            }
         }
         //FIREBALL I
         if (this.spellType == "fireballI")
@@ -3641,6 +3697,113 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                 }
 
                 this.spellTimer(9 + 3/50 * this.cnx);
+            }
+
+            if (this.spellType == "windBlast")
+            {
+                if (caster)
+                {
+                    if (this.orders == true)
+                    {
+                        if (this.cnx > 32)
+                        {
+                            this.contactDamage(false, 22 * 2.2, (14 + 0.1 * this.cnx) / 100, 5,  "windIV", "windIV");
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.playerRotation);
+                            XXX.globalAlpha = 0.96;
+                            XXX.drawImage(caverna, 535, 0, 46, 57, - (1/2 * 46 * 2.2), - (1/2 * 57 * 2.2), 46 * 2.2, 57 * 2.2);
+                            XXX.restore();
+                        }
+                        else if (this.cnx > 15)
+                        {
+                            this.contactDamage(false, 22 * 2, (12 + 0.1 * this.cnx) / 100, 5,  "windIII", "windIII");
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.playerRotation);
+                            XXX.globalAlpha = 0.95;
+                            XXX.drawImage(caverna, 535, 0, 46, 57, - (1/2 * 46 * 2), - (1/2 * 57 * 2), 46 * 2, 57 * 2);
+                            XXX.restore();
+                        }
+                        else if (this.cnx > 6)
+                        {
+                            this.contactDamage(false, 22 * 1.7, (9 + 0.1 * this.cnx) / 100, 5,  "windII", "windII");
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.playerRotation);
+                            XXX.globalAlpha = 0.94;
+                            XXX.drawImage(caverna, 535, 0, 46, 57, - (1/2 * 46 * 1.7), - (1/2 * 57 * 1.7), 46 * 1.7, 57 * 1.7);
+                            XXX.restore();
+                        }
+                        else
+                        {
+                            this.contactDamage(false, 22 * 1.5, (8 + 0.1 * this.cnx) / 100, 5,  "windI", "windI");
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.playerRotation);
+                            XXX.globalAlpha = 0.94;
+                            XXX.drawImage(caverna, 535, 0, 46, 57, - (1/2 * 46 * 1.5), - (1/2 * 57 * 1.5), 46 * 1.5, 57 * 1.5);
+                            XXX.restore();
+                        }
+
+                        magicList.push(new Magic({ID:"windBlast", CNX: this.cnx}, true, false));
+                        magicList[magicList.length - 1].X = this.X;
+                        magicList[magicList.length - 1].Y = this.Y;
+                        magicList[magicList.length - 1].rotation = this.playerRotation;
+
+                        this.project(this.playerRotation + 1/2 * Math.PI, 225 * ((50 + this.cnx) / 50), 7 * ((50 + (this.cnx / 5)) / 50), true);
+                    }
+                    else
+                    {
+                        if (this.cnx > 32)
+                        {
+                            this.contactDamage(false, 22 * 2.1, 0, 5,  "windIII", "windIII");
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.playerRotation);
+                            XXX.globalAlpha = 0.99;
+                            XXX.drawImage(caverna, 585, 1, 46, 57, - (1/2 * 46 * 2.1), - (1/2 * 57 * 2.1), 46 * 2.1, 57 * 2.1);
+                            XXX.restore();
+                        }
+                        else if (this.cnx > 15)
+                        {
+                            this.contactDamage(false, 22 * 1.9, 0, 5,  "windII", "windII");
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.playerRotation);
+                            XXX.globalAlpha = 0.98;
+                            XXX.drawImage(caverna, 585, 1, 46, 57, - (1/2 * 46 * 1.9), - (1/2 * 57 * 1.9), 46 * 1.9, 57 * 1.9);
+                            XXX.restore();
+                        }
+                        else if (this.cnx > 6)
+                        {
+                            this.contactDamage(false, 22 * 1.6, 0, 5,  "windI", "windI");
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.playerRotation);
+                            XXX.globalAlpha = 0.97;
+                            XXX.drawImage(caverna, 585, 1, 46, 57, - (1/2 * 46 * 1.6), - (1/2 * 57 * 1.6), 46 * 1.6, 57 * 1.6);
+                            XXX.restore();
+                        }
+                        else
+                        {
+                            this.contactDamage(false, 22 * 1.4, 0, 5,  "windI", "windI");
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.playerRotation);
+                            XXX.globalAlpha = 0.97;
+                            XXX.drawImage(caverna, 585, 1, 46, 57, - (1/2 * 46 * 1.4), - (1/2 * 57 * 1.4), 46 * 1.4, 57 * 1.4);
+                            XXX.restore();
+                        }
+
+                        this.project(this.rotation + 1/2 * Math.PI, 100, 2 * ((50 + (this.cnx / 5)) / 50), true);
+                    }
+
+                }
+                else
+                {
+                    //Todo add the Ai part of this spell...
+                }
             }
 
             if (this.spellType == "fireballI")

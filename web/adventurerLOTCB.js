@@ -11918,7 +11918,7 @@ function Adventurer()
                     }
                     this.magicalExperience += this.spell.EXP;
 
-                    if (this.spell.CNX >= 50)
+                    if (this.spell.CNX >= 34)
                     {
                         magicList.push(new Magic(player.spell, true, 1));
                         magicList.push(new Magic(player.spell, true, 2));
@@ -11928,7 +11928,7 @@ function Adventurer()
                         magicList.push(new Magic(player.spell, true, 6));
                         magicList.push(new Magic(player.spell, true, 7));
                     }
-                    else if (this.spell.CNX >= 40)
+                    else if (this.spell.CNX >= 20)
                     {
                         magicList.push(new Magic(player.spell, true, 1));
                         magicList.push(new Magic(player.spell, true, 2));
@@ -11936,20 +11936,20 @@ function Adventurer()
                         magicList.push(new Magic(player.spell, true, 4));
                         magicList.push(new Magic(player.spell, true, 5));
                     }
-                    else if (this.spell.CNX >= 30)
+                    else if (this.spell.CNX >= 12)
                     {
                         magicList.push(new Magic(player.spell, true, 1));
                         magicList.push(new Magic(player.spell, true, 2));
                         magicList.push(new Magic(player.spell, true, 3));
                         magicList.push(new Magic(player.spell, true, 4));
                     }
-                    else if (this.spell.CNX >= 20)
+                    else if (this.spell.CNX >= 7)
                     {
                         magicList.push(new Magic(player.spell, true, 1));
                         magicList.push(new Magic(player.spell, true, 2));
                         magicList.push(new Magic(player.spell, true, 3));
                     }
-                    else if (this.spell.CNX >= 10)
+                    else if (this.spell.CNX >= 4)
                     {
                         magicList.push(new Magic(player.spell, true, 1));
                         magicList.push(new Magic(player.spell, true, 2));
@@ -12650,6 +12650,71 @@ function Adventurer()
                 }
                 XXX.drawImage(polpol, 165, 450, 57, 37, -1/2 * 57 * 1.25, -1/2 * 37 * 1.25, 57 * 1.25, 37 * 1.25);
                 XXX.restore();
+            }
+        }
+
+        //Wind Blast Form
+        if (this.spell.ID == "windBlast")
+        {
+            this.stageEngine(4, 0.14, true);
+
+            //ATTACK
+            if (Math.floor(this.stage) <= 0)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(caverna, 370, 11, 55, 57, -1/2 * 55, -1/2 * 57, 55, 57);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 1)
+            {
+                this.doMagic = true;
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(caverna, 418, 10, 55, 57, -1/2 * 55, -1/2 * 57, 55, 57);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 2)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(caverna, 472, 11, 55, 57, -1/2 * 55, -1/2 * 57, 55, 57);
+                XXX.restore();
+
+                if (this.doMagic)
+                {
+                    this.doMagic = false;
+                    this.magicalExperience += this.spell.EXP;
+                    magicList.push(new Magic(player.spell, true, true));
+                }
+            }
+            else if (Math.floor(this.stage) >= 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(caverna, 472, 11, 55, 57, -1/2 * 55, -1/2 * 57, 55, 57);
+                XXX.restore();
+                this.castingCooldown = new Date().getTime();
             }
         }
 

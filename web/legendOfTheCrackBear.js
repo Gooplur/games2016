@@ -4018,7 +4018,7 @@ function theLegend()
     Inventory = [];
 
     //All of the spells in the game -----------> except [new Item("potatoInvisibility", false, false), 1],  which is exclusive to a Jinn wish.
-    allSpells = [[new Item("embers", false, false), 1], [new Item("fireballI", false, false), 1], [new Item("iceClaymore", false, false), 1], [new Item("iceSpikes", false, false), 1], [new Item("flyingColours", false, false), 1], [new Item("frostWind", false, false), 1], [new Item("repel", false, false), 1], [new Item("lifeTap", false, false), 1], [new Item("drainingI", false, false), 1], [new Item("vivification", false, false), 1], [new Item("chasingLights", false, false), 1], [new Item("electricBolt", false, false), 1], [new Item("surge", false, false), 1], [new Item("fireHands", false, false), 1], [new Item("chargedTouch", false, false), 1], [new Item("freezingGrasp", false, false), 1], [new Item("leechingTouch", false, false), 1], [new Item("sorcerer'sRaincoat", false, false), 1], [new Item("shieldingI", false, false), 1], [new Item("shieldingII", false, false), 1], [new Item("shieldingIII", false, false), 1], [new Item("shieldingIV", false, false), 1], [new Item("shieldingV", false, false), 1], [new Item("summonFrich", false, false), 1], [new Item("summonWolf", false, false), 1], [new Item("charm", false, false), 1], [new Item("sanctuary", false, false), 1], [new Item("repellingWard", false, false), 1], [new Item("iceberg", false, false), 1], [new Item("magicMissiles", false, false), 1], [new Item("minorVortex", false, false), 1], [new Item("mark", false, false), 1], [new Item("entanglement", false, false), 1], [new Item("whirlwind", false, false), 1], [new Item("iceBlast", false, false), 1], [new Item("shadowport", false, false), 1], [new Item("healingPsalms", false, false), 1], [new Item("summonGriffin", false, false), 1], [new Item("summonDemon", false, false), 1], [new Item("slowTimeI", false, false), 1], [new Item("slowTimeII", false, false), 1], [new Item("slowTimeIII", false, false), 1], [new Item("slowTimeIV", false, false), 1], [new Item("slowTimeV", false, false), 1], [new Item("slowTimeVI", false, false), 1], [new Item("doppelganger", false, false), 1], [new Item("shadowSwitch", false, false), 1], [new Item("eruption", false, false), 1], [new Item("drakeBreath", false, false), 1], [new Item("undyingWard", false, false), 1], [new Item("flamingMissiles", false, false), 1], [new Item("arcaneOrbs", false, false), 1], [new Item("despell", false, false), 1], [new Item("powerDraw", false, false), 1], [new Item("theFrozenWord", false, false), 1], [new Item("shell", false, false), 1], [new Item("corporialWard", false, false), 1], [new Item("windBlast", false, false), 1]];
+    allSpells = [[new Item("embers", false, false), 1], [new Item("fireballI", false, false), 1], [new Item("iceClaymore", false, false), 1], [new Item("iceSpikes", false, false), 1], [new Item("flyingColours", false, false), 1], [new Item("frostWind", false, false), 1], [new Item("repel", false, false), 1], [new Item("lifeTap", false, false), 1], [new Item("drainingI", false, false), 1], [new Item("vivification", false, false), 1], [new Item("chasingLights", false, false), 1], [new Item("electricBolt", false, false), 1], [new Item("surge", false, false), 1], [new Item("fireHands", false, false), 1], [new Item("chargedTouch", false, false), 1], [new Item("freezingGrasp", false, false), 1], [new Item("leechingTouch", false, false), 1], [new Item("sorcerer'sRaincoat", false, false), 1], [new Item("shieldingI", false, false), 1], [new Item("shieldingII", false, false), 1], [new Item("shieldingIII", false, false), 1], [new Item("shieldingIV", false, false), 1], [new Item("shieldingV", false, false), 1], [new Item("summonFrich", false, false), 1], [new Item("summonWolf", false, false), 1], [new Item("charm", false, false), 1], [new Item("sanctuary", false, false), 1], [new Item("repellingWard", false, false), 1], [new Item("iceberg", false, false), 1], [new Item("magicMissiles", false, false), 1], [new Item("minorVortex", false, false), 1], [new Item("mark", false, false), 1], [new Item("entanglement", false, false), 1], [new Item("whirlwind", false, false), 1], [new Item("iceBlast", false, false), 1], [new Item("shadowport", false, false), 1], [new Item("healingPsalms", false, false), 1], [new Item("summonGriffin", false, false), 1], [new Item("summonDemon", false, false), 1], [new Item("slowTimeI", false, false), 1], [new Item("slowTimeII", false, false), 1], [new Item("slowTimeIII", false, false), 1], [new Item("slowTimeIV", false, false), 1], [new Item("slowTimeV", false, false), 1], [new Item("slowTimeVI", false, false), 1], [new Item("doppelganger", false, false), 1], [new Item("shadowSwitch", false, false), 1], [new Item("eruption", false, false), 1], [new Item("drakeBreath", false, false), 1], [new Item("undyingWard", false, false), 1], [new Item("flamingMissiles", false, false), 1], [new Item("arcaneOrbs", false, false), 1], [new Item("despell", false, false), 1], [new Item("powerDraw", false, false), 1], [new Item("theFrozenWord", false, false), 1], [new Item("shell", false, false), 1], [new Item("corporalityWard", false, false), 1], [new Item("windBlast", false, false), 1]];
 //Test Spells
     primarySpells = [];
     secondarySpells = [];
@@ -4644,6 +4644,14 @@ function theLegend()
     foods.push(new Item("badgerMeat", false));
     foods.push(new Item("turkeyMeat", false));
     foods.push(new Item("cookedTurkeyEgg", false));
+    foods.push(new Item("roastedGlazaRoot", false));
+    foods.push(new Item("cebollaHorneada", false));
+    foods.push(new Item("cebollaPicadaCocinada", false));
+    foods.push(new Item("berenjenaPicadaCocinada", false));
+    foods.push(new Item("berenjenaRebanadaCocinada", false));
+
+
+
 
 
 //Tailoring (Items crafted at a weaving, sewing, dying, etc. tailor's work bench thing)
@@ -4835,7 +4843,10 @@ function theLegend()
     alchemy.push(new Item("palggaPerfume", false));
     alchemy.push(new Item("sauerkraut", false));
     alchemy.push(new Item("tascalSalve", false));
+    alchemy.push(new Item("tchaltaGel", false));
     alchemy.push(new Item("reconstructionPotion", false));
+    alchemy.push(new Item("glazaPowder", false));
+    alchemy.push(new Item("glazm", false));
 
 //Brewing (alcohols, liquid fermentation, etc.)
     brewing = [];
@@ -4983,6 +4994,7 @@ function theLegend()
     handcrafted.push(new Item("jarOfSonjaSap", false));
     handcrafted.push(new Item("sonjaPuree", false));
     handcrafted.push(new Item("spicedSonjaPuree", false));
+    handcrafted.push(new Item("tchafulaHalf", false));
     handcrafted.push(new Item("cupOfFungicideTincture", false));
     handcrafted.push(new Item("wheatBeer", false));
     handcrafted.push(new Item("gin", false));
@@ -5017,6 +5029,9 @@ function theLegend()
     handcrafted.push(new Item("chyoulBerryPieSlice", false));
     handcrafted.push(new Item("firetrap", false));
     handcrafted.push(new Item("wormz", false));
+    handcrafted.push(new Item("cebollaPicada", false));
+    handcrafted.push(new Item("berenjenaPicada", false));
+    handcrafted.push(new Item("berenjenaRebanada", false));
 
     //Activate Important Game Functions Here:
     itemPlacer();

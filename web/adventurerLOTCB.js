@@ -36532,6 +36532,20 @@ function Adventurer()
                             {
                                 this.fleshMites = false;
                             }
+                            else if (Inventory[i][0].ability == "tchaltaGel")
+                            {
+                                this.gutWorms = false;
+                                this.throatTicks = false;
+
+                                //food poison and reduced hunger.
+                                if (this.timeSinceBadFoodEaten == 0)
+                                {
+                                    this.timeSinceBadFoodEaten = new Date().getTime() - 19000;
+                                }
+
+                                this.acidTime = new Date().getTime() + 30000;
+                                this.halfAcid = true;
+                            }
                             else if (Inventory[i][0].ability == "yumNotYuk")
                             {
                                 console.log("You eat the cabbage, Yum!")
@@ -36615,6 +36629,42 @@ function Adventurer()
                                     this.watered = true;
                                     this.fed = true;
                                 }
+                            }
+                            else if (Inventory[i][0].ability == "blind1/2") //Stuns the player for 6 seconds of stunI
+                            {
+                                this.blinded = true;
+                                this.blindedStoreTime = new Date().getTime();
+                                this.blindedTime = Math.max(player.blindedTime, 1);
+                            }
+                            else if (Inventory[i][0].ability == "blindI") //Stuns the player for 6 seconds of stunI
+                            {
+                                this.blinded = true;
+                                this.blindedStoreTime = new Date().getTime();
+                                this.blindedTime = Math.max(player.blindedTime, 3);
+                            }
+                            else if (Inventory[i][0].ability == "blindII") //Stuns the player for 6 seconds of stunI
+                            {
+                                this.blinded = true;
+                                this.blindedStoreTime = new Date().getTime();
+                                this.blindedTime = Math.max(player.blindedTime, 6);
+                            }
+                            else if (Inventory[i][0].ability == "blindIII") //Stuns the player for 6 seconds of stunI
+                            {
+                                this.blinded = true;
+                                this.blindedStoreTime = new Date().getTime();
+                                this.blindedTime = Math.max(player.blindedTime, 10);
+                            }
+                            else if (Inventory[i][0].ability == "blindIV") //Stuns the player for 6 seconds of stunI
+                            {
+                                this.blinded = true;
+                                this.blindedStoreTime = new Date().getTime();
+                                this.blindedTime = Math.max(player.blindedTime, 20);
+                            }
+                            else if (Inventory[i][0].ability == "blindV") //Stuns the player for 6 seconds of stunI
+                            {
+                                this.blinded = true;
+                                this.blindedStoreTime = new Date().getTime();
+                                this.blindedTime = Math.max(player.blindedTime, 45);
                             }
                             else if (Inventory[i][0].ability == "repelente") //Keeps away certain flesh eating insects
                             {

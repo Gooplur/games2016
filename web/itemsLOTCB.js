@@ -1547,7 +1547,7 @@ function Item(type, x, y)
         else if (this.type == "repel")
         {
             //For All Items
-            if (player.getKnowledge() >= 4)
+            if (player.getKnowledge() >= 1)
             {
                 this.identity = "Scroll of the Repelling Word";
                 this.description = "Studying this scroll will teach you how to blast a wave of magical force that repels all within a close proximity of you.";
@@ -1585,7 +1585,7 @@ function Item(type, x, y)
             this.spellEXP = 4 * ((50 + player.getMemory()) / 50);
             this.spellCooldown = Math.max(0.65, 1 + (2/50) * player.getConcentration() - (2/50) * player.getEminence());
             this.spellDescription = "A blast of cosmic force that repels all beings within range.";
-            this.spellKnowledgeRequirement = 4;
+            this.spellKnowledgeRequirement = 1;
             this.spellRange = "Short";
         }
         else if (this.type == "sanctuary")
@@ -1939,7 +1939,7 @@ function Item(type, x, y)
             this.spellCost = Math.max(0.5, 0.5 + 17.5 / 50 * player.getConcentration() - (13 / 50) * player.getEminence());
             this.spellGroup = "Form";
             this.spellGenre = "Ice";
-            if (player.concentration >= 10)
+            if (player.concentration >= 4)
             {
                 this.spellName = "Ice Spikes";
                 this.spellDescription = "Deadly spikes of magical ice sharper than any blade.";
@@ -3344,6 +3344,422 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 0; // at max, sell for 0.
         }
+        else if (this.type == "cebolla")
+        {
+            //For All Items
+            this.identity = "Onion";
+            this.weight = 1.15;
+            this.size = 6;
+            this.description = "A sulferous ball of layered plant stuff.";
+            this.intForDes = 0;
+            this.intDescription = "Onions hurt your eyes because they have lots of sulfur in them.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 2; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = -0.5; //heals health.
+            this.generation = -5; //recoops lost energy.
+            this.replenish = -3; //restores will.
+
+            //ability
+            this.ability = "blindI";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2 - Math.floor(player.getCharisma() / 50); // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "cebollaPicadaCocinada")
+        {
+            //For All Items
+            this.identity = "Caramelized Onions";
+            this.weight = 0.45;
+            this.size = 9;
+            this.description = "Carmelized diced onion.";
+            this.intForDes = 0;
+            this.intDescription = "They taste sweet and oniony.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 2; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 2; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.05; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "blindI";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 10;
+            this.ingredients = [["Chopped Onion", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "cebollaPicada")
+        {
+            //For All Items
+            this.identity = "Chopped Onion";
+            this.weight = 0.5;
+            this.size = 9;
+            this.description = "Small diced up bits of onion.";
+            this.intForDes = 0;
+            this.intDescription = "Onions hurt your eyes because they have lots of sulfur in them.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = -0.25; //heals health.
+            this.generation = -2.5; //recoops lost energy.
+            this.replenish = -1.5; //restores will.
+
+            //ability
+            this.ability = "blind1/2";
+
+            //Crafting
+            this.yield = 2;
+            this.intForCraft = 1;
+            this.ingredients = [["Onion", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "cebollaHorneada")
+        {
+            //For All Items
+            this.identity = "Roasted Onion";
+            this.weight = 1.1;
+            this.size = 6;
+            this.description = "A sweet caramelized roasted onion.";
+            this.intForDes = 0;
+            this.intDescription = "It has a depth of flavour that is quite enjoyable; it is even better when paired with other foods.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 3.5; //satisfies hunger.
+            this.thirst = 0.5; //quenches thirst.
+            this.warmth = 2; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 4;
+            this.ingredients = [["Onion", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 4 - Math.floor(player.getCharisma() / 50); // at max, buy for 3.
+            this.sellValue = 3; // at max, sell for 3.
+        }
+        else if (this.type == "alcachofaCocinada")
+        {
+            //For All Items
+            this.identity = "Steamed Artichoke";
+            this.weight = 2;
+            this.size = 6;
+            this.description = "A large green flower bud formed from numerous edible leaves with a spine on their tip. In the center is the edible heart which is the best part.";
+            this.intForDes = 0;
+            this.intDescription = "It tastes savoury but unique.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 7; //satisfies hunger.
+            this.thirst = 1; //quenches thirst.
+            this.warmth = 4; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 2;
+            this.intForCraft = 12;
+            this.biproducts = [[new Item("bucket", false), 1]];
+            this.ingredients = [["Artichoke", 2], ["Bucket of Water", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 7 - Math.floor(player.getCharisma() / 25); // at max, buy for 5.
+            this.sellValue = 5; // at max, sell for 5.
+        }
+        else if (this.type == "berenjenaPicadaCocinada")
+        {
+            //For All Items
+            this.identity = "Chopped Roasted Eggplant";
+            this.weight = 0.4;
+            this.size = 9;
+            this.description = "Chopped chunks of roasted eggplant.";
+            this.intForDes = 0;
+            this.intDescription = "They taste rather bland alone: eggplant tastes much better when it is cooked with other foods so that it soaks in their flavour.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 2; //satisfies hunger.
+            this.thirst = 0.75; //quenches thirst.
+            this.warmth = 3; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -0.5; //recoops lost energy.
+            this.replenish = -0.1; //restores will.
+
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 7;
+            this.ingredients = [["Chopped Eggplant", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 2; // at max, sell for 2.
+        }
+        else if (this.type == "berenjenaRebanadaCocinada")
+        {
+            //For All Items
+            this.identity = "Sliced Roasted Eggplant";
+            this.weight = 0.3;
+            this.size = 8;
+            this.description = "A thin slice of roasted eggplant.";
+            this.intForDes = 0;
+            this.intDescription = "It tastes rather bland alone: eggplant tastes much better when it is cooked with other foods so that it soaks in their flavour.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1.75; //satisfies hunger.
+            this.thirst = 0.5; //quenches thirst.
+            this.warmth = 2.5; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -0.25; //recoops lost energy.
+            this.replenish = -0.05; //restores will.
+
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 8;
+            this.ingredients = [["Sliced Eggplant", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "glazaRoot")
+        {
+            //For All Items
+            this.identity = "Glaza Root";
+            this.weight = 2.3;
+            this.size = 9;
+            this.description = "A reddish tuber that grows in the southern savannah.";
+            this.intForDes = 10;
+            this.intDescription = "This root is particularly posionous to consume raw.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 2.5; //satisfies hunger.
+            this.thirst = 0.15; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+
+            //ability
+            this.ability = "poisonIII";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 6 - Math.floor(player.getCharisma() / 25); // at max, buy for 4.
+            this.sellValue = 2 + Math.floor(player.getCharisma() / 25); // at max, sell for 4.
+        }
+        else if (this.type == "roastedGlazaRoot")
+        {
+            //For All Items
+            this.identity = "Roasted Glaza Root";
+            this.weight = 2.25;
+            this.size = 9;
+            this.description = "A roasted reddish tuber that is light green and starchy.";
+            this.intForDes = 11;
+            this.intDescription = "Though the poisonous compounds in the glaza root are deteriorated by heat, they do not break down enough to stop being poisonous.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 4; //satisfies hunger.
+            this.thirst = 0.2; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+
+            //ability
+            this.ability = "poisonI";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 5;
+            this.ingredients = [["Glaza Root", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 4 - Math.floor(player.getCharisma() / 25); // at max, buy for 2.
+            this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+        }
+        else if (this.type == "glazaPowder")
+        {
+            //For All Items
+            this.identity = "Glaza Powder";
+            this.weight = 0.1;
+            this.size = 7;
+            this.description = "A greyish green powder extracted from the glaza root.";
+            this.intForDes = 10;
+            this.intDescription = "This powder is particularly poisonous.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+
+            //ability
+            this.ability = "poisonIII";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 27;
+            this.ingredients = [["Glaza Root", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 14 - Math.floor(player.getCharisma() / 25); // at max, buy for 12.
+            this.sellValue = 10 + Math.floor(player.getCharisma() / 25); // at max, sell for 12.
+        }
+        else if (this.type == "glazm")
+        {
+            //For All Items
+            this.identity = "Glazm";
+            this.weight = 0.12;
+            this.size = 8;
+            this.description = "A bright green paste that is highly posionous.";
+            this.intForDes = 12;
+            this.intDescription = "This compound is made by blending glaza powder with tchalta flower and fermenting them together.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+
+            //ability
+            this.ability = "poisonIV";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 28;
+            this.ingredients = [["Glaza Powder", 1], ["Tchalta Flower", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 20 - Math.floor(player.getCharisma() / 25); // at max, buy for 18.
+            this.sellValue = 16 + Math.floor(player.getCharisma() / 25); // at max, sell for 18.
+        }
+        else if (this.type == "tchaltaGel")
+        {
+            //For All Items
+            this.identity = "Tchalta Gel";
+            this.weight = 0.9;
+            this.size = 8;
+            this.description = "The gelatinous sap from a leaf of a tchalta cactus.";
+            this.intForDes = 0;
+            if (player.getIntelligence() >= 3)
+            {
+                this.intDescription = "It gives you a painful burning sensation where it touches your skin; consuming it kills throat tics, and gut worms, but causes you immense pain and makes you vomit.";
+            }
+            else
+            {
+                this.intDescription = "It gives you a painful burning sensation where it touches your skin; consuming it would not be pleasant by any means.";
+            }
+            this.smallText = true;
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = -0.5; //satisfies hunger.
+            this.thirst = -0.5; //quenches thirst.
+            this.warmth = 3; //warms player.
+            this.heal = -3; //heals health.
+            this.generation = -3; //recoops lost energy.
+            this.replenish = -3; //restores will.
+
+
+            //ability
+            this.ability = "tchaltaGel";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 1;
+            this.ingredients = [["Tchalta Leaf", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5; // at max, buy for 5.
+            this.sellValue = 3; // at max, sell for 3.
+        }
         else if (this.type == "ardilMeat")
         {
             //For All Items
@@ -3378,6 +3794,216 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 2 - Math.floor(player.getCharisma() / 25); // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "saffron")
+        {
+            //For All Items
+            this.identity = "Saffron";
+            this.weight = 0.06;
+            this.size = 5;
+            this.description = "The stamens of the saffron flower.";
+            this.intForDes = 0;
+            this.intDescription = "It is a flavourful spice used commonly in Cephrian cooking, and it also can be used to dye things yellow.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 15; // at max, buy for 15.
+            this.sellValue = 9 + Math.floor(player.getCharisma() / 8); // at max, sell for 15.
+        }
+        else if (this.type == "alcachofa")
+        {
+            //For All Items
+            this.identity = "Artichoke";
+            this.weight = 1;
+            this.size = 8;
+            this.description = "The spine-tipped-leaved bud of the immature artichoke flower.";
+            this.intForDes = 1;
+            this.intDescription = "It is too hard to eat raw. When cooked it is a savoury and tasty vegetable.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "berenjena")
+        {
+            //For All Items
+            this.identity = "Eggplant";
+            this.weight = 1.1;
+            this.size = 12;
+            this.description = "A large tubular purple vegetable with a thick spongey white interior.";
+            this.intForDes = 1;
+            this.intDescription = "It is too spongey to eat raw; that spongeyness, when cooked, is great for soaking up flavours.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5; // at max, buy for 5.
+            this.sellValue = 5; // at max, sell for 5.
+        }
+        else if (this.type == "berenjenaRebanada")
+        {
+            //For All Items
+            this.identity = "Sliced Eggplant";
+            this.weight = 0.27;
+            this.size = 8;
+            this.description = "A thin slice of eggplant.";
+            this.intForDes = 1;
+            this.intDescription = "It is too spongey to eat raw; that spongeyness, when cooked, is great for soaking up flavours.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 4;
+            this.intForCraft = 1;
+            this.ingredients = [["Eggplant", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "berenjenaPicada")
+        {
+            //For All Items
+            this.identity = "Chopped Eggplant";
+            this.weight = 0.36;
+            this.size = 9;
+            this.description = "Chopped chunks of eggplant.";
+            this.intForDes = 1;
+            this.intDescription = "It is too spongey to eat raw; that spongeyness, when cooked, is great for soaking up flavours.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 3;
+            this.intForCraft = 1;
+            this.ingredients = [["Eggplant", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "nupalaPuffs")
+        {
+            //For All Items
+            this.identity = "Nupala Puffs";
+            this.weight = 0.06;
+            this.size = 5;
+            this.description = "The soft, somewhat sticky seed filled puffs of a nupala plant.";
+            this.intForDes = 0;
+            this.intDescription = "When washed thoroughly to remove the stickiness, nupala puffs can be woven into a soft fabric.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+        }
+        else if (this.type == "tchaltaLeaf")
+        {
+            //For All Items
+            this.identity = "Tchalta Leaf";
+            this.weight = 1.2;
+            this.size = 8;
+            this.description = "A thick leaf from a tchalta cactus; it has spines along the sides of the leaf.";
+            this.intForDes = 2;
+            this.intDescription = "This can be despined and mashed into a gelatinous paste for medicinal use.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "tchaltaFlower")
+        {
+            //For All Items
+            this.identity = "Tchalta Flower";
+            this.weight = 0.02;
+            this.size = 6;
+            this.description = "The vibrant red flower of the tchalta cactus; it has a mildly sweet aroma.";
+            this.intForDes = 7;
+            this.intDescription = "It can be used as an amplifier/changer in alchemy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 4 - Math.floor(player.getCharisma() / 50); // at max, buy for 3.
+            this.sellValue = 2 + Math.floor(player.getCharisma() / 50); // at max, sell for 3.
+        }
+        else if (this.type == "tchafulaTuft")
+        {
+            //For All Items
+            this.identity = "Tchafula Tuft";
+            this.weight = 0.1;
+            this.size = 9;
+            this.description = "An orange fibrous hairlike substance plucked from a Tchafula bush.";
+            this.intForDes = 7;
+            this.intDescription = "It is commonly used as a stuffing for pillows, but it can also be woven into fabric.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "zwaleimBranches")
+        {
+            //For All Items
+            this.identity = "Zwaleim Branches";
+            this.weight = 0.6;
+            this.size = 6;
+            this.description = "Some branches and foliage from a zwaleim bush.";
+            this.intForDes = 4;
+            this.intDescription = "These have no practical use.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
         }
         else if (this.type == "skriatokEssence")
         {
@@ -26636,6 +27262,71 @@ function Item(type, x, y)
             this.buyValue = 3; // at max, buy for 3.
             this.sellValue = 2; // at max, sell for 2.
         }
+        else if (this.type == "tchafula")
+        {
+            //For All Items
+            this.identity = "Tchafula";
+            this.weight = 1.4;
+            this.size = 8;
+            this.description = "A tender and juicy fruit with a deep reddish pink flesh.";
+            this.intForDes = 0;
+            this.intDescription = "It tastes sweet and tropical with a subtle acidity and fruitiness.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["tchafulaHalf", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 2.5; //satisfies hunger.
+            this.thirst = 1.5; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.01; //recoops lost energy.
+            this.replenish = 0.01; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3; // at max, buy for 3.
+            this.sellValue = 2; // at max, sell for 2.
+        }
+        else if (this.type == "tchafulaHalf")
+        {
+            //For All Items
+            this.identity = "Tchafula Half";
+            this.weight = 0.7;
+            this.size = 7;
+            this.description = "Half of a tender and juicy fruit with a deep reddish pink flesh.";
+            this.intForDes = 0;
+            this.intDescription = "It tastes sweet and tropical with a subtle acidity and fruitiness.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 2.5; //satisfies hunger.
+            this.thirst = 1.5; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.01; //recoops lost energy.
+            this.replenish = 0.01; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 2;
+            this.intForCraft = 0;
+            this.ingredients = [["Tchafula", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 1; // at max, sell for 1.
+        }
         else if (this.type == "saugRoot")
         {
             //For All Items
@@ -46866,6 +47557,126 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "cebollaPicadaCocinada")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 26, 308, 22, 27, X - this.X + (1/2 * CCC.width) - (1/2 * 22 * 1.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 27 * 1.3), 22 * 1.3, 27 * 1.3);
+        }
+        else if (this.type == "cebollaPicada")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 4, 266, 22, 27, X - this.X + (1/2 * CCC.width) - (1/2 * 22 * 1.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 27 * 1.3), 22 * 1.3, 27 * 1.3);
+        }
+        else if (this.type == "cebollaHorneada")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 21, 292, 15, 18, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 18 * 1.3), 15 * 1.3, 18 * 1.3);
+        }
+        else if (this.type == "cebolla")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 8, 291, 15, 18, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 18 * 1.3), 15 * 1.3, 18 * 1.3);
+        }
+        else if (this.type == "berenjenaRebanadaCocinada")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 1, 442, 20, 21, X - this.X + (1/2 * CCC.width) - (1/2 * 20 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21 * 1.5), 20 * 1.5, 21 * 1.5);
+        }
+        else if (this.type == "berenjenaRebanada")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 0, 462, 20, 21, X - this.X + (1/2 * CCC.width) - (1/2 * 20 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21 * 1.5), 20 * 1.5, 21 * 1.5);
+        }
+        else if (this.type == "berenjenaPicadaCocinada")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 3, 357, 22, 22, X - this.X + (1/2 * CCC.width) - (1/2 * 22 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 22 * 1.5), 22 * 1.5, 22 * 1.5);
+        }
+        else if (this.type == "berenjenaPicada")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 2, 377, 22, 22, X - this.X + (1/2 * CCC.width) - (1/2 * 22 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 22 * 1.5), 22 * 1.5, 22 * 1.5);
+        }
+        else if (this.type == "berenjena")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 1, 490, 22, 27, X - this.X + (1/2 * CCC.width) - (1/2 * 22 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 27 * 1.5), 22 * 1.5, 27 * 1.5);
+        }
+        else if (this.type == "saffron")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 19, 459, 15, 18, X - this.X + (1/2 * CCC.width) - (1/2 * 15 * 1.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 18 * 1.3), 15 * 1.3, 18 * 1.3);
+        }
+        else if (this.type == "alcachofa")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 6, 221, 22, 27, X - this.X + (1/2 * CCC.width) - (1/2 * 22 * 1.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 27 * 1.3), 22 * 1.3, 27 * 1.3);
+        }
+        else if (this.type == "alcachofaCocinada")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 6, 244, 22, 27, X - this.X + (1/2 * CCC.width) - (1/2 * 22 * 1.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 27 * 1.3), 22 * 1.3, 27 * 1.3);
+        }
+        else if (this.type == "tchafula")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 965, 6, 14, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 14 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16 * 1.4), 14 * 1.4, 16 * 1.4);
+        }
+        else if (this.type == "tchafulaHalf")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 981, 6, 14, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 14 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16 * 1.4), 14 * 1.4, 16 * 1.4);
+        }
+        else if (this.type == "tchafulaTuft")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 554, 0, 21, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 21 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 1.4), 21 * 1.4, 24 * 1.4);
+        }
+        else if (this.type == "glazaPowder")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 693, 41, 19, 13, X - this.X + (1/2 * CCC.width) - (1/2 * 19 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 13 * 1.5), 19 * 1.5, 13 * 1.5);
+        }
+        else if (this.type == "glazm")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 716, 40, 19, 13, X - this.X + (1/2 * CCC.width) - (1/2 * 19 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 13 * 1.5), 19 * 1.5, 13 * 1.5);
+        }
+        else if (this.type == "roastedGlazaRoot")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 1, 98, 48, 30, X - this.X + (1/2 * CCC.width) - (1/2 * 48 * 1.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 30 * 1.3), 48 * 1.3, 30 * 1.3);
+        }
+        else if (this.type == "glazaRoot")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 1, 127, 48, 30, X - this.X + (1/2 * CCC.width) - (1/2 * 48 * 1.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 30 * 1.3), 48 * 1.3, 30 * 1.3);
+        }
+        else if (this.type == "tchaltaFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 666, 35, 25, 22, X - this.X + (1/2 * CCC.width) - (1/2 * 25 * 1.7), Y - this.Y + (1/2 * CCC.height) - (1/2 * 22 * 1.7), 25 * 1.7, 22 * 1.7);
+        }
+        else if (this.type == "tchaltaLeaf")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 618, 33, 25, 22, X - this.X + (1/2 * CCC.width) - (1/2 * 25 * 1.7), Y - this.Y + (1/2 * CCC.height) - (1/2 * 22 * 1.7), 25 * 1.7, 22 * 1.7);
+        }
+        else if (this.type == "tchaltaGel")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 645, 32, 25, 22, X - this.X + (1/2 * CCC.width) - (1/2 * 25 * 1.7), Y - this.Y + (1/2 * CCC.height) - (1/2 * 22 * 1.7), 25 * 1.7, 22 * 1.7);
+        }
+        else if (this.type == "nupalaPuffs")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 590, 31, 29, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 29 * 1.55), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19 * 1.55), 29 * 1.55, 19 * 1.55);
+        }
+        else if (this.type == "zwaleimBranches")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 558, 33, 29, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 29 * 1.55), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19 * 1.55), 29 * 1.55, 19 * 1.55);
+        }
         else if (this.type == "skriatokEssence")
         {
             XXX.beginPath();
@@ -52934,6 +53745,126 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
+        else if (this.type == "cebollaPicadaCocinada")
+        {
+            LXX.beginPath();
+            LXX.drawImage(jungho, 26, 308, 22, 27, this.invX - (1/2 * 22 * 1.3), this.invY - (1/2 * 27 * 1.3), 22 * 1.3, 27 * 1.3);
+        }
+        else if (this.type == "cebollaPicada")
+        {
+            LXX.beginPath();
+            LXX.drawImage(jungho, 4, 266, 22, 27, this.invX - (1/2 * 22 * 1.3), this.invY - (1/2 * 27 * 1.3), 22 * 1.3, 27 * 1.3);
+        }
+        else if (this.type == "cebollaHorneada")
+        {
+            LXX.beginPath();
+            LXX.drawImage(jungho, 21, 292, 15, 18, this.invX - (1/2 * 15 * 1.3), this.invY - (1/2 * 18 * 1.3), 15 * 1.3, 18 * 1.3);
+        }
+        else if (this.type == "cebolla")
+        {
+            LXX.beginPath();
+            LXX.drawImage(jungho, 8, 291, 15, 18, this.invX - (1/2 * 15 * 1.3), this.invY - (1/2 * 18 * 1.3), 15 * 1.3, 18 * 1.3);
+        }
+        else if (this.type == "berenjenaRebanadaCocinada")
+        {
+            LXX.beginPath();
+            LXX.drawImage(jungho, 1, 442, 20, 21, this.invX - (1/2 * 20 * 1.5), this.invY - (1/2 * 21 * 1.5), 20 * 1.5, 21 * 1.5);
+        }
+        else if (this.type == "berenjenaRebanada")
+        {
+            LXX.beginPath();
+            LXX.drawImage(jungho, 0, 462, 20, 21, this.invX - (1/2 * 20 * 1.5), this.invY - (1/2 * 21 * 1.5), 20 * 1.5, 21 * 1.5);
+        }
+        else if (this.type == "berenjenaPicadaCocinada")
+        {
+            LXX.beginPath();
+            LXX.drawImage(jungho, 3, 357, 22, 22, this.invX - (1/2 * 22 * 1.5), this.invY - (1/2 * 22 * 1.5), 22 * 1.5, 22 * 1.5);
+        }
+        else if (this.type == "berenjenaPicada")
+        {
+            LXX.beginPath();
+            LXX.drawImage(jungho, 2, 377, 22, 22, this.invX - (1/2 * 22 * 1.5), this.invY - (1/2 * 22 * 1.5), 22 * 1.5, 22 * 1.5);
+        }
+        else if (this.type == "berenjena")
+        {
+            LXX.beginPath();
+            LXX.drawImage(jungho, 1, 490, 22, 27, this.invX - (1/2 * 22 * 1.5), this.invY - (1/2 * 27 * 1.5), 22 * 1.5, 27 * 1.5);
+        }
+        else if (this.type == "saffron")
+        {
+            LXX.beginPath();
+            LXX.drawImage(jungho, 19, 459, 15, 18, this.invX - (1/2 * 15 * 1.3), this.invY - (1/2 * 18 * 1.3), 15 * 1.3, 18 * 1.3);
+        }
+        else if (this.type == "alcachofa")
+        {
+            LXX.beginPath();
+            LXX.drawImage(jungho, 6, 221, 22, 27, this.invX - (1/2 * 22 * 1.3), this.invY - (1/2 * 27 * 1.3), 22 * 1.3, 27 * 1.3);
+        }
+        else if (this.type == "alcachofaCocinada")
+        {
+            LXX.beginPath();
+            LXX.drawImage(jungho, 6, 244, 22, 27, this.invX - (1/2 * 22 * 1.3), this.invY - (1/2 * 27 * 1.3), 22 * 1.3, 27 * 1.3);
+        }
+        else if (this.type == "tchafula")
+        {
+            LXX.beginPath();
+            LXX.drawImage(cef, 965, 6, 14, 16, this.invX - (1/2 * 14 * 1.4), this.invY - (1/2 * 16 * 1.4), 14 * 1.4, 16 * 1.4);
+        }
+        else if (this.type == "tchafulaHalf")
+        {
+            LXX.beginPath();
+            LXX.drawImage(cef, 981, 6, 14, 16, this.invX - (1/2 * 14 * 1.4), this.invY - (1/2 * 16 * 1.4), 14 * 1.4, 16 * 1.4);
+        }
+        else if (this.type == "tchafulaTuft")
+        {
+            LXX.beginPath();
+            LXX.drawImage(cef, 554, 0, 21, 24, this.invX - (1/2 * 21 * 1.4), this.invY - (1/2 * 24 * 1.4), 21 * 1.4, 24 * 1.4);
+        }
+        else if (this.type == "glazaPowder")
+        {
+            LXX.beginPath();
+            LXX.drawImage(cef, 693, 41, 19, 13, this.invX - (1/2 * 19 * 1.5), this.invY - (1/2 * 13 * 1.5), 19 * 1.5, 13 * 1.5);
+        }
+        else if (this.type == "glazm")
+        {
+            LXX.beginPath();
+            LXX.drawImage(cef, 716, 40, 19, 13, this.invX - (1/2 * 19 * 1.5), this.invY - (1/2 * 13 * 1.5), 19 * 1.5, 13 * 1.5);
+        }
+        else if (this.type == "roastedGlazaRoot")
+        {
+            LXX.beginPath();
+            LXX.drawImage(cef, 1, 98, 48, 30, this.invX - (1/2 * 48 * 1.3), this.invY - (1/2 * 30 * 1.3), 48 * 1.3, 30 * 1.3);
+        }
+        else if (this.type == "glazaRoot")
+        {
+            LXX.beginPath();
+            LXX.drawImage(cef, 1, 127, 48, 30, this.invX - (1/2 * 48 * 1.3), this.invY - (1/2 * 30 * 1.3), 48 * 1.3, 30 * 1.3);
+        }
+        else if (this.type == "tchaltaFlower")
+        {
+            LXX.beginPath();
+            LXX.drawImage(cef, 666, 35, 25, 22, this.invX - (1/2 * 25 * 1.7), this.invY - (1/2 * 22 * 1.7), 25 * 1.7, 22 * 1.7);
+        }
+        else if (this.type == "tchaltaLeaf")
+        {
+            LXX.beginPath();
+            LXX.drawImage(cef, 618, 33, 25, 22, this.invX - (1/2 * 25 * 1.7), this.invY - (1/2 * 22 * 1.7), 25 * 1.7, 22 * 1.7);
+        }
+        else if (this.type == "tchaltaGel")
+        {
+            LXX.beginPath();
+            LXX.drawImage(cef, 645, 32, 25, 22, this.invX - (1/2 * 25 * 1.7), this.invY - (1/2 * 22 * 1.7), 25 * 1.7, 22 * 1.7);
+        }
+        else if (this.type == "nupalaPuffs")
+        {
+            LXX.beginPath();
+            LXX.drawImage(cef, 590, 31, 29, 19, this.invX - (1/2 * 29 * 1.55), this.invY - (1/2 * 19 * 1.55), 29 * 1.55, 19 * 1.55);
+        }
+        else if (this.type == "zwaleimBranches")
+        {
+            LXX.beginPath();
+            LXX.drawImage(cef, 558, 33, 29, 19, this.invX - (1/2 * 29 * 1.55), this.invY - (1/2 * 19 * 1.55), 29 * 1.55, 19 * 1.55);
+        }
         else if (this.type == "skriatokEssence")
         {
             LXX.beginPath();
@@ -58968,6 +59899,126 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "cebollaPicadaCocinada")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 26, 308, 22, 27, this.invX - (1/2 * 22 * 1.3), this.invY - (1/2 * 27 * 1.3), 22 * 1.3, 27 * 1.3);
+        }
+        else if (this.type == "cebollaPicada")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 4, 266, 22, 27, this.invX - (1/2 * 22 * 1.3), this.invY - (1/2 * 27 * 1.3), 22 * 1.3, 27 * 1.3);
+        }
+        else if (this.type == "cebollaHorneada")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 21, 292, 15, 18, this.invX - (1/2 * 15 * 1.3), this.invY - (1/2 * 18 * 1.3), 15 * 1.3, 18 * 1.3);
+        }
+        else if (this.type == "cebolla")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 8, 291, 15, 18, this.invX - (1/2 * 15 * 1.3), this.invY - (1/2 * 18 * 1.3), 15 * 1.3, 18 * 1.3);
+        }
+        else if (this.type == "berenjenaRebanadaCocinada")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 1, 442, 20, 21, this.invX - (1/2 * 20 * 1.5), this.invY - (1/2 * 21 * 1.5), 20 * 1.5, 21 * 1.5);
+        }
+        else if (this.type == "berenjenaRebanada")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 0, 462, 20, 21, this.invX - (1/2 * 20 * 1.5), this.invY - (1/2 * 21 * 1.5), 20 * 1.5, 21 * 1.5);
+        }
+        else if (this.type == "berenjenaPicadaCocinada")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 3, 357, 22, 22, this.invX - (1/2 * 22 * 1.5), this.invY - (1/2 * 22 * 1.5), 22 * 1.5, 22 * 1.5);
+        }
+        else if (this.type == "berenjenaPicada")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 2, 377, 22, 22, this.invX - (1/2 * 22 * 1.5), this.invY - (1/2 * 22 * 1.5), 22 * 1.5, 22 * 1.5);
+        }
+        else if (this.type == "berenjena")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 1, 490, 22, 27, this.invX - (1/2 * 22 * 1.5), this.invY - (1/2 * 27 * 1.5), 22 * 1.5, 27 * 1.5);
+        }
+        else if (this.type == "saffron")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 19, 459, 15, 18, this.invX - (1/2 * 15 * 1.3), this.invY - (1/2 * 18 * 1.3), 15 * 1.3, 18 * 1.3);
+        }
+        else if (this.type == "alcachofa")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 6, 221, 22, 27, this.invX - (1/2 * 22 * 1.3), this.invY - (1/2 * 27 * 1.3), 22 * 1.3, 27 * 1.3);
+        }
+        else if (this.type == "alcachofaCocinada")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jungho, 6, 244, 22, 27, this.invX - (1/2 * 22 * 1.3), this.invY - (1/2 * 27 * 1.3), 22 * 1.3, 27 * 1.3);
+        }
+        else if (this.type == "tchafula")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 965, 6, 14, 16, this.invX - (1/2 * 14 * 1.4), this.invY - (1/2 * 16 * 1.4), 14 * 1.4, 16 * 1.4);
+        }
+        else if (this.type == "tchafulaHalf")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 981, 6, 14, 16, this.invX - (1/2 * 14 * 1.4), this.invY - (1/2 * 16 * 1.4), 14 * 1.4, 16 * 1.4);
+        }
+        else if (this.type == "tchafulaTuft")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 554, 0, 21, 24, this.invX - (1/2 * 21 * 1.4), this.invY - (1/2 * 24 * 1.4), 21 * 1.4, 24 * 1.4);
+        }
+        else if (this.type == "glazaPowder")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 693, 41, 19, 13, this.invX - (1/2 * 19 * 1.5), this.invY - (1/2 * 13 * 1.5), 19 * 1.5, 13 * 1.5);
+        }
+        else if (this.type == "glazm")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 716, 40, 19, 13, this.invX - (1/2 * 19 * 1.5), this.invY - (1/2 * 13 * 1.5), 19 * 1.5, 13 * 1.5);
+        }
+        else if (this.type == "roastedGlazaRoot")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 1, 98, 48, 30, this.invX - (1/2 * 48 * 1.3), this.invY - (1/2 * 30 * 1.3), 48 * 1.3, 30 * 1.3);
+        }
+        else if (this.type == "glazaRoot")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 1, 127, 48, 30, this.invX - (1/2 * 48 * 1.3), this.invY - (1/2 * 30 * 1.3), 48 * 1.3, 30 * 1.3);
+        }
+        else if (this.type == "tchaltaFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 666, 35, 25, 22, this.invX - (1/2 * 25 * 1.7), this.invY - (1/2 * 22 * 1.7), 25 * 1.7, 22 * 1.7);
+        }
+        else if (this.type == "tchaltaLeaf")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 618, 33, 25, 22, this.invX - (1/2 * 25 * 1.7), this.invY - (1/2 * 22 * 1.7), 25 * 1.7, 22 * 1.7);
+        }
+        else if (this.type == "tchaltaGel")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 645, 32, 25, 22, this.invX - (1/2 * 25 * 1.7), this.invY - (1/2 * 22 * 1.7), 25 * 1.7, 22 * 1.7);
+        }
+        else if (this.type == "nupalaPuffs")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 590, 31, 29, 19, this.invX - (1/2 * 29 * 1.55), this.invY - (1/2 * 19 * 1.55), 29 * 1.55, 19 * 1.55);
+        }
+        else if (this.type == "zwaleimBranches")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 558, 33, 29, 19, this.invX - (1/2 * 29 * 1.55), this.invY - (1/2 * 19 * 1.55), 29 * 1.55, 19 * 1.55);
         }
         else if (this.type == "skriatokEssence")
         {

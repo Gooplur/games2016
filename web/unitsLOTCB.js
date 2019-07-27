@@ -1627,6 +1627,8 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.allys.push("toadia");
             this.allys.push("hydra");
             this.allys.push("skriatok");
+            this.allys.push("owl");
+            this.allys.push("owlia");
         }
         if (this.team == "skriatok")
         {
@@ -1664,6 +1666,20 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             this.allys.push("docile");
             this.allys.push("ulgoyia");
             this.allys.push("clamia");
+        }
+        if (this.team == "owl")
+        {
+            this.allys.push("docile");
+            this.allys.push("ulgoyia");
+            this.allys.push("clamia");
+            this.allys.push("shehidia");
+        }
+        if (this.team == "owlia")
+        {
+            this.allys.push("docile");
+            this.allys.push("ulgoyia");
+            this.allys.push("clamia");
+            this.allys.push("shehidia");
         }
         if (this.team == "bloat")
         {
@@ -17940,6 +17956,74 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
             }
             this.swimSpeed = this.speed * 0.8;
+        }
+        else if (this.type == "SnowyOwl")
+        {
+            this.damageFrame = "automatic";
+
+            if (this.alpha == true)
+            {
+                this.team = "owlia";
+                if (this.ID == "docile")
+                {
+                    this.team = "docile";
+                }
+                this.baseTeam = this.team;
+                this.tameREQ = 41;
+                this.magicalResistance = 0;
+                this.heatResistance = -0.25;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = Math.floor(Math.random() * 6) + 44;
+                this.health = this.healthMAX;
+                this.armour = 0;
+                this.speed = 8 + (Math.floor(Math.random() * 4) / 10);
+                this.rangeOfSight = 900; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.14;
+                this.engagementRadius = 64;
+                this.sizeRadius = 25;
+                this.negateArmour = 4;
+                this.attackWait = 1.4;
+
+                //alpha has a larger size body and skills.
+                this.alphaSize = 3; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                // this is the adjustment the alpha type of Etyr needs to be centered.
+                this.yAdjustment = 0; //was - 3.5
+                this.xAdjustment = 0; //was 6
+            }
+            else
+            {
+                this.team = "owl";
+                if (this.ID == "docile")
+                {
+                    this.team = "docile";
+                }
+                this.baseTeam = this.team;
+                this.tameREQ = 25;
+                //STATS (non-variable)
+                this.magicalResistance = 0;
+                this.heatResistance = -0.25;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = 3;
+                this.health = this.healthMAX;
+                this.armour = 0;
+                this.speed = 4.5 + (Math.floor(Math.random() * 4) / 10);
+                this.rangeOfSight = 500; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.09;
+                this.engagementRadius = 24;
+                this.sizeRadius = 11;
+                this.negateArmour = 0.45;
+                this.attackWait = 1.2;
+
+                //this multiplies the draw image skew numbers by 1 so that it stays the same
+                this.alphaSize = 1;
+                // this is the adjustment the alpha type of Etyr needs to be centered.
+                this.yAdjustment = 0; //was -34
+                this.xAdjustment = 0; //was - 26
+
+            }
+            this.swimSpeed = this.speed * 0.5;
         }
         else if (this.type == "Skriatok")
         {
@@ -36595,6 +36679,206 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             else
             {
                 this.drawUnit(verse, 2929, 283, 54, 32, -35 - this.xAdjustment, -22 - this.yAdjustment, 54 * this.alphaSize, 32 * this.alphaSize);
+            }
+        }
+        //SNOWY OWL
+        if (this.type == "SnowyOwl")
+        {
+            //Set Drops and experience
+            if (this.alpha == true)
+            {
+                if (Math.max(0, 12 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 111 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = (111 * ((player.getIntelligence() / 50) + 1)) / 10;
+                }
+
+                this.drops = [[new Item("snowyOwlWingLarge", this.X, this.Y), 1]];
+            }
+            else
+            {
+                if (Math.max(0, 100 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 7 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = 7 * ((player.getIntelligence() / 50) + 1) / 10;
+                }
+
+                this.drops = [[new Item("snowyOwlWing", this.X, this.Y), 1]];
+            }
+
+            //RANGE OF SIGHT (anything related to range of sight)
+            if (this.alpha == true)
+            {
+                this.rangeOfSightCalculator(900, "mildly");
+            }
+            else
+            {
+                this.rangeOfSightCalculator(500, "mildly");
+            }
+
+            //AI
+            if (this.alive == true)
+            {
+                if (this.alpha == true)
+                {
+                    this.Attack(3, 11);
+                }
+                else
+                {
+                    this.Attack(0.25, 1);
+                }
+
+                //this.deathChecker();
+                this.disturbedTimer();
+                this.visibleSight();
+                this.friendDecider();
+                this.targeting();
+                this.moving = false;
+
+                if (this.alpha == true)
+                {
+                    if (this.target == player)
+                    {
+                        if (this.DTP() > this.rangeOfSight && typeof(this.ultra) != "undefined")
+                        {
+                            this.patrol(this.ultra.patrolStops, this.ultra.patrolLoop);
+                        }
+                        else
+                        {
+                            this.pointTowardsPlayer();
+                            this.moveInRelationToPlayer();
+                        }
+                    }
+                    else if (this.target != "none")
+                    {
+                        if (this.DTU(this.target) > this.rangeOfSight && typeof(this.ultra) != "undefined")
+                        {
+                            this.patrol(this.ultra.patrolStops, this.ultra.patrolLoop);
+                        }
+                        else
+                        {
+                            this.pointTowards(this.target);
+                            this.moveInRelationToThing(this.target);
+                        }
+                    }
+                }
+                else
+                {
+                    if (this.target == player)
+                    {
+                        this.pointAwayFromPlayer();
+                        this.moveInRelationToPlayer();
+                    }
+                    else if (this.target != "none")
+                    {
+                        if (this.DTU(this.target) > this.rangeOfSight && typeof(this.ultra) != "undefined")
+                        {
+                            this.patrol(this.ultra.patrolStops, this.ultra.patrolLoop);
+                        }
+                        else
+                        {
+                            if (this.target.healthMAX <= 3)
+                            {
+                                this.pointTowards(this.target);
+                                this.moveInRelationToThing(this.target);
+                            }
+                            else
+                            {
+                                this.pointAway(this.target);
+                                this.moveInRelationToThing(this.target);
+                            }
+                        }
+                    }
+                }
+
+                if (this.moving == true && this.attacking != true)
+                {
+                    this.flying = true;
+                }
+                else
+                {
+                    this.flying = false;
+                }
+            }
+
+            //ANIMATIONS
+
+            if (this.alive == true)
+            {
+                if (this.moving && !this.attacking) //If moving and not attacking initiate moving animation...
+                {
+                    this.costumeEngine(3, 0.065, false);
+                }
+                else if (this.attacking) //otherwise if it is attacking then initiate attacking animation, and if neither...
+                {
+                    if(new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000 / timeSpeed * this.timeResistance))
+                    {
+                        this.costumeEngine(3, 0.13, true);
+                    }
+                }
+                else
+                {
+                    this.costume = 0;
+                }
+
+                // the frames/stages/costumes of the animation.
+                var theCostume = Math.floor(this.costume); //This rounds this.costume down to the nearest whole number.
+
+                if (theCostume <= 0)
+                {
+                    if (this.attacking)
+                    {
+                        this.drawUnit(cef, 220, 60, 51, 49, -1/2 * 51 * this.alphaSize - this.xAdjustment, -1/2 * 49 * this.alphaSize - this.yAdjustment, 51 * this.alphaSize, 49 * this.alphaSize);
+                    }
+                    else if (this.moving == true)
+                    {
+                        this.drawUnit(cef, 271, 64, 51, 49, -1/2 * 51 * this.alphaSize - this.xAdjustment, -1/2 * 49 * this.alphaSize - this.yAdjustment, 51 * this.alphaSize, 49 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(cef, 220, 60, 51, 49, -1/2 * 51 * this.alphaSize - this.xAdjustment, -1/2 * 49 * this.alphaSize - this.yAdjustment, 51 * this.alphaSize, 49 * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 1)
+                {
+                    if (this.attacking)
+                    {
+                        this.drawUnit(cef, 282, 172, 51, 49, -1/2 * 51 * this.alphaSize - this.xAdjustment, -1/2 * 49 * this.alphaSize - this.yAdjustment, 51 * this.alphaSize, 49 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(cef, 322, 61, 52, 57, -1/2 * 52 * this.alphaSize - this.xAdjustment, -1/2 * 57 * this.alphaSize - this.yAdjustment, 52 * this.alphaSize, 57 * this.alphaSize);
+                    }
+                }
+                else if (theCostume >= 2)
+                {
+                    if (this.attacking)
+                    {
+                        if (this.alpha == false)
+                        {
+                            this.health += 1;
+                            if (this.health > this.healthMAX)
+                            {
+                                this.health = this.healthMAX;
+                            }
+                        }
+                        this.drawUnit(cef, 574, 224, 52, 57, -1/2 * 52 * this.alphaSize - this.xAdjustment, -1/2 * 57 * this.alphaSize - this.yAdjustment, 52 * this.alphaSize, 57 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(cef, 218, 167, 52, 57, -1/2 * 52 * this.alphaSize - this.xAdjustment, -1/2 * 57 * this.alphaSize - this.yAdjustment, 52 * this.alphaSize, 57 * this.alphaSize);
+                    }
+                }
+            }
+            else
+            {
+                this.drawUnit(cef, 637, 227, 52, 57, -1/2 * 52 * this.alphaSize - this.xAdjustment, -1/2 * 57 * this.alphaSize - this.yAdjustment, 52 * this.alphaSize, 57 * this.alphaSize);
             }
         }
         //SKRIATOK

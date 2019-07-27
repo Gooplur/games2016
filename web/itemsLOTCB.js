@@ -3795,6 +3795,46 @@ function Item(type, x, y)
             this.buyValue = 2 - Math.floor(player.getCharisma() / 25); // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
         }
+        else if (this.type == "snowyOwlWing")
+        {
+            //For All Items
+            this.identity = "Snowy Owl Wing";
+            this.weight = 0.7;
+            this.size = 11;
+            this.description = "The severed wing of a snowy owl.";
+            this.intForDes = 0;
+            this.intDescription = "This can be used to adorn certain northern styles of clothing and it acts as a former in alchemy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5; // at max, buy for 5.
+            this.sellValue = 3 + Math.floor(player.getCharisma() / 25); // at max, sell for 5.
+        }
+        else if (this.type == "snowyOwlWingLarge")
+        {
+            //For All Items
+            this.identity = "Giant Snowy Owl Wing";
+            this.weight = 7;
+            this.size = 21;
+            this.description = "The severed wing of a giant snowy owl.";
+            this.intForDes = 0;
+            this.intDescription = "This wing is a trophy that demonstrate the prowess of the one that slayed a giant snowy owl.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 11; // at max, buy for 11.
+            this.sellValue = 9 + Math.floor(player.getCharisma() / 25); // at max, sell for 11.
+        }
         else if (this.type == "saffron")
         {
             //For All Items
@@ -47557,6 +47597,16 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "snowyOwlWing")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 304, 121, 23, 31, X - this.X + (1/2 * CCC.width) - (1/2 * 23 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 31 * 1), 23 * 1, 31 * 1);
+        }
+        else if (this.type == "snowyOwlWingLarge")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 304, 121, 23, 31, X - this.X + (1/2 * CCC.width) - (1/2 * 23 * 3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 31 * 3), 23 * 3, 31 * 3);
+        }
         else if (this.type == "cebollaPicadaCocinada")
         {
             XXX.beginPath();
@@ -53745,6 +53795,16 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
+        else if (this.type == "snowyOwlWing")
+        {
+            LXX.beginPath();
+            LXX.drawImage(cef, 304, 121, 23, 31, this.invX - (1/2 * 23 * 1), this.invY - (1/2 * 31 * 1), 23 * 1, 31 * 1);
+        }
+        else if (this.type == "snowyOwlWingLarge")
+        {
+            LXX.beginPath();
+            LXX.drawImage(cef, 304, 121, 23, 31, this.invX - (1/2 * 23 * 2), this.invY - (1/2 * 31 * 2), 23 * 2, 31 * 2);
+        }
         else if (this.type == "cebollaPicadaCocinada")
         {
             LXX.beginPath();
@@ -59899,6 +59959,16 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "snowyOwlWing")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 304, 121, 23, 31, this.invX - (1/2 * 23 * 1), this.invY - (1/2 * 31 * 1), 23 * 1, 31 * 1);
+        }
+        else if (this.type == "snowyOwlWingLarge")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 304, 121, 23, 31, this.invX - (1/2 * 23 * 2), this.invY - (1/2 * 31 * 2), 23 * 2, 31 * 2);
         }
         else if (this.type == "cebollaPicadaCocinada")
         {

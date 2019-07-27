@@ -867,7 +867,7 @@ function Adventurer()
         {
             if (new Date().getTime() - this.burningTime <= 9000 && (1.2 - this.heatResistance) > 0)
             {
-                this.flashAnimate(90, this.rotation, 0.90, [{image: polypol, imgX: 1691, imgY: 184, portionW: 24, portionH: 23, adjX: -1/2 * ((24 * 1.5)/10) * this.mySize, adjY: -1/2 * ((23 * 1.5)/10) * this.mySize, width: ((24 * 1.5)/10) * this.mySize, height: ((23 * 1.5)/10) * this.mySize}, {image: polypol, imgX: 1721, imgY: 185, portionW: 24, portionH: 23, adjX: -1/2 * ((24 * 1.5)/10) * this.mySize, adjY: -1/2 * ((23 * 1.5)/10) * this.mySize, width: ((24 * 1.5)/10) * this.mySize, height: ((23 * 1.5)/10) * this.mySize}, {image: polypol, imgX: 1750, imgY: 185, portionW: 24, portionH: 23, adjX: -1/2 * ((24 * 1.5)/10) * this.mySize, adjY: -1/2 * ((23 * 1.5)/10) * this.mySize, width: ((24 * 1.5)/10) * this.mySize, height: ((23 * 1.5)/10) * this.mySize}, {image: polypol, imgX: 1783, imgY: 185, portionW: 24, portionH: 23, adjX: -1/2 * ((24 * 1.5)/10) * this.mySize, adjY: -1/2 * ((23 * 1.5)/10) * this.mySize, width: ((24 * 1.5)/10) * this.mySize, height: ((23 * 1.5)/10) * this.mySize}]);
+                this.flashAnimate(90, this.rotation, 0.90, [{image: polypol, imgX: 1691, imgY: 184, portionW: 24, portionH: 23, adjX: -1/2 * ((24 * 1.8)/10) * this.mySize, adjY: -1/2 * ((23 * 1.8)/10) * this.mySize, width: ((24 * 1.8)/10) * this.mySize, height: ((23 * 1.8)/10) * this.mySize}, {image: polypol, imgX: 1721, imgY: 185, portionW: 24, portionH: 23, adjX: -1/2 * ((24 * 1.8)/10) * this.mySize, adjY: -1/2 * ((23 * 1.8)/10) * this.mySize, width: ((24 * 1.8)/10) * this.mySize, height: ((23 * 1.8)/10) * this.mySize}, {image: polypol, imgX: 1750, imgY: 185, portionW: 24, portionH: 23, adjX: -1/2 * ((24 * 1.8)/10) * this.mySize, adjY: -1/2 * ((23 * 1.8)/10) * this.mySize, width: ((24 * 1.8)/10) * this.mySize, height: ((23 * 1.8)/10) * this.mySize}, {image: polypol, imgX: 1783, imgY: 185, portionW: 24, portionH: 23, adjX: -1/2 * ((24 * 1.8)/10) * this.mySize, adjY: -1/2 * ((23 * 1.8)/10) * this.mySize, width: ((24 * 1.8)/10) * this.mySize, height: ((23 * 1.8)/10) * this.mySize}]);
                 if (new Date().getTime() - this.burningTime2 >= 99)
                 {
                     this.frozenTime = 0;
@@ -38314,6 +38314,46 @@ function Adventurer()
                             if (canPlace == true)
                             {
                                 scenicList.push(new Scenery("campFire", X, Y, (Math.random() * (2 * Math.PI)), false));
+
+                                if (Inventory[i][1] - 1 <= 0)
+                                {
+                                    Inventory.splice(i, 1);
+                                }
+                                else
+                                {
+                                    Inventory[i][1] -= 1;
+                                }
+                                break;
+                            }
+                        }
+                        else if (Inventory[i][0].subUtility == "acaciaCampFire")
+                        {
+                            var canPlace = true;
+                            var hits = 0;
+                            for (var j = 0; j < scenicList.length; j++)
+                            {
+                                //19 is the radius of campFire Scenery Object.
+                                if (scenicList[j].X - 28 <= X + scenicList[j].radius && scenicList[j].X + 28 >= X - scenicList[j].radius && scenicList[j].Y - 28 <= Y + scenicList[j].radius && scenicList[j].Y + 28 >= Y - scenicList[j].radius)
+                                {
+                                    canPlace = false;
+                                }
+                            }
+                            for (var j = 0; j < Inventory.length; j++)
+                            {
+                                if (Inventory[j][0].identity != "Fire-Starter")
+                                {
+                                    hits += 1;
+                                }
+                            }
+
+                            if (hits == Inventory.length)
+                            {
+                                canPlace = false;
+                            }
+
+                            if (canPlace == true)
+                            {
+                                scenicList.push(new Scenery("acaciaCampFire", X, Y, (Math.random() * (2 * Math.PI)), false));
 
                                 if (Inventory[i][1] - 1 <= 0)
                                 {

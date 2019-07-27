@@ -2798,6 +2798,15 @@ function cheats()
                 console.log(player.companions[cmplst]);
             }
         }
+        else if (cheatcode == "termites") //termite cheat
+        {
+            ArtificialIntelligenceAccess.push(new Unit(X - 90, Y - 90, "KillerTermite", true, "Terminal"));
+        }
+        else if (cheatcode == "wingedTermites") //winged termite cheat
+        {
+            ArtificialIntelligenceAccess.push(new Unit(X - 90, Y - 90, "KillerTermite", true, "Terminal"));
+            ArtificialIntelligenceAccess[ArtificialIntelligenceAccess.length -1].winged = true;
+        }
         else if (cheatcode == "sustituto") //changeling cheat
         {
             ArtificialIntelligenceAccess.push(new Unit(X - 60, Y - 60, "Changeling", false, "changeling"));

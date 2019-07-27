@@ -25849,6 +25849,59 @@ function Item(type, x, y)
             this.buyValue = 5 - Math.floor(player.getCharisma() / 50); // at max, buy for 4.
             this.sellValue = 2 + Math.floor(player.getCharisma() / 25); // at max, sell for 4.
         }
+        else if (this.type == "acaciaWood") //acaciaacacia
+        {
+            //For All Items
+            this.identity = "Acacia Wood";
+            this.weight = 24;
+            this.size = 20;
+            this.description = "Timber from an acacia tree.";
+            this.intForDes = 3;
+            this.intDescription = "This is an important raw material used in the crafting of many different things.";
+
+            //Define Utility
+            this.utility = "material";
+            //subUtility
+            this.subUtility = "acaciaCampFire";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            if (shopkeeper != "none")
+            {
+                if (shopkeeper.ultra.faction == "Cephrite")
+                {
+                    this.buyValue = 4 - Math.floor(player.getCharisma() / 50); // at max, buy for 3.
+                    this.sellValue = 1 + Math.floor(player.getCharisma() / 25); // at max, sell for 3.
+                }
+                else if (shopkeeper.ultra.faction == "Aldrek")
+                {
+                    this.buyValue = 5 - Math.floor(player.getCharisma() / 50); // at max, buy for 4.
+                    this.sellValue = 2 + Math.floor(player.getCharisma() / 25); // at max, sell for 4.
+                }
+                else if (shopkeeper.ultra.faction == "Orgell")
+                {
+                    this.buyValue = 6 - Math.floor(player.getCharisma() / 50); // at max, buy for 5.
+                    this.sellValue = 3 + Math.floor(player.getCharisma() / 25); // at max, sell for 5.
+                }
+                else if (shopkeeper.ultra.faction == "Nirwaden" || shopkeeper.ultra.faction == "Kel")
+                {
+                    this.buyValue = 7 - Math.floor(player.getCharisma() / 50); // at max, buy for 6.
+                    this.sellValue = 4 + Math.floor(player.getCharisma() / 25); // at max, sell for 6.
+                }
+                else
+                {
+                    this.buyValue = 8 - Math.floor(player.getCharisma() / 50); // at max, buy for 7.
+                    this.sellValue = 5 + Math.floor(player.getCharisma() / 25); // at max, sell for 7.
+                }
+            }
+            else
+            {
+                this.buyValue = 8 - Math.floor(player.getCharisma() / 50); // at max, buy for 7.
+                this.sellValue = 5 + Math.floor(player.getCharisma() / 25); // at max, sell for 7.
+            }
+        }
         else if (this.type == "ashai") //ashaiashaiashai
         {
             //For All Items
@@ -47628,6 +47681,11 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "acaciaWood")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jeru, 803, 725, 66, 71, X - this.X + (1/2 * CCC.width) - (1/2 * 66 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 71 * 1), 66 * 1, 71 * 1);
+        }
         else if (this.type == "snowyOwlWing")
         {
             XXX.beginPath();
@@ -53831,6 +53889,11 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
+        else if (this.type == "acaciaWood")
+        {
+            LXX.beginPath();
+            LXX.drawImage(jeru, 803, 725, 66, 71, this.invX - (1/2 * 66 * 1), this.invY - (1/2 * 71 * 1), 66 * 1, 71 * 1);
+        }
         else if (this.type == "snowyOwlWing")
         {
             LXX.beginPath();
@@ -60000,6 +60063,11 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "acaciaWood")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jeru, 803, 725, 66, 71, this.invX - (1/2 * 66 * 1), this.invY - (1/2 * 71 * 1), 66 * 1, 71 * 1);
         }
         else if (this.type == "snowyOwlWing")
         {

@@ -33885,6 +33885,180 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 }
             }
         }
+        else if (this.type == "acaciaTree")
+        {
+            if (this.runOneTime == true)
+            {
+                this.runOneTime = false;
+                this.size = this.temporary;
+                this.treeHealth = 125 * this.size;
+            }
+
+            //TRAITS
+            this.solid = true;
+            this.interactionRange = 115 * this.size;
+
+            //DRAWSELF
+            if (this.treePhase == 0)
+            {
+                if (this.playerer < 134 * this.size)
+                {
+                    XXX.globalAlpha = 0.75;
+                    this.zIndex = 6;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jeru, 1157, 40, 337, 335, -(1/2 * 337 * 1.1 * this.size), -(1/2 * 335 * 1.1 * this.size), 337 * 1.1 * this.size, 335 * 1.1 * this.size);
+                    XXX.restore();
+
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jeru, 1131, 408, 364, 370, -(1/2 * 364 * 1.1 * this.size) + 5, -(1/2 * 370 * 1.1 * this.size), 364 * 1.1 * this.size, 370 * 1.1 * this.size);
+                    XXX.restore();
+                    XXX.globalAlpha = 1;
+                }
+                else
+                {
+                    this.zIndex = 6;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jeru, 1157, 40, 337, 335, -(1/2 * 337 * 1.1 * this.size), -(1/2 * 335 * 1.1 * this.size), 337 * 1.1 * this.size, 335 * 1.1 * this.size);
+                    XXX.restore();
+
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jeru, 1131, 408, 364, 370, -(1/2 * 364 * 1.1 * this.size) + 5, -(1/2 * 370 * 1.1 * this.size), 364 * 1.1 * this.size, 370 * 1.1 * this.size);
+                    XXX.restore();
+                }
+            }
+            else if (this.treePhase == 1)
+            {
+                this.zIndex = 1;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 1507, 432, 489, 516, -(1/2 * 489 * 1 * this.size) + 106, -(1/2 * 516 * 1 * this.size) - 165, 489 * 1 * this.size, 516 * 1 * this.size);
+                XXX.restore();
+            }
+            else if (this.treePhase == 2)
+            {
+                this.zIndex = 1;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 1112, 815, 74, 72, -(1/2 * 74 * 1 * this.size), -(1/2 * 72 * 1 * this.size), 74 * 1 * this.size, 72 * 1 * this.size);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 29 * this.size;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                if (this.treePhase == 1)
+                {
+                    var hits = 0;
+                    for (var i = 0; i < Inventory.length; i ++)
+                    {
+                        if (Inventory[i][0].type == "acaciaWood")
+                        {
+                            Inventory[i][1] += Math.round(30 * this.size);
+                            this.treePhase = 2;
+                            break;
+                        }
+                        else
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == Inventory.length)
+                    {
+                        Inventory.push([new Item("acaciaWood", false, false), Math.round(30 * this.size)]);
+                        this.treePhase = 2;
+                    }
+                }
+                this.activate = false;
+            }
+
+            if (this.treePhase == 0) //if this tree is in its cut down phase.
+            {
+                //console.log(player.finalAttackStage);
+                if (player.weaponEquipped == "vardanianAxe" && player.cutcut == true && this.playerer < 130 * this.size || player.weaponEquipped == "vardanianAxeDual" && player.cutcut == true && this.playerer < 130 * this.size)
+                {
+                    var distFromCutCut = Math.sqrt((this.X - player.bubbleOfDamageX)*(this.X - player.bubbleOfDamageX) + (this.Y - player.bubbleOfDamageY)*(this.Y - player.bubbleOfDamageY));
+                    //console.log(distFromCutCut);
+                    if (distFromCutCut <= player.weapon.range * 7 + 35)
+                    {
+                        this.treeHealth -= 0.45;
+                    }
+
+                    if (this.treeHealth <= 0)
+                    {
+                        this.treePhase = 1
+                    }
+                }
+                else if (player.weaponEquipped == "timberAxe" && player.cutcut == true && this.playerer < 130 * this.size)
+                {
+                    var distFromCutCut = Math.sqrt((this.X - player.bubbleOfDamageX)*(this.X - player.bubbleOfDamageX) + (this.Y - player.bubbleOfDamageY)*(this.Y - player.bubbleOfDamageY));
+                    //console.log(distFromCutCut);
+                    if (distFromCutCut <= player.weapon.range * 7 + 35)
+                    {
+                        this.treeHealth -= 2;
+                    }
+
+                    if (this.treeHealth <= 0)
+                    {
+                        this.treePhase = 1
+                    }
+                }
+                else if (player.weaponEquipped == "vardanianBattleAxe" && player.cutcut == true && this.playerer < 130 * this.size || player.weaponEquipped == "freydicWarAxe" && player.cutcut == true  && this.playerer < 130 * this.size)
+                {
+                    var distFromCutCut = Math.sqrt((this.X - player.bubbleOfDamageX)*(this.X - player.bubbleOfDamageX) + (this.Y - player.bubbleOfDamageY)*(this.Y - player.bubbleOfDamageY));
+                    //console.log(distFromCutCut);
+                    if (distFromCutCut <= player.weapon.range * 7 + 35)
+                    {
+                        this.treeHealth -= 0.2;
+                    }
+
+                    if (this.treeHealth <= 0)
+                    {
+                        this.treePhase = 1
+                    }
+                }
+                else if (player.weaponEquipped == "dualVardanianBattleAxe" && player.cutcut == true && this.playerer < 130 * this.size)
+                {
+                    var distFromCutCut = Math.sqrt((this.X - player.bubbleOfDamageX)*(this.X - player.bubbleOfDamageX) + (this.Y - player.bubbleOfDamageY)*(this.Y - player.bubbleOfDamageY));
+                    //console.log(distFromCutCut);
+                    if (distFromCutCut <= player.weapon.range * 10 + 35)
+                    {
+                        this.treeHealth -= 0.35;
+                    }
+
+                    if (this.treeHealth <= 0)
+                    {
+                        this.treePhase = 1
+                    }
+                }
+                else if (player.weaponEquipped == "chainsaw" && player.cutcut == true && this.playerer < 130 * this.size)
+                {
+                    var distFromCutCut = Math.sqrt((this.X - player.bubbleOfDamageX)*(this.X - player.bubbleOfDamageX) + (this.Y - player.bubbleOfDamageY)*(this.Y - player.bubbleOfDamageY));
+                    //console.log(distFromCutCut);
+                    if (distFromCutCut <= player.weapon.range * 10 + 35)
+                    {
+                        this.treeHealth -= 20;
+                    }
+
+                    if (this.treeHealth <= 0)
+                    {
+                        this.treePhase = 1
+                    }
+                }
+            }
+        }
         else if (this.type == "ashaiTree")
         {
             if (this.runOneTime == true)
@@ -36578,6 +36752,175 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
             this.radius = 19;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+
+                if (this.lit == false && this.burnt == false || this.lit == false && this.temporary == true)
+                {
+                    for (var i = 0; i < Inventory.length; i++)
+                    {
+                        if (Inventory[i][0].identity == "Fire-Starter")
+                        {
+                            this.gotFireStarter = true;
+                        }
+                    }
+
+                    if (this.gotFireStarter)
+                    {
+                        this.burntTime = 0;
+                        this.lit = true;
+                    }
+                }
+                else if (this.lit == true && this.burnt == false)
+                {
+                    player.craftPosition = 0;
+                    craftScroll = 0;
+                    crafting = "foods";
+                    lowBar = "crafting";
+                    gameState = "paused";
+                }
+            }
+        }
+        else if (this.type == "acaciaCampFire")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 45;
+
+            if (this.temporary == "permaLit")
+            {
+                this.campFireTime = 0;
+                this.lit = true;
+                this.burnt = false;
+            }
+
+            //animate
+            if (this.lit == true)
+            {
+                lights.push({X:this.X, Y: this.Y, size: 210, extraStops: true, GRD: 0.25, Alpha: 0.8, showMe: false});
+                this.fireCostume += 3.5;
+                this.campFireTime += 1;
+
+                //die out over time
+                if (this.campFireTime >= 25000)
+                {
+                    this.campFireTime = 0;
+                    this.lit = false;
+                    this.burnt = true;
+                }
+            }
+
+            if (this.burnt == true)
+            {
+                this.burntTime += 1;
+
+                if (this.burntTime >= 2000)
+                {
+                    this.burntTime = 0;
+                    if (this.temporary == false)
+                    {
+                        for (var i = 0; i < scenicList.length; i++)
+                        {
+                            if (scenicList[i] === this)
+                            {
+                                scenicList.splice(i, 1);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+
+            //DRAWSELF
+            if (this.lit == false)
+            {
+                if (this.burnt == false)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jeru, 800, 721, 73, 73, -(1/2 * 73), -(1/2 * 73), 73, 73);
+                    XXX.restore();
+                }
+                else
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jeru, 976, 808, 73, 73, -(1/2 * 73), -(1/2 * 73), 73, 73);
+                    XXX.restore();
+                }
+            }
+            else if (this.fireCostume <= 14)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 885, 725, 73, 73, -(1/2 * 73), -(1/2 * 73), 73, 73);
+                XXX.restore();
+            }
+            else if (this.fireCostume > 14 && this.fireCostume <= 28)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 974, 724, 73, 73, -(1/2 * 73), -(1/2 * 73), 73, 73);
+                XXX.restore();
+            }
+            else if (this.fireCostume > 28 && this.fireCostume <= 42)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 800, 806, 73, 73, -(1/2 * 73), -(1/2 * 73), 73, 73);
+                XXX.restore();
+            }
+            else if (this.fireCostume > 42 && this.fireCostume <= 56)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 885, 807, 73, 73, -(1/2 * 73), -(1/2 * 73), 73, 73);
+                XXX.restore();
+            }
+            else if (this.fireCostume > 56)
+            {
+                this.fireCostume = 0;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 885, 807, 73, 73, -(1/2 * 73), -(1/2 * 73), 73, 73);
+                XXX.restore();
+            }
+
+            if (this.playerer <= this.radius && this.lit == true) //fire burns the player but heat resistance can reduce the damage it does.
+            {
+                if (player.mageShield > 0)
+                {
+                    player.mageShield -= 0.15;
+                    player.warmth += Math.max(0, (1.5 - (player.heatResistance / 200)));
+                }
+                else
+                {
+                    player.health += player.mageShield;
+                    player.mageShield = 0;
+
+                    player.health -= Math.max(0, (0.15 - (player.heatResistance / 200)));
+                    player.warmth += Math.max(0, (1.5 - (player.heatResistance / 200)));
+                    player.burningTime = new Date().getTime();
+                }
+            }
+            else if (this.playerer <= 96 && this.lit == true)
+            {
+                player.warmth += Math.max(0, (0.95 - (player.heatResistance / 200)));
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 27;
 
             //INTERACTION
             if (this.activate == true)

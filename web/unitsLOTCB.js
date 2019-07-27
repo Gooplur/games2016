@@ -229,6 +229,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     //effects variables
     this.petrified = false;
     this.petrificationResistance = false;
+    this.glassed = false;
     this.rangedSwitch = false; //this is triggered when the unit's switchToRanged function decides to switch to an alternative weapon for ranged confrontations (it warns the function switchToSwimming not to switch back to the base weapon but rather tha one chosen by switchToRanged function)
     this.blindedTime = 0;
     this.blinded = false;
@@ -840,7 +841,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     {
         if (this.targetingHold != true)
         {
-            if (!this.muzzle && quenHere == false)
+            if (!this.muzzle && quenHere == false && player.glassed == false)
             {
                 if (player.lycanthropy != true || this.baseTeam != "wolf" || this.disturbed || this.team == "player")
                 {
@@ -863,7 +864,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 }
             }
 
-            if (this.team == "player" && cKey || this.muzzle || this.boatphobic && player.weaponEquipped == "boat" || this.mounted || player.mounted && this.baseTeam != "player" || quenHere == true) //charge command player team units will target their master only as a last resort while "C" is pressed
+            if (this.team == "player" && cKey || this.muzzle || this.boatphobic && player.weaponEquipped == "boat" || this.mounted || player.mounted && this.baseTeam != "player" || quenHere == true || player.glassed == true) //charge command player team units will target their master only as a last resort while "C" is pressed
             {
                 this.targetDistance = 1000000000;
             }
@@ -8021,6 +8022,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                                     player.asfixiationI = true;
                                     player.asfixiationTime = Math.max(20, player.asfixiationTime);
                                 }
+                                else if (this.effect == "glassworm" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
+                                {
+                                    player.petrified = true;
+                                    player.glassed = true;
+                                }
                                 else if (this.effect == "dizzyI" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
                                 {
                                     player.dizzyTime = 30;
@@ -8582,6 +8588,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                                 this.target.stunTime = new Date().getTime();
                                 this.target.frozenTime = new Date().getTime();
                             }
+                            else if (this.effect == "glassworm")
+                            {
+                                this.target.petrified = true;
+                                this.target.glassed = true;
+                            }
                             else if (this.effect == "radiate")
                             {
                                 if (this.target.radProof != true)
@@ -9002,7 +9013,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         //Petrification Effect
         if (petrifiedResistance == false && this.petrified)
         {
-            this.colorized = [true, "lightGrey"];
+            if (this.glassed)
+            {
+                this.colorized = [true, "glass"];
+            }
+            else
+            {
+                this.colorized = [true, "lightGrey"];
+            }
             this.playerSeen = false;
             this.petrificationResistance = false;
         }
@@ -13118,8 +13136,16 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         ctx.drawImage(img, sx, sy, w, h, 0, 0, szX, szY);
         ctx.globalCompositeOperation = "source-atop";
         ctx.globalAlpha = a;
-        ctx.fillStyle = colour;
-        ctx.fillRect(0,0,szX,szY);
+        if (colour != "glass")
+        {
+            ctx.fillStyle = colour;
+            ctx.fillRect(0,0,szX,szY);
+        }
+        else
+        {
+            ctx.drawImage(caverna, 654, 16, 25, 24, 0, 0, Math.max(25, szX), Math.max(25, szY));
+        }
+
         return canvas;
     };
 
@@ -13253,6 +13279,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         }
         XXX.lineWidth = 0.5;
         XXX.stroke();
+
+        if (this.glassed && this.petrified)
+        {
+            XXX.drawImage(caverna, 646, 8, 43, 40, -1/2 * 43 * 0.7, -1/2 * 40 * 0.7, 43 * 0.7, 40 * 0.7);
+        }
 
         XXX.restore();
 
@@ -17956,6 +17987,47 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
             }
             this.swimSpeed = this.speed * 0.8;
+        }
+        else if (this.type == "Glassworm")
+        {
+            this.tangible = false;
+            this.traverse = true;
+            this.nonDetect = true;
+            this.effect = "glassworm";
+            this.damageFrame = "automatic";
+            this.team = "glassworm";
+            if (this.ID == "docile")
+            {
+                this.team = "docile";
+            }
+            if (this.ID == "player")
+            {
+                this.team = "player";
+            }
+            this.baseTeam = this.team;
+            this.tameREQ = 499;
+
+            this.magicalResistance = 200;
+            this.heatResistance = 200;
+            this.attackStyle = "chunked";
+            this.attackRate = 0;  //this is for rapid style combat only.
+            this.healthMAX = 2;
+            this.health = this.healthMAX;
+            this.armour = 2;
+            this.speed = 2.9 + (Math.floor(Math.random() * 5) / 10);
+            this.rangeOfSight = 700; //This is just to set the variable initially. The rest is variable.
+            this.rotationSpeed = 0.11;
+            this.engagementRadius = 20;
+            this.sizeRadius = 7;
+            this.negateArmour = 10;
+            this.attackWait = 0.6;
+
+            //alpha has a larger size body and skills.
+            this.alphaSize = 1; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+            // this is the adjustment the alpha type of Etyr needs to be centered.
+            this.yAdjustment = 0;
+            this.xAdjustment = 0;
+            this.swimSpeed = this.speed * 0.9;
         }
         else if (this.type == "SnowyOwl")
         {
@@ -36679,6 +36751,147 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             else
             {
                 this.drawUnit(verse, 2929, 283, 54, 32, -35 - this.xAdjustment, -22 - this.yAdjustment, 54 * this.alphaSize, 32 * this.alphaSize);
+            }
+        }
+        //GLASSWORM
+        if (this.type == "Glassworm")
+        {
+            //Set Drops and experience
+            if (Math.max(0, 7 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+            {
+                this.experience = 50 * ((player.getIntelligence() / 50) + 1);
+            }
+            else
+            {
+                this.experience = (50 * ((player.getIntelligence() / 50) + 1)) / 10;
+            }
+
+            this.drops = [];
+
+            //RANGE OF SIGHT (anything related to range of sight)
+
+            this.rangeOfSightCalculator(700, "unrelenting");
+
+            //AI
+            if (this.alive == true)
+            {
+
+                this.Attack(0, 2);
+                this.callForNearbyHelpFromType(1100, "Glassworm");
+
+                //this.deathChecker();
+                this.disturbedTimer();
+                this.visibleSight();
+                this.friendDecider();
+                this.targeting();
+                this.moving = false;
+
+                if (this.petrified == true)
+                {
+                    this.petrified = false;
+                    this.glassed = false;
+                }
+
+                if (this.target == player)
+                {
+                    this.pointTowardsPlayer();
+                    this.moveInRelationToPlayer();
+                }
+                else if (this.target != "none")
+                {
+                    this.pointTowards(this.target);
+                    this.moveInRelationToThing(this.target);
+                }
+
+                if (dClick == true && this.DTM() < 14 && this.DTP() <= 90) //double click to capture the glassworm in a glass jar
+                {
+                    if (have("glassJar", 1))
+                    {
+                        take("glassJar", 1);
+                        give("jarOfGlassworm", 1);
+                        ArtificialIntelligenceAccess.splice(ArtificialIntelligenceAccess.indexOf(this), 1);
+                    }
+                    else if (player.armourTotal < 12 || player.areGlovesEquipped == false)
+                    {
+                        player.glassed = true;
+                        player.petrified = true;
+                    }
+                }
+            }
+
+            //ANIMATIONS
+
+            if (this.alive == true)
+            {
+                if (this.moving && !this.attacking) //If moving and not attacking initiate moving animation...
+                {
+                    this.costumeEngine(4, 0.10, false);
+                }
+                else if (this.attacking) //otherwise if it is attacking then initiate attacking animation, and if neither...
+                {
+                    if (new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000 / timeSpeed * this.timeResistance))
+                    {
+                        this.costumeEngine(3, 0.10, true);
+                    }
+                }
+
+                // the frames/stages/costumes of the animation.
+                var theCostume = Math.floor( this.costume ); //This rounds this.costume down to the nearest whole number.
+
+                if (player.sleep <= 0)
+                {
+                    if (theCostume <= 0)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(cef, 81, 163, 27, 42, -1/2 * 27 * this.alphaSize - this.xAdjustment, -1/2 * 42 * this.alphaSize - this.yAdjustment, 27 * this.alphaSize, 42 * this.alphaSize, 1/2 * Math.PI);
+                        }
+                        else
+                        {
+                            this.drawUnit(cef, 60, 163, 27, 42, -1/2 * 27 * this.alphaSize - this.xAdjustment, -1/2 * 42 * this.alphaSize - this.yAdjustment, 27 * this.alphaSize, 42 * this.alphaSize, 1/2 * Math.PI);
+                        }
+                    }
+                    else if (theCostume <= 1)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(cef, 103, 165, 27, 42, -1/2 * 27 * this.alphaSize - this.xAdjustment, -1/2 * 42 * this.alphaSize - this.yAdjustment, 27 * this.alphaSize, 42 * this.alphaSize, 1/2 * Math.PI);
+                        }
+                        else
+                        {
+                            this.drawUnit(cef, 81, 164, 27, 42, -1/2 * 27 * this.alphaSize - this.xAdjustment, -1/2 * 42 * this.alphaSize - this.yAdjustment, 27 * this.alphaSize, 42 * this.alphaSize, 1/2 * Math.PI);
+                        }
+                    }
+                    else if (theCostume <= 2)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(cef, 124, 166, 27, 42, -1/2 * 27 * this.alphaSize - this.xAdjustment, -1/2 * 42 * this.alphaSize - this.yAdjustment, 27 * this.alphaSize, 42 * this.alphaSize, 1/2 * Math.PI);
+                        }
+                        else
+                        {
+                            this.drawUnit(cef, 32, 164, 27, 42, -1/2 * 27 * this.alphaSize - this.xAdjustment, -1/2 * 42 * this.alphaSize - this.yAdjustment, 27 * this.alphaSize, 42 * this.alphaSize, 1/2 * Math.PI);
+                        }
+                    }
+                    else if (theCostume >= 3)
+                    {
+                        if (this.attacking)
+                        {
+                            this.drawUnit(cef, 124, 166, 27, 42, -1/2 * 27 * this.alphaSize - this.xAdjustment, -1/2 * 42 * this.alphaSize - this.yAdjustment, 27 * this.alphaSize, 42 * this.alphaSize, 1/2 * Math.PI);
+                        }
+                        else
+                        {
+                            this.drawUnit(cef, 10, 164, 27, 42, -1/2 * 27 * this.alphaSize - this.xAdjustment, -1/2 * 42 * this.alphaSize - this.yAdjustment, 27 * this.alphaSize, 42 * this.alphaSize, 1/2 * Math.PI);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if (player.sleep <= 0)
+                {
+                    this.drawUnit(cef, 159, 167, 27, 42, -1/2 * 27 * this.alphaSize - this.xAdjustment, -1/2 * 42 * this.alphaSize - this.yAdjustment, 27 * this.alphaSize, 42 * this.alphaSize, 1/2 * Math.PI);
+                }
             }
         }
         //SNOWY OWL
@@ -63799,7 +64012,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 }
 
                 //Super Sticky Slime Trail
-                if (this.moving && !this.attacking && this.water == false)
+                if (this.moving && !this.attacking && this.water == false && this.petrified != true)
                 {
                     if (new Date().getTime() >= this.loopTimer + 625)
                     {

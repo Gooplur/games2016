@@ -6291,6 +6291,37 @@ function Item(type, x, y)
             this.buyValue = 16 - Math.floor(player.getCharisma() / 15); // at max, buy for 13.
             this.sellValue = 11 + Math.floor(player.getCharisma() / 25); // at max, sell for 13.
         }
+        else if (this.type == "jarOfGlassworm")
+        {
+            //For All Items
+            this.identity = "Trapped Glassworm";
+            this.weight = 2.5;
+            this.size = 7;
+            this.description = "A glass jar that holds a glassworm.";
+            this.intForDes = 0;
+            this.intDescription = "A glass worm's bite can turn almost any organic substance into glass.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["glassJar", 1]];
+
+            //Utility Focused
+            this.isRegenerative = true; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "glassworm";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1800 - Math.floor(player.getCharisma() / 1); // at max, buy for 1750.
+            this.sellValue = 1700 + Math.floor(player.getCharisma() / 1); // at max, sell for 1750.
+        }
         else if (this.type == "sonjaFruit")
         {
             //For All Items
@@ -53078,10 +53109,15 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(mofu, 97, 3, 10, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 15), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21.5), 15, 21.5);
         }
-        else if (this.type == "glassJar")
+        else if (this.type == "glassJar" || this.type == "jarOfGlassworm" && player.sleep > 0)
         {
             XXX.beginPath();
             XXX.drawImage(polyPNG, 465, 33, 8, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 12), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21), 12, 21);
+        }
+        else if (this.type == "jarOfGlassworm" && player.sleep <= 0)
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 1013, 75, 9, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 9 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 14 * 1.5), 9 * 1.5, 14 * 1.5);
         }
         else if (this.type == "chainArmour")
         {
@@ -59274,10 +59310,15 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(mofu, 97, 3, 10, 15, this.invX - (1/2 * 15), this.invY - (1/2 * 21.5), 15, 21.5);
         }
-        else if (this.type == "glassJar")
+        else if (this.type == "glassJar" || this.type == "jarOfGlassworm" && player.sleep > 0)
         {
             LXX.beginPath();
             LXX.drawImage(polyPNG, 465, 33, 8, 14, this.invX - (1/2 * 12), this.invY - (1/2 * 21), 12, 21);
+        }
+        else if (this.type == "jarOfGlassworm" && player.sleep <= 0)
+        {
+            LXX.beginPath();
+            LXX.drawImage(cef, 1013, 75, 9, 14, this.invX - (1/2 * 9 * 1.5), this.invY - (1/2 * 14 * 1.5), 9 * 1.5, 14 * 1.5);
         }
         else if (this.type == "chainArmour")
         {
@@ -65433,10 +65474,15 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(mofu, 97, 3, 10, 15, this.invX - (1/2 * 15), this.invY - (1/2 * 21.5), 15, 21.5);
         }
-        else if (this.type == "glassJar")
+        else if (this.type == "glassJar" || this.type == "jarOfGlassworm" && player.sleep > 0)
         {
             XXX.beginPath();
             XXX.drawImage(polyPNG, 465, 33, 8, 14, this.invX - (1/2 * 12), this.invY - (1/2 * 21), 12, 21);
+        }
+        else if (this.type == "jarOfGlassworm" && player.sleep <= 0)
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 1013, 75, 9, 14, this.invX - (1/2 * 9 * 1.5), this.invY - (1/2 * 14 * 1.5), 9 * 1.5, 14 * 1.5);
         }
         else if (this.type == "chainArmour")
         {

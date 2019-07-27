@@ -2362,6 +2362,14 @@ function cheats()
                 console.log(bankAccount[ii]);
             }
         }
+        else if (cheatcode == "glassThePlanet" || cheatcode == "glasstheplanet")
+        {
+            for (var ii = 0; ii < ArtificialIntelligenceAccess.length; ii++)
+            {
+                ArtificialIntelligenceAccess[ii].glassed = true;
+                ArtificialIntelligenceAccess[ii].petrified = true;
+            }
+        }
         else if (cheatcode == "00567817")
         {
             player.concentration = 0;

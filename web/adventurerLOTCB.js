@@ -595,6 +595,7 @@ function Adventurer()
     this.cannibal = false;
     this.wendigo = false;
     this.wendigoChange = false;
+    this.glassed = false;
 
         //faction variables
     this.factionToggle = false;
@@ -7037,8 +7038,17 @@ function Adventurer()
         ctx.drawImage(img, sx, sy, w, h, 0, 0, szX, szY);
         ctx.globalCompositeOperation = "source-atop";
         ctx.globalAlpha = a;
-        ctx.fillStyle = colour;
-        ctx.fillRect(0,0,szX,szY);
+
+        if (colour != "glass")
+        {
+            ctx.fillStyle = colour;
+            ctx.fillRect(0,0,szX,szY);
+        }
+        else
+        {
+            ctx.drawImage(caverna, 654, 16, 25, 24, 0, 0, Math.max(25, szX), Math.max(25, szY));
+        }
+
         return canvas;
     };
 
@@ -7136,15 +7146,24 @@ function Adventurer()
             XXX.save();
             XXX.translate(this.myScreenX, this.myScreenY); //Translate resets the coordinates to the arguements mentioned (x, y).
             XXX.rotate(this.rotation);
-            XXX.beginPath();
-            XXX.globalAlpha = 1; //subtlety does not effect petrified corpses
-            XXX.lineWidth = 1;
-            XXX.arc(0, 0, this.mySize, 0, 2 * Math.PI);
-            XXX.strokeStyle = "lightGrey";
-            XXX.fillStyle = "lightGrey";
-            XXX.stroke();
-            XXX.fill();
+            if (this.glassed)
+            {
+                XXX.drawImage(caverna, 646, 8, 43, 40, -1/2 * 43 * 0.7, -1/2 * 40 * 0.7, 43 * 0.7, 40 * 0.7);
+            }
+            else
+            {
+                XXX.beginPath();
+                XXX.globalAlpha = 1; //subtlety does not effect petrified corpses
+                XXX.lineWidth = 1;
+                XXX.arc(0, 0, this.mySize, 0, 2 * Math.PI);
+                XXX.strokeStyle = "lightGrey";
+                XXX.fillStyle = "lightGrey";
+                XXX.stroke();
+                XXX.fill();
+            }
+
             XXX.restore();
+
         }
     };
 
@@ -14155,7 +14174,15 @@ function Adventurer()
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
-                var colorization = this.drawColorized(polyPNG, 631, 55, 92, 30, 46, 22, 1, "lightGrey");
+                var colorization
+                if (this.glassed == true)
+                {
+                    colorization = this.drawColorized(polyPNG, 631, 55, 92, 30, 46, 22, 1, "glass");
+                }
+                else
+                {
+                    colorization = this.drawColorized(polyPNG, 631, 55, 92, 30, 46, 22, 1, "lightGrey");
+                }
                 XXX.drawImage(colorization, 0, 0, 46, 22, -22, -17, 46, 22);
                 XXX.restore();
             }
@@ -27364,7 +27391,7 @@ function Adventurer()
     // CHARACTER MOVEMENT
     this.motion = function()
     {
-        if (!this.petrified && this.form != "vampire" || !this.vampDead)
+        if (!this.petrified && this.form != "vampire" || !this.petrified && !this.vampDead)
         {
             if (this.water == true && this.land == false && !this.waterwalking || this.water == true && this.land == false && this.weaponEquipped == "boat") //if waterwalking is true swimming doesn't happen, but boating still can.
             {
@@ -36545,6 +36572,13 @@ function Adventurer()
 
                                 this.acidTime = new Date().getTime() + 30000;
                                 this.halfAcid = true;
+                            }
+                            else if (Inventory[i][0].ability == "glassworm")
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(X + spacer(70), Y + spacer(70), "Glassworm", true, "Glassy"));
+                                ArtificialIntelligenceAccess[ArtificialIntelligenceAccess.length - 1].stunIII = true;
+                                ArtificialIntelligenceAccess[ArtificialIntelligenceAccess.length - 1].stunTimer = 3;
+                                ArtificialIntelligenceAccess[ArtificialIntelligenceAccess.length - 1].stunTime = new Date().getTime();
                             }
                             else if (Inventory[i][0].ability == "yumNotYuk")
                             {

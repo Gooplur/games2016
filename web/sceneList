@@ -273,3 +273,4 @@ venandiBuilding1 - a venandified square Cephrian Building (size adjustable, rota
 venandiBuilding2 - a venandified rectangular Cephrian Building with the door in the middle (size adjustable, rotatable) (longevity/temporary changes size) //scenicList.push(new Scenery("venandiBuilding2", 4500, 2400, 1/2 * Math.PI, 1.8));
 venandiBuilding3 - a venandified rectangular Cephrian Building with the door on the end (size adjustable, rotatable) (longevity/temporary changes size) //scenicList.push(new Scenery("venandiBuilding3", 4500, 2400, 1/2 * Math.PI, 1.8));
 acaciaCampFire - a bright, hot, long burning campfire made from southern savannah acacia wood
+killerTermiteMound - a orange dirt mound built as a hive by killer termites. It Spawns killer termites. temporary (biggest: 0, smallest: 1, mediumLarge: 2, mediumSmall: 3) information ('true' lets it summon termites, otherwise it is simply decorative)

@@ -26971,6 +26971,104 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
         }
+        else if (this.type == "rawTermiteFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Killer Termite Flesh";
+            this.weight = 0.4;
+            this.size = 7;
+            this.description = "The raw flesh of a killer termite.";
+            this.intForDes = 9;
+            this.intDescription = "It is completely safe to eat raw.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0.5; //satisfies hunger.
+            this.thirst = 0.2; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "termiteMeat")
+        {
+            //For All Items
+            this.identity = "Killer Termite Meat";
+            this.weight = 0.4;
+            this.size = 7;
+            this.description = "The cooked meat of a killer termite.";
+            this.intForDes = 0;
+            this.intDescription = "It has a smooth, tender texture with a mildly meaty and sort of buggy flavour.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 4; //satisfies hunger.
+            this.thirst = 0.1; //quenches thirst.
+            this.warmth = 1; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 2;
+            this.ingredients = [["Raw Killer Termite Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "fermentedTermite")
+        {
+            //For All Items
+            this.identity = "Fermented Killer Termite Meat";
+            this.weight = 0.4;
+            this.size = 7;
+            this.description = "The fermented flesh of a killer termite.";
+            this.intForDes = 0;
+            this.intDescription = "It has a smooth meaty sour flavour with a prickly buggy aftertaste. Eat enough and you may get intoxicated.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 3; //satisfies hunger.
+            this.thirst = 1; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.1; //recoops lost energy.
+            this.replenish = -1; //restores will.
+            this.alcohol = 8; //intoxicates the mind.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 5;
+            this.ingredients = [["Raw Killer Termite Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
         else if (this.type == "suuliMelon")
         {
             //For All Items
@@ -27167,6 +27265,26 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 7 - Math.floor(player.getCharisma() / 25); // at max, buy for 5.
             this.sellValue = 4 + Math.floor(player.getCharisma() / 50); // at max, sell for 5.
+        }
+        else if (this.type == "termiteWings")
+        {
+            //For All Items
+            this.identity = "Killer Termite Wings";
+            this.weight = 0.08;
+            this.size = 12;
+            this.description = "The thin glossy wings of a killer termite.";
+            this.intForDes = 11;
+            this.intDescription = "Termite wings are not particularly useful for anything.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
         }
         else if (this.type == "cattail")
         {
@@ -47681,6 +47799,26 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "rawTermiteFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jeru, 2385, 3, 18, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 18 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 14 * 1.2), 18 * 1.2, 14 * 1.2);
+        }
+        else if (this.type == "termiteMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jeru, 2386, 29, 18, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 18 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 14 * 1.2), 18 * 1.2, 14 * 1.2);
+        }
+        else if (this.type == "fermentedTermite")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jeru, 2385, 15, 18, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 18 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 14 * 1.2), 18 * 1.2, 14 * 1.2);
+        }
+        else if (this.type == "termiteWings")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jeru, 2289, 1, 36, 26, X - this.X + (1/2 * CCC.width) - (1/2 * 36 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 26 * 1.2), 36 * 1.2, 26 * 1.2);
+        }
         else if (this.type == "acaciaWood")
         {
             XXX.beginPath();
@@ -53889,6 +54027,26 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
+        else if (this.type == "rawTermiteFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(jeru, 2385, 3, 18, 14, this.invX - (1/2 * 18 * 1.2), this.invY - (1/2 * 14 * 1.2), 18 * 1.2, 14 * 1.2);
+        }
+        else if (this.type == "termiteMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(jeru, 2386, 29, 18, 14, this.invX - (1/2 * 18 * 1.2), this.invY - (1/2 * 14 * 1.2), 18 * 1.2, 14 * 1.2);
+        }
+        else if (this.type == "fermentedTermite")
+        {
+            LXX.beginPath();
+            LXX.drawImage(jeru, 2385, 15, 18, 14, this.invX - (1/2 * 18 * 1.2), this.invY - (1/2 * 14 * 1.2), 18 * 1.2, 14 * 1.2);
+        }
+        else if (this.type == "termiteWings")
+        {
+            LXX.beginPath();
+            LXX.drawImage(jeru, 2289, 1, 36, 26, this.invX - (1/2 * 36 * 1.2), this.invY - (1/2 * 26 * 1.2), 36 * 1.2, 26 * 1.2);
+        }
         else if (this.type == "acaciaWood")
         {
             LXX.beginPath();
@@ -60063,6 +60221,26 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "rawTermiteFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jeru, 2385, 3, 18, 14, this.invX - (1/2 * 18 * 1.2), this.invY - (1/2 * 14 * 1.2), 18 * 1.2, 14 * 1.2);
+        }
+        else if (this.type == "termiteMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jeru, 2386, 29, 18, 14, this.invX - (1/2 * 18 * 1.2), this.invY - (1/2 * 14 * 1.2), 18 * 1.2, 14 * 1.2);
+        }
+        else if (this.type == "fermentedTermite")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jeru, 2385, 15, 18, 14, this.invX - (1/2 * 18 * 1.2), this.invY - (1/2 * 14 * 1.2), 18 * 1.2, 14 * 1.2);
+        }
+        else if (this.type == "termiteWings")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jeru, 2289, 1, 36, 26, this.invX - (1/2 * 36 * 1.2), this.invY - (1/2 * 26 * 1.2), 36 * 1.2, 26 * 1.2);
         }
         else if (this.type == "acaciaWood")
         {

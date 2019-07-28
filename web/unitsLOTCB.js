@@ -18017,6 +18017,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         }
         else if (this.type == "KillerTermite")
         {
+            this.haste = true;
             this.damageFrame = "automatic";
             this.team = "termite";
             if (this.ID == "docile")
@@ -18043,7 +18044,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.healthMAX = 3.5;
                 this.health = this.healthMAX;
                 this.armour = 0.25;
-                this.speed = 3 + (Math.floor(Math.random() * 4) / 10);
+                this.speed = 3.4 + (Math.floor(Math.random() * 2) / 10);
                 this.rangeOfSight = 600; //This is just to set the variable initially. The rest is variable.
                 this.rotationSpeed = 0.2;
                 this.engagementRadius = 39;
@@ -36865,7 +36866,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     this.experience = (15 * ((player.getIntelligence() / 50) + 1)) / 10;
                 }
 
-                this.drops = [[new Item("adgds", this.X, this.Y), 1]];
+                if (this.winged == true)
+                {
+                    this.drops = [[new Item("rawTermiteFlesh", this.X, this.Y), 1], [new Item("termiteWings", this.X, this.Y), 1]];
+                }
+                else
+                {
+                    this.drops = [[new Item("rawTermiteFlesh", this.X, this.Y), 1]];
+                }
             }
             else
             {
@@ -36878,7 +36886,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     this.experience = 14 * ((player.getIntelligence() / 50) + 1) / 10;
                 }
 
-                this.drops = [[new Item("afdsfd", this.X, this.Y), 1]];
+                if (this.winged == true)
+                {
+                    this.drops = [[new Item("rawTermiteFlesh", this.X, this.Y), 1], [new Item("termiteWings", this.X, this.Y), 1]];
+                }
+                else
+                {
+                    this.drops = [[new Item("rawTermiteFlesh", this.X, this.Y), 1]];
+                }
             }
 
             //RANGE OF SIGHT (anything related to range of sight)
@@ -36987,7 +37002,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             this.healthMAX = 3.5;
                             this.health = this.healthMAX;
                             this.armour = 0.25;
-                            this.speed = Math.max(this.speed, (3 + (Math.floor(Math.random() * 4) / 10)));
+                            this.speed = Math.max(this.speed, (3.4 + (Math.floor(Math.random() * 2) / 10)));
                             this.rotationSpeed = 0.2;
                             this.engagementRadius = 36;
                             this.sizeRadius = 22;
@@ -37093,7 +37108,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     {
                         if (this.moving && !this.attacking) //If moving and not attacking initiate moving animation...
                         {
-                            this.costumeEngine(3, 0.17, true);
+                            this.costumeEngine(3, 0.18, true);
                         }
                         else if (this.attacking) //otherwise if it is attacking then initiate attacking animation, and if neither...
                         {
@@ -37156,7 +37171,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     {
                         if (this.moving && !this.attacking) //If moving and not attacking initiate moving animation...
                         {
-                            this.costumeEngine(3, 0.15, true);
+                            this.costumeEngine(2, 0.15, false);
                         }
                         else if (this.attacking) //otherwise if it is attacking then initiate attacking animation, and if neither...
                         {
@@ -37192,7 +37207,8 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             }
                             else if (this.moving)
                             {
-                                this.drawUnit(jeru, 2174, 58, 84, 66, -1/2 * 84 * this.alphaSize - this.xAdjustment, -1/2 * 66 * this.alphaSize - this.yAdjustment, 84 * this.alphaSize, 66 * this.alphaSize);
+                                this.drawUnit(jeru, 2186, 191, 84, 66, -1/2 * 84 * this.alphaSize - this.xAdjustment, -1/2 * 66 * this.alphaSize - this.yAdjustment, 84 * this.alphaSize, 66 * this.alphaSize);
+                                //this.drawUnit(jeru, 2174, 58, 84, 66, -1/2 * 84 * this.alphaSize - this.xAdjustment, -1/2 * 66 * this.alphaSize - this.yAdjustment, 84 * this.alphaSize, 66 * this.alphaSize);
                             }
                             else
                             {
@@ -37222,7 +37238,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     {
                         if (this.moving && !this.attacking) //If moving and not attacking initiate moving animation...
                         {
-                            this.costumeEngine(3, 0.17, true);
+                            this.costumeEngine(3, 0.18, true);
                         }
                         else if (this.attacking) //otherwise if it is attacking then initiate attacking animation, and if neither...
                         {

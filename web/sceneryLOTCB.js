@@ -35487,6 +35487,113 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 }
             }
         }
+        else if (this.type == "killerTermiteMound")
+        {
+            //TRAITS
+            this.solid = true;
+            this.interactionRange = 1;
+
+            //DRAWSELF
+            if (this.temporary == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 2546, 90, 178, 159, -(1/2 * 178 * 1.3), -(1/2 * 159 * 1.3), 178 * 1.3, 159 * 1.3);
+                XXX.restore();
+
+                //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+                this.radius = 70;
+            }
+            else if (this.temporary == 1)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 2536, 245, 178, 159, -(1/2 * 178 * 1.3), -(1/2 * 159 * 1.3), 178 * 1.3, 159 * 1.3);
+                XXX.restore();
+
+                //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+                this.radius = 55;
+            }
+            else if (this.temporary == 2)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 2541, 406, 178, 159, -(1/2 * 178 * 1.3), -(1/2 * 159 * 1.3), 178 * 1.3, 159 * 1.3);
+                XXX.restore();
+
+                //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+                this.radius = 65;
+            }
+            else if (this.temporary == 3)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 2544, 585, 178, 159, -(1/2 * 178 * 1.3), -(1/2 * 159 * 1.3), 178 * 1.3, 159 * 1.3);
+                XXX.restore();
+
+                //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+                this.radius = 60;
+            }
+
+
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+
+            //HIVE
+            if (this.information == true)
+            {
+                if (this.temporary == 0)
+                {
+                    this.minionsMAX = 12;
+                    this.summonRate = 8;
+                }
+                else if (this.temporary == 1 || this.temporary == 3)
+                {
+                    this.minionsMAX = 6;
+                    this.summonRate = 11;
+                }
+                else
+                {
+                    this.minionsMAX = 9;
+                    this.summonRate = 9;
+                }
+
+                this.minionCount();
+                if (this.minions < this.minionsMAX)
+                {
+                    if (new Date().getTime() - this.summonTime > this.summonRate * 1000)
+                    {
+                        this.summonTime = new Date().getTime();
+                        var random = Math.floor(Math.random() * 4);
+
+                        if (random == 0)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "KillerTermite", true, this.hiveID, {patrolStops: 6, patrolLoop: true, route:[[this.X + (Math.random() * 1200) - 600, this.Y + (Math.random() * 1200) - 600], [this.X + (Math.random() * 1200) - 600, this.Y + (Math.random() * 1200) - 600], [this.X + (Math.random() * 1200) - 600, this.Y + (Math.random() * 1200) - 600], [this.X + (Math.random() * 1200) - 600, this.Y + (Math.random() * 1200) - 600], [this.X, this.Y], [this.X + (Math.random() * 1200) - 600, this.Y + (Math.random() * 1200) - 600]]}));
+                        }
+                        else if (random == 1)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "KillerTermite", true, this.hiveID, {patrolStops: 6, patrolLoop: true, route:[[this.X + (Math.random() * 1800) - 900, this.Y + (Math.random() * 1800) - 900], [this.X + (Math.random() * 1800) - 900, this.Y + (Math.random() * 1800) - 900], [this.X + (Math.random() * 1800) - 900, this.Y + (Math.random() * 1800) - 900], [this.X + (Math.random() * 1800) - 900, this.Y + (Math.random() * 1800) - 900], [this.X + (Math.random() * 1800) - 900, this.Y + (Math.random() * 1800) - 900], [this.X, this.Y]]}));
+                        }
+                        else if (random == 2)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "KillerTermite", true, this.hiveID, {patrolStops: 6, patrolLoop: true, route:[[this.X, this.Y], [this.X + (Math.random() * 2400) - 1200, this.Y + (Math.random() * 2400) - 1200], [this.X + (Math.random() * 2400) - 1200, this.Y + (Math.random() * 2400) - 1200], [this.X, this.Y], [this.X + (Math.random() * 2400) - 1200, this.Y + (Math.random() * 2400) - 1200], [this.X + (Math.random() * 2400) - 1200, this.Y + (Math.random() * 2400) - 1200]]}));
+                        }
+                        else if (random == 3)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "KillerTermite", true, this.hiveID, {patrolStops: 6, patrolLoop: true, route:[[this.X + (Math.random() * 800) - 400, this.Y + (Math.random() * 800) - 400], [this.X, this.Y], [this.X + (Math.random() * 800) - 400, this.Y + (Math.random() * 800) - 400], [this.X, this.Y], [this.X + (Math.random() * 800) - 400, this.Y + (Math.random() * 800) - 400], [this.X, this.Y]]}));
+                        }
+                    }
+                }
+            }
+        }
         else if (this.type == "beeHive")
         {
             //TRAITS

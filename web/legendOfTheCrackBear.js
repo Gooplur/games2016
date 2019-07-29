@@ -6,7 +6,6 @@
 
 //TODO LIST
 //top priority
-//todo fix the mysterious Vardanian forest infinity loop
 //todo add all of the new fish to the seal unit's diet
 
 //VARDANIA + THENGARIA UPDATE
@@ -14,14 +13,9 @@
 //todo name the smaller misty woods The Schwarza Woods
 //todo add Cranheim (city)
 //todo add Cergadet (town)
-//todo fill in the eastern woods
 //todo fill in The Dermohr Forest
-//todo fill in the plains and farmlands around Cranheim
 //todo fill in the plains and farmlands around Cergadet
 //todo fill in The Schwarza Woods
-//todo add turkeys for the plains
-//todo add vardanian land chunks for the swamp
-//todo (optional) add a burrowing tentacle beast that loses health when you kill the tentacles it spawns to attack you
 
 //things to add to the next image i'm adding:
 
@@ -46,7 +40,7 @@
 //todo create and add Margul - White furred, large, carnivorous, arctic beast with a tail and a long neck...
 //todo create and add bare-faced long-nosed furry snow trolls to the north (medium-small, pack trolls)
 //todo add ponds and ice holes
-//todo add the freydic hatchet from the balkur img sheet
+//todo add the freydic hatchet from the balkur / jeru img sheet
 //todo add glass of Waanti milk
 //todo add muscles (shellfish) as a scenery object that stick out their tongues intermitently when in water, but also add a cooked form
 
@@ -1512,6 +1506,18 @@ function polypolypolyPack()
     window.poly = poly;
 
     poly.onload = function()
+    {
+        fectPack();
+    };
+}
+
+function fectPack()
+{
+    var fect = new Image();
+    fect.src = ("images/fect.png");
+    window.fect = fect;
+
+    fect.onload = function()
     {
         cavernaPack();
     };

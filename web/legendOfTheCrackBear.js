@@ -4650,6 +4650,8 @@ function theLegend()
     foods.push(new Item("berenjenaPicadaCocinada", false));
     foods.push(new Item("berenjenaRebanadaCocinada", false));
     foods.push(new Item("termiteMeat", false));
+    foods.push(new Item("lionMeat", false));
+    foods.push(new Item("leafCutterAnterMeat", false));
 
 //Tailoring (Items crafted at a weaving, sewing, dying, etc. tailor's work bench thing)
     tailoring = [];
@@ -4845,6 +4847,7 @@ function theLegend()
     alchemy.push(new Item("glazaPowder", false));
     alchemy.push(new Item("glazm", false));
     alchemy.push(new Item("fermentedTermite", false));
+    alchemy.push(new Item("elcheExtract", false));
 
 //Brewing (alcohols, liquid fermentation, etc.)
     brewing = [];

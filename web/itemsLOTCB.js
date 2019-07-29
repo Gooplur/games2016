@@ -7437,6 +7437,108 @@ function Item(type, x, y)
             this.buyValue = 105 - Math.floor(player.getCharisma() / 1.5); // at max, buy for 72.
             this.sellValue = 42 + Math.floor(player.getCharisma() / 2); // at max, sell for 67.
         }
+        else if (this.type == "rawLeafCutterAnterFlesh")
+        {
+            //For All Items
+            this.identity = "Leaf Cutter Anter Innards";
+            this.weight = 2;
+            this.size = 9;
+            this.description = "The soft innards of a leaf cutter anter held together by thick tendons.";
+            this.intForDes = 0;
+            if (player.getIntelligence() >= 7)
+            {
+                this.intDescription = "This has a terrible nose tingling stench. This type of anter feeds on a special type of fungus that it cultivates which gives it some resistance to magics.";
+                this.smallText = true;
+            }
+            else
+            {
+                this.intDescription = "This smells terrible, and its stench makes your nose tingle.";
+                this.smallText = false;
+            }
+
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0.5; //satisfies hunger.
+            this.thirst = 0.75; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = -5; //heals health.
+            this.generation = -10; //recoops lost energy.
+            this.replenish = -25; //restores will.
+
+            //ability
+            this.ability = "foodPoisoning";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 4; // at max, buy for 4.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "leafCutterAnterMeat")
+        {
+            //For All Items
+            this.identity = "Coagulated Leaf Cutter Anter Innards";
+            this.weight = 1.9;
+            this.size = 6;
+            this.description = "The extremely sour and bitter, pasty, cooked innards of a leaf cutter anter.";
+            this.intForDes = 0;
+            this.intDescription = "Not only should this not go anywhere near your mouth, it should be destroyed so that no one will ever have to smell it again...";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1.5; //satisfies hunger.
+            this.thirst = -2; //quenches thirst.
+            this.warmth = 1; //warms player.
+            this.heal = -3; //heals health.
+            this.generation = -10; //recoops lost energy.
+            this.replenish = -10; //restores will.
+
+            //ability
+            this.ability = "foodPoisoning";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 0;
+            this.ingredients = [["Leaf Cutter Anter Innards", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 0; // at max, buy for 0.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "elcheLeaves")
+        {
+            //For All Items
+            this.identity = "Elche Leaves";
+            this.weight = 0.05;
+            this.size = 9;
+            this.description = "The sharp serrated edged leaves of the elche plant.";
+            this.intForDes = 0;
+            this.intDescription = "Eating these would cut up your throat and stomach. Elche leaves act as a fairly powerful antidote to poison.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0.1; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = -10; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
         else if (this.type == "anterInnards")
         {
             //For All Items
@@ -7824,6 +7926,43 @@ function Item(type, x, y)
             this.buyValue = 40; // at max, buy for 40.
             this.sellValue = 32; // at max, sell for 32.
         }
+        else if (this.type == "lionPelt")
+        {
+            //For All Items
+            this.identity = "Lion Pelt";
+            this.weight = 3.5;
+            this.size = 14;
+            this.description = "The soft dark orangish-tan fur of a lion.";
+            this.intForDes = 3;
+            this.intDescription = "Lion fur is extravagent and luxurious and is often worn by those who wish to flaunt their wealth.";
+
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            if (shopkeeper != "none")
+            {
+                if (shopkeeper.ultra.faction == "Cephrite" || shopkeeper.ultra.race == "Zetian" || shopkeeper.ultra.race == "Cephrite")
+                {
+                    this.buyValue = 15; // at max, buy for 15.
+                    this.sellValue = 15; // at max, sell for 15.
+                }
+                else
+                {
+                    this.buyValue = 35 - Math.floor(player.getCharisma() / 10); // at max, buy for 30.
+                    this.sellValue = 25 + Math.floor(player.getCharisma() / 10); // at max, sell for 30.
+                }
+            }
+            else
+            {
+                this.buyValue = 35 - Math.floor(player.getCharisma() / 10); // at max, buy for 30.
+                this.sellValue = 25 + Math.floor(player.getCharisma() / 10); // at max, sell for 30.
+            }
+        }
         else if (this.type == "foxPelt")
         {
             //For All Items
@@ -7844,6 +7983,64 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 19 - Math.floor(player.getCharisma() / 25); // at max, buy for 17.
             this.sellValue = 15 + Math.floor(player.getCharisma() / 25); // at max, sell for 17.
+        }
+        else if (this.type == "rawLionFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Lion Flesh";
+            this.weight = 2.3;
+            this.size = 10;
+            this.description = "The raw flesh of a lion.";
+            this.intForDes = 2;
+            this.intDescription = "Not only is  lion meat wridden with gut worms, it tastes terrible.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -2; //recoops lost energy.
+            this.replenish = -0.5; //restores will.
+
+            //ability
+            this.ability = "gutWorms";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "lionMeat")
+        {
+            //For All Items
+            this.identity = "Lion Meat";
+            this.weight = 2.25;
+            this.size = 10;
+            this.description = "The cooked meat of a lion.";
+            this.intForDes = 0;
+            this.intDescription = "It is stringy, gristly, and tastes awful.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 6; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 2; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -10; //recoops lost energy.
+            this.replenish = -1; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
         }
         else if (this.type == "arcticFoxPelt")
         {
@@ -20487,6 +20684,42 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 73 - Math.floor(player.getCharisma() / 50); // at max, buy for 72.
             this.sellValue = 67 + Math.floor(player.getCharisma() / 10); // at max, sell for 72.
+        }
+        else if (this.type == "elcheExtract")
+        {
+            //For All Items
+            this.identity = "Elche Leaf Extract";
+            this.weight = 0.7;
+            this.size = 6;
+            this.description = "A bland and grassy tasting light Green Liquid extracted from elche Leaves.";
+            this.intForDes = 20;
+            this.intDescription = "Elche leaf extract is an antidote for low and medium potency poisons.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["potionGlass", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 2; //satisfies hunger.
+            this.thirst = 3; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "antidoteIII";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 20;
+            this.ingredients = [["Potion Glass", 1], ["Elche Leaves", 100]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 125 - Math.floor(player.getCharisma() / 15); // at max, buy for 122.
+            this.sellValue = 120 + Math.floor(player.getCharisma() / 25); // at max, sell for 122.
         }
         else if (this.type == "neevBlood")
         {
@@ -47799,6 +48032,41 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "leafCutterAnterMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jeru, 1998, 209, 25, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 25 * 1.05), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19 * 1.05), 25 * 1.05, 19 * 1.05);
+        }
+        else if (this.type == "rawLeafCutterAnterFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jeru, 1997, 190, 25, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 25 * 1.1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19 * 1.1), 25 * 1.1, 19 * 1.1);
+        }
+        else if (this.type == "elcheExtract")
+        {
+            XXX.beginPath();
+            XXX.drawImage(oldverse, 1751, 183, 10, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 10 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17 * 1), 10 * 1, 17 * 1);
+        }
+        else if (this.type == "elcheLeaves")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jeru, 1990, 151, 39, 35, X - this.X + (1/2 * CCC.width) - (1/2 * 39 * 1.1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 35 * 1.1), 39 * 1.1, 35 * 1.1);
+        }
+        else if (this.type == "rawLionFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jeru, 241, 49, 19, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 19 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17 * 1.5), 19 * 1.5, 17 * 1.5);
+        }
+        else if (this.type == "lionMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jeru, 221, 50, 19, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 19 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17 * 1.5), 19 * 1.5, 17 * 1.5);
+        }
+        else if (this.type == "lionPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jeru, 263, 48, 45, 25, X - this.X + (1/2 * CCC.width) - (1/2 * 45 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 25 * 1.5), 45 * 1.5, 25 * 1.5);
+        }
         else if (this.type == "rawTermiteFlesh")
         {
             XXX.beginPath();
@@ -54027,6 +54295,41 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
+        else if (this.type == "leafCutterAnterMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(jeru, 1998, 209, 25, 19, this.invX - (1/2 * 25 * 1.05), this.invY - (1/2 * 19 * 1.05), 25 * 1.05, 19 * 1.05);
+        }
+        else if (this.type == "rawLeafCutterAnterFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(jeru, 1997, 190, 25, 19, this.invX - (1/2 * 25 * 1.1), this.invY - (1/2 * 19 * 1.1), 25 * 1.1, 19 * 1.1);
+        }
+        else if (this.type == "elcheExtract")
+        {
+            LXX.beginPath();
+            LXX.drawImage(oldverse, 1751, 183, 10, 17, this.invX - (1/2 * 10 * 1), this.invY - (1/2 * 17 * 1), 10 * 1, 17 * 1);
+        }
+        else if (this.type == "elcheLeaves")
+        {
+            LXX.beginPath();
+            LXX.drawImage(jeru, 1990, 151, 39, 35, this.invX - (1/2 * 39 * 1.1), this.invY - (1/2 * 35 * 1.1), 39 * 1.1, 35 * 1.1);
+        }
+        else if (this.type == "rawLionFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(jeru, 241, 49, 19, 17, this.invX - (1/2 * 19 * 1.5), this.invY - (1/2 * 17 * 1.5), 19 * 1.5, 17 * 1.5);
+        }
+        else if (this.type == "lionMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(jeru, 221, 50, 19, 17, this.invX - (1/2 * 19 * 1.5), this.invY - (1/2 * 17 * 1.5), 19 * 1.5, 17 * 1.5);
+        }
+        else if (this.type == "lionPelt")
+        {
+            LXX.beginPath();
+            LXX.drawImage(jeru, 263, 48, 45, 25, this.invX - (1/2 * 45 * 1.5), this.invY - (1/2 * 25 * 1.5), 45 * 1.5, 25 * 1.5);
+        }
         else if (this.type == "rawTermiteFlesh")
         {
             LXX.beginPath();
@@ -60221,6 +60524,41 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "leafCutterAnterMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jeru, 1998, 209, 25, 19, this.invX - (1/2 * 25 * 1.05), this.invY - (1/2 * 19 * 1.05), 25 * 1.05, 19 * 1.05);
+        }
+        else if (this.type == "rawLeafCutterAnterFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jeru, 1997, 190, 25, 19, this.invX - (1/2 * 25 * 1.1), this.invY - (1/2 * 19 * 1.1), 25 * 1.1, 19 * 1.1);
+        }
+        else if (this.type == "elcheExtract")
+        {
+            XXX.beginPath();
+            XXX.drawImage(oldverse, 1751, 183, 10, 17, this.invX - (1/2 * 10 * 1), this.invY - (1/2 * 17 * 1), 10 * 1, 17 * 1);
+        }
+        else if (this.type == "elcheLeaves")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jeru, 1990, 151, 39, 35, this.invX - (1/2 * 39 * 1.1), this.invY - (1/2 * 35 * 1.1), 39 * 1.1, 35 * 1.1);
+        }
+        else if (this.type == "rawLionFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jeru, 241, 49, 19, 17, this.invX - (1/2 * 19 * 1.5), this.invY - (1/2 * 17 * 1.5), 19 * 1.5, 17 * 1.5);
+        }
+        else if (this.type == "lionMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jeru, 221, 50, 19, 17, this.invX - (1/2 * 19 * 1.5), this.invY - (1/2 * 17 * 1.5), 19 * 1.5, 17 * 1.5);
+        }
+        else if (this.type == "lionPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jeru, 263, 48, 45, 25, this.invX - (1/2 * 45 * 1.5), this.invY - (1/2 * 25 * 1.5), 45 * 1.5, 25 * 1.5);
         }
         else if (this.type == "rawTermiteFlesh")
         {

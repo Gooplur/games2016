@@ -7654,6 +7654,64 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 }
             }
         }
+        else if (this.type == "deadLeafCutter")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+
+            if (this.temporary == true)
+            {
+                this.size = 1.35;
+            }
+            else
+            {
+                this.size = 1;
+            }
+
+            this.zIndex = 1;
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(jeru, 2106, 17, 61, 41, -(1/2 * 61 * this.size), -(1/2 * 41 * this.size), 61 * this.size, 41 * this.size);
+            XXX.restore();
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            if (this.temporary == true)
+            {
+                this.radius = 16;
+            }
+            else
+            {
+                this.radius = 13;
+            }
+
+
+            //be able to stand on things in the water as if land were there
+            ////player
+            //var playerPos = (X - this.X)*(X - this.X) + (Y - this.Y)*(Y-this.Y);
+            //if (playerPos <= (this.radius *this.radius))
+            //{
+            //
+            //}
+            //units
+            var unitPos;
+            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+            {
+                unitPos = (ArtificialIntelligenceAccess[i].X - this.X)*(ArtificialIntelligenceAccess[i].X - this.X) + (ArtificialIntelligenceAccess[i].Y - this.Y)*(ArtificialIntelligenceAccess[i].Y-this.Y);
+                if (unitPos <= (this.radius * this.radius) && ArtificialIntelligenceAccess[i].healthMAX <= 7 || unitPos <= (this.radius * this.radius) && ArtificialIntelligenceAccess[i].type == "Anter" || unitPos <= (this.radius * this.radius) && ArtificialIntelligenceAccess[i].type == "LeafCutterAnter")
+                {
+                    ArtificialIntelligenceAccess[i].land = true;
+                }
+            }
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+                dClick = true;
+            }
+        }
         else if (this.type == "barrel")
         {
             //TRAITS
@@ -21724,7 +21782,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 if (player.cutcut == true && this.playerer < 400)
                 {
                     var distFromCutCut = Math.sqrt((this.X - player.bubbleOfDamageX)*(this.X - player.bubbleOfDamageX) + (this.Y - player.bubbleOfDamageY)*(this.Y - player.bubbleOfDamageY));
-                    console.log(distFromCutCut);
+                    //console.log(distFromCutCut);
                     if (distFromCutCut <= player.weapon.distance)
                     {
                         player.experience += Math.min((0.2 * player.weapon.damage), this.health * 0.2);
@@ -24225,6 +24283,133 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 if (hits == Inventory.length)
                 {
                     Inventory.push([new Item("neprilneBerries", false, false), 1]);
+                }
+            }
+        }
+        else if (this.type == "elchePlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.nectar(1);
+            this.solid = false;
+            this.interactionRange = 100;
+
+            if (this.runOneTime)
+            {
+                this.runOneTime = false;
+                this.tic = 0;
+            }
+
+            //it grows rapidly
+            if (this.phase == "picked")
+            {
+                this.tic += 1;
+                if (this.tic > 500)
+                {
+                    this.tic = 0;
+                    this.phase = 0;
+                }
+            }
+            else if (this.phase == 1)
+            {
+                this.tic += 1;
+                if (this.tic > 100)
+                {
+                    this.tic = 0;
+                    this.phase = 0;
+                }
+            }
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                this.radius = 43;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 1980, 13, 54, 53, -(1/2 * 54 * 1.85), -(1/2 * 53 * 1.85), 54 * 1.85, 53 * 1.85);
+                XXX.restore();
+            }
+            else if (this.phase == 1)
+            {
+                this.radius = 25;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 1979, 64, 54, 53, -(1/2 * 54 * 1.85), -(1/2 * 53 * 1.85), 54 * 1.85, 53 * 1.85);
+                XXX.restore();
+            }
+            else if (this.phase == "picked")
+            {
+                this.radius = 9;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 1986, 116, 40, 39, -(1/2 * 40 * 1.85), -(1/2 * 39 * 1.85), 40 * 1.85, 39 * 1.85);
+                XXX.restore();
+            }
+
+            if (this.phase != "picked")
+            {
+                if (player.areBootsEquipped != true || player.armourTotal < 1.2 )
+                {
+                    if (((X - this.X) * (X - this.X) + (Y - this.Y) * (Y - this.Y)) <= this.radius * this.radius)
+                    {
+                        player.health -= 0.0022;
+                    }
+                }
+            }
+            //INTERACTION
+            if (this.activate == true && this.phase == 0 || this.activate == true && this.phase == 1)
+            {
+                this.activate = false;
+
+                if (player.areGlovesEquipped != true)
+                {
+                    player.health -= 2.2;
+                }
+
+                if (this.phase == 0)
+                {
+                    this.phase = 1;
+                    var hits = 0;
+                    for (var i = 0; i < Inventory.length; i ++)
+                    {
+                        if (Inventory[i][0].type == "elcheLeaves")
+                        {
+                            Inventory[i][1] += 1;
+                            break;
+                        }
+                        else
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == Inventory.length)
+                    {
+                        Inventory.push([new Item("elcheLeaves", false, false), 1]);
+                    }
+                }
+                else
+                {
+                    this.phase = "picked";
+                    var hits = 0;
+                    for (var i = 0; i < Inventory.length; i ++)
+                    {
+                        if (Inventory[i][0].type == "elcheLeaves")
+                        {
+                            Inventory[i][1] += 1;
+                            break;
+                        }
+                        else
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == Inventory.length)
+                    {
+                        Inventory.push([new Item("elcheLeaves", false, false), 1]);
+                    }
                 }
             }
         }
@@ -35856,6 +36041,168 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     this.tiic = 0;
                     this.phase = "break1";
                     anterHillCollapse.play();
+                }
+            }
+            if (this.phase == "break1")
+            {
+                this.tiic += 1;
+                if (this.tiic >= 12)
+                {
+                    this.tiic = 0;
+                    this.phase = "break2";
+                }
+            }
+            if (this.phase == "break2")
+            {
+                this.tiic += 1;
+                if (this.tiic >= 12)
+                {
+                    this.tiic = 0;
+                    this.phase = "break3";
+                }
+            }
+            if (this.phase == "break3")
+            {
+                this.tiic += 1;
+                if (this.tiic >= 12)
+                {
+                    this.tiic = 0;
+                    this.phase = "broken";
+                }
+            }
+        }
+        else if (this.type == "leafCutterAnterHill")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+
+            if (this.runOneTime)
+            {
+                this.runOneTime = false;
+
+                this.phase = "sturdy";
+                this.health = 47;
+                this.tiic = 0;
+                this.minionsMAX = 6; //total amount of soldiers the hive can have.
+                this.summonRate = 1; //how long in seconds it takes to summon a new minion.
+            }
+
+            //DRAWSELF
+            if (this.phase == "sturdy")
+            {
+                this.zIndex = 1;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 1979, 243, 208, 203, -(1/2 * 208 * 1.3), -(1/2 * 203 * 1.3), 208 * 1.3, 203 * 1.3);
+                XXX.restore();
+            }
+            else if (this.phase == "break1")
+            {
+                this.zIndex = 1;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 2023, 462, 208, 203, -(1/2 * 208 * 1.3), -(1/2 * 203 * 1.3), 208 * 1.3, 203 * 1.3);
+                XXX.restore();
+            }
+            else if (this.phase == "break2")
+            {
+                this.zIndex = 1;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 2023, 690, 208, 203, -(1/2 * 208 * 1.3), -(1/2 * 203 * 1.3), 208 * 1.3, 203 * 1.3);
+                XXX.restore();
+            }
+            else if (this.phase == "break3")
+            {
+                this.zIndex = 1;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 2023, 690, 208, 203, -(1/2 * 208 * 1.3), -(1/2 * 203 * 1.3), 208 * 1.3, 203 * 1.3);
+                XXX.restore();
+            }
+            else if (this.phase == "broken")
+            {
+                this.zIndex = 1;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 2213, 712, 179, 167, -(1/2 * 179 * 1.3), -(1/2 * 167 * 1.3), 179 * 1.3, 167 * 1.3);
+                XXX.restore();
+
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    if (ArtificialIntelligenceAccess[i].type == "LeafCutterAnter" && ArtificialIntelligenceAccess[i].ID == this.hiveID)
+                    {
+                        ArtificialIntelligenceAccess[i].angry = true;
+                        ArtificialIntelligenceAccess[i].disturbed = true;
+                        ArtificialIntelligenceAccess[i].offended = true;
+                    }
+                }
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 100;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+
+            //HIVE
+            this.minionCount();
+            if (this.minions < this.minionsMAX && this.phase == "sturdy")
+            {
+                if (new Date().getTime() - this.summonTime > this.summonRate * 1000)
+                {
+                    this.summonTime = new Date().getTime();
+                    var randAlpha = Math.floor(Math.random() * 6);
+                    var alphaPicks = [false, false, false, true, true, true];
+
+                    ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "LeafCutterAnter", alphaPicks[randAlpha], this.hiveID));
+                }
+            }
+
+            //damage sensing
+            if (this.health > 0)
+            {
+                if (player.cutcut == true && this.playerer < 400)
+                {
+                    var distFromCutCut = Math.sqrt((this.X - player.bubbleOfDamageX)*(this.X - player.bubbleOfDamageX) + (this.Y - player.bubbleOfDamageY)*(this.Y - player.bubbleOfDamageY));
+                    //console.log(distFromCutCut);
+                    if (distFromCutCut <= player.weapon.distance)
+                    {
+                        if (player.weaponEquipped == "Spade")
+                        {
+                            this.health -= 15;
+                        }
+                        else
+                        {
+                            this.health -= player.weapon.damage;
+                        }
+                        if (ArtificialIntelligenceAccess[i].type == "LeafCutterAnter" && ArtificialIntelligenceAccess[i].ID == this.hiveID)
+                        {
+                            ArtificialIntelligenceAccess[i].angry = true;
+                            ArtificialIntelligenceAccess[i].disturbed = true;
+                            ArtificialIntelligenceAccess[i].offended = true;
+                        }
+                    }
+                }
+            }
+
+            //console.log(this.health);
+            if (this.health <= 0 && this.phase == "sturdy")
+            {
+                this.tiic += 1;
+                if (this.tiic >= 12)
+                {
+                    this.tiic = 0;
+                    this.phase = "break1";
                 }
             }
             if (this.phase == "break1")

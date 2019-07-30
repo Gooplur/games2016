@@ -8200,6 +8200,20 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                                         player.venandi += 55;
                                     }
                                 }
+                                else if (this.effect == "venandim") //the fungus hijacked the acid and turned it into an effective fungal delivery system for it spores
+                                {
+                                    if (player.health < 1/3 * player.healthMAX || player.resistDisease == false)
+                                    {
+                                        if (player.venandi <= 0)
+                                        {
+                                            player.venandi = 1;
+                                        }
+                                    }
+                                    if ((Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
+                                    {
+                                        player.venandi += 5;
+                                    }
+                                }
                                 else if (this.effect == "sleepifyI" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
                                 {
                                     player.sleep -= 0.5;
@@ -8732,12 +8746,52 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             {
                                 if (this.target.health < 1/3 * this.target.healthMAX || this.target.resistDisease == false)
                                 {
-                                    if (this.target.type == "Person" || this.target.type == "Soldier" || this.target.type == "Etyr" || this.target.type == "Aranea")
+                                    if (this.target.type == "Person" || this.target.type == "Soldier" || this.target.type == "Etyr" || this.target.type == "Aranea" || this.target.type == "Crenid" || this.target.type == "LeafCutterAnter")
                                     {
                                         if (this.target.venandi <= 0)
                                         {
                                             this.target.venandi = 1;
                                         }
+                                    }
+                                }
+                            }
+                            else if (this.effect == "venandine") //the fungus hijacked the acid and turned it into an effective fungal delivery system for it spores
+                            {
+                                if (this.target.health < 1/3 * this.target.healthMAX || this.target.resistDisease == false)
+                                {
+                                    if (this.target.type == "Person" || this.target.type == "Soldier" || this.target.type == "Etyr" || this.target.type == "Aranea" || this.target.type == "Crenid" || this.target.type == "LeafCutterAnter")
+                                    {
+                                        if (this.target.venandi <= 0)
+                                        {
+                                            this.target.venandi = 1;
+                                        }
+                                    }
+                                }
+                                if (this.target.type == "Person" || this.target.type == "Soldier" || this.target.type == "Etyr" || this.target.type == "Aranea" || this.target.type == "Crenid" || this.target.type == "LeafCutterAnter")
+                                {
+                                    if ((Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
+                                    {
+                                        this.target.venandi += 55;
+                                    }
+                                }
+                            }
+                            else if (this.effect == "venandim") //the fungus hijacked the acid and turned it into an effective fungal delivery system for it spores
+                            {
+                                if (this.target.health < 1/3 * this.target.healthMAX || this.target.resistDisease == false)
+                                {
+                                    if (this.target.type == "Person" || this.target.type == "Soldier" || this.target.type == "Etyr" || this.target.type == "Aranea" || this.target.type == "Crenid" || this.target.type == "LeafCutterAnter")
+                                    {
+                                        if (this.target.venandi <= 0)
+                                        {
+                                            this.target.venandi = 1;
+                                        }
+                                    }
+                                }
+                                if (this.target.type == "Person" || this.target.type == "Soldier" || this.target.type == "Etyr" || this.target.type == "Aranea" || this.target.type == "Crenid" || this.target.type == "LeafCutterAnter")
+                                {
+                                    if ((Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
+                                    {
+                                        this.target.venandi += 5;
                                     }
                                 }
                             }
@@ -13343,14 +13397,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         {
             if (this.venandi >= 100)
             {
-                if (this.Y <= -237532)
+                if (this.Y <= -237532 || this.dmx == "mrbHQ")
                 {
                     this.venandi += 0.1;
                 }
 
                 if (this.venandi >= 200)
                 {
-                    if (this.Y <= -237532)
+                    if (this.Y <= -237532 || this.dmx == "mrbHQ")
                     {
                         this.venandi += 0.1;
                     }
@@ -13377,7 +13431,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
             else
             {
-                if (this.Y <= -237532)
+                if (this.Y <= -237532 || this.dmx == "mrbHQ")
                 {
                     this.venandi += 0.05;
                 }
@@ -16637,6 +16691,117 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.xAdjustment = 0;
             }
         }
+        else if (this.type == "CrenidVenandi") //planter venandi
+        {
+            this.damageFrame = "automatic";
+            this.resistances = ["acid", "stun", "blinded", "night", "strongWeb", "web"];
+            this.team = "venandi";
+            this.baseTeam = this.team;
+            this.tamable = false;
+
+            this.venandiFarm = 0;
+            this.venandiFarmor = false;
+            this.venandineCrenidSporeTimer = 0;
+
+            if (this.alpha == true)
+            {
+                this.venandiFarmor = true;
+                this.magicalResistance = 0;
+                this.heatResistance = -0.5;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = Math.floor(Math.random() * 3) + 15;
+                this.health = this.healthMAX;
+                this.armour = 0;
+                this.speed = 0.6 + (Math.floor(Math.random() * 2) / 10);
+                this.rangeOfSight = 500; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.1; // 0.01 is a standard turn speed.
+                this.engagementRadius = 72;
+                this.sizeRadius = 10;
+                this.negateArmour = 7;
+                this.attackWait = 3;
+                this.effect = "venandim";
+
+                //alpha has a larger size body and skills.
+                this.alphaSize = 1.5; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                // this is the adjustment the alpha type of Etyr needs to be centered.
+                this.yAdjustment = 0;
+                this.xAdjustment = 0;
+            }
+            else if (this.alpha == "massive")
+            {
+                this.venandiFarmor = true;
+                this.magicalResistance = 0;
+                this.heatResistance = -0.5;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = Math.floor(Math.random() * 3) + 35;
+                this.health = this.healthMAX;
+                this.armour = 0;
+                this.speed = 1.2 + (Math.floor(Math.random() * 2) / 10);
+                this.rangeOfSight = 700; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.12; // 0.01 is a standard turn speed.
+                this.engagementRadius = 86;
+                this.sizeRadius = 18;
+                this.negateArmour = 13;
+                this.attackWait = 3;
+                this.effect = "venandim";
+
+                //alpha has a larger size body and skills.
+                this.alphaSize = 2; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                // this is the adjustment the alpha type of Etyr needs to be centered.
+                this.yAdjustment = 0;
+                this.xAdjustment = 0;
+            }
+            else if (this.alpha == "little")
+            {
+                this.magicalResistance = 0;
+                this.heatResistance = -0.5;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = Math.floor(Math.random() * 2) + 1;
+                this.health = this.healthMAX;
+                this.armour = 0;
+                this.speed = 0.1;
+                this.rangeOfSight = 400; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.08; // 0.01 is a standard turn speed.
+                this.engagementRadius = 30;
+                this.sizeRadius = 5;
+                this.negateArmour = 0;
+                this.attackWait = 3;
+                this.effect = "venandi";
+
+                //alpha has a larger size body and skills.
+                this.alphaSize = 0.6; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                // this is the adjustment the alpha type of Etyr needs to be centered.
+                this.yAdjustment = 0;
+                this.xAdjustment = 0;
+            }
+            else
+            {
+                this.magicalResistance = 0;
+                this.heatResistance = -0.5;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = Math.floor(Math.random() * 2) + 7;
+                this.health = this.healthMAX;
+                this.armour = 0;
+                this.speed = 0.25 + (Math.floor(Math.random() * 2) / 10);
+                this.rangeOfSight = 450; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.09; // 0.01 is a standard turn speed.
+                this.engagementRadius = 50;
+                this.sizeRadius = 8;
+                this.negateArmour = 3;
+                this.attackWait = 3;
+                this.effect = "venandi";
+
+                //alpha has a larger size body and skills.
+                this.alphaSize = 1; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                // this is the adjustment the alpha type of Etyr needs to be centered.
+                this.yAdjustment = 0;
+                this.xAdjustment = 0;
+            }
+        }
         else if (this.type == "Glutid")
         {
             this.damageFrame = "automatic";
@@ -18097,6 +18262,75 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
             this.swimSpeed = this.speed * 0.75;
             this.baseSpeed = this.speed;
+        }
+        else if (this.type == "LeafCutterAnterVenandi")
+        {
+            this.damageFrame = "automatic";
+            this.team = "venandi";
+            if (this.ID == "docile")
+            {
+                this.team = "docile";
+            }
+            this.baseTeam = this.team;
+            this.tamable = false;
+
+            this.explody = false;
+            this.explodeFrame = 0;
+            this.explodeFinal = false;
+            this.explodeHarm = false;
+
+            if (this.alpha == true)
+            {
+                this.magicalResistance = 1;
+                this.heatResistance = 0;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = Math.floor(Math.random() * 2) + 8;
+                this.health = this.healthMAX;
+                this.armour = 1.2;
+                this.speed = 3.7 + (Math.floor(Math.random() * 2) / 10);
+                this.rangeOfSight = 500; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.15;
+                this.engagementRadius = 39;
+                this.sizeRadius = 15;
+                this.negateArmour = 0;
+                this.attackWait = 50;
+
+                //alpha has a larger size body and skills.
+                this.alphaSize = 1.35; //this multiplies the draw image skew numbers by 1.5 so that this unit is 1.5 times as large as the original.
+                // this is the adjustment the alpha type of Etyr needs to be centered.
+                this.yAdjustment = 0; //was - 3.5
+                this.xAdjustment = 0; //was 6
+            }
+            else
+            {
+                //STATS (non-variable)
+                this.magicalResistance = 1;
+                this.heatResistance = 0;
+                this.attackStyle = "chunked";
+                this.attackRate = 0;  //this is for rapid style combat only.
+                this.healthMAX = Math.floor(Math.random() * 2) + 4.5;
+                this.health = this.healthMAX;
+                this.armour = 0.8;
+                this.speed = 3.35 + (Math.floor(Math.random() * 2) / 10);
+                this.rangeOfSight = 500; //This is just to set the variable initially. The rest is variable.
+                this.rotationSpeed = 0.15;
+                this.engagementRadius = 32;
+                this.sizeRadius = 12;
+                this.negateArmour = 0;
+                this.attackWait = 50;
+
+                //this multiplies the draw image skew numbers by 1 so that it stays the same
+                this.alphaSize = 1;
+                // this is the adjustment the alpha type of Etyr needs to be centered.
+                this.yAdjustment = 0; //was -34
+                this.xAdjustment = 0; //was - 26
+
+            }
+            this.swimSpeed = this.speed * 0.75;
+            this.baseSpeed = this.speed;
+            this.baseRotationSpeed = this.rotationSpeed;
+            this.explodeRadius = 40 * this.alphaSize;
         }
         else if (this.type == "Lion")
         {
@@ -26852,7 +27086,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     }
                 }
 
-                if (this.Y >= -237532)
+                if (this.Y >= -237532 && this.dmx != "mrbHQ")
                 {
                     this.killNotByPlayer = true;
                     this.health -= 0.1;
@@ -29387,6 +29621,24 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     }
                 }
 
+                if (this.venandi > 0) //crenids can be infected by venandine fungus
+                {
+                    this.venandi += 4;
+
+                    if (this.venandi >= 400)
+                    {
+                        this.venandi = 400;
+
+                        var zombieU = new Unit(this.X, this.Y, "CrenidVenandi", this.alpha, this.ID, this.ultra);
+                        zombieU.newRotation = this.newRotation;
+                        zombieU.rotation = this.rotation;
+                        ArtificialIntelligenceAccess.push(zombieU);
+                        this.killNotByPlayer = true;
+                        this.invisible = true;
+                        this.alpha = "little";
+                        this.health = -13;
+                    }
+                }
             }
             else
             {
@@ -29470,6 +29722,315 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             else
             {
                 //this.drawUnit(theCrack, 38, 171, 38, 36, -1/2 * 38 * this.alphaSize - this.xAdjustment, -1/2 * 36 * this.alphaSize - this.yAdjustment, 38 * this.alphaSize, 36 * this.alphaSize);
+            }
+        }
+        //CRENID VENANDI
+        if (this.type == "CrenidVenandi")
+        {
+            //Set Drops and experience
+            if (this.alpha == true)
+            {
+                if (Math.max(0, 4 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 15 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = (15 * ((player.getIntelligence() / 50) + 1)) / 10;
+                }
+
+                this.drops = [];
+            }
+            else if (this.alpha == "massive")
+            {
+                if (Math.max(0, 4 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 45 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = (45 * ((player.getIntelligence() / 50) + 1)) / 10;
+                }
+
+                this.drops = [];
+            }
+            else if (this.alpha == "little")
+            {
+                if (Math.max(0, 4 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 2 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = (2 * ((player.getIntelligence() / 50) + 1)) / 10;
+                }
+
+                this.drops = [[new Item("crenidRemains", this.X, this.Y), 1]];
+            }
+            else
+            {
+                if (Math.max(0, 4 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 7 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = 7 * ((player.getIntelligence() / 50) + 1) / 10;
+                }
+
+                this.drops = [];
+            }
+
+            //RANGE OF SIGHT (anything related to range of sight)
+            if (this.alpha == true)
+            {
+                this.rangeOfSightCalculator(500, true);
+            }
+            else if (this.alpha == "massive")
+            {
+                this.rangeOfSightCalculator(700, true);
+            }
+            else if (this.alpha == "little")
+            {
+                this.rangeOfSightCalculator(400, true);
+            }
+            else
+            {
+                this.rangeOfSightCalculator(450, true);
+            }
+
+            //AI
+            if (this.alive == true)
+            {
+                if (this.Y >= -237532 && this.dmx != "mrbHQ")
+                {
+                    this.killNotByPlayer = true;
+                    this.health -= 0.3;
+                }
+
+                //when most larger crenids die they make more smaller crenids
+                if (this.venandiFarmor == true)
+                {
+                    this.venandiFarm += 0.1;
+                    this.venandineCrenidSporeTimer += 1;
+
+                    if (timeOfDay == "Day")
+                    {
+                        if (this.venandineCrenidSporeTimer % 5 == 0)
+                        {
+                            scenicList.push(new Scenery("cerebrisSpores", this.X, this.Y, Math.random() * 2 * Math.PI, false));
+                        }
+                    }
+
+                    if (this.water == false && this.land == true && this.Y <= -237532)
+                    {
+                        if (this.venandiFarm > 100)
+                        {
+                            var cerebrisCropNear = false;
+                            for (var i = 0; i < scenicList.length; i++)
+                            {
+                                if (scenicList[i].type == "cerebrisPlant" && scenicList[i].dmx == this.dmx)
+                                {
+                                    if (this.DTU(scenicList[i]) < 70)
+                                    {
+                                        cerebrisCropNear = true;
+                                        break;
+                                    }
+                                }
+                            }
+                            if (cerebrisCropNear == false)
+                            {
+                                this.venandiFarm -= 100;
+                                scenicList.push(new Scenery("cerebrisPlant", this.X, this.Y, this.rotation, true));
+                            }
+                        }
+                    }
+                }
+
+
+                if (this.alpha == true)
+                {
+                    this.Attack(5, 5);
+                    this.callForNearbyHelpFromType(500, "CrenidVenandi");
+                }
+                else if (this.alpha == "massive")
+                {
+                    this.Attack(8, 8);
+                    this.callForNearbyHelpFromType(500, "CrenidVenandi");
+                }
+                else if (this.alpha == "little")
+                {
+                    this.Attack(0, 1);
+                    this.callForNearbyHelpFromType(500, "CrenidVenandi");
+                }
+                else
+                {
+                    this.Attack(2, 2);
+                    this.callForNearbyHelpFromType(500, "CrenidVenandi");
+                }
+
+                if (this.venandiFarmor == true)
+                {
+                    //crenid venandi eat the dead and absorb it into themself in order to produce venandine more quickly.
+                    for (var dd = deadAIList.length - 1; dd >= 0; dd--)
+                    {
+                        var aprxDistToDead = (this.X - deadAIList[dd].X)*(this.X - deadAIList[dd].X) + (this.Y - deadAIList[dd].Y)*(this.Y - deadAIList[dd].Y);
+                        if (aprxDistToDead < ((20 + 2 * this.sizeRadius)*(20 + 2 * this.sizeRadius)))
+                        {
+                            if (deadAIList[dd].healthMAX - (this.healthMAX - this.health) > 0)
+                            {
+                                var healthBon = deadAIList[dd].healthMAX - (this.healthMAX - this.health);
+                                this.health = this.healthMAX;
+                                this.venandiFarm += (healthBon * 5);
+                            }
+                            else
+                            {
+                                this.health += deadAIList[dd].healthMAX;
+                                this.venandiFarm += (deadAIList[dd].healthMAX * 5);
+                            }
+                            deadAIList.splice(dd, 1);
+                        }
+                    }
+                }
+
+
+                //this.deathChecker();
+                this.disturbedTimer();
+                this.visibleSight();
+                this.friendDecider();
+                this.targeting();
+                this.moving = false;
+
+                if (this.target == player)
+                {
+                    if (this.DTP() > this.rangeOfSight && typeof(this.ultra) != "undefined")
+                    {
+                        this.patrol(this.ultra.patrolStops, this.ultra.patrolLoop);
+                    }
+                    else if (player.venandi <= 50)
+                    {
+                        this.pointTowardsPlayer();
+                        this.moveInRelationToPlayer();
+                    }
+                    else
+                    {
+                        this.attacking = false;
+                    }
+                }
+                else if (this.target != "none")
+                {
+                    if (this.DTU(this.target) > this.rangeOfSight && typeof(this.ultra) != "undefined")
+                    {
+                        this.patrol(this.ultra.patrolStops, this.ultra.patrolLoop);
+                    }
+                    else if (this.target.venandi <= 50)
+                    {
+                        this.pointTowards(this.target);
+                        this.moveInRelationToThing(this.target);
+                    }
+                    else
+                    {
+                        this.attacking = false;
+                    }
+                }
+
+            }
+            else
+            {
+                //do stuff when a crenid dies...
+                if (this.doOnDeathOnce == true)
+                {
+                    this.doOnDeathOnce = false;
+
+                    if (this.alpha == false || this.venandiFarmor == true)
+                    {
+                        if (this.water == false && this.land == true && this.Y <= -237532)
+                        {
+                            scenicList.push(new Scenery("cerebrisPlant", this.X, this.Y, this.rotation, true));
+                        }
+                    }
+                    if (timeOfDay == "Day" && this.venandiFarmor == true)
+                    {
+                        scenicList.push(new Scenery("cerebrisSpores", this.X, this.Y, Math.random() * 2 * Math.PI, false));
+                        scenicList.push(new Scenery("cerebrisSpores", this.X, this.Y, Math.random() * 2 * Math.PI, false));
+                        scenicList.push(new Scenery("cerebrisSpores", this.X, this.Y, Math.random() * 2 * Math.PI, false));
+                        scenicList.push(new Scenery("cerebrisSpores", this.X, this.Y, Math.random() * 2 * Math.PI, false));
+                        scenicList.push(new Scenery("cerebrisSpores", this.X, this.Y, Math.random() * 2 * Math.PI, false));
+                    }
+                }
+            }
+
+            //ANIMATIONS
+
+            if (this.alive == true)
+            {
+                if (!this.moving && !this.attacking) //If not moving and not attacking initiate standing animation...
+                {
+                    this.costume = 0;
+                }
+                else if (this.moving && !this.attacking) //If moving and not attacking initiate moving animation...
+                {
+                    this.costumeEngine(3, 0.05, true);
+                }
+                else if (this.attacking) //otherwise if it is attacking then initiate attacking animation, and if neither...
+                {
+                    if (new Date().getTime() - this.timeBetweenAttacks > (this.attackWait * 1000 / timeSpeed * this.timeResistance))
+                    {
+                        this.costumeEngine(4, 0.14, true);
+                    }
+                }
+
+                // the frames/stages/costumes of the animation.
+                var theCostume = Math.floor(this.costume); //This rounds this.costume down to the nearest whole number.
+
+                if (theCostume <= 0)
+                {
+                    if (this.attacking)
+                    {
+                        this.drawUnit(fect, 240, 15, 74, 32, -1/2 * 74 * this.alphaSize - this.xAdjustment, -1/2 * 32 * this.alphaSize - this.yAdjustment, 74 * this.alphaSize, 32 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(fect, 240, 15, 74, 32, -1/2 * 74 * this.alphaSize - this.xAdjustment, -1/2 * 32 * this.alphaSize - this.yAdjustment, 74 * this.alphaSize, 32 * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 1)
+                {
+                    if (this.attacking)
+                    {
+                        this.drawUnit(fect, 240, 66, 74, 32, -1/2 * 74 * this.alphaSize - this.xAdjustment, -1/2 * 32 * this.alphaSize - this.yAdjustment, 74 * this.alphaSize, 32 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(fect, 307, 13, 74, 32, -1/2 * 74 * this.alphaSize - this.xAdjustment, -1/2 * 32 * this.alphaSize - this.yAdjustment, 74 * this.alphaSize, 32 * this.alphaSize);
+                    }
+                }
+                else if (theCostume <= 2)
+                {
+                    if (this.attacking)
+                    {
+                        this.drawUnit(fect, 304, 66, 74, 32, -1/2 * 74 * this.alphaSize - this.xAdjustment, -1/2 * 32 * this.alphaSize - this.yAdjustment, 74 * this.alphaSize, 32 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(fect, 240, 157, 74, 32, -1/2 * 74 * this.alphaSize - this.xAdjustment, -1/2 * 32 * this.alphaSize - this.yAdjustment, 74 * this.alphaSize, 32 * this.alphaSize);
+                    }
+                }
+                else if (theCostume >= 3)
+                {
+                    if (this.attacking)
+                    {
+                        this.drawUnit(fect, 255, 111, 132, 36, -1/2 * 132 * this.alphaSize - this.xAdjustment, -1/2 * 36 * this.alphaSize - this.yAdjustment, 132 * this.alphaSize, 36 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(fect, 240, 157, 74, 32, -1/2 * 74 * this.alphaSize - this.xAdjustment, -1/2 * 32 * this.alphaSize - this.yAdjustment, 74 * this.alphaSize, 32 * this.alphaSize);
+                    }
+                }
+            }
+            else
+            {
+                this.drawUnit(fect, 313, 159, 74, 32, -1/2 * 74 * this.alphaSize - this.xAdjustment, -1/2 * 32 * this.alphaSize - this.yAdjustment, 74 * this.alphaSize, 32 * this.alphaSize);
             }
         }
         //GLUTID
@@ -36995,6 +37556,213 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.drawUnit(verse, 2929, 283, 54, 32, -35 - this.xAdjustment, -22 - this.yAdjustment, 54 * this.alphaSize, 32 * this.alphaSize);
             }
         }
+        //LEAF-CUTTER ANTER VENANDI
+        if (this.type == "LeafCutterAnterVenandi")
+        {
+            //Set Drops and experience
+            if (this.alpha == true)
+            {
+                if (Math.max(0, 100 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 14 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = (14 * ((player.getIntelligence() / 50) + 1)) / 10;
+                }
+
+                this.drops = [];
+            }
+            else
+            {
+                if (Math.max(0, 100 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                {
+                    this.experience = 7 * ((player.getIntelligence() / 50) + 1);
+                }
+                else
+                {
+                    this.experience = 7 * ((player.getIntelligence() / 50) + 1) / 10;
+                }
+
+                this.drops = [];
+            }
+
+            //RANGE OF SIGHT (anything related to range of sight)
+            if (this.alpha == true)
+            {
+                this.rangeOfSightCalculator(500, true);
+            }
+            else
+            {
+                this.rangeOfSightCalculator(500, true);
+            }
+
+            //AI
+            if (this.alive == true)
+            {
+                if (this.Y >= -237532 && this.dmx != "mrbHQ")
+                {
+                    this.killNotByPlayer = true;
+                    this.health -= 0.1;
+                }
+
+                if (this.alpha == true)
+                {
+                    this.Attack(0, 0);
+                    this.callForNearbyHelpFromType(500, "LeafCutterAnterVenandi");
+                }
+                else
+                {
+                    this.Attack(0, 0);
+                    this.callForNearbyHelpFromType(500, "LeafCutterAnterVenandi");
+                }
+
+                //this.deathChecker();
+                this.disturbedTimer();
+                this.visibleSight();
+                this.friendDecider();
+                this.targeting();
+                this.moving = false;
+
+                if (this.target == player)
+                {
+                    if (this.DTP() <= this.explodeRadius && player.form != "venandi" && player.venandi < 20)
+                    {
+                        this.explody = true;
+                    }
+                    if (this.explody == false && player.form != "venandi" && player.venandi < 20)
+                    {
+                        this.pointTowardsPlayer();
+                        this.moveInRelationToPlayer();
+                    }
+                }
+                else if (this.target != "none")
+                {
+                    if (this.aiTimer > 7)
+                    {
+                        if (this.DTU(this.target) <= this.explodeRadius)
+                        {
+                            this.explody = true;
+                        }
+                        if (this.explody == false)
+                        {
+                            this.pointTowards(this.target);
+                            this.moveInRelationToThing(this.target);
+                        }
+                    }
+                }
+            }
+
+            //ANIMATIONS
+
+            if (this.alive == true)
+            {
+                if (this.explody == false)
+                {
+                    if (this.moving) //If moving and not attacking initiate moving animation...
+                    {
+                        this.costumeEngine(3, 0.19, true);
+                    }
+                    else
+                    {
+                        this.costume = 0;
+                    }
+
+                    // the frames/stages/costumes of the animation.
+                    var theCostume = Math.floor(this.costume); //This rounds this.costume down to the nearest whole number.
+
+                    if (theCostume <= 0)
+                    {
+                        if (this.moving == true)
+                        {
+                            this.drawUnit(fect, 22, 92, 59, 46, -1/2 * 59 * this.alphaSize - this.xAdjustment, -1/2 * 46 * this.alphaSize - this.yAdjustment, 59 * this.alphaSize, 46 * this.alphaSize);
+                        }
+                        else
+                        {
+                            this.drawUnit(fect, 23, 27, 59, 46, -1/2 * 59 * this.alphaSize - this.xAdjustment, -1/2 * 46 * this.alphaSize - this.yAdjustment, 59 * this.alphaSize, 46 * this.alphaSize);
+                        }
+                    }
+                    else if (theCostume <= 1)
+                    {
+                        this.drawUnit(fect, 23, 27, 59, 46, -1/2 * 59 * this.alphaSize - this.xAdjustment, -1/2 * 46 * this.alphaSize - this.yAdjustment, 59 * this.alphaSize, 46 * this.alphaSize);
+                    }
+                    else if (theCostume >= 2)
+                    {
+                        this.drawUnit(fect, 106, 91, 59, 46, -1/2 * 59 * this.alphaSize - this.xAdjustment, -1/2 * 46 * this.alphaSize - this.yAdjustment, 59 * this.alphaSize, 46 * this.alphaSize);
+                    }
+                }
+                else
+                {
+                    if (this.explodeFrame <= 1)
+                    {
+                        this.drawUnit(fect, 23, 27, 59, 46, -1/2 * 59 * this.alphaSize - this.xAdjustment, -1/2 * 46 * this.alphaSize - this.yAdjustment, 59 * this.alphaSize, 46 * this.alphaSize);
+                    }
+                    else if (this.explodeFrame <= 2)
+                    {
+                        this.drawUnit(fect, 21, 175, 59, 46, -1/2 * 59 * this.alphaSize - this.xAdjustment, -1/2 * 46 * this.alphaSize - this.yAdjustment, 59 * this.alphaSize, 46 * this.alphaSize);
+                    }
+                    else if (this.explodeFrame <= 3)
+                    {
+                        this.drawUnit(fect, 108, 30, 59, 46, -1/2 * 59 * this.alphaSize - this.xAdjustment, -1/2 * 46 * this.alphaSize - this.yAdjustment, 59 * this.alphaSize, 46 * this.alphaSize);
+                    }
+                    else if (this.explodeFrame <= 4)
+                    {
+                        this.drawUnit(fect, 106, 174, 59, 46, -1/2 * 59 * this.alphaSize - this.xAdjustment, -1/2 * 46 * this.alphaSize - this.yAdjustment, 59 * this.alphaSize, 46 * this.alphaSize);
+                    }
+                    else if (this.explodeFrame <= 5)
+                    {
+                        if (this.explodeHarm == false)
+                        {
+                            this.explodeHarm = true;
+                            scenicList.push(new Scenery("venandiExplosion", this.X, this.Y, this.rotation, this.alpha));
+                        }
+                        this.drawUnit(fect, 5, 236, 97, 80, -1/2 * 97 * this.alphaSize - this.xAdjustment, -1/2 * 80 * this.alphaSize - this.yAdjustment, 97 * this.alphaSize, 80 * this.alphaSize);
+                    }
+                    else
+                    {
+                        this.drawUnit(fect, 108, 236, 97, 80, -1/2 * 97 * this.alphaSize - this.xAdjustment, -1/2 * 80 * this.alphaSize - this.yAdjustment, 97 * this.alphaSize, 80 * this.alphaSize);
+                        this.explodeFinal = true;
+                        this.health = 0;
+                        this.killNotByPlayer = true;
+                    }
+                    this.explodeFrame += 0.5;
+                }
+            }
+            else
+            {
+                if (this.explodeFrame <= 1)
+                {
+                    this.drawUnit(fect, 23, 27, 59, 46, -1/2 * 59 * this.alphaSize - this.xAdjustment, -1/2 * 46 * this.alphaSize - this.yAdjustment, 59 * this.alphaSize, 46 * this.alphaSize);
+                }
+                else if (this.explodeFrame <= 2)
+                {
+                    this.drawUnit(fect, 21, 175, 59, 46, -1/2 * 59 * this.alphaSize - this.xAdjustment, -1/2 * 46 * this.alphaSize - this.yAdjustment, 59 * this.alphaSize, 46 * this.alphaSize);
+                }
+                else if (this.explodeFrame <= 3)
+                {
+                    this.drawUnit(fect, 108, 30, 59, 46, -1/2 * 59 * this.alphaSize - this.xAdjustment, -1/2 * 46 * this.alphaSize - this.yAdjustment, 59 * this.alphaSize, 46 * this.alphaSize);
+                }
+                else if (this.explodeFrame <= 4)
+                {
+                    this.drawUnit(fect, 106, 174, 59, 46, -1/2 * 59 * this.alphaSize - this.xAdjustment, -1/2 * 46 * this.alphaSize - this.yAdjustment, 59 * this.alphaSize, 46 * this.alphaSize);
+                }
+                else if (this.explodeFrame <= 5)
+                {
+                    if (this.explodeHarm == false)
+                    {
+                        this.explodeHarm = true;
+                        scenicList.push(new Scenery("venandiExplosion", this.X, this.Y, this.rotation, this.alpha));
+                    }
+                    this.drawUnit(fect, 5, 236, 97, 80, -1/2 * 97 * this.alphaSize - this.xAdjustment, -1/2 * 80 * this.alphaSize - this.yAdjustment, 97 * this.alphaSize, 80 * this.alphaSize);
+                }
+                else
+                {
+                    this.drawUnit(fect, 108, 236, 97, 80, -1/2 * 97 * this.alphaSize - this.xAdjustment, -1/2 * 80 * this.alphaSize - this.yAdjustment, 97 * this.alphaSize, 80 * this.alphaSize);
+                    this.explodeFinal = true;
+                }
+                this.explodeFrame += 0.5;
+            }
+        }
         //LEAF-CUTTER ANTER
         if (this.type == "LeafCutterAnter")
         {
@@ -37338,7 +38106,23 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         }
                     }
                 }
+                if (this.venandi > 0) //Leaf-Cutter Anters can be infected by venandine fungus
+                {
+                    this.venandi += 3;
 
+                    if (this.venandi >= 400)
+                    {
+                        this.venandi = 400;
+
+                        var zombieU = new Unit(this.X, this.Y, "LeafCutterAnterVenandi", this.alpha, this.ID);
+                        zombieU.newRotation = this.newRotation;
+                        zombieU.rotation = this.rotation;
+                        ArtificialIntelligenceAccess.push(zombieU);
+                        this.killNotByPlayer = true;
+                        this.invisible = true;
+                        this.health = -13;
+                    }
+                }
             }
             else
             {
@@ -48333,7 +49117,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     }
                 }
 
-                if (this.Y >= -237532)
+                if (this.Y >= -237532 && this.dmx != "mrbHQ")
                 {
                     this.killNotByPlayer = true;
                     this.health -= 0.1;
@@ -49544,7 +50328,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     }
                 }
 
-                if (this.Y >= -237532)
+                if (this.Y >= -237532 && this.dmx != "mrbHQ")
                 {
                     this.killNotByPlayer = true;
                     this.health -= 0.2;

@@ -4471,7 +4471,7 @@ function Adventurer()
         {
             if (this.venandi > 0)
             {
-                if (elevation <= -3)
+                if (elevation <= -3 || map == "mrbHQ")
                 {
                     if (this.venandi > 0) //spore development stage
                     {

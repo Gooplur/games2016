@@ -242,6 +242,21 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
 
                 player.health -= Math.max(0, damage - Math.max(0, player.armourTotal - negate));
                 player.decreaseInHealth += Math.max(0, damage - Math.max(0, player.armourTotal - negate));
+
+                if (effect == "venandineExplosion") //the fungus hijacked the acid and turned it into an effective fungal delivery system for it spores
+                {
+                    if (player.health < 4/5 * player.healthMAX || player.resistDisease == false)
+                    {
+                        if (player.venandi <= 0)
+                        {
+                            player.venandi = 1;
+                        }
+                    }
+                    if ((Math.max(0, damage - Math.max(0, player.armourTotal - negate)) > 0))
+                    {
+                        player.venandi += 20;
+                    }
+                }
             }
         }
     };
@@ -7704,6 +7719,116 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     ArtificialIntelligenceAccess[i].land = true;
                 }
             }
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+                dClick = true;
+            }
+        }
+        else if (this.type == "venandiExplosion")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+
+            if (this.temporary == true)
+            {
+                this.size = 1.35;
+            }
+            else
+            {
+                this.size = 1;
+            }
+
+            //XXX.save();
+            //XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            //XXX.rotate(this.rotation);
+            //XXX.drawImage(jeru, 2106, 17, 61, 41, -(1/2 * 61 * this.size), -(1/2 * 41 * this.size), 61 * this.size, 41 * this.size);
+            //XXX.restore();
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 70 * this.size;
+
+            if (this.dst(X, Y) <= this.radius && player.form != "venandi")
+            {
+                if (this.temporary == true)
+                {
+                    this.damagePlayer(20, 14, "venandineExplosion");
+                }
+                else
+                {
+                    this.damagePlayer(9, 9, "venandineExplosion");
+                }
+
+            }
+
+            for (var j = 0; j < ArtificialIntelligenceAccess.length; j++)
+            {
+                if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= this.radius + (3/4 * ArtificialIntelligenceAccess[j].sizeRadius) && !ArtificialIntelligenceAccess[j].underground && ArtificialIntelligenceAccess[j].dmx == this.dmx && ArtificialIntelligenceAccess[j].ID != "venandi")
+                {
+                    if (this.temporary == true)
+                    {
+                        ArtificialIntelligenceAccess[j].health -= Math.max(0, 20 - Math.max(0, ArtificialIntelligenceAccess[j].armour - 14));
+                    }
+                    else
+                    {
+                        ArtificialIntelligenceAccess[j].health -= Math.max(0, 9 - Math.max(0, ArtificialIntelligenceAccess[j].armour - 9));
+                    }
+
+                    ArtificialIntelligenceAccess[j].healthShownTime = new Date().getTime();
+                    if (ArtificialIntelligenceAccess[j].health <= 0)
+                    {
+                        ArtificialIntelligenceAccess[j].killNotByPlayer = true;
+                    }
+
+                    if (ArtificialIntelligenceAccess[j].health < 4/5 * ArtificialIntelligenceAccess[j].healthMAX || ArtificialIntelligenceAccess[j].resistDisease == false)
+                    {
+                        if (ArtificialIntelligenceAccess[j].type == "Person" || ArtificialIntelligenceAccess[j].type == "Soldier" || ArtificialIntelligenceAccess[j].type == "Etyr" || ArtificialIntelligenceAccess[j].type == "Aranea" || ArtificialIntelligenceAccess[j].type == "Crenid" || ArtificialIntelligenceAccess[j].type == "LeafCutterAnter")
+                        {
+                            if (ArtificialIntelligenceAccess[j].venandi <= 0)
+                            {
+                                ArtificialIntelligenceAccess[j].venandi = 1;
+                            }
+                        }
+                    }
+                    if (ArtificialIntelligenceAccess[j].type == "Person" || ArtificialIntelligenceAccess[j].type == "Soldier" || ArtificialIntelligenceAccess[j].type == "Etyr" || ArtificialIntelligenceAccess[j].type == "Aranea" || ArtificialIntelligenceAccess[j].type == "Crenid" || ArtificialIntelligenceAccess[j].type == "LeafCutterAnter")
+                    {
+                        if (this.temporary == true)
+                        {
+                            if ((Math.max(0, 20 - Math.max(0, ArtificialIntelligenceAccess[j].armour - 14)) > 0))
+                            {
+                                ArtificialIntelligenceAccess[j].venandi += 20;
+                            }
+                        }
+                        else
+                        {
+                            if ((Math.max(0, 9 - Math.max(0, ArtificialIntelligenceAccess[j].armour - 9)) > 0))
+                            {
+                                ArtificialIntelligenceAccess[j].venandi += 20;
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (this.temporary == true)
+            {
+                for (var jj = 0; jj < 22; jj++)
+                {
+                    scenicList.push(new Scenery("cerebrisSpores", this.X, this.Y, Math.random() * 2 * Math.PI, false));
+                }
+            }
+            else
+            {
+                for (var jj = 0; jj < 16; jj++)
+                {
+                    scenicList.push(new Scenery("cerebrisSpores", this.X, this.Y, Math.random() * 2 * Math.PI, false));
+                }
+            }
+
+            scenicList.splice(scenicList.indexOf(this), 1);
 
             //INTERACTION
             if (this.activate == true)
@@ -17451,7 +17576,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             {
                 if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= this.radius + (3/4 * ArtificialIntelligenceAccess[j].sizeRadius) && !ArtificialIntelligenceAccess[j].underground && !ArtificialIntelligenceAccess[j].flying && ArtificialIntelligenceAccess[j].dmx == this.dmx)
                 {
-                    if (ArtificialIntelligenceAccess[j].type == "Etyr" || ArtificialIntelligenceAccess[j].type == "Person" || ArtificialIntelligenceAccess[j].type == "Soldier" || ArtificialIntelligenceAccess[j].type == "Aranea")
+                    if (ArtificialIntelligenceAccess[j].type == "Etyr" || ArtificialIntelligenceAccess[j].type == "Person" || ArtificialIntelligenceAccess[j].type == "Soldier" || ArtificialIntelligenceAccess[j].type == "Aranea" || ArtificialIntelligenceAccess[j].type == "Crenid" || ArtificialIntelligenceAccess[j].type == "LeafCutterAnter")
                     {
                         if (ArtificialIntelligenceAccess[j].venandi <= 0 && ArtificialIntelligenceAccess[j].resistDisease != true)
                         {
@@ -17616,7 +17741,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             {
                 if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= this.radius + (3/4 * ArtificialIntelligenceAccess[j].sizeRadius) && !ArtificialIntelligenceAccess[j].underground && !ArtificialIntelligenceAccess[j].flying && ArtificialIntelligenceAccess[j].dmx == this.dmx)
                 {
-                    if (ArtificialIntelligenceAccess[j].type == "Etyr" || ArtificialIntelligenceAccess[j].type == "Person" || ArtificialIntelligenceAccess[j].type == "Soldier" || ArtificialIntelligenceAccess[j].type == "Aranea")
+                    if (ArtificialIntelligenceAccess[j].type == "Etyr" || ArtificialIntelligenceAccess[j].type == "Person" || ArtificialIntelligenceAccess[j].type == "Soldier" || ArtificialIntelligenceAccess[j].type == "Aranea" || ArtificialIntelligenceAccess[j].type == "Crenid" || ArtificialIntelligenceAccess[j].type == "LeafCutterAnter")
                     {
                         if (ArtificialIntelligenceAccess[j].venandi <= 0 && ArtificialIntelligenceAccess[j].resistDisease != true)
                         {
@@ -27376,7 +27501,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             {
                 if (this.tic % 6 == 0)
                 {
-                    scenicList.push(new Scenery("cerebrisSpores", this.X, this.Y, Math.random() * 2 * Math.PI, false))
+                    scenicList.push(new Scenery("cerebrisSpores", this.X, this.Y, Math.random() * 2 * Math.PI, false));
                 }
             }
 

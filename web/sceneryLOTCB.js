@@ -69,6 +69,8 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
     //trap variables
     this.snapShut = false;
     this.triggered = false;
+    //jungle variables
+    this.xiumGrowth = 0;
     //Hive Variables
     this.hiveID = Math.random();
     this.minions = 0; //the current amount of soldiers the hive has.
@@ -122,6 +124,18 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             this.massive = true;
         }
         else if (this.type == "ribbackNest")
+        {
+            this.massive = true;
+        }
+        else if (this.type == "xiumSpores")
+        {
+            this.massive = true;
+        }
+        else if (this.type == "xiumPod")
+        {
+            this.massive = true;
+        }
+        else if (this.type == "leafCutterAnterHill" && this.temporary == true)
         {
             this.massive = true;
         }
@@ -4576,6 +4590,22 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.rotate(this.rotation);
                 XXX.globalAlpha = 0.8;
                 XXX.drawImage(cef, 1501, 135, 121, 107, -(1/2 * 121 * this.size), -(1/2 * 107 * this.size), 121 * this.size, 107 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 12) //xium mycelium patch
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(fect, 607, 149, 175, 171, -(1/2 * 175 * this.size), -(1/2 * 171 * this.size), 175 * this.size, 171 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 13) //xium mycelium patch small
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(fect, 634, 69, 77, 69, -(1/2 * 77 * this.size), -(1/2 * 69 * this.size), 77 * this.size, 69 * this.size);
                 XXX.restore();
             }
 
@@ -17739,7 +17769,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
 
             for (var j = 0; j < ArtificialIntelligenceAccess.length; j++)
             {
-                if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= this.radius + (3/4 * ArtificialIntelligenceAccess[j].sizeRadius) && !ArtificialIntelligenceAccess[j].underground && !ArtificialIntelligenceAccess[j].flying && ArtificialIntelligenceAccess[j].dmx == this.dmx)
+                if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= this.radius + (3/4 * ArtificialIntelligenceAccess[j].sizeRadius) && !ArtificialIntelligenceAccess[j].underground && ArtificialIntelligenceAccess[j].dmx == this.dmx)
                 {
                     if (ArtificialIntelligenceAccess[j].type == "Etyr" || ArtificialIntelligenceAccess[j].type == "Person" || ArtificialIntelligenceAccess[j].type == "Soldier" || ArtificialIntelligenceAccess[j].type == "Aranea" || ArtificialIntelligenceAccess[j].type == "Crenid" || ArtificialIntelligenceAccess[j].type == "LeafCutterAnter")
                     {
@@ -17910,7 +17940,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
 
             for (var j = 0; j < ArtificialIntelligenceAccess.length; j++)
             {
-                if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= this.radius + (3/4 * ArtificialIntelligenceAccess[j].sizeRadius) && !ArtificialIntelligenceAccess[j].underground && !ArtificialIntelligenceAccess[j].flying && ArtificialIntelligenceAccess[j].dmx == this.dmx)
+                if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= this.radius + (3/4 * ArtificialIntelligenceAccess[j].sizeRadius) && !ArtificialIntelligenceAccess[j].underground && ArtificialIntelligenceAccess[j].dmx == this.dmx)
                 {
                     if (ArtificialIntelligenceAccess[j].team != "venandi" && ArtificialIntelligenceAccess[j].resistDisease != true)
                     {
@@ -17925,6 +17955,198 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                         ArtificialIntelligenceAccess[j].acidI = true;
                         ArtificialIntelligenceAccess[j].acidTime = Math.max(new Date().getTime() + 90000, ArtificialIntelligenceAccess[j].acidTime);
                         ArtificialIntelligenceAccess[j].killNotByPlayer = true;
+                    }
+                }
+            }
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+        }
+        else if (this.type == "xiumSpores")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+            this.zIndex = 6;
+
+            if (this.runOneTime == true)
+            {
+                this.runOneTime = false;
+                this.tac = 0;
+                this.spin = 0;
+                this.tim = 0;
+                this.rotation = Math.random() * 2*Math.PI;
+                if (Math.random() > 0.6)
+                {
+                    this.speed = 0.9;
+                }
+                else
+                {
+                    this.speed = 0.8;
+                }
+                this.size = 0.4;
+            }
+
+            if (this.size < 2.9)
+            {
+                this.size += 0.02;
+            }
+            this.radius = 32 * this.size;
+            this.tac += 1;
+            this.spin += 0.022;
+            this.tim += 1;
+
+            if (this.tim > 770)
+            {
+                if (this.tac <= 2)
+                {
+                    //DRAWSELF
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation + this.spin);
+                    XXX.globalAlpha = 0.1;
+                    XXX.drawImage(fect, 646, 3, 63, 58, -(1/2 * 63 * this.size), -(1/2 * 58 * this.size), 63 * this.size, 58 * this.size);
+                    XXX.restore();
+                }
+                else if (this.tac <= 4)
+                {
+                    //DRAWSELF
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation + this.spin);
+                    XXX.globalAlpha = 0.1;
+                    XXX.drawImage(fect, 730, 67, 63, 58, -(1/2 * 63 * this.size), -(1/2 * 58 * this.size), 63 * this.size, 58 * this.size);
+                    XXX.restore();
+                }
+                else
+                {
+                    this.tac = 0;
+                    //DRAWSELF
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation + this.spin);
+                    XXX.globalAlpha = 0.1;
+                    XXX.drawImage(fect, 646, 3, 63, 58, -(1/2 * 63 * this.size), -(1/2 * 58 * this.size), 63 * this.size, 58 * this.size);
+                    XXX.restore();
+                }
+            }
+            else if (this.tim > 700)
+            {
+                if (this.tac <= 2)
+                {
+                    //DRAWSELF
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation + this.spin);
+                    XXX.globalAlpha = 0.2;
+                    XXX.drawImage(fect, 646, 3, 63, 58, -(1/2 * 63 * this.size), -(1/2 * 58 * this.size), 63 * this.size, 58 * this.size);
+                    XXX.restore();
+                }
+                else if (this.tac <= 4)
+                {
+                    //DRAWSELF
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation + this.spin);
+                    XXX.globalAlpha = 0.2;
+                    XXX.drawImage(fect, 730, 67, 63, 58, -(1/2 * 63 * this.size), -(1/2 * 58 * this.size), 63 * this.size, 58 * this.size);
+                    XXX.restore();
+                }
+                else
+                {
+                    this.tac = 0;
+                    //DRAWSELF
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation + this.spin);
+                    XXX.globalAlpha = 0.2;
+                    XXX.drawImage(fect, 646, 3, 63, 58, -(1/2 * 63 * this.size), -(1/2 * 58 * this.size), 63 * this.size, 58 * this.size);
+                    XXX.restore();
+                }
+            }
+            else
+            {
+                if (this.tac <= 2)
+                {
+                    //DRAWSELF
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation + this.spin);
+                    XXX.globalAlpha = 0.4;
+                    XXX.drawImage(fect, 646, 3, 63, 58, -(1/2 * 63 * this.size), -(1/2 * 58 * this.size), 63 * this.size, 58 * this.size);
+                    XXX.restore();
+                }
+                else if (this.tac <= 4)
+                {
+                    //DRAWSELF
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation + this.spin);
+                    XXX.globalAlpha = 0.4;
+                    XXX.drawImage(fect, 730, 67, 63, 58, -(1/2 * 63 * this.size), -(1/2 * 58 * this.size), 63 * this.size, 58 * this.size);
+                    XXX.restore();
+                }
+                else
+                {
+                    this.tac = 0;
+                    //DRAWSELF
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation + this.spin);
+                    XXX.globalAlpha = 0.4;
+                    XXX.drawImage(fect, 646, 3, 63, 58, -(1/2 * 63 * this.size), -(1/2 * 58 * this.size), 63 * this.size, 58 * this.size);
+                    XXX.restore();
+                }
+            }
+
+            if (this.tim > 800)
+            {
+                scenicList.splice(scenicList.indexOf(this), 1);
+            }
+
+            //move
+            this.X += Math.cos(this.rotation) * this.speed;
+            this.Y += Math.sin(this.rotation) * this.speed;
+
+            //infect
+            if (player.resistDisease == false)
+            {
+                if (this.dst(X, Y) <= this.radius)
+                {
+                    if (player.form != "venandi")
+                    {
+                        player.asfixiationII = true;
+                        player.asfixiationTime = Math.max(20, player.asfixiationTime);
+                        player.energilTime = Math.max(player.energilTime, 800);
+                        player.fatigueIV = true;
+                        player.poisonII = true;
+                    }
+                }
+            }
+
+            for (var j = 0; j < ArtificialIntelligenceAccess.length; j++)
+            {
+                if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= this.radius + (3/4 * ArtificialIntelligenceAccess[j].sizeRadius) && !ArtificialIntelligenceAccess[j].underground && ArtificialIntelligenceAccess[j].dmx == this.dmx)
+                {
+                    if (ArtificialIntelligenceAccess[j].team != "venandi" && ArtificialIntelligenceAccess[j].resistDisease != true)
+                    {
+                        ArtificialIntelligenceAccess[j].acidIII = true;
+                        ArtificialIntelligenceAccess[j].acidTime = Math.max(ArtificialIntelligenceAccess[j].acidTime, new Date().getTime() + 140000);
+                        ArtificialIntelligenceAccess[j].killNotByPlayer = true;
+                    }
+                }
+            }
+
+            for (var j = 0; j < scenicList.length; j++)
+            {
+                if (scenicList[j].type == "selvaTree" && scenicList[j].xiumGrowth <= 0 || scenicList[j].type == "sonjaTree" && scenicList[j].xiumGrowth <= 0)
+                {
+                    if (this.dst(scenicList[j].X, scenicList[j].Y) <= this.radius + 3/4 * scenicList[j].radius && scenicList[j].dmx == this.dmx)
+                    {
+                        scenicList[j].xiumGrowth = 2;
                     }
                 }
             }
@@ -24147,13 +24369,18 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
 
                 this.tic = 0;
                 this.boof = false;
+                this.bahabCooldown = 105;
             }
+            this.bahabCooldown += 0.5;
 
             if (this.playerer < 60 && this.phase == 0 && this.phase != "pickt" && this.phase != "picked")
             {
                 if (this.tic > 310 || this.tic == 0)
                 {
-                    this.boof = true;
+                    if (this.bahabCooldown > 100)
+                    {
+                        this.boof = true;
+                    }
                 }
             }
 
@@ -24188,6 +24415,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     {
                         this.booff = false;
                         scenicList.push(new Scenery("bahabGas", this.X, this.Y, 2 * Math.PI * Math.random(), true));
+                        this.bahabCooldown = 0;
                     }
 
                     if (this.tic > 310)
@@ -27601,6 +27829,341 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 {
                     Inventory.push([new Item("athergmMushrooms", false, false), 1]);
                 }
+            }
+        }
+        else if (this.type == "xiumPlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.subVariety = "fungi";
+            this.solid = false;
+            this.interactionRange = 70;
+
+            if (this.runOneTime)
+            {
+                this.runOneTime = false;
+                this.tic = 0;
+                this.pods = true;
+                this.podRecargar = 0;
+                this.babyTic = 0;
+                this.podPot = false;
+            }
+
+            if (this.phase == 0)
+            {
+                if (this.pods == false)
+                {
+                    this.podRecargar += 0.1;
+
+                    if (this.podRecargar > 800)
+                    {
+                        this.pods = true;
+                    }
+                }
+            }
+
+            //DRAWSELF
+            if (this.temporary == false)
+            {
+                this.babyTic += 0.1;
+                if (this.babyTic < 70)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(fect, 534, 67, 80, 72, -(1/2 * 80), -(1/2 * 72), 80, 72);
+                    XXX.restore();
+                }
+                else if (this.babyTic < 140)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(fect, 457, 174, 82, 75, -(1/2 * 82), -(1/2 * 75), 82, 75);
+                    XXX.restore();
+                }
+                else if (this.babyTic < 210)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(fect, 459, 269, 82, 75, -(1/2 * 82), -(1/2 * 75), 82, 75);
+                    XXX.restore();
+                }
+                else
+                {
+                    this.temporary = true;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(fect, 459, 269, 82, 75, -(1/2 * 82), -(1/2 * 75), 82, 75);
+                    XXX.restore();
+                }
+
+                if (this.phase == "picked")
+                {
+                    scenicList.splice(scenicList.indexOf(this), 1);
+                }
+            }
+            else
+            {
+                if (this.pods == true && this.phase == 0)
+                {
+                    if (this.dst(X, Y) <= 120)
+                    {
+                        this.podPot = true;
+                    }
+
+                    for (var j = 0; j < ArtificialIntelligenceAccess.length; j++)
+                    {
+                        if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= 120 && !ArtificialIntelligenceAccess[j].underground && ArtificialIntelligenceAccess[j].dmx == this.dmx)
+                        {
+                            this.podPot = true;
+                        }
+                    }
+
+                    if (this.podPot == true)
+                    {
+                        this.podPot = false;
+                        this.pods = false;
+                        this.podRecargar = 0;
+                        scenicList.push(new Scenery("xiumPod", this.X, this.Y, 1/8 * 2 * Math.PI + this.rotation + spacer(0.04), false));
+                        scenicList.push(new Scenery("xiumPod", this.X, this.Y, 2/8 * 2 * Math.PI + this.rotation + spacer(0.04), false));
+                        scenicList.push(new Scenery("xiumPod", this.X, this.Y, 3/8 * 2 * Math.PI + this.rotation + spacer(0.04), false));
+                        scenicList.push(new Scenery("xiumPod", this.X, this.Y, 4/8 * 2 * Math.PI + this.rotation + spacer(0.04), false));
+                        scenicList.push(new Scenery("xiumPod", this.X, this.Y, 5/8 * 2 * Math.PI + this.rotation + spacer(0.04), false));
+                        scenicList.push(new Scenery("xiumPod", this.X, this.Y, 6/8 * 2 * Math.PI + this.rotation + spacer(0.04), false));
+                        scenicList.push(new Scenery("xiumPod", this.X, this.Y, 7/8 * 2 * Math.PI + this.rotation + spacer(0.04), false));
+                        scenicList.push(new Scenery("xiumPod", this.X, this.Y, 0/8 * 2 * Math.PI + this.rotation + spacer(0.04), false));
+                    }
+                }
+
+                if (this.phase == 0)
+                {
+                    if (this.pods == true)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(fect, 469, 74, 48, 44, -(1/2 * 48), -(1/2 * 44), 48, 44);
+                        XXX.restore();
+                    }
+                    else
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(fect, 492, 38, 39, 36, -(1/2 * 39), -(1/2 * 36), 39, 36);
+                        XXX.restore();
+                    }
+                }
+                else
+                {
+                    if (this.pods == true)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(fect, 472, 123, 47, 43, -(1/2 * 47), -(1/2 * 43), 47, 43);
+                        XXX.restore();
+                    }
+                    else
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(fect, 457, 38, 39, 36, -(1/2 * 39), -(1/2 * 36), 39, 36);
+                        XXX.restore();
+                    }
+                }
+
+                this.tic += 1;
+
+                if (timeOfDay != "Night" && this.phase == 0)
+                {
+                    if (this.tic % 88 == 0)
+                    {
+                        scenicList.push(new Scenery("xiumSpores", this.X, this.Y, Math.random() * 2 * Math.PI, false));
+                        scenicList.push(new Scenery("xiumSpores", this.X, this.Y, Math.random() * 2 * Math.PI, false));
+                    }
+                }
+
+                //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+                this.radius = 25;
+
+                //INTERACTION
+                if (this.activate == true && this.phase == 0)
+                {
+                    this.activate = false;
+                    this.phase = "picked";
+                    var hits = 0;
+                    for (var i = 0; i < Inventory.length; i ++)
+                    {
+                        if (Inventory[i][0].type == "xiumMushroom")
+                        {
+                            Inventory[i][1] += 1;
+                            break;
+                        }
+                        else
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == Inventory.length)
+                    {
+                        Inventory.push([new Item("xiumMushroom", false, false), 1]);
+                    }
+                }
+            }
+        }
+        else if (this.type == "xiumPod")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.subVariety = "fungi";
+            this.solid = false;
+            this.interactionRange = 50;
+
+            if (this.runOneTime)
+            {
+                this.runOneTime = false;
+                this.sticky = true;
+                this.speed = 8;
+                this.shoot = 72;
+                this.hatch = false;
+                this.sporePressure = 0;
+                this.latched = false;
+                this.playerLatched = false;
+            }
+
+            this.shoot -= 1;
+            this.sporePressure += 1;
+
+            if (this.shoot > 0)
+            {
+                this.X += Math.cos(this.rotation) * this.speed;
+                this.Y += Math.sin(this.rotation) * this.speed;
+            }
+
+            if (this.sporePressure > 700)
+            {
+                scenicList.splice(scenicList.indexOf(this), 1);
+            }
+            else if (this.sporePressure > 540)
+            {
+                this.sticky = false;
+                this.stuck = false;
+                if (this.hatch == false)
+                {
+                    this.hatch = true;
+                    for (var ixium = 0; ixium < 6; ixium++)
+                    {
+                        scenicList.push(new Scenery("xiumSpores", this.X, this.Y, Math.random() * 2 * Math.PI, false));
+                        if (Math.random() < (1/14))
+                        {
+                            var dontHatchNothin = false;
+                            for (var j = 0; j < scenicList.length; j++)
+                            {
+                                if (scenicList[j] !== this && scenicList[j].type != "xiumPod")
+                                {
+                                    if (this.dst(scenicList[j].X, scenicList[j].Y) < (scenicList[j].radius + this.radius + 40))
+                                    {
+                                        dontHatchNothin = true;
+                                        break;
+                                    }
+                                }
+                            }
+                            if (dontHatchNothin == false)
+                            {
+                                scenicList.push(new Scenery("xiumPlant", this.X, this.Y, Math.random() * 2 * Math.PI, false));
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (this.latched != false || this.playerLatched == true)
+            {
+                this.zIndex = 4;
+            }
+            else
+            {
+                this.zIndex = 2;
+            }
+
+            //DRAWSELF
+            if (this.hatch == false)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation + Math.PI);
+                XXX.drawImage(fect, 601, 41, 15, 16, -(1/2 * 15), -(1/2 * 16), 15, 16);
+                XXX.restore();
+            }
+            else
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation + Math.PI);
+                XXX.drawImage(fect, 597, 7, 23, 21, -(1/2 * 23), -(1/2 * 21), 23, 21);
+                XXX.restore();
+            }
+
+            var stuck = "none";
+            if (this.sticky == true)
+            {
+                if (this.playerLatched == false)
+                {
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (this.latched == ArtificialIntelligenceAccess[i].barcode)
+                        {
+                            stuck = ArtificialIntelligenceAccess[i];
+                        }
+                        else if (this.latched == false)
+                        {
+                            var diist = this.dst(ArtificialIntelligenceAccess[i].X, ArtificialIntelligenceAccess[i].Y);
+                            if (diist <= this.radius + this.speed && this.shoot > 0 || diist <= this.radius)
+                            {
+                                stuck = ArtificialIntelligenceAccess[i];
+                                this.shoot = 0;
+                                this.latched = ArtificialIntelligenceAccess[i].barcode;
+                            }
+                        }
+                    }
+                }
+
+                if (this.playerLatched == true)
+                {
+                    stuck = {X: X, Y: Y};
+                }
+                else if (this.latched == false)
+                {
+                    var diiist = this.dst(X, Y);
+                    if (diiist <= this.radius + this.speed && this.shoot > 0 || diiist <= this.radius)
+                    {
+                        stuck = {X: X, Y: Y};
+                        this.playerLatched = true;
+                        this.shoot = 0;
+                    }
+                }
+
+                if (stuck != "none")
+                {
+                    this.X = stuck.X;
+                    this.Y = stuck.Y;
+                }
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 4;
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0)
+            {
+                this.activate = false;
+                this.sticky = false;
+                this.latched = false;
             }
         }
         else if (this.type == "glinPlant")
@@ -33585,10 +34148,61 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             {
                 this.runOneTime = false;
                 this.tic = 0;
+                this.tac = 0;
+            }
+
+            if (this.xiumGrowth > 0)
+            {
+                this.xiumGrowth += 0.2;
+            }
+            if (this.xiumGrowth >= 600 && timeOfDay != "Night" || this.temporary == 3 && timeOfDay != "Night")
+            {
+                this.xiumGrowth -= 400;
+                for (var ixium = 0; ixium < 12; ixium++)
+                {
+                    scenicList.push(new Scenery("xiumSpores", this.X, this.Y, Math.random() * 2 * Math.PI, false));
+                }
             }
 
             //DRAWSELF
-            if (this.temporary == 0)
+            if (this.xiumGrowth >= 200 || this.temporary == 3)
+            {
+                if (this.playerer < 328)
+                {
+                    XXX.globalAlpha = 0.5;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(humpa, 251, 258, 111, 107, -(1/2 * 111 * 1), -(1/2 * 107 * 1), 111 * 1, 107 * 1);
+                    XXX.restore();
+
+                    this.zIndex = 6;
+                    XXX.globalAlpha = 0.8;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(fect, 45, 1369, 716, 762, -(1/2 * 716 * 1), -(1/2 * 762 * 1), 716 * 1, 762 * 1);
+                    XXX.restore();
+
+                    XXX.globalAlpha = 0.35;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(fect, 31, 429, 768, 938, -(1/2 * 768 * 1), -(1/2 * 938 * 1), 768 * 1, 938 * 1);
+                    XXX.restore();
+                    XXX.globalAlpha = 1;
+                }
+                else
+                {
+                    this.zIndex = 6;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(fect, 31, 429, 768, 938, -(1/2 * 768 * 1), -(1/2 * 938 * 1), 768 * 1, 938 * 1);
+                    XXX.restore();
+                }
+            }
+            else if (this.temporary == 0)
             {
                 if (this.playerer < 328)
                 {
@@ -34783,15 +35397,45 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             {
                 this.runOneTime = false;
 
-                //DROPS NUT PODS FROM THE TREE
-                if (currentSeason == "Frost" || currentSeason == "Bright") //The nut only falls from the tree when it is not the season frost
+                if (this.xiumGrowth <= 0)
                 {
-                    if (currentSeason == "Bright") //twice as many yeol nuts fall during the season called Bounty
+                    //DROPS FRUIT FROM THE TREE
+                    if (currentSeason == "Frost" || currentSeason == "Bright") //The nut only falls from the tree when it is not the season frost
                     {
-                        //Extra fruit Drop
-                        if (Math.floor(Math.random() * 3) == 2)
+                        if (currentSeason == "Bright") //twice as many yeol nuts fall during the season called Bounty
                         {
+                            //Extra fruit Drop
                             if (Math.floor(Math.random() * 3) == 2)
+                            {
+                                if (Math.floor(Math.random() * 3) == 2)
+                                {
+                                    for (var ii = 0; ii < 2; ii++)
+                                    {
+                                        var podX = this.X + (Math.random() * 320) - 160;
+                                        var podY = this.Y + (Math.random() * 320) - 160;
+                                        var podDist = Math.sqrt((this.X - podX)*(this.X - podX) + (this.Y - podY)*(this.Y - podY));
+                                        if (podDist > 50)
+                                        {
+                                            scenicList.push(new Scenery("item", podX, podY, 0, false, ["sonja", 1, 0]));
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    var podX = this.X + (Math.random() * 320) - 160;
+                                    var podY = this.Y + (Math.random() * 320) - 160;
+                                    var podDist = Math.sqrt((this.X - podX)*(this.X - podX) + (this.Y - podY)*(this.Y - podY));
+                                    if (podDist > 50)
+                                    {
+                                        scenicList.push(new Scenery("item", podX, podY, 0, false, ["sonja", 1, 0]));
+                                    }
+                                }
+                            }
+                        }
+                        //fruit Drop
+                        if (Math.floor(Math.random() * 4) == 2)
+                        {
+                            if (Math.floor(Math.random() * 4) == 2)
                             {
                                 for (var ii = 0; ii < 2; ii++)
                                 {
@@ -34816,40 +35460,44 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                             }
                         }
                     }
-                    //fruit Drop
-                    if (Math.floor(Math.random() * 4) == 2)
-                    {
-                        if (Math.floor(Math.random() * 4) == 2)
-                        {
-                            for (var ii = 0; ii < 2; ii++)
-                            {
-                                var podX = this.X + (Math.random() * 320) - 160;
-                                var podY = this.Y + (Math.random() * 320) - 160;
-                                var podDist = Math.sqrt((this.X - podX)*(this.X - podX) + (this.Y - podY)*(this.Y - podY));
-                                if (podDist > 50)
-                                {
-                                    scenicList.push(new Scenery("item", podX, podY, 0, false, ["sonja", 1, 0]));
-                                }
-                            }
-                        }
-                        else
-                        {
-                            var podX = this.X + (Math.random() * 320) - 160;
-                            var podY = this.Y + (Math.random() * 320) - 160;
-                            var podDist = Math.sqrt((this.X - podX)*(this.X - podX) + (this.Y - podY)*(this.Y - podY));
-                            if (podDist > 50)
-                            {
-                                scenicList.push(new Scenery("item", podX, podY, 0, false, ["sonja", 1, 0]));
-                            }
-                        }
-                    }
+                }
+            }
+
+            if (this.xiumGrowth > 0)
+            {
+                this.xiumGrowth += 0.2;
+            }
+            if (this.xiumGrowth >= 500 && timeOfDay != "Night")
+            {
+                this.xiumGrowth -= 340;
+                for (var ixium = 0; ixium < 5; ixium++)
+                {
+                    scenicList.push(new Scenery("xiumSpores", this.X, this.Y, Math.random() * 2 * Math.PI, false));
                 }
             }
 
             //DRAWSELF
             if (this.playerer < 160)
             {
-                if (currentSeason == "Frost" || currentSeason == "Bright")
+                if (this.xiumGrowth >= 140)
+                {
+                    this.zIndex = 6;
+                    XXX.globalAlpha = 0.9;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(fect, 106, 2200, 279, 242, -(1/2 * 279 * 1.5), -(1/2 * 242 * 1.5) - 8, 279 * 1.5, 242 * 1.5);
+                    XXX.restore();
+
+                    XXX.globalAlpha = 0.7;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(fect, 421, 2180, 278, 240, -(1/2 * 278 * 1.5), -(1/2 * 240 * 1.5) - 8, 278 * 1.5, 240 * 1.5);
+                    XXX.restore();
+                    XXX.globalAlpha = 1;
+                }
+                else if (currentSeason == "Frost" || currentSeason == "Bright")
                 {
                     this.zIndex = 6;
                     XXX.globalAlpha = 0.9;
@@ -34888,7 +35536,22 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             }
             else
             {
-                if (currentSeason == "Frost" || currentSeason == "Bright")
+                if (this.xiumGrowth >= 140)
+                {
+                    this.zIndex = 6;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(fect, 106, 2200, 279, 242, -(1/2 * 279 * 1.5), -(1/2 * 242 * 1.5) - 8, 279 * 1.5, 242 * 1.5);
+                    XXX.restore();
+
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(fect, 421, 2180, 278, 240, -(1/2 * 278 * 1.5), -(1/2 * 240 * 1.5) - 8, 278 * 1.5, 240 * 1.5);
+                    XXX.restore();
+                }
+                else if (currentSeason == "Frost" || currentSeason == "Bright")
                 {
                     this.zIndex = 6;
                     XXX.save();
@@ -36310,11 +36973,14 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                         {
                             this.health -= player.weapon.damage;
                         }
-                        if (ArtificialIntelligenceAccess[i].type == "LeafCutterAnter" && ArtificialIntelligenceAccess[i].ID == this.hiveID)
+                        for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
                         {
-                            ArtificialIntelligenceAccess[i].angry = true;
-                            ArtificialIntelligenceAccess[i].disturbed = true;
-                            ArtificialIntelligenceAccess[i].offended = true;
+                            if (ArtificialIntelligenceAccess[i].type == "LeafCutterAnter" && ArtificialIntelligenceAccess[i].ID == this.hiveID)
+                            {
+                                ArtificialIntelligenceAccess[i].angry = true;
+                                ArtificialIntelligenceAccess[i].disturbed = true;
+                                ArtificialIntelligenceAccess[i].offended = true;
+                            }
                         }
                     }
                 }

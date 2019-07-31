@@ -28751,7 +28751,36 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 0; // at max, sell for 0.
         }
-        else if (this.type == "driedMushrooms")
+        else if (this.type == "xiumMushroom")
+        {
+            //For All Items
+            this.identity = "Xium Mushroom";
+            this.weight = 4.4;
+            this.size = 11;
+            this.description = "A tall and very poisonous light blue mushroom.";
+            this.intForDes = 0;
+            this.intDescription = "It releases spores and sticky pods in order to infect the trees, which it uses to create a massive network of raised mycelium in the jungle canopy.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 6; //satisfies hunger.
+            this.thirst = -12; //quenches thirst.
+            this.warmth = -20; //warms player.
+            this.heal = -2; //heals health.
+            this.generation = -40; //recoops lost energy.
+            this.replenish = -22; //restores will.
+
+            //ability
+            this.ability = "poisonIV";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 9; // at max, buy for 9.
+            this.sellValue = 9; // at max, sell for 9.
+        }
+        else if (this.type == "driedAthergmMushrooms")
         {
             //For All Items
             this.identity = "Dried Athergm Mushrooms";
@@ -48032,6 +48061,11 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "xiumMushroom")
+        {
+            XXX.beginPath();
+            XXX.drawImage(fect, 545, 38, 43, 27, X - this.X + (1/2 * CCC.width) - (1/2 * 43 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 27 * 1), 43 * 1, 27 * 1);
+        }
         else if (this.type == "leafCutterAnterMeat")
         {
             XXX.beginPath();
@@ -54295,6 +54329,11 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
+        else if (this.type == "xiumMushroom")
+        {
+            LXX.beginPath();
+            LXX.drawImage(fect, 545, 38, 43, 27, this.invX - (1/2 * 43 * 1), this.invY - (1/2 * 27 * 1), 43 * 1, 27 * 1);
+        }
         else if (this.type == "leafCutterAnterMeat")
         {
             LXX.beginPath();
@@ -60524,6 +60563,11 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "xiumMushroom")
+        {
+            XXX.beginPath();
+            XXX.drawImage(fect, 545, 38, 43, 27, this.invX - (1/2 * 43 * 1), this.invY - (1/2 * 27 * 1), 43 * 1, 27 * 1);
         }
         else if (this.type == "leafCutterAnterMeat")
         {

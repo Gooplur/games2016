@@ -8128,37 +8128,37 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                                 else if (this.effect == "paralyzeI" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
                                 {
                                     player.stunnedX = true;
-                                    player.stunnedTime = 20;
+                                    player.stunnedTime = Math.max(player.stunnedTime, 20);
                                 }
                                 else if (this.effect == "paralyzeII" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
                                 {
                                     player.stunnedXV = true;
-                                    player.stunnedTime = 20;
+                                    player.stunnedTime = Math.max(player.stunnedTime, 20);
                                 }
                                 else if (this.effect == "stunV" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
                                 {
                                     player.stunnedIII = true;
-                                    player.stunnedTime = 30;
+                                    player.stunnedTime = Math.max(player.stunnedTime, 30);
                                 }
                                 else if (this.effect == "stunIV" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
                                 {
                                     player.stunnedIII = true;
-                                    player.stunnedTime = 19;
+                                    player.stunnedTime = Math.max(player.stunnedTime, 19);
                                 }
                                 else if (this.effect == "stunIII" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
                                 {
                                     player.stunnedIII = true;
-                                    player.stunnedTime = 11;
+                                    player.stunnedTime = Math.max(player.stunnedTime, 11);
                                 }
                                 else if (this.effect == "stunII" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
                                 {
                                     player.stunnedII = true;
-                                    player.stunnedTime = 8;
+                                    player.stunnedTime = Math.max(player.stunnedTime, 8);
                                 }
                                 else if (this.effect == "stunI" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
                                 {
                                     player.stunnedI = true;
-                                    player.stunnedTime = 5;
+                                    player.stunnedTime = Math.max(player.stunnedTime, 5);
                                 }
                                 else if (this.effect == "lypelis" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
                                 {
@@ -8258,42 +8258,42 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                                 }
                                 else if (this.effect == "fatigueI" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
                                 {
-                                    player.energilTime = 60;
+                                    player.energilTime = Math.max(player.energilTime, 60);
                                     player.fatigueI = true;
                                 }
                                 else if (this.effect == "fatigueII" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
                                 {
-                                    player.energilTime = 60;
+                                    player.energilTime = Math.max(player.energilTime, 60);
                                     player.fatigueII = true;
                                 }
                                 else if (this.effect == "fatigueIII" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
                                 {
-                                    player.energilTime = 60;
+                                    player.energilTime = Math.max(player.energilTime, 60);
                                     player.fatigueIII = true;
                                 }
                                 else if (this.effect == "fatigueIV" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
                                 {
-                                    player.energilTime = 60;
+                                    player.energilTime = Math.max(player.energilTime, 60);
                                     player.fatigueIV = true;
                                 }
                                 else if (this.effect == "fatigueV" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
                                 {
-                                    player.energilTime = 60;
+                                    player.energilTime = Math.max(player.energilTime, 60);
                                     player.fatigueV = true;
                                 }
                                 else if (this.effect == "grewbleToxinI" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
                                 {
-                                    player.energilTime = 300;
+                                    player.energilTime = Math.max(player.energilTime, 300);
                                     player.fatigueI = true;
                                 }
                                 else if (this.effect == "grewbleToxinII" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
                                 {
-                                    player.energilTime = 300;
+                                    player.energilTime = Math.max(player.energilTime, 300);
                                     player.fatigueII = true;
                                 }
                                 else if (this.effect == "grewbleToxinIII" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
                                 {
-                                    player.energilTime = 360;
+                                    player.energilTime = Math.max(player.energilTime, 360);
                                     player.fatigueIV = true;
                                 }
                                 else if (this.effect == "blackTrollSmash" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
@@ -8349,31 +8349,31 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                                 {
                                     player.blinded = true;
                                     player.blindedStoreTime = new Date().getTime();
-                                    player.blindedTime = 2;
+                                    player.blindedTime = Math.max(player.blindedTime, 2);
                                 }
                                 else if (this.effect == "blindingII" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
                                 {
                                     player.blinded = true;
                                     player.blindedStoreTime = new Date().getTime();
-                                    player.blindedTime = 3;
+                                    player.blindedTime = Math.max(player.blindedTime, 3);
                                 }
                                 else if (this.effect == "blindingIII" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
                                 {
                                     player.blinded = true;
                                     player.blindedStoreTime = new Date().getTime();
-                                    player.blindedTime = 5;
+                                    player.blindedTime = Math.max(player.blindedTime, 5);
                                 }
                                 else if (this.effect == "blindingIV" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
                                 {
                                     player.blinded = true;
                                     player.blindedStoreTime = new Date().getTime();
-                                    player.blindedTime = 8;
+                                    player.blindedTime = Math.max(player.blindedTime, 8);
                                 }
                                 else if (this.effect == "blindingV" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
                                 {
                                     player.blinded = true;
                                     player.blindedStoreTime = new Date().getTime();
-                                    player.blindedTime = 13;
+                                    player.blindedTime = Math.max(player.blindedTime, 13);
                                 }
                                 else if (this.effect == "radiate")
                                 {
@@ -8432,8 +8432,8 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                                 else if (this.effect == "araneaVenom" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
                                 {
                                     player.acidIV = true;
-                                    player.acidTime = new Date().getTime() + 120000;
-                                    player.energilTime = 120;
+                                    player.acidTime = Math.max(player.acidTime, new Date().getTime() + 120000);
+                                    player.energilTime = Math.max(player.energilTime, 120);
                                     player.fatigueI = true;
                                 }
                             }
@@ -9138,7 +9138,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         }
 
         //anti gas/smoke/spore
-        if (this.breathResistance == true || this.gasmasked == true)
+        if (breathResistance == true || this.gasmasked == true)
         {
             this.resistDisease = true;
         }
@@ -20766,6 +20766,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         }
         else if (this.type == "ZafBeetle")
         {
+            this.resistances = ["breath"];
             this.followAttack = true;
             this.doubleFrame = true;
             this.damageFrame = "automatic";
@@ -24585,7 +24586,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.speed = 5.4 + (Math.floor(Math.random() * 2) / 10);
                 this.rangeOfSight = 500; //This is just to set the variable initially. The rest is variable.
                 this.rotationSpeed = 0.35;
-                this.engagementRadius = 50;
+                this.engagementRadius = 38;
                 this.sizeRadius = 16;
                 this.negateArmour = 2;
                 this.attackWait = 0.9;

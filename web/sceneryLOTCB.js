@@ -139,6 +139,14 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
         {
             this.massive = true;
         }
+        else if (this.type == "damageBubble")
+        {
+            this.massive = true;
+        }
+        else if (this.type == "venandiExplosion")
+        {
+            this.massive = true;
+        }
         else if (this.type == "event")
         {
             this.massive = true;
@@ -244,31 +252,46 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
     {
         if (player.dmx == this.dmx)
         {
-            if (player.mageShield > 0)
+            if (quenHere == true)
             {
-                player.mageShield -= damage;
+                quenHere = false;
             }
             else
             {
-                player.health += player.mageShield;
-                //player.decreaseInHealth -= player.mageShield;
-                player.mageShield = 0;
-
-                player.health -= Math.max(0, damage - Math.max(0, player.armourTotal - negate));
-                player.decreaseInHealth += Math.max(0, damage - Math.max(0, player.armourTotal - negate));
-
-                if (effect == "venandineExplosion") //the fungus hijacked the acid and turned it into an effective fungal delivery system for it spores
+                if (player.mageShield > 0)
                 {
-                    if (player.health < 4/5 * player.healthMAX || player.resistDisease == false)
+                    player.mageShield -= damage;
+                }
+                else
+                {
+                    player.health += player.mageShield;
+                    //player.decreaseInHealth -= player.mageShield;
+                    player.mageShield = 0;
+
+                    player.health -= Math.max(0, damage - Math.max(0, player.armourTotal - negate));
+                    player.decreaseInHealth += Math.max(0, damage - Math.max(0, player.armourTotal - negate));
+
+                    if (effect == "venandineExplosion") //the fungus hijacked the acid and turned it into an effective fungal delivery system for it spores
                     {
-                        if (player.venandi <= 0)
+                        if (player.health < 4/5 * player.healthMAX || player.resistDisease == false)
                         {
-                            player.venandi = 1;
+                            if (player.venandi <= 0)
+                            {
+                                player.venandi = 1;
+                            }
+                        }
+                        if ((Math.max(0, damage - Math.max(0, player.armourTotal - negate)) > 0))
+                        {
+                            player.venandi += 20;
                         }
                     }
-                    if ((Math.max(0, damage - Math.max(0, player.armourTotal - negate)) > 0))
+                    else if (effect == "smashbackI" && (Math.max(0, damage - Math.max(0, player.armourTotal - negate)) > 0))
                     {
-                        player.venandi += 20;
+                        var twrdsUnit = Math.atan2(this.Y - Y, this.X - X);
+                        X -= Math.cos(twrdsUnit) * 50;
+                        Y -= Math.sin(twrdsUnit) * 50;
+                        player.stunnedIII = true;
+                        player.stunnedTime = 3;
                     }
                 }
             }
@@ -7866,6 +7889,62 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 this.activate = false;
                 dClick = true;
             }
+        }
+        else if (this.type == "damageBubble")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+
+            if (this.runOneTime)
+            {
+                this.runOneTime = false;
+
+                this.radius = this.temporary.radius;
+                this.damage = this.temporary.damage;
+                this.negate = this.temporary.negate;
+                this.effect = this.temporary.effect;
+                this.team = this.temporary.team;
+
+                //scenicList.push(new Scenery("damageBubble", this.X, this.Y, 0, {radius: 50 * this.alphaSize, damage: 10, negate: this.negateArmour, effect: "smashbackI"}));
+            }
+
+            if (this.team != "player")
+            {
+                if (this.dst(X, Y) <= this.radius + player.mySize)
+                {
+                    this.damagePlayer(this.damage, this.negate, this.effect);
+                }
+            }
+
+            for (var j = 0; j < ArtificialIntelligenceAccess.length; j++)
+            {
+                if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= (this.radius + ArtificialIntelligenceAccess[j].sizeRadius) && !ArtificialIntelligenceAccess[j].underground && ArtificialIntelligenceAccess[j].dmx == this.dmx)
+                {
+                    if (this.team != ArtificialIntelligenceAccess[j].team)
+                    {
+                        ArtificialIntelligenceAccess[j].health -= (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[j].armour - this.negate)));
+
+                        ArtificialIntelligenceAccess[j].healthShownTime = new Date().getTime();
+                        if (ArtificialIntelligenceAccess[j].health <= 0)
+                        {
+                            ArtificialIntelligenceAccess[j].killNotByPlayer = true;
+                        }
+
+                        if (this.effect == "smashbackI" && (Math.max(0, (this.damage - Math.max(0, ArtificialIntelligenceAccess[j].armour - this.negate)))))
+                        {
+                            var twrdsUnit = Math.atan2(this.Y - ArtificialIntelligenceAccess[j].Y, this.X - ArtificialIntelligenceAccess[j].X);
+                            ArtificialIntelligenceAccess[j].X -= Math.cos(twrdsUnit) * 50;
+                            ArtificialIntelligenceAccess[j].Y -= Math.sin(twrdsUnit) * 50;
+                            ArtificialIntelligenceAccess[j].stunIII = true;
+                            ArtificialIntelligenceAccess[j].stunTimer = 3;
+                            ArtificialIntelligenceAccess[j].stunTime = new Date().getTime();
+                        }
+                    }
+                }
+            }
+
+            scenicList.splice(scenicList.indexOf(this), 1);
         }
         else if (this.type == "barrel")
         {
@@ -16505,7 +16584,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
 
                         if (ArtificialIntelligenceAccess[i].DTP() <= 120 || ArtificialIntelligenceAccess[i].disturbed == true || this.angryDuendes == true)
                         {
-                            console.log("arena3");
+                            //console.log("arena3");
                             this.angryDuendes = true;
                             ArtificialIntelligenceAccess[i].muzzle = false;
                             ArtificialIntelligenceAccess[i].disturbed = true;
@@ -16515,7 +16594,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                         }
                         else
                         {
-                            console.log("arena2");
+                            //console.log("arena2");
                             ArtificialIntelligenceAccess[i].ID = "arena2";
                         }
                         unitPos = Math.sqrt((ArtificialIntelligenceAccess[i].X - this.X)*(ArtificialIntelligenceAccess[i].X - this.X) + (ArtificialIntelligenceAccess[i].Y - this.Y)*(ArtificialIntelligenceAccess[i].Y-this.Y));

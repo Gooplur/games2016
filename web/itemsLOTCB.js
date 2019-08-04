@@ -5832,6 +5832,64 @@ function Item(type, x, y)
             this.buyValue = 24 - Math.floor(player.getCharisma() / 25); // at max, buy for 22.
             this.sellValue = 14 + Math.floor(player.getCharisma() / 6); // at max, sell for 22.
         }
+        else if (this.type == "rawTaebjuurFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Taebjuur Flesh";
+            this.weight = 7;
+            this.size = 13;
+            this.description = "The raw flesh of a Taebjuur.";
+            this.intForDes = 0;
+            this.intDescription = "Eating this raw would cause you to ingest microbial sea parasites that would irritate your innards.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 3; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -2.5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "foodPoisoning";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 9 - Math.floor(player.getCharisma() / 25); // at max, buy for 7.
+            this.sellValue = 2 + Math.floor(player.getCharisma() / 10); // at max, sell for 7.
+        }
+        else if (this.type == "taebjuurMeat")
+        {
+            //For All Items
+            this.identity = "Taebjuur Meat";
+            this.weight = 7;
+            this.size = 13;
+            this.description = "The cooked meat of a Taebjuur.";
+            this.intForDes = 0;
+            this.intDescription = "It tastes bland with a slight fishy flavour and a firm texture.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 22; //satisfies hunger.
+            this.thirst = 2; //quenches thirst.
+            this.warmth = 9; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.024; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "satiation";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 19; // at max, buy for 19.
+            this.sellValue = 17 + Math.floor(player.getCharisma() / 25); // at max, sell for 19.
+        }
         else if (this.type == "apple")
         {
             //For All Items
@@ -8447,6 +8505,28 @@ function Item(type, x, y)
             this.buyValue = 15 - Math.floor(player.getCharisma() / 15); // at max, buy for 12.
             this.sellValue = 9 + Math.floor(player.getCharisma() / 15); // at max, sell for 12.
         }
+        else if (this.type == "giraffePelt")
+        {
+            //For All Items
+            this.identity = "Giraffe Pelt";
+            this.weight = 18;
+            this.size = 30;
+            this.description = "The thich yellow and brown spotted pelt of a giraffe.";
+            this.intForDes = 1;
+            this.intDescription = "Giraffe pelts are a sought after material used to make decorations, rugs, and fine clothing.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //Utility Focused
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 45 - Math.floor(player.getCharisma() / 6); // at max, buy for 37.
+            this.sellValue = 31 + Math.floor(player.getCharisma() / 8); // at max, sell for 37.
+        }
         else if (this.type == "deerAntler")
         {
             //For All Items
@@ -9632,6 +9712,69 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 2; // at max, buy for 2.
             this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "rawGazelleFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Gazelle Flesh";
+            this.weight = 2.7;
+            this.size = 11;
+            this.description = "The raw flesh of a gazelle from the southern savannah region.";
+            this.intForDes = 3;
+            this.intDescription = "A large juicy cut of flesh that is potentially infected with flesh mites.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1.8; //satisfies hunger.
+            this.thirst = 0.6; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -0.7; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "fleshMites";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 4; // at max, buy for 4.
+            this.sellValue = 4; // at max, sell for 4.
+        }
+        else if (this.type == "gazelleMeat")
+        {
+            //For All Items
+            this.identity = "Gazelle Meat";
+            this.weight = 2.65;
+            this.size = 11;
+            this.description = "The sensuous rich well marble meat of a gazelle.";
+            this.intForDes = 3;
+            this.intDescription = "This meat is an extravagant culinary ingredient that has a lot of fatty and gamey flavour in it.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 17; //satisfies hunger.
+            this.thirst = 0.5; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.2; //recoops lost energy.
+            this.replenish = 0.025; //restores will.
+
+            //ability
+            this.ability = "satiation";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 29;
+            this.ingredients = [["Raw Gazelle Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 25; // at max, buy for 25.
+            this.sellValue = 25; // at max, sell for 25
         }
         else if (this.type == "rawVenison")
         {
@@ -27204,6 +27347,297 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
         }
+        else if (this.type == "rawHyenaFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Hyena Flesh";
+            this.weight = 1.5;
+            this.size = 10;
+            this.description = "The raw flesh of a spotted hyena.";
+            this.intForDes = 5;
+            this.intDescription = "Hyenas are a feliform animal that are distinct from both felines and canines. Their flesh, though not safe to eat raw, is used in alchemy as a former.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1.1; //satisfies hunger.
+            this.thirst = 0.2; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "fleshMites";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            if (shopkeeper != "none")
+            {
+                if (shopkeeper.ultra.faction == "Cephrite" || shopkeeper.ultra.race == "Cephrite")
+                {
+                    this.buyValue = 2; // at max, buy for 2.
+                    this.sellValue = 2; // at max, sell for 2.
+                }
+                else
+                {
+                    this.buyValue = 1; // at max, buy for 1.
+                    this.sellValue = 1; // at max, sell for 1.
+                }
+            }
+            else
+            {
+                this.buyValue = 1; // at max, buy for 1.
+                this.sellValue = 1; // at max, sell for 1.
+            }
+        }
+        else if (this.type == "hyenaMeat")
+        {
+            //For All Items
+            this.identity = "Hyena Meat";
+            this.weight = 1.5;
+            this.size = 10;
+            this.description = "The cooked flesh of a spotted hyena.";
+            this.intForDes = 0;
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+
+            this.intDescription = "Hyena flesh tastes funky and stringy with an offputting odor like boiled rotten flesh.";
+            this.hunger = 5; //satisfies hunger.
+            this.thirst = 0.1; //quenches thirst.
+            this.warmth = 2; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -2; //recoops lost energy.
+            this.replenish = -2; //restores will.
+
+            //ability
+            this.ability = "foodPoisoning";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 2;
+            this.ingredients = [["Raw Hyena Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 0; // at max, buy for 0.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "rawDogFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Dog Flesh";
+            this.weight = 0.9;
+            this.size = 9;
+            this.description = "The raw flesh of a dog.";
+            this.intForDes = 0;
+            this.intDescription = "Dog flesh often has gut worms in it in its raw form.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1; //satisfies hunger.
+            this.thirst = 0.25; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "gutWorms";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            if (shopkeeper != "none")
+            {
+                if (shopkeeper.ultra.faction == "Cephrite" || shopkeeper.ultra.race == "Cephrite")
+                {
+                    this.buyValue = 1; // at max, buy for 1.
+                    this.sellValue = 1; // at max, sell for 1.
+                }
+                else
+                {
+                    this.buyValue = 0; // at max, buy for 0.
+                    this.sellValue = 0; // at max, sell for 0.
+                }
+            }
+            else
+            {
+                this.buyValue = 0; // at max, buy for 0.
+                this.sellValue = 0; // at max, sell for 0.
+            }
+        }
+        else if (this.type == "rawGiraffeFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Giraffe Flesh";
+            this.weight = 6;
+            this.size = 15;
+            this.description = "The raw flesh of a giraffe.";
+            this.intForDes = 3;
+            this.intDescription = "Cooking with giraffe flesh is classic in Cephrian cooking.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 3.5; //satisfies hunger.
+            this.thirst = 1; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "fleshMites";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            if (shopkeeper != "none")
+            {
+                if (shopkeeper.ultra.faction == "Cephrite" || shopkeeper.ultra.race == "Cephrite")
+                {
+                    this.buyValue = 10; // at max, buy for 10.
+                    this.sellValue = 10; // at max, sell for 10.
+                }
+                else
+                {
+                    this.buyValue = 2; // at max, buy for 2.
+                    this.sellValue = 1; // at max, sell for 1.
+                }
+            }
+            else
+            {
+                this.buyValue = 2; // at max, buy for 2.
+                this.sellValue = 1; // at max, sell for 1.
+            }
+        }
+        else if (this.type == "giraffeMeat")
+        {
+            //For All Items
+            this.identity = "Giraffe Meat";
+            this.weight = 6;
+            this.size = 15;
+            this.description = "The tender, slowcooked meat of a giraffe.";
+            this.intForDes = 0;
+            this.intDescription = "It tastes gamey and has a poignant savoury flavour that bounces onto your palate.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            if (player.raceName == "Cephrite")
+            {
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 20; //satisfies hunger.
+                this.thirst = 2; //quenches thirst.
+                this.warmth = 10; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 0.1; //recoops lost energy.
+                this.replenish = 0.1; //restores will.
+
+                //ability
+                this.ability = "satiation";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 19;
+                this.ingredients = [["Raw Giraffe Flesh", 1]];
+            }
+            else
+            {
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 16; //satisfies hunger.
+                this.thirst = 1; //quenches thirst.
+                this.warmth = 8; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 0.05; //recoops lost energy.
+                this.replenish = 0.05; //restores will.
+
+                //ability
+                this.ability = "satiation";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 26;
+                this.ingredients = [["Raw Giraffe Flesh", 1]];
+            }
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            if (shopkeeper != "none")
+            {
+                if (shopkeeper.ultra.faction == "Cephrite" || shopkeeper.ultra.race == "Cephrite")
+                {
+                    this.buyValue = 30; // at max, buy for 30.
+                    this.sellValue = 30; // at max, sell for 30.
+                }
+                else
+                {
+                    this.buyValue = 23 - Math.floor(player.getCharisma() / 15); // at max, buy for 20.
+                    this.sellValue = 15 + Math.floor(player.getCharisma() / 10); // at max, sell for 20.
+                }
+            }
+            else
+            {
+                this.buyValue = 23 - Math.floor(player.getCharisma() / 15); // at max, buy for 20.
+                this.sellValue = 15 + Math.floor(player.getCharisma() / 10); // at max, sell for 20.
+            }
+        }
+        else if (this.type == "dogMeat")
+        {
+            //For All Items
+            this.identity = "Dog Meat";
+            this.weight = 0.9;
+            this.size = 9;
+            this.description = "The cooked meat of a dog.";
+            this.intForDes = 0;
+            this.intDescription = "Dog meat actually tastes pretty good, but most cultures aside from Cephrite don't approve of eating it.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 7; //satisfies hunger.
+            this.thirst = 0.2; //quenches thirst.
+            this.warmth = 2; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 7;
+            this.ingredients = [["Raw Dog Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            if (shopkeeper != "none")
+            {
+                if (shopkeeper.ultra.faction == "Cephrite" || shopkeeper.ultra.race == "Cephrite")
+                {
+                    this.buyValue = 6; // at max, buy for 6.
+                    this.sellValue = 5; // at max, sell for 5.
+                }
+                else
+                {
+                    this.buyValue = 0; // at max, buy for 0.
+                    this.sellValue = 0; // at max, sell for 0.
+                }
+            }
+            else
+            {
+                this.buyValue = 0; // at max, buy for 0.
+                this.sellValue = 0; // at max, sell for 0.
+            }
+        }
         else if (this.type == "rawTermiteFlesh")
         {
             //For All Items
@@ -28158,6 +28592,106 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 2; // at max, buy for 2.
             this.sellValue = 2; // at max, sell for 2.
+        }
+        else if (this.type == "wildDogPelt")
+        {
+            //For All Items
+            this.identity = "Wild Dog Pelt";
+            this.weight = 0.6;
+            this.size = 9;
+            this.description = "The reddish brown fur of a southern savannah dwelling wild dog.";
+            this.intForDes = 3;
+            this.intDescription = "Wild dog pelts can be used to make clothing and is used as common material in Cephrite.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "hyenaPelt")
+        {
+            //For All Items
+            this.identity = "Hyena Pelt";
+            this.weight = 1;
+            this.size = 11;
+            this.description = "The scraggly, furry pelt of a spotted hyena.";
+            this.intForDes = 4;
+            this.intDescription = "Hyena pelts are used to make cephrian clothing, outfits, dresses, and rugs.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 6; // at max, buy for 6.
+            this.sellValue = 3 + Math.floor(player.getCharisma() / 15); // at max, sell for 6.
+        }
+        else if (this.type == "gazellePelt")
+        {
+            //For All Items
+            this.identity = "Gazelle Pelt";
+            this.weight = 2;
+            this.size = 11;
+            this.description = "The smooth, short furred pelt of a gazelle.";
+            this.intForDes = 5;
+            this.intDescription = "Gazelle pelt is a desirable middle-wealth commodity that can be used to make certain outfits.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 8; // at max, buy for 8.
+            this.sellValue = 4 + Math.floor(player.getCharisma() / 12.5); // at max, sell for 8.
+        }
+        else if (this.type == "gazelleHorn")
+        {
+            //For All Items
+            this.identity = "Gazelle Horn";
+            this.weight = 0.7;
+            this.size = 7;
+            this.description = "The hard, dark, curved, boney horn of a gazelle.";
+            this.intForDes = 2;
+            this.intDescription = "These are used as an aphrodesiac... for some reason.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 2; // at max, sell for 2.
+        }
+        else if (this.type == "holnArms")
+        {
+            //For All Items
+            this.identity = "Holn Arms";
+            this.weight = 9;
+            this.size = 14;
+            this.description = "The flat glassy, slimey electrified arms of a holn.";
+            this.intForDes = 34;
+            this.intDescription = "These are an important ingrediant in the production of spell oil.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 22; // at max, buy for 22.
+            this.sellValue = 22; // at max, sell for 22.
         }
         else if (this.type == "borgalLeg")
         {
@@ -48061,6 +48595,86 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "gazelleHorn")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jeru, 1300, 838, 14, 37, X - this.X + (1/2 * CCC.width) - (1/2 * 14 * 1.1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 37 * 1.1), 14 * 1.1, 37 * 1.1);
+        }
+        else if (this.type == "gazellePelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jeru, 2372, 880, 84, 41, X - this.X + (1/2 * CCC.width) - (1/2 * 84 * 1.1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 41 * 1.1), 84 * 1.1, 41 * 1.1);
+        }
+        else if (this.type == "rawGazelleFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jeru, 2575, 892, 30, 26, X - this.X + (1/2 * CCC.width) - (1/2 * 30 * 1.1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 26 * 1.1), 30 * 1.1, 26 * 1.1);
+        }
+        else if (this.type == "gazelleMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jeru, 2607, 894, 30, 26, X - this.X + (1/2 * CCC.width) - (1/2 * 30 * 1.1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 26 * 1.1), 30 * 1.1, 26 * 1.1);
+        }
+        else if (this.type == "rawTaebjuurFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jeru, 1409, 1150, 36, 29, X - this.X + (1/2 * CCC.width) - (1/2 * 36 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 29 * 1.2), 36 * 1.2, 29 * 1.2);
+        }
+        else if (this.type == "taebjuurMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jeru, 1373, 1150, 36, 29, X - this.X + (1/2 * CCC.width) - (1/2 * 36 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 29 * 1.2), 36 * 1.2, 29 * 1.2);
+        }
+        else if (this.type == "holnArms")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jeru, 278, 365, 56, 41, X - this.X + (1/2 * CCC.width) - (1/2 * 56 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 41 * 1.2), 56 * 1.2, 41 * 1.2);
+        }
+        else if (this.type == "rawGiraffeFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(salem, 499, 1047, 30, 28, X - this.X + (1/2 * CCC.width) - (1/2 * 30 * 1.1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 28 * 1.1), 30 * 1.1, 28 * 1.1);
+        }
+        else if (this.type == "giraffeMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(salem, 530, 1048, 30, 28, X - this.X + (1/2 * CCC.width) - (1/2 * 30 * 1.1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 28 * 1.1), 30 * 1.1, 28 * 1.1);
+        }
+        else if (this.type == "rawHyenaFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(salem, 602, 257, 24, 20, X - this.X + (1/2 * CCC.width) - (1/2 * 24 * 1.1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 20 * 1.1), 24 * 1.1, 20 * 1.1);
+        }
+        else if (this.type == "hyenaMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(salem, 628, 258, 24, 20, X - this.X + (1/2 * CCC.width) - (1/2 * 24 * 1.1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 20 * 1.1), 24 * 1.1, 20 * 1.1);
+        }
+        else if (this.type == "rawDogFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(salem, 607, 284, 20, 18, X - this.X + (1/2 * CCC.width) - (1/2 * 20 * 1.1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 18 * 1.1), 20 * 1.1, 18 * 1.1);
+        }
+        else if (this.type == "dogMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(salem, 628, 285, 20, 18, X - this.X + (1/2 * CCC.width) - (1/2 * 20 * 1.1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 18 * 1.1), 20 * 1.1, 18 * 1.1);
+        }
+        else if (this.type == "hyenaPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(salem, 225, 11, 54, 29, X - this.X + (1/2 * CCC.width) - (1/2 * 54 * 1.1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 29 * 1.1), 54 * 1.1, 29 * 1.1);
+        }
+        else if (this.type == "wildDogPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(salem, 166, 12, 54, 29, X - this.X + (1/2 * CCC.width) - (1/2 * 54 * 1.1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 29 * 1.1), 54 * 1.1, 29 * 1.1);
+        }
+        else if (this.type == "giraffePelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(salem, 370, 13, 128, 41, X - this.X + (1/2 * CCC.width) - (1/2 * 128 * 1.1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 41 * 1.1), 128 * 1.1, 41 * 1.1);
+        }
         else if (this.type == "xiumMushroom")
         {
             XXX.beginPath();
@@ -54329,6 +54943,86 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
+        else if (this.type == "gazelleHorn")
+        {
+            LXX.beginPath();
+            LXX.drawImage(jeru, 1300, 838, 14, 37, this.invX - (1/2 * 14 * 1.1), this.invY - (1/2 * 37 * 1.1), 14 * 1.1, 37 * 1.1);
+        }
+        else if (this.type == "gazellePelt")
+        {
+            LXX.beginPath();
+            LXX.drawImage(jeru, 2372, 880, 84, 41, this.invX - (1/2 * 84 * 0.95), this.invY - (1/2 * 41 * 0.95), 84 * 0.95, 41 * 0.95);
+        }
+        else if (this.type == "rawGazelleFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(jeru, 2575, 892, 30, 26, this.invX - (1/2 * 30 * 1.1), this.invY - (1/2 * 26 * 1.1), 30 * 1.1, 26 * 1.1);
+        }
+        else if (this.type == "gazelleMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(jeru, 2607, 894, 30, 26, this.invX - (1/2 * 30 * 1.1), this.invY - (1/2 * 26 * 1.1), 30 * 1.1, 26 * 1.1);
+        }
+        else if (this.type == "rawTaebjuurFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(jeru, 1409, 1150, 36, 29, this.invX - (1/2 * 36 * 1.1), this.invY - (1/2 * 29 * 1.1), 36 * 1.1, 29 * 1.1);
+        }
+        else if (this.type == "taebjuurMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(jeru, 1373, 1150, 36, 29, this.invX - (1/2 * 36 * 1.1), this.invY - (1/2 * 29 * 1.1), 36 * 1.1, 29 * 1.1);
+        }
+        else if (this.type == "holnArms")
+        {
+            LXX.beginPath();
+            LXX.drawImage(jeru, 278, 365, 56, 41, this.invX - (1/2 * 56 * 1), this.invY - (1/2 * 41 * 1), 56 * 1, 41 * 1);
+        }
+        else if (this.type == "rawGiraffeFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(salem, 499, 1047, 30, 28, this.invX - (1/2 * 30 * 1.1), this.invY - (1/2 * 28 * 1.1), 30 * 1.1, 28 * 1.1);
+        }
+        else if (this.type == "giraffeMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(salem, 530, 1048, 30, 28, this.invX - (1/2 * 30 * 1.1), this.invY - (1/2 * 28 * 1.1), 30 * 1.1, 28 * 1.1);
+        }
+        else if (this.type == "rawHyenaFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(salem, 602, 257, 24, 20, this.invX - (1/2 * 24 * 1.1), this.invY - (1/2 * 20 * 1.1), 24 * 1.1, 20 * 1.1);
+        }
+        else if (this.type == "hyenaMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(salem, 628, 258, 24, 20, this.invX - (1/2 * 24 * 1.1), this.invY - (1/2 * 20 * 1.1), 24 * 1.1, 20 * 1.1);
+        }
+        else if (this.type == "rawDogFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(salem, 607, 284, 20, 18, this.invX - (1/2 * 20 * 1.1), this.invY - (1/2 * 18 * 1.1), 20 * 1.1, 18 * 1.1);
+        }
+        else if (this.type == "dogMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(salem, 628, 285, 20, 18, this.invX - (1/2 * 20 * 1.1), this.invY - (1/2 * 18 * 1.1), 20 * 1.1, 18 * 1.1);
+        }
+        else if (this.type == "hyenaPelt")
+        {
+            LXX.beginPath();
+            LXX.drawImage(salem, 225, 11, 54, 29, this.invX - (1/2 * 54 * 1), this.invY - (1/2 * 29 * 1), 54 * 1, 29 * 1);
+        }
+        else if (this.type == "wildDogPelt")
+        {
+            LXX.beginPath();
+            LXX.drawImage(salem, 166, 12, 54, 29, this.invX - (1/2 * 54 * 1.1), this.invY - (1/2 * 29 * 1.1), 54 * 1.1, 29 * 1.1);
+        }
+        else if (this.type == "giraffePelt")
+        {
+            LXX.beginPath();
+            LXX.drawImage(salem, 370, 13, 128, 41, this.invX - (1/2 * 128 * 0.6), this.invY - (1/2 * 41 * 0.6), 128 * 0.6, 41 * 0.6);
+        }
         else if (this.type == "xiumMushroom")
         {
             LXX.beginPath();
@@ -60563,6 +61257,86 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "gazelleHorn")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jeru, 1300, 838, 14, 37, this.invX - (1/2 * 14 * 1.1), this.invY - (1/2 * 37 * 1.1), 14 * 1.1, 37 * 1.1);
+        }
+        else if (this.type == "gazellePelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jeru, 2372, 880, 84, 41, this.invX - (1/2 * 84 * 0.95), this.invY - (1/2 * 41 * 0.95), 84 * 0.95, 41 * 0.95);
+        }
+        else if (this.type == "rawGazelleFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jeru, 2575, 892, 30, 26, this.invX - (1/2 * 30 * 1.1), this.invY - (1/2 * 26 * 1.1), 30 * 1.1, 26 * 1.1);
+        }
+        else if (this.type == "gazelleMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jeru, 2607, 894, 30, 26, this.invX - (1/2 * 30 * 1.1), this.invY - (1/2 * 26 * 1.1), 30 * 1.1, 26 * 1.1);
+        }
+        else if (this.type == "rawTaebjuurFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jeru, 1409, 1150, 36, 29, this.invX - (1/2 * 36 * 1.1), this.invY - (1/2 * 29 * 1.1), 36 * 1.1, 29 * 1.1);
+        }
+        else if (this.type == "taebjuurMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jeru, 1373, 1150, 36, 29, this.invX - (1/2 * 36 * 1.1), this.invY - (1/2 * 29 * 1.1), 36 * 1.1, 29 * 1.1);
+        }
+        else if (this.type == "holnArms")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jeru, 278, 365, 56, 41, this.invX - (1/2 * 56 * 1), this.invY - (1/2 * 41 * 1), 56 * 1, 41 * 1);
+        }
+        else if (this.type == "rawGiraffeFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(salem, 499, 1047, 30, 28, this.invX - (1/2 * 30 * 1.1), this.invY - (1/2 * 28 * 1.1), 30 * 1.1, 28 * 1.1);
+        }
+        else if (this.type == "giraffeMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(salem, 530, 1048, 30, 28, this.invX - (1/2 * 30 * 1.1), this.invY - (1/2 * 28 * 1.1), 30 * 1.1, 28 * 1.1);
+        }
+        else if (this.type == "rawHyenaFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(salem, 602, 257, 24, 20, this.invX - (1/2 * 24 * 1.1), this.invY - (1/2 * 20 * 1.1), 24 * 1.1, 20 * 1.1);
+        }
+        else if (this.type == "hyenaMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(salem, 628, 258, 24, 20, this.invX - (1/2 * 24 * 1.1), this.invY - (1/2 * 20 * 1.1), 24 * 1.1, 20 * 1.1);
+        }
+        else if (this.type == "rawDogFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(salem, 607, 284, 20, 18, this.invX - (1/2 * 20 * 1.1), this.invY - (1/2 * 18 * 1.1), 20 * 1.1, 18 * 1.1);
+        }
+        else if (this.type == "dogMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(salem, 628, 285, 20, 18, this.invX - (1/2 * 20 * 1.1), this.invY - (1/2 * 18 * 1.1), 20 * 1.1, 18 * 1.1);
+        }
+        else if (this.type == "hyenaPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(salem, 225, 11, 54, 29, this.invX - (1/2 * 54 * 1), this.invY - (1/2 * 29 * 1), 54 * 1, 29 * 1);
+        }
+        else if (this.type == "wildDogPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(salem, 166, 12, 54, 29, this.invX - (1/2 * 54 * 1.1), this.invY - (1/2 * 29 * 1.1), 54 * 1.1, 29 * 1.1);
+        }
+        else if (this.type == "giraffePelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(salem, 370, 13, 128, 41, this.invX - (1/2 * 128 * 0.6), this.invY - (1/2 * 41 * 0.6), 128 * 0.6, 41 * 0.6);
         }
         else if (this.type == "xiumMushroom")
         {

@@ -38561,7 +38561,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
                 if (this.leadership == true && this.team != "player")
                 {
-                    console.log(this.packStrategy);
+                    //console.log(this.packStrategy);
                     if (this.target == player)
                     {
                         if (this.aiTimer > 6)
@@ -64324,7 +64324,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 if (Math.max(0, 30 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
                 {
-                    this.experience = 110 * ((player.getIntelligence() / 50) + 1);
+                    this.experience = 160 * ((player.getIntelligence() / 50) + 1);
                 }
                 else
                 {
@@ -64341,11 +64341,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 if (Math.max(0, 10 - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
                 {
-                    this.experience = 17 * ((player.getIntelligence() / 50) + 1);
+                    this.experience = 38 * ((player.getIntelligence() / 50) + 1);
                 }
                 else
                 {
-                    this.experience = 17 * ((player.getIntelligence() / 50) + 1) / 10;
+                    this.experience = 38 * ((player.getIntelligence() / 50) + 1) / 10;
                 }
 
                 this.drops = [[new Item("boulchomPelt", this.X, this.Y), 1], [new Item("rawBoulchomFlesh", this.X, this.Y), 1]];

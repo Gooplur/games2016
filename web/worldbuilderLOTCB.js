@@ -10,6 +10,47 @@ function worldBuilder()
     {
         player.dmx = map;
         player.underground = false;
+        //Layer 32 (hot tropical region): elev -4
+        //mapS32
+        if (Y > -330303.19 && Y < -319526 && X < 7687 && X > - 3901) //X0
+        {
+            elevation = -4;
+            region = "s32";
+            campout = true;
+            outlineBuilder( 34, 34, "prairy", -20, 1068);
+
+            outlineBuilder(2, 7, "outline", -19, 1068);
+            outlineBuilder(1, 4, "outline", -11, 1068);
+            outlineBuilder(2, 5, "outline", -5, 1068);
+            outlineBuilder(1, 6, "outline", 2, 1068);
+            outlineBuilder(1, 3, "outline", 10, 1068);
+
+            outlineBuilder(1, 3, "outline", -17, 1070);
+            outlineBuilder(1, 2, "outline", -10, 1069);
+            outlineBuilder(1, 2, "outline", -2, 1070);
+            outlineBuilder(2, 4, "outline", 5, 1069);
+
+            outlineBuilder(1, 1, "outline", 10, 1069);
+            outlineBuilder(1, 4, "outline", 4, 1071);
+        }
+        //Layer 31 (tropical region): elev -3
+        //mapS31
+        if ( Y > -320122.8 && Y < -309321.7 && X < 7687 && X > - 3901) //X0 //todo add this map
+        {
+            elevation = -3;
+            region = "s31";
+            campout = true;
+            outlineBuilder( 34, 34, "jungle", -20, 1034);
+        }
+        //Layer 30 (tropical region): elev -3
+        //mapS30
+        if (Y > -309958.45 && Y < -299132 && X < 7687 && X > - 3901) //X0 //todo add this map
+        {
+            elevation = -3;
+            region = "s30";
+            campout = true;
+            outlineBuilder( 34, 34, "outline", -20, 1000);
+        }
         //Layer -29 (tropical region): elev -3
         //mapS29
         if (Y > -299717.93 && Y < -288910.49 && X < 7687 && X > - 3901) //X0
@@ -19,7 +60,7 @@ function worldBuilder()
             campout = true;
             outlineBuilder( 34, 34, "jungle", -20, 966);
         }
-        //mapS28
+        //mapS28  (tropical region): elev -3
         if (Y > -289573.87 && Y < -278703.92 && X < 7687 && X > - 3901) //X0
         {
             elevation = -3;

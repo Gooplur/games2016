@@ -2317,9 +2317,33 @@ function cheats()
         {
             player.radiation += 90;
         }
+        else if (cheatcode == "jellz")
+        {
+            ArtificialIntelligenceAccess.push(new Unit(X + 400, Y, "Holn", false, "Zapper"));
+        }
+        else if (cheatcode == "jellzer")
+        {
+            ArtificialIntelligenceAccess.push(new Unit(X + 500, Y, "Holn", true, "Shocker"));
+        }
+        else if (cheatcode == "sharky")
+        {
+            ArtificialIntelligenceAccess.push(new Unit(X + 500, Y, "Taebjuur", true, "Saltfin"));
+        }
+        else if (cheatcode == "sharkypoo")
+        {
+            ArtificialIntelligenceAccess.push(new Unit(X + 400, Y, "Taebjuur", false, "Seafin"));
+        }
+        else if (cheatcode == "jaws")
+        {
+            ArtificialIntelligenceAccess.push(new Unit(X + 700, Y, "Taebjuur", "massive", "Seafin"));
+        }
         else if (cheatcode == "oozling")
         {
             ArtificialIntelligenceAccess.push(new Unit(X + 600, Y, "Xormid", true, "Sluba"));
+        }
+        else if (cheatcode == "curseTrap")
+        {
+            scenicList.push(new Scenery("wendigoCircle", X, Y, 2*Math.PI*Math.random(), true));
         }
         else if (cheatcode == "forget")
         {

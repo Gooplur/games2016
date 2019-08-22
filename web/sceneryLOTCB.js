@@ -22317,6 +22317,23 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 }
             }
 
+            var wendVic = false;
+            for (var j = 0; j < ArtificialIntelligenceAccess.length; j++)
+            {
+                if (ArtificialIntelligenceAccess[j].cannibal == true && ArtificialIntelligenceAccess[j].type == "Person" || ArtificialIntelligenceAccess[j].cannibal == true && ArtificialIntelligenceAccess[j].type == "Soldier")
+                {
+                    if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= this.radius + (3/4 * ArtificialIntelligenceAccess[j].sizeRadius) && !ArtificialIntelligenceAccess[j].underground && ArtificialIntelligenceAccess[j].dmx == this.dmx)
+                    {
+                        wendVic = ArtificialIntelligenceAccess[j];
+                        this.victim = "unit";
+                        if (this.tic < 5)
+                        {
+                            this.tic = 5;
+                        }
+                    }
+                }
+            }
+
             if (this.victim == "player")
             {
                 this.zIndex = 4;
@@ -22326,6 +22343,16 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 clearEquipped();
                 player.stunnedXV = true;
                 player.stunnedTime = 1;
+            }
+            if (this.victim == "unit")
+            {
+                this.zIndex = 4;
+                this.X = wendVic.X;
+                this.Y = wendVic.Y;
+                this.rotation = wendVic.rotation;
+
+                wendVic.stunX = true;
+                wendVic.stunTime = 1;
             }
 
             if (this.tic >= 5)
@@ -22499,6 +22526,14 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     player.form = "wendigo";
                     player.hunger = 10;
                     player.wendigoChange = "remaining";
+                    scenicList.splice(scenicList.indexOf(this), 1);
+                }
+                if (this.victim == "unit")
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Wendigo", Math.round(Math.random()), wendVic.ID));
+                    wendVic.killNotByPlayer = true;
+                    wendVic.health = -100;
+                    wendVic.invisible = true;
                     scenicList.splice(scenicList.indexOf(this), 1);
                 }
             }

@@ -1437,7 +1437,7 @@ function worldBuilder()
             elevation = 0;
             region = "s5w22";
             campout = true;
-            outlineBuilder(34, 34, "outline", -768, 150); //todo mistywoods
+            outlineBuilder(34, 34, "mistywoods", -768, 150);
 
             outlineBuilder( 1, 34, "brickRoad", -768, 165);
         }

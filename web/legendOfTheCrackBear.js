@@ -3458,7 +3458,9 @@ function theLegend()
         anastasiya: ["Anastasiya", 0],
         valia: ["Valia", 0],
         demyan: ["Demyan", 0],
-        tatiana: ["Tatiana", 0]
+        tatiana: ["Tatiana", 0],
+        slescher: ["Slescher", 0],
+        wernar: ["Wernar", 0]
     };
 
 //time Tracker Variables
@@ -3685,7 +3687,9 @@ function theLegend()
         valiaLDS: true,
         demyanLDS: true,
         tatianaLDS: true,
-        theWendigoLDS: true
+        theWendigoLDS: true,
+        slescherLDS: true,
+        wernarLDS: true
     };
 //QUESTS
     quests =

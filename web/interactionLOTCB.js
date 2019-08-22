@@ -2833,6 +2833,336 @@ function interaction(me)
                         }
                     }
 
+                    if (self.ID == "Wernar the Innkeeper" || conversationID[0] == "Wernar")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Wernar";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                if (player.raceName != "Freynor" && player.raceName != "Sylkeem")
+                                {
+                                    player.dialogueOptions = [["I'm looking for something to eat.", false, "a"], ["I'm looking for a drink.", false, "b"], ["How much for a room here?", false, "c"], ["Why is that table in the back discoloured?", false, "d"], ["Tell me about Cergadet...", false, "e"], ["What rumors are stirring?", false, "f"]];
+                                }
+                                else
+                                {
+                                    player.dialogueOptions = [["I'm looking for something to eat.", false, "a"], ["I'm looking for a drink.", false, "b"], ["How much for a room here?", false, "c"], ["How did you come across that Freydic table?", false, "d"], ["Tell me about Cergadet...", false, "e"], ["What rumors are stirring?", false, "f"]];
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "f")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0f";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            setMsg("Then you came to the right place! I serve only the finest of Thengan Cuisine...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            setMsg("Excellent! We serve the finest beer in the land, fresh from the grainfields of local hamlets. Cergadet has always been famous for fine santh grain ales, we serve none of that swill made from harst here.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            setMsg("The guest room is just around back, it will cost you 15 coins to spend the night there.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            if (player.raceName != "Freynor" && player.raceName != "Sylkeem")
+                            {
+                                setMsg("Ha! Discoloured! As if... in his youth my grandfather bravely traveled through the far northern lands. That table is of Freydic design he brought it back with him as a reminder of his journeys. Its been in this inn since I was just a boy.");
+                            }
+                            else
+                            {
+                                setMsg("In his youth my grandfather bravely traveled through the far northern lands. He brought that table back with him as a reminder of his journeys. Its been in this inn since I was just a boy.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            //text dialogue
+                            setMsg("Cergadet may be small but this region has always had an important influance on Thengaria's cultural heritage. Our people invented sausage making, and the most characteristic santh brews of Thengaria! Cergadet has fresh and bountiful produce, sure Cranheim to the east controls a larger share of the aggricultural market, but we have them cornered on quality! On top of all of the other ways Cergadet is the obvious cultural center of Thengaria, we are famous for the fox pelt trade... People come here and leave rich from trapping foxes!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0f")
+                        {
+                            //text dialogue
+                            if (player.title == "Nobility" || player.title == "Royalty")
+                            {
+                                if (player.raceName == "Vardan")
+                                {
+                                    if (player.gender == "Female")
+                                    {
+                                        setMsg("Why countess, the talk of the town is that you are here dining in my inn...");
+                                    }
+                                    else
+                                    {
+                                        setMsg("Why lord count, the talk of the town is that you are here dining in my inn...");
+                                    }
+                                }
+                                else
+                                {
+                                    if (player.gender == "Female")
+                                    {
+                                        setMsg("Your ladyship, you should know that the Schwarza Forest to the west is extremely dangerous, many people have dissapeared after heading through there and have never returned. All that awaits you in the west is plague, death, and monsters...");
+                                    }
+                                    else
+                                    {
+                                        setMsg("Your lordship, you should know that the Schwarza Forest to the west is extremely dangerous, many people have dissapeared after heading through there and have never returned. All that awaits you in the west is plague, death, and monsters...");
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                if (player.raceName == "Vardan")
+                                {
+                                    setMsg("The rumor is that your kind are swarming across my king's land in droves, bringing plague and desolation in their wake... but you seem like one of the good ones!");
+                                }
+                                else
+                                {
+                                    if (player.fame > 15)
+                                    {
+                                        if (player.gender == "Female")
+                                        {
+                                            setMsg("Believe it or not, I heard that that famous " + player.class + ", " + player.name + ", was in town! I hope she comes through my inn while she's here...");
+                                        }
+                                        else
+                                        {
+                                            setMsg("Believe it or not, I heard that that famous " + player.class + ", " + player.name + ", was in town! I hope he comes through my inn while he's here...");
+                                        }
+                                    }
+                                    else
+                                    {
+                                        setMsg("I heard that a group of folks heading west to Rauke were swallowed by the evil spirits that lurk in the Schwarza Forest. Only one of them came back and she died shortly after, they found her in her bed... she was blue with cold and her face was stricken with fear. Or so they say... I haven't seen her myself. I have just one piece of advise for you if you plan to travel west. Never set foot off of main road, not even a little bit!");
+                                    }
+                                }
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 1)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                if (have("coins", 15))
+                                {
+                                    player.dialogueOptions = [["I'll take it. [give 15 coins]", false, "a"], ["Nevermind actually...", false, "b"]];
+                                }
+                                else
+                                {
+                                    player.dialogueOptions = [["I can't afford that at the moment.", false, "b"]];
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1b";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1a")
+                        {
+                            //text dialogue
+                            setMsg("I hope you enjoy your stay!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                take("coins", 15);
+                                sleep();
+                                X = 257657.02667833227;
+                                Y = -58048.03635137976;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                                reiniciar();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1b")
+                        {
+                            //text dialogue
+                            setMsg("That's alright, maybe later!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
                     if (self.ID == "Mendel the Banker" || conversationID[0] == "Mendel")
                     {
                         lowBar = "dialogue";

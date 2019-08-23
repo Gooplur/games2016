@@ -1355,6 +1355,11 @@ function applySelectionsButton()
                 Y = 467;
             }
         }
+        else if (player.raceName == "Cephrite")
+        {
+            X = 3550;
+            Y = -342789;
+        }
         else if (player.raceName == "Sylkeem")
         {
             X = -15046;
@@ -1466,14 +1471,23 @@ function applySelectionsButton()
             player.creditRating = 0.05;
         }
 
-        //orgell race gets cheaper interest rates while aldrekii and Zetians get higher ones
-        if (player.raceName == "Orgell")
+        //orgell, Nirwaden and cephrians get higher interest rates while aldrekii and Zetians get lower ones
+
+        if (player.raceName == "Cephrite")
+        {
+            player.interestRate = 0.28;
+        }
+        else if (player.raceName == "Orgell")
         {
             player.interestRate = 0.26;
         }
         else if (player.raceName == "Nirwaden")
         {
             player.interestRate = 0.21;
+        }
+        else if (player.raceName == "Zetian")
+        {
+            player.interestRate = 0.15;
         }
         else if (player.raceName == "Aldrek")
         {

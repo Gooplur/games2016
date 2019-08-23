@@ -596,6 +596,8 @@ function Adventurer()
     this.wendigo = false;
     this.wendigoChange = false;
     this.glassed = false;
+    this.eyeShut = false;
+    this.eyeLock = false;
 
         //faction variables
     this.factionToggle = false;
@@ -1904,7 +1906,7 @@ function Adventurer()
         this.blinder = function()
         {
             //Blinded
-            if (new Date().getTime() - this.blindedStoreTime <= this.blindedTime * 1000 || this.intelligence < -15 && this.brainMaggots == true || this.unconscious)
+            if (new Date().getTime() - this.blindedStoreTime <= this.blindedTime * 1000 || this.intelligence < -15 && this.brainMaggots == true || this.unconscious || this.eyeShut == true)
             {
                 this.blinded = true;
             }
@@ -3891,6 +3893,23 @@ function Adventurer()
                 region = "luominene";
                 change = "luominene";
                 player.dmx = "luominene";
+            }
+
+            if (pKey == true) //the player can close their eyes on command
+            {
+                this.eyeShut = true;
+                this.eyeLock = false;
+                if (shiftKey == true)
+                {
+                    this.eyeLock = true;
+                }
+            }
+            else
+            {
+                if (this.eyeLock == false)
+                {
+                    this.eyeShut = false;
+                }
             }
         };
 
@@ -36223,6 +36242,17 @@ function Adventurer()
                             }
                         }
                     }
+                    else if (Inventory[i][0].utility == "trinket")
+                    {
+                        if (Inventory[i][0].ability == "blinkOrb")
+                        {
+                            this.blinded = true;
+                            this.blindedStoreTime = new Date().getTime();
+                            this.blindedTime = Math.max(player.blindedTime, 1);
+                            X = X + spacer(500);
+                            Y = Y + spacer(500);
+                        }
+                    }
                     else if (Inventory[i][0].utility == "food")
                     {
                         //Eating/Drinking
@@ -39014,6 +39044,13 @@ function Adventurer()
                         XXX.fillStyle = "black";
                         XXX.textAlign="left"; //this is to reset it to the standard for the rest to come.
                         XXX.fillText("      Utility", 157, 514);
+                    }
+                    else if (Inventory[i][0].utility == "trinket")
+                    {
+                        XXX.font="14px Book Antiqua";
+                        XXX.fillStyle = "black";
+                        XXX.textAlign="left"; //this is to reset it to the standard for the rest to come.
+                        XXX.fillText("      Trinket", 157, 514);
                     }
                     else if (Inventory[i][0].utility == "trap")
                     {

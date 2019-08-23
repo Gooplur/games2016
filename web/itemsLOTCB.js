@@ -4048,7 +4048,7 @@ function Item(type, x, y)
         else if (this.type == "skriatokEssence")
         {
             //For All Items
-            this.identity = "SkriatokEssence";
+            this.identity = "Skriatok Essence";
             this.weight = 0.001;
             this.size = 9;
             this.description = "The faded silky essence of a skriatok.";
@@ -21254,7 +21254,7 @@ function Item(type, x, y)
             this.identity = "Potion of Energizing";
             this.weight = 0.5;
             this.size = 5;
-            this.description = "The smooth syrup thick yellow liquid ripples quickly; you can feel the vibrations it makes through its glass container.";
+            this.description = "The smooth syrupy thick yellow liquid ripples quickly; you can feel the vibrations it makes through its glass container.";
             this.intForDes = 41;
             this.intDescription = "This potion restores your energy slowly over time.";
 
@@ -21290,7 +21290,7 @@ function Item(type, x, y)
             this.identity = "Potion of Energizing II";
             this.weight = 0.5;
             this.size = 5;
-            this.description = "The smooth syrup thick yellow liquid ripples rapidly; you can feel the sharp vibrations it makes through the glass.";
+            this.description = "The smooth syrupy thick yellow liquid ripples rapidly; you can feel the sharp vibrations it makes through the glass.";
             this.intForDes = 41;
             this.intDescription = "This potion restores your energy over time.";
 
@@ -21319,6 +21319,42 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 300 - Math.floor(player.getCharisma() / 1); // at max, buy for 250.
             this.sellValue = 200 + Math.floor(player.getCharisma() / 1); // at max, sell for 250.
+        }
+        else if (this.type == "energyPotionIII")
+        {
+            //For All Items
+            this.identity = "Potion of Energizing III";
+            this.weight = 0.5;
+            this.size = 5;
+            this.description = "The smooth syrupy thick yellow liquid ripples rapidly; you can feel the sharp vibrations it makes through the glass.";
+            this.intForDes = 41;
+            this.intDescription = "This potion restores your energy over time.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["potionGlass", 1]];
+
+            //Utility Focused
+            this.isRegenerative = true; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 1; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "energyIII";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 33;
+            this.ingredients = [["Vial of Water", 1], ["Neprilne Berries", 3], ["Raw Wolf Liver", 1], ["Tylun Flower", 3], ["Honey", 1], ["Fermented Narthwarp Mouth", 1], ["Lizard Tail", 2]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 450 - Math.floor(player.getCharisma() / 1); // at max, buy for 400.
+            this.sellValue = 350 + Math.floor(player.getCharisma() / 1); // at max, sell for 400.
         }
         else if (this.type == "energilPotionI")
         {
@@ -21427,6 +21463,42 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 225 - Math.floor(player.getCharisma() / 1); // at max, buy for 175.
             this.sellValue = 95 + Math.floor(player.getCharisma() / 2); // at max, sell for 120.
+        }
+        else if (this.type == "speedPotionII")
+        {
+            //For All Items
+            this.identity = "Elixer of Dexterity II";
+            this.weight = 0.5;
+            this.size = 5;
+            this.description = "A glimmering yellow liquid swirls around rapidly in the glass as if it itself is restless.";
+            this.intForDes = 0;
+            this.intDescription = "This potion magically enhances your dexterity.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["potionGlass", 1]];
+
+            //Utility Focused
+            this.isRegenerative = true; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 1; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "speedII";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 36;
+            this.ingredients = [["Vial of Water", 1], ["Raw Wolf Liver", 1], ["Tylun Flower", 2], ["Viper Snake Skin", 2], ["Honey", 1], ["Fermented Narthwarp Mouth", 1], ["Lizard Tail", 2]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 325 - Math.floor(player.getCharisma() / 1); // at max, buy for 275.
+            this.sellValue = 195 + Math.floor(player.getCharisma() / 2); // at max, sell for 220.
         }
         else if (this.type == "reconstructionPotion")
         {
@@ -21680,6 +21752,42 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 1000 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 900.
             this.sellValue = 700 + Math.floor(player.getCharisma() / 0.25); // at max, sell for 900.
+        }
+        else if (this.type == "mindPotionII")
+        {
+            //For All Items
+            this.identity = "Mind Elixer II";
+            this.weight = 0.5;
+            this.size = 5;
+            this.description = "The liquid seems almost to float within the glass, softly bubbling.";
+            this.intForDes = 0;
+            this.intDescription = "This potion magically enhances your intelligence as well as your willpower and memory.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["potionGlass", 1]];
+
+            //Utility Focused
+            this.isRegenerative = true; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 6; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 8; //restores will.
+
+            //ability
+            this.ability = "mindII";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 42;
+            this.ingredients = [["Ut Extract", 1], ["Tylun Flower", 3], ["Honey", 1], ["Lizard Tail", 2], ["Sesre Stamen", 1], ["Palnt Flower", 3]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1100 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 1000.
+            this.sellValue = 800 + Math.floor(player.getCharisma() / 0.25); // at max, sell for 1000.
         }
         else if (this.type == "utExtract")
         {
@@ -27187,6 +27295,33 @@ function Item(type, x, y)
             this.buyValue = 2000 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 1900.
             this.sellValue = 1700 + Math.floor(player.getCharisma() / 0.25); // at max, sell for 1900.
         }
+        else if (this.type == "blinkOrb")
+        {
+            //For All Items
+            this.identity = "Blink Orb";
+            this.weight = 5;
+            this.size = 10;
+            this.description = "A small black orb that buzzes with a low magical hum.";
+            this.intForDes = 5;
+            this.intDescription = "Using this orb allows you to teleport at a short range if the user has 2+ eminence.";
+
+            //Define Utility
+            this.utility = "trinket";
+
+            //ability
+            if (player.getEminence() >= 2)
+            {
+                this.ability = "blinkOrb";
+            }
+            else
+            {
+                this.ability = "none";
+            }
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 200 - Math.floor(player.getCharisma() / 1); // at max, buy for 150.
+            this.sellValue = 50 + Math.floor(player.getCharisma() / 0.5); // at max, sell for 150.
+        }
         else if (this.type == "wool")
         {
             //For All Items
@@ -28676,10 +28811,10 @@ function Item(type, x, y)
         else if (this.type == "holnArms")
         {
             //For All Items
-            this.identity = "Holn Arms";
+            this.identity = "Holn Lappets";
             this.weight = 9;
             this.size = 14;
-            this.description = "The flat glassy, slimey electrified arms of a holn.";
+            this.description = "The flat glassy, slimy electrified lappets of a holn.";
             this.intForDes = 34;
             this.intDescription = "These are an important ingrediant in the production of spell oil.";
 
@@ -48595,6 +48730,11 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "blinkOrb")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mofu, 123, 67, 10, 9, X - this.X + (1/2 * CCC.width) - (1/2 * 10 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 9 * 1), 10 * 1, 9 * 1);
+        }
         else if (this.type == "gazelleHorn")
         {
             XXX.beginPath();
@@ -48873,7 +49013,7 @@ function Item(type, x, y)
         else if (this.type == "skriatokEssence")
         {
             XXX.beginPath();
-            XXX.drawImage(tomb, 282, 7, 62, 61, X - this.X + (1/2 * CCC.width) - (1/2 * 62 * 0.45), Y - this.Y + (1/2 * CCC.height) - (1/2 * 61 * 0.45), 62 * 0.45, 61 * 0.45);
+            XXX.drawImage(tomb, 2199, 877, 55, 49, X - this.X + (1/2 * CCC.width) - (1/2 * 55 * 0.45), Y - this.Y + (1/2 * CCC.height) - (1/2 * 49 * 0.45), 55 * 0.45, 49 * 0.45);
         }
         else if (this.type == "cheshirePaw")
         {
@@ -54331,12 +54471,12 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(oldverse, 2737, 2, 29, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 92.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 51.2), 92.8, 51.2);
         }
-        else if (this.type == "energyPotionI" || this.type == "energyPotionII")
+        else if (this.type == "energyPotionI" || this.type == "energyPotionII" || this.type == "energyPotionIII")
         {
             XXX.beginPath();
             XXX.drawImage(verse, 38, 267, 10, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 10), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17), 10, 17);
         }
-        else if (this.type == "speedPotionI")
+        else if (this.type == "speedPotionI" || this.type == "speedPotionII")
         {
             XXX.beginPath();
             XXX.drawImage(verse, 86, 134, 10, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 10), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17), 10, 17);
@@ -54943,6 +55083,11 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
+        else if (this.type == "blinkOrb")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mofu, 123, 67, 10, 9, this.invX - (1/2 * 10 * 1), this.invY - (1/2 * 9 * 1), 10 * 1, 9 * 1);
+        }
         else if (this.type == "gazelleHorn")
         {
             LXX.beginPath();
@@ -55221,7 +55366,7 @@ function Item(type, x, y)
         else if (this.type == "skriatokEssence")
         {
             LXX.beginPath();
-            LXX.drawImage(tomb, 282, 7, 62, 61, this.invX - (1/2 * 62 * 0.45), this.invY - (1/2 * 61 * 0.45), 62 * 0.45, 61 * 0.45);
+            LXX.drawImage(tomb, 2199, 877, 55, 49, this.invX - (1/2 * 55 * 0.45), this.invY - (1/2 * 49 * 0.45), 55 * 0.45, 49 * 0.45);
         }
         else if (this.type == "cheshirePaw")
         {
@@ -60677,12 +60822,12 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(oldverse, 2737, 2, 29, 16, this.invX - (1/2 * 58), this.invY - (1/2 * 32), 58, 32);
         }
-        else if (this.type == "energyPotionI" || this.type == "energyPotionII")
+        else if (this.type == "energyPotionI" || this.type == "energyPotionII" || this.type == "energyPotionIII")
         {
             LXX.beginPath();
             LXX.drawImage(verse, 38, 267, 10, 17, this.invX - (1/2 * 10), this.invY - (1/2 * 17), 10, 17);
         }
-        else if (this.type == "speedPotionI")
+        else if (this.type == "speedPotionI" || this.type == "speedPotionII")
         {
             LXX.beginPath();
             LXX.drawImage(verse, 86, 134, 10, 17, this.invX - (1/2 * 10), this.invY - (1/2 * 17), 10, 17);
@@ -61258,6 +61403,11 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
+        else if (this.type == "blinkOrb")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mofu, 123, 67, 10, 9, this.invX - (1/2 * 10 * 1), this.invY - (1/2 * 9 * 1), 10 * 1, 9 * 1);
+        }
         else if (this.type == "gazelleHorn")
         {
             XXX.beginPath();
@@ -61536,7 +61686,7 @@ function Item(type, x, y)
         else if (this.type == "skriatokEssence")
         {
             XXX.beginPath();
-            XXX.drawImage(tomb, 282, 7, 62, 61, this.invX - (1/2 * 62 * 0.45), this.invY - (1/2 * 61 * 0.45), 62 * 0.45, 61 * 0.45);
+            XXX.drawImage(tomb, 2199, 877, 55, 49, this.invX - (1/2 * 55 * 0.45), this.invY - (1/2 * 49 * 0.45), 55 * 0.45, 49 * 0.45);
         }
         else if (this.type == "cheshirePaw")
         {
@@ -66986,12 +67136,12 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(oldverse, 2737, 2, 29, 16, this.invX - (1/2 * 58), this.invY - (1/2 * 32), 58, 32);
         }
-        else if (this.type == "energyPotionI" || this.type == "energyPotionII")
+        else if (this.type == "energyPotionI" || this.type == "energyPotionII" || this.type == "energyPotionIII")
         {
             XXX.beginPath();
             XXX.drawImage(verse, 38, 267, 10, 17, this.invX - (1/2 * 10), this.invY - (1/2 * 17), 10, 17);
         }
-        else if (this.type == "speedPotionI")
+        else if (this.type == "speedPotionI" || this.type == "speedPotionII")
         {
             XXX.beginPath();
             XXX.drawImage(verse, 86, 134, 10, 17, this.invX - (1/2 * 10), this.invY - (1/2 * 17), 10, 17);

@@ -10,6 +10,40 @@ function worldBuilder()
     {
         player.dmx = map;
         player.underground = false;
+        //Layer 34 (hot tropical region): elev -4
+        //mapS34 //Holuim City
+        if (Y > -350716 && Y < -339932 && X < 7687 && X > - 3901) //X0
+        {
+            elevation = -4;
+            region = "s34";
+            campout = false;
+            outlineBuilder( 34, 34, "prairy", -20, 1136);
+            outlineBuilder(9, 14, "cephrianTile", -13, 1142);
+            outlineBuilder(1, 16, "cephrianRoad", -14, 1141);
+            outlineBuilder(10, 1, "cephrianRoad", -14, 1142);
+            outlineBuilder(1, 15, "cephrianRoad", -13, 1151);
+            outlineBuilder(9, 1, "cephrianRoad", 1, 1142);
+            outlineBuilder(1, 6, "cephrianRoad", -20, 1149);
+            outlineBuilder(1, 12, "cephrianRoad", 2, 1143);
+
+            outlineBuilder(9, 1, "cephrianRoad", -9, 1142);
+            outlineBuilder(7, 1, "cephrianRoad", -6, 1142);
+            outlineBuilder(7, 1, "cephrianRoad", -2, 1142);
+
+            outlineBuilder(1, 3, "cephrianRoad", -5, 1148);
+
+            outlineBuilder(1, 4, "cephrianRoad", -13, 1144);
+            outlineBuilder(1, 4, "cephrianRoad", -13, 1147);
+        }
+        //Layer 33 (hot tropical region): elev -4
+        //mapS33
+        if (Y > -340527 && Y < -329725 && X < 7687 && X > - 3901) //X0
+        {
+            elevation = -4;
+            region = "s33";
+            campout = true;
+            outlineBuilder( 34, 34, "prairy", -20, 1102);
+        }
         //Layer 32 (hot tropical region): elev -4
         //mapS32
         if (Y > -330303.19 && Y < -319526 && X < 7687 && X > - 3901) //X0
@@ -1140,6 +1174,7 @@ function worldBuilder()
             region = "s7w27";
             campout = true;
             outlineBuilder(34, 34, "mistywoods", -938, 218);
+            outlineBuilder( 1, 1, "sea", -917, 222);
 
             outlineBuilder( 1, 34, "brickRoad", -938, 234);
         }
@@ -3205,7 +3240,11 @@ function worldBuilder()
         region = "skriatok";
         campout = true;
 
-        if (skriatokX > 27192)
+        if (skriatokX > 128465)
+        {
+            outlineBuilder(90, 90, "mistywoods", -45 + Math.round(skriatokX / 300) * -1, -45 + Math.round(skriatokY / 300) * -1);
+        }
+        else if (skriatokX > 27192)
         {
             outlineBuilder(90, 90, "woods", -45 + Math.round(skriatokX / 300) * -1, -45 + Math.round(skriatokY / 300) * -1);
         }
@@ -3666,6 +3705,14 @@ function outlineBuilder(width, length, terrain, extraX, extraY)
                 else if (terrain == "vardanianWetland")
                 {
                     XXX.drawImage(vardanianWetland, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "cephrianRoad")
+                {
+                    XXX.drawImage(cephRoad, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "cephrianTile")
+                {
+                    XXX.drawImage(cephTile, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
                 }
                 else if (terrain == "zetianStone")
                 {

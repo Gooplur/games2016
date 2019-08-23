@@ -13,7 +13,6 @@
 //todo name the smaller misty woods The Schwarza Woods
 //todo add Cranheim (city)
 //todo add Cergadet (town)
-//todo fill in The Dermohr Forest
 //todo fill in the plains and farmlands around Cergadet
 //todo fill in The Schwarza Woods
 
@@ -32,8 +31,6 @@
 //todo add kellish dolls
 
 //Isles Update
-//todo add shark-like creatures with crazy pointed teeth called 'Taebure'
-//todo add northern jellyfish creatures called 'Holn' -- they electrocute and stun their victim and when they die are converting into a scenery object that can be collected with gloves to avoid the same stun shock which would result in getting 'holn lappets' (the tentacle-like stuff)
 //todo add a scenery object that mimics the dead versions of the jellyfish monster
 //todo add Frajek Island in elevation 2 area and put a city there
 //todo add a small northern island with a village
@@ -1265,6 +1262,14 @@ function envPack()
     prairyEnv.src = ("images/prairyEnv.png");
     window.prairyEnv = prairyEnv;
 
+    var cephTile = new Image();
+    cephTile.src = ("images/cephTile.jpg");
+    window.cephTile = cephTile;
+
+    var cephRoad = new Image();
+    cephRoad.src = ("images/cephRoad.jpg");
+    window.cephRoad = cephRoad;
+
     var savannahDirtEnv = new Image();
     savannahDirtEnv.src = ("images/savannahDirt.png");
     window.savannahDirtEnv = savannahDirtEnv;
@@ -2450,6 +2455,7 @@ var perfectArmour = false;
 var foePerfectArmour = false;
 var xKey = false;
 var lKey = false;
+var pKey = false;
 var cyberArTog = false;
 var buildMode = false;
 var buildToggle = 0;
@@ -2984,6 +2990,11 @@ function keyReleased(event)
     {
         yKey = false;
     }
+
+    if (key == 80)
+    {
+        pKey = false;
+    }
 }
 //when a key is held down
 function keyHeld(event)
@@ -3148,6 +3159,11 @@ function keyHeld(event)
     if (key == 89)
     {
         yKey = true;
+    }
+
+    if (key == 80)
+    {
+        pKey = true;
     }
 }
 
@@ -3460,7 +3476,15 @@ function theLegend()
         demyan: ["Demyan", 0],
         tatiana: ["Tatiana", 0],
         slescher: ["Slescher", 0],
-        wernar: ["Wernar", 0]
+        wernar: ["Wernar", 0],
+        yalt: ["Yalt", 0],
+        ishrahim: ["Ishrahim", 0],
+        tchlib: ["Tchlib", 0],
+        baylem: ["Baylem", 0],
+        liehthet: ["Liehthet", 0],
+        lafette: ["Lafette", 0],
+        almadin: ["Almadin", 0],
+        alfonz: ["Alfonz", 0]
     };
 
 //time Tracker Variables
@@ -3493,6 +3517,7 @@ function theLegend()
     key0 = false;
     tildKey = false;
     rKey = false;
+    pKey = false;
 
 //DEVELOPMENTAL VARIABLES (variables for the developer to use)
 //Locational
@@ -3689,7 +3714,15 @@ function theLegend()
         tatianaLDS: true,
         theWendigoLDS: true,
         slescherLDS: true,
-        wernarLDS: true
+        wernarLDS: true,
+        yaltLDS: true,
+        ishrahimLDS: true,
+        tchlibLDS: true,
+        baylemLDS: true,
+        liehthetLDS: true,
+        lafetteLDS: true,
+        almadinLDS: true,
+        alfonzLDS: true
     };
 //QUESTS
     quests =

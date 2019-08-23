@@ -42667,14 +42667,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             //AI
             if (this.alive == true)
             {
-                if (this.alpha == true)
-                {
-                    this.Attack(0, 0);
-                }
-                else
-                {
-                    this.Attack(0, 0);
-                }
+                //if (this.alpha == true)
+                //{
+                //    this.Attack(0, 0);
+                //}
+                //else
+                //{
+                //    this.Attack(0, 0);
+                //}
 
                 //this.deathChecker();
                 this.disturbedTimer();
@@ -42743,6 +42743,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     {
                         if (player.blinded != true && this.silvered != true && player.silvered != true)
                         {
+                            this.Attack(0, 0);
                             this.pointTowardsPlayer();
                             this.moveInRelationToPlayer();
                         }
@@ -42756,6 +42757,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     {
                         if (this.target.blinded != true && this.silvered != true && this.target.silvered != true)
                         {
+                            this.Attack(0, 0);
                             this.pointTowards(this.target);
                             this.moveInRelationToThing(this.target);
                         }
@@ -42765,6 +42767,24 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             this.moveInRelationToThing(this.target);
                         }
                     }
+                }
+                else
+                {
+                    if (this.target == player)
+                    {
+                        if (player.blinded != true && this.silvered != true && player.silvered != true)
+                        {
+                            this.Attack(0, 0);
+                        }
+                    }
+                    else if (this.target != "none")
+                    {
+                        if (this.target.blinded != true && this.silvered != true && this.target.silvered != true)
+                        {
+                            this.Attack(0, 0);
+                        }
+                    }
+
                 }
             }
 
@@ -43861,7 +43881,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
                 this.moving = false;
 
-                this.health += 0.04;
+                if (this.health < this.healthMAX)
+                {
+                    this.health += 0.04;
+                }
+                else
+                {
+                    this.health = this.healthMAX;
+                }
 
                 if (this.deerTear != true)
                 {
@@ -84407,6 +84434,142 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         if (this.ID != "Jarl Rannuk Stambjord" && this.ID != "Ukko, Sage of Gemesh")
                         {
                             this.switchToRanged("longbow");
+                        }
+                    }
+                }
+                else if (this.ultra.faction == "Cephrite")
+                {
+                    if (this.ID == "Blackwood Soldier" || this.ID == "Blackwood Captain")
+                    {
+                        //RANGE OF SIGHT (anything related to range of sight)
+                        this.rangeOfSightCalculator(700, true);
+
+                        //All of this factions guards drop this:
+                        this.drops = [[new Item("coins", this.X, this.Y), 10 + Math.floor(Math.random() * 34)]];
+
+                        lights.push({X:this.X, Y: this.Y, size: 165, extraStops: true, GRD: 0.5, Alpha: 0.8, showMe: false});
+                        // If the target has too low a level of relations with the faction they are an enemy.
+                        if (player.cephriteFaction <= -50)
+                        {
+                            if (player.title != "Royalty" && player.title != "Nobility" || player.raceName != this.ultra.faction || player.cephriteFaction <= -500)
+                            {
+                                this.disturbed = true;
+                            }
+                            else if (this.health >= this.healthMAX * 5/6 && player.title == "Royalty" && player.raceName == this.ultra.faction || this.health >= this.healthMAX * 5/6 && player.title == "Nobility" && player.raceName == this.ultra.faction)
+                            {
+                                this.disturbed = false;
+                            }
+                        }
+                        else if (this.health >= this.healthMAX * 5/6 && player.title == "Royalty" && player.raceName == this.ultra.faction || this.health >= this.healthMAX * 5/6 && player.title == "Nobility" && player.raceName == this.ultra.faction)
+                        {
+                            this.disturbed = false;
+                        }
+
+                        //Call for help from other guards unless the culprit is the royal leader.
+                        if (this.disturbed == true)
+                        {
+                            if (player.title != "Royalty" && player.title != "Nobility" || player.raceName != this.ultra.faction)
+                            {
+                                this.callForNearbyHelpFromType(2000, "Soldier");
+                            }
+                        }
+                    }
+                    else if (this.ID == "Blackwood Paladin" || this.ID == "High Magus Almadin Blackwood" || this.ID == "High Magus Lafette Blackwood") //no ranged attack
+                    {
+                        //RANGE OF SIGHT (anything related to range of sight)
+                        this.rangeOfSightCalculator(1000, false);
+
+                        //All of this factions guards drop this:
+                        if (this.ID == "High Magus Almadin Blackwood")
+                        {
+                            this.drops = [[new Item("coins", this.X, this.Y), 5000], [new Item("magusRobesM", this.X, this.Y), 1], [new Item("eruption", this.X, this.Y), 1], [new Item("flamingMissiles", this.X, this.Y), 1]];
+                        }
+                        else if (this.ID == "High Magus Lafette Blackwood")
+                        {
+                            this.drops = [[new Item("coins", this.X, this.Y), 2500], [new Item("magusRobesF", this.X, this.Y), 1], [new Item("sanctuary", this.X, this.Y), 1], [new Item("charm", this.X, this.Y), 1], [new Item("electricBolt", this.X, this.Y), 1]];
+                        }
+                        else
+                        {
+                            this.drops = [[new Item("coins", this.X, this.Y), 86 + Math.floor(Math.random() * 87)]];
+                        }
+
+                        lights.push({X:this.X, Y: this.Y, size: 200, extraStops: true, GRD: 0.6, Alpha: 0.85, showMe: false});
+                        // If the target has too low a level of relations with the faction they are an enemy.
+                        if (player.cephriteFaction <= -50)
+                        {
+                            if (player.title != "Royalty" && player.title != "Nobility" || player.raceName != this.ultra.faction || player.cephriteFaction <= -500)
+                            {
+                                this.disturbed = true;
+                            }
+                            else if (this.health >= this.healthMAX * 5/6 && player.title == "Royalty" && player.raceName == this.ultra.faction|| this.health >= this.healthMAX * 5/6 && player.title == "Nobility" && player.raceName == this.ultra.faction)
+                            {
+                                this.disturbed = false;
+                            }
+                        }
+                        else if (this.health >= this.healthMAX * 5/6 && player.title == "Royalty" && player.raceName == this.ultra.faction|| this.health >= this.healthMAX * 5/6 && player.title == "Nobility" && player.raceName == this.ultra.faction)
+                        {
+                            this.disturbed = false;
+                        }
+
+                        //Call for help from other guards unless the culprit is the royal leader.
+                        if (this.disturbed == true)
+                        {
+                            if (player.title != "Royalty" && player.title != "Nobility" || player.raceName != this.ultra.faction)
+                            {
+                                this.callForNearbyHelpFromType(2500, "Soldier");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        //RANGE OF SIGHT (anything related to range of sight)
+                        this.rangeOfSightCalculator(650, true);
+
+                        //All of this factions guards drop this:
+                        if (this.ID == "Alfonz the Mercenary")
+                        {
+                            this.drops = [[new Item("coins", this.X, this.Y), 29 + Math.floor(Math.random() * 31)]];
+                        }
+                        else
+                        {
+                            this.drops = [];
+                        }
+
+
+                        lights.push({X:this.X, Y: this.Y, size: 150, extraStops: true, GRD: 0.5, Alpha: 0.8, showMe: false});
+
+
+                        // If the target has too low a level of relations with the faction they are an enemy.
+                        if (player.cephriteFaction <= -50)
+                        {
+                            if (player.title != "Royalty" || player.raceName != this.ultra.faction || player.cephriteFaction <= -500)
+                            {
+                                this.disturbed = true;
+                            }
+                            else if (this.health >= this.healthMAX * 5/6 && player.title == "Royalty" && player.raceName == this.ultra.faction)
+                            {
+                                this.disturbed = false;
+                            }
+                        }
+                        else if (this.health >= this.healthMAX * 5/6 && player.title == "Royalty" && player.raceName == this.ultra.faction)
+                        {
+                            this.disturbed = false;
+                        }
+
+                        //Call for help from other guards unless the culprit is the royal leader.
+                        if (this.disturbed == true)
+                        {
+                            if (player.title != "Royalty" || player.raceName != this.ultra.faction)
+                            {
+                                if (this.ID == "Alfonz the Mercenary")
+                                {
+                                    this.callForNearbyHelpFromType(2300, "Soldier");
+                                }
+                                else
+                                {
+                                    this.callForNearbyHelpFromType(2000, "Soldier");
+                                }
+                            }
                         }
                     }
                 }

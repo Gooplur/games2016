@@ -2728,6 +2728,13 @@ function sceneryOperationsManager(z)
                     {
                         scenicList[i].operations();
                     }
+                    else if (scenicList[i].type == "fog" || scenicList[i].type == "lowFog" || scenicList[i].type == "highFog")
+                    {
+                        if (scenicList[i].X > X - (1.9 * CCC.width) && scenicList[i].X < X + (1.9 * CCC.width) && scenicList[i].Y > Y - (1.9 * CCC.height) && scenicList[i].Y < Y + (1.9 * CCC.height))
+                        {
+                            scenicList[i].operations();
+                        }
+                    }
                 }
             }
         }
@@ -3829,6 +3836,15 @@ function theLegend()
         rannukChildName: "Espen",
         hanzChild: false,
         hanzChildName: "Gelna",
+
+        //QUEST: Lowlife ---- given by
+        lowlifeQuest: false,
+        lowlifeCompletionStyle: false,
+        lowlifeKilled: 0,
+        lowlifeSquattersMoved: false,
+        lowlifeExterminated: false,
+        lowlifeThiefFound: false,
+        lowlifeRat: false,
 
         //QUEST: The Deermen and the Wendigo ---- given by
         theDeermenAndTheWendigoQuest: false,

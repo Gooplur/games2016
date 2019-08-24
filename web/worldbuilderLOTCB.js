@@ -972,6 +972,8 @@ function worldBuilder()
             outlineBuilder(9, 1, "brickRoad", -1080, 261);
 
             outlineBuilder( 1, 34, "brickRoad", -1108, 266);
+
+            outlineBuilder(2, 2, "farmland", -1103, 264);
         }
         //mapS8W33
         if (Y > -85605 && Y < -74729 && X < 344333 && X > 332640) //X-33
@@ -1134,6 +1136,94 @@ function worldBuilder()
             outlineBuilder(1, 1, "swampTR", -1173, 262);
             outlineBuilder(1, 1, "swampTL", -1173, 257);
             outlineBuilder(1, 1, "swampBL", -1157, 255);
+        }
+        //mapS8W35
+        if (Y > -85605 && Y < -74729 && X < 364713 && X > 353021) //X-35
+        {
+            elevation = 0;
+            region = "s8w35";
+            campout = true;
+
+            outlineBuilder(34, 10, "vardanianWoods", -1210, 252);
+
+            outlineBuilder(34, 24, "vardanianWetland", -1200, 252);
+
+            outlineBuilder(7, 1, "vardanianWetland", -1201, 257);
+            outlineBuilder(4, 1, "vardanianWetland", -1202, 258);
+            outlineBuilder(2, 1, "vardanianWoods", -1200, 252);
+            outlineBuilder(5, 1, "vardanianWoods", -1200, 267);
+            outlineBuilder(3, 2, "vardanianWoods", -1200, 275);
+            outlineBuilder(2, 4, "vardanianWoods", -1200, 284);
+            outlineBuilder(1, 1, "vardanianWoods", -1199, 264);
+            outlineBuilder(1, 1, "vardanianWoods", -1200, 274);
+            outlineBuilder(1, 2, "vardanianWoods", -1198, 275);
+            outlineBuilder(1, 1, "vardanianWoods", -1198, 276);
+            outlineBuilder(3, 1, "vardanianWoods", -1200, 279);
+            outlineBuilder(1, 2, "vardanianWoods", -1200, 283);
+
+            outlineBuilder(7, 1, "swamp", -1180, 254);
+            outlineBuilder(8, 1, "swamp", -1179, 252);
+            outlineBuilder(3, 1, "swamp", -1178, 254);
+            outlineBuilder(6, 1, "swamp", -1177, 261);
+            outlineBuilder(5, 2, "swamp", -1179, 263);
+            outlineBuilder(4, 1, "swamp", -1180, 265);
+            outlineBuilder(2, 1, "swamp", -1181, 256);
+            outlineBuilder(2, 3, "swamp", -1190, 254);
+            outlineBuilder(3, 2, "swamp", -1185, 264);
+            outlineBuilder(4, 4, "swamp", -1187, 255);
+            outlineBuilder(3, 2, "swamp", -1191, 258);
+            outlineBuilder(2, 1, "swamp", -1188, 258);
+            outlineBuilder(2, 2, "swamp", -1193, 257);
+            outlineBuilder(1, 1, "swamp", -1190, 256);
+            outlineBuilder(1, 1, "swampTR", -1191, 256);
+            outlineBuilder(2, 1, "swamp", -1185, 259);
+            outlineBuilder(3, 1, "swamp", -1186, 260);
+            outlineBuilder(2, 1, "swamp", -1185, 262);
+            outlineBuilder(2, 1, "swamp", -1183, 266);
+            outlineBuilder(1, 2, "swamp", -1186, 268);
+            outlineBuilder(2, 1, "swamp", -1184, 260);
+            outlineBuilder(2, 1, "swamp", -1183, 261);
+            outlineBuilder(4, 4, "swamp", -1194, 263);
+            outlineBuilder(4, 1, "swamp", -1190, 264);
+            outlineBuilder(4, 2, "swamp", -1196, 262);
+            outlineBuilder(2, 1, "swamp", -1188, 263);
+            outlineBuilder(1, 2, "swamp", -1188, 266);
+            outlineBuilder(1, 1, "swamp", -1187, 265);
+            outlineBuilder(4, 1, "swamp", -1188, 267);
+            outlineBuilder(7, 2, "swamp", -1181, 272);
+            outlineBuilder(6, 1, "swamp", -1179, 275);
+            outlineBuilder(5, 1, "swamp", -1178, 279);
+            outlineBuilder(7, 1, "swamp", -1177, 278);
+            outlineBuilder(1, 1, "swampBR", -1181, 268);
+            outlineBuilder(5, 3, "swamp", -1186, 270);
+            outlineBuilder(3, 1, "swamp", -1182, 273);
+            outlineBuilder(3, 2, "swamp", -1185, 281);
+            outlineBuilder(2, 2, "swamp", -1193, 276);
+            outlineBuilder(4, 1, "swamp", -1187, 272);
+            outlineBuilder(1, 2, "swamp", -1190, 273);
+            outlineBuilder(2, 2, "swamp", -1194, 268);
+            outlineBuilder(4, 1, "swamp", -1192, 269);
+            outlineBuilder(2, 1, "swamp", -1194, 273);
+            outlineBuilder(2, 1, "swamp", -1191, 270);
+            outlineBuilder(2, 3, "swamp", -1192, 274);
+            outlineBuilder(2, 4, "swamp", -1184, 279);
+            outlineBuilder(1, 2, "swamp", -1182, 281);
+            outlineBuilder(1, 3, "swamp", -1182, 285);
+            outlineBuilder(2, 5, "swamp", -1190, 280);
+            outlineBuilder(2, 3, "swamp", -1191, 282);
+            outlineBuilder(2, 1, "swamp", -1186, 283);
+            outlineBuilder(1, 1, "swamp", -1183, 278);
+            outlineBuilder(2, 1, "swamp", -1195, 281);
+            outlineBuilder(1, 1, "swamp", -1194, 282);
+            outlineBuilder(1, 2, "swamp", -1192, 285);
+            outlineBuilder(2, 2, "swamp", -1198, 263);
+            outlineBuilder(2, 1, "swamp", -1194, 258);
+            outlineBuilder(1, 2, "swamp", -1195, 252);
+            outlineBuilder(3, 6, "swamp", -1198, 253);
+            outlineBuilder(1, 2, "swamp", -1199, 256);
+            outlineBuilder(1, 3, "swamp", -1198, 258);
+            outlineBuilder(2, 3, "swamp", -1199, 259);
+            outlineBuilder(3, 1, "swamp", -1189, 265);
         }
         //Layer -7 (cold region): elev 0
         //mapS7
@@ -3284,6 +3374,87 @@ function worldBuilder()
         campout = false;
         //starting chamber
         outlineBuilder( 2, 2, "dungeon", 0, 0);
+    }
+    else if (map == "cranheimSewer")
+    {
+        player.dmx = map;
+        player.underground = true;
+        elevation = -1; //underground temperatures are consistently -1 unless there is a certain closeness to magma...
+        region = "cranheimSewer";
+        campout = true;
+        //starting chamber
+        outlineBuilder(2, 1, "thenganBrick", 2, 1); //start
+        outlineBuilder(1, 1, "thenganBrick", 1, 2);
+        outlineBuilder(1, 1, "thenganBrick", 3, 2);
+        outlineBuilder(1, 1, "sewage", 1, 1);
+        outlineBuilder(1, 1, "sewage", 3, 1);
+        outlineBuilder(20, 1, "thenganBrick", 0, -17);
+        outlineBuilder(20, 1, "thenganBrick", 4, -17);
+
+        outlineBuilder(14, 1, "sewage", 2, -17);
+        outlineBuilder(3, 1, "sewage", 2, -2);
+
+        outlineBuilder(18, 1, "sewage", 1, -17);
+        outlineBuilder(18, 1, "sewage", 3, -17);
+
+        outlineBuilder(1, 30, "sewage", -4, -20);
+        outlineBuilder(1, 6, "sewage", -4, -19);
+        outlineBuilder(1, 23, "sewage", 3, -19);
+        outlineBuilder(1, 29, "sewage", -4, -18);
+
+        outlineBuilder(5, 2, "thenganBrick", -6, -21);
+
+        outlineBuilder(1, 2, "thenganBrick", -4, -21);
+        outlineBuilder(1, 4, "thenganBrick", -4, -17);
+
+        outlineBuilder(1, 1, "thenganBrick", 2, -3);
+
+        outlineBuilder(1, 1, "thenganBrick", 2, -19);
+
+        outlineBuilder(8, 3, "sewage", -2, -28);
+        outlineBuilder(7, 1, "thenganBrick", -3, -28);
+        outlineBuilder(8, 1, "thenganBrick", 1, -28);
+
+        outlineBuilder(1, 24, "thenganBrick", 2, -21);
+        outlineBuilder(4, 3, "thenganBrick", 26, -21);
+        outlineBuilder(1, 2, "sewage", 26, -19);
+        outlineBuilder(1, 21, "thenganBrick", 5, -17);
+        outlineBuilder(1, 1, "thenganBrick", 25, -18);
+
+        outlineBuilder(3, 1, "sewage", 28, -21);
+
+        outlineBuilder(2, 2, "dungeon", 27, -17);
+
+        //sewer junky hangout
+        outlineBuilder(2, 10, "sewage", 4, -8);
+        outlineBuilder(6, 1, "sewage", 13, -6);
+        outlineBuilder(6, 1, "sewage", 8, -6);
+        outlineBuilder(1, 5, "sewage", 14, -8);
+        outlineBuilder(2, 2, "sewage", 17, -10);
+        outlineBuilder(2, 4, "sewage", 13, 0);
+
+        outlineBuilder(1, 3, "thenganBrick", 5, -6);
+        outlineBuilder(6, 1, "thenganBrick", 7, -5);
+        outlineBuilder(2, 2, "thenganBrick", 8, 0);
+        outlineBuilder(6, 1, "thenganBrick", 9, -6);
+        outlineBuilder(1, 3, "thenganBrick", 10, -6);
+        outlineBuilder(8, 1, "thenganBrick", 12, -5);
+
+        outlineBuilder(1, 5, "thenganBrick", 13, 2);
+        outlineBuilder(3, 1, "thenganBrick", 17, -1);
+
+        outlineBuilder(1, 3, "thenganBrick", 14, -1);
+        outlineBuilder(6, 1, "thenganBrick", 14, -7);
+        outlineBuilder(2, 6, "thenganBrick", 15, -7);
+        outlineBuilder(5, 2, "thenganBrick", 19, -11);
+        outlineBuilder(1, 2, "thenganBrick", 17, -11);
+        outlineBuilder(3, 2, "thenganBrick", 15, -11);
+
+        outlineBuilder(1, 9, "thenganBrick", 5, -9);
+        outlineBuilder(2, 1, "thenganBrick", 14, -10);
+
+        outlineBuilder(1, 1, "thenganBrick", 15, -2);
+        outlineBuilder(1, 1, "thenganBrick", -1, -16);
     }
     else if (map == "atalinDrugLab")
     {

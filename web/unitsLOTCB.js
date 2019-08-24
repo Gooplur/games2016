@@ -16530,7 +16530,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         else if (this.type == "Cirmusid")
         {
             this.damageFrame = "automatic";
-            this.resistances = ["acid", "stun", "blinded", "shock", "night"];
+            this.resistances = ["water", "acid", "stun", "blinded", "shock", "night"];
             this.team = "shehidia";
             this.baseTeam = this.team;
             this.tamable = false;
@@ -84931,6 +84931,21 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         this.drops = [[new Item("coins", this.X, this.Y), Math.floor(Math.random() * 25) + 1]];
 
                         this.disturbed = true;
+
+                        if (this.disturbed == true)
+                        {
+                            this.callForNearbyHelpFromType(this.rangeOfSight, "Soldier");
+                        }
+                    }
+                    if (this.ID == "Squatter" || this.ID == "Sewer Squatter" || this.ID == "Squatter Refugee" || this.ID == "Refugee Squatter")
+                    {
+                        //RANGE OF SIGHT (anything related to range of sight)
+                        this.rangeOfSightCalculator(260, false);
+
+                        this.drops = [[new Item("coins", this.X, this.Y), Math.floor(Math.random() * 3) + 1]];
+
+                        this.disturbed = true;
+                        lights.push({X:this.X, Y: this.Y, size: 90, extraStops: true, GRD: 0, Alpha: 0.34, showMe: false});
 
                         if (this.disturbed == true)
                         {

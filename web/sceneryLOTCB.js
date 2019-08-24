@@ -18261,7 +18261,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 }
             }
 
-            if (this.tac < 2.4)
+            if (this.tac < 2.4 || this.temporary == true)
             {
                 this.tac += 0.002;
                 if (this.temporary == false)
@@ -18271,7 +18271,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 else
                 {
                     this.tac = this.information;
-                    this.transp = 0.9
+                    this.transp = 0.85;
                 }
             }
 
@@ -18315,10 +18315,11 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             {
                 if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= this.radius + (3/4 * ArtificialIntelligenceAccess[j].sizeRadius) && !ArtificialIntelligenceAccess[j].underground && ArtificialIntelligenceAccess[j].dmx == this.dmx)
                 {
-                    if (ArtificialIntelligenceAccess[j].resistances[ArtificialIntelligenceAccess[j].resistances.indexOf("decay")] == -1)
+                    if (ArtificialIntelligenceAccess[j].resistances.indexOf("decay") == -1)
                     {
                         if (ArtificialIntelligenceAccess[j].resistDisease != true)
                         {
+                            console.log("gas");
                             ArtificialIntelligenceAccess[j].health -= 0.1;
                             ArtificialIntelligenceAccess[j].killNotByPlayer = true;
                         }
@@ -29425,10 +29426,10 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             //certain enemies break right through it
             for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
             {
-                if (ArtificialIntelligenceAccess[i].type == "BogTroll" || ArtificialIntelligenceAccess[i].type == "Ker" || ArtificialIntelligenceAccess[i].type == "Hydra" || ArtificialIntelligenceAccess[i].healthMAX > 60)
+                if (ArtificialIntelligenceAccess[i].type == "BogTroll" || ArtificialIntelligenceAccess[i].type == "Hydra" || ArtificialIntelligenceAccess[i].healthMAX > 60)
                 {
                     var disst = (this.X - ArtificialIntelligenceAccess[i].X)*(this.X - ArtificialIntelligenceAccess[i].X) + (this.Y - ArtificialIntelligenceAccess[i].Y)*(this.Y - ArtificialIntelligenceAccess[i].Y);
-                    if (disst < (this.radius * 1.15) * (this.radius * 1.15) + ArtificialIntelligenceAccess[i].sizeRadius * ArtificialIntelligenceAccess[i].sizeRadius)
+                    if (disst < (this.radius * 1.5) * (this.radius * 1.5) + ArtificialIntelligenceAccess[i].sizeRadius * ArtificialIntelligenceAccess[i].sizeRadius)
                     {
                         this.health = 0;
                     }

@@ -2834,6 +2834,17 @@ function cheats()
                 player.petrificationResistanceTime = 99999999999999999999999999;
                 player.nightVision = true;
             }
+            else if (player.race == "#336600" && player.name == "Gooplur")
+            {
+                if (player.nightVision == true)
+                {
+                    player.nightVision = false;
+                }
+                else if (player.gender == "Gooplon")
+                {
+                    player.nightVision = true;
+                }
+            }
         }
         else if (cheatcode == "NEO")
         {

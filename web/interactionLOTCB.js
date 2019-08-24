@@ -553,6 +553,7 @@ function interaction(me)
                                     {
                                         if (player.dialogueOptions[i][2] == "a")
                                         {
+                                            tellMessage = false;
                                             conversationID[1] = "2a";
                                         }
                                     }
@@ -581,20 +582,20 @@ function interaction(me)
                                 player.fame += 1;
                                 worldItems.push([new Item("coins", X, Y), 15]);
 
-                                if (player.title == "Royalty" || player.title == "Nobility")
+                                //text dialogue
+                                setMsg("You actually did it... I guess I owe you 15 coins. Here they are.");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
                                 {
-                                    if (player.gender = "Male")
-                                    {
-                                        drohforLordVictory.play();
-                                    }
-                                    else
-                                    {
-                                        drohforLadyVictory.play();
-                                    }
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    self.SC();
                                 }
                                 else
                                 {
-                                    drohforCommonerVictory.play();
+                                    self.SC();
                                 }
                             }
                             else

@@ -715,12 +715,20 @@ function worldBuilder()
             outlineBuilder( 28, 1, "stonePath", -6, 292);
         }
         //mapS9W32
-        if (Y > -95730 && Y < -84938 && X < 334130 && X > 322464) //X-32 //todo add map
+        if (Y > -95730 && Y < -84938 && X < 334130 && X > 322464) //X-32
         {
             elevation = 0;
             region = "s9w32";
             campout = true;
             outlineBuilder(34, 34, "crag", -1108, 286);
+            outlineBuilder(4, 4, "mistywoods", -1078, 286);
+            outlineBuilder(2, 2, "mistywoods", -1076, 290);
+            outlineBuilder(2, 5, "mistywoods", -1096, 286);
+            outlineBuilder(1, 3, "mistywoods", -1105, 286);
+            outlineBuilder(3, 5, "mistywoods", -1091, 286);
+            outlineBuilder(1, 4, "mistywoods", -1086, 286);
+            outlineBuilder(1, 2, "mistywoods", -1080, 287);
+            outlineBuilder(1, 1, "mistywoods", -1079, 288);
         }
         //mapS9W33
         if (Y > -95730 && Y < -84938 && X < 344333 && X > 332640) //X-33
@@ -1319,12 +1327,21 @@ function worldBuilder()
             outlineBuilder(3, 1, "mistywoods", -1041, 249);
         }
         //mapS7W32
-        if (Y > -75331 && Y < -64538 && X < 334130 && X > 322464) //X-32 //todo add map
+        if (Y > -75331 && Y < -64538 && X < 334130 && X > 322464) //X-32
         {
             elevation = 0;
             region = "s7w32";
             campout = true;
-            outlineBuilder(34, 34, "outline", -1108, 218); //todo crag
+            outlineBuilder(34, 34, "crag", -1108, 218);
+
+            outlineBuilder(3, 1, "mistywoods", -1076, 249);
+            outlineBuilder(4, 1, "mistywoods", -1075, 248);
+            outlineBuilder(1, 3, "mistywoods", -1079, 251);
+            outlineBuilder(2, 8, "mistywoods", -1099, 250);
+            outlineBuilder(1, 4, "mistywoods", -1107, 251);
+            outlineBuilder(1, 3, "mistywoods", -1090, 251);
+            outlineBuilder(1, 3, "mistywoods", -1098, 249);
+            outlineBuilder(1, 2, "mistywoods", -1101, 251);
         }
         //mapS7W33
         if (Y > -75331 && Y < -64538 && X < 344345 && X > 332522) //X-33

@@ -12968,6 +12968,126 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.restore();
             }
 
+            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+            {
+                //ArtificialIntelligenceAccess[i].X
+                //ArtificialIntelligenceAccess[i].Y
+                if (this.information == 0)
+                {
+                    if (this.rotation == 0 || this.rotation == Math.PI)
+                    {
+                        if (ArtificialIntelligenceAccess[i].X > (this.X + 74.37327952072064 * this.size) - 149 * this.size && ArtificialIntelligenceAccess[i].X < (this.X + 74.37327952072064 * this.size) && ArtificialIntelligenceAccess[i].Y > (this.Y + 116.97828163059148 * this.size) - 236 * this.size && ArtificialIntelligenceAccess[i].Y < (this.Y + 116.97828163059148 * this.size))
+                        {
+                            ArtificialIntelligenceAccess[i].land = true;
+                            ArtificialIntelligenceAccess[i].water = false;
+                        }
+                    }
+                    else
+                    {
+                        if (ArtificialIntelligenceAccess[i].X > (this.X + 120.22028192781272 * this.size) - 241 * this.size && ArtificialIntelligenceAccess[i].X < (this.X + 120.22028192781272 * this.size) && ArtificialIntelligenceAccess[i].Y > (this.Y + 74.90872893132064 * this.size) - 151 * this.size && ArtificialIntelligenceAccess[i].Y < (this.Y + 74.90872893132064 * this.size))
+                        {
+                            ArtificialIntelligenceAccess[i].land = true;
+                            ArtificialIntelligenceAccess[i].water = false;
+                        }
+                    }
+                }
+                else if (this.information == 1)
+                {
+                    if (this.rotation == 0 || this.rotation == Math.PI)
+                    {
+                        if (ArtificialIntelligenceAccess[i].X > (this.X + 118.80872291392916 * this.size) - 239 * this.size && ArtificialIntelligenceAccess[i].X < (this.X + 118.80872291392916 * this.size) && ArtificialIntelligenceAccess[i].Y > (this.Y + 35.110415715371346 * this.size) - 67 * this.size && ArtificialIntelligenceAccess[i].Y < (this.Y + 35.110415715371346 * this.size))
+                        {
+                            ArtificialIntelligenceAccess[i].land = true;
+                            ArtificialIntelligenceAccess[i].water = false;
+                        }
+                    }
+                    else
+                    {
+                        if (ArtificialIntelligenceAccess[i].X > (this.X + 34.522144045557525 * this.size) - 69 * this.size && ArtificialIntelligenceAccess[i].X < (this.X + 34.522144045557525 * this.size) && ArtificialIntelligenceAccess[i].Y > (this.Y + 116.72089731869437 * this.size) - 238 * this.size && ArtificialIntelligenceAccess[i].Y < (this.Y + 116.72089731869437 * this.size))
+                        {
+                            ArtificialIntelligenceAccess[i].land = true;
+                            ArtificialIntelligenceAccess[i].water = false;
+                        }
+                    }
+                }
+                else if (this.information == 2)
+                {
+                    if (this.rotation == 0 || this.rotation == Math.PI)
+                    {
+                        if (ArtificialIntelligenceAccess[i].X > (this.X + 118.80872291392916 * this.size) - 239 * this.size && ArtificialIntelligenceAccess[i].X < (this.X + 118.80872291392916 * this.size) && ArtificialIntelligenceAccess[i].Y > (this.Y + 35.110415715371346 * this.size) - 67 * this.size && ArtificialIntelligenceAccess[i].Y < (this.Y + 35.110415715371346 * this.size))
+                        {
+                            ArtificialIntelligenceAccess[i].land = true;
+                            ArtificialIntelligenceAccess[i].water = false;
+                        }
+                    }
+                    else
+                    {
+                        if (ArtificialIntelligenceAccess[i].X > (this.X + 34.522144045557525 * this.size) - 69 * this.size && ArtificialIntelligenceAccess[i].X < (this.X + 34.522144045557525 * this.size) && ArtificialIntelligenceAccess[i].Y > (this.Y + 116.72089731869437 * this.size) - 238 * this.size && ArtificialIntelligenceAccess[i].Y < (this.Y + 116.72089731869437 * this.size))
+                        {
+                            ArtificialIntelligenceAccess[i].land = true;
+                            ArtificialIntelligenceAccess[i].water = false;
+                        }
+                    }
+                }
+                else if (this.information == 3)
+                {
+                    if (this.rotation == 0 || this.rotation == Math.PI)
+                    {
+                        if (ArtificialIntelligenceAccess[i].X > (this.X + 118.80872291392916 * this.size) - 239 * this.size && ArtificialIntelligenceAccess[i].X < (this.X + 118.80872291392916 * this.size) && ArtificialIntelligenceAccess[i].Y > (this.Y + 35.110415715371346 * this.size) - 67 * this.size && ArtificialIntelligenceAccess[i].Y < (this.Y + 35.110415715371346 * this.size))
+                        {
+                            ArtificialIntelligenceAccess[i].land = true;
+                            ArtificialIntelligenceAccess[i].water = false;
+                        }
+                    }
+                    else
+                    {
+                        if (ArtificialIntelligenceAccess[i].X > (this.X + 34.522144045557525 * this.size) - 69 * this.size && ArtificialIntelligenceAccess[i].X < (this.X + 34.522144045557525 * this.size) && ArtificialIntelligenceAccess[i].Y > (this.Y + 116.72089731869437 * this.size) - 238 * this.size && ArtificialIntelligenceAccess[i].Y < (this.Y + 116.72089731869437 * this.size))
+                        {
+                            ArtificialIntelligenceAccess[i].land = true;
+                            ArtificialIntelligenceAccess[i].water = false;
+                        }
+                    }
+                }
+                else if (this.information == 4)
+                {
+                    if (this.rotation == 0 || this.rotation == Math.PI)
+                    {
+                        if (ArtificialIntelligenceAccess[i].X > (this.X + 119.07816547916582 * this.size) - 236 * this.size && ArtificialIntelligenceAccess[i].X < (this.X + 119.07816547916582 * this.size) && ArtificialIntelligenceAccess[i].Y > (this.Y + 17.70960740564351 * this.size) - 36 * this.size && ArtificialIntelligenceAccess[i].Y < (this.Y + 17.70960740564351 * this.size))
+                        {
+                            ArtificialIntelligenceAccess[i].land = true;
+                            ArtificialIntelligenceAccess[i].water = false;
+                        }
+                    }
+                    else
+                    {
+                        if (ArtificialIntelligenceAccess[i].X > (this.X + 19.572103613434592 * this.size) - 38 * this.size && ArtificialIntelligenceAccess[i].X < (this.X + 19.572103613434592 * this.size) && ArtificialIntelligenceAccess[i].Y > (this.Y + 115.80407678485835 * this.size) - 236 * this.size && ArtificialIntelligenceAccess[i].Y < (this.Y + 115.80407678485835 * this.size))
+                        {
+                            ArtificialIntelligenceAccess[i].land = true;
+                            ArtificialIntelligenceAccess[i].water = false;
+                        }
+                    }
+                }
+                else if (this.information == 5)
+                {
+                    if (this.rotation == 0 || this.rotation == Math.PI)
+                    {
+                        if (ArtificialIntelligenceAccess[i].X > (this.X + 119.07816547916582 * this.size) - 236 * this.size && ArtificialIntelligenceAccess[i].X < (this.X + 119.07816547916582 * this.size) && ArtificialIntelligenceAccess[i].Y > (this.Y + 17.70960740564351 * this.size) - 36 * this.size && ArtificialIntelligenceAccess[i].Y < (this.Y + 17.70960740564351 * this.size))
+                        {
+                            ArtificialIntelligenceAccess[i].land = true;
+                            ArtificialIntelligenceAccess[i].water = false;
+                        }
+                    }
+                    else
+                    {
+                        if (ArtificialIntelligenceAccess[i].X > (this.X + 19.572103613434592 * this.size) - 38 * this.size && ArtificialIntelligenceAccess[i].X < (this.X + 19.572103613434592 * this.size) && ArtificialIntelligenceAccess[i].Y > (this.Y + 115.80407678485835 * this.size) - 236 * this.size && ArtificialIntelligenceAccess[i].Y < (this.Y + 115.80407678485835 * this.size))
+                        {
+                            ArtificialIntelligenceAccess[i].land = true;
+                            ArtificialIntelligenceAccess[i].water = false;
+                        }
+                    }
+                }
+            }
+
             if (this.information == 0)
             {
                 if (this.rotation == 0 || this.rotation == Math.PI)
@@ -18319,7 +18439,6 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     {
                         if (ArtificialIntelligenceAccess[j].resistDisease != true)
                         {
-                            console.log("gas");
                             ArtificialIntelligenceAccess[j].health -= 0.1;
                             ArtificialIntelligenceAccess[j].killNotByPlayer = true;
                         }

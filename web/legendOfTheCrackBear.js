@@ -1620,6 +1620,18 @@ function sticPack()
 
     stic.onload = function()
     {
+        kapaPack();
+    };
+}
+
+function kapaPack()
+{
+    var kapa = new Image();
+    kapa.src = ("images/vodkapa.png");
+    window.kapa = kapa;
+
+    kapa.onload = function()
+    {
         alfombraPack();
     };
 }

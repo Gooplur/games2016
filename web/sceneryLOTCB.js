@@ -151,6 +151,10 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
         {
             this.massive = true;
         }
+        else if (this.type == "vodkapaHome")
+        {
+            this.massive = true;
+        }
     };
     this.isMassive();
 
@@ -22660,6 +22664,592 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
             this.radius = 60;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+        }
+        else if (this.type == "vodkapaHome")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+
+            if (this.runOneTime)
+            {
+                this.runOneTime = false;
+
+                this.tic = 0;
+                this.fullified = this.information;
+                this.alphized = this.temporary;
+                this.youthenator = 0;
+                this.surpriseATK = false;
+
+                this.cloneLineage = "vodkapa" + (Math.random()*100);
+                this.breedSplice = 0;
+                this.health = 1;
+                this.healthMAX = 1;
+                this.ident = "voddy";
+                this.speed = 4;
+                this.genes = {runter: false, speeder: false, smeller: false, breeder: false, aggro: false, sideliner: false, calculated: false, spleener: false, sterile: false};
+            }
+
+            if (this.alphized == "runt" && this.fullified)
+            {
+                this.youthenator += 0.2;
+                if (this.youthenator > 500)
+                {
+                    this.youthenator = 0;
+                    this.alphized = false;
+                    this.cloneLineage = "vodkapa" + (Math.random()*100);
+                }
+            }
+            else if (this.alphized == "baby" && this.fullified)
+            {
+                this.youthenator += 0.2;
+                if (this.youthenator > 500)
+                {
+                    this.youthenator = 0;
+                    this.alphized = true;
+                    this.cloneLineage = "vodkapa" + (Math.random()*100);
+                }
+            }
+            else if (this.alphized == false)
+            {
+                this.size = 0.7;
+
+                //DRAWSELF
+                if (this.tic < 10 && this.fullified)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(kapa, 37, 405, 287, 263, -(1/2 * 287 * this.size), -(1/2 * 263 * this.size), 287 * this.size, 263 * this.size);
+                    XXX.restore();
+                }
+                else if (this.tic < 20 && this.fullified)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(kapa, 405, 400, 287, 263, -(1/2 * 287 * this.size), -(1/2 * 263 * this.size), 287 * this.size, 263 * this.size);
+                    XXX.restore();
+                }
+                else if (this.tic < 30 && this.fullified)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(kapa, 767, 399, 287, 263, -(1/2 * 287 * this.size), -(1/2 * 263 * this.size), 287 * this.size, 263 * this.size);
+                    XXX.restore();
+                }
+                else
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(kapa, 1112, 399, 287, 263, -(1/2 * 287 * this.size), -(1/2 * 263 * this.size), 287 * this.size, 263 * this.size);
+                    XXX.restore();
+
+                    if (this.fullified == "new" || this.fullified == "sterile")
+                    {
+                        var voddy = new Unit(this.X + Math.cos(this.rotation) * 15, this.Y + Math.sin(this.rotation) * 15, "Vodkapa", false, "voddy");
+
+                        voddy.rotation = this.rotation + 1/2 * Math.PI;
+                        voddy.newRotation = this.rotation + 1/2 * Math.PI;
+                        if (this.fullified == "sterile")
+                        {
+                            this.genes = {runter: Math.round(Math.random()), speeder: Math.round(Math.random()), smeller: Math.round(Math.random()), breeder: Math.round(Math.random()), aggro: Math.round(Math.random()), sideliner: Math.round(Math.random()), calculated: Math.round(Math.random()), spleener: Math.round(Math.random()), sterile: true};
+                            voddy.genes = this.genes;
+                        }
+                        ArtificialIntelligenceAccess.push(voddy);
+                    }
+                    else if (this.fullified == true)
+                    {
+                        var voddy = new Unit(this.X + Math.cos(this.rotation) * 15, this.Y + Math.sin(this.rotation) * 15, "Vodkapa", false, "voddy");
+                        voddy.rotation = this.rotation + 1/2 * Math.PI;
+                        voddy.newRotation = this.rotation + 1/2 * Math.PI;
+                        voddy.breedSplice = this.breedSplice;
+                        voddy.health = this.health;
+                        voddy.healthMAX = this.healthMAX;
+                        voddy.speed = this.speed;
+                        voddy.genes = this.genes;
+                        voddy.ID = this.ident;
+                        voddy.cloneLineage = this.cloneLineage;
+                        voddy.baseTeam = this.cloneLineage;
+                        voddy.team = this.cloneLineage;
+                        ArtificialIntelligenceAccess.push(voddy);
+                    }
+                    this.fullified = false;
+                }
+            }
+            else if (this.alphized == true)
+            {
+                this.size = 1;
+
+                //DRAWSELF
+                if (this.tic < 10 && this.fullified)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(kapa, 37, 405, 287, 263, -(1/2 * 287 * this.size), -(1/2 * 263 * this.size), 287 * this.size, 263 * this.size);
+                    XXX.restore();
+                }
+                else if (this.tic < 20 && this.fullified)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(kapa, 405, 400, 287, 263, -(1/2 * 287 * this.size), -(1/2 * 263 * this.size), 287 * this.size, 263 * this.size);
+                    XXX.restore();
+                }
+                else if (this.tic < 30 && this.fullified)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(kapa, 767, 399, 287, 263, -(1/2 * 287 * this.size), -(1/2 * 263 * this.size), 287 * this.size, 263 * this.size);
+                    XXX.restore();
+                }
+                else
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(kapa, 1112, 399, 287, 263, -(1/2 * 287 * this.size), -(1/2 * 263 * this.size), 287 * this.size, 263 * this.size);
+                    XXX.restore();
+
+                    if (this.fullified == "new" || this.fullified == "sterile")
+                    {
+                        var voddy = new Unit(this.X + Math.cos(this.rotation) * 22, this.Y + Math.sin(this.rotation) * 22, "Vodkapa", true, "voddy");
+
+                        voddy.rotation = this.rotation + 1/2 * Math.PI;
+                        voddy.newRotation = this.rotation + 1/2 * Math.PI;
+                        if (this.fullified == "sterile")
+                        {
+                            this.genes = {runter: Math.round(Math.random()), speeder: Math.round(Math.random()), smeller: Math.round(Math.random()), breeder: Math.round(Math.random()), aggro: Math.round(Math.random()), sideliner: Math.round(Math.random()), calculated: Math.round(Math.random()), spleener: Math.round(Math.random()), sterile: true};
+                            voddy.genes = this.genes;
+                        }
+                        ArtificialIntelligenceAccess.push(voddy);
+                    }
+                    else if (this.fullified == true)
+                    {
+                        var voddy = new Unit(this.X + Math.cos(this.rotation) * 22, this.Y + Math.sin(this.rotation) * 22, "Vodkapa", true, "voddy");
+                        voddy.rotation = this.rotation + 1/2 * Math.PI;
+                        voddy.newRotation = this.rotation + 1/2 * Math.PI;
+                        voddy.breedSplice = this.breedSplice;
+                        voddy.health = this.health;
+                        voddy.healthMAX = this.healthMAX;
+                        voddy.speed = this.speed;
+                        voddy.genes = this.genes;
+                        voddy.ID = this.ident;
+                        voddy.cloneLineage = this.cloneLineage;
+                        voddy.baseTeam = this.cloneLineage;
+                        voddy.team = this.cloneLineage;
+                        ArtificialIntelligenceAccess.push(voddy);
+                    }
+                    this.fullified = false;
+                }
+            }
+
+            if (this.alphized == true && this.alphized != "runt" && this.alphized != "baby" && this.fullified || this.alphized == false && this.fullified)
+            {
+                //regenerate health while resting
+                if (this.genes.spleener == true)
+                {
+                    this.health += 0.15;
+                }
+                else
+                {
+                    this.health += 0.05;
+                }
+                if (this.health > this.healthMAX)
+                {
+                    this.health = this.healthMAX;
+                }
+
+                //leave home to attack
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    if (ArtificialIntelligenceAccess[i].team != "docile" && ArtificialIntelligenceAccess[i].team != "ulgoyia" && ArtificialIntelligenceAccess[i].team != "shehidia")
+                    {
+                        if (ArtificialIntelligenceAccess[i].type != "Vodkapa" || ArtificialIntelligenceAccess[i].cloneLineage != this.cloneLineage)
+                        {
+                            if (this.genes.calculated == true && ArtificialIntelligenceAccess[i].healthMAX <= (this.health + 9) && this.health >= this.healthMAX || this.genes.calculated == false || ArtificialIntelligenceAccess[i].type == "Person" && this.health > 1/2 * this.healthMAX || ArtificialIntelligenceAccess[i].type == "Soldier" && this.health > 1/2 * this.healthMAX)
+                            {
+                                if (this.genes.smeller == true)
+                                {
+                                    if (this.dst(ArtificialIntelligenceAccess[i].X, ArtificialIntelligenceAccess[i].Y) <= 400 * this.size)
+                                    {
+                                        this.surpriseATK = true;
+                                    }
+                                }
+                                else
+                                {
+                                    if (this.dst(ArtificialIntelligenceAccess[i].X, ArtificialIntelligenceAccess[i].Y) <= 290 * this.size)
+                                    {
+                                        this.surpriseATK = true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if (this.genes.calculated == true)
+                {
+                    if (this.health >= this.healthMAX)
+                    {
+                        if (this.genes.smeller == true)
+                        {
+                            if (this.playerer <= 400 * this.size)
+                            {
+                                this.surpriseATK = true;
+                            }
+                        }
+                        else
+                        {
+                            if (this.playerer <= 290 * this.size)
+                            {
+                                this.surpriseATK = true;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    if (this.genes.smeller == true)
+                    {
+                        if (this.playerer <= 400 * this.size)
+                        {
+                            this.surpriseATK = true;
+                        }
+                    }
+                    else
+                    {
+                        if (this.playerer <= 290 * this.size)
+                        {
+                            this.surpriseATK = true;
+                        }
+                    }
+                }
+
+                if (this.surpriseATK == true)
+                {
+                    if (this.tic < 10)
+                    {
+                        this.tic += 0.2;
+                    }
+                    else
+                    {
+                        this.tic += 1;
+                    }
+                }
+
+
+                //asexual breeding
+                this.breedSplice += 0.25;
+                if (this.breedSplice > 900 && this.genes.sterile == false)
+                {
+                    this.breedSplice = -450;
+                    if (this.genes.breeder)
+                    {
+                        for (var j = 0; j < 2; j++)
+                        {
+                            if (this.alphized == false)
+                            {
+                                if (this.genes.runter == true)
+                                {
+                                    if (Math.random() > 0.8)
+                                    {
+                                        var voddy = new Unit(this.X, this.Y, "Vodkapa", "baby", "voddy");
+                                        voddy.genes = this.genes;
+                                        if (Math.random() < 0.04)
+                                        {
+                                            voddy.genes.sterile = true;
+                                        }
+                                        voddy.ID = this.ident;
+                                        voddy.cloneLineage = this.cloneLineage;
+                                        voddy.baseTeam = this.cloneLineage;
+                                        voddy.team = this.cloneLineage;
+                                        ArtificialIntelligenceAccess.push(voddy);
+                                    }
+                                    else
+                                    {
+                                        var voddy = new Unit(this.X, this.Y, "Vodkapa", "runt", "voddy");
+                                        voddy.genes = this.genes;
+                                        if (Math.random() < 0.04)
+                                        {
+                                            voddy.genes.sterile = true;
+                                        }
+                                        voddy.ID = this.ident;
+                                        voddy.cloneLineage = this.cloneLineage;
+                                        voddy.baseTeam = this.cloneLineage;
+                                        voddy.team = this.cloneLineage;
+                                        ArtificialIntelligenceAccess.push(voddy);
+                                    }
+                                }
+                                else
+                                {
+                                    if (Math.random() > 0.999)
+                                    {
+                                        var voddy = new Unit(this.X, this.Y, "Vodkapa", "baby", "voddy");
+                                        voddy.genes = this.genes;
+                                        if (Math.random() < 0.04)
+                                        {
+                                            voddy.genes.sterile = true;
+                                        }
+                                        voddy.ID = this.ident;
+                                        voddy.cloneLineage = this.cloneLineage;
+                                        voddy.baseTeam = this.cloneLineage;
+                                        voddy.team = this.cloneLineage;
+                                        ArtificialIntelligenceAccess.push(voddy);
+                                    }
+                                    else
+                                    {
+                                        var voddy = new Unit(this.X, this.Y, "Vodkapa", "runt", "voddy");
+                                        voddy.genes = this.genes;
+                                        if (Math.random() < 0.04)
+                                        {
+                                            voddy.genes.sterile = true;
+                                        }
+                                        voddy.ID = this.ident;
+                                        voddy.cloneLineage = this.cloneLineage;
+                                        voddy.baseTeam = this.cloneLineage;
+                                        voddy.team = this.cloneLineage;
+                                        ArtificialIntelligenceAccess.push(voddy);
+                                    }
+                                }
+                            }
+                            else if (this.alphized == true)
+                            {
+                                if (this.genes.runter == true)
+                                {
+                                    if (Math.random() > 0.8)
+                                    {
+                                        var voddy = new Unit(this.X, this.Y, "Vodkapa", "runt", "voddy");
+                                        voddy.genes = this.genes;
+                                        if (Math.random() < 0.04)
+                                        {
+                                            voddy.genes.sterile = true;
+                                        }
+                                        voddy.ID = this.ident;
+                                        voddy.cloneLineage = this.cloneLineage;
+                                        voddy.baseTeam = this.cloneLineage;
+                                        voddy.team = this.cloneLineage;
+                                        ArtificialIntelligenceAccess.push(voddy);
+                                    }
+                                    else
+                                    {
+                                        var voddy = new Unit(this.X, this.Y, "Vodkapa", "baby", "voddy");
+                                        voddy.genes = this.genes;
+                                        if (Math.random() < 0.04)
+                                        {
+                                            voddy.genes.sterile = true;
+                                        }
+                                        voddy.ID = this.ident;
+                                        voddy.cloneLineage = this.cloneLineage;
+                                        voddy.baseTeam = this.cloneLineage;
+                                        voddy.team = this.cloneLineage;
+                                        ArtificialIntelligenceAccess.push(voddy);
+                                    }
+                                }
+                                else
+                                {
+                                    if (Math.random() > 0.999)
+                                    {
+                                        var voddy = new Unit(this.X, this.Y, "Vodkapa", "runt", "voddy");
+                                        voddy.genes = this.genes;
+                                        if (Math.random() < 0.04)
+                                        {
+                                            voddy.genes.sterile = true;
+                                        }
+                                        voddy.ID = this.ident;
+                                        voddy.cloneLineage = this.cloneLineage;
+                                        voddy.baseTeam = this.cloneLineage;
+                                        voddy.team = this.cloneLineage;
+                                        ArtificialIntelligenceAccess.push(voddy);
+                                    }
+                                    else
+                                    {
+                                        var voddy = new Unit(this.X, this.Y, "Vodkapa", "baby", "voddy");
+                                        voddy.genes = this.genes;
+                                        if (Math.random() < 0.04)
+                                        {
+                                            voddy.genes.sterile = true;
+                                        }
+                                        voddy.ID = this.ident;
+                                        voddy.cloneLineage = this.cloneLineage;
+                                        voddy.baseTeam = this.cloneLineage;
+                                        voddy.team = this.cloneLineage;
+                                        ArtificialIntelligenceAccess.push(voddy);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (this.alphized == false)
+                        {
+                            if (this.genes.runter == true)
+                            {
+                                if (Math.random() > 0.8)
+                                {
+                                    var voddy = new Unit(this.X, this.Y, "Vodkapa", "baby", "voddy");
+                                    voddy.genes = this.genes;
+                                    if (Math.random() < 0.04)
+                                    {
+                                        voddy.genes.sterile = true;
+                                    }
+                                    voddy.ID = this.ident;
+                                    voddy.cloneLineage = this.cloneLineage;
+                                    voddy.baseTeam = this.cloneLineage;
+                                    voddy.team = this.cloneLineage;
+                                    ArtificialIntelligenceAccess.push(voddy);
+                                }
+                                else
+                                {
+                                    var voddy = new Unit(this.X, this.Y, "Vodkapa", "runt", "voddy");
+                                    voddy.genes = this.genes;
+                                    if (Math.random() < 0.04)
+                                    {
+                                        voddy.genes.sterile = true;
+                                    }
+                                    voddy.ID = this.ident;
+                                    voddy.cloneLineage = this.cloneLineage;
+                                    voddy.baseTeam = this.cloneLineage;
+                                    voddy.team = this.cloneLineage;
+                                    ArtificialIntelligenceAccess.push(voddy);
+                                }
+                            }
+                            else
+                            {
+                                if (Math.random() > 0.999)
+                                {
+                                    var voddy = new Unit(this.X, this.Y, "Vodkapa", "baby", "voddy");
+                                    voddy.genes = this.genes;
+                                    if (Math.random() < 0.04)
+                                    {
+                                        voddy.genes.sterile = true;
+                                    }
+                                    voddy.ID = this.ident;
+                                    voddy.cloneLineage = this.cloneLineage;
+                                    voddy.baseTeam = this.cloneLineage;
+                                    voddy.team = this.cloneLineage;
+                                    ArtificialIntelligenceAccess.push(voddy);
+                                }
+                                else
+                                {
+                                    var voddy = new Unit(this.X, this.Y, "Vodkapa", "runt", "voddy");
+                                    voddy.genes = this.genes;
+                                    if (Math.random() < 0.04)
+                                    {
+                                        voddy.genes.sterile = true;
+                                    }
+                                    voddy.ID = this.ident;
+                                    voddy.cloneLineage = this.cloneLineage;
+                                    voddy.baseTeam = this.cloneLineage;
+                                    voddy.team = this.cloneLineage;
+                                    ArtificialIntelligenceAccess.push(voddy);
+                                }
+                            }
+                        }
+                        else if (this.alphized == true)
+                        {
+                            if (this.genes.runter == true)
+                            {
+                                if (Math.random() > 0.8)
+                                {
+                                    var voddy = new Unit(this.X, this.Y, "Vodkapa", "runt", "voddy");
+                                    voddy.genes = this.genes;
+                                    if (Math.random() < 0.04)
+                                    {
+                                        voddy.genes.sterile = true;
+                                    }
+                                    voddy.ID = this.ident;
+                                    voddy.cloneLineage = this.cloneLineage;
+                                    voddy.baseTeam = this.cloneLineage;
+                                    voddy.team = this.cloneLineage;
+                                    ArtificialIntelligenceAccess.push(voddy);
+                                }
+                                else
+                                {
+                                    var voddy = new Unit(this.X, this.Y, "Vodkapa", "baby", "voddy");
+                                    voddy.genes = this.genes;
+                                    if (Math.random() < 0.04)
+                                    {
+                                        voddy.genes.sterile = true;
+                                    }
+                                    voddy.ID = this.ident;
+                                    voddy.cloneLineage = this.cloneLineage;
+                                    voddy.baseTeam = this.cloneLineage;
+                                    voddy.team = this.cloneLineage;
+                                    ArtificialIntelligenceAccess.push(voddy);
+                                }
+                            }
+                            else
+                            {
+                                if (Math.random() > 0.999)
+                                {
+                                    var voddy = new Unit(this.X, this.Y, "Vodkapa", "runt", "voddy");
+                                    voddy.genes = this.genes;
+                                    if (Math.random() < 0.04)
+                                    {
+                                        voddy.genes.sterile = true;
+                                    }
+                                    voddy.ID = this.ident;
+                                    voddy.cloneLineage = this.cloneLineage;
+                                    voddy.baseTeam = this.cloneLineage;
+                                    voddy.team = this.cloneLineage;
+                                    ArtificialIntelligenceAccess.push(voddy);
+                                }
+                                else
+                                {
+                                    var voddy = new Unit(this.X, this.Y, "Vodkapa", "baby", "voddy");
+                                    voddy.genes = this.genes;
+                                    if (Math.random() < 0.04)
+                                    {
+                                        voddy.genes.sterile = true;
+                                    }
+                                    voddy.ID = this.ident;
+                                    voddy.cloneLineage = this.cloneLineage;
+                                    voddy.baseTeam = this.cloneLineage;
+                                    voddy.team = this.cloneLineage;
+                                    ArtificialIntelligenceAccess.push(voddy);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (this.alphized == true && this.alphized != "runt" && this.alphized != "baby" || this.alphized == false)
+            {
+                var distToPlat = pDist(X, Y, this.X + Math.cos(0 + this.rotation) * 30 * this.size, this.Y + Math.sin(0 + this.rotation) * 30 * this.size, this.X + Math.cos(Math.PI + this.rotation) * 30 * this.size, this.Y + Math.sin(Math.PI + this.rotation) * 30 * this.size);
+                if (distToPlat <= 77 * this.size * 77 * this.size)
+                {
+                    player.land = true;
+                }
+
+                distToPlat = 1000000000000000;
+
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    distToPlat = pDist(ArtificialIntelligenceAccess[i].X, ArtificialIntelligenceAccess[i].Y, this.X + Math.cos(0 + this.rotation) * 30 * this.size, this.Y + Math.sin(0 + this.rotation) * 30 * this.size, this.X + Math.cos(Math.PI + this.rotation) * 30 * this.size, this.Y + Math.sin(Math.PI + this.rotation) * 30 * this.size);
+                    if (distToPlat <= 77 * this.size * 77 * this.size)
+                    {
+                        ArtificialIntelligenceAccess[i].land = true;
+                    }
+                }
+            }
+
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 1;
 
             //INTERACTION
             if (this.activate == true)

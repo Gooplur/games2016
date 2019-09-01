@@ -907,22 +907,101 @@ function worldBuilder()
             outlineBuilder( 1, 34, "vardanianStone", -1176, 306);
         }
         //mapS9W35
-        if (Y > -95730 && Y < -84938 && X < 364713 && X > 353021) //X-35 //todo add map
+        if (Y > -95730 && Y < -84938 && X < 364713 && X > 353021) //X-35
         {
             elevation = 0;
             region = "s9w35";
             campout = true;
+
             outlineBuilder(34, 34, "vardanianGrass", -1210, 286);
-            outlineBuilder( 1, 34, "vardanianStone", -1210, 306);
-            outlineBuilder( 14, 1, "vardanianStone", -1196, 306);
+            outlineBuilder(1, 34, "vardanianStone", -1210, 306);
+            outlineBuilder(14, 1, "vardanianStone", -1196, 306);
+
+            outlineBuilder(10, 10, "vardanianForest", -1208, 288);
+            outlineBuilder(3, 8, "vardanianForest", -1209, 298);
+            outlineBuilder(2, 5, "vardanianForest", -1208, 301);
+            outlineBuilder(6, 6, "vardanianForest", -1198, 292);
+            outlineBuilder(3, 7, "vardanianForest", -1199, 298);
+            outlineBuilder(1, 4, "vardanianForest", -1208, 303);
+            outlineBuilder(1, 2, "vardanianForest", -1208, 304);
+            outlineBuilder(2, 1, "vardanianForest", -1200, 298);
+            outlineBuilder(1, 1, "vardanianForest", -1198, 290);
+            outlineBuilder(1, 4, "vardanianForest", -1198, 291);
+            outlineBuilder(3, 1, "vardanianForest", -1192, 294);
+            outlineBuilder(4, 2, "vardanianForest", -1192, 299);
+            outlineBuilder(1, 2, "vardanianForest", -1194, 301);
+
+            outlineBuilder(2, 8, "vardanianForest", -1188, 316);
+            outlineBuilder(1, 1, "vardanianForest", -1189, 317);
+            outlineBuilder(3, 6, "vardanianForest", -1187, 313);
+            outlineBuilder(1, 1, "vardanianForest", -1180, 317);
+            outlineBuilder(3, 1, "vardanianForest", -1181, 312);
+            outlineBuilder(3, 4, "vardanianForest", -1189, 312);
+            outlineBuilder(2, 1, "vardanianForest", -1180, 312);
+
+            outlineBuilder(6, 12, "vardanianWetland", -1188, 286);
+            outlineBuilder(2, 10, "vardanianWetland", -1186, 292);
+            outlineBuilder(3, 1, "vardanianWetland", -1185, 294);
+            outlineBuilder(2, 3, "vardanianWetland", -1184, 294);
+            outlineBuilder(5, 5, "vardanianWetland", -1181, 294);
+            outlineBuilder(3, 3, "vardanianWetland", -1179, 299);
+            outlineBuilder(1, 2, "vardanianWetland", -1178, 302);
+            outlineBuilder(3, 1, "vardanianWetland", -1177, 303);
+            outlineBuilder(2, 1, "vardanianWetland", -1178, 304);
+            outlineBuilder(2, 1, "vardanianWetland", -1177, 307);
+            outlineBuilder(1, 2, "vardanianWetland", -1195, 286);
+            outlineBuilder(1, 4, "vardanianWetland", -1194, 287);
+            outlineBuilder(1, 4, "vardanianWetland", -1192, 288);
+            outlineBuilder(1, 2, "vardanianWetland", -1190, 289);
+
+            outlineBuilder(5, 3, "swamp", -1183, 286);
+            outlineBuilder(1, 2, "swamp", -1184, 286);
+            outlineBuilder(2, 3, "swamp", -1179, 287);
+            outlineBuilder(1, 2, "swamp", -1178, 289);
+            outlineBuilder(1, 2, "swamp", -1179, 291);
+            outlineBuilder(1, 1, "swamp", -1178, 292);
+            outlineBuilder(2, 1, "swamp", -1187, 287);
+            outlineBuilder(2, 1, "swamp", -1184, 290);
+            outlineBuilder(2, 2, "swamp", -1186, 288);
+            outlineBuilder(3, 2, "swamp", -1178, 298);
+            outlineBuilder(2, 2, "swamp", -1183, 293);
+            outlineBuilder(2, 1, "swamp", -1181, 294);
+            outlineBuilder(2, 1, "swamp", -1178, 295);
+            outlineBuilder(2, 1, "swamp", -1177, 296);
+            outlineBuilder(1, 5, "swamp", -1193, 286);
+            outlineBuilder(1, 2, "swamp", -1190, 287);
+
+            outlineBuilder(4, 12, "vardanianWoods", -1210, 286);
+            outlineBuilder(2, 1, "vardanianWoods", -1198, 286);
+            outlineBuilder(1, 9, "vardanianWoods", -1210, 290);
+            outlineBuilder(2, 7, "vardanianWoods", -1210, 291);
+            outlineBuilder(1, 5, "vardanianWoods", -1210, 293);
+            outlineBuilder(1, 4, "vardanianWoods", -1210, 294);
+            outlineBuilder(11, 1, "vardanianWoods", -1210, 295);
+            outlineBuilder(4, 1, "vardanianWoods", -1209, 295);
+            outlineBuilder(5, 1, "vardanianWoods", -1209, 301);
+            outlineBuilder(2, 1, "vardanianWoods", -1208, 295);
+            outlineBuilder(13, 2, "vardanianWoods", -1210, 307);
+            outlineBuilder(3, 1, "vardanianWoods", -1208, 308);
+            outlineBuilder(2, 4, "vardanianWoods", -1208, 311);
+            outlineBuilder(1, 5, "vardanianWoods", -1208, 313);
+            outlineBuilder(1, 8, "vardanianWoods", -1208, 314);
+            outlineBuilder(1, 1, "vardanianWoods", -1207, 310);
+            outlineBuilder(2, 10, "vardanianWoods", -1208, 315);
+            outlineBuilder(1, 11, "vardanianWoods", -1208, 317);
+            outlineBuilder(1, 9, "vardanianWoods", -1195, 319);
+            outlineBuilder(2, 12, "vardanianWoods", -1208, 318);
+            outlineBuilder(1, 5, "vardanianWoods", -1191, 318);
+            outlineBuilder(3, 5, "vardanianWoods", -1186, 317);
+            outlineBuilder(2, 5, "vardanianWoods", -1181, 318);
         }
         //mapS9W36
-        if (Y > -95730 && Y < -84938 && X < 374956 && X > 363245) //X-36 //todo add map
+        if (Y > -95730 && Y < -84938 && X < 374956 && X > 363245) //X-36
         {
             elevation = 0;
             region = "s9w36";
             campout = true;
-            outlineBuilder(34, 34, "vardanianForest", -1244, 286);
+            outlineBuilder(34, 34, "vardanianWoods", -1244, 286);
             outlineBuilder( 1, 13, "vardanianStone", -1223, 306);
             outlineBuilder( 1, 9, "vardanianStone", -1231, 305);
             outlineBuilder( 1, 5, "vardanianStone", -1235, 304);
@@ -939,7 +1018,7 @@ function worldBuilder()
             outlineBuilder( 34, 1, "stonePath", -20, 252);
         }
         //mapS8W30
-        if (Y > -85605 && Y < -74729 && X < 313753 && X > 302099) //X-30 //todo add map
+        if (Y > -85605 && Y < -74729 && X < 313753 && X > 302099) //X-30
         {
             elevation = 0;
             region = "s8w30";
@@ -949,14 +1028,19 @@ function worldBuilder()
             outlineBuilder( 15, 1, "brickRoad", -1040, 252);
         }
         //mapS8W31
-        if (Y > -85605 && Y < -74729 && X < 323936 && X > 312277) //X-31 //todo add map
+        if (Y > -85605 && Y < -74729 && X < 323936 && X > 312277) //X-31
         {
             elevation = 0;
             region = "s8w31";
             campout = true;
-            outlineBuilder(34, 34, "outline", -1074, 252); //todo mistywoods
+            outlineBuilder(34, 34, "mistywoods", -1074, 252);
 
             outlineBuilder( 1, 34, "brickRoad", -1074, 266);
+            outlineBuilder( 4, 1, "brickRoad", -1064, 262);
+            outlineBuilder(1, 2, "brickRoad", -1063, 262);
+            outlineBuilder(4, 1, "brickRoad", -1061, 259);
+            outlineBuilder(3, 2, "farmland", -1060, 258);
+            outlineBuilder(2, 2, "farmland", -1069, 267);
         }
         //mapS8W32 //RAUKE (town)
         if (Y > -85605 && Y < -74729 && X < 334130 && X > 322464) //X-32 //todo add map
@@ -1298,18 +1382,26 @@ function worldBuilder()
             outlineBuilder( 1, 7, "brickRoad", -1006, 235);
         }
         //mapS7W30
-        if (Y > -75331 && Y < -64538 && X < 313753 && X > 302099) //X-30 //todo add map
+        if (Y > -75331 && Y < -64538 && X < 313753 && X > 302099) //X-30
         {
             elevation = 0;
             region = "s7w30";
             campout = true;
-            outlineBuilder(34, 34, "outline", -1040, 218); //todo mistywoods
+            outlineBuilder(34, 34, "mistywoods", -1040, 218);
 
             outlineBuilder( 1, 10, "brickRoad", -1015, 235);
             outlineBuilder( 1, 10, "brickRoad", -1024, 236);
             outlineBuilder( 1, 10, "brickRoad", -1033, 237);
             outlineBuilder( 1, 8, "brickRoad", -1040, 238);
             outlineBuilder( 13, 1, "brickRoad", -1040, 239);
+
+            outlineBuilder(13, 1, "crag", -1040, 220);
+            outlineBuilder(9, 1, "crag", -1039, 221);
+            outlineBuilder(3, 1, "crag", -1038, 225);
+            outlineBuilder(1, 3, "crag", -1038, 225);
+            outlineBuilder(1, 4, "crag", -1037, 226);
+            outlineBuilder(1, 2, "crag", -1037, 227);
+            outlineBuilder(2, 1, "crag", -1040, 235);
         }
         //mapS7W31
         if (Y > -75331 && Y < -64538 && X < 323936 && X > 312277) //X-31

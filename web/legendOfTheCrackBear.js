@@ -4929,6 +4929,7 @@ function theLegend()
     alchemy.push(new Item("glazm", false));
     alchemy.push(new Item("fermentedTermite", false));
     alchemy.push(new Item("elcheExtract", false));
+    alchemy.push(new Item("silverbloodPotion", false));
 
 //Brewing (alcohols, liquid fermentation, etc.)
     brewing = [];

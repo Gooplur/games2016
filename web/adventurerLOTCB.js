@@ -27042,6 +27042,17 @@ function Adventurer()
                             {
                                 ArtificialIntelligenceAccess[i].lycanthropyTime = new Date().getTime();
                             }
+                            else if (ArtificialIntelligenceAccess[i].silvered == true)
+                            {
+                                this.silvered = true;
+                            }
+                        }
+                        else if (this.weapon.ability == "vampireCurse" && (Math.max(0, this.weapon.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour)) > 0))
+                        {
+                            if (ArtificialIntelligenceAccess[i].silvered == true)
+                            {
+                                this.silvered = true;
+                            }
                         }
                         else if (this.weapon.ability == "maybeblind")
                         {
@@ -37179,7 +37190,7 @@ function Adventurer()
                                 this.wilTime = new Date().getTime() + 275000;
                                 this.willpowerV = true;
                             }
-                            else if (Inventory[i][0].ability == "silverBlood")
+                            else if (Inventory[i][0].ability == "silverblood" || Inventory[i][0].ability == "silverBlood")
                             {
                                 this.silvered = true;
                             }
@@ -37203,6 +37214,11 @@ function Adventurer()
                                     this.venandi = 0;
                                 }
                                 this.fungalFever = false;
+                            }
+                            else if (Inventory[i][0].ability == "antiSilver")
+                            {
+                                //Removes silver from the blood
+                                this.silvered = false;
                             }
                             else if (Inventory[i][0].ability == "mj")
                             {

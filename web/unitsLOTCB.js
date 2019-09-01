@@ -8097,6 +8097,17 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                                     {
                                         player.lycanthropyTime = new Date().getTime();
                                     }
+                                    else if (player.silvered == true)
+                                    {
+                                        this.silvered = true;
+                                    }
+                                }
+                                else if (this.type == "Vampire" && (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0))
+                                {
+                                    if (player.silvered == true)
+                                    {
+                                        this.silvered = true;
+                                    }
                                 }
                                 else if (this.effect == "constrict" && player.form != "werewolf" && player.form != "vampire")
                                 {
@@ -8807,6 +8818,17 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                                 if (this.target.silvered == false && this.target.resistances.indexOf("lycanthropy") == -1)
                                 {
                                     this.target.lycanthropyTime = new Date().getTime();
+                                }
+                                else if (this.target.silvered == true)
+                                {
+                                    this.silvered = true;
+                                }
+                            }
+                            else if (this.type == "Vampire" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
+                            {
+                                if (this.target.silvered == true)
+                                {
+                                    this.silvered = true;
                                 }
                             }
                             else if (this.effect == "blindingI" && (Math.max(0, this.damage - Math.max(0, this.target.armour - this.negateArmour)) > 0))
@@ -18111,6 +18133,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
             this.fegilKiddos = 0;
 
+            this.moundDir = (2 * Math.random() * Math.PI);
+            this.moundMakeCount = 0;
+            this.fegilNative = false;
+
             this.honkinRot = (2 * Math.random() * Math.PI);
 
             if (this.alpha == true) //male
@@ -18145,6 +18171,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             }
             else if (this.alpha == "baby") //baby
             {
+                this.fegilNative = true;
                 this.lifetime = 0;
                 this.alphaSize = 0.5 + 0.005 * this.genes.con + 0.005 * this.genes.str;
                 this.magicalResistance = 0;
@@ -18203,6 +18230,8 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
                 this.yAdjustment = 0;
                 this.xAdjustment = 0;
+
+                this.fegilNative = false;
             }
             this.swimSpeed = this.speed * 0.54;
         }
@@ -47521,10 +47550,116 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
                 if (this.alpha == true && this.fegilBase == "none")
                 {
-                    this.fegilBase = true;
-                    scenicList.push(new Scenery("fegilMound", this.X, this.Y, 2*Math.random()*Math.PI, true, this.barcode));
-                    this.initX = this.X;
-                    this.initY = this.Y;
+                    if (this.fegilNative == false)
+                    {
+                        this.fegilBase = true;
+                        scenicList.push(new Scenery("fegilMound", this.X, this.Y, 2*Math.random()*Math.PI, true, this.barcode));
+                        this.initX = this.X;
+                        this.initY = this.Y;
+                    }
+                    else
+                    {
+                        var moundMakeDir = {X: this.X + Math.cos(this.moundDir) * 500, Y: this.Y + Math.sin(this.moundDir) * 500};
+                        this.pointTowards(moundMakeDir);
+                        this.moveInRelationToThing(moundMakeDir, 10000);
+                        this.moundMakeCount += 1;
+
+                        if (this.moundMakeCount > 75)
+                        {
+                            this.moundMakeCount = 0;
+
+                            var tryUgin = false;
+                            if (this.land == false)
+                            {
+                                tryUgin = true;
+                            }
+                            else
+                            {
+                                for (var oop = 0; oop < scenicList.length; oop++)
+                                {
+                                    if (scenicList[oop].type == "dalgerNest")
+                                    {
+                                        if (this.DTU(scenicList[oop]) < 230)
+                                        {
+                                            tryUgin = true;
+                                        }
+                                    }
+                                    if (scenicList[oop].type == "ribbackNest")
+                                    {
+                                        if (this.DTU(scenicList[oop]) < 250)
+                                        {
+                                            tryUgin = true;
+                                        }
+                                    }
+                                    if (scenicList[oop].type == "ghoulDen")
+                                    {
+                                        if (this.DTU(scenicList[oop]) < 100)
+                                        {
+                                            tryUgin = true;
+                                        }
+                                    }
+                                    if (scenicList[oop].type == "ribbackWeb")
+                                    {
+                                        if (this.DTU(scenicList[oop]) < 250)
+                                        {
+                                            tryUgin = true;
+                                        }
+                                    }
+                                    if (scenicList[oop].type == "vodkapaHome")
+                                    {
+                                        if (this.DTU(scenicList[oop]) < 200)
+                                        {
+                                            tryUgin = true;
+                                        }
+                                    }
+                                    if (scenicList[oop].type == "vardanianSwampBrush")
+                                    {
+                                        if (this.DTU(scenicList[oop]) < 90)
+                                        {
+                                            tryUgin = true;
+                                        }
+                                    }
+                                    if (scenicList[oop].type == "cattailPlant")
+                                    {
+                                        if (this.DTU(scenicList[oop]) < 60)
+                                        {
+                                            tryUgin = true;
+                                        }
+                                    }
+                                    if (scenicList[oop].type == "mandrakePlant")
+                                    {
+                                        if (this.DTU(scenicList[oop]) < 70)
+                                        {
+                                            tryUgin = true;
+                                        }
+                                    }
+                                    if (scenicList[oop].type == "ashaiTree")
+                                    {
+                                        if (this.DTU(scenicList[oop]) < 150)
+                                        {
+                                            tryUgin = true;
+                                        }
+                                    }
+                                    if (scenicList[oop].type == "fegilMound")
+                                    {
+                                        if (this.DTU(scenicList[oop]) < 300)
+                                        {
+                                            tryUgin = true;
+                                        }
+                                    }
+                                }
+                            }
+
+                            if (tryUgin == false)
+                            {
+                                this.fegilNative = false;
+                                this.fegilBase = true;
+                                scenicList.push(new Scenery("fegilMound", this.X, this.Y, 2*Math.random()*Math.PI, true, this.barcode));
+                                this.initX = this.X;
+                                this.initY = this.Y;
+                            }
+                        }
+                    }
                 }
 
                 if (this.fegilBase == true)
@@ -48035,7 +48170,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             }
                             this.moving = false;
                         }
-                        else
+                        else if (this.fegilNative == false)
                         {
                             this.pointTowards(startPoint);
                             this.moveInRelationToThing(startPoint, 100000);
@@ -48260,7 +48395,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             }
                             this.moving = false;
                         }
-                        else
+                        else if (this.fegilNative == false)
                         {
                             this.pointTowards(startPoint);
                             this.moveInRelationToThing(startPoint, 100000);
@@ -48480,7 +48615,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             }
                             this.moving = false;
                         }
-                        else
+                        else if (this.fegilNative == false)
                         {
                             this.pointTowards(startPoint);
                             this.moveInRelationToThing(startPoint, 100000);
@@ -55602,10 +55737,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     this.hunger -= 0.025;
                 }
 
-                if (this.hunger < 0)
+                if (this.hunger < -100 || this.horndogGenes == true && this.hunger < 0)
                 {
-                    this.hunger = 0;
+                    //this.hunger = 0;
                     this.health -= 0.02;
+                    this.killNotByPlayer = true;
                 }
                 else if (this.hunger > 0 && this.health < this.healthMAX && this.team != "player" && this.team != "koivaya")
                 {

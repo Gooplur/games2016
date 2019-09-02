@@ -14536,7 +14536,7 @@ function Item(type, x, y)
             this.replenish = 0.2; //restores will.
 
             //ability
-            this.ability = "superQuench";
+            this.ability = "hydrora";
 
             //Crafting
             this.yield = 1;

@@ -15357,7 +15357,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 this.team = "player";
             }
-            else if (this.ID == "docile")
+            else if (this.ID == "docile" || this.ID == "Grif")
             {
                 this.team = "docile";
             }
@@ -74229,6 +74229,13 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 {
                     this.lunging = false;
                     this.action = "swipe";
+                }
+            }
+            else
+            {
+                if (this.ID == "Grif")
+                {
+                    quests.theScourgeOfGenocaGriffinSlain = true;
                 }
             }
 

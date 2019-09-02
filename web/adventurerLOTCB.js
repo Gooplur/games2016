@@ -36683,6 +36683,14 @@ function Adventurer()
                                     this.watered = true;
                                 }
                             }
+                            else if (Inventory[i][0].ability == "hydrora")
+                            {
+                                if (this.wendigo != true)
+                                {
+                                    this.wateredClock = 260 + 1/2 * this.getEndurance() * 2;
+                                }
+                                this.silvered = false;
+                            }
                             else if (Inventory[i][0].ability == "bigQuench")
                             {
                                 if (this.wendigo != true)

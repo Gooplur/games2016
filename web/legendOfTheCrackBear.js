@@ -3503,7 +3503,8 @@ function theLegend()
         liehthet: ["Liehthet", 0],
         lafette: ["Lafette", 0],
         almadin: ["Almadin", 0],
-        alfonz: ["Alfonz", 0]
+        alfonz: ["Alfonz", 0],
+        tantin: ["Tantin", 0]
     };
 
 //time Tracker Variables
@@ -3741,7 +3742,8 @@ function theLegend()
         liehthetLDS: true,
         lafetteLDS: true,
         almadinLDS: true,
-        alfonzLDS: true
+        alfonzLDS: true,
+        tantinLDS: true
     };
 //QUESTS
     quests =
@@ -3803,6 +3805,7 @@ function theLegend()
         altezorCastleItems: true,
         hermitsWood: true,
         zombiVillageStash: true,
+        griffStash: true,
 
         //EVENTS (non quest)
         ultherFlower: true,
@@ -3857,6 +3860,14 @@ function theLegend()
         lowlifeExterminated: false,
         lowlifeThiefFound: false,
         lowlifeRat: false,
+
+        //QUEST: The Scourge of Genoca ---- given by Alderman Tantin
+        theScourgeOfGenocaQuest: false,
+        theScourgeOfGenocaCompletionStyle: false,
+        theScourgeOfGenocaGriffinSlain: false,
+        theScourgeOfGenocaDeal: false,
+        theScourgeOfGenocaSaw: false,
+        theScourgeOfGenocaSquad: false,
 
         //QUEST: The Deermen and the Wendigo ---- given by
         theDeermenAndTheWendigoQuest: false,

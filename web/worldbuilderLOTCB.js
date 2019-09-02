@@ -1572,6 +1572,54 @@ function worldBuilder()
             region = "s7w34";
             campout = true;
             outlineBuilder(34, 34, "outline", -1176, 218); //todo vardanianWetland
+            outlineBuilder(1, 1, "swamp", -1174, 251);
+            outlineBuilder(2, 4, "swamp", -1175, 249);
+            outlineBuilder(1, 7, "swamp", -1174, 248);
+            outlineBuilder(1, 8, "swamp", -1172, 247);
+            outlineBuilder(3, 6, "swamp", -1170, 243);
+            outlineBuilder(5, 3, "swamp", -1164, 240);
+            outlineBuilder(1, 2, "swamp", -1166, 240);
+            outlineBuilder(6, 9, "swamp", -1169, 232);
+            outlineBuilder(7, 5, "swamp", -1160, 235);
+            outlineBuilder(2, 8, "swamp", -1158, 242);
+            outlineBuilder(1, 10, "swamp", -1156, 244);
+            outlineBuilder(3, 9, "swamp", -1152, 245);
+            outlineBuilder(4, 1, "swamp", -1143, 246);
+            outlineBuilder(3, 2, "swamp", -1145, 241);
+            outlineBuilder(2, 2, "swamp", -1147, 240);
+            outlineBuilder(7, 1, "swamp", -1149, 237);
+            outlineBuilder(2, 3, "swamp", -1152, 237);
+            outlineBuilder(2, 9, "swamp", -1153, 232);
+            outlineBuilder(1, 4, "swamp", -1149, 234);
+            outlineBuilder(1, 2, "swamp", -1148, 235);
+            outlineBuilder(5, 2, "swamp", -1144, 228);
+            outlineBuilder(5, 14, "swamp", -1158, 223);
+            outlineBuilder(2, 4, "swamp", -1148, 228);
+            outlineBuilder(4, 7, "swamp", -1157, 219);
+            outlineBuilder(3, 8, "swamp", -1168, 225);
+            outlineBuilder(3, 5, "swamp", -1166, 222);
+            outlineBuilder(4, 2, "swamp", -1165, 218);
+            outlineBuilder(2, 6, "swamp", -1147, 219);
+            outlineBuilder(1, 3, "swamp", -1148, 218);
+            outlineBuilder(1, 3, "swamp", -1146, 221);
+            outlineBuilder(1, 1, "swamp", -1157, 218);
+            outlineBuilder(2, 2, "swamp", -1161, 219);
+            outlineBuilder(1, 2, "swamp", -1162, 218);
+            outlineBuilder(2, 4, "swamp", -1158, 229);
+            outlineBuilder(1, 1, "swamp", -1155, 231);
+            outlineBuilder(3, 1, "swamp", -1158, 231);
+            outlineBuilder(1, 2, "swamp", -1166, 228);
+            outlineBuilder(10, 4, "swamp", -1175, 219);
+            outlineBuilder(7, 1, "swamp", -1171, 221);
+            outlineBuilder(5, 3, "swamp", -1170, 218);
+            outlineBuilder(9, 2, "swamp", -1174, 229);
+            outlineBuilder(3, 1, "swamp", -1172, 232);
+            outlineBuilder(5, 1, "swamp", -1176, 237);
+            outlineBuilder(4, 2, "swamp", -1176, 233);
+            outlineBuilder(1, 2, "swamp", -1173, 238);
+            outlineBuilder(3, 2, "swamp", -1175, 244);
+            outlineBuilder(1, 1, "swamp", -1170, 231);
+            outlineBuilder(2, 1, "swamp", -1171, 233);
         }
         //Layer -6 (cold region): elev 0
         //mapS6
@@ -2171,6 +2219,17 @@ function worldBuilder()
             //outlineBuilder( 1, 1, "muckgrass", 8, 104);
         }
         //Layer -2 (cold region): elev 0
+        //mapS2E6
+        if (Y > -24704 && Y < -13476 && X < -53489.88731544383 && X > -65110.798814782334) //X6
+        {
+            elevation = 0;
+            region = "s2e6";
+            campout = true;
+            outlineBuilder( 34, 34, "brightGrass", 184, 48); //brightGrass
+            outlineBuilder(2, 3, "farmland", 195, 66);
+            outlineBuilder(1, 2, "farmland", 192, 63);
+            outlineBuilder(2, 3, "farmland", 193, 69);
+        }
         //mapS2E1
         if (Y > -24704 && Y < -13476 && X < - 2490 && X > -14114) //X1
         {
@@ -2400,6 +2459,15 @@ function worldBuilder()
 
             outlineBuilder( 1, 9, "brickRoad", -233, 35);
             outlineBuilder( 13, 1, "brickRoad", -233, 35);
+        }
+        //mapS1W9
+        if (Y > -14144 && Y < -3328 && X < 99554 && X > 87882) //X-9
+        {
+            elevation = 0;
+            region = "s1w9";
+            campout = true;
+            outlineBuilder(34, 34, "woods", -326, 14);
+            outlineBuilder( 34, 1, "brickRoad", -321, 14);
         }
         //mapS1E4 Loroka Woods
         if (Y > -14144 && Y < -3328 && X < -33084 && X > -44714) //X4

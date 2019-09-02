@@ -1,7 +1,5 @@
 //NOT YET IN THE GAME
     //FARM
-Garlic - a small green shoot that has a white papery bulb that is very useful in cooking and in alchemy
-Hops - a bush with nice smelling nubs called hops
 Alcachofa - an artichoke plant...
 Saffron - a small purple flower plant that grows exclusively in the tropical south that's stamens are used as an exotic spice
 Berenjena - an eggplant/aubergine plant...
@@ -9,7 +7,6 @@ Onion - an onion...
     //WILD
 Karm - A southern temperate bush that hosts a small green fruit
 Clobe - A plant that grows in temperate regions that has three swollen curved leaves full of a thick green sap
-Saug - A long tuber plant that has some light hair-like fibers that protrude from the ground
 OgoTree - A tropical tree that bears energizing ogo fruits
 AppleTree - A temperate tree that yields apples; apple trees grow almost exclusively in Thengaria
 DesertPoppy - A poppy plant that grows in the far south in the burning desert; its seeds can be made into opium
@@ -27,6 +24,8 @@ ChonaTree - An orchard tree that grows pink fruits
 PolyapaTree - An orchard tree that grows small pear-like fruits
 Cabbage - A vardanian/thengan food staple that is cultivated in farms
 Wheat - A tropical/temperate grass that yields a wholesome grain that can be milled into bread or fermented.
+Garlic - a small green shoot that has a white papery bulb that is very useful in cooking and in alchemy
+Hops - a bush with nice smelling nubs called hops
     //WILD
 PineTree - A pine tree
 GreatPineTree - A large variety of pine tree that grows in Thengaria, and in some parts of the North (set information to "snowy" to make it a snow covered tree) (use longevity to adjust its size: 5min - 9max)
@@ -65,7 +64,7 @@ Ogard - A small brown plant that has a large hard nut-like fruit that can be use
 Vorlym - A dazzling plant with several purple flowers each with two large velvety petals (grows in temperate regions particularly in western grasslands)
 Gallosh - A pointed petal pink flower that grows in western temperate climates
 Kofke - A temperate woodland plant that has pointed leaves
-Thalis - A temperate woodland plant that has four thick and twisted leaves
+Thalis - A temperate woodland plant that has four thick and twisted leaves (it is hyper-hydrating and it cures silver poisoning)
 Callop - A peach coloured temperate woodland berry
 Darb - An orange berried bush that's berries grow primarily clustered in the center surrounded by the leafy bush on all sides
 Steugiurne - A large fronded temperate woodlands plant with a prominent yellow flower
@@ -143,3 +142,4 @@ Zwaleim - A generic bush that grows in the southern savannah
 Glaza - A small bush that grows in the southern savannah that's root is poisonous and is used to make powerful weapon-applicable venom paste
 Elche - A bushy razor edge leaved bush that grows at a rapid pace. Its leaves can be used to make a medium strength antivenom/antidote.
 Xium - A large light blue jungle mushroom that has sticky spore pods that it shoots off in order to spread. They infect jungle trees such as selva and sonja and use them as hosts to release yet more spores.
+Saug - A long tuber plant that has some light hair-like fibers that protrude from the ground

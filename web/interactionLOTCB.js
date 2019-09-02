@@ -2834,6 +2834,719 @@ function interaction(me)
                         }
                     }
 
+                    if (self.ID == "Alderman Tantin" || conversationID[0] == "Tantin")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Tantin";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                if (quests.theScourgeOfGenocaQuest != "complete" && quests.theScourgeOfGenocaGriffinSlain == true)
+                                {
+                                    player.dialogueOptions = [["I have slain the griffin!", false, "a"]];
+                                }
+                                else if (quests.theScourgeOfGenocaQuest == "complete" && quests.theScourgeOfGenocaGriffinSlain == true)
+                                {
+                                    if (region == "s2e6")
+                                    {
+                                        player.dialogueOptions = [["Good day.", false, "e"], ["What do the responsibilities of an Alderman entail?", false, "c"], ["Tell me about this hamlet...", false, "d"]];
+                                    }
+                                    else
+                                    {
+                                        player.dialogueOptions = [["Good day.", false, "e"], ["What do the responsibilities of an Alderman entail?", false, "c"]];
+                                    }
+                                }
+                                else
+                                {
+                                    if (quests.theScourgeOfGenocaCompletionStyle == "pet")
+                                    {
+                                        player.dialogueOptions = [["Why do you remain here in this inn?", false, "a"]];
+                                    }
+                                    else if (quests.theScourgeOfGenocaCompletionStyle == "rendir")
+                                    {
+                                        player.dialogueOptions = [["Do you continue in your search for a saviour despite the futility of it!?", false, "a"]];
+                                    }
+                                    else if (quests.theScourgeOfGenocaCompletionStyle == false)
+                                    {
+                                        player.dialogueOptions = [["You seem pale with fright...", false, "a"], ["What brings you here to this inn?", false, "a"]];
+                                    }
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            if (quests.theScourgeOfGenocaQuest != "complete" && quests.theScourgeOfGenocaGriffinSlain == true)
+                            {
+                                if (quests.theScourgeOfGenocaDeal == true)
+                                {
+                                    //text dialogue
+                                    setMsg("The people of Genoca will sing your name in our prayers! Your have saved us from poverty and despair... you have taken our home back from the beast! Here, I have pooled together 300 coins from all of the people of Genoca to repay you for your noble service to us.");
+
+                                    //on ended text dialogue
+                                    if (tellMessage == "reset")
+                                    {
+                                        msgReset();
+
+                                        give("coins", 300);
+                                        quests.theScourgeOfGenocaQuest = "complete";
+                                        quests.completeQuests.push({name: "The Scourge of Genoca", description: "You have slain the griffin that had made its nest in the hamlet Genoca, the alderman payed you 300 coins for your services."});
+                                        player.nirwadenFaction += 45;
+                                        if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                        {
+                                            player.magicalExperience += 250;
+                                        }
+                                        else
+                                        {
+                                            player.experience += 1100;
+                                        }
+                                        player.fame += 2;
+                                        if (player.inquisitionRank != "none")
+                                        {
+                                            quests.theOrderOfTheInquisition += 2; //the inquisition guild cares about this quest and will recognize its members for completing it.
+                                        }
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                    else
+                                    {
+                                        self.SC();
+                                    }
+                                }
+                                else
+                                {
+                                    //text dialogue
+                                    setMsg("The people of Genoca will sing your name in our prayers! You have saved our home from a most terrible beast without any hope for reward... you are truly a saint!");
+
+                                    //on ended text dialogue
+                                    if (tellMessage == "reset")
+                                    {
+                                        msgReset();
+
+                                        quests.theScourgeOfGenocaQuest = "complete";
+                                        quests.completeQuests.push({name: "The Scourge of Genoca", description: "You have slain the griffin that had made its nest in the hamlet Genoca. You are now regarded as the patron Saint of Genoca."});
+                                        player.nirwadenFaction += 75;
+                                        if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                        {
+                                            player.magicalExperience += 300;
+                                        }
+                                        else
+                                        {
+                                            player.experience += 1250;
+                                        }
+                                        player.fame += 2;
+                                        if (player.inquisitionRank != "none")
+                                        {
+                                            quests.theOrderOfTheInquisition += 2; //the inquisition guild cares about this quest and will recognize its members for completing it.
+                                        }
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                    else
+                                    {
+                                        self.SC();
+                                    }
+                                }
+                            }
+                            else if (quests.theScourgeOfGenocaCompletionStyle == "pet")
+                            {
+                                //text dialogue
+                                setMsg("Your grace, you have designated my home as a sanctuary for the most hateful of beasts... I have nowhere better to be but in a tavern drinking away the injustice of this cruel world.");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                            else if (quests.theScourgeOfGenocaCompletionStyle == "rendir")
+                            {
+                                //text dialogue
+                                setMsg("I hold it in my heart that there must be some brave warrior out there than can save my home from the beast that dwells there... What of the tales of brave knights and glory, what of the tales of dragonslayers and noble witch hunters? I will not give up hope that Genoca can be saved.");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                //text dialogue
+                                if (player.level < 20 && player.fame < 25)
+                                {
+                                    setMsg("Such a poor soul am I to have witnessed my dear brother swept up from the fields by the fowl talons of a winged beast... all the rest of us have been forced to flee everywhich way. There is no place less hospitible than the hamlet I was born to, for that evil hearted monstrosity has made Genoca its home.");
+                                }
+                                else
+                                {
+                                    setMsg("I come here seeking a saviour, a warrior so bold as to confront the most fearsome of beasts. The hamlet Genoca I was born to has been made the home of a winged monstrosity, all of us were forced to flee. All but my poor brother, that fowl winged monster swept him up from the field he was tending with its huge and fearsome talons.");
+                                }
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 1;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            setMsg("How did you get this dialogue option!? You are a magician, a demon! You must be!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            if (player.title == "Nobility" && player.raceName == "Nirwaden")
+                            {
+                                setMsg("I am the elected head of the hamlet Genoca. I am responsible for gathering our collective harvest and making sure that your noble house gets your rightful share when the collectors come knocking. I also am in charge of civil matters in Genoca, if people get into a dispute I figure out who was right and who was wrong and sentence them accordingly.");
+                            }
+                            else
+                            {
+                                setMsg("I am the elected head of the hamlet Genoca. I am responsible for gathering our collective harvest and making sure that the lord's collectors get their share. I also am in charge of civil matters in Genoca, if people get into a dispute I determine who was right and who was wrong and sentence them accordingly.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            setMsg("This hamlet is called Genoca, it was named after the family that founded this settlment hundreds of years ago, perhaps thousands. We serve the empire by growing crops for the house of Altezor. We mainly grow garlic, tialo, carrots, hops, harst, and santh.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            //text dialogue
+                            if (quests.theScourgeOfGenocaDeal == true)
+                            {
+                                if (player.gender == "Male")
+                                {
+                                    setMsg("A most excellent day indeed for the glorious monster hunter, " + player.name + " has graced me with his presence! I cannot thank you enough for saving Genoca!");
+                                }
+                                else
+                                {
+                                    setMsg("A most excellent day indeed for the glorious monster hunter, " + player.name + " has graced me with her presence! I cannot thank you enough for saving Genoca!");
+                                }
+                            }
+                            else
+                            {
+                                if (player.gender == "Female")
+                                {
+                                    setMsg("A most excellent day indeed for Saint " + player.name + " has graced me with her presence! I cannot thank you enough for your selfless service to Genoca!");
+                                }
+                                else
+                                {
+                                    setMsg("A most excellent day indeed for Saint " + player.name + " has graced me with his presence! I cannot thank you enough for your selfless service to Genoca!");
+                                }
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 1)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [];
+
+                                if (player.title == "Nobility")
+                                {
+                                    player.dialogueOptions.push(["I will send my soldiers to slay the beast of which you speak! [send soldiers to the hamlet of Genoca]", false, "a"]);
+                                    player.dialogueOptions.push(["My good alderman, I will rend this griffin's head from its neck! You will be returning home shortly...", false, "b"]);
+                                    player.dialogueOptions.push(["Surely it is a griffin of which you speak, there is little that can be done to help Genoca; a griffin makes its home where it will...", false, "d"]);
+                                }
+                                else if (player.title == "Royalty" && player.raceName == "Nirwaden")
+                                {
+                                    player.dialogueOptions.push(["I will order an inquisitor to slay this monstrosity! [Order the inquisition to kill the beast]", false, "a"]);
+                                    player.dialogueOptions.push(["I will personally rend this griffin's head from its neck; It will trouble Genoca no longer!", false, "b"]);
+                                    player.dialogueOptions.push(["I have always wanted a pet griffin... let it be known that Genoca is now a griffin sanctuary!]", false, "d"]);
+                                }
+                                else
+                                {
+                                    player.dialogueOptions.push(["I wish there were something I could do to help...", false, "a"]);
+                                    player.dialogueOptions.push(["That is a fearsome tale indeed!", false, "a"]);
+                                    player.dialogueOptions.push(["I will slay this winged beast you speak of...", false, "b"]);
+                                    player.dialogueOptions.push(["For the right price I will rid you of this fowl monstrosity that plagues your village.", false, "c"]);
+                                    player.dialogueOptions.push(["It is most sorrowful that you have lost your brother to this monster, but there is nothing that can be done, such a beast as fearsome as that which you speak of can be felled by no man.", false, "d"]);
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1d";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1a")
+                        {
+                            if (player.title == "Nobility")
+                            {
+                                //text dialogue
+                                if (player.gender == "Female")
+                                {
+                                    setMsg("My Dame, I am forever greatful for your assistance!");
+                                }
+                                else
+                                {
+                                    setMsg("My Lord, I am forever greatful for your assistance!");
+                                }
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    alert("You order a group of soldiers to slay the griffin nesting in Genoca. Only one soldier returns from the ordeal badly injured. Your soldiers have injured the beast significantly but the griffin tore those that did not flee asunder before they could finish the job.");
+                                    quests.theScourgeOfGenocaSquad = true;
+                                    if (quests.theScourgeOfGenocaQuest == false)
+                                    {
+                                        quests.theScourgeOfGenocaQuest = true;
+                                        quests.activeQuests.push({name: "The Scourge of Genoca", description: "You ordered your men to slay a griffin in the hamlet Genoca south east of Atalin, but they were massacred..."});
+                                    }
+                                    quests.theScourgeOfGenocaCompletionStyle = "started";
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                    reiniciar();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                            else if (player.title == "Royalty" && player.raceName == "Nirwaden")
+                            {
+                                //text dialogue
+                                setMsg("Your highness, I am ever greatful for your most generous assistance!");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    alert("You send out a notice to the Royal guild of the Inquisiton with your royal seal it states that the royal family wishes a griffin that has taken residence in the hamlet Genoca to be slain. The notice is quickly followed up on with special attention from a high inquisitor. The inquisition sends a letter back to you declaring that they have slain the beast by dousing it with oil and setting it aflame. Genoca is saved!");
+                                    quests.theScourgeOfGenocaQuest = "complete";
+                                    quests.completeQuests.push({name: "The Scourge of Genoca", description: "By your orders the Royal Guild of the Inquisition has prioritized slaying a griffin that had built its nest in the hamlet Genoca."});
+                                    player.nirwadenFaction += 25;
+                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                    {
+                                        player.magicalExperience += 75;
+                                    }
+                                    else
+                                    {
+                                        player.experience += 350;
+                                    }
+                                    quests.theScourgeOfGenocaGriffinSlain = true;
+                                    quests.theScourgeOfGenocaCompletionStyle = "inquisition";
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                //text dialogue
+                                if (player.gender == "Female")
+                                {
+                                    setMsg("There is no need to burden yourself with my peoples woes, fair lady.");
+                                }
+                                else
+                                {
+                                    setMsg("There is no need to burden yourself with my peoples woes, my good man.");
+                                }
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1b")
+                        {
+                            if (player.title == "Nobility")
+                            {
+                                //text dialogue
+                                setMsg("You are truly noble! I thank you for your bravery!");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    if (quests.theScourgeOfGenocaQuest == false)
+                                    {
+                                        quests.theScourgeOfGenocaQuest = true;
+                                        quests.activeQuests.push({name: "The Scourge of Genoca", description: "You have offered to slay a griffin that has made its home in the hamlet Genoca."});
+                                    }
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                            else if (player.title == "Royalty" && player.raceName == "Nirwaden")
+                            {
+                                //text dialogue
+                                setMsg("Your grace, thank you so much for helping us! Such a valient dedication to your people will not soon be forgotten!");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    if (quests.theScourgeOfGenocaQuest == false)
+                                    {
+                                        quests.theScourgeOfGenocaQuest = true;
+                                        quests.activeQuests.push({name: "The Scourge of Genoca", description: "You have offered to slay a griffin that has made its home in the hamlet Genoca."});
+                                    }
+                                    quests.theScourgeOfGenocaCompletionStyle = "started";
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                //text dialogue
+                                setMsg("You are most virtuous to make such a brave and selfless offer to help us. Thank you! I wish you the best of luck!");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    if (quests.theScourgeOfGenocaQuest == false)
+                                    {
+                                        quests.theScourgeOfGenocaQuest = true;
+                                        quests.activeQuests.push({name: "The Scourge of Genoca", description: "You have offered to slay a griffin that has made its home in the hamlet Genoca."});
+                                    }
+                                    quests.theScourgeOfGenocaCompletionStyle = "started";
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1c")
+                        {
+                            //text dialogue
+                            setMsg("The people of Genoca have pooled together 300 coins to pay whoever slays the winged monstrosity that plagues our hamlet. It is all we have, but if you slay the beast which hath taken our home from us we will gladly pay you those funds.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.theScourgeOfGenocaDeal = true;
+                                if (quests.theScourgeOfGenocaQuest == false)
+                                {
+                                    quests.theScourgeOfGenocaQuest = true;
+                                    quests.activeQuests.push({name: "The Scourge of Genoca", description: "You have offered to slay a griffin that has made its nest in the hamlet Genoca: you will be payed 300 coins."});
+                                }
+                                quests.theScourgeOfGenocaCompletionStyle = "started";
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1d")
+                        {
+                            if (player.title == "Nobility")
+                            {
+                                if (player.gender == "Female")
+                                {
+                                    //text dialogue
+                                    setMsg("As you say, me Dame.");
+
+                                    //on ended text dialogue
+                                    if (tellMessage == "reset")
+                                    {
+                                        msgReset();
+
+                                        quests.theScourgeOfGenocaCompletionStyle = "rendir";
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                    else
+                                    {
+                                        self.SC();
+                                    }
+                                }
+                                else
+                                {
+                                    //text dialogue
+                                    setMsg("As you say, me lord.");
+
+                                    //on ended text dialogue
+                                    if (tellMessage == "reset")
+                                    {
+                                        msgReset();
+
+                                        quests.theScourgeOfGenocaCompletionStyle = "rendir";
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                    else
+                                    {
+                                        self.SC();
+                                    }
+                                }
+                            }
+                            else if (player.title == "Royalty" && player.raceName == "Nirwaden")
+                            {
+                                //text dialogue
+                                setMsg("[The alderman's face flushes red with rage] Your grace, you... you... [he bows meakly and excuses himself]");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    quests.theScourgeOfGenocaCompletionStyle = "pet";
+                                    quests.theScourgeOfGenocaQuest = "complete";
+                                    quests.completeQuests.push({name: "The Scourge of Genoca", description: "You have decreed that the hamlet of Genoca is now to be a royal Griffin Sanctuary to host your new pet griffin."});
+                                    player.nirwadenFaction -= 50;
+                                    if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                    {
+                                        player.magicalExperience += 50;
+                                    }
+                                    else
+                                    {
+                                        player.experience += 250;
+                                    }
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                //text dialogue
+                                setMsg("I disagree, have you not read the tales of heroic knights and noble dragonslayers? Genoca still has hope of being saved, I simply must find the right person.");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    quests.theScourgeOfGenocaCompletionStyle = "rendir";
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                        }
+                    }
+
                     if (self.ID == "Wernar the Innkeeper" || conversationID[0] == "Wernar")
                     {
                         lowBar = "dialogue";

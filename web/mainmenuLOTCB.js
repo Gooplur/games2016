@@ -1400,8 +1400,16 @@ function applySelectionsButton()
         }
         else if (player.raceName == "Thengar")
         {
-            X = 51861;
-            Y = -8577;
+            if (player.title == "Nobility")
+            {
+                X = 135238;
+                Y = -26881;
+            }
+            else
+            {
+                X = 51861;
+                Y = -8577;
+            }
         }
         else if (player.raceName == "Vardan")
         {

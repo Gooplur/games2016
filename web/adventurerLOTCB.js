@@ -4559,6 +4559,7 @@ function Adventurer()
                 {
                     this.petrificationResistance = true;
                     this.petrified = false;
+                    this.glassed = false;
                     this.petrificationResistanceTime -= 1;
                     this.petrificationResistanceKeepTime = new Date().getTime();
                 }

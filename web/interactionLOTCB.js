@@ -3185,7 +3185,7 @@ function interaction(me)
                                 {
                                     player.dialogueOptions.push(["I will send my soldiers to slay the beast of which you speak! [send soldiers to the hamlet of Genoca]", false, "a"]);
                                     player.dialogueOptions.push(["My good alderman, I will rend this griffin's head from its neck! You will be returning home shortly...", false, "b"]);
-                                    player.dialogueOptions.push(["Surely it is a griffin of which you speak, there is little that can be done to help Genoca; a griffin makes its home where it will...", false, "d"]);
+                                    player.dialogueOptions.push(["There is little that can be done to help Genoca; a griffin makes its home where it will...", false, "d"]);
                                 }
                                 else if (player.title == "Royalty" && player.raceName == "Nirwaden")
                                 {
@@ -3199,7 +3199,7 @@ function interaction(me)
                                     player.dialogueOptions.push(["That is a fearsome tale indeed!", false, "a"]);
                                     player.dialogueOptions.push(["I will slay this winged beast you speak of...", false, "b"]);
                                     player.dialogueOptions.push(["For the right price I will rid you of this fowl monstrosity that plagues your village.", false, "c"]);
-                                    player.dialogueOptions.push(["It is most sorrowful that you have lost your brother to this monster, but there is nothing that can be done, such a beast as fearsome as that which you speak of can be felled by no man.", false, "d"]);
+                                    player.dialogueOptions.push(["It is most sorrowful that you have lost your brother, but such a beast as fearsome as that which you speak of can be felled by no man.", false, "d"]);
                                 }
                             }
                             else if (player.dialogueChoiceMade == true)

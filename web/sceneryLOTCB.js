@@ -5520,6 +5520,14 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.drawImage(alfombra, 1, 238, 49, 43, -(1/2 * 49 * this.information), -(1/2 * 43 * this.information), 49 * this.information, 43 * this.information);
                 XXX.restore();
             }
+            else if (this.temporary == 48)//thengan rose boquet
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(pavo, 242, 9, 27, 27, -(1/2 * 27 * this.information), -(1/2 * 27 * this.information), 27 * this.information, 27 * this.information);
+                XXX.restore();
+            }
 
             //INTERACTION
             if (this.activate == true)
@@ -23451,6 +23459,158 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             if (this.activate == true)
             {
                 this.activate = false;
+            }
+        }
+        else if (this.type == "sackmansSack")
+        {
+            //TRAITS
+            this.interactionRange = 77;
+            this.size = 1.4;
+
+            if (this.runOneTime)
+            {
+                this.runOneTime = false;
+
+                this.tic = 0;
+                this.opened = quests.theDeermenAndTheWendigoSackOpened;
+            }
+
+            //DRAWSELF
+            if (this.opened == false)
+            {
+                this.solid = true;
+                this.tic += 2;
+                if (this.tic < 10)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(pavo, 569, 11, 47, 46, -(1/2 * 47 * this.size), -(1/2 * 46 * this.size), 47 * this.size, 46 * this.size);
+                    XXX.restore();
+                }
+                else if (this.tic < 20)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(pavo, 614, 11, 47, 46, -(1/2 * 47 * this.size), -(1/2 * 46 * this.size), 47 * this.size, 46 * this.size);
+                    XXX.restore();
+                }
+                else if (this.tic < 30)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(pavo, 659, 13, 47, 46, -(1/2 * 47 * this.size), -(1/2 * 46 * this.size), 47 * this.size, 46 * this.size);
+                    XXX.restore();
+                }
+                else if (this.tic < 40)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(pavo, 700, 15, 47, 46, -(1/2 * 47 * this.size), -(1/2 * 46 * this.size), 47 * this.size, 46 * this.size);
+                    XXX.restore();
+                }
+                else if (this.tic < 50)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(pavo, 744, 16, 47, 46, -(1/2 * 47 * this.size), -(1/2 * 46 * this.size), 47 * this.size, 46 * this.size);
+                    XXX.restore();
+                }
+                else
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(pavo, 700, 15, 47, 46, -(1/2 * 47 * this.size), -(1/2 * 46 * this.size), 47 * this.size, 46 * this.size);
+                    XXX.restore();
+                    this.tic = 0;
+                }
+            }
+            else
+            {
+                this.solid = false;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(pavo, 744, 69, 47, 46, -(1/2 * 47 * this.size), -(1/2 * 46 * this.size), 47 * this.size, 46 * this.size);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 20;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+                quests.theDeermenAndTheWendigoSackOpened = true;
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    if (ArtificialIntelligenceAccess[i].ID == "Sackman" && ArtificialIntelligenceAccess[i].type == "Soldier")
+                    {
+                        ArtificialIntelligenceAccess[i].disturbed = true;
+                        break;
+                    }
+                }
+                if (quests.theDeermenAndTheWendigoSacked < 5 && this.opened == false)
+                {
+                    if (quests.theDeermenAndTheWendigoSacked == 0) //grettel is in the sack but still alive
+                    {
+                        if (uniqueChars.grettelLDS == true)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Person", false, "Grettel", {race: "Thengar", faction: "Thengar", personality: "scared", outfit: ["hoffalgreFurCloak", 0], weapon: ["none", [0.05, 0.05], 0, 0, 1.2], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[148164.0611449937, -33034.80529272785]], kid: true}));
+                            quests.theDeermenAndTheWendigoSaved = "grettel";
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Turkey", true, "preBuilt"));
+                        }
+
+                    }
+                    else if (quests.theDeermenAndTheWendigoSacked == 1) //a 2nd kid is in the sack but still alive
+                    {
+                        uniqueChars.grettelLDS = false;
+                        ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Person", false, "Thengan Boy", {race: "Thengar", faction: "Thengar", personality: "scared", outfit: ["none", 0], weapon: ["none", [0.05, 0.05], 0, 0, 1.2], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[0, 0]], kid: true}));
+                    }
+                    else if (quests.theDeermenAndTheWendigoSacked == 2) //a 3rd kid is in the sack but still alive
+                    {
+                        uniqueChars.grettelLDS = false;
+                        ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Person", false, "Thengan Girl", {race: "Thengar", faction: "Thengar", personality: "scared", outfit: ["hoffalgreFurCloak", 0], weapon: ["none", [0.04, 0.045], 0, 0, 1.6], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[0, 0]], kid: true}));
+                    }
+                    else if (quests.theDeermenAndTheWendigoSacked == 3) // a 4rth kid is in the sack but still alive
+                    {
+                        uniqueChars.grettelLDS = false;
+                        ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Person", false, "Thengar Boy", {race: "Thengar", faction: "Thengar", personality: "scared", outfit: ["hoffalgreFurCloak", 0], weapon: ["none", [0.05, 0.05], 0, 0, 1.2], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[0, 0]], kid: true}));
+                    }
+                    else if (quests.theDeermenAndTheWendigoSacked == 4) //rosy red is in the sack but still alive
+                    {
+                        uniqueChars.grettelLDS = false;
+                        if (uniqueChars.roseyRedLDS == true)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Person", false, "Little Rosey Red", {race: "Thengar", faction: "Thengar", personality: "scared", outfit: ["littleRedRidingHood", 0], weapon: ["rose", [0, 0], 0, 0, 10], ranged: [false, "arrow", 1, 2000, 1, 6, 0, "none", 1.25], patrolStops: 1, patrolLoop: false, route:[[147832.24742762043, -33025.12709050626]], kid: true}));
+                            quests.theDeermenAndTheWendigoSaved = "rosey";
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Turkey", true, "preBuilt"));
+                        }
+                    }
+                    else
+                    {
+                        uniqueChars.roseyRedLDS = false;
+                        ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Turkey", true, "preBuilt"));
+                    }
+
+                }
+                else if (this.opened == false)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Turkey", true, "preBuilt"));
+                }
+                this.opened = true;
             }
         }
         else if (this.type == "dalgerNest")

@@ -3504,7 +3504,12 @@ function theLegend()
         lafette: ["Lafette", 0],
         almadin: ["Almadin", 0],
         alfonz: ["Alfonz", 0],
-        tantin: ["Tantin", 0]
+        tantin: ["Tantin", 0],
+        roseyRed: ["RoseyRed", 0],
+        grettel: ["Grettel", 0],
+        gertrude: ["Gertrude", 0],
+        henrietta: ["Henrietta", 0],
+        sackman: ["Sackman", 0]
     };
 
 //time Tracker Variables
@@ -3743,7 +3748,12 @@ function theLegend()
         lafetteLDS: true,
         almadinLDS: true,
         alfonzLDS: true,
-        tantinLDS: true
+        tantinLDS: true,
+        roseyRedLDS: true,
+        grettelLDS: true,
+        gertrudeLDS: true,
+        henriettaLDS: true,
+        sackmanLDS: true
     };
 //QUESTS
     quests =
@@ -3874,6 +3884,8 @@ function theLegend()
         theDeermenAndTheWendigoCompletionStyle: false,
         theDeermenAndTheWendigoDeermenKilled: 0,
         theDeermenAndTheWendigoSacked: 0,
+        theDeermenAndTheWendigoSackOpened: false,
+        theDeermenAndTheWendigoSaved: "none",
 
         //QUEST: The Cult of Radiant Spirit ---- given by discovering Morrow City
         theCultOfTheRadiantSpiritQuest: false,

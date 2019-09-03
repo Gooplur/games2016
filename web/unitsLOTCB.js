@@ -9150,6 +9150,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
         {
             this.petrificationResistance = true;
             this.petrified = false;
+            this.glassed = false;
         }
 
         //Lycanthropy
@@ -10104,6 +10105,21 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.effect = "none";
                 this.costumeEngine(6, 0.2, true);
             }
+            else if (this.weapon == "roseBoquet")
+            {
+                this.effect = "none";
+                this.costume = 0;
+            }
+            else if (this.weapon == "rose")
+            {
+                this.effect = "none";
+                this.costume = 0;
+            }
+            else if (this.weapon == "sackmansSword")
+            {
+                this.effect = "none";
+                this.costumeEngine(8, 0.17, true);
+            }
         }
     };
 
@@ -10725,6 +10741,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 this.drawUnit(hydra, 347, 619, 32, 71, -1/2 * 32 * 1.1, -1/2 * 71 * 1.1, 32 * 1.1, 71 * 1.1, 1 / 2 * Math.PI);
             }
+        }
+        else if (this.weapon == "roseBoquet")
+        {
+            this.drawUnit(pavo, 103, 10, 54, 49, -1/2 * 54 * 1, -1/2 * 49 * 1, 54 * 1, 49 * 1, 0);
+        }
+        else if (this.weapon == "rose")
+        {
+            this.drawUnit(pavo, 165, 7, 54, 49, -1/2 * 54 * 1, -1/2 * 49 * 1, 54 * 1, 49 * 1, 0);
         }
         else if (this.weapon == "fishingpole")
         {
@@ -12030,6 +12054,42 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             else if (theCostume >= 4)
             {
                 this.drawUnit(polyPNG, 520, 59, 105, 69, -28, -43, 72, 47, 1 / 2 * Math.PI);
+            }
+        }
+        else if (this.weapon == "sackmansSword")
+        {
+            this.damageFrame = "manual";
+            if (theCostume <= 0)
+            {
+                this.drawUnit(pavo, 236, 89, 62, 145, -1/2 * 62 * 1.2, -1/2 * 145 * 1.2, 62 * 1.2, 145 * 1.2, 1 / 2 * Math.PI);
+                this.doAttackThisFrame = true;
+            }
+            else if (theCostume <= 2)
+            {
+                this.drawUnit(pavo, 119, 87, 62, 145, -1/2 * 62 * 1.2, -1/2 * 145 * 1.2, 62 * 1.2, 145 * 1.2, 1 / 2 * Math.PI);
+                this.doAttackThisFrame = true;
+            }
+            else if (theCostume <= 3)
+            {
+                this.drawUnit(pavo, 236, 89, 62, 145, -1/2 * 62 * 1.2, -1/2 * 145 * 1.2, 62 * 1.2, 145 * 1.2, 1 / 2 * Math.PI);
+                this.doAttackThisFrame = true;
+            }
+            else if (theCostume <= 4)
+            {
+                this.drawUnit(pavo, 336, 90, 62, 145, -1/2 * 62 * 1.2, -1/2 * 145 * 1.2, 62 * 1.2, 145 * 1.2, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 5)
+            {
+                this.drawUnit(pavo, 424, 90, 62, 145, -1/2 * 62 * 1.2 - 1, -1/2 * 145 * 1.2 - 5, 62 * 1.2, 145 * 1.2, 1 / 2 * Math.PI);
+            }
+            else if (theCostume >= 6)
+            {
+                this.drawUnit(pavo, 525, 89, 62, 145, -1/2 * 62 * 1.2, -1/2 * 145 * 1.2 - 6, 62 * 1.2, 145 * 1.2, 1 / 2 * Math.PI);
+                if (this.doAttackThisFrame)
+                {
+                    this.doAttackThisFrame = false;
+                    this.finalAttackCostume = true;
+                }
             }
         }
         else if (this.weapon == "freydicGreatSword")
@@ -14220,6 +14280,16 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 XXX.rotate(this.rotation);
                 XXX.drawImage(bogg, 669, 783, 26, 24, -(1 / 2 * 26 * 1.37) + 0, -(1 / 2 * 24 * 1.37) + 0.85, 26 * 1.37, 24 * 1.37);
             }
+            else if (outfit == "littleRedRidingHood")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(pavo, 42, 16, 26, 28, -(1 / 2 * 26 * 1.1) - 1.5, -(1 / 2 * 28 * 1.1) - 0, 26 * 1.1, 28 * 1.1);
+            }
             else if (outfit == "ardilFurClothing" || outfit == "ardilFurSkirt")
             {
                 XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
@@ -14543,6 +14613,16 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 }
                 XXX.rotate(this.rotation);
                 XXX.drawImage(abanico, 876, 24, 86, 68, -(1 / 2 * 86 * 0.86) - 0.75, -(1 / 2 * 68 * 0.86) + 0, 86 * 0.86, 68 * 0.86);
+            }
+            else if (outfit == "sackmansHood")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(pavo, 509, 0, 48, 49, -(1 / 2 * 48 * 1.3) - 0, -(1 / 2 * 49 * 1.3) -0.25, 48 * 1.3, 49 * 1.3);
             }
             XXX.restore();
         }
@@ -83207,6 +83287,25 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 this.drops = [[new Item("coins", this.X, this.Y), 115]];
             }
+            else if (this.ID == "Mr. Sackman")
+            {
+                this.drops = [[new Item("coins", this.X, this.Y), 55], [new Item("sackmansHood", this.X, this.Y), 1], [new Item("sackmansSword", this.X, this.Y), 1]];
+            }
+            else if (this.ID == "Little Rosey Red")
+            {
+                this.drops = [[new Item("littleRedRidingHood", this.X, this.Y), 1], [new Item("darkRose", this.X, this.Y), 1]];
+            }
+            else if (this.ID == "Alderman Tantin")
+            {
+                if (quests.theScourgeOfGenocaDeal == false || quests.theScourgeOfGenocaQuest != "complete")
+                {
+                    this.drops = [[new Item("coins", this.X, this.Y), 320], [new Item("pitchfork", this.X, this.Y), 1]];
+                }
+                else
+                {
+                    this.drops = [[new Item("coins", this.X, this.Y), 20], [new Item("pitchfork", this.X, this.Y), 1]];
+                }
+            }
             else if (this.ID == "Tatiana")
             {
                 this.drops = [[new Item("vardanWearF", this.X, this.Y), 1]];
@@ -83762,10 +83861,13 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     }
                     else if (this.ultra.faction == "Thengar" && this.killNotByPlayer == false || this.ultra.faction == "Thengar" && this.killByPlayerTeam)
                     {
-                        player.thengarFaction -= 25;
-                        if (player.title != "Royalty" && player.title != "Nobility" || player.raceName != this.ultra.faction)
+                        if (this.disdained != true)
                         {
-                            this.callForNearbyHelpFromType(1850, "Soldier");
+                            player.thengarFaction -= 25;
+                            if (player.title != "Royalty" && player.title != "Nobility" || player.raceName != this.ultra.faction)
+                            {
+                                this.callForNearbyHelpFromType(1850, "Soldier");
+                            }
                         }
                     }
                     else if (this.ultra.faction == "Aldrek" && this.killNotByPlayer == false || this.ultra.faction == "Aldrek" && this.killByPlayerTeam)
@@ -84142,6 +84244,50 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         if (this.killNotByPlayer == false || this.killByPlayerTeam)
                         {
                             player.freynorFaction -= 14;
+                        }
+                    }
+                    else if (this.ID == "Little Rosey Red")
+                    {
+                        uniqueChars.roseyRedLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.thengarFaction -= 10;
+                        }
+                    }
+                    else if (this.ID == "Grettel")
+                    {
+                        uniqueChars.grettelLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.thengarFaction -= 5;
+                        }
+                    }
+                    else if (this.ID == "Gertrude")
+                    {
+                        uniqueChars.gertrudeLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.thengarFaction -= 7;
+                        }
+                    }
+                    else if (this.ID == "Henrietta")
+                    {
+                        uniqueChars.henriettaLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.thengarFaction -= 6;
+                        }
+                    }
+                    else if (this.ID == "Mr. Sackman")
+                    {
+                        uniqueChars.sackmanLDS = false;
+                    }
+                    else if (this.ID == "Alderman Tantin")
+                    {
+                        uniqueChars.tantinLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.nirwadenFaction -= 20;
                         }
                     }
                     else if (this.ID == "Tatiana")

@@ -1621,6 +1621,90 @@ function worldBuilder()
             outlineBuilder(1, 1, "swamp", -1170, 231);
             outlineBuilder(2, 1, "swamp", -1171, 233);
         }
+        //mapS7w35
+        if (Y > -75331 && Y < -64538 && X < 364713 && X > 353021) //X-35
+        {
+            elevation = 0;
+            region = "s7w35";
+            campout = true;
+
+
+            outlineBuilder(34, 34, "vardanianWetland", -1210, 218);
+
+            outlineBuilder(6, 2, "vardanianGrass", -1210, 218);
+            outlineBuilder(3, 2, "vardanianGrass", -1208, 218);
+            outlineBuilder(2, 3, "vardanianGrass", -1206, 218);
+
+            outlineBuilder(31, 1, "vardanianWoods", -1210, 221);
+            outlineBuilder(6, 2, "vardanianWoods", -1209, 223);
+            outlineBuilder(6, 5, "vardanianWoods", -1209, 229);
+            outlineBuilder(3, 1, "vardanianWoods", -1207, 225);
+            outlineBuilder(4, 2, "vardanianWoods", -1204, 230);
+            outlineBuilder(1, 1, "vardanianWoods", -1204, 234);
+            outlineBuilder(7, 9, "vardanianWoods", -1209, 235);
+            outlineBuilder(6, 11, "vardanianWoods", -1209, 242);
+            outlineBuilder(4, 8, "vardanianWoods", -1209, 248);
+            outlineBuilder(1, 1, "vardanianWoods", -1201, 251);
+            outlineBuilder(3, 1, "vardanianWoods", -1198, 244);
+            outlineBuilder(1, 2, "vardanianWoods", -1200, 237);
+            outlineBuilder(1, 1, "vardanianWoods", -1200, 238);
+            outlineBuilder(1, 2, "vardanianWoods", -1201, 248);
+
+
+            outlineBuilder(10, 5, "swamp", -1181, 232);
+            outlineBuilder(6, 3, "swamp", -1184, 237);
+            outlineBuilder(2, 3, "swamp", -1185, 235);
+            outlineBuilder(3, 1, "swamp", -1179, 249);
+            outlineBuilder(4, 2, "swamp", -1181, 245);
+            outlineBuilder(3, 1, "swamp", -1177, 244);
+            outlineBuilder(2, 1, "swamp", -1178, 247);
+            outlineBuilder(2, 1, "swamp", -1177, 248);
+            outlineBuilder(2, 3, "swamp", -1183, 250);
+            outlineBuilder(4, 5, "swamp", -1194, 241);
+            outlineBuilder(3, 2, "swamp", -1184, 247);
+            outlineBuilder(6, 3, "swamp", -1195, 220);
+            outlineBuilder(1, 3, "swamp", -1191, 223);
+            outlineBuilder(4, 4, "swamp", -1190, 224);
+            outlineBuilder(5, 2, "swamp", -1187, 219);
+            outlineBuilder(3, 2, "swamp", -1185, 220);
+            outlineBuilder(2, 1, "swamp", -1191, 219);
+            outlineBuilder(2, 2, "swamp", -1190, 220);
+            outlineBuilder(8, 1, "swamp", -1196, 222);
+            outlineBuilder(2, 1, "swamp", -1195, 226);
+            outlineBuilder(4, 2, "swamp", -1198, 228);
+            outlineBuilder(2, 1, "swamp", -1197, 224);
+            outlineBuilder(1, 3, "swamp", -1196, 219);
+            outlineBuilder(1, 3, "swamp", -1179, 231);
+            outlineBuilder(6, 2, "swamp", -1187, 229);
+            outlineBuilder(2, 1, "swamp", -1185, 233);
+            outlineBuilder(1, 5, "swamp", -1192, 239);
+            outlineBuilder(1, 3, "swamp", -1188, 240);
+            outlineBuilder(2, 1, "swamp", -1185, 239);
+            outlineBuilder(3, 2, "swamp", -1189, 230);
+            outlineBuilder(3, 3, "swamp", -1183, 229);
+            outlineBuilder(1, 2, "swamp", -1182, 228);
+            outlineBuilder(3, 4, "swamp", -1195, 245);
+            outlineBuilder(2, 6, "swamp", -1196, 250);
+            outlineBuilder(2, 3, "swamp", -1190, 249);
+            outlineBuilder(1, 2, "swamp", -1194, 249);
+            outlineBuilder(1, 3, "swamp", -1197, 238);
+            outlineBuilder(4, 1, "swamp", -1188, 243);
+            outlineBuilder(2, 1, "swamp", -1185, 246);
+            outlineBuilder(2, 2, "swamp", -1184, 244);
+            outlineBuilder(1, 1, "swamp", -1185, 244);
+            outlineBuilder(1, 2, "swamp", -1187, 241);
+            outlineBuilder(2, 2, "swamp", -1187, 244);
+            outlineBuilder(1, 1, "swamp", -1204, 223);
+            outlineBuilder(2, 3, "swamp", -1180, 218);
+            outlineBuilder(2, 2, "swamp", -1178, 220);
+            outlineBuilder(1, 1, "swamp", -1189, 244);
+            outlineBuilder(1, 3, "swamp", -1191, 245);
+            outlineBuilder(1, 1, "swamp", -1191, 246);
+            outlineBuilder(1, 2, "swamp", -1183, 243);
+            outlineBuilder(2, 2, "swamp", -1189, 222);
+
+            outlineBuilder(1, 1, "swampTR", -1196, 220);
+        }
         //Layer -6 (cold region): elev 0
         //mapS6
         if (Y > -65106 && Y < -54332 && X < 7687 && X > - 3901) //X0
@@ -4305,7 +4389,7 @@ function outlineBuilder(width, length, terrain, extraX, extraY)
                 }
                 else if (terrain == "sewage")
                 {
-                    over("sea", j, i, extraX, extraY);
+                    over("sewer", j, i, extraX, extraY);
                     XXX.drawImage(sewageEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
                 }
             }

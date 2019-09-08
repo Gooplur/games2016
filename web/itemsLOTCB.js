@@ -4924,6 +4924,115 @@ function Item(type, x, y)
             this.buyValue = 2 - Math.floor(player.getCharisma() / 50); // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
         }
+        else if (this.type == "vodkapaSpleen")
+        {
+            //For All Items
+            this.identity = "Vodkapa Spleen";
+            this.weight = 3;
+            this.size = 18;
+            this.description = "The spleen of a vodkapa.";
+            this.intForDes = 5;
+            this.intDescription = "Vodkapas have very effective immune systems thanks to having up to two large spleens; these can be used as a changer in alchemy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 7 - Math.floor(player.getCharisma() / 50); // at max, buy for 6.
+            this.sellValue = 6; // at max, sell for 6.
+        }
+        else if (this.type == "fermentedVodkapaSpleen")
+        {
+            //For All Items
+            this.identity = "Fermented Vodkapa Spleen";
+            this.weight = 2.75;
+            this.size = 18;
+            this.description = "The fermented spleen of a vodkapa.";
+            this.intForDes = 30;
+            this.intDescription = "This is an important ingredient in producing a cure for internal warts.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 18;
+            this.ingredients = [["Vodkapa Spleen", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 11 - Math.floor(player.getCharisma() / 50); // at max, buy for 10.
+            this.sellValue = 10; // at max, sell for 10.
+        }
+        else if (this.type == "rawVodkapaFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Vodkapa Flesh";
+            this.weight = 40;
+            this.size = 10;
+            this.description = "The raw flesh of a vodkapa.";
+            this.intForDes = 9;
+            this.intDescription = "Eating this raw may infect you with throat ticks.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 10; //satisfies hunger.
+            this.thirst = 2; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -19; //recoops lost energy.
+            this.replenish = -7; //restores will.
+
+
+            //ability
+            this.ability = "throatTicks";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "vodkapaMeat")
+        {
+            //For All Items
+            this.identity = "Vodkapa Meat";
+            this.weight = 40;
+            this.size = 10;
+            this.description = "The pungent tasting meat of a vodkapa.";
+            this.intForDes = 9;
+            this.intDescription = "It leaves you with the taste of bile in your mouth...";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 33; //satisfies hunger.
+            this.thirst = 1.5; //quenches thirst.
+            this.warmth = 9; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -8; //recoops lost energy.
+            this.replenish = -2; //restores will.
+
+            //ability
+            this.ability = "foodPoisoning";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 6;
+            this.ingredients = [["Raw Vodkapa Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
         else if (this.type == "toadHide")
         {
             //For All Items
@@ -37628,6 +37737,71 @@ function Item(type, x, y)
             this.buyValue = 86 - Math.floor(player.getCharisma() / 2.777777777); // at max, buy for 68.
             this.sellValue = 53 + Math.floor(player.getCharisma() / 3); // at max, sell for 68.
         }
+        else if (this.type == "cephrianArmour")
+        {
+            //For All Items
+            this.identity = "Cephrian Armour";
+            this.weight = 20;
+            this.size = 27;
+            this.description = "Steel plated leggings, a chain top with a tabard, and a pointed steel helmet line with fur.";
+            this.intForDes = 1;
+            this.intDescription = "The standard armour worn by the cephrian military.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "armour";
+            //Utility Focused
+            //protections
+            this.protection = 11.5 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 10;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0.6;
+            this.thirstRetention = 0.6;
+            this.shockResist = -3;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 6;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 1;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 2;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            if (player.getStrength() > 8 || player.getDexterity() >= 13)
+            {
+                this.ability = "none";
+            }
+            else
+            {
+                this.ability = "hefty";
+            }
+
+            //Crafting
+            this.yield = 3;
+            this.intForCraft = 40;
+            this.ingredients = [["Lion Pelt", 3], ["Hyena Pelt", 1], ["Steel", 20]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 350 - Math.floor(player.getCharisma() / 2); // at max, buy for 325.
+            this.sellValue = 300 + Math.floor(player.getCharisma() / 2); // at max, sell for 325.
+        }
         else if (this.type == "stagArmour")
         {
             //For All Items
@@ -48766,6 +48940,31 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "rawVodkapaFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(kapa, 1354, 230, 74, 62, X - this.X + (1/2 * CCC.width) - (1/2 * 74 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 62 * 1), 74 * 1, 62 * 1);
+        }
+        else if (this.type == "vodkapaMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(kapa, 1354, 313, 74, 62, X - this.X + (1/2 * CCC.width) - (1/2 * 74 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 62 * 1), 74 * 1, 62 * 1);
+        }
+        else if (this.type == "vodkapaSpleen")
+        {
+            XXX.beginPath();
+            XXX.drawImage(kapa, 1456, 241, 32, 46, X - this.X + (1/2 * CCC.width) - (1/2 * 32 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 46 * 1), 32 * 1, 46 * 1);
+        }
+        else if (this.type == "fermentedVodkapaSpleen")
+        {
+            XXX.beginPath();
+            XXX.drawImage(kapa, 1454, 323, 32, 46, X - this.X + (1/2 * CCC.width) - (1/2 * 32 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 46 * 1), 32 * 1, 46 * 1);
+        }
+        else if (this.type == "cephrianArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jeru, 172, 41, 48, 109, X - this.X + (1/2 * CCC.width) - (1/2 * 48 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 109 * 1), 48 * 1, 109 * 1);
+        }
         else if (this.type == "blinkOrb")
         {
             XXX.beginPath();
@@ -55119,6 +55318,31 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
+        else if (this.type == "rawVodkapaFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(kapa, 1354, 230, 74, 62, this.invX - (1/2 * 74 * 1), this.invY - (1/2 * 62 * 1), 74 * 1, 62 * 1);
+        }
+        else if (this.type == "vodkapaMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(kapa, 1354, 313, 74, 62, this.invX - (1/2 * 74 * 1), this.invY - (1/2 * 62 * 1), 74 * 1, 62 * 1);
+        }
+        else if (this.type == "vodkapaSpleen")
+        {
+            LXX.beginPath();
+            LXX.drawImage(kapa, 1456, 241, 32, 46, this.invX - (1/2 * 32 * 1), this.invY - (1/2 * 46 * 1), 32 * 1, 46 * 1);
+        }
+        else if (this.type == "fermentedVodkapaSpleen")
+        {
+            LXX.beginPath();
+            LXX.drawImage(kapa, 1454, 323, 32, 46, this.invX - (1/2 * 32 * 1), this.invY - (1/2 * 46 * 1), 32 * 1, 46 * 1);
+        }
+        else if (this.type == "cephrianArmour")
+        {
+            LXX.beginPath();
+            LXX.drawImage(jeru, 172, 41, 48, 109, this.invX - (1/2 * 48 * 0.65), this.invY - (1/2 * 109 * 0.65), 48 * 0.65, 109 * 0.65);
+        }
         else if (this.type == "blinkOrb")
         {
             LXX.beginPath();
@@ -61438,6 +61662,31 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "rawVodkapaFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(kapa, 1354, 230, 74, 62, this.invX - (1/2 * 74 * 1), this.invY - (1/2 * 62 * 1), 74 * 1, 62 * 1);
+        }
+        else if (this.type == "vodkapaMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(kapa, 1354, 313, 74, 62, this.invX - (1/2 * 74 * 1), this.invY - (1/2 * 62 * 1), 74 * 1, 62 * 1);
+        }
+        else if (this.type == "vodkapaSpleen")
+        {
+            XXX.beginPath();
+            XXX.drawImage(kapa, 1456, 241, 32, 46, this.invX - (1/2 * 32 * 1), this.invY - (1/2 * 46 * 1), 32 * 1, 46 * 1);
+        }
+        else if (this.type == "fermentedVodkapaSpleen")
+        {
+            XXX.beginPath();
+            XXX.drawImage(kapa, 1454, 323, 32, 46, this.invX - (1/2 * 32 * 1), this.invY - (1/2 * 46 * 1), 32 * 1, 46 * 1);
+        }
+        else if (this.type == "cephrianArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jeru, 172, 41, 48, 109, this.invX - (1/2 * 48 * 0.65), this.invY - (1/2 * 109 * 0.65), 48 * 0.65, 109 * 0.65);
         }
         else if (this.type == "blinkOrb")
         {

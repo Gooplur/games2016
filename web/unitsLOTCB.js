@@ -14614,6 +14614,26 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 XXX.rotate(this.rotation);
                 XXX.drawImage(abanico, 876, 24, 86, 68, -(1 / 2 * 86 * 0.86) - 0.75, -(1 / 2 * 68 * 0.86) + 0, 86 * 0.86, 68 * 0.86);
             }
+            else if (outfit == "thenganSageRobe")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(pavo, 706, 117, 80, 57, -(1 / 2 * 80 * 1) - 0, -(1 / 2 * 57 * 1) + 0.5, 80 * 1, 57 * 1);
+            }
+            else if (outfit == "cephrianArmour")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 178, 9, 48, 33, -(1 / 2 * 48 * 1.06) + 1, -(1 / 2 * 33 * 1.06) + 0.45, 48 * 1.06, 33 * 1.06);
+            }
             else if (outfit == "sackmansHood")
             {
                 XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));

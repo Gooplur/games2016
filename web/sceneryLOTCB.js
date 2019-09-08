@@ -5016,6 +5016,22 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.drawImage(alfombra, 83, 135, 31, 18, -(1/2 * 31 * this.information), -(1/2 * 18 * this.information), 31 * this.information, 18 * this.information);
                 XXX.restore();
             }
+            else if (this.temporary == 26)//guajolote rug 1
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(pavo, 332, 432, 93, 87, -(1/2 * 93 * this.information), -(1/2 * 87 * this.information), 93 * this.information, 87 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 27)//guajolote rug 2
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(pavo, 459, 437, 93, 87, -(1/2 * 93 * this.information), -(1/2 * 87 * this.information), 93 * this.information, 87 * this.information);
+                XXX.restore();
+            }
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
             this.radius = 1;

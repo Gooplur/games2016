@@ -6,6 +6,7 @@
 
 //TODO LIST
 //top priority
+//todo add hyper-infectious internal warts infection that grows slowly until it deforms the body (the body will look lumpy and fleshy at this stage) then eventually the infected persons internal gas filled warts pop in a bloody flesh explosion that infects those that it touches. (There is a cure! it relies upon fermented vodkapa spleen and some other ingredients)
 //todo add all of the new fish to the seal unit's diet
 
 //VARDANIA + THENGARIA UPDATE
@@ -3196,12 +3197,19 @@ function over(kind, j, i, extraX, extraY)
     //PLAYER LANDSCAPE SENSING
     if (-X < tileX + 300 && -X > tileX && -Y < tileY + 300 && -Y > tileY)
     {
-        if (kind == "sea")
+        if (kind == "sea" || kind == "sewer")
         {
             if (player.form != "vampire" || wKey != true)
             {
                 player.land = false;
                 player.water = true;
+                if (kind == "sewer")
+                {
+                    if (Math.random() < 0.001)
+                    {
+                        player.skinWorms = true;
+                    }
+                }
             }
         }
         else if (kind == "landing")
@@ -3222,7 +3230,7 @@ function over(kind, j, i, extraX, extraY)
     {
         if (-ArtificialIntelligenceAccess[i].X < tileX + 300 && -ArtificialIntelligenceAccess[i].X > tileX && -ArtificialIntelligenceAccess[i].Y < tileY + 300 && -ArtificialIntelligenceAccess[i].Y > tileY)
         {
-            if (kind == "sea")
+            if (kind == "sea" || kind == "sewer")
             {
                 ArtificialIntelligenceAccess[i].water = true;
                 ArtificialIntelligenceAccess[i].land = false;
@@ -4409,6 +4417,7 @@ function theLegend()
     allWorn.push(new Item("littleRedRidingHood", false)); //162
     allWorn.push(new Item("thenganSageRobe", false)); //163
     allWorn.push(new Item("sackmansHood", false)); //164
+    allWorn.push(new Item("cephrianArmour", false)); //165
 
 
 
@@ -4560,6 +4569,7 @@ function theLegend()
     smithing.push(new Item("firetrapEmpty", false));
     smithing.push(new Item("floortrap", false));
     smithing.push(new Item("pitchfork", false));
+    smithing.push(new Item("cephrianArmour", false));
 
 //Foods (Items cooked at either a stove, an oven, or a campfire)
     foods = [];
@@ -4756,6 +4766,7 @@ function theLegend()
     foods.push(new Item("dogMeat", false));
     foods.push(new Item("hyenaMeat", false));
     foods.push(new Item("taebjuurMeat", false));
+    foods.push(new Item("vodkapaMeat", false));
 
 //Tailoring (Items crafted at a weaving, sewing, dying, etc. tailor's work bench thing)
     tailoring = [];
@@ -4953,6 +4964,7 @@ function theLegend()
     alchemy.push(new Item("fermentedTermite", false));
     alchemy.push(new Item("elcheExtract", false));
     alchemy.push(new Item("silverbloodPotion", false));
+    alchemy.push(new Item("fermentedVodkapaSpleen", false));
 
 //Brewing (alcohols, liquid fermentation, etc.)
     brewing = [];

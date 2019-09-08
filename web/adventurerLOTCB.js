@@ -598,6 +598,9 @@ function Adventurer()
     this.glassed = false;
     this.eyeShut = false;
     this.eyeLock = false;
+    this.timeSinceLastSkinWorm = new Date().getTime();
+    this.skinWorms = false;
+    this.skinWormRot = 0;
 
         //faction variables
     this.factionToggle = false;
@@ -901,7 +904,7 @@ function Adventurer()
                     }
                 }
             }
-            else
+            else if (this.skinWorms != true)
             {
                 this.decay = Math.max(0, this.decay - (0.0005 + ((0.0015 / 50) * player.getEndurance())));
             }
@@ -3033,6 +3036,14 @@ function Adventurer()
             if (this.throatTicks == true)
             {
                 this.health -= 0.000012 * (TTD / 16.75);
+            }
+
+            if (this.skinWorms == true && new Date().getTime() - this.timeSinceLastSkinWorm >= 75)
+            {
+                //reset the timer for the flesh worms decaying flesh.
+                this.timeSinceLastSkinWorm = new Date().getTime();
+                //Take away health from the player because the fleshMites are eating the player from the inside.
+                this.decay += 0.00366;
             }
         };
 
@@ -5570,6 +5581,31 @@ function Adventurer()
         }
     };
 
+    //Decay Notice Function
+    this.skinWormsChecker = function()
+    {
+        //console.log(this.decay);
+        if (this.skinWorms == true)
+        {
+            // at this point the slot should be consistent so it should not have to check again to be entered into a position on the miniNoticeList.
+            this.addNotice("Skin Worms");
+            //red background
+            XXX.beginPath();
+            XXX.fillStyle = "#612612";
+            XXX.lineWidth = 1;
+            XXX.strokeStyle = "black";
+            XXX.rect(this.arrangeNotices("Skin Worms"), 413, 20, 20);
+            XXX.fill();
+            XXX.stroke();
+            XXX.drawImage(jeru, 32, 41, 32, 27, this.arrangeNotices("Skin Worms") - 0.5, 412.75, 20, 20);
+        }
+        else
+        {
+            //at this point the slot will have been cleared so next time the effect shows up it should have to check again to be entered into a position on the miniNoticeList.
+            this.removeNotice("Skin Worms");
+        }
+    };
+
     //Radiation Notice Function
     this.radiationChecker = function()
     {
@@ -6757,6 +6793,7 @@ function Adventurer()
         this.petrifiedChecker();
         this.tunskBloodChecker();
         this.fungalFeverChecker();
+        this.skinWormsChecker();
         this.swollenChecker();
         this.brainMaggotsChecker();
         this.venandiChecker();
@@ -7092,6 +7129,46 @@ function Adventurer()
         XXX.restore();
 
         //draw affliction: from disease or other source
+
+        //skin worms
+        if (this.skinWorms == true)
+        {
+            this.skinWormRot += 0.006;
+
+            if (Math.ceil(this.skinWormRot * 8) % 2 == 0)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY); //Translate resets the coordinates to the arguements mentioned (x, y).
+                XXX.rotate(this.rotation + this.skinWormRot);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.025;
+                }
+                else
+                {
+                    XXX.globalAlpha = 0.35;
+                }
+                XXX.drawImage(jeru, 8, 33, 21, 19, -1/2 * 21 * 1, -1/2 * 19 * 1, 21 * 1, 19 * 1);
+                XXX.restore();
+            }
+            else
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY); //Translate resets the coordinates to the arguements mentioned (x, y).
+                XXX.rotate(this.rotation + this.skinWormRot);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.025;
+                }
+                else
+                {
+                    XXX.globalAlpha = 0.35;
+                }
+                XXX.drawImage(jeru, 8, 9, 21, 19, -1/2 * 21 * 1, -1/2 * 19 * 1, 21 * 1, 19 * 1);
+                XXX.restore();
+            }
+        }
+
         //fungal fever from teppreklia ingestion
         if (this.fungalFever)
         {
@@ -7733,6 +7810,10 @@ function Adventurer()
         {
             outfit = allWorn[164];
         }
+        else if (this.outfitEquipped == "cephrianArmour")
+        {
+            outfit = allWorn[165];
+        }
         else
         {
             outfit = allWorn[0];
@@ -8124,6 +8205,19 @@ function Adventurer()
                 XXX.globalAlpha = 0.4;
             }
             XXX.drawImage(pavo, 706, 117, 80, 57, -(1 / 2 * 80 * 1) - 0, -(1 / 2 * 57 * 1) + 0.5, 80 * 1, 57 * 1);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "cephrianArmour")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(jeru, 178, 9, 48, 33, -(1 / 2 * 48 * 1.06) + 1, -(1 / 2 * 33 * 1.06) + 0.45, 48 * 1.06, 33 * 1.06);
             XXX.restore();
         }
         else if (this.outfitEquipped == "sackmansHood")
@@ -36348,7 +36442,7 @@ function Adventurer()
                                     this.gutWorms = true;
                                 }
                             }
-                            else if (Inventory[i][0].ability == "throatTicks" || Inventory[i][0].ability == "throatticks") //gojii berry poison
+                            else if (Inventory[i][0].ability == "throatTicks" || Inventory[i][0].ability == "throatticks")
                             {
                                 var throtikz = Math.round(Math.random()); //this makes it so that you will only get the gut worms 50% of the time.
                                 if (throtikz)

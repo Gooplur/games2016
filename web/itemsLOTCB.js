@@ -34126,9 +34126,9 @@ function Item(type, x, y)
             this.distance = 45 + (this.range * 7);
             this.range = 2 + 2/7;
             this.rate = 125;
-            this.damage = (3.5 - (this.damageHandicap * 1)) * (this.leveledDamageMultiple / 25) + ((2/50) * player.getStrength());
+            this.damage = (3.5 - (this.damageHandicap * 1)) * (this.leveledDamageMultiple / 25) + ((2/50) * player.getStrength()) * (1 + this.superStealthNum(3));
             this.magicalDamage = 0;
-            this.negateArmour = 3.5;
+            this.negateArmour = 4.5 + this.superStealthNum(11);
 
             //ability
             this.ability = "none";
@@ -46896,9 +46896,9 @@ function Item(type, x, y)
                 this.distance = 25 + (this.range * 7);
                 this.range = 2;
                 this.rate = 100;
-                this.damage = (1.5 - (this.damageHandicap * 0.5)) * (this.leveledDamageMultiple / 25) + ((2/50) * player.getStrength());
+                this.damage = (1.5 - (this.damageHandicap * 0.5)) * (this.leveledDamageMultiple / 25) + ((2/50) * player.getStrength()) * (1 + this.superStealthNum(5));
                 this.magicalDamage = 0;
-                this.negateArmour = 2.5;
+                this.negateArmour = 2.5 + this.superStealthNum(12);
             }
             else
             {
@@ -46963,9 +46963,9 @@ function Item(type, x, y)
                 this.distance = 25 + (this.range * 7);
                 this.range = 2;
                 this.rate = 100;
-                this.damage = (1.5 - (this.damageHandicap * 0.5)) * (this.leveledDamageMultiple / 25) + ((2/50) * player.getStrength());
+                this.damage = (1.5 - (this.damageHandicap * 0.5)) * (this.leveledDamageMultiple / 25) + ((2/50) * player.getStrength()) * (1 + this.superStealthNum(5));
                 this.magicalDamage = 0;
-                this.negateArmour = 2.5;
+                this.negateArmour = 2.5 + this.superStealthNum(12);
             }
             else
             {

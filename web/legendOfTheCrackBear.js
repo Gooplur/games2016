@@ -4246,6 +4246,12 @@ function theLegend()
     allWeapons.push(new Item("beulingerrPike"));//110
     allWeapons.push(new Item("theWendigosCleaver"));//111
     allWeapons.push(new Item("sackmansSword"));//112
+    allWeapons.push(new Item("throwingKnife"));//113
+    allWeapons.push(new Item("poisonCoatedThrowingKnife"));//114
+    allWeapons.push(new Item("cephrianPikeAndShield"));//115
+    allWeapons.push(new Item("cephrianBlade"));//116
+    allWeapons.push(new Item("cephrianDagger"));//117
+    allWeapons.push(new Item("cephrianRapier"));//118
 
 
 
@@ -4570,6 +4576,12 @@ function theLegend()
     smithing.push(new Item("floortrap", false));
     smithing.push(new Item("pitchfork", false));
     smithing.push(new Item("cephrianArmour", false));
+    smithing.push(new Item("throwingKnife", false));
+    smithing.push(new Item("poisonCoatedThrowingKnife", false));
+    smithing.push(new Item("cephrianPikeAndShield", false));
+    smithing.push(new Item("cephrianBlade", false));
+    smithing.push(new Item("cephrianDagger", false));
+    smithing.push(new Item("cephrianRapier", false));
 
 //Foods (Items cooked at either a stove, an oven, or a campfire)
     foods = [];
@@ -5150,6 +5162,7 @@ function theLegend()
     handcrafted.push(new Item("cebollaPicada", false));
     handcrafted.push(new Item("berenjenaPicada", false));
     handcrafted.push(new Item("berenjenaRebanada", false));
+    handcrafted.push(new Item("poisonCoatedThrowingKnife", false));
 
     //Activate Important Game Functions Here:
     itemPlacer();

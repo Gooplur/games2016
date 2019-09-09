@@ -4974,7 +4974,7 @@ function Item(type, x, y)
             //For All Items
             this.identity = "Raw Vodkapa Flesh";
             this.weight = 40;
-            this.size = 10;
+            this.size = 25;
             this.description = "The raw flesh of a vodkapa.";
             this.intForDes = 9;
             this.intDescription = "Eating this raw may infect you with throat ticks.";
@@ -5004,7 +5004,7 @@ function Item(type, x, y)
             //For All Items
             this.identity = "Vodkapa Meat";
             this.weight = 40;
-            this.size = 10;
+            this.size = 25;
             this.description = "The pungent tasting meat of a vodkapa.";
             this.intForDes = 9;
             this.intDescription = "It leaves you with the taste of bile in your mouth...";
@@ -34074,6 +34074,108 @@ function Item(type, x, y)
             this.buyValue = 18 - Math.floor(player.getCharisma() / 6); // at max, buy for 12.
             this.sellValue = 7 + Math.floor(player.getCharisma() / 10); // at max, sell for 12.
         }
+        else if (this.type == "cephrianBlade")
+        {
+            //For All Items
+            this.identity = "Cephrian Blade";
+            this.weight = 1.25;
+            this.size = 16;
+            this.description = "A blade of cephrian design with a hook on the end.";
+            this.intForDes = 1;
+            this.intDescription = "Cephrian farmers use this type of blade to harvest grain.";
+
+            //Define Utility
+            this.utility = "weapon";
+
+            //Utility Focused
+            this.energyCost = 2;
+            this.distance = 42 + (this.range * 7);
+            this.range = 4 + 2/7;
+            this.rate = 140;
+            this.damage = (3 - (this.damageHandicap * 1.5)) * (this.leveledDamageMultiple / 25) + ((2/50) * player.getStrength());
+            this.magicalDamage = 0;
+            this.negateArmour = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 3;
+            this.intForCraft = 13;
+            this.ingredients = [["Iron", 2]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 9 - Math.floor(player.getCharisma() / 50); // at max, buy for 8.
+            this.sellValue = 6 + Math.floor(player.getCharisma() / 25); // at max, sell for 8.
+        }
+        else if (this.type == "cephrianDagger")
+        {
+            //For All Items
+            this.identity = "Cephrian Dagger";
+            this.weight = 1;
+            this.size = 16;
+            this.description = "A sharpened pointy dagger of Cephrian design.";
+            this.intForDes = 2;
+            this.intDescription = "A finely forged dagger that is used for gouging people through their armour.";
+
+            //Define Utility
+            this.utility = "weapon";
+
+            //Utility Focused
+            this.energyCost = 1.5;
+            this.distance = 45 + (this.range * 7);
+            this.range = 2 + 2/7;
+            this.rate = 125;
+            this.damage = (3.5 - (this.damageHandicap * 1)) * (this.leveledDamageMultiple / 25) + ((2/50) * player.getStrength());
+            this.magicalDamage = 0;
+            this.negateArmour = 3.5;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 2;
+            this.intForCraft = 25;
+            this.ingredients = [["Steel", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 15 - Math.floor(player.getCharisma() / 50); // at max, buy for 8.
+            this.sellValue = 13 + Math.floor(player.getCharisma() / 25); // at max, sell for 8.
+        }
+        else if (this.type == "cephrianRapier")
+        {
+            //For All Items
+            this.identity = "Cephrian Rapier";
+            this.weight = 1.75;
+            this.size = 20;
+            this.description = "A fine rapier with a decorative bronze basket hilt.";
+            this.intForDes = 3;
+            this.intDescription = "Dueling with rapiers is how gentlemen settle their differences in Cephrite if one besmirches the honour of the other.";
+
+            //Define Utility
+            this.utility = "weapon";
+
+            //Utility Focused
+            this.energyCost = 3.5;
+            this.distance = 79 + (this.range * 7);
+            this.range = 2;
+            this.rate = 145;
+            this.damage = (5.5 - (this.damageHandicap * 1.5)) * (this.leveledDamageMultiple / 25) + ((6/50) * player.getStrength());
+            this.magicalDamage = 0;
+            this.negateArmour = 7.5;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 34;
+            this.ingredients = [["Steel", 1], ["Bronze", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 90 - Math.floor(player.getCharisma() / 6); // at max, buy for 82.
+            this.sellValue = 76 + Math.floor(player.getCharisma() / 8); // at max, sell for 82.
+        }
         else if (this.type == "cephrianFlail")
         {
             //For All Items
@@ -34092,7 +34194,7 @@ function Item(type, x, y)
             this.distance = 28 + (this.range * 7);
             this.range = 3 + 1/7;
             this.rate = 110;
-            this.damage = (4 - (this.damageHandicap * 1)) * (this.leveledDamageMultiple / 25) + ((3/50) * player.getStrength());
+            this.damage = (3 - (this.damageHandicap * 0.5)) * (this.leveledDamageMultiple / 25) + ((3/50) * player.getStrength());
             this.magicalDamage = 0;
             this.negateArmour = 4;
 
@@ -46774,6 +46876,139 @@ function Item(type, x, y)
             this.buyValue = 20 - Math.floor(player.getCharisma() / 5); // at max, buy for 10.
             this.sellValue = 8 + Math.floor(player.getCharisma() / 25); // at max, sell for 10.
         }
+        else if (this.type == "throwingKnife")
+        {
+            //For All Items
+            this.identity = "Throwing Knife";
+            this.weight = 0.65;
+            this.size = 8;
+            this.description = "A sharp-bladed, short, and aerodynamic knife meant for throwing.";
+            this.intForDes = 1;
+            this.intDescription = "Throwing weapons can be recollected once they have been thrown; this knife is of Cephrian design.";
+
+            //Define Utility
+            this.utility = "weapon";
+
+            //Utility Focused
+            if (player.powerAttack == true)
+            {
+                this.energyCost = 0.75;
+                this.distance = 25 + (this.range * 7);
+                this.range = 2;
+                this.rate = 100;
+                this.damage = (1.5 - (this.damageHandicap * 0.5)) * (this.leveledDamageMultiple / 25) + ((2/50) * player.getStrength());
+                this.magicalDamage = 0;
+                this.negateArmour = 2.5;
+            }
+            else
+            {
+                this.subUtility = "thrown";
+                if (player.getDexterity() < 9)
+                {
+                    this.energyCost = 2.5;
+                }
+                else if (player.getDexterity() < 22)
+                {
+                    this.energyCost = 1.5;
+                }
+                else
+                {
+                    this.energyCost = 1;
+                }
+                this.range = 275 + (100 * player.getRanged() / 50) + (300 * player.getDexterity() / 50);
+                this.speed = 6 + (1 * player.getRanged() / 50) + (2 * player.getDexterity() / 50);
+                this.rate = (125 - Math.max(Math.min(15, 15 * player.getRanged() / 50), 0)) - Math.max(Math.min(35, 35 * player.getDexterity() / 50), 0);
+                if (player.getRanged() >= 25)
+                {
+                    this.damage = (3.5) + ((2.5/50) * player.getDexterity()) + ((2/50) * player.getRanged());
+                    this.negateArmour = 2;
+                }
+                else
+                {
+                    this.damage = (2.5) + ((1.5/50) * player.getDexterity()) + ((1/50) * player.getRanged());
+                    this.negateArmour = 1;
+                }
+                this.magicalDamage = 0;
+            }
+
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 3;
+            this.intForCraft = 26;
+            this.ingredients = [["Steel", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 14 - Math.floor(player.getCharisma() / 15); // at max, buy for 11.
+            this.sellValue = 8 + Math.floor(player.getCharisma() / 15); // at max, sell for 11.
+        }
+        else if (this.type == "poisonCoatedThrowingKnife")
+        {
+            //For All Items
+            this.identity = "Poison Coated Throwing Knife";
+            this.weight = 0.65;
+            this.size = 8;
+            this.description = "A sharp-bladed, short, and aerodynamic knife meant for throwing that is coated with glazm.";
+            this.intForDes = 1;
+            this.intDescription = "Throwing weapons can be recollected once they have been thrown; this knife is of Cephrian design.";
+
+            //Define Utility
+            this.utility = "weapon";
+
+            //Utility Focused
+            if (player.powerAttack == true)
+            {
+                this.energyCost = 0.75;
+                this.distance = 25 + (this.range * 7);
+                this.range = 2;
+                this.rate = 100;
+                this.damage = (1.5 - (this.damageHandicap * 0.5)) * (this.leveledDamageMultiple / 25) + ((2/50) * player.getStrength());
+                this.magicalDamage = 0;
+                this.negateArmour = 2.5;
+            }
+            else
+            {
+                this.subUtility = "thrown";
+                if (player.getDexterity() < 9)
+                {
+                    this.energyCost = 2.5;
+                }
+                else if (player.getDexterity() < 22)
+                {
+                    this.energyCost = 1.5;
+                }
+                else
+                {
+                    this.energyCost = 1;
+                }
+                this.range = 275 + (100 * player.getRanged() / 50) + (300 * player.getDexterity() / 50);
+                this.speed = 6 + (1 * player.getRanged() / 50) + (2 * player.getDexterity() / 50);
+                this.rate = (125 - Math.max(Math.min(15, 15 * player.getRanged() / 50), 0)) - Math.max(Math.min(35, 35 * player.getDexterity() / 50), 0);
+                if (player.getRanged() >= 25)
+                {
+                    this.damage = (3.5) + ((2.5/50) * player.getDexterity()) + ((2/50) * player.getRanged());
+                    this.negateArmour = 2;
+                }
+                else
+                {
+                    this.damage = (2.5) + ((1.5/50) * player.getDexterity()) + ((1/50) * player.getRanged());
+                    this.negateArmour = 1;
+                }
+                this.magicalDamage = 0;
+            }
+
+            //ability
+            this.ability = "poisonIV";
+
+            this.yield = 1;
+            this.intForCraft = 2;
+            this.ingredients = [["Throwing Knife", 1], ["Glazm", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 32 - Math.floor(player.getCharisma() / 15); // at max, buy for 29.
+            this.sellValue = 21 + Math.floor(player.getCharisma() / 6); // at max, sell for 29.
+        }
         else if (this.type == "throwingStar")
         {
             //For All Items
@@ -46972,6 +47207,58 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 249 - Math.floor(player.getCharisma() / 1); // at max, buy for 199.
             this.sellValue = 149 + Math.floor(player.getCharisma() / 1); // at max, sell for 199.
+        }
+        else if (this.type == "cephrianPikeAndShield")
+        {
+            //For All Items
+            this.identity = "Cephrian Pike and Shield";
+            this.weight = 55;
+            this.size = 30;
+            this.description = "A long pike of Cephrian design paired with a heavy metal shield.";
+            this.intForDes = 6;
+            this.intDescription = "This is the equipment most commonly used by the Paladins of Cephrite.";
+
+            //Define Utility
+            this.utility = "weapon";
+
+            //Utility Focused
+            if (player.getEndurance() < 30)
+            {
+                this.energyCost = 16;
+            }
+            else if (player.getEndurance() < 25)
+            {
+                this.energyCost = 15;
+            }
+            else
+            {
+                this.energyCost = 13;
+            }
+            this.distance = 118 + (this.range * 7);
+            this.range = 3;
+            this.rate = 333;
+            if (player.getStrength() < 30)
+            {
+                this.damage = 8 * (this.leveledDamageMultiple / 25) + ((5/50) * player.getStrength());
+                this.negateArmour = 5;
+            }
+            else
+            {
+                this.damage = 14 * (this.leveledDamageMultiple / 25) + ((8/50) * player.getStrength());
+                this.negateArmour = 15;
+            }
+            this.magicalDamage = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 37;
+            this.ingredients = [["Acacia Wood", 1], ["Steel", 1], ["Bronze", 7]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 400 - Math.floor(player.getCharisma() / 0.5); // at max, buy for 300.
+            this.sellValue = 240 + Math.floor(player.getCharisma() / 0.833333333); // at max, sell for 300.
         }
         else if (this.type == "silkAndDagger")
         {
@@ -48939,6 +49226,36 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
+        }
+        else if (this.type == "cephrianBlade")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jeru, 219, 67, 17, 60, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 60 * 1), 17 * 1, 60 * 1);
+        }
+        else if (this.type == "cephrianDagger")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jeru, 1073, 822, 23, 60, X - this.X + (1/2 * CCC.width) - (1/2 * 23 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 60 * 1), 23 * 1, 60 * 1);
+        }
+        else if (this.type == "cephrianRapier")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jeru, 148, 8, 20, 89, X - this.X + (1/2 * CCC.width) - (1/2 * 20 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 89 * 1), 20 * 1, 89 * 1);
+        }
+        else if (this.type == "throwingKnife")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jeru, 1413, 809, 12, 39, X - this.X + (1/2 * CCC.width) - (1/2 * 12 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 39 * 1), 12 * 1, 39 * 1);
+        }
+        else if (this.type == "poisonCoatedThrowingKnife")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jeru, 1414, 856, 12, 39, X - this.X + (1/2 * CCC.width) - (1/2 * 12 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 39 * 1), 12 * 1, 39 * 1);
+        }
+        else if (this.type == "cephrianPikeAndShield")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jeru, 606, 6, 150, 108, X - this.X + (1/2 * CCC.width) - (1/2 * 150 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 108 * 1), 150 * 1, 108 * 1);
         }
         else if (this.type == "rawVodkapaFlesh")
         {
@@ -55318,6 +55635,36 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
+        else if (this.type == "cephrianBlade")
+        {
+            LXX.beginPath();
+            LXX.drawImage(jeru, 219, 67, 17, 60, this.invX - (1/2 * 17 * 1), this.invY - (1/2 * 60 * 1), 17 * 1, 60 * 1);
+        }
+        else if (this.type == "cephrianDagger")
+        {
+            LXX.beginPath();
+            LXX.drawImage(jeru, 1073, 822, 23, 60, this.invX - (1/2 * 23 * 1), this.invY - (1/2 * 60 * 1), 23 * 1, 60 * 1);
+        }
+        else if (this.type == "cephrianRapier")
+        {
+            LXX.beginPath();
+            LXX.drawImage(jeru, 148, 8, 20, 89, this.invX - (1/2 * 20 * 0.85), this.invY - (1/2 * 89 * 0.85), 20 * 0.85, 89 * 0.85);
+        }
+        else if (this.type == "throwingKnife")
+        {
+            LXX.beginPath();
+            LXX.drawImage(jeru, 1413, 809, 12, 39, this.invX - (1/2 * 12 * 1), this.invY - (1/2 * 39 * 1), 12 * 1, 39 * 1);
+        }
+        else if (this.type == "poisonCoatedThrowingKnife")
+        {
+            LXX.beginPath();
+            LXX.drawImage(jeru, 1414, 856, 12, 39, this.invX - (1/2 * 12 * 1), this.invY - (1/2 * 39 * 1), 12 * 1, 39 * 1);
+        }
+        else if (this.type == "cephrianPikeAndShield")
+        {
+            LXX.beginPath();
+            LXX.drawImage(jeru, 606, 6, 150, 108, this.invX - (1/2 * 150 * 0.5), this.invY - (1/2 * 108 * 0.5), 150 * 0.5, 108 * 0.5);
+        }
         else if (this.type == "rawVodkapaFlesh")
         {
             LXX.beginPath();
@@ -61662,6 +62009,36 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "cephrianBlade")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jeru, 219, 67, 17, 60, this.invX - (1/2 * 17 * 1), this.invY - (1/2 * 60 * 1), 17 * 1, 60 * 1);
+        }
+        else if (this.type == "cephrianDagger")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jeru, 1073, 822, 23, 60, this.invX - (1/2 * 23 * 1), this.invY - (1/2 * 60 * 1), 23 * 1, 60 * 1);
+        }
+        else if (this.type == "cephrianRapier")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jeru, 148, 8, 20, 89, this.invX - (1/2 * 20 * 0.85), this.invY - (1/2 * 89 * 0.85), 20 * 0.85, 89 * 0.85);
+        }
+        else if (this.type == "throwingKnife")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jeru, 1413, 809, 12, 39, this.invX - (1/2 * 12 * 1), this.invY - (1/2 * 39 * 1), 12 * 1, 39 * 1);
+        }
+        else if (this.type == "poisonCoatedThrowingKnife")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jeru, 1414, 856, 12, 39, this.invX - (1/2 * 12 * 1), this.invY - (1/2 * 39 * 1), 12 * 1, 39 * 1);
+        }
+        else if (this.type == "cephrianPikeAndShield")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jeru, 606, 6, 150, 108, this.invX - (1/2 * 150 * 0.5), this.invY - (1/2 * 108 * 0.5), 150 * 0.5, 108 * 0.5);
         }
         else if (this.type == "rawVodkapaFlesh")
         {

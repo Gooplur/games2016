@@ -21834,6 +21834,59 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 scenicList.splice(scenicList.indexOf(this), 1);
             }
         }
+        else if (this.type == "throwingKnife" || this.type == "poisonCoatedThrowingKnife")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 75;
+            if (typeof(this.owned) != "null" && typeof(this.owned) != "boolean")
+            {
+                this.size = this.owned;
+            }
+            else
+            {
+                this.size = 1;
+            }
+            this.zIndex = 2;
+
+            if (this.type == "poisonCoatedThrowingKnife")
+            {
+                this.information = true;
+            }
+            else
+            {
+                this.information = false;
+            }
+
+            //DRAWSELF
+            if (this.information == true) //with glazm
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation + 1/2 * Math.PI);
+                XXX.drawImage(jeru, 1449, 856, 27, 38, -(1/2 * 27 * this.size), -(1/2 * 38 * this.size), 27 * this.size, 38 * this.size);
+                XXX.restore();
+            }
+            else
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation + 1/2 * Math.PI);
+                XXX.drawImage(jeru, 1449, 810, 27, 38, -(1/2 * 27 * this.size), -(1/2 * 38 * this.size), 27 * this.size, 38 * this.size);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 9;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+                give("throwingKnife", 1);
+                scenicList.splice(scenicList.indexOf(this), 1);
+            }
+        }
         else if (this.type == "throwingStar")
         {
             //TRAITS
@@ -30311,7 +30364,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             //certain enemies break right through it
             for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
             {
-                if (ArtificialIntelligenceAccess[i].type == "BogTroll" || ArtificialIntelligenceAccess[i].type == "Hydra" || ArtificialIntelligenceAccess[i].healthMAX > 60)
+                if (ArtificialIntelligenceAccess[i].type == "BogTroll" || ArtificialIntelligenceAccess[i].type == "Hydra" || ArtificialIntelligenceAccess[i].type == "Vodkapa" || ArtificialIntelligenceAccess[i].healthMAX > 60)
                 {
                     var disst = (this.X - ArtificialIntelligenceAccess[i].X)*(this.X - ArtificialIntelligenceAccess[i].X) + (this.Y - ArtificialIntelligenceAccess[i].Y)*(this.Y - ArtificialIntelligenceAccess[i].Y);
                     if (disst < (this.radius * 1.5) * (this.radius * 1.5) + ArtificialIntelligenceAccess[i].sizeRadius * ArtificialIntelligenceAccess[i].sizeRadius)

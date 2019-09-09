@@ -338,6 +338,18 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
                                     }
                                 }
                             }
+                            else if (this.ability == "poisonIV")
+                            {
+                                if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
+                                {
+                                    ArtificialIntelligenceAccess[i].acidIV = true;
+                                    ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 90000;
+                                    if (nonPlayer)
+                                    {
+                                        ArtificialIntelligenceAccess[i].killNotByPlayer = true;
+                                    }
+                                }
+                            }
                             else if (this.ability == "burning")
                             {
                                 if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
@@ -1237,6 +1249,450 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
                 XXX.rotate(this.spin);
                 XXX.drawImage(theCrack, 207, 402, 9, 9, -1/2 * (9 * 1.4), -1/2 * (9 * 1.4), 9 * 1.4, 9 * 1.4);
                 XXX.restore();
+            }
+        }
+        else if (type == "throwingKnife") //thrown
+        {
+            if (this.radius < 5)
+            {
+                this.speed = this.speed / 2;
+            }
+            this.radius = 5;
+            this.thrown = true;
+            this.thrownID = "throwingKnife";
+            this.thrownRotation = this.rotation + (1 / 2 * Math.PI);
+
+            this.spin += 4;
+
+            if (list == playerProjectiles && this.isPlayerProjectile)
+            {
+                //WHAT IT WILL DO...
+                player.projYAd = 0;
+                player.projXAd = 0;
+                this.setStats();
+                this.damage = damage;
+                this.magicalDamage = magicDamage;
+                this.shoot();
+                this.impact();
+                this.shoot();
+                this.impact();
+
+                //HOW IT WILL DRAW...
+                if (this.spin < 4)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jeru, 1410, 804, 19, 47, -1/2 * (19 * 1), -1/2 * (47 * 1), 19 * 1, 47 * 1);
+                    XXX.restore();
+                }
+                else if (this.spin < 8)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jeru, 1321, 810, 19, 47, -1/2 * (19 * 1), -1/2 * (47 * 1), 19 * 1, 47 * 1);
+                    XXX.restore();
+                }
+                else if (this.spin < 12)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jeru, 1353, 808, 19, 47, -1/2 * (19 * 1), -1/2 * (47 * 1), 19 * 1, 47 * 1);
+                    XXX.restore();
+                }
+                else if (this.spin < 16)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jeru, 1373, 812, 19, 47, -1/2 * (19 * 1), -1/2 * (47 * 1), 19 * 1, 47 * 1);
+                    XXX.restore();
+                }
+                else if (this.spin < 20)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jeru, 1391, 813, 19, 47, -1/2 * (19 * 1), -1/2 * (47 * 1), 19 * 1, 47 * 1);
+                    XXX.restore();
+                }
+                else if (this.spin < 24)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jeru, 1425, 811, 19, 47, -1/2 * (19 * 1), -1/2 * (47 * 1), 19 * 1, 47 * 1);
+                    XXX.restore();
+                }
+                else if (this.spin < 28)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jeru, 1391, 812, 19, 47, -1/2 * (19 * 1), -1/2 * (47 * 1), 19 * 1, 47 * 1);
+                    XXX.restore();
+                }
+                else if (this.spin < 32)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jeru, 1372, 812, 19, 47, -1/2 * (19 * 1), -1/2 * (47 * 1), 19 * 1, 47 * 1);
+                    XXX.restore();
+                }
+                else if (this.spin < 36)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jeru, 1353, 811, 19, 47, -1/2 * (19 * 1), -1/2 * (47 * 1), 19 * 1, 47 * 1);
+                    XXX.restore();
+                }
+                else if (this.spin < 40)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jeru, 1321, 809, 19, 47, -1/2 * (19 * 1), -1/2 * (47 * 1), 19 * 1, 47 * 1);
+                    XXX.restore();
+                }
+                else
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jeru, 1410, 802, 19, 47, -1/2 * (19 * 1), -1/2 * (47 * 1), 19 * 1, 47 * 1);
+                    XXX.restore();
+                    this.spin = 0;
+                }
+            }
+            else if (list == unitProjectiles || list == playerProjectiles && !this.isPlayerProjectile)
+            {
+                //WHAT IT WILL DO...
+                player.projYAd = 0;
+                player.projXAd = 0;
+                this.setStats();
+                this.damage = damage;
+                this.magicalDamage = magicDamage;
+                this.shoot();
+                this.impact();
+                this.shoot();
+                this.impact();
+
+                //HOW IT WILL DRAW...
+                if (this.spin < 4)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jeru, 1410, 804, 19, 47, -1/2 * (19 * 1), -1/2 * (47 * 1), 19 * 1, 47 * 1);
+                    XXX.restore();
+                }
+                else if (this.spin < 8)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jeru, 1321, 810, 19, 47, -1/2 * (19 * 1), -1/2 * (47 * 1), 19 * 1, 47 * 1);
+                    XXX.restore();
+                }
+                else if (this.spin < 12)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jeru, 1353, 808, 19, 47, -1/2 * (19 * 1), -1/2 * (47 * 1), 19 * 1, 47 * 1);
+                    XXX.restore();
+                }
+                else if (this.spin < 16)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jeru, 1373, 812, 19, 47, -1/2 * (19 * 1), -1/2 * (47 * 1), 19 * 1, 47 * 1);
+                    XXX.restore();
+                }
+                else if (this.spin < 20)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jeru, 1391, 813, 19, 47, -1/2 * (19 * 1), -1/2 * (47 * 1), 19 * 1, 47 * 1);
+                    XXX.restore();
+                }
+                else if (this.spin < 24)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jeru, 1425, 811, 19, 47, -1/2 * (19 * 1), -1/2 * (47 * 1), 19 * 1, 47 * 1);
+                    XXX.restore();
+                }
+                else if (this.spin < 28)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jeru, 1391, 812, 19, 47, -1/2 * (19 * 1), -1/2 * (47 * 1), 19 * 1, 47 * 1);
+                    XXX.restore();
+                }
+                else if (this.spin < 32)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jeru, 1372, 812, 19, 47, -1/2 * (19 * 1), -1/2 * (47 * 1), 19 * 1, 47 * 1);
+                    XXX.restore();
+                }
+                else if (this.spin < 36)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jeru, 1353, 811, 19, 47, -1/2 * (19 * 1), -1/2 * (47 * 1), 19 * 1, 47 * 1);
+                    XXX.restore();
+                }
+                else if (this.spin < 40)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jeru, 1321, 809, 19, 47, -1/2 * (19 * 1), -1/2 * (47 * 1), 19 * 1, 47 * 1);
+                    XXX.restore();
+                }
+                else
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jeru, 1410, 802, 19, 47, -1/2 * (19 * 1), -1/2 * (47 * 1), 19 * 1, 47 * 1);
+                    XXX.restore();
+                    this.spin = 0;
+                }
+            }
+        }
+        else if (type == "poisonCoatedThrowingKnife") //thrown
+        {
+            if (this.radius < 5)
+            {
+                this.speed = this.speed / 2;
+            }
+            this.radius = 5;
+            this.thrown = true;
+            this.thrownID = "poisonCoatedThrowingKnife";
+            this.thrownRotation = this.rotation + (1 / 2 * Math.PI);
+
+            this.spin += 4;
+
+            if (list == playerProjectiles && this.isPlayerProjectile)
+            {
+                //WHAT IT WILL DO...
+                player.projYAd = 0;
+                player.projXAd = 0;
+                this.setStats();
+                this.damage = damage;
+                this.magicalDamage = magicDamage;
+                this.shoot();
+                this.impact();
+                this.shoot();
+                this.impact();
+
+                //HOW IT WILL DRAW...
+                if (this.spin < 4)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jeru, 1411, 849, 19, 47, -1/2 * (19 * 1), -1/2 * (47 * 1), 19 * 1, 47 * 1);
+                    XXX.restore();
+                }
+                else if (this.spin < 8)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jeru, 1322, 855, 19, 47, -1/2 * (19 * 1), -1/2 * (47 * 1), 19 * 1, 47 * 1);
+                    XXX.restore();
+                }
+                else if (this.spin < 12)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jeru, 1354, 856, 19, 47, -1/2 * (19 * 1), -1/2 * (47 * 1), 19 * 1, 47 * 1);
+                    XXX.restore();
+                }
+                else if (this.spin < 16)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jeru, 1374, 861, 19, 47, -1/2 * (19 * 1), -1/2 * (47 * 1), 19 * 1, 47 * 1);
+                    XXX.restore();
+                }
+                else if (this.spin < 20)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jeru, 1391, 865, 19, 47, -1/2 * (19 * 1), -1/2 * (47 * 1), 19 * 1, 47 * 1);
+                    XXX.restore();
+                }
+                else if (this.spin < 24)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jeru, 1426, 860, 19, 47, -1/2 * (19 * 1), -1/2 * (47 * 1), 19 * 1, 47 * 1);
+                    XXX.restore();
+                }
+                else if (this.spin < 28)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jeru, 1392, 863, 19, 47, -1/2 * (19 * 1), -1/2 * (47 * 1), 19 * 1, 47 * 1);
+                    XXX.restore();
+                }
+                else if (this.spin < 32)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jeru, 1374, 862, 19, 47, -1/2 * (19 * 1), -1/2 * (47 * 1), 19 * 1, 47 * 1);
+                    XXX.restore();
+                }
+                else if (this.spin < 36)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jeru, 1353, 856, 19, 47, -1/2 * (19 * 1), -1/2 * (47 * 1), 19 * 1, 47 * 1);
+                    XXX.restore();
+                }
+                else if (this.spin < 40)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jeru, 1322, 856, 19, 47, -1/2 * (19 * 1), -1/2 * (47 * 1), 19 * 1, 47 * 1);
+                    XXX.restore();
+                }
+                else
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jeru, 1411, 849, 19, 47, -1/2 * (19 * 1), -1/2 * (47 * 1), 19 * 1, 47 * 1);
+                    XXX.restore();
+                    this.spin = 0;
+                }
+            }
+            else if (list == unitProjectiles || list == playerProjectiles && !this.isPlayerProjectile)
+            {
+                //WHAT IT WILL DO...
+                player.projYAd = 0;
+                player.projXAd = 0;
+                this.setStats();
+                this.damage = damage;
+                this.magicalDamage = magicDamage;
+                this.shoot();
+                this.impact();
+                this.shoot();
+                this.impact();
+
+                //HOW IT WILL DRAW...
+                if (this.spin < 4)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jeru, 1411, 849, 19, 47, -1/2 * (19 * 1), -1/2 * (47 * 1), 19 * 1, 47 * 1);
+                    XXX.restore();
+                }
+                else if (this.spin < 8)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jeru, 1322, 855, 19, 47, -1/2 * (19 * 1), -1/2 * (47 * 1), 19 * 1, 47 * 1);
+                    XXX.restore();
+                }
+                else if (this.spin < 12)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jeru, 1354, 856, 19, 47, -1/2 * (19 * 1), -1/2 * (47 * 1), 19 * 1, 47 * 1);
+                    XXX.restore();
+                }
+                else if (this.spin < 16)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jeru, 1374, 861, 19, 47, -1/2 * (19 * 1), -1/2 * (47 * 1), 19 * 1, 47 * 1);
+                    XXX.restore();
+                }
+                else if (this.spin < 20)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jeru, 1391, 865, 19, 47, -1/2 * (19 * 1), -1/2 * (47 * 1), 19 * 1, 47 * 1);
+                    XXX.restore();
+                }
+                else if (this.spin < 24)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jeru, 1426, 860, 19, 47, -1/2 * (19 * 1), -1/2 * (47 * 1), 19 * 1, 47 * 1);
+                    XXX.restore();
+                }
+                else if (this.spin < 28)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jeru, 1392, 863, 19, 47, -1/2 * (19 * 1), -1/2 * (47 * 1), 19 * 1, 47 * 1);
+                    XXX.restore();
+                }
+                else if (this.spin < 32)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jeru, 1374, 862, 19, 47, -1/2 * (19 * 1), -1/2 * (47 * 1), 19 * 1, 47 * 1);
+                    XXX.restore();
+                }
+                else if (this.spin < 36)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jeru, 1353, 856, 19, 47, -1/2 * (19 * 1), -1/2 * (47 * 1), 19 * 1, 47 * 1);
+                    XXX.restore();
+                }
+                else if (this.spin < 40)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jeru, 1322, 856, 19, 47, -1/2 * (19 * 1), -1/2 * (47 * 1), 19 * 1, 47 * 1);
+                    XXX.restore();
+                }
+                else
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jeru, 1411, 849, 19, 47, -1/2 * (19 * 1), -1/2 * (47 * 1), 19 * 1, 47 * 1);
+                    XXX.restore();
+                    this.spin = 0;
+                }
             }
         }
         else if (type == "cheatMachineGunBullet")

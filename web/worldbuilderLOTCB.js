@@ -695,12 +695,37 @@ function worldBuilder()
             outlineBuilder( 34, 1, "vardanianStone", -1196, 320);
         }
         //mapS10W36
-        if (Y > -105953 && Y < -95142 && X < 374956 && X > 363245) //X-36 //todo add map
+        if (Y > -105953 && Y < -95142 && X < 374956 && X > 363245) //X-36
         {
             elevation = 0;
             region = "s10w36";
             campout = true;
-            outlineBuilder(34, 34, "outline", -1244, 320); //todo vardanianWoods
+            outlineBuilder(34, 34, "vardanianWoods", -1244, 320);
+            outlineBuilder(1, 1, "swampBR", -1230, 332);
+            outlineBuilder(1, 1, "swamp", -1229, 332);
+            outlineBuilder(1, 3, "swamp", -1231, 333);
+            outlineBuilder(1, 2, "swamp", -1231, 334);
+
+            outlineBuilder(1, 2, "vardanianGrass", -1239, 332);
+            outlineBuilder(2, 5, "vardanianGrass", -1240, 333);
+            outlineBuilder(1, 4, "vardanianGrass", -1241, 335);
+            outlineBuilder(1, 6, "vardanianGrass", -1243, 336);
+            outlineBuilder(1, 1, "vardanianGrass", -1239, 331);
+            outlineBuilder(1, 1, "vardanianGrass", -1237, 335);
+            outlineBuilder(1, 1, "vardanianGrass", -1241, 334);
+            outlineBuilder(1, 1, "vardanianGrass", -1242, 335);
+            outlineBuilder(17, 12, "vardanianGrass", -1244, 337);
+            outlineBuilder(15, 1, "vardanianGrass", -1232, 339);
+            outlineBuilder(16, 5, "vardanianGrass", -1231, 338);
+            outlineBuilder(1, 2, "vardanianGrass", -1229, 337);
+            outlineBuilder(15, 7, "vardanianGrass", -1226, 339);
+            outlineBuilder(1, 5, "vardanianGrass", -1224, 338);
+            outlineBuilder(1, 2, "vardanianGrass", -1221, 337);
+            outlineBuilder(14, 1, "vardanianGrass", -1219, 340);
+            outlineBuilder(12, 1, "vardanianGrass", -1218, 343);
+            outlineBuilder(8, 2, "vardanianGrass", -1217, 346);
+            outlineBuilder(3, 1, "vardanianGrass", -1215, 351);
+            outlineBuilder(1, 1, "vardanianGrass", -1214, 353);
         }
         //Layer -9 (temperate region): elev -1  | (cold region) past w-28: elev 0
         //mapS9
@@ -1328,13 +1353,13 @@ function worldBuilder()
             outlineBuilder( 34, 1, "stonePath", -20, 218);
         }
         //mapS7W25
-        if (Y > -75331 && Y < -64538 && X < 262722 && X > 251041) //X-25 //todo add map
+        if (Y > -75331 && Y < -64538 && X < 262722 && X > 251041) //X-25
         {
             elevation = 0;
             region = "s7w25";
             campout = true;
             outlineBuilder(34, 34, "mistywoods", -870, 218);
-
+            outlineBuilder(1, 2, "sea", -865, 222);
 
             outlineBuilder( 34, 1, "brickRoad", -855, 218);
         }

@@ -2826,6 +2826,54 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 this.activate = false;
             }
         }
+        else if (this.type == "southBed")
+        {
+            var szx = 1;
+            //TRAITS
+            this.solid = true;
+            this.interactionRange = 50;
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 24;
+
+            //DRAWSELF
+            if (this.information == 1) //cephrian single bed
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 614, 828, 72, 42, -(1/2 * 72 * 1 * szx), -(1/2 * 42 * 1 * szx), 72 * 1 * szx, 42 * 1 * szx);
+                XXX.restore();
+            }
+            else if (this.information == 2) //cephrian double bed
+            {
+                this.radius = 34;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 686, 826, 93, 69, -(1/2 * 93 * 1 * szx), -(1/2 * 69 * 1 * szx), 93 * 1 * szx, 69 * 1 * szx);
+                XXX.restore();
+            }
+            else if (this.information == 3)//zetian sleeping mat
+            {
+                this.solid = false;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(raed, 1097, 742, 43, 56, -(1/2 * 39 * 1 * szx), -(1/2 * 68 * 1 * szx), 39 * 1 * szx, 68 * 1 * szx);
+                XXX.restore();
+            }
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                if (this.temporary == true)
+                {
+                    sleep();
+                }
+                this.activate = false;
+            }
+        }
         else if (this.type == "trollScraps")
         {
             //TRAITS
@@ -5032,9 +5080,407 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.drawImage(pavo, 459, 437, 93, 87, -(1/2 * 93 * this.information), -(1/2 * 87 * this.information), 93 * this.information, 87 * this.information);
                 XXX.restore();
             }
+            else if (this.temporary == 28) //cephrian dark rug
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(cef, 568, 149, 73, 56, -(1/2 * 73 * this.information), -(1/2 * 56 * this.information), 73 * this.information, 56 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 29) //cephrian long rug
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 309, 754, 164, 70, -(1/2 * 164 * this.information), -(1/2 * 70 * this.information), 164 * this.information, 70 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 30) //cephrian fat rug
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 542, 669, 112, 79, -(1/2 * 112 * this.information), -(1/2 * 79 * this.information), 112 * this.information, 79 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 31) //cephrian pudgy rug
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 429, 706, 106, 47, -(1/2 * 106 * this.information), -(1/2 * 47 * this.information), 106 * this.information, 47 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 32) //cephrian chubby rug
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 320, 626, 116, 80, -(1/2 * 116 * this.information), -(1/2 * 80 * this.information), 116 * this.information, 80 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 33) //cephrian skinny rug
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 316, 708, 116, 42, -(1/2 * 116 * this.information), -(1/2 * 42 * this.information), 116 * this.information, 42 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 34) //cephrian slim rug
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 437, 627, 53, 78, -(1/2 * 53 * this.information), -(1/2 * 78 * this.information), 53 * this.information, 78 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 35) //cephrian heraldic rug
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 373, 544, 83, 78, -(1/2 * 83 * this.information), -(1/2 * 78 * this.information), 83 * this.information, 78 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 36) //cephrian rug
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 471, 753, 106, 72, -(1/2 * 106 * this.information), -(1/2 * 72 * this.information), 106 * this.information, 72 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 37) //cephrian half rug
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 588, 753, 68, 72, -(1/2 * 68 * this.information), -(1/2 * 72 * this.information), 68 * this.information, 72 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 38) //cephrian wide rug
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 664, 755, 124, 69, -(1/2 * 124 * this.information), -(1/2 * 69 * this.information), 124 * this.information, 69 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 39) //zetian rug
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(raed, 1097, 742, 43, 56, -(1/2 * 43 * this.information), -(1/2 * 56 * this.information), 43 * this.information, 56 * this.information);
+                XXX.restore();
+            }
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
             this.radius = 1;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "southMueble")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 1;
+
+            if (this.runOneTime == true)
+            {
+                this.runOneTime = false;
+
+                this.tic = 0;
+            }
+
+            this.zIndex = 1;
+            if (this.temporary == 0) //council table
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(cef, 383, 72, 179, 175, -(1/2 * 179 * this.information), -(1/2 * 175 * this.information), 179 * this.information, 175 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 1)//dark cephrian rug
+            {
+
+            }
+            else if (this.temporary == 2)//pink cephrian cushion
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 294, 459, 39, 32, -(1/2 * 39 * this.information), -(1/2 * 32 * this.information), 39 * this.information, 32 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 3)//tan cephrian cushion
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 293, 491, 39, 32, -(1/2 * 39 * this.information), -(1/2 * 32 * this.information), 39 * this.information, 32 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 4)//red cephrian cushion
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 293, 520, 39, 32, -(1/2 * 39 * this.information), -(1/2 * 32 * this.information), 39 * this.information, 32 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 5)//green cephrian cushion
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 293, 549, 39, 32, -(1/2 * 39 * this.information), -(1/2 * 32 * this.information), 39 * this.information, 32 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 6)//blue cephrian cushion
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 294, 579, 39, 32, -(1/2 * 39 * this.information), -(1/2 * 32 * this.information), 39 * this.information, 32 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 7)//heraldic tan cephrian cushion
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 332, 551, 39, 30, -(1/2 * 39 * this.information), -(1/2 * 30 * this.information), 39 * this.information, 30 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 8)//heraldic purple cephrian cushion
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 333, 580, 39, 30, -(1/2 * 39 * this.information), -(1/2 * 30 * this.information), 39 * this.information, 30 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 9)//yellow cephrian cushion
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 470, 494, 39, 30, -(1/2 * 39 * this.information), -(1/2 * 30 * this.information), 39 * this.information, 30 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 10)//white cephrian cushion
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 469, 465, 39, 30, -(1/2 * 39 * this.information), -(1/2 * 30 * this.information), 39 * this.information, 30 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 11)//black cephrian cushion
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 508, 466, 39, 30, -(1/2 * 39 * this.information), -(1/2 * 30 * this.information), 39 * this.information, 30 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 12)//heraldic salmon cephrian cushion
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 622, 640, 39, 30, -(1/2 * 39 * this.information), -(1/2 * 30 * this.information), 39 * this.information, 30 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 13)//yellow and red zetian cushion
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(raed, 1037, 762, 27, 24, -(1/2 * 27 * this.information), -(1/2 * 24 * this.information), 27 * this.information, 24 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 14)//red zetian cushion
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(raed, 1168, 769, 23, 19, -(1/2 * 23 * this.information), -(1/2 * 19 * this.information), 23 * this.information, 19 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 15)//zetian cushion
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(raed, 1167, 746, 27, 23, -(1/2 * 27 * this.information), -(1/2 * 23 * this.information), 27 * this.information, 23 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 16)//zetian shelf
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(raed, 1141, 746, 20, 43, -(1/2 * 20 * this.information), -(1/2 * 43 * this.information), 20 * this.information, 43 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 17)//zetian table
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(raed, 1064, 756, 26, 25, -(1/2 * 26 * this.information), -(1/2 * 25 * this.information), 26 * this.information, 25 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 18)//cephrian small table
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 509, 495, 34, 30, -(1/2 * 34 * this.information), -(1/2 * 30 * this.information), 34 * this.information, 30 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 19)//cephrian small mid-rect table
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 618, 523, 35, 38, -(1/2 * 35 * this.information), -(1/2 * 38 * this.information), 35 * this.information, 38 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 20)//cephrian small rect table
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 551, 557, 34, 56, -(1/2 * 34 * this.information), -(1/2 * 56 * this.information), 34 * this.information, 56 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 21)//cephrian large table
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 551, 493, 61, 57, -(1/2 * 61 * this.information), -(1/2 * 57 * this.information), 61 * this.information, 57 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 22)//cephrian large rect table
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 486, 540, 61, 88, -(1/2 * 61 * this.information), -(1/2 * 88 * this.information), 61 * this.information, 88 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 23)//cephrian circle table
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 489, 631, 55, 53, -(1/2 * 55 * this.information), -(1/2 * 53 * this.information), 55 * this.information, 53 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 24)//cephrian angled bench
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 546, 617, 66, 51, -(1/2 * 66 * this.information), -(1/2 * 51 * this.information), 66 * this.information, 51 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 25)//cephrian small stub table
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 618, 494, 34, 23, -(1/2 * 34 * this.information), -(1/2 * 23 * this.information), 34 * this.information, 23 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 26)//cephrian small striped bench
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 654, 495, 19, 61, -(1/2 * 19 * this.information), -(1/2 * 61 * this.information), 19 * this.information, 61 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 27)//cephrian large striped bench
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 457, 540, 26, 88, -(1/2 * 26 * this.information), -(1/2 * 88 * this.information), 26 * this.information, 88 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 28)//cephrian tiny table
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 618, 617, 22, 21, -(1/2 * 22 * this.information), -(1/2 * 21 * this.information), 22 * this.information, 21 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 29)//cephrian tiny circle table
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 642, 617, 22, 21, -(1/2 * 22 * this.information), -(1/2 * 21 * this.information), 22 * this.information, 21 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 30)//cephrian bench
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 594, 565, 62, 22, -(1/2 * 62 * this.information), -(1/2 * 22 * this.information), 62 * this.information, 22 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 31)//cephrian long bench
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 589, 590, 86, 21, -(1/2 * 86 * this.information), -(1/2 * 21 * this.information), 86 * this.information, 21 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 32)//lion head M
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 211, 6, 46, 37, -(1/2 * 46 * this.information), -(1/2 * 37 * this.information), 46 * this.information, 37 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 33)//lion head F
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 257, 6, 37, 36, -(1/2 * 37 * this.information), -(1/2 * 36 * this.information), 37 * this.information, 36 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 34)//gazelle head
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 2483, 874, 70, 56, -(1/2 * 70 * this.information), -(1/2 * 56 * this.information), 70 * this.information, 56 * this.information);
+                XXX.restore();
+            }
+
 
             //INTERACTION
             if (this.activate == true)
@@ -37620,7 +38066,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 }
             }
         }
-        else if (this.type == "beeHive")
+        else if (this.type == "brainFlyHive")
         {
             //TRAITS
             this.solid = true;
@@ -37633,6 +38079,112 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 this.health = 3;
             }
             console.log(player.cutcut);
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                this.zIndex = 1;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(poly, 496, 254, 43, 39, -(1/2 * 43), -(1/2 * 39), 43, 49);
+                XXX.restore();
+            }
+            else if (this.phase == "dead")
+            {
+                this.zIndex = 1;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(poly, 491, 293, 43, 39, -(1/2 * 43), -(1/2 * 39), 43, 49);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 10;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+
+            //HIVE
+            this.minionCount();
+            if (this.minions < this.minionsMAX && this.phase != "dead")
+            {
+                if (new Date().getTime() - this.summonTime > this.summonRate * 1000)
+                {
+                    this.summonTime = new Date().getTime();
+                    var random = Math.floor(Math.random() * 4);
+                    if (random == 0)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "BrainFlies", false, this.hiveID, {patrolStops: 6, patrolLoop: true, route:[[this.X, this.Y], [this.X - spacer(375), this.Y - spacer(375)], [this.X - spacer(375), this.Y - spacer(375)], [this.X - spacer(375), this.Y - spacer(375)], [this.X - spacer(375), this.Y - spacer(375)], [this.X - spacer(375), this.Y - spacer(375)]]}));
+                    }
+                    else if (random == 1)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "BrainFlies", false, this.hiveID, {patrolStops: 6, patrolLoop: true, route:[[this.X - spacer(375), this.Y - spacer(375)], [this.X - spacer(375), this.Y - spacer(375)], [this.X - spacer(375), this.Y - spacer(375)], [this.X, this.Y], [this.X - spacer(375), this.Y - spacer(375)], [this.X - spacer(375), this.Y - spacer(375)]]}));
+                    }
+                    else if (random == 2)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "BrainFlies", false, this.hiveID, {patrolStops: 6, patrolLoop: true, route:[[this.X - spacer(300), this.Y - spacer(300)], [this.X, this.Y], [this.X - spacer(300), this.Y - spacer(300)], [this.X - spacer(300), this.Y - spacer(300)], [this.X - spacer(300), this.Y - spacer(300)], [this.X - spacer(300), this.Y - spacer(300)]]}));
+                    }
+                    else if (random == 3)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "BrainFlies", false, this.hiveID, {patrolStops: 6, patrolLoop: true, route:[[this.X - spacer(250), this.Y - spacer(250)], [this.X - spacer(250), this.Y - spacer(250)], [this.X - spacer(250), this.Y - spacer(250)], [this.X - spacer(250), this.Y - spacer(250)], [this.X, this.Y], [this.X - spacer(250), this.Y - spacer(250)]]}));
+                    }
+                }
+            }
+            //DAMAGE AND DEATH SENSING
+            if (this.phase == 0)
+            {
+                if (player.cutcut == true)
+                {
+                    var distFromCutCut = Math.sqrt((this.X - player.bubbleOfDamageX)*(this.X - player.bubbleOfDamageX) + (this.Y - player.bubbleOfDamageY)*(this.Y - player.bubbleOfDamageY));
+                    if (distFromCutCut <= player.weapon.range * 7 + this.radius)
+                    {
+                        this.health -= player.weapon.damage;
+                    }
+
+                    if (this.health <= 0)
+                    {
+                        this.phase = "dead";
+                        for (var i = 0; i < 6; i++)
+                        {
+                            var random = Math.floor(Math.random() * 4);
+                            if (random == 0)
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "BrainFlies", false, this.hiveID, {patrolStops: 6, patrolLoop: true, route:[[this.X, this.Y], [this.X - spacer(375), this.Y - spacer(375)], [this.X - spacer(375), this.Y - spacer(375)], [this.X - spacer(375), this.Y - spacer(375)], [this.X - spacer(375), this.Y - spacer(375)], [this.X - spacer(375), this.Y - spacer(375)]]}));
+                            }
+                            else if (random == 1)
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "BrainFlies", false, this.hiveID, {patrolStops: 6, patrolLoop: true, route:[[this.X - spacer(375), this.Y - spacer(375)], [this.X - spacer(375), this.Y - spacer(375)], [this.X - spacer(375), this.Y - spacer(375)], [this.X, this.Y], [this.X - spacer(375), this.Y - spacer(375)], [this.X - spacer(375), this.Y - spacer(375)]]}));
+                            }
+                            else if (random == 2)
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "BrainFlies", false, this.hiveID, {patrolStops: 6, patrolLoop: true, route:[[this.X - spacer(300), this.Y - spacer(300)], [this.X, this.Y], [this.X - spacer(300), this.Y - spacer(300)], [this.X - spacer(300), this.Y - spacer(300)], [this.X - spacer(300), this.Y - spacer(300)], [this.X - spacer(300), this.Y - spacer(300)]]}));
+                            }
+                            else if (random == 3)
+                            {
+                                ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "BrainFlies", false, this.hiveID, {patrolStops: 6, patrolLoop: true, route:[[this.X - spacer(250), this.Y - spacer(250)], [this.X - spacer(250), this.Y - spacer(250)], [this.X - spacer(250), this.Y - spacer(250)], [this.X - spacer(250), this.Y - spacer(250)], [this.X, this.Y], [this.X - spacer(250), this.Y - spacer(250)]]}));
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        else if (this.type == "beeHive")
+        {
+            //TRAITS
+            this.solid = true;
+            this.interactionRange = 1;
+
+            if (this.runOneTime)
+            {
+                this.runOneTime = false;
+
+                this.health = 3;
+            }
+
             //DRAWSELF
             if (this.phase == 0)
             {

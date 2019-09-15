@@ -7634,7 +7634,7 @@ function Adventurer()
         {
             outfit = allWorn[117];
         }
-        else if (this.outfitEquipped == "vardanianAkaton")
+        else if (this.outfitEquipped == "vardanianAketon")
         {
             outfit = allWorn[118];
         }
@@ -7813,6 +7813,26 @@ function Adventurer()
         else if (this.outfitEquipped == "cephrianArmour")
         {
             outfit = allWorn[165];
+        }
+        else if (this.outfitEquipped == "vardanianEliteSoldierOutfit")
+        {
+            outfit = allWorn[166];
+        }
+        else if (this.outfitEquipped == "cephrianOutfitM")
+        {
+            outfit = allWorn[167];
+        }
+        else if (this.outfitEquipped == "cephrianOutfitF")
+        {
+            outfit = allWorn[168];
+        }
+        else if (this.outfitEquipped == "zetianOutfitF")
+        {
+            outfit = allWorn[169];
+        }
+        else if (this.outfitEquipped == "zetianOutfitM")
+        {
+            outfit = allWorn[170];
         }
         else
         {
@@ -8220,6 +8240,58 @@ function Adventurer()
             XXX.drawImage(jeru, 178, 9, 48, 33, -(1 / 2 * 48 * 1.06) + 1, -(1 / 2 * 33 * 1.06) + 0.45, 48 * 1.06, 33 * 1.06);
             XXX.restore();
         }
+        else if (this.outfitEquipped == "cephrianOutfitM")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(salem, 616, 878, 54, 40, -(1 / 2 * 54 * 0.95) - 1, -(1 / 2 * 40 * 0.95) - 0, 54 * 0.95, 40 * 0.95);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "cephrianOutfitF")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(salem, 571, 833, 54, 40, -(1 / 2 * 54 * 0.95) - 2, -(1 / 2 * 40 * 0.95) - 0, 54 * 0.95, 40 * 0.95);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "zetianOutfitF")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(raed, 628, 49, 50, 30, -(1 / 2 * 50 * 1.25) + 0, -(1 / 2 * 30 * 1.25) + 1, 50 * 1.25, 30 * 1.25);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "zetianOutfitM")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(raed, 625, 21, 50, 27, -(1 / 2 * 50 * 1.25) + 0, -(1 / 2 * 27 * 1.25) - 0, 50 * 1.25, 27 * 1.25);
+            XXX.restore();
+        }
         else if (this.outfitEquipped == "sackmansHood")
         {
             var hasSwordo = false;
@@ -8405,7 +8477,7 @@ function Adventurer()
             XXX.drawImage(tribe, 19, 10, 76, 51, -(1 / 2 * 76 * 1) - 0, -(1 / 2 * 51 * 1) - 0, 76 * 1, 51 * 1);
             XXX.restore();
         }
-        else if (this.outfitEquipped == "vardanianAkaton")
+        else if (this.outfitEquipped == "vardanianAketon")
         {
             this.outfitZ = true;
             XXX.save();
@@ -8416,6 +8488,19 @@ function Adventurer()
                 XXX.globalAlpha = 0.4;
             }
             XXX.drawImage(gent, 192, 217, 29, 28, -(1 / 2 * 29 * 1.05) - 0, -(1 / 2 * 28 * 1.05) - 0, 29 * 1.05, 28 * 1.05);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "vardanianEliteSoldierOutfit")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(milk, 18, 12, 27, 30, -(1 / 2 * 27 * 1.45) + 1, -(1 / 2 * 30 * 1.45) - 0, 27 * 1.45, 30 * 1.45);
             XXX.restore();
         }
         else if (this.outfitEquipped == "vardanianCoatOfPlates")

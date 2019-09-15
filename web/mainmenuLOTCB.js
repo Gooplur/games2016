@@ -1243,6 +1243,33 @@ function applySelectionsButton()
             Inventory.push([new Item("orgishClothing", false, false), 1]);
         }
 
+        if (player.raceName == "Cephrite")
+        {
+            if (player.title != "Nobility" && player.title != "Royalty")
+            {
+                if (player.gender == "Female")
+                {
+                    Inventory.push([new Item("cephrianOutfitF", false, false), 1]);
+                }
+                else
+                {
+                    Inventory.push([new Item("cephrianOutfitM", false, false), 1]);
+                }
+            }
+        }
+
+        if (player.raceName == "Zetian")
+        {
+            if (player.gender == "Male")
+            {
+                Inventory.push([new Item("zetianOutfitM", false, false), 1]);
+            }
+            else
+            {
+                Inventory.push([new Item("zetianOutfitF", false, false), 1]);
+            }
+        }
+
         if (player.raceName == "Aldrek")
         {
             if (player.gender == "Female")
@@ -1354,6 +1381,11 @@ function applySelectionsButton()
                 X = -90;
                 Y = 467;
             }
+        }
+        else if (player.raceName == "Zetian")
+        {
+            X = 3550;
+            Y = -342789;
         }
         else if (player.raceName == "Cephrite")
         {

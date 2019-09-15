@@ -2479,6 +2479,10 @@ function cheats()
             player.lightSourceDuration = 180;
             player.lightSource = "candle";
         }
+        else if (cheatcode == "getSurvive")
+        {
+            console.log("getSurvivalism() = " + player.getSurvivalism());
+        }
         else if (cheatcode.toLowerCase() == "beastjam")
         {
             if (!changeBeastiary)

@@ -23144,7 +23144,7 @@ function Item(type, x, y)
             this.size = 12;
             this.description = "The severed head of a chupacabras.";
             this.intForDes = 0;
-            this.intDescription = "This trophy is a testimate to having slain the feresome chupacabras.";
+            this.intDescription = "This trophy is a testimate to having slain the fearsome chupacabras.";
 
             //Define Utility
             this.utility = "material";
@@ -23155,6 +23155,26 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 33; // at max, buy for 33.
             this.sellValue = 33; // at max, sell for 33.
+        }
+        else if (this.type == "chupacabrasPelt")
+        {
+            //For All Items
+            this.identity = "Chupacabras Pelt";
+            this.weight = 9;
+            this.size = 29;
+            this.description = "The brisley pelt of a chupacabras.";
+            this.intForDes = 29;
+            this.intDescription = "The pelt of a chupacabras is slightly heat resistant and extremely flexible.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 90; // at max, buy for 90.
+            this.sellValue = 90; // at max, sell for 90.
         }
         else if (this.type == "changelingSkull")
         {
@@ -39751,7 +39771,7 @@ function Item(type, x, y)
             //Crafting
             this.yield = 1;
             this.intForCraft = 47;
-            this.ingredients = [["Steel", 18], ["Akaton", 1]];
+            this.ingredients = [["Steel", 18], ["Aketon", 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 700 - Math.floor(player.getCharisma() / 1); // at max, buy for 650.
@@ -39820,7 +39840,7 @@ function Item(type, x, y)
             //Crafting
             this.yield = 1;
             this.intForCraft = 47;
-            this.ingredients = [["Steel", 18], ["Akaton", 1], ["Corvo Feather", 1]];
+            this.ingredients = [["Steel", 18], ["Aketon", 1], ["Corvo Feather", 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 720 - Math.floor(player.getCharisma() / 1); // at max, buy for 670.
@@ -39889,7 +39909,7 @@ function Item(type, x, y)
             //Crafting
             this.yield = 1;
             this.intForCraft = 47;
-            this.ingredients = [["Steel", 18], ["Akaton", 1], ["Corvo Feather", 1], ["Red Dye", 1]];
+            this.ingredients = [["Steel", 18], ["Aketon", 1], ["Corvo Feather", 1], ["Red Dye", 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 725 - Math.floor(player.getCharisma() / 1); // at max, buy for 675.
@@ -39958,7 +39978,7 @@ function Item(type, x, y)
             //Crafting
             this.yield = 1;
             this.intForCraft = 49;
-            this.ingredients = [["Nechrovite", 14], ["Akaton", 1]];
+            this.ingredients = [["Nechrovite", 14], ["Aketon", 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 1700 - Math.floor(player.getCharisma() / 1); // at max, buy for 1650.
@@ -40027,7 +40047,7 @@ function Item(type, x, y)
             //Crafting
             this.yield = 1;
             this.intForCraft = 49;
-            this.ingredients = [["Nechrovite", 14], ["Akaton", 1], ["Corvo Feather", 1]];
+            this.ingredients = [["Nechrovite", 14], ["Aketon", 1], ["Corvo Feather", 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 1720 - Math.floor(player.getCharisma() / 1); // at max, buy for 1670.
@@ -40096,7 +40116,7 @@ function Item(type, x, y)
             //Crafting
             this.yield = 1;
             this.intForCraft = 49;
-            this.ingredients = [["Nechrovite", 14], ["Akaton", 1], ["Corvo Feather", 1], ["Red Dye", 1]];
+            this.ingredients = [["Nechrovite", 14], ["Aketon", 1], ["Corvo Feather", 1], ["Red Dye", 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 1725 - Math.floor(player.getCharisma() / 1); // at max, buy for 1675.
@@ -40165,7 +40185,7 @@ function Item(type, x, y)
             //Crafting
             this.yield = 1;
             this.intForCraft = 50;
-            this.ingredients = [["Nechrovite", 18], ["Akaton", 1]];
+            this.ingredients = [["Nechrovite", 18], ["Aketon", 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 3100 - Math.floor(player.getCharisma() / 1); // at max, buy for 3050.
@@ -40234,7 +40254,7 @@ function Item(type, x, y)
             //Crafting
             this.yield = 1;
             this.intForCraft = 50;
-            this.ingredients = [["Nechrovite", 18], ["Akaton", 1], ["Corvo Feather", 1]];
+            this.ingredients = [["Nechrovite", 18], ["Aketon", 1], ["Corvo Feather", 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 3150 - Math.floor(player.getCharisma() / 1); // at max, buy for 3100.
@@ -40303,7 +40323,7 @@ function Item(type, x, y)
             //Crafting
             this.yield = 1;
             this.intForCraft = 50;
-            this.ingredients = [["Nechrovite", 20], ["Akaton", 1]];
+            this.ingredients = [["Nechrovite", 20], ["Aketon", 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 2000 - Math.floor(player.getCharisma() / 1); // at max, buy for 1950.
@@ -40372,7 +40392,7 @@ function Item(type, x, y)
             //Crafting
             this.yield = 1;
             this.intForCraft = 50;
-            this.ingredients = [["Steel", 22], ["Akaton", 1]];
+            this.ingredients = [["Steel", 22], ["Aketon", 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 1240 - Math.floor(player.getCharisma() / 1); // at max, buy for 1190.
@@ -40441,7 +40461,7 @@ function Item(type, x, y)
             //Crafting
             this.yield = 1;
             this.intForCraft = 40;
-            this.ingredients = [["Ker Shell", 11], ["Akaton", 1]];
+            this.ingredients = [["Ker Shell", 11], ["Aketon", 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 400 - Math.floor(player.getCharisma() / 3); // at max, buy for 385.
@@ -40699,7 +40719,7 @@ function Item(type, x, y)
             this.identity = "Ghoulhide Armour";
             this.weight = 15;
             this.size = 25;
-            this.description = "A tough akaton sewn with multiple layers of ghoul pelt, and a large helmet made from a ghoul's exoskull.";
+            this.description = "A tough aketon sewn with multiple layers of ghoul pelt, and a large helmet made from a ghoul's exoskull.";
             this.intForDes = 1;
             this.intDescription = "This armour can be rather intimidating...";
 
@@ -40815,7 +40835,7 @@ function Item(type, x, y)
             this.identity = "Vardanian Soldier Outfit";
             this.weight = 1.4;
             this.size = 25;
-            this.description = "Chainmail and an akaton with an iron helm.";
+            this.description = "Chainmail and an aketon with an iron helm.";
             this.intForDes = 5;
             this.intDescription = "This armour is commonly worn by town guards, but it is not necessarily worn in all Vardanian provinces.";
 
@@ -40861,19 +40881,77 @@ function Item(type, x, y)
             //Crafting
             this.yield = 1;
             this.intForCraft = 16;
-            this.ingredients = [["Akaton", 1], ["Bovine Hide", 1], ["Iron", 4]];
+            this.ingredients = [["Aketon", 1], ["Bovine Hide", 1], ["Iron", 4]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 46 - Math.floor(player.getCharisma() / 25); // at max, buy for 44.
             this.sellValue = 43 + Math.floor(player.getCharisma() / 50); // at max, sell for 44.
         }
-        else if (this.type == "vardanianAkaton")
+        else if (this.type == "vardanianEliteSoldierOutfit")
         {
             //For All Items
-            this.identity = "Akaton";
+            this.identity = "Vardanian Elite Soldier Outfit";
+            this.weight = 6.5;
+            this.size = 28;
+            this.description = "Chainmail, a ghoul fur decorated aketon, a steel helmet and some pieces of plated armour.";
+            this.intForDes = 4;
+            this.intDescription = "This armour is commonly worn by captains and more highly ranked soldiers.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "armour";
+            //Utility Focused
+            //protections
+            this.protection = 6 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 4;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 2;
+            this.thirstRetention = -0.4;
+            this.shockResist = 0.5;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 0;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 16;
+            this.ingredients = [["Aketon", 1], ["Ghoul Hide", 1], ["Steel", 5]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 146 - Math.floor(player.getCharisma() / 8); // at max, buy for 140.
+            this.sellValue = 137 + Math.floor(player.getCharisma() / 15); // at max, sell for 140.
+        }
+        else if (this.type == "vardanianAketon")
+        {
+            //For All Items
+            this.identity = "Aketon";
             this.weight = 1.4;
             this.size = 25;
-            this.description = "A sewn akaton of elk fur and cloth.";
+            this.description = "A sewn aketon of elk fur and cloth.";
             this.intForDes = 0;
             this.intDescription = "This armour is a necessary padding for plate armour, but it also can serve as an armour in and of itself.";
 
@@ -46032,6 +46110,262 @@ function Item(type, x, y)
             this.buyValue = 33 - Math.floor(player.getCharisma() / 8); // at max, buy for 27.
             this.sellValue = 17 + Math.floor(player.getCharisma() / 5); // at max, sell for 27.
         }
+        else if (this.type == "zetianOutfitM")
+        {
+            //For All Items
+            this.identity = "Zetian Clothing";
+            this.weight = 3;
+            this.size = 28;
+            this.description = "Traditional clothing worn by Zetian men.";
+            this.intForDes = 5;
+            this.intDescription = "The long beaked masks that Zetians wear is meant to keep sand out of their eyes during sandstorms, but they also have spiritual significance within Zetian culture.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0.5 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0.5;
+            this.thirstRetention = 2.5;
+            this.shockResist = 0.25;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            if (player.gender == "Female")
+            {
+                this.charismaBonus = -50;
+            }
+            else
+            {
+                this.charismaBonus = 2;
+            }
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 7;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 19;
+            this.ingredients = [["Voaii Wing Fragments", 6], ["Cloth", 3], ["Raed Beetle Shell", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 45 - Math.floor(player.getCharisma() / 25); // at max, buy for 43.
+            this.sellValue = 40 + Math.floor(player.getCharisma() / 15); // at max, sell for 43.
+        }
+        else if (this.type == "zetianOutfitF")
+        {
+            //For All Items
+            this.identity = "Zetian Clothing";
+            this.weight = 1.15;
+            this.size = 28;
+            this.description = "Traditional clothing worn by Zetian women.";
+            this.intForDes = 5;
+            this.intDescription = "The long beaked masks that Zetians wear is meant to keep sand out of their eyes during sandstorms, but they also have spiritual significance within Zetian culture.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0.7;
+            this.thirstRetention = 2.5;
+            this.shockResist = 0.05;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            if (player.gender == "Male")
+            {
+                this.charismaBonus = -50;
+            }
+            else
+            {
+                this.charismaBonus = 4;
+            }
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 6;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 2;
+            this.intForCraft = 18;
+            this.ingredients = [["Voaii Wing Fragments", 8], ["Cloth", 8], ["Raed Beetle Shell", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 40 - Math.floor(player.getCharisma() / 25); // at max, buy for 38.
+            this.sellValue = 35 + Math.floor(player.getCharisma() / 15); // at max, sell for 38.
+        }
+        else if (this.type == "cephrianOutfitF")
+        {
+            //For All Items
+            this.identity = "Beaded Cephrian Outfit";
+            this.weight = 2;
+            this.size = 26;
+            this.description = "A traditional Cephrian outfit worn by women.";
+            this.intForDes = 2;
+            this.intDescription = "The beads represent the cephrian people's inherent spiritual connection to the source of all reality.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 1.6;
+            this.thirstRetention = 0.65;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 1;
+            if (player.gender == "Male")
+            {
+                this.charismaBonus = -50;
+            }
+            else
+            {
+                this.charismaBonus = 5;
+            }
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 1;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 17;
+            this.ingredients = [["Wild Dog Pelt", 5]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 17 - Math.floor(player.getCharisma() / 50); // at max, buy for 16.
+            this.sellValue = 14 + Math.floor(player.getCharisma() / 25); // at max, sell for 16.
+        }
+        else if (this.type == "cephrianOutfitM")
+        {
+            //For All Items
+            this.identity = "Cephrian Outfit";
+            this.weight = 1;
+            this.size = 26;
+            this.description = "A traditional Cephrian outfit worn by men.";
+            this.intForDes = 2;
+            this.intDescription = "Cephrian men do not wear beads; it is seen as an extremely feminine fashion.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 1.6;
+            this.thirstRetention = 0.25;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            if (player.gender == "Female")
+            {
+                this.charismaBonus = -50;
+            }
+            else
+            {
+                this.charismaBonus = 1;
+            }
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 1;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 3;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 17;
+            this.ingredients = [["Wild Dog Pelt", 4]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 14 - Math.floor(player.getCharisma() / 50); // at max, buy for 13.
+            this.sellValue = 11 + Math.floor(player.getCharisma() / 25); // at max, sell for 13.
+        }
         else if (this.type == "zarbuClothing")
         {
             //For All Items
@@ -49227,6 +49561,31 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "cephrianOutfitF")
+        {
+            XXX.beginPath();
+            XXX.drawImage(salem, 742, 940, 41, 80, X - this.X + (1/2 * CCC.width) - (1/2 * 41 * 1.25), Y - this.Y + (1/2 * CCC.height) - (1/2 * 80 * 1.25), 41 * 1.25, 80 * 1.25);
+        }
+        else if (this.type == "cephrianOutfitM")
+        {
+            XXX.beginPath();
+            XXX.drawImage(salem, 688, 855, 41, 80, X - this.X + (1/2 * CCC.width) - (1/2 * 41 * 1.25), Y - this.Y + (1/2 * CCC.height) - (1/2 * 80 * 1.25), 41 * 1.25, 80 * 1.25);
+        }
+        else if (this.type == "zetianOutfitM")
+        {
+            XXX.beginPath();
+            XXX.drawImage(raed, 683, 4, 43, 79, X - this.X + (1/2 * CCC.width) - (1/2 * 43 * 1.25), Y - this.Y + (1/2 * CCC.height) - (1/2 * 79 * 1.25), 43 * 1.25, 79 * 1.25);
+        }
+        else if (this.type == "zetianOutfitF")
+        {
+            XXX.beginPath();
+            XXX.drawImage(raed, 730, 2, 43, 79, X - this.X + (1/2 * CCC.width) - (1/2 * 43 * 1.25), Y - this.Y + (1/2 * CCC.height) - (1/2 * 79 * 1.25), 43 * 1.25, 79 * 1.25);
+        }
+        else if (this.type == "vardanianEliteSoldierOutfit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(milk, 15, 64, 46, 116, X - this.X + (1/2 * CCC.width) - (1/2 * 46 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 116 * 1), 46 * 1, 116 * 1);
+        }
         else if (this.type == "cephrianBlade")
         {
             XXX.beginPath();
@@ -51187,7 +51546,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(gent, 544, 8, 103, 209, X - this.X + (1/2 * CCC.width) - (1/2 * 103 * 0.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 209 * 0.6), 103 * 0.6, 209 * 0.6);
         }
-        else if (this.type == "vardanianAkaton")
+        else if (this.type == "vardanianAketon")
         {
             XXX.beginPath();
             XXX.drawImage(gent, 654, 12, 105, 143, X - this.X + (1/2 * CCC.width) - (1/2 * 105 * 0.7), Y - this.Y + (1/2 * CCC.height) - (1/2 * 143 * 0.7), 105 * 0.7, 143 * 0.7);
@@ -51646,6 +52005,11 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(chupa, 224, 738, 65, 63, X - this.X + (1/2 * CCC.width) - (1/2 * 65 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 63 * 1), 65 * 1, 63 * 1);
+        }
+        else if (this.type == "chupacabrasPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(chupa, 170, 809, 149, 67, X - this.X + (1/2 * CCC.width) - (1/2 * 149 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 67 * 1), 149 * 1, 67 * 1);
         }
         else if (this.type == "changelingSkull")
         {
@@ -55635,6 +55999,31 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
+        else if (this.type == "cephrianOutfitF")
+        {
+            LXX.beginPath();
+            LXX.drawImage(salem, 742, 940, 41, 80, this.invX - (1/2 * 41 * 0.9), this.invY - (1/2 * 80 * 0.9), 41 * 0.9, 80 * 0.9);
+        }
+        else if (this.type == "cephrianOutfitM")
+        {
+            LXX.beginPath();
+            LXX.drawImage(salem, 688, 855, 41, 80, this.invX - (1/2 * 41 * 0.9), this.invY - (1/2 * 80 * 0.9), 41 * 0.9, 80 * 0.9);
+        }
+        else if (this.type == "zetianOutfitM")
+        {
+            LXX.beginPath();
+            LXX.drawImage(raed, 683, 4, 43, 79, this.invX - (1/2 * 43 * 0.9), this.invY - (1/2 * 79 * 0.9), 43 * 0.9, 79 * 0.9);
+        }
+        else if (this.type == "zetianOutfitF")
+        {
+            LXX.beginPath();
+            LXX.drawImage(raed, 730, 2, 43, 79, this.invX - (1/2 * 43 * 0.9), this.invY - (1/2 * 79 * 0.9), 43 * 0.9, 79 * 0.9);
+        }
+        else if (this.type == "vardanianEliteSoldierOutfit")
+        {
+            LXX.beginPath();
+            LXX.drawImage(milk, 15, 64, 46, 116, this.invX - (1/2 * 46 * 0.68), this.invY - (1/2 * 116 * 0.68), 46 * 0.68, 116 * 0.68);
+        }
         else if (this.type == "cephrianBlade")
         {
             LXX.beginPath();
@@ -57587,7 +57976,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(gent, 544, 8, 103, 209, this.invX - (1/2 * 103 * 0.35), this.invY - (1/2 * 209 * 0.35), 103 * 0.35, 209 * 0.35);
         }
-        else if (this.type == "vardanianAkaton")
+        else if (this.type == "vardanianAketon")
         {
             LXX.beginPath();
             LXX.drawImage(gent, 654, 12, 105, 143, this.invX - (1/2 * 105 * 0.5), this.invY - (1/2 * 143 * 0.5), 105 * 0.5, 143 * 0.5);
@@ -58046,6 +58435,11 @@ function Item(type, x, y)
         {
             LXX.beginPath();
             LXX.drawImage(chupa, 224, 738, 65, 63, this.invX - (1/2 * 65 * 1), this.invY - (1/2 * 63 * 1), 65 * 1, 63 * 1);
+        }
+        else if (this.type == "chupacabrasPelt")
+        {
+            LXX.beginPath();
+            LXX.drawImage(chupa, 170, 809, 149, 67, this.invX - (1/2 * 149 * 0.45), this.invY - (1/2 * 67 * 0.45), 149 * 0.45, 67 * 0.45);
         }
         else if (this.type == "changelingSkull")
         {
@@ -62010,6 +62404,31 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
+        else if (this.type == "cephrianOutfitF")
+        {
+            XXX.beginPath();
+            XXX.drawImage(salem, 742, 940, 41, 80, this.invX - (1/2 * 41 * 0.9), this.invY - (1/2 * 80 * 0.9), 41 * 0.9, 80 * 0.9);
+        }
+        else if (this.type == "cephrianOutfitM")
+        {
+            XXX.beginPath();
+            XXX.drawImage(salem, 688, 855, 41, 80, this.invX - (1/2 * 41 * 0.9), this.invY - (1/2 * 80 * 0.9), 41 * 0.9, 80 * 0.9);
+        }
+        else if (this.type == "zetianOutfitM")
+        {
+            XXX.beginPath();
+            XXX.drawImage(raed, 683, 4, 43, 79, this.invX - (1/2 * 43 * 0.9), this.invY - (1/2 * 79 * 0.9), 43 * 0.9, 79 * 0.9);
+        }
+        else if (this.type == "zetianOutfitF")
+        {
+            XXX.beginPath();
+            XXX.drawImage(raed, 730, 2, 43, 79, this.invX - (1/2 * 43 * 0.9), this.invY - (1/2 * 79 * 0.9), 43 * 0.9, 79 * 0.9);
+        }
+        else if (this.type == "vardanianEliteSoldierOutfit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(milk, 15, 64, 46, 116, this.invX - (1/2 * 46 * 0.68), this.invY - (1/2 * 116 * 0.68), 46 * 0.68, 116 * 0.68);
+        }
         else if (this.type == "cephrianBlade")
         {
             XXX.beginPath();
@@ -63962,7 +64381,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(gent, 544, 8, 103, 209, this.invX - (1/2 * 103 * 0.35), this.invY - (1/2 * 209 * 0.35), 103 * 0.35, 209 * 0.35);
         }
-        else if (this.type == "vardanianAkaton")
+        else if (this.type == "vardanianAketon")
         {
             XXX.beginPath();
             XXX.drawImage(gent, 654, 12, 105, 143, this.invX - (1/2 * 105 * 0.5), this.invY - (1/2 * 143 * 0.5), 105 * 0.5, 143 * 0.5);
@@ -64421,6 +64840,11 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(chupa, 224, 738, 65, 63, this.invX - (1/2 * 65 * 1), this.invY - (1/2 * 63 * 1), 65 * 1, 63 * 1);
+        }
+        else if (this.type == "chupacabrasPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(chupa, 170, 809, 149, 67, this.invX - (1/2 * 149 * 0.45), this.invY - (1/2 * 67 * 0.45), 149 * 0.45, 67 * 0.45);
         }
         else if (this.type == "changelingSkull")
         {

@@ -4376,7 +4376,7 @@ function theLegend()
     allWorn.push(new Item("vardanianRoyalAttireM", false)); //115
     allWorn.push(new Item("vardanianRoyalAttireF", false)); //116
     allWorn.push(new Item("vardanianPriestRobes", false)); //117
-    allWorn.push(new Item("vardanianAkaton", false)); //118
+    allWorn.push(new Item("vardanianAketon", false)); //118
     allWorn.push(new Item("vardanianCoatOfPlates", false)); //119
     allWorn.push(new Item("orgishEliteArmour", false)); //120
     allWorn.push(new Item("orgishRoyalArmour", false)); //121
@@ -4424,6 +4424,11 @@ function theLegend()
     allWorn.push(new Item("thenganSageRobe", false)); //163
     allWorn.push(new Item("sackmansHood", false)); //164
     allWorn.push(new Item("cephrianArmour", false)); //165
+    allWorn.push(new Item("vardanianEliteSoldierOutfit", false)); //166
+    allWorn.push(new Item("cephrianOutfitM", false)); //167
+    allWorn.push(new Item("cephrianOutfitF", false)); //168
+    allWorn.push(new Item("zetianOutfitF", false)); //169
+    allWorn.push(new Item("zetianOutfitM", false)); //170
 
 
 
@@ -4552,6 +4557,7 @@ function theLegend()
     smithing.push(new Item("vardanianCrossbow", false));
     smithing.push(new Item("vardanianCoatOfPlates", false));
     smithing.push(new Item("vardanianSoldierOutfit", false));
+    smithing.push(new Item("vardanianEliteSoldierOutfit", false));
     smithing.push(new Item("fineVardanianPlateArmour", false));
     smithing.push(new Item("fineNechrovitePlateArmour", false));
     smithing.push(new Item("orgishEliteArmour", false));
@@ -4871,7 +4877,7 @@ function theLegend()
     tailoring.push(new Item("hideGloves", false));
     tailoring.push(new Item("jesterShoes", false));
     tailoring.push(new Item("vardanianPriestRobes", false));
-    tailoring.push(new Item("vardanianAkaton", false));
+    tailoring.push(new Item("vardanianAketon", false));
     tailoring.push(new Item("ghoulMercArmour", false));
     tailoring.push(new Item("jungleHunterOutfit", false));
     tailoring.push(new Item("pyromothSilk", false));
@@ -4891,6 +4897,10 @@ function theLegend()
     tailoring.push(new Item("thenganHose", false));
     tailoring.push(new Item("thenganCommonwear", false));
     tailoring.push(new Item("thenganSageRobe", false));
+    tailoring.push(new Item("cephrianOutfitM", false));
+    tailoring.push(new Item("cephrianOutfitF", false));
+    tailoring.push(new Item("zetianOutfitM", false));
+    tailoring.push(new Item("zetianOutfitF", false));
 
 //Jewelry (Items crafted at a jewler's station, rings, necklaces, cutting gems, glassblowing etc.)
     jewelry = [];

@@ -953,7 +953,18 @@ function applySelectionsButton()
         }
         else if (player.class == "Fighter" && player.raceName == "Cephrite")
         {
-            Inventory.push([new Item("cephrianFlail", false, false), 1]);
+            if (player.title == "Vagabond" || player.title == "Peasant" || player.title == "Commoner")
+            {
+                Inventory.push([new Item("cephrianBlade", false, false), 1]);
+            }
+            else if (player.title == "Tradefolk")
+            {
+                Inventory.push([new Item("cephrianFlail", false, false), 1]);
+            }
+            else
+            {
+                Inventory.push([new Item("cephrianRapier", false, false), 1]);
+            }
         }
         else if (player.class == "Fighter" && player.raceName == "Orgell")
         {

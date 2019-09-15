@@ -1367,7 +1367,7 @@ function miniEvent()
             quests.retaliation = false;
 
             var rrnnddm = Math.random();
-            ArtificialIntelligenceAccess.push(new Unit(X + Math.cos(2* Math.PI * rrnnddm) * 900, Y + Math.sin(2* Math.PI * rrnnddm) * 900, "Soldier", false, "Assassin", {race: "Orgell", faction: "Assassin", con: 4, speed: 1.7, outfit: ["assassinWrappings", 0], weapon: ["thenganDagger", [6, 6], 2, 17, 1.1], ranged: [false, "arrow", 11, 2100, 11, 11, 0, "poisonII", 2.2], patrolStops: 0, patrolLoop: false, route:[[0, 0]]}));
+            ArtificialIntelligenceAccess.push(new Unit(X + Math.cos(2* Math.PI * rrnnddm) * 900, Y + Math.sin(2* Math.PI * rrnnddm) * 900, "Soldier", false, "Assassin", {race: "Orgell", faction: "Assassin", con: 4, speed: 1.7, outfit: ["assassinWrappings", 0], weapon: ["poisonCoatedThrowingKnife", [6, 6], 2, 17, 1.1], ranged: [false, "arrow", 11, 2100, 11, 11, 0, "poisonII", 2.2], patrolStops: 0, patrolLoop: false, route:[[0, 0]]}));
         }
     }
 }

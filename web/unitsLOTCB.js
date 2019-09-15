@@ -10129,6 +10129,36 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.effect = "none";
                 this.costumeEngine(8, 0.17, true);
             }
+            else if (this.weapon == "cephrianDagger")
+            {
+                this.effect = "none";
+                this.costumeEngine(7, 0.28, true);
+            }
+            else if (this.weapon == "cephrianBlade")
+            {
+                this.effect = "none";
+                this.costumeEngine(10, 0.27, true);
+            }
+            else if (this.weapon == "cephrianRapier")
+            {
+                this.effect = "none";
+                this.costumeEngine(6, 0.26, true);
+            }
+            else if (this.weapon == "cephrianPikeAndShield")
+            {
+                this.effect = "none";
+                this.costumeEngine(6, 0.19, true);
+            }
+            else if (this.weapon == "throwingKnife")
+            {
+                this.effect = "none";
+                this.costumeEngine(6, 0.15, true);
+            }
+            else if (this.weapon == "poisonCoatedThrowingKnife")
+            {
+                this.effect = "poisonIV";
+                this.costumeEngine(6, 0.15, true);
+            }
         }
     };
 
@@ -10836,6 +10866,170 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             else if (theCostume >= 4)
             {
                 this.drawUnit(norc, 408, 645, 37, 105, -1/2 * 37 * 1.5 -2, -1/2 * 105 * 1.5 - 76, 37 * 1.5, 105 * 1.5, 1 / 2 * Math.PI);
+            }
+        }
+        else if (this.weapon == "cephrianPikeAndShield")
+        {
+            this.damageFrame = "automatic";
+            if (theCostume <= 0)
+            {
+                this.drawUnit(jeru, 144, 252, 96, 238, -1/2 * 96, -1/2 * 238, 96, 238, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 1)
+            {
+                this.drawUnit(jeru, 11, 212, 96, 190, -1/2 * 96, -1/2 * 190, 96, 190, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 2)
+            {
+                this.drawUnit(jeru, 144, 252, 96, 238, -1/2 * 96, -1/2 * 238, 96, 238, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 3)
+            {
+                this.drawUnit(jeru, 14, 525, 96, 278, -1/2 * 96, -1/2 * 278, 96, 278, 1 / 2 * Math.PI);
+            }
+            else if (theCostume >= 4)
+            {
+                this.drawUnit(jeru, 155, 540, 95, 312, -1/2 * 95, -1/2 * 312, 95, 312, 1 / 2 * Math.PI);
+            }
+        }
+        else if (this.weapon == "cephrianRapier")
+        {
+            this.damageFrame = "automatic";
+            if (theCostume <= 0)
+            {
+                this.drawUnit(jeru, 467, 1082, 98, 180, -1/2 * 98, -1/2 * 180, 98, 180, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 1)
+            {
+                this.drawUnit(jeru, 559, 1085, 98, 180, -1/2 * 98, -1/2 * 180, 98, 180, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 2)
+            {
+                this.drawUnit(jeru, 649, 1084, 98, 182, -1/2 * 98, -1/2 * 182, 98, 182, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 3)
+            {
+                this.drawUnit(jeru, 739, 1075, 98, 182, -1/2 * 98, -1/2 * 182 - 6, 98, 182, 1 / 2 * Math.PI);
+            }
+            else if (theCostume >= 4)
+            {
+                this.drawUnit(jeru, 828, 1069, 98, 182, -1/2 * 98, -1/2 * 182 - 11, 98, 182, 1 / 2 * Math.PI);
+            }
+        }
+        else if (this.weapon == "cephrianDagger")
+        {
+            this.damageFrame = "automatic";
+            if (theCostume <= 0)
+            {
+                this.drawUnit(jeru, 1638, 980, 82, 131, -1/2 * 82, -1/2 * 131, 82, 131, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 1)
+            {
+                this.drawUnit(jeru, 1545, 982, 82, 131, -1/2 * 82, -1/2 * 131, 82, 131, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 2)
+            {
+                this.drawUnit(jeru, 1638, 980, 82, 131, -1/2 * 82, -1/2 * 131, 82, 131, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 3)
+            {
+                this.drawUnit(jeru, 1718, 982, 82, 131, -1/2 * 82, -1/2 * 131, 82, 131, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 4)
+            {
+                this.drawUnit(jeru, 1797, 985, 82, 131, -1/2 * 82, -1/2 * 131, 82, 131, 1 / 2 * Math.PI);
+            }
+            else if (theCostume >= 5)
+            {
+                this.drawUnit(jeru, 1877, 977, 82, 150, -1/2 * 82, -1/2 * 150, 82, 150, 1 / 2 * Math.PI);
+            }
+        }
+        else if (this.weapon == "throwingKnife")
+        {
+            this.damageFrame = "automatic";
+            if (theCostume <= 0)
+            {
+                this.drawUnit(jeru, 475, 969, 97, 82, -1/2 * 97, -1/2 * 82, 97, 82, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 1)
+            {
+                this.drawUnit(jeru, 559, 1255, 97, 102, -1/2 * 97, -1/2 * 102, 97, 102, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 2)
+            {
+                this.drawUnit(jeru, 643, 1256, 97, 102, -1/2 * 97, -1/2 * 102, 97, 102, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 3)
+            {
+                this.drawUnit(jeru, 728, 1259, 97, 102, -1/2 * 97, -1/2 * 102, 97, 102, 1 / 2 * Math.PI);
+            }
+            else if (theCostume >= 4)
+            {
+                this.drawUnit(jeru, 808, 1259, 97, 102, -1/2 * 97, -1/2 * 102, 97, 102, 1 / 2 * Math.PI);
+            }
+        }
+        else if (this.weapon == "poisonCoatedThrowingKnife")
+        {
+            this.damageFrame = "automatic";
+            if (theCostume <= 0)
+            {
+                this.drawUnit(jeru, 933, 1064, 79, 120, -1/2 * 79, -1/2 * 120, 79, 120, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 1)
+            {
+                this.drawUnit(jeru, 1002, 1055, 100, 142, -1/2 * 100, -1/2 * 142, 100, 142, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 2)
+            {
+                this.drawUnit(jeru, 1085, 1054, 100, 142, -1/2 * 100, -1/2 * 142, 100, 142, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 3)
+            {
+                this.drawUnit(jeru, 1171, 1057, 100, 142, -1/2 * 100, -1/2 * 142, 100, 142, 1 / 2 * Math.PI);
+            }
+            else if (theCostume >= 4)
+            {
+                this.drawUnit(jeru, 1250, 1058, 100, 142, -1/2 * 100, -1/2 * 142, 100, 142, 1 / 2 * Math.PI);
+            }
+        }
+        else if (this.weapon == "cephrianBlade")
+        {
+            this.damageFrame = "automatic";
+            if (theCostume <= 0)
+            {
+                this.drawUnit(jeru, 31, 863, 111, 106, -1/2 * 111, -1/2 * 106, 111, 106, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 1)
+            {
+                this.drawUnit(jeru, 141, 863, 111, 106, -1/2 * 111, -1/2 * 106, 111, 106, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 2)
+            {
+                this.drawUnit(jeru, 31, 989, 110, 162, -1/2 * 110, -1/2 * 162, 110, 162, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 3)
+            {
+                this.drawUnit(jeru, 147, 998, 110, 162, -1/2 * 110, -1/2 * 162, 110, 162, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 4)
+            {
+                this.drawUnit(jeru, 20, 1173, 120, 161, -1/2 * 120, -1/2 * 161, 120, 161, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 5)
+            {
+                this.drawUnit(jeru, 260, 999, 120, 161, -1/2 * 120, -1/2 * 161, 120, 161, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 6)
+            {
+                this.drawUnit(jeru, 148, 1177, 120, 161, -1/2 * 120, -1/2 * 161, 120, 161, 1 / 2 * Math.PI);
+            }
+            else if (theCostume <= 7)
+            {
+                this.drawUnit(jeru, 260, 999, 120, 161, -1/2 * 120, -1/2 * 161, 120, 161, 1 / 2 * Math.PI);
+            }
+            else if (theCostume >= 8)
+            {
+                this.drawUnit(jeru, 262, 1171, 120, 161, -1/2 * 120, -1/2 * 161, 120, 161, 1 / 2 * Math.PI);
             }
         }
         else if (this.weapon == "serratedNechroviteGreatBlade")
@@ -60306,7 +60500,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     }
                     this.drawHumanOutfitBelow(this.outfit, false);
                     //draw some weapons underneath the body
-                    if (this.wepLayer == "under" || this.weapon == "freydicSword" || this.weapon == "longbow" || this.weapon == "crossbow" || this.weapon == "kellishClaymore" || this.weapon == "estoc" || this.weapon == "vardanianHalberd" || this.weapon == "shotgun" || this.weapon == "m16Carbine" || this.weapon == "sickle" || this.weapon == "nirineseSpear" || this.weapon == "lightningCorseque" || this.weapon == "theWendigosCleaver" || this.weapon == "beulingerrPike" || this.weapon == "vardanianCrossbow")
+                    if (this.wepLayer == "under" || this.weapon == "freydicSword" || this.weapon == "longbow" || this.weapon == "crossbow" || this.weapon == "kellishClaymore" || this.weapon == "estoc" || this.weapon == "vardanianHalberd" || this.weapon == "shotgun" || this.weapon == "m16Carbine" || this.weapon == "sickle" || this.weapon == "nirineseSpear" || this.weapon == "lightningCorseque" || this.weapon == "theWendigosCleaver" || this.weapon == "beulingerrPike" || this.weapon == "vardanianCrossbow" || this.weapon == "cephrianDagger" || this.weapon == "cephrianBlade" || this.weapon == "cephrianRapier" || this.weapon == "cephrianPikeAndShield" || this.weapon == "throwingKnife" || this.weapon == "poisonCoatedThrowingKnife")
                     {
                         this.drawHumanArms();
                     }
@@ -60348,7 +60542,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     }
 
                     //draw the others over it.
-                    if (this.wepLayer == "standard" || this.weapon != "freydicSword" && this.weapon != "longbow" && this.weapon != "crossbow" && this.weapon != "longSpikedMorningStar" && this.weapon != "kellishClaymore" && this.weapon != "estoc" && this.weapon != "vardanianHalberd" && this.weapon != "shotgun" && this.weapon != "m16Carbine" && this.weapon != "sickle" && this.weapon != "nirineseSpear" && this.weapon != "lightningCorseque" && this.weapon != "theWendigosCleaver" && this.weapon != "beulingerrPike" && this.weapon != "vardanianCrossbow")
+                    if (this.wepLayer == "standard" || this.weapon != "freydicSword" && this.weapon != "longbow" && this.weapon != "crossbow" && this.weapon != "longSpikedMorningStar" && this.weapon != "kellishClaymore" && this.weapon != "estoc" && this.weapon != "vardanianHalberd" && this.weapon != "shotgun" && this.weapon != "m16Carbine" && this.weapon != "sickle" && this.weapon != "nirineseSpear" && this.weapon != "lightningCorseque" && this.weapon != "theWendigosCleaver" && this.weapon != "beulingerrPike" && this.weapon != "vardanianCrossbow" && this.weapon != "cephrianDagger" && this.weapon != "cephrianBlade" && this.weapon != "cephrianRapier" && this.weapon != "cephrianPikeAndShield" && this.weapon != "throwingKnife" && this.weapon != "poisonCoatedThrowingKnife")
                     {
                         this.drawHumanArms();
                     }
@@ -85535,7 +85729,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.drawHumanOutfitBelow(this.outfit, false);
 
                 //draw some weapons underneath the body
-                if (this.wepLayer == "under" || this.weapon == "swimming" || this.weapon == "freydicSword" || this.weapon == "longbow" || this.weapon == "crossbow" || this.weapon == "kellishClaymore" || this.weapon == "estoc" || this.weapon == "vardanianHalberd" || this.weapon == "shotgun" || this.weapon == "m16Carbine" || this.weapon == "sickle" || this.weapon == "nirineseSpear" || this.weapon == "lightningCorseque" || this.weapon == "theWendigosCleaver" || this.weapon == "beulingerrPike" || this.weapon == "vardanianCrossbow")
+                if (this.wepLayer == "under" || this.weapon == "swimming" || this.weapon == "freydicSword" || this.weapon == "longbow" || this.weapon == "crossbow" || this.weapon == "kellishClaymore" || this.weapon == "estoc" || this.weapon == "vardanianHalberd" || this.weapon == "shotgun" || this.weapon == "m16Carbine" || this.weapon == "sickle" || this.weapon == "nirineseSpear" || this.weapon == "lightningCorseque" || this.weapon == "theWendigosCleaver" || this.weapon == "beulingerrPike" || this.weapon == "vardanianCrossbow" || this.weapon == "cephrianDagger" || this.weapon == "cephrianBlade" || this.weapon == "cephrianRapier" || this.weapon == "cephrianPikeAndShield" || this.weapon == "throwingKnife" || this.weapon == "poisonCoatedThrowingKnife")
                 {
                     this.drawHumanArms();
                 }
@@ -85544,7 +85738,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.drawHuman();
 
                 //draw the others over it.
-                if (this.wepLayer == "standard" || this.weapon == "swimming" || this.weapon != "freydicSword" && this.weapon != "longbow" && this.weapon != "crossbow" && this.weapon != "longSpikedMorningStar" && this.weapon != "kellishClaymore" && this.weapon != "estoc" && this.weapon != "vardanianHalberd" && this.weapon != "shotgun" && this.weapon != "m16Carbine" && this.weapon != "sickle" && this.weapon != "nirineseSpear" && this.weapon != "lightningCorseque" && this.weapon != "theWendigosCleaver" && this.weapon != "beulingerrPike" && this.weapon != "vardanianCrossbow")
+                if (this.wepLayer == "standard" || this.weapon == "swimming" || this.weapon != "freydicSword" && this.weapon != "longbow" && this.weapon != "crossbow" && this.weapon != "longSpikedMorningStar" && this.weapon != "kellishClaymore" && this.weapon != "estoc" && this.weapon != "vardanianHalberd" && this.weapon != "shotgun" && this.weapon != "m16Carbine" && this.weapon != "sickle" && this.weapon != "nirineseSpear" && this.weapon != "lightningCorseque" && this.weapon != "theWendigosCleaver" && this.weapon != "beulingerrPike" && this.weapon != "vardanianCrossbow" && this.weapon != "cephrianDagger" && this.weapon != "cephrianBlade" && this.weapon != "cephrianRapier" && this.weapon != "cephrianPikeAndShield" && this.weapon != "throwingKnife" && this.weapon != "poisonCoatedThrowingKnife")
                 {
                     this.drawHumanArms();
                 }
@@ -87668,7 +87862,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.drawHumanOutfitBelow(this.outfit, false);
 
                 //draw some weapons underneath the body
-                if (this.wepLayer == "under" || this.weapon == "freydicSword" || this.weapon == "longbow" || this.weapon == "crossbow" || this.weapon == "kellishClaymore" || this.weapon == "estoc" || this.weapon == "vardanianHalberd" || this.weapon == "shotgun" || this.weapon == "m16Carbine" || this.weapon == "sickle" || this.weapon == "nirineseSpear" || this.weapon == "lightningCorseque" || this.weapon == "theWendigosCleaver" || this.weapon == "beulingerrPike" || this.weapon == "vardanianCrossbow")
+                if (this.wepLayer == "under" || this.weapon == "freydicSword" || this.weapon == "longbow" || this.weapon == "crossbow" || this.weapon == "kellishClaymore" || this.weapon == "estoc" || this.weapon == "vardanianHalberd" || this.weapon == "shotgun" || this.weapon == "m16Carbine" || this.weapon == "sickle" || this.weapon == "nirineseSpear" || this.weapon == "lightningCorseque" || this.weapon == "theWendigosCleaver" || this.weapon == "beulingerrPike" || this.weapon == "vardanianCrossbow" || this.weapon == "cephrianDagger" || this.weapon == "cephrianBlade" || this.weapon == "cephrianRapier" || this.weapon == "cephrianPikeAndShield" || this.weapon == "throwingKnife" || this.weapon == "poisonCoatedThrowingKnife")
                 {
                     this.drawHumanArms();
                 }
@@ -87677,7 +87871,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.drawHuman();
 
                 //draw the others over it.
-                if (this.wepLayer == "standard" || this.weapon != "freydicSword" && this.weapon != "longbow" && this.weapon != "crossbow" && this.weapon != "longSpikedMorningStar" && this.weapon != "kellishClaymore" && this.weapon != "estoc" && this.weapon != "vardanianHalberd" && this.weapon != "shotgun" && this.weapon != "m16Carbine" && this.weapon != "sickle" && this.weapon != "nirineseSpear" && this.weapon != "lightningCorseque" && this.weapon != "theWendigosCleaver" && this.weapon != "beulingerrPike" && this.weapon != "vardanianCrossbow")
+                if (this.wepLayer == "standard" || this.weapon != "freydicSword" && this.weapon != "longbow" && this.weapon != "crossbow" && this.weapon != "longSpikedMorningStar" && this.weapon != "kellishClaymore" && this.weapon != "estoc" && this.weapon != "vardanianHalberd" && this.weapon != "shotgun" && this.weapon != "m16Carbine" && this.weapon != "sickle" && this.weapon != "nirineseSpear" && this.weapon != "lightningCorseque" && this.weapon != "theWendigosCleaver" && this.weapon != "beulingerrPike" && this.weapon != "vardanianCrossbow" && this.weapon != "cephrianDagger" && this.weapon != "cephrianBlade" && this.weapon != "cephrianRapier" && this.weapon != "cephrianPikeAndShield" && this.weapon != "throwingKnife" && this.weapon != "poisonCoatedThrowingKnife")
                 {
                     this.drawHumanArms();
                 }

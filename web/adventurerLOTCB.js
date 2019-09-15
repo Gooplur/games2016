@@ -10630,6 +10630,19 @@ function Adventurer()
                     }
                 }
             }
+            else if (player.weapon.multiATK == true) //Some weapons have multiple attack options
+            {
+                if (this.weaponIsRanged == false && (this.weapon.energyCost * 1 * energil <= this.energy) && new Date().getTime() - this.attackCooldown >= 10 * this.weapon.rate && this.spell == "none")
+                {
+                    if (this.attacking == false && this.blocking == false && qKey == false && spaceKey == false)
+                    {
+                        this.energy -= (this.weapon.energyCost * 1 * energil);
+                        this.powerAttack = true;
+                        this.strike = true;
+                        this.cutcut = true; //for an sort of attacking of scenery this allows you to signal that an attack has happened.
+                    }
+                }
+            }
             else if (player.getStrength() >= 20) //Power Attack boost for high STR
             {
                 if (this.weaponIsRanged == false && (this.weapon.energyCost * 2 * energil <= this.energy) && new Date().getTime() - this.attackCooldown >= 18 * this.weapon.rate && this.spell == "none")
@@ -27865,7 +27878,7 @@ function Adventurer()
                     if (dfu <= this.weapon.range * 7 && this.finalAttackStage == true && !ArtificialIntelligenceAccess[i].underground && ArtificialIntelligenceAccess[i].dmx == this.dmx && ArtificialIntelligenceAccess[i].mounted != true && !ArtificialIntelligenceAccess[i].playerProof)
                     {
                         var justDealt = 0; //this stores the damage that was just dealt
-                        if (this.powerAttack == false)
+                        if (this.powerAttack == false || this.weapon.multiATK == true && this.powerAttack == true)
                         {
                             if (this.armourPerfect == true || foePerfectArmour == true || ArtificialIntelligenceAccess[i].perfectDefense == true || Math.max(0, (this.weapon.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance) > (this.weapon.damage / 35))
                             {

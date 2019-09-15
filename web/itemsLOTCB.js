@@ -23,6 +23,8 @@ function Item(type, x, y)
     this.ingredients = [];
     this.smallText = false;
 
+    this.multiATK = false;
+
     this.decay = 0;
     this.decayable = false;
     this.decayLimit = 10;
@@ -47223,6 +47225,8 @@ function Item(type, x, y)
             //Define Utility
             this.utility = "weapon";
 
+            this.multiATK = true;
+
             //Utility Focused
             if (player.powerAttack == true)
             {
@@ -47289,6 +47293,8 @@ function Item(type, x, y)
 
             //Define Utility
             this.utility = "weapon";
+
+            this.multiATK = true;
 
             //Utility Focused
             if (player.powerAttack == true)

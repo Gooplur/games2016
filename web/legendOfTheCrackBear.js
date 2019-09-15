@@ -6,6 +6,7 @@
 
 //TODO LIST
 //top priority
+//todo make it so that the people in the cephrian city can perma die
 //todo add hyper-infectious internal warts infection that grows slowly until it deforms the body (the body will look lumpy and fleshy at this stage) then eventually the infected persons internal gas filled warts pop in a bloody flesh explosion that infects those that it touches. (There is a cure! it relies upon fermented vodkapa spleen and some other ingredients)
 //todo add all of the new fish to the seal unit's diet
 

@@ -13966,6 +13966,66 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 XXX.rotate(this.rotation);
                 XXX.drawImage(atal, 470, 745, 95, 63, -(1 / 2 * 95 * 0.54) - 17, -(1 / 2 * 63 * 0.54) -1, 95 * 0.54, 63 * 0.54);
             }
+            else if (outfit == "shortCephrianNomadDress")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(salem, 571, 702, 59, 49, -(1 / 2 * 59 * 0.95) - 0, -(1 / 2 * 49 * 0.95) - 0, 59 * 0.95, 49 * 0.95);
+            }
+            else if (outfit == "cephrianNomadOutfit")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(salem, 578, 785, 40, 45, -(1 / 2 * 40 * 0.95) - 0, -(1 / 2 * 45 * 0.95) - 0, 40 * 0.95, 45 * 0.95);
+            }
+            else if (outfit == "twoDogOutfit")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(salem, 648, 957, 40, 45, -(1 / 2 * 40 * 1) - 0, -(1 / 2 * 45 * 1) - 0, 40 * 1, 45 * 1);
+            }
+            else if (outfit == "giraffeClothing")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(salem, 588, 958, 40, 45, -(1 / 2 * 40 * 1) - 0, -(1 / 2 * 45 * 1) - 0, 40 * 1, 45 * 1);
+            }
+            else if (outfit == "lionClothing")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(salem, 712, 776, 54, 54, -(1 / 2 * 54 * 1) + 2.5, -(1 / 2 * 54 * 1) - 0, 54 * 1, 54 * 1);
+            }
+            else if (outfit == "cephrianNomadDress")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(salem, 571, 702, 59, 49, -(1 / 2 * 59 * 0.95) - 2, -(1 / 2 * 49 * 0.95) - 0, 59 * 0.95, 49 * 0.95);
+            }
             else if (outfit == "nirwadenLadyPointyCap")
             {
                 XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
@@ -14971,6 +15031,17 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 }
                 XXX.rotate(this.rotation);
                 XXX.drawImage(atal, 449, 827, 127, 157, -(1 / 2 * 127 * 0.55) + 0, -(1 / 2 * 157 * 0.55) -3, 127 * 0.55, 157 * 0.55);
+            }
+            else if (outfit == "cephrianNomadDress")
+            {
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation);
+                XXX.drawImage(salem, 700, 609, 86, 71, -(1 / 2 * 86 * 1) + 0, -(1 / 2 * 71 * 1) + 0, 86 * 1, 71 * 1);
+                XXX.drawImage(salem, 591, 656, 26, 38, -(1 / 2 * 26 * 1) + 0, -(1 / 2 * 38 * 1) + 0, 26 * 1, 38 * 1);
             }
             else if (outfit == "thenganNobleOutfitF")
             {
@@ -85077,6 +85148,46 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             player.freynorFaction -= 14;
                         }
                     }
+                    else if (this.ID == "Ishrahim the Trinket Seller")
+                    {
+                        uniqueChars.ishrahimLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.cephriteFaction -= 7;
+                        }
+                    }
+                    else if (this.ID == "Yalt the Scroll Seller")
+                    {
+                        uniqueChars.yaltLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.cephriteFaction -= 15;
+                        }
+                    }
+                    else if (this.ID == "Tchlib the Scroll Seller")
+                    {
+                        uniqueChars.tchlibLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.cephriteFaction -= 10;
+                        }
+                    }
+                    else if (this.ID == "Baylem the Concoctor")
+                    {
+                        uniqueChars.baylemLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.cephriteFaction -= 19;
+                        }
+                    }
+                    else if (this.ID == "Liehthet the Minder")
+                    {
+                        uniqueChars.liehthetLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.cephriteFaction -= 18;
+                        }
+                    }
                     else if (this.ID == "Little Rosey Red")
                     {
                         uniqueChars.roseyRedLDS = false;
@@ -86283,7 +86394,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         //All of this factions guards drop this:
                         if (this.ID == "Alfonz the Mercenary")
                         {
-                            this.drops = [[new Item("coins", this.X, this.Y), 29 + Math.floor(Math.random() * 31)]];
+                            this.drops = [[new Item("coins", this.X, this.Y), 29 + Math.floor(Math.random() * 31)], [new Item("lionClothing", this.X, this.Y), 1], [new Item("cephrianRapier", this.X, this.Y), 1]];
                         }
                         else
                         {
@@ -87742,6 +87853,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                     else if (this.ID == "Nelgref the Flayer") //also a bandit chieftain
                     {
                         uniqueChars.nelgrefLDS = false;
+                    }
+                    else if (this.ID == "Alfonz the Mercenary")
+                    {
+                        uniqueChars.alfonzLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.cephriteFaction -= 20;
+                        }
                     }
 
                     //track Deaths Of Certain Non-Unique Units During Certain Quests

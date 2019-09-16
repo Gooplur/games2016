@@ -1210,6 +1210,7 @@ function Adventurer()
             var fearIFlag = false;
             var fearIIFlag = false;
             var fearIIIFlag = false;
+            var treeManaFlag = false;
 
             //search worn ability list for abilities
             for (var i = 0; i < this.AdAbility.length; i++)
@@ -1255,6 +1256,10 @@ function Adventurer()
                 {
                     luckFlag = true;
                 }
+                if (this.AdAbility[i] == "treeMana")
+                {
+                    treeManaFlag = true;
+                }
                 if (this.AdAbility[i] == "nightVision")
                 {
                     nightVision = true;
@@ -1298,6 +1303,26 @@ function Adventurer()
             }
 
             //EXECUTE EFFECTS
+
+            //treeMana
+            if (treeManaFlag)
+            {
+                var treesAround = 0;
+                var treesHP = 0;
+                for (var i = 0; i < scenicList.length; i++)
+                {
+                    if (scenicList[i].tree == true && scenicList[i].X < X + 600 && scenicList[i].X > X - 600 && scenicList[i].Y < Y + 600 && scenicList[i].Y > Y - 600)
+                    {
+                        treesAround += 1;
+                        treesHP += scenicList[i].treeHealth;
+                    }
+                }
+
+                if (treesAround > 0)
+                {
+                    this.will += treesHP / 15000;
+                }
+            }
 
             //Fear I
             if (fearIFlag || fearIIFlag || fearIIIFlag)
@@ -7834,6 +7859,38 @@ function Adventurer()
         {
             outfit = allWorn[170];
         }
+        else if (this.outfitEquipped == "cephrianNomadDress")
+        {
+            outfit = allWorn[171];
+        }
+        else if (this.outfitEquipped == "twoDogOutfit")
+        {
+            outfit = allWorn[172];
+        }
+        else if (this.outfitEquipped == "cephrianNomadOutfit")
+        {
+            outfit = allWorn[173];
+        }
+        else if (this.outfitEquipped == "giraffeClothing")
+        {
+            outfit = allWorn[174];
+        }
+        else if (this.outfitEquipped == "lionClothing")
+        {
+            outfit = allWorn[175];
+        }
+        else if (this.outfitEquipped == "shortCephrianNomadDress")
+        {
+            outfit = allWorn[176];
+        }
+        else if (this.outfitEquipped == "zetianWarriorArmour")
+        {
+            outfit = allWorn[177];
+        }
+        else if (this.outfitEquipped == "druidGown")
+        {
+            outfit = allWorn[178];
+        }
         else
         {
             outfit = allWorn[0];
@@ -8238,6 +8295,135 @@ function Adventurer()
                 XXX.globalAlpha = 0.4;
             }
             XXX.drawImage(jeru, 178, 9, 48, 33, -(1 / 2 * 48 * 1.06) + 1, -(1 / 2 * 33 * 1.06) + 0.45, 48 * 1.06, 33 * 1.06);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "druidGown")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(cef, 706, 143, 44, 29, -(1 / 2 * 44 * 1.45) + 1.5, -(1 / 2 * 29 * 1.45) + 1.5, 44 * 1.45, 29 * 1.45);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "giraffeClothing")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(salem, 588, 958, 40, 45, -(1 / 2 * 40 * 1) - 0, -(1 / 2 * 45 * 1) - 0, 40 * 1, 45 * 1);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "twoDogOutfit")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(salem, 648, 957, 40, 45, -(1 / 2 * 40 * 1) - 0, -(1 / 2 * 45 * 1) - 0, 40 * 1, 45 * 1);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "lionClothing")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(salem, 712, 776, 54, 54, -(1 / 2 * 54 * 1) + 2.5, -(1 / 2 * 54 * 1) - 0, 54 * 1, 54 * 1);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "cephrianNomadOutfit")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(salem, 578, 785, 40, 45, -(1 / 2 * 40 * 0.95) - 0, -(1 / 2 * 45 * 0.95) - 0, 40 * 0.95, 45 * 0.95);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "zetianWarriorArmour")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(raed, 726, 89, 51, 40, -(1 / 2 * 51 * 1.2) - 0, -(1 / 2 * 40 * 1.2) - 0, 51 * 1.2, 40 * 1.2);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "shortCephrianNomadDress")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(salem, 571, 702, 59, 49, -(1 / 2 * 59 * 0.95) - 0, -(1 / 2 * 49 * 0.95) - 0, 59 * 0.95, 49 * 0.95);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "cephrianNomadDress")
+        {
+            this.outfitZ = false;
+            if (this.movingType == 0 || this.movingType == 4 || this.movingType == 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation - 1/2 * Math.PI);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(salem, 700, 609, 86, 71, -(1 / 2 * 86 * 1) + 0, -(1 / 2 * 71 * 1) + 0, 86 * 1, 71 * 1);
+                XXX.restore();
+            }
+            else
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation - 1/2 * Math.PI);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(salem, 702, 687, 86, 71, -(1 / 2 * 86 * 1) + 0, -(1 / 2 * 71 * 1) + 0, 86 * 1, 71 * 1);
+                XXX.restore();
+            }
+
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - 1/2 * Math.PI);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(salem, 591, 656, 26, 38, -(1 / 2 * 26 * 1) + 0, -(1 / 2 * 38 * 1) + 0, 26 * 1, 38 * 1);
             XXX.restore();
         }
         else if (this.outfitEquipped == "cephrianOutfitM")
@@ -42051,6 +42237,18 @@ function Adventurer()
                         XXX.globalAlpha = 0.4;
                     }
                     XXX.drawImage(verse, 3228, 215, 33, 15, -(1 / 2 * 38) + 2.7, -(1 / 2 * 42) + 12.5, 33, 15);
+                    XXX.restore();
+                }
+                else if (this.outfitEquipped == "cephrianNomadDress")
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(salem, 571, 702, 59, 49, -(1 / 2 * 59 * 0.95) - 2, -(1 / 2 * 49 * 0.95) - 0, 59 * 0.95, 49 * 0.95);
                     XXX.restore();
                 }
                 else if (this.outfitEquipped == "beulingerrDress")

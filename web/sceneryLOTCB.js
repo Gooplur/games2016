@@ -48,6 +48,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
     //Tree Variables
     this.treePhase = 0;
     this.treeHealth = 120;
+    this.tree = false;
     //container variables
     this.storageListChecked = false;
     this.storage = false;
@@ -5174,6 +5175,30 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
                 XXX.drawImage(raed, 1097, 742, 43, 56, -(1/2 * 43 * this.information), -(1/2 * 56 * this.information), 43 * this.information, 56 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 40) //wild dog rug
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(salem, 58, 2, 93, 76, -(1/2 * 93 * this.information), -(1/2 * 76 * this.information), 93 * this.information, 76 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 41) //hyena rug
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(salem, 0, 8, 58, 57, -(1/2 * 58 * this.information), -(1/2 * 57 * this.information), 58 * this.information, 57 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 42) //giraffe rug
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(salem, 524, 933, 60, 102, -(1/2 * 60 * this.information), -(1/2 * 102 * this.information), 60 * this.information, 102 * this.information);
                 XXX.restore();
             }
 
@@ -25477,6 +25502,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
         else if (this.type == "ogoTree")
         {
             //TRAITS
+            this.tree = true;
             this.variety = "plant";
             this.nectar(20);
             this.solid = true;
@@ -25572,6 +25598,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
         else if (this.type == "appleTree")
         {
             //TRAITS
+            this.tree = true;
             this.variety = "plant";
             this.nectar(8);
             this.solid = true;
@@ -25667,6 +25694,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
         else if (this.type == "chonaTree")
         {
             //TRAITS
+            this.tree = true;
             this.variety = "plant";
             this.nectar(5);
             this.solid = true;
@@ -25762,6 +25790,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
         else if (this.type == "polyapaTree")
         {
             //TRAITS
+            this.tree = true;
             this.variety = "plant";
             this.nectar(3);
             this.solid = true;
@@ -35641,6 +35670,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
         else if (this.type == "selvaTree")
         {
             //TRAITS
+            this.tree = true;
             this.solid = true;
             this.interactionRange = 1;
             if (this.runOneTime == true)
@@ -35876,6 +35906,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
         else if (this.type == "greatPineTree")
         {
             //TRAITS
+            this.tree = true;
             this.solid = true;
 
             if (this.runOneTime == true)
@@ -36097,6 +36128,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
         else if (this.type == "pineTree")
         {
             //TRAITS
+            this.tree = true;
             this.solid = true;
             this.interactionRange = 120;
 
@@ -36310,6 +36342,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
         }
         else if (this.type == "acaciaTree")
         {
+            this.tree = true;
             if (this.runOneTime == true)
             {
                 this.runOneTime = false;
@@ -36484,6 +36517,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
         }
         else if (this.type == "ashaiTree")
         {
+            this.tree = true;
             if (this.runOneTime == true)
             {
                 this.runOneTime = false;
@@ -36653,6 +36687,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
         else if (this.type == "yeolTree")
         {
             //TRAITS
+            this.tree = true;
             this.solid = true;
             this.interactionRange = 100;
 
@@ -36889,6 +36924,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
         else if (this.type == "sonjaTree")
         {
             //TRAITS
+            this.tree = true;
             this.solid = true;
             this.interactionRange = 100;
 

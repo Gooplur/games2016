@@ -6,7 +6,6 @@
 
 //TODO LIST
 //top priority
-//todo make it so that the people in the cephrian city can perma die
 //todo add hyper-infectious internal warts infection that grows slowly until it deforms the body (the body will look lumpy and fleshy at this stage) then eventually the infected persons internal gas filled warts pop in a bloody flesh explosion that infects those that it touches. (There is a cure! it relies upon fermented vodkapa spleen and some other ingredients)
 //todo add all of the new fish to the seal unit's diet
 
@@ -4430,6 +4429,16 @@ function theLegend()
     allWorn.push(new Item("cephrianOutfitF", false)); //168
     allWorn.push(new Item("zetianOutfitF", false)); //169
     allWorn.push(new Item("zetianOutfitM", false)); //170
+    allWorn.push(new Item("cephrianNomadDress", false)); //171
+    allWorn.push(new Item("twoDogOutfit", false)); //172
+    allWorn.push(new Item("cephrianNomadOutfit", false)); //173
+    allWorn.push(new Item("giraffeClothing", false)); //174
+    allWorn.push(new Item("lionClothing", false)); //175
+    allWorn.push(new Item("shortCephrianNomadDress", false)); //176
+    allWorn.push(new Item("zetianWarriorArmour", false)); //177
+    allWorn.push(new Item("druidGown", false)); //178
+
+
 
 
 
@@ -4589,6 +4598,7 @@ function theLegend()
     smithing.push(new Item("cephrianBlade", false));
     smithing.push(new Item("cephrianDagger", false));
     smithing.push(new Item("cephrianRapier", false));
+    smithing.push(new Item("zetianWarriorArmour", false));
 
 //Foods (Items cooked at either a stove, an oven, or a campfire)
     foods = [];
@@ -4900,6 +4910,11 @@ function theLegend()
     tailoring.push(new Item("thenganSageRobe", false));
     tailoring.push(new Item("cephrianOutfitM", false));
     tailoring.push(new Item("cephrianOutfitF", false));
+    tailoring.push(new Item("cephrianNomadOutfit", false));
+    tailoring.push(new Item("shortCephrianNomadDress", false));
+    tailoring.push(new Item("cephrianNomadDress", false));
+    tailoring.push(new Item("giraffeClothing", false));
+    tailoring.push(new Item("lionClothing", false));
     tailoring.push(new Item("zetianOutfitM", false));
     tailoring.push(new Item("zetianOutfitF", false));
 

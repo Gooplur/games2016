@@ -41063,6 +41063,79 @@ function Item(type, x, y)
             this.buyValue = 46 - Math.floor(player.getCharisma() / 3); // at max, buy for 31.
             this.sellValue = 14 + Math.floor(player.getCharisma() / 3); // at max, sell for 29.
         }
+        else if (this.type == "zetianWarriorArmour")
+        {
+            //For All Items
+            this.identity = "Zetian Warrior Armour";
+            this.weight = 18;
+            this.size = 28;
+            this.description = "Armour made from the shells of raed beetles.";
+            this.intForDes = 1;
+            this.intDescription = "This is the armour that Zetian warriors wear when they go to battle.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "armour";
+            //Utility Focused
+            //protections
+            this.protection = 7 * ((player.toughness / 100) + 1);
+            if (player.raceName == "Zetian")
+            {
+                this.toughnessRequirement = 3;
+            }
+            else
+            {
+                this.toughnessRequirement = 7;
+            }
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0.25;
+            this.thirstRetention = 1.25;
+            this.shockResist = 0.66;
+            //Main Stat Bonuses
+            this.strengthBonus = 1;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 7;
+            this.rangedBonus = 1;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 1;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 4;
+            //Extra Stat Bonuses
+            this.sleepBonus = 3;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 2;
+            if (player.raceName == "Zetian")
+            {
+                this.intForCraft = 11;
+            }
+            else
+            {
+                this.intForCraft = 25;
+            }
+
+            this.ingredients = [["Raed Beetle Shell", 20], ["Raed Beetle Leg", 20], ["Voaii Wing Fragments", 2], ["Cloth", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 55 - Math.floor(player.getCharisma() / 12.5); // at max, buy for 51.
+            this.sellValue = 45 + Math.floor(player.getCharisma() / 8); // at max, sell for 51.
+        }
         else if (this.type == "freydicRoyalDress")
         {
             //For All Items
@@ -45114,6 +45187,89 @@ function Item(type, x, y)
             this.buyValue = 22 - Math.floor(player.getCharisma() / 8); // at max, buy for 16.
             this.sellValue = 11 + Math.floor(player.getCharisma() / 10); // at max, sell for 16.
         }
+        else if (this.type == "druidGown")
+        {
+            //For All Items
+            if (player.gender == "Male")
+            {
+                this.identity = "Druid Gown";
+            }
+            else
+            {
+                this.identity = "Druidess Gown";
+            }
+            this.weight = 1;
+            this.size = 26;
+            this.description = "A green robe that is imbued with nature magics.";
+            this.intForDes = 15;
+            this.intDescription = "When the wearer of the robe is in proximity to trees they are granted increased magical regeneration.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 1;
+            this.magicalProtection = 0.25;
+            this.warmthRetention = 0;
+            this.thirstRetention = 0.4;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 10;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = -5;
+            this.survivalismBonus = 3;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            if (player.getEminence() >= 1)
+            {
+                this.eminenceBonus = 0;
+                this.willpowerBonus = 1;
+                this.knowledgeBonus = 0;
+                this.concentrationBonus = 0;
+                this.memoryBonus = 3;
+
+                //ability
+                this.ability = "treeMana";
+            }
+            else
+            {
+                this.eminenceBonus = 0;
+                this.willpowerBonus = 0;
+                this.knowledgeBonus = 0;
+                this.concentrationBonus = 0;
+                this.memoryBonus = 0;
+
+                //ability
+                this.ability = "none";
+            }
+
+            if (player.getKnowledge() >= 5 || player.getEminence() >= 1)
+            {
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 925 - Math.floor(player.getCharisma() / 10); // at max, buy for 920.
+                this.sellValue = 917 + Math.floor(player.getCharisma() / 15); // at max, sell for 920.
+            }
+            else
+            {
+                //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+                this.buyValue = 925 - Math.floor(player.getCharisma() / 10); // at max, buy for 920.
+                this.sellValue = 47 + Math.floor(player.getCharisma() / 15); // at max, sell for 50.
+            }
+        }
         else if (this.type == "wizardGown")
         {
             //For All Items
@@ -46367,6 +46523,372 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 14 - Math.floor(player.getCharisma() / 50); // at max, buy for 13.
             this.sellValue = 11 + Math.floor(player.getCharisma() / 25); // at max, sell for 13.
+        }
+        else if (this.type == "cephrianNomadOutfit")
+        {
+            //For All Items
+            this.identity = "Cephrian Nomad Outfit";
+            this.weight = 1;
+            this.size = 26;
+            this.description = "An outfit traditionally worn by certain clans of Cephrians that once were or still are nomadic.";
+            this.intForDes = 1;
+            this.intDescription = "The nomad clans of Cephria once roamed the savannah raiding and pillaging other clans that had a more sedentary lifestyle.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0.9;
+            this.thirstRetention = 0.9;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 2;
+            this.intelligenceBonus = 0;
+            if (player.gender == "Female")
+            {
+                this.charismaBonus = -50;
+            }
+            else
+            {
+                this.charismaBonus = 2;
+            }
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 2;
+            this.survivalismBonus = 2;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 1;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 28;
+            this.ingredients = [["Hyena Pelt", 3]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 45 - Math.floor(player.getCharisma() / 5); // at max, buy for 35.
+            this.sellValue = 30 + Math.floor(player.getCharisma() / 10); // at max, sell for 35.
+        }
+        else if (this.type == "cephrianNomadDress")
+        {
+            //For All Items
+            this.identity = "Cephrian Nomad Dress";
+            this.weight = 1;
+            this.size = 26;
+            this.description = "A dress traditionally worn by certain clans of Cephrians that once were or still are nomadic.";
+            this.intForDes = 1;
+            this.intDescription = "Women among the nomadic Cephrian clans were treated with high regard, and were often doted upon by their numerous husbands.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 1.1;
+            this.thirstRetention = 0.75;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            if (player.gender == "Male")
+            {
+                this.charismaBonus = -50;
+            }
+            else
+            {
+                this.charismaBonus = 17;
+            }
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = -2;
+            this.survivalismBonus = 1;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 2;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "hefty";
+
+            this.yield = 1;
+            this.intForCraft = 40;
+            this.ingredients = [["Hyena Pelt", 6]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 94 - Math.floor(player.getCharisma() / 25); // at max, buy for 92.
+            this.sellValue = 90 + Math.floor(player.getCharisma() / 25); // at max, sell for 92.
+        }
+        else if (this.type == "shortCephrianNomadDress")
+        {
+            //For All Items
+            this.identity = "Short Cephrian Nomad Dress";
+            this.weight = 1;
+            this.size = 26;
+            this.description = "A dress traditionally worn by certain clans of Cephrians that once were or still are nomadic.";
+            this.intForDes = 1;
+            this.intDescription = "Women among the nomadic Cephrian clans were treated with high regard, and were often doted upon by their numerous husbands.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 1;
+            this.thirstRetention = 0.8;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 2;
+            this.intelligenceBonus = 0;
+            if (player.gender == "Male")
+            {
+                this.charismaBonus = -50;
+            }
+            else
+            {
+                this.charismaBonus = 7;
+            }
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 2;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 1;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 27;
+            this.ingredients = [["Hyena Pelt", 3]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 44 - Math.floor(player.getCharisma() / 25); // at max, buy for 42.
+            this.sellValue = 40 + Math.floor(player.getCharisma() / 25); // at max, sell for 42.
+        }
+        else if (this.type == "lionClothing")
+        {
+            //For All Items
+            this.identity = "Lion Clothing";
+            this.weight = 3.5;
+            this.size = 29;
+            this.description = "A decorative and showy outfit made out of lion pelts.";
+            this.intForDes = 3;
+            this.intDescription = "This type of clothing is highly sought after by wealthy Cephrians.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 3.15;
+            this.thirstRetention = 0.5;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 3;
+            this.enduranceBonus = 3;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 15;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 3;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 10;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 45;
+            this.ingredients = [["Lion Pelt", 6]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 350 - Math.floor(player.getCharisma() / 2); // at max, buy for 325.
+            this.sellValue = 300 + Math.floor(player.getCharisma() / 2); // at max, sell for 325.
+        }
+        else if (this.type == "twoDogOutfit")
+        {
+            //For All Items
+            this.identity = "Two Dog's Outfit";
+            this.weight = 1.5;
+            this.size = 27;
+            this.description = "This outfit once belonged to the bandit chieftan Two Dog who was infamous for robberies along the roads of Cephrite.";
+            this.intForDes = 0;
+            this.intDescription = "It would seem Two Dog was more bark than bite...";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 1.7;
+            this.thirstRetention = 0.2;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 1;
+            this.enduranceBonus = 1;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 3;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 1;
+            this.survivalismBonus = 3;
+            //Extra Stat Bonuses
+            this.sleepBonus = 2;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 6;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 55 - Math.floor(player.getCharisma() / 10); // at max, buy for 50.
+            this.sellValue = 45 + Math.floor(player.getCharisma() / 10); // at max, sell for 50.
+        }
+        else if (this.type == "giraffeClothing")
+        {
+            //For All Items
+            this.identity = "Giraffe Clothing";
+            this.weight = 1;
+            this.size = 26;
+            this.description = "A fine outfit sewn of giraffe pelt.";
+            this.intForDes = 0;
+            this.intDescription = "This type of clothing is worn by wealthy Cephrian men.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 1.2;
+            this.thirstRetention = 0.8;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            if (player.gender == "Female")
+            {
+                this.charismaBonus = -50;
+            }
+            else
+            {
+                this.charismaBonus = 9;
+            }
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 1;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 3;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 30;
+            this.ingredients = [["Giraffe Pelt", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 210 - Math.floor(player.getCharisma() / 10); // at max, buy for 205.
+            this.sellValue = 200 + Math.floor(player.getCharisma() / 10); // at max, sell for 205.
         }
         else if (this.type == "zarbuClothing")
         {
@@ -49566,6 +50088,46 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
+        }
+        else if (this.type == "druidGown")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 661, 145, 40, 74, X - this.X + (1/2 * CCC.width) - (1/2 * 40 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 74 * 1.5), 40 * 1.5, 74 * 1.5);
+        }
+        else if (this.type == "zetianWarriorArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(raed, 721, 135, 62, 81, X - this.X + (1/2 * CCC.width) - (1/2 * 62 * 1.25), Y - this.Y + (1/2 * CCC.height) - (1/2 * 81 * 1.25), 62 * 1.25, 81 * 1.25);
+        }
+        else if (this.type == "lionClothing")
+        {
+            XXX.beginPath();
+            XXX.drawImage(salem, 736, 836, 58, 99, X - this.X + (1/2 * CCC.width) - (1/2 * 58 * 1.05), Y - this.Y + (1/2 * CCC.height) - (1/2 * 99 * 1.05), 58 * 1.05, 99 * 1.05);
+        }
+        else if (this.type == "giraffeClothing")
+        {
+            XXX.beginPath();
+            XXX.drawImage(salem, 614, 1000, 58, 99, X - this.X + (1/2 * CCC.width) - (1/2 * 58 * 1.05), Y - this.Y + (1/2 * CCC.height) - (1/2 * 99 * 1.05), 58 * 1.05, 99 * 1.05);
+        }
+        else if (this.type == "twoDogOutfit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(salem, 679, 999, 58, 99, X - this.X + (1/2 * CCC.width) - (1/2 * 58 * 1.05), Y - this.Y + (1/2 * CCC.height) - (1/2 * 99 * 1.05), 58 * 1.05, 99 * 1.05);
+        }
+        else if (this.type == "cephrianNomadOutfit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(salem, 620, 771, 58, 99, X - this.X + (1/2 * CCC.width) - (1/2 * 58 * 1.10), Y - this.Y + (1/2 * CCC.height) - (1/2 * 99 * 1.10), 58 * 1.10, 99 * 1.10);
+        }
+        else if (this.type == "cephrianNomadDress")
+        {
+            XXX.beginPath();
+            XXX.drawImage(salem, 625, 671, 58, 99, X - this.X + (1/2 * CCC.width) - (1/2 * 58 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 99 * 1), 58 * 1, 99 * 1);
+        }
+        else if (this.type == "shortCephrianNomadDress")
+        {
+            XXX.beginPath();
+            XXX.drawImage(salem, 632, 674, 47, 79, X - this.X + (1/2 * CCC.width) - (1/2 * 47 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 79 * 1), 47 * 1, 79 * 1);
         }
         else if (this.type == "cephrianOutfitF")
         {
@@ -56005,6 +56567,46 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
+        else if (this.type == "druidGown")
+        {
+            LXX.beginPath();
+            LXX.drawImage(cef, 661, 145, 40, 74, this.invX - (1/2 * 40 * 1), this.invY - (1/2 * 74 * 1), 40 * 1, 74 * 1);
+        }
+        else if (this.type == "zetianWarriorArmour")
+        {
+            LXX.beginPath();
+            LXX.drawImage(raed, 721, 135, 62, 81, this.invX - (1/2 * 62 * 0.9), this.invY - (1/2 * 81 * 0.9), 62 * 0.9, 81 * 0.9);
+        }
+        else if (this.type == "lionClothing")
+        {
+            LXX.beginPath();
+            LXX.drawImage(salem, 736, 836, 58, 99, this.invX - (1/2 * 58 * 0.8), this.invY - (1/2 * 99 * 0.8), 58 * 0.8, 99 * 0.8);
+        }
+        else if (this.type == "giraffeClothing")
+        {
+            LXX.beginPath();
+            LXX.drawImage(salem, 614, 1000, 58, 99, this.invX - (1/2 * 58 * 0.8), this.invY - (1/2 * 99 * 0.8), 58 * 0.8, 99 * 0.8);
+        }
+        else if (this.type == "twoDogOutfit")
+        {
+            LXX.beginPath();
+            LXX.drawImage(salem, 679, 999, 58, 99, this.invX - (1/2 * 58 * 0.8), this.invY - (1/2 * 99 * 0.8), 58 * 0.8, 99 * 0.8);
+        }
+        else if (this.type == "cephrianNomadOutfit")
+        {
+            LXX.beginPath();
+            LXX.drawImage(salem, 620, 771, 58, 99, this.invX - (1/2 * 58 * 0.85), this.invY - (1/2 * 99 * 0.85), 58 * 0.85, 99 * 0.85);
+        }
+        else if (this.type == "cephrianNomadDress")
+        {
+            LXX.beginPath();
+            LXX.drawImage(salem, 625, 671, 58, 99, this.invX - (1/2 * 58 * 0.78), this.invY - (1/2 * 99 * 0.78), 58 * 0.78, 99 * 0.78);
+        }
+        else if (this.type == "shortCephrianNomadDress")
+        {
+            LXX.beginPath();
+            LXX.drawImage(salem, 632, 674, 47, 79, this.invX - (1/2 * 47 * 0.77), this.invY - (1/2 * 79 * 0.77), 47 * 0.77, 79 * 0.77);
+        }
         else if (this.type == "cephrianOutfitF")
         {
             LXX.beginPath();
@@ -62409,6 +63011,46 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "druidGown")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 661, 145, 40, 74, this.invX - (1/2 * 40 * 1), this.invY - (1/2 * 74 * 1), 40 * 1, 74 * 1);
+        }
+        else if (this.type == "zetianWarriorArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(raed, 721, 135, 62, 81, this.invX - (1/2 * 62 * 0.9), this.invY - (1/2 * 81 * 0.9), 62 * 0.9, 81 * 0.9);
+        }
+        else if (this.type == "lionClothing")
+        {
+            XXX.beginPath();
+            XXX.drawImage(salem, 736, 836, 58, 99, this.invX - (1/2 * 58 * 0.8), this.invY - (1/2 * 99 * 0.8), 58 * 0.8, 99 * 0.8);
+        }
+        else if (this.type == "giraffeClothing")
+        {
+            XXX.beginPath();
+            XXX.drawImage(salem, 614, 1000, 58, 99, this.invX - (1/2 * 58 * 0.8), this.invY - (1/2 * 99 * 0.8), 58 * 0.8, 99 * 0.8);
+        }
+        else if (this.type == "twoDogOutfit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(salem, 679, 999, 58, 99, this.invX - (1/2 * 58 * 0.8), this.invY - (1/2 * 99 * 0.8), 58 * 0.8, 99 * 0.8);
+        }
+        else if (this.type == "cephrianNomadOutfit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(salem, 620, 771, 58, 99, this.invX - (1/2 * 58 * 0.85), this.invY - (1/2 * 99 * 0.85), 58 * 0.85, 99 * 0.85);
+        }
+        else if (this.type == "cephrianNomadDress")
+        {
+            XXX.beginPath();
+            XXX.drawImage(salem, 625, 671, 58, 99, this.invX - (1/2 * 58 * 0.78), this.invY - (1/2 * 99 * 0.78), 58 * 0.78, 99 * 0.78);
+        }
+        else if (this.type == "shortCephrianNomadDress")
+        {
+            XXX.beginPath();
+            XXX.drawImage(salem, 632, 674, 47, 79, this.invX - (1/2 * 47 * 0.77), this.invY - (1/2 * 79 * 0.77), 47 * 0.77, 79 * 0.77);
         }
         else if (this.type == "cephrianOutfitF")
         {

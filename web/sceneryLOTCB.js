@@ -22305,6 +22305,212 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 scenicList.splice(scenicList.indexOf(this), 1);
             }
         }
+        else if (this.type == "spilledSpellOil")
+        {
+            if (this.runOneTime)
+            {
+                this.runOneTime = false;
+
+                this.health = 10000;
+                this.ignited = false;
+                this.tic = 0;
+                if (typeof(this.information) == "undefined")
+                {
+                    this.information = 2.4;
+                }
+            }
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 70;
+            this.size = this.information;
+            this.zIndex = 2;
+
+            this.health -= 0.444;
+
+            if (this.ignited == true)
+            {
+                if (this.playerer <= this.radius) //fire burns the player but heat resistance can reduce the damage it does.
+                {
+                    if (player.form != "vampire" || wKey != true)
+                    {
+                        if (player.mageShield <= 0)
+                        {
+                            this.ignited = true;
+                            player.shockedTime = new Date().getTime();
+                            player.shockedTime2 = new Date().getTime();
+
+                            player.mageShield = 0;
+
+                            player.health -= Math.max(0, (0.125 - (player.heatResistance / 200)));
+                            player.warmth += Math.max(0, (1 - (player.heatResistance / 200)));
+                            player.burningTime = new Date().getTime();
+                        }
+                    }
+                }
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    if (ArtificialIntelligenceAccess[i].flying == false && ArtificialIntelligenceAccess[i].underground == false && ArtificialIntelligenceAccess[i].dmx == this.dmx)
+                    {
+                        if (this.dst(ArtificialIntelligenceAccess[i].X, ArtificialIntelligenceAccess[i].Y) < this.radius)
+                        {
+                            ArtificialIntelligenceAccess[i].shockedTime = new Date().getTime();
+                            ArtificialIntelligenceAccess[i].shockedTime2 = new Date().getTime();
+
+                            ArtificialIntelligenceAccess[i].burningTime = new Date().getTime();
+                            if (this.temporary == true)
+                            {
+                                ArtificialIntelligenceAccess[i].killNotByPlayer = true;
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if (this.playerer <= this.radius) //fire burns the player but heat resistance can reduce the damage it does.
+                {
+                    if (player.form != "vampire" || wKey != true)
+                    {
+                        if (player.mageShield <= 0)
+                        {
+                            this.ignited = true;
+                            player.shockedTime = new Date().getTime();
+                            player.shockedTime2 = new Date().getTime();
+
+                            player.mageShield = 0;
+                        }
+                    }
+                }
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    if (ArtificialIntelligenceAccess[i].flying == false && ArtificialIntelligenceAccess[i].underground == false && ArtificialIntelligenceAccess[i].dmx == this.dmx)
+                    {
+                        if (this.dst(ArtificialIntelligenceAccess[i].X, ArtificialIntelligenceAccess[i].Y) < this.radius)
+                        {
+                            this.ignited = true;
+                            ArtificialIntelligenceAccess[i].shockedTime = new Date().getTime();
+                            ArtificialIntelligenceAccess[i].shockedTime2 = new Date().getTime();
+
+                            if (this.temporary == true)
+                            {
+                                ArtificialIntelligenceAccess[i].killNotByPlayer = true;
+                            }
+                        }
+                    }
+                }
+            }
+
+            //DRAWSELF
+            if (this.ignited == true)
+            {
+                this.tic += 3;
+                if (this.tic <= 5)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(cef, 837, 114, 68, 51, -(1/2 * 68 * this.size), -(1/2 * 51 * this.size), 68 * this.size, 51 * this.size);
+                    XXX.restore();
+                }
+                else if (this.tic <= 10)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(cef, 835, 163, 68, 51, -(1/2 * 68 * this.size), -(1/2 * 51 * this.size), 68 * this.size, 51 * this.size);
+                    XXX.restore();
+                }
+                else if (this.tic <= 15)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(cef, 904, 163, 68, 51, -(1/2 * 68 * this.size), -(1/2 * 51 * this.size), 68 * this.size, 51 * this.size);
+                    XXX.restore();
+                }
+                else if (this.tic <= 20)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(cef, 835, 163, 68, 51, -(1/2 * 68 * this.size), -(1/2 * 51 * this.size), 68 * this.size, 51 * this.size);
+                    XXX.restore();
+                }
+                else
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(cef, 837, 114, 68, 51, -(1/2 * 68 * this.size), -(1/2 * 51 * this.size), 68 * this.size, 51 * this.size);
+                    XXX.restore();
+                    this.tic = 0;
+                }
+            }
+            else
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(cef, 839, 67, 60, 43, -(1/2 * 60 * this.size), -(1/2 * 43 * this.size), 60 * this.size, 43 * this.size);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 24 * this.size;
+
+            if (this.temporary == false)
+            {
+                if (this.health <= 0)
+                {
+                    scenicList.splice(scenicList.indexOf(this), 1);
+                }
+            }
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+        }
+        else if (this.type == "spellOil")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 70;
+            this.size = 2;
+            this.zIndex = 2;
+
+            if (this.runOneTime)
+            {
+                this.runOneTime = false;
+
+                this.health = 1000;
+                scenicList.push(new Scenery("spilledSpellOil", this.X, this.Y, Math.random()*Math.PI*2, false));
+            }
+
+            this.health -= 0.444;
+
+            //DRAWSELF
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(cef, 1007, 37, 12, 22, -(1/2 * 12 * this.size), -(1/2 * 22 * this.size), 12 * this.size, 22 * this.size);
+            XXX.restore();
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 1;
+
+            if (this.health <= 0)
+            {
+                scenicList.splice(scenicList.indexOf(this), 1);
+            }
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+        }
         else if (this.type == "throwingKnife" || this.type == "poisonCoatedThrowingKnife")
         {
             //TRAITS

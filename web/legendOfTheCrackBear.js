@@ -3203,7 +3203,7 @@ function over(kind, j, i, extraX, extraY)
             {
                 player.land = false;
                 player.water = true;
-                if (kind == "sewer")
+                if (kind == "sewer" && player.swimming == true)
                 {
                     if (Math.random() < 0.001)
                     {
@@ -4252,6 +4252,7 @@ function theLegend()
     allWeapons.push(new Item("cephrianBlade"));//116
     allWeapons.push(new Item("cephrianDagger"));//117
     allWeapons.push(new Item("cephrianRapier"));//118
+    allWeapons.push(new Item("spellOil"));//119
 
 
 
@@ -5003,6 +5004,7 @@ function theLegend()
     alchemy.push(new Item("elcheExtract", false));
     alchemy.push(new Item("silverbloodPotion", false));
     alchemy.push(new Item("fermentedVodkapaSpleen", false));
+    alchemy.push(new Item("spellOil", false));
 
 //Brewing (alcohols, liquid fermentation, etc.)
     brewing = [];

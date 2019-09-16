@@ -47696,7 +47696,7 @@ function Item(type, x, y)
         {
             //For All Items
             this.identity = "Vardanian Throwing Spear";
-            this.weight = 0.8;
+            this.weight = 1.3;
             this.size = 24;
             this.description = "A Vardanian spear of wood and iron that is designed to be thrown.";
             this.intForDes = 1;
@@ -47733,6 +47733,41 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 20 - Math.floor(player.getCharisma() / 5); // at max, buy for 10.
             this.sellValue = 8 + Math.floor(player.getCharisma() / 25); // at max, sell for 10.
+        }
+        else if (this.type == "spellOil")
+        {
+            //For All Items
+            this.identity = "Spell Oil";
+            this.weight = 4;
+            this.size = 24;
+            this.description = "A magical oil that is highly volitile, yet highly useful for use in advanced alchemic recipes.";
+            this.intForDes = 10;
+            this.intDescription = "The oil reacts to non-inert lifeforce with an extreme electrical generation, once a surge occurs the oil ignites at an extremely high temperature.";
+
+            //Define Utility
+            this.utility = "weapon";
+            this.subUtility = "thrown";
+
+            //Utility Focused
+            this.energyCost = 4;
+            this.range = 425 + (25 * player.getRanged() / 50) + (50 * player.getStrength() / 50);
+            this.speed = 4.5 + (1 * player.getRanged() / 50) + (1 * player.getStrength() / 50);
+            this.rate = 250;
+            this.damage = 1;
+            this.negateArmour = 1;
+            this.magicalDamage = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 20;
+            this.intForCraft = 20;
+            this.ingredients = [["Glass Bottle", 20], ["Brightbloom Flower", 5], ["Jar of Butter-Mellow Oil", 3], ["Humpty Chalaza", 20], ["Swamp Lily", 9]];
+            this.biproducts = [["glassJar", 3]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 88 - Math.floor(player.getCharisma() / 15); // at max, buy for 85.
+            this.sellValue = 80 + Math.floor(player.getCharisma() / 10); // at max, sell for 85.
         }
         else if (this.type == "throwingKnife")
         {
@@ -50088,6 +50123,11 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
+        }
+        else if (this.type == "spellOil")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 1010, 2, 10, 21, X - this.X + (1/2 * CCC.width) - (1/2 * 10 * 2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21 * 2), 10 * 2, 21 * 2);
         }
         else if (this.type == "druidGown")
         {
@@ -56567,6 +56607,11 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
+        else if (this.type == "spellOil")
+        {
+            LXX.beginPath();
+            LXX.drawImage(cef, 1010, 2, 10, 21, this.invX - (1/2 * 10 * 2), this.invY - (1/2 * 21 * 2), 10 * 2, 21 * 2);
+        }
         else if (this.type == "druidGown")
         {
             LXX.beginPath();
@@ -63011,6 +63056,11 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "spellOil")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 1010, 2, 10, 21, this.invX - (1/2 * 10 * 2), this.invY - (1/2 * 21 * 2), 10 * 2, 21 * 2);
         }
         else if (this.type == "druidGown")
         {

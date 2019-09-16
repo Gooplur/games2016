@@ -1321,6 +1321,10 @@ function Adventurer()
                 if (treesAround > 0)
                 {
                     this.will += treesHP / 15000;
+                    if (this.will > this.willMAX)
+                    {
+                        this.will = this.willMAX;
+                    }
                 }
             }
 
@@ -19027,6 +19031,145 @@ function Adventurer()
                 }
             }
         }
+        //SPELL OIL
+        if (this.weaponEquipped == "spellOil")
+        {
+            this.stageEngine(12, 0.29, false); //This cycles through the stages of the attack for four stages (ending at five) and at a rate of 4 * 16.75 miliseconds
+
+            //ATTACK ANIMATION
+            if (Math.floor(this.stage) <= 0)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(cef, 791, 220, 70, 80, -1/2 * 70 * 1.15, -1/2 * 80 * 1.15, 70 * 1.15, 80 * 1.15);
+                XXX.restore();
+                this.attackManual = false;
+            }
+            else if (Math.floor(this.stage) <= 1)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(cef, 724, 221, 70, 80, -1/2 * 70 * 1.15, -1/2 * 80 * 1.15, 70 * 1.15, 80 * 1.15);
+                XXX.restore();
+                this.attackManual = false;
+            }
+            else if (Math.floor(this.stage) <= 2)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(cef, 791, 220, 70, 80, -1/2 * 70 * 1.15, -1/2 * 80 * 1.15, 70 * 1.15, 80 * 1.15);
+                XXX.restore();
+                this.attackManual = false;
+            }
+            else if (Math.floor(this.stage) <= 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(cef, 865, 222, 70, 80, -1/2 * 70 * 1.15, -1/2 * 80 * 1.15, 70 * 1.15, 80 * 1.15);
+                XXX.restore();
+
+                this.attackManual = false;
+            }
+            else if (Math.floor(this.stage) <= 4)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(cef, 938, 216, 70, 92, -1/2 * 70 * 1.15, -1/2 * 92 * 1.15, 70 * 1.15, 92 * 1.15);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 7)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(cef, 2464, 65, 70, 92, -1/2 * 70 * 1.15, -1/2 * 92 * 1.15, 70 * 1.15, 92 * 1.15);
+                XXX.restore();
+
+                if (this.attackManual == false)
+                {
+                    this.attackManual = true;
+
+                    //throw on this frame
+                    playerProjectiles.push(new Projectile(this.weaponEquipped, X + Math.cos(this.rotation + Math.PI) * (this.projectileX + this.projXAd), Y + Math.sin(this.rotation + Math.PI) * (this.projectileY + this.projYAd), this.rotation + Math.PI, this.weapon.speed, this.weapon.range, this.weapon.negateArmour, playerProjectiles, this.weapon.damage, this.weapon.magicalDamage, "none", false));
+                }
+            }
+            else if (Math.floor(this.stage) >= 8)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(cef, 2464, 65, 70, 92, -1/2 * 70 * 1.15, -1/2 * 92 * 1.15, 70 * 1.15, 92 * 1.15);
+                XXX.restore();
+
+                if (Math.floor(this.stage) >= 11)
+                {
+                    var thrownWepUsing = -1;
+                    for (var i = 0; i < Inventory.length; i++)
+                    {
+                        if (Inventory[i][0].type == this.weaponEquipped && Inventory[i][0].equipped == true)
+                        {
+                            thrownWepUsing = i;
+                            break;
+                        }
+                    }
+
+                    //deletes the weapon that was thrown from the inv
+                    if (thrownWepUsing > -1)
+                    {
+                        if (Inventory[thrownWepUsing][1] > 1)
+                        {
+                            this.attacking = false;
+                            this.attackCooldown = new Date().getTime();
+                            Inventory[thrownWepUsing][1] -= 1;
+                            this.stage = 0;
+                        }
+                        else
+                        {
+                            this.attacking = false;
+                            this.attackCooldown = new Date().getTime();
+                            this.weaponEquipped = "none";
+                            this.weaponIsRanged = false;
+                            this.isWeaponEquipped = false;
+                            Inventory.splice(thrownWepUsing, 1);
+                            this.stage = 0;
+                        }
+                    }
+                }
+            }
+        }
         //THROWING KNIFE
         if (this.weaponEquipped == "throwingKnife")
         {
@@ -27248,6 +27391,14 @@ function Adventurer()
             //This adjusts the starting position of the throwing star.
             this.projectileX = 8;
             this.projectileY = 8;
+        }
+        else if (this.weaponEquipped == "spellOil")
+        {
+            this.weapon = allWeapons[119];
+
+            //This adjusts the starting position of the spear.
+            this.projectileX = 2;
+            this.projectileY = 2;
         }
 
         //Access Stats for each weapon first. //1/2 is directly forward facing.

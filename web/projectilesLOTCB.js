@@ -1142,6 +1142,51 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
                 XXX.restore();
             }
         }
+        else if (type == "spellOil") //thrown
+        {
+            this.spin += 0.14;
+            this.radius = 10;
+            this.thrown = true;
+            this.thrownID = "spellOil";
+            this.thrownRotation = this.rotation + (1 / 2 * Math.PI);
+
+            if (list == playerProjectiles && this.isPlayerProjectile)
+            {
+                //WHAT IT WILL DO...
+                player.projYAd = 0;
+                player.projXAd = 0;
+                this.setStats();
+                this.damage = damage;
+                this.magicalDamage = magicDamage;
+                this.shoot();
+                this.impact();
+
+                //HOW IT WILL DRAW...
+                XXX.save();
+                XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                XXX.rotate(this.rotation - Math.PI + this.spin);
+                XXX.drawImage(cef, 1009, 2, 12, 22, 0, 0, 12, 22);
+                XXX.restore();
+            }
+            else if (list == unitProjectiles || list == playerProjectiles && !this.isPlayerProjectile)
+            {
+                //WHAT IT WILL DO...
+                player.projYAd = 0;
+                player.projXAd = 0;
+                this.setStats();
+                this.damage = damage;
+                this.magicalDamage = magicDamage;
+                this.shoot();
+                this.impact();
+
+                //HOW IT WILL DRAW...
+                XXX.save();
+                XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
+                XXX.rotate(this.rotation + this.spin);
+                XXX.drawImage(cef, 1009, 2, 12, 22, 0, 0, 12, 22);
+                XXX.restore();
+            }
+        }
         else if (type == "throwingStar") //thrown
         {
             this.radius = 3;

@@ -3203,7 +3203,7 @@ function over(kind, j, i, extraX, extraY)
             {
                 player.land = false;
                 player.water = true;
-                if (kind == "sewer" && player.swimming == true)
+                if (kind == "sewer" && player.weaponEquipped == "swimming")
                 {
                     if (Math.random() < 0.001)
                     {

@@ -22341,8 +22341,8 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
 
                             player.mageShield = 0;
 
-                            player.health -= Math.max(0, (0.125 - (player.heatResistance / 200)));
-                            player.warmth += Math.max(0, (1 - (player.heatResistance / 200)));
+                            player.health -= Math.max(0, (0.55 - (player.heatResistance / 100)));
+                            player.warmth += Math.max(0, (5 - (player.heatResistance / 100)));
                             player.burningTime = new Date().getTime();
                         }
                     }
@@ -22356,6 +22356,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                             ArtificialIntelligenceAccess[i].shockedTime = new Date().getTime();
                             ArtificialIntelligenceAccess[i].shockedTime2 = new Date().getTime();
 
+                            ArtificialIntelligenceAccess[i].health -= Math.max(0, (0.55 - (ArtificialIntelligenceAccess[i].heatResistance / 100)));
                             ArtificialIntelligenceAccess[i].burningTime = new Date().getTime();
                             if (this.temporary == true)
                             {

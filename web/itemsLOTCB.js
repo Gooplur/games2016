@@ -3151,6 +3151,84 @@ function Item(type, x, y)
             this.buyValue = 3 - Math.floor(player.getCharisma() / 25); // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
         }
+        else if (this.type == "giraffePlatter")
+        {
+            //For All Items
+            this.identity = "Giraffe Platter";
+            this.weight = 7;
+            this.size = 15;
+            this.description = "Giraffe meat slow roasted until tender with chunks of eggplant all seasoned with zaf spice.";
+            this.intForDes = 0;
+            this.intDescription = "It tastes gamey, spicy, and poignantly savoury, with a zesty but somewhat insecty aftertaste.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            if (player.raceName == "Cephrite")
+            {
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 26; //satisfies hunger.
+                this.thirst = 2.5; //quenches thirst.
+                this.warmth = 14; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 0.2; //recoops lost energy.
+                this.replenish = 0.15; //restores will.
+
+                //ability
+                this.ability = "satiation";
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 23;
+                this.ingredients = [["Raw Giraffe Flesh", 1], ["Chopped Eggplant", 1], ["Zaf Beetle Whiskers", 1]];
+            }
+            else
+            {
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 21; //satisfies hunger.
+                this.thirst = 1.5; //quenches thirst.
+                this.warmth = 12; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 0.1; //recoops lost energy.
+                this.replenish = 0.1; //restores will.
+
+                //ability
+                if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite" || player.raceName == "Zetian")
+                {
+                    this.ability = "satiation";
+                }
+                else
+                {
+                    this.ability = "none";
+                }
+
+                //Crafting
+                this.yield = 1;
+                this.intForCraft = 26;
+                this.ingredients = [["Raw Giraffe Flesh", 1], ["Chopped Eggplant", 1], ["Zaf Beetle Whiskers", 1]];
+            }
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            if (shopkeeper != "none")
+            {
+                if (shopkeeper.ultra.faction == "Cephrite" || shopkeeper.ultra.race == "Cephrite")
+                {
+                    this.buyValue = 39; // at max, buy for 39.
+                    this.sellValue = 39; // at max, sell for 39.
+                }
+                else
+                {
+                    this.buyValue = 31 - Math.floor(player.getCharisma() / 15); // at max, buy for 28.
+                    this.sellValue = 23 + Math.floor(player.getCharisma() / 10); // at max, sell for 28.
+                }
+            }
+            else
+            {
+                this.buyValue = 31 - Math.floor(player.getCharisma() / 15); // at max, buy for 28.
+                this.sellValue = 23 + Math.floor(player.getCharisma() / 10); // at max, sell for 28.
+            }
+        }
         else if (this.type == "cookedTurkeyEgg")
         {
             //For All Items
@@ -6394,6 +6472,64 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 3; // at max, buy for 3.
             this.sellValue = 2; // at max, sell for 2.
+        }
+        else if (this.type == "spicedSonjaSlices")
+        {
+            //For All Items
+            this.identity = "Spiced Sonja Slices";
+            this.weight = 1.86;
+            this.size = 8;
+            this.description = "Three tender, glistening golden-yellow slices of sonja fruit seasoned with zaf spice.";
+
+            if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite" || player.raceName == "Zetian")
+            {
+                this.intForDes = 0;
+                this.intDescription = "It has a sweet, smooth, tropical flavour with some notes of honey, ripe mango, and honeysuckle and it has a prickly insecty spiciness.";
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 14; //satisfies hunger.
+                this.thirst = 2.5; //quenches thirst.
+                this.warmth = 1; //warms player.
+                this.heal = 0; //heals health.
+                this.generation = 0.35; //recoops lost energy.
+                this.replenish = 0.35; //restores will.
+
+                //ability
+                this.ability = "none";
+            }
+            else
+            {
+                this.intForDes = 0;
+                this.intDescription = "The otherwise satisfying flavour of the tropical fruit is ruined by the prickly insecty spicyness that burns your mouth.";
+
+                //Define Utility
+                this.utility = "food";
+
+                //Utility Focused
+                this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+                this.hunger = 6; //satisfies hunger.
+                this.thirst = 0.5; //quenches thirst.
+                this.warmth = 3; //warms player.
+                this.heal = -0.6; //heals health.
+                this.generation = -1.5; //recoops lost energy.
+                this.replenish = -1.2; //restores will.
+
+                //ability
+                this.ability = "none";
+            }
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 10;
+            this.ingredients = [["Sonja Slice", 3], ["Zaf Beetle Whiskers", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 15; // at max, buy for 15.
+            this.sellValue = 15; // at max, sell for 15.
         }
         else if (this.type == "sonjaBubble")
         {
@@ -9870,7 +10006,7 @@ function Item(type, x, y)
             this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
             this.hunger = 17; //satisfies hunger.
             this.thirst = 0.5; //quenches thirst.
-            this.warmth = 0; //warms player.
+            this.warmth = 6; //warms player.
             this.heal = 0; //heals health.
             this.generation = 0.2; //recoops lost energy.
             this.replenish = 0.025; //restores will.
@@ -24707,6 +24843,40 @@ function Item(type, x, y)
             this.buyValue = 14 - Math.floor(player.getCharisma() / 25); // at max, buy for 12.
             this.sellValue = 9 + Math.floor(player.getCharisma() / 15); // at max, sell for 12.
         }
+        else if (this.type == "sonjaGlazedKigariiRibs")
+        {
+            //For All Items
+            this.identity = "Sonja Glazed Kigarii Ribs";
+            this.weight = 0.8;
+            this.size = 10;
+            this.description = "The grilled rib meat of a kigarii glazed with a sweet tropical sonja fruit sap.";
+            this.intForDes = 0;
+            this.intDescription = "Sweet Kigarii ribs are a tasty snack to eat if you like sweet and savoury together...";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 11; //satisfies hunger.
+            this.thirst = 0.3; //quenches thirst.
+            this.warmth = 6; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.15; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "satiation";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 11;
+            this.ingredients = [["Raw Kigarii Flesh", 1], ["Sonja Bubble", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 16 - Math.floor(player.getCharisma() / 25); // at max, buy for 14.
+            this.sellValue = 11 + Math.floor(player.getCharisma() / 15); // at max, sell for 14.
+        }
         else if (this.type == "dalgerHide")
         {
             //For All Items
@@ -28003,6 +28173,129 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
         }
+        else if (this.type == "wholeRoastedTermite")
+        {
+            //For All Items
+            this.identity = "Whole Roasted Killer Termite";
+            this.weight = 13.5;
+            this.size = 20;
+            this.description = "A whole giant killer termite roasted in its shell with onions, zaf spice, and saffron.";
+            this.intForDes = 0;
+            this.intDescription = "The meat is moist, tender and has a smooth texture; it has soft meaty spicy flavour with a buggy aftertaste.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 29; //satisfies hunger.
+            this.thirst = 4.5; //quenches thirst.
+            this.warmth = 11; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.2; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            if (player.raceName == "Cephrite")
+            {
+                this.ability = "satiation";
+            }
+            else
+            {
+                this.ability = "none";
+            }
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 34;
+            this.ingredients = [["Raw Killer Termite Flesh", 10], ["Chopped Onion", 1], ["Saffron", 1], ["Zaf Beetle Whiskers", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 28; // at max, buy for 28.
+            this.sellValue = 28; // at max, sell for 28.
+        }
+        else if (this.type == "wholeStuffedTermite")
+        {
+            //For All Items
+            this.identity = "Stuffed Whole Killer Termite";
+            this.weight = 14;
+            this.size = 20;
+            this.description = "A whole giant killer termite stuffed with eggplant, onions, zaf spice, saffron, and marinated termite meat.";
+            this.intForDes = 0;
+            this.intDescription = "The meat is moist, tender and has a smooth texture; it has soft meaty spicy flavour with a buggy aftertaste.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 33; //satisfies hunger.
+            this.thirst = 5; //quenches thirst.
+            this.warmth = 12; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.25; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            if (player.raceName == "Cephrite")
+            {
+                this.ability = "satiation";
+            }
+            else
+            {
+                this.ability = "none";
+            }
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 35;
+            this.ingredients = [["Raw Killer Termite Flesh", 11], ["Chopped Eggplant", 2], ["Chopped Onion", 2], ["Saffron", 1], ["Zaf Beetle Whiskers", 2]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 35; // at max, buy for 35.
+            this.sellValue = 35; // at max, sell for 35.
+        }
+        else if (this.type == "wholeRoastedKol")
+        {
+            //For All Items
+            this.identity = "Whole Roasted Kol";
+            this.weight = 55;
+            this.size = 32;
+            this.description = "A whole roasted kol served over a bed of onions and seasoned thoroughly with zaf spice and saffron.";
+            this.intForDes = 0;
+            this.intDescription = "The meat is super fatty, fairly meaty, and spicy with an insecty aftertaste.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 50; //satisfies hunger.
+            this.thirst = 7; //quenches thirst.
+            this.warmth = 17; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.35; //recoops lost energy.
+            this.replenish = 0.15; //restores will.
+
+            //ability
+            if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite" || player.raceName == "Zetian")
+            {
+                this.ability = "satiation";
+            }
+            else
+            {
+                this.ability = "none";
+            }
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 35;
+            this.ingredients = [["Raw Kol Flesh", 8], ["Chopped Onion", 3], ["Saffron", 1], ["Zaf Beetle Whiskers", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 75; // at max, buy for 75.
+            this.sellValue = 75; // at max, sell for 75.
+        }
         else if (this.type == "fermentedTermite")
         {
             //For All Items
@@ -28037,6 +28330,188 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "spicedFermentedTermite")
+        {
+            //For All Items
+            this.identity = "Spiced Fermented Killer Termite Meat";
+            this.weight = 0.4;
+            this.size = 7;
+            this.description = "The fermented flesh of a killer termite heavily spiced with zaf spice.";
+            this.intForDes = 0;
+            this.intDescription = "It has a meaty sour flavour with a prickly buggy aftertaste. It is extremely spicy and sort of alcoholic!";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 4; //satisfies hunger.
+            this.thirst = 1; //quenches thirst.
+            this.warmth = 1; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.5; //recoops lost energy.
+            this.replenish = -1; //restores will.
+            this.alcohol = 9; //intoxicates the mind.
+
+            //ability
+            if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite" || player.raceName == "Zetian")
+            {
+                this.ability = "none";
+            }
+            else
+            {
+                this.intDescription = "It has a meaty sour flavour with a prickly buggy aftertaste. It is way too spicy for you to handle...";
+                this.heal = -2; //heals health.
+                this.generation = -5; //recoops lost energy.
+                this.replenish = -3; //restores will.
+                this.ability = "foodPoisoning";
+            }
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 6;
+            this.ingredients = [["Fermented Killer Termite Meat", 1], ["Zaf Beetle Whiskers", 2]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 8; // at max, buy for 8.
+            this.sellValue = 8; // at max, sell for 8.
+        }
+        else if (this.type == "stuffedOnion")
+        {
+            //For All Items
+            this.identity = "Stuffed Roasted Onion";
+            this.weight = 1.85;
+            this.size = 13;
+            this.description = "An onion stuffed with chopped and seasoned kol meat that is roasted thoroughly.";
+            this.intForDes = 0;
+            this.intDescription = "It is sweet spicy, meaty, saffron-y, and fatty; it has an insecty aftertaste.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 10.5; //satisfies hunger.
+            this.thirst = 0.55; //quenches thirst.
+            this.warmth = 6.5; //warms player.
+            if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite" || player.raceName == "Zetian")
+            {
+                this.heal = 0; //heals health.this.ability = "satiation";
+            }
+            else
+            {
+                this.heal = -0.15; //heals health.this.ability = "none";
+            }
+            this.generation = 0.1; //recoops lost energy.
+            this.replenish = 0.05; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 3;
+            this.intForCraft = 11;
+            this.ingredients = [["Onion", 3], ["Raw Kol Flesh", 1], ["Saffron", 1], ["Zaf Beetle Whiskers", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 13 - Math.floor(player.getCharisma() / 15); // at max, buy for 10
+            this.sellValue = 7 + Math.floor(player.getCharisma() / 15); // at max, sell for 10.
+        }
+        else if (this.type == "stuffedEggplant")
+        {
+            //For All Items
+            this.identity = "Stuffed Eggplant";
+            this.weight = 4.25;
+            this.size = 15;
+            this.description = "A whole roasted eggplant stuffed with giraffe meat, chopped onion, and artichoke. It is seasoned with zaf spice and saffron.";
+            this.intForDes = 0;
+            this.intDescription = "It has a rich poignant spicy flavour with a slightly insecty aftertaste; it is very tender.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 32; //satisfies hunger.
+            this.thirst = 2.75; //quenches thirst.
+            this.warmth = 14; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.2; //recoops lost energy.
+            this.replenish = 0.2; //restores will.
+
+            //ability
+            if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite" || player.raceName == "Zetian")
+            {
+                this.ability = "satiation";
+            }
+            else
+            {
+                this.ability = "none";
+            }
+
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 35;
+            this.ingredients = [["Eggplant", 1], ["Raw Giraffe Flesh", 1], ["Chopped Onion", 1], ["Artichoke", 1], ["Saffron", 1], ["Zaf Beetle Whiskers", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 48 - Math.floor(player.getCharisma() / 10); // at max, buy for 43
+            this.sellValue = 43; // at max, sell for 43.
+        }
+        else if (this.type == "artichokePlatter")
+        {
+            //For All Items
+            this.identity = "Artichoke with Spiced Kwom Sauce";
+            this.weight = 1.45;
+            this.size = 13;
+            this.description = "Steamed Artichoke drizzled with a very sour and spicy sauce.";
+            if (player.raceName == "Cephrite")
+            {
+                this.intForDes = 0;
+            }
+            else
+            {
+                this.intForDes = 4;
+            }
+            this.intDescription = "This is eaten as a side dish in Cephrite, it is not meant to be the main course.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 32; //satisfies hunger.
+            this.thirst = 2.75; //quenches thirst.
+            this.warmth = 14; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.2; //recoops lost energy.
+            this.replenish = 0.2; //restores will.
+
+            //ability
+            if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite" || player.raceName == "Zetian")
+            {
+                this.ability = "none";
+            }
+            else
+            {
+                this.intForDes = 0;
+                this.intDescription = "This dish is too spicy for you to handle...";
+                this.heal = -2; //heals health.
+                this.generation = -5; //recoops lost energy.
+                this.replenish = -3; //restores will.
+                this.ability = "foodPoisoning";
+            }
+
+            //Crafting
+            this.yield = 5;
+            this.intForCraft = 8;
+            this.ingredients = [["Steamed Artichoke", 5], ["Kwom", 1], ["Zaf Beetle Whiskers", 7]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 19 - Math.floor(player.getCharisma() / 10); // at max, buy for 14
+            this.sellValue = 14; // at max, sell for 14.
         }
         else if (this.type == "suuliMelon")
         {
@@ -28472,6 +28947,42 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 3; // at max, buy for 3.
             this.sellValue = 2; // at max, sell for 2.
+        }
+        else if (this.type == "tropicalFruitPlatter")
+        {
+            //For All Items
+            this.identity = "Tropical Fruit Platter";
+            this.weight = 9.06;
+            this.size = 25;
+            this.description = "A decorative assortment of Sonja, and Tchafula.";
+            this.intForDes = 0;
+            this.intDescription = "It is is eaten with sonja sap by plucking the bubbles off of the centerpiece and popping them over the fruit.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["sonjaFruit", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 29; //satisfies hunger.
+            this.thirst = 7.9; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.4; //recoops lost energy.
+            this.replenish = 0.4; //restores will.
+
+            //ability
+            this.ability = "satiate";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 4;
+            this.ingredients = [["Sonja", 1], ["Sonja Slice", 3], ["TchafulaHalf", 6]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 42; // at max, buy for 42.
+            this.sellValue = 42; // at max, sell for 42.
         }
         else if (this.type == "tchafula")
         {
@@ -32002,6 +32513,40 @@ function Item(type, x, y)
             this.buyValue = 7 - Math.floor(player.getCharisma() / 12.5); // at max, buy for 3.
             this.sellValue = 2 + Math.floor(player.getCharisma() / 50); // at max, sell for 3.
         }
+        else if (this.type == "cephrianStew")
+        {
+            //For All Items
+            this.identity = "Cephrian Stew";
+            this.weight = 1.6;
+            this.size = 15;
+            this.description = "Stewed Kol meat with eggplant, artichokes, onions, zaf spice, and saffron.";
+            this.intForDes = 0;
+            this.intDescription = "It is tender and has a deep rich spicy flavour with an insecty aftertaste.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.thirst = 0.25; //quenches thirst.
+            this.heal = 0; //heals health.
+            this.replenish = 0; //restores will.
+            this.hunger = 17; //satisfies hunger.
+            this.warmth = 4; //warms player.
+            this.generation = 0.15; //recoops lost energy.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 2;
+            this.intForCraft = 25;
+            this.ingredients = [["Raw Kol Flesh", 1], ["Artichoke", 2], ["Chopped Onion", 2], ["Chopped Eggplant", 2], ["Saffron", 1], ["Zaf Beetle Whiskers", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 19 - Math.floor(player.getCharisma() / 25); // at max, buy for 17.
+            this.sellValue = 16 + Math.floor(player.getCharisma() / 50); // at max, sell for 17.
+        }
         else if (this.type == "rawGreyWolfFlesh")
         {
             //For All Items
@@ -33206,6 +33751,126 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 13 - Math.floor(player.getCharisma() / 50); // at max, buy for 12.
             this.sellValue = 10 + Math.floor(player.getCharisma() / 25); // at max, sell for 12.
+        }
+        else if (this.type == "marinatedGazelle")
+        {
+            //For All Items
+            this.identity = "Marinated Gazelle Roast";
+            this.weight = 3;
+            this.size = 13;
+            this.description = "The sensuous rich well marble meat of a gazelle marinated with zaf spice and saffron.";
+            this.intForDes = 3;
+            this.intDescription = "It is gamey, fatty, and saffron-y, and it has a highly potent mouth numbing insecty spiciness to it.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 23; //satisfies hunger.
+            this.thirst = 1.25; //quenches thirst.
+            this.warmth = 13; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.2; //recoops lost energy.
+            this.replenish = 0.025; //restores will.
+
+            //ability
+            if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite" || player.raceName == "Zetian")
+            {
+                this.ability = "satiation";
+            }
+            else
+            {
+                this.intDescription = "This is so spicy that the smell burns your nose; eating it is out of the question.";
+                this.heal = -4; //heals health.
+                this.generation = -8; //recoops lost energy.
+                this.replenish = -6; //restores will.
+                this.ability = "foodPoisoning";
+            }
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 35;
+            this.ingredients = [["Raw Gazelle Flesh", 1], ["Saffron", 2], ["Zaf Beetle Whiskers", 4]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 47; // at max, buy for 47.
+            this.sellValue = 47; // at max, sell for 47.
+        }
+        else if (this.type == "boaPlatter")
+        {
+            //For All Items
+            this.identity = "Marinated Boa Roast";
+            this.weight = 5;
+            this.size = 15;
+            this.description = "Boa meat marinated with onions, zaf spice, and saffron that is served over a bed of sliced eggplant.";
+            this.intForDes = 0;
+            this.intDescription = "The eggplant soaks up the flavour of the spices and the slight savoury flavour of the boa.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 32; //satisfies hunger.
+            this.thirst = 2.45; //quenches thirst.
+            this.warmth = 13; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.1; //recoops lost energy.
+            this.replenish = 0.1; //restores will.
+
+            //ability
+            this.ability = "satiate";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 19;
+            this.ingredients = [["Raw Boa Flesh", 1], ["Sliced Eggplant", 2], ["Chopped Onion", 2], ["Saffron", 1], ["Zaf Beetle Whiskers", 2]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 32 - Math.floor(player.getCharisma() / 25); // at max, buy for 30.
+            this.sellValue = 29 + Math.floor(player.getCharisma() / 50); // at max, sell for 30.
+        }
+        else if (this.type == "piranhaPlatter")
+        {
+            //For All Items
+            this.identity = "Marinated Sliced Piranha";
+            this.weight = 3;
+            this.size = 14;
+            this.description = "Sliced piranha meat flavoured with zaf spice and saffron.";
+            this.intForDes = 0;
+            this.intDescription = "The fish is fatty and spicy with a buggy aftertaste.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 13; //satisfies hunger.
+            this.thirst = 0.9; //quenches thirst.
+            this.warmth = 7; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.1; //recoops lost energy.
+            this.replenish = 0.1; //restores will.
+
+            //ability
+            if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite" || player.raceName == "Zetian")
+            {
+                this.ability = "satiation";
+            }
+            else
+            {
+                this.ability = "none";
+            }
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 19;
+            this.ingredients = [["Raw Piranha", 1], ["Saffron", 1], ["Zaf Beetle Whiskers", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 15 - Math.floor(player.getCharisma() / 25); // at max, buy for 13.
+            this.sellValue = 10 + Math.floor(player.getCharisma() / 15); // at max, sell for 13.
         }
         else if (this.type == "araneaFang")
         {
@@ -47762,12 +48427,12 @@ function Item(type, x, y)
 
             this.yield = 20;
             this.intForCraft = 20;
-            this.ingredients = [["Glass Bottle", 20], ["Brightbloom Flower", 5], ["Jar of Butter-Mellow Oil", 3], ["Humpty Chalaza", 20], ["Swamp Lily", 9]];
-            this.biproducts = [["glassJar", 3]];
+            this.ingredients = [["Glass Bottle", 20], ["Brightbloom Flower", 6], ["Jar of Butter-Mellow Oil", 4], ["Humpty Chalaza", 22], ["Swamp Lily", 9]];
+            this.biproducts = [["glassJar", 4]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
-            this.buyValue = 88 - Math.floor(player.getCharisma() / 15); // at max, buy for 85.
-            this.sellValue = 80 + Math.floor(player.getCharisma() / 10); // at max, sell for 85.
+            this.buyValue = 149 - Math.floor(player.getCharisma() / 12.5); // at max, buy for 145.
+            this.sellValue = 140 + Math.floor(player.getCharisma() / 10); // at max, sell for 145.
         }
         else if (this.type == "throwingKnife")
         {
@@ -50123,6 +50788,81 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
+        }
+        else if (this.type == "tropicalFruitPlatter")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 948, 67, 39, 43, X - this.X + (1/2 * CCC.width) - (1/2 * 39 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 43 * 1.4), 39 * 1.4, 43 * 1.4);
+        }
+        else if (this.type == "marinatedGazelle")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 838, 35, 30, 30, X - this.X + (1/2 * CCC.width) - (1/2 * 30 * 1.1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 30 * 1.1), 30 * 1.1, 30 * 1.1);
+        }
+        else if (this.type == "spicedSonjaSlices")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 935, 1, 28, 30, X - this.X + (1/2 * CCC.width) - (1/2 * 28 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 30 * 1.5), 28 * 1.5, 30 * 1.5);
+        }
+        else if (this.type == "artichokePlatter")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 911, 34, 28, 30, X - this.X + (1/2 * CCC.width) - (1/2 * 28 * 1.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 30 * 1.3), 28 * 1.3, 30 * 1.3);
+        }
+        else if (this.type == "stuffedEggplant")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 939, 35, 28, 30, X - this.X + (1/2 * CCC.width) - (1/2 * 28 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 30 * 1.5), 28 * 1.5, 30 * 1.5);
+        }
+        else if (this.type == "stuffedOnion")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 967, 33, 28, 30, X - this.X + (1/2 * CCC.width) - (1/2 * 28 * 1.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 30 * 1.3), 28 * 1.3, 30 * 1.3);
+        }
+        else if (this.type == "wholeRoastedKol")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 902, 1, 33, 30, X - this.X + (1/2 * CCC.width) - (1/2 * 33 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 30 * 1.5), 33 * 1.5, 30 * 1.5);
+        }
+        else if (this.type == "cephrianStew")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 864, 3, 33, 30, X - this.X + (1/2 * CCC.width) - (1/2 * 33 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 30 * 1.5), 33 * 1.5, 30 * 1.5);
+        }
+        else if (this.type == "spicedFermentedTermite")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 834, 1, 30, 30, X - this.X + (1/2 * CCC.width) - (1/2 * 30 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 30 * 1.2), 30 * 1.2, 30 * 1.2);
+        }
+        else if (this.type == "piranhaPlatter")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 731, 9, 45, 28, X - this.X + (1/2 * CCC.width) - (1/2 * 45 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 28 * 1), 45 * 1, 28 * 1);
+        }
+        else if (this.type == "boaPlatter")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 669, 4, 52, 31, X - this.X + (1/2 * CCC.width) - (1/2 * 52 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 31 * 1), 52 * 1, 31 * 1);
+        }
+        else if (this.type == "wholeStuffedTermite")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 778, 6, 52, 31, X - this.X + (1/2 * CCC.width) - (1/2 * 52 * 1.25), Y - this.Y + (1/2 * CCC.height) - (1/2 * 31 * 1.25), 52 * 1.25, 31 * 1.25);
+        }
+        else if (this.type == "wholeRoastedTermite")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 778, 6, 52, 31, X - this.X + (1/2 * CCC.width) - (1/2 * 52 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 31 * 1.2), 52 * 1.2, 31 * 1.2);
+        }
+        else if (this.type == "giraffePlatter")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 587, 3, 31, 28, X - this.X + (1/2 * CCC.width) - (1/2 * 31 * 1.1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 28 * 1.1), 31 * 1.1, 28 * 1.1);
+        }
+        else if (this.type == "sonjaGlazedKigariiRibs")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 623, 3, 31, 28, X - this.X + (1/2 * CCC.width) - (1/2 * 31 * 1.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 28 * 1.3), 31 * 1.3, 28 * 1.3);
         }
         else if (this.type == "spellOil")
         {
@@ -56607,6 +57347,81 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
+        else if (this.type == "tropicalFruitPlatter")
+        {
+            LXX.beginPath();
+            LXX.drawImage(cef, 948, 67, 39, 43, this.invX - (1/2 * 39 * 1.4), this.invY - (1/2 * 43 * 1.4), 39 * 1.4, 43 * 1.4);
+        }
+        else if (this.type == "marinatedGazelle")
+        {
+            LXX.beginPath();
+            LXX.drawImage(cef, 838, 35, 30, 30, this.invX - (1/2 * 30 * 1.1), this.invY - (1/2 * 30 * 1.1), 30 * 1.1, 30 * 1.1);
+        }
+        else if (this.type == "spicedSonjaSlices")
+        {
+            LXX.beginPath();
+            LXX.drawImage(cef, 935, 1, 28, 30, this.invX - (1/2 * 28 * 1.5), this.invY - (1/2 * 30 * 1.5), 28 * 1.5, 30 * 1.5);
+        }
+        else if (this.type == "artichokePlatter")
+        {
+            LXX.beginPath();
+            LXX.drawImage(cef, 911, 34, 28, 30, this.invX - (1/2 * 28 * 1.3), this.invY - (1/2 * 30 * 1.3), 28 * 1.3, 30 * 1.3);
+        }
+        else if (this.type == "stuffedEggplant")
+        {
+            LXX.beginPath();
+            LXX.drawImage(cef, 939, 35, 28, 30, this.invX - (1/2 * 28 * 1.5), this.invY - (1/2 * 30 * 1.5), 28 * 1.5, 30 * 1.5);
+        }
+        else if (this.type == "stuffedOnion")
+        {
+            LXX.beginPath();
+            LXX.drawImage(cef, 967, 33, 28, 30, this.invX - (1/2 * 28 * 1.3), this.invY - (1/2 * 30 * 1.3), 28 * 1.3, 30 * 1.3);
+        }
+        else if (this.type == "wholeRoastedKol")
+        {
+            LXX.beginPath();
+            LXX.drawImage(cef, 902, 1, 33, 30, this.invX - (1/2 * 33 * 1.5), this.invY - (1/2 * 30 * 1.5), 33 * 1.5, 30 * 1.5);
+        }
+        else if (this.type == "cephrianStew")
+        {
+            LXX.beginPath();
+            LXX.drawImage(cef, 864, 3, 33, 30, this.invX - (1/2 * 33 * 1.5), this.invY - (1/2 * 30 * 1.5), 33 * 1.5, 30 * 1.5);
+        }
+        else if (this.type == "spicedFermentedTermite")
+        {
+            LXX.beginPath();
+            LXX.drawImage(cef, 834, 1, 30, 30, this.invX - (1/2 * 30 * 1.2), this.invY - (1/2 * 30 * 1.2), 30 * 1.2, 30 * 1.2);
+        }
+        else if (this.type == "piranhaPlatter")
+        {
+            LXX.beginPath();
+            LXX.drawImage(cef, 731, 9, 45, 28, this.invX - (1/2 * 45 * 1), this.invY - (1/2 * 28 * 1), 45 * 1, 28 * 1);
+        }
+        else if (this.type == "boaPlatter")
+        {
+            LXX.beginPath();
+            LXX.drawImage(cef, 669, 4, 52, 31, this.invX - (1/2 * 52 * 1), this.invY - (1/2 * 31 * 1), 52 * 1, 31 * 1);
+        }
+        else if (this.type == "wholeStuffedTermite")
+        {
+            LXX.beginPath();
+            LXX.drawImage(cef, 778, 6, 52, 31, this.invX - (1/2 * 52 * 1.25), this.invY - (1/2 * 31 * 1.25), 52 * 1.25, 31 * 1.25);
+        }
+        else if (this.type == "wholeRoastedTermite")
+        {
+            LXX.beginPath();
+            LXX.drawImage(cef, 778, 6, 52, 31, this.invX - (1/2 * 52 * 1.2), this.invY - (1/2 * 31 * 1.2), 52 * 1.2, 31 * 1.2);
+        }
+        else if (this.type == "giraffePlatter")
+        {
+            LXX.beginPath();
+            LXX.drawImage(cef, 587, 3, 31, 28, this.invX - (1/2 * 31 * 1.1), this.invY - (1/2 * 28 * 1.1), 31 * 1.1, 28 * 1.1);
+        }
+        else if (this.type == "sonjaGlazedKigariiRibs")
+        {
+            LXX.beginPath();
+            LXX.drawImage(cef, 623, 3, 31, 28, this.invX - (1/2 * 31 * 1.3), this.invY - (1/2 * 28 * 1.3), 31 * 1.3, 28 * 1.3);
+        }
         else if (this.type == "spellOil")
         {
             LXX.beginPath();
@@ -63056,6 +63871,81 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "tropicalFruitPlatter")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 948, 67, 39, 43, this.invX - (1/2 * 39 * 1.4), this.invY - (1/2 * 43 * 1.4), 39 * 1.4, 43 * 1.4);
+        }
+        else if (this.type == "marinatedGazelle")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 838, 35, 30, 30, this.invX - (1/2 * 30 * 1.1), this.invY - (1/2 * 30 * 1.1), 30 * 1.1, 30 * 1.1);
+        }
+        else if (this.type == "spicedSonjaSlices")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 935, 1, 28, 30, this.invX - (1/2 * 28 * 1.5), this.invY - (1/2 * 30 * 1.5), 28 * 1.5, 30 * 1.5);
+        }
+        else if (this.type == "artichokePlatter")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 911, 34, 28, 30, this.invX - (1/2 * 28 * 1.3), this.invY - (1/2 * 30 * 1.3), 28 * 1.3, 30 * 1.3);
+        }
+        else if (this.type == "stuffedEggplant")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 939, 35, 28, 30, this.invX - (1/2 * 28 * 1.5), this.invY - (1/2 * 30 * 1.5), 28 * 1.5, 30 * 1.5);
+        }
+        else if (this.type == "stuffedOnion")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 967, 33, 28, 30, this.invX - (1/2 * 28 * 1.3), this.invY - (1/2 * 30 * 1.3), 28 * 1.3, 30 * 1.3);
+        }
+        else if (this.type == "wholeRoastedKol")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 902, 1, 33, 30, this.invX - (1/2 * 33 * 1.5), this.invY - (1/2 * 30 * 1.5), 33 * 1.5, 30 * 1.5);
+        }
+        else if (this.type == "cephrianStew")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 864, 3, 33, 30, this.invX - (1/2 * 33 * 1.5), this.invY - (1/2 * 30 * 1.5), 33 * 1.5, 30 * 1.5);
+        }
+        else if (this.type == "spicedFermentedTermite")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 834, 1, 30, 30, this.invX - (1/2 * 30 * 1.2), this.invY - (1/2 * 30 * 1.2), 30 * 1.2, 30 * 1.2);
+        }
+        else if (this.type == "piranhaPlatter")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 731, 9, 45, 28, this.invX - (1/2 * 45 * 1), this.invY - (1/2 * 28 * 1), 45 * 1, 28 * 1);
+        }
+        else if (this.type == "boaPlatter")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 669, 4, 52, 31, this.invX - (1/2 * 52 * 1), this.invY - (1/2 * 31 * 1), 52 * 1, 31 * 1);
+        }
+        else if (this.type == "wholeStuffedTermite")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 778, 6, 52, 31, this.invX - (1/2 * 52 * 1.25), this.invY - (1/2 * 31 * 1.25), 52 * 1.25, 31 * 1.25);
+        }
+        else if (this.type == "wholeRoastedTermite")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 778, 6, 52, 31, this.invX - (1/2 * 52 * 1.2), this.invY - (1/2 * 31 * 1.2), 52 * 1.2, 31 * 1.2);
+        }
+        else if (this.type == "giraffePlatter")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 587, 3, 31, 28, this.invX - (1/2 * 31 * 1.1), this.invY - (1/2 * 28 * 1.1), 31 * 1.1, 28 * 1.1);
+        }
+        else if (this.type == "sonjaGlazedKigariiRibs")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cef, 623, 3, 31, 28, this.invX - (1/2 * 31 * 1.3), this.invY - (1/2 * 28 * 1.3), 31 * 1.3, 28 * 1.3);
         }
         else if (this.type == "spellOil")
         {

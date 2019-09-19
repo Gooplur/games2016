@@ -4797,6 +4797,17 @@ function theLegend()
     foods.push(new Item("hyenaMeat", false));
     foods.push(new Item("taebjuurMeat", false));
     foods.push(new Item("vodkapaMeat", false));
+    foods.push(new Item("sonjaGlazedKigariiRibs", false));
+    foods.push(new Item("giraffePlatter", false));
+    foods.push(new Item("wholeRoastedTermite", false));
+    foods.push(new Item("wholeStuffedTermite", false));
+    foods.push(new Item("boaPlatter", false));
+    foods.push(new Item("piranhaPlatter", false));
+    foods.push(new Item("cephrianStew", false));
+    foods.push(new Item("wholeRoastedKol", false));
+    foods.push(new Item("stuffedOnion", false));
+    foods.push(new Item("stuffedEggplant", false));
+    foods.push(new Item("marinatedGazelle", false));
 
 //Tailoring (Items crafted at a weaving, sewing, dying, etc. tailor's work bench thing)
     tailoring = [];
@@ -5191,6 +5202,10 @@ function theLegend()
     handcrafted.push(new Item("berenjenaPicada", false));
     handcrafted.push(new Item("berenjenaRebanada", false));
     handcrafted.push(new Item("poisonCoatedThrowingKnife", false));
+    handcrafted.push(new Item("spicedFermentedTermite", false));
+    handcrafted.push(new Item("artichokePlatter", false));
+    handcrafted.push(new Item("spicedSonjaSlices", false));
+    handcrafted.push(new Item("tropicalFruitPlatter", false));
 
     //Activate Important Game Functions Here:
     itemPlacer();

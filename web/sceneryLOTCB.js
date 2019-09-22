@@ -12709,7 +12709,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     barrierList.push(new Barrier((this.X + 44.07783604239421 * this.temporary), (this.Y + -52.40014949267106 * this.temporary), 105 * this.temporary, 15 * this.temporary, true));
                     barrierList.push(new Barrier((this.X + -59.92216395760579 * this.temporary), (this.Y + -54.40014949267106 * this.temporary), 108 * this.temporary, 15 * this.temporary, true));
                     barrierList.push(new Barrier((this.X + -58.92216395760579 * this.temporary), (this.Y + 40.59985050732894 * this.temporary), 15 * this.temporary, 69 * this.temporary, true));
-                    barrierList.push(new Barrier((this.X + -58.92216395760579 * this.temporary), (this.Y + 39.59985050732894 * this.temporary), 15 * this.temporary, 69 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -51.199921671087395 * this.temporary), (this.Y + -54.50897126313066 * this.temporary), 16 * this.temporary, 100 * this.temporary, true));
                 }
                 else if (this.rotation == 1/2 * Math.PI)
                 {

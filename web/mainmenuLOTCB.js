@@ -1400,8 +1400,16 @@ function applySelectionsButton()
         }
         else if (player.raceName == "Cephrite")
         {
-            X = 3550;
-            Y = -342789;
+            if (player.title == "Nobility")
+            {
+                X = 2169.5612440114046;
+                Y = -343766.5445470643;
+            }
+            else
+            {
+                X = 3550;
+                Y = -342789;
+            }
         }
         else if (player.raceName == "Sylkeem")
         {

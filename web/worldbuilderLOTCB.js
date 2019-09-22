@@ -3643,6 +3643,16 @@ function worldBuilder()
         outlineBuilder( 2, 2, "rock", 1, 2);
         outlineBuilder( 1, 1, "rock", 3, -1);
     }
+    else if (map == "ansetEggRoom")
+    {
+        player.dmx = map;
+        player.underground = true;
+        elevation = -1; //underground temperatures are consistently -1 unless there is a certain closeness to magma...
+        region = "ansetEggRoom";
+        campout = false;
+        //starting chamber
+        outlineBuilder( 2, 2, "cephrianTile", 0, 0);
+    }
     else if (map == "lethikCityPrison")
     {
         player.dmx = map;

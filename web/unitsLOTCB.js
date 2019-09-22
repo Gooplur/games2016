@@ -86325,7 +86325,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 }
                 else if (this.ultra.faction == "Cephrite")
                 {
-                    if (this.ID == "Blackwood Soldier" || this.ID == "Blackwood Captain")
+                    if (this.ID == "Blackwood Soldier" || this.ID == "Blackwood Captain" || this.ID == "Anset Soldier" || this.ID == "Anset Captain")
                     {
                         //RANGE OF SIGHT (anything related to range of sight)
                         this.rangeOfSightCalculator(700, true);
@@ -86360,7 +86360,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             }
                         }
                     }
-                    else if (this.ID == "Blackwood Paladin" || this.ID == "High Magus Almadin Blackwood" || this.ID == "High Magus Lafette Blackwood") //no ranged attack
+                    else if (this.ID == "Blackwood Paladin" || this.ID == "Anset Paladin" || this.ID == "High Magus Almadin Blackwood" || this.ID == "High Magus Lafette Anset") //no ranged attack
                     {
                         //RANGE OF SIGHT (anything related to range of sight)
                         this.rangeOfSightCalculator(1000, false);
@@ -86370,7 +86370,7 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         {
                             this.drops = [[new Item("coins", this.X, this.Y), 5000], [new Item("magusRobesM", this.X, this.Y), 1], [new Item("eruption", this.X, this.Y), 1], [new Item("flamingMissiles", this.X, this.Y), 1]];
                         }
-                        else if (this.ID == "High Magus Lafette Blackwood")
+                        else if (this.ID == "High Magus Lafette Anset")
                         {
                             this.drops = [[new Item("coins", this.X, this.Y), 2500], [new Item("magusRobesF", this.X, this.Y), 1], [new Item("sanctuary", this.X, this.Y), 1], [new Item("charm", this.X, this.Y), 1], [new Item("electricBolt", this.X, this.Y), 1]];
                         }
@@ -86795,7 +86795,19 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 }
                 else if (this.ultra.faction == "hostile")
                 {
-                    if (this.ID == "Looter"  || this.ID == "Vardanian Looter")
+                    if (this.ID == "Humpty" || this.ID == "Humpty Slave")
+                    {
+                        //RANGE OF SIGHT (anything related to range of sight)
+                        this.rangeOfSightCalculator(550, false);
+
+                        this.drops = [];
+
+                        if (this.disturbed == true)
+                        {
+                            this.callForNearbyHelpFromType(this.rangeOfSight, "Soldier");
+                        }
+                    }
+                    if (this.ID == "Grave Robber" || this.ID == "Looter" || this.ID == "Vardanian Looter")
                     {
                         //RANGE OF SIGHT (anything related to range of sight)
                         this.rangeOfSightCalculator(460, false);
@@ -87882,12 +87894,20 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             player.cephriteFaction -= 20;
                         }
                     }
-                    else if (this.ID == "High Magus Lafette Blackwood")
+                    else if (this.ID == "High Magus Lafette Anset")
                     {
                         uniqueChars.lafetteLDS = false;
                         if (this.killNotByPlayer == false || this.killByPlayerTeam)
                         {
-                            player.cephriteFaction -= 660;
+                            player.cephriteFaction -= 700;
+                        }
+                    }
+                    else if (this.ID == "High Magus Almadin Blackwood")
+                    {
+                        uniqueChars.almadinLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.cephriteFaction -= 900;
                         }
                     }
 

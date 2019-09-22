@@ -2840,6 +2840,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             //DRAWSELF
             if (this.information == 1) //cephrian single bed
             {
+                szx = 1.25;
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
@@ -2848,6 +2849,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             }
             else if (this.information == 2) //cephrian double bed
             {
+                szx = 1.25;
                 this.radius = 34;
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -5201,6 +5203,26 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.drawImage(salem, 524, 933, 60, 102, -(1/2 * 60 * this.information), -(1/2 * 102 * this.information), 60 * this.information, 102 * this.information);
                 XXX.restore();
             }
+            else if (this.temporary == 43) //garden marble stone
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 705, 120, 79, 80, -(1/2 * 79 * this.information), -(1/2 * 80 * this.information), 79 * this.information, 80 * this.information);
+                XXX.restore();
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 705, 120, 79, 80, -(1/2 * 79 * this.information / 2), -(1/2 * 80 * this.information / 2), 79 * this.information / 2, 80 * this.information / 2);
+                XXX.restore();
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 705, 120, 79, 80, -(1/2 * 79 * this.information / 4), -(1/2 * 80 * this.information / 4), 79 * this.information / 4, 80 * this.information / 4);
+                XXX.restore();
+            }
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
             this.radius = 1;
@@ -5237,9 +5259,13 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.drawImage(cef, 383, 72, 179, 175, -(1/2 * 179 * this.information), -(1/2 * 175 * this.information), 179 * this.information, 175 * this.information);
                 XXX.restore();
             }
-            else if (this.temporary == 1)//dark cephrian rug
+            else if (this.temporary == 1)//cephrian tray
             {
-
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jungho, 27, 381, 28, 21, -(1/2 * 28 * this.information), -(1/2 * 21 * this.information), 28 * this.information, 21 * this.information);
+                XXX.restore();
             }
             else if (this.temporary == 2)//pink cephrian cushion
             {
@@ -5503,6 +5529,14 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
                 XXX.drawImage(jeru, 2483, 874, 70, 56, -(1/2 * 70 * this.information), -(1/2 * 56 * this.information), 70 * this.information, 56 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 35)//cephrian bowl
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 705, 120, 79, 80, -(1/2 * 79 * this.information), -(1/2 * 80 * this.information), 79 * this.information, 80 * this.information);
                 XXX.restore();
             }
 
@@ -6854,7 +6888,23 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.stroke();
                 XXX.restore();
             }
-            else if (this.temporary >= 12) //faelan
+            else if (this.temporary == 12) //zetian
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.scale(this.information, this.information);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(verse, 0, 302, 35, 80, -20.5, -20, 57, 100);
+                XXX.beginPath();
+                XXX.fillStyle = "#2a0038";
+                XXX.arc(0, 0, 10, 0, 2 * Math.PI);
+                XXX.fill();
+                XXX.strokeStyle = "black";
+                XXX.lineWidth = 0.5;
+                XXX.stroke();
+                XXX.restore();
+            }
+            else if (this.temporary >= 13) //faelan
             {
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -12572,6 +12622,770 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 this.activate = false;
             }
         }
+        else if (this.type == "cephrianBuilding1")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 135;
+
+            //DRAWSELF
+            if (X > (this.X + 50.3367903492757 * this.temporary) - 104 * this.temporary && X < (this.X + 50.3367903492757 * this.temporary) && Y > (this.Y + 46.29432712501148 * this.temporary) - 94 * this.temporary && Y < (this.Y + 46.29432712501148 * this.temporary))
+            {
+                this.zIndex = 1;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                if (this.rotation == Math.PI)
+                {
+                    XXX.rotate(Math.PI);
+                }
+                else if (this.rotation == 1/2 * Math.PI)
+                {
+                    XXX.rotate(1/2 * Math.PI);
+                }
+                else if (this.rotation == -1/2 * Math.PI)
+                {
+                    XXX.rotate(-1/2 * Math.PI);
+                }
+                else
+                {
+                    XXX.rotate(0);
+                }
+                XXX.drawImage(cef, 49, 211, 134, 121, -(1/2 * 134 * this.temporary), -(1/2 * 121 * this.temporary), 134 * this.temporary, 121 * this.temporary);
+                XXX.restore();
+            }
+            else
+            {
+                this.zIndex = 6;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                if (this.rotation == Math.PI)
+                {
+                    XXX.rotate(Math.PI);
+                }
+                else if (this.rotation == 1/2 * Math.PI)
+                {
+                    XXX.rotate(1/2 * Math.PI);
+                }
+                else if (this.rotation == -1/2 * Math.PI)
+                {
+                    XXX.rotate(-1/2 * Math.PI);
+                }
+                else
+                {
+                    XXX.rotate(0);
+                }
+                XXX.drawImage(cef, 49, 211, 134, 121, -(1/2 * 134 * this.temporary), -(1/2 * 121 * this.temporary), 134 * this.temporary, 121 * this.temporary);
+                XXX.restore();
+                //roof
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                if (this.rotation == Math.PI)
+                {
+                    XXX.rotate(Math.PI);
+                }
+                else if (this.rotation == 1/2 * Math.PI)
+                {
+                    XXX.rotate(1/2 * Math.PI);
+                }
+                else if (this.rotation == -1/2 * Math.PI)
+                {
+                    XXX.rotate(-1/2 * Math.PI);
+                }
+                else
+                {
+                    XXX.rotate(0);
+                }
+                XXX.drawImage(cef, 49, 344, 134, 121, -(1/2 * 134 * this.temporary), -(1/2 * 121 * this.temporary), 134 * this.temporary, 121 * this.temporary);
+                XXX.restore();
+            }
+
+            //BARRIERS
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+
+                if (this.rotation == Math.PI)
+                {
+                    barrierList.push(new Barrier((this.X + 44.07783604239421 * this.temporary), (this.Y + -52.40014949267106 * this.temporary), 105 * this.temporary, 15 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -59.92216395760579 * this.temporary), (this.Y + -54.40014949267106 * this.temporary), 108 * this.temporary, 15 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -58.92216395760579 * this.temporary), (this.Y + 40.59985050732894 * this.temporary), 15 * this.temporary, 69 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -58.92216395760579 * this.temporary), (this.Y + 39.59985050732894 * this.temporary), 15 * this.temporary, 69 * this.temporary, true));
+                }
+                else if (this.rotation == 1/2 * Math.PI)
+                {
+                    barrierList.push(new Barrier((this.X + -53.53278340002589 * this.temporary), (this.Y + 44.50023333179661 * this.temporary), 17 * this.temporary, 105 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -54.53278340002589 * this.temporary), (this.Y + -60.49976666820339 * this.temporary), 17 * this.temporary, 105 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -54.53278340002589 * this.temporary), (this.Y + -58.49976666820339 * this.temporary), 115 * this.temporary, 17 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 39.46721659997411 * this.temporary), (this.Y + -8.499766668203392 * this.temporary), 67 * this.temporary, 17 * this.temporary, true));
+                }
+                else if (this.rotation == -1/2 * Math.PI)
+                {
+                    barrierList.push(new Barrier((this.X + -52.807729923228635 * this.temporary), (this.Y + 44.31154074422011 * this.temporary), 15 * this.temporary, 106 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 38.192270076771365 * this.temporary), (this.Y + -55.68845925577989 * this.temporary), 114 * this.temporary, 15 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -54.807729923228635 * this.temporary), (this.Y + -59.68845925577989 * this.temporary), 15 * this.temporary, 108 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -54.807729923228635 * this.temporary), (this.Y + -58.68845925577989 * this.temporary), 68 * this.temporary, 15 * this.temporary, true));
+                }
+                else
+                {
+                    barrierList.push(new Barrier((this.X + -9.311522570488705 * this.temporary), (this.Y + -54.4645184044266 * this.temporary), 15 * this.temporary, 70 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -58.311522570488705 * this.temporary), (this.Y + 39.5354815955734 * this.temporary), 15 * this.temporary, 115 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 43.688477429511295 * this.temporary), (this.Y + -51.4645184044266 * this.temporary), 105 * this.temporary, 15 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -59.311522570488705 * this.temporary), (this.Y + -53.4645184044266 * this.temporary), 105 * this.temporary, 15 * this.temporary, true));
+                }
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //barrierCreator(this.X, this.Y); //for easily setting barriers when making buildings
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "cephrianBuilding2")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 135;
+
+            //DRAWSELF
+            if (this.rotation == 1/2 * Math.PI || this.rotation == -1/2 * Math.PI)
+            {
+                if (X > (this.X + 113.67941731765603 * this.temporary) - 226 * this.temporary && X < (this.X + 113.67941731765603 * this.temporary) && Y > (this.Y + 76.25398626498645 * this.temporary) - 155 * this.temporary && Y < (this.Y + 76.25398626498645 * this.temporary))
+                {
+                    this.zIndex = 1;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    if (this.rotation == 1/2 * Math.PI)
+                    {
+                        XXX.rotate(1/2 * Math.PI);
+                    }
+                    else if (this.rotation == -1/2 * Math.PI)
+                    {
+                        XXX.rotate(-1/2 * Math.PI);
+                    }
+                    XXX.drawImage(cef, 14, 475, 199, 284, -(1/2 * 199 * this.temporary), -(1/2 * 284 * this.temporary), 199 * this.temporary, 284 * this.temporary);
+                    XXX.restore();
+                }
+                else
+                {
+                    this.zIndex = 6;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+
+                    if (this.rotation == 1/2 * Math.PI)
+                    {
+                        XXX.rotate(1/2 * Math.PI);
+                    }
+                    else if (this.rotation == -1/2 * Math.PI)
+                    {
+                        XXX.rotate(-1/2 * Math.PI);
+                    }
+                    XXX.drawImage(cef, 14, 475, 199, 284, -(1/2 * 199 * this.temporary), -(1/2 * 284 * this.temporary), 199 * this.temporary, 284 * this.temporary);
+                    XXX.restore();
+                    //roof
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    if (this.rotation == 1/2 * Math.PI)
+                    {
+                        XXX.rotate(1/2 * Math.PI);
+                    }
+                    else if (this.rotation == -1/2 * Math.PI)
+                    {
+                        XXX.rotate(-1/2 * Math.PI);
+                    }
+                    XXX.drawImage(cef, 11, 756, 199, 284, -(1/2 * 199 * this.temporary + 2 * this.temporary), -(1/2 * 284 * this.temporary), 199 * this.temporary, 284 * this.temporary);
+                    XXX.restore();
+                }
+            }
+            else
+            {
+                if (X > (this.X + 75.3717661821168 * this.temporary) - 154 * this.temporary && X < (this.X + 75.3717661821168 * this.temporary) && Y > (this.Y + 112.0059588465374 * this.temporary) - 227 * this.temporary && Y < (this.Y + 112.0059588465374 * this.temporary))
+                {
+                    this.zIndex = 1;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    if (this.rotation == Math.PI)
+                    {
+                        XXX.rotate(Math.PI);
+                    }
+                    else
+                    {
+                        XXX.rotate(0);
+                    }
+                    XXX.drawImage(cef, 14, 475, 199, 284, -(1/2 * 199 * this.temporary), -(1/2 * 284 * this.temporary), 199 * this.temporary, 284 * this.temporary);
+                    XXX.restore();
+                }
+                else
+                {
+                    this.zIndex = 6;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    if (this.rotation == Math.PI)
+                    {
+                        XXX.rotate(Math.PI);
+                    }
+                    else
+                    {
+                        XXX.rotate(0);
+                    }
+                    XXX.drawImage(cef, 14, 475, 199, 284, -(1/2 * 199 * this.temporary), -(1/2 * 284 * this.temporary), 199 * this.temporary, 284 * this.temporary);
+                    XXX.restore();
+                    //roof
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    if (this.rotation == Math.PI)
+                    {
+                        XXX.rotate(Math.PI);
+                    }
+                    else
+                    {
+                        XXX.rotate(0);
+                    }
+                    XXX.drawImage(cef, 11, 756, 199, 284, -(1/2 * 199 * this.temporary + 2 * this.temporary), -(1/2 * 284 * this.temporary), 199 * this.temporary, 284 * this.temporary);
+                    XXX.restore();
+                }
+            }
+
+            //BARRIERS
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+
+                if (this.rotation == Math.PI)
+                {
+                    barrierList.push(new Barrier((this.X + -84.06194778226245 * this.temporary), (this.Y + 103.67833966168882 * this.temporary), 18 * this.temporary, 170 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -87.06194778226245 * this.temporary), (this.Y + -126.32166033831118 * this.temporary), 18 * this.temporary, 172 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 69.93805221773755 * this.temporary), (this.Y + -122.32166033831118 * this.temporary), 241 * this.temporary, 18 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -90.06194778226245 * this.temporary), (this.Y + 15.678339661688824 * this.temporary), 106 * this.temporary, 18 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -90.06194778226245 * this.temporary), (this.Y + -126.32166033831118 * this.temporary), 106 * this.temporary, 18 * this.temporary, true));
+                }
+                else if (this.rotation == 1/2 * Math.PI)
+                {
+                    barrierList.push(new Barrier((this.X + 14.434498985070604 * this.temporary), (this.Y + 72.6358270599826 * this.temporary), 15 * this.temporary, 105 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -125.5655010149294 * this.temporary), (this.Y + 71.6358270599826 * this.temporary), 16 * this.temporary, 105 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -125.5655010149294 * this.temporary), (this.Y + -86.3641729400174 * this.temporary), 172 * this.temporary, 16 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 105.4344989850706 * this.temporary), (this.Y + -85.3641729400174 * this.temporary), 172 * this.temporary, 16 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -120.5655010149294 * this.temporary), (this.Y + -86.3641729400174 * this.temporary), 16 * this.temporary, 237 * this.temporary, true));
+                }
+                else if (this.rotation == -1/2 * Math.PI)
+                {
+                    barrierList.push(new Barrier((this.X + 20.434498985070604 * this.temporary), (this.Y + -88.3641729400174 * this.temporary), 15 * this.temporary, 104 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -120.5655010149294 * this.temporary), (this.Y + -87.3641729400174 * this.temporary), 15 * this.temporary, 104 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -120.5655010149294 * this.temporary), (this.Y + -87.3641729400174 * this.temporary), 174 * this.temporary, 15 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 107.4344989850706 * this.temporary), (this.Y + -89.3641729400174 * this.temporary), 174 * this.temporary, 15 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -120.5655010149294 * this.temporary), (this.Y + 70.6358270599826 * this.temporary), 15 * this.temporary, 244 * this.temporary, true));
+                }
+                else
+                {
+                    barrierList.push(new Barrier((this.X + -85.5655010149294 * this.temporary), (this.Y + -121.3641729400174 * this.temporary), 15 * this.temporary, 173 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -85.5655010149294 * this.temporary), (this.Y + 108.6358270599826 * this.temporary), 15 * this.temporary, 173 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -86.5655010149294 * this.temporary), (this.Y + -118.3641729400174 * this.temporary), 238 * this.temporary, 15 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 71.4344989850706 * this.temporary), (this.Y + -120.3641729400174 * this.temporary), 103 * this.temporary, 15 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 72.4344989850706 * this.temporary), (this.Y + 21.635827059982603 * this.temporary), 103 * this.temporary, 15 * this.temporary, true));
+                }
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //barrierCreator(this.X, this.Y); //for easily setting barriers when making buildings
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "cephrianBuilding3")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 135;
+
+            //DRAWSELF
+            if (this.rotation == 1/2 * Math.PI || this.rotation == -1/2 * Math.PI)
+            {
+                if (X > (this.X + 73.22549011487541 * this.temporary) - 154 * this.temporary && X < (this.X + 73.22549011487541 * this.temporary) && Y > (this.Y + 48.804914214415476 * this.temporary) - 101 * this.temporary && Y < (this.Y + 48.804914214415476 * this.temporary))
+                {
+                    this.zIndex = 1;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    if (this.rotation == 1/2 * Math.PI)
+                    {
+                        XXX.rotate(1/2 * Math.PI);
+                    }
+                    else if (this.rotation == -1/2 * Math.PI)
+                    {
+                        XXX.rotate(-1/2 * Math.PI);
+                    }
+                    XXX.drawImage(cef, 233, 243, 140, 197, -(1/2 * 140 * this.temporary), -(1/2 * 197 * this.temporary), 140 * this.temporary, 197 * this.temporary);
+                    XXX.restore();
+                }
+                else
+                {
+                    this.zIndex = 6;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+
+                    if (this.rotation == 1/2 * Math.PI)
+                    {
+                        XXX.rotate(1/2 * Math.PI);
+                    }
+                    else if (this.rotation == -1/2 * Math.PI)
+                    {
+                        XXX.rotate(-1/2 * Math.PI);
+                    }
+                    XXX.drawImage(cef, 233, 243, 140, 197, -(1/2 * 140 * this.temporary), -(1/2 * 197 * this.temporary), 140 * this.temporary, 197 * this.temporary);
+                    XXX.restore();
+                    //roof
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    if (this.rotation == 1/2 * Math.PI)
+                    {
+                        XXX.rotate(1/2 * Math.PI);
+                    }
+                    else if (this.rotation == -1/2 * Math.PI)
+                    {
+                        XXX.rotate(-1/2 * Math.PI);
+                    }
+                    XXX.drawImage(cef, 235, 438, 140, 197, -(1/2 * 140 * this.temporary), -(1/2 * 197 * this.temporary), 140 * this.temporary, 197 * this.temporary);
+                    XXX.restore();
+                }
+            }
+            else
+            {
+                if (X > (this.X + 48.62396176559918 * this.temporary) - 99 * this.temporary && X < (this.X + 48.62396176559918 * this.temporary) && Y > (this.Y + 73.98512308584759 * this.temporary) - 155 * this.temporary && Y < (this.Y + 73.98512308584759 * this.temporary))
+                {
+                    this.zIndex = 1;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    if (this.rotation == Math.PI)
+                    {
+                        XXX.rotate(Math.PI);
+                    }
+                    else
+                    {
+                        XXX.rotate(0);
+                    }
+                    XXX.drawImage(cef, 233, 243, 140, 197, -(1/2 * 140 * this.temporary), -(1/2 * 197 * this.temporary), 140 * this.temporary, 197 * this.temporary);
+                    XXX.restore();
+                }
+                else
+                {
+                    this.zIndex = 6;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    if (this.rotation == Math.PI)
+                    {
+                        XXX.rotate(Math.PI);
+                    }
+                    else
+                    {
+                        XXX.rotate(0);
+                    }
+                    XXX.drawImage(cef, 233, 243, 140, 197, -(1/2 * 140 * this.temporary), -(1/2 * 197 * this.temporary), 140 * this.temporary, 197 * this.temporary);
+                    XXX.restore();
+                    //roof
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    if (this.rotation == Math.PI)
+                    {
+                        XXX.rotate(Math.PI);
+                    }
+                    else
+                    {
+                        XXX.rotate(0);
+                    }
+                    XXX.drawImage(cef, 235, 438, 140, 197, -(1/2 * 140 * this.temporary), -(1/2 * 197 * this.temporary), 140 * this.temporary, 197 * this.temporary);
+                    XXX.restore();
+                }
+            }
+
+            //BARRIERS
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+
+                if (this.rotation == Math.PI)
+                {
+                    barrierList.push(new Barrier((this.X + -59.59554555651812 * this.temporary), (this.Y + 73.21399509819776 * this.temporary), 15 * this.temporary, 70 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -59.59554555651812 * this.temporary), (this.Y + -84.78600490180224 * this.temporary), 15 * this.temporary, 120 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -60.59554555651812 * this.temporary), (this.Y + -84.78600490180224 * this.temporary), 173 * this.temporary, 15 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 43.40445444348188 * this.temporary), (this.Y + -85.78600490180224 * this.temporary), 173 * this.temporary, 15 * this.temporary, true));
+                }
+                else if (this.rotation == 1/2 * Math.PI)
+                {
+                    barrierList.push(new Barrier((this.X + -84.5736491603343 * this.temporary), (this.Y + -60.844700872702106 * this.temporary), 18 * this.temporary, 168 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -85.5736491603343 * this.temporary), (this.Y + 45.155299127297894 * this.temporary), 18 * this.temporary, 173 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -87.5736491603343 * this.temporary), (this.Y + -60.844700872702106 * this.temporary), 118 * this.temporary, 18 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 73.4263508396657 * this.temporary), (this.Y + -10.844700872702106 * this.temporary), 71 * this.temporary, 15 * this.temporary, true));
+                }
+                else if (this.rotation == -1/2 * Math.PI)
+                {
+                    barrierList.push(new Barrier((this.X + -87.54363470567841 * this.temporary), (this.Y + -60.00932210049814 * this.temporary), 15 * this.temporary, 171 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -87.54363470567841 * this.temporary), (this.Y + 42.99067789950186 * this.temporary), 15 * this.temporary, 171 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -88.54363470567841 * this.temporary), (this.Y + -63.00932210049814 * this.temporary), 72 * this.temporary, 15 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 70.45636529432159 * this.temporary), (this.Y + -58.00932210049814 * this.temporary), 117 * this.temporary, 15 * this.temporary, true));
+                }
+                else
+                {
+                    barrierList.push(new Barrier((this.X + -9.565501014929396 * this.temporary), (this.Y + -89.3641729400174 * this.temporary), 15 * this.temporary, 69 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -58.565501014929396 * this.temporary), (this.Y + 69.6358270599826 * this.temporary), 15 * this.temporary, 119 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -58.565501014929396 * this.temporary), (this.Y + -87.3641729400174 * this.temporary), 174 * this.temporary, 15 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 45.434498985070604 * this.temporary), (this.Y + -88.3641729400174 * this.temporary), 174 * this.temporary, 15 * this.temporary, true));
+                }
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //barrierCreator(this.X, this.Y); //for easily setting barriers when making buildings
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "cephrianBuilding4")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 135;
+
+            //DRAWSELF
+            if (this.rotation == 1/2 * Math.PI || this.rotation == -1/2 * Math.PI)
+            {
+                if (X > (this.X + 191 * this.temporary) - 380 * this.temporary && X < (this.X + 191 * this.temporary) && Y > (this.Y + 139.5 * this.temporary) - 287 * this.temporary && Y < (this.Y + 139.5 * this.temporary))
+                {
+                    this.zIndex = 1;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    if (this.rotation == 1/2 * Math.PI)
+                    {
+                        XXX.rotate(1/2 * Math.PI);
+                    }
+                    else if (this.rotation == -1/2 * Math.PI)
+                    {
+                        XXX.rotate(-1/2 * Math.PI);
+                    }
+                    XXX.drawImage(cef, 621, 287, 341, 444, -(1/2 * 341 * this.temporary), -(1/2 * 444 * this.temporary), 341 * this.temporary, 444 * this.temporary);
+                    XXX.restore();
+                }
+                else
+                {
+                    this.zIndex = 6;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+
+                    if (this.rotation == 1/2 * Math.PI)
+                    {
+                        XXX.rotate(1/2 * Math.PI);
+                    }
+                    else if (this.rotation == -1/2 * Math.PI)
+                    {
+                        XXX.rotate(-1/2 * Math.PI);
+                    }
+                    XXX.drawImage(cef, 621, 287, 341, 444, -(1/2 * 341 * this.temporary), -(1/2 * 444 * this.temporary), 341 * this.temporary, 444 * this.temporary);
+                    XXX.restore();
+                    //roof
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    if (this.rotation == 1/2 * Math.PI)
+                    {
+                        XXX.rotate(1/2 * Math.PI);
+                    }
+                    else if (this.rotation == -1/2 * Math.PI)
+                    {
+                        XXX.rotate(-1/2 * Math.PI);
+                    }
+                    XXX.drawImage(cef, 259, 639, 341, 444, -(1/2 * 341 * this.temporary - 10 * this.temporary), -(1/2 * 444 * this.temporary + 6 * this.temporary), 341 * this.temporary, 444 * this.temporary);
+                    XXX.restore();
+                }
+            }
+            else
+            {
+                if (X > (this.X + 143.74449525182172 * this.temporary) - 287 * this.temporary && X < (this.X + 143.74449525182172 * this.temporary) && Y > (this.Y + 191 * this.temporary) - 384 * this.temporary && Y < (this.Y + 191 * this.temporary))
+                {
+                    this.zIndex = 1;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    if (this.rotation == Math.PI)
+                    {
+                        XXX.rotate(Math.PI);
+                    }
+                    else
+                    {
+                        XXX.rotate(0);
+                    }
+                    XXX.drawImage(cef, 621, 287, 341, 444, -(1/2 * 341 * this.temporary), -(1/2 * 444 * this.temporary), 341 * this.temporary, 444 * this.temporary);
+                    XXX.restore();
+                }
+                else
+                {
+                    this.zIndex = 6;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    if (this.rotation == Math.PI)
+                    {
+                        XXX.rotate(Math.PI);
+                    }
+                    else
+                    {
+                        XXX.rotate(0);
+                    }
+                    XXX.drawImage(cef, 621, 287, 341, 444, -(1/2 * 341 * this.temporary), -(1/2 * 444 * this.temporary), 341 * this.temporary, 444 * this.temporary);
+                    XXX.restore();
+                    //roof
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    if (this.rotation == Math.PI)
+                    {
+                        XXX.rotate(Math.PI);
+                    }
+                    else
+                    {
+                        XXX.rotate(0);
+                    }
+                    XXX.drawImage(cef, 259, 639, 341, 444, -(1/2 * 341 * this.temporary - 10 * this.temporary), -(1/2 * 444 * this.temporary + 6 * this.temporary), 341 * this.temporary, 444 * this.temporary);
+                    XXX.restore();
+                }
+            }
+
+            //BARRIERS
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+
+                if (this.rotation == Math.PI)
+                {
+                    barrierList.push(new Barrier((this.X + -149.69817936773234 * this.temporary), (this.Y + 27.661007624429658 * this.temporary), 17 * this.temporary, 162 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 49.30182063226766 * this.temporary), (this.Y + 28.661007624429658 * this.temporary), 15 * this.temporary, 107 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -18.698179367732337 * this.temporary), (this.Y + -54.33899237557034 * this.temporary), 99 * this.temporary, 15 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -18.698179367732337 * this.temporary), (this.Y + -201.33899237557034 * this.temporary), 104 * this.temporary, 15 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -150.69817936773234 * this.temporary), (this.Y + -199.33899237557034 * this.temporary), 104 * this.temporary, 15 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -151.69817936773234 * this.temporary), (this.Y + -61.33899237557034 * this.temporary), 261 * this.temporary, 15 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -148.69817936773234 * this.temporary), (this.Y + -198.33899237557034 * this.temporary), 15 * this.temporary, 306 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 139.30182063226766 * this.temporary), (this.Y + -195.33899237557034 * this.temporary), 399 * this.temporary, 15 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -147.69817936773234 * this.temporary), (this.Y + 186.66100762442966 * this.temporary), 15 * this.temporary, 299 * this.temporary, true));
+                }
+                else if (this.rotation == 1/2 * Math.PI)
+                {
+                    barrierList.push(new Barrier((this.X + -200.3990185583334 * this.temporary), (this.Y + 3.0356308630530293 * this.temporary), 15 * this.temporary, 104 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -55.39901855833341 * this.temporary), (this.Y + 4.035630863053029 * this.temporary), 15 * this.temporary, 100 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 27.60098144166659 * this.temporary), (this.Y + -153.96436913694697 * this.temporary), 101 * this.temporary, 15 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 29.60098144166659 * this.temporary), (this.Y + -10.96436913694697 * this.temporary), 161 * this.temporary, 15 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -201.3990185583334 * this.temporary), (this.Y + 135.03563086305303 * this.temporary), 15 * this.temporary, 106 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -60.39901855833341 * this.temporary), (this.Y + 135.03563086305303 * this.temporary), 15 * this.temporary, 260 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -199.3990185583334 * this.temporary), (this.Y + -154.96436913694697 * this.temporary), 302 * this.temporary, 15 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 186.6009814416666 * this.temporary), (this.Y + -151.96436913694697 * this.temporary), 302 * this.temporary, 15 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -196.3990185583334 * this.temporary), (this.Y + -154.96436913694697 * this.temporary), 15 * this.temporary, 400 * this.temporary, true));
+                }
+                else if (this.rotation == -1/2 * Math.PI)
+                {
+                    barrierList.push(new Barrier((this.X + 96.78379254291076 * this.temporary), (this.Y + -149.6786943771126 * this.temporary), 15 * this.temporary, 103 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 98.78379254291076 * this.temporary), (this.Y + -19.678694377112606 * this.temporary), 15 * this.temporary, 103 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -44.21620745708924 * this.temporary), (this.Y + -19.678694377112606 * this.temporary), 15 * this.temporary, 98 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -43.62432825070164 * this.temporary), (this.Y + 52.5224230811059 * this.temporary), 102 * this.temporary, 15 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -44.62432825070164 * this.temporary), (this.Y + -150.4775769188941 * this.temporary), 160 * this.temporary, 15 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 183.37567174929836 * this.temporary), (this.Y + -149.4775769188941 * this.temporary), 305 * this.temporary, 15 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -201.62432825070164 * this.temporary), (this.Y + -151.4775769188941 * this.temporary), 15 * this.temporary, 260 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -201.62432825070164 * this.temporary), (this.Y + -151.4775769188941 * this.temporary), 305 * this.temporary, 15 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -201.62432825070164 * this.temporary), (this.Y + 139.5224230811059 * this.temporary), 15 * this.temporary, 395 * this.temporary, true));
+                }
+                else
+                {
+                    barrierList.push(new Barrier((this.X + -154.3133021593776 * this.temporary), (this.Y + -44.91644400905534 * this.temporary), 16 * this.temporary, 102 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 2.6866978406224007 * this.temporary), (this.Y + -44.91644400905534 * this.temporary), 102 * this.temporary, 16 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 2.6866978406224007 * this.temporary), (this.Y + 97.08355599094466 * this.temporary), 102 * this.temporary, 16 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -13.3133021593776 * this.temporary), (this.Y + -45.91644400905534 * this.temporary), 16 * this.temporary, 163 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 134.6866978406224 * this.temporary), (this.Y + 96.08355599094466 * this.temporary), 103 * this.temporary, 16 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 137.6866978406224 * this.temporary), (this.Y + -197.91644400905534 * this.temporary), 255 * this.temporary, 16 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -154.3133021593776 * this.temporary), (this.Y + 184.08355599094466 * this.temporary), 16 * this.temporary, 302 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -150.3133021593776 * this.temporary), (this.Y + -201.91644400905534 * this.temporary), 16 * this.temporary, 302 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -156.3133021593776 * this.temporary), (this.Y + -202.91644400905534 * this.temporary), 402 * this.temporary, 16 * this.temporary, true));
+                }
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //barrierCreator(this.X, this.Y); //for easily setting barriers when making buildings
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "cephrianBuilding5")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 135;
+
+            //DRAWSELF
+            if (this.rotation == 1/2 * Math.PI || this.rotation == -1/2 * Math.PI)
+            {
+                if (X > (this.X + 109.67 * this.temporary) - 225 * this.temporary && X < (this.X + 109.67 * this.temporary) && Y > (this.Y + 156.279 * this.temporary) - 318 * this.temporary && Y < (this.Y + 156.279 * this.temporary))
+                {
+                    this.zIndex = 1;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    if (this.rotation == 1/2 * Math.PI)
+                    {
+                        XXX.rotate(1/2 * Math.PI);
+                    }
+                    else if (this.rotation == -1/2 * Math.PI)
+                    {
+                        XXX.rotate(-1/2 * Math.PI);
+                    }
+                    XXX.drawImage(cef, 610, 740, 370, 281, -(1/2 * 370 * this.temporary), -(1/2 * 281 * this.temporary), 370 * this.temporary, 281 * this.temporary);
+                    XXX.restore();
+                }
+                else
+                {
+                    this.zIndex = 6;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+
+                    if (this.rotation == 1/2 * Math.PI)
+                    {
+                        XXX.rotate(1/2 * Math.PI);
+                    }
+                    else if (this.rotation == -1/2 * Math.PI)
+                    {
+                        XXX.rotate(-1/2 * Math.PI);
+                    }
+                    XXX.drawImage(cef, 610, 740, 370, 281, -(1/2 * 370 * this.temporary), -(1/2 * 281 * this.temporary), 370 * this.temporary, 281 * this.temporary);
+                    XXX.restore();
+                    //roof
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    if (this.rotation == 1/2 * Math.PI)
+                    {
+                        XXX.rotate(1/2 * Math.PI);
+                    }
+                    else if (this.rotation == -1/2 * Math.PI)
+                    {
+                        XXX.rotate(-1/2 * Math.PI);
+                    }
+                    XXX.drawImage(cef, 1456, 239, 370, 281, -(1/2 * 370 * this.temporary), -(1/2 * 281 * this.temporary), 370 * this.temporary, 281 * this.temporary);
+                    XXX.restore();
+                }
+            }
+            else
+            {
+                if (X > (this.X + 160.91571100249894 * this.temporary) - 320 * this.temporary && X < (this.X + 160.91571100249894 * this.temporary) && Y > (this.Y + 109.46952519353545 * this.temporary) - 227 * this.temporary && Y < (this.Y + 109.46952519353545 * this.temporary))
+                {
+                    this.zIndex = 1;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    if (this.rotation == Math.PI)
+                    {
+                        XXX.rotate(Math.PI);
+                    }
+                    else
+                    {
+                        XXX.rotate(0);
+                    }
+                    XXX.drawImage(cef, 610, 740, 370, 281, -(1/2 * 370 * this.temporary), -(1/2 * 281 * this.temporary), 370 * this.temporary, 281 * this.temporary);
+                    XXX.restore();
+                }
+                else
+                {
+                    this.zIndex = 6;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    if (this.rotation == Math.PI)
+                    {
+                        XXX.rotate(Math.PI);
+                    }
+                    else
+                    {
+                        XXX.rotate(0);
+                    }
+                    XXX.drawImage(cef, 610, 740, 370, 281, -(1/2 * 370 * this.temporary), -(1/2 * 281 * this.temporary), 370 * this.temporary, 281 * this.temporary);
+                    XXX.restore();
+                    //roof
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    if (this.rotation == Math.PI)
+                    {
+                        XXX.rotate(Math.PI);
+                    }
+                    else
+                    {
+                        XXX.rotate(0);
+                    }
+                    XXX.drawImage(cef, 1456, 239, 370, 281, -(1/2 * 370 * this.temporary), -(1/2 * 281 * this.temporary), 370 * this.temporary, 281 * this.temporary);
+                    XXX.restore();
+                }
+            }
+
+            //BARRIERS
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+
+                if (this.rotation == Math.PI)
+                {
+                    barrierList.push(new Barrier((this.X + -169.08428899750106 * this.temporary), (this.Y + -128.53047480646455 * this.temporary), 103 * this.temporary, 15 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -168.08428899750106 * this.temporary), (this.Y + 14.469525193535446 * this.temporary), 103 * this.temporary, 15 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -169.08428899750106 * this.temporary), (this.Y + -125.53047480646455 * this.temporary), 15 * this.temporary, 338 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -167.08428899750106 * this.temporary), (this.Y + 104.46952519353545 * this.temporary), 15 * this.temporary, 338 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 23.915711002498938 * this.temporary), (this.Y + -66.53047480646455 * this.temporary), 189 * this.temporary, 15 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 152.91571100249894 * this.temporary), (this.Y + -120.53047480646455 * this.temporary), 241 * this.temporary, 15 * this.temporary, true));
+                }
+                else if (this.rotation == 1/2 * Math.PI)
+                {
+                    barrierList.push(new Barrier((this.X + -66.64710282504939 * this.temporary), (this.Y + -39.20470194158952 * this.temporary), 15 * this.temporary, 189 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -126.64710282504939 * this.temporary), (this.Y + 152.79529805841048 * this.temporary), 15 * this.temporary, 104 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 18.352897174950613 * this.temporary), (this.Y + 154.79529805841048 * this.temporary), 15 * this.temporary, 99 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -122.64710282504939 * this.temporary), (this.Y + -168.20470194158952 * this.temporary), 15 * this.temporary, 244 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -125.64710282504939 * this.temporary), (this.Y + -167.20470194158952 * this.temporary), 334 * this.temporary, 15 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 105.35289717495061 * this.temporary), (this.Y + -165.20470194158952 * this.temporary), 334 * this.temporary, 15 * this.temporary, true));
+                }
+                else if (this.rotation == -1/2 * Math.PI)
+                {
+                    barrierList.push(new Barrier((this.X + 27.45446799970705 * this.temporary), (this.Y + -169.264128951128 * this.temporary), 16 * this.temporary, 100 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -119.54553200029295 * this.temporary), (this.Y + -169.264128951128 * this.temporary), 16 * this.temporary, 100 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -119.54553200029295 * this.temporary), (this.Y + -169.264128951128 * this.temporary), 338 * this.temporary, 16 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 110.45446799970705 * this.temporary), (this.Y + -168.264128951128 * this.temporary), 338 * this.temporary, 16 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -125.54553200029295 * this.temporary), (this.Y + 24.735871048872013 * this.temporary), 16 * this.temporary, 192 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -120.54553200029295 * this.temporary), (this.Y + 152.735871048872 * this.temporary), 16 * this.temporary, 242 * this.temporary, true));
+                }
+                else
+                {
+                    barrierList.push(new Barrier((this.X + 152.36116411413286 * this.temporary), (this.Y + -118.57850348231386 * this.temporary), 100 * this.temporary, 16 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 152.36116411413286 * this.temporary), (this.Y + 25.421496517686137 * this.temporary), 101 * this.temporary, 16 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -39.63883588586714 * this.temporary), (this.Y + -123.57850348231386 * this.temporary), 193 * this.temporary, 16 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -168.63883588586714 * this.temporary), (this.Y + -117.57850348231386 * this.temporary), 238 * this.temporary, 16 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -169.63883588586714 * this.temporary), (this.Y + -119.57850348231386 * this.temporary), 16 * this.temporary, 336 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -167.63883588586714 * this.temporary), (this.Y + 108.42149651768614 * this.temporary), 16 * this.temporary, 336 * this.temporary, true));
+                }
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //barrierCreator(this.X, this.Y); //for easily setting barriers when making buildings
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
         else if (this.type == "thenganBuilding1")
         {
             //TRAITS
@@ -18221,6 +19035,142 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 }
             }
         }
+        else if (this.type == "cephrianWell")
+        {
+            //TRAITS
+            this.solid = true;
+            this.interactionRange = 83;
+
+            //DRAWSELF
+            this.size = 1.25;
+            if (this.wellChange == true)
+            {
+                this.wellListo = false;
+                if (this.toggleWell == true)
+                {
+                    this.frameLoop([[jeru, 689, 677, 115, 71, 115 * this.size, 71 * this.size], [jeru, 689, 585, 115, 71, 115 * this.size, 71 * this.size], [jeru, 689, 493, 115, 71, 115 * this.size, 71 * this.size], [jeru, 689, 394, 115, 71, 115 * this.size, 71 * this.size], [jeru, 596, 118, 115, 71, 115 * this.size, 71 * this.size]], 4, 20, false);
+                    if (this.frameLoopComplete == true)
+                    {
+                        this.wellChange = false;
+                        this.wellUp = true;
+                        this.wellListo = true;
+                    }
+                }
+                else if (this.toggleWell == false)
+                {
+                    this.frameLoop([[jeru, 596, 118, 115, 71, 115 * this.size, 71 * this.size], [jeru, 689, 394, 115, 71, 115 * this.size, 71 * this.size], [jeru, 689, 493, 115, 71, 115 * this.size, 71 * this.size], [jeru, 689, 585, 115, 71, 115 * this.size, 71 * this.size], [jeru, 689, 677, 115, 71, 115 * this.size, 71 * this.size]], 4, 20, false);
+                    if (this.frameLoopComplete == true)
+                    {
+                        this.wellChange = false;
+                        this.wellUp = false;
+                        this.wellListo = true;
+                    }
+                }
+            }
+
+            if (this.wellChange == false)
+            {
+                if (this.wellUp == true)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jeru, 596, 118, 115, 71, -(1/2 * 115 * this.size), -(1/2 * 71 * this.size), 115 * this.size, 71 * this.size);
+                    XXX.restore();
+                }
+                else if (this.wellUp == false)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(jeru, 689, 677, 115, 71, -(1/2 * 115 * this.size), -(1/2 * 71 * this.size), 115 * this.size, 71 * this.size);
+                    XXX.restore();
+                }
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 38;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+                if (this.wellListo)
+                {
+                    this.wellChange = true;
+                    this.loopNum = 0;
+                    this.loopRate = 0;
+                    this.frameLoopComplete = false;
+
+                    //fill container with water
+                    if (this.wellUp == true)
+                    {
+                        this.doBreak = false;
+                        this.yaTiene = false;
+
+                        for (var i = 0; i < Inventory.length; i++)
+                        {
+                            for (var j = 0; j < wellConversionList.length; j++)
+                            {
+                                //console.log(Inventory[i][0].type + " v.s. "  + wellConversionList[j][0]);
+                                if (Inventory[i][0].type == wellConversionList[j][0])
+                                {
+                                    for (var k = 0; k < Inventory.length; k++)
+                                    {
+                                        if (Inventory[k][0].type == wellConversionList[j][1])
+                                        {
+                                            this.yaTiene = k;
+                                        }
+                                    }
+
+                                    if (Inventory[i][1] > 1)
+                                    {
+                                        Inventory[i][1] -= 1;
+                                        if (this.yaTiene == false)
+                                        {
+                                            Inventory.push([new Item(wellConversionList[j][1], false, false), 1]);
+                                        }
+                                        else
+                                        {
+                                            Inventory[this.yaTiene][1] +=1;
+                                        }
+                                        this.doBreak = true;
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        if (this.yaTiene == false)
+                                        {
+                                            Inventory.splice(i, 1);
+                                            Inventory.push([new Item(wellConversionList[j][1], false, false), 1]);
+                                        }
+                                        else
+                                        {
+                                            Inventory[this.yaTiene][1] +=1;
+                                            Inventory.splice(i, 1);
+                                        }
+                                        this.doBreak = true;
+                                        break;
+                                    }
+                                }
+                            }
+                            if (this.doBreak == true)
+                            {
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (this.toggleWell == false && this.wellListo)
+                {
+                    this.toggleWell = true;
+                }
+                else if (this.toggleWell == true && this.wellListo)
+                {
+                    this.toggleWell = false;
+                }
+            }
+        }
         else if (this.type == "cerebrisSporeCough")
         {
             //TRAITS
@@ -19254,6 +20204,100 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 crafting = "alchemy";
                 lowBar = "crafting";
                 gameState = "paused";
+            }
+        }
+        else if (this.type == "spellOilPot")
+        {
+            //TRAITS
+            this.solid = true;
+
+            this.interactionRange = 90;
+
+            if (this.runOneTime)
+            {
+                this.runOneTime = false;
+                this.spellOiledFull = this.information;
+            }
+
+            //animate
+            this.fireCostume += 1;
+
+            //DRAWSELF
+
+            if (this.spellOiledFull > 0)
+            {
+                if (this.fireCostume <= 8)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(cef, 121, 113, 42, 41, -(1/2 * 42 * 1.2), -(1/2 * 41 * 1.2), 42 * 1.2, 41 * 1.2);
+                    XXX.restore();
+                }
+                else if (this.fireCostume > 8 && this.fireCostume <= 16)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(cef, 165, 113, 42, 41, -(1/2 * 42 * 1.2), -(1/2 * 41 * 1.2), 42 * 1.2, 41 * 1.2);
+                    XXX.restore();
+                }
+                else if (this.fireCostume > 16 && this.fireCostume <= 24)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(cef, 210, 114, 42, 41, -(1/2 * 42 * 1.2), -(1/2 * 41 * 1.2), 42 * 1.2, 41 * 1.2);
+                    XXX.restore();
+                }
+                else if (this.fireCostume > 24 && this.fireCostume <= 32)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(cef, 255, 114, 42, 41, -(1/2 * 42 * 1.2), -(1/2 * 41 * 1.2), 42 * 1.2, 41 * 1.2);
+                    XXX.restore();
+                }
+                else
+                {
+                    this.fireCostume = 0;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(cef, 210, 114, 42, 41, -(1/2 * 42 * 1.2), -(1/2 * 41 * 1.2), 42 * 1.2, 41 * 1.2);
+                    XXX.restore();
+                }
+            }
+            else
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(cef, 76, 112, 42, 41, -(1/2 * 42 * 1.2), -(1/2 * 41 * 1.2), 42 * 1.2, 41 * 1.2);
+                XXX.restore();
+            }
+
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 20;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+                if (this.spellOiledFull > 0)
+                {
+                    if (have("glassBottle", 1))
+                    {
+                        take("glassBottle", 1);
+                        give("spellOil", 1);
+                        this.spellOiledFull -= 1;
+                        if (player.noticed == true)
+                        {
+                            this.changeFactionRelation(-40);
+                        }
+                    }
+                }
             }
         }
         else if (this.type == "cauldron")
@@ -24083,6 +25127,1427 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 this.activate = false;
             }
         }
+        else if (this.type == "guillotine")
+        {
+            //TRAITS
+            this.solid = true;
+            this.interactionRange = 1;
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.size = 1.15;
+
+            if (this.runOneTime)
+            {
+                this.runOneTime = false;
+
+                this.tic = 0;
+                this.manned = this.information[1]
+                this.executed = this.information[0];
+                this.isPlayer = this.information[2];
+                this.headX = 0;
+                this.headY = 0;
+                this.killPlayerTic = 0;
+                this.chopPlayer = 0;
+                this.choppedDone = false;
+                this.radius = 40;
+                this.doAiChop = false;
+            }
+
+            if (this.isPlayer == true && player.form == false && this.choppedDone == false)
+            {
+
+                clearEquipped();
+                player.guillotine = true;
+                this.chopPlayer += 1;
+                X = this.X;
+                Y = this.Y;
+                this.temporary = player.race;
+                if (this.executed == true)
+                {
+                    this.killPlayerTic += 1;
+                    if (this.killPlayerTic > 75)
+                    {
+                        player.health = -20;
+
+                        if (player.vamprism == true || player.undying)
+                        {
+                            this.choppedDone = true;
+                            player.guillotine = false;
+                        }
+                    }
+                }
+            }
+
+            if (quests.guillotine == true)
+            {
+                this.doAiChop = true;
+            }
+
+            if (this.doAiChop == true && this.manned == true || this.chopPlayer > 90 && this.manned == true)
+            {
+                this.tic += 2;
+            }
+
+            //DRAWSELF
+
+            if (this.choppedDone == true && this.isPlayer == true)
+            {
+                this.radius = 16;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 904, 449, 62, 15, -1/2 * 62 * this.size, -1/2 * 15 * this.size, 62 * this.size, 15 * this.size);
+                XXX.restore();
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width - 30, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 466, 828, 146, 19, -1/2 * 146 * this.size, -1/2 * 19 * this.size, 146 * this.size, 19 * this.size);
+                XXX.restore();
+            }
+            else if (this.manned == false && this.executed == false)
+            {
+                this.headY = 11;
+                this.headX = 1;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 806, 16, 244, 73, -1/2 * 244 * this.size, -1/2 * 73 * this.size, 244 * this.size, 73 * this.size);
+
+                if (this.temporary == 1 || this.temporary == "#e68900") //nirwaden
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "#e68900";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 2 || this.temporary == "green") //kel
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "green";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 3 || this.temporary == "navy") //freynor
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "navy";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 4 || this.temporary == "#663300") //thengar
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "#663300";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 5 || this.temporary == "darkRed") //aldrekii
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "darkRed";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 6 || this.temporary == "#1c1c1c") //vardanian
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "#1c1c1c";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 7 || this.temporary == "gold") //orgell
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "gold";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 8 || this.temporary == "#06F4CA") //sylkeem
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "#06F4CA";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 9 || this.temporary == "purple") //cephrian
+                {
+
+                    XXX.beginPath();
+                    XXX.fillStyle = "purple";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 10 || this.temporary == "white") //outlander
+                {
+
+                    XXX.beginPath();
+                    XXX.fillStyle = "white";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 11 || this.temporary == "#999966") //empiric
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "#999966";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 12 || this.temporary == "#2a0038") //faelan
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "#2a0038";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary >= 13 || this.temporary == "pink") //faelan
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "pink";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                XXX.restore();
+            }
+            else if (this.tic < 4 && this.manned == true && this.executed == false)
+            {
+                this.headY = 11;
+                this.headX = 1;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 801, 96, 257, 73, -1/2 * 257 * this.size, -1/2 * 73 * this.size, 257 * this.size, 73 * this.size);
+
+                if (this.temporary == 1 || this.temporary == "#e68900") //nirwaden
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "#e68900";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 2 || this.temporary == "green") //kel
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "green";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 3 || this.temporary == "navy") //freynor
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "navy";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 4 || this.temporary == "#663300") //thengar
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "#663300";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 5 || this.temporary == "darkRed") //aldrekii
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "darkRed";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 6 || this.temporary == "#1c1c1c") //vardanian
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "#1c1c1c";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 7 || this.temporary == "gold") //orgell
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "gold";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 8 || this.temporary == "#06F4CA") //sylkeem
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "#06F4CA";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 9 || this.temporary == "purple") //cephrian
+                {
+
+                    XXX.beginPath();
+                    XXX.fillStyle = "purple";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 10 || this.temporary == "white") //outlander
+                {
+
+                    XXX.beginPath();
+                    XXX.fillStyle = "white";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 11 || this.temporary == "#999966") //empiric
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "#999966";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 12 || this.temporary == "#2a0038") //faelan
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "#2a0038";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary >= 13 || this.temporary == "pink") //faelan
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "pink";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                XXX.restore();
+            }
+            else if (this.tic < 8 && this.manned == true && this.executed == false)
+            {
+                this.headY = 11;
+                this.headX = 1;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 801, 185, 257, 73, -1/2 * 257 * this.size, -1/2 * 73 * this.size, 257 * this.size, 73 * this.size);
+
+                if (this.temporary == 1 || this.temporary == "#e68900") //nirwaden
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "#e68900";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 2 || this.temporary == "green") //kel
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "green";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 3 || this.temporary == "navy") //freynor
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "navy";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 4 || this.temporary == "#663300") //thengar
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "#663300";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 5 || this.temporary == "darkRed") //aldrekii
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "darkRed";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 6 || this.temporary == "#1c1c1c") //vardanian
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "#1c1c1c";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 7 || this.temporary == "gold") //orgell
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "gold";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 8 || this.temporary == "#06F4CA") //sylkeem
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "#06F4CA";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 9 || this.temporary == "purple") //cephrian
+                {
+
+                    XXX.beginPath();
+                    XXX.fillStyle = "purple";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 10 || this.temporary == "white") //outlander
+                {
+
+                    XXX.beginPath();
+                    XXX.fillStyle = "white";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 11 || this.temporary == "#999966") //empiric
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "#999966";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 12 || this.temporary == "#2a0038") //faelan
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "#2a0038";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary >= 13 || this.temporary == "pink") //faelan
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "pink";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                XXX.restore();
+            }
+            else if (this.tic < 12 && this.manned == true && this.executed == false)
+            {
+                this.headY = 11;
+                this.headX = 0;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 802, 259, 257, 73, -1/2 * 257 * this.size, -1/2 * 73 * this.size, 257 * this.size, 73 * this.size);
+
+                if (this.temporary == 1 || this.temporary == "#e68900") //nirwaden
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "#e68900";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 2 || this.temporary == "green") //kel
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "green";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 3 || this.temporary == "navy") //freynor
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "navy";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 4 || this.temporary == "#663300") //thengar
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "#663300";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 5 || this.temporary == "darkRed") //aldrekii
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "darkRed";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 6 || this.temporary == "#1c1c1c") //vardanian
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "#1c1c1c";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 7 || this.temporary == "gold") //orgell
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "gold";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 8 || this.temporary == "#06F4CA") //sylkeem
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "#06F4CA";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 9 || this.temporary == "purple") //cephrian
+                {
+
+                    XXX.beginPath();
+                    XXX.fillStyle = "purple";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 10 || this.temporary == "white") //outlander
+                {
+
+                    XXX.beginPath();
+                    XXX.fillStyle = "white";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 11 || this.temporary == "#999966") //empiric
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "#999966";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 12 || this.temporary == "#2a0038") //faelan
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "#2a0038";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary >= 13 || this.temporary == "pink") //faelan
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "pink";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                XXX.restore();
+            }
+            else if (this.tic < 16 && this.manned == true && this.executed == false)
+            {
+                this.headY = 11;
+                this.headX = 0;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 804, 342, 257, 73, -1/2 * 257 * this.size, -1/2 * 73 * this.size, 257 * this.size, 73 * this.size);
+
+                if (this.temporary == 1 || this.temporary == "#e68900") //nirwaden
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "#e68900";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 2 || this.temporary == "green") //kel
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "green";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 3 || this.temporary == "navy") //freynor
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "navy";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 4 || this.temporary == "#663300") //thengar
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "#663300";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 5 || this.temporary == "darkRed") //aldrekii
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "darkRed";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 6 || this.temporary == "#1c1c1c") //vardanian
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "#1c1c1c";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 7 || this.temporary == "gold") //orgell
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "gold";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 8 || this.temporary == "#06F4CA") //sylkeem
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "#06F4CA";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 9 || this.temporary == "purple") //cephrian
+                {
+
+                    XXX.beginPath();
+                    XXX.fillStyle = "purple";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 10 || this.temporary == "white") //outlander
+                {
+
+                    XXX.beginPath();
+                    XXX.fillStyle = "white";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 11 || this.temporary == "#999966") //empiric
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "#999966";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 12 || this.temporary == "#2a0038") //faelan
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "#2a0038";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary >= 13 || this.temporary == "pink") //faelan
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "pink";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                XXX.restore();
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width - 27, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 344, 849, 62, 19, -1/2 * 62 * this.size, -1/2 * 19 * this.size, 62 * this.size, 19 * this.size);
+                XXX.restore();
+            }
+            else if (this.tic < 20 && this.manned == true && this.executed == false)
+            {
+                this.headY = 11;
+                this.headX = 0;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 804, 342, 257, 73, -1/2 * 257 * this.size, -1/2 * 73 * this.size, 257 * this.size, 73 * this.size);
+
+                if (this.temporary == 1 || this.temporary == "#e68900") //nirwaden
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "#e68900";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 2 || this.temporary == "green") //kel
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "green";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 3 || this.temporary == "navy") //freynor
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "navy";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 4 || this.temporary == "#663300") //thengar
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "#663300";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 5 || this.temporary == "darkRed") //aldrekii
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "darkRed";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 6 || this.temporary == "#1c1c1c") //vardanian
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "#1c1c1c";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 7 || this.temporary == "gold") //orgell
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "gold";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 8 || this.temporary == "#06F4CA") //sylkeem
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "#06F4CA";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 9 || this.temporary == "purple") //cephrian
+                {
+
+                    XXX.beginPath();
+                    XXX.fillStyle = "purple";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 10 || this.temporary == "white") //outlander
+                {
+
+                    XXX.beginPath();
+                    XXX.fillStyle = "white";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 11 || this.temporary == "#999966") //empiric
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "#999966";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 12 || this.temporary == "#2a0038") //faelan
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "#2a0038";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary >= 13 || this.temporary == "pink") //faelan
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "pink";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                XXX.restore();
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width - 27, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 416, 849, 100, 19, -1/2 * 100 * this.size, -1/2 * 19 * this.size, 100 * this.size, 19 * this.size);
+                XXX.restore();
+            }
+            else if (this.tic < 24 && this.manned == true && this.executed == false || this.tic >= 24 && this.manned == true && this.executed == false)
+            {
+                this.headY = 34;
+                this.headX = -16;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 807, 421, 257, 73, -1/2 * 257 * this.size, -1/2 * 73 * this.size, 257 * this.size, 73 * this.size);
+
+                if (this.temporary == 1 || this.temporary == "#e68900") //nirwaden
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "#e68900";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 2 || this.temporary == "green") //kel
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "green";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 3 || this.temporary == "navy") //freynor
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "navy";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 4 || this.temporary == "#663300") //thengar
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "#663300";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 5 || this.temporary == "darkRed") //aldrekii
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "darkRed";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 6 || this.temporary == "#1c1c1c") //vardanian
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "#1c1c1c";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 7 || this.temporary == "gold") //orgell
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "gold";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 8 || this.temporary == "#06F4CA") //sylkeem
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "#06F4CA";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 9 || this.temporary == "purple") //cephrian
+                {
+
+                    XXX.beginPath();
+                    XXX.fillStyle = "purple";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 10 || this.temporary == "white") //outlander
+                {
+
+                    XXX.beginPath();
+                    XXX.fillStyle = "white";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 11 || this.temporary == "#999966") //empiric
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "#999966";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 12 || this.temporary == "#2a0038") //faelan
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "#2a0038";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary >= 13 || this.temporary == "pink") //faelan
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "pink";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                XXX.restore();
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width - 30, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 466, 828, 146, 19, -1/2 * 146 * this.size, -1/2 * 19 * this.size, 146 * this.size, 19 * this.size);
+                XXX.restore();
+
+                if (this.tic >= 35)
+                {
+                    this.executed = true;
+                    this.manned = true;
+                    quests.guillotine = false;
+                }
+            }
+            else if (this.manned == true && this.executed == true)
+            {
+                this.headY = 34;
+                this.headX = -16;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 894, 408, 82, 98, -1/2 * 82 * this.size, -1/2 * 98 * this.size, 82 * this.size, 98 * this.size);
+
+                if (this.temporary == 1 || this.temporary == "#e68900") //nirwaden
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "#e68900";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 2 || this.temporary == "green") //kel
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "green";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 3 || this.temporary == "navy") //freynor
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "navy";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 4 || this.temporary == "#663300") //thengar
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "#663300";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 5 || this.temporary == "darkRed") //aldrekii
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "darkRed";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 6 || this.temporary == "#1c1c1c") //vardanian
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "#1c1c1c";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 7 || this.temporary == "gold") //orgell
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "gold";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 8 || this.temporary == "#06F4CA") //sylkeem
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "#06F4CA";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 9 || this.temporary == "purple") //cephrian
+                {
+
+                    XXX.beginPath();
+                    XXX.fillStyle = "purple";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 10 || this.temporary == "white") //outlander
+                {
+
+                    XXX.beginPath();
+                    XXX.fillStyle = "white";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 11 || this.temporary == "#999966") //empiric
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "#999966";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 12 || this.temporary == "#2a0038") //faelan
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "#2a0038";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary >= 13 || this.temporary == "pink") //faelan
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "pink";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                XXX.restore();
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width - 30, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 466, 828, 146, 19, -1/2 * 146 * this.size, -1/2 * 19 * this.size, 146 * this.size, 19 * this.size);
+                XXX.restore();
+
+                this.manned = false;
+                ArtificialIntelligenceAccess.push(new Unit(this.X + Math.cos(this.rotation + 0.085 * Math.PI) * 120, this.Y + Math.sin(this.rotation + 0.085 * Math.PI) * 120, "Soldier", false, "Headsman", {race: "Cephrite", faction: "Cephrite", con: 9, speed: 1.25, outfit: ["cephrianArmour", 10], weapon: ["none", [0.45, 0.45], 0, 3, 1.1], ranged: [false, "arrow", 8, 2100, 1, 7, 0, "stunI", 2.65], patrolStops: 1, patrolLoop: false, route:[[this.X + Math.cos(this.rotation) * 120, this.Y + Math.sin(this.rotation) * 120]]}));
+            }
+            else if (this.manned == false && this.executed == true)
+            {
+                this.headY = 34;
+                this.headX = -16;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 894, 408, 82, 98, -1/2 * 82 * this.size, -1/2 * 98 * this.size, 82 * this.size, 98 * this.size);
+
+                if (this.temporary == 1 || this.temporary == "#e68900") //nirwaden
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "#e68900";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 2 || this.temporary == "green") //kel
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "green";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 3 || this.temporary == "navy") //freynor
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "navy";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 4 || this.temporary == "#663300") //thengar
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "#663300";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 5 || this.temporary == "darkRed") //aldrekii
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "darkRed";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 6 || this.temporary == "#1c1c1c") //vardanian
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "#1c1c1c";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 7 || this.temporary == "gold") //orgell
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "gold";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 8 || this.temporary == "#06F4CA") //sylkeem
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "#06F4CA";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 9 || this.temporary == "purple") //cephrian
+                {
+
+                    XXX.beginPath();
+                    XXX.fillStyle = "purple";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 10 || this.temporary == "white") //outlander
+                {
+
+                    XXX.beginPath();
+                    XXX.fillStyle = "white";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 11 || this.temporary == "#999966") //empiric
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "#999966";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary == 12 || this.temporary == "#2a0038") //faelan
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "#2a0038";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                else if (this.temporary >= 13 || this.temporary == "pink") //faelan
+                {
+                    XXX.beginPath();
+                    XXX.fillStyle = "pink";
+                    XXX.arc(this.headX, this.headY, 10, 0, 2 * Math.PI);
+                    XXX.fill();
+                    XXX.strokeStyle = "black";
+                    XXX.lineWidth = 0.5;
+                    XXX.stroke();
+                }
+                XXX.restore();
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width - 30, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(jeru, 466, 828, 146, 19, -1/2 * 146 * this.size, -1/2 * 19 * this.size, 146 * this.size, 19 * this.size);
+                XXX.restore();
+            }
+
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+        }
         else if (this.type == "deadDrile")
         {
             //TRAITS
@@ -26506,7 +28971,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             //TRAITS
             this.variety = "plant";
             this.nectar(15);
-            this.solid = false;
+            this.solid = true;
             this.interactionRange = 100;
 
             //DRAWSELF
@@ -26542,6 +29007,15 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             if (this.activate == true && this.phase == 0 || this.activate == true && this.phase == 1)
             {
                 this.activate = false;
+
+                //if the plant is owned and you are noticed by any AI then decrease faction relation for stealing.
+                if (this.owned.length > 1)
+                {
+                    if (player.noticed == true)
+                    {
+                        this.changeFactionRelation(-19);
+                    }
+                }
 
                 if (this.phase == 0)
                 {
@@ -35810,7 +38284,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                         }
                     }
                     var distFromCutCut = Math.sqrt((this.X - X)*(this.X - X) + (this.Y - Y)*(this.Y - Y));
-                    console.log(distFromCutCut);
+                    //console.log(distFromCutCut);
                     if (distFromCutCut <= player.weapon.range * 7 + 107)
                     {
                         this.treeHealth -= 1;
@@ -37142,7 +39616,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 if (this.xiumGrowth <= 0)
                 {
                     //DROPS FRUIT FROM THE TREE
-                    if (currentSeason == "Frost" || currentSeason == "Bright") //The nut only falls from the tree when it is not the season frost
+                    if (currentSeason == "Frost" && this.information != "garden" || currentSeason == "Bright"&& this.information != "garden") //The nut only falls from the tree when it is not the season frost
                     {
                         if (currentSeason == "Bright") //twice as many yeol nuts fall during the season called Bounty
                         {
@@ -39371,6 +41845,766 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 }
             }
         }
+        else if (this.type == "cephrianPyre")
+        {
+            //TRAITS
+            this.solid = true;
+            this.interactionRange = 1;
+
+            if (this.runOneTime)
+            {
+                this.runOneTime = false;
+                if (this.information == false) //when added make this selvaCampFire
+                {
+                    if (this.temporary == "lit")
+                    {
+                        scenicList.push(new Scenery("acaciaCampFire", this.X, this.Y, this.rotation, "permaLit"));
+                    }
+                    else if (this.temporary == true)
+                    {
+                        scenicList.push(new Scenery("acaciaCampFire", this.X, this.Y, this.rotation, true));
+                    }
+                    else
+                    {
+                        scenicList.push(new Scenery("acaciaCampFire", this.X, this.Y, this.rotation, false));
+                    }
+                }
+                else
+                {
+                    if (this.temporary == "lit")
+                    {
+                        scenicList.push(new Scenery("acaciaCampFire", this.X, this.Y, this.rotation, "permaLit"));
+                    }
+                    else if (this.temporary == true)
+                    {
+                        scenicList.push(new Scenery("acaciaCampFire", this.X, this.Y, this.rotation, true));
+                    }
+                    else
+                    {
+                        scenicList.push(new Scenery("acaciaCampFire", this.X, this.Y, this.rotation, false));
+                    }
+                }
+            }
+
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(jeru, 707, 123, 77, 75, -(1/2 * 77 * 1.35), -(1/2 * 75 * 1.35), 77 * 1.35, 75 * 1.35);
+            XXX.restore();
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 37;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+                dClick = true;
+            }
+        }
+        else if (this.type == "zetianOven")
+        {
+            //TRAITS
+            this.solid = true;
+            this.interactionRange = 135;
+            this.radius = 55;
+
+            if (this.runOneTime)
+            {
+                this.runOneTime = false;
+                this.opened = false;
+                this.campFireTime = 0;
+                this.fuel = 0;
+                if (this.temporary == "lit")
+                {
+                    this.lit = true;
+                }
+                else
+                {
+                    this.lit = false;
+                }
+            }
+
+            //animate
+            if (this.lit == true)
+            {
+                this.campFireTime += 1;
+                //die out over time
+                if (this.campFireTime >= 300 && this.temporary != "lit")
+                {
+                    this.fuel -= 1;
+                    this.campFireTime = 0;
+                }
+
+                if (this.fuel <= 0)
+                {
+                    this.lit = false;
+                }
+            }
+
+            //DRAWSELF
+            if (this.lit == false)
+            {
+                if (this.opened == false)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(raed, 1099, 591, 71, 68, -(1/2 * 71 * 2), -(1/2 * 68 * 2), 71 * 2, 68 * 2);
+                    XXX.restore();
+                }
+                else if (this.opened == true)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(raed, 1080, 669, 116, 71, -(1/2 * 116 * 2) + 5, -(1/2 * 71 * 2), 116 * 2, 71 * 2);
+                    XXX.restore();
+                }
+            }
+            else if (this.lit == true)
+            {
+                if (this.opened == false)
+                {
+                    lights.push({X:this.X, Y: this.Y, size: 90, extraStops: true, GRD: 0.8, Alpha: 0.1, showMe: false});
+                    if (this.playerer <= 140)
+                    {
+                        player.warmth += Math.max(0, (3 - (player.heatResistance / 200)));
+                    }
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(raed, 1016, 557, 71, 68, -(1/2 * 71 * 2), -(1/2 * 68 * 2), 71 * 2, 68 * 2);
+                    XXX.restore();
+                }
+                else if (this.opened == true)
+                {
+                    lights.push({X:this.X, Y: this.Y, size: 425, extraStops: true, GRD: 0.5, Alpha: 0.8, showMe: false});
+                    if (this.playerer <= 140)
+                    {
+                        player.warmth += Math.max(0, (3.5 - (player.heatResistance / 200)));
+                    }
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(raed, 908, 555, 112, 70, -(1/2 * 112 * 2) + 5, -(1/2 * 70 * 2), 112 * 2, 70 * 2);
+                    XXX.restore();
+                }
+            }
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+
+                this.didSomethinOven = false;
+                if (this.opened == true)
+                {
+                    this.gotFireStarter = false;
+                    for (var i = 0; i < Inventory.length; i++)
+                    {
+                        if (Inventory[i][0].identity == "Fire-Starter")
+                        {
+                            this.gotFireStarter = true;
+                        }
+                    }
+                    if (this.lit == false && this.fuel > 0 && this.gotFireStarter == true)
+                    {
+                        this.lit = true;
+                        this.didSomethinOven = true;
+                    }
+                    else if (this.lit == false && this.temporary == true)
+                    {
+                        for (var i = 0; i < Inventory.length; i++)
+                        {
+                            if (Inventory[i][0].identity == "Ashai Wood" && Inventory[i][1] > 1)
+                            {
+                                Inventory[i][1] -= 1;
+                                this.fuel += 9;
+                                this.didSomethinOven = true;
+                                break;
+                            }
+                            else if (Inventory[i][0].identity == "Ashai Wood" && Inventory[i][1] == 1)
+                            {
+                                Inventory.splice(i, 1);
+                                this.fuel += 9;
+                                this.didSomethinOven = true;
+                                break;
+                            }
+                            if (Inventory[i][0].identity == "Wood" && Inventory[i][1] > 1)
+                            {
+                                Inventory[i][1] -= 1;
+                                this.fuel += 14;
+                                this.didSomethinOven = true;
+                                break;
+                            }
+                            else if (Inventory[i][0].identity == "Wood" && Inventory[i][1] == 1)
+                            {
+                                Inventory.splice(i, 1);
+                                this.fuel += 14;
+                                this.didSomethinOven = true;
+                                break;
+                            }
+                            if (Inventory[i][0].identity == "Selva Wood" && Inventory[i][1] > 1)
+                            {
+                                Inventory[i][1] -= 1;
+                                this.fuel += 60;
+                                this.didSomethinOven = true;
+                                break;
+                            }
+                            else if (Inventory[i][0].identity == "Selva Wood" && Inventory[i][1] == 1)
+                            {
+                                Inventory.splice(i, 1);
+                                this.fuel += 60;
+                                this.didSomethinOven = true;
+                                break;
+                            }
+                            if (Inventory[i][0].identity == "Acacia Wood" && Inventory[i][1] > 1)
+                            {
+                                Inventory[i][1] -= 1;
+                                this.fuel += 50;
+                                this.didSomethinOven = true;
+                                break;
+                            }
+                            else if (Inventory[i][0].identity == "Acacia Wood" && Inventory[i][1] == 1)
+                            {
+                                Inventory.splice(i, 1);
+                                this.fuel += 50;
+                                this.didSomethinOven = true;
+                                break;
+                            }
+                            if (Inventory[i][0].identity == "Yeol Wood" && Inventory[i][1] > 1)
+                            {
+                                Inventory[i][1] -= 1;
+                                this.fuel += 5;
+                                this.didSomethinOven = true;
+                                break;
+                            }
+                            else if (Inventory[i][0].identity == "Yeol Wood" && Inventory[i][1] == 1)
+                            {
+                                Inventory.splice(i, 1);
+                                this.fuel += 5;
+                                this.didSomethinOven = true;
+                                break;
+                            }
+                            if (Inventory[i][0].identity == "Coal" && Inventory[i][1] > 1)
+                            {
+                                Inventory[i][1] -= 1;
+                                this.fuel += 15;
+                                this.didSomethinOven = true;
+                                break;
+                            }
+                            else if (Inventory[i][0].identity == "Coal" && Inventory[i][1] == 1)
+                            {
+                                Inventory.splice(i, 1);
+                                this.fuel += 15;
+                                this.didSomethinOven = true;
+                                break;
+                            }
+                            if (Inventory[i][0].identity == "Charcoal" && Inventory[i][1] > 1)
+                            {
+                                Inventory[i][1] -= 1;
+                                this.fuel += 10;
+                                this.didSomethinOven = true;
+                                break;
+                            }
+                            else if (Inventory[i][0].identity == "Charcoal" && Inventory[i][1] == 1)
+                            {
+                                Inventory.splice(i, 1);
+                                this.fuel += 10;
+                                this.didSomethinOven = true;
+                                break;
+                            }
+                        }
+                    }
+                    else if (this.lit == true && this.temporary != "lit")
+                    {
+                        player.craftPosition = 0;
+                        craftScroll = 0;
+                        crafting = "foods";
+                        lowBar = "crafting";
+                        gameState = "paused";
+                    }
+
+                    if (this.didSomethinOven == false)
+                    {
+                        this.opened = false;
+                    }
+                }
+                else
+                {
+                    this.opened = true;
+                }
+            }
+        }
+        else if (this.type == "aldrekiiOven")
+        {
+            //TRAITS
+            this.solid = true;
+            this.interactionRange = 120;
+            this.radius = 35;
+
+            if (this.runOneTime)
+            {
+                this.runOneTime = false;
+                this.opened = false;
+                this.campFireTime = 0;
+                this.fuel = 0;
+                if (this.temporary == "lit")
+                {
+                    this.lit = true;
+                }
+                else
+                {
+                    this.lit = false;
+                }
+            }
+
+            //animate
+            if (this.lit == true)
+            {
+                this.campFireTime += 1;
+                //die out over time
+                if (this.campFireTime >= 500 && this.temporary != "lit")
+                {
+                    this.fuel -= 1;
+                    this.campFireTime = 0;
+                }
+
+                if (this.fuel <= 0)
+                {
+                    this.lit = false;
+                }
+            }
+
+            //DRAWSELF
+            if (this.lit == false)
+            {
+                if (this.opened == false)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(raed, 69, 166, 41, 38, -(1/2 * 41 * 2), -(1/2 * 38 * 2), 41 * 2, 38 * 2);
+                    XXX.restore();
+                }
+                else if (this.opened == true)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(raed, 60, 209, 53, 38, -(1/2 * 53 * 2) - 9, -(1/2 * 38 * 2) + 1, 53 * 2, 38 * 2);
+                    XXX.restore();
+                }
+            }
+            else if (this.lit == true)
+            {
+                if (this.opened == false)
+                {
+                    if (this.playerer <= 140)
+                    {
+                        player.warmth += Math.max(0, (2 - (player.heatResistance / 200)));
+                    }
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(raed, 10, 165, 53, 38, -(1/2 * 53 * 2), -(1/2 * 38 * 2), 53 * 2, 38 * 2);
+                    XXX.restore();
+                }
+                else if (this.opened == true)
+                {
+                    lights.push({X:this.X, Y: this.Y, size: 250, extraStops: true, GRD: 0.3, Alpha: 0.4, showMe: false});
+                    if (this.playerer <= 140)
+                    {
+                        player.warmth += Math.max(0, (2.5 - (player.heatResistance / 200)));
+                    }
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(raed, 6, 207, 53, 39, -(1/2 * 53 * 2) - 9, -(1/2 * 39 * 2), 53 * 2, 39 * 2);
+                    XXX.restore();
+                }
+            }
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+
+                this.didSomethinOven = false;
+                if (this.opened == true)
+                {
+                    this.gotFireStarter = false;
+                    for (var i = 0; i < Inventory.length; i++)
+                    {
+                        if (Inventory[i][0].identity == "Fire-Starter")
+                        {
+                            this.gotFireStarter = true;
+                        }
+                    }
+                    if (this.lit == false && this.fuel > 0 && this.gotFireStarter == true)
+                    {
+                        this.lit = true;
+                        this.didSomethinOven = true;
+                    }
+                    else if (this.lit == false && this.temporary == true)
+                    {
+                        for (var i = 0; i < Inventory.length; i++)
+                        {
+                            if (Inventory[i][0].identity == "Ashai Wood" && Inventory[i][1] > 1)
+                            {
+                                Inventory[i][1] -= 1;
+                                this.fuel += 9;
+                                this.didSomethinOven = true;
+                                break;
+                            }
+                            else if (Inventory[i][0].identity == "Ashai Wood" && Inventory[i][1] == 1)
+                            {
+                                Inventory.splice(i, 1);
+                                this.fuel += 9;
+                                this.didSomethinOven = true;
+                                break;
+                            }
+                            if (Inventory[i][0].identity == "Wood" && Inventory[i][1] > 1)
+                            {
+                                Inventory[i][1] -= 1;
+                                this.fuel += 14;
+                                this.didSomethinOven = true;
+                                break;
+                            }
+                            else if (Inventory[i][0].identity == "Wood" && Inventory[i][1] == 1)
+                            {
+                                Inventory.splice(i, 1);
+                                this.fuel += 14;
+                                this.didSomethinOven = true;
+                                break;
+                            }
+                            if (Inventory[i][0].identity == "Selva Wood" && Inventory[i][1] > 1)
+                            {
+                                Inventory[i][1] -= 1;
+                                this.fuel += 60;
+                                this.didSomethinOven = true;
+                                break;
+                            }
+                            else if (Inventory[i][0].identity == "Selva Wood" && Inventory[i][1] == 1)
+                            {
+                                Inventory.splice(i, 1);
+                                this.fuel += 60;
+                                this.didSomethinOven = true;
+                                break;
+                            }
+                            if (Inventory[i][0].identity == "Acacia Wood" && Inventory[i][1] > 1)
+                            {
+                                Inventory[i][1] -= 1;
+                                this.fuel += 50;
+                                this.didSomethinOven = true;
+                                break;
+                            }
+                            else if (Inventory[i][0].identity == "Acacia Wood" && Inventory[i][1] == 1)
+                            {
+                                Inventory.splice(i, 1);
+                                this.fuel += 50;
+                                this.didSomethinOven = true;
+                                break;
+                            }
+                            if (Inventory[i][0].identity == "Yeol Wood" && Inventory[i][1] > 1)
+                            {
+                                Inventory[i][1] -= 1;
+                                this.fuel += 5;
+                                this.didSomethinOven = true;
+                                break;
+                            }
+                            else if (Inventory[i][0].identity == "Yeol Wood" && Inventory[i][1] == 1)
+                            {
+                                Inventory.splice(i, 1);
+                                this.fuel += 5;
+                                this.didSomethinOven = true;
+                                break;
+                            }
+                            if (Inventory[i][0].identity == "Coal" && Inventory[i][1] > 1)
+                            {
+                                Inventory[i][1] -= 1;
+                                this.fuel += 15;
+                                this.didSomethinOven = true;
+                                break;
+                            }
+                            else if (Inventory[i][0].identity == "Coal" && Inventory[i][1] == 1)
+                            {
+                                Inventory.splice(i, 1);
+                                this.fuel += 15;
+                                this.didSomethinOven = true;
+                                break;
+                            }
+                            if (Inventory[i][0].identity == "Charcoal" && Inventory[i][1] > 1)
+                            {
+                                Inventory[i][1] -= 1;
+                                this.fuel += 10;
+                                this.didSomethinOven = true;
+                                break;
+                            }
+                            else if (Inventory[i][0].identity == "Charcoal" && Inventory[i][1] == 1)
+                            {
+                                Inventory.splice(i, 1);
+                                this.fuel += 10;
+                                this.didSomethinOven = true;
+                                break;
+                            }
+                        }
+                    }
+                    else if (this.lit == true && this.temporary != "lit")
+                    {
+                        player.craftPosition = 0;
+                        craftScroll = 0;
+                        crafting = "foods";
+                        lowBar = "crafting";
+                        gameState = "paused";
+                    }
+
+                    if (this.didSomethinOven == false)
+                    {
+                        this.opened = false;
+                    }
+                }
+                else
+                {
+                    this.opened = true;
+                }
+            }
+        }
+        else if (this.type == "cephrianOven")
+        {
+            //TRAITS
+            this.solid = true;
+            this.interactionRange = 120;
+            this.radius = 35;
+
+            if (this.runOneTime)
+            {
+                this.runOneTime = false;
+                this.opened = false;
+                this.campFireTime = 0;
+                this.fuel = 0;
+                if (this.temporary == "lit")
+                {
+                    this.lit = true;
+                }
+                else
+                {
+                    this.lit = false;
+                }
+            }
+
+            //animate
+            if (this.lit == true)
+            {
+                this.campFireTime += 1;
+                //die out over time
+                if (this.campFireTime >= 500 && this.temporary != "lit")
+                {
+                    this.fuel -= 1;
+                    this.campFireTime = 0;
+                }
+
+                if (this.fuel <= 0)
+                {
+                    this.lit = false;
+                }
+            }
+
+            //DRAWSELF
+            if (this.lit == false)
+            {
+                if (this.opened == false)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(raed, 125, 166, 40, 41, -(1/2 * 40 * 2), -(1/2 * 41 * 2), 40 * 2, 41 * 2);
+                    XXX.restore();
+                }
+                else if (this.opened == true)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(raed, 113, 210, 67, 38, -(1/2 * 67 * 2), -(1/2 * 38 * 2), 67 * 2, 38 * 2);
+                    XXX.restore();
+                }
+            }
+            else if (this.lit == true)
+            {
+                if (this.opened == false)
+                {
+                    if (this.playerer <= 140)
+                    {
+                        player.warmth += Math.max(0, (2 - (player.heatResistance / 200)));
+                    }
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(raed, 159, 30, 41, 38, -(1/2 * 41 * 2), -(1/2 * 38 * 2), 41 * 2, 38 * 2);
+                    XXX.restore();
+                }
+                else if (this.opened == true)
+                {
+                    lights.push({X:this.X, Y: this.Y, size: 250, extraStops: true, GRD: 0.3, Alpha: 0.4, showMe: false});
+                    if (this.playerer <= 140)
+                    {
+                        player.warmth += Math.max(0, (2.5 - (player.heatResistance / 200)));
+                    }
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(raed, 4, 130, 67, 38, -(1/2 * 67 * 2), -(1/2 * 38 * 2), 67 * 2, 38 * 2);
+                    XXX.restore();
+                }
+            }
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+
+                this.didSomethinOven = false;
+                if (this.opened == true)
+                {
+                    this.gotFireStarter = false;
+                    for (var i = 0; i < Inventory.length; i++)
+                    {
+                        if (Inventory[i][0].identity == "Fire-Starter")
+                        {
+                            this.gotFireStarter = true;
+                        }
+                    }
+                    if (this.lit == false && this.fuel > 0 && this.gotFireStarter == true)
+                    {
+                        this.lit = true;
+                        this.didSomethinOven = true;
+                    }
+                    else if (this.lit == false && this.temporary == true)
+                    {
+                        for (var i = 0; i < Inventory.length; i++)
+                        {
+                            if (Inventory[i][0].identity == "Ashai Wood" && Inventory[i][1] > 1)
+                            {
+                                Inventory[i][1] -= 1;
+                                this.fuel += 9;
+                                this.didSomethinOven = true;
+                                break;
+                            }
+                            else if (Inventory[i][0].identity == "Ashai Wood" && Inventory[i][1] == 1)
+                            {
+                                Inventory.splice(i, 1);
+                                this.fuel += 9;
+                                this.didSomethinOven = true;
+                                break;
+                            }
+                            if (Inventory[i][0].identity == "Wood" && Inventory[i][1] > 1)
+                            {
+                                Inventory[i][1] -= 1;
+                                this.fuel += 14;
+                                this.didSomethinOven = true;
+                                break;
+                            }
+                            else if (Inventory[i][0].identity == "Wood" && Inventory[i][1] == 1)
+                            {
+                                Inventory.splice(i, 1);
+                                this.fuel += 14;
+                                this.didSomethinOven = true;
+                                break;
+                            }
+                            if (Inventory[i][0].identity == "Selva Wood" && Inventory[i][1] > 1)
+                            {
+                                Inventory[i][1] -= 1;
+                                this.fuel += 60;
+                                this.didSomethinOven = true;
+                                break;
+                            }
+                            else if (Inventory[i][0].identity == "Selva Wood" && Inventory[i][1] == 1)
+                            {
+                                Inventory.splice(i, 1);
+                                this.fuel += 60;
+                                this.didSomethinOven = true;
+                                break;
+                            }
+                            if (Inventory[i][0].identity == "Acacia Wood" && Inventory[i][1] > 1)
+                            {
+                                Inventory[i][1] -= 1;
+                                this.fuel += 50;
+                                this.didSomethinOven = true;
+                                break;
+                            }
+                            else if (Inventory[i][0].identity == "Acacia Wood" && Inventory[i][1] == 1)
+                            {
+                                Inventory.splice(i, 1);
+                                this.fuel += 50;
+                                this.didSomethinOven = true;
+                                break;
+                            }
+                            if (Inventory[i][0].identity == "Yeol Wood" && Inventory[i][1] > 1)
+                            {
+                                Inventory[i][1] -= 1;
+                                this.fuel += 5;
+                                this.didSomethinOven = true;
+                                break;
+                            }
+                            else if (Inventory[i][0].identity == "Yeol Wood" && Inventory[i][1] == 1)
+                            {
+                                Inventory.splice(i, 1);
+                                this.fuel += 5;
+                                this.didSomethinOven = true;
+                                break;
+                            }
+                            if (Inventory[i][0].identity == "Coal" && Inventory[i][1] > 1)
+                            {
+                                Inventory[i][1] -= 1;
+                                this.fuel += 15;
+                                this.didSomethinOven = true;
+                                break;
+                            }
+                            else if (Inventory[i][0].identity == "Coal" && Inventory[i][1] == 1)
+                            {
+                                Inventory.splice(i, 1);
+                                this.fuel += 15;
+                                this.didSomethinOven = true;
+                                break;
+                            }
+                            if (Inventory[i][0].identity == "Charcoal" && Inventory[i][1] > 1)
+                            {
+                                Inventory[i][1] -= 1;
+                                this.fuel += 10;
+                                this.didSomethinOven = true;
+                                break;
+                            }
+                            else if (Inventory[i][0].identity == "Charcoal" && Inventory[i][1] == 1)
+                            {
+                                Inventory.splice(i, 1);
+                                this.fuel += 10;
+                                this.didSomethinOven = true;
+                                break;
+                            }
+                        }
+                    }
+                    else if (this.lit == true && this.temporary != "lit")
+                    {
+                        player.craftPosition = 0;
+                        craftScroll = 0;
+                        crafting = "foods";
+                        lowBar = "crafting";
+                        gameState = "paused";
+                    }
+
+                    if (this.didSomethinOven == false)
+                    {
+                        this.opened = false;
+                    }
+                }
+                else
+                {
+                    this.opened = true;
+                }
+            }
+        }
         else if (this.type == "stove")
         {
             //TRAITS
@@ -39893,7 +43127,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             //animate
             if (this.lit == true)
             {
-                lights.push({X:this.X, Y: this.Y, size: 210, extraStops: true, GRD: 0.25, Alpha: 0.8, showMe: false});
+                lights.push({X:this.X, Y: this.Y, size: 610, extraStops: true, GRD: 0.25, Alpha: 0.65, showMe: false});
                 this.fireCostume += 3.5;
                 this.campFireTime += 1;
 

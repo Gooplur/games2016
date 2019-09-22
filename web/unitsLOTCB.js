@@ -26821,6 +26821,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 this.team = "docile";
             }
+            else if (this.ID == "neutral2")
+            {
+                this.team = "neutral2";
+            }
             this.baseTeam = this.team;
             this.tameREQ = 10;
 
@@ -59643,6 +59647,22 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             this.health = this.healthMAX;
                         }
                     }
+                    else if (this.ID == "Farren")
+                    {
+                        uniqueChars.farrenLDS = false;
+                        this.burningTime = new Date().getTime();
+                        this.heatResistance = -5;
+                        this.speed = 0;
+                        this.X = this.hauntX;
+                        this.Y = this.hauntY;
+                        this.sizeRadius = 55;
+                        this.engagementRadius = 1;
+                        this.healthMAX = 35;
+                        if (this.health > this.healthMAX)
+                        {
+                            this.health = this.healthMAX;
+                        }
+                    }
                 }
             }
 
@@ -87860,6 +87880,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         if (this.killNotByPlayer == false || this.killByPlayerTeam)
                         {
                             player.cephriteFaction -= 20;
+                        }
+                    }
+                    else if (this.ID == "High Magus Lafette Blackwood")
+                    {
+                        uniqueChars.lafetteLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.cephriteFaction -= 660;
                         }
                     }
 

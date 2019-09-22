@@ -34,6 +34,8 @@ function worldBuilder()
 
             outlineBuilder(1, 4, "cephrianRoad", -13, 1144);
             outlineBuilder(1, 4, "cephrianRoad", -13, 1147);
+
+            outlineBuilder(6, 3, "jungle", -5, 1142);
         }
         //Layer 33 (hot tropical region): elev -4
         //mapS33

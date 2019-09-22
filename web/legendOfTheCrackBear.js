@@ -3761,7 +3761,8 @@ function theLegend()
         grettelLDS: true,
         gertrudeLDS: true,
         henriettaLDS: true,
-        sackmanLDS: true
+        sackmanLDS: true,
+        farrenLDS: true,
     };
 //QUESTS
     quests =
@@ -3834,6 +3835,7 @@ function theLegend()
         emyliaOffended: false,
         sagesCachePortal: false,
         mrbLights: 1,
+        guillotine: false,
 
         //POLITICS
             //Atalin
@@ -4438,6 +4440,7 @@ function theLegend()
     allWorn.push(new Item("shortCephrianNomadDress", false)); //176
     allWorn.push(new Item("zetianWarriorArmour", false)); //177
     allWorn.push(new Item("druidGown", false)); //178
+    allWorn.push(new Item("cephrianPaladinArmour", false)); //179
 
 
 
@@ -4600,6 +4603,7 @@ function theLegend()
     smithing.push(new Item("cephrianDagger", false));
     smithing.push(new Item("cephrianRapier", false));
     smithing.push(new Item("zetianWarriorArmour", false));
+    smithing.push(new Item("cephrianPaladinArmour", false));
 
 //Foods (Items cooked at either a stove, an oven, or a campfire)
     foods = [];

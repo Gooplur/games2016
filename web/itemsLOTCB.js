@@ -5320,9 +5320,9 @@ function Item(type, x, y)
 
             //Utility Focused
             this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
-            this.hunger = 41; //satisfies hunger.
-            this.thirst = 5.5; //quenches thirst.
-            this.warmth = 18; //warms player.
+            this.hunger = 62; //satisfies hunger.
+            this.thirst = 14; //quenches thirst.
+            this.warmth = 29; //warms player.
             this.heal = 0; //heals health.
             this.generation = 0; //recoops lost energy.
             this.replenish = 0; //restores will.
@@ -39670,6 +39670,64 @@ function Item(type, x, y)
             this.buyValue = 24000 - Math.floor(player.getCharisma() / 0.01); // at max, buy for 19000.
             this.sellValue = 18000 + Math.floor(player.getCharisma() / 0.05); // at max, sell for 80.
         }
+        else if (this.type == "cephrianPaladinArmour")
+        {
+            //For All Items
+            this.identity = "Cephrian Paladin Armour";
+            this.weight = 5;
+            this.size = 38;
+            this.description = "A large bronze suit of plate armour with a frog helm.";
+            this.intForDes = 4;
+            this.intDescription = "Paladin is a title conferred to distinguished Cephrians that fight valiently, skillfully, and honourably in the name of a noble Cephrian house.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "armour";
+            //Utility Focused
+            //protections
+            this.protection = 20 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 38;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 1;
+            this.thirstRetention = 0.5;
+            this.shockResist = -15;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 20;
+            this.rangedBonus = -15;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = -50;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "heavy";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 39;
+            this.ingredients = [["Bronze", 23], ["Lion Pelt", 2]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 7400 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 7200.
+            this.sellValue = 7000 + Math.floor(player.getCharisma() / 0.25); // at max, sell for 7200.
+        }
         else if (this.type == "chainArmour")
         {
             //For All Items
@@ -50789,6 +50847,11 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "cephrianPaladinArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jeru, 76, 40, 65, 131, X - this.X + (1/2 * CCC.width) - (1/2 * 65 * 0.75), Y - this.Y + (1/2 * CCC.height) - (1/2 * 131 * 0.75), 65 * 0.75, 131 * 0.75);
+        }
         else if (this.type == "tropicalFruitPlatter")
         {
             XXX.beginPath();
@@ -57347,6 +57410,11 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
+        else if (this.type == "cephrianPaladinArmour")
+        {
+            LXX.beginPath();
+            LXX.drawImage(jeru, 76, 40, 65, 131, this.invX - (1/2 * 65 * 0.55), this.invY - (1/2 * 131 * 0.55), 65 * 0.55, 131 * 0.55);
+        }
         else if (this.type == "tropicalFruitPlatter")
         {
             LXX.beginPath();
@@ -63871,6 +63939,11 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "cephrianPaladinArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(jeru, 76, 40, 65, 131, this.invX - (1/2 * 65 * 0.55), this.invY - (1/2 * 131 * 0.55), 65 * 0.55, 131 * 0.55);
         }
         else if (this.type == "tropicalFruitPlatter")
         {

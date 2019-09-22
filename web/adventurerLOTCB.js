@@ -635,6 +635,8 @@ function Adventurer()
     this.necklaceType = "none";
     this.matureContentFilter = true; //this filters suggestive or otherwise mature content while set to true
     this.readyForToFire = 0; //this is used by blowguns, it can be used by any ranged weapon I choose to use a variable starting at zero for.
+    this.hide = false;
+    this.guillotine = false;
     //fishing variables
     this.fishing = false;
     this.fishingID = "none";
@@ -7141,65 +7143,7 @@ function Adventurer()
     //this function draws a circle the color of the character's race with a black border line around it, this acts as the main characters body.
     this.drawBody = function ()
     {
-        XXX.save();
-        XXX.translate(this.myScreenX, this.myScreenY); //Translate resets the coordinates to the arguements mentioned (x, y).
-        XXX.rotate(this.rotation);
-        XXX.beginPath();
-        if (this.subtlety)
-        {
-            XXX.globalAlpha = 0.2;
-        }
-        XXX.lineWidth = 1;
-        XXX.arc(0, 0, this.mySize, 0, 2 * Math.PI);
-        XXX.strokeStyle = "black";
-        XXX.fillStyle = this.race;
-        XXX.stroke();
-        XXX.fill();
-        XXX.restore();
-
-        //draw affliction: from disease or other source
-
-        //skin worms
-        if (this.skinWorms == true)
-        {
-            this.skinWormRot += 0.006;
-
-            if (Math.ceil(this.skinWormRot * 8) % 2 == 0)
-            {
-                XXX.save();
-                XXX.translate(this.myScreenX, this.myScreenY); //Translate resets the coordinates to the arguements mentioned (x, y).
-                XXX.rotate(this.rotation + this.skinWormRot);
-                if (this.subtlety)
-                {
-                    XXX.globalAlpha = 0.025;
-                }
-                else
-                {
-                    XXX.globalAlpha = 0.35;
-                }
-                XXX.drawImage(jeru, 8, 33, 21, 19, -1/2 * 21 * 1, -1/2 * 19 * 1, 21 * 1, 19 * 1);
-                XXX.restore();
-            }
-            else
-            {
-                XXX.save();
-                XXX.translate(this.myScreenX, this.myScreenY); //Translate resets the coordinates to the arguements mentioned (x, y).
-                XXX.rotate(this.rotation + this.skinWormRot);
-                if (this.subtlety)
-                {
-                    XXX.globalAlpha = 0.025;
-                }
-                else
-                {
-                    XXX.globalAlpha = 0.35;
-                }
-                XXX.drawImage(jeru, 8, 9, 21, 19, -1/2 * 21 * 1, -1/2 * 19 * 1, 21 * 1, 19 * 1);
-                XXX.restore();
-            }
-        }
-
-        //fungal fever from teppreklia ingestion
-        if (this.fungalFever)
+        if (this.hide != true && this.guillotine != true)
         {
             XXX.save();
             XXX.translate(this.myScreenX, this.myScreenY); //Translate resets the coordinates to the arguements mentioned (x, y).
@@ -7207,89 +7151,150 @@ function Adventurer()
             XXX.beginPath();
             if (this.subtlety)
             {
-                XXX.globalAlpha = 0.025;
-            }
-            else
-            {
-                XXX.globalAlpha = 0.35;
+                XXX.globalAlpha = 0.2;
             }
             XXX.lineWidth = 1;
             XXX.arc(0, 0, this.mySize, 0, 2 * Math.PI);
-            XXX.strokeStyle = "#DCD060";
-            //XXX.fillStyle = "#DCD060";
+            XXX.strokeStyle = "black";
+            XXX.fillStyle = this.race;
             XXX.stroke();
-            //XXX.fill();
+            XXX.fill();
             XXX.restore();
-        }
 
-        //leeches sucking blood from you
-        if (this.leeches > 0)
-        {
-            wiggleJoe += 1;
-            for (var ll = 0; ll < this.leeches; ll++)
+            //draw affliction: from disease or other source
+
+            //skin worms
+            if (this.skinWorms == true)
             {
-                XXX.save();
-                XXX.translate(this.myScreenX, this.myScreenY); //Translate resets the coordinates to the arguements mentioned (x, y).
-                if (ll > 8)
+                this.skinWormRot += 0.006;
+
+                if (Math.ceil(this.skinWormRot * 8) % 2 == 0)
                 {
-                    XXX.rotate(this.rotation + (1/18 * 2*Math.PI + 1/9 * 2 * Math.PI * ll));
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY); //Translate resets the coordinates to the arguements mentioned (x, y).
+                    XXX.rotate(this.rotation + this.skinWormRot);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.025;
+                    }
+                    else
+                    {
+                        XXX.globalAlpha = 0.35;
+                    }
+                    XXX.drawImage(jeru, 8, 33, 21, 19, -1/2 * 21 * 1, -1/2 * 19 * 1, 21 * 1, 19 * 1);
+                    XXX.restore();
                 }
                 else
                 {
-                    XXX.rotate(this.rotation + (1/9 * 2 * Math.PI * ll));
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY); //Translate resets the coordinates to the arguements mentioned (x, y).
+                    XXX.rotate(this.rotation + this.skinWormRot);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.025;
+                    }
+                    else
+                    {
+                        XXX.globalAlpha = 0.35;
+                    }
+                    XXX.drawImage(jeru, 8, 9, 21, 19, -1/2 * 21 * 1, -1/2 * 19 * 1, 21 * 1, 19 * 1);
+                    XXX.restore();
                 }
-                if (this.leechPop == true && ll == wiggleRand)
-                {
-                    XXX.drawImage(dmil, 434, 711, 44, 24, -1/2 * 44 * 0.5 -14, -1/2 * 24 * 0.5, 44 * 0.5, 24 * 0.5);
-                }
-                else if (wiggleJoe < 5)
-                {
-                    XXX.drawImage(dmil, 367, 755, 44, 24, -1/2 * 44 * 0.5 -14, -1/2 * 24 * 0.5, 44 * 0.5, 24 * 0.5);
-                }
-                else if (wiggleJoe < 10)
-                {
-                    XXX.drawImage(dmil, 432, 755, 44, 24, -1/2 * 44 * 0.5 -14, -1/2 * 24 * 0.5, 44 * 0.5, 24 * 0.5);
-                }
-                else if (wiggleJoe < 18)
-                {
-                    XXX.drawImage(dmil, 496, 757, 44, 24, -1/2 * 44 * 0.5 -14, -1/2 * 24 * 0.5, 44 * 0.5, 24 * 0.5);
-                }
-                XXX.restore();
             }
-            if (wiggleJoe > 15)
+
+            //fungal fever from teppreklia ingestion
+            if (this.fungalFever)
             {
-                if (this.leechPop == true)
-                {
-                    this.leechPop = false;
-                    this.leeches = Math.max(0, this.leeches - 1);
-                }
-                wiggleJoe = 0;
-            }
-        }
-        //petrification (put this as the top layer)
-        if (this.petrified)
-        {
-            XXX.save();
-            XXX.translate(this.myScreenX, this.myScreenY); //Translate resets the coordinates to the arguements mentioned (x, y).
-            XXX.rotate(this.rotation);
-            if (this.glassed)
-            {
-                XXX.drawImage(caverna, 646, 8, 43, 40, -1/2 * 43 * 0.7, -1/2 * 40 * 0.7, 43 * 0.7, 40 * 0.7);
-            }
-            else
-            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY); //Translate resets the coordinates to the arguements mentioned (x, y).
+                XXX.rotate(this.rotation);
                 XXX.beginPath();
-                XXX.globalAlpha = 1; //subtlety does not effect petrified corpses
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.025;
+                }
+                else
+                {
+                    XXX.globalAlpha = 0.35;
+                }
                 XXX.lineWidth = 1;
                 XXX.arc(0, 0, this.mySize, 0, 2 * Math.PI);
-                XXX.strokeStyle = "lightGrey";
-                XXX.fillStyle = "lightGrey";
+                XXX.strokeStyle = "#DCD060";
+                //XXX.fillStyle = "#DCD060";
                 XXX.stroke();
-                XXX.fill();
+                //XXX.fill();
+                XXX.restore();
             }
 
-            XXX.restore();
+            //leeches sucking blood from you
+            if (this.leeches > 0)
+            {
+                wiggleJoe += 1;
+                for (var ll = 0; ll < this.leeches; ll++)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY); //Translate resets the coordinates to the arguements mentioned (x, y).
+                    if (ll > 8)
+                    {
+                        XXX.rotate(this.rotation + (1/18 * 2*Math.PI + 1/9 * 2 * Math.PI * ll));
+                    }
+                    else
+                    {
+                        XXX.rotate(this.rotation + (1/9 * 2 * Math.PI * ll));
+                    }
+                    if (this.leechPop == true && ll == wiggleRand)
+                    {
+                        XXX.drawImage(dmil, 434, 711, 44, 24, -1/2 * 44 * 0.5 -14, -1/2 * 24 * 0.5, 44 * 0.5, 24 * 0.5);
+                    }
+                    else if (wiggleJoe < 5)
+                    {
+                        XXX.drawImage(dmil, 367, 755, 44, 24, -1/2 * 44 * 0.5 -14, -1/2 * 24 * 0.5, 44 * 0.5, 24 * 0.5);
+                    }
+                    else if (wiggleJoe < 10)
+                    {
+                        XXX.drawImage(dmil, 432, 755, 44, 24, -1/2 * 44 * 0.5 -14, -1/2 * 24 * 0.5, 44 * 0.5, 24 * 0.5);
+                    }
+                    else if (wiggleJoe < 18)
+                    {
+                        XXX.drawImage(dmil, 496, 757, 44, 24, -1/2 * 44 * 0.5 -14, -1/2 * 24 * 0.5, 44 * 0.5, 24 * 0.5);
+                    }
+                    XXX.restore();
+                }
+                if (wiggleJoe > 15)
+                {
+                    if (this.leechPop == true)
+                    {
+                        this.leechPop = false;
+                        this.leeches = Math.max(0, this.leeches - 1);
+                    }
+                    wiggleJoe = 0;
+                }
+            }
+            //petrification (put this as the top layer)
+            if (this.petrified)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY); //Translate resets the coordinates to the arguements mentioned (x, y).
+                XXX.rotate(this.rotation);
+                if (this.glassed)
+                {
+                    XXX.drawImage(caverna, 646, 8, 43, 40, -1/2 * 43 * 0.7, -1/2 * 40 * 0.7, 43 * 0.7, 40 * 0.7);
+                }
+                else
+                {
+                    XXX.beginPath();
+                    XXX.globalAlpha = 1; //subtlety does not effect petrified corpses
+                    XXX.lineWidth = 1;
+                    XXX.arc(0, 0, this.mySize, 0, 2 * Math.PI);
+                    XXX.strokeStyle = "lightGrey";
+                    XXX.fillStyle = "lightGrey";
+                    XXX.stroke();
+                    XXX.fill();
+                }
 
+                XXX.restore();
+
+            }
         }
     };
 
@@ -7895,6 +7900,10 @@ function Adventurer()
         {
             outfit = allWorn[178];
         }
+        else if (this.outfitEquipped == "cephrianPaladinArmour")
+        {
+            outfit = allWorn[179];
+        }
         else
         {
             outfit = allWorn[0];
@@ -8299,6 +8308,19 @@ function Adventurer()
                 XXX.globalAlpha = 0.4;
             }
             XXX.drawImage(jeru, 178, 9, 48, 33, -(1 / 2 * 48 * 1.06) + 1, -(1 / 2 * 33 * 1.06) + 0.45, 48 * 1.06, 33 * 1.06);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "cephrianPaladinArmour")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(jeru, 89, 3, 39, 33, -(1 / 2 * 39 * 1.06) + 1, -(1 / 2 * 33 * 1.06) + 0.45, 39 * 1.06, 33 * 1.06);
             XXX.restore();
         }
         else if (this.outfitEquipped == "druidGown")
@@ -14498,7 +14520,7 @@ function Adventurer()
 
         //ARM VARIANTS (player weapon types)
         //FISTS
-        if (this.weaponEquipped == "none" && this.spell == "none")
+        if (this.weaponEquipped == "none" && this.spell == "none" && this.hide != true && this.guillotine != true)
         {
             this.stageEngine(6, 0.2, true);
 
@@ -41375,12 +41397,12 @@ function Adventurer()
                 //Draw the player
 
                 //the player's legs
-                if (player.form == false)
+                if (player.form == false && player.hide != true && player.guillotine != true)
                 {
                     this.drawLegs();
                 }
 
-                if (this.outfitZ == false && player.form == false)
+                if (this.outfitZ == false && player.form == false && player.hide != true && player.guillotine != true)
                 {
                     this.drawOutfit();
                 }

@@ -276,3 +276,15 @@ acaciaCampFire - a bright, hot, long burning campfire made from southern savanna
 killerTermiteMound - a orange dirt mound built as a hive by killer termites. It Spawns killer termites. temporary (biggest: 0, smallest: 1, mediumLarge: 2, mediumSmall: 3) information ('true' lets it summon termites, otherwise it is simply decorative)
 southMueble - a variety of furniture, cushions, etc for Cephrite, Orgell, etc.
 southBed - a variety of beds used in southern cultures
+cephrianOven - A yellowish sandstone oven for cooking and heating
+aldrekiiOven - A light coloured sandstone oven for cooking and heating
+zetianOven - A large communal red sandstone oven for cooking and heating
+cephrianPyre - A cephrian light for lighting the city streets (set temporary to "lit") //scenicList.push(new Scenery("cephrianPyre", 0, 0, 3.14, "lit"));
+cephrianWell - A white marble well that is used to access underground water //scenicList.push(new Scenery("cephrianWell", 0, 0, 3.14, true));
+guillotine - A cephrian device used for executing people by decapitating them. [executed, manned, isPlayer] //scenicList.push(new Scenery("guillotine", 3600, 2400, 0, 8, [false, true, false]));
+cephrianBuilding1 - a small square house of Cephrian design (size adjustable, rotatable) (longevity/temporary changes size) //scenicList.push(new Scenery("cephrianBuilding1", 0, 0, Math.PI, 1.25));
+cephrianBuilding2 - a medium large rectangular home with the door in the center (size adjustable, rotatable) (longevity/temporary changes size) //scenicList.push(new Scenery("cephrianBuilding2", 0, 0, -1/2 * Math.PI, 1.5));
+cephrianBuilding3 - a small rectangular home with the door in the end (size adjustable, rotatable) (longevity/temporary changes size) //scenicList.push(new Scenery("cephrianBuilding3", 0, 0, 1/2 * Math.PI, 1.4));
+cephrianBuilding4 - a big rectangular home with three large rooms (size adjustable, rotatable) (longevity/temporary changes size) //scenicList.push(new Scenery("cephrianBuilding4", 0, 0, -1/2 * Math.PI, 1.1));
+cephrianBuilding5 - a large rectangular home with a large back room (size adjustable, rotatable) (longevity/temporary changes size) //scenicList.push(new Scenery("cephrianBuilding5", 0, 0, 1/2 * Math.PI, 1.2));
+spellOilPot - a pot of spell oil from which bottles of spell oil can be refilled. // scenicList.push(new Scenery("spellOilPot", 1955.2144046165436, -342196.0990496341, 0, "cephrite", 4));

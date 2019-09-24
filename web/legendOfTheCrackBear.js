@@ -1537,6 +1537,42 @@ function cavernaPack()
 
     caverna.onload = function()
     {
+        wartPack();
+    };
+}
+
+function wartPack()
+{
+    var wart = new Image();
+    wart.src = ("images/wart.png");
+    window.wart = wart;
+
+    wart.onload = function()
+    {
+        ruinPack();
+    };
+}
+
+function ruinPack()
+{
+    var ruin = new Image();
+    ruin.src = ("images/ruin.png");
+    window.ruin = ruin;
+
+    ruin.onload = function()
+    {
+        negroPack();
+    };
+}
+
+function negroPack()
+{
+    var negro = new Image();
+    negro.src = ("images/negro.png");
+    window.negro = negro;
+
+    negro.onload = function()
+    {
         jeruPack();
     };
 }
@@ -3517,7 +3553,8 @@ function theLegend()
         grettel: ["Grettel", 0],
         gertrude: ["Gertrude", 0],
         henrietta: ["Henrietta", 0],
-        sackman: ["Sackman", 0]
+        sackman: ["Sackman", 0],
+        havette: ["Havette", 0]
     };
 
 //time Tracker Variables
@@ -3763,6 +3800,7 @@ function theLegend()
         henriettaLDS: true,
         sackmanLDS: true,
         farrenLDS: true,
+        havetteLDS: true
     };
 //QUESTS
     quests =
@@ -4812,6 +4850,7 @@ function theLegend()
     foods.push(new Item("stuffedOnion", false));
     foods.push(new Item("stuffedEggplant", false));
     foods.push(new Item("marinatedGazelle", false));
+    foods.push(new Item("roastedPashaArm", false));
 
 //Tailoring (Items crafted at a weaving, sewing, dying, etc. tailor's work bench thing)
     tailoring = [];
@@ -5210,6 +5249,7 @@ function theLegend()
     handcrafted.push(new Item("artichokePlatter", false));
     handcrafted.push(new Item("spicedSonjaSlices", false));
     handcrafted.push(new Item("tropicalFruitPlatter", false));
+    handcrafted.push(new Item("despinedPashaArm", false));
 
     //Activate Important Game Functions Here:
     itemPlacer();

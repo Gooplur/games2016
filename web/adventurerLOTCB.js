@@ -601,6 +601,11 @@ function Adventurer()
     this.timeSinceLastSkinWorm = new Date().getTime();
     this.skinWorms = false;
     this.skinWormRot = 0;
+    this.internalWarts = false;
+    this.internalWartGrowth = 0;
+    this.timeSinceLastWartGrowth = new Date().getTime();
+    this.wartPop = false;
+    this.wartDeath = false;
 
         //faction variables
     this.factionToggle = false;
@@ -3075,6 +3080,52 @@ function Adventurer()
                 this.timeSinceLastSkinWorm = new Date().getTime();
                 //Take away health from the player because the fleshMites are eating the player from the inside.
                 this.decay += 0.00366;
+            }
+
+            if (this.internalWarts == true)
+            {
+                this.internalWartGrowth += 0.001;
+
+                if (new Date().getTime() - this.timeSinceLastWartGrowth >= 75)
+                {
+                    this.timeSinceLastWartGrowth = new Date().getTime();
+
+                    if (this.internalWartGrowth > 70 && this.internalWartGrowth < 75)
+                    {
+                        this.health -= 0.0225 * (TTD / 16.75);
+                        this.freeze = Math.max(this.freeze, 3.5);
+                        scenicList.push(new Scenery("wartExplosion", X, Y, this.rotation, false));
+                        this.internalWartGrowth = 80;
+                    }
+                    else if (this.internalWartGrowth > 60 && this.internalWartGrowth < 75)
+                    {
+                        this.health -= 0.0225 * (TTD / 16.75);
+                        this.freeze = Math.max(this.freeze, 3.5);
+                    }
+                    else if (this.internalWartGrowth > 50 && this.internalWartGrowth < 75)
+                    {
+                        this.health -= 0.0175 * (TTD / 16.75);
+                        this.freeze = Math.max(this.freeze, 3);
+                    }
+                    else if (this.internalWartGrowth > 40 && this.internalWartGrowth < 75)
+                    {
+                        this.health -= 0.013911 * (TTD / 16.75);
+                        this.freeze = Math.max(this.freeze, 2);
+                    }
+                    else if (this.internalWartGrowth > 30 && this.internalWartGrowth < 75)
+                    {
+                        this.health -= 0.0089755 * (TTD / 16.75);
+                        this.freeze = Math.max(this.freeze, 1.5);
+                    }
+                    else if (this.internalWartGrowth > 20 && this.internalWartGrowth < 75)
+                    {
+                        this.health -= 0.0045223 * (TTD / 16.75);
+                    }
+                    else if (this.internalWartGrowth > 10 && this.internalWartGrowth < 75)
+                    {
+                        this.health -= 0.0015222 * (TTD / 16.75);
+                    }
+                }
             }
         };
 
@@ -6238,6 +6289,41 @@ function Adventurer()
         }
     };
 
+    //Internal Warts Notice Function
+    this.internalWartsChecker = function()
+    {
+        if (this.internalWarts == true)
+        {
+            // at this point the slot should be consistent so it should not have to check again to be entered into a position on the miniNoticeList.
+            this.addNotice("Internal Warts");
+            //pinkish throat-like background colour.
+            XXX.beginPath();
+            if (this.internalWartGrowth <= 20)
+            {
+                XXX.fillStyle = "#757D4A";
+            }
+            else
+            {
+                XXX.fillStyle = "#491607";
+            }
+            XXX.rect(this.arrangeNotices("Internal Warts"), 413, 20, 20);
+            XXX.fill();
+
+            //pinkish gut-like background colour.
+            XXX.beginPath();
+            XXX.lineWidth = 1;
+            XXX.strokeStyle = "black";
+            XXX.rect(this.arrangeNotices("Internal Warts"), 413, 20, 20);
+            XXX.stroke();
+            XXX.drawImage(wart, 107, 799, 37, 39, this.arrangeNotices("Internal Warts") + 0, 412, 20, 20);
+        }
+        else
+        {
+            //at this point the slot will have been cleared so next time the effect shows up it should have to check again to be entered into a position on the miniNoticeList.
+            this.removeNotice("Internal Warts");
+        }
+    };
+
     //RECOVERY Notice Function
     this.recoveredChecker = function()
     {
@@ -6836,6 +6922,7 @@ function Adventurer()
         this.stunnedChecker();
         this.gutWormsChecker();
         this.throatTicksChecker();
+        this.internalWartsChecker();
         this.sicknessChecker();
         this.fleshMights();
         this.poisonedChecker();
@@ -7162,6 +7249,45 @@ function Adventurer()
             XXX.restore();
 
             //draw affliction: from disease or other source
+
+            //internal warts
+            if (this.internalWartGrowth > 50)
+            {
+                //XXX.save();
+                //XXX.translate(this.myScreenX, this.myScreenY); //Translate resets the coordinates to the arguements mentioned (x, y).
+                //XXX.rotate(this.rotation + this.skinWormRot);
+                //if (this.subtlety)
+                //{
+                //    XXX.globalAlpha = 0.025;
+                //}
+                //XXX.drawImage(wart, 291, 913, 36, 35, -1/2 * 36 * 1.2, -1/2 * 35 * 1.2, 36 * 1.2, 35 * 1.2);
+                //XXX.restore();
+            }
+            else if (this.internalWartGrowth > 35)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY); //Translate resets the coordinates to the arguements mentioned (x, y).
+                XXX.rotate(this.rotation + this.skinWormRot);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.025;
+                }
+                XXX.drawImage(wart, 382, 837, 36, 35, -1/2 * 36 * 1.2, -1/2 * 35 * 1.2 + 1, 36 * 1.2, 35 * 1.2);
+                XXX.restore();
+            }
+            else if (this.internalWartGrowth > 20)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY); //Translate resets the coordinates to the arguements mentioned (x, y).
+                XXX.rotate(this.rotation + this.skinWormRot);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.025;
+                }
+                XXX.drawImage(wart, 297, 843, 25, 25, -1/2 * 25 * 1.2, -1/2 * 25 * 1.2 - 1, 25 * 1.2, 25 * 1.2);
+                XXX.restore();
+            }
+
 
             //skin worms
             if (this.skinWorms == true)
@@ -8101,7 +8227,7 @@ function Adventurer()
         }
 
         //draw effect (directly under the outfit layer)
-        if (this.venandi >= 200) //venandine
+        if (this.venandi >= 200 && this.hide == false && this.guillotine == false) //venandine
         {
             XXX.save();
             XXX.translate(this.myScreenX, this.myScreenY);
@@ -8111,6 +8237,18 @@ function Adventurer()
             {
                 XXX.globalAlpha = 0.2;
             }
+            XXX.restore();
+        }
+        if (this.internalWartGrowth > 50 && this.hide == false && this.guillotine == false) //internal warts
+        {
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY); //Translate resets the coordinates to the arguements mentioned (x, y).
+            XXX.rotate(this.rotation + this.skinWormRot);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.025;
+            }
+            XXX.drawImage(wart, 291, 913, 36, 35, -1/2 * 36 * 1.2, -1/2 * 35 * 1.2, 36 * 1.2, 35 * 1.2);
             XXX.restore();
         }
 
@@ -38740,6 +38878,26 @@ function Adventurer()
                                 this.kolumTolerance = 0;
                                 this.kolumDegredation = 0;
                             }
+                            else if (Inventory[i][0].ability == "wartPoisoning") //this effect makes the player vomit and lose 22 hunger.
+                            {
+                                if (this.internalWarts == false)
+                                {
+                                    this.internalWarts = true;
+                                    this.internalWartGrowth = 0;
+                                }
+                                if (this.timeSinceBadFoodEaten == 0)
+                                {
+                                    this.timeSinceBadFoodEaten = new Date().getTime();
+                                }
+                                else if (new Date().getTime() - this.timeSinceBadFoodEaten < 33000 - 11500)
+                                {
+                                    this.timeSinceBadFoodEaten -= 11000
+                                }
+                                else if (new Date().getTime() - this.timeSinceBadFoodEaten < 33000 - 4500)
+                                {
+                                    this.timeSinceBadFoodEaten -= 4000
+                                }
+                            }
                             else if (Inventory[i][0].ability == "foodPoisoning") //this effect makes the player vomit and lose 22 hunger.
                             {
                                 if (this.timeSinceBadFoodEaten == 0)
@@ -41184,11 +41342,22 @@ function Adventurer()
         {
             if (player.form != "vampire" && player.gamemode != "protagonist" || player.silvered && player.gamemode != "protagonist")
             {
-                //Do death stuff
-                this.playerDeath = true;
-                gameState = "paused";
-                //Go to main menu upon death.
-                location.reload();
+                if (this.internalWartGrowth < 50 || this.wartPop == true)
+                {
+                    //Do death stuff
+                    this.playerDeath = true;
+                    gameState = "paused";
+                    //Go to main menu upon death.
+                    location.reload();
+                }
+                else
+                {
+                    if (this.wartDeath == false)
+                    {
+                        this.wartDeath = true;
+                        scenicList.push(new Scenery("wartExplosion", X, Y, this.rotation, false));
+                    }
+                }
             }
             else if (player.form == "vampire")
             {

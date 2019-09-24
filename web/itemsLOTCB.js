@@ -10143,7 +10143,7 @@ function Item(type, x, y)
             this.replenish = 0; //restores will.
 
             //ability
-            this.ability = "foodPoisoning";
+            this.ability = "wartPoisoning";
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 1; // at max, buy for 1.
@@ -11317,7 +11317,7 @@ function Item(type, x, y)
             this.replenish = -1; //restores will.
 
             //ability
-            this.ability = "foodPoisoning";
+            this.ability = "wartPoisoning";
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 1; // at max, buy for 1.
@@ -14728,6 +14728,103 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "pashaArm")
+        {
+            //For All Items
+            this.identity = "Pasha Arm";
+            this.weight = 2.1;
+            this.size = 10;
+            this.description = "A spined arm from a pasha cactus.";
+            this.intForDes = 2;
+            this.intDescription = "It must be despined before it can be eaten; it will hurt your mouth to eat it with the spines...";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = true; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1.5; //satisfies hunger.
+            this.thirst = 2; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = -17; //heals health.
+            this.generation = -7; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5 - Math.floor(player.getCharisma() / 50); // at max, buy for 4.
+            this.sellValue = 2 + Math.floor(player.getCharisma() / 25); // at max, sell for 4.
+        }
+        else if (this.type == "despinedPashaArm")
+        {
+            //For All Items
+            this.identity = "Despined Pasha Arm";
+            this.weight = 2.1;
+            this.size = 10;
+            this.description = "A despined arm from a pasha cactus.";
+            this.intForDes = 2;
+            this.intDescription = "It tastes refreshing, sort of like a thick, firm cucumber.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = true; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1.5; //satisfies hunger.
+            this.thirst = 2.5; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 2;
+            this.ingredients = [["Pasha Arm", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 7 - Math.floor(player.getCharisma() / 25); // at max, buy for 5.
+            this.sellValue = 3 + Math.floor(player.getCharisma() / 25); // at max, sell for 5.
+        }
+        else if (this.type == "roastedPashaArm")
+        {
+            //For All Items
+            this.identity = "Roasted Pasha Arm";
+            this.weight = 2.1;
+            this.size = 10;
+            this.description = "A roasted despined arm from a pasha cactus.";
+            this.intForDes = 2;
+            this.intDescription = "It is thick and firm with a unique roasty-toasty cactus-like flavour.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = true; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 6; //satisfies hunger.
+            this.thirst = 1.5; //quenches thirst.
+            this.warmth = 2.5; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.025; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 3;
+            this.ingredients = [["Despined Pasha Arm", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 7 - Math.floor(player.getCharisma() / 25); // at max, buy for 5.
+            this.sellValue = 4 + Math.floor(player.getCharisma() / 50); // at max, sell for 5.
         }
         else if (this.type == "thalisLeaf")
         {
@@ -50847,6 +50944,21 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "pashaArm")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ion, 1135, 297, 33, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 33 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 1), 33 * 1, 24 * 1);
+        }
+        else if (this.type == "despinedPashaArm")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ion, 1135, 325, 33, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 33 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 1), 33 * 1, 24 * 1);
+        }
+        else if (this.type == "roastedPashaArm")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ion, 1135, 353, 33, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 33 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 1), 33 * 1, 24 * 1);
+        }
         else if (this.type == "cephrianPaladinArmour")
         {
             XXX.beginPath();
@@ -57410,6 +57522,21 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
+        else if (this.type == "pashaArm")
+        {
+            LXX.beginPath();
+            LXX.drawImage(ion, 1135, 297, 33, 24, this.invX - (1/2 * 33 * 1), this.invY - (1/2 * 24 * 1), 33 * 1, 24 * 1);
+        }
+        else if (this.type == "despinedPashaArm")
+        {
+            LXX.beginPath();
+            LXX.drawImage(ion, 1135, 325, 33, 24, this.invX - (1/2 * 33 * 1), this.invY - (1/2 * 24 * 1), 33 * 1, 24 * 1);
+        }
+        else if (this.type == "roastedPashaArm")
+        {
+            LXX.beginPath();
+            LXX.drawImage(ion, 1135, 353, 33, 24, this.invX - (1/2 * 33 * 1), this.invY - (1/2 * 24 * 1), 33 * 1, 24 * 1);
+        }
         else if (this.type == "cephrianPaladinArmour")
         {
             LXX.beginPath();
@@ -63939,6 +64066,21 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "pashaArm")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ion, 1135, 297, 33, 24, this.invX - (1/2 * 33 * 1), this.invY - (1/2 * 24 * 1), 33 * 1, 24 * 1);
+        }
+        else if (this.type == "despinedPashaArm")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ion, 1135, 325, 33, 24, this.invX - (1/2 * 33 * 1), this.invY - (1/2 * 24 * 1), 33 * 1, 24 * 1);
+        }
+        else if (this.type == "roastedPashaArm")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ion, 1135, 353, 33, 24, this.invX - (1/2 * 33 * 1), this.invY - (1/2 * 24 * 1), 33 * 1, 24 * 1);
         }
         else if (this.type == "cephrianPaladinArmour")
         {

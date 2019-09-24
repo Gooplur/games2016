@@ -309,6 +309,8 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
     this.decayTime2 = new Date().getTime();
     this.freezeKeepSpeed = 0;
     this.cannibal = false;
+    this.internalWarts = false;
+    this.internalWartGrowth = 0;
 
 
     //Artificial Intelligence
@@ -13809,6 +13811,62 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.invisible = true;
                 this.health = -13;
 
+            }
+        }
+
+        if (dead != true && this.internalWarts == true)
+        {
+            this.internalWartGrowth += 0.001;
+            if (this.vamprism == true)
+            {
+                this.internalWarts = false;
+                this.internalWartGrowth = 0;
+            }
+
+            if (this.internalWartGrowth > 50)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation + 1/2 * Math.PI);
+                XXX.drawImage(wart, 291, 913, 36, 35, -1/2 * 36 * 1.2, -1/2 * 35 * 1.2, 36 * 1.2, 35 * 1.2);
+                XXX.restore();
+
+                if (this.internalWartGrowth > 70 && this.internalWartGrowth < 75)
+                {
+                    scenicList.push(new Scenery("wartExplosion", this.X, this.Y, this.rotation, true));
+                    this.internalWartGrowth = 80;
+                    this.invisible = true;
+                    this.killNotByPlayer = true;
+                    this.health = -35;
+                }
+            }
+            else if (this.internalWartGrowth > 35)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation + 1/2 * Math.PI);
+                XXX.drawImage(wart, 382, 837, 36, 35, -1/2 * 36 * 1.2, -1/2 * 35 * 1.2 + 1, 36 * 1.2, 35 * 1.2);
+                XXX.restore();
+            }
+            else if (this.internalWartGrowth > 20)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + (1/2 * CCC.width), Y - this.Y + (1/2 * CCC.height));
+                if (this.kid)
+                {
+                    XXX.scale(this.kidSize, this.kidSize);
+                }
+                XXX.rotate(this.rotation + 1/2 * Math.PI);
+                XXX.drawImage(wart, 297, 843, 25, 25, -1/2 * 25 * 1.2, -1/2 * 25 * 1.2 - 1, 25 * 1.2, 25 * 1.2);
+                XXX.restore();
             }
         }
 
@@ -85208,6 +85266,14 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                             player.cephriteFaction -= 18;
                         }
                     }
+                    else if (this.ID == "Havette the Blacksmith")
+                    {
+                        uniqueChars.havetteLDS = false;
+                        if (this.killNotByPlayer == false || this.killByPlayerTeam)
+                        {
+                            player.cephriteFaction -= 12;
+                        }
+                    }
                     else if (this.ID == "Little Rosey Red")
                     {
                         uniqueChars.roseyRedLDS = false;
@@ -86003,6 +86069,16 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                         if (player.nirwadenFaction < 0 || player.nirwadenPeace != true)
                         {
                             this.baseTeam = "Nirwaden";
+                        }
+                    }
+                }
+                else if (this.ID == "Anset Soldier" || this.ID == "Anset Captain" || this.ID == "Anset Paladin" || this.ID == "Blackwood Soldier" || this.ID == "Blackwood Captain" || this.ID == "Blackwood Paladin") //cephrite nobles can control the Anset and BLackwood familie's armies.
+                {
+                    if (this.team == "player" && !this.isCharmed)
+                    {
+                        if (player.cephriteFaction < 0 || player.cephritePeace != true)
+                        {
+                            this.baseTeam = "Cephrite";
                         }
                     }
                 }

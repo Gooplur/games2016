@@ -1369,6 +1369,49 @@ function interaction(me)
                         }
                     }
 
+                    if (self.ID == "Anset Paladin" && player.cephriteFaction >= 0 && self.team != "player" && player.raceName == "Cephrite" && player.title == "Nobility" || self.ID == "Anset Captain" && player.cephriteFaction >= 0 && self.team != "player" && player.raceName == "Cephrite" && player.title == "Nobility" || self.ID == "Anset Soldier" && player.cephriteFaction >= 0 && self.team != "player" && player.raceName == "Cephrite" && player.title == "Nobility" || self.ID == "Blackwood Soldier" && player.cephriteFaction >= 0 && self.team != "player" && player.raceName == "Cephrite" && player.title == "Nobility" || self.ID == "Blackwood Captain" && player.cephriteFaction >= 0 && self.team != "player" && player.raceName == "Cephrite" && player.title == "Nobility" || self.ID == "Blackwood Paladin" && player.cephriteFaction >= 0 && self.team != "player" && player.raceName == "Cephrite" && player.title == "Nobility")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Beulingerr";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["[Take Command]", false, "a"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            playersTurnToSpeak = true;
+                                            conversationID[1] = "0a";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            self.baseTeam = "player";
+
+                            player.dialoguePosition = 0;
+                            conversationID[1] = 0;
+                            self.SC();
+                        }
+                    }
+
                     if (self.ID == "Altezor Captain" && player.nirwadenFaction >= 0 && self.team != "player" && player.raceName == "Nirwaden" && player.title == "Nobility" || self.ID == "Altezor Captain" && player.nirwadenFaction >= 0 && self.team != "player" && player.raceName == "Nirwaden" && player.title == "Royalty" || self.ID == "Altezor Soldier" && player.nirwadenFaction >= 0 && self.team != "player" && player.raceName == "Nirwaden" && player.title == "Royalty" || self.ID == "Altezor Soldier" && player.nirwadenFaction >= 0 && self.team != "player" && player.raceName == "Nirwaden" && player.title == "Nobility" || self.ID == "Altezor Knight" && player.nirwadenFaction >= 0 && self.team != "player" && player.raceName == "Nirwaden" && player.title == "Nobility" || self.ID == "Altezor Knight" && player.nirwadenFaction >= 0 && self.team != "player" && player.raceName == "Nirwaden" && player.title == "Royalty" || conversationID[0] == "Altezor" && player.nirwadenFaction >= 0 && self.team != "player" && player.raceName == "Nirwaden" && player.title == "Nobility" || conversationID[0] == "Altezor" && player.nirwadenFaction >= 0 && self.team != "player" && player.raceName == "Nirwaden" && player.title == "Royalty")
                     {
                         lowBar = "dialogue";
@@ -24375,7 +24418,7 @@ function interaction(me)
                                 }
                                 player.energy += 1;
                                 player.experience += 4;
-                                player.strTime = new Date().getTime() + 300000;
+                                player.strTime = Math.max(player.strTime, new Date().getTime() + 300000);
                                 player.strengthI = true;
                                 player.sleep += 3;
 
@@ -24387,22 +24430,22 @@ function interaction(me)
                         }
                         else if (conversationID[1] == "0b")
                         {
-                            saxosob.play();
-                            player.blinded = true;
-                            player.blindedStoreTime = new Date().getTime();
-                            player.blindedTime = 22;
-                            saxosob.onended = function()
-                            {
-                                player.experience += 6;
-                                player.strTime = new Date().getTime() + 315000;
-                                player.strengthI = true;
-                                player.sleep += 2;
-                                player.estolgangFaction -= 10;
-                                playersTurnToSpeak = true;
-                                player.dialoguePosition = 0;
-                                conversationID[1] = 0;
-                                self.SC();
-                            }
+                            //saxosob.play();
+                            //player.blinded = true;
+                            //player.blindedStoreTime = new Date().getTime();
+                            //player.blindedTime = 22;
+                            //saxosob.onended = function()
+                            //{
+                            //    player.experience += 6;
+                            //    player.strTime = new Date().getTime() + 315000;
+                            //    player.strengthI = true;
+                            //    player.sleep += 2;
+                            //    player.estolgangFaction -= 10;
+                            //    playersTurnToSpeak = true;
+                            //    player.dialoguePosition = 0;
+                            //    conversationID[1] = 0;
+                            //    self.SC();
+                            //}
                         }
                     }
 
@@ -24479,28 +24522,32 @@ function interaction(me)
                                 player.experience = Math.max(0, player.experience - 50);
 
                                 //abuse
-                                if (Math.random() > 0.65)
+                                if (Math.random() > 0.85)
                                 {
                                     alert("The John was rough with you...");
-                                    if (Math.random() > 0.65)
+                                    if (Math.random() > 0.95)
                                     {
                                         player.health -= 2;
                                     }
                                     else
                                     {
-                                        if (Math.random() > 0.65)
+                                        if (Math.random() > 0.25)
                                         {
                                             player.health -= 1;
                                         }
                                         else
                                         {
-                                            if (Math.random() > 0.65)
+                                            if (Math.random() > 0.95)
                                             {
                                                 player.health -= 11;
                                             }
-                                            else
+                                            else if (Math.random() > 0.75)
                                             {
                                                 player.health -= 6;
+                                            }
+                                            else
+                                            {
+                                                player.health -= 3;
                                             }
                                         }
                                     }

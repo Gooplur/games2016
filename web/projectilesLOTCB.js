@@ -1165,7 +1165,7 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
                 XXX.save();
                 XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
                 XXX.rotate(this.rotation - Math.PI + this.spin);
-                XXX.drawImage(cef, 1009, 2, 12, 22, 0, 0, 12, 22);
+                XXX.drawImage(cef, 1009, 2, 12, 22, -1/2 * (12 * 1.5), -1/2 * (22 * 1.5), 12 * 1.5, 22 * 1.5);
                 XXX.restore();
             }
             else if (list == unitProjectiles || list == playerProjectiles && !this.isPlayerProjectile)
@@ -1183,7 +1183,7 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
                 XXX.save();
                 XXX.translate(X - this.X + (1 / 2 * CCC.width), Y - this.Y + (1 / 2 * CCC.height));
                 XXX.rotate(this.rotation + this.spin);
-                XXX.drawImage(cef, 1009, 2, 12, 22, 0, 0, 12, 22);
+                XXX.drawImage(cef, 1009, 2, 12, 22, -1/2 * (12 * 1.5), -1/2 * (22 * 1.5), 12 * 1.5, 22 * 1.5);
                 XXX.restore();
             }
         }

@@ -148,6 +148,10 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
         {
             this.massive = true;
         }
+        else if (this.type == "wartExplosion")
+        {
+            this.massive = true;
+        }
         else if (this.type == "event")
         {
             this.massive = true;
@@ -288,6 +292,17 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                         if ((Math.max(0, damage - Math.max(0, player.armourTotal - negate)) > 0))
                         {
                             player.venandi += 20;
+                        }
+                    }
+                    else if (effect == "internalWartExplosion") //the fungus hijacked the acid and turned it into an effective fungal delivery system for it spores
+                    {
+                        if (player.resistDisease == false)
+                        {
+                            if (player.internalWarts == false)
+                            {
+                                player.internalWarts = true;
+                                player.internalWartGrowth = 0;
+                            }
                         }
                     }
                     else if (effect == "smashbackI" && (Math.max(0, damage - Math.max(0, player.armourTotal - negate)) > 0))
@@ -8431,6 +8446,164 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             }
 
             scenicList.splice(scenicList.indexOf(this), 1);
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+                dClick = true;
+            }
+        }
+        else if (this.type == "wartExplosion")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+
+            this.size = 1;
+
+            if (this.runOneTime)
+            {
+                this.runOneTime = false;
+                this.tic = 0;
+                this.tac = 0;
+            }
+
+            if (this.temporary == false)
+            {
+                if (player.undying == true || player.vamprism == true)
+                {
+                    player.internalWarts = false;
+                    player.internalWartGrowth = 0;
+                }
+                else
+                {
+                    clearEquipped();
+                    player.hide = true;
+                    X = this.X;
+                    Y = this.Y;
+                    this.tac += 0.5;
+
+                    if (this.tac > 100)
+                    {
+                        player.wartPop = true;
+                        player.health = -35;
+                    }
+                }
+            }
+            this.tic += 3;
+            if (this.tic <= 3)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(wart, 369, 906, 57, 55, -(1/2 * 57 * this.size), -(1/2 * 55 * this.size), 57 * this.size, 55 * this.size);
+                XXX.restore();
+            }
+            else if (this.tic <= 6)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(wart, 272, 984, 80, 82, -(1/2 * 80 * this.size), -(1/2 * 82 * this.size), 80 * this.size, 82 * this.size);
+                XXX.restore();
+            }
+            else if (this.tic <= 9)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(wart, 356, 973, 96, 98, -(1/2 * 96 * this.size), -(1/2 * 98 * this.size), 96 * this.size, 98 * this.size);
+                XXX.restore();
+
+                if (this.dst(X, Y) <= this.radius)
+                {
+                    if (this.temporary == true)
+                    {
+                        this.damagePlayer(0.5, 0.5, "internalWartExplosion");
+                    }
+                }
+
+                for (var j = 0; j < ArtificialIntelligenceAccess.length; j++)
+                {
+                    if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= this.radius + (3/4 * ArtificialIntelligenceAccess[j].sizeRadius) && !ArtificialIntelligenceAccess[j].underground && ArtificialIntelligenceAccess[j].dmx == this.dmx)
+                    {
+
+                        ArtificialIntelligenceAccess[j].health -= Math.max(0, 0.5 - Math.max(0, ArtificialIntelligenceAccess[j].armour - 1));
+
+                        ArtificialIntelligenceAccess[j].healthShownTime = new Date().getTime();
+                        if (ArtificialIntelligenceAccess[j].health <= 0 && this.temporary == true)
+                        {
+                            ArtificialIntelligenceAccess[j].killNotByPlayer = true;
+                        }
+
+                        if (ArtificialIntelligenceAccess[j].resistDisease == false)
+                        {
+                            if (ArtificialIntelligenceAccess[j].type == "Person" || ArtificialIntelligenceAccess[j].type == "Soldier")
+                            {
+                                if (ArtificialIntelligenceAccess[j].internalWarts == false)
+                                {
+                                    ArtificialIntelligenceAccess[j].internalWarts = true;
+                                    ArtificialIntelligenceAccess[j].internalWartGrowth = 0;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                this.tic = 10;
+            }
+            else
+            {
+                if (this.dst(X, Y) <= this.radius)
+                {
+                    if (this.temporary == true)
+                    {
+                        if (player.resistDisease == false)
+                        {
+                            if (player.internalWarts == false)
+                            {
+                                player.internalWarts = true;
+                                player.internalWartGrowth = 0;
+                            }
+                        }
+                    }
+                }
+
+                for (var j = 0; j < ArtificialIntelligenceAccess.length; j++)
+                {
+                    if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= this.radius + (3/4 * ArtificialIntelligenceAccess[j].sizeRadius) && !ArtificialIntelligenceAccess[j].underground && ArtificialIntelligenceAccess[j].dmx == this.dmx)
+                    {
+                        if (ArtificialIntelligenceAccess[j].resistDisease == false)
+                        {
+                            if (ArtificialIntelligenceAccess[j].type == "Person" || ArtificialIntelligenceAccess[j].type == "Soldier")
+                            {
+                                if (ArtificialIntelligenceAccess[j].internalWarts == false)
+                                {
+                                    ArtificialIntelligenceAccess[j].internalWarts = true;
+                                    ArtificialIntelligenceAccess[j].internalWartGrowth = 0;
+                                }
+                            }
+                        }
+                    }
+                }
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(wart, 285, 713, 118, 112, -(1/2 * 118 * this.size), -(1/2 * 112 * this.size), 118 * this.size, 112 * this.size);
+                XXX.restore();
+                this.tic += 1;
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 117 * this.size;
+
+
+
+            if (this.tic > 3950)
+            {
+                scenicList.splice(scenicList.indexOf(this), 1);
+            }
 
             //INTERACTION
             if (this.activate == true)
@@ -23373,6 +23546,10 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
 
             if (this.ignited == true)
             {
+                if (timeOfDay != "Day")
+                {
+                    lights.push({X: this.X, Y: this.Y, size: 330, extraStops: true, GRD: 0.25, Alpha: 0.75, showMe: false});
+                }
                 if (this.playerer <= this.radius) //fire burns the player but heat resistance can reduce the damage it does.
                 {
                     if (player.form != "vampire" || wKey != true)
@@ -28836,6 +29013,59 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 if (hits == Inventory.length)
                 {
                     Inventory.push([new Item("neprilneBerries", false, false), 1]);
+                }
+            }
+        }
+        else if (this.type == "pashaPlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.nectar(5);
+            this.solid = false;
+            this.interactionRange = 100;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(ion, 1111, 376, 74, 50, -(1/2 * 74), -(1/2 * 50), 74, 50);
+                XXX.restore();
+            }
+            else if (this.phase == "picked")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(ion, 1109, 351, 26, 21, -(1/2 * 26), -(1/2 * 21), 26, 21);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 22;
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0)
+            {
+                this.activate = false;
+                this.phase = "picked";
+                var hits = 0;
+                for (var i = 0; i < Inventory.length; i ++)
+                {
+                    if (Inventory[i][0].type == "pashaArm")
+                    {
+                        Inventory[i][1] += (Math.floor(Math.random() * 3) + 1);
+                        break;
+                    }
+                    else
+                    {
+                        hits += 1;
+                    }
+                }
+                if (hits == Inventory.length)
+                {
+                    Inventory.push([new Item("pashaArm", false, false), Math.floor(Math.random() * 3) + 1]);
                 }
             }
         }

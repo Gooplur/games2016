@@ -8475,6 +8475,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 {
                     player.internalWarts = false;
                     player.internalWartGrowth = 0;
+                    this.temporary = true;
                 }
                 else
                 {

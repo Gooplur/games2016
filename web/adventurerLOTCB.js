@@ -3084,7 +3084,12 @@ function Adventurer()
 
             if (this.internalWarts == true)
             {
-                this.internalWartGrowth += 0.001;
+                this.internalWartGrowth += 0.005;
+                if (this.vamprism == true || this.venandi >= 100)
+                {
+                    this.internalWarts = false;
+                    this.internalWartGrowth = 0;
+                }
 
                 if (new Date().getTime() - this.timeSinceLastWartGrowth >= 75)
                 {
@@ -6301,6 +6306,10 @@ function Adventurer()
             if (this.internalWartGrowth <= 20)
             {
                 XXX.fillStyle = "#757D4A";
+            }
+            else if (this.internalWartGrowth > 50)
+            {
+                XXX.fillStyle = "#210902";
             }
             else
             {

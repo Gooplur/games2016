@@ -1344,6 +1344,14 @@ function worldBuilder()
             outlineBuilder(2, 3, "swamp", -1199, 259);
             outlineBuilder(3, 1, "swamp", -1189, 265);
         }
+        //mapS8W36
+        if (Y > -85605 && Y < -74729 &&  X < 374956 && X > 363245) //X-36
+        {
+            elevation = 0;
+            region = "s8w36";
+            campout = true;
+            outlineBuilder(34, 34, "vardanianWoods", -1244, 252);
+        }
         //Layer -7 (cold region): elev 0
         //mapS7
         if (Y > -75331 && Y < -64538 && X < 7687 && X > - 3901) //X0

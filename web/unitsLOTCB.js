@@ -13816,8 +13816,8 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
 
         if (dead != true && this.internalWarts == true)
         {
-            this.internalWartGrowth += 0.001;
-            if (this.vamprism == true)
+            this.internalWartGrowth += 0.005;
+            if (this.vamprism == true || this.venandi >= 100)
             {
                 this.internalWarts = false;
                 this.internalWartGrowth = 0;

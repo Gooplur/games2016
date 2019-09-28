@@ -4293,6 +4293,7 @@ function theLegend()
     allWeapons.push(new Item("cephrianDagger"));//117
     allWeapons.push(new Item("cephrianRapier"));//118
     allWeapons.push(new Item("spellOil"));//119
+    allWeapons.push(new Item("vardanianPolehammer"));//120
 
 
 

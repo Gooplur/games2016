@@ -11861,6 +11861,27 @@ function Item(type, x, y)
             this.buyValue = 3 - Math.floor(player.getCharisma() / 50); // at max, buy for 2.
             this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
         }
+        else if (this.type == "ghoulHorseArmour")
+        {
+            //For All Items
+            this.identity = "Ghoul Horse Armour";
+            this.weight = 170;
+            this.size = 32;
+            this.description = "Segmented steel armour plates fitted to protect a horse decorated with ghoul pelts.";
+            this.intForDes = 1;
+            this.intDescription = "Use near a horse that you own in order to equip the armour for them.";
+
+            //Define Utility
+            this.utility = "material";
+            this.questy = true;
+
+            //ability
+            this.ability = "horseArmour";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2100 - Math.floor(player.getCharisma() / 1); // at max, buy for 2050.
+            this.sellValue = 1900 + Math.floor(player.getCharisma() / 0.333333333); // at max, sell for 2050.
+        }
         else if (this.type == "steelHorseArmour")
         {
             //For All Items
@@ -48779,6 +48800,55 @@ function Item(type, x, y)
             this.buyValue = 5 - Math.floor(player.getCharisma() / 50); // at max, buy for 4.
             this.sellValue = 3 + Math.floor(player.getCharisma() / 50); // at max, sell for 4.
         }
+        else if (this.type == "vardanianPolehammer")
+        {
+            //For All Items
+            this.identity = "Vardanian Polehammer";
+            this.weight = 5.5;
+            this.size = 18;
+            this.description = "A long hammer with a spike at the end.";
+            this.intForDes = 1;
+            this.intDescription = "For close range encounters one can use this for bashing. To keep ones enemies at bay this may also be used for stabbing.";
+
+            //Define Utility
+            this.utility = "weapon";
+
+            this.multiATK = true;
+
+            //Utility Focused
+            if (player.powerAttack == true)
+            {
+                this.energyCost = 7;
+                this.distance = 75 + (this.range * 7);
+                this.range = 2 + 2/7;
+                this.rate = 160;
+                this.damage = (6.5 - (this.damageHandicap * 1.5)) * (this.leveledDamageMultiple / 25) + ((4/50) * player.getStrength());
+                this.magicalDamage = 0;
+                this.negateArmour = 10 + ((3/50) * player.getStrength());
+            }
+            else
+            {
+                this.energyCost = 6;
+                this.distance = 34 + (this.range * 7);
+                this.range = 4 + 1/7;
+                this.rate = 125;
+                this.damage = (7.5 - (this.damageHandicap * 1.5)) * (this.leveledDamageMultiple / 25) + ((5/50) * player.getStrength());
+                this.magicalDamage = 0;
+                this.negateArmour = 4 + ((3/50) * player.getStrength());
+            }
+
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 29;
+            this.ingredients = [["Steel", 3], ["Ashai Wood", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 110 - Math.floor(player.getCharisma() / 8); // at max, buy for 104.
+            this.sellValue = 90 + Math.floor(player.getCharisma() / 3.57); // at max, sell for 104.
+        }
         else if (this.type == "vardanianAxe")
         {
             //For All Items
@@ -50944,6 +51014,11 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "vardanianPolehammer")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wart, 14, 678, 84, 124, X - this.X + (1/2 * CCC.width) - (1/2 * 84 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 124 * 1), 84 * 1, 124 * 1);
+        }
         else if (this.type == "pashaArm")
         {
             XXX.beginPath();
@@ -51810,6 +51885,11 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(bogg, 221, 1180, 148, 61, X - this.X + (1/2 * CCC.width) - (1/2 * 148 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 61 * 1), 148 * 1, 61 * 1);
+        }
+        else if (this.type == "ghoulHorseArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wart, 31, 851, 196, 75, X - this.X + (1/2 * CCC.width) - (1/2 * 196 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 75 * 1), 196 * 1, 75 * 1);
         }
         else if (this.type == "bovodo")
         {
@@ -57522,6 +57602,11 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
+        else if (this.type == "vardanianPolehammer")
+        {
+            LXX.beginPath();
+            LXX.drawImage(wart, 14, 678, 84, 124, this.invX - (1/2 * 84 * 0.8), this.invY - (1/2 * 124 * 0.8), 84 * 0.8, 124 * 0.8);
+        }
         else if (this.type == "pashaArm")
         {
             LXX.beginPath();
@@ -58384,6 +58469,11 @@ function Item(type, x, y)
         {
             LXX.beginPath();
             LXX.drawImage(bogg, 221, 1180, 148, 61, this.invX - (1/2 * 148 * 0.5), this.invY - (1/2 * 61 * 0.5), 148 * 0.5, 61 * 0.5);
+        }
+        else if (this.type == "ghoulHorseArmour")
+        {
+            LXX.beginPath();
+            LXX.drawImage(wart, 31, 851, 196, 75, this.invX - (1/2 * 196 * 0.5) - 3, this.invY - (1/2 * 75 * 0.5), 196 * 0.5, 75 * 0.5);
         }
         else if (this.type == "bovodo")
         {
@@ -64067,6 +64157,11 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
+        else if (this.type == "vardanianPolehammer")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wart, 14, 678, 84, 124, this.invX - (1/2 * 84 * 0.8), this.invY - (1/2 * 124 * 0.8), 84 * 0.8, 124 * 0.8);
+        }
         else if (this.type == "pashaArm")
         {
             XXX.beginPath();
@@ -64929,6 +65024,11 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(bogg, 221, 1180, 148, 61, this.invX - (1/2 * 148 * 0.5), this.invY - (1/2 * 61 * 0.5), 148 * 0.5, 61 * 0.5);
+        }
+        else if (this.type == "ghoulHorseArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wart, 31, 851, 196, 75, this.invX - (1/2 * 196 * 0.5) - 3, this.invY - (1/2 * 75 * 0.5), 196 * 0.5, 75 * 0.5);
         }
         else if (this.type == "bovodo")
         {

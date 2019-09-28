@@ -26618,6 +26618,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.team = "player";
                 this.horseArmour = "nechrovite";
             }
+            else if (this.ID == "ghoul")
+            {
+                this.team = "player";
+                this.horseArmour = "ghoul";
+            }
             this.baseTeam = this.team;
             this.goatEatness = 0;
             this.goatly = false;
@@ -26714,6 +26719,11 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 this.team = "player";
                 this.horseArmour = "nechrovite";
+            }
+            else if (this.ID == "ghoul")
+            {
+                this.team = "player";
+                this.horseArmour = "ghoul";
             }
             this.baseTeam = this.team;
             this.goatEatness = 0;
@@ -78389,6 +78399,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             {
                 this.drops.push([new Item("nechroviteHorseArmour", this.X, this.Y), 1]);
             }
+            else if (this.horseArmour == "ghoul")
+            {
+                this.drops.push([new Item("ghoulHorseArmour", this.X, this.Y), 1]);
+            }
 
             //RANGE OF SIGHT (anything related to range of sight)
             if (this.alpha == true)
@@ -78695,6 +78709,13 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.rotationSpeed = this.baseRotationSpeed * 0.85;
                 this.armour = 20;
             }
+            else if (this.horseArmour == "ghoul")
+            {
+                this.drawUnit(wart, 31, 851, 196, 75, -1/2 * 196 * this.alphaSize * horseArmourSZ - this.xAdjustment - (2.5 * this.alphaSize * horseArmourSZ), -1/2 * 75 * this.alphaSize * horseArmourSZ - this.yAdjustment + (0.5 * this.alphaSize * horseArmourSZ), 196 * this.alphaSize * horseArmourSZ, 75 * this.alphaSize * horseArmourSZ);
+                this.speed = this.baseSpeed * 0.85;
+                this.rotationSpeed = this.baseRotationSpeed * 0.925;
+                this.armour = 13;
+            }
             else
             {
                 this.speed = this.baseSpeed;
@@ -78766,6 +78787,10 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
             else if (this.horseArmour == "nechrovite")
             {
                 this.drops.push([new Item("nechroviteHorseArmour", this.X, this.Y), 1]);
+            }
+            else if (this.horseArmour == "ghoul")
+            {
+                this.drops.push([new Item("ghoulHorseArmour", this.X, this.Y), 1]);
             }
 
             //RANGE OF SIGHT (anything related to range of sight)
@@ -79072,6 +79097,13 @@ function Unit(unitX, unitY, type, isalpha, ID, ultra) //ultra is an object that 
                 this.speed = this.baseSpeed * 0.7;
                 this.rotationSpeed = this.baseRotationSpeed * 0.85;
                 this.armour = 20;
+            }
+            else if (this.horseArmour == "ghoul")
+            {
+                this.drawUnit(wart, 31, 851, 196, 75, -1/2 * 196 * this.alphaSize * horseArmourSZ - this.xAdjustment - (2.5 * this.alphaSize * horseArmourSZ), -1/2 * 75 * this.alphaSize * horseArmourSZ - this.yAdjustment, 196 * this.alphaSize * horseArmourSZ, 75 * this.alphaSize * horseArmourSZ);
+                this.speed = this.baseSpeed * 0.85;
+                this.rotationSpeed = this.baseRotationSpeed * 0.925;
+                this.armour = 13;
             }
             else
             {

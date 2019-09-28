@@ -19830,6 +19830,166 @@ function Adventurer()
                 }
             }
         }
+        //VARDANIAN POLEHAMMER
+        if (this.weaponEquipped == "vardanianPolehammer")
+        {
+            if (player.powerAttack == true && player.attacking)
+            {
+                this.stageEngine(7, 0.18, true); //This cycles through the stages of the attack for four stages (ending at five) and at a rate of 4 * 16.75 miliseconds
+
+                //ATTACK ANIMATION
+                if (Math.floor(this.stage) <= 0)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(wart, 532, 593, 158, 203, -1/2 * 158, -1/2 * 203, 158, 203);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 1)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(wart, 527, 798, 158, 203, -1/2 * 158, -1/2 * 203, 158, 203);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 2)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(wart, 712, 792, 158, 203, -1/2 * 158, -1/2 * 203, 158, 203);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 3)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(wart, 893, 787, 158, 203, -1/2 * 158, -1/2 * 203, 158, 203);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 4)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(wart, 1087, 786, 158, 203, -1/2 * 158, -1/2 * 203, 158, 203);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) >= 5)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(wart, 1266, 800, 158, 203, -1/2 * 158, -1/2 * 203, 158, 203);
+                    XXX.restore();
+                }
+            }
+            else
+            {
+                this.stageEngine(7, 0.21, true); //This cycles through the stages of the attack for four stages (ending at five) and at a rate of 4 * 16.75 miliseconds
+
+                //ATTACK ANIMATION
+                if (Math.floor(this.stage) <= 0)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(wart, 532, 593, 158, 203, -1/2 * 158, -1/2 * 203, 158, 203);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 1)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(wart, 703, 587, 158, 203, -1/2 * 158, -1/2 * 203, 158, 203);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 2)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(wart, 532, 593, 158, 203, -1/2 * 158, -1/2 * 203, 158, 203);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 3)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(wart, 881, 584, 158, 203, -1/2 * 158, -1/2 * 203, 158, 203);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) <= 4)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(wart, 1077, 576, 158, 203, -1/2 * 158, -1/2 * 203, 158, 203);
+                    XXX.restore();
+                }
+                else if (Math.floor(this.stage) >= 5)
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(wart, 1233, 572, 158, 203, -1/2 * 158, -1/2 * 203, 158, 203);
+                    XXX.restore();
+                }
+            }
+        }
         //THORN
         if (this.weaponEquipped == "thorn")
         {
@@ -28319,6 +28479,22 @@ function Adventurer()
             //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
             this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.5 / 5 * Math.PI) * (this.mySize + 79);
             this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.5 / 5 * Math.PI) * (this.mySize + 79);
+        }
+        else if (this.weaponEquipped == "vardanianPolehammer" && player.powerAttack == true)
+        {
+            this.weapon = allWeapons[120];
+
+            //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+            this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.41 / 5 * Math.PI) * (this.mySize + 75);
+            this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.41 / 5 * Math.PI) * (this.mySize + 75);
+        }
+        else if (this.weaponEquipped == "vardanianPolehammer" && player.powerAttack == false)
+        {
+            this.weapon = allWeapons[120];
+
+            //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+            this.bubbleOfDamageX = X - Math.cos(this.rotation - 1.9 / 5 * Math.PI) * (this.mySize + 34);
+            this.bubbleOfDamageY = Y - Math.sin(this.rotation - 1.9 / 5 * Math.PI) * (this.mySize + 34);
         }
     };
 
@@ -39804,6 +39980,13 @@ function Adventurer()
                                                 horsey = j;
                                             }
                                         }
+                                        else if (Inventory[i][0].type == "ghoulHorseArmour")
+                                        {
+                                            if (ArtificialIntelligenceAccess[j].horseArmour != "ghoul")
+                                            {
+                                                horsey = j;
+                                            }
+                                        }
                                         else if (Inventory[i][0].type == "horseArmourRemover")
                                         {
                                             horsey = j;
@@ -39826,6 +40009,10 @@ function Adventurer()
                                     {
                                         worldItems.push([new Item("nechroviteHorseArmour", ArtificialIntelligenceAccess[horsey].X, ArtificialIntelligenceAccess[horsey].Y), 1]);
                                     }
+                                    else if (ArtificialIntelligenceAccess[horsey].horseArmour == "ghoul")
+                                    {
+                                        worldItems.push([new Item("ghoulHorseArmour", ArtificialIntelligenceAccess[horsey].X, ArtificialIntelligenceAccess[horsey].Y), 1]);
+                                    }
                                     ArtificialIntelligenceAccess[horsey].horseArmour = "none";
                                 }
 
@@ -39843,6 +40030,10 @@ function Adventurer()
                                     else if (Inventory[i][0].type == "nechroviteHorseArmour")
                                     {
                                         ArtificialIntelligenceAccess[horsey].horseArmour = "nechrovite";
+                                    }
+                                    else if (Inventory[i][0].type == "ghoulHorseArmour")
+                                    {
+                                        ArtificialIntelligenceAccess[horsey].horseArmour = "ghoul";
                                     }
 
                                     if (Inventory[i][1] - 1 <= 0)

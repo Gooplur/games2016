@@ -5554,6 +5554,30 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.drawImage(jeru, 705, 120, 79, 80, -(1/2 * 79 * this.information), -(1/2 * 80 * this.information), 79 * this.information, 80 * this.information);
                 XXX.restore();
             }
+            else if (this.temporary == 36)//cephrian bowl dark
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(wart, 67, 12, 25, 25, -(1/2 * 25 * this.information), -(1/2 * 25 * this.information), 25 * this.information, 25 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 37)//cephrian pot/vase
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(wart, 95, 12, 25, 25, -(1/2 * 25 * this.information), -(1/2 * 25 * this.information), 25 * this.information, 25 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 38)//cephrian huka
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(wart, 0, 8, 50, 34, -(1/2 * 50 * this.information), -(1/2 * 34 * this.information), 50 * this.information, 34 * this.information);
+                XXX.restore();
+            }
 
 
             //INTERACTION

@@ -4820,6 +4820,8 @@ function theLegend()
     foods.push(new Item("venison", false));
     foods.push(new Item("smokedVenison", false));
     foods.push(new Item("chyoulBerryPie", false));
+    foods.push(new Item("varminHaunch", false));
+    foods.push(new Item("skeweredRat", false));
     foods.push(new Item("humanMeat", false));
     foods.push(new Item("foxMeat", false));
     foods.push(new Item("arcticFoxMeat", false));
@@ -5200,6 +5202,8 @@ function theLegend()
     handcrafted.push(new Item("treatedBovineHide", false));
     handcrafted.push(new Item("soakedMandrake", false));
     handcrafted.push(new Item("slicedBorsht", false));
+    handcrafted.push(new Item("rawVarminHaunch", false));
+    handcrafted.push(new Item("rawSkeweredRat", false));
     handcrafted.push(new Item("treatedSaliseaHide", false));
     handcrafted.push(new Item("rawGorgonFlesh", false));
     handcrafted.push(new Item("ashaiPowder", false));

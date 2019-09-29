@@ -9897,6 +9897,142 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
         }
+        else if (this.type == "rawVarminHaunch")
+        {
+            //For All Items
+            this.identity = "Raw Varmin Haunch";
+            this.weight = 4;
+            this.size = 17;
+            this.description = "The skinned haunch of a varmin.";
+            this.intForDes = 5;
+            this.intDescription = "It is not safe to eat this raw because it may have gutworms in it.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 2; //satisfies hunger.
+            this.thirst = 0.2; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -2; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "gutWorms";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 1;
+            this.ingredients = [["Raw Varmin Leg", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "varminHaunch")
+        {
+            //For All Items
+            this.identity = "Varmin Haunch";
+            this.weight = 4;
+            this.size = 17;
+            this.description = "The roasted haunch of a varmin.";
+            this.intForDes = 0;
+            this.intDescription = "It has a sort of musty meaty smell and it does taste any better...";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 10; //satisfies hunger.
+            this.thirst = 0.1; //quenches thirst.
+            this.warmth = 4; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -0.5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 6;
+            this.ingredients = [["Raw Varmin Haunch", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 7; // at max, buy for 7.
+            this.sellValue = 5; // at max, sell for 5.
+        }
+        else if (this.type == "rawSkeweredRat")
+        {
+            //For All Items
+            this.identity = "Raw Skewered Rat";
+            this.weight = 0.4;
+            this.size = 6;
+            this.description = "A skinned rat on a sharpened skewer.";
+            this.intForDes = 5;
+            this.intDescription = "Don't eat it raw, it may be infested with gutworms.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0.75; //satisfies hunger.
+            this.thirst = 0.05; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -1; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "gutWorms";
+
+            //Crafting
+            this.yield = 20;
+            this.intForCraft = 2;
+            this.ingredients = [["Dead Rat", 20], ["Ashai Wood", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "skeweredRat")
+        {
+            //For All Items
+            this.identity = "Skewered Rat";
+            this.weight = 0.4;
+            this.size = 6;
+            this.description = "A rat rotisseried on a sharpened skewer.";
+            this.intForDes = 0;
+            this.intDescription = "The roasty toasty rat meat has a musty meaty flavour.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 4; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 1; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -0.5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 2;
+            this.ingredients = [["Raw Skewered Rat", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 2; // at max, sell for 2.
+        }
         else if (this.type == "rawBadgerFlesh")
         {
             //For All Items
@@ -22900,6 +23036,66 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 5 - Math.floor(player.getCharisma() / 15); // at max, buy for 2.
             this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+        }
+        else if (this.type == "varminPelt")
+        {
+            //For All Items
+            this.identity = "Varmin Pelt";
+            this.weight = 2.75;
+            this.size = 19;
+            this.description = "The musky smelling, fuzzy grey pelt of a varmin.";
+            this.intForDes = 3;
+            this.intDescription = "This is used to make Southern Vardanian clothing and rugs.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 6 - Math.floor(player.getCharisma() / 12.5); // at max, buy for 2.
+            this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+        }
+        else if (this.type == "rawVarminLeg")
+        {
+            //For All Items
+            this.identity = "Raw Varmin Leg";
+            this.weight = 4;
+            this.size = 20;
+            this.description = "The severed leg of a varmin.";
+            this.intForDes = 1;
+            this.intDescription = "This can be skinned then cooked, varmin is a fairly common poor-man's food in Southern Vardania.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "deadRat")
+        {
+            //For All Items
+            this.identity = "Dead Rat";
+            this.weight = 0.4;
+            this.size = 6;
+            this.description = "A dead rat.";
+            this.intForDes = 2;
+            this.intDescription = "This can be skinned, skewered and cooked up.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 0; // at max, buy for 0.
+            this.sellValue = 0; // at max, sell for 0.
         }
         else if (this.type == "vreckPelt")
         {
@@ -51014,6 +51210,41 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "varminPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ruin, 433, 3, 81, 48, X - this.X + (1/2 * CCC.width) - (1/2 * 81 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 48 * 1), 81 * 1, 48 * 1);
+        }
+        else if (this.type == "deadRat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ruin, 26, 1117, 62, 34, X - this.X + (1/2 * CCC.width) - (1/2 * 62 * 0.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 34 * 0.6), 62 * 0.6, 34 * 0.6);
+        }
+        else if (this.type == "rawSkeweredRat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ruin, 102, 1155, 97, 34, X - this.X + (1/2 * CCC.width) - (1/2 * 97 * 0.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 34 * 0.6), 97 * 0.6, 34 * 0.6);
+        }
+        else if (this.type == "skeweredRat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ruin, 14, 1156, 92, 35, X - this.X + (1/2 * CCC.width) - (1/2 * 92 * 0.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 35 * 0.6), 92 * 0.6, 35 * 0.6);
+        }
+        else if (this.type == "rawVarminLeg")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ruin, 862, 897, 93, 39, X - this.X + (1/2 * CCC.width) - (1/2 * 93 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 39 * 1), 93 * 1, 39 * 1);
+        }
+        else if (this.type == "rawVarminHaunch")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ruin, 862, 937, 93, 39, X - this.X + (1/2 * CCC.width) - (1/2 * 93 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 39 * 1), 93 * 1, 39 * 1);
+        }
+        else if (this.type == "varminHaunch")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ruin, 861, 985, 93, 39, X - this.X + (1/2 * CCC.width) - (1/2 * 93 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 39 * 1), 93 * 1, 39 * 1);
+        }
         else if (this.type == "vardanianPolehammer")
         {
             XXX.beginPath();
@@ -57602,6 +57833,41 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
+        else if (this.type == "varminPelt")
+        {
+            LXX.beginPath();
+            LXX.drawImage(ruin, 433, 3, 81, 48, this.invX - (1/2 * 81 * 0.6), this.invY - (1/2 * 48 * 0.6), 81 * 0.6, 48 * 0.6);
+        }
+        else if (this.type == "deadRat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(ruin, 26, 1117, 62, 34, this.invX - (1/2 * 62 * 0.6), this.invY - (1/2 * 34 * 0.6), 62 * 0.6, 34 * 0.6);
+        }
+        else if (this.type == "rawSkeweredRat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(ruin, 102, 1155, 97, 34, this.invX - (1/2 * 97 * 0.6), this.invY - (1/2 * 34 * 0.6), 97 * 0.6, 34 * 0.6);
+        }
+        else if (this.type == "skeweredRat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(ruin, 14, 1156, 92, 35, this.invX - (1/2 * 92 * 0.6), this.invY - (1/2 * 35 * 0.6), 92 * 0.6, 35 * 0.6);
+        }
+        else if (this.type == "rawVarminLeg")
+        {
+            LXX.beginPath();
+            LXX.drawImage(ruin, 862, 897, 93, 39, this.invX - (1/2 * 93 * 1), this.invY - (1/2 * 39 * 1), 93 * 1, 39 * 1);
+        }
+        else if (this.type == "rawVarminHaunch")
+        {
+            LXX.beginPath();
+            LXX.drawImage(ruin, 862, 937, 93, 39, this.invX - (1/2 * 93 * 1), this.invY - (1/2 * 39 * 1), 93 * 1, 39 * 1);
+        }
+        else if (this.type == "varminHaunch")
+        {
+            LXX.beginPath();
+            LXX.drawImage(ruin, 861, 985, 93, 39, this.invX - (1/2 * 93 * 1), this.invY - (1/2 * 39 * 1), 93 * 1, 39 * 1);
+        }
         else if (this.type == "vardanianPolehammer")
         {
             LXX.beginPath();
@@ -64156,6 +64422,41 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "varminPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ruin, 433, 3, 81, 48, this.invX - (1/2 * 81 * 0.6), this.invY - (1/2 * 48 * 0.6), 81 * 0.6, 48 * 0.6);
+        }
+        else if (this.type == "deadRat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ruin, 26, 1117, 62, 34, this.invX - (1/2 * 62 * 0.6), this.invY - (1/2 * 34 * 0.6), 62 * 0.6, 34 * 0.6);
+        }
+        else if (this.type == "rawSkeweredRat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ruin, 102, 1155, 97, 34, this.invX - (1/2 * 97 * 0.6), this.invY - (1/2 * 34 * 0.6), 97 * 0.6, 34 * 0.6);
+        }
+        else if (this.type == "skeweredRat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ruin, 14, 1156, 92, 35, this.invX - (1/2 * 92 * 0.6), this.invY - (1/2 * 35 * 0.6), 92 * 0.6, 35 * 0.6);
+        }
+        else if (this.type == "rawVarminLeg")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ruin, 862, 897, 93, 39, this.invX - (1/2 * 93 * 1), this.invY - (1/2 * 39 * 1), 93 * 1, 39 * 1);
+        }
+        else if (this.type == "rawVarminHaunch")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ruin, 862, 937, 93, 39, this.invX - (1/2 * 93 * 1), this.invY - (1/2 * 39 * 1), 93 * 1, 39 * 1);
+        }
+        else if (this.type == "varminHaunch")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ruin, 861, 985, 93, 39, this.invX - (1/2 * 93 * 1), this.invY - (1/2 * 39 * 1), 93 * 1, 39 * 1);
         }
         else if (this.type == "vardanianPolehammer")
         {

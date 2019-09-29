@@ -9298,6 +9298,14 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.drawImage(gul, 998, 642, 100, 164, -(1/2 * 100 * this.information), -(1/2 * 164 * this.information), 100 * this.information, 164 * this.information);
                 XXX.restore();
             }
+            else if (this.temporary == 12) //blood and organs (giant rat or human?)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(ruin, 1129, 1095, 143, 92, -(1/2 * 143 * this.information), -(1/2 * 92 * this.information), 143 * this.information, 92 * this.information);
+                XXX.restore();
+            }
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
             this.radius = 1;

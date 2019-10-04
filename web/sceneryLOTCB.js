@@ -22992,12 +22992,15 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
 
             for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
             {
-                distToPlat = pDist(ArtificialIntelligenceAccess[i].X, ArtificialIntelligenceAccess[i].Y, this.X + Math.cos(1/2 * Math.PI + this.rotation) * 40, this.Y + Math.sin(1/2 * Math.PI + this.rotation) * 35, this.X + Math.cos(1/2 * Math.PI + this.rotation) * 50, this.Y + Math.sin(1/2 * Math.PI + this.rotation) * 50);
-                if (distToPlat <= 40 * 40)
+                if (ArtificialIntelligenceAccess[i].type != "Rat" && ArtificialIntelligenceAccess[i].type != "Mornid")
                 {
-                    ArtificialIntelligenceAccess[i].killNotByPlayer = true;
-                    ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
-                    ArtificialIntelligenceAccess[i].health -= Math.max(0, 0.75 - Math.max(0, ArtificialIntelligenceAccess[i].armour - 11));
+                    distToPlat = pDist(ArtificialIntelligenceAccess[i].X, ArtificialIntelligenceAccess[i].Y, this.X + Math.cos(1/2 * Math.PI + this.rotation) * 40, this.Y + Math.sin(1/2 * Math.PI + this.rotation) * 35, this.X + Math.cos(1/2 * Math.PI + this.rotation) * 50, this.Y + Math.sin(1/2 * Math.PI + this.rotation) * 50);
+                    if (distToPlat <= 40 * 40)
+                    {
+                        ArtificialIntelligenceAccess[i].killNotByPlayer = true;
+                        ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
+                        ArtificialIntelligenceAccess[i].health -= Math.max(0, 0.75 - Math.max(0, ArtificialIntelligenceAccess[i].armour - 11));
+                    }
                 }
             }
 

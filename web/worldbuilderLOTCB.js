@@ -473,6 +473,15 @@ function worldBuilder()
             outlineBuilder(1, 1, "savannah", 8, 523);
             outlineBuilder( 34, 1, "stonePath", 0, 490);
         }
+        //mapS15W34
+        if (Y > -156924 && Y < -146147 && X < 354544 && X > 342860) //X-34
+        {
+            elevation = 0;
+            region = "s15w34";
+            campout = true;
+            outlineBuilder(34, 34, "vardanianGrass", -1176, 490);
+            outlineBuilder(34, 1, "vardanianStone", -1159, 490);
+        }
         //Layer -14 (temperate region): elev -1
         //mapS14
         if (Y > -146711 && Y < -135937 && X < 7687 && X > - 3901) //X0
@@ -485,6 +494,15 @@ function worldBuilder()
             outlineBuilder( 1, 6, "stonePath", -6, 462);
             outlineBuilder( 28, 1, "stonePath", 0, 462);
         }
+        //mapS14W34
+        if (Y > -146711 && Y < -135937 && X < 354544 && X > 342860) //X-34
+        {
+            elevation = 0;
+            region = "s14w34";
+            campout = true;
+            outlineBuilder(34, 34, "vardanianGrass", -1176, 456);
+            outlineBuilder(34, 1, "vardanianStone", -1159, 456);
+        }
         //Layer -13 (temperate region): elev -1
         //mapS13
         if (Y > -136522 && Y < -125745 && X < 7687 && X > - 3901) //X0
@@ -495,6 +513,50 @@ function worldBuilder()
             outlineBuilder( 34, 34, "greenGrass", -20, 422);
             outlineBuilder( 34, 1, "stonePath", -6, 422);
         }
+        //mapS13W34
+        if (Y > -136522 && Y < -125745 && X < 354544 && X > 342860) //X-34
+        {
+            elevation = 0;
+            region = "s13w34";
+            campout = true;
+            outlineBuilder(34, 34, "vardanianGrass", -1176, 422);
+
+            outlineBuilder(9, 8, "vardanianForest", -1162, 441);
+            outlineBuilder(4, 1, "vardanianForest", -1154, 443);
+            outlineBuilder(3, 5, "vardanianForest", -1161, 450);
+            outlineBuilder(1, 1, "vardanianForest", -1155, 450);
+            outlineBuilder(3, 3, "vardanianForest", -1158, 438);
+            outlineBuilder(4, 1, "vardanianForest", -1158, 434);
+            outlineBuilder(4, 1, "vardanianForest", -1160, 436);
+            outlineBuilder(3, 5, "vardanianForest", -1157, 436);
+            outlineBuilder(1, 1, "vardanianForest", -1157, 435);
+            outlineBuilder(3, 2, "vardanianForest", -1162, 437);
+            outlineBuilder(1, 4, "vardanianForest", -1164, 439);
+            outlineBuilder(1, 1, "vardanianForest", -1155, 439);
+            outlineBuilder(4, 2, "vardanianForest", -1153, 442);
+            outlineBuilder(2, 1, "vardanianForest", -1150, 442);
+            outlineBuilder(4, 1, "vardanianForest", -1151, 441);
+            outlineBuilder(1, 4, "vardanianForest", -1160, 453);
+            outlineBuilder(1, 3, "vardanianForest", -1160, 454);
+            outlineBuilder(1, 1, "vardanianForest", -1158, 455);
+            outlineBuilder(6, 2, "vardanianForest", -1164, 442);
+            outlineBuilder(2, 1, "vardanianForest", -1165, 445);
+
+            outlineBuilder(34, 1, "vardanianStone", -1159, 422);
+            outlineBuilder(1, 10, "vardanianStone", -1169, 440);
+            outlineBuilder(1, 8, "vardanianStone", -1176, 441);
+        }
+        //mapS13W35
+        if (Y > -136522 && Y < -125745 && X < 364713 && X > 353021) //X-35
+        {
+            elevation = 0;
+            region = "s13w35";
+            campout = true;
+            outlineBuilder(34, 34, "vardanianGrass", -1210, 422);
+            outlineBuilder(1, 34, "vardanianStone", -1210, 441);
+            outlineBuilder(14, 1, "vardanianStone", -1196, 442);
+
+        }
         //Layer -12 (temperate region): elev -1
         //mapS12
         if (Y > -126325 && Y < -115546 && X < 7687 && X > - 3901) //X0
@@ -504,6 +566,15 @@ function worldBuilder()
             campout = true;
             outlineBuilder( 34, 34, "greenGrass", -20, 388);
             outlineBuilder( 34, 1, "stonePath", -6, 388);
+        }
+        //mapS12W34
+        if (Y > -126325 && Y < -115546 && X < 354544 && X > 342860) //X-34
+        {
+            elevation = 0;
+            region = "s12w34";
+            campout = true;
+            outlineBuilder(34, 34, "vardanianGrass", -1176, 388);
+            outlineBuilder(34, 1, "vardanianStone", -1159, 388);
         }
         //Layer -11 (temperate region): elev -1 | (cold region) past w-28: elev 0
         //mapS11

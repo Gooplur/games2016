@@ -14,8 +14,8 @@ function cheats()
     }
     if (buildMode == true)
     {
-        var buildList = ["coords", "Selva Tree", "Sonja Tree", "Gallosh Plant", "Vorlym Plant", "Thueg", "Conejo", "Boulchom", "Great Pine Tree", "Pine Tree", "Snowy Great Pine Tree", "Snowy Pine Tree", "Ashai Tree", "Ghoul", "Ribback", "Vreck", "Dalger", "Varonoi", "Stovol Beetle", "Thegol Thorn", "Elk", "Black Beruln", "Mekle Plant", "Black Bear", "Turkey", "Skol", "Deer", "Fox", "Badger", "Hoffalgre", "Crow", "Silter", "Scilt Plant", "Korsk Beetle", "Cheshire", "Grizzly Bear", "Borgal", "Lizard", "Koivaya (loner)", "Koivaya (breeder)", "Cranberry Plant", "Eyewort Plant", "Korceida Plant", "Laumin Plant", "Jolle Plant", "Porstol Plant", "Fallory Plant", "Palgga Plant", "Bleeding Heart Plant", "Aberdom Plant", "Beunum Plant", "Ciprin Plant", "Marigold Plant", "Hoil Plant", "Callop Plant", "Darb Plant", "Kofke Plant", "Steugiurne Plant", "Web", "Etna Egg Sack", "Etna", "Mustard Plant", "Carrot Plant", "Potato Plant", "Cabbage Plant", "Harst Plant", "Santh Plant", "Wheat Plant", "Suuli Plant", "Lilypads", "Swamp Brush", "Swamp Lily Plant", "Borsht Plant", "Cattail Plant", "Mandrake Plant", "Leech", "Mud Toad", "Ker", "Palinsyda", "GhoulFly", "Toad", "Hydra", "Bat", "Vecher Bug", "Bog Troll", "Cerebris Mycelium I", "Cerebris Mycelium II", "Swamp Island", "Xuim Mycelium I", "Xuim Mycelium II", "Saffron"];
-        //                  0           1              2               3                4          5        6           7              8               9                  10                    11              12         13         14       15        16        17             18              19         20          21              22            23          24       25      26      27      28          29        30       31          32             33             34             35         36         37            38                  39                   40                41               42                43             44              45               46               47                 48                   49              50               51               52             53             54             55            56                57            58         59           60           61              62               63              64              65            66             67              68           69            70               71                72               73                74           75        76       77        78           79        80      81      82         83           84                 85                    86                   87               88                  89              90
+        var buildList = ["coords", "Selva Tree", "Sonja Tree", "Gallosh Plant", "Vorlym Plant", "Thueg", "Conejo", "Boulchom", "Great Pine Tree", "Pine Tree", "Snowy Great Pine Tree", "Snowy Pine Tree", "Ashai Tree", "Ghoul", "Ribback", "Vreck", "Dalger", "Varonoi", "Stovol Beetle", "Thegol Thorn", "Elk", "Black Beruln", "Mekle Plant", "Black Bear", "Turkey", "Skol", "Deer", "Fox", "Badger", "Hoffalgre", "Crow", "Silter", "Scilt Plant", "Korsk Beetle", "Cheshire", "Grizzly Bear", "Borgal", "Lizard", "Koivaya (loner)", "Koivaya (breeder)", "Cranberry Plant", "Eyewort Plant", "Korceida Plant", "Laumin Plant", "Jolle Plant", "Porstol Plant", "Fallory Plant", "Palgga Plant", "Bleeding Heart Plant", "Aberdom Plant", "Beunum Plant", "Ciprin Plant", "Marigold Plant", "Hoil Plant", "Callop Plant", "Darb Plant", "Kofke Plant", "Steugiurne Plant", "Web", "Etna Egg Sack", "Etna", "Mustard Plant", "Carrot Plant", "Potato Plant", "Cabbage Plant", "Harst Plant", "Santh Plant", "Wheat Plant", "Suuli Plant", "Lilypads", "Swamp Brush", "Swamp Lily Plant", "Borsht Plant", "Cattail Plant", "Mandrake Plant", "Leech", "Mud Toad", "Ker", "Palinsyda", "GhoulFly", "Toad", "Hydra", "Bat", "Vecher Bug", "Bog Troll", "Cerebris Mycelium I", "Cerebris Mycelium II", "Swamp Island", "Xuim Mycelium I", "Xuim Mycelium II", "Saffron", "Murdered Vardanians", "Blood", "Skeleton", "Bones", "Scuffle Marks", "West Furniture", "Floor Decorations", "South Furniture", "Nirwaden Furniture", "Nirwaden Goods", "Vardanian Spikes", "Pike Wall"];
+        //                  0           1              2               3                4          5        6           7              8               9                  10                    11              12         13         14       15        16        17             18              19         20          21              22            23          24       25      26      27      28          29        30       31          32             33             34             35         36         37            38                  39                   40                41               42                43             44              45               46               47                 48                   49              50               51               52             53             54             55            56                57            58         59           60           61              62               63              64              65            66             67              68           69            70               71                72               73                74           75        76       77        78           79        80      81      82         83           84                 85                    86                   87               88                  89              90              91               92        93         94           95               96                  97                 98                   99                  100               101               102
         if (tKey)
         {
             tKey = false;
@@ -2148,7 +2148,931 @@ function cheats()
                 XXX.restore();
             }
         }
+        else if (buildToggle == 91)
+        {
+            if (fKey)
+            {
+                fKey = false;
+                if (shiftKey)
+                {
+                    buildRot += 1/16 * Math.PI;
+                }
+                else
+                {
+                    buildRot += 1/32 * Math.PI;
+                }
+            }
+            if (cKey)
+            {
+                cKey = false;
+                if (shiftKey)
+                {
+                    buildRot -= 1/16 * Math.PI;
+                }
+                else
+                {
+                    buildRot -= 1/32 * Math.PI;
+                }
+            }
+            if (gKey)
+            {
+                gKey = false;
+                if (shiftKey)
+                {
+                    buildSize += 0.1;
+                }
+                else
+                {
+                    buildSize += 0.02;
+                }
+            }
+            if (vKey)
+            {
+                vKey = false;
+                if (shiftKey)
+                {
+                    buildSize -= 0.1;
+                }
+                else
+                {
+                    buildSize -= 0.02;
+                }
+                if (buildSize <= 0)
+                {
+                    buildSize = 0.1;
+                }
+            }
+
+            if (zKey)
+            {
+                zKey = false;
+                if (shiftKey)
+                {
+                    buildClase -= 1;
+                }
+                else
+                {
+                    buildClase += 1;
+                }
+
+                if (buildClase > 15)
+                {
+                    buildClase = 1;
+                }
+                else if ((buildClase < 1))
+                {
+                    buildClase = 15;
+                }
+            }
+
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("murderedVardanians", ' + X + ', ' + Y + ', ' + buildRot + ', ' + buildClase +', ' + buildSize +'));');
+                scenicList.push(new Scenery("murderedVardanians", X, Y, buildRot, buildClase, buildSize));
+            }
+
+            var islonDDDD = new Scenery("murderedVardanians", X, Y, buildRot, buildClase, buildSize);
+            islonDDDD.operations();
+        }
+        else if (buildToggle == 92)
+        {
+            if (fKey)
+            {
+                fKey = false;
+                if (shiftKey)
+                {
+                    buildRot += 1/16 * Math.PI;
+                }
+                else
+                {
+                    buildRot += 1/32 * Math.PI;
+                }
+            }
+            if (cKey)
+            {
+                cKey = false;
+                if (shiftKey)
+                {
+                    buildRot -= 1/16 * Math.PI;
+                }
+                else
+                {
+                    buildRot -= 1/32 * Math.PI;
+                }
+            }
+            if (gKey)
+            {
+                gKey = false;
+                if (shiftKey)
+                {
+                    buildSize += 0.1;
+                }
+                else
+                {
+                    buildSize += 0.02;
+                }
+            }
+            if (vKey)
+            {
+                vKey = false;
+                if (shiftKey)
+                {
+                    buildSize -= 0.1;
+                }
+                else
+                {
+                    buildSize -= 0.02;
+                }
+                if (buildSize <= 0)
+                {
+                    buildSize = 0.1;
+                }
+            }
+
+            if (zKey)
+            {
+                zKey = false;
+                if (shiftKey)
+                {
+                    buildClase -= 1;
+                }
+                else
+                {
+                    buildClase += 1;
+                }
+
+                if (buildClase > 12)
+                {
+                    buildClase = 1;
+                }
+                else if ((buildClase < 1))
+                {
+                    buildClase = 12;
+                }
+            }
+
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("blood", ' + X + ', ' + Y + ', ' + buildRot + ', ' + buildClase +', ' + buildSize +'));');
+                scenicList.push(new Scenery("blood", X, Y, buildRot, buildClase, buildSize));
+            }
+
+            var islonDDDD = new Scenery("blood", X, Y, buildRot, buildClase, buildSize);
+            islonDDDD.operations();
+        }
+        else if (buildToggle == 93)
+        {
+            if (fKey)
+            {
+                fKey = false;
+                if (shiftKey)
+                {
+                    buildRot += 1/16 * Math.PI;
+                }
+                else
+                {
+                    buildRot += 1/32 * Math.PI;
+                }
+            }
+            if (cKey)
+            {
+                cKey = false;
+                if (shiftKey)
+                {
+                    buildRot -= 1/16 * Math.PI;
+                }
+                else
+                {
+                    buildRot -= 1/32 * Math.PI;
+                }
+            }
+            if (gKey)
+            {
+                gKey = false;
+                if (shiftKey)
+                {
+                    buildSize += 0.1;
+                }
+                else
+                {
+                    buildSize += 0.02;
+                }
+            }
+            if (vKey)
+            {
+                vKey = false;
+                if (shiftKey)
+                {
+                    buildSize -= 0.1;
+                }
+                else
+                {
+                    buildSize -= 0.02;
+                }
+                if (buildSize <= 0)
+                {
+                    buildSize = 0.1;
+                }
+            }
+
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("skeleton", ' + X + ', ' + Y + ', ' + buildRot + ', ' + buildSize + '));');
+                scenicList.push(new Scenery("skeleton", X, Y, buildRot, buildSize));
+            }
+
+            var islonDDDD = new Scenery("skeleton", X, Y, buildRot, buildSize);
+            islonDDDD.operations();
+        }
+        else if (buildToggle == 94)
+        {
+            if (fKey)
+            {
+                fKey = false;
+                if (shiftKey)
+                {
+                    buildRot += 1/16 * Math.PI;
+                }
+                else
+                {
+                    buildRot += 1/32 * Math.PI;
+                }
+            }
+            if (cKey)
+            {
+                cKey = false;
+                if (shiftKey)
+                {
+                    buildRot -= 1/16 * Math.PI;
+                }
+                else
+                {
+                    buildRot -= 1/32 * Math.PI;
+                }
+            }
+            if (gKey)
+            {
+                gKey = false;
+                if (shiftKey)
+                {
+                    buildSize += 0.1;
+                }
+                else
+                {
+                    buildSize += 0.02;
+                }
+            }
+            if (vKey)
+            {
+                vKey = false;
+                if (shiftKey)
+                {
+                    buildSize -= 0.1;
+                }
+                else
+                {
+                    buildSize -= 0.02;
+                }
+                if (buildSize <= 0)
+                {
+                    buildSize = 0.1;
+                }
+            }
+
+            if (zKey)
+            {
+                zKey = false;
+                if (shiftKey)
+                {
+                    buildClase -= 1;
+                }
+                else
+                {
+                    buildClase += 1;
+                }
+
+                if (buildClase > 11)
+                {
+                    buildClase = 0;
+                }
+                else if ((buildClase < 0))
+                {
+                    buildClase = 11;
+                }
+            }
+
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("bones", ' + X + ', ' + Y + ', ' + buildRot + ', ' + buildSize +', ' + buildClase +'));');
+                scenicList.push(new Scenery("bones", X, Y, buildRot, buildSize, buildClase));
+            }
+
+            var islonDDDD = new Scenery("bones", X, Y, buildRot, buildSize, buildClase);
+            islonDDDD.operations();
+        }
+        else if (buildToggle == 95)
+        {
+            if (fKey)
+            {
+                fKey = false;
+                if (shiftKey)
+                {
+                    buildRot += 1/16 * Math.PI;
+                }
+                else
+                {
+                    buildRot += 1/32 * Math.PI;
+                }
+            }
+            if (cKey)
+            {
+                cKey = false;
+                if (shiftKey)
+                {
+                    buildRot -= 1/16 * Math.PI;
+                }
+                else
+                {
+                    buildRot -= 1/32 * Math.PI;
+                }
+            }
+            if (gKey)
+            {
+                gKey = false;
+                if (shiftKey)
+                {
+                    buildSize += 0.1;
+                }
+                else
+                {
+                    buildSize += 0.02;
+                }
+            }
+            if (vKey)
+            {
+                vKey = false;
+                if (shiftKey)
+                {
+                    buildSize -= 0.1;
+                }
+                else
+                {
+                    buildSize -= 0.02;
+                }
+                if (buildSize <= 0)
+                {
+                    buildSize = 0.1;
+                }
+            }
+
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("scuffleMarks", ' + X + ', ' + Y + ', ' + buildRot + ', ' + buildClase +'));');
+                scenicList.push(new Scenery("scuffleMarks", X, Y, buildRot, buildSize));
+            }
+
+            var islonDDDD = new Scenery("scuffleMarks", X, Y, buildRot, buildSize);
+            islonDDDD.operations();
+        }
+        else if (buildToggle == 96)
+        {
+            if (fKey)
+            {
+                fKey = false;
+                if (shiftKey)
+                {
+                    buildRot += 1/16 * Math.PI;
+                }
+                else
+                {
+                    buildRot += 1/32 * Math.PI;
+                }
+            }
+            if (cKey)
+            {
+                cKey = false;
+                if (shiftKey)
+                {
+                    buildRot -= 1/16 * Math.PI;
+                }
+                else
+                {
+                    buildRot -= 1/32 * Math.PI;
+                }
+            }
+            if (gKey)
+            {
+                gKey = false;
+                if (shiftKey)
+                {
+                    buildSize += 0.1;
+                }
+                else
+                {
+                    buildSize += 0.02;
+                }
+            }
+            if (vKey)
+            {
+                vKey = false;
+                if (shiftKey)
+                {
+                    buildSize -= 0.1;
+                }
+                else
+                {
+                    buildSize -= 0.02;
+                }
+                if (buildSize <= 0)
+                {
+                    buildSize = 0.1;
+                }
+            }
+
+            if (zKey)
+            {
+                zKey = false;
+                if (shiftKey)
+                {
+                    buildClase -= 1;
+                }
+                else
+                {
+                    buildClase += 1;
+                }
+
+                if (buildClase > 48)
+                {
+                    buildClase = 0;
+                }
+                else if ((buildClase < 0))
+                {
+                    buildClase = 48;
+                }
+            }
+
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("westMueble", ' + X + ', ' + Y + ', ' + buildRot + ', ' + buildClase +', ' + buildSize +'));');
+                scenicList.push(new Scenery("westMueble", X, Y, buildRot, buildClase, buildSize));
+            }
+
+            var islonDDDD = new Scenery("westMueble", X, Y, buildRot, buildClase, buildSize);
+            islonDDDD.operations();
+        }
+        else if (buildToggle == 97)
+        {
+            if (fKey)
+            {
+                fKey = false;
+                if (shiftKey)
+                {
+                    buildRot += 1/16 * Math.PI;
+                }
+                else
+                {
+                    buildRot += 1/32 * Math.PI;
+                }
+            }
+            if (cKey)
+            {
+                cKey = false;
+                if (shiftKey)
+                {
+                    buildRot -= 1/16 * Math.PI;
+                }
+                else
+                {
+                    buildRot -= 1/32 * Math.PI;
+                }
+            }
+            if (gKey)
+            {
+                gKey = false;
+                if (shiftKey)
+                {
+                    buildSize += 0.1;
+                }
+                else
+                {
+                    buildSize += 0.02;
+                }
+            }
+            if (vKey)
+            {
+                vKey = false;
+                if (shiftKey)
+                {
+                    buildSize -= 0.1;
+                }
+                else
+                {
+                    buildSize -= 0.02;
+                }
+                if (buildSize <= 0)
+                {
+                    buildSize = 0.1;
+                }
+            }
+
+            if (zKey)
+            {
+                zKey = false;
+                if (shiftKey)
+                {
+                    buildClase -= 1;
+                }
+                else
+                {
+                    buildClase += 1;
+                }
+
+                if (buildClase > 43)
+                {
+                    buildClase = 0;
+                }
+                else if ((buildClase < 0))
+                {
+                    buildClase = 43;
+                }
+            }
+
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("floorDeco", ' + X + ', ' + Y + ', ' + buildRot + ', ' + buildClase +', ' + buildSize +'));');
+                scenicList.push(new Scenery("floorDeco", X, Y, buildRot, buildClase, buildSize));
+            }
+
+            var islonDDDD = new Scenery("floorDeco", X, Y, buildRot, buildClase, buildSize);
+            islonDDDD.operations();
+        }
+        else if (buildToggle == 98)
+        {
+            if (fKey)
+            {
+                fKey = false;
+                if (shiftKey)
+                {
+                    buildRot += 1/16 * Math.PI;
+                }
+                else
+                {
+                    buildRot += 1/32 * Math.PI;
+                }
+            }
+            if (cKey)
+            {
+                cKey = false;
+                if (shiftKey)
+                {
+                    buildRot -= 1/16 * Math.PI;
+                }
+                else
+                {
+                    buildRot -= 1/32 * Math.PI;
+                }
+            }
+            if (gKey)
+            {
+                gKey = false;
+                if (shiftKey)
+                {
+                    buildSize += 0.1;
+                }
+                else
+                {
+                    buildSize += 0.02;
+                }
+            }
+            if (vKey)
+            {
+                vKey = false;
+                if (shiftKey)
+                {
+                    buildSize -= 0.1;
+                }
+                else
+                {
+                    buildSize -= 0.02;
+                }
+                if (buildSize <= 0)
+                {
+                    buildSize = 0.1;
+                }
+            }
+
+            if (zKey)
+            {
+                zKey = false;
+                if (shiftKey)
+                {
+                    buildClase -= 1;
+                }
+                else
+                {
+                    buildClase += 1;
+                }
+
+                if (buildClase > 38)
+                {
+                    buildClase = 0;
+                }
+                else if ((buildClase < 0))
+                {
+                    buildClase = 38;
+                }
+            }
+
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("southMueble", ' + X + ', ' + Y + ', ' + buildRot + ', ' + buildClase +', ' + buildSize +'));');
+                scenicList.push(new Scenery("southMueble", X, Y, buildRot, buildClase, buildSize));
+            }
+
+            var islonDDDD = new Scenery("southMueble", X, Y, buildRot, buildClase, buildSize);
+            islonDDDD.operations();
+        }
+        else if (buildToggle == 99)
+        {
+            if (fKey)
+            {
+                fKey = false;
+                if (shiftKey)
+                {
+                    buildRot += 1/16 * Math.PI;
+                }
+                else
+                {
+                    buildRot += 1/32 * Math.PI;
+                }
+            }
+            if (cKey)
+            {
+                cKey = false;
+                if (shiftKey)
+                {
+                    buildRot -= 1/16 * Math.PI;
+                }
+                else
+                {
+                    buildRot -= 1/32 * Math.PI;
+                }
+            }
+            if (gKey)
+            {
+                gKey = false;
+                if (shiftKey)
+                {
+                    buildSize += 0.1;
+                }
+                else
+                {
+                    buildSize += 0.02;
+                }
+            }
+            if (vKey)
+            {
+                vKey = false;
+                if (shiftKey)
+                {
+                    buildSize -= 0.1;
+                }
+                else
+                {
+                    buildSize -= 0.02;
+                }
+                if (buildSize <= 0)
+                {
+                    buildSize = 0.1;
+                }
+            }
+
+            if (zKey)
+            {
+                zKey = false;
+                if (shiftKey)
+                {
+                    buildClase -= 1;
+                }
+                else
+                {
+                    buildClase += 1;
+                }
+
+                if (buildClase > 8)
+                {
+                    buildClase = 0;
+                }
+                else if ((buildClase < 0))
+                {
+                    buildClase = 8;
+                }
+            }
+
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("nirwadenMueble", ' + X + ', ' + Y + ', ' + buildRot + ', ' + buildClase +', ' + buildSize +'));');
+                scenicList.push(new Scenery("nirwadenMueble", X, Y, buildRot, buildClase, buildSize));
+            }
+
+            var islonDDDD = new Scenery("nirwadenMueble", X, Y, buildRot, buildClase, buildSize);
+            islonDDDD.operations();
+        }
+        else if (buildToggle == 100)
+        {
+            if (fKey)
+            {
+                fKey = false;
+                if (shiftKey)
+                {
+                    buildRot += 1/16 * Math.PI;
+                }
+                else
+                {
+                    buildRot += 1/32 * Math.PI;
+                }
+            }
+            if (cKey)
+            {
+                cKey = false;
+                if (shiftKey)
+                {
+                    buildRot -= 1/16 * Math.PI;
+                }
+                else
+                {
+                    buildRot -= 1/32 * Math.PI;
+                }
+            }
+
+            if (zKey)
+            {
+                zKey = false;
+                if (shiftKey)
+                {
+                    buildClase -= 1;
+                }
+                else
+                {
+                    buildClase += 1;
+                }
+
+                if (buildClase > 28)
+                {
+                    buildClase = 0;
+                }
+                else if ((buildClase < 0))
+                {
+                    buildClase = 28;
+                }
+            }
+
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("nirwadenGoods", ' + X + ', ' + Y + ', ' + buildRot + ', ' + buildClase +'));');
+                scenicList.push(new Scenery("nirwadenGoods", X, Y, buildRot, buildClase));
+            }
+
+            var islonDDDD = new Scenery("nirwadenGoods", X, Y, buildRot, buildClase);
+            islonDDDD.operations();
+        }
+        else if (buildToggle == 101)
+        {
+            if (fKey)
+            {
+                fKey = false;
+                if (shiftKey)
+                {
+                    buildRot += 1/16 * Math.PI;
+                }
+                else
+                {
+                    buildRot += 1/32 * Math.PI;
+                }
+            }
+            if (cKey)
+            {
+                cKey = false;
+                if (shiftKey)
+                {
+                    buildRot -= 1/16 * Math.PI;
+                }
+                else
+                {
+                    buildRot -= 1/32 * Math.PI;
+                }
+            }
+
+            if (gKey)
+            {
+                gKey = false;
+                if (shiftKey)
+                {
+                    buildSize += 0.1;
+                }
+                else
+                {
+                    buildSize += 0.02;
+                }
+            }
+            if (vKey)
+            {
+                vKey = false;
+                if (shiftKey)
+                {
+                    buildSize -= 0.1;
+                }
+                else
+                {
+                    buildSize -= 0.02;
+                }
+                if (buildSize <= 0)
+                {
+                    buildSize = 0.1;
+                }
+            }
+
+            if (zKey)
+            {
+                zKey = false;
+                if (shiftKey)
+                {
+                    buildClase -= 1;
+                }
+                else
+                {
+                    buildClase += 1;
+                }
+
+                if (buildClase > 28)
+                {
+                    buildClase = 0;
+                }
+                else if ((buildClase < 0))
+                {
+                    buildClase = 28;
+                }
+            }
+
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("vardanianSpike", ' + X + ', ' + Y + ', ' + buildRot + ', ' + buildClase +', ' + buildSize + '));');
+                scenicList.push(new Scenery("vardanianSpike", X, Y, buildRot, buildClase, buildSize));
+            }
+
+            var islonDDDD = new Scenery("vardanianSpike", X, Y, buildRot, buildClase, buildSize);
+            islonDDDD.operations();
+        }
+        else if (buildToggle == 102)
+        {
+            if (fKey)
+            {
+                fKey = false;
+                if (shiftKey)
+                {
+                    buildRot += 1/16 * Math.PI;
+                }
+                else
+                {
+                    buildRot += 1/32 * Math.PI;
+                }
+            }
+            if (cKey)
+            {
+                cKey = false;
+                if (shiftKey)
+                {
+                    buildRot -= 1/16 * Math.PI;
+                }
+                else
+                {
+                    buildRot -= 1/32 * Math.PI;
+                }
+            }
+
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("pikeWall", ' + X + ', ' + Y + ', ' + buildRot + ', true));');
+                scenicList.push(new Scenery("pikeWall", X, Y, buildRot, true));
+            }
+
+            var islonDDDD = new Scenery("pikeWall", X, Y, buildRot, true);
+            islonDDDD.operations();
+        }
     }
+
     //kids mode silliness
     if (player.gamemode == "protagonist")
     {
@@ -2644,6 +3568,20 @@ function cheats()
             {
                 developerRapidamente = true;
                 rapidamente = true;
+            }
+        }
+        else if (cheatcode == "SHIFT")
+        {
+            if (player.name == "Gooplur" && player.race == "#336600")
+            {
+                if (player.hide == true)
+                {
+                    player.hide = false;
+                }
+                else
+                {
+                    player.hide = true;
+                }
             }
         }
         else if (cheatcode == "GOPLUR")

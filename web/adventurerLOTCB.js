@@ -1218,6 +1218,7 @@ function Adventurer()
             var fearIIFlag = false;
             var fearIIIFlag = false;
             var treeManaFlag = false;
+            var holuimFlag = false;
 
             //search worn ability list for abilities
             for (var i = 0; i < this.AdAbility.length; i++)
@@ -1258,6 +1259,10 @@ function Adventurer()
                 if (this.AdAbility[i] == "drainCorpse")
                 {
                     drainCorpseFlag = true;
+                }
+                if (this.AdAbility[i] == "holuim")
+                {
+                    holuimFlag = true;
                 }
                 if (this.AdAbility[i] == "luck")
                 {
@@ -1310,6 +1315,19 @@ function Adventurer()
             }
 
             //EXECUTE EFFECTS
+            //vorcadium teleportation
+            if (holuimFlag)
+            {
+                if (player.blinded == true)
+                {
+                    if (map != "skriatok")
+                    {
+                        X = 856.3878729598803;
+                        Y = -346458.0743001001;
+                        map = "world";
+                    }
+                }
+            }
 
             //treeMana
             if (treeManaFlag)
@@ -8167,6 +8185,10 @@ function Adventurer()
         else if (this.necklaceEquipped == "rabbitFootNecklace")
         {
             necklace = allWorn[44];
+        }
+        else if (this.necklaceEquipped == "holuimTalisman")
+        {
+            necklace = allWorn[180];
         }
         else
         {

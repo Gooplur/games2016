@@ -2540,6 +2540,7 @@ var tileBuilder = false;
 var buildRot = 0;
 var buildSize = 1;
 var buildClase = 0;
+var buildName = "none";
 var skriatokX = 0;
 var skriatokY = 0;
 var quenHere = false;
@@ -3554,7 +3555,13 @@ function theLegend()
         gertrude: ["Gertrude", 0],
         henrietta: ["Henrietta", 0],
         sackman: ["Sackman", 0],
-        havette: ["Havette", 0]
+        havette: ["Havette", 0],
+        or: ["Or", 0],
+        iizel: ["Iizel", 0],
+        aleb: ["Aleb", 0],
+        zahar: ["Zahar", 0],
+        shametheht: ["Shametheht", 0],
+        elhib: ["Elhib", 0]
     };
 
 //time Tracker Variables
@@ -3800,7 +3807,13 @@ function theLegend()
         henriettaLDS: true,
         sackmanLDS: true,
         farrenLDS: true,
-        havetteLDS: true
+        havetteLDS: true,
+        orLDS: true,
+        iizelLDS: true,
+        alebLDS: true,
+        zaharLDS: true,
+        shamethehtLDS: true,
+        elhibLDS: true
     };
 //QUESTS
     quests =
@@ -3863,6 +3876,7 @@ function theLegend()
         hermitsWood: true,
         zombiVillageStash: true,
         griffStash: true,
+        holuimStash: true,
 
         //EVENTS (non quest)
         ultherFlower: true,
@@ -4480,6 +4494,7 @@ function theLegend()
     allWorn.push(new Item("zetianWarriorArmour", false)); //177
     allWorn.push(new Item("druidGown", false)); //178
     allWorn.push(new Item("cephrianPaladinArmour", false)); //179
+    allWorn.push(new Item("holuimTalisman", false)); //180
 
 
 

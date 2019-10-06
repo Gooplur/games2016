@@ -3561,7 +3561,12 @@ function theLegend()
         aleb: ["Aleb", 0],
         zahar: ["Zahar", 0],
         shametheht: ["Shametheht", 0],
-        elhib: ["Elhib", 0]
+        elhib: ["Elhib", 0],
+        kfelht: ["Kfelht", 0],
+        twoDog: ["TwoDog", 0],
+        habalt: ["Habalt", 0],
+        gabata: ["Gabata", 0],
+        haba: ["Haba", 0]
     };
 
 //time Tracker Variables
@@ -3813,7 +3818,12 @@ function theLegend()
         alebLDS: true,
         zaharLDS: true,
         shamethehtLDS: true,
-        elhibLDS: true
+        elhibLDS: true,
+        kfelhtLDS: true,
+        twoDogLDS: true,
+        habaltLDS: true,
+        gabataLDS: true,
+        habaLDS: true
     };
 //QUESTS
     quests =
@@ -3855,6 +3865,7 @@ function theLegend()
         atalinToll: false,
         inquisitionOutfitGiven: false,
         refugeeNeevKilled: false,
+        ansetTravel: false,
 
         //PLAYER PROPERTY
         teshirHomeOwned: false,

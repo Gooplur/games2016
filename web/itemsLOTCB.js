@@ -28838,12 +28838,12 @@ function Item(type, x, y)
 
             //Utility Focused
             this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
-            this.hunger = 32; //satisfies hunger.
+            this.hunger = 16; //satisfies hunger.
             this.thirst = 2.75; //quenches thirst.
-            this.warmth = 14; //warms player.
+            this.warmth = 7; //warms player.
             this.heal = 0; //heals health.
-            this.generation = 0.2; //recoops lost energy.
-            this.replenish = 0.2; //restores will.
+            this.generation = 0.1; //recoops lost energy.
+            this.replenish = 0.1; //restores will.
 
             //ability
             if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite" || player.raceName == "Zetian")
@@ -29334,7 +29334,7 @@ function Item(type, x, y)
             //Crafting
             this.yield = 1;
             this.intForCraft = 4;
-            this.ingredients = [["Sonja", 1], ["Sonja Slice", 3], ["TchafulaHalf", 6]];
+            this.ingredients = [["Sonja", 1], ["Sonja Slice", 3], ["Tchafula Half", 6]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 42; // at max, buy for 42.

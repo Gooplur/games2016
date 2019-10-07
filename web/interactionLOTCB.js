@@ -3312,7 +3312,7 @@ function interaction(me)
                             {
                                 if (player.title == "Nobility" || player.title == "Royalty")
                                 {
-                                    player.dialogueOptions = [["I would like to rent a room. (20 coins)", false, "b"], ["What's the at the top of the gossip?", false, "c"], ["What's the history of this place?", false, "d"]];
+                                    player.dialogueOptions = [["I would like to rent a room. (50 coins)", false, "b"], ["What's at the top of the gossip?", false, "c"], ["What's the history of this place?", false, "d"]];
                                 }
                                 else
                                 {
@@ -3500,7 +3500,7 @@ function interaction(me)
                             //text dialogue
                             if (player.title == "Nobility" || player.title == "Royalty")
                             {
-                                if (player.name == "Calintha Blackwood" && player.raceName == "Cephrite" && player.gender == "Female")
+                                if (player.name == "Calantha Blackwood" && player.raceName == "Cephrite" && player.gender == "Female")
                                 {
                                     setMsg("My good Lady Blackwood, those few that do gossip speak of your return to Holuim, they speak of the many perils you must have faced on your journeys and they whisper longingly about the luxurious life of a high magus. I for one could care less about what you and your family are up to.");
                                 }
@@ -5045,7 +5045,7 @@ function interaction(me)
                         else if (conversationID[1] == "0d")
                         {
                             //text dialogue
-                            setMsg("Having most of the men of the village drafted into the royal army will do that... but you speak with reason, for our church lacks even for a priest. We are all starting to worry about the dissapearance of Father Dimitry. Without a priest we have no guidance towards the light. Following ones own volition is just as easily a path devised by The Void as one set forth by The Eternal Spirit. We can no longer know if we walk in the light in these dark times, we need father Dimitri to return now more than ever.");
+                            setMsg("Having most of the men of the village drafted into the royal army will do that... but you speak with reason, for our church lacks even for a priest. We are all starting to worry about the dissapearance of Father Dimitry. Without a priest we have no guidance towards the light. Following ones own volition is just as easily a path devised by The Void as one set forth by The Eternal Spirit. We can no longer know if we walk in the light in these dark times, we need father Dimitry to return now more than ever.");
 
                             //on ended text dialogue
                             if (tellMessage == "reset")

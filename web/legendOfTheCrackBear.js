@@ -3566,7 +3566,9 @@ function theLegend()
         twoDog: ["TwoDog", 0],
         habalt: ["Habalt", 0],
         gabata: ["Gabata", 0],
-        haba: ["Haba", 0]
+        haba: ["Haba", 0],
+        taior: ["Taior", 0],
+        yalih: ["Yalih", 0]
     };
 
 //time Tracker Variables
@@ -3823,7 +3825,9 @@ function theLegend()
         twoDogLDS: true,
         habaltLDS: true,
         gabataLDS: true,
-        habaLDS: true
+        habaLDS: true,
+        taiorLDS: true,
+        yalihLDS: true
     };
 //QUESTS
     quests =

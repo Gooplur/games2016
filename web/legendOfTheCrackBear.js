@@ -1525,6 +1525,18 @@ function fectPack()
 
     fect.onload = function()
     {
+        gnollPack();
+    };
+}
+
+function gnollPack()
+{
+    var gnoll = new Image();
+    gnoll.src = ("images/gnoll.png");
+    window.gnoll = gnoll;
+
+    gnoll.onload = function()
+    {
         cavernaPack();
     };
 }

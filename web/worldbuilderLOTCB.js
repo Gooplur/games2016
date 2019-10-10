@@ -49,6 +49,15 @@ function worldBuilder()
             outlineBuilder( 34, 34, "prairy", -54, 1136);
             outlineBuilder(1, 34, "cephrianRoad", -54, 1149);
         }
+        //mapS34W2
+        if (Y > -350716 && Y < -339932 && X < 28129 && X > 16474) //X-1
+        {
+            elevation = -4;
+            region = "s34w2";
+            campout = true;
+            outlineBuilder( 34, 34, "outline", -88, 1136); //prairy
+            outlineBuilder(1, 34, "cephrianRoad", -88, 1149);
+        }
         //Layer 33 (hot tropical region): elev -4
         //mapS33
         if (Y > -340527 && Y < -329725 && X < 7687 && X > - 3901) //X0
@@ -57,6 +66,14 @@ function worldBuilder()
             region = "s33";
             campout = true;
             outlineBuilder( 34, 34, "prairy", -20, 1102);
+        }
+        //mapS33W1
+        if (Y > -340527 && Y < -329725 && X < 17891 && X > 6299) //X-1
+        {
+            elevation = -4;
+            region = "s33w1";
+            campout = true;
+            outlineBuilder( 34, 34, "outline", -54, 1102); //prairy
         }
         //Layer 32 (hot tropical region): elev -4
         //mapS32

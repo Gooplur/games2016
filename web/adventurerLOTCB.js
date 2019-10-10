@@ -38606,7 +38606,7 @@ function Adventurer()
                             {
                                 var grldMemoz = Math.random();
 
-                                alert("As you look into the orb you start to feel as if you have left yourself behind...")
+                                alert("As you look into the orb you start to feel as if you have left yourself behind...");
                                 if (uniqueChars.vsevolodLDS == true && player.eminence <= 24)
                                 {
                                     alert("The key is hidden safely in the lives of the three hunters... -- You feel yourself being sudden pulled from the memory back into your own body.");

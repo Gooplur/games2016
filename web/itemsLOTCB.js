@@ -28611,6 +28611,69 @@ function Item(type, x, y)
             this.buyValue = 35; // at max, buy for 35.
             this.sellValue = 35; // at max, sell for 35.
         }
+        else if (this.type == "gnollIntestines")
+        {
+            //For All Items
+            this.identity = "Gnoll Intestines";
+            this.weight = 2.3;
+            this.size = 12;
+            this.description = "The rank and terrible smelling, dripping intestines of a gnoll.";
+            this.intForDes = 3;
+            this.intDescription = "Eating gnoll intestines is a disgusting notion first of all, and second of all they have gut worms...";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0.5; //satisfies hunger.
+            this.thirst = 1; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -10; //recoops lost energy.
+            this.replenish = -4; //restores will.
+
+            //ability
+            this.ability = "gutWorms";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "roastedGnollIntestines")
+        {
+            //For All Items
+            this.identity = "Roasted Gnoll Intestines";
+            this.weight = 2.1;
+            this.size = 12;
+            this.description = "The cleaned and drained roasted intestines of a gnoll.";
+            this.intForDes = 0;
+            this.intDescription = "They are smelly and meaty and a bit bitter, but they are nutritionally good for you...";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 7; //satisfies hunger.
+            this.thirst = 2; //quenches thirst.
+            this.warmth = 8; //warms player.
+            this.heal = 0.05; //heals health.
+            this.generation = -4; //recoops lost energy.
+            this.replenish = -1; //restores will.
+
+            //ability
+            this.ability = "exp+5";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 11;
+            this.ingredients = [["Gnoll Intestines", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 6; // at max, buy for 6.
+            this.sellValue = 5; // at max, sell for 5.
+        }
         else if (this.type == "wholeRoastedKol")
         {
             //For All Items
@@ -29581,6 +29644,26 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 25 - Math.floor(player.getCharisma() / 15); // at max, buy for 22.
             this.sellValue = 20 + Math.floor(player.getCharisma() / 50); // at max, sell for 22.
+        }
+        else if (this.type == "gnollPelt")
+        {
+            //For All Items
+            this.identity = "Gnoll Pelt";
+            this.weight = 1.8;
+            this.size = 23;
+            this.description = "The pelt of a gnoll.";
+            this.intForDes = 6;
+            this.intDescription = "Gnoll pelts are often kept as a sort of trophy, however they can also be used to make rugs and apparel.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 13 - Math.floor(player.getCharisma() / 25); // at max, buy for 11.
+            this.sellValue = 9 + Math.floor(player.getCharisma() / 25); // at max, sell for 11.
         }
         else if (this.type == "berulnPelt")
         {
@@ -51315,6 +51398,21 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "gnollPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gnoll, 206, 309, 54, 40, X - this.X + (1/2 * CCC.width) - (1/2 * 54 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 40 * 1), 54 * 1, 40 * 1);
+        }
+        else if (this.type == "gnollIntestines")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gnoll, 168, 257, 40, 36, X - this.X + (1/2 * CCC.width) - (1/2 * 40 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 36 * 1), 40 * 1, 36 * 1);
+        }
+        else if (this.type == "roastedGnollIntestines")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gnoll, 208, 258, 40, 36, X - this.X + (1/2 * CCC.width) - (1/2 * 40 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 36 * 1), 40 * 1, 36 * 1);
+        }
         else if (this.type == "holuimTalisman")
         {
             XXX.beginPath();
@@ -57943,6 +58041,21 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
+        else if (this.type == "gnollPelt")
+        {
+            LXX.beginPath();
+            LXX.drawImage(gnoll, 206, 309, 54, 40, this.invX - (1/2 * 54 * 1), this.invY - (1/2 * 40 * 1), 54 * 1, 40 * 1);
+        }
+        else if (this.type == "gnollIntestines")
+        {
+            LXX.beginPath();
+            LXX.drawImage(gnoll, 168, 257, 40, 36, this.invX - (1/2 * 40 * 1), this.invY - (1/2 * 36 * 1), 40 * 1, 36 * 1);
+        }
+        else if (this.type == "roastedGnollIntestines")
+        {
+            LXX.beginPath();
+            LXX.drawImage(gnoll, 208, 258, 40, 36, this.invX - (1/2 * 40 * 1), this.invY - (1/2 * 36 * 1), 40 * 1, 36 * 1);
+        }
         else if (this.type == "holuimTalisman")
         {
             LXX.beginPath();
@@ -64537,6 +64650,21 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "gnollPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gnoll, 206, 309, 54, 40, this.invX - (1/2 * 54 * 1), this.invY - (1/2 * 40 * 1), 54 * 1, 40 * 1);
+        }
+        else if (this.type == "gnollIntestines")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gnoll, 168, 257, 40, 36, this.invX - (1/2 * 40 * 1), this.invY - (1/2 * 36 * 1), 40 * 1, 36 * 1);
+        }
+        else if (this.type == "roastedGnollIntestines")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gnoll, 208, 258, 40, 36, this.invX - (1/2 * 40 * 1), this.invY - (1/2 * 36 * 1), 40 * 1, 36 * 1);
         }
         else if (this.type == "holuimTalisman")
         {

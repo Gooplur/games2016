@@ -40,6 +40,15 @@ function worldBuilder()
             outlineBuilder(5, 5, "jungle", -2, 1154);
             outlineBuilder(4, 1, "cephrianRoad", 0, 1152);
         }
+        //mapS34W1
+        if (Y > -350716 && Y < -339932 && X < 17891 && X > 6299) //X-1
+        {
+            elevation = -4;
+            region = "s34w1";
+            campout = true;
+            outlineBuilder( 34, 34, "prairy", -54, 1136);
+            outlineBuilder(1, 34, "cephrianRoad", -54, 1149);
+        }
         //Layer 33 (hot tropical region): elev -4
         //mapS33
         if (Y > -340527 && Y < -329725 && X < 7687 && X > - 3901) //X0

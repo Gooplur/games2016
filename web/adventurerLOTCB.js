@@ -38579,6 +38579,29 @@ function Adventurer()
                                 this.memory += 1;
                                 this.extraSkillPoints += 1;
                             }
+                            else if (Inventory[i][0].ability == "exp+1" || Inventory[i][0].ability == "exp+2" || Inventory[i][0].ability == "exp+3" || Inventory[i][0].ability == "exp+4" || Inventory[i][0].ability == "exp+5") //Food with this effect will keep you fed for a little bit.
+                            {
+                                if (Inventory[i][0].ability == "exp+1")
+                                {
+                                    this.experience += 1;
+                                }
+                                else if (Inventory[i][0].ability == "exp+2")
+                                {
+                                    this.experience += 2;
+                                }
+                                else if (Inventory[i][0].ability == "exp+3")
+                                {
+                                    this.experience += 3;
+                                }
+                                else if (Inventory[i][0].ability == "exp+4")
+                                {
+                                    this.experience += 4;
+                                }
+                                else if (Inventory[i][0].ability == "exp+5")
+                                {
+                                    this.experience += 5;
+                                }
+                            }
                             else if (Inventory[i][0].ability == "garldsMemories") //Food with this effect will keep you fed for a little bit.
                             {
                                 var grldMemoz = Math.random();

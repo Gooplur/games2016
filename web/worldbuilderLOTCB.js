@@ -55,7 +55,7 @@ function worldBuilder()
             elevation = -4;
             region = "s34w2";
             campout = true;
-            outlineBuilder( 34, 34, "outline", -88, 1136); //prairy
+            outlineBuilder( 34, 34, "prairy", -88, 1136);
             outlineBuilder(1, 34, "cephrianRoad", -88, 1149);
         }
         //Layer 33 (hot tropical region): elev -4

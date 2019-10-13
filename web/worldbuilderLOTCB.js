@@ -73,7 +73,7 @@ function worldBuilder()
             elevation = -4;
             region = "s33w1";
             campout = true;
-            outlineBuilder( 34, 34, "outline", -54, 1102); //prairy
+            outlineBuilder( 34, 34, "prairy", -54, 1102);
         }
         //Layer 32 (hot tropical region): elev -4
         //mapS32
@@ -1839,6 +1839,31 @@ function worldBuilder()
             outlineBuilder(2, 2, "swamp", -1189, 222);
 
             outlineBuilder(1, 1, "swampTR", -1196, 220);
+        }
+        //mapS7W36
+        if (Y > -75331 && Y < -64538 && X < 374956 && X > 363245) //X-36
+        {
+            elevation = 0;
+            region = "s7w36";
+            campout = true;
+            outlineBuilder(34, 34, "vardanianWoods", -1244, 218);
+
+            outlineBuilder(4, 2, "vardanianGrass", -1212, 218);
+            outlineBuilder(3, 1, "vardanianGrass", -1213, 218);
+            outlineBuilder(2, 2, "vardanianGrass", -1215, 218);
+            outlineBuilder(1, 1, "vardanianGrass", -1216, 218);
+            outlineBuilder(2, 1, "vardanianGrass", -1217, 218);
+            outlineBuilder(1, 3, "vardanianGrass", -1220, 218);
+            outlineBuilder(1, 1, "vardanianGrass", -1220, 219);
+            outlineBuilder(2, 2, "vardanianGrass", -1222, 218);
+            outlineBuilder(1, 1, "vardanianGrass", -1223, 218);
+            outlineBuilder(1, 7, "vardanianGrass", -1238, 218);
+            outlineBuilder(2, 8, "vardanianGrass", -1238, 218);
+            outlineBuilder(1, 8, "vardanianGrass", -1240, 220);
+            outlineBuilder(1, 4, "vardanianGrass", -1239, 222);
+            outlineBuilder(1, 3, "vardanianGrass", -1240, 223);
+            outlineBuilder(1, 1, "vardanianGrass", -1240, 224);
+            outlineBuilder(1, 8, "vardanianGrass", -1241, 221);
         }
         //Layer -6 (cold region): elev 0
         //mapS6

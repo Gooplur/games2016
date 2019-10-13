@@ -146,6 +146,9 @@ function legendaryPrerequisites()
     var impaction = new Audio("sounds/impact.mp3");
     window.impaction = impaction;
 
+    var shreek = new Audio("sounds/shreek.wav");
+    window.shreek = shreek;
+
     var pageTurn = new Audio("sounds/polySounds/pageTurn.wav");
     window.pageTurn = pageTurn;
 

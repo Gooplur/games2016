@@ -1739,7 +1739,7 @@ function Adventurer()
                 this.health = 0;
             }
 
-            if (this.asfixiationTime > 0 && this.gasmask != true)
+            if (this.asfixiationTime > 0 && this.gasmask != true && player.vamprism != true)
             {
                 if (this.asfixiationII == false && this.asfixiationI == true)
                 {

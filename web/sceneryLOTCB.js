@@ -5761,9 +5761,9 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 this.runOneTime = false;
 
                 this.tic = 0;
+                this.zIndex = 1;
             }
 
-            this.zIndex = 1;
             if (this.temporary == 0) //decorated crate corner
             {
                 XXX.save();
@@ -6246,6 +6246,15 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
                 XXX.drawImage(pavo, 242, 9, 27, 27, -(1/2 * 27 * this.information), -(1/2 * 27 * this.information), 27 * this.information, 27 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 49)//(above) medium bench
+            {
+                this.zIndex = 4;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 945, 852, 50, 13, -(1/2 * 50 * this.information), -(1/2 * 13 * this.information), 50 * this.information, 13 * this.information);
                 XXX.restore();
             }
 

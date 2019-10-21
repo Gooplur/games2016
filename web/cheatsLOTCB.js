@@ -2606,13 +2606,13 @@ function cheats()
                     buildClase += 1;
                 }
 
-                if (buildClase > 48)
+                if (buildClase > 49)
                 {
                     buildClase = 0;
                 }
                 else if ((buildClase < 0))
                 {
-                    buildClase = 48;
+                    buildClase = 49;
                 }
             }
 

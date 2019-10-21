@@ -1540,6 +1540,18 @@ function gnollPack()
 
     gnoll.onload = function()
     {
+        bludPack();
+    };
+}
+
+function bludPack()
+{
+    var blud = new Image();
+    blud.src = ("images/blud.png");
+    window.blud = blud;
+
+    blud.onload = function()
+    {
         cavernaPack();
     };
 }

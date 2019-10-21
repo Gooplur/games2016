@@ -11586,7 +11586,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
             this.radius = 90;
 
-            barrierCreator(this.X, this.Y); //for easily setting barriers when making buildings
+            //barrierCreator(this.X, this.Y); //for easily setting barriers when making buildings
 
             //INTERACTION
             if (this.activate == true)

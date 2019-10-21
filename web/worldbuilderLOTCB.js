@@ -11,6 +11,16 @@ function worldBuilder()
         player.dmx = map;
         player.underground = false;
         //Layer 34 (hot tropical region): elev -4
+        //mapS34E1
+        if (Y > -350716 && Y < -339932 && X < - 2490 && X > -14114) //X1
+        {
+            elevation = -4;
+            region = "s34e1";
+            campout = true;
+            outlineBuilder( 34, 34, "prairy", 14, 1136);
+            outlineBuilder(1, 34, "cephrianRoad", 14, 1143);
+
+        }
         //mapS34 //Holuim City
         if (Y > -350716 && Y < -339932 && X < 7687 && X > - 3901) //X0
         {
@@ -59,6 +69,14 @@ function worldBuilder()
             outlineBuilder(1, 34, "cephrianRoad", -88, 1149);
         }
         //Layer 33 (hot tropical region): elev -4
+        //mapS33E1
+        if (Y > -340527 && Y < -329725 && X < - 2490 && X > -14114) //X1
+        {
+            elevation = -4;
+            region = "s33e1";
+            campout = true;
+            outlineBuilder( 34, 34, "prairy", 14, 1102);
+        }
         //mapS33
         if (Y > -340527 && Y < -329725 && X < 7687 && X > - 3901) //X0
         {

@@ -3936,7 +3936,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     }
                 }
             }
-            else
+            else if (this.temporary == 3)
             {
                 if (this.locked == "broken")
                 {
@@ -4025,6 +4025,82 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     }
                 }
             }
+            else if (this.temporary == 4)
+            {
+                this.size = 1.25;
+                if (this.phase == 0)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(pill, 841, 220, 88, 60, (-1/2 * 88 * this.size), (-1/2 * 60 * this.size), 88 * this.size, 60 * this.size);
+                    XXX.restore();
+
+                    //barriers
+                    if (this.primed == true)
+                    {
+                        this.primed = false;
+                        if (this.rotation == 0)
+                        {
+                            barrierList.push(new Barrier((this.X + -42.01557192992186), (this.Y + -13.798403432054329), 30, 80, true, this.clave));
+                        }
+                        else if (this.rotation == Math.PI)
+                        {
+                            barrierList.push(new Barrier((this.X + -42.01557192992186), (this.Y + -13.798403432054329), 30, 80, true, this.clave));
+                        }
+                        else if (this.rotation == 1/2 * Math.PI)
+                        {
+                            barrierList.push(new Barrier((this.X + -16.911750751838554), (this.Y + -39.46140228107106), 73, 30, true, this.clave));
+                        }
+                        else if (this.rotation == -1/2 * Math.PI)
+                        {
+                            barrierList.push(new Barrier((this.X + -16.911750751838554), (this.Y + -39.46140228107106), 73, 30, true, this.clave));
+                        }
+                    }
+                }
+                else if (this.phase == 1)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(pill, 938, 219, 88, 63, (-1/2 * 88 * this.size), (-1/2 * 63 * this.size), 88 * this.size, 63 * this.size);
+                    XXX.restore();
+                    this.primed = true;
+                }
+                else if (this.phase == 2)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(pill, 842, 281, 88, 102, (-1/2 * 88 * this.size), (-1/2 * 102 * this.size), 88 * this.size, 102 * this.size);
+                    XXX.restore();
+                    this.primed = true;
+                }
+                else
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(pill, 947, 284, 88, 112, (-1/2 * 88 * this.size), (-1/2 * 112 * this.size), 88 * this.size, 112 * this.size);
+                    XXX.restore();
+
+                    if (this.primed)
+                    {
+                        var deleteList = [];
+                        for (var l = 0; l < barrierList.length; l++)
+                        {
+                            if (barrierList[l].info == this.clave)
+                            {
+                                deleteList.push(l);
+                            }
+                        }
+                        for (var l = deleteList.length - 1; l > -1; l--)
+                        {
+                            barrierList.splice(deleteList[l], 1);
+                        }
+                    }
+                }
+            }
 
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
@@ -4094,65 +4170,130 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                             }
                         }
                     }
-                    else if (player.getStrength() >= 16) //break down the door
+                    else if (player.getStrength() >= 16 && this.temporary != 4) //break down the door
                     {
                         this.locked = "broken";
                         this.primed = true;
                     }
                 }
-                //CONDITIONS TO ACTIVATE
-                if (this.phase == 0 && this.locked == false && this.doTic == false)
-                {
-                    this.doTic = "open";
-                    this.tic = 0;
-                }
-                else if (this.phase > 1 && this.doTic == false && this.locked != "broken")
-                {
-                    this.doTic = "close";
-                    this.tic = 0;
-                }
-
-                if (this.doTic == "open" || this.doTic == "close")
-                {
-                    this.tic += 1;
-                }
 
                 //OPEN
-                if (this.doTic == "open")
+                if (this.temporary == 4)
                 {
-                    if (this.tic < 5)
+                    //CONDITIONS TO ACTIVATE
+                    if (this.phase == 0 && this.locked == false && this.doTic == false)
                     {
-                        this.phase = 0;
+                        this.doTic = "open";
+                        this.tic = 0;
                     }
-                    else if (this.tic < 10)
+                    else if (this.phase > 2 && this.doTic == false && this.locked != "broken")
                     {
-                        this.phase = 1;
+                        this.doTic = "close";
+                        this.tic = 0;
                     }
-                    else
-                    {
-                        this.phase = 2;
-                        this.doTic = false;
-                        this.activate = false;
-                    }
-                }
-                else if (this.doTic == "close")
-                {
-                    if (this.tic < 5)
-                    {
-                        this.phase = 2;
-                    }
-                    else if (this.tic < 10)
-                    {
-                        this.phase = 1;
-                    }
-                    else
-                    {
-                        this.phase = 0;
-                        this.doTic = false;
-                        this.activate = false;
-                    }
-                }
 
+                    if (this.doTic == "open" || this.doTic == "close")
+                    {
+                        this.tic += 1;
+                    }
+
+                    if (this.doTic == "open")
+                    {
+                        if (this.tic < 5)
+                        {
+                            this.phase = 0;
+                        }
+                        else if (this.tic < 10)
+                        {
+                            this.phase = 1;
+                        }
+                        else if (this.tic < 15)
+                        {
+                            this.phase = 2;
+                        }
+                        else
+                        {
+                            this.phase = 3;
+                            this.doTic = false;
+                            this.activate = false;
+                        }
+                    }
+                    else if (this.doTic == "close")
+                    {
+                        if (this.tic < 5)
+                        {
+                            this.phase = 3;
+                        }
+                        else if (this.tic < 10)
+                        {
+                            this.phase = 2;
+                        }
+                        else if (this.tic < 15)
+                        {
+                            this.phase = 1;
+                        }
+                        else
+                        {
+                            this.phase = 0;
+                            this.doTic = false;
+                            this.activate = false;
+                        }
+                    }
+                }
+                else
+                {
+                    //CONDITIONS TO ACTIVATE
+                    if (this.phase == 0 && this.locked == false && this.doTic == false)
+                    {
+                        this.doTic = "open";
+                        this.tic = 0;
+                    }
+                    else if (this.phase > 1 && this.doTic == false && this.locked != "broken")
+                    {
+                        this.doTic = "close";
+                        this.tic = 0;
+                    }
+
+                    if (this.doTic == "open" || this.doTic == "close")
+                    {
+                        this.tic += 1;
+                    }
+
+                    if (this.doTic == "open")
+                    {
+                        if (this.tic < 5)
+                        {
+                            this.phase = 0;
+                        }
+                        else if (this.tic < 10)
+                        {
+                            this.phase = 1;
+                        }
+                        else
+                        {
+                            this.phase = 2;
+                            this.doTic = false;
+                            this.activate = false;
+                        }
+                    }
+                    else if (this.doTic == "close")
+                    {
+                        if (this.tic < 5)
+                        {
+                            this.phase = 2;
+                        }
+                        else if (this.tic < 10)
+                        {
+                            this.phase = 1;
+                        }
+                        else
+                        {
+                            this.phase = 0;
+                            this.doTic = false;
+                            this.activate = false;
+                        }
+                    }
+                }
             }
         }
         else if (this.type == "nirwadenCastleDoor")
@@ -5738,6 +5879,22 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     }
                 }
             }
+            else if (this.temporary == 40)//zetian sacks 1
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(pill, 727, 165, 48, 54, -(1/2 * 48 * this.information), -(1/2 * 54 * this.information), 48 * this.information, 54 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 41)//zetian sacks 2
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(pill, 694, 107, 72, 58, -(1/2 * 72 * this.information), -(1/2 * 58 * this.information), 72 * this.information, 58 * this.information);
+                XXX.restore();
+            }
 
 
             //INTERACTION
@@ -6255,6 +6412,22 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
                 XXX.drawImage(toad, 945, 852, 50, 13, -(1/2 * 50 * this.information), -(1/2 * 13 * this.information), 50 * this.information, 13 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 50)//vardanian hay pile
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(pill, 661, 32, 89, 71, -(1/2 * 89 * this.information), -(1/2 * 71 * this.information), 89 * this.information, 71 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 51)//vardanian hay bale
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(pill, 562, 45, 89, 49, -(1/2 * 89 * this.information), -(1/2 * 49 * this.information), 89 * this.information, 49 * this.information);
                 XXX.restore();
             }
 
@@ -9807,7 +9980,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
             this.radius = 1;
 
-            barrierCreator(this.X, this.Y);
+            //barrierCreator(this.X, this.Y);
 
             //INTERACTION
             if (this.activate == true)
@@ -13891,6 +14064,348 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 {
                     barrierList.push(new Barrier((this.X + 43.613190235727416 * this.temporary), (this.Y + -22.351999483944383 * this.temporary), 43 * this.temporary, 16 * this.temporary, true));
                     barrierList.push(new Barrier((this.X + -60.386809764272584 * this.temporary), (this.Y + -21.351999483944383 * this.temporary), 43 * this.temporary, 16 * this.temporary, true));
+                }
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //barrierCreator(this.X, this.Y); //for easily setting barriers when making buildings
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "vardanianFence")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 30 + 50 * this.temporary;
+
+            //DRAWSELF
+            if (this.runOneTime)
+            {
+                this.runOneTime = false;
+                this.abrir = false;
+                this.cerrar = false;
+                this.abierto = false;
+                this.tac = 0;
+
+                this.primed = true;
+                this.clave = "vardanFenceGate" + Math.random();
+            }
+
+            this.zIndex = 1;
+            if (this.information == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(pill, 777, 92, 200, 30, -(1/2 * 200 * this.temporary), -(1/2 * 30 * this.temporary), 200 * this.temporary, 30 * this.temporary);
+                XXX.restore();
+            }
+            else if (this.information == 1)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(pill, 818, 49, 200, 30, -(1/2 * 200 * this.temporary), -(1/2 * 30 * this.temporary), 200 * this.temporary, 30 * this.temporary);
+                XXX.restore();
+            }
+            else
+            {
+                if (this.abrir == true)
+                {
+                    this.tac += 1;
+                    if (this.tac < 20)
+                    {
+                        this.abierto = false;
+                    }
+                    else if (this.tac < 40)
+                    {
+                        this.abierto = "media";
+                    }
+                    else
+                    {
+                        this.abierto = true;
+                        this.abrir = false;
+                        this.tac = 0;
+                        this.primed = true;
+                    }
+                }
+                else if (this.cerrar == true)
+                {
+                    this.tac += 1;
+                    if (this.tac < 20)
+                    {
+                        this.abierto = true;
+                    }
+                    else if (this.tac < 40)
+                    {
+                        this.abierto = "media";
+                    }
+                    else
+                    {
+                        this.abierto = false;
+                        this.cerrar = false;
+                        this.tac = 0;
+                        this.primed = true;
+                    }
+                }
+
+                if (this.abierto == false)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(pill, 943, 384, 115, 52, -(1/2 * 115 * this.temporary), -(1/2 * 52 * this.temporary), 115 * this.temporary, 52 * this.temporary);
+                    XXX.restore();
+                }
+                else if (this.abierto == "media")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(pill, 940, 437, 115, 56, -(1/2 * 115 * this.temporary), -(1/2 * 56 * this.temporary), 115 * this.temporary, 56 * this.temporary);
+                    XXX.restore();
+                }
+                else
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(pill, 938, 497, 115, 87, -(1/2 * 115 * this.temporary), -(1/2 * 87 * this.temporary), 115 * this.temporary, 87 * this.temporary);
+                    XXX.restore();
+                }
+
+            }
+
+            //BARRIERS
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+
+                if (this.information == 0)
+                {
+                    if (this.rotation == Math.PI)
+                    {
+                        barrierList.push(new Barrier((this.X + -44.01498489471851 * this.temporary), (this.Y + -5.671560407834477 * this.temporary), 10 * this.temporary, 87 * this.temporary, true, "phase"));
+                    }
+                    else if (this.rotation == 1/2 * Math.PI)
+                    {
+                        barrierList.push(new Barrier((this.X + -4.8482201670412906 * this.temporary), (this.Y + -45.81371594016673 * this.temporary), 90 * this.temporary, 10 * this.temporary, true, "phase"));
+                    }
+                    else if (this.rotation == -1/2 * Math.PI)
+                    {
+                        barrierList.push(new Barrier((this.X + -4.8482201670412906 * this.temporary), (this.Y + -45.81371594016673 * this.temporary), 90 * this.temporary, 10 * this.temporary, true, "phase"));
+                    }
+                    else
+                    {
+                        barrierList.push(new Barrier((this.X + -44.01498489471851 * this.temporary), (this.Y + -5.671560407834477 * this.temporary), 10 * this.temporary, 87 * this.temporary, true, "phase"));
+                    }
+                }
+                else if (this.information == 1)
+                {
+                    if (this.rotation == Math.PI)
+                    {
+                        barrierList.push(new Barrier((this.X + -82.19854373001726 * this.temporary), (this.Y + -5.783359996639774 * this.temporary), 10 * this.temporary, 166 * this.temporary, true, "phase"));
+                    }
+                    else if (this.rotation == 1/2 * Math.PI)
+                    {
+                        barrierList.push(new Barrier((this.X + -5.521281409135554 * this.temporary), (this.Y + -82.59006121387938 * this.temporary), 166 * this.temporary, 10 * this.temporary, true, "phase"));
+                    }
+                    else if (this.rotation == -1/2 * Math.PI)
+                    {
+                        barrierList.push(new Barrier((this.X + -5.521281409135554 * this.temporary), (this.Y + -82.59006121387938 * this.temporary), 166 * this.temporary, 10 * this.temporary, true, "phase"));
+                    }
+                    else
+                    {
+                        barrierList.push(new Barrier((this.X + -82.19854373001726 * this.temporary), (this.Y + -5.783359996639774 * this.temporary), 10 * this.temporary, 166 * this.temporary, true, "phase"));
+                    }
+                }
+            }
+
+            if (this.information > 1)
+            {
+                if (this.abierto == false)
+                {
+                    if (this.primed == true)
+                    {
+                        this.primed = false;
+                        var deleteList = [];
+                        for (var l = 0; l < barrierList.length; l++)
+                        {
+                            if (barrierList[l].info == this.clave)
+                            {
+                                deleteList.push(l);
+                            }
+                        }
+                        for (var l = deleteList.length - 1; l > -1; l--)
+                        {
+                            barrierList.splice(deleteList[l], 1);
+                        }
+
+                        if (this.rotation == Math.PI)
+                        {
+                            barrierList.push(new Barrier((this.X + -45.22476943873335 * this.temporary), (this.Y + -7.935814277967438 * this.temporary), 15 * this.temporary, 91 * this.temporary, true, this.clave));
+                        }
+                        else if (this.rotation == 1/2 * Math.PI)
+                        {
+                            barrierList.push(new Barrier((this.X + -8.678247784031555 * this.temporary), (this.Y + -46.81697967137734 * this.temporary), 93 * this.temporary, 13 * this.temporary, true, this.clave));
+                        }
+                        else if (this.rotation == -1/2 * Math.PI)
+                        {
+                            barrierList.push(new Barrier((this.X + -8.678247784031555 * this.temporary), (this.Y + -46.81697967137734 * this.temporary), 93 * this.temporary, 13 * this.temporary, true, this.clave));
+                        }
+                        else
+                        {
+                            barrierList.push(new Barrier((this.X + -45.22476943873335 * this.temporary), (this.Y + -7.935814277967438 * this.temporary), 15 * this.temporary, 91 * this.temporary, true, this.clave));
+                        }
+
+                    }
+                }
+                else if (this.abierto == true)
+                {
+                    if (this.primed == true)
+                    {
+                        this.primed = false;
+                        var deleteList = [];
+                        for (var l = 0; l < barrierList.length; l++)
+                        {
+                            if (barrierList[l].info == this.clave)
+                            {
+                                deleteList.push(l);
+                            }
+                        }
+                        for (var l = deleteList.length - 1; l > -1; l--)
+                        {
+                            barrierList.splice(deleteList[l], 1);
+                        }
+
+                        if (this.rotation == Math.PI)
+                        {
+                            barrierList.push(new Barrier((this.X + 32.18086268688785 * this.temporary), (this.Y + -31.863642918804544 * this.temporary), 38 * this.temporary, 13 * this.temporary, true, this.clave));
+                            barrierList.push(new Barrier((this.X + -44.81913731311215 * this.temporary), (this.Y + -34.863642918804544 * this.temporary), 38 * this.temporary, 13 * this.temporary, true, this.clave));
+                        }
+                        else if (this.rotation == 1/2 * Math.PI)
+                        {
+                            barrierList.push(new Barrier((this.X + -30.773306360759307 * this.temporary), (this.Y + -45.95877272884536 * this.temporary), 11 * this.temporary, 37 * this.temporary, true, this.clave));
+                            barrierList.push(new Barrier((this.X + -33.77330636075931 * this.temporary), (this.Y + 34.04122727115464 * this.temporary), 12 * this.temporary, 37 * this.temporary, true, this.clave));
+                        }
+                        else if (this.rotation == -1/2 * Math.PI)
+                        {
+                            barrierList.push(new Barrier((this.X + -7.226858852664009 * this.temporary), (this.Y + 37.089703621997614 * this.temporary), 12 * this.temporary, 41 * this.temporary, true, this.clave));
+                            barrierList.push(new Barrier((this.X + -4.226858852664009 * this.temporary), (this.Y + -43.910296378002386 * this.temporary), 13 * this.temporary, 41 * this.temporary, true, this.clave));
+                        }
+                        else
+                        {
+                            barrierList.push(new Barrier((this.X + -48.29473329690518 * this.temporary), (this.Y + -6.922517948187306 * this.temporary), 39 * this.temporary, 12 * this.temporary, true, this.clave));
+                            barrierList.push(new Barrier((this.X + 32.70526670309482 * this.temporary), (this.Y + -5.922517948187306 * this.temporary), 41 * this.temporary, 12 * this.temporary, true, this.clave));
+                        }
+                    }
+                }
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 45 + 45 * this.temporary;
+
+            //barrierCreator(this.X, this.Y); //for easily setting barriers when making buildings
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                if (this.information > 1)
+                {
+                    if (this.abierto == false && this.abrir == false && this.cerrar == false)
+                    {
+                        this.abrir = true;
+                    }
+                    else if (this.abierto != "media" && this.abrir == false && this.cerrar == false)
+                    {
+                        this.cerrar = true;
+                    }
+                }
+                else
+                {
+                    dClick = true;
+                }
+                this.activate = false;
+            }
+        }
+        else if (this.type == "bars")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 80;
+
+            //DRAWSELF
+            this.zIndex = 1;
+            if (this.information == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(pill, 796, 169, 232, 30, -(1/2 * 232 * this.temporary), -(1/2 * 30 * this.temporary), 232 * this.temporary, 30 * this.temporary);
+                XXX.restore();
+            }
+            else if (this.information == 1)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(pill, 562, 242, 232, 30, -(1/2 * 232 * this.temporary), -(1/2 * 30 * this.temporary), 232 * this.temporary, 30 * this.temporary);
+                XXX.restore();
+            }
+            else
+            {
+
+            }
+
+            //BARRIERS
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+
+                if (this.information == 0)
+                {
+                    if (this.rotation == Math.PI)
+                    {
+                        barrierList.push(new Barrier((this.X + -57.98509994690539 * this.temporary), (this.Y + -11.057213336156565 * this.temporary), 20 * this.temporary, 115 * this.temporary, true, "phase"));
+                    }
+                    else if (this.rotation == 1/2 * Math.PI)
+                    {
+                        barrierList.push(new Barrier((this.X + -12.893190727743786 * this.temporary), (this.Y + -60.03644279044238 * this.temporary), 116 * this.temporary, 20 * this.temporary, true, "phase"));
+                    }
+                    else if (this.rotation == -1/2 * Math.PI)
+                    {
+                        barrierList.push(new Barrier((this.X + -12.893190727743786 * this.temporary), (this.Y + -60.03644279044238 * this.temporary), 116 * this.temporary, 20 * this.temporary, true, "phase"));
+                    }
+                    else
+                    {
+                        barrierList.push(new Barrier((this.X + -57.98509994690539 * this.temporary), (this.Y + -11.057213336156565 * this.temporary), 20 * this.temporary, 115 * this.temporary, true, "phase"));
+                    }
+                }
+                else if (this.information == 1)
+                {
+                    if (this.rotation == Math.PI)
+                    {
+                        barrierList.push(new Barrier((this.X + -116.21147668879712 * this.temporary), (this.Y + -9.69624672838836 * this.temporary), 20 * this.temporary, 225 * this.temporary, true, "phase"));
+                    }
+                    else if (this.rotation == 1/2 * Math.PI)
+                    {
+                        barrierList.push(new Barrier((this.X + -9.896466895646881 * this.temporary), (this.Y + -116.70801034205942 * this.temporary), 225 * this.temporary, 20 * this.temporary, true, "phase"));
+                    }
+                    else if (this.rotation == -1/2 * Math.PI)
+                    {
+                        barrierList.push(new Barrier((this.X + -9.896466895646881 * this.temporary), (this.Y + -116.70801034205942 * this.temporary), 225 * this.temporary, 20 * this.temporary, true, "phase"));
+                    }
+                    else
+                    {
+                        barrierList.push(new Barrier((this.X + -116.21147668879712 * this.temporary), (this.Y + -9.69624672838836 * this.temporary), 20 * this.temporary, 225 * this.temporary, true, "phase"));
+                    }
                 }
             }
 
@@ -18416,6 +18931,56 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
                 XXX.drawImage(chupa, 681, 271, 37, 34, -(1/2 * 37 * 2.3), -(1/2 * 34 * 2.3), 37 * 2.3, 34 * 2.3);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 20;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+                if (this.phase == 1)
+                {
+                    if (this.playerer <= 25)
+                    {
+                        X = this.temporary[0];
+                        Y = this.temporary[1];
+                        map = this.information;
+                    }
+                    else
+                    {
+                        this.phase = 0;
+                    }
+                }
+                else
+                {
+                    this.phase = 1;
+                }
+            }
+        }
+        else if (this.type == "hatch")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 70;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(pill, 563, 93, 54, 49, -(1/2 * 54 * 2.2), -(1/2 * 49 * 2.2), 54 * 2.2, 49 * 2.2);
+                XXX.restore();
+            }
+            else
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(pill, 615, 94, 59, 49, -(1/2 * 59 * 2.2), -(1/2 * 49 * 2.2), 59 * 2.2, 49 * 2.2);
                 XXX.restore();
             }
 
@@ -25791,7 +26356,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     XXX.lineWidth = 0.5;
                     XXX.stroke();
                 }
-                else if (this.temporary == 6 || this.temporary == "#1c1c1c") //vardanian
+                else if (this.temporary == 6 || this.temporary == "#1c1c1c") //w
                 {
                     XXX.beginPath();
                     XXX.fillStyle = "#1c1c1c";

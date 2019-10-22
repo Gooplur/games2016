@@ -1552,6 +1552,18 @@ function bludPack()
 
     blud.onload = function()
     {
+        pillPack();
+    };
+}
+
+function pillPack()
+{
+    var pill = new Image();
+    pill.src = ("images/pill.png");
+    window.pill = pill;
+
+    pill.onload = function()
+    {
         cavernaPack();
     };
 }

@@ -58,9 +58,12 @@ function gameloopOfDestiny(time)
     //console.log(TTD);
 
     //CHEATS
-    if (gameState == "active" || gameState == "stopTime")
+    if (cheatAtop != true)
     {
-        cheats();
+        if (gameState == "active" || gameState == "stopTime")
+        {
+            cheats();
+        }
     }
 
     //MASTER BUILDER
@@ -92,6 +95,14 @@ function gameloopOfDestiny(time)
         //PROJECTILES
         projectileOperationsManagement(z);
         magicOperationsManagement(z);
+    }
+
+    if (cheatAtop == true)
+    {
+        if (gameState == "active" || gameState == "stopTime")
+        {
+            cheats();
+        }
     }
 
     decayer(); //this lets certain items decay when in the worlditems list.

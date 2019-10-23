@@ -5881,6 +5881,8 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             }
             else if (this.temporary == 40)//zetian sacks 1
             {
+                this.solid = true;
+                this.radius = 9 * this.information;
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
@@ -5889,6 +5891,8 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             }
             else if (this.temporary == 41)//zetian sacks 2
             {
+                this.solid = true;
+                this.radius = 16 * this.information;
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
@@ -6111,7 +6115,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     XXX.drawImage(hydra, 489, 568, 73, 122, -(1/2 * 73 * this.information), -(1/2 * 122 * this.information), 73 * this.information, 122 * this.information);
                     XXX.restore();
                 }
-                else if (this.tic < 127)
+                else if (this.tic < 147)
                 {
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -6119,7 +6123,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     XXX.drawImage(hydra, 582, 571, 103, 121, -(1/2 * 103 * this.information), -(1/2 * 121 * this.information) - 1, 103 * this.information, 121 * this.information);
                     XXX.restore();
                 }
-                else if (this.tic < 134)
+                else if (this.tic < 172)
                 {
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -6127,7 +6131,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     XXX.drawImage(hydra, 684, 570, 103, 121, -(1/2 * 103 * this.information), -(1/2 * 121 * this.information) - 1.5, 103 * this.information, 121 * this.information);
                     XXX.restore();
                 }
-                else if (this.tic < 136)
+                else if (this.tic < 197)
                 {
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -6159,7 +6163,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     XXX.drawImage(hydra, 2061, 818, 103, 121, -(1/2 * 103 * this.information), -(1/2 * 121 * this.information), 103 * this.information, 121 * this.information);
                     XXX.restore();
                 }
-                else if (this.tic < 127)
+                else if (this.tic < 147)
                 {
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -6167,7 +6171,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     XXX.drawImage(hydra, 2168, 820, 103, 121, -(1/2 * 103 * this.information), -(1/2 * 121 * this.information) - 1, 103 * this.information, 121 * this.information);
                     XXX.restore();
                 }
-                else if (this.tic < 134)
+                else if (this.tic < 172)
                 {
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -6175,7 +6179,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     XXX.drawImage(hydra, 2269, 822, 103, 121, -(1/2 * 103 * this.information), -(1/2 * 121 * this.information) + 1.5, 103 * this.information, 121 * this.information);
                     XXX.restore();
                 }
-                else if (this.tic < 136)
+                else if (this.tic < 197)
                 {
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);

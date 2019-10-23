@@ -2532,7 +2532,7 @@ function cheats()
             if (xKey)
             {
                 xKey = false;
-                console.log('scenicList.push(new Scenery("scuffleMarks", ' + X + ', ' + Y + ', ' + buildRot + ', ' + buildClase +'));');
+                console.log('scenicList.push(new Scenery("scuffleMarks", ' + X + ', ' + Y + ', ' + buildRot + ', ' + buildSize +'));');
                 scenicList.push(new Scenery("scuffleMarks", X, Y, buildRot, buildSize));
             }
 
@@ -4601,10 +4601,13 @@ function cheats()
                 if (player.hide == true)
                 {
                     player.hide = false;
+                    cheatAtop = false;
+
                 }
                 else
                 {
                     player.hide = true;
+                    cheatAtop = true;
                 }
             }
         }

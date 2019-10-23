@@ -2583,6 +2583,7 @@ var buildName = "none";
 var skriatokX = 0;
 var skriatokY = 0;
 var quenHere = false;
+var cheatAtop = false;
 
 //This sets the items that are in shops.
 function shopItemIDSetter()

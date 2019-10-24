@@ -2584,6 +2584,8 @@ var skriatokX = 0;
 var skriatokY = 0;
 var quenHere = false;
 var cheatAtop = false;
+var buildPrompt = "";
+var buildPrompt2 = "";
 
 //This sets the items that are in shops.
 function shopItemIDSetter()

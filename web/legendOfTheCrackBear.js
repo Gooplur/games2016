@@ -1564,6 +1564,18 @@ function pillPack()
 
     pill.onload = function()
     {
+        pixiPack();
+    };
+}
+
+function pixiPack()
+{
+    var pixi = new Image();
+    pixi.src = ("images/pixi.png");
+    window.pixi = pixi;
+
+    pixi.onload = function()
+    {
         cavernaPack();
     };
 }

@@ -160,6 +160,10 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
         {
             this.massive = true;
         }
+        else if (this.type == "shriekingBloodWormEggs")
+        {
+            this.massive = true;
+        }
     };
     this.isMassive();
 
@@ -2625,6 +2629,148 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     }
                 }
                 else
+                {
+                    this.phase = "broken";
+                }
+            }
+        }
+        else if (this.type == "shriekingBloodWormEggs")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 55;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                this.phase = 2;
+                this.fertilized = false;
+            }
+
+            if (this.phase == 2)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1 / 2 * CCC.width, Y - this.Y + 1 / 2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(blud, 494, 35, 78, 82, -(1 / 2 * 78 * 0.4), -(1 / 2 * 82 * 0.4), 78 * 0.4, 82 * 0.4);
+                XXX.restore();
+            }
+            else if (this.phase == "broken")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1 / 2 * CCC.width, Y - this.Y + 1 / 2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(blud, 605, 37, 78, 82, -(1 / 2 * 78 * 0.4), -(1 / 2 * 82 * 0.4), 78 * 0.4, 82 * 0.4);
+                XXX.drawImage(blud, 635, 570, 50, 48, -(1 / 2 * 50 * 0.55), -(1 / 2 * 48 * 0.55), 50 * 0.55, 48 * 0.55);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 16;
+
+            //HATCHING
+            if (this.phase == 2 && this.fertilized == true)
+            {
+                this.eggHatchTimer += 1 * (TTD / 16.75);
+                if (this.eggHatchTimer >= 800 && this.phase != "broken")
+                {
+                    var newby = new Unit(this.X, this.Y, "shriekingBloodworm", "baby", "Generic Shrieking Bloodworm");
+                    newby.mamaID = this.information;
+                    for (var ii = 0; ii < (Math.floor(Math.random() * 6) + 1); ii++)
+                    {
+                        ArtificialIntelligenceAccess.push(newby);
+                    }
+
+                    this.phase = "broken";
+                }
+            }
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+
+                this.phase = "broken";
+            }
+        }
+        else if (this.type == "pixiEggCluster")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 50;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                this.phase = 1;
+            }
+            else if (this.phase == 1)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1 / 2 * CCC.width, Y - this.Y + 1 / 2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(pixi, 5, 33, 21, 22, -(1 / 2 * 21 * 1), -(1 / 2 * 22 * 1), 21 * 1, 22 * 1);
+                XXX.restore();
+            }
+            else if (this.phase == 2)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1 / 2 * CCC.width, Y - this.Y + 1 / 2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(pixi, 10, 8, 28, 26, -(1 / 2 * 28 * 1), -(1 / 2 * 26 * 1), 28 * 1, 26 * 1);
+                XXX.restore();
+            }
+            else if (this.phase == 3)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1 / 2 * CCC.width, Y - this.Y + 1 / 2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(pixi, 59, 2, 44, 40, -(1 / 2 * 44 * 1), -(1 / 2 * 40 * 1), 44 * 1, 40 * 1);
+                XXX.restore();
+            }
+            else if (this.phase == "broken")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1 / 2 * CCC.width, Y - this.Y + 1 / 2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(pixi, 57, 46, 44, 40, -(1 / 2 * 44 * 1), -(1 / 2 * 40 * 1), 44 * 1, 40 * 1);
+                XXX.restore();
+            }
+
+            if (this.eggHatchTimer > 320 && this.phase == 1)
+            {
+                this.phase = 2;
+            }
+            if (this.eggHatchTimer > 640 && this.phase == 2)
+            {
+                this.phase = 3;
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 16;
+
+            //HATCHING
+            if (this.phase == 3 || this.phase == 2 || this.phase == 1)
+            {
+                this.eggHatchTimer += 1 * (TTD / 16.75);
+                if (this.eggHatchTimer >= 800 && this.phase != "broken")
+                {
+
+                    for (var ii = 0; ii < (Math.floor(Math.random() * 8) + 1); ii++)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(55), this.Y + spacer(55), "Pixi", "baby", "Generic Pixi"));
+                    }
+
+                    this.phase = "broken";
+                }
+            }
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+
+                if (this.phase == 3)
                 {
                     this.phase = "broken";
                 }
@@ -21099,6 +21245,111 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 this.activate = false;
             }
         }
+        else if (this.type == "pixiDust")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+            this.zIndex = 6;
+
+            if (this.runOneTime == true)
+            {
+                this.runOneTime = false;
+                this.tic = 0;
+                this.tac = 1.5;
+                this.toc = 0;
+                this.spinSort = Math.round(Math.random());
+                this.spin = 0;
+            }
+
+            //DRAWSELF
+            if (this.spinSort == true)
+            {
+                this.spin += 0.0000001
+            }
+            else
+            {
+                this.spin -= 0.0000001
+            }
+            this.tic += 2.5;
+            if (this.tic <= 5)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation + this.spin);
+                XXX.drawImage(pixi, 421, 9, 96, 67, -(1/2 * 96 * this.tac), -(1/2 * 67 * this.tac), 96 * this.tac, 67 * this.tac);
+                XXX.restore();
+            }
+            else if (this.tic <= 10)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation + this.spin);
+                XXX.drawImage(pixi, 550, 11, 96, 67, -(1/2 * 96 * this.tac), -(1/2 * 67 * this.tac), 96 * this.tac, 67 * this.tac);
+                XXX.restore();
+            }
+            else if (this.tic <= 15)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation + this.spin);
+                XXX.drawImage(pixi, 673, 13, 96, 67, -(1/2 * 96 * this.tac), -(1/2 * 67 * this.tac), 96 * this.tac, 67 * this.tac);
+                XXX.restore();
+            }
+            else
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation + this.spin);
+                XXX.drawImage(pixi, 550, 11, 96, 67, -(1/2 * 96 * this.tac), -(1/2 * 67 * this.tac), 96 * this.tac, 67 * this.tac);
+                XXX.restore();
+                this.tic = 0;
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 80 * this.tac;
+
+            //infect
+            if (player.resistDisease == false && player.vamprism == false)
+            {
+                if (this.dst(X, Y) <= this.radius)
+                {
+                    player.pixiDusted = true;
+                    player.energy = Math.min(player.energyMAX, player.energy + 1);
+                }
+            }
+
+            for (var j = 0; j < ArtificialIntelligenceAccess.length; j++)
+            {
+                if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= this.radius + (3/4 * ArtificialIntelligenceAccess[j].sizeRadius) && !ArtificialIntelligenceAccess[j].underground && ArtificialIntelligenceAccess[j].dmx == this.dmx)
+                {
+                    if (ArtificialIntelligenceAccess[j].resistances.indexOf("pixi") == -1 && ArtificialIntelligenceAccess[j].resistances.indexOf("pixiDust") == -1)
+                    {
+                        if (ArtificialIntelligenceAccess[j].resistDisease != true && ArtificialIntelligenceAccess[j].vamprism != true)
+                        {
+                            ArtificialIntelligenceAccess[j].pixiDusted = true;
+                            ArtificialIntelligenceAccess[j].killNotByPlayer = true;
+                        }
+                    }
+                }
+            }
+
+            if (this.temporary == false)
+            {
+                this.toc += 0.25;
+
+                if (this.toc > 100)
+                {
+                    scenicList.splice(scenicList.indexOf(this), 1);
+                }
+            }
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+        }
         else if (this.type == "forge")
         {
             //TRAITS
@@ -27739,6 +27990,103 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 this.activate = false;
             }
         }
+        else if (this.type == "pixiVictim")
+        {
+            //TRAITS
+            this.solid = false;
+            this.size = this.information;
+            if (this.phase == 0)
+            {
+                this.interactionRange = 40 * this.size;
+            }
+            else
+            {
+                this.interactionRange = 1;
+            }
+
+            //DRAWSELF
+            if (this.temporary == 1)
+            {
+                if (this.phase == 0)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(pixi, 384, 236, 72, 67, -1/2 * 72 * this.size, -1/2 * 67 * this.size, 72 * this.size, 67 * this.size);
+                    XXX.restore();
+                }
+                else
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(pixi, 473, 221, 72, 67, -1/2 * 72 * this.size, -1/2 * 67 * this.size, 72 * this.size, 67 * this.size);
+                    XXX.restore();
+                }
+            }
+            else if (this.temporary == 2)
+            {
+                if (this.phase == 0)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(pixi, 552, 91, 72, 67, -1/2 * 72 * this.size, -1/2 * 67 * this.size, 72 * this.size, 67 * this.size);
+                    XXX.restore();
+                }
+                else
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(pixi, 556, 155, 72, 67, -1/2 * 72 * this.size, -1/2 * 67 * this.size, 72 * this.size, 67 * this.size);
+                    XXX.restore();
+                }
+            }
+            else if (this.temporary == 3)
+            {
+                if (this.phase == 0)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(pixi, 630, 86, 72, 67, -1/2 * 72 * this.size, -1/2 * 67 * this.size, 72 * this.size, 67 * this.size);
+                    XXX.restore();
+                }
+                else
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(pixi, 634, 139, 72, 67, -1/2 * 72 * this.size, -1/2 * 67 * this.size, 72 * this.size, 67 * this.size);
+                    XXX.restore();
+                }
+            }
+            else
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(pixi, 475, 150, 72, 67, -1/2 * 72 * this.size, -1/2 * 67 * this.size, 72 * this.size, 67 * this.size);
+                XXX.restore();
+            }
+
+            if (this.playerer <= (20 * this.size))
+            {
+                this.phase = 1;
+            }
+
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 1;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+                this.phase = 1;
+            }
+        }
         else if (this.type == "horseSkeleton")
         {
             //TRAITS
@@ -30111,6 +30459,95 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     if (hits == Inventory.length)
                     {
                         Inventory.push([new Item("elcheLeaves", false, false), 1]);
+                    }
+                }
+            }
+        }
+        else if (this.type == "trubkaPlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.nectar(9);
+            this.solid = false;
+            this.interactionRange = 100;
+            this.radius = 13;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(pixi, 712, 86, 74, 68, -(1/2 * 74 * 1.5), -(1/2 * 68 * 1.5), 74 * 1.5, 68 * 1.5);
+                XXX.restore();
+            }
+            else if (this.phase == 1)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(pixi, 712, 137, 74, 68, -(1/2 * 74 * 1.5), -(1/2 * 68 * 1.5), 74 * 1.5, 68 * 1.5);
+                XXX.restore();
+            }
+            else if (this.phase == "picked")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(pixi, 44, 270, 19, 17, -(1/2 * 19 * 1.5), -(1/2 * 17 * 1.5), 19 * 1.5, 17 * 1.5);
+                XXX.restore();
+            }
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0 || this.activate == true && this.phase == 1)
+            {
+                this.activate = false;
+
+                if (player.areGlovesEquipped != true && this.phase == 0)
+                {
+                    player.poisonI = true;
+                }
+
+                if (this.phase == 0)
+                {
+                    this.phase = 1;
+                    var hits = 0;
+                    for (var i = 0; i < Inventory.length; i ++)
+                    {
+                        if (Inventory[i][0].type == "trubkaStalk")
+                        {
+                            Inventory[i][1] += 1;
+                            break;
+                        }
+                        else
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == Inventory.length)
+                    {
+                        Inventory.push([new Item("trubkaStalk", false, false), 1]);
+                    }
+                }
+                else
+                {
+                    this.phase = "picked";
+                    var hits = 0;
+                    for (var i = 0; i < Inventory.length; i ++)
+                    {
+                        if (Inventory[i][0].type == "trubkaLeaf")
+                        {
+                            Inventory[i][1] += 1;
+                            break;
+                        }
+                        else
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == Inventory.length)
+                    {
+                        Inventory.push([new Item("trubkaLeaf", false, false), 1]);
                     }
                 }
             }
@@ -33637,6 +34074,59 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 if (hits == Inventory.length)
                 {
                     Inventory.push([new Item("halcifMushroom", false, false), Math.floor(1 + Math.random() * 6)]);
+                }
+            }
+        }
+        else if (this.type == "krogiPlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.subVariety = "fungi";
+            this.solid = false;
+            this.interactionRange = 45;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(pixi, 90, 236, 47, 46, -(1/2 * 47), -(1/2 * 46), 47, 46);
+                XXX.restore();
+            }
+            else
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(pixi, 148, 236, 47, 46, -(1/2 * 47), -(1/2 * 46), 47, 46);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 14;
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0)
+            {
+                this.activate = false;
+                this.phase = "picked";
+                var hits = 0;
+                for (var i = 0; i < Inventory.length; i ++)
+                {
+                    if (Inventory[i][0].type == "krogiMushroom")
+                    {
+                        Inventory[i][1] += Math.floor(1 + Math.random() * 3);
+                        break;
+                    }
+                    else
+                    {
+                        hits += 1;
+                    }
+                }
+                if (hits == Inventory.length)
+                {
+                    Inventory.push([new Item("krogiMushroom", false, false), Math.floor(1 + Math.random() * 3)]);
                 }
             }
         }

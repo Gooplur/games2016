@@ -606,6 +606,11 @@ function Adventurer()
     this.timeSinceLastWartGrowth = new Date().getTime();
     this.wartPop = false;
     this.wartDeath = false;
+    this.pixiDusted = false;
+    this.pixiDust = 0;
+    this.pixiEggs = 0;
+    this.pixiVenom = false;
+    this.pixiVenomed = 0;
 
         //faction variables
     this.factionToggle = false;
@@ -830,6 +835,20 @@ function Adventurer()
 
     this.overAnims = function()
     {
+        //pixi venom skin husking
+        this.onPixiVenom = function()
+        {
+            if (this.pixiVenom && this.vamprism != true && this.undying != true && this.lycanthropy != true && this.lifeEternal != true)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.globalAlpha = 0.9;
+                XXX.drawImage(pixi, 475, 150, 72, 67, - 1/2 * (72 * 0.5) / 10 * 10 * this.pixiVenomed, - 1/2 * (67 * 0.5) / 10 * 10 * this.pixiVenomed, (72 * 0.5) / 10 * 10 * this.pixiVenomed, (67 * 0.5) / 10 * 10 * this.pixiVenomed);
+                XXX.restore();
+            }
+        };
+        this.onPixiVenom();
+
         //web
         this.onWeb = function()
         {
@@ -4161,6 +4180,49 @@ function Adventurer()
                 }
             }
 
+            if (this.pixiVenom == true && this.vamprism != true && this.undying != true && this.lycanthropy != true && this.lifeEternal != true)
+            {
+                this.pixiVenomed += 0.0025;
+                this.healthMAX = Math.max(this.healthMAX - this.healthMAX * this.pixiVenomed, -100);
+                this.energyMAX = Math.max(this.energyMAX - this.energyMAX * this.pixiVenomed, -100);
+                if (this.energy > this.energyMAX)
+                {
+                    this.energy = this.energyMAX;
+                }
+            }
+
+            if (this.pixiDusted == true && this.vamprism != true)
+            {
+                this.pixiDust += 0.004;
+
+                if (this.undying != true)
+                {
+                    if (this.pixiDust > 20)
+                    {
+                        player.asfixiationII = true;
+                        player.asfixiationTime = Math.max(6, player.asfixiationTime);
+
+                        this.pixiEggs += 1;
+                        if (this.pixiEggs > 90)
+                        {
+                            this.pixiEggs = 0;
+                            scenicList.push(new Scenery("pixiEggCluster", X + Math.cos(this.rotation + 1/2 * Math.PI) * 10, Y + Math.sin(this.rotation + 1/2 * Math.PI) * 10, Math.random()*2*Math.PI, true));
+                        }
+                    }
+                }
+
+                if (this.pixiDust > 100)
+                {
+                    this.pixiDusted = false;
+                }
+
+                this.energy += 0.15;
+                if (this.energy > this.energyMAX)
+                {
+                    this.energy = this.energyMAX;
+                }
+            }
+
             //This enables the poisoned mini notice if any type of any category of poison is in effect.
             if (this.poisonI == true || this.poisonII == true || this.poisonIII == true || this.poisonIV == true || this.poisonV == true || this.poisonVI == true)
             {
@@ -6697,6 +6759,50 @@ function Adventurer()
         }
     };
 
+    this.pixiVenomChecker = function ()
+    {
+        if (this.pixiVenom == true)
+        {
+            // at this point the slot should be consistent so it should not have to check again to be entered into a position on the miniNoticeList.
+            this.addNotice("Pixi Venom");
+            XXX.beginPath();
+            XXX.fillStyle = "darkGrey";
+            XXX.lineWidth = 1;
+            XXX.strokeStyle = "black";
+            XXX.rect(this.arrangeNotices("Pixi Venom"), 413, 20, 20);
+            XXX.fill();
+            XXX.stroke();
+            XXX.drawImage(pixi, 565, 161, 56, 55, this.arrangeNotices("Pixi Venom") + 0.25, 413.35, 20, 20);
+        }
+        else
+        {
+            //at this point the slot will have been cleared so next time the effect shows up it should have to check again to be entered into a position on the miniNoticeList.
+            this.removeNotice("Pixi Venom");
+        }
+    };
+
+    this.pixiDustChecker = function ()
+    {
+        if (this.pixiDusted == true)
+        {
+            // at this point the slot should be consistent so it should not have to check again to be entered into a position on the miniNoticeList.
+            this.addNotice("Pixi Dust");
+            XXX.beginPath();
+            XXX.fillStyle = "orange";
+            XXX.lineWidth = 1;
+            XXX.strokeStyle = "black";
+            XXX.rect(this.arrangeNotices("Pixi Dust"), 413, 20, 20);
+            XXX.fill();
+            XXX.stroke();
+            XXX.drawImage(pixi, 10, 8, 28, 26, this.arrangeNotices("Pixi Dust") + 0.25, 413.35, 20, 20);
+        }
+        else
+        {
+            //at this point the slot will have been cleared so next time the effect shows up it should have to check again to be entered into a position on the miniNoticeList.
+            this.removeNotice("Pixi Dust");
+        }
+    };
+
     this.tirelessnessChecker = function ()
     {
         if (energil < 1)
@@ -6981,6 +7087,8 @@ function Adventurer()
         this.radiationChecker();
         this.dizzinessChecker();
         this.decayChecker();
+        this.pixiVenomChecker();
+        this.pixiDustChecker();
     };
 
     //MOVEMENT ANIMATION
@@ -38407,6 +38515,23 @@ function Adventurer()
                                     this.watered = true;
                                     this.fed = true;
                                 }
+                            }
+                            else if (Inventory[i][0].ability == "antiPixi")
+                            {
+                                this.pixiDusted = false;
+                                this.pixiDust = 0;
+                                this.pixiVenom = false;
+                                this.pixiVenomed = 0;
+                            }
+                            else if (Inventory[i][0].ability == "permaParalysis")
+                            {
+                                this.stunnedXV = true;
+                                this.stunnedTime = Math.max(1000000000, this.stunnedTime);
+                            }
+                            else if (Inventory[i][0].ability == "krogiNumb") //stuns the player for 8 seconds of stunII
+                            {
+                                this.stunnedIII = true;
+                                this.stunnedTime = 9;
                             }
                             else if (Inventory[i][0].ability == "blind1/2") //Stuns the player for 6 seconds of stunI
                             {

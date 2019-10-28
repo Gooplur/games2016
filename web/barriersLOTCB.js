@@ -89,6 +89,11 @@ function Barrier(x, y, h, w, dev, info)
         XXX.fillRect(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height, -this.width, -this.height);
     };
 
+    this.dst = function(x, y) //finds the distance between this and input.
+    {
+        return Math.sqrt((this.X - x) * (this.X - x) + (this.Y - y) * (this.Y - y));
+    };
+
     this.operations = function()
     {
         if (testBarriers)

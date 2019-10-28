@@ -10,7 +10,9 @@ OgoTree - A tropical tree that bears energizing ogo fruits
 AppleTree - A temperate tree that yields apples; apple trees grow almost exclusively in Thengaria
 DesertPoppy - A poppy plant that grows in the far south in the burning desert; its seeds can be made into opium
 Heyol - A freydic berry bush that hosts small green berries that are bitter and medicinal
-PashaPlant - A flat cactus native to the zetian desert
+Pasha - A flat cactus native to the zetian desert
+Trubka - A long stalked red tube plant a smooth pore covered pod at the top. The stalk of the plant is slick and moist and poisonous to touch.
+Krogi - A black ringdome-capped mushroom that grows in the Vardanian Hollows and the Cephrian region of Black Lake eating this mushroom raw causes near-permanent paralysis, cooking it breaks down those enzymes enough that it becomes edible, though eating it numbs your whole body for a while...
 
 //ALREADY IN GAME (to create a plant with the scenery class these plants must be made all lowercase)
     //FARM

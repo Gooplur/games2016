@@ -3171,6 +3171,35 @@ function Item(type, x, y)
             this.buyValue = 3 - Math.floor(player.getCharisma() / 25); // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
         }
+        else if (this.type == "trubkaLeaf")
+        {
+            //For All Items
+            this.identity = "Trubka Leaf";
+            this.weight = 1.6;
+            this.size = 7;
+            this.description = "The reddish, moist, liquid filled leaf of a trubka plant.";
+            this.intForDes = 23;
+            this.intDescription = "A special enzyme in trubka leaves is the only known cure to pixi venom, and it kills internally lodged pixi eggs as well.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0.3; //satisfies hunger.
+            this.thirst = 3; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -5; //recoops lost energy.
+            this.replenish = -3; //restores will.
+
+            //ability
+            this.ability = "antiPixi";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3; // at max, buy for 3.
+            this.sellValue = 3; // at max, sell for 3.
+        }
         else if (this.type == "giraffePlatter")
         {
             //For All Items
@@ -17635,6 +17664,37 @@ function Item(type, x, y)
             this.buyValue = 45 - Math.floor(player.getCharisma() / 3); // at max, buy for 30.
             this.sellValue = 15 + Math.floor(player.getCharisma() / 3); // at max, sell for 30.
         }
+        else if (this.type == "jarOfPixiBlood")
+        {
+            //For All Items
+            this.identity = "Jar of Pixi Blood";
+            this.weight = 2.5;
+            this.size = 6;
+            this.description = "The thick liquid tastes like a buzzing insect in your throat.";
+            this.intForDes = 19;
+            this.intDescription = "Pixi blood is a potent base used to make certain potions, it is also a powerful former.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["glassJar", 1]];
+
+            //Utility Focused
+            this.isRegenerative = true; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1; //satisfies hunger.
+            this.thirst = 5; //quenches thirst.
+            this.warmth = 10; //warms player.
+            this.heal = -5; //heals health.
+            this.generation = 15; //recoops lost energy.
+            this.replenish = -5; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 75 - Math.floor(player.getCharisma() / 3); // at max, buy for 60.
+            this.sellValue = 10 + Math.floor(player.getCharisma() / 1); // at max, sell for 60.
+        }
         else if (this.type == "vardanianBowlOfNaapridMilk") //a vardanian bowl holds half as much as a bucket
         {
             //For All Items
@@ -30789,6 +30849,69 @@ function Item(type, x, y)
             this.buyValue = 45 - Math.floor(player.getCharisma() / 3); // at max, buy for 30.
             this.sellValue = 18 + Math.floor(player.getCharisma() / 4); // at max, sell for 30.
         }
+        else if (this.type == "krogiMushroom")
+        {
+            //For All Items
+            this.identity = "Krogi Mushroom";
+            this.weight = 1.5;
+            this.size = 11;
+            this.description = "A blackish grey mushroom with a flattish ringdomed cap. The smell is rank, and tickles your nose with a slight burning sensation.";
+            this.intForDes = 9;
+            this.intDescription = "Eating this mushroom may cause near-permanent paralysis.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = true; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 3.5; //satisfies hunger.
+            this.thirst = 0.25; //quenches thirst.
+            this.warmth = 5; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 10; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "permaParalysis";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2 - Math.floor(player.getCharisma() / 50); // at max, buy for 1.
+            this.sellValue = 0 + Math.floor(player.getCharisma() / 50); // at max, sell for 1.
+        }
+        else if (this.type == "cookedKrogiMushroom")
+        {
+            //For All Items
+            this.identity = "Cooked Krogi Mushroom";
+            this.weight = 1.5;
+            this.size = 11;
+            this.description = "The blackish grey pigment of the krogi mushroom turns brown when exposed to heat. It has a sour and mildly savoury smell.";
+            this.intForDes = 6;
+            this.intDescription = "Eating this mushroom causes your whole body to go numb... This is traditionally eated by the residents of Blacklake and The Hollows.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = true; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 4; //satisfies hunger.
+            this.thirst = 0.15; //quenches thirst.
+            this.warmth = 1.5; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 10; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "krogiNumb";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 6;
+            this.ingredients = [["Krogi Mushroom", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3 - Math.floor(player.getCharisma() / 50); // at max, buy for 2.
+            this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+        }
         else if (this.type == "cyrinthilimMushroom")
         {
             //For All Items
@@ -34042,6 +34165,64 @@ function Item(type, x, y)
             this.buyValue = 3 - Math.floor(player.getCharisma() / 50); // at max, buy for 2.
             this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
         }
+        else if (this.type == "rawBloodwormFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Bloodworm Flesh";
+            this.weight = 2;
+            this.size = 9;
+            this.description = "The limp raw flesh of a bloodworm.";
+            this.intForDes = 0;
+            this.intDescription = "This smells absolutely putrid... It likely will not stay in your belly long if you eat it.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0.9; //satisfies hunger.
+            this.thirst = 0.75; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -2.5; //recoops lost energy.
+            this.replenish = -1; //restores will.
+
+            //ability
+            this.ability = "foodPoisoning";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "bloodwormMeat")
+        {
+            //For All Items
+            this.identity = "Bloodworm Meat";
+            this.weight = 1.25;
+            this.size = 9;
+            this.description = "The bloated cooked meat of a bloodworm. It is rubbery and bland with a muddy, fishy aftertaste.";
+            this.intForDes = 2;
+            this.intDescription = "When the meat is cooked it bloats.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 6.5; //satisfies hunger.
+            this.thirst = 0.1; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -1.5; //recoops lost energy.
+            this.replenish = -0.5; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 2; // at max, sell for 2.
+        }
         else if (this.type == "rawTurkeyFlesh")
         {
             //For All Items
@@ -36937,6 +37118,157 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "trubkaStalk")
+        {
+            //For All Items
+            this.identity = "Trubka Stalk";
+            this.weight = 9;
+            this.size = 12;
+            this.description = "The slick, moist stalk of a trubka plant.";
+            this.intForDes = 1;
+            this.intDescription = "Trubka stalks are poisonous, but they can be used as a former in alchemy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 14; // at max, buy for 14.
+            this.sellValue = 14; // at max, sell for 14.
+        }
+        else if (this.type == "velidShell")
+        {
+            //For All Items
+            this.identity = "Velid Shell";
+            this.weight = 3.5;
+            this.size = 7;
+            this.description = "The shell of a velid, rich with colourful, shimmering mother of pearl.";
+            this.intForDes = 1;
+            this.intDescription = "Velid shells are valued as an ornamental decoration.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 9 - Math.floor(player.getCharisma() / 25); // at max, buy for 7.
+            this.sellValue = 4 + Math.floor(player.getCharisma() / 15); // at max, sell for 7.
+        }
+        else if (this.type == "pokinutyyShell")
+        {
+            //For All Items
+            this.identity = "Pokinutyy Shell";
+            this.weight = 8;
+            this.size = 7;
+            this.description = "The shelled body of a pokinutyy.";
+            this.intForDes = 1;
+            this.intDescription = "It is a neat decoration but not much more.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 2; // at max, sell for 2.
+        }
+        else if (this.type == "pokinutyyLeg")
+        {
+            //For All Items
+            this.identity = "Hollow Pokinutyy Leg";
+            this.weight = 1.5;
+            this.size = 7;
+            this.description = "The hollow leg of a pokinutyy.";
+            this.intForDes = 1;
+            this.intDescription = "It is a neat decoration but not much more.";
+
+            //Define Utility
+            this.utility = "junk";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "pokinutyyLegFull")
+        {
+            //For All Items
+            this.identity = "Pokinutyy Leg";
+            this.weight = 2.25;
+            this.size = 7;
+            this.description = "The leg of a pokinutyy full of soft bitter tasting flesh.";
+            this.intForDes = 4;
+            this.intDescription = "There is not much flesh and it does not taste great, but it is perfectly edible.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["pokinutyyLeg", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1; //satisfies hunger.
+            this.thirst = 1; //quenches thirst.
+            this.warmth = -1; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -2; //recoops lost energy.
+            this.replenish = -1; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "pixiWing")
+        {
+            //For All Items
+            this.identity = "Pixi Wing";
+            this.weight = 0.11;
+            this.size = 7;
+            this.description = "The wing of a pixi.";
+            this.intForDes = 1;
+            this.intDescription = "This has no other use but to serve as a testiment to having slain a pixi.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "pixiBrain")
+        {
+            //For All Items
+            this.identity = "Pixi Brain";
+            this.weight = 0.02;
+            this.size = 7;
+            this.description = "The neural tissue of a pixi.";
+            this.intForDes = 5;
+            this.intDescription = "This is a powerful former in alchemy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 25; // at max, buy for 25.
+            this.sellValue = 25; // at max, sell for 25.
         }
         else if (this.type == "turkeyFeathers")
         {
@@ -51398,6 +51730,66 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "rawBloodwormFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(blud, 540, 556, 35, 27, X - this.X + (1/2 * CCC.width) - (1/2 * 35 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 27 * 1.2), 35 * 1.2, 27 * 1.2);
+        }
+        else if (this.type == "bloodwormMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(blud, 591, 553, 35, 27, X - this.X + (1/2 * CCC.width) - (1/2 * 35 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 27 * 1.2), 35 * 1.2, 27 * 1.2);
+        }
+        else if (this.type == "krogiMushroom")
+        {
+            XXX.beginPath();
+            XXX.drawImage(pixi, 4, 238, 30, 27, X - this.X + (1/2 * CCC.width) - (1/2 * 30 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 27 * 1), 30 * 1, 27 * 1);
+        }
+        else if (this.type == "cookedKrogiMushroom")
+        {
+            XXX.beginPath();
+            XXX.drawImage(pixi, 42, 241, 30, 27, X - this.X + (1/2 * CCC.width) - (1/2 * 30 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 27 * 1), 30 * 1, 27 * 1);
+        }
+        else if (this.type == "pixiWing")
+        {
+            XXX.beginPath();
+            XXX.drawImage(pixi, 72, 101, 20, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 20 * 1.1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 1.1), 20 * 1.1, 24 * 1.1);
+        }
+        else if (this.type == "pixiBrain")
+        {
+            XXX.beginPath();
+            XXX.drawImage(pixi, 91, 128, 20, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 20 * 1.1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 1.1), 20 * 1.1, 24 * 1.1);
+        }
+        else if (this.type == "jarOfPixiBlood")
+        {
+            XXX.beginPath();
+            XXX.drawImage(pixi, 69, 156, 20, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 20 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 1.5), 20 * 1.5, 24 * 1.5);
+        }
+        else if (this.type == "velidShell")
+        {
+            XXX.beginPath();
+            XXX.drawImage(pixi, 69, 130, 20, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 20 * 1.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 1.3), 20 * 1.3, 24 * 1.3);
+        }
+        else if (this.type == "trubkaLeaf")
+        {
+            XXX.beginPath();
+            XXX.drawImage(pixi, 7, 267, 20, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 20 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 1.5), 20 * 1.5, 24 * 1.5);
+        }
+        else if (this.type == "trubkaStalk")
+        {
+            XXX.beginPath();
+            XXX.drawImage(pixi, 806, 1328, 67, 30, X - this.X + (1/2 * CCC.width) - (1/2 * 67 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 30 * 1.5), 67 * 1.5, 30 * 1.5);
+        }
+        else if (this.type == "pokinutyyShell")
+        {
+            XXX.beginPath();
+            XXX.drawImage(blud, 643, 631, 31, 29, X - this.X + (1/2 * CCC.width) - (1/2 * 31 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 29 * 1), 31 * 1, 29 * 1);
+        }
+        else if (this.type == "pokinutyyLegFull" || this.type == "pokinutyyLeg")
+        {
+            XXX.beginPath();
+            XXX.drawImage(blud, 575, 631, 51, 29, X - this.X + (1/2 * CCC.width) - (1/2 * 51 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 29 * 1), 51 * 1, 29 * 1);
+        }
         else if (this.type == "gnollPelt")
         {
             XXX.beginPath();
@@ -58041,6 +58433,66 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
+        else if (this.type == "rawBloodwormFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(blud, 540, 556, 35, 27, this.invX - (1/2 * 35 * 1.2), this.invY - (1/2 * 27 * 1.2), 35 * 1.2, 27 * 1.2);
+        }
+        else if (this.type == "bloodwormMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(blud, 591, 553, 35, 27, this.invX - (1/2 * 35 * 1.2), this.invY - (1/2 * 27 * 1.2), 35 * 1.2, 27 * 1.2);
+        }
+        else if (this.type == "krogiMushroom")
+        {
+            LXX.beginPath();
+            LXX.drawImage(pixi, 4, 238, 30, 27, this.invX - (1/2 * 30 * 1), this.invY - (1/2 * 27 * 1), 30 * 1, 27 * 1);
+        }
+        else if (this.type == "cookedKrogiMushroom")
+        {
+            LXX.beginPath();
+            LXX.drawImage(pixi, 42, 241, 30, 27, this.invX - (1/2 * 30 * 1), this.invY - (1/2 * 27 * 1), 30 * 1, 27 * 1);
+        }
+        else if (this.type == "pixiWing")
+        {
+            LXX.beginPath();
+            LXX.drawImage(pixi, 72, 101, 20, 24, this.invX - (1/2 * 20 * 1.1), this.invY - (1/2 * 24 * 1.1), 20 * 1.1, 24 * 1.1);
+        }
+        else if (this.type == "pixiBrain")
+        {
+            LXX.beginPath();
+            LXX.drawImage(pixi, 91, 128, 20, 24, this.invX - (1/2 * 20 * 1.1), this.invY - (1/2 * 24 * 1.1), 20 * 1.1, 24 * 1.1);
+        }
+        else if (this.type == "jarOfPixiBlood")
+        {
+            LXX.beginPath();
+            LXX.drawImage(pixi, 69, 156, 20, 24, this.invX - (1/2 * 20 * 1.5), this.invY - (1/2 * 24 * 1.5), 20 * 1.5, 24 * 1.5);
+        }
+        else if (this.type == "velidShell")
+        {
+            LXX.beginPath();
+            LXX.drawImage(pixi, 69, 130, 20, 24, this.invX - (1/2 * 20 * 1.3), this.invY - (1/2 * 24 * 1.3), 20 * 1.3, 24 * 1.3);
+        }
+        else if (this.type == "trubkaLeaf")
+        {
+            LXX.beginPath();
+            LXX.drawImage(pixi, 7, 267, 20, 24, this.invX - (1/2 * 20 * 1.2), this.invY - (1/2 * 24 * 1.2), 20 * 1.2, 24 * 1.2);
+        }
+        else if (this.type == "trubkaStalk")
+        {
+            LXX.beginPath();
+            LXX.drawImage(pixi, 806, 1328, 67, 30, this.invX - (1/2 * 67 * 1.2), this.invY - (1/2 * 30 * 1.2), 67 * 1.2, 30 * 1.2);
+        }
+        else if (this.type == "pokinutyyShell")
+        {
+            LXX.beginPath();
+            LXX.drawImage(blud, 643, 631, 31, 29, this.invX - (1/2 * 31 * 1), this.invY - (1/2 * 29 * 1), 31 * 1, 29 * 1);
+        }
+        else if (this.type == "pokinutyyLegFull" || this.type == "pokinutyyLeg")
+        {
+            LXX.beginPath();
+            LXX.drawImage(blud, 575, 631, 51, 29, this.invX - (1/2 * 51 * 1), this.invY - (1/2 * 29 * 1), 51 * 1, 29 * 1);
+        }
         else if (this.type == "gnollPelt")
         {
             LXX.beginPath();
@@ -64650,6 +65102,66 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "rawBloodwormFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(blud, 540, 556, 35, 27, this.invX - (1/2 * 35 * 1.2), this.invY - (1/2 * 27 * 1.2), 35 * 1.2, 27 * 1.2);
+        }
+        else if (this.type == "bloodwormMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(blud, 591, 553, 35, 27, this.invX - (1/2 * 35 * 1.2), this.invY - (1/2 * 27 * 1.2), 35 * 1.2, 27 * 1.2);
+        }
+        else if (this.type == "krogiMushroom")
+        {
+            XXX.beginPath();
+            XXX.drawImage(pixi, 4, 238, 30, 27, this.invX - (1/2 * 30 * 1), this.invY - (1/2 * 27 * 1), 30 * 1, 27 * 1);
+        }
+        else if (this.type == "cookedKrogiMushroom")
+        {
+            XXX.beginPath();
+            XXX.drawImage(pixi, 42, 241, 30, 27, this.invX - (1/2 * 30 * 1), this.invY - (1/2 * 27 * 1), 30 * 1, 27 * 1);
+        }
+        else if (this.type == "pixiWing")
+        {
+            XXX.beginPath();
+            XXX.drawImage(pixi, 72, 101, 20, 24, this.invX - (1/2 * 20 * 1.1), this.invY - (1/2 * 24 * 1.1), 20 * 1.1, 24 * 1.1);
+        }
+        else if (this.type == "pixiBrain")
+        {
+            XXX.beginPath();
+            XXX.drawImage(pixi, 91, 128, 20, 24, this.invX - (1/2 * 20 * 1.1), this.invY - (1/2 * 24 * 1.1), 20 * 1.1, 24 * 1.1);
+        }
+        else if (this.type == "jarOfPixiBlood")
+        {
+            XXX.beginPath();
+            XXX.drawImage(pixi, 69, 156, 20, 24, this.invX - (1/2 * 20 * 1.5), this.invY - (1/2 * 24 * 1.5), 20 * 1.5, 24 * 1.5);
+        }
+        else if (this.type == "velidShell")
+        {
+            XXX.beginPath();
+            XXX.drawImage(pixi, 69, 130, 20, 24, this.invX - (1/2 * 20 * 1.3), this.invY - (1/2 * 24 * 1.3), 20 * 1.3, 24 * 1.3);
+        }
+        else if (this.type == "trubkaLeaf")
+        {
+            XXX.beginPath();
+            XXX.drawImage(pixi, 7, 267, 20, 24, this.invX - (1/2 * 20 * 1.2), this.invY - (1/2 * 24 * 1.2), 20 * 1.2, 24 * 1.2);
+        }
+        else if (this.type == "trubkaStalk")
+        {
+            XXX.beginPath();
+            XXX.drawImage(pixi, 806, 1328, 67, 30, this.invX - (1/2 * 67 * 1.2), this.invY - (1/2 * 30 * 1.2), 67 * 1.2, 30 * 1.2);
+        }
+        else if (this.type == "pokinutyyShell")
+        {
+            XXX.beginPath();
+            XXX.drawImage(blud, 643, 631, 31, 29, this.invX - (1/2 * 31 * 1), this.invY - (1/2 * 29 * 1), 31 * 1, 29 * 1);
+        }
+        else if (this.type == "pokinutyyLegFull" || this.type == "pokinutyyLeg")
+        {
+            XXX.beginPath();
+            XXX.drawImage(blud, 575, 631, 51, 29, this.invX - (1/2 * 51 * 1), this.invY - (1/2 * 29 * 1), 51 * 1, 29 * 1);
         }
         else if (this.type == "gnollPelt")
         {

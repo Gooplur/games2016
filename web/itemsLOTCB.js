@@ -37159,18 +37159,58 @@ function Item(type, x, y)
             this.buyValue = 9 - Math.floor(player.getCharisma() / 25); // at max, buy for 7.
             this.sellValue = 4 + Math.floor(player.getCharisma() / 15); // at max, sell for 7.
         }
+        else if (this.type == "starfishBig")
+        {
+            //For All Items
+            this.identity = "Starfish";
+            this.weight = 0.7;
+            this.size = 7;
+            this.description = "The desicated body of a large starfish.";
+            this.intForDes = 1;
+            this.intDescription = "This is useless but for ornamental purposes.";
+
+            //Define Utility
+            this.utility = "junk";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "starfishSmall")
+        {
+            //For All Items
+            this.identity = "Starfish";
+            this.weight = 0.3;
+            this.size = 4;
+            this.description = "The desicated body of a starfish.";
+            this.intForDes = 1;
+            this.intDescription = "This is useless but for ornamental purposes.";
+
+            //Define Utility
+            this.utility = "junk";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
         else if (this.type == "pokinutyyShell")
         {
             //For All Items
             this.identity = "Pokinutyy Shell";
-            this.weight = 8;
+            this.weight = 14;
             this.size = 7;
             this.description = "The shelled body of a pokinutyy.";
             this.intForDes = 1;
             this.intDescription = "It is a neat decoration but not much more.";
 
             //Define Utility
-            this.utility = "material";
+            this.utility = "junk";
 
             //ability
             this.ability = "none";
@@ -51730,6 +51770,16 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "starfishSmall")
+        {
+            XXX.beginPath();
+            XXX.drawImage(blud, 633, 425, 70, 70, X - this.X + (1/2 * CCC.width) - (1/2 * 70 * 0.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 70 * 0.4), 70 * 0.4, 70 * 0.4);
+        }
+        else if (this.type == "starfishBig")
+        {
+            XXX.beginPath();
+            XXX.drawImage(blud, 633, 425, 70, 70, X - this.X + (1/2 * CCC.width) - (1/2 * 70 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 70 * 0.8), 70 * 0.8, 70 * 0.8);
+        }
         else if (this.type == "rawBloodwormFlesh")
         {
             XXX.beginPath();
@@ -51783,7 +51833,7 @@ function Item(type, x, y)
         else if (this.type == "pokinutyyShell")
         {
             XXX.beginPath();
-            XXX.drawImage(blud, 643, 631, 31, 29, X - this.X + (1/2 * CCC.width) - (1/2 * 31 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 29 * 1), 31 * 1, 29 * 1);
+            XXX.drawImage(blud, 643, 631, 31, 29, X - this.X + (1/2 * CCC.width) - (1/2 * 31 * 1.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 29 * 1.3), 31 * 1.3, 29 * 1.3);
         }
         else if (this.type == "pokinutyyLegFull" || this.type == "pokinutyyLeg")
         {
@@ -58433,6 +58483,16 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
+        else if (this.type == "starfishSmall")
+        {
+            LXX.beginPath();
+            LXX.drawImage(blud, 633, 425, 70, 70, this.invX - (1/2 * 70 * 0.4), this.invY - (1/2 * 70 * 0.4), 70 * 0.4, 70 * 0.4);
+        }
+        else if (this.type == "starfishBig")
+        {
+            LXX.beginPath();
+            LXX.drawImage(blud, 633, 425, 70, 70, this.invX - (1/2 * 70 * 0.8), this.invY - (1/2 * 70 * 0.8), 70 * 0.8, 70 * 0.8);
+        }
         else if (this.type == "rawBloodwormFlesh")
         {
             LXX.beginPath();
@@ -58486,7 +58546,7 @@ function Item(type, x, y)
         else if (this.type == "pokinutyyShell")
         {
             LXX.beginPath();
-            LXX.drawImage(blud, 643, 631, 31, 29, this.invX - (1/2 * 31 * 1), this.invY - (1/2 * 29 * 1), 31 * 1, 29 * 1);
+            LXX.drawImage(blud, 643, 631, 31, 29, this.invX - (1/2 * 31 * 1.5), this.invY - (1/2 * 29 * 1.5), 31 * 1.5, 29 * 1.5);
         }
         else if (this.type == "pokinutyyLegFull" || this.type == "pokinutyyLeg")
         {
@@ -65103,6 +65163,16 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
+        else if (this.type == "starfishSmall")
+        {
+            XXX.beginPath();
+            XXX.drawImage(blud, 633, 425, 70, 70, this.invX - (1/2 * 70 * 0.4), this.invY - (1/2 * 70 * 0.4), 70 * 0.4, 70 * 0.4);
+        }
+        else if (this.type == "starfishBig")
+        {
+            XXX.beginPath();
+            XXX.drawImage(blud, 633, 425, 70, 70, this.invX - (1/2 * 70 * 0.8), this.invY - (1/2 * 70 * 0.8), 70 * 0.8, 70 * 0.8);
+        }
         else if (this.type == "rawBloodwormFlesh")
         {
             XXX.beginPath();
@@ -65156,7 +65226,7 @@ function Item(type, x, y)
         else if (this.type == "pokinutyyShell")
         {
             XXX.beginPath();
-            XXX.drawImage(blud, 643, 631, 31, 29, this.invX - (1/2 * 31 * 1), this.invY - (1/2 * 29 * 1), 31 * 1, 29 * 1);
+            XXX.drawImage(blud, 643, 631, 31, 29, this.invX - (1/2 * 31 * 1.5), this.invY - (1/2 * 29 * 1.5), 31 * 1.5, 29 * 1.5);
         }
         else if (this.type == "pokinutyyLegFull" || this.type == "pokinutyyLeg")
         {

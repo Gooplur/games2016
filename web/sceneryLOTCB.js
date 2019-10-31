@@ -5556,6 +5556,30 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.drawImage(jeru, 705, 120, 79, 80, -(1/2 * 79 * this.information / 4), -(1/2 * 80 * this.information / 4), 79 * this.information / 4, 80 * this.information / 4);
                 XXX.restore();
             }
+            else if (this.temporary == 44) //blackwood rug
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(blud, 170, 19, 132, 95, -(1/2 * 132 * this.information), -(1/2 * 95 * this.information), 132 * this.information, 95 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 45) //blackwood round rug
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(blud, 321, 19, 132, 95, -(1/2 * 132 * this.information), -(1/2 * 95 * this.information), 132 * this.information, 95 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 46) //spectrum placemat / spectrum rug
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(blud, 27, 34, 53, 53, -(1/2 * 53 * this.information), -(1/2 * 53 * this.information), 53 * this.information, 53 * this.information);
+                XXX.restore();
+            }
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
             this.radius = 1;
@@ -30478,7 +30502,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
-                XXX.drawImage(pixi, 712, 86, 74, 68, -(1/2 * 74 * 1.5), -(1/2 * 68 * 1.5), 74 * 1.5, 68 * 1.5);
+                XXX.drawImage(pixi, 712, 86, 74, 68, -(1/2 * 74 * 1.55), -(1/2 * 68 * 1.55), 74 * 1.55, 68 * 1.55);
                 XXX.restore();
             }
             else if (this.phase == 1)
@@ -30486,7 +30510,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
-                XXX.drawImage(pixi, 712, 137, 74, 68, -(1/2 * 74 * 1.5), -(1/2 * 68 * 1.5), 74 * 1.5, 68 * 1.5);
+                XXX.drawImage(pixi, 712, 137, 74, 68, -(1/2 * 74 * 1.55), -(1/2 * 68 * 1.55), 74 * 1.55, 68 * 1.55);
                 XXX.restore();
             }
             else if (this.phase == "picked")
@@ -30494,7 +30518,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
-                XXX.drawImage(pixi, 44, 270, 19, 17, -(1/2 * 19 * 1.5), -(1/2 * 17 * 1.5), 19 * 1.5, 17 * 1.5);
+                XXX.drawImage(pixi, 44, 270, 19, 17, -(1/2 * 19 * 1.55), -(1/2 * 17 * 1.55), 19 * 1.55, 17 * 1.55);
                 XXX.restore();
             }
 

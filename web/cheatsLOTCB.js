@@ -2693,13 +2693,13 @@ function cheats()
                     buildClase += 1;
                 }
 
-                if (buildClase > 43)
+                if (buildClase > 46)
                 {
                     buildClase = 0;
                 }
                 else if ((buildClase < 0))
                 {
-                    buildClase = 43;
+                    buildClase = 46;
                 }
             }
 

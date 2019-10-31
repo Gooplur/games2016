@@ -37310,6 +37310,26 @@ function Item(type, x, y)
             this.buyValue = 25; // at max, buy for 25.
             this.sellValue = 25; // at max, sell for 25.
         }
+        else if (this.type == "anglerAntennae")
+        {
+            //For All Items
+            this.identity = "Angler Antennae";
+            this.weight = 20;
+            this.size = 22;
+            this.description = "The antennae of an angler.";
+            this.intForDes = 20;
+            this.intDescription = "This has special properties as a former that are highly sought after for some of the more obscure, but extremely potent creations in advanced alchemy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 275; // at max, buy for 275.
+            this.sellValue = 275; // at max, sell for 275.
+        }
         else if (this.type == "turkeyFeathers")
         {
             //For All Items
@@ -51770,6 +51790,11 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "anglerAntennae")
+        {
+            XXX.beginPath();
+            XXX.drawImage(pixi, 779, 1296, 98, 34, X - this.X + (1/2 * CCC.width) - (1/2 * 98 * 1.55), Y - this.Y + (1/2 * CCC.height) - (1/2 * 34 * 1.55), 98 * 1.55, 34 * 1.55);
+        }
         else if (this.type == "starfishSmall")
         {
             XXX.beginPath();
@@ -51823,12 +51848,12 @@ function Item(type, x, y)
         else if (this.type == "trubkaLeaf")
         {
             XXX.beginPath();
-            XXX.drawImage(pixi, 7, 267, 20, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 20 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 1.5), 20 * 1.5, 24 * 1.5);
+            XXX.drawImage(pixi, 7, 267, 20, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 20 * 1.55), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 1.55), 20 * 1.55, 24 * 1.55);
         }
         else if (this.type == "trubkaStalk")
         {
             XXX.beginPath();
-            XXX.drawImage(pixi, 806, 1328, 67, 30, X - this.X + (1/2 * CCC.width) - (1/2 * 67 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 30 * 1.5), 67 * 1.5, 30 * 1.5);
+            XXX.drawImage(pixi, 806, 1328, 67, 30, X - this.X + (1/2 * CCC.width) - (1/2 * 67 * 1.55), Y - this.Y + (1/2 * CCC.height) - (1/2 * 30 * 1.55), 67 * 1.55, 30 * 1.55);
         }
         else if (this.type == "pokinutyyShell")
         {
@@ -58482,6 +58507,11 @@ function Item(type, x, y)
         {
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "anglerAntennae")
+        {
+            LXX.beginPath();
+            LXX.drawImage(pixi, 779, 1296, 98, 34, this.invX - (1/2 * 98 * 0.9), this.invY - (1/2 * 34 * 0.9), 98 * 0.9, 34 * 0.9);
         }
         else if (this.type == "starfishSmall")
         {
@@ -65162,6 +65192,11 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "anglerAntennae")
+        {
+            XXX.beginPath();
+            XXX.drawImage(pixi, 779, 1296, 98, 34, this.invX - (1/2 * 98 * 0.9), this.invY - (1/2 * 34 * 0.9), 98 * 0.9, 34 * 0.9);
         }
         else if (this.type == "starfishSmall")
         {

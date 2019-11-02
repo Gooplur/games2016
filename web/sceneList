@@ -289,3 +289,6 @@ cephrianBuilding4 - a big rectangular home with three large rooms (size adjustab
 cephrianBuilding5 - a large rectangular home with a large back room (size adjustable, rotatable) (longevity/temporary changes size) //scenicList.push(new Scenery("cephrianBuilding5", 0, 0, 1/2 * Math.PI, 1.2));
 cephrianBuilding6 - a small open air trader stand (size adjustable, rotatable) (longevity/temporary changes size) //scenicList.push(new Scenery("cephrianBuilding6", 0, 0, Math.PI, 1.05));
 spellOilPot - a pot of spell oil from which bottles of spell oil can be refilled. // scenicList.push(new Scenery("spellOilPot", 1955.2144046165436, -342196.0990496341, 0, "cephrite", 4));
+motylekhEgg - The egg of a giant fear moth
+motylekhEggs - An egg patch of a giant fear moth
+motylekhCocoon - The cocoon of a chervstrakha

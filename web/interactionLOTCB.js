@@ -2991,7 +2991,7 @@ function interaction(me)
                                     player.magicalSkillPoints += magickPuntos;
                                     player.spell = "none";
 
-                                    player.skillPoints += (player.toughness + player.endurance + player.stamina + player.charisma + player.constitution + player.strength + player.dexterity + player.ranged + player.intelligence + player.survivalism);
+                                    player.skillPoints += (player.toughness + player.endurance + player.stamina + player.charisma + player.constitution + player.strength + player.dexterity + player.ranged + (player.intelligence - player.intLV) + player.survivalism);
                                     player.toughness = 0;
                                     player.endurance = 0;
                                     player.stamina = 0;
@@ -3000,7 +3000,7 @@ function interaction(me)
                                     player.strength = 0;
                                     player.dexterity = 0;
                                     player.ranged = 0;
-                                    player.intelligence = 0;
+                                    player.intelligence = player.intLV;
                                     player.survivalism = 0;
 
                                     playersTurnToSpeak = true;

@@ -2606,13 +2606,13 @@ function cheats()
                     buildClase += 1;
                 }
 
-                if (buildClase > 51)
+                if (buildClase > 62)
                 {
                     buildClase = 0;
                 }
                 else if ((buildClase < 0))
                 {
-                    buildClase = 51;
+                    buildClase = 62;
                 }
             }
 
@@ -2693,13 +2693,13 @@ function cheats()
                     buildClase += 1;
                 }
 
-                if (buildClase > 46)
+                if (buildClase > 54)
                 {
                     buildClase = 0;
                 }
                 else if ((buildClase < 0))
                 {
-                    buildClase = 46;
+                    buildClase = 54;
                 }
             }
 
@@ -2780,13 +2780,13 @@ function cheats()
                     buildClase += 1;
                 }
 
-                if (buildClase > 41)
+                if (buildClase > 52)
                 {
                     buildClase = 0;
                 }
                 else if ((buildClase < 0))
                 {
-                    buildClase = 41;
+                    buildClase = 52;
                 }
             }
 
@@ -4165,9 +4165,9 @@ function cheats()
 
                 if (buildClase > 2)
                 {
-                    buildClase = -1;
+                    buildClase = -3;
                 }
-                else if ((buildClase < -1))
+                else if ((buildClase < -3))
                 {
                     buildClase = 2;
                 }
@@ -4549,13 +4549,13 @@ function cheats()
                     buildClase += 1;
                 }
 
-                if (buildClase > 3)
+                if (buildClase > 4)
                 {
                     buildClase = 1;
                 }
                 else if ((buildClase < 1))
                 {
-                    buildClase = 3;
+                    buildClase = 4;
                 }
             }
             if (buildClase < 1)

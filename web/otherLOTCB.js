@@ -16,10 +16,11 @@ function goToMain()
 //sleep function
 function sleep(safe)
 {
+    dOS = 0;
     if (player.insomnia == false)
     {
         var durationOfSleep = prompt("For how many hours would you like to sleep?");
-        var dOS = Number(durationOfSleep);
+        dOS = Number(durationOfSleep);
 
         if (typeof dOS == "number")
         {

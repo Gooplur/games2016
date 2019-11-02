@@ -2,7 +2,7 @@
  * Created by skyeguy on 1/22/17.
  */
 
-function Scenery(type, x, y, rotation, longevity, information) //longevity is used either to portray permanence or ownership, information is an extra input for anything
+function Scenery(type, x, y, rotation, longevity, information, extra) //longevity is used either to portray permanence or ownership, information is an extra input for anything
 {
     this.type = type;
     this.variety = "generic";
@@ -16,6 +16,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
     this.rotation = rotation;
     this.temporary = longevity; //This is whether or not it will stay permanently or is subject to despawning after time.
     this.owned = longevity; //if an items longevity is unimportant or is obvious that can be used to define its ownership.
+    this.extra = extra;
     this.solid = false;
     this.mouser = 10000; //this is the measurement of the mouse's distance from the Scenery object.
     this.playerer = 10000; //this is the measurement of the player's distance from the Scenery object.
@@ -1051,6 +1052,95 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     else if (this.information[1] == 1)
                     {
                         worldItems.push([new Item("jackOLanternEmpty", this.X, this.Y), 1])
+                    }
+
+                    for (var i = 0; i < scenicList.length; i++)
+                    {
+                        if (scenicList[i] === this)
+                        {
+                            scenicList.splice(i, 1);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        else if (this.type == "vardanianLamp")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 45;
+
+            //DRAWSELF
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation);
+            XXX.drawImage(gent, 71, 226, 20, 20, - (1/2 * 20 * 1), - (1/2 * 20 * 1), 20 * 1, 20 * 1);
+            XXX.restore();
+
+            // for the candle scenery object information == [lightsource duration, type of candle (fuel left in used candle)]
+            if (this.runOneTime == true)
+            {
+                this.runOneTime = false;
+                this.lightTime = this.information[0];
+            }
+
+            if (this.temporary != true)
+            {
+                if (new Date().getTime() - this.lightGetTime < this.lightTime * 1000)
+                {
+                    lights.push({X: this.X, Y: this.Y, size: 220, extraStops: true, GRD: 0.1, Alpha: 0.4, showMe: false});
+                }
+                else
+                {
+                    if (this.information[1] == 3)
+                    {
+                        worldItems.push([new Item("vardanianLamp2", this.X, this.Y), 1])
+                    }
+                    else if (this.information[1] == 2)
+                    {
+                        worldItems.push([new Item("vardanianLamp1", this.X, this.Y), 1])
+                    }
+                    else if (this.information[1] == 1)
+                    {
+                        worldItems.push([new Item("vardanianLampEmpty", this.X, this.Y), 1])
+                    }
+
+                    for (var i = 0; i < scenicList.length; i++)
+                    {
+                        if (scenicList[i] === this)
+                        {
+                            scenicList.splice(i, 1);
+                            break;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                lights.push({X: this.X, Y: this.Y, size: 220, extraStops: true, GRD: 0.1, Alpha: 0.4, showMe: false});
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 11;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+                if (this.temporary != true)
+                {
+                    if (this.information[1] == 3)
+                    {
+                        worldItems.push([new Item("vardanianLamp2", this.X, this.Y), 1])
+                    }
+                    else if (this.information[1] == 2)
+                    {
+                        worldItems.push([new Item("vardanianLamp1", this.X, this.Y), 1])
+                    }
+                    else if (this.information[1] == 1)
+                    {
+                        worldItems.push([new Item("vardanianLampEmpty", this.X, this.Y), 1])
                     }
 
                     for (var i = 0; i < scenicList.length; i++)
@@ -2693,6 +2783,117 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 this.phase = "broken";
             }
         }
+        else if (this.type == "motylekhEgg")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 55;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                this.phase = 2;
+            }
+
+            if (this.phase == 2)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1 / 2 * CCC.width, Y - this.Y + 1 / 2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(moth, 291, 16, 24, 22, -(1 / 2 * 24 * 1.2), -(1 / 2 * 22 * 1.2), 24 * 1.2, 22 * 1.2);
+                XXX.restore();
+            }
+            else if (this.phase == "broken")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1 / 2 * CCC.width, Y - this.Y + 1 / 2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(moth, 319, 17, 24, 22, -(1 / 2 * 24 * 1.2), -(1 / 2 * 22 * 1.2), 24 * 1.2, 22 * 1.2);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 16;
+
+            //HATCHING
+            if (this.phase == 2)
+            {
+                this.eggHatchTimer += 1 * (TTD / 16.75);
+                if (this.eggHatchTimer >= 540 && this.phase != "broken")
+                {
+                    var newby = new Unit(this.X, this.Y, "Motylekh", "baby", "Generic Motylekh");
+
+                    ArtificialIntelligenceAccess.push(newby);
+
+                    this.phase = "broken";
+                }
+            }
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+
+                this.phase = "broken";
+            }
+        }
+        else if (this.type == "motylekhEggs")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 55;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                this.phase = 2;
+            }
+
+            if (this.phase == 2)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1 / 2 * CCC.width, Y - this.Y + 1 / 2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(moth, 1392, 970, 57, 44, -(1 / 2 * 57 * 1.2), -(1 / 2 * 44 * 1.2), 57 * 1.2, 44 * 1.2);
+                XXX.restore();
+            }
+            else if (this.phase == "broken")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1 / 2 * CCC.width, Y - this.Y + 1 / 2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(moth, 1312, 974, 57, 44, -(1 / 2 * 57 * 1.2), -(1 / 2 * 44 * 1.2), 57 * 1.2, 44 * 1.2);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 16;
+
+            //HATCHING
+            if (this.phase == 2)
+            {
+                this.eggHatchTimer += 1 * (TTD / 16.75);
+                if (this.eggHatchTimer >= 540 && this.phase != "broken")
+                {
+                    var newby = new Unit(this.X, this.Y, "Motylekh", "baby", "Generic Motylekh");
+
+                    for (var ii = 0; ii < (Math.floor(Math.random() * 4) + 1); ii++)
+                    {
+                        ArtificialIntelligenceAccess.push(newby);
+                    }
+
+                    this.phase = "broken";
+                }
+            }
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+
+                this.phase = "broken";
+            }
+        }
         else if (this.type == "pixiEggCluster")
         {
             //TRAITS
@@ -3025,6 +3226,16 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
                 XXX.drawImage(raed, 1097, 742, 43, 56, -(1/2 * 39 * 1 * szx), -(1/2 * 68 * 1 * szx), 39 * 1 * szx, 68 * 1 * szx);
+                XXX.restore();
+            }
+            else if (this.information == 4)//woven zwaleim sleeping mat
+            {
+                szx = 1.25;
+                this.solid = false;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(gnoll, 735, 70, 64, 74, -(1/2 * 64 * 1 * szx), -(1/2 * 74 * 1 * szx), 64 * 1 * szx, 74 * 1 * szx);
                 XXX.restore();
             }
 
@@ -5580,6 +5791,70 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.drawImage(blud, 27, 34, 53, 53, -(1/2 * 53 * this.information), -(1/2 * 53 * this.information), 53 * this.information, 53 * this.information);
                 XXX.restore();
             }
+            else if (this.temporary == 47) //woven zwaleim rug
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(gnoll, 735, 9, 65, 63, -(1/2 * 65 * this.information), -(1/2 * 63 * this.information), 65 * this.information, 63 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 48) //varmin fur rug
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(ruin, 1153, 899, 112, 86, -(1/2 * 112 * this.information), -(1/2 * 86 * this.information), 112 * this.information, 86 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 49) //boroye rug
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(moth, 1211, 371, 87, 74, -(1/2 * 87 * this.information), -(1/2 * 74 * this.information), 87 * this.information, 74 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 50) //krovhyuzka rug
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(moth, 1331, 373, 87, 74, -(1/2 * 87 * this.information), -(1/2 * 74 * this.information), 87 * this.information, 74 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 51) //long krovhyuzka rug
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(moth, 1307, 463, 190, 69, -(1/2 * 190 * this.information), -(1/2 * 69 * this.information), 190 * this.information, 69 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 52) //long boroye rug
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(moth, 1307, 549, 190, 69, -(1/2 * 190 * this.information), -(1/2 * 69 * this.information), 190 * this.information, 69 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 53) //big boroye rug
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(moth, 1305, 640, 195, 115, -(1/2 * 195 * this.information), -(1/2 * 115 * this.information), 195 * this.information, 115 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 54) //big krovhyuzka rug
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(moth, 1302, 776, 195, 115, -(1/2 * 195 * this.information), -(1/2 * 115 * this.information), 195 * this.information, 115 * this.information);
+                XXX.restore();
+            }
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
             this.radius = 1;
@@ -5605,6 +5880,9 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 this.interactionRange = 1;
                 this.radius = 1;
                 this.tic = 0;
+                this.tac = 0;
+                this.setHealth = true;
+                this.health = 10;
             }
 
             this.zIndex = 1;
@@ -6069,6 +6347,455 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.drawImage(pill, 694, 107, 72, 58, -(1/2 * 72 * this.information), -(1/2 * 58 * this.information), 72 * this.information, 58 * this.information);
                 XXX.restore();
             }
+            else if (this.temporary == 42)//breakable cephrian pottery
+            {
+                if (this.setHealth == true)
+                {
+                    this.setHealth = false;
+                    this.health = 2.5;
+                }
+
+                if (this.phase == 0)
+                {
+                    this.tac = Math.random()*Math.PI*2;
+                    this.solid = true;
+                    this.radius = 15 * this.information;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(gnoll, 213, 80, 63, 59, -(1/2 * 63 * this.information), -(1/2 * 59 * this.information), 63 * this.information, 59 * this.information);
+                    XXX.restore();
+
+                    if (player.cutcut == true && this.playerer <= 320)
+                    {
+                        var distFromCutCut = Math.sqrt((this.X - player.bubbleOfDamageX)*(this.X - player.bubbleOfDamageX) + (this.Y - player.bubbleOfDamageY)*(this.Y - player.bubbleOfDamageY));
+                        if (distFromCutCut <= player.weapon.range * 7 + this.radius)
+                        {
+                            this.health -= player.weapon.damage;
+                        }
+                    }
+
+                    if (this.health <= 0)
+                    {
+                        this.phase = "broken";
+                        if (this.extra == true)
+                        {
+                            if (player.title == "Nobility" && player.raceName == "Cephrite" || player.title == "Royalty" && player.raceName == "Cephrite")
+                            {
+                                this.owned = "cephrite";
+                                this.changeFactionRelation(-1);
+                            }
+                            else
+                            {
+                                this.owned = "cephrite";
+                                this.changeFactionRelation(-8);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    this.solid = false;
+                    this.radius = 15 * this.information;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation + this.tac);
+                    XXX.drawImage(gnoll, 165, 347, 70, 56, -(1/2 * 70 * this.information), -(1/2 * 56 * this.information), 70 * this.information, 56 * this.information);
+                    XXX.restore();
+                }
+            }
+            else if (this.temporary == 43)//broken cephrian pottery
+            {
+                this.solid = false;
+                this.radius = 15 * this.information;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(gnoll, 165, 347, 70, 56, -(1/2 * 70 * this.information), -(1/2 * 56 * this.information), 70 * this.information, 56 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 44)//globe
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(gnoll, 87, 20, 33, 29, -(1/2 * 33 * this.information), -(1/2 * 29 * this.information), 33 * this.information, 29 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 45)//telescopio
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(gnoll, 157, 7, 58, 54, -(1/2 * 58 * this.information), -(1/2 * 54 * this.information), 58 * this.information, 54 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 46)//standing book
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(gnoll, 71, 21, 11, 17, -(1/2 * 11 * this.information), -(1/2 * 17 * this.information), 11 * this.information, 17 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 47)//book shelf (med)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(gnoll, 3, 19, 60, 21, -(1/2 * 60 * this.information), -(1/2 * 21 * this.information), 60 * this.information, 21 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 48)//book shelf (lrg)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(gnoll, 2, 40, 85, 21, -(1/2 * 85 * this.information), -(1/2 * 21 * this.information), 85 * this.information, 21 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 49)//book shelf (sml)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(gnoll, 3, 61, 43, 20, -(1/2 * 43 * this.information), -(1/2 * 20 * this.information), 43 * this.information, 20 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 50 || this.temporary == 51)//study book
+            {
+                if (this.setHealth == true)
+                {
+                    this.setHealth = false;
+                    if (typeof this.extra != "undefined")
+                    {
+                        this.reading = this.extra;
+                        this.read = 0;
+                    }
+                    else
+                    {
+                        this.reading = [];
+                        this.read = 0;
+                    }
+
+                    if (this.temporary == 51)
+                    {
+                        this.phase = 1;
+                    }
+                    else
+                    {
+                        this.phase = 0;
+                    }
+                }
+
+                if (this.phase == 0)
+                {
+                    if (dClick == true && this.playerer <= 50)
+                    {
+                        dClick = false;
+                        this.phase = 1;
+                        this.activate = false;
+                    }
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(gnoll, 0, 2, 15, 15, -(1/2 * 15 * this.information), -(1/2 * 15 * this.information), 15 * this.information, 15 * this.information);
+                    XXX.restore();
+                    this.read = 0;
+                }
+                else
+                {
+                    if (dClick == true && this.playerer <= 50)
+                    {
+                        dClick = false;
+                        this.phase = 0;
+                        this.activate = false;
+                    }
+
+                    if (this.tac == 0)
+                    {
+                        if (this.tic > 0)
+                        {
+                            this.tic += 1;
+                        }
+
+                        if (this.tic <= 0)
+                        {
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(gnoll, 14, 2, 17, 16, -(1/2 * 17 * this.information), -(1/2 * 16 * this.information), 17 * this.information, 16 * this.information);
+                            XXX.restore();
+
+                            if (clicked == true && this.playerer <= 30)
+                            {
+                                this.tic += 0.5;
+                            }
+                        }
+                        else if (this.tic <= 1.5)
+                        {
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(gnoll, 31, 2, 17, 16, -(1/2 * 17 * this.information), -(1/2 * 16 * this.information), 17 * this.information, 16 * this.information);
+                            XXX.restore();
+                        }
+                        else if (this.tic <= 2.5)
+                        {
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(gnoll, 48, 2, 17, 16, -(1/2 * 17 * this.information), -(1/2 * 16 * this.information), 17 * this.information, 16 * this.information);
+                            XXX.restore();
+                        }
+                        else if (this.tic <= 3.5)
+                        {
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(gnoll, 65, 2, 17, 16, -(1/2 * 17 * this.information), -(1/2 * 16 * this.information), 17 * this.information, 16 * this.information);
+                            XXX.restore();
+                        }
+                        else
+                        {
+                            player.intEXP += 0.2;
+                            if (this.reading.length > 0)
+                            {
+                                console.log(this.reading[this.read]);
+                                this.read += 1;
+                                if (this.read >= this.reading.length)
+                                {
+                                    this.phase = 0;
+                                }
+                            }
+                            this.tic = 0;
+                            this.tac = 1;
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(gnoll, 82, 2, 17, 16, -(1/2 * 17 * this.information), -(1/2 * 16 * this.information), 17 * this.information, 16 * this.information);
+                            XXX.restore();
+                        }
+                    }
+                    else if (this.tac == 1)
+                    {
+                        if (this.tic > 0)
+                        {
+                            this.tic += 1;
+                        }
+
+                        if (this.tic <= 0)
+                        {
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(gnoll, 82, 2, 17, 16, -(1/2 * 17 * this.information), -(1/2 * 16 * this.information), 17 * this.information, 16 * this.information);
+                            XXX.restore();
+
+                            if (clicked == true && this.playerer <= 30)
+                            {
+                                this.tic += 0.5;
+                            }
+                        }
+                        else if (this.tic <= 1.5)
+                        {
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(gnoll, 101, 2, 17, 16, -(1/2 * 17 * this.information), -(1/2 * 16 * this.information), 17 * this.information, 16 * this.information);
+                            XXX.restore();
+                        }
+                        else if (this.tic <= 2.5)
+                        {
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(gnoll, 119, 2, 17, 16, -(1/2 * 17 * this.information), -(1/2 * 16 * this.information), 17 * this.information, 16 * this.information);
+                            XXX.restore();
+                        }
+                        else if (this.tic <= 3.5)
+                        {
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(gnoll, 137, 2, 17, 16, -(1/2 * 17 * this.information), -(1/2 * 16 * this.information), 17 * this.information, 16 * this.information);
+                            XXX.restore();
+                        }
+                        else
+                        {
+                            player.intEXP += 1;
+                            if (this.reading.length > 0)
+                            {
+                                console.log(this.reading[this.read]);
+                                this.read += 1;
+                                if (this.read >= this.reading.length)
+                                {
+                                    this.phase = 0;
+                                }
+                            }
+                            this.tic = 0;
+                            this.tac = 0;
+                            XXX.save();
+                            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                            XXX.rotate(this.rotation);
+                            XXX.drawImage(gnoll, 14, 2, 17, 16, -(1/2 * 17 * this.information), -(1/2 * 16 * this.information), 17 * this.information, 16 * this.information);
+                            XXX.restore();
+                        }
+                    }
+
+                }
+            }
+            else if (this.temporary == 52)//nomad water pit
+            {
+                //TRAITS
+                this.interactionRange = 75;
+
+                //DRAWSELF
+                if (this.phase == 0) //with water
+                {
+                    this.solid = true;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(gnoll, 241, 347, 58, 55, -(1/2 * 58 * this.information), -(1/2 * 55 * this.information), 58 * this.information, 55 * this.information);
+                    XXX.restore();
+                }
+                else //empty
+                {
+                    this.solid = false;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(gnoll, 740, 151, 58, 53, -(1/2 * 58 * this.information), -(1/2 * 53 * this.information), 58 * this.information, 53 * this.information);
+                    XXX.restore();
+                }
+
+                //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+                this.radius = 13;
+
+                //INTERACTION
+                if (this.activate == true)
+                {
+                    this.activate = false;
+                    this.doBreak = false;
+                    this.yaTiene = false;
+
+                    if (this.phase == 0)
+                    {
+                        for (var i = 0; i < Inventory.length; i++)
+                        {
+                            for (var j = 0; j < wellConversionList.length; j++)
+                            {
+                                //console.log(Inventory[i][0].type + " v.s. "  + wellConversionList[j][0]);
+                                if (Inventory[i][0].type == wellConversionList[j][0])
+                                {
+                                    if (Inventory[i][0].type == "kellishClayPot" || Inventory[i][0].type == "vardanianPot" || Inventory[i][0].type == "bucket")
+                                    {
+                                        this.phase = 1;
+                                    }
+
+                                    for (var k = 0; k < Inventory.length; k++)
+                                    {
+                                        if (Inventory[k][0].type == wellConversionList[j][1])
+                                        {
+                                            this.yaTiene = k;
+                                        }
+                                    }
+
+                                    if (Inventory[i][1] > 1)
+                                    {
+                                        Inventory[i][1] -= 1;
+                                        if (this.yaTiene == false)
+                                        {
+                                            Inventory.push([new Item(wellConversionList[j][1], false, false), 1]);
+                                        }
+                                        else
+                                        {
+                                            Inventory[this.yaTiene][1] +=1;
+                                        }
+                                        this.doBreak = true;
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        if (this.yaTiene == false)
+                                        {
+                                            Inventory.splice(i, 1);
+                                            Inventory.push([new Item(wellConversionList[j][1], false, false), 1]);
+                                        }
+                                        else
+                                        {
+                                            Inventory[this.yaTiene][1] +=1;
+                                            Inventory.splice(i, 1);
+                                        }
+                                        this.doBreak = true;
+                                        break;
+                                    }
+                                }
+                            }
+                            if (this.doBreak == true)
+                            {
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        for (var i = 0; i < Inventory.length; i++)
+                        {
+                            for (var j = 0; j < wellConversionList.length; j++)
+                            {
+                                //console.log(Inventory[i][0].type + " v.s. "  + wellConversionList[j][0]);
+                                if (Inventory[i][0].type == wellConversionList[j][1] && Inventory[i][0].type == "bucketOfWater" || Inventory[i][0].type == wellConversionList[j][1] && Inventory[i][0].type == "vardanianPotOfWater" || Inventory[i][0].type == wellConversionList[j][1] && Inventory[i][0].type == "kellishClayPotOfWater")
+                                {
+                                    this.phase = 0;
+                                    for (var k = 0; k < Inventory.length; k++)
+                                    {
+                                        if (Inventory[k][0].type == wellConversionList[j][0])
+                                        {
+                                            this.yaTiene = k;
+                                        }
+                                    }
+
+                                    if (Inventory[i][1] > 1)
+                                    {
+                                        Inventory[i][1] -= 1;
+                                        if (this.yaTiene == false)
+                                        {
+                                            Inventory.push([new Item(wellConversionList[j][0], false, false), 1]);
+                                        }
+                                        else
+                                        {
+                                            Inventory[this.yaTiene][1] +=1;
+                                        }
+                                        this.doBreak = true;
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        if (this.yaTiene == false)
+                                        {
+                                            Inventory.splice(i, 1);
+                                            Inventory.push([new Item(wellConversionList[j][0], false, false), 1]);
+                                        }
+                                        else
+                                        {
+                                            Inventory[this.yaTiene][1] +=1;
+                                            Inventory.splice(i, 1);
+                                        }
+                                        this.doBreak = true;
+                                        break;
+                                    }
+                                }
+                            }
+                            if (this.doBreak == true)
+                            {
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
 
 
             //INTERACTION
@@ -6080,19 +6807,21 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
         }
         else if (this.type == "westMueble")
         {
-            //TRAITS
-            this.solid = false;
-            this.interactionRange = 1;
-
-            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
-            this.radius = 1;
-
             if (this.runOneTime == true)
             {
                 this.runOneTime = false;
 
+                //TRAITS
+                this.solid = false;
+                this.interactionRange = 1;
+
+                //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+                this.radius = 1;
+
                 this.tic = 0;
+                this.tac = 0;
                 this.zIndex = 1;
+                this.oncer = true;
             }
 
             if (this.temporary == 0) //decorated crate corner
@@ -6603,6 +7332,379 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 XXX.rotate(this.rotation);
                 XXX.drawImage(pill, 562, 45, 89, 49, -(1/2 * 89 * this.information), -(1/2 * 49 * this.information), 89 * this.information, 49 * this.information);
                 XXX.restore();
+            }
+            else if (this.temporary == 52)//vardanian clothsline 1
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(ruin, 1262, 998, 192, 75, -(1/2 * 192 * this.information), -(1/2 * 75 * this.information), 192 * this.information, 75 * this.information);
+                XXX.restore();
+                this.zIndex = 4;
+            }
+            else if (this.temporary == 53)//vardanian clothsline 2
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(ruin, 1282, 1107, 202, 76, -(1/2 * 202 * this.information), -(1/2 * 76 * this.information), 202 * this.information, 76 * this.information);
+                XXX.restore();
+                this.zIndex = 4;
+            }
+            else if (this.temporary == 54)//vardanian water basin
+            {
+                this.zIndex = 2;
+                //TRAITS
+                this.solid = true;
+                this.interactionRange = 100;
+
+                //DRAWSELF
+                if (this.phase == 0) //with water
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(ruin, 1322, 907, 76, 76, -(1/2 * 76 * 1), -(1/2 * 76 * 1), 76 * 1, 76 * 1);
+                    XXX.restore();
+                }
+                else //empty
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(ruin, 1405, 907, 76, 76, -(1/2 * 76 * 1), -(1/2 * 76 * 1), 76 * 1, 76 * 1);
+                    XXX.restore();
+                }
+
+                //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+                this.radius = 25;
+
+                //INTERACTION
+                if (this.activate == true)
+                {
+                    this.activate = false;
+                    this.doBreak = false;
+                    this.yaTiene = false;
+
+                    if (this.phase == 0)
+                    {
+                        for (var i = 0; i < Inventory.length; i++)
+                        {
+                            for (var j = 0; j < wellConversionList.length; j++)
+                            {
+                                //console.log(Inventory[i][0].type + " v.s. "  + wellConversionList[j][0]);
+                                if (Inventory[i][0].type == wellConversionList[j][0])
+                                {
+                                    if (Inventory[i][0].type == "kellishClayPot" || Inventory[i][0].type == "vardanianPot" || Inventory[i][0].type == "bucket")
+                                    {
+                                        this.phase = 1;
+                                    }
+
+                                    for (var k = 0; k < Inventory.length; k++)
+                                    {
+                                        if (Inventory[k][0].type == wellConversionList[j][1])
+                                        {
+                                            this.yaTiene = k;
+                                        }
+                                    }
+
+                                    if (Inventory[i][1] > 1)
+                                    {
+                                        Inventory[i][1] -= 1;
+                                        if (this.yaTiene == false)
+                                        {
+                                            Inventory.push([new Item(wellConversionList[j][1], false, false), 1]);
+                                        }
+                                        else
+                                        {
+                                            Inventory[this.yaTiene][1] +=1;
+                                        }
+                                        this.doBreak = true;
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        if (this.yaTiene == false)
+                                        {
+                                            Inventory.splice(i, 1);
+                                            Inventory.push([new Item(wellConversionList[j][1], false, false), 1]);
+                                        }
+                                        else
+                                        {
+                                            Inventory[this.yaTiene][1] +=1;
+                                            Inventory.splice(i, 1);
+                                        }
+                                        this.doBreak = true;
+                                        break;
+                                    }
+                                }
+                            }
+                            if (this.doBreak == true)
+                            {
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        for (var i = 0; i < Inventory.length; i++)
+                        {
+                            for (var j = 0; j < wellConversionList.length; j++)
+                            {
+                                //console.log(Inventory[i][0].type + " v.s. "  + wellConversionList[j][0]);
+                                if (Inventory[i][0].type == wellConversionList[j][1] && Inventory[i][0].type == "bucketOfWater" || Inventory[i][0].type == wellConversionList[j][1] && Inventory[i][0].type == "vardanianPotOfWater" || Inventory[i][0].type == wellConversionList[j][1] && Inventory[i][0].type == "kellishClayPotOfWater")
+                                {
+                                    this.phase = 0;
+                                    for (var k = 0; k < Inventory.length; k++)
+                                    {
+                                        if (Inventory[k][0].type == wellConversionList[j][0])
+                                        {
+                                            this.yaTiene = k;
+                                        }
+                                    }
+
+                                    if (Inventory[i][1] > 1)
+                                    {
+                                        Inventory[i][1] -= 1;
+                                        if (this.yaTiene == false)
+                                        {
+                                            Inventory.push([new Item(wellConversionList[j][0], false, false), 1]);
+                                        }
+                                        else
+                                        {
+                                            Inventory[this.yaTiene][1] +=1;
+                                        }
+                                        this.doBreak = true;
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        if (this.yaTiene == false)
+                                        {
+                                            Inventory.splice(i, 1);
+                                            Inventory.push([new Item(wellConversionList[j][0], false, false), 1]);
+                                        }
+                                        else
+                                        {
+                                            Inventory[this.yaTiene][1] +=1;
+                                            Inventory.splice(i, 1);
+                                        }
+                                        this.doBreak = true;
+                                        break;
+                                    }
+                                }
+                            }
+                            if (this.doBreak == true)
+                            {
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            else if (this.temporary == 55)//dead rats in a pile 1
+            {
+                this.zIndex = 2;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(ruin, 754, 1234, 78, 79, -(1/2 * 78 * 0.6 * this.information), -(1/2 * 79 * 0.6 * this.information), 78 * 0.6 * this.information, 79 * 0.6 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 56)//dead rats in a pile 2
+            {
+                this.zIndex = 2;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(ruin, 590, 1238, 92, 92, -(1/2 * 92 * 0.6 * this.information), -(1/2 * 92 * 0.6 * this.information), 92 * 0.6 * this.information, 92 * 0.6 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 57)//rat in a boot
+            {
+                this.zIndex = 2;
+                if (this.playerer <= 100)
+                {
+                    this.tac = true;
+                }
+
+                if (this.tac == true)
+                {
+                    this.tic += 1;
+                }
+
+                if (this.tic < 20 || this.tac == false)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(ruin, 576, 938, 50, 36, -(1/2 * 50 * 1), -(1/2 * 36 * 1), 50 * 1, 36 * 1);
+                    XXX.restore();
+                }
+                else if (this.tic < 23)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(ruin, 650, 939, 50, 36, -(1/2 * 50 * 1), -(1/2 * 36 * 1), 50 * 1, 36 * 1);
+                    XXX.restore();
+                }
+                else if (this.tic < 26)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(ruin, 726, 939, 50, 36, -(1/2 * 50 * 1), -(1/2 * 36 * 1), 50 * 1, 36 * 1);
+                    XXX.restore();
+                }
+                else
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(ruin, 576, 938, 50, 36, -(1/2 * 50 * 1), -(1/2 * 36 * 1), 50 * 1, 36 * 1);
+                    XXX.restore();
+                    if (this.oncer == true)
+                    {
+                        this.oncer = false;
+                        var rattre = new Unit(this.X + Math.cos(this.rotation + Math.PI) * 20, this.Y + Math.sin(this.rotation + Math.PI) * 20, "Rat", false, "Rattre");
+                        rattre.rotation = this.rotation;
+                        rattre.newRotation = this.rotation;
+                        ArtificialIntelligenceAccess.push(rattre);
+                    }
+                }
+            }
+            else if (this.temporary == 58) //boot
+            {
+                this.zIndex = 2;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(ruin, 576, 938, 50, 36, -(1/2 * 50 * 1 * this.information), -(1/2 * 36 * 1 * this.information), 50 * 1 * this.information, 36 * 1 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 59) //high half-sword
+            {
+                this.zIndex = 4;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(ruin, 359, 950, 69, 25, -(1/2 * 69 * this.information), -(1/2 * 25 * this.information), 69 * this.information, 25 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 60) //half-sword
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(ruin, 359, 950, 69, 25, -(1/2 * 69 * this.information), -(1/2 * 25 * this.information), 69 * this.information, 25 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 61) //folded vardanian f clothes
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(ruin, 522, 10, 63, 53, -(1/2 * 63 * this.information), -(1/2 * 53 * this.information), 63 * this.information, 53 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 62)//krovhyuzka flag
+            {
+                this.solid = true;
+                this.radius = 24 * this.information;
+                this.tic += 1;
+
+                if (this.tic < 122)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(moth, 798, 220, 108, 133, -(1/2 * 108 * this.information), -(1/2 * 133 * this.information) - 1.5, 108 * this.information, 133 * this.information);
+                    XXX.restore();
+                }
+                else if (this.tic < 147)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(moth, 906, 223, 108, 133, -(1/2 * 108 * this.information), -(1/2 * 133 * this.information) - 1.5, 108 * this.information, 133 * this.information);
+                    XXX.restore();
+                }
+                else if (this.tic < 172)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(moth, 1009, 224, 108, 133, -(1/2 * 108 * this.information), -(1/2 * 133 * this.information) - 1.5, 108 * this.information, 133 * this.information);
+                    XXX.restore();
+                }
+                else if (this.tic < 197)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(moth, 906, 223, 108, 133, -(1/2 * 108 * this.information), -(1/2 * 133 * this.information) - 1.5, 108 * this.information, 133 * this.information);
+                    XXX.restore();
+                }
+                else
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(moth, 798, 220, 108, 133, -(1/2 * 108 * this.information), -(1/2 * 133 * this.information) - 1.5, 108 * this.information, 133 * this.information);
+                    XXX.restore();
+                    this.tic = 0;
+                }
+            }
+            else if (this.temporary == 63)//vorcaneous flag
+            {
+                this.solid = true;
+                this.radius = 24 * this.information;
+                this.tic += 1;
+
+                if (this.tic < 122)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(mawt, 798, 220, 108, 133, -(1/2 * 108 * this.information), -(1/2 * 133 * this.information) - 1.5, 108 * this.information, 133 * this.information);
+                    XXX.restore();
+                }
+                else if (this.tic < 147)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(mawt, 906, 223, 108, 133, -(1/2 * 108 * this.information), -(1/2 * 133 * this.information) - 1.5, 108 * this.information, 133 * this.information);
+                    XXX.restore();
+                }
+                else if (this.tic < 172)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(mawt, 1009, 224, 108, 133, -(1/2 * 108 * this.information), -(1/2 * 133 * this.information) - 1.5, 108 * this.information, 133 * this.information);
+                    XXX.restore();
+                }
+                else if (this.tic < 197)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(mawt, 906, 223, 108, 133, -(1/2 * 108 * this.information), -(1/2 * 133 * this.information) - 1.5, 108 * this.information, 133 * this.information);
+                    XXX.restore();
+                }
+                else
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(mawt, 798, 220, 108, 133, -(1/2 * 108 * this.information), -(1/2 * 133 * this.information) - 1.5, 108 * this.information, 133 * this.information);
+                    XXX.restore();
+                    this.tic = 0;
+                }
             }
 
             //INTERACTION
@@ -9252,6 +10354,12 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
             this.radius = 35 * this.information[0];
 
+            if (this.runOneTime == true)
+            {
+                this.runOneTime = false;
+                this.tic = 0;
+            }
+
             this.zIndex = 1;
             if (this.temporary == 1 || this.temporary == 3)
             {
@@ -9328,6 +10436,61 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                     XXX.rotate(this.rotation);
                     XXX.drawImage(gent, 16, 364, 100, 67, -(1/2 * 100 * this.information[0]), -(1/2 * 67 * this.information[0]), 100 * this.information[0], 67 * this.information[0]);
+                    XXX.restore();
+                }
+            }
+            else if (this.temporary == -2 || this.temporary == 7) //cephrian storage pot
+            {
+                this.solid = true;
+                this.radius = 15 * this.information[0];
+                if (this.phase == 0)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(gnoll, 210, 80, 67, 61, -(1/2 * 67 * this.information[0]), -(1/2 * 61 * this.information[0]), 67 * this.information[0], 61 * this.information[0]);
+                    XXX.restore();
+                    this.tic = 0;
+                }
+                else if (this.phase == "opened")
+                {
+                    this.tic += 1;
+
+                    if (this.tic < 11)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(gnoll, 591, 271, 67, 61, -(1/2 * 67 * this.information[0]), -(1/2 * 61 * this.information[0]), 67 * this.information[0], 61 * this.information[0]);
+                        XXX.restore();
+                    }
+                    else
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(gnoll, 662, 270, 67, 61, -(1/2 * 67 * this.information[0]), -(1/2 * 61 * this.information[0]), 67 * this.information[0], 61 * this.information[0]);
+                        XXX.restore();
+                    }
+                }
+            }
+            else if (this.temporary == -3 || this.temporary == 8) //nomad storage pit
+            {
+                this.radius = 13 * this.information[0];
+                if (this.phase == 0)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(gnoll, 739, 247, 60, 55, -(1/2 * 60 * this.information[0]), -(1/2 * 55 * this.information[0]), 60 * this.information[0], 55 * this.information[0]);
+                    XXX.restore();
+                }
+                else if (this.phase == "opened")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(gnoll, 741, 303, 59, 55, -(1/2 * 59 * this.information[0]), -(1/2 * 55 * this.information[0]), 59 * this.information[0], 55 * this.information[0]);
                     XXX.restore();
                 }
             }
@@ -21162,6 +22325,294 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 {
                     scenicList.splice(scenicList.indexOf(this), 1);
                 }
+            }
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+        }
+        else if (this.type == "motylekhCocoon")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 55;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                this.phase = 2;
+                this.tic = 0;
+                this.toc = 0;
+            }
+
+            if (this.phase == 2)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1 / 2 * CCC.width, Y - this.Y + 1 / 2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(moth, 1099, 613, 80, 48, -(1 / 2 * 80 * 1.2), -(1 / 2 * 48 * 1.2), 80 * 1.2, 48 * 1.2);
+                XXX.restore();
+                this.toc += 1;
+                if (this.toc > 45)
+                {
+                    this.phase = 3;
+                }
+            }
+            else if (this.phase == 3)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1 / 2 * CCC.width, Y - this.Y + 1 / 2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(moth, 1098, 661, 80, 48, -(1 / 2 * 80 * 1.2), -(1 / 2 * 48 * 1.2), 80 * 1.2, 48 * 1.2);
+                XXX.restore();
+            }
+            else if (this.phase == "hatching")
+            {
+                this.tic += 1;
+                if (player.mothfear == true)
+                {
+                    if (this.tic < 9)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1 / 2 * CCC.width, Y - this.Y + 1 / 2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(mawt, 860, 1052, 146, 99, -(1 / 2 * 146 * 1.4), -(1 / 2 * 99 * 1.4), 146 * 1.4, 99 * 1.4);
+                        XXX.restore();
+                    }
+                    else if (this.tic < 18)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1 / 2 * CCC.width, Y - this.Y + 1 / 2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(mawt, 1008, 1044, 179, 122, -(1 / 2 * 179 * 1.4), -(1 / 2 * 122 * 1.4), 179 * 1.4, 122 * 1.4);
+                        XXX.restore();
+                    }
+                    else if (this.tic < 27)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1 / 2 * CCC.width, Y - this.Y + 1 / 2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(mawt, 1247, 1043, 179, 122, -(1 / 2 * 179 * 1.4), -(1 / 2 * 122 * 1.4), 179 * 1.4, 122 * 1.4);
+                        XXX.restore();
+                    }
+                    else
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1 / 2 * CCC.width, Y - this.Y + 1 / 2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(mawt, 1247, 1043, 179, 122, -(1 / 2 * 179 * 1.4), -(1 / 2 * 122 * 1.4), 179 * 1.4, 122 * 1.4);
+                        XXX.restore();
+                        this.phase = "hatched";
+                    }
+                }
+                else
+                {
+                    if (this.tic < 9)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1 / 2 * CCC.width, Y - this.Y + 1 / 2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(moth, 860, 1052, 146, 99, -(1 / 2 * 146 * 1.2), -(1 / 2 * 99 * 1.2), 146 * 1.2, 99 * 1.2);
+                        XXX.restore();
+                    }
+                    else if (this.tic < 18)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1 / 2 * CCC.width, Y - this.Y + 1 / 2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(moth, 1008, 1044, 179, 122, -(1 / 2 * 179 * 1.2), -(1 / 2 * 122 * 1.2), 179 * 1.2, 122 * 1.2);
+                        XXX.restore();
+                    }
+                    else if (this.tic < 27)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1 / 2 * CCC.width, Y - this.Y + 1 / 2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(moth, 1247, 1043, 179, 122, -(1 / 2 * 179 * 1.2), -(1 / 2 * 122 * 1.2), 179 * 1.2, 122 * 1.2);
+                        XXX.restore();
+                    }
+                    else
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1 / 2 * CCC.width, Y - this.Y + 1 / 2 * CCC.height);
+                        XXX.rotate(this.rotation);
+                        XXX.drawImage(moth, 1247, 1043, 179, 122, -(1 / 2 * 179 * 1.2), -(1 / 2 * 122 * 1.2), 179 * 1.2, 122 * 1.2);
+                        XXX.restore();
+                        this.phase = "hatched";
+                    }
+                }
+            }
+            else if (this.phase == "broken")
+            {
+                scenicList.splice(scenicList.indexOf(this), 1);
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 20;
+
+            this.eggHatchTimer += 1 * (TTD / 16.75);
+            if (this.eggHatchTimer >= 2777 && this.phase == 3)
+            {
+                this.phase = "hatching";
+            }
+
+            //HATCHING
+            if (this.phase == "hatched")
+            {
+                if (Math.round(Math.random()))
+                {
+                    var newby = new Unit(this.X, this.Y, "Motylekh", true, "Motylek Strakha");
+
+                    ArtificialIntelligenceAccess.push(newby);
+                }
+                else
+                {
+                    var newby = new Unit(this.X, this.Y, "Motylekh", false, "Motylek Strakha");
+
+                    ArtificialIntelligenceAccess.push(newby);
+                }
+
+                this.phase = "broken";
+            }
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+
+                this.phase = "broken";
+            }
+        }
+        else if (this.type == "motylekhDust")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+
+            if (this.runOneTime == true)
+            {
+                this.runOneTime = false;
+                this.tic = 0;
+                this.tac = this.information;
+                this.spin = 0;
+                this.transp = 7;
+                if (Math.random() > 0.6)
+                {
+                    this.speed = 1.14;
+                }
+                else
+                {
+                    this.speed = 1.04;
+                }
+
+                this.zIndex = 6;
+            }
+
+            if (this.temporary == false)
+            {
+                this.transp -= 0.005;
+            }
+            else
+            {
+                this.transp = 1;
+            }
+
+            if (this.transp <= 0)
+            {
+                this.phase = 1;
+            }
+
+            this.tic += 1;
+
+            //DRAWSELF
+            if (player.mothfear == true)
+            {
+                if (this.phase == 0)
+                {
+                    this.spin += 0.01;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation + this.spin);
+                    XXX.drawImage(mawt, 1178, 10, 147, 134, -(1/2 * 147 * this.tac), -(1/2 * 134 * this.tac), 147 * this.tac, 134 * this.tac);
+                    XXX.restore();
+                }
+                else
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation + this.spin);
+                    XXX.drawImage(mawt, 1174, 172, 147, 134, -(1/2 * 147 * this.tac), -(1/2 * 134 * this.tac), 147 * this.tac, 134 * this.tac);
+                    XXX.restore();
+                }
+            }
+            else
+            {
+                if (this.phase == 0)
+                {
+                    this.spin += 0.01;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation + this.spin);
+                    XXX.drawImage(moth, 1178, 10, 147, 134, -(1/2 * 147 * this.tac), -(1/2 * 134 * this.tac), 147 * this.tac, 134 * this.tac);
+                    XXX.restore();
+                }
+                else
+                {
+                    this.zIndex = 1;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation + this.spin);
+                    XXX.drawImage(moth, 1174, 172, 147, 134, -(1/2 * 147 * this.tac), -(1/2 * 134 * this.tac), 147 * this.tac, 134 * this.tac);
+                    XXX.restore();
+                }
+            }
+
+            if (this.temporary == false && this.phase == 0)
+            {
+                this.X += Math.cos(this.rotation) * this.speed * (this.transp / 7);
+                this.Y += Math.sin(this.rotation) * this.speed * (this.transp / 7);
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 70 * this.tac;
+
+            //infect
+            if (player.resistDisease == false && this.phase == 0)
+            {
+                if (this.dst(X, Y) <= this.radius)
+                {
+                    player.swollenII = true;
+                    player.swollenTime = Math.max(player.swollenTime, 80);
+
+                    player.energy -= 0.025;
+
+                    player.mothfear = true;
+                    player.mothfearKeepTime = new Date().getTime();
+                    player.mothfearTime = 80;
+                }
+            }
+
+            if (this.phase == 0)
+            {
+                for (var j = 0; j < ArtificialIntelligenceAccess.length; j++)
+                {
+                    if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= this.radius + (3/4 * ArtificialIntelligenceAccess[j].sizeRadius) && !ArtificialIntelligenceAccess[j].underground && ArtificialIntelligenceAccess[j].dmx == this.dmx)
+                    {
+                        if (ArtificialIntelligenceAccess[j].resistDisease != true && ArtificialIntelligenceAccess[j].type != "Motylekh")
+                        {
+                            ArtificialIntelligenceAccess[j].stunIII;
+                            ArtificialIntelligenceAccess[j].stunTimer = 20;
+                            ArtificialIntelligenceAccess[j].stunTime = new Date().getTime();
+                        }
+                    }
+                }
+            }
+
+            if (this.transp < -27 && this.temporary == false)
+            {
+                scenicList.splice(scenicList.indexOf(this), 1);
             }
 
             //INTERACTION
@@ -39277,7 +40728,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             if (this.activate == true)
             {
                 this.activate = false;
-                if (player.weaponEquipped == "hammer" && longevity == false) //if hammer is equipped deconstruct the tent.
+                if (player.weaponEquipped == "hammer" && this.temporary == false) //if hammer is equipped deconstruct the tent.
                 {
                     worldItems.push([new Item("tent", this.X, this.Y), 1]);
                     for (var i = 0; i < scenicList.length; i++)
@@ -39293,6 +40744,13 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 else
                 {
                     sleep();
+                    if (typeof dOS == "number")
+                    {
+                        if (dOS > 0 && dOS < 25)
+                        {
+                            player.warmth += (5 * dOS);
+                        }
+                    }
                 }
             }
         }
@@ -39316,7 +40774,7 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
             if (this.activate == true)
             {
                 this.activate = false;
-                if (player.weaponEquipped == "hammer" && longevity == false) //if hammer is equipped deconstruct the tent.
+                if (player.weaponEquipped == "hammer" && this.temporary == false) //if hammer is equipped deconstruct the tent.
                 {
                     worldItems.push([new Item("vardanianTent", this.X, this.Y), 1]);
                     for (var i = 0; i < scenicList.length; i++)
@@ -39332,6 +40790,59 @@ function Scenery(type, x, y, rotation, longevity, information) //longevity is us
                 else
                 {
                     sleep();
+                    if (typeof dOS == "number")
+                    {
+                        if (dOS > 0 && dOS < 25)
+                        {
+                            player.warmth += (3 * dOS);
+                        }
+                    }
+                }
+            }
+        }
+        else if (this.type == "nomadTent")
+        {
+            //TRAITS
+            this.solid = true;
+            this.interactionRange = 110;
+
+            //DRAWSELF
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation + 1/2 * Math.PI);
+            XXX.drawImage(gnoll, 0, 87, 51, 52, -(1/2 * 51 * 2.4), -(1/2 * 52 * 2.4), 51 * 2.4, 52 * 2.4);
+            XXX.restore();
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 45;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+                if (player.weaponEquipped == "hammer" && this.temporary == false) //if hammer is equipped deconstruct the tent.
+                {
+                    worldItems.push([new Item("nomadTent", this.X, this.Y), 1]);
+                    for (var i = 0; i < scenicList.length; i++)
+                    {
+                        if (scenicList[i] === this)
+                        {
+                            scenicList.splice(i, 1);
+                            break;
+                        }
+                    }
+
+                }
+                else
+                {
+                    sleep();
+                    if (typeof dOS == "number")
+                    {
+                        if (dOS > 0 && dOS < 25)
+                        {
+                            player.warmth += (1 * dOS);
+                        }
+                    }
                 }
             }
         }

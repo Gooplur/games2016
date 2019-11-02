@@ -1576,6 +1576,30 @@ function pixiPack()
 
     pixi.onload = function()
     {
+        mothPack();
+    };
+}
+
+function mothPack()
+{
+    var moth = new Image();
+    moth.src = ("images/moth.png");
+    window.moth = moth;
+
+    moth.onload = function()
+    {
+        mawtPack();
+    };
+}
+
+function mawtPack()
+{
+    var mawt = new Image();
+    mawt.src = ("images/mawt.png");
+    window.mawt = mawt;
+
+    mawt.onload = function()
+    {
         cavernaPack();
     };
 }
@@ -2598,6 +2622,7 @@ var quenHere = false;
 var cheatAtop = false;
 var buildPrompt = "";
 var buildPrompt2 = "";
+var dOS = 0;
 
 //This sets the items that are in shops.
 function shopItemIDSetter()
@@ -4564,6 +4589,8 @@ function theLegend()
     allWorn.push(new Item("druidGown", false)); //178
     allWorn.push(new Item("cephrianPaladinArmour", false)); //179
     allWorn.push(new Item("holuimTalisman", false)); //180
+    allWorn.push(new Item("ratPrinceRegalia", false)); //181
+    allWorn.push(new Item("ratKingRegalia", false)); //182
 
 
 
@@ -4963,6 +4990,7 @@ function theLegend()
     tailoring.push(new Item("evrakLeatherArmour", false));
     tailoring.push(new Item("tent", false));
     tailoring.push(new Item("vardanianTent", false));
+    tailoring.push(new Item("nomadTent", false));
     tailoring.push(new Item("mufFiber", false));
     tailoring.push(new Item("mufCloth", false));
     tailoring.push(new Item("dyedMufCloth", false));

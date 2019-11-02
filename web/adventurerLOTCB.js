@@ -611,6 +611,9 @@ function Adventurer()
     this.pixiEggs = 0;
     this.pixiVenom = false;
     this.pixiVenomed = 0;
+    this.mothfear = false;
+    this.mothfearKeepTime = new Date().getTime();
+    this.mothfearTime = 0;
 
         //faction variables
     this.factionToggle = false;
@@ -647,6 +650,8 @@ function Adventurer()
     this.readyForToFire = 0; //this is used by blowguns, it can be used by any ranged weapon I choose to use a variable starting at zero for.
     this.hide = false;
     this.guillotine = false;
+    this.intEXP = 0;
+    this.intLV = 0;
     //fishing variables
     this.fishing = false;
     this.fishingID = "none";
@@ -1061,6 +1066,13 @@ function Adventurer()
         else
         {
             this.experienceRequiredToLevel = 19000 + (1200 * (this.level - 1));
+        }
+
+        if (this.intEXP >= (1000 + (100 * this.intelligence)) && this.levelLock == false)
+        {
+            this.intEXP -= (1000 + (100 * this.intelligence));
+            this.intLV += 1;
+            this.intelligence += 1;
         }
 
         if (this.experience >= this.experienceRequiredToLevel && this.levelLock == false)
@@ -2928,6 +2940,10 @@ function Adventurer()
                     {
                         lights.push({X:X, Y: Y, size: 175, extraStops: true, GRD: 0.7, Alpha: 0.8, showMe: true});
                     }
+                    else if (this.lightSource == "vardanianLamp")
+                    {
+                        lights.push({X:X, Y: Y, size: 220, extraStops: true, GRD: 0.1, Alpha: 0.4, showMe: true});
+                    }
                     else if (this.lightSource == "jackOLantern")
                     {
                         lights.push({X:X, Y: Y, size: 85, extraStops: true, GRD: 0.7, Alpha: 0.4, showMe: true});
@@ -4160,6 +4176,23 @@ function Adventurer()
                 this.dizzyV = false;
                 this.dizzyVI = false;
             }
+
+            //mothfear
+            if (this.mothfearTime > 0)
+            {
+                this.mothfear = true;
+                if (new Date().getTime() - this.mothfearKeepTime > 100)
+                {
+                    this.mothfearKeepTime = new Date().getTime();
+                    this.mothfearTime -= 0.1;
+                }
+            }
+            else
+            {
+                this.mothfearKeepTime = new Date().getTime();
+                this.mothfearTime = 0;
+                this.mothfear = false;
+            }
         };
 
         this.poison = function()
@@ -5226,7 +5259,7 @@ function Adventurer()
 
     this.getTotalSkillPoints = function()
     {
-        return (this.totalSkillPoints + this.extraSkillPoints);
+        return (this.totalSkillPoints + this.extraSkillPoints + this.intLV);
     };
 
     this.getTotalMagicPoints = function()
@@ -8165,6 +8198,14 @@ function Adventurer()
         {
             outfit = allWorn[179];
         }
+        else if (this.outfitEquipped == "ratPrinceRegalia")
+        {
+            outfit = allWorn[181];
+        }
+        else if (this.outfitEquipped == "ratKingRegalia")
+        {
+            outfit = allWorn[182];
+        }
         else
         {
             outfit = allWorn[0];
@@ -8598,6 +8639,32 @@ function Adventurer()
                 XXX.globalAlpha = 0.4;
             }
             XXX.drawImage(jeru, 89, 3, 39, 33, -(1 / 2 * 39 * 1.06) + 1, -(1 / 2 * 33 * 1.06) + 0.45, 39 * 1.06, 33 * 1.06);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "ratPrinceRegalia")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(mawt, 1614, 1098, 57, 34, -(1 / 2 * 57 * 1) + 0, -(1 / 2 * 34 * 1) + 0, 57 * 1, 34 * 1);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "ratKingRegalia")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(mawt, 1669, 1098, 57, 34, -(1 / 2 * 57 * 1) + 0, -(1 / 2 * 34 * 1) + 0, 57 * 1, 34 * 1);
             XXX.restore();
         }
         else if (this.outfitEquipped == "druidGown")
@@ -11288,7 +11355,6 @@ function Adventurer()
         //STAGE ENGINE [this function allows each type of weapon to cycle through the stages of their attack]
         this.stageEngine = function (maxStage, framerate, bothwaysBool)
         {
-
             if (self.attacking == true && self.weaponIsRanged == false || self.attacking == true && self.weaponIsRanged == true && self.projectileReleased == false || self.blocking == true || self.casting == true)
             {
                 if (this.resetFrameOrder == true)
@@ -11304,6 +11370,7 @@ function Adventurer()
                         {
                             if (this.weapon.subUtility != "thrown" && this.weaponEquipped != "flail" && this.weaponEquipped != "vardanianHalberd" && this.weaponEquipped != "aldrekiiClaws" && this.weaponEquipped != "theUndyingEdge" && this.weaponEquipped != "cero" && this.weaponEquipped != "werewolf" && this.weaponEquipped != "vampire" && this.weaponEquipped != "wendigo" && this.weaponEquipped != "cephrianFlail" && this.weaponEquipped != "sackmansSword" && this.weaponEquipped != "venandi")
                             {
+
                                 self.finalAttackStage = true;
                                 self.attackCooldown = new Date().getTime();
                             }
@@ -11318,6 +11385,7 @@ function Adventurer()
                             {
                                 if (this.frameOrder == "positive")
                                 {
+
                                     self.finalAttackStage = true;
                                     self.attackCooldown = new Date().getTime();
                                 }
@@ -15683,6 +15751,7 @@ function Adventurer()
                         if (this.attackManual)
                         {
                             this.attackManual = false;
+
                             this.finalAttackStage = true;
                             this.attackCooldown = new Date().getTime();
 
@@ -15965,6 +16034,7 @@ function Adventurer()
                         }
                         XXX.drawImage(folw, 1671, 34, 121, 106, -1/2 * 121 * szx, -1/2 * 106 * szx, 121 * szx, 106 * szx);
                         XXX.restore();
+
                         this.finalAttackStage = true;
                     }
                     else if (Math.floor(this.stage) <= 16)
@@ -15978,6 +16048,7 @@ function Adventurer()
                         }
                         XXX.drawImage(folw, 1671, 34, 121, 106, -1/2 * 121 * szx, -1/2 * 106 * szx, 121 * szx, 106 * szx);
                         XXX.restore();
+
                         this.finalAttackStage = true;
                     }
                     else if (Math.floor(this.stage) <= 17)
@@ -16756,6 +16827,7 @@ function Adventurer()
                         if (this.attackManual)
                         {
                             this.attackManual = false;
+
                             this.finalAttackStage = true;
                             this.attackCooldown = new Date().getTime();
                             this.energy -= 9;
@@ -17051,6 +17123,7 @@ function Adventurer()
                         if (this.attackManual === true)
                         {
                             this.attackManual = "done";
+
                             this.finalAttackStage = true;
                         }
                     }
@@ -17516,6 +17589,7 @@ function Adventurer()
                     if (this.attackManual == true)
                     {
                         this.attackManual = false;
+
                         this.finalAttackStage = true;
                         this.attackCooldown = new Date().getTime();
                     }
@@ -17942,6 +18016,7 @@ function Adventurer()
                                     if (this.attackManual == false)
                                     {
                                         this.attackManual = true;
+
                                         this.finalAttackStage = true;
                                         this.attackCooldown = new Date().getTime();
                                         this.thirst = this.thirstMAX;
@@ -18604,6 +18679,7 @@ function Adventurer()
                 if (this.attackManual == false)
                 {
                     this.attackManual = true;
+
                     this.finalAttackStage = true;
                     this.attackCooldown = new Date().getTime();
                 }
@@ -20299,6 +20375,7 @@ function Adventurer()
                 if (this.attackManual == false)
                 {
                     this.attackManual = true;
+
                     this.finalAttackStage = true;
                     this.attackCooldown = new Date().getTime();
                 }
@@ -21453,6 +21530,7 @@ function Adventurer()
                 if (this.attackManual == false)
                 {
                     this.attackManual = true;
+
                     this.finalAttackStage = true;
                     this.attackCooldown = new Date().getTime();
                 }
@@ -22203,6 +22281,7 @@ function Adventurer()
                 if (this.attackManual == false)
                 {
                     this.attackManual = true;
+
                     this.finalAttackStage = true;
                     this.attackCooldown = new Date().getTime();
                 }
@@ -22222,6 +22301,7 @@ function Adventurer()
                 if (this.attackManual == false)
                 {
                     this.attackManual = true;
+
                     this.finalAttackStage = true;
                     this.attackCooldown = new Date().getTime();
                 }
@@ -22517,6 +22597,7 @@ function Adventurer()
                     if (this.attackManual == false)
                     {
                         this.attackManual = true;
+
                         this.finalAttackStage = true;
                         this.attackCooldown = new Date().getTime();
                     }
@@ -23927,6 +24008,7 @@ function Adventurer()
                 if (this.attackManual == false)
                 {
                     this.attackManual = true;
+
                     this.finalAttackStage = true;
                     this.attackPause = 0;
                     this.attack();
@@ -24008,6 +24090,7 @@ function Adventurer()
                 if (this.attackManual == false)
                 {
                     this.attackManual = true;
+
                     this.finalAttackStage = true;
                     this.attackCooldown = new Date().getTime();
                     this.attackPause = 0;
@@ -24963,6 +25046,7 @@ function Adventurer()
                 if (this.attackManual == false)
                 {
                     this.attackManual = true;
+
                     this.finalAttackStage = true;
                     this.attackCooldown = new Date().getTime();
                 }
@@ -31396,6 +31480,7 @@ function Adventurer()
                                 {
                                     Inventory.push([craftMenu[i], craftMenu[i].yield]);
                                 }
+                                player.intEXP += Math.max(3, (2 + craftMenu[i].intForCraft / 4));
 
                                 //give the player any created biproducts of the crafting recipe. (items that accompany the main item being crafted.)
                                 for (var bi = 0; bi < craftMenu[i].biproducts.length; bi ++)
@@ -36164,6 +36249,10 @@ function Adventurer()
                     }
                     else if (this.experienceToggle == "magical")
                     {
+                        this.experienceToggle = "intelligence";
+                    }
+                    else if (this.experienceToggle == "intelligence")
+                    {
                         this.experienceToggle = "normal";
                     }
                 }
@@ -36211,6 +36300,20 @@ function Adventurer()
                     LXX.font = "45px Book Antiqua";
                     LXX.textAlign = "center";
                     LXX.fillText("Magic Experience: " + Math.floor(this.magicalExperience) + " / " + this.magicalExperienceRequiredToLevel, 700, 55);
+                }
+            }
+            else if (this.experienceToggle == "intelligence")
+            {
+                LXX.beginPath();
+                LXX.fillStyle = "orange";
+                LXX.fillRect(0, 0, (this.intEXP / (1000 + (100 * this.intelligence))) * 1400, 80);
+
+                if (lMouseX > 0 && lMouseX < 1400 && lMouseY > 0 && lMouseY < 80)
+                {
+                    LXX.fillStyle = "black";
+                    LXX.font = "45px Book Antiqua";
+                    LXX.textAlign = "center";
+                    LXX.fillText("Intelligence Experience: " + Math.floor(this.intEXP) + " / " + Math.floor((1000 + (100 * this.intelligence))), 700, 55);
                 }
             }
 
@@ -38371,7 +38474,7 @@ function Adventurer()
                             }
                             else if (Inventory[i][0].ability == "skillReset")
                             {
-                                player.skillPoints += (player.toughness + player.endurance + player.stamina + player.charisma + player.constitution + player.strength + player.dexterity + player.ranged + player.intelligence + player.survivalism);
+                                player.skillPoints += (player.toughness + player.endurance + player.stamina + player.charisma + player.constitution + player.strength + player.dexterity + player.ranged + (player.intelligence - player.intLV) + player.survivalism);
                                 player.toughness = 0;
                                 player.endurance = 0;
                                 player.stamina = 0;
@@ -38380,7 +38483,7 @@ function Adventurer()
                                 player.strength = 0;
                                 player.dexterity = 0;
                                 player.ranged = 0;
-                                player.intelligence = 0;
+                                player.intelligence = player.intLV;
                                 player.survivalism = 0;
                             }
                             else if (Inventory[i][0].ability == "vamprism")
@@ -39829,7 +39932,7 @@ function Adventurer()
                                     else
                                     {
                                         player.timeSinceLightSourceFuelUsed = new Date().getTime();
-                                        player.lightSourceDuration = 2800;
+                                        player.lightSourceDuration = 2900;
                                         player.lightSource = "oilLantern";
                                     }
                                 }
@@ -39854,8 +39957,33 @@ function Adventurer()
                                     else
                                     {
                                         player.timeSinceLightSourceFuelUsed = new Date().getTime();
-                                        player.lightSourceDuration = 1200;
+                                        player.lightSourceDuration = 1900;
                                         player.lightSource = "oilLamp";
+                                    }
+                                }
+                                else if (Inventory[i][0].type == "vardanianLamp" || Inventory[i][0].type == "vardanianLamp2" || Inventory[i][0].type == "vardanianLamp1")
+                                {
+                                    if (shiftKey)
+                                    {
+                                        useLight = false;
+                                        if (Inventory[i][0].type == "vardanianLamp")
+                                        {
+                                            scenicList.push(new Scenery("vardanianLamp", X, Y, Math.random() * Math.PI, false, [3900, 3]));
+                                        }
+                                        else if (Inventory[i][0].type == "oilLamp2")
+                                        {
+                                            scenicList.push(new Scenery("vardanianLamp", X, Y, Math.random() * Math.PI, false, [3900, 2]));
+                                        }
+                                        else
+                                        {
+                                            scenicList.push(new Scenery("vardanianLamp", X, Y, Math.random() * Math.PI, false, [3900, 1]));
+                                        }
+                                    }
+                                    else
+                                    {
+                                        player.timeSinceLightSourceFuelUsed = new Date().getTime();
+                                        player.lightSourceDuration = 3900;
+                                        player.lightSource = "vardanianLamp";
                                     }
                                 }
                                 else if (Inventory[i][0].type == "candle" || Inventory[i][0].type == "candle2" || Inventory[i][0].type == "candle1")
@@ -40426,6 +40554,36 @@ function Adventurer()
                             if (canPlace == true)
                             {
                                 scenicList.push(new Scenery("vardanianTent", inFrontX, inFrontY, (this.rotation), false));
+
+                                if (Inventory[i][1] - 1 <= 0)
+                                {
+                                    Inventory.splice(i, 1);
+                                }
+                                else
+                                {
+                                    Inventory[i][1] -= 1;
+                                }
+                                break;
+                            }
+                        }
+                        else if (Inventory[i][0].subUtility == "nomadTent" && this.weaponEquipped == "hammer" && campout)
+                        {
+                            var canPlace = true;
+                            var hits = 0;
+                            var inFrontY = Y + Math.sin(this.rotation + 1/2 * Math.PI) * 53;
+                            var inFrontX = X + Math.cos(this.rotation + 1/2 * Math.PI) * 53;
+                            for (var j = 0; j < scenicList.length; j++)
+                            {
+                                //42 is the radius of tent Scenery Object.
+                                if (scenicList[j].X - 45 <= inFrontX + scenicList[j].radius && scenicList[j].X + 45 >= inFrontX - scenicList[j].radius && scenicList[j].Y - 45 <= inFrontY + scenicList[j].radius && scenicList[j].Y + 45 >= inFrontY - scenicList[j].radius)
+                                {
+                                    canPlace = false;
+                                }
+                            }
+
+                            if (canPlace == true)
+                            {
+                                scenicList.push(new Scenery("nomadTent", inFrontX, inFrontY, (this.rotation), false));
 
                                 if (Inventory[i][1] - 1 <= 0)
                                 {

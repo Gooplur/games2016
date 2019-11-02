@@ -24493,6 +24493,103 @@ function Item(type, x, y)
             this.buyValue = 6 - Math.floor(player.getCharisma() / 25); // at max, buy for 4.
             this.sellValue = 1 + Math.floor(player.getCharisma() / 15); // at max, sell for 4.
         }
+        else if (this.type == "vardanianLamp")
+        {
+            //For All Items
+            this.identity = "Vardanian Oil Lamp";
+            this.weight = 4;
+            this.size = 12;
+            this.description = "An oil burning lamp of vardanian design.";
+            this.intForDes = 0;
+            this.intDescription = "The lamp is full of oil.";
+
+            //Define Utility
+            this.utility = "tool";
+            this.subUtility = "reusable";
+            this.refund = [["vardanianLamp2", 1]];
+
+            //ability
+            this.ability = "lighter";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 0;
+            this.ingredients = [["Empty Vardanian Oil Lamp", 1], ["Jar of Oil", 1]];
+            this.biproducts = [[new Item("glassJar", false), 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 40 - Math.floor(player.getCharisma() / 5); // at max, buy for 30.
+            this.sellValue = 25 + Math.floor(player.getCharisma() / 10); // at max, sell for 30.
+        }
+        else if (this.type == "vardanianLamp2")
+        {
+            //For All Items
+            this.identity = "Vardanian Oil Lamp (2)";
+            this.weight = 3.6;
+            this.size = 12;
+            this.description = "An oil burning lamp of vardanian design.";
+            this.intForDes = 0;
+            this.intDescription = "There is a fair amount of oil in this lamp.";
+
+            //Define Utility
+            this.utility = "tool";
+            this.subUtility = "reusable";
+            this.refund = [["vardanianLamp1", 1]];
+
+            //ability
+            this.ability = "lighter";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 34 - Math.floor(player.getCharisma() / 5); // at max, buy for 24.
+            this.sellValue = 19 + Math.floor(player.getCharisma() / 10); // at max, sell for 24.
+        }
+        else if (this.type == "vardanianLamp1")
+        {
+            //For All Items
+            this.identity = "Vardanian Oil Lamp (1)";
+            this.weight = 3.2;
+            this.size = 12;
+            this.description = "An oil burning lamp of vardanian design.";
+            this.intForDes = 0;
+            this.intDescription = "This lamp is almost out of oil.";
+
+            //Define Utility
+            this.utility = "tool";
+            this.subUtility = "reusable";
+            this.refund = [["vardanianLampEmpty", 1]];
+
+            //ability
+            this.ability = "lighter";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 28 - Math.floor(player.getCharisma() / 5); // at max, buy for 18.
+            this.sellValue = 13 + Math.floor(player.getCharisma() / 10); // at max, sell for 18.
+        }
+        else if (this.type == "vardanianLampEmpty")
+        {
+            //For All Items
+            this.identity = "Empty Vardanian Oil Lamp";
+            this.weight = 2.8;
+            this.size = 12;
+            this.description = "An oil burning lamp of vardanian design.";
+            this.intForDes = 0;
+            this.intDescription = "This lamp is out of oil.";
+
+            //Define Utility
+            this.utility = "tool";
+
+            //ability
+            this.ability = "lighter";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 20;
+            this.ingredients = [["Iron", 2], ["Glass", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 22 - Math.floor(player.getCharisma() / 5); // at max, buy for 12.
+            this.sellValue = 7 + Math.floor(player.getCharisma() / 10); // at max, sell for 12.
+        }
         else if (this.type == "oilLamp")
         {
             //For All Items
@@ -26759,6 +26856,39 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 46 - Math.floor(player.getCharisma() / 2.6315789); // at max, buy for 26.
             this.sellValue = 21 + Math.floor(player.getCharisma() / 10); // at max, sell for 26.
+        }
+        else if (this.type == "nomadTent")
+        {
+            //For All Items
+            this.identity = "Nomad Tent";
+            this.weight = 4;
+            this.size = 16;
+            this.description = "A quick-to-set-up inhabitance that provides safe and comfortable rest.";
+            this.intForDes = 0;
+            if (campout)
+            {
+                this.intDescription = "If you have a hammer equipped click the tent in your inventory to place it, and double click on the placed tent to disassemble it.";
+            }
+            else
+            {
+                this.intDescription = "You are not permitted to use a tent in this location.";
+            }
+
+            //Define Utility
+            this.utility = "tool";
+            this.subUtility = "nomadTent";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 15;
+            this.ingredients = [["Hyena Pelt", 7], ["Iron", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 60 - Math.floor(player.getCharisma() / 10); // at max, buy for 55.
+            this.sellValue = 52 + Math.floor(player.getCharisma() / 15); // at max, sell for 55.
         }
         else if (this.type == "brokenLockpick")
         {
@@ -44401,6 +44531,112 @@ function Item(type, x, y)
             this.buyValue = 14 - Math.floor(player.getCharisma() / 10); // at max, buy for 9.
             this.sellValue = 5 + Math.floor(player.getCharisma() / 12); // at max, sell for 9.
         }
+        else if (this.type == "ratPrinceRegalia")
+        {
+            //For All Items
+            this.identity = "Rat Prince Regalia";
+            this.weight = 6;
+            this.size = 27;
+            this.description = "The royal garb of one of the five rat princes.";
+            this.intForDes = 0;
+            this.intDescription = "The rat king had five sons whom he raised as wild cannibal children.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 2;
+            this.thirstRetention = -0.25;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 1;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = -10;
+            this.charismaBonus = -50;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 3;
+            this.dexterityBonus = 3;
+            this.survivalismBonus = 3;
+            //Extra Stat Bonuses
+            this.sleepBonus = 5;
+            this.hungerBonus = 2;
+            this.thirstBonus = 0;
+            this.warmthBonus = 15;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 21 - Math.floor(player.getCharisma() / 15); // at max, buy for 18.
+            this.sellValue = 15 + Math.floor(player.getCharisma() / 15); // at max, sell for 18.
+        }
+        else if (this.type == "ratKingRegalia")
+        {
+            //For All Items
+            this.identity = "The Regalia of the Rat King";
+            this.weight = 8;
+            this.size = 27;
+            this.description = "The royal garb of the king of all of rat kind.";
+            this.intForDes = 0;
+            this.intDescription = "Once a constable in charge of a hamlet, he used his authority to systematically execute all of the villagers and then turned the soldiers on one another.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "armour";
+            //Utility Focused
+            //protections
+            this.protection = 3 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 1;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 2.3;
+            this.thirstRetention = -0.25;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 3;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 5;
+            this.charismaBonus = -50;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 5;
+            this.dexterityBonus = 5;
+            this.survivalismBonus = 5;
+            //Extra Stat Bonuses
+            this.sleepBonus = 10;
+            this.hungerBonus = 5;
+            this.thirstBonus = 0;
+            this.warmthBonus = 20;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 321 - Math.floor(player.getCharisma() / 15); // at max, buy for 318.
+            this.sellValue = 315 + Math.floor(player.getCharisma() / 15); // at max, sell for 318.
+        }
         else if (this.type == "thenganSageRobe")
         {
             //For All Items
@@ -51790,6 +52026,21 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "ratPrinceRegalia")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mawt, 1442, 1023, 58, 120, X - this.X + (1/2 * CCC.width) - (1/2 * 58 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 120 * 1), 58 * 1, 120 * 1);
+        }
+        else if (this.type == "ratKingRegalia")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mawt, 1514, 1021, 58, 120, X - this.X + (1/2 * CCC.width) - (1/2 * 58 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 120 * 1), 58 * 1, 120 * 1);
+        }
+        else if (this.type == "nomadTent")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gnoll, 7, 162, 43, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 43 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 1.2), 43 * 1.2, 44 * 1.2);
+        }
         else if (this.type == "anglerAntennae")
         {
             XXX.beginPath();
@@ -56795,6 +57046,11 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(candlewic, 51, 110, 14, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 14 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 15 * 1.2), 14 * 1.2, 15 * 1.2);
         }
+        else if (this.type == "vardanianLamp" || this.type == "vardanianLamp2" || this.type == "vardanianLamp1" || this.type == "vardanianLampEmpty")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 24, 217, 20, 34, X - this.X + (1/2 * CCC.width) - (1/2 * 20 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 34 * 1), 20 * 1, 34 * 1);
+        }
         else if (this.type == "jackOLantern" || this.type == "jackOLantern2" || this.type == "jackOLantern1" || this.type == "jackOLanternEmpty")
         {
             XXX.beginPath();
@@ -58507,6 +58763,21 @@ function Item(type, x, y)
         {
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "ratPrinceRegalia")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mawt, 1442, 1023, 58, 120, this.invX - (1/2 * 58 * 0.65), this.invY - (1/2 * 120 * 0.65), 58 * 0.65, 120 * 0.65);
+        }
+        else if (this.type == "ratKingRegalia")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mawt, 1514, 1021, 58, 120, this.invX - (1/2 * 58 * 0.65), this.invY - (1/2 * 120 * 0.65), 58 * 0.65, 120 * 0.65);
+        }
+        else if (this.type == "nomadTent")
+        {
+            LXX.beginPath();
+            LXX.drawImage(gnoll, 7, 162, 43, 44, this.invX - (1/2 * 43 * 1.1), this.invY - (1/2 * 44 * 1.1), 43 * 1.1, 44 * 1.1);
         }
         else if (this.type == "anglerAntennae")
         {
@@ -63601,6 +63872,11 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(candlewic, 14, 17, 12, 15, this.invX - (1/2 * 12 * 1.2), this.invY - (1/2 * 15 * 1.2), 12 * 1.2, 15 * 1.2);
         }
+        else if (this.type == "vardanianLamp" || this.type == "vardanianLamp2" || this.type == "vardanianLamp1" || this.type == "vardanianLampEmpty")
+        {
+            LXX.beginPath();
+            LXX.drawImage(gent, 24, 217, 20, 34, this.invX - (1/2 * 20 * 1), this.invY - (1/2 * 34 * 1), 20 * 1, 34 * 1);
+        }
         else if (this.type == "jackOLantern" || this.type == "jackOLantern2" || this.type == "jackOLantern1" || this.type == "jackOLanternEmpty")
         {
             LXX.beginPath();
@@ -65192,6 +65468,21 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "ratPrinceRegalia")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mawt, 1442, 1023, 58, 120, this.invX - (1/2 * 58 * 0.65), this.invY - (1/2 * 120 * 0.65), 58 * 0.65, 120 * 0.65);
+        }
+        else if (this.type == "ratKingRegalia")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mawt, 1514, 1021, 58, 120, this.invX - (1/2 * 58 * 0.65), this.invY - (1/2 * 120 * 0.65), 58 * 0.65, 120 * 0.65);
+        }
+        else if (this.type == "nomadTent")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gnoll, 7, 162, 43, 44, this.invX - (1/2 * 43 * 1.1), this.invY - (1/2 * 44 * 1.1), 43 * 1.1, 44 * 1.1);
         }
         else if (this.type == "anglerAntennae")
         {
@@ -70283,6 +70574,11 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(candlewic, 14, 17, 12, 15, this.invX - (1/2 * 12 * 1.2), this.invY - (1/2 * 15 * 1.2), 12 * 1.2, 15 * 1.2);
+        }
+        else if (this.type == "vardanianLamp" || this.type == "vardanianLamp2" || this.type == "vardanianLamp1" || this.type == "vardanianLampEmpty")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gent, 24, 217, 20, 34, this.invX - (1/2 * 20 * 1), this.invY - (1/2 * 34 * 1), 20 * 1, 34 * 1);
         }
         else if (this.type == "jackOLantern" || this.type == "jackOLantern2" || this.type == "jackOLantern1" || this.type == "jackOLanternEmpty")
         {

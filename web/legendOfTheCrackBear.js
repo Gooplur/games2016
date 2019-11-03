@@ -4591,11 +4591,7 @@ function theLegend()
     allWorn.push(new Item("holuimTalisman", false)); //180
     allWorn.push(new Item("ratPrinceRegalia", false)); //181
     allWorn.push(new Item("ratKingRegalia", false)); //182
-
-
-
-
-
+    allWorn.push(new Item("vardanianInformerUniform", false)); //183
 
     scenicList = [];
 

@@ -45042,6 +45042,59 @@ function Item(type, x, y)
             this.buyValue = 14 - Math.floor(player.getCharisma() / 10); // at max, buy for 9.
             this.sellValue = 5 + Math.floor(player.getCharisma() / 12); // at max, sell for 9.
         }
+        else if (this.type == "vardanianInformerUniform")
+        {
+            //For All Items
+            this.identity = "Vardanian Informer Uniform";
+            this.weight = 3;
+            this.size = 26;
+            this.description = "The uniform worn by operatives of the High Count's Royal Spy Core.";
+            this.intForDes = 1;
+            this.intDescription = "The royal informers are tasked with routing out any semblance of disloyalty among the elite and among the population.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0.5 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 2.2;
+            this.thirstRetention = 0.15;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 2;
+            this.enduranceBonus = 2;
+            this.toughnessBonus = 2;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 25;
+            this.rangedBonus = 6;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 2;
+            this.dexterityBonus = 2;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 50;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 6;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 500; // at max, buy for 500.
+            this.sellValue = 500; // at max, sell for 500.
+        }
         else if (this.type == "ratPrinceRegalia")
         {
             //For All Items
@@ -52537,6 +52590,11 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "vardanianInformerUniform")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mawt, 1608, 51, 66, 132, X - this.X + (1/2 * CCC.width) - (1/2 * 66 * 0.87), Y - this.Y + (1/2 * CCC.height) - (1/2 * 132 * 0.87), 66 * 0.87, 132 * 0.87);
+        }
         else if (this.type == "heskFungalPod")
         {
             XXX.beginPath();
@@ -59365,6 +59423,11 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(candlewic, 61, 201, 27, 29, this.invX - (1/2 * 27 * 1.5), this.invY - (1/2 * 29 * 1.5), 27 * 1.5, 29 * 1.5);
         }
+        else if (this.type == "vardanianInformerUniform")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mawt, 1608, 51, 66, 132, this.invX - (1/2 * 66 * 0.62), this.invY - (1/2 * 132 * 0.62), 66 * 0.62, 132 * 0.62);
+        }
         else if (this.type == "ashaiWoodBarrel" || this.type == "ashaiWoodBarrelOfWater" || this.type == "caskOfChyoulWine")
         {
             LXX.beginPath();
@@ -66169,6 +66232,11 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "vardanianInformerUniform")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mawt, 1608, 51, 66, 132, this.invX - (1/2 * 66 * 0.62), this.invY - (1/2 * 132 * 0.62), 66 * 0.62, 132 * 0.62);
         }
         else if (this.type == "roylaFlower")
         {

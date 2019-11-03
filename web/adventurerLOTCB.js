@@ -41,6 +41,7 @@ function Adventurer()
     this.theBalgurMercenariesFaction = 0; //A fearsome and powerful mercinary group in the lands of Thengaria.
     this.estolgangFaction = 0; //A deeply rooted criminal organization in Nirwaden.
     this.sylkeemFaction = 0; //A northern tribal people that have historically been contained within the Kingdom of Freynor (this represents their republican faction)
+    this.vardanRebelFaction = 0; //The forces aligned to the high count's brother who sought to take the reigns of Vardania for himself
     //ranks
     this.theBalgurMercenariesRank = "none"; //mercenary, captain
     this.inquisitionRank = "none"; //initiate, inquisitor, high inquisitor, arch inquisitor
@@ -632,6 +633,7 @@ function Adventurer()
     this.theBalgurMercenariesPeace = true;
     this.estolGangPeace = true;
     this.sylkeemPeace = true;
+    this.vardanRebelPeace = true;
 
     //utility or extra variables
     this.AdAbility = []; //this is a list of all active abilities held by armours and equipped outfits
@@ -8232,6 +8234,10 @@ function Adventurer()
         {
             outfit = allWorn[182];
         }
+        else if (this.outfitEquipped == "vardanianInformerUniform")
+        {
+            outfit = allWorn[183];
+        }
         else
         {
             outfit = allWorn[0];
@@ -8665,6 +8671,19 @@ function Adventurer()
                 XXX.globalAlpha = 0.4;
             }
             XXX.drawImage(jeru, 89, 3, 39, 33, -(1 / 2 * 39 * 1.06) + 1, -(1 / 2 * 33 * 1.06) + 0.45, 39 * 1.06, 33 * 1.06);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "vardanianInformerUniform")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(mawt, 1488, 342, 53, 54, -(1 / 2 * 53 * 1) + 0, -(1 / 2 * 54 * 1) + 0, 53 * 1, 54 * 1);
             XXX.restore();
         }
         else if (this.outfitEquipped == "ratPrinceRegalia")
@@ -32769,6 +32788,62 @@ function Adventurer()
                         }
                     }
                 }
+
+                //Vardanian Rebels
+                //box
+                if (this.vardanRebelPeace)
+                {
+                    XXX.beginPath();
+                    if (this.vardanRebelFaction <= -50)
+                    {
+                        XXX.fillStyle = "crimson";
+                    }
+                    else
+                    {
+                        XXX.fillStyle = "darkGrey";
+                    }
+                    XXX.strokeStyle = "lightGreen";
+                    XXX.lineWidth = 3;
+                    XXX.rect(425, 50 + (55 * 3), 550, 30);
+                    XXX.fill();
+                    XXX.stroke();
+                }
+                else
+                {
+                    XXX.beginPath();
+                    if (this.vardanRebelFaction <= -50)
+                    {
+                        XXX.fillStyle = "crimson";
+                    }
+                    else
+                    {
+                        XXX.fillStyle = "darkGrey";
+                    }
+                    XXX.strokeStyle = "red";
+                    XXX.lineWidth = 3;
+                    XXX.rect(425, 50 + (55 * 3), 550, 30);
+                    XXX.fill();
+                    XXX.stroke();
+                }
+                //faction name
+                XXX.font = "bold 20px Book Antiqua";
+                XXX.fillStyle = "black";
+                XXX.textAlign = "center";
+                XXX.fillText("Vardanian Rebels: " + this.vardanRebelFaction, 700, 72 + (55 * 2));
+                //clickability
+                if (mouseX > 425 && mouseX < 975 && mouseY > 50 + (55 * 2) && mouseY < 80 + (55 * 2) && clicked)
+                {
+                    clicked = false;
+                    if (this.vardanRebelPeace)
+                    {
+                        this.vardanRebelPeace = false;
+                    }
+                    else
+                    {
+                        this.vardanRebelPeace = true;
+                    }
+                }
+            }
             };
             this.drawFactionRelations();
         }

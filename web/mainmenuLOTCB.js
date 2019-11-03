@@ -598,6 +598,8 @@ function applySelectionsButton()
             player.vardanFaction = 25; //black (vardanian) High Count Arlod
             player.cephriteFaction = 0; //purple (cephrian) Arch Magus Eferous and the grand council of the magi
             player.nirwadenFaction = -20; //orange (nirinese) Queen Lelaine
+            player.sylkeemFaction = -250;
+            player.vardanRebelFaction = -250;
             if (player.title == "Royalty")
             {
                 player.strength = 4;
@@ -613,6 +615,7 @@ function applySelectionsButton()
             player.vardanFaction = 0; //black (vardanian) High Count Arlod
             player.cephriteFaction = 0; //purple (cephrian) Arch Magus Eferous and the grand council of the magi
             player.nirwadenFaction = -5; //orange (nirinese) Queen Lelaine
+            player.sylkeemFaction = -500;
             if (player.title == "Royalty")
             {
                 player.toughness = 4;
@@ -649,6 +652,7 @@ function applySelectionsButton()
                 player.orgellFaction = 0; //yellow (orgish) King Lysander
                 player.vardanFaction = -20; //black (vardanian) High Count Arlod
                 player.nirwadenFaction = -55; //orange (nirinese) Queen Lelaine
+                player.sylkeemFaction = 500;
 
                 player.constitution = 2;
                 player.strength = 2;
@@ -671,6 +675,7 @@ function applySelectionsButton()
                 player.orgellFaction = 0; //yellow (orgish) King Lysander
                 player.vardanFaction = 0; //black (vardanian) High Count Arlod
                 player.nirwadenFaction = -5; //orange (nirinese) Queen Lelaine
+                player.sylkeemFaction = -250;
 
                 if (player.gender == "Female")
                 {
@@ -743,6 +748,8 @@ function applySelectionsButton()
             player.vardanFaction = 500; //black (vardanian) High Count Arlod
             player.cephriteFaction = 0; //purple (cephrian) Arch Magus Eferous and the grand council of the magi
             player.nirwadenFaction = 0; //orange (nirinese) Queen Lelaine
+
+            player.vardanRebelFaction = -500;
             if (player.title == "Royalty")
             {
                 player.stamina = 4;
@@ -776,9 +783,11 @@ function applySelectionsButton()
             player.freynorFaction = 0; //blue (freydic) King Jirdun
             player.aldrekFaction = -500; //red (aldrekii) Evaraxii Zoteff
             player.orgellFaction = -45; //yellow (orgish) King Lysander
-            player.vardanFaction = 0; //black (vardanian) High Count Arlod
+            player.vardanFaction = -49; //black (vardanian) High Count Arlod
             player.cephriteFaction = 500; //purple (cephrian) Arch Magus Eferous and the grand council of the magi
             player.nirwadenFaction = -49; //orange (nirinese) Queen Lelaine
+
+            player.vardanRebelFaction = 250;
             if (player.title == "Royalty")
             {
                 player.knowledge = 4;
@@ -819,13 +828,16 @@ function applySelectionsButton()
             player.vardanFaction = -35; //black (vardanian) High Count Arlod
             player.cephriteFaction = -25; //purple (cephrian) Arch Magus Eferous and the grand council of the magi
             player.nirwadenFaction = 500; //orange (nirinese) Queen Lelaine
+
+            player.sylkeemFaction = -250;
+            player.vardanRebelFaction = -250;
             if (player.title == "Royalty")
             {
                 player.dexterity = 2;
                 player.stamina = 2;
             }
         }
-        else if (player.title == "Nobility" && player.raceName == "Nirwaden" || player.title == "Royalty" && player.raceName == "Outlander")
+        else if (player.title == "Nobility" && player.raceName == "Outlander" || player.title == "Royalty" && player.raceName == "Outlander")
         {
             if (player.title == "Royalty")
             {
@@ -2853,6 +2865,8 @@ function Selector(bX, bY, type, selNumMAX)
                 player.vardanFaction = -5; //black (vardanian) High Count Arlod
                 player.cephriteFaction = 5; //purple (cephrian) Arch Magus Eferous and the grand council of the magi
                 player.nirwadenFaction = -10; //orange (nirinese) Queen Lelaine
+
+                player.sylkeemFaction = 25;
                 //skill bonus
                 player.constitution = 0;
                 player.strength = 0;
@@ -2893,12 +2907,15 @@ function Selector(bX, bY, type, selNumMAX)
                 //faction relations
                 player.kelFaction = -200; //green (kellish) Chieftain Har
                 player.thengarFaction = 75; //brown (thengan) King Wolthgar
-                player.freynorFaction = 15; //blue (freydic) King Jirdun
+                player.freynorFaction = 25; //blue (freydic) King Jirdun
                 player.aldrekFaction = 0; //red (aldrekii) Evaraxii Zoteff
                 player.orgellFaction = -15; //yellow (orgish) King Lysander
-                player.vardanFaction = 5; //black (vardanian) High Count Arlod
+                player.vardanFaction = 15; //black (vardanian) High Count Arlod
                 player.cephriteFaction = 0; //purple (cephrian) Arch Magus Eferous and the grand council of the magi
                 player.nirwadenFaction = -10; //orange (nirinese) Queen Lelaine
+
+                player.sylkeemFaction = -100;
+                player.vardanRebelFaction = -100;
                 //skill bonus
                 player.constitution = 0;
                 player.strength = 2;
@@ -2938,13 +2955,15 @@ function Selector(bX, bY, type, selNumMAX)
                 player.race = "navy";
                 //faction relations
                 player.kelFaction = 10; //green (kellish) Chieftain Har
-                player.thengarFaction = 10; //brown (thengan) King Wolthgar
+                player.thengarFaction = 25; //brown (thengan) King Wolthgar
                 player.freynorFaction = 75; //blue (freydic) King Jirdun
                 player.aldrekFaction = 0; //red (aldrekii) Evaraxii Zoteff
                 player.orgellFaction = 0; //yellow (orgish) King Lysander
                 player.vardanFaction = 0; //black (vardanian) High Count Arlod
                 player.cephriteFaction = 0; //purple (cephrian) Arch Magus Eferous and the grand council of the magi
                 player.nirwadenFaction = -10; //orange (nirinese) Queen Lelaine
+
+                player.sylkeemFaction = -100;
                 //skill bonus
                 player.constitution = 2;
                 player.strength = 0;
@@ -2988,7 +3007,7 @@ function Selector(bX, bY, type, selNumMAX)
                 player.raceName = "Sylkeem";
                 player.race = "#06F4CA";
                 //faction relations
-                player.kelFaction = 10; //green (kellish) Chieftain Har
+                player.kelFaction = 25; //green (kellish) Chieftain Har
                 player.thengarFaction = -15; //brown (thengan) King Wolthgar
                 player.freynorFaction = -15; //blue (freydic) King Jirdun
                 player.aldrekFaction = 0; //red (aldrekii) Evaraxii Zoteff
@@ -2996,6 +3015,8 @@ function Selector(bX, bY, type, selNumMAX)
                 player.vardanFaction = 0; //black (vardanian) High Count Arlod
                 player.cephriteFaction = 10; //purple (cephrian) Arch Magus Eferous and the grand council of the magi
                 player.nirwadenFaction = -20; //orange (nirinese) Queen Lelaine
+
+                player.sylkeemFaction = 75;
                 //skill bonus
                 player.constitution = 0;
                 player.strength = 0;
@@ -3152,13 +3173,14 @@ function Selector(bX, bY, type, selNumMAX)
                 player.race = "#1c1c1c";
                 //faction relations
                 player.kelFaction = -5; //green (kellish) Chieftain Har
-                player.thengarFaction = 5; //brown (thengan) King Wolthgar
+                player.thengarFaction = 15; //brown (thengan) King Wolthgar
                 player.freynorFaction = 0; //blue (freydic) King Jirdun
                 player.aldrekFaction = -5; //red (aldrekii) Evaraxii Zoteff
                 player.orgellFaction = 0; //yellow (orgish) King Lysander
                 player.vardanFaction = 75; //black (vardanian) High Count Arlod
                 player.cephriteFaction = 0; //purple (cephrian) Arch Magus Eferous and the grand council of the magi
                 player.nirwadenFaction = -10; //orange (nirinese) Queen Lelaine
+
                 //skill bonus
                 player.constitution = 0;
                 player.strength = 0;
@@ -3212,9 +3234,11 @@ function Selector(bX, bY, type, selNumMAX)
                 player.freynorFaction = 0; //blue (freydic) King Jirdun
                 player.aldrekFaction = -200; //red (aldrekii) Evaraxii Zoteff
                 player.orgellFaction = -25; //yellow (orgish) King Lysander
-                player.vardanFaction = 0; //black (vardanian) High Count Arlod
+                player.vardanFaction = -49; //black (vardanian) High Count Arlod
                 player.cephriteFaction = 75; //purple (cephrian) Arch Magus Eferous and the grand council of the magi
                 player.nirwadenFaction = -45; //orange (nirinese) Queen Lelaine
+
+                player.vardanRebelFaction = 50;
                 //skill bonus
                 player.constitution = 0;
                 player.strength = 0;
@@ -3243,7 +3267,7 @@ function Selector(bX, bY, type, selNumMAX)
             }
             else if (selectNumber == 8)
             {
-                //race: Cephrite
+                //race: Zetian
                 XXX.fillStyle = "black";
                 XXX.font = "20px Impact";
                 XXX.textAlign = "center";
@@ -3256,7 +3280,7 @@ function Selector(bX, bY, type, selNumMAX)
                 player.kelFaction = 15; //green (kellish) Chieftain Har
                 player.thengarFaction = -15; //brown (thengan) King Wolthgar
                 player.freynorFaction = 0; //blue (freydic) King Jirdun
-                player.aldrekFaction = -100; //red (aldrekii) Evaraxii Zoteff
+                player.aldrekFaction = -40; //red (aldrekii) Evaraxii Zoteff
                 player.orgellFaction = -40; //yellow (orgish) King Lysander
                 player.vardanFaction = 0; //black (vardanian) High Count Arlod
                 player.cephriteFaction = 20; //purple (cephrian) Arch Magus Eferous and the grand council of the magi
@@ -3322,6 +3346,9 @@ function Selector(bX, bY, type, selNumMAX)
                 player.vardanFaction = -10; //black (vardanian) High Count Arlod
                 player.cephriteFaction = -10; //purple (cephrian) Arch Magus Eferous and the grand council of the magi
                 player.nirwadenFaction = 75; //orange (nirinese) Queen Lelaine
+
+                player.sylkeemFaction = -100;
+                player.vardanRebelFaction = -100;
                 //skill bonus
                 player.constitution = 0;
                 player.strength = 1;

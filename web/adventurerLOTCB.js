@@ -32843,7 +32843,6 @@ function Adventurer()
                         this.vardanRebelPeace = true;
                     }
                 }
-            }
             };
             this.drawFactionRelations();
         }

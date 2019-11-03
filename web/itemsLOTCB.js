@@ -6484,6 +6484,37 @@ function Item(type, x, y)
             this.buyValue = 76 - Math.floor(player.getCharisma() / 8); // at max, buy for 70.
             this.sellValue = 60 + Math.floor(player.getCharisma() / 5); // at max, sell for 70.
         }
+        else if (this.type == "eisyncryneFruit")
+        {
+            //For All Items
+            this.identity = "Eisyncryne";
+            this.weight = 2.6;
+            this.size = 10;
+            this.description = "The hard shelled fruit of an eisyncryne plant.";
+            this.intForDes = 9;
+            this.intDescription = "Inside the shell is a thick, sweet, deep-bodied, flesh that is riddled with little pinkish-white seeds.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["splitEisyncryneFruit", 2]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -2; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 16; // at max, buy for 16.
+            this.sellValue = 6 + Math.floor(player.getCharisma() / 5); // at max, sell for 16.
+        }
         else if (this.type == "sonja")
         {
             //For All Items
@@ -10761,6 +10792,66 @@ function Item(type, x, y)
             this.buyValue = 45; // at max, buy for 45.
             this.sellValue = 45; // at max, sell for 45.
         }
+        else if (this.type == "roylaFlower")
+        {
+            //For All Items
+            this.identity = "Royla Flower";
+            this.weight = 0.03;
+            this.size = 6;
+            this.description = "A thin light blue flower that grows in the shallows of the Vardanian Swamps.";
+            this.intForDes = 19;
+            this.intDescription = "It acts as a changer in alchemy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3; // at max, buy for 3.
+            this.sellValue = 2; // at max, sell for 2.
+        }
+        else if (this.type == "vardanianMardyl")
+        {
+            //For All Items
+            this.identity = "Vardanian Mardyl";
+            this.weight = 2.23;
+            this.size = 8;
+            this.description = "A light grayish-green and pinkish-grey swamp plant that grows in the shallows.";
+            this.intForDes = 7;
+            this.intDescription = "It is thought to have some obscure medical properties.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "orgishMardyl")
+        {
+            //For All Items
+            this.identity = "Orgish Mardyl";
+            this.weight = 2.82;
+            this.size = 9;
+            this.description = "A light green, orange and pink swamp plant that grows in the shallows.";
+            this.intForDes = 10;
+            this.intDescription = "It is releases valuable nutrients into the water that are good for the fishlife.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
         else if (this.type == "salaFlower")
         {
             //For All Items
@@ -12764,6 +12855,102 @@ function Item(type, x, y)
             this.buyValue = 214 - Math.floor(player.getCharisma() / 1); // at max, buy for 164.
             this.sellValue = 113 + Math.floor(player.getCharisma() / 1); // at max, sell for 163.
         }
+        else if (this.type == "motylekhWing")
+        {
+            //For All Items
+            this.identity = "Motylekh Wing";
+            this.weight = 6.5;
+            this.size = 34;
+            this.description = "The soft, dusty, bristle-tipped wing of a motylekh.";
+            this.intForDes = 2;
+            this.intDescription = "The wings are full of psychodelic fear dust that when inhaled causes you to become weak, weary, delusional, and afraid...";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 50 - Math.floor(player.getCharisma() / 10); // at max, buy for 45.
+            this.sellValue = 40 + Math.floor(player.getCharisma() / 10); // at max, sell for 45.
+        }
+        else if (this.type == "motylekhWingBundle")
+        {
+            //For All Items
+            this.identity = "Motylekh Wing Bundle";
+            this.weight = 39;
+            this.size = 44;
+            this.description = "A bundle of soft, dusty, bristle-tipped motylekh wings.";
+            this.intForDes = 2;
+            this.intDescription = "The wings are full of psychodelic fear dust that when inhaled causes you to become weak, weary, delusional, and afraid...";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 1;
+            this.ingredients = [["Motylekh Wing", 6]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 300 - Math.floor(player.getCharisma() / 2); // at max, buy for 275.
+            this.sellValue = 240 + Math.floor(player.getCharisma() / 2); // at max, sell for 265.
+        }
+        else if (this.type == "bulkMotylinka")
+        {
+            //For All Items
+            this.identity = "Bulk Motylinka";
+            this.weight = 34;
+            this.size = 41;
+            this.description = "A large quantity of motylinka, an ultra soft material akin to silken, velvetty, wool.";
+            this.intForDes = 20;
+            this.intDescription = "Motylinka is made from clipped and boiled motylekh wing.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 20;
+            this.ingredients = [["Motylekh Wing Bundle", 1], ["Vardanian Pot of Water", 8]];
+            this.biproducts = [[new Item("vardanianPot", false), 8]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 440 - Math.floor(player.getCharisma() / 1); // at max, buy for 390.
+            this.sellValue = 340 + Math.floor(player.getCharisma() / 1); // at max, sell for 390.
+        }
+        else if (this.type == "motylinka")
+        {
+            //For All Items
+            this.identity = "Motylinka";
+            this.weight = 2;
+            this.size = 41;
+            this.description = "An ultra soft material akin to silken, velvetty, wool.";
+            this.intForDes = 0;
+            this.intDescription = "Motylinka is considered to be one of the finest materials in the land for use in crafting bedding, and worn apparel.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 18;
+            this.intForCraft = 15;
+            this.ingredients = [["Bulk Motylinka", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 28 - Math.floor(player.getCharisma() / 50); // at max, buy for 27.
+            this.sellValue = 25 + Math.floor(player.getCharisma() / 25); // at max, sell for 27.
+        }
         else if (this.type == "griffinPelt")
         {
             //For All Items
@@ -13636,6 +13823,35 @@ function Item(type, x, y)
             this.buyValue = 10; // at max, buy for 10.
             this.sellValue = 5 + Math.floor(player.getCharisma() / 10); // at max, sell for 10.
         }
+        else if (this.type == "splitEisyncryneFruit")
+        {
+            //For All Items
+            this.identity = "Split Eisyncryne";
+            this.weight = 1.3;
+            this.size = 9;
+            this.description = "A dark, rich, thick, fleshy fruit with numerous crunchy pinkish white seeds throughout it.";
+            this.intForDes = 0;
+            this.intDescription = "The flavour is sweet and deep-bodied, with some very mild acidity to it.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 4; //satisfies hunger.
+            this.thirst = 1; //quenches thirst.
+            this.warmth = 0.25; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.15; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 8; // at max, buy for 8.
+            this.sellValue = 3 + Math.floor(player.getCharisma() / 10); // at max, sell for 8.
+        }
         else if (this.type == "pochalPods")
         {
             //For All Items
@@ -14003,6 +14219,26 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 3; // at max, buy for 3.
             this.sellValue = 3; // at max, sell for 3.
+        }
+        else if (this.type == "eisyncrynePlant")
+        {
+            //For All Items
+            this.identity = "Eisyncryne Membrane Curtain";
+            this.weight = 7;
+            this.size = 15;
+            this.description = "A spined tubular curtain of plantlike fibrous membrane.";
+            this.intForDes = 30;
+            this.intDescription = "This acts as a former in alchemy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5; // at max, buy for 5.
+            this.sellValue = 5; // at max, sell for 5.
         }
         else if (this.type == "korceidaFlower")
         {
@@ -15357,6 +15593,64 @@ function Item(type, x, y)
             this.buyValue = 12 - Math.floor(player.getCharisma() / 10); // at max, buy for 7.
             this.sellValue = 4 + Math.floor(player.getCharisma() / 15); // at max, sell for 7.
         }
+        else if (this.type == "prematureCauwLeaf")
+        {
+            //For All Items
+            this.identity = "Premature Cauw Leaf";
+            this.weight = 0.025;
+            this.size = 5;
+            this.description = "An oily black leaf.";
+            this.intForDes = 3;
+            this.intDescription = "Premature cauw leaves have a lethally poisonous oil on them.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0.2; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "poisonII";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0 + Math.floor(player.getCharisma() / 50); // at max, sell for 1.
+        }
+        else if (this.type == "cauwLeaf")
+        {
+            //For All Items
+            this.identity = "Cauw Leaf";
+            this.weight = 0.11;
+            this.size = 5;
+            this.description = "A thick black leaf with patchy white spots; they taste sweet.";
+            this.intForDes = 2;
+            this.intDescription = "They are perfectly safe to eat.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0.45; //satisfies hunger.
+            this.thirst = 0.2; //quenches thirst.
+            this.warmth = 0.1; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
         else if (this.type == "bushkaLeaves")
         {
             //For All Items
@@ -15376,6 +15670,46 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 3 - Math.floor(player.getCharisma() / 25); // at max, buy for 1.
             this.sellValue = 0 + Math.floor(player.getCharisma() / 50); // at max, sell for 1.
+        }
+        else if (this.type == "heskFungalPod")
+        {
+            //For All Items
+            this.identity = "Hesk Fungal Pod";
+            this.weight = 14;
+            this.size = 15;
+            this.description = "A slimy darkish green protrusion of hesk fungus.";
+            this.intForDes = 12;
+            this.intDescription = "The mycelium of hesk lies deep under the top soil where it forms thousands of fist-sized fungal bubbles that store volatile gas.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 10 - Math.floor(player.getCharisma() / 25); // at max, buy for 8.
+            this.sellValue = 5 + Math.floor(player.getCharisma() / 15); // at max, sell for 8.
+        }
+        else if (this.type == "heskFungus")
+        {
+            //For All Items
+            this.identity = "Hesk Fungus";
+            this.weight = 2.9;
+            this.size = 10;
+            this.description = "A slimy strip of torn hesk fungus protrusion.";
+            this.intForDes = 12;
+            this.intDescription = "This is used in alchemy as a potent changer.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 6 - Math.floor(player.getCharisma() / 25); // at max, buy for 4.
+            this.sellValue = 2 + Math.floor(player.getCharisma() / 25); // at max, sell for 4.
         }
         else if (this.type == "wyrLeaf")
         {
@@ -22067,6 +22401,42 @@ function Item(type, x, y)
             this.buyValue = 349 - Math.floor(player.getCharisma() / 1); // at max, buy for 299.
             this.sellValue = 199 + Math.floor(player.getCharisma() / 1); // at max, sell for 249.
         }
+        else if (this.type == "antiMothfearPotion")
+        {
+            //For All Items
+            this.identity = "Mothfear Antidote";
+            this.weight = 0.75;
+            this.size = 5;
+            this.description = "A rancid smelling, still, foamy brown liquid.";
+            this.intForDes = 0;
+            this.intDescription = "This potion counteracts the psychodelic fear compound found in motylekh dust.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["potionGlass", 1]];
+
+            //Utility Focused
+            this.isRegenerative = true; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0.5; //satisfies hunger.
+            this.thirst = -2; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -2; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "speedI";
+
+            //Crafting
+            this.yield = 2;
+            this.intForCraft = 26;
+            this.ingredients = [["Vial of Water", 1], ["Chervstrakha Stomach", 1], ["Swamp Lily", 1], ["Lizard Tail", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 40 - Math.floor(player.getCharisma() / 10); // at max, buy for 35.
+            this.sellValue = 30 + Math.floor(player.getCharisma() / 10); // at max, sell for 35.
+        }
         else if (this.type == "speedPotionI")
         {
             //For All Items
@@ -22205,7 +22575,7 @@ function Item(type, x, y)
             //Crafting
             this.yield = 1;
             this.intForCraft = 39;
-            this.ingredients = [["Potion Glass", 1], ["Raw Tunsk Flesh", 3], ["Jar of Butter-Mellow Oil", 1] ["Salt", 1], ["Iron", 1], ["Culpris Leaf", 5], ["Kofke Leaves", 3], ["Steugiurne Flower", 2]];
+            this.ingredients = [["Potion Glass", 1], ["Raw Tunsk Flesh", 3], ["Jar of Butter-Mellow Oil", 1], ["Salt", 1], ["Iron", 1], ["Culpris Leaf", 5], ["Kofke Leaves", 3], ["Steugiurne Flower", 2]];
             this.biproducts = [["glassJar", 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
@@ -30367,6 +30737,64 @@ function Item(type, x, y)
             this.buyValue = 2 - Math.floor(player.getCharisma() / 50); // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
         }
+        else if (this.type == "toadstools")
+        {
+            //For All Items
+            this.identity = "Toadstools";
+            this.weight = 0.8;
+            this.size = 8;
+            this.description = "Swamp mushrooms that grow in south and central Vardania.";
+            this.intForDes = 4;
+            this.intDescription = "They are poisonous to eat, so don't eat them!";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1.5; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "poisonI";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "thimblecapMushrooms")
+        {
+            //For All Items
+            this.identity = "Thimblecap Mushrooms";
+            this.weight = 0.02;
+            this.size = 8;
+            this.description = "Tiny orangish capped white stemmed mushrooms that glow dimmly while attached to their mycelium.";
+            this.intForDes = 6;
+            this.intDescription = "They are edible and most commonly eaten raw. They have a nutty taste to them.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.05; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
         else if (this.type == "maleotMushroom")
         {
             //For All Items
@@ -34353,6 +34781,69 @@ function Item(type, x, y)
             this.buyValue = 2; // at max, buy for 2.
             this.sellValue = 2; // at max, sell for 2.
         }
+        else if (this.type == "motylekhLeg")
+        {
+            //For All Items
+            this.identity = "Motylekh Leg";
+            this.weight = 6.6;
+            this.size = 20;
+            this.description = "The leg of a motylekh filled with its tender raw flesh.";
+            this.intForDes = 0;
+            this.intDescription = "Eating this raw tastes slimey and unappetizing...";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 4; //satisfies hunger.
+            this.thirst = 4; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -4; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 11 - Math.floor(player.getCharisma() / 25); // at max, buy for 9.
+            this.sellValue = 7 + Math.floor(player.getCharisma() / 25); // at max, sell for 9.
+        }
+        else if (this.type == "roastedMotylekhLeg")
+        {
+            //For All Items
+            this.identity = "Roasted Motylekh Leg";
+            this.weight = 6.4;
+            this.size = 20;
+            this.description = "The roasted leg of a motylekh filled with tender creamy meat.";
+            this.intForDes = 0;
+            this.intDescription = "This meat is considered a delicacy and it is customary to eat it plain in order to savour its subtle flavours.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 23; //satisfies hunger.
+            this.thirst = 6; //quenches thirst.
+            this.warmth = 8; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.2; //recoops lost energy.
+            this.replenish = 0.2; //restores will.
+
+            //ability
+            this.ability = "satiation";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 29;
+            this.ingredients = [["Motylekh Leg", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 24 - Math.floor(player.getCharisma() / 12); // at max, buy for 20.
+            this.sellValue = 16 + Math.floor(player.getCharisma() / 12); // at max, sell for 20.
+        }
         else if (this.type == "rawTurkeyFlesh")
         {
             //For All Items
@@ -37328,6 +37819,26 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "chervstrakhaStomach")
+        {
+            //For All Items
+            this.identity = "Chervstrakha Stomach";
+            this.weight = 0.9;
+            this.size = 7;
+            this.description = "Its stomach digests the multitude of tough fibrous plant materials that it ingests.";
+            this.intForDes = 26;
+            this.intDescription = "An enzyme located in this can be used to make an antidote for the psychodelic dust of its mature form.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2 - Math.floor(player.getCharisma() / 50); // at max, buy for 1.
+            this.sellValue = 0 + Math.floor(player.getCharisma() / 50); // at max, sell for 1.
         }
         else if (this.type == "pokinutyyShell")
         {
@@ -52026,6 +52537,101 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "heskFungalPod")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ruin, 316, 72, 24, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 24 * 1.45), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 1.45), 24 * 1.45, 24 * 1.45);
+        }
+        else if (this.type == "heskFungus")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ruin, 251, 73, 54, 20, X - this.X + (1/2 * CCC.width) - (1/2 * 54 * 1.1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 20 * 1.1), 54 * 1.1, 20 * 1.1);
+        }
+        else if (this.type == "roylaFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ruin, 144, 8, 26, 30, X - this.X + (1/2 * CCC.width) - (1/2 * 26 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 30 * 0.8), 26 * 0.8, 30 * 0.8);
+        }
+        else if (this.type == "toadstools")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ruin, 294, 23, 16, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 16 * 1.25), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17 * 1.25), 16 * 1.25, 17 * 1.25);
+        }
+        else if (this.type == "thimblecapMushrooms")
+        {
+            XXX.beginPath();
+            XXX.drawImage(negro, 129, 44, 20, 22, X - this.X + (1/2 * CCC.width) - (1/2 * 20 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 20 * 0.8), 20 * 0.8, 22 * 0.8);
+        }
+        else if (this.type == "vardanianMardyl")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mawt, 841, 519, 55, 58, X - this.X + (1/2 * CCC.width) - (1/2 * 55 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 58 * 1), 55 * 1, 58 * 1);
+        }
+        else if (this.type == "orgishMardyl")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mawt, 40, 126, 55, 58, X - this.X + (1/2 * CCC.width) - (1/2 * 55 * 1.1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 58 * 1.1), 55 * 1.1, 58 * 1.1);
+        }
+        else if (this.type == "prematureCauwLeaf")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mawt, 1656, 994, 18, 20, X - this.X + (1/2 * CCC.width) - (1/2 * 18 * 1.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 20 * 1.3), 18 * 1.3, 20 * 1.3);
+        }
+        else if (this.type == "cauwLeaf")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mawt, 1687, 997, 18, 20, X - this.X + (1/2 * CCC.width) - (1/2 * 18 * 1.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 20 * 1.3), 18 * 1.3, 20 * 1.3);
+        }
+        else if (this.type == "eisyncryneFruit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mawt, 1618, 1026, 17, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17 * 1.4), 17 * 1.4, 17 * 1.4);
+        }
+        else if (this.type == "splitEisyncryneFruit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mawt, 1597, 1027, 17, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17 * 1.4), 17 * 1.4, 17 * 1.4);
+        }
+        else if (this.type == "eisyncrynePlant")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mawt, 1596, 1047, 41, 45, X - this.X + (1/2 * CCC.width) - (1/2 * 41 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 45 * 1.4), 41 * 1.4, 45 * 1.4);
+        }
+        else if (this.type == "motylekhLeg")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moth, 191, 261, 86, 58, X - this.X + (1/2 * CCC.width) - (1/2 * 86 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 58 * 1.2), 86 * 1.2, 58 * 1.2);
+        }
+        else if (this.type == "roastedMotylekhLeg")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moth, 306, 262, 86, 58, X - this.X + (1/2 * CCC.width) - (1/2 * 86 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 58 * 1.2), 86 * 1.2, 58 * 1.2);
+        }
+        else if (this.type == "motylekhWing")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moth, 400, 236, 127, 84, X - this.X + (1/2 * CCC.width) - (1/2 * 127 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 84 * 1.2), 127 * 1.2, 84 * 1.2);
+        }
+        else if (this.type == "motylekhWingBundle")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moth, 367, 96, 146, 88, X - this.X + (1/2 * CCC.width) - (1/2 * 146 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 88 * 1.2), 146 * 1.2, 88 * 1.2);
+        }
+        else if (this.type == "bulkMotylinka")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moth, 376, 7, 146, 88, X - this.X + (1/2 * CCC.width) - (1/2 * 146 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 88 * 1.2), 146 * 1.2, 88 * 1.2);
+        }
+        else if (this.type == "motylinka")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moth, 376, 7, 146, 88, X - this.X + (1/2 * CCC.width) - (1/2 * 146 * 0.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 88 * 0.4), 146 * 0.4, 88 * 0.4);
+        }
+        else if (this.type == "chervstrakhaStomach")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moth, 148, 270, 14, 12, X - this.X + (1/2 * CCC.width) - (1/2 * 14 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 12 * 1), 14 * 1, 12 * 1);
+        }
         else if (this.type == "ratPrinceRegalia")
         {
             XXX.beginPath();
@@ -55600,7 +56206,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polux, 614, 9, 137, 38, X - this.X + (1/2 * CCC.width) - (1/2 * 137 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 38 * 1), 137 * 1, 38 * 1);
         }
-        else if (this.type == "tunskBloodPotion")
+        else if (this.type == "tunskBloodPotion" || this.type == "antiMothfearPotion")
         {
             XXX.beginPath();
             XXX.drawImage(oldverse, 1701, 201, 9, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 9), Y - this.Y + (1/2 * CCC.height) - (1/2 * 15), 9, 15);
@@ -58763,6 +59369,101 @@ function Item(type, x, y)
         {
             LXX.beginPath();
             LXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "roylaFlower")
+        {
+            LXX.beginPath();
+            LXX.drawImage(ruin, 144, 8, 26, 30, this.invX - (1/2 * 26 * 0.8), this.invY - (1/2 * 30 * 0.8), 26 * 0.8, 30 * 0.8);
+        }
+        else if (this.type == "toadstools")
+        {
+            LXX.beginPath();
+            LXX.drawImage(ruin, 294, 23, 16, 17, this.invX - (1/2 * 16 * 1.25), this.invY - (1/2 * 17 * 1.25), 16 * 1.25, 17 * 1.25);
+        }
+        else if (this.type == "thimblecapMushrooms")
+        {
+            LXX.beginPath();
+            LXX.drawImage(negro, 129, 44, 20, 22, this.invX - (1/2 * 20 * 0.9), this.invY - (1/2 * 20 * 0.9), 20 * 0.9, 22 * 0.9);
+        }
+        else if (this.type == "vardanianMardyl")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mawt, 841, 519, 55, 58, this.invX - (1/2 * 55 * 1), this.invY - (1/2 * 58 * 1), 55 * 1, 58 * 1);
+        }
+        else if (this.type == "orgishMardyl")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mawt, 40, 126, 55, 58, this.invX - (1/2 * 55 * 1.1), this.invY - (1/2 * 58 * 1.1), 55 * 1.1, 58 * 1.1);
+        }
+        else if (this.type == "heskFungalPod")
+        {
+            LXX.beginPath();
+            LXX.drawImage(ruin, 316, 72, 24, 24, this.invX - (1/2 * 24 * 1.45), this.invY - (1/2 * 24 * 1.45), 24 * 1.45, 24 * 1.45);
+        }
+        else if (this.type == "heskFungus")
+        {
+            LXX.beginPath();
+            LXX.drawImage(ruin, 251, 73, 54, 20, this.invX - (1/2 * 54 * 1.1), this.invY - (1/2 * 20 * 1.1), 54 * 1.1, 20 * 1.1);
+        }
+        else if (this.type == "prematureCauwLeaf")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mawt, 1656, 994, 18, 20, this.invX - (1/2 * 18 * 1.3), this.invY - (1/2 * 20 * 1.3), 18 * 1.3, 20 * 1.3);
+        }
+        else if (this.type == "cauwLeaf")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mawt, 1687, 997, 18, 20, this.invX - (1/2 * 18 * 1.3), this.invY - (1/2 * 20 * 1.3), 18 * 1.3, 20 * 1.3);
+        }
+        else if (this.type == "eisyncryneFruit")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mawt, 1618, 1026, 17, 17, this.invX - (1/2 * 17 * 1.4), this.invY - (1/2 * 17 * 1.4), 17 * 1.4, 17 * 1.4);
+        }
+        else if (this.type == "splitEisyncryneFruit")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mawt, 1597, 1027, 17, 17, this.invX - (1/2 * 17 * 1.4), this.invY - (1/2 * 17 * 1.4), 17 * 1.4, 17 * 1.4);
+        }
+        else if (this.type == "eisyncrynePlant")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mawt, 1596, 1047, 41, 45, this.invX - (1/2 * 41 * 1), this.invY - (1/2 * 45 * 1), 41 * 1, 45 * 1);
+        }
+        else if (this.type == "motylekhLeg")
+        {
+            LXX.beginPath();
+            LXX.drawImage(moth, 191, 261, 86, 58, this.invX - (1/2 * 86 * 1), this.invY - (1/2 * 58 * 1), 86 * 1, 58 * 1);
+        }
+        else if (this.type == "roastedMotylekhLeg")
+        {
+            LXX.beginPath();
+            LXX.drawImage(moth, 306, 262, 86, 58, this.invX - (1/2 * 86 * 1), this.invY - (1/2 * 58 * 1), 86 * 1, 58 * 1);
+        }
+        else if (this.type == "motylekhWing")
+        {
+            LXX.beginPath();
+            LXX.drawImage(moth, 400, 236, 127, 84, this.invX - (1/2 * 127 * 0.65), this.invY - (1/2 * 84 * 0.65), 127 * 0.65, 84 * 0.65);
+        }
+        else if (this.type == "motylekhWingBundle")
+        {
+            LXX.beginPath();
+            LXX.drawImage(moth, 367, 96, 146, 88, this.invX - (1/2 * 146 * 0.55), this.invY - (1/2 * 88 * 0.55), 146 * 0.55, 88 * 0.55);
+        }
+        else if (this.type == "bulkMotylinka")
+        {
+            LXX.beginPath();
+            LXX.drawImage(moth, 376, 7, 146, 88, this.invX - (1/2 * 146 * 0.55), this.invY - (1/2 * 88 * 0.55), 146 * 0.55, 88 * 0.55);
+        }
+        else if (this.type == "motylinka")
+        {
+            LXX.beginPath();
+            LXX.drawImage(moth, 376, 7, 146, 88, this.invX - (1/2 * 146 * 0.35), this.invY - (1/2 * 88 * 0.35), 146 * 0.35, 88 * 0.35);
+        }
+        else if (this.type == "chervstrakhaStomach")
+        {
+            LXX.beginPath();
+            LXX.drawImage(moth, 148, 270, 14, 12, this.invX - (1/2 * 14 * 1), this.invY - (1/2 * 12 * 1), 14 * 1, 12 * 1);
         }
         else if (this.type == "ratPrinceRegalia")
         {
@@ -62335,7 +63036,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(polux, 614, 9, 137, 38, this.invX - (1/2 * 137 * 0.4), this.invY - (1/2 * 38 * 0.4), 137 * 0.4, 38 * 0.4);
         }
-        else if (this.type == "tunskBloodPotion")
+        else if (this.type == "tunskBloodPotion" || this.type == "antiMothfearPotion")
         {
             LXX.beginPath();
             LXX.drawImage(oldverse, 1701, 201, 9, 15, this.invX - (1/2 * 9), this.invY - (1/2 * 15), 9, 15);
@@ -65468,6 +66169,101 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "roylaFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ruin, 144, 8, 26, 30, this.invX - (1/2 * 26 * 0.8), this.invY - (1/2 * 30 * 0.8), 26 * 0.8, 30 * 0.8);
+        }
+        else if (this.type == "toadstools")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ruin, 294, 23, 16, 17, this.invX - (1/2 * 16 * 1.25), this.invY - (1/2 * 17 * 1.25), 16 * 1.25, 17 * 1.25);
+        }
+        else if (this.type == "thimblecapMushrooms")
+        {
+            XXX.beginPath();
+            XXX.drawImage(negro, 129, 44, 20, 22, this.invX - (1/2 * 20 * 0.9), this.invY - (1/2 * 20 * 0.9), 20 * 0.9, 22 * 0.9);
+        }
+        else if (this.type == "vardanianMardyl")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mawt, 841, 519, 55, 58, this.invX - (1/2 * 55 * 1), this.invY - (1/2 * 58 * 1), 55 * 1, 58 * 1);
+        }
+        else if (this.type == "orgishMardyl")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mawt, 40, 126, 55, 58, this.invX - (1/2 * 55 * 1.1), this.invY - (1/2 * 58 * 1.1), 55 * 1.1, 58 * 1.1);
+        }
+        else if (this.type == "heskFungalPod")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ruin, 316, 72, 24, 24, this.invX - (1/2 * 24 * 1.45), this.invY - (1/2 * 24 * 1.45), 24 * 1.45, 24 * 1.45);
+        }
+        else if (this.type == "heskFungus")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ruin, 251, 73, 54, 20, this.invX - (1/2 * 54 * 1.1), this.invY - (1/2 * 20 * 1.1), 54 * 1.1, 20 * 1.1);
+        }
+        else if (this.type == "prematureCauwLeaf")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mawt, 1656, 994, 18, 20, this.invX - (1/2 * 18 * 1.3), this.invY - (1/2 * 20 * 1.3), 18 * 1.3, 20 * 1.3);
+        }
+        else if (this.type == "cauwLeaf")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mawt, 1687, 997, 18, 20, this.invX - (1/2 * 18 * 1.3), this.invY - (1/2 * 20 * 1.3), 18 * 1.3, 20 * 1.3);
+        }
+        else if (this.type == "eisyncryneFruit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mawt, 1618, 1026, 17, 17, this.invX - (1/2 * 17 * 1.4), this.invY - (1/2 * 17 * 1.4), 17 * 1.4, 17 * 1.4);
+        }
+        else if (this.type == "splitEisyncryneFruit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mawt, 1597, 1027, 17, 17, this.invX - (1/2 * 17 * 1.4), this.invY - (1/2 * 17 * 1.4), 17 * 1.4, 17 * 1.4);
+        }
+        else if (this.type == "eisyncrynePlant")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mawt, 1596, 1047, 41, 45, this.invX - (1/2 * 41 * 1), this.invY - (1/2 * 45 * 1), 41 * 1, 45 * 1);
+        }
+        else if (this.type == "motylekhLeg")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moth, 191, 261, 86, 58, this.invX - (1/2 * 86 * 1), this.invY - (1/2 * 58 * 1), 86 * 1, 58 * 1);
+        }
+        else if (this.type == "roastedMotylekhLeg")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moth, 306, 262, 86, 58, this.invX - (1/2 * 86 * 1), this.invY - (1/2 * 58 * 1), 86 * 1, 58 * 1);
+        }
+        else if (this.type == "motylekhWing")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moth, 400, 236, 127, 84, this.invX - (1/2 * 127 * 0.65), this.invY - (1/2 * 84 * 0.65), 127 * 0.65, 84 * 0.65);
+        }
+        else if (this.type == "motylekhWingBundle")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moth, 367, 96, 146, 88, this.invX - (1/2 * 146 * 0.55), this.invY - (1/2 * 88 * 0.55), 146 * 0.55, 88 * 0.55);
+        }
+        else if (this.type == "bulkMotylinka")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moth, 376, 7, 146, 88, this.invX - (1/2 * 146 * 0.55), this.invY - (1/2 * 88 * 0.55), 146 * 0.55, 88 * 0.55);
+        }
+        else if (this.type == "motylinka")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moth, 376, 7, 146, 88, this.invX - (1/2 * 146 * 0.35), this.invY - (1/2 * 88 * 0.35), 146 * 0.35, 88 * 0.35);
+        }
+        else if (this.type == "chervstrakhaStomach")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moth, 148, 270, 14, 12, this.invX - (1/2 * 14 * 1), this.invY - (1/2 * 12 * 1), 14 * 1, 12 * 1);
         }
         else if (this.type == "ratPrinceRegalia")
         {
@@ -69040,7 +69836,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polux, 614, 9, 137, 38, this.invX - (1/2 * 137 * 0.4), this.invY - (1/2 * 38 * 0.4), 137 * 0.4, 38 * 0.4);
         }
-        else if (this.type == "tunskBloodPotion")
+        else if (this.type == "tunskBloodPotion" || this.type == "antiMothfearPotion")
         {
             XXX.beginPath();
             XXX.drawImage(oldverse, 1701, 201, 9, 15, this.invX - (1/2 * 9), this.invY - (1/2 * 15), 9, 15);

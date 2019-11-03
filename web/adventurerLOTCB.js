@@ -321,6 +321,7 @@ function Adventurer()
     this.swollenIII = false;
     this.swollenIV = false;
     this.swollenV = false;
+    this.swollenVI = false;
     this.swollenSTR = 0;
     this.swollenDEX = 0;
     this.swollenRNG = 0;
@@ -614,6 +615,9 @@ function Adventurer()
     this.mothfear = false;
     this.mothfearKeepTime = new Date().getTime();
     this.mothfearTime = 0;
+    this.antiMothfearKeepTime = new Date().getTime();
+    this.antiMothfearTime = 0;
+    this.antiMothfear = false;
 
         //faction variables
     this.factionToggle = false;
@@ -2031,7 +2035,15 @@ function Adventurer()
 
             if (this.swollenTime > 0)
             {
-                if (this.swollenV)
+                if (this.swollenVI)
+                {
+                    this.swollenDEX = -11;
+                    this.swollenSTR = -8;
+                    this.swollenCON = -11;
+                    this.swollenRNG = -8;
+                    this.swollenEND = -11;
+                }
+                else if (this.swollenV)
                 {
                     this.swollenDEX = -8;
                     this.swollenSTR = -5;
@@ -2074,6 +2086,7 @@ function Adventurer()
             }
             else
             {
+                this.swollenVI = false;
                 this.swollenV = false;
                 this.swollenIV = false;
                 this.swollenIII = false;
@@ -4178,7 +4191,7 @@ function Adventurer()
             }
 
             //mothfear
-            if (this.mothfearTime > 0)
+            if (this.mothfearTime > 0 && this.antiMothfearTime <= 0)
             {
                 this.mothfear = true;
                 if (new Date().getTime() - this.mothfearKeepTime > 100)
@@ -4187,11 +4200,24 @@ function Adventurer()
                     this.mothfearTime -= 0.1;
                 }
             }
+            else if (this.antiMothfearTime > 0)
+            {
+                this.antiMothfear = true;
+                if (new Date().getTime() - this.antiMothfearKeepTime > 100)
+                {
+                    this.antiMothfearKeepTime = new Date().getTime();
+                    this.antiMothfearTime -= 0.1;
+                }
+            }
             else
             {
                 this.mothfearKeepTime = new Date().getTime();
                 this.mothfearTime = 0;
                 this.mothfear = false;
+
+                this.antiMothfearKeepTime = new Date().getTime();
+                this.antiMothfearTime = 0;
+                this.antiMothfear = false;
             }
         };
 
@@ -6931,7 +6957,7 @@ function Adventurer()
     //Swollen Notice Function
     this.swollenChecker = function ()
     {
-        if (this.swollenI || this.swollenII || this.swollenIII || this.swollenIV || this.swollenV)
+        if (this.swollenI || this.swollenII || this.swollenIII || this.swollenIV || this.swollenV || this.swollenVI)
         {
             // at this point the slot should be consistent so it should not have to check again to be entered into a position on the miniNoticeList.
 
@@ -38471,6 +38497,12 @@ function Adventurer()
                             else if (Inventory[i][0].ability == "eliktozeola")
                             {
                                 this.eliktozeola = true;
+                            }
+                            else if (Inventory[i][0].ability == "antiMothfear")
+                            {
+                                this.antiMothfearKeepTime = new Date().getTime();
+                                this.antiMothfearTime = 335;
+                                this.antiMothfear = true;
                             }
                             else if (Inventory[i][0].ability == "skillReset")
                             {

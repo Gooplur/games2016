@@ -4968,6 +4968,8 @@ function theLegend()
     foods.push(new Item("roastedPashaArm", false));
     foods.push(new Item("bloodwormMeat", false));
     foods.push(new Item("cookedKrogiMushroom", false));
+    foods.push(new Item("roastedMotylekhLeg", false));
+    foods.push(new Item("bulkMotylinka", false));
 
 //Tailoring (Items crafted at a weaving, sewing, dying, etc. tailor's work bench thing)
     tailoring = [];
@@ -5090,6 +5092,7 @@ function theLegend()
     tailoring.push(new Item("lionClothing", false));
     tailoring.push(new Item("zetianOutfitM", false));
     tailoring.push(new Item("zetianOutfitF", false));
+    tailoring.push(new Item("motylinka", false));
 
 //Jewelry (Items crafted at a jewler's station, rings, necklaces, cutting gems, glassblowing etc.)
     jewelry = [];
@@ -5177,6 +5180,7 @@ function theLegend()
     alchemy.push(new Item("silverbloodPotion", false));
     alchemy.push(new Item("fermentedVodkapaSpleen", false));
     alchemy.push(new Item("spellOil", false));
+    alchemy.push(new Item("antiMothfearPotion", false));
 
 //Brewing (alcohols, liquid fermentation, etc.)
     brewing = [];
@@ -5370,6 +5374,7 @@ function theLegend()
     handcrafted.push(new Item("spicedSonjaSlices", false));
     handcrafted.push(new Item("tropicalFruitPlatter", false));
     handcrafted.push(new Item("despinedPashaArm", false));
+    handcrafted.push(new Item("motylekhWingBundle", false));
 
     //Activate Important Game Functions Here:
     itemPlacer();

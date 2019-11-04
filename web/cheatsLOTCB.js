@@ -5193,6 +5193,35 @@ function cheats()
                 }
             }
 
+            if (gKey)
+            {
+                gKey = false;
+                if (shiftKey)
+                {
+                    buildSize += 0.1;
+                }
+                else
+                {
+                    buildSize += 0.02;
+                }
+            }
+            if (vKey)
+            {
+                vKey = false;
+                if (shiftKey)
+                {
+                    buildSize -= 0.1;
+                }
+                else
+                {
+                    buildSize -= 0.02;
+                }
+                if (buildSize <= 0)
+                {
+                    buildSize = 0.1;
+                }
+            }
+
             if (zKey)
             {
                 zKey = false;
@@ -5233,7 +5262,7 @@ function cheats()
             else if (buildClase == 3)
             {
                 buildPrompt = "vardanianHearth";
-                buildPrompt2 = "permaLit";
+                buildPrompt2 = "lit";
             }
             else if (buildClase == 4)
             {
@@ -5249,11 +5278,11 @@ function cheats()
             if (xKey)
             {
                 xKey = false;
-                console.log('scenicList.push(new Scenery("'+ buildPrompt +'", ' + X + ', ' + Y + ', ' + buildRot + ', '+ buildPrompt2 +'));');
-                scenicList.push(new Scenery(buildPrompt, X, Y, buildRot, buildPrompt2));
+                console.log('scenicList.push(new Scenery("'+ buildPrompt +'", ' + X + ', ' + Y + ', ' + buildRot + ', '+ buildPrompt2 +', '+ buildSize +'));');
+                scenicList.push(new Scenery(buildPrompt, X, Y, buildRot, buildPrompt2, buildSize));
             }
 
-            var islonDDDD = new Scenery(buildPrompt, X, Y, buildRot, buildPrompt2);
+            var islonDDDD = new Scenery(buildPrompt, X, Y, buildRot, buildPrompt2, buildSize);
             islonDDDD.operations();
         }
         else if (buildToggle == 161)

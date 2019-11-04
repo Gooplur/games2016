@@ -5352,7 +5352,7 @@ function cheats()
             else if (buildClase == 3)
             {
                 buildPrompt = "brokenTent";
-                buildPrompt2 = 0;
+                buildPrompt2 = 1;
             }
             else if (buildClase == 4)
             {

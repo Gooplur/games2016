@@ -4926,21 +4926,40 @@ function cheats()
         }
         else if (buildToggle == 152)
         {
+            if (fKey)
+            {
+                fKey = false;
+                if (shiftKey)
+                {
+                    buildRot += 1/16 * Math.PI;
+                }
+                else
+                {
+                    buildRot += 1/32 * Math.PI;
+                }
+            }
+            if (cKey)
+            {
+                cKey = false;
+                if (shiftKey)
+                {
+                    buildRot -= 1/16 * Math.PI;
+                }
+                else
+                {
+                    buildRot -= 1/32 * Math.PI;
+                }
+            }
+
             if (xKey)
             {
                 xKey = false;
-                console.log('scenicList.push(new Scenery("gribnoyPlant", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', true));');
-                worldItems.push([new Item("plantMarker", X, Y), 1]);
+                console.log('scenicList.push(new Scenery("gribnoyPlant", ' + X + ', ' + Y + ', ' + buildRot + ', true));');
+                scenicList.push(new Scenery("gribnoyPlant", X, Y, buildRot, true));
             }
 
-            if (rKey)
-            {
-                XXX.save();
-                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
-                XXX.rotate(0);
-                XXX.drawImage(hydra, 728, 715, 35, 38, -(1/2 * 35), -(1/2 * 38), 35, 38);
-                XXX.restore();
-            }
+            var islonDDDD = new Scenery("gribnoyPlant", X, Y, buildRot, true);
+            islonDDDD.operations();
         }
         else if (buildToggle == 153)
         {
@@ -5160,10 +5179,10 @@ function cheats()
             {
                 xKey = false;
                 console.log('scenicList.push(new Scenery("'+ buildPrompt +'", ' + X + ', ' + Y + ', ' + buildRot + ', '+ buildPrompt2 +'));');
-                scenicList.push(new Scenery(buildPrompt, X, Y, buildRot, true));
+                scenicList.push(new Scenery(buildPrompt, X, Y, buildRot, buildPrompt2));
             }
 
-            var islonDDDD = new Scenery(buildPrompt, X, Y, buildRot, true);
+            var islonDDDD = new Scenery(buildPrompt, X, Y, buildRot, buildPrompt2);
             islonDDDD.operations();
         }
         else if (buildToggle == 160)

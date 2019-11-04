@@ -32787,60 +32787,60 @@ function Adventurer()
                             this.sylkeemPeace = true;
                         }
                     }
-                }
 
-                //Vardanian Rebels
-                //box
-                if (this.vardanRebelPeace)
-                {
-                    XXX.beginPath();
-                    if (this.vardanRebelFaction <= -50)
-                    {
-                        XXX.fillStyle = "crimson";
-                    }
-                    else
-                    {
-                        XXX.fillStyle = "darkGrey";
-                    }
-                    XXX.strokeStyle = "lightGreen";
-                    XXX.lineWidth = 3;
-                    XXX.rect(425, 50 + (55 * 3), 550, 30);
-                    XXX.fill();
-                    XXX.stroke();
-                }
-                else
-                {
-                    XXX.beginPath();
-                    if (this.vardanRebelFaction <= -50)
-                    {
-                        XXX.fillStyle = "crimson";
-                    }
-                    else
-                    {
-                        XXX.fillStyle = "darkGrey";
-                    }
-                    XXX.strokeStyle = "red";
-                    XXX.lineWidth = 3;
-                    XXX.rect(425, 50 + (55 * 3), 550, 30);
-                    XXX.fill();
-                    XXX.stroke();
-                }
-                //faction name
-                XXX.font = "bold 20px Book Antiqua";
-                XXX.fillStyle = "black";
-                XXX.textAlign = "center";
-                XXX.fillText("Vardanian Rebels: " + this.vardanRebelFaction, 700, 72 + (55 * 2));
-                //clickability
-                if (mouseX > 425 && mouseX < 975 && mouseY > 50 + (55 * 2) && mouseY < 80 + (55 * 2) && clicked)
-                {
-                    clicked = false;
+                    //Vardanian Rebels
+                    //box
                     if (this.vardanRebelPeace)
                     {
-                        this.vardanRebelPeace = false;
+                        XXX.beginPath();
+                        if (this.vardanRebelFaction <= -50)
+                        {
+                            XXX.fillStyle = "crimson";
+                        }
+                        else
+                        {
+                            XXX.fillStyle = "darkGrey";
+                        }
+                        XXX.strokeStyle = "lightGreen";
+                        XXX.lineWidth = 3;
+                        XXX.rect(425, 50 + (55 * 3), 550, 30);
+                        XXX.fill();
+                        XXX.stroke();
                     }
                     else
                     {
-                        this.vardanRebelPeace = true;
+                        XXX.beginPath();
+                        if (this.vardanRebelFaction <= -50)
+                        {
+                            XXX.fillStyle = "crimson";
+                        }
+                        else
+                        {
+                            XXX.fillStyle = "darkGrey";
+                        }
+                        XXX.strokeStyle = "red";
+                        XXX.lineWidth = 3;
+                        XXX.rect(425, 50 + (55 * 3), 550, 30);
+                        XXX.fill();
+                        XXX.stroke();
+                    }
+                    //faction name
+                    XXX.font = "bold 20px Book Antiqua";
+                    XXX.fillStyle = "black";
+                    XXX.textAlign = "center";
+                    XXX.fillText("Vardanian Rebels: " + this.vardanRebelFaction, 700, 72 + (55 * 3));
+                    //clickability
+                    if (mouseX > 425 && mouseX < 975 && mouseY > 50 + (55 * 3) && mouseY < 80 + (55 * 3) && clicked)
+                    {
+                        clicked = false;
+                        if (this.vardanRebelPeace)
+                        {
+                            this.vardanRebelPeace = false;
+                        }
+                        else
+                        {
+                            this.vardanRebelPeace = true;
+                        }
                     }
                 }
             };

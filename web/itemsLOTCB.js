@@ -38159,7 +38159,7 @@ function Item(type, x, y)
             this.range = 800 + (200 * player.getRanged() / 50);
             //this.rate = Math.max(0.1, 35 - (34 * player.getRanged() / 50));
             this.speed = 3 + (2 * player.getRanged() / 50);
-            this.negateArmour = 2.5 + (1 * player.getRanged() / 50);
+            this.negateArmour = 5.5 + (1 * player.getRanged() / 50);
 
             //ability
             this.ability = "none";
@@ -38289,7 +38289,7 @@ function Item(type, x, y)
             this.range = 2000 + (500 * player.getRanged() / 50);
             this.rate = Math.max(0.1, 35 - (34 * player.getRanged() / 50));
             this.speed = 5 + (3 * player.getRanged() / 50);
-            this.negateArmour = 5 + (4 * player.getRanged() / 50);
+            this.negateArmour = 7 + (4 * player.getRanged() / 50);
 
             //ability
             this.ability = "none";
@@ -38322,7 +38322,7 @@ function Item(type, x, y)
             this.range = 2550 + (500 * player.getRanged() / 50);
             this.rate = Math.max(0.1, 35 - (34 * player.getRanged() / 50));
             this.speed = 6 + (4 * player.getRanged() / 50);
-            this.negateArmour = 8 + (6 * player.getRanged() / 50);
+            this.negateArmour = 9 + (6 * player.getRanged() / 50);
 
             //ability
             this.ability = "none";

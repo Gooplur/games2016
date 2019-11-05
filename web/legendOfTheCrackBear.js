@@ -1230,6 +1230,30 @@ function envPack()
     vardanianMire.src = ("images/vardanMire.png");
     window.vardanianMire = vardanianMire;
 
+    var vardanMire = new Image();
+    vardanMire.src = ("images/vardanianMire.png");
+    window.vardanMire = vardanMire;
+
+    var vardanianWetlands = new Image();
+    vardanianWetlands.src = ("images/mireFoliage.png");
+    window.vardanianWetlands = vardanianWetlands;
+
+    var mireTL = new Image();
+    mireTL.src = ("images/mireTL.png");
+    window.mireTL = mireTL;
+
+    var mireTR = new Image();
+    mireTR.src = ("images/mireTR.png");
+    window.mireTR = mireTR;
+
+    var mireBR = new Image();
+    mireBR.src = ("images/mireBR.png");
+    window.mireBR = mireBR;
+
+    var mireBL = new Image();
+    mireBL.src = ("images/mireBL.png");
+    window.mireBL = mireBL;
+
     var swampTL = new Image();
     swampTL.src = ("images/highL.png");
     window.swampTL = swampTL;
@@ -1587,6 +1611,18 @@ function mothPack()
     window.moth = moth;
 
     moth.onload = function()
+    {
+        cleanPack();
+    };
+}
+
+function cleanPack()
+{
+    var cleen = new Image();
+    cleen.src = ("images/cleen.png");
+    window.cleen = cleen;
+
+    cleen.onload = function()
     {
         mawtPack();
     };

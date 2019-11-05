@@ -2764,7 +2764,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 this.eggHatchTimer += 1 * (TTD / 16.75);
                 if (this.eggHatchTimer >= 800 && this.phase != "broken")
                 {
-                    var newby = new Unit(this.X, this.Y, "shriekingBloodworm", "baby", "Generic Shrieking Bloodworm");
+                    var newby = new Unit(this.X, this.Y, "ShriekingBloodworm", "baby", "Generic Shrieking Bloodworm");
                     newby.mamaID = this.information;
                     for (var ii = 0; ii < (Math.floor(Math.random() * 6) + 1); ii++)
                     {
@@ -25116,6 +25116,303 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 this.activate = false;
             }
         }
+        else if (this.type == "mireIsla")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+            if (typeof(this.information) == "undefined")
+            {
+                this.size = 1;
+            }
+            else
+            {
+                this.size = this.information;
+            }
+
+
+            if (this.temporary == 0) //big square
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(cleen, 30, 561, 305, 316, -(1/2 * 305 * this.size), -(1/2 * 316 * this.size), 305 * this.size, 316 * this.size);
+
+                //XXX.beginPath();
+                //XXX.lineWidth = 300 * this.size;
+                //XXX.strokeStyle = "black";
+                //XXX.moveTo(0 + Math.cos(0) * 40 * this.size, 0);
+                //XXX.lineTo(0 + Math.cos(Math.PI) * 40 * this.size, 0);
+                //XXX.stroke();
+
+                XXX.restore();
+
+                var distToPlat = pDist(X, Y, this.X + Math.cos(0 + this.rotation) * 40 * this.size, this.Y + Math.sin(0 + this.rotation) * 40 * this.size, this.X + Math.cos(Math.PI + this.rotation) * 40 * this.size, this.Y + Math.sin(Math.PI + this.rotation) * 40 * this.size);
+                if (distToPlat <= 150 * this.size * 150 * this.size)
+                {
+                    player.land = true;
+                }
+
+                distToPlat = 1000000000000000;
+
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    distToPlat = pDist(ArtificialIntelligenceAccess[i].X, ArtificialIntelligenceAccess[i].Y, this.X + Math.cos(0 + this.rotation) * 40 * this.size, this.Y + Math.sin(0 + this.rotation) * 40 * this.size, this.X + Math.cos(Math.PI + this.rotation) * 40 * this.size, this.Y + Math.sin(Math.PI + this.rotation) * 40 * this.size);
+                    if (distToPlat <= 150 * this.size * 150 * this.size)
+                    {
+                        ArtificialIntelligenceAccess[i].land = true;
+                    }
+                }
+            }
+            else if (this.temporary == 1) //big circle
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(cleen, 442, 557, 305, 316, -(1/2 * 305 * this.size), -(1/2 * 316 * this.size), 305 * this.size, 316 * this.size);
+
+                //XXX.beginPath();
+                //XXX.lineWidth = 280* this.size;
+                //XXX.strokeStyle = "black";
+                //XXX.moveTo(0 + Math.cos(0) * 30 * this.size, 0);
+                //XXX.lineTo(0 + Math.cos(Math.PI) * 30 * this.size, 0);
+                //XXX.stroke();
+
+                XXX.restore();
+
+                var distToPlat = pDist(X, Y, this.X + Math.cos(0 + this.rotation) * 30 * this.size, this.Y + Math.sin(0 + this.rotation) * 30 * this.size, this.X + Math.cos(Math.PI + this.rotation) * 30 * this.size, this.Y + Math.sin(Math.PI + this.rotation) * 30 * this.size);
+                if (distToPlat <= 140 * this.size * 140 * this.size)
+                {
+                    player.land = true;
+                }
+
+                distToPlat = 1000000000000000;
+
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    distToPlat = pDist(ArtificialIntelligenceAccess[i].X, ArtificialIntelligenceAccess[i].Y, this.X + Math.cos(0 + this.rotation) * 30 * this.size, this.Y + Math.sin(0 + this.rotation) * 30 * this.size, this.X + Math.cos(Math.PI + this.rotation) * 30 * this.size, this.Y + Math.sin(Math.PI + this.rotation) * 30 * this.size);
+                    if (distToPlat <= 140 * this.size * 140 * this.size)
+                    {
+                        ArtificialIntelligenceAccess[i].land = true;
+                    }
+                }
+            }
+            else if (this.temporary == 2) //half large square
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation + 1/2 * Math.PI);
+                XXX.drawImage(cleen, 591, 873, 181, 303, -(1/2 * 181 * this.size), -(1/2 * 303 * this.size), 181 * this.size, 303 * this.size);
+
+                //XXX.beginPath();
+                //XXX.lineWidth = 166 * this.size;
+                //XXX.strokeStyle = "black";
+                //XXX.moveTo(0 + Math.cos(0) * 80 * this.size, 0);
+                //XXX.lineTo(0 + Math.cos(Math.PI) * 80 * this.size, 0);
+                //XXX.stroke();
+
+                XXX.restore();
+
+                var distToPlat = pDist(X, Y, this.X + Math.cos(0 + this.rotation) * 80 * this.size, this.Y + Math.sin(0 + this.rotation) * 80 * this.size, this.X + Math.cos(Math.PI + this.rotation) * 80 * this.size, this.Y + Math.sin(Math.PI + this.rotation) * 80 * this.size);
+                if (distToPlat <= 83 * this.size * 83 * this.size)
+                {
+                    player.land = true;
+                }
+
+                distToPlat = 1000000000000000;
+
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    distToPlat = pDist(ArtificialIntelligenceAccess[i].X, ArtificialIntelligenceAccess[i].Y, this.X + Math.cos(0 + this.rotation) * 80 * this.size, this.Y + Math.sin(0 + this.rotation) * 80 * this.size, this.X + Math.cos(Math.PI + this.rotation) * 80 * this.size, this.Y + Math.sin(Math.PI + this.rotation) * 80 * this.size);
+                    if (distToPlat <= 83 * this.size * 83 * this.size)
+                    {
+                        ArtificialIntelligenceAccess[i].land = true;
+                    }
+                }
+            }
+            else if (this.temporary == 3) //long fourth of large square
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(cleen, 24, 938, 321, 119, -(1/2 * 321 * this.size), -(1/2 * 119 * this.size) + 9, 321 * this.size, 119 * this.size);
+
+                //XXX.beginPath();
+                //XXX.lineWidth = 98 * this.size;
+                //XXX.strokeStyle = "black";
+                //XXX.moveTo(0 + Math.cos(0) * 110 * this.size, 0);
+                //XXX.lineTo(0 + Math.cos(Math.PI) * 110 * this.size, 0);
+                //XXX.stroke();
+
+                XXX.restore();
+
+                var distToPlat = pDist(X, Y, this.X + Math.cos(0 + this.rotation) * 110 * this.size, this.Y + Math.sin(0 + this.rotation) * 110 * this.size, this.X + Math.cos(Math.PI + this.rotation) * 110 * this.size, this.Y + Math.sin(Math.PI + this.rotation) * 110 * this.size);
+                if (distToPlat <= 49 * this.size * 49 * this.size)
+                {
+                    player.land = true;
+                }
+
+                distToPlat = 1000000000000000;
+
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    distToPlat = pDist(ArtificialIntelligenceAccess[i].X, ArtificialIntelligenceAccess[i].Y, this.X + Math.cos(0 + this.rotation) * 110 * this.size, this.Y + Math.sin(0 + this.rotation) * 110 * this.size, this.X + Math.cos(Math.PI + this.rotation) * 110 * this.size, this.Y + Math.sin(Math.PI + this.rotation) * 110 * this.size);
+                    if (distToPlat <= 49 * this.size * 49 * this.size)
+                    {
+                        ArtificialIntelligenceAccess[i].land = true;
+                    }
+                }
+            }
+            else if (this.temporary == 4) //small rectangle
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(cleen, 79, 1054, 211, 138, -(1/2 * 211 * this.size), -(1/2 * 138 * this.size), 211 * this.size, 138 * this.size);
+
+                //XXX.beginPath();
+                //XXX.lineWidth = 120 * this.size;
+                //XXX.strokeStyle = "black";
+                //XXX.moveTo(0 + Math.cos(0) * 70 * this.size, 0);
+                //XXX.lineTo(0 + Math.cos(Math.PI) * 70 * this.size, 0);
+                //XXX.stroke();
+
+                XXX.restore();
+
+                var distToPlat = pDist(X, Y, this.X + Math.cos(0 + this.rotation) * 70 * this.size, this.Y + Math.sin(0 + this.rotation) * 70 * this.size, this.X + Math.cos(Math.PI + this.rotation) * 70 * this.size, this.Y + Math.sin(Math.PI + this.rotation) * 70 * this.size);
+                if (distToPlat <= 60 * this.size * 60 * this.size)
+                {
+                    player.land = true;
+                }
+
+                distToPlat = 1000000000000000;
+
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    distToPlat = pDist(ArtificialIntelligenceAccess[i].X, ArtificialIntelligenceAccess[i].Y, this.X + Math.cos(0 + this.rotation) * 70 * this.size, this.Y + Math.sin(0 + this.rotation) * 70 * this.size, this.X + Math.cos(Math.PI + this.rotation) * 70 * this.size, this.Y + Math.sin(Math.PI + this.rotation) * 70 * this.size);
+                    if (distToPlat <= 60 * this.size * 60 * this.size)
+                    {
+                        ArtificialIntelligenceAccess[i].land = true;
+                    }
+                }
+            }
+            else if (this.temporary == 5) //small circle
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(cleen, 473, 1080, 110, 106, -(1/2 * 110 * this.size), -(1/2 * 106 * this.size), 110 * this.size, 106 * this.size);
+
+                //XXX.beginPath();
+                //XXX.lineWidth = 84 * this.size;
+                //XXX.strokeStyle = "black";
+                //XXX.moveTo(0 + Math.cos(0) * 15 * this.size, 0);
+                //XXX.lineTo(0 + Math.cos(Math.PI) * 15 * this.size, 0);
+                //XXX.stroke();
+
+                XXX.restore();
+
+                var distToPlat = pDist(X, Y, this.X + Math.cos(0 + this.rotation) * 15 * this.size, this.Y + Math.sin(0 + this.rotation) * 15 * this.size, this.X + Math.cos(Math.PI + this.rotation) * 15 * this.size, this.Y + Math.sin(Math.PI + this.rotation) * 15 * this.size);
+                if (distToPlat <= 42 * this.size * 42 * this.size)
+                {
+                    player.land = true;
+                }
+
+                distToPlat = 1000000000000000;
+
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    distToPlat = pDist(ArtificialIntelligenceAccess[i].X, ArtificialIntelligenceAccess[i].Y, this.X + Math.cos(0 + this.rotation) * 15 * this.size, this.Y + Math.sin(0 + this.rotation) * 15 * this.size, this.X + Math.cos(Math.PI + this.rotation) * 15 * this.size, this.Y + Math.sin(Math.PI + this.rotation) * 15 * this.size);
+                    if (distToPlat <= 42 * this.size * 42 * this.size)
+                    {
+                        ArtificialIntelligenceAccess[i].land = true;
+                    }
+                }
+            }
+            else if (this.temporary == 6) //small particle square
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(cleen, 343, 1083, 115, 106, -(1/2 * 115 * this.size), -(1/2 * 106 * this.size), 115 * this.size, 106 * this.size);
+
+                //XXX.beginPath();
+                //XXX.lineWidth = 90 * this.size;
+                //XXX.strokeStyle = "black";
+                //XXX.moveTo(0 + Math.cos(0) * 20 * this.size, 0);
+                //XXX.lineTo(0 + Math.cos(Math.PI) * 20 * this.size, 0);
+                //XXX.stroke();
+
+                XXX.restore();
+
+                var distToPlat = pDist(X, Y, this.X + Math.cos(0 + this.rotation) * 20 * this.size, this.Y + Math.sin(0 + this.rotation) * 20 * this.size, this.X + Math.cos(Math.PI + this.rotation) * 20 * this.size, this.Y + Math.sin(Math.PI + this.rotation) * 20 * this.size);
+                if (distToPlat <= 45 * this.size * 45 * this.size)
+                {
+                    player.land = true;
+                }
+
+                distToPlat = 1000000000000000;
+
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    distToPlat = pDist(ArtificialIntelligenceAccess[i].X, ArtificialIntelligenceAccess[i].Y, this.X + Math.cos(0 + this.rotation) * 20 * this.size, this.Y + Math.sin(0 + this.rotation) * 20 * this.size, this.X + Math.cos(Math.PI + this.rotation) * 20 * this.size, this.Y + Math.sin(Math.PI + this.rotation) * 20 * this.size);
+                    if (distToPlat <= 45 * this.size * 45 * this.size)
+                    {
+                        ArtificialIntelligenceAccess[i].land = true;
+                    }
+                }
+            }
+            else if (this.temporary == 7) //medium particle circle
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(cleen, 375, 903, 195, 172, -(1/2 * 195 * this.size), -(1/2 * 172 * this.size), 195 * this.size, 172 * this.size);
+
+                //XXX.beginPath();
+                //XXX.lineWidth = 154 * this.size;
+                //XXX.strokeStyle = "black";
+                //XXX.moveTo(0 + Math.cos(0) * 30 * this.size, 0);
+                //XXX.lineTo(0 + Math.cos(Math.PI) * 30 * this.size, 0);
+                //XXX.stroke();
+
+                XXX.restore();
+
+                var distToPlat = pDist(X, Y, this.X + Math.cos(0 + this.rotation) * 30 * this.size, this.Y + Math.sin(0 + this.rotation) * 30 * this.size, this.X + Math.cos(Math.PI + this.rotation) * 30 * this.size, this.Y + Math.sin(Math.PI + this.rotation) * 30 * this.size);
+                if (distToPlat <= 77 * this.size * 77 * this.size)
+                {
+                    player.land = true;
+                }
+
+                distToPlat = 1000000000000000;
+
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    distToPlat = pDist(ArtificialIntelligenceAccess[i].X, ArtificialIntelligenceAccess[i].Y, this.X + Math.cos(0 + this.rotation) * 30 * this.size, this.Y + Math.sin(0 + this.rotation) * 30 * this.size, this.X + Math.cos(Math.PI + this.rotation) * 30 * this.size, this.Y + Math.sin(Math.PI + this.rotation) * 30 * this.size);
+                    if (distToPlat <= 77 * this.size * 77 * this.size)
+                    {
+                        ArtificialIntelligenceAccess[i].land = true;
+                    }
+                }
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 1;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+        }
         else if (this.type == "vardanianSpike")
         {
             //TRAITS
@@ -32426,7 +32723,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
 
                 for (var j = 0; j < ArtificialIntelligenceAccess.length; j++)
                 {
-                    if (ArtificialIntelligenceAccess[j].type == "Person" || ArtificialIntelligenceAccess[j].type == "Soldier" || ArtificialIntelligenceAccess[j].healthMAX > 3 && ArtificialIntelligenceAccess[j].type != "shriekingBloodWorm")
+                    if (ArtificialIntelligenceAccess[j].type == "Person" || ArtificialIntelligenceAccess[j].type == "Soldier" || ArtificialIntelligenceAccess[j].healthMAX > 3 && ArtificialIntelligenceAccess[j].type != "ShriekingBloodWorm")
                     {
                         if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= 130 + (3/4 * ArtificialIntelligenceAccess[j].sizeRadius) && !ArtificialIntelligenceAccess[j].underground && ArtificialIntelligenceAccess[j].dmx == this.dmx)
                         {

@@ -5418,6 +5418,93 @@ function cheats()
             var islonDDDD = new Scenery(buildPrompt, X, Y, buildRot, buildPrompt2, buildSize);
             islonDDDD.operations();
         }
+        else if (buildToggle == 162)
+        {
+            if (fKey)
+            {
+                fKey = false;
+                if (shiftKey)
+                {
+                    buildRot += 1/16 * Math.PI;
+                }
+                else
+                {
+                    buildRot += 1/32 * Math.PI;
+                }
+            }
+            if (cKey)
+            {
+                cKey = false;
+                if (shiftKey)
+                {
+                    buildRot -= 1/16 * Math.PI;
+                }
+                else
+                {
+                    buildRot -= 1/32 * Math.PI;
+                }
+            }
+            if (gKey)
+            {
+                gKey = false;
+                if (shiftKey)
+                {
+                    buildSize += 0.1;
+                }
+                else
+                {
+                    buildSize += 0.02;
+                }
+            }
+            if (vKey)
+            {
+                vKey = false;
+                if (shiftKey)
+                {
+                    buildSize -= 0.1;
+                }
+                else
+                {
+                    buildSize -= 0.02;
+                }
+                if (buildSize <= 0)
+                {
+                    buildSize = 0.1;
+                }
+            }
+
+            if (zKey)
+            {
+                zKey = false;
+                if (shiftKey)
+                {
+                    buildClase -= 1;
+                }
+                else
+                {
+                    buildClase += 1;
+                }
+
+                if (buildClase > 7)
+                {
+                    buildClase = 0;
+                }
+                else if ((buildClase < 0))
+                {
+                    buildClase = 7;
+                }
+            }
+
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("mireIsla", ' + X + ', ' + Y + ', ' + buildRot + ', ' + buildClase +', ' + buildSize +'));');
+                scenicList.push(new Scenery("mireIsla", X, Y, buildRot, buildClase, buildSize));
+            }
+
+            var islonDDDD = new Scenery("mireIsla", X, Y, buildRot, buildClase, buildSize);
+            islonDDDD.operations();
+        }
     }
 
     //kids mode silliness

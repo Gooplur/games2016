@@ -32723,7 +32723,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
 
                 for (var j = 0; j < ArtificialIntelligenceAccess.length; j++)
                 {
-                    if (ArtificialIntelligenceAccess[j].type == "Person" || ArtificialIntelligenceAccess[j].type == "Soldier" || ArtificialIntelligenceAccess[j].healthMAX > 3 && ArtificialIntelligenceAccess[j].type != "ShriekingBloodWorm")
+                    if (ArtificialIntelligenceAccess[j].type == "Person" || ArtificialIntelligenceAccess[j].type == "Soldier" || ArtificialIntelligenceAccess[j].healthMAX > 3 && ArtificialIntelligenceAccess[j].type != "ShriekingBloodworm")
                     {
                         if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= 130 + (3/4 * ArtificialIntelligenceAccess[j].sizeRadius) && !ArtificialIntelligenceAccess[j].underground && ArtificialIntelligenceAccess[j].dmx == this.dmx)
                         {

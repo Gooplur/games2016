@@ -5515,13 +5515,13 @@ function cheats()
             if (xKey)
             {
                 var alphon = Math.random();
-                if (alphon > 0.3)
-                {
-                    alphon = true;
-                }
-                else if (alphon > 0.75)
+                if (alphon > 0.75)
                 {
                     alphon = '"massive"';
+                }
+                else if (alphon > 0.3)
+                {
+                    alphon = true;
                 }
                 else
                 {
@@ -5537,7 +5537,7 @@ function cheats()
             {
                 XXX.save();
                 XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
-                XXX.drawImage(ruin, 343, 527, 233, 93, -1/2 * 233 * 2, -1/2 * 93 * 2, 233 * 2, 93 * 2);
+                XXX.drawImage(ruin, 343, 527, 233, 93, -1/2 * 233 * 0.25, -1/2 * 93 * 0.25, 233 * 0.25, 93 * 0.25);
                 XXX.restore();
             }
         }
@@ -5546,13 +5546,13 @@ function cheats()
             if (xKey)
             {
                 var alphon = Math.random();
-                if (alphon > 0.75)
-                {
-                    alphon = true;
-                }
-                else if (alphon > 0.95)
+                if (alphon > 0.95)
                 {
                     alphon = '"massive"';
+                }
+                else if (alphon > 0.75)
+                {
+                    alphon = true;
                 }
                 else if (alphon > 0.5)
                 {
@@ -5572,7 +5572,7 @@ function cheats()
             {
                 XXX.save();
                 XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
-                XXX.drawImage(ruin, 343, 527, 233, 93, -1/2 * 233 * 3.5, -1/2 * 93 * 3.5, 233 * 3.5, 93 * 3.5);
+                XXX.drawImage(ruin, 343, 527, 233, 93, -1/2 * 233 * 2, -1/2 * 93 * 2, 233 * 2, 93 * 2);
                 XXX.restore();
             }
         }

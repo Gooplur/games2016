@@ -5282,6 +5282,7 @@ function theLegend()
     handcrafted.push(new Item("oiledArrow", false));
     handcrafted.push(new Item("oilLantern", false));
     handcrafted.push(new Item("oilLamp", false));
+    handcrafted.push(new Item("vardanianLamp", false));
     handcrafted.push(new Item("candle", false));
     handcrafted.push(new Item("jackOLanternEmpty", false));
     handcrafted.push(new Item("jackOLantern", false));

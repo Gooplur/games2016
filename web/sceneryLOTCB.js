@@ -165,6 +165,10 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
         {
             this.massive = true;
         }
+        else if (this.type == "lyagushkaEggCluster")
+        {
+            this.massive = true;
+        }
     };
     this.isMassive();
 
@@ -2762,16 +2766,104 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             if (this.phase == 2 && this.fertilized == true)
             {
                 this.eggHatchTimer += 1 * (TTD / 16.75);
-                if (this.eggHatchTimer >= 800 && this.phase != "broken")
+                if (this.eggHatchTimer >= 4000 && this.phase != "broken")
                 {
-                    var newby = new Unit(this.X, this.Y, "ShriekingBloodworm", "baby", "Generic Shrieking Bloodworm");
-                    newby.mamaID = this.information;
                     for (var ii = 0; ii < (Math.floor(Math.random() * 6) + 1); ii++)
                     {
+                        var newby = new Unit(this.X, this.Y, "ShriekingBloodworm", "baby", "Generic Shrieking Bloodworm");
+                        newby.mamaID = this.information;
                         ArtificialIntelligenceAccess.push(newby);
                     }
 
                     this.phase = "broken";
+                }
+            }
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+
+                this.phase = "broken";
+            }
+        }
+        else if (this.type == "lyagushkaEggCluster")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 55;
+
+            //DRAWSELF
+
+            if (this.phase == 0)
+            {
+                this.phase = 2;
+                this.tic = 0;
+            }
+
+            if (this.phase == 2)
+            {
+                if (this.tic < 10)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1 / 2 * CCC.width, Y - this.Y + 1 / 2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(cleen, 439, 49, 36, 33, -(1 / 2 * 36 * 1), -(1 / 2 * 33 * 1), 36 * 1, 33 * 1);
+                    XXX.restore();
+                }
+                else if (this.tic < 20)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1 / 2 * CCC.width, Y - this.Y + 1 / 2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(cleen, 438, 12, 36, 33, -(1 / 2 * 36 * 1), -(1 / 2 * 33 * 1), 36 * 1, 33 * 1);
+                    XXX.restore();
+                }
+                else
+                {
+                    this.phase = "hatch";
+                    XXX.save();
+                    XXX.translate(X - this.X + 1 / 2 * CCC.width, Y - this.Y + 1 / 2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(cleen, 438, 12, 36, 33, -(1 / 2 * 36 * 1), -(1 / 2 * 33 * 1), 36 * 1, 33 * 1);
+                    XXX.restore();
+                }
+            }
+            else if (this.phase == "broken" || this.phase == "hatch")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1 / 2 * CCC.width, Y - this.Y + 1 / 2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(cleen, 398, 11, 36, 33, -(1 / 2 * 36 * 1), -(1 / 2 * 33 * 1), 36 * 1, 33 * 1);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 16;
+
+            //HATCHING
+            if (this.phase != "broken")
+            {
+                this.eggHatchTimer += 1 * (TTD / 16.75);
+                if (this.eggHatchTimer >= 1900)
+                {
+                    this.tic += 1;
+                    if (this.phase == "hatch")
+                    {
+                        for (var ii = 0; ii < (Math.floor(Math.random() * 3) + 3); ii++)
+                        {
+                            var newby = new Unit(this.X, this.Y, "Lyagushka", "baby", "Generic Lyagushka");
+                            newby.bigGene = this.temporary;
+                            if (Math.random() < 0.05)
+                            {
+                                newby.bigGene = 1 - this.temporary;
+                            }
+                            newby.geneticMarker = this.information;
+
+                            ArtificialIntelligenceAccess.push(newby);
+                        }
+                        this.phase = "broken";
+                    }
                 }
             }
 
@@ -11071,6 +11163,30 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
                 XXX.drawImage(ruin, 1129, 1095, 143, 92, -(1/2 * 143 * this.information), -(1/2 * 92 * this.information), 143 * this.information, 92 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 13) //grand blood pool
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(ruin, 438, 344, 257, 183, -(1/2 * 257 * this.information), -(1/2 * 183 * this.information), 257 * this.information, 183 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 14) //large blood pool
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(ruin, 197, 361, 194, 169, -(1/2 * 194 * this.information), -(1/2 * 169 * this.information), 194 * this.information, 169 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 15) //thick blood pool
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(ruin, 3, 385, 194, 169, -(1/2 * 194 * this.information), -(1/2 * 169 * this.information), 194 * this.information, 169 * this.information);
                 XXX.restore();
             }
 
@@ -22734,6 +22850,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 }
                 else
                 {
+                    this.zIndex = 1;
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                     XXX.rotate(this.rotation + this.spin);
@@ -25669,6 +25786,59 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             {
                 distToPlat = pDist(ArtificialIntelligenceAccess[i].X, ArtificialIntelligenceAccess[i].Y, this.X + Math.cos(0 + this.rotation) * 22, this.Y + Math.sin(0 + this.rotation) * 22, this.X + Math.cos(Math.PI + this.rotation) * 22, this.Y + Math.sin(Math.PI + this.rotation) * 22);
                 if (distToPlat <= 118 * 118)
+                {
+                    ArtificialIntelligenceAccess[i].land = true;
+                }
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 1;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+        }
+        else if (this.type == "swampWalkBridge")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+            this.size = 1;
+
+            //DRAWSELF
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation);
+
+            //XXX.beginPath();
+            //XXX.lineWidth = 20;
+            //XXX.strokeStyle = "black";
+            //XXX.moveTo(0 + Math.cos(0) * 90, 0);
+            //XXX.lineTo(0 + Math.cos(Math.PI) * 90, 0);
+            //XXX.stroke();
+
+            if (player.movingType == "swimming" || player.weaponEquipped == "boat")
+            {
+                XXX.globalAlpha = 0.5;
+            }
+
+            XXX.drawImage(mimi, 25, 498, 253, 96, -(1/2 * 253 * this.size), -(1/2 * 96 * this.size), 253 * this.size, 96 * this.size);
+            XXX.restore();
+
+            var distToPlat = pDist(X, Y, this.X + Math.cos(0 + this.rotation) * 90, this.Y + Math.sin(0 + this.rotation) * 90, this.X + Math.cos(Math.PI + this.rotation) * 90, this.Y + Math.sin(Math.PI + this.rotation) * 90);
+            if (distToPlat <= 30 * 30 && player.weaponEquipped != "swimming" && player.weaponEquipped != "boat")
+            {
+                player.land = true;
+            }
+
+            distToPlat = 1000000000000000;
+
+            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+            {
+                distToPlat = pDist(ArtificialIntelligenceAccess[i].X, ArtificialIntelligenceAccess[i].Y, this.X + Math.cos(0 + this.rotation) * 90, this.Y + Math.sin(0 + this.rotation) * 90, this.X + Math.cos(Math.PI + this.rotation) * 90, this.Y + Math.sin(Math.PI + this.rotation) * 90);
+                if (distToPlat <= 30 * 30)
                 {
                     ArtificialIntelligenceAccess[i].land = true;
                 }

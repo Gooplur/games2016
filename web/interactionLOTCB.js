@@ -168,7 +168,7 @@ function interaction(me)
     {
         //Interaction with...
         var dtp = self.DTP();
-        if (dtp < 200 )
+        if (dtp < 200 && player.druidBear != true)
         {
             var dtm = self.DTM();
 
@@ -9437,7 +9437,14 @@ function interaction(me)
                             if (quests.thePlightOfLethikQuest == "complete" && uniqueChars.vsevolodLDS == false)
                             {
                                 //text dialogue
-                                setMsg("Since I got my job back working Axels field, I feel comfortable paying off my tab. Here is the money for that... Thank you for being pacient with me!");
+                                if (quests.debtCollectorConrad == "extension")
+                                {
+                                    setMsg("Since I got my job back working Axels field, I feel comfortable paying off my tab. Here is the money for that... Thank you for being pacient with me!");
+                                }
+                                else
+                                {
+                                    setMsg("Since I got my job back working Axels field, I feel comfortable paying off my tab. Here is the money for that...");
+                                }
 
                                 //on ended text dialogue
                                 if (tellMessage == "reset")
@@ -9466,6 +9473,7 @@ function interaction(me)
                                 {
                                     msgReset();
 
+                                    quests.debtCollectorConrad = "extension";
                                     playersTurnToSpeak = true;
                                     player.dialoguePosition = 0;
                                     conversationID[1] = 1;
@@ -10607,7 +10615,7 @@ function interaction(me)
                         else if (conversationID[1] == "0a")
                         {
                             //text dialogue
-                            if (uniqueChars.vsevolodLDS == false)
+                            if (uniqueChars.vsevolodLDS == false && quests.thePlightOfLethikCompletionStyle == "vsevolod")
                             {
                                 setMsg("I can't thank you enough for ridding my field of that warlock's curse!");
                             }
@@ -11319,7 +11327,7 @@ function interaction(me)
                                     playersTurnToSpeak = true;
                                     worldItems.push([new Item("coins", X, Y), 47]);
                                     player.dialoguePosition = 0;
-                                    conversationID[1] = 1;
+                                    conversationID[1] = 0;
                                     self.SC();
                                 }
                                 else
@@ -35569,7 +35577,7 @@ function interaction(me)
                         var parsedFactionRelation = 0;
                     }
 
-                    if (dClick == true && self.ultra.merchant == true && dtp < 100 && self.disturbed == false && parsedFactionRelation >= -25 || dClick == true && self.ultra.storage == true) //merchant by click
+                    if (dClick == true && self.ultra.merchant == true && dtp < 100 && self.disturbed == false && parsedFactionRelation >= -25 && player.druidBear != true || dClick == true && self.ultra.storage == true) //merchant by click
                     {
                         if (self.ultra.storage == true)
                         {
@@ -35591,7 +35599,7 @@ function interaction(me)
                         lowBar = "shop";
                         gameState = "paused";
                     }
-                    else if (dClick == true && self.ultra.banker == true && dtp < 100 && self.disturbed == false && parsedFactionRelation >= -49) //banker by click
+                    else if (dClick == true && self.ultra.banker == true && dtp < 100 && self.disturbed == false && parsedFactionRelation >= -49 && player.druidBear != true) //banker by click
                     {
                         player.bankPosition = 0;
                         bankScroll = 0;

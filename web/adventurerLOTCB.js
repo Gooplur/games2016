@@ -2147,7 +2147,7 @@ function Adventurer()
             {
                 if (player.weaponEquipped != "boat")
                 {
-                    if (this.form == false)
+                    if (this.form == false && this.druidBear != true)
                     {
                         //Unequip weapon when in water unless weapon is boat
                         for (var i = 0; i < Inventory.length; i++)
@@ -2168,7 +2168,7 @@ function Adventurer()
                     //DROWN if in water and run out of energy past fatigue point
                     if (this.movingType == "swimming" && this.energy < -5)
                     {
-                        if (this.vamprism == false && this.form != "selkie" && this.aquatica != true)
+                        if (this.vamprism == false && this.form != "selkie" && this.aquatica != true && this.druidBear != true)
                         {
                             this.drowned = true;
                         }

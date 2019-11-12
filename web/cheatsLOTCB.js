@@ -3848,13 +3848,13 @@ function cheats()
                     buildClase += 1;
                 }
 
-                if (buildClase > 40)
+                if (buildClase > 45)
                 {
                     buildClase = 1;
                 }
                 else if ((buildClase < 1))
                 {
-                    buildClase = 40;
+                    buildClase = 45;
                 }
             }
 

@@ -263,7 +263,21 @@ function worldBuilder()
             elevation = -1;
             region = "s20w34";
             campout = true;
-            outlineBuilder( 34, 34, "outline", -1176, 660);
+            outlineBuilder( 34, 34, "vardanianGrass", -1176, 660);
+            outlineBuilder(6, 1, "vardanianWoods", -1176, 660);
+            outlineBuilder(4, 2, "vardanianWoods", -1175, 660);
+            outlineBuilder(2, 3, "vardanianWoods", -1173, 660);
+            outlineBuilder(1, 1, "vardanianWoods", -1173, 662);
+            outlineBuilder(1, 4, "vardanianWoods", -1170, 660);
+            outlineBuilder(1, 5, "vardanianWoods", -1158, 660);
+            outlineBuilder(2, 1, "vardanianWoods", -1157, 661);
+            outlineBuilder(1, 1, "vardanianWoods", -1156, 661);
+            outlineBuilder(1, 8, "vardanianWoods", -1150, 660);
+            outlineBuilder(1, 5, "vardanianWoods", -1147, 661);
+            outlineBuilder(5, 4, "vardanianWoods", -1146, 662);
+            outlineBuilder(2, 2, "vardanianWoods", -1144, 668);
+            outlineBuilder(1, 3, "vardanianWoods", -1145, 667);
+
         }
         //Layer -19 (warm region): elev -2
         //mapS19
@@ -293,7 +307,173 @@ function worldBuilder()
             elevation = -1;
             region = "s18w34";
             campout = true;
-            outlineBuilder(34, 34, "outline", -1176, 592);
+            outlineBuilder(34, 34, "outline", -1176, 592); //todo mire
+
+            outlineBuilder(1, 2, "brightGrass", -1175, 592); //shallowMire
+            outlineBuilder(1, 1, "brightGrass", -1175, 594);
+            outlineBuilder(1, 1, "brightGrass", -1173, 595);
+            outlineBuilder(1, 1, "brightGrass", -1171, 594);
+            outlineBuilder(1, 1, "brightGrass", -1174, 596);
+            outlineBuilder(1, 1, "brightGrass", -1171, 596);
+            outlineBuilder(2, 1, "brightGrass", -1176, 596);
+            outlineBuilder(1, 4, "brightGrass", -1173, 598);
+            outlineBuilder(1, 2, "brightGrass", -1174, 599);
+            outlineBuilder(1, 1, "brightGrass", -1173, 600);
+            outlineBuilder(1, 1, "brightGrass", -1173, 602);
+            outlineBuilder(1, 2, "brightGrass", -1175, 603);
+            outlineBuilder(1, 1, "brightGrass", -1174, 604);
+            outlineBuilder(1, 3, "brightGrass", -1168, 600);
+            outlineBuilder(1, 1, "brightGrass", -1167, 601);
+            outlineBuilder(1, 3, "brightGrass", -1169, 602);
+            outlineBuilder(1, 1, "brightGrass", -1165, 603);
+            outlineBuilder(1, 1, "brightGrass", -1164, 604);
+            outlineBuilder(1, 1, "brightGrass", -1165, 606);
+            outlineBuilder(1, 1, "brightGrass", -1170, 592);
+            outlineBuilder(1, 1, "brightGrass", -1165, 592);
+            outlineBuilder(1, 1, "brightGrass", -1166, 593);
+            outlineBuilder(1, 3, "brightGrass", -1167, 596);
+            outlineBuilder(2, 1, "brightGrass", -1157, 595);
+            outlineBuilder(1, 2, "brightGrass", -1163, 592);
+            outlineBuilder(1, 2, "brightGrass", -1162, 593);
+            outlineBuilder(1, 1, "brightGrass", -1155, 594);
+            outlineBuilder(2, 1, "brightGrass", -1153, 592);
+            outlineBuilder(1, 1, "brightGrass", -1160, 596);
+            outlineBuilder(2, 1, "brightGrass", -1161, 597);
+            outlineBuilder(1, 1, "brightGrass", -1160, 600);
+            outlineBuilder(2, 4, "brightGrass", -1156, 601);
+            outlineBuilder(1, 1, "brightGrass", -1155, 603);
+            outlineBuilder(1, 1, "brightGrass", -1154, 600);
+            outlineBuilder(1, 2, "brightGrass", -1154, 599);
+            outlineBuilder(1, 2, "brightGrass", -1155, 598);
+            outlineBuilder(3, 1, "brightGrass", -1163, 598);
+            outlineBuilder(1, 1, "brightGrass", -1167, 598);
+            outlineBuilder(1, 1, "brightGrass", -1170, 596);
+            outlineBuilder(1, 2, "brightGrass", -1151, 593);
+            outlineBuilder(1, 1, "brightGrass", -1148, 592);
+            outlineBuilder(1, 1, "brightGrass", -1147, 594);
+            outlineBuilder(1, 1, "brightGrass", -1145, 594);
+            outlineBuilder(1, 1, "brightGrass", -1146, 595);
+            outlineBuilder(1, 2, "brightGrass", -1147, 595);
+            outlineBuilder(1, 1, "brightGrass", -1147, 596);
+            outlineBuilder(3, 2, "brightGrass", -1145, 596);
+            outlineBuilder(1, 1, "brightGrass", -1143, 595);
+            outlineBuilder(2, 1, "brightGrass", -1144, 593);
+            outlineBuilder(1, 1, "brightGrass", -1152, 598);
+            outlineBuilder(2, 1, "brightGrass", -1151, 599);
+            outlineBuilder(1, 3, "brightGrass", -1150, 599);
+            outlineBuilder(1, 1, "brightGrass", -1151, 595);
+            outlineBuilder(1, 1, "brightGrass", -1150, 596);
+            outlineBuilder(1, 1, "brightGrass", -1149, 597);
+            outlineBuilder(1, 1, "brightGrass", -1148, 600);
+            outlineBuilder(1, 1, "brightGrass", -1145, 600);
+            outlineBuilder(2, 1, "brightGrass", -1143, 603);
+            outlineBuilder(1, 1, "brightGrass", -1143, 597);
+            outlineBuilder(1, 1, "brightGrass", -1144, 602);
+            outlineBuilder(1, 1, "brightGrass", -1147, 602);
+            outlineBuilder(1, 2, "brightGrass", -1162, 603);
+            outlineBuilder(1, 1, "brightGrass", -1145, 603);
+            outlineBuilder(1, 2, "brightGrass", -1164, 597);
+            outlineBuilder(1, 1, "brightGrass", -1161, 601);
+            outlineBuilder(1, 2, "brightGrass", -1176, 623);
+            outlineBuilder(1, 1, "brightGrass", -1174, 624);
+            outlineBuilder(1, 3, "brightGrass", -1175, 620);
+            outlineBuilder(1, 1, "brightGrass", -1175, 618);
+            outlineBuilder(1, 2, "brightGrass", -1176, 617);
+            outlineBuilder(1, 2, "brightGrass", -1172, 615);
+            outlineBuilder(2, 3, "brightGrass", -1172, 616);
+            outlineBuilder(1, 2, "brightGrass", -1169, 625);
+            outlineBuilder(1, 3, "brightGrass", -1169, 623);
+            outlineBuilder(1, 1, "brightGrass", -1172, 622);
+            outlineBuilder(1, 3, "brightGrass", -1171, 620);
+            outlineBuilder(1, 2, "brightGrass", -1171, 621);
+            outlineBuilder(1, 4, "brightGrass", -1169, 619);
+            outlineBuilder(1, 2, "brightGrass", -1167, 620);
+            outlineBuilder(1, 2, "brightGrass", -1165, 618);
+            outlineBuilder(1, 1, "brightGrass", -1166, 617);
+            outlineBuilder(1, 2, "brightGrass", -1163, 624);
+            outlineBuilder(1, 1, "brightGrass", -1161, 619);
+            outlineBuilder(2, 1, "brightGrass", -1160, 621);
+            outlineBuilder(6, 2, "brightGrass", -1169, 594);
+            outlineBuilder(1, 4, "brightGrass", -1170, 595);
+
+            outlineBuilder(1, 4, "vardanianWetlands", -1176, 593);
+            outlineBuilder(1, 3, "vardanianWetlands", -1174, 594);
+            outlineBuilder(1, 2, "vardanianWetlands", -1173, 596);
+            outlineBuilder(1, 1, "vardanianWetlands", -1175, 597);
+            outlineBuilder(1, 2, "vardanianWetlands", -1175, 598);
+            outlineBuilder(1, 1, "vardanianWetlands", -1174, 602);
+            outlineBuilder(2, 1, "vardanianWetlands", -1172, 599);
+            outlineBuilder(1, 1, "vardanianWetlands", -1171, 599);
+            outlineBuilder(2, 2, "vardanianWetlands", -1170, 599);
+            outlineBuilder(1, 2, "vardanianWetlands", -1169, 601);
+            outlineBuilder(1, 1, "vardanianWetlands", -1166, 601);
+            outlineBuilder(1, 3, "vardanianWetlands", -1166, 602);
+            outlineBuilder(1, 1, "vardanianWetlands", -1165, 605);
+            outlineBuilder(1, 2, "vardanianWetlands", -1169, 595);
+            outlineBuilder(1, 1, "vardanianWetlands", -1156, 596);
+            outlineBuilder(1, 5, "vardanianWetlands", -1160, 597);
+            outlineBuilder(1, 4, "vardanianWetlands", -1160, 598);
+            outlineBuilder(1, 6, "vardanianWetlands", -1160, 599);
+            outlineBuilder(1, 5, "vardanianWetlands", -1159, 600);
+            outlineBuilder(2, 1, "vardanianWetlands", -1165, 594);
+            outlineBuilder(2, 2, "vardanianWetlands", -1164, 595);
+            outlineBuilder(2, 1, "vardanianWetlands", -1166, 597);
+            outlineBuilder(1, 1, "vardanianWetlands", -1165, 598);
+            outlineBuilder(1, 1, "vardanianWetlands", -1164, 599);
+            outlineBuilder(2, 1, "vardanianWetlands", -1162, 599);
+            outlineBuilder(1, 1, "vardanianWetlands", -1162, 595);
+            outlineBuilder(1, 1, "vardanianWetlands", -1161, 602);
+            outlineBuilder(1, 1, "vardanianWetlands", -1151, 594);
+            outlineBuilder(3, 2, "vardanianWetlands", -1149, 593);
+            outlineBuilder(1, 1, "vardanianWetlands", -1147, 592);
+            outlineBuilder(1, 2, "vardanianWetlands", -1146, 593);
+            outlineBuilder(3, 1, "vardanianWetlands", -1143, 592);
+            outlineBuilder(1, 1, "vardanianWetlands", -1146, 596);
+            outlineBuilder(1, 2, "vardanianWetlands", -1152, 596);
+            outlineBuilder(2, 2, "vardanianWetlands", -1147, 600);
+            outlineBuilder(1, 1, "vardanianWetlands", -1144, 599);
+            outlineBuilder(1, 1, "vardanianWetlands", -1145, 602);
+            outlineBuilder(2, 1, "vardanianWetlands", -1143, 601);
+            outlineBuilder(1, 1, "vardanianWetlands", -1175, 616);
+            outlineBuilder(1, 2, "vardanianWetlands", -1174, 617);
+            outlineBuilder(1, 4, "vardanianWetlands", -1174, 618);
+            outlineBuilder(1, 3, "vardanianWetlands", -1174, 619);
+            outlineBuilder(1, 2, "vardanianWetlands", -1173, 623);
+            outlineBuilder(1, 5, "vardanianWetlands", -1172, 624);
+            outlineBuilder(1, 2, "vardanianWetlands", -1171, 625);
+            outlineBuilder(1, 4, "vardanianWetlands", -1170, 622);
+            outlineBuilder(1, 2, "vardanianWetlands", -1169, 621);
+            outlineBuilder(1, 1, "vardanianWetlands", -1168, 620);
+            outlineBuilder(1, 1, "vardanianWetlands", -1166, 618);
+            outlineBuilder(1, 2, "vardanianWetlands", -1165, 619);
+            outlineBuilder(2, 4, "vardanianWetlands", -1164, 622);
+            outlineBuilder(1, 2, "vardanianWetlands", -1162, 621);
+            outlineBuilder(1, 2, "vardanianWetlands", -1161, 620);
+
+            outlineBuilder(1, 4, "crag", -1169, 592); //vardanianWoods
+            outlineBuilder(1, 2, "crag", -1168, 593);
+            outlineBuilder(1, 8, "crag", -1161, 592);
+            outlineBuilder(1, 7, "crag", -1160, 593);
+            outlineBuilder(1, 4, "crag", -1159, 594);
+            outlineBuilder(1, 1, "crag", -1159, 595);
+            outlineBuilder(2, 2, "crag", -1176, 624);
+            outlineBuilder(1, 1, "crag", -1174, 625);
+
+            //outlineBuilder(4, 4, "crag", -1160, 615);
+            //outlineBuilder(1, 4, "crag", -1159, 619);
+            //outlineBuilder(2, 4, "crag", -1157, 614);
+            //outlineBuilder(1, 1, "crag", -1156, 616);
+            //outlineBuilder(3, 1, "crag", -1161, 615);
+
+            //outlineBuilder(3, 1, "crag", -1160, 623);
+            //outlineBuilder(6, 1, "crag", -1159, 620);
+            //outlineBuilder(4, 1, "crag", -1156, 622);
+
+            outlineBuilder(4, 1, "vardanianStone", -1158, 592);
+            outlineBuilder(5, 1, "vardanianStone", -1158, 597);
+            outlineBuilder(7, 1, "vardanianStone", -1158, 619);
+
+
         }
         //mapS18
         if (Y > -187519 && Y < -176743 && X < 7687 && X > - 3901) //X0
@@ -2344,6 +2524,11 @@ function worldBuilder()
             outlineBuilder( 34, 34, "greenGrass", -20, 116);
             outlineBuilder( 1, 4, "stonePath", 3, 116);
             outlineBuilder( 33, 1, "stonePath", 6, 117);
+
+            outlineBuilder(2, 2, "forest", -6, 126);
+            outlineBuilder(1, 1, "forest", -7, 126);
+            outlineBuilder(2, 1, "forest", -3, 128);
+            outlineBuilder(1, 1, "forest", -2, 129);
         }
         //mapS4W13 //CRANHEIM
         if (Y > -44704 && Y < -33877 && X < 140305 && X > 128660) //X-13 //todo add map

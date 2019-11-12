@@ -1319,7 +1319,7 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                                 else if (kind == "blinding" || kind == "blindingChokeII" || kind == "blindingChokeI")
                                 {
                                     ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
-                                    ArtificialIntelligenceAccess[i].blindedTime = new Date().getTime() + (1000 * (this.cnx / 5));;
+                                    ArtificialIntelligenceAccess[i].blindedTime = new Date().getTime() + (1000 * (this.cnx / 5));
                                 }
 
                                 if (kind != "blinding" && kind != "blindingChokeII" && kind != "blindingChokeI")
@@ -1781,8 +1781,8 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
             }
             else
             {
-                this.orientToCaster(29, 3.2 / 5 * Math.PI);
-                this.drawWithRotation(mofu, 454, 46, 19, 32, 29, 26, player.rotation, -1 / 2 * 19, -1 / 2 * 32);
+                this.X = this.orders[0];
+                this.Y = this.orders[1];
             }
         }
         //WHIRLWIND
@@ -3375,12 +3375,72 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                         if (ArtificialIntelligenceAccess[i].team != "player")
                         {
                             var distanceToAI = Math.sqrt((ArtificialIntelligenceAccess[i].X - this.X) * (ArtificialIntelligenceAccess[i].X - this.X) + (ArtificialIntelligenceAccess[i].Y - this.Y) * (ArtificialIntelligenceAccess[i].Y - this.Y));
-                            if (distanceToAI <= 45)
+                            if (distanceToAI <= 50)
                             {
                                 ArtificialIntelligenceAccess[i].stunIV = true;
                                 ArtificialIntelligenceAccess[i].stunTimer = 1;
                                 ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
                             }
+                        }
+                    }
+                }
+                else
+                {
+                    if (this.alert)
+                    {
+                        this.stage += 1;
+                        this.alert = false;
+                        this.repeated = false;
+                    }
+
+                    if (this.stage == 1)
+                    {
+                        XXX.save();
+                        XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                        XXX.rotate(0);
+                        XXX.drawImage(oldverse, 3098, 133, 121, 91, - (1/2 * 121 * this.size), - (1/2 * 91 * this.size), 121 * this.size, 91 * this.size);
+                        XXX.restore();
+                    }
+                    else if (this.stage == 0)
+                    {
+                        this.flashAnimate(200, 0, 1, [{image: oldverse, imgX: 3100, imgY: 309, portionW: 121, portionH: 91, adjX: -1 / 2 * 121 * this.size, adjY: -1 / 2 * 91 * this.size, width: 121 * this.size, height: 91 * this.size}, {image: oldverse, imgX: 3097, imgY: 225, portionW: 121, portionH: 91, adjX: -1 / 2 * 121 * this.size, adjY: -1 / 2 * 91 * this.size, width: 121 * this.size, height: 91 * this.size}, {image: oldverse, imgX: 3098, imgY: 133, portionW: 121, portionH: 91, adjX: -1 / 2 * 121 * this.size, adjY: -1 / 2 * 91 * this.size, width: 121 * this.size, height: 91 * this.size}], false, "alert");
+                        if (this.alert)
+                        {
+                            XXX.save();
+                            XXX.translate(X - this.X + 1 / 2 * CCC.width, Y - this.Y + 1 / 2 * CCC.height);
+                            XXX.rotate(0);
+                            XXX.drawImage(oldverse, 3098, 133, 121, 91, -(1 / 2 * 121 * this.size), -(1 / 2 * 91 * this.size), 121 * this.size, 91 * this.size);
+                            XXX.restore();
+                        }
+                    }
+                    else if (this.stage >= 1)
+                    {
+                        this.flashAnimate(200, 0, 1, [{image: oldverse, imgX: 3098, imgY: 133, portionW: 121, portionH: 91, adjX: -1 / 2 * 121 * this.size, adjY: -1 / 2 * 91 * this.size, width: 121 * this.size, height: 91 * this.size}, {image: oldverse, imgX: 3097, imgY: 225, portionW: 121, portionH: 91, adjX: -1 / 2 * 121 * this.size, adjY: -1 / 2 * 91 * this.size, width: 121 * this.size, height: 91 * this.size}, {image: oldverse, imgX: 3100, imgY: 309, portionW: 121, portionH: 91, adjX: -1 / 2 * 121 * this.size, adjY: -1 / 2 * 91 * this.size, width: 121 * this.size, height: 91 * this.size}], false, true);
+                    }
+
+
+                    //Pushes non player team units away
+                    for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                    {
+                        if (ArtificialIntelligenceAccess[i].type != "SpiritBear" && ArtificialIntelligenceAccess[i].type != "Skriatok" && ArtificialIntelligenceAccess[i].type != "Sprite")
+                        {
+                            var distanceToAI = Math.sqrt((ArtificialIntelligenceAccess[i].X - this.X) * (ArtificialIntelligenceAccess[i].X - this.X) + (ArtificialIntelligenceAccess[i].Y - this.Y) * (ArtificialIntelligenceAccess[i].Y - this.Y));
+                            if (distanceToAI <= 50)
+                            {
+                                ArtificialIntelligenceAccess[i].stunIV = true;
+                                ArtificialIntelligenceAccess[i].stunTimer = 1;
+                                ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
+                            }
+                        }
+                    }
+
+                    if (player.druidBear != true)
+                    {
+                        var playarDist = (this.X - X)*(this.X - X)+(this.Y - Y)*(this.Y - Y);
+                        if (playarDist < 120)
+                        {
+                            player.stunnedIII = true;
+                            player.stunnedTime = 2;
                         }
                     }
                 }

@@ -246,6 +246,7 @@ function Adventurer()
     this.castingCooldown = new Date().getTime();
     this.secondaryCastingCooldown = new Date().getTime();
     this.doMagic = true; //this allows things to be done in the magic animation thing.
+    this.castedSpell = false;
     //Inventory Variables
     this.inventoryPosition = 0;
     this.hinderance = false; //this is the state of being over-cucumbered.
@@ -619,6 +620,7 @@ function Adventurer()
     this.antiMothfearKeepTime = new Date().getTime();
     this.antiMothfearTime = 0;
     this.antiMothfear = false;
+    this.druidBear = false;
 
         //faction variables
     this.factionToggle = false;
@@ -11190,7 +11192,7 @@ function Adventurer()
                 if (this.casting == false && this.will >= this.spell.cost && new Date().getTime() - this.castingCooldown >= (this.spell.cooldown * 1000))
                 {
                     this.casting = true;
-                    this.will -= this.spell.cost;
+                    //this.will -= this.spell.cost;
                 }
             }
         }
@@ -11735,6 +11737,50 @@ function Adventurer()
                             this.secondaryCastingCooldown = new Date().getTime();
                         }
                     }
+                    //Spirit Bear
+                    if (secondarySpells[i].ID == "spiritBear")
+                    {
+                        if (new Date().getTime() - this.secondaryCastingCooldown >= (secondarySpells[i].cooldown * 1000) && this.will - secondarySpells[i].cost >= 0)
+                        {
+                            var hit = false;
+                            for (var jj = 0; jj < ArtificialIntelligenceAccess.length; jj++)
+                            {
+                                if (ArtificialIntelligenceAccess[jj].type == "SpiritBear" && ArtificialIntelligenceAccess[jj].ID == "druid")
+                                {
+                                    hit = true;
+                                    break;
+                                }
+                            }
+
+                            if (hit == false)
+                            {
+                                clearEquipped();
+
+                                this.will -= secondarySpells[i].cost;
+                                this.magicalExperience += secondarySpells[i].EXP;
+
+                                for (var jj = 0; jj < ArtificialIntelligenceAccess.length; jj++)
+                                {
+                                    ArtificialIntelligenceAccess[jj].mounted = false;
+                                }
+
+                                if (player.getConcentration() >= 45)
+                                {
+                                    ArtificialIntelligenceAccess.push(new Unit(X, Y, "SpiritBear", "giant", "druid"));
+                                }
+                                else if (player.getConcentration() >= 6)
+                                {
+                                    ArtificialIntelligenceAccess.push(new Unit(X, Y, "SpiritBear", true, "druid"));
+                                }
+                                else
+                                {
+                                    ArtificialIntelligenceAccess.push(new Unit(X, Y, "SpiritBear", false, "druid"));
+                                }
+
+                                this.secondaryCastingCooldown = new Date().getTime();
+                            }
+                        }
+                    }
                     //Drake Breath
                     if (secondarySpells[i].ID == "drakeBreath")
                     {
@@ -12145,10 +12191,16 @@ function Adventurer()
                 if (this.doMagic)
                 {
                     this.doMagic = false;
+                    this.will -= this.spell.cost;
                     this.magicalExperience += this.spell.EXP;
+                    this.castedSpell = true;
                     magicList.push(new Magic(player.spell, true));
                 }
-                this.castingCooldown = new Date().getTime();
+                if (this.castedSpell == true)
+                {
+                    this.castedSpell = false;
+                    this.castingCooldown = new Date().getTime();
+                }
             }
         }
 
@@ -12377,7 +12429,9 @@ function Adventurer()
                 if (this.doMagic)
                 {
                     this.doMagic = false;
+                    this.will -= this.spell.cost;
                     this.magicalExperience += this.spell.EXP;
+                    this.castedSpell = true;
 
                     var closerestToPlayz = "catFace";
                     var closerestest = "none";
@@ -12447,7 +12501,11 @@ function Adventurer()
                 }
                 XXX.drawImage(freeverse, 139, 946, 61, 52, -39.5, -47.5, 61 * 1.3, 52 * 1.3);
                 XXX.restore();
-                this.castingCooldown = new Date().getTime();
+                if (this.castedSpell == true)
+                {
+                    this.castedSpell = false;
+                    this.castingCooldown = new Date().getTime();
+                }
             }
 
         }
@@ -12533,10 +12591,16 @@ function Adventurer()
                 if (this.doMagic)
                 {
                     this.doMagic = false;
+                    this.will -= this.spell.cost;
                     this.magicalExperience += this.spell.EXP;
+                    this.castedSpell = true;
                     magicList.push(new Magic(player.spell, true));
                 }
-                this.castingCooldown = new Date().getTime();
+                if (this.castedSpell == true)
+                {
+                    this.castedSpell = false;
+                    this.castingCooldown = new Date().getTime();
+                }
             }
         }
 
@@ -12621,10 +12685,16 @@ function Adventurer()
                 if (this.doMagic)
                 {
                     this.doMagic = false;
+                    this.will -= this.spell.cost;
                     this.magicalExperience += this.spell.EXP;
+                    this.castedSpell = true;
                     magicList.push(new Magic(player.spell, true));
                 }
-                this.castingCooldown = new Date().getTime();
+                if (this.castedSpell == true)
+                {
+                    this.castedSpell = false;
+                    this.castingCooldown = new Date().getTime();
+                }
             }
             else if (Math.floor(this.stage) <= 6)
             {
@@ -12749,7 +12819,9 @@ function Adventurer()
                     {
                         this.warmth -= 5;
                     }
+                    this.will -= this.spell.cost;
                     this.magicalExperience += this.spell.EXP;
+                    this.castedSpell = true;
 
                     if (this.spell.CNX >= 34)
                     {
@@ -12793,7 +12865,11 @@ function Adventurer()
                     }
 
                 }
-                this.castingCooldown = new Date().getTime();
+                if (this.castedSpell == true)
+                {
+                    this.castedSpell = false;
+                    this.castingCooldown = new Date().getTime();
+                }
             }
         }
 
@@ -12890,7 +12966,9 @@ function Adventurer()
                 if (this.doMagic)
                 {
                     this.doMagic = false;
+                    this.will -= this.spell.cost;
                     this.magicalExperience += this.spell.EXP;
+                    this.castedSpell = true;
 
                     if (this.spell.CNX >= 45)
                     {
@@ -12939,7 +13017,11 @@ function Adventurer()
                     }
 
                 }
-                this.castingCooldown = new Date().getTime();
+                if (this.castedSpell == true)
+                {
+                    this.castedSpell = false;
+                    this.castingCooldown = new Date().getTime();
+                }
             }
         }
 
@@ -13024,7 +13106,9 @@ function Adventurer()
                 if (this.doMagic)
                 {
                     this.doMagic = false;
+                    this.will -= this.spell.cost;
                     this.magicalExperience += this.spell.EXP;
+                    this.castedSpell = true;
 
                     if (this.spell.CNX >= 50)
                     {
@@ -13066,7 +13150,11 @@ function Adventurer()
                         magicList.push(new Magic(player.spell, true, 1));
                     }
                 }
-                this.castingCooldown = new Date().getTime();
+                if (this.castedSpell == true)
+                {
+                    this.castedSpell = false;
+                    this.castingCooldown = new Date().getTime();
+                }
             }
             else if (Math.floor(this.stage) <= 6)
             {
@@ -13188,7 +13276,9 @@ function Adventurer()
                 if (this.doMagic == true)
                 {
                     this.doMagic = false;
+                    this.will -= this.spell.cost;
                     this.magicalExperience += this.spell.EXP;
+                    this.castedSpell = true;
                     if (this.spell.ID == "ancientRift")
                     {
                         magicList.push(new Magic(player.spell, true, "AncientBeing"));
@@ -13198,7 +13288,11 @@ function Adventurer()
                         magicList.push(new Magic(player.spell, true, 1));
                     }
                 }
-                this.castingCooldown = new Date().getTime();
+                if (this.castedSpell == true)
+                {
+                    this.castedSpell = false;
+                    this.castingCooldown = new Date().getTime();
+                }
             }
             else if (Math.floor(this.stage) <= 6)
             {
@@ -13319,10 +13413,16 @@ function Adventurer()
                 if (this.doMagic)
                 {
                     this.doMagic = false;
+                    this.will -= this.spell.cost;
                     this.magicalExperience += this.spell.EXP;
+                    this.castedSpell = true;
                     magicList.push(new Magic(player.spell, true, 1));
                 }
-                this.castingCooldown = new Date().getTime();
+                if (this.castedSpell == true)
+                {
+                    this.castedSpell = false;
+                    this.castingCooldown = new Date().getTime();
+                }
             }
             else if (Math.floor(this.stage) <= 6)
             {
@@ -13443,10 +13543,16 @@ function Adventurer()
                 if (this.doMagic)
                 {
                     this.doMagic = false;
+                    this.will -= this.spell.cost;
                     this.magicalExperience += this.spell.EXP;
+                    this.castedSpell = true;
                     magicList.push(new Magic(player.spell, true, 1));
                 }
-                this.castingCooldown = new Date().getTime();
+                if (this.castedSpell == true)
+                {
+                    this.castedSpell = false;
+                    this.castingCooldown = new Date().getTime();
+                }
             }
             else if (Math.floor(this.stage) <= 6)
             {
@@ -13532,7 +13638,9 @@ function Adventurer()
                 if (this.doMagic)
                 {
                     this.doMagic = false;
+                    this.will -= this.spell.cost;
                     this.magicalExperience += this.spell.EXP;
+                    this.castedSpell = true;
                     magicList.push(new Magic(player.spell, true, true));
                 }
             }
@@ -13547,7 +13655,11 @@ function Adventurer()
                 }
                 XXX.drawImage(caverna, 472, 11, 55, 57, -1/2 * 55, -1/2 * 57, 55, 57);
                 XXX.restore();
-                this.castingCooldown = new Date().getTime();
+                if (this.castedSpell == true)
+                {
+                    this.castedSpell = false;
+                    this.castingCooldown = new Date().getTime();
+                }
             }
         }
 
@@ -13644,7 +13756,9 @@ function Adventurer()
                     {
                         this.warmth += 7;
                     }
+                    this.will -= this.spell.cost;
                     this.magicalExperience += this.spell.EXP;
+                    this.castedSpell = true;
                     magicList.push(new Magic(player.spell, true));
                 }
             }
@@ -13659,8 +13773,11 @@ function Adventurer()
                 }
                 XXX.drawImage(polypol, 1731, 43, 49, 33, -27, -36, 49 * 1.2, 33 * 1.2);
                 XXX.restore();
-                this.castingCooldown = new Date().getTime();
-
+                if (this.castedSpell == true)
+                {
+                    this.castedSpell = false;
+                    this.castingCooldown = new Date().getTime();
+                }
             }
         }
 
@@ -13734,7 +13851,9 @@ function Adventurer()
                 {
                     this.doMagic = false;
                     this.warmth += 2;
+                    this.will -= (1/2 * this.spell.cost);
                     this.magicalExperience += this.spell.EXP;
+                    this.castedSpell = true;
                     magicList.push(new Magic(player.spell, true, 1));
                 }
             }
@@ -13790,7 +13909,9 @@ function Adventurer()
                 {
                     this.doMagic = false;
                     this.warmth += 2;
+                    this.will -= (1/2 * this.spell.cost);
                     this.magicalExperience += this.spell.EXP;
+                    this.castedSpell = true;
                     magicList.push(new Magic(player.spell, true, 0));
                 }
             }
@@ -13805,8 +13926,11 @@ function Adventurer()
                 }
                 XXX.drawImage(polypol, 1926, 134, 54, 38, -1/2 * 54 * 1.1, -1/2 * 38 * 1.1 - 10, 54 * 1.1, 38 * 1.1);
                 XXX.restore();
-                this.castingCooldown = new Date().getTime();
-
+                if (this.castedSpell == true)
+                {
+                    this.castedSpell = false;
+                    this.castingCooldown = new Date().getTime();
+                }
             }
         }
 
@@ -13895,7 +14019,9 @@ function Adventurer()
                 {
                     this.doMagic = false;
                     this.warmth += 30;
+                    this.will -= this.spell.cost;
                     this.magicalExperience += this.spell.EXP;
+                    this.castedSpell = true;
                     magicList.push(new Magic(player.spell, true));
                 }
             }
@@ -13910,8 +14036,11 @@ function Adventurer()
                 }
                 XXX.drawImage(stic, 194, 15, 43, 46, -1/2 * 43 * szx, -1/2 * 46 * szx, 43 * szx, 46 * szx);
                 XXX.restore();
-                this.castingCooldown = new Date().getTime();
-
+                if (this.castedSpell == true)
+                {
+                    this.castedSpell = false;
+                    this.castingCooldown = new Date().getTime();
+                }
             }
         }
 
@@ -14132,7 +14261,9 @@ function Adventurer()
                     {
                         this.warmth -= 5;
                     }
+                    this.will -= this.spell.cost;
                     this.magicalExperience += this.spell.EXP;
+                    this.castedSpell = true;
                     magicList.push(new Magic(player.spell, true, 1));
                     magicList.push(new Magic(player.spell, true, 2));
                     magicList.push(new Magic(player.spell, true, 3));
@@ -14166,7 +14297,11 @@ function Adventurer()
                 }
                 XXX.drawImage(polypol, 1574, 226, 48, 35, -25, -26.5, 48, 35);
                 XXX.restore();
-                this.castingCooldown = new Date().getTime();
+                if (this.castedSpell == true)
+                {
+                    this.castedSpell = false;
+                    this.castingCooldown = new Date().getTime();
+                }
             }
 
         }
@@ -14348,7 +14483,9 @@ function Adventurer()
                 if (this.doMagic)
                 {
                     this.doMagic = false;
+                    this.will -= this.spell.cost;
                     this.magicalExperience += this.spell.EXP;
+                    this.castedSpell = true;
                     magicList.push(new Magic(player.spell, true));
                 }
             }
@@ -14363,7 +14500,11 @@ function Adventurer()
                 }
                 XXX.drawImage(theng, 674, 1294, 47, 45, -1/2 * 47 * 0.88 + 0.7, -1/2 * 45 * 0.88 - 10, 47 * 0.88, 45 * 0.88);
                 XXX.restore();
-                this.castingCooldown = new Date().getTime();
+                if (this.castedSpell == true)
+                {
+                    this.castedSpell = false;
+                    this.castingCooldown = new Date().getTime();
+                }
             }
         }
 
@@ -14473,7 +14614,9 @@ function Adventurer()
                 {
                     this.doMagic = false;
                     this.warmth += 4;
+                    this.will -= this.spell.cost;
                     this.magicalExperience += this.spell.EXP;
+                    this.castedSpell = true;
                     magicList.push(new Magic(player.spell, true));
                 }
             }
@@ -14488,7 +14631,11 @@ function Adventurer()
                 }
                 XXX.drawImage(polypol, 1637, 234, 49, 33, -29, -23, 49 * 1.2, 33);
                 XXX.restore();
-                this.castingCooldown = new Date().getTime();
+                if (this.castedSpell == true)
+                {
+                    this.castedSpell = false;
+                    this.castingCooldown = new Date().getTime();
+                }
             }
         }
 
@@ -14574,11 +14721,17 @@ function Adventurer()
                 if (this.doMagic)
                 {
                     this.doMagic = false;
+                    this.will -= this.spell.cost;
                     this.magicalExperience += this.spell.EXP;
+                    this.castedSpell = true;
                     magicList.push(new Magic(player.spell, true, 0));
                     magicList.push(new Magic(player.spell, true, 1));
                 }
-                this.castingCooldown = new Date().getTime();
+                if (this.castedSpell == true)
+                {
+                    this.castedSpell = false;
+                    this.castingCooldown = new Date().getTime();
+                }
             }
         }
 
@@ -14628,6 +14781,7 @@ function Adventurer()
                 if (this.doMagic)
                 {
                     this.doMagic = false;
+                    this.will -= this.spell.cost;
                     for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
                     {
                         if (ArtificialIntelligenceAccess[i].DTP() <= 475)
@@ -14636,8 +14790,13 @@ function Adventurer()
                         }
                     }
                     this.magicalExperience += this.spell.EXP;
+                    this.castedSpell = true;
                 }
-                this.castingCooldown = new Date().getTime();
+                if (this.castedSpell == true)
+                {
+                    this.castedSpell = false;
+                    this.castingCooldown = new Date().getTime();
+                }
             }
         }
 
@@ -14687,10 +14846,16 @@ function Adventurer()
                 if (this.doMagic)
                 {
                     this.doMagic = false;
+                    this.will -= this.spell.cost;
                     this.magicalExperience += this.spell.EXP;
+                    this.castedSpell = true;
                     magicList.push(new Magic(player.spell, true));
                 }
-                this.castingCooldown = new Date().getTime();
+                if (this.castedSpell == true)
+                {
+                    this.castedSpell = false;
+                    this.castingCooldown = new Date().getTime();
+                }
             }
         }
 
@@ -14787,7 +14952,9 @@ function Adventurer()
                 if (this.doMagic)
                 {
                     this.doMagic = false;
+                    this.will -= this.spell.cost;
                     this.magicalExperience += this.spell.EXP;
+                    this.castedSpell = true;
                     magicList.push(new Magic(player.spell, true));
                 }
             }
@@ -14802,7 +14969,11 @@ function Adventurer()
                 }
                 XXX.drawImage(mofu, 461, 267, 32, 30, -21, -33, 32 * 1.25, 30 * 1.25);
                 XXX.restore();
-                this.castingCooldown = new Date().getTime();
+                if (this.castedSpell == true)
+                {
+                    this.castedSpell = false;
+                    this.castingCooldown = new Date().getTime();
+                }
             }
         }
 
@@ -14876,7 +15047,9 @@ function Adventurer()
                 if (this.doMagic)
                 {
                     this.doMagic = false;
+                    this.will -= this.spell.cost;
                     this.magicalExperience += this.spell.EXP;
+                    this.castedSpell = true;
                     magicList.push(new Magic(player.spell, true));
                 }
             }
@@ -14903,7 +15076,11 @@ function Adventurer()
                 }
                 XXX.drawImage(tomb, 1389, 418, 73, 57, -1/2 * 73 * 0.9, -1/2 * 57 * 0.9 - 1.2, 73 * 0.9, 57 * 0.9);
                 XXX.restore();
-                this.castingCooldown = new Date().getTime();
+                if (this.castedSpell == true)
+                {
+                    this.castedSpell = false;
+                    this.castingCooldown = new Date().getTime();
+                }
             }
         }
 
@@ -17376,7 +17553,7 @@ function Adventurer()
                             {
                                 if (worldItems[ll][0].utility == "food")
                                 {
-                                    if (worldItems[ll][0].type == "crabFlesh" || worldItems[ll][0].type == "rawCrabClaw" || worldItems[ll][0].type == "rawRedCrombal" || worldItems[ll][0].type == "rawThab" || worldItems[ll][0].type == "rawJuurgo" || worldItems[ll][0].type == "rawRazorfin" || worldItems[ll][0].type == "rawCloimidFlesh" || worldItems[ll][0].type == "rawSaskriit" || worldItems[ll][0].type == "rawRiulpo" || worldItems[ll][0].type == "rawKald" || worldItems[ll][0].type == "rawPolxetp" || worldItems[ll][0].type == "rawTridite" || worldItems[ll][0].type == "rawSalmon" || worldItems[ll][0].type == "rawSlol" || worldItems[ll][0].type == "rawRedBelliedFalder" || worldItems[ll][0].type == "rawCrawdid" || worldItems[ll][0].type == "rawDuskfish")
+                                    if (worldItems[ll][0].type == "crabFlesh" || worldItems[ll][0].type == "rawCrabClaw" || worldItems[ll][0].type == "rawRedCrombal" || worldItems[ll][0].type == "rawThab" || worldItems[ll][0].type == "rawJuurgo" || worldItems[ll][0].type == "rawRazorfin" || worldItems[ll][0].type == "rawCloimidFlesh" || worldItems[ll][0].type == "rawSaskriit" || worldItems[ll][0].type == "rawRiulpo" || worldItems[ll][0].type == "rawKalp" || worldItems[ll][0].type == "rawPolxetp" || worldItems[ll][0].type == "rawTridite" || worldItems[ll][0].type == "rawSalmon" || worldItems[ll][0].type == "rawSlol" || worldItems[ll][0].type == "rawRedBelliedFalder" || worldItems[ll][0].type == "rawCrawdid" || worldItems[ll][0].type == "rawDuskfish" || worldItems[i][0].type == "rawGulb" || worldItems[i][0].type == "rawCres" || worldItems[i][0].type == "rawTilmuk" || worldItems[i][0].type == "rawTaggler" || worldItems[i][0].type == "rawSkig" || worldItems[i][0].type == "rawCrilp" || worldItems[i][0].type == "rawMulstish" || worldItems[i][0].type == "slicedRawMulstish" || worldItems[i][0].type == "rawBloodwormFlesh" || worldItems[i][0].type == "rawHetlaukWorm")
                                     {
                                         var vdfu = Math.sqrt((worldItems[ll][0].X - this.bubbleOfDamageX) * (worldItems[ll][0].X - this.bubbleOfDamageX) + (worldItems[ll][0].Y - this.bubbleOfDamageY) * (worldItems[ll][0].Y - this.bubbleOfDamageY)) - worldItems[ll][0].size; //This is the distance from the center of the players attack/damaging bubble to the AI Unit.
 
@@ -43475,6 +43652,12 @@ function clearEquipped()
         }
     }
 
+    player.spell = "none";
+    for (var i = 0; i < primarySpells.length; i++)
+    {
+        primarySpells[i].equipped = false;
+    }
+
     player.areBootsEquipped = false;
     player.bootsEquipped = "none";
     player.areGlovesEquipped = false;
@@ -43498,5 +43681,6 @@ function clearEquipped()
     {
         player.stage2 = 0;
     }
+
     quenHere = false;
 }

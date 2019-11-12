@@ -6,8 +6,23 @@
 
 //TODO LIST
 //top priority
-//todo add hyper-infectious internal warts infection that grows slowly until it deforms the body (the body will look lumpy and fleshy at this stage) then eventually the infected persons internal gas filled warts pop in a bloody flesh explosion that infects those that it touches. (There is a cure! it relies upon fermented vodkapa spleen and some other ingredients)
-//todo add all of the new fish to the seal unit's diet
+
+//Image sheet ideas
+//todo drake unit
+//todo orgish image sheet
+//todo flesh spider
+//todo large nosed snow trolls
+//todo far north fish
+//todo furry snow beast
+//todo frost wyrm (with frost breath) (ridable)
+//todo ship
+//todo kraken
+//todo freydic board shield and axe
+
+
+//flash protection
+//todo flash protect the top right corner of e4 to n1e4
+//todo flash protect the new plains/swamp and forest maps on the way to Boroye
 
 //VARDANIA + THENGARIA UPDATE
 //todo name the largest misty woods The Dermohr Forest
@@ -16,8 +31,7 @@
 //todo add Cergadet (town)
 //todo fill in the plains and farmlands around Cergadet
 //todo fill in The Schwarza Woods
-
-//things to add to the next image i'm adding:
+//todo Make a cure for internal warts that relies upon fermented vodkapa spleen and some other ingredients
 
 //Kerib Update
 //todo add the karib tribe's village (zarbu themed tribe)
@@ -66,14 +80,10 @@
 
 //Cranheim Update
 //todo add the city Cranheim to the west of Lethik in Thengaria
-//todo add haunted foggy woods: it will be populated with sprites, cheshires, grey trolls, skols, wearwolfs + the usual herbivores...
-//use the original thengan forest texture for it
 //todo add wearwolf quest
 
 //Vardania Update
-//todo add a boggy vardanian hamlet to the far south west of Cranheim
 //todo add a vardanian city to the south west of the hamlet - Morrow City
-
 
 //Eschuttes Update
 //todo add another echlin tribe village called Eschuttes
@@ -83,19 +93,14 @@
 //todo add the Colic symptom of sickness and add the effect 'colicAway' that eating 'aktaltlFrond' gives you.
 //todo add a witch trap house where the witch becomes a mutated magical beast and tries to kill you
 
-//todo add water creatures that become beached if they go on land, usarían the variable this.flotation in Unit Class
 //todo add more jewelry from 'polpol' IMG
 //todo add haeflower drug trip monsters from 'zapa' IMG
 //todo add a spell that casts out a blast that causes a small rock explosion (use IMG from 'nognog')
-//todo add the traps on the IMG 'trapper'
 //todo finish adding the beast journal.
 //todo add interesting and immersive options for player children interaction (like: feeding, arming, praising, getting to know about them, teaching them spells, punishment, loving comments)
-//todo add more alchemy stuff: potions, salves
 //todo finish adding sickness system //add Lodotos, a sickness that one can get in the kellish mud bog. //add sicknesses and symptons (pox, fever, etc.) ex: make pox weaken players constitution etc., make fever decrease thirst.
-//todo add brain flies from 'poly' img.
 //todo the freydic capital city is called Tor-Ruhn-Tel
 //todo add hangover, and soarness effects as well as their mini notices.
-//todo add a rest without bed button on the UI that uses a homemade confirm popup to ask if you are sure you want to sleep. Add the nappy closed eye for the sleepButton. (it's on poly)
 //todo add lv 25 = side-jumping (more levels slightly increase the time before the enemy reacts to your new position)
 //todo add poisoned throwing stars for the orgel
 //todo add grenades and smoke bombs
@@ -4007,6 +4012,7 @@ function theLegend()
         zombiVillageStash: true,
         griffStash: true,
         holuimStash: true,
+        spiritBearStash: true,
 
         //EVENTS (non quest)
         ultherFlower: true,
@@ -4309,7 +4315,7 @@ function theLegend()
     Inventory = [];
 
     //All of the spells in the game -----------> except [new Item("potatoInvisibility", false, false), 1],  which is exclusive to a Jinn wish.
-    allSpells = [[new Item("embers", false, false), 1], [new Item("fireballI", false, false), 1], [new Item("iceClaymore", false, false), 1], [new Item("iceSpikes", false, false), 1], [new Item("flyingColours", false, false), 1], [new Item("frostWind", false, false), 1], [new Item("repel", false, false), 1], [new Item("lifeTap", false, false), 1], [new Item("drainingI", false, false), 1], [new Item("vivification", false, false), 1], [new Item("chasingLights", false, false), 1], [new Item("electricBolt", false, false), 1], [new Item("surge", false, false), 1], [new Item("fireHands", false, false), 1], [new Item("chargedTouch", false, false), 1], [new Item("freezingGrasp", false, false), 1], [new Item("leechingTouch", false, false), 1], [new Item("sorcerer'sRaincoat", false, false), 1], [new Item("shieldingI", false, false), 1], [new Item("shieldingII", false, false), 1], [new Item("shieldingIII", false, false), 1], [new Item("shieldingIV", false, false), 1], [new Item("shieldingV", false, false), 1], [new Item("summonFrich", false, false), 1], [new Item("summonWolf", false, false), 1], [new Item("charm", false, false), 1], [new Item("sanctuary", false, false), 1], [new Item("repellingWard", false, false), 1], [new Item("iceberg", false, false), 1], [new Item("magicMissiles", false, false), 1], [new Item("minorVortex", false, false), 1], [new Item("mark", false, false), 1], [new Item("entanglement", false, false), 1], [new Item("whirlwind", false, false), 1], [new Item("iceBlast", false, false), 1], [new Item("shadowport", false, false), 1], [new Item("healingPsalms", false, false), 1], [new Item("summonGriffin", false, false), 1], [new Item("summonDemon", false, false), 1], [new Item("slowTimeI", false, false), 1], [new Item("slowTimeII", false, false), 1], [new Item("slowTimeIII", false, false), 1], [new Item("slowTimeIV", false, false), 1], [new Item("slowTimeV", false, false), 1], [new Item("slowTimeVI", false, false), 1], [new Item("doppelganger", false, false), 1], [new Item("shadowSwitch", false, false), 1], [new Item("eruption", false, false), 1], [new Item("drakeBreath", false, false), 1], [new Item("undyingWard", false, false), 1], [new Item("flamingMissiles", false, false), 1], [new Item("arcaneOrbs", false, false), 1], [new Item("despell", false, false), 1], [new Item("powerDraw", false, false), 1], [new Item("theFrozenWord", false, false), 1], [new Item("shell", false, false), 1], [new Item("corporalityWard", false, false), 1], [new Item("windBlast", false, false), 1]];
+    allSpells = [[new Item("embers", false, false), 1], [new Item("fireballI", false, false), 1], [new Item("iceClaymore", false, false), 1], [new Item("iceSpikes", false, false), 1], [new Item("flyingColours", false, false), 1], [new Item("frostWind", false, false), 1], [new Item("repel", false, false), 1], [new Item("lifeTap", false, false), 1], [new Item("drainingI", false, false), 1], [new Item("vivification", false, false), 1], [new Item("chasingLights", false, false), 1], [new Item("electricBolt", false, false), 1], [new Item("surge", false, false), 1], [new Item("fireHands", false, false), 1], [new Item("chargedTouch", false, false), 1], [new Item("freezingGrasp", false, false), 1], [new Item("leechingTouch", false, false), 1], [new Item("sorcerer'sRaincoat", false, false), 1], [new Item("shieldingI", false, false), 1], [new Item("shieldingII", false, false), 1], [new Item("shieldingIII", false, false), 1], [new Item("shieldingIV", false, false), 1], [new Item("shieldingV", false, false), 1], [new Item("summonFrich", false, false), 1], [new Item("summonWolf", false, false), 1], [new Item("charm", false, false), 1], [new Item("sanctuary", false, false), 1], [new Item("repellingWard", false, false), 1], [new Item("iceberg", false, false), 1], [new Item("magicMissiles", false, false), 1], [new Item("minorVortex", false, false), 1], [new Item("mark", false, false), 1], [new Item("entanglement", false, false), 1], [new Item("whirlwind", false, false), 1], [new Item("iceBlast", false, false), 1], [new Item("shadowport", false, false), 1], [new Item("healingPsalms", false, false), 1], [new Item("summonGriffin", false, false), 1], [new Item("summonDemon", false, false), 1], [new Item("slowTimeI", false, false), 1], [new Item("slowTimeII", false, false), 1], [new Item("slowTimeIII", false, false), 1], [new Item("slowTimeIV", false, false), 1], [new Item("slowTimeV", false, false), 1], [new Item("slowTimeVI", false, false), 1], [new Item("doppelganger", false, false), 1], [new Item("shadowSwitch", false, false), 1], [new Item("eruption", false, false), 1], [new Item("drakeBreath", false, false), 1], [new Item("undyingWard", false, false), 1], [new Item("flamingMissiles", false, false), 1], [new Item("arcaneOrbs", false, false), 1], [new Item("despell", false, false), 1], [new Item("powerDraw", false, false), 1], [new Item("theFrozenWord", false, false), 1], [new Item("shell", false, false), 1], [new Item("corporalityWard", false, false), 1], [new Item("windBlast", false, false), 1], [new Item("spiritBear", false, false), 1]];
 //Test Spells
     primarySpells = [];
     secondarySpells = [];

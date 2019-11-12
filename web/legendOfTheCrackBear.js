@@ -1677,6 +1677,18 @@ function ruinPack()
 
     ruin.onload = function()
     {
+        drakePack();
+    };
+}
+
+function drakePack()
+{
+    var drake = new Image();
+    drake.src = ("images/drake.png");
+    window.drake = drake;
+
+    drake.onload = function()
+    {
         negroPack();
     };
 }

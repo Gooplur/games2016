@@ -20645,7 +20645,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             this.radius = 45;
 
             //INTERACTION
-            if (this.activate == true)
+            if (this.activate == true && player.druidBear != true)
             {
                 this.activate = false;
                 X = this.temporary[0];
@@ -20694,7 +20694,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             this.radius = 45;
 
             //INTERACTION
-            if (this.activate == true)
+            if (this.activate == true && player.druidBear != true)
             {
                 if (uniqueChars.gavorLDS == true)
                 {
@@ -20796,7 +20796,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             this.radius = 45;
 
             //INTERACTION
-            if (this.activate == true)
+            if (this.activate == true && player.druidBear != true)
             {
                 this.activate = false;
                 X = this.temporary[0];
@@ -20842,7 +20842,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             this.radius = 45;
 
             //INTERACTION
-            if (this.activate == true)
+            if (this.activate == true && player.druidBear != true)
             {
                 this.activate = false;
                 X = this.temporary[0];
@@ -20867,7 +20867,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             this.radius = 45;
 
             //INTERACTION
-            if (this.activate == true)
+            if (this.activate == true && player.druidBear != true)
             {
                 this.activate = false;
                 X = this.temporary[0];
@@ -20892,7 +20892,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             this.radius = 45;
 
             //INTERACTION
-            if (this.activate == true)
+            if (this.activate == true && player.druidBear != true)
             {
                 this.activate = false;
                 X = this.temporary[0];
@@ -20917,7 +20917,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             this.radius = 45;
 
             //INTERACTION
-            if (this.activate == true)
+            if (this.activate == true && player.druidBear != true)
             {
                 this.activate = false;
                 X = this.temporary[0];
@@ -20953,7 +20953,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             this.radius = 20;
 
             //INTERACTION
-            if (this.activate == true)
+            if (this.activate == true && player.druidBear != true)
             {
                 this.activate = false;
                 if (this.phase == 1)
@@ -21003,7 +21003,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             this.radius = 20;
 
             //INTERACTION
-            if (this.activate == true)
+            if (this.activate == true && player.druidBear != true)
             {
                 this.activate = false;
                 if (this.phase == 1)

@@ -11170,7 +11170,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
-                XXX.drawImage(ruin, 438, 344, 257, 183, -(1/2 * 257 * this.information), -(1/2 * 183 * this.information), 257 * this.information, 183 * this.information);
+                XXX.drawImage(cleen, 438, 344, 257, 183, -(1/2 * 257 * this.information), -(1/2 * 183 * this.information), 257 * this.information, 183 * this.information);
                 XXX.restore();
             }
             else if (this.temporary == 14) //large blood pool
@@ -11178,7 +11178,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
-                XXX.drawImage(ruin, 197, 361, 194, 169, -(1/2 * 194 * this.information), -(1/2 * 169 * this.information), 194 * this.information, 169 * this.information);
+                XXX.drawImage(cleen, 197, 361, 194, 169, -(1/2 * 194 * this.information), -(1/2 * 169 * this.information), 194 * this.information, 169 * this.information);
                 XXX.restore();
             }
             else if (this.temporary == 15) //thick blood pool
@@ -11186,7 +11186,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
-                XXX.drawImage(ruin, 3, 385, 194, 169, -(1/2 * 194 * this.information), -(1/2 * 169 * this.information), 194 * this.information, 169 * this.information);
+                XXX.drawImage(cleen, 3, 385, 194, 169, -(1/2 * 194 * this.information), -(1/2 * 169 * this.information), 194 * this.information, 169 * this.information);
                 XXX.restore();
             }
 
@@ -23102,6 +23102,198 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             }
 
             if (this.transp < 0.5 && this.temporary == false)
+            {
+                this.transp -= 0.025;
+
+                if (this.transp < 0.05)
+                {
+                    scenicList.splice(scenicList.indexOf(this), 1);
+                }
+            }
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+        }
+        else if (this.type == "dragonFire")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+
+            if (this.runOneTime == true)
+            {
+                this.runOneTime = false;
+                this.zIndex = 6;
+
+                this.tac = 0.1;
+                this.tic = 0;
+                this.spin = 0;
+                this.burn = 0;
+                this.transp = 1;
+                this.team = this.information;
+
+                this.spinDir = Math.round(Math.random());
+
+                if (this.extra == true)
+                {
+                    this.speed = 17 + (14.5 * this.temporary);
+                }
+                else
+                {
+                    this.speed = 17 + (14 * this.temporary);
+                }
+            }
+
+            if (this.tac < (this.temporary * 1.5))
+            {
+                this.tac += (1/50 * this.temporary);
+                this.transp -= (1/125 * this.temporary);
+
+                if (this.spinDir == 1)
+                {
+                    this.spin += 0.025;
+                }
+                else
+                {
+                    this.spin -= 0.025;
+                }
+
+                this.X += Math.cos(this.rotation) * this.speed;
+                this.Y += Math.sin(this.rotation) * this.speed;
+            }
+            else
+            {
+                this.speed = 0;
+                this.zIndex = 1;
+            }
+
+            this.tic += 1;
+            this.burn += 1;
+
+            //DRAWSELF
+            if (this.tic <= 1)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation + this.spin);
+                XXX.globalAlpha = this.transp;
+                XXX.drawImage(drake, 2147, 36, 232, 196, -(1/2 * 232 * this.tac), -(1/2 * 196 * this.tac), 232 * this.tac, 196 * this.tac);
+                XXX.restore();
+            }
+            else if (this.tic <= 2)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation + this.spin);
+                XXX.globalAlpha = this.transp;
+                XXX.drawImage(drake, 2145, 261, 232, 196, -(1/2 * 232 * this.tac), -(1/2 * 196 * this.tac), 232 * this.tac, 196 * this.tac);
+                XXX.restore();
+            }
+            else if (this.tic <= 3)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation + this.spin);
+                XXX.globalAlpha = this.transp;
+                XXX.drawImage(drake, 2154, 485, 232, 196, -(1/2 * 232 * this.tac), -(1/2 * 196 * this.tac), 232 * this.tac, 196 * this.tac);
+                XXX.restore();
+            }
+            else if (this.tic <= 4)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation + this.spin);
+                XXX.globalAlpha = this.transp;
+                XXX.drawImage(drake, 2153, 702, 232, 196, -(1/2 * 232 * this.tac), -(1/2 * 196 * this.tac), 232 * this.tac, 196 * this.tac);
+                XXX.restore();
+            }
+            else if (this.tic <= 5)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation + this.spin);
+                XXX.globalAlpha = this.transp;
+                XXX.drawImage(drake, 2154, 941, 232, 196, -(1/2 * 232 * this.tac), -(1/2 * 196 * this.tac), 232 * this.tac, 196 * this.tac);
+                XXX.restore();
+            }
+            else if (this.tic <= 6)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation + this.spin);
+                XXX.globalAlpha = this.transp;
+                XXX.drawImage(drake, 2153, 1166, 232, 196, -(1/2 * 232 * this.tac), -(1/2 * 196 * this.tac), 232 * this.tac, 196 * this.tac);
+                XXX.restore();
+            }
+            else if (this.tic <= 7)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation + this.spin);
+                XXX.globalAlpha = this.transp;
+                XXX.drawImage(drake, 2159, 1395, 232, 196, -(1/2 * 232 * this.tac), -(1/2 * 196 * this.tac), 232 * this.tac, 196 * this.tac);
+                XXX.restore();
+            }
+            else if (this.tic <= 8)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation + this.spin);
+                XXX.globalAlpha = this.transp;
+                XXX.drawImage(drake, 2159, 1609, 232, 196, -(1/2 * 232 * this.tac), -(1/2 * 196 * this.tac), 232 * this.tac, 196 * this.tac);
+                XXX.restore();
+            }
+            else
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation + this.spin);
+                XXX.globalAlpha = this.transp;
+                XXX.drawImage(drake, 2147, 36, 232, 196, -(1/2 * 232 * this.tac), -(1/2 * 196 * this.tac), 232 * this.tac, 196 * this.tac);
+                XXX.restore();
+                this.tic = 0;
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 135 * this.tac;
+
+            //affect
+            if (player.dragonRider != true && player.antiDragonFire != true && this.team != "player")
+            {
+                if (this.dst(X, Y) <= this.radius)
+                {
+                    player.health -= ((10 * this.temporary) - (0.001 * player.heatResistance));
+                    player.dragonFireKeepTime = new Date().getTime();
+                    player.dragonFireMult = Math.max(player.dragonFireMult, this.temporary);
+                }
+            }
+
+            for (var j = 0; j < ArtificialIntelligenceAccess.length; j++)
+            {
+                if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= this.radius + (3/4 * ArtificialIntelligenceAccess[j].sizeRadius) && !ArtificialIntelligenceAccess[j].underground && ArtificialIntelligenceAccess[j].dmx == this.dmx)
+                {
+                    if (ArtificialIntelligenceAccess[j].resistances.indexOf("dragonFire") == -1 && this.team != ArtificialIntelligenceAccess[j].team)
+                    {
+                        ArtificialIntelligenceAccess[j].dragonFireMult = this.temporary;
+                        ArtificialIntelligenceAccess[j].dragonFireKeepTime = new Date().getTime();
+                        ArtificialIntelligenceAccess[j].health -= ((10 * this.temporary) - (0.001 * ArtificialIntelligenceAccess[j].heatResistance));
+                        if (this.team == "player")
+                        {
+                            ArtificialIntelligenceAccess[j].killByPlayerTeam = true;
+                            ArtificialIntelligenceAccess[j].killNotByPlayer = true;
+                        }
+                        else
+                        {
+                            ArtificialIntelligenceAccess[j].killNotByPlayer = true;
+                        }
+                    }
+                }
+            }
+
+            if (this.burn > 300)
             {
                 this.transp -= 0.025;
 
@@ -40716,6 +40908,160 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                     if (hits == Inventory.length)
                     {
                         Inventory.push([new Item("wobeaLeaf", false, false), Math.floor(1 + Math.random() * 8)]);
+                    }
+                }
+            }
+        }
+        else if (this.type == "ostryyGrassPlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.solid = false;
+            this.size = this.temporary;
+            this.interactionRange = 52 * this.size;
+
+            if (typeof this.trampled == "undefined")
+            {
+                this.trampled = false;
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 52 * this.size;
+
+            this.sharp = true;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                if (this.trampled == true)
+                {
+                    this.sharp = false;
+                    this.zIndex = 1;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(mawt, 245, 119, 146, 148, -(1/2 * 146 * this.size), -(1/2 * 148 * this.size), 146 * this.size, 148 * this.size);
+                    XXX.restore();
+                }
+                else
+                {
+                    this.zIndex = 4;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(mawt, 19, 181, 144, 123, -(1/2 * 144 * this.size), -(1/2 * 123 * this.size), 144 * this.size, 123 * this.size);
+                    XXX.restore();
+                }
+            }
+            else if (this.phase == "picked")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(mawt, 1095, 533, 141, 117, -(1/2 * 141 * this.size), -(1/2 * 117 * this.size), 114 * this.size, 117 * this.size);
+                XXX.restore();
+            }
+            this.trampled = false;
+
+            for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+            {
+                if (ArtificialIntelligenceAccess[i].insect != true && ArtificialIntelligenceAccess[i].type != "Rat" && ArtificialIntelligenceAccess[i].flying != true && ArtificialIntelligenceAccess[i].underground != true && ArtificialIntelligenceAccess[i].dmx == this.dmx && ArtificialIntelligenceAccess[i].healthMAX > 2.4)
+                {
+                    if (((ArtificialIntelligenceAccess[i].X - this.X) * (ArtificialIntelligenceAccess[i].X - this.X) + (ArtificialIntelligenceAccess[i].Y - this.Y) * (ArtificialIntelligenceAccess[i].Y - this.Y)) <= (this.radius * this.radius) + (1/2 * ArtificialIntelligenceAccess[i].sizeRadius)*(1/2 * ArtificialIntelligenceAccess[i].sizeRadius))
+                    {
+                        if (ArtificialIntelligenceAccess[i].healthMAX >= 20 || ArtificialIntelligenceAccess[i].type == "Soldier" && ArtificialIntelligenceAccess[i].armour >= 4 || ArtificialIntelligenceAccess[i].type == "Person" && ArtificialIntelligenceAccess[i].armour >= 4)
+                        {
+                            if (ArtificialIntelligenceAccess[i].armour < 4)
+                            {
+                                if (ArtificialIntelligenceAccess[i].moving == true || ArtificialIntelligenceAccess[i].attacking)
+                                {
+                                    if (ArtificialIntelligenceAccess[i].speed <= 1.5)
+                                    {
+                                        ArtificialIntelligenceAccess[i].health -= 0.04;
+                                    }
+                                    else
+                                    {
+                                        ArtificialIntelligenceAccess[i].health -= 0.08;
+                                    }
+                                    ArtificialIntelligenceAccess[i].showHealthTime = new Date().getTime();
+                                    ArtificialIntelligenceAccess[i].killNotByPlayer = true;
+                                }
+                            }
+                            this.trampled = true;
+                        }
+                        else
+                        {
+                            if (ArtificialIntelligenceAccess[i].moving == true || ArtificialIntelligenceAccess[i].attacking)
+                            {
+                                if (ArtificialIntelligenceAccess[i].speed <= 1.5)
+                                {
+                                    ArtificialIntelligenceAccess[i].health -= 0.04;
+                                }
+                                else
+                                {
+                                    ArtificialIntelligenceAccess[i].health -= 0.08;
+                                }
+                                ArtificialIntelligenceAccess[i].showHealthTime = new Date().getTime();
+                                ArtificialIntelligenceAccess[i].killNotByPlayer = true;
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (this.trampled == false)
+            {
+                if (((X - this.X) * (X - this.X) + (Y - this.Y) * (Y - this.Y)) <= this.radius * this.radius)
+                {
+                    if (player.bootsEquipped != "none" && player.glovesEquipped != "none" || player.armour >= 4)
+                    {
+                        this.trampled = true;
+                    }
+                    else
+                    {
+                        if (wKey || sKey || aKey || dKey || eKey || spaceKey)
+                        {
+                            if (wKey && shiftKey)
+                            {
+                                player.health -= 0.08;
+                            }
+                            else
+                            {
+                                player.health -= 0.04;
+                            }
+                        }
+                    }
+                }
+            }
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+                if (this.phase == 0)
+                {
+                    this.phase = "picked";
+                    if (player.glovesEquipped == "none")
+                    {
+                        player.health -= 3.5;
+                    }
+
+                    var hits = 0;
+                    for (var i = 0; i < Inventory.length; i ++)
+                    {
+                        if (Inventory[i][0].type == "ostryyGrass")
+                        {
+                            Inventory[i][1] += Math.max(1, Math.floor((4 + Math.random() * 4) * this.size));
+                            break;
+                        }
+                        else
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == Inventory.length)
+                    {
+                        Inventory.push([new Item("ostryyGrass", false, false), Math.max(1, Math.floor((4 + Math.random() * 4) * this.size))]);
                     }
                 }
             }

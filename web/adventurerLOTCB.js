@@ -621,6 +621,12 @@ function Adventurer()
     this.antiMothfearTime = 0;
     this.antiMothfear = false;
     this.druidBear = false;
+    this.dragonRider = false;
+    this.antiDragonFire = false;
+    this.dragonFire = false;
+    this.dragonFireKeepTime = 0;
+    this.dragonFireKeepTime2 = new Date().getTime();
+    this.dragonFireMult = 0;
 
         //faction variables
     this.factionToggle = false;
@@ -974,6 +980,37 @@ function Adventurer()
             }
         };
         this.onIce();
+
+        this.onDragonFire = function()
+        {
+            if (new Date().getTime() - this.dragonFireKeepTime <= 240000 && this.antiDragonFire != true && this.dragonRider != true)
+            {
+                this.flashAnimate(90, 0.001, 0.90, [{image: drake, imgX: 2148, imgY: 35, portionW: 232, portionH: 196, adjX: -1/2 * ((232)/40) * this.mySize, adjY: -1/2 * ((196)/40) * this.mySize, width: ((232)/40) * this.mySize, height: ((196)/40) * this.mySize}, {image: drake, imgX: 2147, imgY: 262, portionW: 232, portionH: 196, adjX: -1/2 * ((232)/40) * this.mySize, adjY: -1/2 * ((196)/40) * this.mySize, width: ((232)/40) * this.mySize, height: ((196)/40) * this.mySize}, {image: drake, imgX: 2154, imgY: 486, portionW: 232, portionH: 196, adjX: -1/2 * ((232)/40) * this.mySize, adjY: -1/2 * ((196)/40) * this.mySize, width: ((232)/40) * this.mySize, height: ((196)/40) * this.mySize}, {image: drake, imgX: 2153, imgY: 702, portionW: 232, portionH: 196, adjX: -1/2 * ((232)/40) * this.mySize, adjY: -1/2 * ((196)/40) * this.mySize, width: ((232)/40) * this.mySize, height: ((196)/40) * this.mySize}, {image: drake, imgX: 2153, imgY: 941, portionW: 232, portionH: 196, adjX: -1/2 * ((232)/40) * this.mySize, adjY: -1/2 * ((196)/40) * this.mySize, width: ((232)/40) * this.mySize, height: ((196)/40) * this.mySize}, {image: drake, imgX: 2151, imgY: 1169, portionW: 232, portionH: 196, adjX: -1/2 * ((232)/40) * this.mySize, adjY: -1/2 * ((196)/40) * this.mySize, width: ((232)/40) * this.mySize, height: ((196)/40) * this.mySize}, {image: drake, imgX: 2160, imgY: 1393, portionW: 232, portionH: 196, adjX: -1/2 * ((232)/40) * this.mySize, adjY: -1/2 * ((196)/40) * this.mySize, width: ((232)/40) * this.mySize, height: ((196)/40) * this.mySize}, {image: drake, imgX: 2161, imgY: 1609, portionW: 232, portionH: 196, adjX: -1/2 * ((232)/40) * this.mySize, adjY: -1/2 * ((196)/40) * this.mySize, width: ((232)/40) * this.mySize, height: ((196)/40) * this.mySize}]);
+                if (new Date().getTime() - this.dragonFireKeepTime2 >= 99)
+                {
+                    this.dragonFire = true;
+                    this.frozenTime = 0;
+                    this.dragonFireKeepTime2 = new Date().getTime();
+                    this.health -= Math.max(0, (10 * this.dragonFireMult) - (this.heatResistance / 1000));
+                    this.warmth += 100;
+                    this.thirst = Math.max(0, this.thirst - (1 * this.dragonFireMult));
+                }
+            }
+            else
+            {
+                this.dragonFire = false;
+                this.dragonFireMult = 0;
+                this.dragonFireKeepTime = 0;
+            }
+
+            if (this.antiDragonFire == true || this.dragonRider == true)
+            {
+                this.dragonFireKeepTime = 0;
+                this.dragonFire = false;
+                this.dragonFireMult = 0;
+            }
+        };
+        this.onDragonFire();
     };
 
     this.mouseDistance = function(inX, inY)
@@ -2147,7 +2184,7 @@ function Adventurer()
             {
                 if (player.weaponEquipped != "boat")
                 {
-                    if (this.form == false && this.druidBear != true)
+                    if (this.form == false && this.druidBear != true && this.dragonRider != true)
                     {
                         //Unequip weapon when in water unless weapon is boat
                         for (var i = 0; i < Inventory.length; i++)
@@ -2168,7 +2205,7 @@ function Adventurer()
                     //DROWN if in water and run out of energy past fatigue point
                     if (this.movingType == "swimming" && this.energy < -5)
                     {
-                        if (this.vamprism == false && this.form != "selkie" && this.aquatica != true && this.druidBear != true)
+                        if (this.vamprism == false && this.form != "selkie" && this.aquatica != true && this.druidBear != true && this.dragonRider != true)
                         {
                             this.drowned = true;
                         }
@@ -29466,7 +29503,7 @@ function Adventurer()
                             {
                                 if (this.form != "vampire")
                                 {
-                                    if (focusUnit.insect == false)
+                                    if (focusUnit.insect == false && focusUnit.meek == false)
                                     {
                                         return true; //d == this.sizeRadius + focusUnit.sizeRadius :: this is the point at which the two units would be exactly touching eachother with no overlap.
                                     }

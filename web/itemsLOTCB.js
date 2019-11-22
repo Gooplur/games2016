@@ -37925,6 +37925,26 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 0; // at max, sell for 0.
         }
+        else if (this.type == "ostryyGrass")
+        {
+            //For All Items
+            this.identity = "Ostryy Grass";
+            this.weight = 0.2;
+            this.size = 11;
+            this.description = "Clippings of a grey Vardanian wild grass with grass blades as sharp as a blade.";
+            this.intForDes = 1;
+            this.intDescription = "Unless you like getting cut by razor sharp blades of grass, there is not much that can be done with this...";
+
+            //Define Utility
+            this.utility = "junk";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
         else if (this.type == "pokinutyyLegFull")
         {
             //For All Items
@@ -52655,6 +52675,11 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "ostryyGrass")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mawt, 1296, 431, 68, 61, X - this.X + (1/2 * CCC.width) - (1/2 * 68 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 61 * 1), 68 * 1, 61 * 1);
+        }
         else if (this.type == "vardanianInformerUniform")
         {
             XXX.beginPath();
@@ -59488,6 +59513,11 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(candlewic, 61, 201, 27, 29, this.invX - (1/2 * 27 * 1.5), this.invY - (1/2 * 29 * 1.5), 27 * 1.5, 29 * 1.5);
         }
+        else if (this.type == "ostryyGrass")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mawt, 1296, 431, 68, 61, this.invX - (1/2 * 68 * 1), this.invY - (1/2 * 61 * 1), 68 * 1, 61 * 1);
+        }
         else if (this.type == "vardanianInformerUniform")
         {
             LXX.beginPath();
@@ -66297,6 +66327,11 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "ostryyGrass")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mawt, 1296, 431, 68, 61, this.invX - (1/2 * 68 * 1), this.invY - (1/2 * 61 * 1), 68 * 1, 61 * 1);
         }
         else if (this.type == "vardanianInformerUniform")
         {

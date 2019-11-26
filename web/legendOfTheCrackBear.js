@@ -5020,6 +5020,7 @@ function theLegend()
     foods.push(new Item("cookedKrogiMushroom", false));
     foods.push(new Item("roastedMotylekhLeg", false));
     foods.push(new Item("bulkMotylinka", false));
+    foods.push(new Item("lyagushkaMeat", false));
 
 //Tailoring (Items crafted at a weaving, sewing, dying, etc. tailor's work bench thing)
     tailoring = [];

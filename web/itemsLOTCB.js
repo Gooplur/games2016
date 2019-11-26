@@ -3989,6 +3989,26 @@ function Item(type, x, y)
             this.buyValue = 5; // at max, buy for 5.
             this.sellValue = 3 + Math.floor(player.getCharisma() / 25); // at max, sell for 5.
         }
+        else if (this.type == "maleLyagushkaSkin")
+        {
+            //For All Items
+            this.identity = "Lyagushka Skin";
+            this.weight = 1.7;
+            this.size = 11;
+            this.description = "The oily colorful skin of a male lyagushka.";
+            this.intForDes = 0;
+            this.intDescription = "The oily pheramones in a male lyagushka's skin are both highly flame retardant and smelly; they are produced to attract a mate.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 4; // at max, buy for 4.
+            this.sellValue = 2 + Math.floor(player.getCharisma() / 25); // at max, sell for 4.
+        }
         else if (this.type == "snowyOwlWingLarge")
         {
             //For All Items
@@ -4969,6 +4989,71 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "rawLyagushkaFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Lyagushka Flesh";
+            this.weight = 1.1;
+            this.size = 10;
+            this.description = "The raw flesh of a lyagushka.";
+            this.intForDes = 0;
+            this.intDescription = "It has a thick boggy odor and has a slimey malleableness to it.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -2; //recoops lost energy.
+            this.replenish = -2; //restores will.
+
+
+            //ability
+            this.ability = "potentialFoodPoisoning";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "lyagushkaMeat")
+        {
+            //For All Items
+            this.identity = "Lyagushka Meat";
+            this.weight = 1;
+            this.size = 10;
+            this.description = "The cooked meat of a lyagushka.";
+            this.intForDes = 0;
+            this.intDescription = "It tastes sort of like toad meat but it has a peculiar boggy aftertaste.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 6.5; //satisfies hunger.
+            this.thirst = 1; //quenches thirst.
+            this.warmth = 1.5; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -0.5; //recoops lost energy.
+            this.replenish = -1; //restores will.
+
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 4;
+            this.ingredients = [["Raw Lyagushka Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 4; // at max, buy for 4.
+            this.sellValue = 3; // at max, sell for 3.
         }
         else if (this.type == "rawKorskBeetleFlesh")
         {
@@ -52675,6 +52760,21 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "maleLyagushkaSkin")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cleen, 393, 50, 37, 33, X - this.X + (1/2 * CCC.width) - (1/2 * 37 * 1.1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 33 * 1.1), 37 * 1.1, 33 * 1.1);
+        }
+        else if (this.type == "rawLyagushkaFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cleen, 36, 36, 28, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 28 * 1.1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17 * 1.1), 28 * 1.1, 17 * 1.1);
+        }
+        else if (this.type == "lyagushkaMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cleen, 38, 56, 28, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 28 * 1.1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17 * 1.1), 28 * 1.1, 17 * 1.1);
+        }
         else if (this.type == "ostryyGrass")
         {
             XXX.beginPath();
@@ -59513,6 +59613,21 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(candlewic, 61, 201, 27, 29, this.invX - (1/2 * 27 * 1.5), this.invY - (1/2 * 29 * 1.5), 27 * 1.5, 29 * 1.5);
         }
+        else if (this.type == "maleLyagushkaSkin")
+        {
+            LXX.beginPath();
+            LXX.drawImage(cleen, 393, 50, 37, 33, this.invX - (1/2 * 37 * 1.1), this.invY - (1/2 * 33 * 1.1), 37 * 1.1, 33 * 1.1);
+        }
+        else if (this.type == "rawLyagushkaFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(cleen, 36, 36, 28, 17, this.invX - (1/2 * 28 * 1.1), this.invY - (1/2 * 17 * 1.1), 28 * 1.1, 17 * 1.1);
+        }
+        else if (this.type == "lyagushkaMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(cleen, 38, 56, 28, 17, this.invX - (1/2 * 28 * 1.1), this.invY - (1/2 * 17 * 1.1), 28 * 1.1, 17 * 1.1);
+        }
         else if (this.type == "ostryyGrass")
         {
             LXX.beginPath();
@@ -66327,6 +66442,21 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "maleLyagushkaSkin")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cleen, 393, 50, 37, 33, this.invX - (1/2 * 37 * 1.1), this.invY - (1/2 * 33 * 1.1), 37 * 1.1, 33 * 1.1);
+        }
+        else if (this.type == "rawLyagushkaFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cleen, 36, 36, 28, 17, this.invX - (1/2 * 28 * 1.1), this.invY - (1/2 * 17 * 1.1), 28 * 1.1, 17 * 1.1);
+        }
+        else if (this.type == "lyagushkaMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(cleen, 38, 56, 28, 17, this.invX - (1/2 * 28 * 1.1), this.invY - (1/2 * 17 * 1.1), 28 * 1.1, 17 * 1.1);
         }
         else if (this.type == "ostryyGrass")
         {

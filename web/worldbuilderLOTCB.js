@@ -314,7 +314,42 @@ function worldBuilder()
             elevation = -1;
             region = "s19w34";
             campout = true;
-            outlineBuilder(34, 34, "desert", -1176, 626);
+            outlineBuilder(34, 34, "vardanianWoods", -1176, 626);
+
+            outlineBuilder(1, 3, "vardanianGrass", -1153, 659);
+            outlineBuilder(1, 7, "vardanianGrass", -1165, 659);
+            outlineBuilder(2, 6, "vardanianGrass", -1164, 657);
+            outlineBuilder(1, 1, "vardanianGrass", -1161, 656);
+            outlineBuilder(2, 1, "vardanianGrass", -1162, 655);
+            outlineBuilder(1, 1, "vardanianGrass", -1152, 658);
+
+            outlineBuilder(5, 1, "vardanianStone", -1158, 626);
+            outlineBuilder(1, 16, "vardanianStone", -1158, 631);
+
+            outlineBuilder(1, 2, "vardanianWetlands", -1171, 626);
+
+            outlineBuilder(2, 1, "shallowMire", -1152, 626);
+            outlineBuilder(2, 1, "shallowMire", -1151, 627);
+            outlineBuilder(3, 3, "shallowMire", -1150, 626);
+            outlineBuilder(1, 2, "shallowMire", -1149, 629);
+            outlineBuilder(3, 2, "shallowMire", -1173, 626);
+            outlineBuilder(2, 1, "shallowMire", -1171, 627);
+            outlineBuilder(3, 1, "shallowMire", -1172, 630);
+            outlineBuilder(2, 3, "shallowMire", -1169, 626);
+            outlineBuilder(1, 3, "shallowMire", -1164, 626);
+            outlineBuilder(2, 2, "shallowMire", -1169, 630);
+            outlineBuilder(3, 1, "shallowMire", -1171, 631);
+            outlineBuilder(2, 2, "shallowMire", -1168, 631);
+            outlineBuilder(1, 1, "shallowMire", -1169, 634);
+            outlineBuilder(2, 2, "shallowMire", -1169, 635);
+            outlineBuilder(2, 2, "shallowMire", -1168, 643);
+            outlineBuilder(2, 3, "shallowMire", -1167, 645);
+            outlineBuilder(1, 2, "shallowMire", -1167, 647);
+            outlineBuilder(2, 1, "shallowMire", -1169, 642);
+            outlineBuilder(1, 1, "shallowMire", -1165, 632);
+
+            outlineBuilder(1, 1, "mire", -1151, 626);
+            outlineBuilder(3, 2, "mire", -1166, 626);
         }
         //Layer -18 (warm region): elev -2
         //mapS18W34

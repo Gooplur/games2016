@@ -265,6 +265,14 @@ function worldBuilder()
             outlineBuilder( 1, 1, "savannahDirt", 4, 667);
             outlineBuilder( 1, 1, "savannahDirt", 10, 677);
         }
+        //mapS20W33
+        if (Y > -207902 && Y < -197116 && X < 344333 && X > 332640) //X33
+        {
+            elevation = -1;
+            region = "s20w33";
+            campout = true;
+            outlineBuilder(34, 34, "desert", -1142, 660);
+        }
         //mapS20W34
         if (Y > -207902 && Y < -197116 && X < 354544 && X > 342860) //X34
         {
@@ -350,6 +358,14 @@ function worldBuilder()
 
             outlineBuilder(1, 1, "mire", -1151, 626);
             outlineBuilder(3, 2, "mire", -1166, 626);
+        }
+        //mapS19W33
+        if (Y > -197728 && Y < -186928 && X < 344333 && X > 332640) //X33
+        {
+            elevation = -1;
+            region = "s19w33";
+            campout = true;
+            outlineBuilder(34, 34, "brightGrass", -1142, 626);
         }
         //Layer -18 (warm region): elev -2
         //mapS18W34
@@ -685,6 +701,14 @@ function worldBuilder()
             outlineBuilder(1, 2, "vardanianStone", -1160, 617);
             outlineBuilder(1, 2, "vardanianStone", -1160, 618);
 
+        }
+        //mapS18W33
+        if (Y > -187519 && Y < -176743 && X < 344333 && X > 332640) //X33
+        {
+            elevation = -1;
+            region = "s18w33";
+            campout = true;
+            outlineBuilder(34, 34, "savannah", -1142, 592);
         }
         //mapS18
         if (Y > -187519 && Y < -176743 && X < 7687 && X > - 3901) //X0

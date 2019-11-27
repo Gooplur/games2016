@@ -3407,6 +3407,14 @@ function worldBuilder()
             outlineBuilder( 1, 9, "brickRoad", -233, 35);
             outlineBuilder( 13, 1, "brickRoad", -233, 35);
         }
+        //mapS1W8
+        if (Y > -14144 && Y < -3328 && X < 89314 && X > 77652) //X-8
+        {
+            elevation = 0;
+            region = "s1w8";
+            campout = true;
+            outlineBuilder(34, 34, "woods", -292, 14);
+        }
         //mapS1W9
         if (Y > -14144 && Y < -3328 && X < 99554 && X > 87882) //X-9
         {

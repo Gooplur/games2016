@@ -1641,6 +1641,18 @@ function mawtPack()
 
     mawt.onload = function()
     {
+        fleshPack();
+    };
+}
+
+function fleshPack()
+{
+    var flesh = new Image();
+    flesh.src = ("images/flesh.png");
+    window.flesh = flesh;
+
+    flesh.onload = function()
+    {
         cavernaPack();
     };
 }
@@ -3700,7 +3712,8 @@ function theLegend()
         gabata: ["Gabata", 0],
         haba: ["Haba", 0],
         taior: ["Taior", 0],
-        yalih: ["Yalih", 0]
+        yalih: ["Yalih", 0],
+        loshad: ["Loshad", 0]
     };
 
 //time Tracker Variables
@@ -3959,7 +3972,8 @@ function theLegend()
         gabataLDS: true,
         habaLDS: true,
         taiorLDS: true,
-        yalihLDS: true
+        yalihLDS: true,
+        loshadLDS: true
     };
 //QUESTS
     quests =
@@ -4002,6 +4016,8 @@ function theLegend()
         inquisitionOutfitGiven: false,
         refugeeNeevKilled: false,
         ansetTravel: false,
+        sewerBrokenA: false,
+        sewerBrokenB: false,
 
         //PLAYER PROPERTY
         teshirHomeOwned: false,

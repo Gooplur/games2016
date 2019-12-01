@@ -20653,6 +20653,239 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 map = this.information;
             }
         }
+        else if (this.type == "sewerDrain")
+        {
+            //TRAITS
+            this.interactionRange = 200;
+            if (this.treeHealth >= 100)
+            {
+                this.treeHealth = 80;
+            }
+
+            //DRAWSELF
+            if (this.extra == "sewerA")
+            {
+                if (quests.sewerBrokenA != true)
+                {
+                    this.solid = true;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(caverna, 42, 187, 83, 87, -(1/2 * 83 * 1.6), -(1/2 * 87 * 1.6), 83 * 1.6, 87 * 1.6);
+                    XXX.restore();
+
+                    if (player.cutcut == true && this.playerer < 500)
+                    {
+                        var distFromCutCut = Math.sqrt((this.X - player.bubbleOfDamageX)*(this.X - player.bubbleOfDamageX) + (this.Y - player.bubbleOfDamageY)*(this.Y - player.bubbleOfDamageY));
+                        if (distFromCutCut <= player.weapon.distance)
+                        {
+                            if (player.weapon.negateArmour >= 6)
+                            {
+                                this.treeHealth -= player.weapon.damage;
+                            }
+                            else
+                            {
+                                this.treeHealth -= Math.max(0, player.weapon.damage - 6);
+                            }
+                        }
+                        if (this.treeHealth <= 0)
+                        {
+                            quests.sewerBrokenA = true;
+                        }
+                    }
+                }
+                else
+                {
+                    this.solid = false;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(caverna, 115, 188, 83, 87, -(1/2 * 83 * 1.6), -(1/2 * 87 * 1.6), 83 * 1.6, 87 * 1.6);
+                    XXX.restore();
+                }
+            }
+            else if (this.extra == "sewerB")
+            {
+                if (quests.sewerBrokenB != true)
+                {
+                    this.solid = true;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(caverna, 42, 187, 83, 87, -(1/2 * 83 * 1.6), -(1/2 * 87 * 1.6), 83 * 1.6, 87 * 1.6);
+                    XXX.restore();
+
+                    if (player.cutcut == true && this.playerer < 500)
+                    {
+                        var distFromCutCut = Math.sqrt((this.X - player.bubbleOfDamageX)*(this.X - player.bubbleOfDamageX) + (this.Y - player.bubbleOfDamageY)*(this.Y - player.bubbleOfDamageY));
+                        if (distFromCutCut <= player.weapon.distance)
+                        {
+                            if (player.weapon.negateArmour >= 6)
+                            {
+                                this.treeHealth -= player.weapon.damage;
+                            }
+                            else
+                            {
+                                this.treeHealth -= Math.max(0, player.weapon.damage - 6);
+                            }
+                        }
+                        if (this.treeHealth <= 0)
+                        {
+                            quests.sewerBrokenB = true;
+                        }
+                    }
+                }
+                else
+                {
+                    this.solid = false;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(caverna, 115, 188, 83, 87, -(1/2 * 83 * 1.6), -(1/2 * 87 * 1.6), 83 * 1.6, 87 * 1.6);
+                    XXX.restore();
+                }
+            }
+            else if (this.extra == "inside" || this.extra == "insideA" || this.extra == "insideB")
+            {
+                this.solid = true;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(caverna, 42, 276, 83, 87, -(1/2 * 83 * 1.6), -(1/2 * 87 * 1.6), 83 * 1.6, 87 * 1.6);
+                XXX.restore();
+
+                this.radius = 25;
+            }
+            else
+            {
+                if (this.treeHealth > 0)
+                {
+                    this.solid = true;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(caverna, 42, 187, 83, 87, -(1/2 * 83 * 1.6), -(1/2 * 87 * 1.6), 83 * 1.6, 87 * 1.6);
+                    XXX.restore();
+
+                    if (player.cutcut == true && this.playerer < 500)
+                    {
+                        var distFromCutCut = Math.sqrt((this.X - player.bubbleOfDamageX)*(this.X - player.bubbleOfDamageX) + (this.Y - player.bubbleOfDamageY)*(this.Y - player.bubbleOfDamageY));
+                        if (distFromCutCut <= player.weapon.distance)
+                        {
+                            if (player.weapon.negateArmour >= 6)
+                            {
+                                this.treeHealth -= player.weapon.damage;
+                            }
+                            else
+                            {
+                                this.treeHealth -= Math.max(0, player.weapon.damage - 6);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    this.solid = false;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(caverna, 115, 188, 83, 87, -(1/2 * 83 * 1.6), -(1/2 * 87 * 1.6), 83 * 1.6, 87 * 1.6);
+                    XXX.restore();
+                }
+            }
+
+            //solidness
+            if (this.extra != "inside" && this.extra != "insideA" && this.extra != "insideB")
+            {
+                this.radius = 14;
+                if (this.rotation == 0)
+                {
+                    barrierList.push(new Barrier((this.X + -42.5554787773317), (this.Y + -63.27239474087037), 63, 87, true));
+                }
+                else if (this.rotation == Math.PI)
+                {
+                    barrierList.push(new Barrier((this.X + -43.440034203537834), (this.Y + 1.78417021431369), 62, 85, true));
+                }
+                else if (this.rotation == 1/2 * Math.PI)
+                {
+                    barrierList.push(new Barrier((this.X + 1.5599657964621656), (this.Y + -42.21582978568631), 85, 63, true));
+                }
+                else
+                {
+                    barrierList.push(new Barrier((this.X + -64.44003420353783), (this.Y + -44.21582978568631), 87, 63, true));
+                }
+            }
+            //barrierCreator(this.X, this.Y);
+
+            //INTERACTION
+            if (this.activate == true && player.druidBear != true)
+            {
+                if (this.extra == "inside" || this.extra == "insideA" && quests.sewerBrokenA == true || this.extra == "insideB" && quests.sewerBrokenB == true || this.extra == "sewerA" && quests.sewerBrokenA == true || this.extra == "sewerB" && quests.sewerBrokenB == true)
+                {
+                    this.activate = false;
+                    X = this.temporary[0];
+                    Y = this.temporary[1];
+                    map = this.information;
+                }
+            }
+        }
+        else if (this.type == "caves")
+        {
+            //TRAITS
+            this.solid = true;
+            this.interactionRange = 200;
+            if (typeof this.extra[1] == "undefined")
+            {
+                this.extra[1] = 1.6;
+            }
+            this.size = this.extra[1];
+
+            //DRAWSELF
+            if (this.extra[0] == 1)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(caverna, 21, 83, 160, 111, -(1/2 * 160 * this.size), -(1/2 * 111 * this.size), 160 * this.size, 111 * this.size);
+                XXX.restore();
+            }
+            else if (this.extra[0] == 2)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(caverna, 10, 629, 161, 122, -(1/2 * 161 * this.size), -(1/2 * 122 * this.size), 161 * this.size, 122 * this.size);
+                XXX.restore();
+            }
+            else if (this.extra[0] == 3)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(caverna, 17, 761, 161, 122, -(1/2 * 161 * this.size), -(1/2 * 122 * this.size), 161 * this.size, 122 * this.size);
+                XXX.restore();
+            }
+            else
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(caverna, 0, 482, 161, 122, -(1/2 * 161 * this.size), -(1/2 * 122 * this.size), 161 * this.size, 122 * this.size);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = (45 / 1.6) * this.size;
+
+            //INTERACTION
+            if (this.activate == true && player.druidBear != true)
+            {
+                this.activate = false;
+                X = this.temporary[0];
+                Y = this.temporary[1];
+                map = this.information;
+            }
+        }
         else if (this.type == "arcusExit")
         {
             //TRAITS
@@ -46430,7 +46663,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
 
                 this.health = 3;
             }
-            console.log(player.cutcut);
+            //console.log(player.cutcut);
             //DRAWSELF
             if (this.phase == 0)
             {

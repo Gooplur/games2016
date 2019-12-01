@@ -20875,7 +20875,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             }
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
-            this.radius = (45 / 1.6) * this.size;
+            this.radius = (73 / 1.6) * this.size;
 
             //INTERACTION
             if (this.activate == true && player.druidBear != true)
@@ -20921,7 +20921,18 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             XXX.restore();
 
             //produces light
-            lights.push({X:this.X, Y: this.Y, size: 170, extraStops: true, GRD: 0.20, Alpha: 0.80, showMe: false});
+            if (timeOfDay == "Day")
+            {
+                lights.push({X:this.X, Y: this.Y, size: 170, extraStops: true, GRD: 0.20, Alpha: 0.80, showMe: false});
+            }
+            else if (timeOfDay == "Dusk" || timeOfDay == "Dawn")
+            {
+                lights.push({X:this.X, Y: this.Y, size: 170, extraStops: true, GRD: 0.20, Alpha: 0.30, showMe: false});
+            }
+            else
+            {
+                lights.push({X:this.X, Y: this.Y, size: 170, extraStops: true, GRD: 0.20, Alpha: 0.05, showMe: false});
+            }
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
             this.radius = 45;
@@ -21023,7 +21034,18 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             XXX.restore();
 
             //produces light
-            lights.push({X:this.X, Y: this.Y, size: 170, extraStops: true, GRD: 0.20, Alpha: 0.80, showMe: false});
+            if (timeOfDay == "Day")
+            {
+                lights.push({X:this.X, Y: this.Y, size: 170, extraStops: true, GRD: 0.20, Alpha: 0.80, showMe: false});
+            }
+            else if (timeOfDay == "Dusk" || timeOfDay == "Dawn")
+            {
+                lights.push({X:this.X, Y: this.Y, size: 170, extraStops: true, GRD: 0.20, Alpha: 0.30, showMe: false});
+            }
+            else
+            {
+                lights.push({X:this.X, Y: this.Y, size: 170, extraStops: true, GRD: 0.20, Alpha: 0.05, showMe: false});
+            }
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
             this.radius = 45;

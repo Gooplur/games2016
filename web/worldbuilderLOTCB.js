@@ -4881,6 +4881,26 @@ function worldBuilder()
         outlineBuilder( 2, 2, "rock", 1, 2);
         outlineBuilder( 1, 1, "rock", 3, -1);
     }
+    else if (map == "floodedHideout") //This is a dungeon found in map W3
+    {
+        player.dmx = map;
+        player.underground = true;
+        elevation = -1; //underground temperatures are consistently -1 unless there is a certain closeness to magma...
+        region = "floodedHideout";
+        campout = true;
+        //starting chamber
+        outlineBuilder( 4, 4, "rock", 0, 0);
+    }
+    else if (map == "sourceOfTheGlow") //This is a dungeon found in map W3
+    {
+        player.dmx = map;
+        player.underground = true;
+        elevation = -1; //underground temperatures are consistently -1 unless there is a certain closeness to magma...
+        region = "sourceOfTheGlow";
+        campout = true;
+        //starting chamber
+        outlineBuilder( 4, 4, "rock", 0, 0);
+    }
     else if (map == "ansetEggRoom")
     {
         player.dmx = map;

@@ -38446,31 +38446,17 @@ function Adventurer()
                         //Drop Boats as scenery objects
                         if (Inventory[i][0].type == "boat")
                         {
-                            var canPlace = true;
-                            var hits = 0;
-                            for (var j = 0; j < scenicList.length; j++)
-                            {
-                                //19 is the radius of campFire Scenery Object.
-                                if (scenicList[j].X - 55 <= X + scenicList[j].radius && scenicList[j].X + 55 >= X - scenicList[j].radius && scenicList[j].Y - 55 <= Y + scenicList[j].radius && scenicList[j].Y + 55 >= Y - scenicList[j].radius)
-                                {
-                                    canPlace = false;
-                                }
-                            }
+                            scenicList.push(new Scenery("floatingBoat", X, Y, this.rotation, false));
 
-                            if (canPlace == true)
+                            if (Inventory[i][1] - 1 <= 0)
                             {
-                                scenicList.push(new Scenery("floatingBoat", X, Y, this.rotation, false));
-
-                                if (Inventory[i][1] - 1 <= 0)
-                                {
-                                    Inventory.splice(i, 1);
-                                }
-                                else
-                                {
-                                    Inventory[i][1] -= 1;
-                                }
-                                break;
+                                Inventory.splice(i, 1);
                             }
+                            else
+                            {
+                                Inventory[i][1] -= 1;
+                            }
+                            break;
                         }
                     }
                     else if (Inventory[i][0].utility == "trinket")

@@ -2734,7 +2734,8 @@ function worldBuilder()
             elevation = 0;
             region = "s7w34";
             campout = true;
-            outlineBuilder(34, 34, "outline", -1176, 218); //todo vardanianWetland
+            outlineBuilder(34, 34, "vardanianWetland", -1176, 218);
+
             outlineBuilder(1, 1, "swamp", -1174, 251);
             outlineBuilder(2, 4, "swamp", -1175, 249);
             outlineBuilder(1, 7, "swamp", -1174, 248);

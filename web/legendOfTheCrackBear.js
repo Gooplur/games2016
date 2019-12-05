@@ -3713,7 +3713,11 @@ function theLegend()
         haba: ["Haba", 0],
         taior: ["Taior", 0],
         yalih: ["Yalih", 0],
-        loshad: ["Loshad", 0]
+        loshad: ["Loshad", 0],
+        vaughn: ["Vaughn", 0],
+        bashmak: ["Bashmak", 0],
+        zenovia: ["Zenovia", 0],
+        grigoriy: ["Grigoriy", 0]
     };
 
 //time Tracker Variables
@@ -3973,7 +3977,11 @@ function theLegend()
         habaLDS: true,
         taiorLDS: true,
         yalihLDS: true,
-        loshadLDS: true
+        loshadLDS: true,
+        vaughnLDS: true,
+        bashmakLDS: true,
+        zenoviaLDS: true,
+        grigoriyLDS: true
     };
 //QUESTS
     quests =

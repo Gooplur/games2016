@@ -2877,6 +2877,236 @@ function interaction(me)
                         }
                     }
 
+                    if (self.ID == "Loshad the Horse Merchant" || conversationID[0] == "Loshad")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Loshad";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["What do you sell?", false, "c"], ["Loshad, that's a weird name...", false, "d"], ["Are you content with your life?", false, "e"], ["Of what do you dream?", false, "g"]];
+                                if (have("coins", 700))
+                                {
+                                    player.dialogueOptions.unshift(["[Buy Mare for 700 coins]", false, "a"]);
+                                }
+                                if (have("coins", 825))
+                                {
+                                    player.dialogueOptions.unshift(["[Buy Stallion for 825 coins]", false, "b"]);
+                                }
+                                if (player.getIntelligence() >= 4 || player.title == "Nobility" || player.title == "Royalty")
+                                {
+                                    player.dialogueOptions.push(["You seem a well educated man, yet you are a horse merchant.", false, "f"]);
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "f")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0f";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "g")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0g";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            setMsg("She's a trusty mare, she will serve you well.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                take("coins", 700);
+                                reiniciar();
+                                change = "morrowMare";
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            setMsg("You will find that the extra expense for that stallion was well worth it.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                take("coins", 825);
+                                reiniciar();
+                                change = "morrowStallion";
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            setMsg("I sell horses mainly... my family has tamed and raised horses for generations.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            setMsg("Ha! My name, weird? I suppose that all names are fairly weird. For are we not more than the dull syllables that fall dryly from our lips when we wish to contain and demystify that most complex and beautiful of gifts that is called existence.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            //text dialogue
+                            setMsg("Indeed I am content with my life, yet I feel sorrow for the lives of my massacred countrymen in the fields, and for those many people that are ailed by ungodly, torturous afflictions. I consider myself very lucky indeed to live the life of a horse merchant, it is comparably luxurious!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0f")
+                        {
+                            //text dialogue
+                            setMsg("My mother was from a respectable highborn family, but she was disowned when she maried my father. She taught me about the world. Most importantly though, she taught me that love is more valuable than wealth or status. My mother felt unhappy and caged despite the bounty of wealth that her birthright permitted her, but with my father and I she felt free, she was truly herself... Wealth and politics are vile swarming insects that sting the soul. Without love we are all lost.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0g")
+                        {
+                            //text dialogue
+                            setMsg("I dream of an end to famine, to pointless wars with beginning but no end. I dream of a time where love is more powerful than hate, where the rage of wronged spirits unseen afflicts not the innocents with terrible pox. I dream of a day when every man, woman, and child will listen to the everlasting spirit's way with open ears and choose to banish the void from their hearts. These are just dreams, nothing more. The most I can do to see such fantasy come to be is to act with love and humility myself, and hope, hope that others share my dreams.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
                     if (self.ID == "Old Lady Haba" || conversationID[0] == "Haba")
                     {
                         lowBar = "dialogue";

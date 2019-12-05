@@ -3137,13 +3137,13 @@ function cheats()
                     buildClase += 1;
                 }
 
-                if (buildClase > 6)
+                if (buildClase > 9)
                 {
                     buildClase = 1;
                 }
                 else if ((buildClase < 1))
                 {
-                    buildClase = 6;
+                    buildClase = 9;
                 }
             }
 

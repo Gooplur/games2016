@@ -36,6 +36,9 @@ function gameloopOfDestiny(time)
         seaFlux = 0;
     }
 
+
+    player.shelter = false;
+
     // THIS IS THE BACKGROUND BUILDER (height, width, type, x, y) // The tile coords 0, 0 are at the bottom right corner of Teshir City.
     //Different parts of the world load at different Y values. // maps are 34 by 34 tiles and for somereason the maps are -20 to the left. and + 14 down.
     worldBuilder();

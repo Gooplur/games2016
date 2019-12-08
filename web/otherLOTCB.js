@@ -605,6 +605,297 @@ function screenCover()
         XXX.restore();
     }
 
+    if (player.anjayTime > 0)
+    {
+        anjayRot += 61/360 * Math.PI;
+
+        XXX.beginPath();
+        XXX.save();
+        XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+        XXX.scale(16, 14);
+        XXX.rotate(0);
+        XXX.globalAlpha = 0.3;
+        if (Math.random() > 0.5)
+        {
+            XXX.drawImage(ion, 894, 432, 90, 80, -1/2 * 90, -1/2 * 80, 90, 80);
+        }
+        else
+        {
+            XXX.drawImage(ion, 889, 596, 90, 80, -1/2 * 90, -1/2 * 80, 90, 80);
+        }
+        XXX.restore();
+
+        XXX.beginPath();
+        XXX.save();
+        XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+        XXX.scale(18, 18);
+        XXX.rotate(0);
+        XXX.globalAlpha = 0.3;
+        if (Math.random() > 0.5)
+        {
+            XXX.drawImage(ion, 894, 432, 90, 80, -1/2 * 90, -1/2 * 80, 90, 80);
+        }
+        else
+        {
+            XXX.drawImage(ion, 889, 596, 90, 80, -1/2 * 90, -1/2 * 80, 90, 80);
+        }
+        XXX.restore();
+
+        XXX.beginPath();
+        XXX.save();
+        XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+        if (Math.random() > 0.5)
+        {
+            if (Math.random() > 0.5)
+            {
+                XXX.scale(50, 50);
+            }
+            else
+            {
+                XXX.scale(59, 59);
+            }
+        }
+        else
+        {
+            if (Math.random() > 0.5)
+            {
+                XXX.scale(52, 52);
+            }
+            else
+            {
+                XXX.scale(51, 51);
+            }
+        }
+        XXX.rotate(anjayRot / 3);
+        XXX.globalAlpha = 0.15;
+
+        XXX.drawImage(raed, 636, 434, 21, 22, -1/2 * 21, -1/2 * 22, 21, 22);
+        XXX.restore();
+
+        XXX.beginPath();
+        XXX.save();
+        XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+        if (Math.random() > 0.5)
+        {
+            if (Math.random() > 0.5)
+            {
+                XXX.scale(40, 40);
+            }
+            else
+            {
+                XXX.scale(39, 39);
+            }
+        }
+        else
+        {
+            if (Math.random() > 0.5)
+            {
+                XXX.scale(42, 42);
+            }
+            else
+            {
+                XXX.scale(41, 41);
+            }
+        }
+        XXX.rotate(anjayRot / 2);
+        XXX.globalAlpha = 0.05;
+
+        XXX.drawImage(raed, 636, 434, 21, 22, -1/2 * 21, -1/2 * 22, 21, 22);
+        XXX.restore();
+
+        XXX.beginPath();
+        XXX.save();
+        XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+        if (Math.random() > 0.5)
+        {
+            if (Math.random() > 0.5)
+            {
+                XXX.scale(30, 30);
+            }
+            else
+            {
+                XXX.scale(39, 39);
+            }
+        }
+        else
+        {
+            if (Math.random() > 0.5)
+            {
+                XXX.scale(32, 32);
+            }
+            else
+            {
+                XXX.scale(31, 31);
+            }
+        }
+        XXX.rotate(anjayRot);
+        XXX.globalAlpha = 0.2;
+
+        XXX.drawImage(raed, 636, 434, 21, 22, -1/2 * 21, -1/2 * 22, 21, 22);
+        XXX.restore();
+
+        XXX.beginPath();
+        XXX.save();
+        XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+        if (Math.random() > 0.5)
+        {
+            if (Math.random() > 0.5)
+            {
+                XXX.scale(20, 20);
+            }
+            else
+            {
+                XXX.scale(29, 29);
+            }
+        }
+        else
+        {
+            if (Math.random() > 0.5)
+            {
+                XXX.scale(22, 22);
+            }
+            else
+            {
+                XXX.scale(21, 21);
+            }
+        }
+        XXX.rotate((anjayRot - 2*Math.PI));
+        XXX.globalAlpha = 0.1;
+
+        XXX.drawImage(raed, 636, 434, 21, 22, -1/2 * 21, -1/2 * 22, 21, 22);
+        XXX.restore();
+
+        if (player.anjayTime <= 400)
+        {
+            if (player.anjayTime > 15 && player.anjayTime <= 100)
+            {
+                XXX.save();
+                //XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.rotate(0);
+                //XXX.drawImage(CCC, 650, 225, 100, 100, 600, 175, 200, 200);
+                var anjayC = document.createElement("canvas");
+                anjayC.width = CCC.width;
+                anjayC.height = CCC.height;
+                var anjayCX = anjayC.getContext("2d");
+                anjayCX.drawImage(CCC, 650, 225, 100, 100, 625, 200, 150, 150);
+
+                var anjayC2 = document.createElement("canvas");
+                anjayC2.width = CCC.width;
+                anjayC2.height = CCC.height;
+                var anjayCX2 = anjayC2.getContext("2d");
+                anjayCX2.drawImage(CCC, 500, 100, 400, 350, 500 - 0.1 * 400, 100 - 0.1 * 350, 500, 437.5);
+
+                var anjayC3 = document.createElement("canvas");
+                anjayC3.width = CCC.width;
+                anjayC3.height = CCC.height;
+                var anjayCX3 = anjayC3.getContext("2d");
+                anjayCX3.drawImage(CCC, 200, 50, 1000, 450, 200 - 0.05 * 1000, 50 - 0.05 * 450, 1100, 495);
+
+                var anjayC4 = document.createElement("canvas");
+                anjayC4.width = CCC.width;
+                anjayC4.height = CCC.height;
+                var anjayCX4 = anjayC4.getContext("2d");
+                anjayCX4.drawImage(CCC, 200, 50, 1000, 450, 200 - 0.1 * 1000, 50 - 0.1 * 450, 1200, 540);
+
+                var anjayC5 = document.createElement("canvas");
+                anjayC5.width = CCC.width;
+                anjayC5.height = CCC.height;
+                var anjayCX5 = anjayC5.getContext("2d");
+                anjayCX5.drawImage(CCC, 200, 50, 1000, 450, 200 - 0.175 * 1000, 50 - 0.175 * 450, 1350, 607.5);
+
+                XXX.drawImage(CCC, 200, 50, 1000, 450, 200 - 0.2 * 1000, 50 - 0.2 * 450, 1400, 630);
+
+                XXX.drawImage(anjayC5, 0, 0);
+                XXX.drawImage(anjayC4, 0, 0);
+                XXX.drawImage(anjayC3, 0, 0);
+                XXX.drawImage(anjayC2, 0, -10);
+                XXX.drawImage(anjayC, 0, 0);
+                XXX.restore();
+            }
+            if (player.anjayTime > 100)
+            {
+                XXX.save();
+                //XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.scale(1, 1);
+                XXX.rotate(0);
+                //XXX.globalAlpha = 0.95;
+                XXX.drawImage(CCC, 400, 150, 1000, 300, 0, 0, 700, 150);
+                XXX.drawImage(CCC, 400, 150, 1000, 300, 700, 0, 700, 150);
+                XXX.restore();
+
+                XXX.save();
+                //XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.scale(1, 1);
+                XXX.rotate(0);
+                //XXX.globalAlpha = 0.95;
+                XXX.drawImage(CCC, 0, 0, 1400, 150, 0, 150, 1400, 400);
+                //XXX.drawImage(CCC, 400, 150, 1000, 300, 700, 0, 700, 150);
+                XXX.restore();
+            }
+
+            if (player.anjayTime > 150)
+            {
+                XXX.save();
+                //XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.scale(1, 1);
+                XXX.rotate(0);
+                XXX.globalAlpha = 0.1;
+                XXX.drawImage(CCC, 0, 0, 1400, 150, 0, 0, 700, 150);
+                XXX.drawImage(CCC, 0, 0, 1400, 150, 700, 0, 700, 150);
+                XXX.restore();
+            }
+
+            if (player.anjayTime > 200)
+            {
+                XXX.save();
+                //XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.scale(1, 1);
+                XXX.rotate(0);
+                XXX.globalAlpha = 0.1;
+                XXX.drawImage(CCC, 0, 0, 1400, 150, 0, 150, 1400, 150);
+                XXX.drawImage(CCC, 0, 0, 1400, 150, 0, 300, 1400, 150);
+                XXX.drawImage(CCC, 0, 0, 1400, 150, 0, 450, 1400, 150);
+                XXX.restore();
+            }
+
+            if (player.anjayTime > 250)
+            {
+                XXX.save();
+                //XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.scale(1, 1);
+                XXX.rotate(0);
+                XXX.globalAlpha = 0.1;
+                XXX.drawImage(CCC, 0, 0, 1400, 150, 0, 0, 700, 150);
+                XXX.drawImage(CCC, 0, 0, 1400, 150, 700, 0, 700, 150);
+                XXX.restore();
+            }
+
+            if (player.anjayTime > 300)
+            {
+                XXX.save();
+                //XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.scale(1, 1);
+                XXX.rotate(0);
+                XXX.globalAlpha = 0.5;
+                XXX.drawImage(CCC, 0, 0, 1400, 150, 0, 150, 1400, 150);
+                XXX.drawImage(CCC, 0, 0, 1400, 150, 0, 300, 1400, 150);
+                XXX.drawImage(CCC, 0, 0, 1400, 150, 0, 450, 1400, 150);
+                XXX.restore();
+            }
+
+            if (player.anjayTime > 350)
+            {
+                XXX.save();
+                //XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.scale(1, 1);
+                XXX.rotate(0);
+                XXX.globalAlpha = 0.3;
+                XXX.drawImage(CCC, 0, 0, 1400, 450, -1400, -450, 2800, 1100);
+                XXX.restore();
+            }
+        }
+    }
+
     //Dizziness
     if (player.dizzyTime > 0 && gameState == "active" && player.dizzyVI == true)
     {

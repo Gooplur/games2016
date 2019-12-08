@@ -1342,6 +1342,7 @@ function applySelectionsButton()
         if (player.raceName == "Aldrek")
         {
             player.baseThirst = 35;
+            player.baseWarmth = 35;
         }
         else if (player.raceName == "Zetian")
         {
@@ -1368,10 +1369,15 @@ function applySelectionsButton()
         else if (player.raceName == "Sylkeem")
         {
             player.baseHunger = 40;
+            player.baseWarmth = 100;
         }
         else if (player.raceName == "Vardan")
         {
             player.sleepMAX = 48;
+        }
+        else if (player.raceName == "Cephrite")
+        {
+            player.baseWarmth = 40;
         }
 
         //Base survival stats significantly boosted for protagonist mode

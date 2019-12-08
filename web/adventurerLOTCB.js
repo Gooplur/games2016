@@ -173,6 +173,8 @@ function Adventurer()
     //Climate Affected Stats
     this.baseWarmth = 50;
     this.baseThirst = 20;
+    this.heatTolerance = 20;
+    this.heat = 0;
     this.warmthMAX = 50 + (1 * this.endurance) + (4 * this.toughness); //This is how warm you are... if it goes to 0 or below then the player will start losing health at an average rate but also their speed will be massively decreased. [It only goes down in cold climates](freezing to death)
     this.warmth = this.warmthMAX; //This is the players current warmth.
     this.timeSinceLastWarmthChange = new Date().getTime(); //This is the time since the last change in the player's warmth.
@@ -182,6 +184,7 @@ function Adventurer()
     this.timeSinceLastColdRush = new Date().getTime(); //this is the time that has passed since the last time the player was hurt from being frozen.
     this.baseWarmthProtection = 0;
     this.baseHeatResistance = 0;
+    this.shelter = false; //full protection from cold and heat based on indoorsness
     //Sensing related variables
     this.noticed = false; // if noticed is true it means that an AI Unit has and is currently noticing the player.
     this.inCombat = false; // this flag specifies whether or not the player is being attacked by a AI Unit.
@@ -627,6 +630,7 @@ function Adventurer()
     this.dragonFireKeepTime = 0;
     this.dragonFireKeepTime2 = new Date().getTime();
     this.dragonFireMult = 0;
+    this.anjayTime = 0;
 
         //faction variables
     this.factionToggle = false;
@@ -1195,16 +1199,56 @@ function Adventurer()
             this.baseWarmthProtection = 10;
             this.baseHeatResistance = -2.5;
             this.respirationMAX = 600;
+            this.baseThirstProtection = -0.25;
+            this.heatTolerance = 20;
         }
         else
         {
-            this.baseWarmthProtection = 0;
             if (this.raceName == "Aldrek")
             {
-                this.baseHeatResistance = 0.2;
+                this.baseHeatResistance = 0.3;
+                this.baseThirstProtection = 0.2;
+                this.heatTolerance = 40 + 3/5 * this.getToughness();
+                this.baseWarmthProtection = 0;
+            }
+            else if (this.raceName == "Zetian")
+            {
+                this.baseThirstProtection = 0.25;
+                this.heatTolerance = 50 + 4/5 * this.getToughness();
+                this.baseWarmthProtection = 0;
+            }
+            else if (this.raceName == "Cephrite")
+            {
+                this.baseThirstProtection = 0.1;
+                this.heatTolerance = 25 + 2/5 * this.getToughness();
+                this.baseWarmthProtection = 0;
+                this.baseWarmthProtection = 0;
+            }
+            else if (this.raceName == "Orgell")
+            {
+                this.baseThirstProtection = 0.15;
+                this.heatTolerance = 30 + 2/5 * this.getToughness();
+                this.baseWarmthProtection = 0;
+            }
+            else if (this.raceName == "Freynor")
+            {
+                this.baseThirstProtection = 0;
+                this.baseHeatResistance = 0;
+                this.heatTolerance = 16 + 1/5 * this.getToughness();
+                this.baseWarmthProtection = 0.5;
+            }
+            else if (this.raceName == "Sylkeem")
+            {
+                this.baseThirstProtection = 0;
+                this.baseHeatResistance = 0;
+                this.heatTolerance = 10 + 1/5 * this.getToughness();
+                this.baseWarmthProtection = 1;
             }
             else
             {
+                this.baseThirstProtection = 0;
+                this.heatTolerance = 20 + 2/5 * this.getToughness();
+                this.baseWarmthProtection = 0;
                 this.baseHeatResistance = 0;
             }
             this.respirationMAX = 25 + (this.getEndurance() / 5) + this.cyborgRespo;
@@ -2241,647 +2285,1130 @@ function Adventurer()
             }
 
             //This is Where warmth and thirst will either increase or decrease depending on the region the player is in.
-            if (elevation == 5 && new Date().getTime() - this.timeSinceLastWarmthChange > 5000)
+            if (this.shelter != true)
             {
-                //extra coldness is added for swimming in cold water
-                if (this.movingType == "swimming")
+                if (elevation == 5 && new Date().getTime() - this.timeSinceLastWarmthChange > 5000)
                 {
-                    if (this.aquatica != true)
+                    //extra coldness is added for swimming in cold water
+                    if (this.movingType == "swimming")
                     {
-                        this.warmth -= 15;
+                        if (this.aquatica != true)
+                        {
+                            this.warmth -= 15;
+                        }
+                    }
+                    //COLD SYSTEM (seasonal differences)
+                    if (currentSeason == "Bright")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (4 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.4);
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (5 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.5);
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (4.5 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.45);
+                        }
+                    }
+                    else if (currentSeason == "Harvest")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (5 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.5);
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (6 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.6);
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (5.5 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.55);
+                        }
+                    }
+                    else if (currentSeason == "Frost")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (6 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.6);
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (7 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.7);
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (6.5 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.65);
+                        }
+                    }
+                    else if (currentSeason == "Bounty")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (5 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.5);
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (6 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.6);
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (5.5 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.55);
+                        }
                     }
                 }
-                //COLD SYSTEM (seasonal differences)
-                if (currentSeason == "Bright")
+                else if (elevation == 4 && new Date().getTime() - this.timeSinceLastWarmthChange > 5000)
                 {
-                    if (timeOfDay == "Day")
+                    //extra coldness is added for swimming in cold water
+                    if (this.movingType == "swimming")
                     {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (4 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
+                        if (this.aquatica != true)
+                        {
+                            this.warmth -= 13;
+                        }
                     }
-                    else if (timeOfDay == "Night")
+                    //COLD SYSTEM (seasonal differences)
+                    if (currentSeason == "Bright")
                     {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (5 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (3 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.3);
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (4 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.4);
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (3.5 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.35);
+                        }
                     }
-                    else
+                    else if (currentSeason == "Harvest")
                     {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (4.5 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (4 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.4);
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (5 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.5);
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (4.5 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.45);
+                        }
+                    }
+                    else if (currentSeason == "Frost")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (5 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.5);
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (6 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.6);
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (5.5 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.55);
+                        }
+                    }
+                    else if (currentSeason == "Bounty")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (4 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.4);
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (5 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.5);
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (4.5 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.45);
+                        }
                     }
                 }
-                else if (currentSeason == "Harvest")
+                else if (elevation == 3 && new Date().getTime() - this.timeSinceLastWarmthChange > 5000)
                 {
-                    if (timeOfDay == "Day")
+                    //extra coldness is added for swimming in cold water
+                    if (this.movingType == "swimming")
                     {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (5 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
+                        if (this.aquatica != true)
+                        {
+                            this.warmth -= 11;
+                        }
                     }
-                    else if (timeOfDay == "Night")
+                    //COLD SYSTEM (seasonal differences)
+                    if (currentSeason == "Bright")
                     {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (6 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (2 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.2);
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (3 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.3);
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (2.5 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.25);
+                        }
                     }
-                    else
+                    else if (currentSeason == "Harvest")
                     {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (5.5 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (3 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.3);
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (4 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.4);
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (3.5 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.35);
+                        }
+                    }
+                    else if (currentSeason == "Frost")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (4 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.4);
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (5 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.5);
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (4.5 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.45);
+                        }
+                    }
+                    else if (currentSeason == "Bounty")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (3 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.3);
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (4 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.4);
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (3.5 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.35);
+                        }
                     }
                 }
-                else if (currentSeason == "Frost")
+                else if (elevation == 2 && new Date().getTime() - this.timeSinceLastWarmthChange > 5000)
                 {
-                    if (timeOfDay == "Day")
+                    //extra coldness is added for swimming in cold water
+                    if (this.movingType == "swimming")
                     {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (6 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
+                        if (this.aquatica != true)
+                        {
+                            this.warmth -= 9;
+                        }
                     }
-                    else if (timeOfDay == "Night")
+                    //COLD SYSTEM (seasonal differences)
+                    if (currentSeason == "Bright")
                     {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (7 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (1 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.075);
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (2 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.2);
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (1.5 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.1);
+                        }
                     }
-                    else
+                    else if (currentSeason == "Harvest")
                     {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (6.5 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (2 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.2);
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (3 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.3);
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (2.5 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.25);
+                        }
+                    }
+                    else if (currentSeason == "Frost")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (3 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.3);
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (4 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.4);
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (3.5 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.35);
+                        }
+                    }
+                    else if (currentSeason == "Bounty")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (2 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.2);
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (3 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.3);
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (2.5 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.25);
+                        }
                     }
                 }
-                else if (currentSeason == "Bounty")
+                else if (elevation == 1 && new Date().getTime() - this.timeSinceLastWarmthChange > 5000)
                 {
-                    if (timeOfDay == "Day")
+                    //extra coldness is added for swimming in cold water
+                    if (this.movingType == "swimming")
                     {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (5 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
+                        if (this.aquatica != true)
+                        {
+                            this.warmth -= 7;
+                        }
                     }
-                    else if (timeOfDay == "Night")
+                    //COLD SYSTEM (seasonal differences)
+                    if (currentSeason == "Bright")
                     {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (6 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (0 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.01);
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (1 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.075);
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (0.5 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.05);
+                        }
                     }
-                    else
+                    else if (currentSeason == "Harvest")
                     {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (5.5 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (1 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.075);
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (2 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.2);
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (1.5 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.1);
+                        }
+                    }
+                    else if (currentSeason == "Frost")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (2 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.2);
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (3 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.3);
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (2.5 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.25);
+                        }
+                    }
+                    else if (currentSeason == "Bounty")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (1 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.075);
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (2 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.2);
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (1.5 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.1);
+                        }
+                    }
+                }
+                else if (elevation == 0 && new Date().getTime() - this.timeSinceLastWarmthChange > 5000) //every 0.85 seconds warmth increases if not at its max. Thirst only ever increases by intaking moisture... obviously.
+                {
+                    //extra coldness is added for swimming in cold water
+                    if (this.movingType == "swimming")
+                    {
+                        if (this.aquatica != true)
+                        {
+                            this.warmth -= 5;
+                        }
+                    }
+                    //COLD SYSTEM (seasonal differences)
+                    if (currentSeason == "Bright")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 1);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (0 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.01);
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 0.5);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                    }
+                    else if (currentSeason == "Harvest")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (0 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.01);
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (1 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.075);
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (0.5 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.05);
+                        }
+                    }
+                    else if (currentSeason == "Frost")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (1 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.075);
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (2 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.2);
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (1.5 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.1);
+                        }
+                    }
+                    else if (currentSeason == "Bounty")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (0 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.01);
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (1 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.075);
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (0.5 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.05);
+                        }
+                    }
+                }
+                else if (elevation == -1 && new Date().getTime() - this.timeSinceLastWarmthChange > 5000) //every 0.85 seconds warmth increases if not at its max. Thirst only ever increases by intaking moisture... obviously.
+                {
+                    //extra coldness is added for swimming in cold water
+                    if (this.movingType == "swimming")
+                    {
+                        if (this.aquatica != true)
+                        {
+                            this.warmth -= 2;
+                        }
+                    }
+
+                    if (currentSeason == "Bright")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 1.5);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 1);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 1.25);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                    }
+                    else if (currentSeason == "Harvest")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 0.5);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (0.5 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.05);
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (0 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.01);
+                        }
+                    }
+                    else if (currentSeason == "Frost")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (0 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.01);
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (1 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.075);
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (0.5 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.05);
+                        }
+                    }
+                    else if (currentSeason == "Bounty")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 0.5);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (0.5 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.05);
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (0 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.01);
+                        }
+                    }
+                }
+                else if (elevation == -2 && new Date().getTime() - this.timeSinceLastWarmthChange > 5000) //every 0.85 seconds warmth increases if not at its max. Thirst only ever increases by intaking moisture... obviously.
+                {
+                    if (currentSeason == "Bright")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 2);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.025);
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 1);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.025);
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 1.5);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.025);
+                        }
+                    }
+                    else if (currentSeason == "Harvest")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 1);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 0);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.01);
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 0.5);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                    }
+                    else if (currentSeason == "Frost")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 0);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.01);
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (0.5 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.05);
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (0.25 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.025);
+                        }
+                    }
+                    else if (currentSeason == "Bounty")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 1);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 0);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 0.5);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                    }
+                }
+                else if (elevation == -3 && new Date().getTime() - this.timeSinceLastWarmthChange > 5000) //every 0.85 seconds warmth increases if not at its max. Thirst only ever increases by intaking moisture... obviously.
+                {
+                    if (currentSeason == "Bright")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 2.5);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat += 0.1 * Math.max(0, 1 - this.thirstProtection);
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 1.5);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat += 0.05 * Math.max(0, 1 - this.thirstProtection);
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 2);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat += 0.075 * Math.max(0, 1 - this.thirstProtection);
+                        }
+                    }
+                    else if (currentSeason == "Harvest")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 1.5);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat += 0.075 * Math.max(0, 1 - this.thirstProtection);
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 0.5);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat += 0.025 * Math.max(0, 1 - this.thirstProtection);
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 1);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat += 0.05 * Math.max(0, 1 - this.thirstProtection);
+                        }
+                    }
+                    else if (currentSeason == "Frost")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 0.5);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (0.25 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.025);
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (0.1 - this.warmthProtection)));
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat = Math.max(0, this.heat - 0.01);
+                        }
+                    }
+                    else if (currentSeason == "Bounty")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 1.5);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat += 0.075 * Math.max(0, 1 - this.thirstProtection);
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 0.5);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat += 0.025 * Math.max(0, 1 - this.thirstProtection);
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 1);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat += 0.05 * Math.max(0, 1 - this.thirstProtection);
+                        }
+                    }
+                }
+                else if (elevation == -4 && new Date().getTime() - this.timeSinceLastWarmthChange > 5000) //every 0.85 seconds warmth increases if not at its max. Thirst only ever increases by intaking moisture... obviously.
+                {
+                    if (currentSeason == "Bright")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 3);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat += 0.25 * Math.max(0, 1 - this.thirstProtection);
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 2);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat += 0.05 * Math.max(0, 1 - this.thirstProtection);
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 2.5);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat += 0.1 * Math.max(0, 1 - this.thirstProtection);
+                        }
+                    }
+                    else if (currentSeason == "Harvest")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 2);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat += 0.15 * Math.max(0, 1 - this.thirstProtection);
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 1);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat += 0.075 * Math.max(0, 1 - this.thirstProtection);
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 1.5);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat += 0.1 * Math.max(0, 1 - this.thirstProtection);
+                        }
+                    }
+                    else if (currentSeason == "Frost")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 1);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat += 0.1 * Math.max(0, 1 - this.thirstProtection);
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 0);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat += 0.025 * Math.max(0, 1 - this.thirstProtection);
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 0.5);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat += 0.05 * Math.max(0, 1 - this.thirstProtection);
+                        }
+                    }
+                    else if (currentSeason == "Bounty")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 2);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat += 0.15 * Math.max(0, 1 - this.thirstProtection);
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 1);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat += 0.075 * Math.max(0, 1 - this.thirstProtection);
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 1.5);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat += 0.1 * Math.max(0, 1 - this.thirstProtection);
+                        }
+                    }
+                }
+                else if (elevation == -5 && new Date().getTime() - this.timeSinceLastWarmthChange > 5000) //every 0.85 seconds warmth increases if not at its max. Thirst only ever increases by intaking moisture... obviously.
+                {
+                    if (currentSeason == "Bright")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 5);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat += 1 * Math.max(0, 1 - this.thirstProtection);
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 4);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat += 0.5 * Math.max(0, 1 - this.thirstProtection);
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 4.5);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat += 0.75 * Math.max(0, 1 - this.thirstProtection);
+                        }
+                    }
+                    else if (currentSeason == "Harvest")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 4);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat += 0.75 * Math.max(0, 1 - this.thirstProtection);
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 3);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat += 0.25 * Math.max(0, 1 - this.thirstProtection);
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 3.5);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat += 0.5 * Math.max(0, 1 - this.thirstProtection);
+                        }
+                    }
+                    else if (currentSeason == "Frost")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 3);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat += 0.5 * Math.max(0, 1 - this.thirstProtection);
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 2);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat += 0.1 * Math.max(0, 1 - this.thirstProtection);
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 2.5);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat += 0.25 * Math.max(0, 1 - this.thirstProtection);
+                        }
+                    }
+                    else if (currentSeason == "Bounty")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 4);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat += 0.75 * Math.max(0, 1 - this.thirstProtection);
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 3);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat += 0.25 * Math.max(0, 1 - this.thirstProtection);
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 3.5);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat += 0.5 * Math.max(0, 1 - this.thirstProtection);
+                        }
+                    }
+                }
+                else if (elevation == -6 && new Date().getTime() - this.timeSinceLastWarmthChange > 5000) //every 0.85 seconds warmth increases if not at its max. Thirst only ever increases by intaking moisture... obviously.
+                {
+                    if (currentSeason == "Bright")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 8);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat += 3 * Math.max(0, 1 - this.thirstProtection);
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 7);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat += 1 * Math.max(0, 1 - this.thirstProtection);
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 7.5);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat += 2 * Math.max(0, 1 - this.thirstProtection);
+                        }
+                    }
+                    else if (currentSeason == "Harvest")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 7);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat += 2 * Math.max(0, 1 - this.thirstProtection);
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 6);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat += 0.75 * Math.max(0, 1 - this.thirstProtection);
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 7.5);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat += 1.5 * Math.max(0, 1 - this.thirstProtection);
+                        }
+                    }
+                    else if (currentSeason == "Frost")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 6);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat += 1.5 * Math.max(0, 1 - this.thirstProtection);
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 5);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat += 0.5 * Math.max(0, 1 - this.thirstProtection);
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 5.5);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat += 1 * Math.max(0, 1 - this.thirstProtection);
+                        }
+                    }
+                    else if (currentSeason == "Bounty")
+                    {
+                        if (timeOfDay == "Day")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 7);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat += 2 * Math.max(0, 1 - this.thirstProtection);
+                        }
+                        else if (timeOfDay == "Night")
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 6);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat += 0.75 * Math.max(0, 1 - this.thirstProtection);
+                        }
+                        else
+                        {
+                            this.warmth = Math.min(this.warmthMAX, this.warmth + 6.5);
+                            this.timeSinceLastWarmthChange = new Date().getTime();
+                            this.heat += 1.5 * Math.max(0, 1 - this.thirstProtection);
+                        }
                     }
                 }
             }
-            else if (elevation == 4 && new Date().getTime() - this.timeSinceLastWarmthChange > 5000)
+
+            //HEAT EXHAUSTION
+            if (this.heat > this.heatTolerance)
             {
-                //extra coldness is added for swimming in cold water
-                if (this.movingType == "swimming")
+                this.thirst = Math.max(0, this.thirst - 0.03 * ((this.heat - this.heatTolerance) / this.heatTolerance));
+                if (this.heat > this.heatTolerance * 1.2)
                 {
-                    if (this.aquatica != true)
-                    {
-                        this.warmth -= 13;
-                    }
+                    this.thirst = Math.max(0, this.thirst - 0.01 * ((this.heat - this.heatTolerance) / this.heatTolerance));
+                    this.energilTime = Math.max(this.energilTime, 10);
+                    this.fatigueIII = true;
                 }
-                //COLD SYSTEM (seasonal differences)
-                if (currentSeason == "Bright")
+                if (this.heat > this.heatTolerance * 1.6)
                 {
-                    if (timeOfDay == "Day")
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (3 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                    else if (timeOfDay == "Night")
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (4 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                    else
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (3.5 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                }
-                else if (currentSeason == "Harvest")
-                {
-                    if (timeOfDay == "Day")
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (4 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                    else if (timeOfDay == "Night")
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (5 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                    else
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (4.5 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                }
-                else if (currentSeason == "Frost")
-                {
-                    if (timeOfDay == "Day")
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (5 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                    else if (timeOfDay == "Night")
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (6 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                    else
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (5.5 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                }
-                else if (currentSeason == "Bounty")
-                {
-                    if (timeOfDay == "Day")
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (4 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                    else if (timeOfDay == "Night")
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (5 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                    else
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (4.5 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
+                    this.thirst = Math.max(0, this.thirst - 0.02 * ((this.heat - this.heatTolerance) / this.heatTolerance));
+                    this.dizzyTime = Math.max(this.dizzyTime, 2);
+                    this.fatigueV = true;
                 }
             }
-            else if (elevation == 3 && new Date().getTime() - this.timeSinceLastWarmthChange > 5000)
+
+            //SWEAT //sweating to cool down
+            if (this.heat > (1/2 * this.heatTolerance))
             {
-                //extra coldness is added for swimming in cold water
-                if (this.movingType == "swimming")
+                if (this.quenched != true)
                 {
-                    if (this.aquatica != true)
-                    {
-                        this.warmth -= 11;
-                    }
+                    this.thirst -= 0.0025;
                 }
-                //COLD SYSTEM (seasonal differences)
-                if (currentSeason == "Bright")
-                {
-                    if (timeOfDay == "Day")
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (2 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                    else if (timeOfDay == "Night")
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (3 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                    else
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (2.5 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                }
-                else if (currentSeason == "Harvest")
-                {
-                    if (timeOfDay == "Day")
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (3 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                    else if (timeOfDay == "Night")
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (4 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                    else
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (3.5 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                }
-                else if (currentSeason == "Frost")
-                {
-                    if (timeOfDay == "Day")
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (4 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                    else if (timeOfDay == "Night")
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (5 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                    else
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (4.5 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                }
-                else if (currentSeason == "Bounty")
-                {
-                    if (timeOfDay == "Day")
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (3 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                    else if (timeOfDay == "Night")
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (4 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                    else
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (3.5 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                }
-            }
-            else if (elevation == 2 && new Date().getTime() - this.timeSinceLastWarmthChange > 5000)
-            {
-                //extra coldness is added for swimming in cold water
-                if (this.movingType == "swimming")
-                {
-                    if (this.aquatica != true)
-                    {
-                        this.warmth -= 9;
-                    }
-                }
-                //COLD SYSTEM (seasonal differences)
-                if (currentSeason == "Bright")
-                {
-                    if (timeOfDay == "Day")
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (1 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                    else if (timeOfDay == "Night")
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (2 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                    else
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (1.5 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                }
-                else if (currentSeason == "Harvest")
-                {
-                    if (timeOfDay == "Day")
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (2 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                    else if (timeOfDay == "Night")
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (3 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                    else
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (2.5 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                }
-                else if (currentSeason == "Frost")
-                {
-                    if (timeOfDay == "Day")
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (3 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                    else if (timeOfDay == "Night")
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (4 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                    else
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (3.5 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                }
-                else if (currentSeason == "Bounty")
-                {
-                    if (timeOfDay == "Day")
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (2 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                    else if (timeOfDay == "Night")
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (3 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                    else
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (2.5 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                }
-            }
-            else if (elevation == 1 && new Date().getTime() - this.timeSinceLastWarmthChange > 5000)
-            {
-                //extra coldness is added for swimming in cold water
-                if (this.movingType == "swimming")
-                {
-                    if (this.aquatica != true)
-                    {
-                        this.warmth -= 7;
-                    }
-                }
-                //COLD SYSTEM (seasonal differences)
-                if (currentSeason == "Bright")
-                {
-                    if (timeOfDay == "Day")
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (0 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                    else if (timeOfDay == "Night")
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (1 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                    else
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (0.5 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                }
-                else if (currentSeason == "Harvest")
-                {
-                    if (timeOfDay == "Day")
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (1 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                    else if (timeOfDay == "Night")
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (2 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                    else
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (1.5 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                }
-                else if (currentSeason == "Frost")
-                {
-                    if (timeOfDay == "Day")
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (2 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                    else if (timeOfDay == "Night")
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (3 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                    else
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (2.5 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                }
-                else if (currentSeason == "Bounty")
-                {
-                    if (timeOfDay == "Day")
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (1 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                    else if (timeOfDay == "Night")
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (2 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                    else
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (1.5 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                }
-            }
-            else if (elevation == 0 && new Date().getTime() - this.timeSinceLastWarmthChange > 5000) //every 0.85 seconds warmth increases if not at its max. Thirst only ever increases by intaking moisture... obviously.
-            {
-                //extra coldness is added for swimming in cold water
-                if (this.movingType == "swimming")
-                {
-                    if (this.aquatica != true)
-                    {
-                        this.warmth -= 5;
-                    }
-                }
-                //COLD SYSTEM (seasonal differences)
-                if (currentSeason == "Bright")
-                {
-                    if (timeOfDay == "Day")
-                    {
-                        this.warmth = Math.min(this.warmthMAX, this.warmth + 1);
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                    else if (timeOfDay == "Night")
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (0 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                    else
-                    {
-                        this.warmth = Math.min(this.warmthMAX, this.warmth + 0.5);
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                }
-                else if (currentSeason == "Harvest")
-                {
-                    if (timeOfDay == "Day")
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (0 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                    else if (timeOfDay == "Night")
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (1 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                    else
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (0.5 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                }
-                else if (currentSeason == "Frost")
-                {
-                    if (timeOfDay == "Day")
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (1 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                    else if (timeOfDay == "Night")
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (2 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                    else
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (1.5 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                }
-                else if (currentSeason == "Bounty")
-                {
-                    if (timeOfDay == "Day")
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (0 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                    else if (timeOfDay == "Night")
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (1 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                    else
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (0.5 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                }
-            }
-            else if (elevation == -1 && new Date().getTime() - this.timeSinceLastWarmthChange > 5000) //every 0.85 seconds warmth increases if not at its max. Thirst only ever increases by intaking moisture... obviously.
-            {
-                if (currentSeason == "Bright")
-                {
-                    if (timeOfDay == "Day")
-                    {
-                        this.warmth = Math.min(this.warmthMAX, this.warmth + 1.5);
-                    }
-                    else if (timeOfDay == "Night")
-                    {
-                        this.warmth = Math.min(this.warmthMAX, this.warmth + 1);
-                    }
-                    else
-                    {
-                        this.warmth = Math.min(this.warmthMAX, this.warmth + 1.25);
-                    }
-                }
-                else if (currentSeason == "Harvest")
-                {
-                    if (timeOfDay == "Day")
-                    {
-                        this.warmth = Math.min(this.warmthMAX, this.warmth + 0.5);
-                    }
-                    else if (timeOfDay == "Night")
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (0.5 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                    else
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (0 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                }
-                else if (currentSeason == "Frost")
-                {
-                    if (timeOfDay == "Day")
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (0 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                    else if (timeOfDay == "Night")
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (1 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                    else
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (0.5 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                }
-                else if (currentSeason == "Bounty")
-                {
-                    if (timeOfDay == "Day")
-                    {
-                        this.warmth = Math.min(this.warmthMAX, this.warmth + 0.5);
-                    }
-                    else if (timeOfDay == "Night")
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (0.5 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                    else
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (0 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                }
-                this.warmth = Math.min(this.warmthMAX, this.warmth + 1);
-                this.timeSinceLastWarmthChange = new Date().getTime();
-            }
-            else if (elevation == -2 && new Date().getTime() - this.timeSinceLastWarmthChange > 5000) //every 0.85 seconds warmth increases if not at its max. Thirst only ever increases by intaking moisture... obviously.
-            {
-                if (currentSeason == "Bright")
-                {
-                    if (timeOfDay == "Day")
-                    {
-                        this.warmth = Math.min(this.warmthMAX, this.warmth + 2);
-                    }
-                    else if (timeOfDay == "Night")
-                    {
-                        this.warmth = Math.min(this.warmthMAX, this.warmth + 1);
-                    }
-                    else
-                    {
-                        this.warmth = Math.min(this.warmthMAX, this.warmth + 1.5);
-                    }
-                }
-                else if (currentSeason == "Harvest")
-                {
-                    if (timeOfDay == "Day")
-                    {
-                        this.warmth = Math.min(this.warmthMAX, this.warmth + 1);
-                    }
-                    else if (timeOfDay == "Night")
-                    {
-                        this.warmth = Math.min(this.warmthMAX, this.warmth + 0);
-                    }
-                    else
-                    {
-                        this.warmth = Math.min(this.warmthMAX, this.warmth + 0.5);
-                    }
-                }
-                else if (currentSeason == "Frost")
-                {
-                    if (timeOfDay == "Day")
-                    {
-                        this.warmth = Math.min(this.warmthMAX, this.warmth + 0);
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                    else if (timeOfDay == "Night")
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (0.5 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                    else
-                    {
-                        this.warmth = Math.min(this.warmthMAX, Math.min(this.warmth + 0, this.warmth - (0.25 - this.warmthProtection)));
-                        this.timeSinceLastWarmthChange = new Date().getTime();
-                    }
-                }
-                else if (currentSeason == "Bounty")
-                {
-                    if (timeOfDay == "Day")
-                    {
-                        this.warmth = Math.min(this.warmthMAX, this.warmth + 1);
-                    }
-                    else if (timeOfDay == "Night")
-                    {
-                        this.warmth = Math.min(this.warmthMAX, this.warmth + 0);
-                    }
-                    else
-                    {
-                        this.warmth = Math.min(this.warmthMAX, this.warmth + 0.5);
-                    }
-                }
+                this.heat -= 0.0005;
             }
 
             //This is where frozen is is set to true when your warmth runs out. //It Applies the speed decrease based on warmth here as well.
@@ -4442,6 +4969,21 @@ function Adventurer()
                 this.haeflowerTrip = false;
             }
 
+            //Anjay Drug Trip
+            if (this.anjayTime > 0)
+            {
+                this.anjayTime -= 0.005 * (TTD / 16.75);
+                this.energy += 0.0001 * (TTD / 16.75);
+                if (this.heat < this.heatTolerance * 0.7)
+                {
+                    this.heat = this.heatTolerance * 0.7;
+                }
+            }
+            else
+            {
+                this.anjayTime = 0;
+            }
+
             //Bahab Drug Trip
             if (this.bahabTime > 0)
             {
@@ -4962,6 +5504,10 @@ function Adventurer()
                     this.outfitEquipped = "none";
                     this.subtlety = false;
                 }
+                if (this.water == true)
+                {
+                    this.heat = 0;
+                }
                 this.form = "selkie";
 
                 //people try to kill wild animals and you look like one
@@ -5013,6 +5559,7 @@ function Adventurer()
         //Vamprism
         if (this.vamprism && this.venandi < 400 && this.wendigo == false)
         {
+            this.heat = 0;
             this.venandi = 0;
             this.decay = 0;
             //vampires can survive without feeding much longer than humans can
@@ -5796,6 +6343,54 @@ function Adventurer()
         {
             //at this point the slot will have been cleared so next time the effect shows up it should have to check again to be entered into a position on the miniNoticeList.
             this.removeNotice("Starvation");
+        }
+    };
+
+    //Heat Exhaustion Notice Function
+    this.heatExhaustionChecker = function()
+    {
+        if (this.heat > this.heatTolerance)
+        {
+            // at this point the slot should be consistent so it should not have to check again to be entered into a position on the miniNoticeList.
+            this.addNotice("Heat Exhaustion");
+            //red background
+            XXX.beginPath();
+            XXX.fillStyle = "#DE620F";
+            XXX.lineWidth = 1;
+            XXX.strokeStyle = "black";
+            XXX.rect(this.arrangeNotices("Heat Exhaustion"), 413, 20, 20);
+            XXX.fill();
+            XXX.stroke();
+            XXX.drawImage(blud, 748, 378, 128, 128, this.arrangeNotices("Heat Exhaustion"), 412.5, 20, 20);
+        }
+        else
+        {
+            //at this point the slot will have been cleared so next time the effect shows up it should have to check again to be entered into a position on the miniNoticeList.
+            this.removeNotice("Heat Exhaustion");
+        }
+    };
+
+    //Sweat Notice Function
+    this.sweatChecker = function()
+    {
+        if (this.heat > (1/2 * this.heatTolerance))
+        {
+            // at this point the slot should be consistent so it should not have to check again to be entered into a position on the miniNoticeList.
+            this.addNotice("Sweating");
+            //red background
+            XXX.beginPath();
+            XXX.fillStyle = "#C8D1DF";
+            XXX.lineWidth = 1;
+            XXX.strokeStyle = "black";
+            XXX.rect(this.arrangeNotices("Sweating"), 413, 20, 20);
+            XXX.fill();
+            XXX.stroke();
+            XXX.drawImage(ruin, 91, 12, 25, 25, this.arrangeNotices("Sweating"), 412.5, 20, 20);
+        }
+        else
+        {
+            //at this point the slot will have been cleared so next time the effect shows up it should have to check again to be entered into a position on the miniNoticeList.
+            this.removeNotice("Sweating");
         }
     };
 
@@ -7172,7 +7767,9 @@ function Adventurer()
         this.staminaBoostChecker();
         this.rangedBoostChecker();
         this.starvationChecker();
+        this.heatExhaustionChecker();
         this.dehydrationChecker();
+        this.sweatChecker();
         this.quenchedChecker();
         this.indigestionChecker();
         this.tirelessnessChecker();
@@ -38481,6 +39078,7 @@ function Adventurer()
                                 this.thirst = Math.min(this.thirstMAX, this.thirst + Inventory[i][0].thirst * 4);
                                 this.sleep = Math.min(this.sleepMAX, this.sleep + Inventory[i][0].wake * 4);
                                 this.warmth = Math.min(this.warmthMAX, this.warmth + Inventory[i][0].warmth * 4);
+                                this.heat = Math.max(0, this.heat - Inventory[i][0].cooling * 4);
                             }
                             else
                             {
@@ -38490,6 +39088,7 @@ function Adventurer()
                                     this.thirst = Math.min(this.thirstMAX, this.thirst + Inventory[i][0].thirst / 11);
                                     this.sleep = Math.min(this.sleepMAX, this.sleep + Inventory[i][0].wake);
                                     this.warmth = Math.min(this.warmthMAX, this.warmth + Inventory[i][0].warmth);
+                                    this.heat = Math.max(0, this.heat - Inventory[i][0].cooling);
                                 }
                                 else
                                 {
@@ -38497,6 +39096,7 @@ function Adventurer()
                                     this.thirst = Math.min(this.thirstMAX, this.thirst + Inventory[i][0].thirst);
                                     this.sleep = Math.min(this.sleepMAX, this.sleep + Inventory[i][0].wake);
                                     this.warmth = Math.min(this.warmthMAX, this.warmth + Inventory[i][0].warmth);
+                                    this.heat = Math.max(0, this.heat - Inventory[i][0].cooling);
                                 }
                             }
                         }
@@ -38924,6 +39524,18 @@ function Adventurer()
                                     this.watered = true;
                                     this.fed = true;
                                 }
+                            }
+                            else if (Inventory[i][0].ability == "anjayTripI")
+                            {
+                                var anjayAmt = 50 + (Math.random() * 50);
+                                if (this.anjayTime < anjayAmt)
+                                {
+                                    this.anjayTime = anjayAmt;
+                                }
+                            }
+                            else if (Inventory[i][0].ability == "anjayTripII")
+                            {
+                                this.anjayTime = 400;
                             }
                             else if (Inventory[i][0].ability == "antiPixi")
                             {
@@ -39497,6 +40109,7 @@ function Adventurer()
                                 this.cyrinthilimTime = 0;
                                 this.haeflowerTime = 0;
                                 this.bahabTime = 0;
+                                this.anjayTime = 0;
                                 this.inebriation = 0;
 
                                 this.radiation = Math.max(0, this.radiation - 5);
@@ -39533,6 +40146,7 @@ function Adventurer()
                                 this.cyrinthilimTime = 0;
                                 this.haeflowerTime = 0;
                                 this.bahabTime = 0;
+                                this.anjayTime = 0;
                                 this.inebriation = 0;
                                 this.fleshMites = false;
                                 this.gutWorms = false;
@@ -39613,6 +40227,7 @@ function Adventurer()
                                 this.cyrinthilimTime = 0;
                                 this.haeflowerTime = 0;
                                 this.bahabTime = 0;
+                                this.anjayTime = 0;
                                 this.inebriation = 0;
                                 this.fleshMites = false;
                                 this.gutWorms = false;

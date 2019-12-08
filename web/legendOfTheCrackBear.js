@@ -2688,6 +2688,7 @@ var cheatAtop = false;
 var buildPrompt = "";
 var buildPrompt2 = "";
 var dOS = 0;
+var anjayRot = 0;
 
 //This sets the items that are in shops.
 function shopItemIDSetter()
@@ -5045,6 +5046,7 @@ function theLegend()
     foods.push(new Item("roastedMotylekhLeg", false));
     foods.push(new Item("bulkMotylinka", false));
     foods.push(new Item("lyagushkaMeat", false));
+    foods.push(new Item("roastedAnjayCactus", false));
 
 //Tailoring (Items crafted at a weaving, sewing, dying, etc. tailor's work bench thing)
     tailoring = [];
@@ -5451,6 +5453,8 @@ function theLegend()
     handcrafted.push(new Item("tropicalFruitPlatter", false));
     handcrafted.push(new Item("despinedPashaArm", false));
     handcrafted.push(new Item("motylekhWingBundle", false));
+    handcrafted.push(new Item("despinedMaweHunk", false));
+    handcrafted.push(new Item("despinedAnjayCactus", false));
 
     //Activate Important Game Functions Here:
     itemPlacer();

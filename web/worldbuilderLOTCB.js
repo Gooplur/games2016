@@ -10,6 +10,87 @@ function worldBuilder()
     {
         player.dmx = map;
         player.underground = false;
+        //Layer 43 (desert region): elev -5
+        //mapS43W3
+        if (Y > -442506.1818652715 && Y < -431728.14560109196 && X < 38616 && X > 26689) //X-3
+        {
+            elevation = -5;
+            region = "s43w3";
+            campout = true;
+            outlineBuilder( 34, 34, "outline", -122, 1442);
+        }
+        //Layer 42 (desert region): elev -5
+        //mapS42W3
+        if (Y > -432300.7512061376 && Y < -421526.0353835158 && X < 38616 && X > 26689) //X-3
+        {
+            elevation = -5;
+            region = "s42w3";
+            campout = true;
+            outlineBuilder( 34, 34, "redDesert", -122, 1408);
+        }
+        //Layer 41 (desert region): elev -5
+        //mapS41W3 //Sairch Village
+        if (Y > -422129.84792075714 && Y < -411311.1793450688 && X < 38616 && X > 26689) //X-3
+        {
+            elevation = -5;
+            region = "s41w3";
+            campout = false;
+            outlineBuilder( 34, 34, "outline", -122, 1374);
+        }
+        //Layer 40 (desert region): elev -5
+        //mapS40W3
+        if (Y > -411905.7400827678 && Y < -401123.0117133992 && X < 38616 && X > 26689) //X-3
+        {
+            elevation = -5;
+            region = "s40w3";
+            campout = true;
+            outlineBuilder( 34, 34, "redDesert", -122, 1340);
+        }
+        //Layer 39 (hot tropical region): elev -4
+        //mapS39W3
+        if (Y > -401726.522144297 && Y < -390931.79184541304 && X < 38616 && X > 26689) //X-3
+        {
+            elevation = -4;
+            region = "s39w3";
+            campout = true;
+            outlineBuilder( 34, 34, "prairy", -122, 1306);
+        }
+        //Layer 38 (hot tropical region): elev -4
+        //mapS38W3
+        if (Y > -391528.9538407116 && Y < -380736.5971355503 && X < 38616 && X > 26689) //X-3
+        {
+            elevation = -4;
+            region = "s38w3";
+            campout = true;
+            outlineBuilder( 34, 34, "outline", -122, 1272);
+        }
+        //Layer 37 (hot tropical region): elev -4
+        //mapS37W3
+        if (Y > -381318.58715533663 && Y < -370497.12971439585 && X < 38616 && X > 26689) //X-3
+        {
+            elevation = -4;
+            region = "s37w3";
+            campout = true;
+            outlineBuilder( 34, 34, "prairy", -122, 1238);
+        }
+        //Layer 36 (hot tropical region): elev -4
+        //mapS36W3
+        if (Y > -371125.682407676 && Y < -360337.4594920414 && X < 38616 && X > 26689) //X-3
+        {
+            elevation = -4;
+            region = "s36w3";
+            campout = true;
+            outlineBuilder( 34, 34, "outline", -122, 1204); //prairy
+        }
+        //Layer 35 (hot tropical region): elev -4
+        //mapS35W3
+        if (Y > -360913 && Y < -350103 && X < 38616 && X > 26689) //X-3
+        {
+            elevation = -4;
+            region = "s35w3";
+            campout = true;
+            outlineBuilder( 34, 34, "prairy", -122, 1170);
+        }
         //Layer 34 (hot tropical region): elev -4
         //mapS34E1
         if (Y > -350716 && Y < -339932 && X < - 2490 && X > -14114) //X1
@@ -60,13 +141,22 @@ function worldBuilder()
             outlineBuilder(1, 34, "cephrianRoad", -54, 1149);
         }
         //mapS34W2
-        if (Y > -350716 && Y < -339932 && X < 28129 && X > 16474) //X-1
+        if (Y > -350716 && Y < -339932 && X < 28129 && X > 16474) //X-2
         {
             elevation = -4;
             region = "s34w2";
             campout = true;
             outlineBuilder( 34, 34, "prairy", -88, 1136);
             outlineBuilder(1, 34, "cephrianRoad", -88, 1149);
+        }
+        //mapS34W3
+        if (Y > -350716 && Y < -339932 && X < 38616 && X > 26689) //X-3
+        {
+            elevation = -4;
+            region = "s34w3";
+            campout = true;
+            outlineBuilder( 34, 34, "outline", -122, 1136); //prairy
+            outlineBuilder(1, 34, "cephrianRoad", -122, 1149);
         }
         //Layer 33 (hot tropical region): elev -4
         //mapS33E1

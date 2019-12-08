@@ -16345,6 +16345,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             {
                 if (X > (this.X + 44.62066220761335 * this.temporary) - 95 * this.temporary && X < (this.X + 44.62066220761335 * this.temporary) && Y > (this.Y + 81.36850578844314 * this.temporary) - 162 * this.temporary && Y < (this.Y + 81.36850578844314 * this.temporary))
                 {
+                    player.shelter = true;
                     this.zIndex = 1;
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -16394,6 +16395,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             {
                 if (X > (this.X + 81.36850578844314 * this.temporary) - 162 * this.temporary && X < (this.X + 81.36850578844314 * this.temporary) && Y > (this.Y + 44.62066220761335 * this.temporary) - 95 * this.temporary && Y < (this.Y + 44.62066220761335 * this.temporary))
                 {
+                    player.shelter = true;
                     this.zIndex = 1;
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -34582,7 +34584,233 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 }
             }
         }
-        else if (this.type == "pashaPlant")
+        else if (this.type == "mawePlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.nectar(6);
+            this.solid = true;
+            this.interactionRange = 100;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(ion, 1134, 208, 33, 36, -(1/2 * 33 * 1.5), -(1/2 * 36 * 1.5), 33 * 1.5, 36 * 1.5);
+                XXX.restore();
+            }
+            else if (this.phase == 1)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(ion, 1136, 173, 33, 36, -(1/2 * 33 * 1.5), -(1/2 * 36 * 1.5), 33 * 1.5, 36 * 1.5);
+                XXX.restore();
+            }
+            else if (this.phase == "picked")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(ion, 1133, 243, 33, 36, -(1/2 * 33 * 1.5), -(1/2 * 36 * 1.5), 33 * 1.5, 36 * 1.5);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 14;
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0 || this.activate == true && this.phase == 1)
+            {
+                if (this.phase == 0)
+                {
+                    this.activate = false;
+                    this.phase = 1;
+                    var hits = 0;
+                    for (var i = 0; i < Inventory.length; i ++)
+                    {
+                        if (Inventory[i][0].type == "maweFlower")
+                        {
+                            Inventory[i][1] += 1;
+                            break;
+                        }
+                        else
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == Inventory.length)
+                    {
+                        Inventory.push([new Item("maweFlower", false, false), 1]);
+                    }
+                }
+                else
+                {
+                    this.activate = false;
+                    this.phase = "picked";
+                    var hits = 0;
+                    for (var i = 0; i < Inventory.length; i ++)
+                    {
+                        if (Inventory[i][0].type == "maweHunk")
+                        {
+                            Inventory[i][1] += 1 + Math.round(Math.random());
+                            break;
+                        }
+                        else
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == Inventory.length)
+                    {
+                        Inventory.push([new Item("maweHunk", false, false), 1 + Math.round(Math.random())]);
+                    }
+                }
+            }
+        }
+        else if (this.type == "anjayPlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.nectar(8);
+            this.solid = true;
+            this.interactionRange = 100;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(raed, 605, 460, 33, 33, -(1/2 * 33), -(1/2 * 33), 33, 33);
+                XXX.restore();
+            }
+            else if (this.phase == 1)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(raed, 640, 459, 33, 33, -(1/2 * 33), -(1/2 * 33), 33, 33);
+                XXX.restore();
+            }
+            else if (this.phase == "picked")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(raed, 670, 460, 33, 33, -(1/2 * 33), -(1/2 * 33), 33, 33);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 10;
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0 || this.activate == true && this.phase == 1)
+            {
+                if (this.phase == 0)
+                {
+                    this.activate = false;
+                    this.phase = 1;
+                    var hits = 0;
+                    for (var i = 0; i < Inventory.length; i ++)
+                    {
+                        if (Inventory[i][0].type == "anjayFlower")
+                        {
+                            Inventory[i][1] += 1;
+                            break;
+                        }
+                        else
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == Inventory.length)
+                    {
+                        Inventory.push([new Item("anjayFlower", false, false), 1]);
+                    }
+                }
+                else
+                {
+                    this.activate = false;
+                    this.phase = "picked";
+                    var hits = 0;
+                    for (var i = 0; i < Inventory.length; i ++)
+                    {
+                        if (Inventory[i][0].type == "anjayCactus")
+                        {
+                            Inventory[i][1] += 1;
+                            break;
+                        }
+                        else
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == Inventory.length)
+                    {
+                        Inventory.push([new Item("anjayCactus", false, false), 1]);
+                    }
+                }
+            }
+        }
+        else if (this.type == "naibPlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.nectar(1);
+            this.interactionRange = 100;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                this.solid = true;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(ion, 1227, 682, 70, 68, -(1/2 * 70 * 1.4), -(1/2 * 68 * 1.4), 70 * 1.4, 68 * 1.4);
+                XXX.restore();
+            }
+            else if (this.phase == "picked")
+            {
+                this.solid = false;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(ion, 1316, 691, 57, 55, -(1/2 * 57 * 1.4), -(1/2 * 55 * 1.4), 57 * 1.4, 55 * 1.4);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 26;
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0)
+            {
+                this.activate = false;
+                this.phase = "picked";
+                var hits = 0;
+                for (var i = 0; i < Inventory.length; i ++)
+                {
+                    if (Inventory[i][0].type == "naibArm")
+                    {
+                        Inventory[i][1] += (Math.floor(Math.random() * 12) + 1);
+                        break;
+                    }
+                    else
+                    {
+                        hits += 1;
+                    }
+                }
+                if (hits == Inventory.length)
+                {
+                    Inventory.push([new Item("naibArm", false, false), Math.floor(Math.random() * 12) + 1]);
+                }
+            }
+        }
+        else if (this.type == "inumPlant")
         {
             //TRAITS
             this.variety = "plant";
@@ -34596,11 +34824,65 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
+                XXX.drawImage(ion, 1438, 707, 35, 38, -(1/2 * 35 * 1.2), -(1/2 * 38 * 1.2), 35 * 1.2, 38 * 1.2);
+                XXX.restore();
+            }
+            else if (this.phase == "picked")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(ion, 1473, 709, 35, 38, -(1/2 * 35 * 1.2), -(1/2 * 38 * 1.2), 35 * 1.2, 38 * 1.2);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 22;
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0)
+            {
+                this.activate = false;
+                this.phase = "picked";
+                var hits = 0;
+                for (var i = 0; i < Inventory.length; i ++)
+                {
+                    if (Inventory[i][0].type == "inumClipping")
+                    {
+                        Inventory[i][1] += (Math.floor(Math.random() * 6) + 1);
+                        break;
+                    }
+                    else
+                    {
+                        hits += 1;
+                    }
+                }
+                if (hits == Inventory.length)
+                {
+                    Inventory.push([new Item("inumClipping", false, false), Math.floor(Math.random() * 6) + 1]);
+                }
+            }
+        }
+        else if (this.type == "pashaPlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.nectar(5);
+            this.interactionRange = 100;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                this.solid = true;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
                 XXX.drawImage(ion, 1111, 376, 74, 50, -(1/2 * 74), -(1/2 * 50), 74, 50);
                 XXX.restore();
             }
             else if (this.phase == "picked")
             {
+                this.solid = false;
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
@@ -34609,7 +34891,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             }
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
-            this.radius = 22;
+            this.radius = 20;
 
             //INTERACTION
             if (this.activate == true && this.phase == 0)

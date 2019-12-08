@@ -20,6 +20,7 @@ function Item(type, x, y)
     this.barcode = this.type + (Math.random() * Math.random());
     this.questy = false;
     this.fireProofing = 0;
+    this.cooling = 0;
     this.ingredients = [];
     this.smallText = false;
 
@@ -6697,6 +6698,7 @@ function Item(type, x, y)
             this.heal = 0; //heals health.
             this.generation = 0.1; //recoops lost energy.
             this.replenish = 0.1; //restores will.
+            this.cooling = 0.25; //cools player.
 
             //ability
             this.ability = "none";
@@ -6921,6 +6923,7 @@ function Item(type, x, y)
             this.heal = 0; //heals health.
             this.generation = 0.2; //recoops lost energy.
             this.replenish = 0.2; //restores will.
+            this.cooling = 2; //cools player.
 
             //ability
             this.ability = "none";
@@ -6953,6 +6956,7 @@ function Item(type, x, y)
                 this.heal = 0; //heals health.
                 this.generation = 0.3; //recoops lost energy.
                 this.replenish = 0.3; //restores will.
+                this.cooling = 1; //cools player.
 
                 //ability
                 this.ability = "quench";
@@ -13735,6 +13739,7 @@ function Item(type, x, y)
             this.heal = 0; //heals health.
             this.generation = 0; //recoops lost energy.
             this.replenish = 0; //restores will.
+            this.cooling = 2; //cools player.
 
             //ability
             this.ability = "none";
@@ -14929,6 +14934,7 @@ function Item(type, x, y)
             this.heal = 0; //heals health.
             this.generation = 0; //recoops lost energy.
             this.replenish = 0; //restores will.
+            this.cooling = 2; //cools player.
 
             //ability
             this.ability = "none";
@@ -15323,6 +15329,326 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
         }
+        else if (this.type == "maweFlower")
+        {
+            //For All Items
+            this.identity = "Mawe Flower";
+            this.weight = 0.05;
+            this.size = 5;
+            this.description = "The vibrant beautiful bright blue flower of a mawe cactus.";
+            this.intForDes = 1;
+            this.intDescription = "This is used as a floral herb to give food a sweet tantalizing aroma.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "anjayFlower")
+        {
+            //For All Items
+            this.identity = "Anjay Flower";
+            this.weight = 0.3;
+            this.size = 5;
+            this.description = "The thickly petalled orange flower of an anjay cactus.";
+            this.intForDes = 5;
+            this.intDescription = "Anjay flower has a psychoactive compound that causes one's body to have vivid hallucinations and a wildly increased heart rate and body temperature.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0.25; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 25; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 10; //recoops lost energy.
+            this.replenish = -50; //restores will.
+            this.cooling = -25; //cools player.
+
+            //ability
+            this.ability = "anjayTripII";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            if (shopkeeper != "none")
+            {
+                if (shopkeeper.ultra.race == "Nirwaden")
+                {
+                    this.buyValue = 1; // at max, buy for 1.
+                    this.sellValue = 0; // at max, sell for 0.
+                }
+                else
+                {
+                    this.buyValue = 3; // at max, buy for 3.
+                    this.sellValue = 3; // at max, sell for 3.
+                }
+            }
+            else
+            {
+                this.buyValue = 3; // at max, buy for 3.
+                this.sellValue = 3; // at max, sell for 3.
+            }
+        }
+        else if (this.type == "naibArm")
+        {
+            //For All Items
+            this.identity = "Na'ib Arm";
+            this.weight = 4;
+            this.size = 5;
+            this.description = "A long arm from a na'ib cactus .";
+            this.intForDes = 1;
+            this.intDescription = "These can be juiced into a thick, fibrous, bitter pulp which can be made into a special kind of alcohol.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+        }
+        else if (this.type == "inumClipping")
+        {
+            //For All Items
+            this.identity = "Inum Clipping";
+            this.weight = 0.01;
+            this.size = 5;
+            this.description = "Clippings from an inum bush.";
+            this.intForDes = 1;
+            this.intDescription = "It has a slightly sour flavour with a thick fibrous texture that makes it hard to chew...";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0.1; //satisfies hunger.
+            this.thirst = 0.04; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -1.6; //recoops lost energy.
+            this.replenish = 0; //restores will.
+            this.cooling = 0; //cools player.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "anjayCactus")
+        {
+            //For All Items
+            this.identity = "Anjay Cactus";
+            this.weight = 5;
+            this.size = 10;
+            this.description = "A large spined section of anjay cactus.";
+            this.intForDes = 2;
+            this.intDescription = "It must be despined before it can be consumed; it will hurt your mouth to consume it with the spines...";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = true; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 9; //satisfies hunger.
+            this.thirst = 9; //quenches thirst.
+            this.warmth = 15; //warms player.
+            this.heal = -24; //heals health.
+            this.generation = -9; //recoops lost energy.
+            this.replenish = 1; //restores will.
+            this.cooling = -15; //cools player.
+
+            //ability
+            this.ability = "anjayTripI";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            if (shopkeeper != "none")
+            {
+                if (shopkeeper.ultra.race == "Nirwaden")
+                {
+                    this.buyValue = 1; // at max, buy for 1.
+                    this.sellValue = 0; // at max, sell for 0.
+                }
+                else
+                {
+                    this.buyValue = 5; // at max, buy for 5.
+                    this.sellValue = 2 + Math.floor(player.getCharisma() / 15); // at max, sell for 5.
+                }
+            }
+            else
+            {
+                this.buyValue = 5; // at max, buy for 5.
+                this.sellValue = 2 + Math.floor(player.getCharisma() / 15); // at max, sell for 5.
+            }
+        }
+        else if (this.type == "despinedAnjayCactus")
+        {
+            //For All Items
+            this.identity = "Despined Anjay Cactus";
+            this.weight = 4.9;
+            this.size = 10;
+            this.description = "A large despined section of anjay cactus.";
+            this.intForDes = 0;
+            if (player.getIntelligence() < 6)
+            {
+                this.intDescription = "It has a thick white creamy flesh.";
+            }
+            else
+            {
+                this.intDescription = "It has a thick white creamy flesh. This has a psychoactive compound in it that is potentially dangerous to consume.";
+            }
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 9; //satisfies hunger.
+            this.thirst = 9; //quenches thirst.
+            this.warmth = 15; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 1; //restores will.
+            this.cooling = -15; //cools player.
+
+            //ability
+            this.ability = "anjayTripI";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 4;
+            this.ingredients = [["Anjay Cactus", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            if (shopkeeper != "none")
+            {
+                if (shopkeeper.ultra.race == "Nirwaden")
+                {
+                    this.buyValue = 1; // at max, buy for 1.
+                    this.sellValue = 0; // at max, sell for 0.
+                }
+                else
+                {
+                    this.buyValue = 6; // at max, buy for 5.
+                    this.sellValue = 3 + Math.floor(player.getCharisma() / 15); // at max, sell for 6.
+                }
+            }
+            else
+            {
+                this.buyValue = 6; // at max, buy for 5.
+                this.sellValue = 3 + Math.floor(player.getCharisma() / 15); // at max, sell for 6.
+            }
+        }
+        else if (this.type == "roastedAnjayCactus")
+        {
+            //For All Items
+            this.identity = "Roasted Anjay Cactus";
+            this.weight = 4;
+            this.size = 10;
+            this.description = "A large roasted section of anjay cactus.";
+            this.intForDes = 0;
+            this.intDescription = "It has a slightly creamy, mushy, chalky texture and a relatively bland, perhaps squash-like flavour.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 8; //satisfies hunger.
+            this.thirst = 3; //quenches thirst.
+            this.warmth = 5; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+            this.cooling = 0; //cools player.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 6;
+            this.ingredients = [["Despined Anjay Cactus", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 7;
+            this.sellValue = 5;
+        }
+        else if (this.type == "maweHunk")
+        {
+            //For All Items
+            this.identity = "Mawe Cactus";
+            this.weight = 6;
+            this.size = 10;
+            this.description = "A spined hunk of mawe cactus.";
+            this.intForDes = 2;
+            this.intDescription = "It must be despined before it can be eaten; it will hurt your mouth to eat it with the spines...";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = true; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 4; //satisfies hunger.
+            this.thirst = 6; //quenches thirst.
+            this.warmth = -2; //warms player.
+            this.heal = -21; //heals health.
+            this.generation = -8; //recoops lost energy.
+            this.replenish = 0.1; //restores will.
+            this.cooling = 4; //cools player.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 6 - Math.floor(player.getCharisma() / 50); // at max, buy for 5.
+            this.sellValue = 3 + Math.floor(player.getCharisma() / 25); // at max, sell for 5.
+        }
+        else if (this.type == "despinedMaweHunk")
+        {
+            //For All Items
+            this.identity = "Despined Mawe Cactus";
+            this.weight = 5.8;
+            this.size = 10;
+            this.description = "A despined hunk of mawe cactus.";
+            this.intForDes = 0;
+            this.intDescription = "Its light blue flesh and juice are sweet, watery, smooth, and refreshing.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 4; //satisfies hunger.
+            this.thirst = 6; //quenches thirst.
+            this.warmth = -2; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.25; //recoops lost energy.
+            this.replenish = 0.1; //restores will.
+            this.cooling = 5; //cools player.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 3;
+            this.ingredients = [["Mawe Cactus", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 7 - Math.floor(player.getCharisma() / 50); // at max, buy for 6.
+            this.sellValue = 4 + Math.floor(player.getCharisma() / 25); // at max, sell for 6.
+        }
         else if (this.type == "pashaArm")
         {
             //For All Items
@@ -15344,6 +15670,7 @@ function Item(type, x, y)
             this.heal = -17; //heals health.
             this.generation = -7; //recoops lost energy.
             this.replenish = 0; //restores will.
+            this.cooling = 0.5; //cools player.
 
             //ability
             this.ability = "none";
@@ -15373,6 +15700,7 @@ function Item(type, x, y)
             this.heal = 0; //heals health.
             this.generation = 0; //recoops lost energy.
             this.replenish = 0; //restores will.
+            this.cooling = 0.75; //cools player.
 
             //ability
             this.ability = "none";
@@ -15441,6 +15769,7 @@ function Item(type, x, y)
             this.heal = 0; //heals health.
             this.generation = 0; //recoops lost energy.
             this.replenish = 0.1; //restores will.
+            this.cooling = 1; //cools player.
 
             //ability
             this.ability = "antiSilver";
@@ -15472,6 +15801,7 @@ function Item(type, x, y)
             this.heal = 0; //heals health.
             this.generation = 0; //recoops lost energy.
             this.replenish = 0.2; //restores will.
+            this.cooling = 10; //cools player.
 
             //ability
             this.ability = "hydrora";
@@ -18182,6 +18512,7 @@ function Item(type, x, y)
             this.heal = 0; //heals health.
             this.generation = 1; //recoops lost energy.
             this.replenish = 0.5; //restores will.
+            this.cooling = 10; //cools player.
 
             //ability
             this.ability = "quench";
@@ -18219,6 +18550,7 @@ function Item(type, x, y)
             this.heal = 0; //heals health.
             this.generation = 0.25; //recoops lost energy.
             this.replenish = 0; //restores will.
+            this.cooling = 9; //cools player.
 
             //ability
             this.ability = "quench";
@@ -18984,6 +19316,7 @@ function Item(type, x, y)
             this.heal = 0; //heals health.
             this.generation = 0.25; //recoops lost energy.
             this.replenish = 0.1; //restores will.
+            this.cooling = 12; //cools player.
 
             this.decayable = true;
             this.decayLimit = 20;
@@ -19029,6 +19362,7 @@ function Item(type, x, y)
             this.heal = 0; //heals health.
             this.generation = 1; //recoops lost energy.
             this.replenish = 0.375; //restores will.
+            this.cooling = 24; //cools player.
 
             //ability
             this.ability = "quench";
@@ -19060,6 +19394,7 @@ function Item(type, x, y)
             this.heal = 0; //heals health.
             this.generation = 0.5; //recoops lost energy.
             this.replenish = 0.2; //restores will.
+            this.cooling = 18; //cools player.
 
             //ability
             this.ability = "quench";
@@ -19091,6 +19426,7 @@ function Item(type, x, y)
             this.heal = 0; //heals health.
             this.generation = 2; //recoops lost energy.
             this.replenish = 1; //restores will.
+            this.cooling = 12; //cools player.
 
             //ability
             this.ability = "quench";
@@ -19122,6 +19458,7 @@ function Item(type, x, y)
             this.heal = 0; //heals health.
             this.generation = 0.5; //recoops lost energy.
             this.replenish = 0; //restores will.
+            this.cooling = 11; //cools player.
 
             //ability
             this.ability = "quench";
@@ -19153,6 +19490,7 @@ function Item(type, x, y)
             this.heal = 0; //heals health.
             this.generation = 1; //recoops lost energy.
             this.replenish = 1; //restores will.
+            this.cooling = 20; //cools player.
 
             //ability
             this.ability = "quench";
@@ -19184,6 +19522,7 @@ function Item(type, x, y)
             this.heal = 0; //heals health.
             this.generation = 1; //recoops lost energy.
             this.replenish = 0.5; //restores will.
+            this.cooling = 14; //cools player.
 
             //ability
             this.ability = "quench";
@@ -19646,6 +19985,7 @@ function Item(type, x, y)
             this.heal = 1000; //heals health.
             this.generation = 1000; //recoops lost energy.
             this.replenish = 1000; //restores will.
+            this.cooling = 1000; //cools player.
 
             //ability
             this.ability = "eternity";
@@ -19697,6 +20037,7 @@ function Item(type, x, y)
             this.heal = 1000; //heals health.
             this.generation = 1000; //recoops lost energy.
             this.replenish = 1000; //restores will.
+            this.cooling = 1000; //cools player.
 
             //ability
             this.ability = "vamprism";
@@ -19773,6 +20114,7 @@ function Item(type, x, y)
             this.heal = 0; //heals health.
             this.generation = 0; //recoops lost energy.
             this.replenish = 0; //restores will.
+            this.cooling = 2; //cools player.
 
             //ability
             this.ability = "none";
@@ -19804,6 +20146,7 @@ function Item(type, x, y)
             this.heal = 0; //heals health.
             this.generation = 0; //recoops lost energy.
             this.replenish = 0; //restores will.
+            this.cooling = 2; //cools player.
 
             //ability
             this.ability = "none";
@@ -19835,6 +20178,7 @@ function Item(type, x, y)
             this.heal = 0; //heals health.
             this.generation = 0.05; //recoops lost energy.
             this.replenish = 0.025; //restores will.
+            this.cooling = 2; //cools player.
 
             //ability
             this.ability = "none";
@@ -19866,6 +20210,7 @@ function Item(type, x, y)
             this.heal = 0; //heals health.
             this.generation = 0.05; //recoops lost energy.
             this.replenish = 0.025; //restores will.
+            this.cooling = 2; //cools player.
 
             //ability
             this.ability = "none";
@@ -19897,6 +20242,7 @@ function Item(type, x, y)
             this.heal = 0; //heals health.
             this.generation = 0; //recoops lost energy.
             this.replenish = 0; //restores will.
+            this.cooling = 1.5; //cools player.
 
             //ability
             this.ability = "none";
@@ -19928,6 +20274,7 @@ function Item(type, x, y)
             this.heal = 0; //heals health.
             this.generation = 0; //recoops lost energy.
             this.replenish = 0; //restores will.
+            this.cooling = 1.5; //cools player.
 
             //ability
             this.ability = "none";
@@ -19959,6 +20306,7 @@ function Item(type, x, y)
             this.heal = 0; //heals health.
             this.generation = 0; //recoops lost energy.
             this.replenish = 0; //restores will.
+            this.cooling = 1.5; //cools player.
 
             //ability
             this.ability = "none";
@@ -20939,6 +21287,7 @@ function Item(type, x, y)
             this.heal = 0; //heals health.
             this.generation = 0; //recoops lost energy.
             this.replenish = 0.4; //restores will.
+            this.cooling = 12; //cools player.
 
             //ability
             this.ability = "none";
@@ -20996,6 +21345,7 @@ function Item(type, x, y)
             this.heal = 0; //heals health.
             this.generation = 0; //recoops lost energy.
             this.replenish = 0.1; //restores will.
+            this.cooling = 1.5; //cools player.
 
             //ability
             this.ability = "none";
@@ -21445,6 +21795,7 @@ function Item(type, x, y)
             this.heal = 0; //heals health.
             this.generation = 3; //recoops lost energy.
             this.replenish = 2; //restores will.
+            this.cooling = 22; //cools player.
 
             //ability
             this.ability = "quench";
@@ -21480,6 +21831,7 @@ function Item(type, x, y)
             this.heal = 0; //heals health.
             this.generation = 1; //recoops lost energy.
             this.replenish = 0; //restores will.
+            this.cooling = 20; //cools player.
 
             //ability
             this.ability = "quench";
@@ -21555,6 +21907,7 @@ function Item(type, x, y)
             this.heal = 0; //heals health.
             this.generation = 0; //recoops lost energy.
             this.replenish = 2; //restores will.
+            this.cooling = 32; //cools player.
 
             //ability
             this.ability = "quench";
@@ -21851,6 +22204,7 @@ function Item(type, x, y)
             this.heal = 0; //heals health.
             this.generation = 0; //recoops lost energy.
             this.replenish = 0; //restores will.
+            this.cooling = 0.5; //cools player.
 
             //ability
             this.ability = "none";
@@ -22229,6 +22583,7 @@ function Item(type, x, y)
             this.heal = 0; //heals health.
             this.generation = 0; //recoops lost energy.
             this.replenish = 0; //restores will.
+            this.cooling = 3; //cools player.
 
             //ability
             this.ability = "mj";
@@ -22265,7 +22620,7 @@ function Item(type, x, y)
             this.heal = 0; //heals health.
             this.generation = -60; //recoops lost energy.
             this.replenish = 1; //restores will.
-            this.wake = 30;
+            this.wake = -30; //awakens player.
 
             //ability
             this.ability = "wobeaNumbIII";
@@ -22338,6 +22693,7 @@ function Item(type, x, y)
             this.heal = 0; //heals health.
             this.generation = 0; //recoops lost energy.
             this.replenish = 32; //restores will.
+            this.cooling = 4; //cools player.
 
             //ability
             this.ability = "none";
@@ -22662,6 +23018,7 @@ function Item(type, x, y)
             this.heal = 0; //heals health.
             this.generation = 1; //recoops lost energy.
             this.replenish = 0; //restores will.
+            this.cooling = 3; //cools player.
 
             //ability
             this.ability = "magicalReconstruction";
@@ -29706,7 +30063,7 @@ function Item(type, x, y)
             this.heal = 0; //heals health.
             this.generation = -15.5; //recoops lost energy.
             this.replenish = 0.75; //restores will.
-            this.wake = 3;
+            this.wake = -3; //awakens player.
 
             //ability
             this.ability = "wobeaNumbII";
@@ -29736,7 +30093,7 @@ function Item(type, x, y)
             this.heal = 0; //heals health.
             this.generation = -5; //recoops lost energy.
             this.replenish = 0.25; //restores will.
-            this.wake = 1;
+            this.wake = -1; //awakens player.
 
             //ability
             this.ability = "wobeaNumbI";
@@ -38937,7 +39294,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 3;
-            this.thirstRetention = -2;
+            this.thirstRetention = -0.6;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 2;
@@ -38995,7 +39352,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 4;
-            this.thirstRetention = 5;
+            this.thirstRetention = 0.2;
             this.shockResist = 0.5;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -39531,7 +39888,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 10;
             this.magicalProtection = 0;
             this.warmthRetention = 3;
-            this.thirstRetention = 0;
+            this.thirstRetention = 0.1;
             this.shockResist = 0.15;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -39594,7 +39951,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 2.5;
-            this.thirstRetention = 0;
+            this.thirstRetention = 0.35;
             this.shockResist = 2;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -39652,7 +40009,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 0.45;
-            this.thirstRetention = 0;
+            this.thirstRetention = -0.1;
             this.shockResist = -1;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -39710,7 +40067,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 1;
-            this.thirstRetention = 0;
+            this.thirstRetention = 0.05;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -39768,7 +40125,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 0.95;
-            this.thirstRetention = 0;
+            this.thirstRetention = 0.05;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -39826,7 +40183,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 1.8;
-            this.thirstRetention = 0;
+            this.thirstRetention = 0.03;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -39884,7 +40241,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 0.1;
-            this.thirstRetention = 0;
+            this.thirstRetention = 0.01;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -39942,7 +40299,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 0.15;
-            this.thirstRetention = 0;
+            this.thirstRetention = 0.01;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -40000,7 +40357,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 0.1;
-            this.thirstRetention = 0.15;
+            this.thirstRetention = 0.1;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -40174,7 +40531,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 1.2;
-            this.thirstRetention = 1;
+            this.thirstRetention = 0.2;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 1;
@@ -40232,7 +40589,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 0.6;
-            this.thirstRetention = 0.6;
+            this.thirstRetention = 0.1;
             this.shockResist = -3;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -40352,7 +40709,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 1.25;
-            this.thirstRetention = -0.2;
+            this.thirstRetention = -0.23;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -40405,7 +40762,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 2;
-            this.thirstRetention = -1;
+            this.thirstRetention = -0.35;
             this.shockResist = -0.2;
             //Main Stat Bonuses
             this.strengthBonus = 1;
@@ -40463,7 +40820,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 0.1;
-            this.thirstRetention = -0.03;
+            this.thirstRetention = -0.09;
             this.shockResist = -0.05;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -40521,7 +40878,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 0.15;
-            this.thirstRetention = -0.04;
+            this.thirstRetention = -0.11;
             this.shockResist = -0.08;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -40579,7 +40936,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 0.25;
-            this.thirstRetention = -0.1;
+            this.thirstRetention = -0.15;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -40637,7 +40994,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 5.5;
-            this.thirstRetention = - 0.5;
+            this.thirstRetention = -0.8;
             this.shockResist = 5;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -40695,7 +41052,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 2.5;
-            this.thirstRetention = -2.5;
+            this.thirstRetention = -0.15;
             this.shockResist = 1;
             //Main Stat Bonuses
             this.strengthBonus = 3;
@@ -40748,7 +41105,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 2.2;
-            this.thirstRetention = - 0.5;
+            this.thirstRetention = -0.45;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -40806,7 +41163,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 3.5;
-            this.thirstRetention = -1;
+            this.thirstRetention = -0.55;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 3;
@@ -40864,7 +41221,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 0.75;
-            this.thirstRetention = -0.1;
+            this.thirstRetention = -0.02;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -40917,7 +41274,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 0.9;
-            this.thirstRetention = -0.1;
+            this.thirstRetention = -0.03;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -40970,7 +41327,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 5.5;
-            this.thirstRetention = - 0.5;
+            this.thirstRetention = -0.8;
             this.shockResist = 6;
             //Main Stat Bonuses
             this.strengthBonus = 4;
@@ -41026,7 +41383,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 0;
-            this.thirstRetention = 2;
+            this.thirstRetention = 0.3;
             this.shockResist = 2;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -41084,7 +41441,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 0;
-            this.thirstRetention = 0;
+            this.thirstRetention = 0.12;
             this.shockResist = 3;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -41142,7 +41499,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 2.25;
-            this.thirstRetention = 0;
+            this.thirstRetention = 0.08;
             this.shockResist = -2;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -41200,7 +41557,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 2.25;
-            this.thirstRetention = -1;
+            this.thirstRetention = -0.25;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -41258,7 +41615,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 2.6;
-            this.thirstRetention = 0;
+            this.thirstRetention = -0.45;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 2;
@@ -41318,7 +41675,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 2;
-            this.thirstRetention = 0;
+            this.thirstRetention = -0.9;
             this.shockResist = -10;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -41376,7 +41733,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 1;
-            this.thirstRetention = 0.5;
+            this.thirstRetention = 0.4;
             this.shockResist = -15;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -41492,7 +41849,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 1.9;
-            this.thirstRetention = 0;
+            this.thirstRetention = -0.26;
             this.shockResist = -1;
             //Main Stat Bonuses
             this.strengthBonus = 1;
@@ -41550,7 +41907,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 1;
-            this.thirstRetention = 0;
+            this.thirstRetention = -0.4;
             this.shockResist = -8;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -41619,7 +41976,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 2;
-            this.thirstRetention = -0.5;
+            this.thirstRetention = -0.45;
             this.shockResist = -8;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -41688,7 +42045,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 2.5;
-            this.thirstRetention = -0.75;
+            this.thirstRetention = -0.6;
             this.shockResist = -7;
             //Main Stat Bonuses
             this.strengthBonus = 1;
@@ -41752,7 +42109,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 3;
-            this.thirstRetention = -1;
+            this.thirstRetention = -0.5;
             this.shockResist = -10;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -41821,7 +42178,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 3;
-            this.thirstRetention = -1;
+            this.thirstRetention = -0.7;
             this.shockResist = -10;
             //Main Stat Bonuses
             this.strengthBonus = 3;
@@ -41885,7 +42242,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 3.5;
-            this.thirstRetention = -1;
+            this.thirstRetention = -0.7;
             this.shockResist = -8;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -41954,7 +42311,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 1.5;
-            this.thirstRetention = 0;
+            this.thirstRetention = -0.08;
             this.shockResist = -9;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -42023,7 +42380,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 1.6;
-            this.thirstRetention = 0;
+            this.thirstRetention = -0.09;
             this.shockResist = -9;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -42086,8 +42443,8 @@ function Item(type, x, y)
             this.toughnessRequirement = 4;
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
-            this.warmthRetention = 2;
-            this.thirstRetention = 2;
+            this.warmthRetention = 20;
+            this.thirstRetention = 20;
             this.shockResist = -2;
             //Main Stat Bonuses
             this.strengthBonus = 2;
@@ -42139,7 +42496,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 1;
-            this.thirstRetention = 0;
+            this.thirstRetention = -0.3;
             this.shockResist = -10;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -42208,7 +42565,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 1;
-            this.thirstRetention = 0;
+            this.thirstRetention = -0.3;
             this.shockResist = -10;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -42277,7 +42634,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 1;
-            this.thirstRetention = 0;
+            this.thirstRetention = -0.3;
             this.shockResist = -10;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -42346,7 +42703,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 1;
-            this.thirstRetention = 0;
+            this.thirstRetention = -0.35;
             this.shockResist = -13;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -42415,7 +42772,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 1;
-            this.thirstRetention = 0;
+            this.thirstRetention = -0.35;
             this.shockResist = -13;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -42484,7 +42841,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 1;
-            this.thirstRetention = 0;
+            this.thirstRetention = -0.35;
             this.shockResist = -13;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -42553,7 +42910,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 2;
-            this.thirstRetention = 0;
+            this.thirstRetention = -0.4;
             this.shockResist = -13;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -42622,7 +42979,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 2;
-            this.thirstRetention = 0;
+            this.thirstRetention = -0.4;
             this.shockResist = -13;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -42691,7 +43048,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 1;
-            this.thirstRetention = 0;
+            this.thirstRetention = -0.25;
             this.shockResist = -13;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -42760,7 +43117,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 1;
-            this.thirstRetention = 0;
+            this.thirstRetention = -0.2;
             this.shockResist = -13;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -42829,7 +43186,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 2;
-            this.thirstRetention = 0;
+            this.thirstRetention = 0.06;
             this.shockResist = -10;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -42898,7 +43255,8 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 0;
-            this.thirstRetention = 10;
+            this.thirstRetention = 0.5;
+            this.fireProofing = 10;
             this.shockResist = -8;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -42963,7 +43321,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 1;
-            this.thirstRetention = 0;
+            this.thirstRetention = 0.4;
             this.shockResist = -3;
             //Main Stat Bonuses
             this.strengthBonus = 1;
@@ -43028,7 +43386,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 1;
-            this.thirstRetention = 0;
+            this.thirstRetention = 0.4;
             this.shockResist = -3;
             //Main Stat Bonuses
             this.strengthBonus = 3;
@@ -43086,7 +43444,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 0;
-            this.thirstRetention = 0;
+            this.thirstRetention = -0.15;
             this.shockResist = -6;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -43144,7 +43502,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 2.7;
-            this.thirstRetention = 0;
+            this.thirstRetention = -0.4;
             this.shockResist = 0.13;
             //Main Stat Bonuses
             this.strengthBonus = 1;
@@ -43202,7 +43560,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 2;
-            this.thirstRetention = 0;
+            this.thirstRetention = -0.25;
             this.shockResist = -5;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -43260,7 +43618,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 0;
-            this.thirstRetention = 0;
+            this.thirstRetention = -0.2;
             this.shockResist = 0.1;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -43318,7 +43676,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 2;
-            this.thirstRetention = -0.4;
+            this.thirstRetention = -0.3;
             this.shockResist = 0.5;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -43376,7 +43734,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 0;
-            this.thirstRetention = 0;
+            this.thirstRetention = -0.15;
             this.shockResist = 0.1;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -43434,7 +43792,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 1.5;
-            this.thirstRetention = - 0.35;
+            this.thirstRetention = -0.45;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -43499,7 +43857,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 0.25;
-            this.thirstRetention = 1.25;
+            this.thirstRetention = 0.8;
             this.shockResist = 0.66;
             //Main Stat Bonuses
             this.strengthBonus = 1;
@@ -43565,7 +43923,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 2;
-            this.thirstRetention = -1;
+            this.thirstRetention = -0.1;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -43630,7 +43988,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 2.5;
-            this.thirstRetention = -1;
+            this.thirstRetention = -0.45;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -43694,7 +44052,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 2.5;
-            this.thirstRetention = -1;
+            this.thirstRetention = -0.45;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -43751,7 +44109,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 3;
-            this.thirstRetention = -2;
+            this.thirstRetention = -0.8;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -43808,7 +44166,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 0.25;
-            this.thirstRetention = 0.65;
+            this.thirstRetention = 0.4;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -43865,7 +44223,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 1.3;
-            this.thirstRetention = 0;
+            this.thirstRetention = 0.15;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -43979,7 +44337,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 1.4;
-            this.thirstRetention = 0;
+            this.thirstRetention = -0.17;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -44032,7 +44390,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 0.9;
-            this.thirstRetention = 0;
+            this.thirstRetention = 0.08;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -44092,7 +44450,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 0.5;
-            this.thirstRetention = 0.5;
+            this.thirstRetention = 0.14;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -44149,7 +44507,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 1.5;
-            this.thirstRetention = 0;
+            this.thirstRetention = 0.05;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -44206,7 +44564,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 1.5;
-            this.thirstRetention = 0;
+            this.thirstRetention = 0.07;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -44270,7 +44628,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 1.2;
-            this.thirstRetention = 0;
+            this.thirstRetention = 0.02;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -44327,7 +44685,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 0.3;
-            this.thirstRetention = 0;
+            this.thirstRetention = 0.04;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -44391,7 +44749,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 0.2;
-            this.thirstRetention = 0;
+            this.thirstRetention = -0.1;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -44448,7 +44806,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 0.2;
-            this.thirstRetention = 0;
+            this.thirstRetention = -0.1;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -44512,7 +44870,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 1.75;
-            this.thirstRetention = -0.5;
+            this.thirstRetention = -0.65;
             this.shockResist = -0.1;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -44626,7 +44984,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 10;
             this.warmthRetention = 3.5;
-            this.thirstRetention = -2;
+            this.thirstRetention = -0.5;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -44683,7 +45041,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 5.5;
             this.warmthRetention = 0.75;
-            this.thirstRetention = 0.75;
+            this.thirstRetention = 0.35;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -44736,7 +45094,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 2;
-            this.thirstRetention = -0.5;
+            this.thirstRetention = -0.65;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -44793,7 +45151,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 2;
-            this.thirstRetention = -0.5;
+            this.thirstRetention = -0.6;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -44850,7 +45208,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 1.25;
-            this.thirstRetention = -0.25;
+            this.thirstRetention = -0.4;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -44914,7 +45272,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 2;
-            this.thirstRetention = -0.5;
+            this.thirstRetention = -0.15;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -44978,7 +45336,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 2;
-            this.thirstRetention = -0.5;
+            this.thirstRetention = -0.15;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -45035,7 +45393,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 1.1;
-            this.thirstRetention = -0.3;
+            this.thirstRetention = -0.1;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -45099,7 +45457,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 1.9;
-            this.thirstRetention = -0.4;
+            this.thirstRetention = -0.1;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -45156,7 +45514,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 1;
-            this.thirstRetention = -0.25;
+            this.thirstRetention = -0.3;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -45213,7 +45571,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 2.2;
-            this.thirstRetention = 0.15;
+            this.thirstRetention = 0.1;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 2;
@@ -45266,7 +45624,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 2;
-            this.thirstRetention = -0.25;
+            this.thirstRetention = -0.45;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 1;
@@ -45319,7 +45677,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 2.3;
-            this.thirstRetention = -0.25;
+            this.thirstRetention = -0.45;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 3;
@@ -45372,7 +45730,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 0.45;
-            this.thirstRetention = 0.15;
+            this.thirstRetention = 0.25;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -45430,7 +45788,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 0.9;
-            this.thirstRetention = 0.16;
+            this.thirstRetention = 0.2;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 1;
@@ -45490,7 +45848,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 1.1;
-            this.thirstRetention = -0.1;
+            this.thirstRetention = 0.16;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -45550,7 +45908,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 1.3;
-            this.thirstRetention = 0.15;
+            this.thirstRetention = 0.13;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -45607,7 +45965,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 1.9;
-            this.thirstRetention = -0.7;
+            this.thirstRetention = -0.3;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -45664,7 +46022,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 1.8;
-            this.thirstRetention = -0.6;
+            this.thirstRetention = -0.04;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -45847,7 +46205,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 1.65;
-            this.thirstRetention = -0.2;
+            this.thirstRetention = -0.4;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -45911,7 +46269,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 1.7;
-            this.thirstRetention = -0.25;
+            this.thirstRetention = -0.4;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -45975,7 +46333,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 1.8;
-            this.thirstRetention = -0.25;
+            this.thirstRetention = -0.4;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -46039,7 +46397,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 1.7;
-            this.thirstRetention = -0.25;
+            this.thirstRetention = -0.4;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -46210,7 +46568,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 0.1;
-            this.thirstRetention = 0.75;
+            this.thirstRetention = 0.45;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -46320,7 +46678,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 2;
-            this.thirstRetention = 2;
+            this.thirstRetention = 0.5;
             this.shockResist = 0.6;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -46373,7 +46731,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 2;
-            this.thirstRetention = 2;
+            this.thirstRetention = 0.5;
             this.shockResist = 0.6;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -46426,7 +46784,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 0.2;
-            this.thirstRetention = 0.3;
+            this.thirstRetention = 0.24;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -46490,7 +46848,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 0.6;
-            this.thirstRetention = 0.1;
+            this.thirstRetention = 0.2;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -46554,7 +46912,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 0.2;
-            this.thirstRetention = 0.9;
+            this.thirstRetention = 0.75;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -46618,7 +46976,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 0.15;
-            this.thirstRetention = 0.8;
+            this.thirstRetention = 0.75;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -46675,7 +47033,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 0.15;
-            this.thirstRetention = 0.8;
+            this.thirstRetention = 0.75;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -46732,7 +47090,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 2;
-            this.thirstRetention = -1;
+            this.thirstRetention = -0.25;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -46789,7 +47147,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 2;
-            this.thirstRetention = -1;
+            this.thirstRetention = -0.3;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -46853,7 +47211,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 0.45;
-            this.thirstRetention = -0.2;
+            this.thirstRetention = -0.15;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -46910,7 +47268,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 0.1;
-            this.thirstRetention = 0;
+            this.thirstRetention = 0.2;
             this.shockResist = 1;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -47024,7 +47382,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 2.75;
-            this.thirstRetention = 0;
+            this.thirstRetention = -0.55;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -47081,7 +47439,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 0.2;
-            this.thirstRetention = 0;
+            this.thirstRetention = -0.07;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -47139,7 +47497,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 0.3;
-            this.thirstRetention = 0;
+            this.thirstRetention = -0.08;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -47197,7 +47555,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 0.15;
-            this.thirstRetention = 0;
+            this.thirstRetention = 0.01;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -47255,7 +47613,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 0.1;
-            this.thirstRetention = 0;
+            this.thirstRetention = 0.01;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -47313,7 +47671,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 0.25;
-            this.thirstRetention = 0;
+            this.thirstRetention = 0.01;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -47371,7 +47729,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 0.125;
-            this.thirstRetention = 0;
+            this.thirstRetention = -0.03;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -47429,7 +47787,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 0.02;
-            this.thirstRetention = 0;
+            this.thirstRetention = 0.03;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -47487,7 +47845,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 0.09;
-            this.thirstRetention = 0;
+            this.thirstRetention = 0.02;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -47545,7 +47903,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 4.1;
-            this.thirstRetention = -3;
+            this.thirstRetention = -0.9;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -47602,7 +47960,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 0.55;
-            this.thirstRetention = 0;
+            this.thirstRetention = -0.15;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -47660,7 +48018,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 0.85;
-            this.thirstRetention = 0;
+            this.thirstRetention = -0.2;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -47718,7 +48076,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 2.1;
-            this.thirstRetention = -1;
+            this.thirstRetention = -0.5;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -47782,7 +48140,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 1;
             this.magicalProtection = 0.25;
             this.warmthRetention = 0;
-            this.thirstRetention = 0.4;
+            this.thirstRetention = 0.3;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -48015,6 +48373,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 2;
             this.magicalProtection = 0;
             this.warmthRetention = -0.2;
+            this.thirstRetention = 0.55;
             if (player.getEminence() >= 2)
             {
                 this.fireProofing = 5;
@@ -48172,7 +48531,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 3;
             this.magicalProtection = 0;
             this.warmthRetention = -0.2;
-            this.thirstRetention = 0.25;
+            this.thirstRetention = 0.35;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -48247,7 +48606,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 6;
             this.magicalProtection = 0;
             this.warmthRetention = -0.2;
-            this.thirstRetention = 0.25;
+            this.thirstRetention = -0.1;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -48329,7 +48688,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 9;
             this.magicalProtection = 0;
             this.warmthRetention = 0;
-            this.thirstRetention = 0.5;
+            this.thirstRetention = -0.06;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -48462,7 +48821,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 8;
             this.magicalProtection = 1;
             this.warmthRetention = 0.15;
-            this.thirstRetention = 0.5;
+            this.thirstRetention = 0.65;
             this.shockResist = 0.2;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -48545,7 +48904,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 9;
             this.magicalProtection = 1;
             this.warmthRetention = 0.15;
-            this.thirstRetention = 0.5;
+            this.thirstRetention = 0.65;
             this.shockResist = 0.3;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -48792,7 +49151,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 0.5;
-            this.thirstRetention = -0.15;
+            this.thirstRetention = -0.3;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -48856,7 +49215,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 0.5;
-            this.thirstRetention = 2.5;
+            this.thirstRetention = 0.9;
             this.shockResist = 0.25;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -48920,7 +49279,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 0.7;
-            this.thirstRetention = 2.5;
+            this.thirstRetention = 0.9;
             this.shockResist = 0.05;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -49048,7 +49407,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 1.6;
-            this.thirstRetention = 0.25;
+            this.thirstRetention = 0;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -49112,7 +49471,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 0.9;
-            this.thirstRetention = 0.9;
+            this.thirstRetention = 0.45;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -49176,7 +49535,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 1.1;
-            this.thirstRetention = 0.75;
+            this.thirstRetention = 0.25;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -49240,7 +49599,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 1;
-            this.thirstRetention = 0.8;
+            this.thirstRetention = 0.3;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -49304,7 +49663,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 3.15;
-            this.thirstRetention = 0.5;
+            this.thirstRetention = 0.4;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 3;
@@ -49414,7 +49773,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 1.2;
-            this.thirstRetention = 0.8;
+            this.thirstRetention = 0.65;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -49478,7 +49837,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 1;
-            this.thirstRetention = 0.15;
+            this.thirstRetention = 0.25;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -49535,7 +49894,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 0.4;
-            this.thirstRetention = 0.2;
+            this.thirstRetention = 0.3;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -49592,7 +49951,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 0.3;
-            this.thirstRetention = 0.2;
+            this.thirstRetention = 0.25;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -49656,7 +50015,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 1;
             this.magicalProtection = 0;
             this.warmthRetention = 0.4;
-            this.thirstRetention = 0.2;
+            this.thirstRetention = 0.3;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -49724,7 +50083,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 1;
             this.magicalProtection = 0;
             this.warmthRetention = 2.5;
-            this.thirstRetention = -0.5;
+            this.thirstRetention = -0.4;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -49792,7 +50151,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 3;
             this.magicalProtection = 0;
             this.warmthRetention = 0.3;
-            this.thirstRetention = 0;
+            this.thirstRetention = -0.12;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -49857,7 +50216,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 2;
             this.magicalProtection = 0;
             this.warmthRetention = 0.2;
-            this.thirstRetention = 0;
+            this.thirstRetention = -0.08;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -49926,7 +50285,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 1;
-            this.thirstRetention = -3;
+            this.thirstRetention = 0.35;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -49987,7 +50346,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 1;
-            this.thirstRetention = -3;
+            this.thirstRetention = 0.3;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -50044,7 +50403,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 1;
-            this.thirstRetention = -3;
+            this.thirstRetention = 0.3;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;
@@ -52759,6 +53118,51 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
+        }
+        else if (this.type == "anjayCactus")
+        {
+            XXX.beginPath();
+            XXX.drawImage(raed, 608, 433, 24, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 24 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 1), 24 * 1, 24 * 1);
+        }
+        else if (this.type == "despinedAnjayCactus")
+        {
+            XXX.beginPath();
+            XXX.drawImage(raed, 659, 433, 24, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 24 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 1), 24 * 1, 24 * 1);
+        }
+        else if (this.type == "roastedAnjayCactus")
+        {
+            XXX.beginPath();
+            XXX.drawImage(raed, 687, 433, 24, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 24 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 1), 24 * 1, 24 * 1);
+        }
+        else if (this.type == "anjayFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(raed, 634, 433, 24, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 24 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 1), 24 * 1, 24 * 1);
+        }
+        else if (this.type == "naibArm")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ion, 1384, 705, 40, 36, X - this.X + (1/2 * CCC.width) - (1/2 * 40 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 36 * 1.4), 40 * 1.4, 36 * 1.4);
+        }
+        else if (this.type == "inumClipping")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ion, 1503, 713, 40, 36, X - this.X + (1/2 * CCC.width) - (1/2 * 40 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 36 * 1.2), 40 * 1.2, 36 * 1.2);
+        }
+        else if (this.type == "maweHunk")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ion, 1136, 277, 17, 18, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 18 * 1.5), 17 * 1.5, 18 * 1.5);
+        }
+        else if (this.type == "despinedMaweHunk")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ion, 1154, 277, 17, 18, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 18 * 1.5), 17 * 1.5, 18 * 1.5);
+        }
+        else if (this.type == "maweFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ion, 1168, 180, 17, 18, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 18 * 1.5), 17 * 1.5, 18 * 1.5);
         }
         else if (this.type == "maleLyagushkaSkin")
         {
@@ -59613,6 +60017,51 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(candlewic, 61, 201, 27, 29, this.invX - (1/2 * 27 * 1.5), this.invY - (1/2 * 29 * 1.5), 27 * 1.5, 29 * 1.5);
         }
+        else if (this.type == "anjayCactus")
+        {
+            LXX.beginPath();
+            LXX.drawImage(raed, 608, 433, 24, 24, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 24 * 1), 24 * 1, 24 * 1);
+        }
+        else if (this.type == "despinedAnjayCactus")
+        {
+            LXX.beginPath();
+            LXX.drawImage(raed, 659, 433, 24, 24, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 24 * 1), 24 * 1, 24 * 1);
+        }
+        else if (this.type == "roastedAnjayCactus")
+        {
+            LXX.beginPath();
+            LXX.drawImage(raed, 687, 433, 24, 24, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 24 * 1), 24 * 1, 24 * 1);
+        }
+        else if (this.type == "anjayFlower")
+        {
+            LXX.beginPath();
+            LXX.drawImage(raed, 634, 433, 24, 24, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 24 * 1), 24 * 1, 24 * 1);
+        }
+        else if (this.type == "naibArm")
+        {
+            LXX.beginPath();
+            LXX.drawImage(ion, 1384, 705, 40, 36, this.invX - (1/2 * 40 * 1.1), this.invY - (1/2 * 36 * 1.1), 40 * 1.1, 36 * 1.1);
+        }
+        else if (this.type == "inumClipping")
+        {
+            LXX.beginPath();
+            LXX.drawImage(ion, 1503, 713, 40, 36, this.invX - (1/2 * 40 * 1.2), this.invY - (1/2 * 36 * 1.2), 40 * 1.2, 36 * 1.2);
+        }
+        else if (this.type == "maweHunk")
+        {
+            LXX.beginPath();
+            LXX.drawImage(ion, 1136, 277, 17, 18, this.invX - (1/2 * 17 * 1.3), this.invY - (1/2 * 18 * 1.3), 17 * 1.3, 18 * 1.3);
+        }
+        else if (this.type == "despinedMaweHunk")
+        {
+            LXX.beginPath();
+            LXX.drawImage(ion, 1154, 277, 17, 18, this.invX - (1/2 * 17 * 1.3), this.invY - (1/2 * 18 * 1.3), 17 * 1.3, 18 * 1.3);
+        }
+        else if (this.type == "maweFlower")
+        {
+            LXX.beginPath();
+            LXX.drawImage(ion, 1168, 180, 17, 18, this.invX - (1/2 * 17 * 1.3), this.invY - (1/2 * 18 * 1.3), 17 * 1.3, 18 * 1.3);
+        }
         else if (this.type == "maleLyagushkaSkin")
         {
             LXX.beginPath();
@@ -66442,6 +66891,51 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "anjayCactus")
+        {
+            XXX.beginPath();
+            XXX.drawImage(raed, 608, 433, 24, 24, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 24 * 1), 24 * 1, 24 * 1);
+        }
+        else if (this.type == "despinedAnjayCactus")
+        {
+            XXX.beginPath();
+            XXX.drawImage(raed, 659, 433, 24, 24, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 24 * 1), 24 * 1, 24 * 1);
+        }
+        else if (this.type == "roastedAnjayCactus")
+        {
+            XXX.beginPath();
+            XXX.drawImage(raed, 687, 433, 24, 24, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 24 * 1), 24 * 1, 24 * 1);
+        }
+        else if (this.type == "anjayFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(raed, 634, 433, 24, 24, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 24 * 1), 24 * 1, 24 * 1);
+        }
+        else if (this.type == "naibArm")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ion, 1384, 705, 40, 36, this.invX - (1/2 * 40 * 1.1), this.invY - (1/2 * 36 * 1.1), 40 * 1.1, 36 * 1.1);
+        }
+        else if (this.type == "inumClipping")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ion, 1503, 713, 40, 36, this.invX - (1/2 * 40 * 1.2), this.invY - (1/2 * 36 * 1.2), 40 * 1.2, 36 * 1.2);
+        }
+        else if (this.type == "maweHunk")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ion, 1136, 277, 17, 18, this.invX - (1/2 * 17 * 1.3), this.invY - (1/2 * 18 * 1.3), 17 * 1.3, 18 * 1.3);
+        }
+        else if (this.type == "despinedMaweHunk")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ion, 1154, 277, 17, 18, this.invX - (1/2 * 17 * 1.3), this.invY - (1/2 * 18 * 1.3), 17 * 1.3, 18 * 1.3);
+        }
+        else if (this.type == "maweFlower")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ion, 1168, 180, 17, 18, this.invX - (1/2 * 17 * 1.3), this.invY - (1/2 * 18 * 1.3), 17 * 1.3, 18 * 1.3);
         }
         else if (this.type == "maleLyagushkaSkin")
         {

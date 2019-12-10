@@ -12293,6 +12293,111 @@ function Item(type, x, y)
             this.buyValue = 3 - Math.floor(player.getCharisma() / 50); // at max, buy for 2.
             this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
         }
+        else if (this.type == "krovhyuzkaHorseArmour")
+        {
+            //For All Items
+            this.identity = "Krovhyuzka Horse Caparison";
+            this.weight = 14;
+            this.size = 32;
+            this.description = "White and black gambeson in the style of house Krovhyuzka, sewn for a horse.";
+            this.intForDes = 1;
+            this.intDescription = "Use near a horse that you own in order to equip the armour for them.";
+
+            //Define Utility
+            this.utility = "material";
+            this.questy = true;
+
+            //ability
+            this.ability = "horseArmour";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 140 - Math.floor(player.getCharisma() / 2); // at max, buy for 115.
+            this.sellValue = 90 + Math.floor(player.getCharisma() / 2); // at max, sell for 115.
+        }
+        else if (this.type == "vardanianHorseArmour")
+        {
+            //For All Items
+            this.identity = "Vardanian Horse Caparison";
+            this.weight = 14;
+            this.size = 32;
+            this.description = "Red and black gambeson in the style of the national colours of Vardania, sewn for a horse.";
+            this.intForDes = 1;
+            this.intDescription = "Use near a horse that you own in order to equip the armour for them.";
+
+            //Define Utility
+            this.utility = "material";
+            this.questy = true;
+
+            //ability
+            this.ability = "horseArmour";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 120 - Math.floor(player.getCharisma() / 3); // at max, buy for 105.
+            this.sellValue = 80 + Math.floor(player.getCharisma() / 2); // at max, sell for 105.
+        }
+        else if (this.type == "blueHorseArmour")
+        {
+            //For All Items
+            this.identity = "North Vardanian Horse Caparison";
+            this.weight = 14;
+            this.size = 32;
+            this.description = "Blue and black gambeson in the style of a northern count of Vardania, sewn for a horse.";
+            this.intForDes = 1;
+            this.intDescription = "Use near a horse that you own in order to equip the armour for them.";
+
+            //Define Utility
+            this.utility = "material";
+            this.questy = true;
+
+            //ability
+            this.ability = "horseArmour";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 125 - Math.floor(player.getCharisma() / 3); // at max, buy for 110.
+            this.sellValue = 85 + Math.floor(player.getCharisma() / 2); // at max, sell for 110.
+        }
+        else if (this.type == "nirwadenHorseArmour")
+        {
+            //For All Items
+            this.identity = "Nirwaden Horse Caparison";
+            this.weight = 14;
+            this.size = 32;
+            this.description = "Red and yellow gambeson in the style of the imperial colours of Nirwaden, sewn for a horse.";
+            this.intForDes = 1;
+            this.intDescription = "Use near a horse that you own in order to equip the armour for them.";
+
+            //Define Utility
+            this.utility = "material";
+            this.questy = true;
+
+            //ability
+            this.ability = "horseArmour";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 125 - Math.floor(player.getCharisma() / 3); // at max, buy for 110.
+            this.sellValue = 85 + Math.floor(player.getCharisma() / 2); // at max, sell for 110.
+        }
+        else if (this.type == "altezorHorseArmour")
+        {
+            //For All Items
+            this.identity = "Altezor Horse Caparison";
+            this.weight = 14;
+            this.size = 32;
+            this.description = "Gold and black gambeson in the style of the heraldry of house Altezor, sewn for a horse.";
+            this.intForDes = 1;
+            this.intDescription = "Use near a horse that you own in order to equip the armour for them.";
+
+            //Define Utility
+            this.utility = "material";
+            this.questy = true;
+
+            //ability
+            this.ability = "horseArmour";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 135 - Math.floor(player.getCharisma() / 3); // at max, buy for 120.
+            this.sellValue = 95 + Math.floor(player.getCharisma() / 2); // at max, sell for 120.
+        }
         else if (this.type == "ghoulHorseArmour")
         {
             //For All Items
@@ -54301,6 +54406,31 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(bogg, 221, 1180, 148, 61, X - this.X + (1/2 * CCC.width) - (1/2 * 148 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 61 * 1), 148 * 1, 61 * 1);
         }
+        else if (this.type == "krovhyuzkaHorseArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wart, 1319, 410, 159, 78, X - this.X + (1/2 * CCC.width) - (1/2 * 159 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 78 * 1), 159 * 1, 78 * 1);
+        }
+        else if (this.type == "vardanianHorseArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wart, 542, 406, 159, 78, X - this.X + (1/2 * CCC.width) - (1/2 * 159 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 78 * 1), 159 * 1, 78 * 1);
+        }
+        else if (this.type == "blueHorseArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wart, 727, 410, 159, 78, X - this.X + (1/2 * CCC.width) - (1/2 * 159 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 78 * 1), 159 * 1, 78 * 1);
+        }
+        else if (this.type == "altezorHorseArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wart, 915, 406, 159, 78, X - this.X + (1/2 * CCC.width) - (1/2 * 159 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 78 * 1), 159 * 1, 78 * 1);
+        }
+        else if (this.type == "nirwadenHorseArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wart, 1108, 408, 159, 78, X - this.X + (1/2 * CCC.width) - (1/2 * 159 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 78 * 1), 159 * 1, 78 * 1);
+        }
         else if (this.type == "ghoulHorseArmour")
         {
             XXX.beginPath();
@@ -61200,6 +61330,31 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(bogg, 221, 1180, 148, 61, this.invX - (1/2 * 148 * 0.5), this.invY - (1/2 * 61 * 0.5), 148 * 0.5, 61 * 0.5);
         }
+        else if (this.type == "krovhyuzkaHorseArmour")
+        {
+            LXX.beginPath();
+            LXX.drawImage(wart, 1319, 410, 159, 78, this.invX - (1/2 * 159 * 0.5), this.invY - (1/2 * 78 * 0.5), 159 * 0.5, 78 * 0.5);
+        }
+        else if (this.type == "vardanianHorseArmour")
+        {
+            LXX.beginPath();
+            LXX.drawImage(wart, 542, 406, 159, 78, this.invX - (1/2 * 159 * 0.5), this.invY - (1/2 * 78 * 0.5), 159 * 0.5, 78 * 0.5);
+        }
+        else if (this.type == "blueHorseArmour")
+        {
+            LXX.beginPath();
+            LXX.drawImage(wart, 727, 410, 159, 78, this.invX - (1/2 * 159 * 0.5), this.invY - (1/2 * 78 * 0.5), 159 * 0.5, 78 * 0.5);
+        }
+        else if (this.type == "altezorHorseArmour")
+        {
+            LXX.beginPath();
+            LXX.drawImage(wart, 915, 406, 159, 78, this.invX - (1/2 * 159 * 0.5), this.invY - (1/2 * 78 * 0.5), 159 * 0.5, 78 * 0.5);
+        }
+        else if (this.type == "nirwadenHorseArmour")
+        {
+            LXX.beginPath();
+            LXX.drawImage(wart, 1108, 408, 159, 78, this.invX - (1/2 * 159 * 0.5), this.invY - (1/2 * 78 * 0.5), 159 * 0.5, 78 * 0.5);
+        }
         else if (this.type == "ghoulHorseArmour")
         {
             LXX.beginPath();
@@ -68069,6 +68224,31 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(bogg, 221, 1180, 148, 61, this.invX - (1/2 * 148 * 0.5), this.invY - (1/2 * 61 * 0.5), 148 * 0.5, 61 * 0.5);
+        }
+        else if (this.type == "krovhyuzkaHorseArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wart, 1319, 410, 159, 78, this.invX - (1/2 * 159 * 0.5), this.invY - (1/2 * 78 * 0.5), 159 * 0.5, 78 * 0.5);
+        }
+        else if (this.type == "vardanianHorseArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wart, 542, 406, 159, 78, this.invX - (1/2 * 159 * 0.5), this.invY - (1/2 * 78 * 0.5), 159 * 0.5, 78 * 0.5);
+        }
+        else if (this.type == "blueHorseArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wart, 727, 410, 159, 78, this.invX - (1/2 * 159 * 0.5), this.invY - (1/2 * 78 * 0.5), 159 * 0.5, 78 * 0.5);
+        }
+        else if (this.type == "altezorHorseArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wart, 915, 406, 159, 78, this.invX - (1/2 * 159 * 0.5), this.invY - (1/2 * 78 * 0.5), 159 * 0.5, 78 * 0.5);
+        }
+        else if (this.type == "nirwadenHorseArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(wart, 1108, 408, 159, 78, this.invX - (1/2 * 159 * 0.5), this.invY - (1/2 * 78 * 0.5), 159 * 0.5, 78 * 0.5);
         }
         else if (this.type == "ghoulHorseArmour")
         {

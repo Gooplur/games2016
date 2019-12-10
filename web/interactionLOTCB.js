@@ -2877,6 +2877,474 @@ function interaction(me)
                         }
                     }
 
+                    if (self.ID == "Imbadorr" || conversationID[0] == "Imbadorr")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Imbadorr";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                if (quests.sairchHousePaid == true && quests.sairchHomeOwned == true)
+                                {
+                                    player.dialogueOptions = [["...", false, "a"], ["Get out of my house squatter!", false, "b"], ["I'm sorry, but this is my house now so please leave.", false, "b"]];
+                                }
+                                else if (quests.sairchHousePaid == true && quests.sairchHomeOwned == false)
+                                {
+                                    player.dialogueOptions = [["...", false, "a"], ["How are you?", false, "c"], ["What do you do for a living?", false, "e"]];
+                                }
+                                else if (quests.sairchHomeInfo == true)
+                                {
+                                    if (player.raceName == "Zetian")
+                                    {
+                                        player.dialogueOptions = [["...", false, "a"], ["Is that soldier outside giving you trouble?", false, "d"], ["So, you are having money problems?", false, "d"], ["Get out of here, Squatter! You give the rest of us a bad name!! It is people like you that keep us from rising in society!", false, "b"]];
+                                    }
+                                    else
+                                    {
+                                        player.dialogueOptions = [["...", false, "a"], ["Is that soldier outside giving you trouble?", false, "d"], ["So, you are having money problems?", false, "d"], ["Get out of here you sand eater wretch!", false, "b"]];
+                                    }
+                                }
+                                else
+                                {
+                                    player.dialogueOptions = [["...", false, "a"], ["What do you do for a living?", false, "e"]];
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            if (quests.sairchHousePaid == true && quests.sairchHomeOwned == true)
+                            {
+                                if (player.raceName == "Zetian")
+                                {
+                                    setMsg("You think that paying for it makes this your house, you treacherous fiend!? Everyone knows that this is the home of my ancestors!! if you want to steal it from me I will fight you!");
+                                }
+                                else
+                                {
+                                    setMsg("So you want to steal my ancestral home? Well, I am not moving from this place, so if you wish to live here you must fight me!");
+                                }
+                            }
+                            else if (quests.sairchHousePaid == true && quests.sairchHomeOwned == false || uniqueChars.hazanLDS == false)
+                            {
+                                setMsg("Thank you for saving my home! You are welcome here anytime, friend.");
+                            }
+                            else if (quests.sairchHomeInfo == true)
+                            {
+                                if (player.raceName == "Zetian")
+                                {
+                                    setMsg("I heard you speak with that soldier out there, so now you know the unfairness I am faced with... The Cephrians wish to steal my ancestral home from me.");
+                                }
+                                else
+                                {
+                                    setMsg("I heard you talking with the soldier outside, don't even dare buy the house from him. It is mine and nobody can take it away from me!");
+                                }
+                            }
+                            else
+                            {
+                                if (player.raceName == "Zetian")
+                                {
+                                    setMsg("Welcome to my abode, friend.");
+                                }
+                                else
+                                {
+                                    setMsg("What brings you to my home, stranger?");
+                                }
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            setMsg("That's it, I've had enough of you!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                self.disturbedTime = new Date().getTime();
+                                self.disturbed = true;
+                                self.ultra.faction = "hostile";
+                                self.baseTeam = "angryAtYouForStealingHisHome";
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            setMsg("I am very well, I am fed and happy. I rejoice even more now that you are here, good friend!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            setMsg("Yes, that soldier outside wants to steal my ancestral home for his master. He wishes to sell it. My ancestors did not buy this land here, this is the land they were born on, ancestral land such as this cannot be bought or sold! Never!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            //text dialogue
+                            setMsg("I forage for plants to sell at the market, and I hunt for food in the burning sands.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
+                    if (self.ID == "Hazan the Soldier" || conversationID[0] == "Hazan")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Hazan";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                if (player.raceName == "Zetian")
+                                {
+                                    player.dialogueOptions = [["Why do you stand here?", false, "b"], ["This house you stand before is not yours...", false, "b"], ["Why do you sell water, when there is a well?", false, "d"]];
+                                }
+                                else
+                                {
+                                    player.dialogueOptions = [["Good day.", false, "a"], ["What are you standing here for?", false, "b"], ["What is your business in Sairch, Soldier?", false, "b"], ["Why do you sell water when there is a well nearby?", false, "c"]];
+                                }
+
+                                if (quests.sairchHomeInfo == true && quests.sairchHousePaid != true)
+                                {
+                                    if (have("coins", 550))
+                                    {
+                                        player.dialogueOptions.unshift(["I'll pay whatever the tenant owes (550 coins)", false, "f"]);
+                                    }
+                                    if (have("coins", 1350))
+                                    {
+                                        player.dialogueOptions.unshift(["I'll buy it. (1350 coins)", false, "e"]);
+                                    }
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "f")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0f";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            if (player.raceName == "Zetian")
+                            {
+                                setMsg("Who do you think you are to speak to me!? Know your place sand eater!");
+                            }
+                            else
+                            {
+                                if (player.thirst <= 1/2*player.thirstMAX)
+                                {
+                                    setMsg("The day's too hot to be good. Speaking of which, you look thirsty! Care to buy a bottle of water? It tastes way better than that awful piss-for-water the Zetians pull up from their well.");
+                                }
+                                else
+                                {
+                                    setMsg("In this hateful scorching desert there is not such thing as a good day... Good doesn't live in these parts. I am lucky that I am just here on errand.");
+                                }
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            if (player.raceName == "Zetian")
+                            {
+                                setMsg("Not that it is any of your business, Sand Eater, but I'll have you know that the most noble high magus that rules this sand wridden excuse for a village has entrusted me to sell this property due to the insubordination of the filthy Sand Eater living here who refuses to pay his dues.");
+                            }
+                            else
+                            {
+                                setMsg("I am tasked by the high magus who lords over this region to sell this home, as the current tenant refuses to pay his dues.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                quests.sairchHomeInfo = true;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            setMsg("The water down here tastes like piss. I bet the sand eaters are too dumb to know the difference between a well and a pissing hole! The water I sell is fresh and bottled back at home in Vorcadia.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            setMsg("Oh that's a well then is it? I hope you don't mind that I use it for pissing, you sand eaters probably won't taste the difference anyway. I bet my piss is the best thing you ever drank in your whole pathetic sand eater life.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            //text dialogue
+                            if (player.raceName == "Zetian")
+                            {
+                                setMsg("How did you get that much money, sandeater!? Nevermind that, just give it to me and the house is yours, I can't wait to get out of the forsaken sand eater wasteland.");
+                            }
+                            else
+                            {
+                                setMsg("What a relief! I don't know how much longer I would have lasted in this blasted sand eater wasteland...");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                                take("coins", 1350);
+                                quests.sairchHomeOwned = true;
+                                quests.sairchHousePaid = true;
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0f")
+                        {
+                            //text dialogue
+                            if (player.raceName == "Zetian")
+                            {
+                                setMsg("Fine, pay off the rest of that sand eaters dues and I can be out of this wretched wasteland!");
+                            }
+                            else
+                            {
+                                setMsg("Seriously, you would pay off that much money for some sand eater! At least I'll get to leave this barren sand eater wasteland...");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                                take("coins", 550);
+                                quests.sairchHousePaid = true;
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
                     if (self.ID == "Loshad the Horse Merchant" || conversationID[0] == "Loshad")
                     {
                         lowBar = "dialogue";
@@ -6563,6 +7031,7 @@ function interaction(me)
 
                                 if (player.gender != "Female")
                                 {
+                                    self.disturbedTime = new Date().getTime();
                                     self.disturbed = true;
                                 }
                                 playersTurnToSpeak = true;
@@ -6625,6 +7094,7 @@ function interaction(me)
                             {
                                 msgReset();
 
+                                self.disturbedTime = new Date().getTime();
                                 self.disturbed = true;
                                 playersTurnToSpeak = true;
                                 player.dialoguePosition = 0;
@@ -6946,6 +7416,7 @@ function interaction(me)
                             {
                                 msgReset();
 
+                                self.disturbedTime = new Date().getTime();
                                 self.disturbed = true;
                                 playersTurnToSpeak = true;
                                 player.dialoguePosition = 0;
@@ -6967,6 +7438,7 @@ function interaction(me)
                             {
                                 msgReset();
 
+                                self.disturbedTime = new Date().getTime();
                                 self.disturbed = true;
                                 playersTurnToSpeak = true;
                                 player.dialoguePosition = 0;
@@ -7260,6 +7732,7 @@ function interaction(me)
                             {
                                 msgReset();
 
+                                self.disturbedTime = new Date().getTime();
                                 self.disturbed = true;
                                 playersTurnToSpeak = true;
                                 player.dialoguePosition = 0;
@@ -10242,6 +10715,7 @@ function interaction(me)
 
                                 self.baseTeam = "arena3";
                                 self.ultra.faction = "arena3";
+                                self.disturbedTime = new Date().getTime();
                                 self.disturbed = true;
                                 playersTurnToSpeak = true;
                                 player.dialoguePosition = 0;
@@ -10387,6 +10861,7 @@ function interaction(me)
 
                                     self.baseTeam = "arena3";
                                     self.ultra.faction = "arena3";
+                                    self.disturbedTime = new Date().getTime();
                                     self.disturbed = true;
                                     playersTurnToSpeak = true;
                                     player.dialoguePosition = 0;
@@ -10462,6 +10937,7 @@ function interaction(me)
 
                                     self.baseTeam = "arena3";
                                     self.ultra.faction = "arena3";
+                                    self.disturbedTime = new Date().getTime();
                                     self.disturbed = true;
                                     playersTurnToSpeak = true;
                                     player.dialoguePosition = 0;
@@ -24515,6 +24991,7 @@ function interaction(me)
                             {
                                 msgReset();
 
+                                self.disturbedTime = new Date().getTime();
                                 self.disturbed = true;
                                 self.ultra.faction = "hiubdsaghlkbfdiusadbkjlsbas";
                                 self.baseTeam = JSON.stringify(Math.random());
@@ -33406,6 +33883,7 @@ function interaction(me)
                                         player.dialoguePosition = 0;
                                         conversationID[1] = 0;
                                         self.SC();
+                                        self.disturbedTime = new Date().getTime();
                                         self.disturbed = true;
                                     }
                                 }
@@ -33418,6 +33896,7 @@ function interaction(me)
                                         player.dialoguePosition = 0;
                                         conversationID[1] = 0;
                                         self.SC();
+                                        self.disturbedTime = new Date().getTime();
                                         self.disturbed = true;
                                     }
                                 }
@@ -33430,6 +33909,7 @@ function interaction(me)
                                         player.dialoguePosition = 0;
                                         conversationID[1] = 0;
                                         self.SC();
+                                        self.disturbedTime = new Date().getTime();
                                         self.disturbed = true;
                                     }
                                 }

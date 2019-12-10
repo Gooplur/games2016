@@ -3718,7 +3718,11 @@ function theLegend()
         vaughn: ["Vaughn", 0],
         bashmak: ["Bashmak", 0],
         zenovia: ["Zenovia", 0],
-        grigoriy: ["Grigoriy", 0]
+        grigoriy: ["Grigoriy", 0],
+        hzv: ["Hzv", 0],
+        zhalya: ["Zhalya", 0],
+        hazan: ["Hazan", 0],
+        imbadorr: ["Imbadorr", 0]
     };
 
 //time Tracker Variables
@@ -3982,7 +3986,11 @@ function theLegend()
         vaughnLDS: true,
         bashmakLDS: true,
         zenoviaLDS: true,
-        grigoriyLDS: true
+        grigoriyLDS: true,
+        hzvLDS: true,
+        zhalyaLDS: true,
+        hazanLDS: true,
+        imbadorrLDS: true
     };
 //QUESTS
     quests =
@@ -4007,6 +4015,7 @@ function theLegend()
         rutgarSlave: false,
         estolHookup: 0,
         buyVozaFlame: false,
+        sairchHouseInfo: false,
 
         //TAXES
         taxTime: new Date().getTime(),
@@ -4027,6 +4036,7 @@ function theLegend()
         ansetTravel: false,
         sewerBrokenA: false,
         sewerBrokenB: false,
+        sairchHousePaid: false,
 
         //PLAYER PROPERTY
         teshirHomeOwned: false,
@@ -4035,6 +4045,7 @@ function theLegend()
         atalinHomeOwned: false,
         atalinShopOwned: false,
         vozaHomeOwned: false,
+        sairchHomeOwned: false,
 
         //ITEM STASH VARIABLES (non quest)
         lonerGuyStash: true,

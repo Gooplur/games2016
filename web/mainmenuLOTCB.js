@@ -1413,8 +1413,17 @@ function applySelectionsButton()
         }
         else if (player.raceName == "Zetian")
         {
-            X = 3550;
-            Y = -342789;
+            if (player.title == "Commoner")
+            {
+                X = 35088.97516913812;
+                Y = -420141.2943707851;
+            }
+            else
+            {
+                X = 34702.3972791691;
+                Y = -420551.99362595833;
+            }
+
         }
         else if (player.raceName == "Cephrite")
         {
@@ -1482,7 +1491,12 @@ function applySelectionsButton()
         }
         else if (player.raceName == "Vardan")
         {
-            if (player.title == "Tradefolk")
+            if (player.title == "Highfolk")
+            {
+                X = 359654.2072690713;
+                Y = -107949.86200945644;
+            }
+            else if (player.title == "Tradefolk")
             {
                 X = 349094.69871311786;
                 Y = -76352.20363863211;

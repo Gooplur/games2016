@@ -19635,6 +19635,7 @@ function Adventurer()
                 {
                     XXX.globalAlpha = 0.4;
                 }
+                this.fanDo = true;
                 XXX.drawImage(abanico, 115, 514, 64, 80, -1/2 * 64, -1/2 * 80, 64, 80);
                 XXX.restore();
             }
@@ -19647,6 +19648,7 @@ function Adventurer()
                 {
                     XXX.globalAlpha = 0.4;
                 }
+                this.fanDo = true;
                 XXX.drawImage(abanico, 223, 513, 64, 80, -1/2 * 64, -1/2 * 80, 64, 80);
                 XXX.restore();
             }
@@ -19659,6 +19661,7 @@ function Adventurer()
                 {
                     XXX.globalAlpha = 0.4;
                 }
+                this.fanDo = true;
                 XXX.drawImage(abanico, 336, 514, 64, 80, -1/2 * 64, -1/2 * 80, 64, 80);
                 XXX.restore();
             }
@@ -19671,6 +19674,7 @@ function Adventurer()
                 {
                     XXX.globalAlpha = 0.4;
                 }
+                this.fanDo = true;
                 XXX.drawImage(abanico, 441, 513, 64, 80, -1/2 * 64, -1/2 * 80, 64, 80);
                 XXX.restore();
             }
@@ -19683,6 +19687,7 @@ function Adventurer()
                 {
                     XXX.globalAlpha = 0.4;
                 }
+                this.fanDo = true;
                 XXX.drawImage(abanico, 336, 514, 64, 80, -1/2 * 64, -1/2 * 80, 64, 80);
                 XXX.restore();
             }
@@ -19695,6 +19700,7 @@ function Adventurer()
                 {
                     XXX.globalAlpha = 0.4;
                 }
+                this.fanDo = true;
                 XXX.drawImage(abanico, 223, 513, 64, 80, -1/2 * 64, -1/2 * 80, 64, 80);
                 XXX.restore();
             }
@@ -19707,6 +19713,7 @@ function Adventurer()
                 {
                     XXX.globalAlpha = 0.4;
                 }
+                this.fanDo = true;
                 XXX.drawImage(abanico, 336, 514, 64, 80, -1/2 * 64, -1/2 * 80, 64, 80);
                 XXX.restore();
             }
@@ -19718,6 +19725,11 @@ function Adventurer()
                 if (this.subtlety)
                 {
                     XXX.globalAlpha = 0.4;
+                }
+                if (this.fanDo == true)
+                {
+                    this.fanDo = false;
+                    this.heat = Math.max(0, this.heat - 1.5);
                 }
                 XXX.drawImage(abanico, 441, 513, 64, 80, -1/2 * 64, -1/2 * 80, 64, 80);
                 XXX.restore();
@@ -19750,6 +19762,7 @@ function Adventurer()
                 {
                     XXX.globalAlpha = 0.4;
                 }
+                this.fanDo = true;
                 XXX.drawImage(abanico, 611, 511, 64, 80, -1/2 * 64, -1/2 * 80, 64, 80);
                 XXX.restore();
             }
@@ -19762,6 +19775,7 @@ function Adventurer()
                 {
                     XXX.globalAlpha = 0.4;
                 }
+                this.fanDo = true;
                 XXX.drawImage(abanico, 718, 510, 64, 80, -1/2 * 64, -1/2 * 80, 64, 80);
                 XXX.restore();
             }
@@ -19774,6 +19788,7 @@ function Adventurer()
                 {
                     XXX.globalAlpha = 0.4;
                 }
+                this.fanDo = true;
                 XXX.drawImage(abanico, 831, 511, 64, 80, -1/2 * 64, -1/2 * 80, 64, 80);
                 XXX.restore();
             }
@@ -19786,6 +19801,7 @@ function Adventurer()
                 {
                     XXX.globalAlpha = 0.4;
                 }
+                this.fanDo = true;
                 XXX.drawImage(abanico, 938, 510, 62, 80, -1/2 * 62, -1/2 * 80, 62, 80);
                 XXX.restore();
             }
@@ -19798,6 +19814,7 @@ function Adventurer()
                 {
                     XXX.globalAlpha = 0.4;
                 }
+                this.fanDo = true;
                 XXX.drawImage(abanico, 831, 511, 64, 80, -1/2 * 64, -1/2 * 80, 64, 80);
                 XXX.restore();
             }
@@ -19810,6 +19827,7 @@ function Adventurer()
                 {
                     XXX.globalAlpha = 0.4;
                 }
+                this.fanDo = true;
                 XXX.drawImage(abanico, 718, 510, 64, 80, -1/2 * 64, -1/2 * 80, 64, 80);
                 XXX.restore();
             }
@@ -19822,6 +19840,7 @@ function Adventurer()
                 {
                     XXX.globalAlpha = 0.4;
                 }
+                this.fanDo = true;
                 XXX.drawImage(abanico, 831, 511, 64, 80, -1/2 * 64, -1/2 * 80, 64, 80);
                 XXX.restore();
             }
@@ -19833,6 +19852,11 @@ function Adventurer()
                 if (this.subtlety)
                 {
                     XXX.globalAlpha = 0.4;
+                }
+                if (this.fanDo == true)
+                {
+                    this.fanDo = false;
+                    this.heat = Math.max(0, this.heat - 1.5);
                 }
                 XXX.drawImage(abanico, 938, 510, 62, 80, -1/2 * 62, -1/2 * 80, 62, 80);
                 XXX.restore();
@@ -41206,6 +41230,41 @@ function Adventurer()
                                                 horsey = j;
                                             }
                                         }
+                                        else if (Inventory[i][0].type == "blueHorseArmour")
+                                        {
+                                            if (ArtificialIntelligenceAccess[j].horseArmour != "blue")
+                                            {
+                                                horsey = j;
+                                            }
+                                        }
+                                        else if (Inventory[i][0].type == "krovhyuzkaHorseArmour")
+                                        {
+                                            if (ArtificialIntelligenceAccess[j].horseArmour != "white")
+                                            {
+                                                horsey = j;
+                                            }
+                                        }
+                                        else if (Inventory[i][0].type == "vardanianHorseArmour")
+                                        {
+                                            if (ArtificialIntelligenceAccess[j].horseArmour != "vardan")
+                                            {
+                                                horsey = j;
+                                            }
+                                        }
+                                        else if (Inventory[i][0].type == "altezorHorseArmour")
+                                        {
+                                            if (ArtificialIntelligenceAccess[j].horseArmour != "altezor")
+                                            {
+                                                horsey = j;
+                                            }
+                                        }
+                                        else if (Inventory[i][0].type == "nirwadenHorseArmour")
+                                        {
+                                            if (ArtificialIntelligenceAccess[j].horseArmour != "nirwad")
+                                            {
+                                                horsey = j;
+                                            }
+                                        }
                                         else if (Inventory[i][0].type == "horseArmourRemover")
                                         {
                                             horsey = j;
@@ -41232,6 +41291,26 @@ function Adventurer()
                                     {
                                         worldItems.push([new Item("ghoulHorseArmour", ArtificialIntelligenceAccess[horsey].X, ArtificialIntelligenceAccess[horsey].Y), 1]);
                                     }
+                                    else if (ArtificialIntelligenceAccess[horsey].horseArmour == "blue")
+                                    {
+                                        worldItems.push([new Item("blueHorseArmour", ArtificialIntelligenceAccess[horsey].X, ArtificialIntelligenceAccess[horsey].Y), 1]);
+                                    }
+                                    else if (ArtificialIntelligenceAccess[horsey].horseArmour == "white")
+                                    {
+                                        worldItems.push([new Item("krovhyuzkaHorseArmour", ArtificialIntelligenceAccess[horsey].X, ArtificialIntelligenceAccess[horsey].Y), 1]);
+                                    }
+                                    else if (ArtificialIntelligenceAccess[horsey].horseArmour == "vardan")
+                                    {
+                                        worldItems.push([new Item("vardanianHorseArmour", ArtificialIntelligenceAccess[horsey].X, ArtificialIntelligenceAccess[horsey].Y), 1]);
+                                    }
+                                    else if (ArtificialIntelligenceAccess[horsey].horseArmour == "altezor")
+                                    {
+                                        worldItems.push([new Item("altezorHorseArmour", ArtificialIntelligenceAccess[horsey].X, ArtificialIntelligenceAccess[horsey].Y), 1]);
+                                    }
+                                    else if (ArtificialIntelligenceAccess[horsey].horseArmour == "nirwad")
+                                    {
+                                        worldItems.push([new Item("nirwadenHorseArmour", ArtificialIntelligenceAccess[horsey].X, ArtificialIntelligenceAccess[horsey].Y), 1]);
+                                    }
                                     ArtificialIntelligenceAccess[horsey].horseArmour = "none";
                                 }
 
@@ -41253,6 +41332,26 @@ function Adventurer()
                                     else if (Inventory[i][0].type == "ghoulHorseArmour")
                                     {
                                         ArtificialIntelligenceAccess[horsey].horseArmour = "ghoul";
+                                    }
+                                    else if (Inventory[i][0].type == "blueHorseArmour")
+                                    {
+                                        ArtificialIntelligenceAccess[horsey].horseArmour = "blue";
+                                    }
+                                    else if (Inventory[i][0].type == "krovhyuzkaHorseArmour")
+                                    {
+                                        ArtificialIntelligenceAccess[horsey].horseArmour = "white";
+                                    }
+                                    else if (Inventory[i][0].type == "vardanianHorseArmour")
+                                    {
+                                        ArtificialIntelligenceAccess[horsey].horseArmour = "vardan";
+                                    }
+                                    else if (Inventory[i][0].type == "altezorHorseArmour")
+                                    {
+                                        ArtificialIntelligenceAccess[horsey].horseArmour = "altezor";
+                                    }
+                                    else if (Inventory[i][0].type == "nirwadenHorseArmour")
+                                    {
+                                        ArtificialIntelligenceAccess[horsey].horseArmour = "nirwad";
                                     }
 
                                     if (Inventory[i][1] - 1 <= 0)

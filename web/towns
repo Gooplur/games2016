@@ -23,14 +23,18 @@ IP Rauke (town) {house: Hargrave}
 
 NIRWADEN
 Átalin (city) {house: Altezor}
+Genoca (Hamlet) {house: Altezor}
 
 VARDANIA
 TBA Morrow (city) {house: Vorcaneous}
-Voza (town) {house: Vorcaneous}
+Voza (village) {house: Vorcaneous}
+TBA Boroye (city) {house: Krovhyuzka}
+IP Moct (village) {house: Krovhyuzka}
 
 CEPHRITE
 IP Holuim (town) {house: Anset}
+IP Sairch (town) {house: ?}
 
 KEL
-Calcutt (village)
-Inochtihikli (village)
+Calcutt (village) {tribe: Echlin}
+Inochtihikli (village) {tribe: Alzkwaya}

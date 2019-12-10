@@ -17,7 +17,7 @@ function worldBuilder()
             elevation = -5;
             region = "s43w3";
             campout = true;
-            outlineBuilder( 34, 34, "outline", -122, 1442);
+            outlineBuilder( 34, 34, "redDesert", -122, 1442);
         }
         //Layer 42 (desert region): elev -5
         //mapS42W3
@@ -26,16 +26,16 @@ function worldBuilder()
             elevation = -5;
             region = "s42w3";
             campout = true;
-            outlineBuilder( 34, 34, "redDesert", -122, 1408);
+            outlineBuilder( 34, 34, "desert", -122, 1408);
         }
         //Layer 41 (desert region): elev -5
-        //mapS41W3 //Sairch Village
+        //mapS41W3 //Sairch (town)
         if (Y > -422129.84792075714 && Y < -411311.1793450688 && X < 38616 && X > 26689) //X-3
         {
             elevation = -5;
             region = "s41w3";
             campout = false;
-            outlineBuilder( 34, 34, "outline", -122, 1374);
+            outlineBuilder( 34, 34, "redDesert", -122, 1374);
         }
         //Layer 40 (desert region): elev -5
         //mapS40W3
@@ -44,7 +44,7 @@ function worldBuilder()
             elevation = -5;
             region = "s40w3";
             campout = true;
-            outlineBuilder( 34, 34, "redDesert", -122, 1340);
+            outlineBuilder( 34, 34, "desert", -122, 1340);
         }
         //Layer 39 (hot tropical region): elev -4
         //mapS39W3
@@ -455,7 +455,18 @@ function worldBuilder()
             elevation = -1;
             region = "s19w33";
             campout = true;
-            outlineBuilder(34, 34, "brightGrass", -1142, 626);
+            outlineBuilder(34, 34, "vardanianWoods", -1142, 626);
+
+            outlineBuilder(1, 2, "mire", -1132, 626);
+            outlineBuilder(2, 1, "mire", -1132, 627);
+
+            outlineBuilder(1, 1, "shallowMire", -1133, 626);
+            outlineBuilder(1, 1, "shallowMire", -1131, 627);
+            outlineBuilder(3, 1, "shallowMire", -1131, 628);
+            outlineBuilder(2, 1, "shallowMire", -1130, 630);
+
+            outlineBuilder(1, 8, "vardanianStone", -1142, 631);
+            outlineBuilder(29, 1, "vardanianStone", -1134, 631);
         }
         //Layer -18 (warm region): elev -2
         //mapS18W34

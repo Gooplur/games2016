@@ -6949,6 +6949,49 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                     }
                 }
             }
+            else if (this.temporary == 53)//zetian bowl
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(ion, 1520, 247, 19, 20, -(1/2 * 19 * this.information), -(1/2 * 20 * this.information), 19 * this.information, 20 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 54)//zetian pan
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(ion, 1521, 213, 17, 13, -(1/2 * 17 * this.information), -(1/2 * 13 * this.information), 17 * this.information, 13 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 55)//zetian eating utensil A
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(ion, 1511, 407, 94, 28, -(1/2 * 94 * 0.1 * this.information), -(1/2 * 28 * 0.1 * this.information), 94 * 0.1 * this.information, 28 * 0.1 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 56)//zetian eating utensil B
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(ion, 1512, 443, 94, 28, -(1/2 * 94 * 0.1 * this.information), -(1/2 * 28 * 0.1 * this.information), 94 * 0.1 * this.information, 28 * 0.1 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 57)//zetian container
+            {
+                this.solid = true;
+                this.radius = 9 * this.information;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(ion, 1545, 244, 25, 28, -(1/2 * 25 * this.information), -(1/2 * 28 * this.information), 25 * this.information, 28 * this.information);
+                XXX.drawImage(ion, 1520, 247, 19, 20, -(1/2 * 19 * 0.95 * this.information), -(1/2 * 20 * 0.95 * this.information), 19 * 0.95 * this.information, 20 * 0.95 * this.information);
+                XXX.restore();
+            }
 
 
             //INTERACTION

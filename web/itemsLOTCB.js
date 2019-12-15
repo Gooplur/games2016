@@ -6452,6 +6452,7 @@ function Item(type, x, y)
             this.heal = 0; //heals health.
             this.generation = -11; //recoops lost energy.
             this.replenish = -6; //restores will.
+            this.cooling = 1; //cools player.
 
 
             //ability
@@ -29207,6 +29208,26 @@ function Item(type, x, y)
             this.buyValue = 0; // at max, buy for 0.
             this.sellValue = 0; // at max, sell for 0.
         }
+        else if (this.type == "bloodyVomit")
+        {
+            //For All Items
+            this.identity = "Bloody Vomit";
+            this.weight = 4;
+            this.size = 18;
+            this.description = "This is bloody vomit... Why am I carrying this!?";
+            this.intForDes = 5;
+            this.intDescription = "Bloody vomiting usually occurs when one has a horrible illness, or parasitic infection.";
+
+            //Define Utility
+            this.utility = "junk";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 0; // at max, buy for 0.
+            this.sellValue = 0; // at max, sell for 0.
+        }
         else if (this.type == "adolfsNewSword")
         {
             //For All Items
@@ -38631,7 +38652,7 @@ function Item(type, x, y)
             this.size = 25;
             this.description = "A zetian style blowgun.";
             this.intForDes = 3;
-            this.intDescription = "It is made from the carved carapace of a Voaia.";
+            this.intDescription = "It is made from the carved carapace of a Voaii.";
 
             //Define Utility
             this.utility = "ranged";
@@ -38650,7 +38671,7 @@ function Item(type, x, y)
             //Crafting
             this.yield = 1;
             this.intForCraft = 26;
-            this.ingredients = [["Voaia Carapace", 1]];
+            this.ingredients = [["Voaii Carapace", 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 19 - Math.floor(player.getCharisma() / 12.5); // at max, buy for 15.
@@ -38662,7 +38683,7 @@ function Item(type, x, y)
             this.identity = "Zetian Blowdart";
             this.weight = 0.01;
             this.size = 4;
-            this.description = "A sharpened fragment of riod beetle leg with voaia wing bits for stability.";
+            this.description = "A sharpened fragment of riod beetle leg with voaii wing bits for stability.";
             this.intForDes = 3;
             this.intDescription = "Zetian weaponry is made entirely of insect parts...";
 
@@ -38682,7 +38703,7 @@ function Item(type, x, y)
             //Crafting
             this.yield = 10;
             this.intForCraft = 5;
-            this.ingredients = [["Riod Beetle Leg", 1], ["Voaia Wing Fragments", 1]];
+            this.ingredients = [["Riod Beetle Leg", 1], ["Voaii Wing Fragments", 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 1; // at max, buy for 1.
@@ -52156,7 +52177,7 @@ function Item(type, x, y)
 
             this.yield = 1;
             this.intForCraft = 6;
-            this.ingredients = [["Voaia Carapace", 1], ["Riod Beetle Leg", 1]];
+            this.ingredients = [["Voaii Carapace", 1], ["Riod Beetle Leg", 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 10 - Math.floor(player.getCharisma() / 25); // at max, buy for 8.
@@ -59815,6 +59836,11 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(oldverse, 55, 135, 24, 21, X - this.X + (1/2 * CCC.width) - (1/2 * 24), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21), 24, 21);
         }
+        else if (this.type == "bloodyVomit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(raed, 510, 432, 43, 37, X - this.X + (1/2 * CCC.width) - (1/2 * 43), Y - this.Y + (1/2 * CCC.height) - (1/2 * 37), 43, 37);
+        }
         else if (this.type == "gojiiBerries")
         {
             XXX.beginPath();
@@ -66741,6 +66767,11 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(oldverse, 55, 135, 24, 21, this.invX - (1/2 * 24), this.invY - (1/2 * 21), 24, 21);
         }
+        else if (this.type == "bloodyVomit")
+        {
+            LXX.beginPath();
+            LXX.drawImage(raed, 510, 432, 43, 37, this.invX - (1/2 * 43), this.invY - (1/2 * 37), 43, 37);
+        }
         else if (this.type == "gojiiBerries")
         {
             LXX.beginPath();
@@ -73629,6 +73660,11 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(oldverse, 55, 135, 24, 21, this.invX - (1/2 * 24), this.invY - (1/2 * 21), 24, 21);
+        }
+        else if (this.type == "bloodyVomit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(raed, 510, 432, 43, 37, this.invX - (1/2 * 43), this.invY - (1/2 * 37), 43, 37);
         }
         else if (this.type == "gojiiBerries")
         {

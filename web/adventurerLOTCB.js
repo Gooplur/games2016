@@ -631,6 +631,7 @@ function Adventurer()
     this.dragonFireKeepTime2 = new Date().getTime();
     this.dragonFireMult = 0;
     this.anjayTime = 0;
+    this.voaiiHost = 0;
 
         //faction variables
     this.factionToggle = false;
@@ -5022,6 +5023,29 @@ function Adventurer()
                 }
             }
 
+            //voaii eggs
+            if (this.voaiiHost > 0 && this.vamprism == false)
+            {
+                this.voaiiHost += 0.02;
+                this.health -= 0.0005;
+
+                if (this.voaiiHost > 200)
+                {
+                    this.voaiiHost = 0;
+                    this.health -= 5;
+                    for (var uuuuu = 0; uuuuu < 5; uuuuu++)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(X + spacer(10 * 1.15), Y + spacer(10 * 1.15), "VoaiiYoung", false, "Generic Voaii"));
+                    }
+                    worldItems.push([new Item("bloodyVomit", X, Y), 1]);
+                    this.hunger -= 55;
+                }
+            }
+            else
+            {
+                this.voaiiHost = 0;
+            }
+
             //Etna Venom
             if (new Date().getTime() - this.etnaVenTime < 17000)
             {
@@ -7614,6 +7638,30 @@ function Adventurer()
         }
     };
 
+    //Voaii Eggs Notice Function
+    this.voaiiChecker = function()
+    {
+        if (this.voaiiHost > 0 && this.vamprism == false)
+        {
+            // at this point the slot should be consistent so it should not have to check again to be entered into a position on the miniNoticeList.
+
+            this.addNotice("Implanted Voaii Eggs");
+            XXX.beginPath();
+            XXX.fillStyle = "yellow";
+            XXX.lineWidth = 1;
+            XXX.strokeStyle = "black";
+            XXX.rect(this.arrangeNotices("Implanted Voaii Eggs"), 413, 20, 20);
+            XXX.fill();
+            XXX.stroke();
+            XXX.drawImage(raed, 422, 419, 58, 58, this.arrangeNotices("Implanted Voaii Eggs"), 413, 20, 20);
+        }
+        else
+        {
+            //at this point the slot will have been cleared so next time the effect shows up it should have to check again to be entered into a position on the miniNoticeList.
+            this.removeNotice("Implanted Voaii Eggs");
+        }
+    };
+
     //Petrified Notice Function
     this.petrifiedChecker = function ()
     {
@@ -7786,6 +7834,7 @@ function Adventurer()
         this.decayChecker();
         this.pixiVenomChecker();
         this.pixiDustChecker();
+        this.voaiiChecker();
     };
 
     //MOVEMENT ANIMATION

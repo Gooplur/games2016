@@ -6192,7 +6192,6 @@ function cheats()
                 xKey = false;
                 console.log('ArtificialIntelligenceAccess.push(new Unit(' + X +', ' + Y + ', ' + buildClase + ', ' + alphon + ', "preBuilt"));');
                 worldItems.push([new Item("unitMarker", X, Y), 1]);
-                ArtificialIntelligenceAccess.push(new Unit(X, Y, "Voaii", true, "preBuilt"));
             }
 
             if (rKey)

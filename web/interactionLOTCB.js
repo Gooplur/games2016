@@ -2877,6 +2877,312 @@ function interaction(me)
                         }
                     }
 
+                    if (self.ID == "Uncle Ekhzam" || self.ID == "Beastmaster Ekhzam" || conversationID[0] == "Ekhzam")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Ekhzam";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                if (player.raceName == "Zetian" && player.title != "Vagabond" && player.title != "Peasant")
+                                {
+                                    player.dialogueOptions = [["How are you, Uncle?", false, "d"], ["Uncle, I have need of a few coin to get by, could you help me? Please...", false, "e"]];
+                                }
+                                else if (player.raceName == "Zetian")
+                                {
+                                    player.dialogueOptions = [["Do you enjoy your work?", false, "d"]];
+                                }
+                                else
+                                {
+                                    player.dialogueOptions = [["How's business?", false, "d"]];
+                                }
+
+                                if (have("coins", 975) && player.raceName == "Zetian")
+                                {
+                                    player.dialogueOptions.unshift(["I would like to buy a trained Arachnis with a saddle. (975 coins)", false, "b"]);
+                                }
+                                else if (have("coins", 2500) && player.raceName != "Zetian")
+                                {
+                                    player.dialogueOptions.unshift(["I would like to buy a whip scorpion with a saddle. (2500 coins)", false, "c"]);
+                                }
+
+                                if (have("coins", 375))
+                                {
+                                    player.dialogueOptions.unshift(["I would like to buy an armadii with a saddle. (375 coins)", false, "a"]);
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            if (player.raceName == "Zetian" && player.title != "Vagabond" && player.title != "Peasant")
+                            {
+                                if (player.gender == "Male")
+                                {
+                                    setMsg("Your armadii is just around the corner, Nephew.");
+                                }
+                                else
+                                {
+                                    setMsg("Your armadii is just around the corner, Neice.");
+                                }
+                            }
+                            else if (player.raceName == "Zetian")
+                            {
+                                if (player.gender == "Male")
+                                {
+                                    setMsg("Your armadii is just around the corner, friend.");
+                                }
+                                else
+                                {
+                                    setMsg("Your armadii is just around the corner, friend.");
+                                }
+                            }
+                            else
+                            {
+                                setMsg("Thank you for your business... It will be waiting for you just around the corner there.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.sairchArmadiiPaid = true;
+                                take("coins", 375);
+                                reiniciar();
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            if (player.title != "Vagabond" && player.title != "Peasant")
+                            {
+                                if (player.gender == "Male")
+                                {
+                                    setMsg("She's all yours, nephew, but I can't guarantee that she'll let you ride her...");
+                                }
+                                else
+                                {
+                                    setMsg("She's all yours, neice, but I can't guarantee that she'll let you ride her...");
+                                }
+                            }
+                            else
+                            {
+                                if (player.gender == "Male")
+                                {
+                                    setMsg("She's all yours, friend, but I can't guarantee that she'll let you ride her...");
+                                }
+                                else
+                                {
+                                    setMsg("She's all yours, friend, but I can't guarantee that she'll let you ride her...");
+                                }
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.sairchArachnisPaid = true;
+                                take("coins", 975);
+                                reiniciar();
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            setMsg("She's all yours, stranger. Don't expect her to let you ride her though just because she's got a saddle on, arachnis are proud beasts. Oh, and when you feed her make sure to set the food on the ground. I knew a man who lost his arm trying to feed an arachnis from his hands.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.sairchArachnisPaid = true;
+                                take("coins", 2500);
+                                reiniciar();
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            if (player.raceName == "Zetian" && player.title != "Vagabond" && player.title != "Peasant")
+                            {
+                                setMsg("I am well. I spend my mornings in prayer at the temple of spirits, then I spend the rest of my day catching, training, and sometimes selling giant insects. After the day is done I do my evening prayers. My life is simple but wholesome. I hope that you are doing your prayers daily... if you want to blossom in life and after it, you must take care of your roots.");
+                            }
+                            else if (player.raceName == "Zetian")
+                            {
+                                setMsg("When you spend as much time as I do training and befriending beasts and then selling them away, you learn to detatch yourself. Enjoyment has nothing to do with it.");
+                            }
+                            else
+                            {
+                                setMsg("I want for little as I have many costumers.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            //text dialogue
+
+                                if (player.gender == "Male")
+                                {
+                                    if (quests.zetianUncleMood == 0)
+                                    {
+                                        setMsg("Anything for my loving Nephew!");
+                                    }
+                                    else if (quests.zetianUncleMood == 1)
+                                    {
+                                        setMsg("As a man I expect you to learn to take care of yourself, but I will concede and help you out this once.");
+                                    }
+                                    else if (quests.zetianUncleMood == 2)
+                                    {
+                                        setMsg("You bring shame to yourself begging before me, Nephew. I cannot help but lend you my hand for I cannot bear to see a member of my own family act so dispicably.");
+                                    }
+                                    else if (quests.zetianUncleMood >= 3)
+                                    {
+                                        setMsg("Enough! I will not give you a single coin! You must learn to take care of yourself or die trying!");
+                                    }
+                                }
+                                else
+                                {
+                                    if (quests.zetianUncleMood <= 5)
+                                    {
+                                        setMsg("Anything for my beautiful Neice!");
+                                    }
+                                    else if (quests.zetianUncleMood == 6)
+                                    {
+                                        setMsg("It seems you only ever speak to me to ask me for money! Take these coins, but know that I can not afford to keep giving you money.");
+                                    }
+                                    else
+                                    {
+                                        setMsg("It breaks my heart to refuse you money, Neice, but you need to learn to support yourself, I will not be around forever.");
+                                    }
+                                }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                if (quests.zetianUncleMood < 3 && player.gender == "Male")
+                                {
+                                    if (quests.zetianUncleMood == 0)
+                                    {
+                                        give("coins", 20);
+                                    }
+                                    else if (quests.zetianUncleMood == 1)
+                                    {
+                                        give("coins", 14);
+                                    }
+                                    else
+                                    {
+                                        give("coins", 9);
+                                    }
+                                }
+                                else if (quests.zetianUncleMood < 7 && player.gender != "Male")
+                                {
+                                    give("coins", 11);
+                                }
+
+                                quests.zetianUncleMood += 1;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
                     if (self.ID == "Imbadorr" || conversationID[0] == "Imbadorr")
                     {
                         lowBar = "dialogue";
@@ -36258,27 +36564,30 @@ function interaction(me)
                 //ACCESS SHOPS BANKS AND OTHER AI SERVICES
                 if (dtm < self.sizeRadius)
                 {
-                    if (self.hostile == true)
+                    if (self.infilter != true)
                     {
-                        if (self.team == "player")
+                        if (self.hostile == true)
                         {
-                            XXX.fillStyle = "gold";
+                            if (self.team == "player")
+                            {
+                                XXX.fillStyle = "gold";
+                            }
+                            else
+                            {
+                                XXX.fillStyle = "red";
+                            }
                         }
                         else
                         {
-                            XXX.fillStyle = "red";
+                            XXX.fillStyle = "gold";
                         }
+                        XXX.textAlign = "center";
+                        XXX.font = "bold 15px Book Antiqua";
+                        XXX.fillText(self.ID, X - self.X + 1 / 2 * CCC.width, Y - self.Y - 16 + 1 / 2 * CCC.height);
                     }
-                    else
-                    {
-                        XXX.fillStyle = "gold";
-                    }
-                    XXX.textAlign = "center";
-                    XXX.font = "bold 15px Book Antiqua";
-                    XXX.fillText(self.ID, X - self.X + 1 / 2 * CCC.width, Y - self.Y - 16 + 1 / 2 * CCC.height);
 
                     //click-based interaction
-                    if (self.ultra.faction != "outlander" && self.ultra.faction != "hostile")
+                    if (self.ultra.faction != "outlander" && self.ultra.faction != "hostile" && self.infilter != true)
                     {
                         var parsedFactionRelation = eval("player." + self.ultra.faction.toLowerCase() + "Faction");
                     }
@@ -36287,7 +36596,7 @@ function interaction(me)
                         var parsedFactionRelation = 0;
                     }
 
-                    if (dClick == true && self.ultra.merchant == true && dtp < 100 && self.disturbed == false && parsedFactionRelation >= -25 && player.druidBear != true || dClick == true && self.ultra.storage == true) //merchant by click
+                    if (dClick == true && self.ultra.merchant == true && dtp < 100 && self.disturbed == false && parsedFactionRelation >= -25 && player.druidBear != true || dClick == true && self.ultra.storage == true && self.infilter != true || dClick == true && self.ultra.storage == true && self.infilter && shiftKey == true) //merchant by click
                     {
                         if (self.ultra.storage == true)
                         {

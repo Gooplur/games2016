@@ -5519,6 +5519,18 @@ function outlineBuilder(width, length, terrain, extraX, extraY)
                 {
                     XXX.drawImage(vardanianStone, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
                 }
+                else if (terrain == "burntVardanianStone")
+                {
+                    XXX.drawImage(burntVardanianStone, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "boroStone")
+                {
+                    XXX.drawImage(boroStone, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "burntBoroStone")
+                {
+                    XXX.drawImage(burntBoroStone, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
                 else if (terrain == "vardanianForest")
                 {
                     XXX.drawImage(vardanianForest, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);

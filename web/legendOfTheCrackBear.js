@@ -8,21 +8,14 @@
 //top priority
 
 //Image sheet ideas
-//todo drake unit
 //todo orgish image sheet
-//todo flesh spider
-//todo large nosed snow trolls
 //todo far north fish
 //todo furry snow beast
 //todo frost wyrm (with frost breath) (ridable)
 //todo ship
 //todo kraken
-//todo freydic board shield and axe
-
 
 //flash protection
-//todo flash protect the top right corner of e4 to n1e4
-//todo flash protect the new plains/swamp and forest maps on the way to Boroye
 
 //VARDANIA + THENGARIA UPDATE
 //todo name the largest misty woods The Dermohr Forest
@@ -101,12 +94,9 @@
 //todo finish adding sickness system //add Lodotos, a sickness that one can get in the kellish mud bog. //add sicknesses and symptons (pox, fever, etc.) ex: make pox weaken players constitution etc., make fever decrease thirst.
 //todo the freydic capital city is called Tor-Ruhn-Tel
 //todo add hangover, and soarness effects as well as their mini notices.
-//todo add lv 25 = side-jumping (more levels slightly increase the time before the enemy reacts to your new position)
 //todo add poisoned throwing stars for the orgel
 //todo add grenades and smoke bombs
 //todo make alpha Olkrin's death animation line up slightly more.
-//todo add options menu with button: it will allow you to toggle certain settings like mouse combat mode, game coordinates, and other such features.
-//todo Add harsh hot weather conditions: deserts cause faster dehydration. (base the effect on elevation variable)
 //todo add unique fairytails for each faction
 //todo add Cymothoa Exigua - tongue eating louse IRL (make a parasitic grub that sucks the players tongue dry and replaces it with itself) reduces hunger gain from all foods eaten [consider making it something that can be cured in a pre-mature stage]
 //todo unconscious system for humans? punching and stuff?
@@ -1215,6 +1205,18 @@ function envPack()
     vardanianStone.src = ("images/vardanStone.jpg");
     window.vardanianStone = vardanianStone;
 
+    var burntVardanianStone = new Image();
+    burntVardanianStone.src = ("images/burntVardanStone.png");
+    window.burntVardanianStone = burntVardanianStone;
+
+    var boroStone = new Image();
+    boroStone.src = ("images/boroTile.jpg");
+    window.boroStone = boroStone;
+
+    var burntBoroStone = new Image();
+    burntBoroStone.src = ("images/burntBoroTile.jpg");
+    window.burntBoroStone = burntBoroStone;
+
     var vardanianGrass = new Image();
     vardanianGrass.src = ("images/vardanGrass.jpg");
     window.vardanianGrass = vardanianGrass;
@@ -1604,6 +1606,54 @@ function pixiPack()
     window.pixi = pixi;
 
     pixi.onload = function()
+    {
+        treaPack();
+    };
+}
+
+function treaPack()
+{
+    var trea = new Image();
+    trea.src = ("images/trea.png");
+    window.trea = trea;
+
+    trea.onload = function()
+    {
+        carilloPack();
+    };
+}
+
+function carilloPack()
+{
+    var carillo = new Image();
+    carillo.src = ("images/carillo.png");
+    window.carillo = carillo;
+
+    carillo.onload = function()
+    {
+        milmPack();
+    };
+}
+
+function milmPack()
+{
+    var milm = new Image();
+    milm.src = ("images/milm.png");
+    window.milm = milm;
+
+    milm.onload = function()
+    {
+        oasisPack();
+    };
+}
+
+function oasisPack()
+{
+    var oasis = new Image();
+    oasis.src = ("images/oasis.png");
+    window.oasis = oasis;
+
+    oasis.onload = function()
     {
         mothPack();
     };
@@ -3722,7 +3772,10 @@ function theLegend()
         hzv: ["Hzv", 0],
         zhalya: ["Zhalya", 0],
         hazan: ["Hazan", 0],
-        imbadorr: ["Imbadorr", 0]
+        imbadorr: ["Imbadorr", 0],
+        hresha: ["Hresha", 0],
+        zhal: ["Zhal", 0],
+        ekhzam: ["Ekhzam", 0]
     };
 
 //time Tracker Variables
@@ -3990,7 +4043,10 @@ function theLegend()
         hzvLDS: true,
         zhalyaLDS: true,
         hazanLDS: true,
-        imbadorrLDS: true
+        imbadorrLDS: true,
+        hreshaLDS: true,
+        zhalLDS: true,
+        ekhzamLDS: true
     };
 //QUESTS
     quests =
@@ -4016,6 +4072,9 @@ function theLegend()
         estolHookup: 0,
         buyVozaFlame: false,
         sairchHouseInfo: false,
+        sairchArmadiiPaid: false,
+        sairchArachnisPaid: false,
+        zetianUncleMood: 0,
 
         //TAXES
         taxTime: new Date().getTime(),
@@ -4682,6 +4741,7 @@ function theLegend()
     allWorn.push(new Item("ratPrinceRegalia", false)); //181
     allWorn.push(new Item("ratKingRegalia", false)); //182
     allWorn.push(new Item("vardanianInformerUniform", false)); //183
+    allWorn.push(new Item("zetianGloves", false)); //184
 
     scenicList = [];
 
@@ -5181,6 +5241,7 @@ function theLegend()
     tailoring.push(new Item("zetianOutfitM", false));
     tailoring.push(new Item("zetianOutfitF", false));
     tailoring.push(new Item("motylinka", false));
+    tailoring.push(new Item("zetianGloves", false));
 
 //Jewelry (Items crafted at a jewler's station, rings, necklaces, cutting gems, glassblowing etc.)
     jewelry = [];
@@ -5466,6 +5527,7 @@ function theLegend()
     handcrafted.push(new Item("motylekhWingBundle", false));
     handcrafted.push(new Item("despinedMaweHunk", false));
     handcrafted.push(new Item("despinedAnjayCactus", false));
+    handcrafted.push(new Item("chapulCactusPaste", false));
 
     //Activate Important Game Functions Here:
     itemPlacer();

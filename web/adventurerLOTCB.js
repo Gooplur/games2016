@@ -8978,6 +8978,10 @@ function Adventurer()
         {
             gloves = allWorn[152];
         }
+        else if (this.glovesEquipped == "zetianGloves")
+        {
+            gloves = allWorn[184];
+        }
         else
         {
             gloves = allWorn[0];
@@ -28890,7 +28894,7 @@ function Adventurer()
             this.bubbleOfDamageX = X - Math.cos(this.rotation - 1 / 4 * Math.PI) * (this.mySize + 25);
             this.bubbleOfDamageY = Y - Math.sin(this.rotation - 1 / 4 * Math.PI) * (this.mySize + 25);
         }
-        else if (this.weaponEquipped == "none" && this.spell == "none")
+        else if (this.weaponEquipped == "none" && this.spell == "none" || this.weaponEquipped == "mounted")
         {
             this.weapon = allWeapons[2];
 

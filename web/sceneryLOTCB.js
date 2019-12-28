@@ -27,6 +27,9 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
     this.loopNum = 0;
     this.loopRate = 0;
     this.frameLoopComplete = false;
+    this.loopNum2 = 0;
+    this.loopRate2 = 0;
+    this.frameLoopComplete2 = false;
     this.runOneTime = true; //this will not be used in general functions, only for making sure each type of scenery can run something only once.
     this.loopTimer = new Date().getTime();
     this.unpassable = false; //certain creatures with the haste ability (like berulns) can pass over almost any obstacle, but not if the obstacle has this property set to true.
@@ -552,6 +555,44 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
         }
     };
 
+    this.frameLoop2 = function(theLoop, loopLimit, loopingRate, endless)
+    {
+        if (theLoop != [])
+        {
+            if (this.frameLoopComplete2 == false)
+            {
+                this.loopRate2 += 1;
+            }
+
+            if (this.loopRate2 > loopingRate)
+            {
+                this.loopRate2 = 0;
+
+                if (this.frameLoopComplete2 == false)
+                {
+                    this.loopNum2 += 1;
+                }
+            }
+
+            if (this.loopNum2 > loopLimit)
+            {
+                this.loopNum2 = 0;
+                if (endless == false)
+                {
+                    this.frameLoopComplete2 = true;
+                }
+            }
+
+            if (this.frameLoopComplete2 == false)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(theLoop[this.loopNum2][0], theLoop[this.loopNum2][1], theLoop[this.loopNum2][2], theLoop[this.loopNum2][3], theLoop[this.loopNum2][4], -(1/2 * theLoop[this.loopNum2][5]), -(1/2 * theLoop[this.loopNum2][6]), theLoop[this.loopNum2][5], theLoop[this.loopNum2][6]);
+                XXX.restore();
+            }
+        }
+    };
 
     this.mouseSensing = function()
     {
@@ -22967,6 +23008,180 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 }
             }
         }
+        else if (this.type == "zetianWell")
+        {
+            //TRAITS
+            this.solid = true;
+            this.interactionRange = 100;
+
+            //DRAWSELF
+
+            if (this.wellChange == true)
+            {
+                this.wellListo = false;
+                if (this.toggleWell == true)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(ion, 1511, 164, 37, 67, -(1/2 * 37 * 1.2), -(1/2 * 67 * 1.2), 37 * 1.2, 67 * 1.2);
+                    XXX.restore();
+
+                    this.frameLoop2([[ion, 1466, 234, 32, 48, 32 * 1.2, 48 * 1.2], [ion, 1466, 234, 32, 48, 32 * 1.2, 48 * 1.2], [ion, 1466, 234, 32, 48, 32 * 1.2, 48 * 1.2], [ion, 1466, 234, 32, 48, 32 * 1.2, 48 * 1.2], [ion, 1491, 233, 32, 48, 32 * 1.2, 48 * 1.2], [ion, 1491, 233, 32, 48, 32 * 1.2, 48 * 1.2], [ion, 1513, 233, 32, 48, 32 * 1.2, 48 * 1.2], [ion, 1513, 233, 32, 48, 32 * 1.2, 48 * 1.2], [ion, 1542, 230, 32, 48, 32 * 1.2, 48 * 1.2], [ion, 1542, 230, 32, 48, 32 * 1.2, 48 * 1.2], [ion, 1571, 231, 32, 48, 32 * 1.2, 48 * 1.2], [ion, 1571, 231, 32, 48, 32 * 1.2, 48 * 1.2]], 10, 18, false);
+                    this.frameLoop([[ion, 1476, 279, 121, 47, 121 * 1.2, 47 * 1.2], [ion, 1468, 400, 136, 43, 136 * 1.2, 43 * 1.2], [ion, 1470, 438, 136, 43, 136 * 1.2, 43 * 1.2], [ion, 1475, 349, 121, 55, 121 * 1.2, 55 * 1.2], [ion, 1470, 438, 136, 43, 136 * 1.2, 43 * 1.2], [ion, 1468, 400, 136, 43, 136 * 1.2, 43 * 1.2], [ion, 1476, 279, 121, 47, 121 * 1.2, 47 * 1.2], [ion, 1468, 400, 136, 43, 136 * 1.2, 43 * 1.2], [ion, 1470, 438, 136, 43, 136 * 1.2, 43 * 1.2], [ion, 1475, 349, 121, 55, 121 * 1.2, 55 * 1.2], [ion, 1470, 438, 136, 43, 136 * 1.2, 43 * 1.2], [ion, 1468, 400, 136, 43, 136 * 1.2, 43 * 1.2]], 10, 18, false);
+                    if (this.frameLoopComplete == true)
+                    {
+                        this.wellChange = false;
+                        this.wellUp = true;
+                        this.wellListo = true;
+                    }
+                }
+                else if (this.toggleWell == false)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(ion, 1511, 164, 37, 67, -(1/2 * 37 * 1.2), -(1/2 * 67 * 1.2), 37 * 1.2, 67 * 1.2);
+                    XXX.restore();
+
+                    this.frameLoop2([[ion, 1542, 230, 32, 48, 32 * 1.2, 48 * 1.2], [ion, 1542, 230, 32, 48, 32 * 1.2, 48 * 1.2], [ion, 1542, 230, 32, 48, 32 * 1.2, 48 * 1.2], [ion, 1542, 230, 32, 48, 32 * 1.2, 48 * 1.2], [ion, 1513, 233, 32, 48, 32 * 1.2, 48 * 1.2], [ion, 1513, 233, 32, 48, 32 * 1.2, 48 * 1.2], [ion, 1491, 233, 32, 48, 32 * 1.2, 48 * 1.2], [ion, 1491, 233, 32, 48, 32 * 1.2, 48 * 1.2], [ion, 1466, 234, 32, 48, 32 * 1.2, 48 * 1.2], [ion, 1466, 234, 32, 48, 32 * 1.2, 48 * 1.2], [ion, 1466, 234, 32, 48, 32 * 1.2, 48 * 1.2], [ion, 1466, 234, 32, 48, 32 * 1.2, 48 * 1.2]], 10, 18, false);
+                    this.frameLoop([[ion, 1476, 279, 121, 47, 121 * 1.2, 47 * 1.2], [ion, 1468, 400, 136, 43, 136 * 1.2, 43 * 1.2], [ion, 1470, 438, 136, 43, 136 * 1.2, 43 * 1.2], [ion, 1475, 349, 121, 55, 121 * 1.2, 55 * 1.2], [ion, 1470, 438, 136, 43, 136 * 1.2, 43 * 1.2], [ion, 1468, 400, 136, 43, 136 * 1.2, 43 * 1.2], [ion, 1476, 279, 121, 47, 121 * 1.2, 47 * 1.2], [ion, 1468, 400, 136, 43, 136 * 1.2, 43 * 1.2], [ion, 1470, 438, 136, 43, 136 * 1.2, 43 * 1.2], [ion, 1475, 349, 121, 55, 121 * 1.2, 55 * 1.2], [ion, 1470, 438, 136, 43, 136 * 1.2, 43 * 1.2], [ion, 1468, 400, 136, 43, 136 * 1.2, 43 * 1.2]], 10, 18, false);
+
+                    if (this.frameLoopComplete == true)
+                    {
+                        this.wellChange = false;
+                        this.wellUp = false;
+                        this.wellListo = true;
+                    }
+                }
+            }
+
+            if (this.wellChange == false)
+            {
+                if (this.wellUp == true)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(ion, 1547, 165, 37, 67, -(1/2 * 37 * 1.2), -(1/2 * 67 * 1.2), 37 * 1.2, 67 * 1.2);
+                    XXX.restore();
+
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(ion, 1541, 228, 32, 48, -(1/2 * 32 * 1.2), -(1/2 * 48 * 1.2), 32 * 1.2, 48 * 1.2);
+                    XXX.restore();
+
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(ion, 1476, 279, 121, 47, -(1/2 * 121 * 1.2), -(1/2 * 47 * 1.2), 121 * 1.2, 47 * 1.2);
+                    XXX.restore();
+                }
+                else if (this.wellUp == false)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(ion, 1511, 164, 37, 67, -(1/2 * 37 * 1.2), -(1/2 * 67 * 1.2), 37 * 1.2, 67 * 1.2);
+                    XXX.restore();
+
+
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(ion, 1476, 279, 121, 47, -(1/2 * 121 * 1.2), -(1/2 * 47 * 1.2), 121 * 1.2, 47 * 1.2);
+                    XXX.restore();
+                }
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 26;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+                if (this.wellListo)
+                {
+                    this.wellChange = true;
+                    this.loopNum = 0;
+                    this.loopRate = 0;
+                    this.frameLoopComplete = false;
+
+                    this.loopNum2 = 0;
+                    this.loopRate2 = 0;
+                    this.frameLoopComplete2 = false;
+
+                    //fill container with water
+                    if (this.wellUp == true)
+                    {
+                        this.doBreak = false;
+                        this.yaTiene = false;
+
+                        for (var i = 0; i < Inventory.length; i++)
+                        {
+                            for (var j = 0; j < wellConversionList.length; j++)
+                            {
+                                //console.log(Inventory[i][0].type + " v.s. "  + wellConversionList[j][0]);
+                                if (Inventory[i][0].type == wellConversionList[j][0])
+                                {
+                                    for (var k = 0; k < Inventory.length; k++)
+                                    {
+                                        if (Inventory[k][0].type == wellConversionList[j][1])
+                                        {
+                                            this.yaTiene = k;
+                                        }
+                                    }
+
+                                    if (Inventory[i][1] > 1)
+                                    {
+                                        Inventory[i][1] -= 1;
+                                        if (this.yaTiene == false)
+                                        {
+                                            Inventory.push([new Item(wellConversionList[j][1], false, false), 1]);
+                                        }
+                                        else
+                                        {
+                                            Inventory[this.yaTiene][1] +=1;
+                                        }
+                                        this.doBreak = true;
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        if (this.yaTiene == false)
+                                        {
+                                            Inventory.splice(i, 1);
+                                            Inventory.push([new Item(wellConversionList[j][1], false, false), 1]);
+                                        }
+                                        else
+                                        {
+                                            Inventory[this.yaTiene][1] +=1;
+                                            Inventory.splice(i, 1);
+                                        }
+                                        this.doBreak = true;
+                                        break;
+                                    }
+                                }
+                            }
+                            if (this.doBreak == true)
+                            {
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (this.toggleWell == false && this.wellListo)
+                {
+                    this.toggleWell = true;
+                }
+                else if (this.toggleWell == true && this.wellListo)
+                {
+                    this.toggleWell = false;
+                }
+            }
+        }
         else if (this.type == "cerebrisSporeCough")
         {
             //TRAITS
@@ -34691,6 +34906,10 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 }
                 else
                 {
+                    if (player.areGlovesEquipped != true)
+                    {
+                        player.health -= 3;
+                    }
                     this.activate = false;
                     this.phase = "picked";
                     var hits = 0;
@@ -34777,6 +34996,10 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 }
                 else
                 {
+                    if (player.areGlovesEquipped != true)
+                    {
+                        player.health -= 3.5;
+                    }
                     this.activate = false;
                     this.phase = "picked";
                     var hits = 0;
@@ -34939,6 +35162,10 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             //INTERACTION
             if (this.activate == true && this.phase == 0)
             {
+                if (player.areGlovesEquipped != true)
+                {
+                    player.health -= 2.5;
+                }
                 this.activate = false;
                 this.phase = "picked";
                 var hits = 0;
@@ -34957,6 +35184,60 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 if (hits == Inventory.length)
                 {
                     Inventory.push([new Item("pashaArm", false, false), Math.floor(Math.random() * 3) + 1]);
+                }
+            }
+        }
+        else if (this.type == "chapulPlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.nectar(1);
+            this.interactionRange = 90;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                this.solid = true;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(ion, 1639, 292, 38, 40, -(1/2 * 38 * 1.3), -(1/2 * 40 * 1.3), 38 * 1.3, 40 * 1.3);
+                XXX.restore();
+            }
+            else if (this.phase == "picked")
+            {
+                this.solid = false;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(ion, 1636, 252, 38, 40, -(1/2 * 38 * 1.3), -(1/2 * 40 * 1.3), 38 * 1.3, 40 * 1.3);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 10;
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0)
+            {
+                this.activate = false;
+                this.phase = "picked";
+                var hits = 0;
+                for (var i = 0; i < Inventory.length; i ++)
+                {
+                    if (Inventory[i][0].type == "chapulCactus")
+                    {
+                        Inventory[i][1] += (Math.floor(Math.random() * 3) + 1);
+                        break;
+                    }
+                    else
+                    {
+                        hits += 1;
+                    }
+                }
+                if (hits == Inventory.length)
+                {
+                    Inventory.push([new Item("chapulCactus", false, false), Math.floor(Math.random() * 3) + 1]);
                 }
             }
         }
@@ -48526,7 +48807,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 this.opened = false;
                 this.campFireTime = 0;
                 this.fuel = 0;
-                if (this.temporary == "lit")
+                if (this.temporary == "lit" || this.temporary == "flamed")
                 {
                     this.lit = true;
                 }
@@ -48541,13 +48822,13 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             {
                 this.campFireTime += 1;
                 //die out over time
-                if (this.campFireTime >= 300 && this.temporary != "lit")
+                if (this.campFireTime >= 300 && this.temporary != "lit" && this.temporary != "flamed")
                 {
                     this.fuel -= 1;
                     this.campFireTime = 0;
                 }
 
-                if (this.fuel <= 0 && this.temporary != "lit")
+                if (this.fuel <= 0 && this.temporary != "lit" && this.temporary != "flamed")
                 {
                     this.lit = false;
                 }

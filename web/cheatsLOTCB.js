@@ -14,8 +14,8 @@ function cheats()
     }
     if (buildMode == true)
     {
-        var buildList = ["coords", "Selva Tree", "Sonja Tree", "Gallosh Plant", "Vorlym Plant", "Thueg", "Conejo", "Boulchom", "Great Pine Tree", "Pine Tree", "Snowy Great Pine Tree", "Snowy Pine Tree", "Ashai Tree", "Ghoul", "Ribback", "Vreck", "Dalger", "Varonoi", "Stovol Beetle", "Thegol Thorn", "Elk", "Black Beruln", "Mekle Plant", "Black Bear", "Turkey", "Skol", "Deer", "Fox", "Badger", "Hoffalgre", "Crow", "Silter", "Scilt Plant", "Korsk Beetle", "Cheshire", "Grizzly Bear", "Borgal", "Lizard", "Koivaya (loner)", "Koivaya (breeder)", "Cranberry Plant", "Eyewort Plant", "Korceida Plant", "Laumin Plant", "Jolle Plant", "Porstol Plant", "Fallory Plant", "Palgga Plant", "Bleeding Heart Plant", "Aberdom Plant", "Beunum Plant", "Ciprin Plant", "Marigold Plant", "Hoil Plant", "Callop Plant", "Darb Plant", "Kofke Plant", "Steugiurne Plant", "Web", "Etna Egg Sack", "Etna", "Mustard Plant", "Carrot Plant", "Potato Plant", "Cabbage Plant", "Harst Plant", "Santh Plant", "Wheat Plant", "Suuli Plant", "Lilypads", "Swamp Brush", "Swamp Lily Plant", "Borsht Plant", "Cattail Plant", "Mandrake Plant", "Leech", "Mud Toad", "Ker", "Palinsyda", "GhoulFly", "Toad", "Hydra", "Bat", "Vecher Bug", "Bog Troll", "Cerebris Mycelium I", "Cerebris Mycelium II", "Swamp Island", "Xuim Mycelium I", "Xuim Mycelium II", "Saffron", "Murdered Vardanians", "Blood", "Skeleton", "Bones", "Scuffle Marks", "West Furniture", "Floor Decorations", "South Furniture", "Nirwaden Furniture", "Nirwaden Goods", "Vardanian Spikes", "Pike Wall", "Cephrian Buidling", "Hyena", "Giraffe", "Lion", "Wild Dog", "Gazelle", "Zarbu", "Termite Mound", "Empty Termite Mound", "Acacia Tree", "Zwaleim Plant", "Glaza Plant", "Nupala Plant", "Tchalta Plant", "Tchafula Plant", "Gnoll", "Thengan Buildings", "Freydic Buildings", "Nirwaden Buildings", "Vardanian Buildings", "Vardanian Fencing", "Prison Bars", "Door", "Crate", "Sign", "Item", "Bed", "Fine Bed", "Vardanian Bed", "South Bed", "Angler", "Trubka Plant", "Eisyncryne Plant", "Cauw Plant", "Hesk Fungus", "Toadstools", "Thimblecap Mushrooms", "Royla Plant", "Vardanian Mardyl Plant", "Orgish Mardyl Plant", "Forest Thadine Plant", "Danzig Plant", "Chyoul Plant", "Ameloy Plant", "Laicaum Plant", "Plains Thadine Plant", "Saug Plant", "Kozlyak Mushrooms", "Maleot Mushrooms", "Gribnoy Mushroom", "Poegroon Mushrooms", "Iod Fungus", "Chervstrakha", "Motylekh", "Shrieking Bloodworm", "Pokinutyy", "Swamp Walks", "Vardanian Utilities", "Tents", "mireIsla", "Rat", "Varmin", "Fegil", "Lyagushka", "Lyagushka Egg Cluster", "Ostryy Grass Plant", "Mornid", "Grey Horse", "Brain Fly Hive", "Cirmusid", "Spitting Mud Fly", "Mud Beetle", "Raed Beetle", "Scorpion", "Whip Scorpion", "Barbol", "Desert Lizard", "Rattler", "Pasha Plant", "Anjay Plant", "Inum Plant", "Naib Plant", "Mawe Plant", "Voaii", "Xerocole", "Zetian Well", "Zetian Oven", "Chapul Plant", "Armadii"];
-        //                  0           1              2               3                4          5        6           7              8               9                  10                    11              12         13         14       15        16        17             18              19         20          21              22            23          24       25      26      27      28          29        30       31          32             33             34             35         36         37            38                  39                   40                41               42                43             44              45               46               47                 48                   49              50               51               52             53             54             55            56                57            58         59           60           61              62               63              64              65            66             67              68           69            70               71                72               73                74           75        76       77        78           79        80      81      82         83           84                 85                    86                   87               88                  89              90              91               92        93         94           95               96                  97                 98                   99                  100               101               102             103            104       105       106      107         108       109          110                  111               112              113            114             115             116               117          118            119                 120                   121                    122                    123               124       125      126      127     128    129       130           131             132        133         134               135               136           137           138                 139                 140                 141                     142                     143                 144             145             146             147                 148                 149             150                   151                152                   153               154            155           156             157                158           159                160              161      162       163      164      165        166                 167                    168             169        170              171            172            173              174            175           176           177           178          179           180          181            182            183          184            185        186        187          188           189              190          191
+        var buildList = ["coords", "Selva Tree", "Sonja Tree", "Gallosh Plant", "Vorlym Plant", "Thueg", "Conejo", "Boulchom", "Great Pine Tree", "Pine Tree", "Snowy Great Pine Tree", "Snowy Pine Tree", "Ashai Tree", "Ghoul", "Ribback", "Vreck", "Dalger", "Varonoi", "Stovol Beetle", "Thegol Thorn", "Elk", "Black Beruln", "Mekle Plant", "Black Bear", "Turkey", "Skol", "Deer", "Fox", "Badger", "Hoffalgre", "Crow", "Silter", "Scilt Plant", "Korsk Beetle", "Cheshire", "Grizzly Bear", "Borgal", "Lizard", "Koivaya (loner)", "Koivaya (breeder)", "Cranberry Plant", "Eyewort Plant", "Korceida Plant", "Laumin Plant", "Jolle Plant", "Porstol Plant", "Fallory Plant", "Palgga Plant", "Bleeding Heart Plant", "Aberdom Plant", "Beunum Plant", "Ciprin Plant", "Marigold Plant", "Hoil Plant", "Callop Plant", "Darb Plant", "Kofke Plant", "Steugiurne Plant", "Web", "Etna Egg Sack", "Etna", "Mustard Plant", "Carrot Plant", "Potato Plant", "Cabbage Plant", "Harst Plant", "Santh Plant", "Wheat Plant", "Suuli Plant", "Lilypads", "Swamp Brush", "Swamp Lily Plant", "Borsht Plant", "Cattail Plant", "Mandrake Plant", "Leech", "Mud Toad", "Ker", "Palinsyda", "GhoulFly", "Toad", "Hydra", "Bat", "Vecher Bug", "Bog Troll", "Cerebris Mycelium I", "Cerebris Mycelium II", "Swamp Island", "Xuim Mycelium I", "Xuim Mycelium II", "Saffron", "Murdered Vardanians", "Blood", "Skeleton", "Bones", "Scuffle Marks", "West Furniture", "Floor Decorations", "South Furniture", "Nirwaden Furniture", "Nirwaden Goods", "Vardanian Spikes", "Pike Wall", "Cephrian Buidling", "Hyena", "Giraffe", "Lion", "Wild Dog", "Gazelle", "Zarbu", "Termite Mound", "Empty Termite Mound", "Acacia Tree", "Zwaleim Plant", "Glaza Plant", "Nupala Plant", "Tchalta Plant", "Tchafula Plant", "Gnoll", "Thengan Buildings", "Freydic Buildings", "Nirwaden Buildings", "Vardanian Buildings", "Vardanian Fencing", "Prison Bars", "Door", "Crate", "Sign", "Item", "Bed", "Fine Bed", "Vardanian Bed", "South Bed", "Angler", "Trubka Plant", "Eisyncryne Plant", "Cauw Plant", "Hesk Fungus", "Toadstools", "Thimblecap Mushrooms", "Royla Plant", "Vardanian Mardyl Plant", "Orgish Mardyl Plant", "Forest Thadine Plant", "Danzig Plant", "Chyoul Plant", "Ameloy Plant", "Laicaum Plant", "Plains Thadine Plant", "Saug Plant", "Kozlyak Mushrooms", "Maleot Mushrooms", "Gribnoy Mushroom", "Poegroon Mushrooms", "Iod Fungus", "Chervstrakha", "Motylekh", "Shrieking Bloodworm", "Pokinutyy", "Swamp Walks", "Vardanian Utilities", "Tents", "mireIsla", "Rat", "Varmin", "Fegil", "Lyagushka", "Lyagushka Egg Cluster", "Ostryy Grass Plant", "Mornid", "Grey Horse", "Brain Fly Hive", "Cirmusid", "Spitting Mud Fly", "Mud Beetle", "Raed Beetle", "Scorpion", "Whip Scorpion", "Barbol", "Desert Lizard", "Rattler", "Pasha Plant", "Anjay Plant", "Inum Plant", "Naib Plant", "Mawe Plant", "Voaii", "Xerocole", "Zetian Well", "Zetian Oven", "Chapul Plant", "Armadii", "Burnt Vardanian Assets", "Carts", "Mimicry", "Mimic"];
+        //                  0           1              2               3                4          5        6           7              8               9                  10                    11              12         13         14       15        16        17             18              19         20          21              22            23          24       25      26      27      28          29        30       31          32             33             34             35         36         37            38                  39                   40                41               42                43             44              45               46               47                 48                   49              50               51               52             53             54             55            56                57            58         59           60           61              62               63              64              65            66             67              68           69            70               71                72               73                74           75        76       77        78           79        80      81      82         83           84                 85                    86                   87               88                  89              90              91               92        93         94           95               96                  97                 98                   99                  100               101               102             103            104       105       106      107         108       109          110                  111               112              113            114             115             116               117          118            119                 120                   121                    122                    123               124       125      126      127     128    129       130           131             132        133         134               135               136           137           138                 139                 140                 141                     142                     143                 144             145             146             147                 148                 149             150                   151                152                   153               154            155           156             157                158           159                160              161      162       163      164      165        166                 167                    168             169        170              171            172            173              174            175           176           177           178          179           180          181            182            183          184            185        186        187          188           189              190          191              192                193       194       195
         if (tKey)
         {
             tKey = false;
@@ -2215,13 +2215,13 @@ function cheats()
                     buildClase += 1;
                 }
 
-                if (buildClase > 15)
+                if (buildClase > 17)
                 {
                     buildClase = 1;
                 }
                 else if ((buildClase < 1))
                 {
-                    buildClase = 15;
+                    buildClase = 17;
                 }
             }
 
@@ -2610,13 +2610,13 @@ function cheats()
                     buildClase += 1;
                 }
 
-                if (buildClase > 65)
+                if (buildClase > 71)
                 {
                     buildClase = 0;
                 }
                 else if ((buildClase < 0))
                 {
-                    buildClase = 65;
+                    buildClase = 71;
                 }
             }
 
@@ -2697,13 +2697,13 @@ function cheats()
                     buildClase += 1;
                 }
 
-                if (buildClase > 58)
+                if (buildClase > 64)
                 {
                     buildClase = 0;
                 }
                 else if ((buildClase < 0))
                 {
-                    buildClase = 58;
+                    buildClase = 64;
                 }
             }
 
@@ -4169,9 +4169,9 @@ function cheats()
 
                 if (buildClase > 2)
                 {
-                    buildClase = -3;
+                    buildClase = -4;
                 }
-                else if ((buildClase < -3))
+                else if ((buildClase < -4))
                 {
                     buildClase = 2;
                 }
@@ -6355,6 +6355,339 @@ function cheats()
                 XXX.save();
                 XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
                 XXX.drawImage(pill, 11, 581, 86, 117, -1/2 * 86, -1/2 * 117, 86, 117);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 192)
+        {
+            if (fKey)
+            {
+                fKey = false;
+                if (shiftKey)
+                {
+                    buildRot += 1/16 * Math.PI;
+                }
+                else
+                {
+                    buildRot += 1/32 * Math.PI;
+                }
+            }
+            if (cKey)
+            {
+                cKey = false;
+                if (shiftKey)
+                {
+                    buildRot -= 1/16 * Math.PI;
+                }
+                else
+                {
+                    buildRot -= 1/32 * Math.PI;
+                }
+            }
+            if (gKey)
+            {
+                gKey = false;
+                if (shiftKey)
+                {
+                    buildSize += 0.1;
+                }
+                else
+                {
+                    buildSize += 0.02;
+                }
+            }
+            if (vKey)
+            {
+                vKey = false;
+                if (shiftKey)
+                {
+                    buildSize -= 0.1;
+                }
+                else
+                {
+                    buildSize -= 0.02;
+                }
+                if (buildSize <= 0)
+                {
+                    buildSize = 0.1;
+                }
+            }
+
+            if (zKey)
+            {
+                zKey = false;
+                if (shiftKey)
+                {
+                    buildClase -= 1;
+                }
+                else
+                {
+                    buildClase += 1;
+                }
+
+                if (buildClase > 30)
+                {
+                    buildClase = 0;
+                }
+                else if ((buildClase < 0))
+                {
+                    buildClase = 30;
+                }
+            }
+
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("burntVardanianAssets", ' + X + ', ' + Y + ', ' + buildRot + ', ' + buildClase +', ' + buildSize +'));');
+                scenicList.push(new Scenery("burntVardanianAssets", X, Y, buildRot, buildClase, buildSize));
+            }
+
+            var islonDDDD = new Scenery("burntVardanianAssets", X, Y, buildRot, buildClase, buildSize);
+            islonDDDD.operations();
+        }
+        else if (buildToggle == 193)
+        {
+            if (fKey)
+            {
+                fKey = false;
+                if (shiftKey)
+                {
+                    buildRot += 1/16 * Math.PI;
+                }
+                else
+                {
+                    buildRot += 1/32 * Math.PI;
+                }
+            }
+            if (cKey)
+            {
+                cKey = false;
+                if (shiftKey)
+                {
+                    buildRot -= 1/16 * Math.PI;
+                }
+                else
+                {
+                    buildRot -= 1/32 * Math.PI;
+                }
+            }
+            if (gKey)
+            {
+                gKey = false;
+                if (shiftKey)
+                {
+                    buildSize += 0.1;
+                }
+                else
+                {
+                    buildSize += 0.02;
+                }
+            }
+            if (vKey)
+            {
+                vKey = false;
+                if (shiftKey)
+                {
+                    buildSize -= 0.1;
+                }
+                else
+                {
+                    buildSize -= 0.02;
+                }
+                if (buildSize <= 0)
+                {
+                    buildSize = 0.1;
+                }
+            }
+
+            if (zKey)
+            {
+                zKey = false;
+                if (shiftKey)
+                {
+                    buildClase -= 1;
+                }
+                else
+                {
+                    buildClase += 1;
+                }
+
+                if (buildClase > 27)
+                {
+                    buildClase = 0;
+                }
+                else if ((buildClase < 0))
+                {
+                    buildClase = 27;
+                }
+            }
+
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("carts", ' + X + ', ' + Y + ', ' + buildRot + ', ' + buildClase +', ' + buildSize +'));');
+                scenicList.push(new Scenery("carts", X, Y, buildRot, buildClase, buildSize));
+            }
+
+            var islonDDDD = new Scenery("carts", X, Y, buildRot, buildClase, buildSize);
+            islonDDDD.operations();
+        }
+        else if (buildToggle == 194)
+        {
+            if (fKey)
+            {
+                fKey = false;
+                if (shiftKey)
+                {
+                    buildRot += 1/16 * Math.PI;
+                }
+                else
+                {
+                    buildRot += 1/32 * Math.PI;
+                }
+            }
+            if (cKey)
+            {
+                cKey = false;
+                if (shiftKey)
+                {
+                    buildRot -= 1/16 * Math.PI;
+                }
+                else
+                {
+                    buildRot -= 1/32 * Math.PI;
+                }
+            }
+
+            if (zKey)
+            {
+                zKey = false;
+                if (shiftKey)
+                {
+                    buildClase -= 1;
+                }
+                else
+                {
+                    buildClase += 1;
+                }
+
+                if (buildClase > 7)
+                {
+                    buildClase = 0;
+                }
+                else if ((buildClase < 0))
+                {
+                    buildClase = 7;
+                }
+            }
+
+            if (buildClase == 0)
+            {
+                buildPrompt = "BarrelMimic";
+                buildPrompt2 = "westMueble";
+                buildSize = 26;
+            }
+            else if (buildClase == 1)
+            {
+                buildPrompt = "CrateMimic";
+                buildPrompt2 = "crate";
+                buildSize = 0;
+            }
+            else if (buildClase == 2)
+            {
+                buildPrompt = "TableMimic";
+                buildPrompt2 = "westMueble";
+                buildSize = 70;
+            }
+            else if (buildClase == 3)
+            {
+                buildPrompt = "CartMimic";
+                buildPrompt2 = "carts";
+                buildSize = 2;
+            }
+            else if (buildClase == 4)
+            {
+                buildPrompt = "TentMimic";
+                buildPrompt2 = "vardanianTent";
+            }
+            else if (buildClase == 5)
+            {
+                buildPrompt = "HouseMimic";
+                buildPrompt2 = "vardanBuilding31";
+                buildSize = 1;
+            }
+            else if (buildClase == 6)
+            {
+                buildPrompt = "ChairMimic";
+                buildPrompt2 = "westMueble";
+                buildSize = 6;
+            }
+            else if (buildClase == 7)
+            {
+                buildPrompt = "RugMimic";
+                buildPrompt2 = "floorDeco";
+                buildSize = 1;
+            }
+
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("mimicry", ' + X + ', ' + Y + ', ' + buildRot + ', '+ buildPrompt + '));');
+
+                if (shiftKey)
+                {
+                    scenicList.push(new Scenery("mimicry", X, Y, buildRot, buildPrompt));
+                    worldItems.push([new Item("plantMarker", X, Y), 1]);
+                }
+                else
+                {
+                    if (buildClase == 1)
+                    {
+                        scenicList.push(new Scenery(buildPrompt2, X, Y, buildRot, buildSize, [1]));
+                    }
+                    else if (buildClase == 7)
+                    {
+                        scenicList.push(new Scenery(buildPrompt2, X, Y, buildRot, buildSize, 1.5));
+                    }
+                    else
+                    {
+                        scenicList.push(new Scenery(buildPrompt2, X, Y, buildRot, buildSize, 1));
+                    }
+                }
+            }
+
+            if (buildClase == 1)
+            {
+                var islonDDDD = new Scenery(buildPrompt2, X, Y, buildRot, buildSize, [1]);
+                islonDDDD.operations();
+            }
+            else if (buildClase == 7)
+            {
+                var islonDDDD = new Scenery(buildPrompt2, X, Y, buildRot, buildSize, 1.5);
+                islonDDDD.operations();
+            }
+            else
+            {
+                var islonDDDD = new Scenery(buildPrompt2, X, Y, buildRot, buildSize, 1);
+                islonDDDD.operations();
+            }
+            barrierList = [];
+        }
+        else if (buildToggle == 195)
+        {
+            if (xKey)
+            {
+                xKey = false;
+                console.log('ArtificialIntelligenceAccess.push(new Unit(' + X +', ' + Y + ', "Mimic", true, "mim"));');
+                worldItems.push([new Item("unitMarker", X, Y), 1]);
+                ArtificialIntelligenceAccess.push(new Unit(X, Y, "Mimic", true, "mim"));
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.drawImage(mimi, 21, 4, 113, 92, -1/2 * 113 * 1, -1/2 * 92 * 1, 113 * 1, 92 * 1);
                 XXX.restore();
             }
         }

@@ -6046,6 +6046,54 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(mawt, 925, 11, 129, 82, -(1/2 * 129 * this.information), -(1/2 * 82 * this.information), 129 * this.information, 82 * this.information);
                 XXX.restore();
             }
+            else if (this.temporary == 59) //blue aldrekii rug
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(carillo, 577, 1321, 126, 78, -(1/2 * 126 * this.information), -(1/2 * 78 * this.information), 126 * this.information, 78 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 60) //ducks aldrekii rug
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(carillo, 580, 1416, 126, 78, -(1/2 * 126 * this.information), -(1/2 * 78 * this.information), 126 * this.information, 78 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 61) //orange gold aldrekii rug
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(carillo, 729, 1321, 126, 78, -(1/2 * 126 * this.information), -(1/2 * 78 * this.information), 126 * this.information, 78 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 62) //purple aldrekii rug
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(carillo, 731, 1413, 126, 78, -(1/2 * 126 * this.information), -(1/2 * 78 * this.information), 126 * this.information, 78 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 63) //purple silver aldrekii rug
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(carillo, 868, 1413, 126, 78, -(1/2 * 126 * this.information), -(1/2 * 78 * this.information), 126 * this.information, 78 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 64) //dark multicolor trimmed aldrekii rug
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(carillo, 866, 1318, 126, 78, -(1/2 * 126 * this.information), -(1/2 * 78 * this.information), 126 * this.information, 78 * this.information);
+                XXX.restore();
+            }
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
             this.radius = 1;
@@ -7968,6 +8016,63 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
                 XXX.drawImage(hydra, 180, 362, 51, 29, -(1/2 * 51 * 1 * this.information), -(1/2 * 29 * 1 * this.information), 51 * 1 * this.information, 29 * 1 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 66)//jester doll
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(milm, 145, 1429, 42, 29, -(1/2 * 42 * 1 * this.information), -(1/2 * 29 * 1 * this.information), 42 * 1 * this.information, 29 * 1 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 67)//vardan comb
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(milm, 317, 1300, 13, 26, -(1/2 * 13 * 1 * this.information), -(1/2 * 26 * 1 * this.information), 13 * 1 * this.information, 26 * 1 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 68)//sleeping/dead jester
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(milm, 218, 1433, 86, 99, -(1/2 * 86 * 1 * this.information), -(1/2 * 99 * 1 * this.information), 86 * 1 * this.information, 99 * 1 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 69)//jester pile
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(milm, 182, 1554, 137, 119, -(1/2 * 137 * 1 * this.information), -(1/2 * 119 * 1 * this.information), 137 * 1 * this.information, 119 * 1 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 70)//vardanian table
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(milm, 120, 544, 56, 58, -(1/2 * 56 * 1 * this.information), -(1/2 * 58 * 1 * this.information), 56 * 1 * this.information, 58 * 1 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 71)//tied vardanian sacks
+            {
+                this.solid = true;
+                this.radius = 16 * this.information;
+
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(carillo, 82, 471, 68, 57, -(1/2 * 68 * 1 * this.information), -(1/2 * 57 * 1 * this.information), 68 * 1 * this.information, 57 * 1 * this.information);
                 XXX.restore();
             }
 
@@ -10758,6 +10863,26 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                     XXX.restore();
                 }
             }
+            else if (this.temporary == -4 || this.temporary == 9) //vardanian satchel
+            {
+                this.radius = 15 * this.information[0];
+                if (this.phase == 0)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(carillo, 186, 635, 59, 51, -(1/2 * 59 * this.information[0]), -(1/2 * 51 * this.information[0]), 59 * this.information[0], 51 * this.information[0]);
+                    XXX.restore();
+                }
+                else if (this.phase == "opened")
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(carillo, 249, 622, 57, 66, -(1/2 * 57 * this.information[0]), -(1/2 * 66 * this.information[0] + 5), 57 * this.information[0], 66 * this.information[0]);
+                    XXX.restore();
+                }
+            }
 
             //INTERACTION
             if (this.activate == true)
@@ -11488,6 +11613,22 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
                 XXX.drawImage(gul, 926, 806, 85, 142, -(1/2 * 85 * this.information * 0.9), -(1/2 * 142 * this.information * 0.9), 85 * this.information * 0.9, 142 * this.information * 0.9);
+                XXX.restore();
+            }
+            else if (this.temporary == 16) //slain jester
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(milm, 255, 1155, 79, 96, -(1/2 * 79 * this.information * 1), -(1/2 * 96 * this.information * 1), 79 * this.information * 1, 96 * this.information * 1);
+                XXX.restore();
+            }
+            else if (this.temporary == 17) //slain babe
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(milm, 276, 1269, 43, 32, -(1/2 * 43 * this.information * 1), -(1/2 * 32 * this.information * 1), 43 * this.information * 1, 32 * this.information * 1);
                 XXX.restore();
             }
 
@@ -30268,6 +30409,664 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
             this.radius = 1;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+        }
+        else if (this.type == "burntVardanianAssets")
+        {
+            //TRAITS
+            if (this.runOneTime == true)
+            {
+                this.runOneTime = false;
+
+                //TRAITS
+                this.solid = false;
+                this.interactionRange = 1;
+
+                //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+                this.radius = 1;
+
+                this.tic = 0;
+                this.tac = 0;
+                this.zIndex = 1;
+                this.oncer = true;
+            }
+
+            if (this.temporary == 0) //burnt rown tree
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(carillo, 412, 485, 149, 143, -(1/2 * 149 * this.information), -(1/2 * 143 * this.information), 149 * this.information, 143 * this.information);
+                XXX.restore();
+
+                this.radius = 10 * this.information;
+                this.solid = true;
+                this.zIndex = 6;
+            }
+            else if (this.temporary == 1)//burnt tipped cart
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(carillo, 407, 1328, 105, 73, -(1/2 * 105 * this.information * 1.3), -(1/2 * 73 * this.information * 1.3), 105 * this.information * 1.3, 73 * this.information * 1.3);
+                XXX.restore();
+
+                this.radius = 20 * this.information * 1.3;
+                this.solid = true;
+            }
+            else if (this.temporary == 2)//burnt cart
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(carillo, 713, 1231, 109, 73, -(1/2 * 109 * this.information * 1.3), -(1/2 * 73 * this.information * 1.3), 109 * this.information * 1.3, 73 * this.information * 1.3);
+                XXX.restore();
+
+                this.radius = 20 * this.information * 1.3;
+                this.solid = true;
+            }
+            else if (this.temporary == 3)//burnt light rowan logs
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(carillo, 74, 284, 42, 37, -(1/2 * 42 * this.information), -(1/2 * 37 * this.information), 42 * this.information, 37 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 4)//burnt dark rowan logs
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(carillo, 72, 372, 42, 37, -(1/2 * 42 * this.information), -(1/2 * 37 * this.information), 42 * this.information, 37 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 5)//collapsed burnt rowan tree
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(carillo, 356, 631, 228, 151, -(1/2 * 228 * this.information) + 37, -(1/2 * 151 * this.information) - 42, 228 * this.information, 151 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 6)//rubble 1
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(trea, 5, 1480, 139, 123, -(1/2 * 139 * this.information), -(1/2 * 123 * this.information), 139 * this.information, 123 * this.information);
+                XXX.restore();
+
+                this.radius = 37 * this.information;
+                this.solid = true;
+            }
+            else if (this.temporary == 7)//rubble 2
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(trea, 146, 1544, 93, 75, -(1/2 * 93 * this.information), -(1/2 * 75 * this.information), 93 * this.information, 75 * this.information);
+                XXX.restore();
+
+                this.radius = 18 * this.information;
+                this.solid = true;
+            }
+            else if (this.temporary == 8)//rubble 3
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(trea, 144, 1471, 93, 75, -(1/2 * 93 * this.information), -(1/2 * 75 * this.information), 93 * this.information, 75 * this.information);
+                XXX.restore();
+
+                this.radius = 18 * this.information;
+                this.solid = true;
+            }
+            else if (this.temporary == 9)//burnt birch 1
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(trea, 6, 1314, 141, 142, -(1/2 * 141 * this.information), -(1/2 * 142 * this.information), 141 * this.information, 142 * this.information);
+                XXX.restore();
+
+                this.radius = 10 * this.information;
+                this.solid = true;
+                this.zIndex = 6;
+            }
+            else if (this.temporary == 10)//burnt birch 2
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(trea, 180, 1316, 141, 142, -(1/2 * 141 * this.information), -(1/2 * 142 * this.information), 141 * this.information, 142 * this.information);
+                XXX.restore();
+
+                this.radius = 11 * this.information;
+                this.solid = true;
+                this.zIndex = 6;
+            }
+            else if (this.temporary == 11)//collapsed burnt birch
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(trea, 337, 1304, 187, 215, -(1/2 * 187 * this.information) + 71, -(1/2 * 215 * this.information) -83, 187 * this.information, 215 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 12)//burnt birch stump
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(trea, 7, 388, 39, 39, -(1/2 * 39 * this.information), -(1/2 * 39 * this.information), 39 * this.information, 39 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 13)//big ash pile
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(trea, 547, 1383, 152, 144, -(1/2 * 152 * this.information), -(1/2 * 144 * this.information), 152 * this.information, 144 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 14)//collapsed building
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation + 1/2 * Math.PI);
+                XXX.drawImage(trea, 542, 1218, 158, 153, -(1/2 * 158 * this.information), -(1/2 * 153 * this.information), 158 * this.information, 153 * this.information);
+                XXX.restore();
+
+                this.radius = 48 * this.information;
+                this.solid = true;
+            }
+            else if (this.temporary == 15)//collapsed roof
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(trea, 542, 1218, 158, 153, -(1/2 * 158 * this.information), -(1/2 * 153 * this.information), 158 * this.information, 153 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 16)//burnt birch logs
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(trea, 309, 1253, 38, 32, -(1/2 * 38 * this.information), -(1/2 * 32 * this.information), 38 * this.information, 32 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 17)//vardanian church window
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(milm, 21, 1353, 84, 72, -(1/2 * 84 * this.information), -(1/2 * 72 * this.information), 84 * this.information, 72 * this.information);
+                XXX.restore();
+
+                this.radius = 20 * this.information;
+                this.solid = true;
+            }
+            else if (this.temporary == 18)//vardanian broken church window
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(milm, 103, 1353, 84, 72, -(1/2 * 84 * this.information), -(1/2 * 72 * this.information), 84 * this.information, 72 * this.information);
+                XXX.restore();
+
+                this.radius = 20 * this.information;
+                this.solid = true;
+            }
+            else if (this.temporary == 19)//vardanian burnt alter
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(milm, 199, 1384, 77, 35, -(1/2 * 77 * this.information), -(1/2 * 35 * this.information), 77 * this.information, 35 * this.information);
+                XXX.restore();
+
+                this.radius = 11 * this.information;
+                this.solid = true;
+            }
+            else if (this.temporary == 20)//vardanian alter
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(milm, 200, 1352, 77, 35, -(1/2 * 77 * this.information), -(1/2 * 35 * this.information), 77 * this.information, 35 * this.information);
+                XXX.restore();
+
+                this.radius = 11 * this.information;
+                this.solid = true;
+            }
+            else if (this.temporary == 21)//burnt out church candles
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(milm, 286, 1360, 14, 51, -(1/2 * 14 * this.information), -(1/2 * 51 * this.information), 14 * this.information, 51 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 22)//burnt bench
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(milm, 233, 1330, 51, 18, -(1/2 * 51 * this.information), -(1/2 * 18 * this.information), 51 * this.information, 18 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 23)//less burnt bench
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(milm, 31, 1331, 51, 18, -(1/2 * 51 * this.information), -(1/2 * 18 * this.information), 51 * this.information, 18 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 24)//short unburnt bench
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(milm, 177, 1331, 51, 18, -(1/2 * 51 * this.information), -(1/2 * 18 * this.information), 51 * this.information, 18 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 25)//long unburnt bench
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(milm, 96, 1333, 70, 14, -(1/2 * 70 * this.information), -(1/2 * 14 * this.information), 70 * this.information, 14 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 26)//vardanian pallet
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(milm, 245, 1072, 79, 81, -(1/2 * 79 * this.information), -(1/2 * 81 * this.information), 79 * this.information, 81 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 27)//fallen roof part
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(milm, 226, 967, 109, 95, -(1/2 * 109 * this.information), -(1/2 * 95 * this.information), 109 * this.information, 95 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 28)//medium ash pile
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(milm, 412, 921, 76, 73, -(1/2 * 76 * this.information), -(1/2 * 73 * this.information), 76 * this.information, 73 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 29)//vardanian p-y-r-e
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(milm, 488, 918, 76, 73, -(1/2 * 76 * this.information), -(1/2 * 73 * this.information), 76 * this.information, 73 * this.information);
+                XXX.restore();
+
+                this.radius = 11 * this.information;
+                this.solid = true;
+            }
+            else if (this.temporary == 30)//rubble barrier
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(milm, 664, 882, 61, 43, -(1/2 * 61 * this.information), -(1/2 * 43 * this.information), 61 * this.information, 43 * this.information);
+                XXX.restore();
+
+                this.radius = 10 * this.information;
+                this.solid = true;
+            }
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+        }
+        else if (this.type == "carts")
+        {
+            //TRAITS
+            if (this.runOneTime == true)
+            {
+                this.runOneTime = false;
+
+                //TRAITS
+                this.solid = false;
+                this.interactionRange = 1;
+
+                //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+                this.radius = 1;
+
+                this.tic = 0;
+                this.tac = 0;
+                this.zIndex = 1;
+                this.oncer = true;
+            }
+
+            if (this.temporary == 0) //burnt tipped cart
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(carillo, 407, 1328, 105, 73, -(1/2 * 105 * this.information * 1.3), -(1/2 * 73 * this.information * 1.3), 105 * this.information * 1.3, 73 * this.information * 1.3);
+                XXX.restore();
+
+                this.radius = 20 * this.information * 1.3;
+                this.solid = true;
+            }
+            else if (this.temporary == 1)//burnt cart
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(carillo, 713, 1231, 109, 73, -(1/2 * 109 * this.information * 1.3), -(1/2 * 73 * this.information * 1.3), 109 * this.information * 1.3, 73 * this.information * 1.3);
+                XXX.restore();
+
+                this.radius = 20 * this.information * 1.3;
+                this.solid = true;
+            }
+            else if (this.temporary == 2)//vardanian cart
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(carillo, 243, 679, 129, 70, -(1/2 * 129 * this.information * 1.3), -(1/2 * 70 * this.information * 1.3), 129 * this.information * 1.3, 70 * this.information * 1.3);
+                XXX.restore();
+
+                this.radius = 40 * this.information * 1.3;
+                this.solid = true;
+            }
+            else if (this.temporary == 3)//freydic cart
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(carillo, 243, 745, 129, 70, -(1/2 * 129 * this.information * 1.3), -(1/2 * 70 * this.information * 1.3), 129 * this.information * 1.3, 70 * this.information * 1.3);
+                XXX.restore();
+
+                this.radius = 20 * this.information * 1.3;
+                this.solid = true;
+            }
+            else if (this.temporary == 4)//thengan cart
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(carillo, 396, 804, 129, 70, -(1/2 * 129 * this.information * 1.3), -(1/2 * 70 * this.information * 1.3), 129 * this.information * 1.3, 70 * this.information * 1.3);
+                XXX.restore();
+
+                this.radius = 20 * this.information * 1.3;
+                this.solid = true;
+            }
+            else if (this.temporary == 5)//nirwaden cart
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(carillo, 550, 801, 129, 70, -(1/2 * 129 * this.information * 1.3), -(1/2 * 70 * this.information * 1.3), 129 * this.information * 1.3, 70 * this.information * 1.3);
+                XXX.restore();
+
+                this.radius = 20 * this.information * 1.3;
+                this.solid = true;
+            }
+            else if (this.temporary == 6)//vardan cabbage cart
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(carillo, 704, 800, 129, 70, -(1/2 * 129 * this.information * 1.3), -(1/2 * 70 * this.information * 1.3), 129 * this.information * 1.3, 70 * this.information * 1.3);
+                XXX.restore();
+
+                this.radius = 20 * this.information * 1.3;
+                this.solid = true;
+            }
+            else if (this.temporary == 7)//vardan produce cart
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(carillo, 846, 800, 129, 70, -(1/2 * 129 * this.information * 1.3), -(1/2 * 70 * this.information * 1.3), 129 * this.information * 1.3, 70 * this.information * 1.3);
+                XXX.restore();
+
+                this.radius = 20 * this.information * 1.3;
+                this.solid = true;
+            }
+            else if (this.temporary == 8)//vardan fish cart
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(carillo, 396, 884, 129, 70, -(1/2 * 129 * this.information * 1.3), -(1/2 * 70 * this.information * 1.3), 129 * this.information * 1.3, 70 * this.information * 1.3);
+                XXX.restore();
+
+                this.radius = 20 * this.information * 1.3;
+                this.solid = true;
+            }
+            else if (this.temporary == 9)//vardan plague cart 1
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(carillo, 549, 881, 129, 70, -(1/2 * 129 * this.information * 1.3), -(1/2 * 70 * this.information * 1.3), 129 * this.information * 1.3, 70 * this.information * 1.3);
+                XXX.restore();
+
+                this.radius = 20 * this.information * 1.3;
+                this.solid = true;
+            }
+            else if (this.temporary == 10)//vardan plague cart 2
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(carillo, 704, 882, 129, 70, -(1/2 * 129 * this.information * 1.3), -(1/2 * 70 * this.information * 1.3), 129 * this.information * 1.3, 70 * this.information * 1.3);
+                XXX.restore();
+
+                this.radius = 20 * this.information * 1.3;
+                this.solid = true;
+            }
+            else if (this.temporary == 11)//vardan hide cart
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(carillo, 847, 885, 129, 70, -(1/2 * 129 * this.information * 1.3), -(1/2 * 70 * this.information * 1.3), 129 * this.information * 1.3, 70 * this.information * 1.3);
+                XXX.restore();
+
+                this.radius = 20 * this.information * 1.3;
+                this.solid = true;
+            }
+            else if (this.temporary == 12)//vardan coffin cart
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(carillo, 395, 964, 129, 70, -(1/2 * 129 * this.information * 1.3), -(1/2 * 70 * this.information * 1.3), 129 * this.information * 1.3, 70 * this.information * 1.3);
+                XXX.restore();
+
+                this.radius = 20 * this.information * 1.3;
+                this.solid = true;
+            }
+            else if (this.temporary == 13)//vardan moth wing cart
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(carillo, 552, 956, 129, 84, -(1/2 * 129 * this.information * 1.3), -(1/2 * 84 * this.information * 1.3), 129 * this.information * 1.3, 84 * this.information * 1.3);
+                XXX.restore();
+
+                this.radius = 20 * this.information * 1.3;
+                this.solid = true;
+            }
+            else if (this.temporary == 14)//vardan motylinka cart
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(carillo, 704, 952, 129, 84, -(1/2 * 129 * this.information * 1.3), -(1/2 * 84 * this.information * 1.3), 129 * this.information * 1.3, 84 * this.information * 1.3);
+                XXX.restore();
+
+                this.radius = 20 * this.information * 1.3;
+                this.solid = true;
+            }
+            else if (this.temporary == 15)//freydic crab cart
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(carillo, 845, 955, 129, 84, -(1/2 * 129 * this.information * 1.3), -(1/2 * 84 * this.information * 1.3), 129 * this.information * 1.3, 84 * this.information * 1.3);
+                XXX.restore();
+
+                this.radius = 20 * this.information * 1.3;
+                this.solid = true;
+            }
+            else if (this.temporary == 16)//freydic wool cart
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(carillo, 395, 1042, 129, 84, -(1/2 * 129 * this.information * 1.3), -(1/2 * 84 * this.information * 1.3), 129 * this.information * 1.3, 84 * this.information * 1.3);
+                XXX.restore();
+
+                this.radius = 20 * this.information * 1.3;
+                this.solid = true;
+            }
+            else if (this.temporary == 17)//thengan imported carpets / dyed fabrics cart
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(carillo, 550, 1043, 129, 84, -(1/2 * 129 * this.information * 1.3), -(1/2 * 84 * this.information * 1.3), 129 * this.information * 1.3, 84 * this.information * 1.3);
+                XXX.restore();
+
+                this.radius = 20 * this.information * 1.3;
+                this.solid = true;
+            }
+            else if (this.temporary == 18)//thengan coal cart
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(carillo, 703, 1039, 129, 84, -(1/2 * 129 * this.information * 1.3), -(1/2 * 84 * this.information * 1.3), 129 * this.information * 1.3, 84 * this.information * 1.3);
+                XXX.restore();
+
+                this.radius = 20 * this.information * 1.3;
+                this.solid = true;
+            }
+            else if (this.temporary == 19)//thengan iron cart
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(carillo, 846, 1039, 129, 84, -(1/2 * 129 * this.information * 1.3), -(1/2 * 84 * this.information * 1.3), 129 * this.information * 1.3, 84 * this.information * 1.3);
+                XXX.restore();
+
+                this.radius = 20 * this.information * 1.3;
+                this.solid = true;
+            }
+            else if (this.temporary == 20)//thengan keg cart
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(carillo, 396, 1125, 129, 84, -(1/2 * 129 * this.information * 1.3), -(1/2 * 84 * this.information * 1.3), 129 * this.information * 1.3, 84 * this.information * 1.3);
+                XXX.restore();
+
+                this.radius = 40 * this.information * 1.3;
+                this.solid = true;
+            }
+            else if (this.temporary == 21)//thengan bread cart
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(carillo, 548, 1125, 129, 84, -(1/2 * 129 * this.information * 1.3), -(1/2 * 84 * this.information * 1.3), 129 * this.information * 1.3, 84 * this.information * 1.3);
+                XXX.restore();
+
+                this.radius = 20 * this.information * 1.3;
+                this.solid = true;
+            }
+            else if (this.temporary == 22)//nirwaden exotic fruit cart
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(carillo, 703, 1125, 129, 84, -(1/2 * 129 * this.information * 1.3), -(1/2 * 84 * this.information * 1.3), 129 * this.information * 1.3, 84 * this.information * 1.3);
+                XXX.restore();
+
+                this.radius = 20 * this.information * 1.3;
+                this.solid = true;
+            }
+            else if (this.temporary == 23)//nirwaden erguer wine cart
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(carillo, 845, 1126, 129, 84, -(1/2 * 129 * this.information * 1.3), -(1/2 * 84 * this.information * 1.3), 129 * this.information * 1.3, 84 * this.information * 1.3);
+                XXX.restore();
+
+                this.radius = 20 * this.information * 1.3;
+                this.solid = true;
+            }
+            else if (this.temporary == 24)//nirwaden coffin cart
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(carillo, 395, 1220, 129, 84, -(1/2 * 129 * this.information * 1.3), -(1/2 * 84 * this.information * 1.3), 129 * this.information * 1.3, 84 * this.information * 1.3);
+                XXX.restore();
+
+                this.radius = 20 * this.information * 1.3;
+                this.solid = true;
+            }
+            else if (this.temporary == 25)//nirwaden copper cart
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(carillo, 548, 1219, 129, 84, -(1/2 * 129 * this.information * 1.3), -(1/2 * 84 * this.information * 1.3), 129 * this.information * 1.3, 84 * this.information * 1.3);
+                XXX.restore();
+
+                this.radius = 20 * this.information * 1.3;
+                this.solid = true;
+            }
+            else if (this.temporary == 26)//tipped vardan cart
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(carillo, 845, 1229, 129, 84, -(1/2 * 129 * this.information * 1.3), -(1/2 * 84 * this.information * 1.3), 129 * this.information * 1.3, 84 * this.information * 1.3);
+                XXX.restore();
+
+                this.radius = 20 * this.information * 1.3;
+                this.solid = true;
+            }
+            else if (this.temporary == 27)//tipped thengan cart
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(carillo, 394, 1415, 129, 84, -(1/2 * 129 * this.information * 1.3), -(1/2 * 84 * this.information * 1.3), 129 * this.information * 1.3, 84 * this.information * 1.3);
+                XXX.restore();
+
+                this.radius = 20 * this.information * 1.3;
+                this.solid = true;
+            }
 
             //INTERACTION
             if (this.activate == true)

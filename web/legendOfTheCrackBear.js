@@ -1210,11 +1210,11 @@ function envPack()
     window.burntVardanianStone = burntVardanianStone;
 
     var boroStone = new Image();
-    boroStone.src = ("images/boroTile.jpg");
+    boroStone.src = ("images/boroTile.png");
     window.boroStone = boroStone;
 
     var burntBoroStone = new Image();
-    burntBoroStone.src = ("images/burntBoroTile.jpg");
+    burntBoroStone.src = ("images/burntBoroTile.png");
     window.burntBoroStone = burntBoroStone;
 
     var vardanianGrass = new Image();

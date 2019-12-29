@@ -361,7 +361,54 @@ function worldBuilder()
             elevation = -1;
             region = "s20w33";
             campout = true;
-            outlineBuilder(34, 34, "desert", -1142, 660);
+            outlineBuilder(34, 34, "vardanianGrass", -1142, 660); // vardanianGrass
+
+            outlineBuilder(11, 8, "vardanianWoods", -1142, 660); //vardanianWoods
+            outlineBuilder(20, 2, "vardanianWoods", -1134, 667);
+            outlineBuilder(3, 7, "vardanianWoods", -1141, 671);
+            outlineBuilder(1, 6, "vardanianWoods", -1140, 674);
+            outlineBuilder(3, 5, "vardanianWoods", -1139, 675);
+            outlineBuilder(1, 6, "vardanianWoods", -1140, 678);
+            outlineBuilder(4, 7, "vardanianWoods", -1141, 679);
+            outlineBuilder(2, 6, "vardanianWoods", -1140, 683);
+            outlineBuilder(2, 5, "vardanianWoods", -1139, 685);
+            outlineBuilder(2, 5, "vardanianWoods", -1138, 687);
+            outlineBuilder(1, 4, "vardanianWoods", -1138, 689);
+            outlineBuilder(1, 3, "vardanianWoods", -1137, 690);
+            outlineBuilder(1, 2, "vardanianWoods", -1137, 691);
+            outlineBuilder(1, 1, "vardanianWoods", -1136, 692);
+
+            outlineBuilder(4, 25, "vardanianWoods", -1133, 660);
+            outlineBuilder(1, 23, "vardanianWoods", -1133, 664);
+            outlineBuilder(1, 19, "vardanianWoods", -1133, 665);
+            outlineBuilder(1, 3, "vardanianWoods", -1113, 665);
+            outlineBuilder(2, 16, "vardanianWoods", -1131, 666);
+            outlineBuilder(1, 14, "vardanianWoods", -1131, 668);
+            outlineBuilder(2, 9, "vardanianWoods", -1131, 669);
+            outlineBuilder(1, 4, "vardanianWoods", -1121, 669);
+            outlineBuilder(1, 3, "vardanianWoods", -1120, 670);
+            outlineBuilder(1, 2, "vardanianWoods", -1120, 671);
+            outlineBuilder(2, 1, "vardanianWoods", -1119, 672);
+            outlineBuilder(1, 2, "vardanianWoods", -1124, 671);
+            outlineBuilder(1, 5, "vardanianWoods", -1131, 671);
+            outlineBuilder(4, 4, "vardanianWoods", -1131, 672);
+            outlineBuilder(1, 3, "vardanianWoods", -1131, 676);
+            outlineBuilder(2, 2, "vardanianWoods", -1131, 677);
+            outlineBuilder(2, 1, "vardanianWoods", -1131, 679);
+
+            outlineBuilder(6, 1, "vardanianStone", -1134, 660);
+            outlineBuilder(1, 2, "vardanianStone", -1134, 666);
+            outlineBuilder(28, 1, "vardanianStone", -1132, 666);
+
+            outlineBuilder(3, 5, "boroStone", -1119, 691);
+            outlineBuilder(1, 2, "boroStone", -1117, 690);
+            outlineBuilder(1, 1, "boroStone", -1114, 693);
+
+            outlineBuilder(1, 6, "burntBoroStone", -1114, 689);
+            outlineBuilder(1, 4, "burntBoroStone", -1112, 688);
+            outlineBuilder(2, 6, "burntBoroStone", -1114, 691);
+            outlineBuilder(1, 5, "burntBoroStone", -1113, 693);
+            outlineBuilder(1, 7, "burntBoroStone", -1115, 690);
         }
         //mapS20W34
         if (Y > -207902 && Y < -197116 && X < 354544 && X > 342860) //X34

@@ -5147,6 +5147,18 @@ function theLegend()
     foods.push(new Item("bulkMotylinka", false));
     foods.push(new Item("lyagushkaMeat", false));
     foods.push(new Item("roastedAnjayCactus", false));
+    foods.push(new Item("scorpionClawFeast", false));
+    foods.push(new Item("scorpionMeat", false));
+    foods.push(new Item("naagMeat", false));
+    foods.push(new Item("voaiiSponge", false));
+    foods.push(new Item("raedBeetleMeat", false));
+    foods.push(new Item("xerocoleRibs", false));
+    foods.push(new Item("xerocoleMeat", false));
+    foods.push(new Item("roastedDesertLizardSml", false));
+    foods.push(new Item("roastedDesertLizardLrg", false));
+    foods.push(new Item("barbolMeat", false));
+    foods.push(new Item("roastedArmadiiLeg", false));
+    foods.push(new Item("whipScorpionMeat", false));
 
 //Tailoring (Items crafted at a weaving, sewing, dying, etc. tailor's work bench thing)
     tailoring = [];
@@ -5380,6 +5392,7 @@ function theLegend()
     alchemy.push(new Item("spellOil", false));
     alchemy.push(new Item("antiMothfearPotion", false));
     alchemy.push(new Item("muonPerfume", false));
+    alchemy.push(new Item("voaiiSponge", false));
 
 //Brewing (alcohols, liquid fermentation, etc.)
     brewing = [];
@@ -5575,10 +5588,18 @@ function theLegend()
     handcrafted.push(new Item("tropicalFruitPlatter", false));
     handcrafted.push(new Item("despinedPashaArm", false));
     handcrafted.push(new Item("motylekhWingBundle", false));
+    handcrafted.push(new Item("rawScorpionFlesh", false));
     handcrafted.push(new Item("despinedMaweHunk", false));
     handcrafted.push(new Item("despinedAnjayCactus", false));
     handcrafted.push(new Item("chapulCactusPaste", false));
     handcrafted.push(new Item("muonFruit", false));
+    handcrafted.push(new Item("wholeCuredDriedNaag", false));
+    handcrafted.push(new Item("curedDriedNaag", false));
+    handcrafted.push(new Item("naagMeatChunk", false));
+    handcrafted.push(new Item("voaiiWingFragments", false));
+    handcrafted.push(new Item("rawScorpionFlesh", false));
+    handcrafted.push(new Item("rawWhipScorpionFlesh", false));
+
 
     //Activate Important Game Functions Here:
     itemPlacer();

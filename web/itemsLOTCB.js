@@ -6647,6 +6647,83 @@ function Item(type, x, y)
             this.buyValue = 16; // at max, buy for 16.
             this.sellValue = 6 + Math.floor(player.getCharisma() / 5); // at max, sell for 16.
         }
+        else if (this.type == "muon")
+        {
+            //For All Items
+            this.identity = "Muon";
+            this.weight = 9;
+            this.size = 12;
+            this.description = "A large spiny, hairy, redish brown shelled fruit.";
+            this.intForDes = 1;
+            this.intDescription = "The shell is too thick to break though with your hands, you may need to use a hammer to open this...";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 16; // at max, buy for 14.
+            this.sellValue = 16; // at max, sell for 14.
+        }
+        else if (this.type == "muonShell")
+        {
+            //For All Items
+            this.identity = "Muon Shell";
+            this.weight = 3;
+            this.size = 12;
+            this.description = "The large spiny, hairy, reddish brown shell of a muon fruit.";
+            this.intForDes = 0;
+            this.intDescription = "All of the edible part of this plant has been removed, but the inside of the shell smells sweet and creamy like muon fruit still. Some people put these in their homes to scent the air.";
+            this.smallText = "tiny";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 2; // at max, sell for 2.
+        }
+        else if (this.type == "muonFruit")
+        {
+            //For All Items
+            this.identity = "Muon Fruit";
+            this.weight = 6;
+            this.size = 8;
+            this.description = "A large orb shaped fruit that is like a giant rambutan, but with a flavour that resembles a cross between an extra creamy coconut and a lychee.";
+            this.intForDes = 0;
+            this.intDescription = "It tastes tropical, sweet, and creamy.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 12; //satisfies hunger.
+            this.thirst = 7; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.25; //recoops lost energy.
+            this.replenish = 0.25; //restores will.
+            this.cooling = 7; //cools player.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 0;
+            this.ingredients = [["Muon", 1], ["Hammer", 1]];
+            this.biproducts = [[new Item("hammer", false), 1], [new Item("muonShell", false), 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 14; // at max, buy for 14.
+            this.sellValue = 14; // at max, sell for 14.
+        }
         else if (this.type == "sonja")
         {
             //For All Items
@@ -22612,7 +22689,7 @@ function Item(type, x, y)
             this.replenish = 0; //restores will.
 
             //ability
-            this.ability = "ogardPerfume";
+            this.ability = "ameloyPerfume";
 
             //Crafting
             this.yield = 1;
@@ -22622,6 +22699,42 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 40 - Math.floor(player.getCharisma() / 8); // at max, buy for 34.
             this.sellValue = 28 + Math.floor(player.getCharisma() / 8); // at max, sell for 34.
+        }
+        else if (this.type == "muonPerfume")
+        {
+            //For All Items
+            this.identity = "Muon Perfume";
+            this.weight = 1;
+            this.size = 5;
+            this.description = "A white liquid perfume with the scent of sweet and creamy tropical muon fruit.";
+            this.intForDes = 0;
+            this.intDescription = "It smells sweet and creamy like muon.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["potionGlass", 1]];
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "muonPerfume";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 7;
+            this.ingredients = [["Vial of Water", 1], ["Muon Shell", 6]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 22 - Math.floor(player.getCharisma() / 25); // at max, buy for 20.
+            this.sellValue = 19 + Math.floor(player.getCharisma() / 50); // at max, sell for 20.
         }
         else if (this.type == "palggaPerfume")
         {
@@ -41275,6 +41388,64 @@ function Item(type, x, y)
             this.buyValue = 1000 - Math.floor(player.getCharisma() / 0.1); // at max, buy for 500.
             this.sellValue = 0; // at max, sell for 0.
         }
+        else if (this.type == "blackBearMediumArmour")
+        {
+            //For All Items
+            this.identity = "Black Bear Armour";
+            this.weight = 11;
+            this.size = 26;
+            this.description = "An armour composed of steel and black bear leather.";
+            this.intForDes = 2;
+            this.intDescription = "This armour is Vardanian by design.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "armour";
+            //Utility Focused
+            //protections
+            this.protection = 8 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 7;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 2;
+            this.thirstRetention = -0.35;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 4;
+            this.rangedBonus = 2;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 2;
+            //Extra Stat Bonuses
+            this.sleepBonus = 3;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 8;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "resistDisease";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 26;
+            this.ingredients = [["Steel", 2], ["Black Bear Pelt", 1], ["Cloth", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 87 - Math.floor(player.getCharisma() / 10); // at max, buy for 82.
+            this.sellValue = 80 + Math.floor(player.getCharisma() / 25); // at max, sell for 82.
+        }
         else if (this.type == "blackBearLeatherArmour")
         {
             //For All Items
@@ -42665,6 +42836,129 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 6200 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 6000.
             this.sellValue = 5500 + Math.floor(player.getCharisma() / 0.125); // at max, sell for 5900.
+        }
+        else if (this.type == "plumedBoroyePlateArmour" || this.type == "plumedMorrowPlateArmour" || this.type == "morrowPlateArmour" || this.type == "boroyePlateArmour")
+        {
+            //For All Items
+            if (this.type == "plumedBoroyePlateArmour")
+            {
+                this.identity = "Plumed Krovhyuzka Plate Armour";
+                this.weight = 80;
+                this.size = 28;
+                this.description = "A plumed and painted vardanian plate armour decorated in the fashion of the noble house Krovhyuzka.";
+                this.intForDes = 6;
+                this.intDescription = "This armour is worn by the most esteemed knights sworn to house Krovhyuzka.";
+            }
+            else if (this.type == "plumedMorrowPlateArmour")
+            {
+                this.identity = "Plumed Vorcaneous Plate Armour";
+                this.weight = 80;
+                this.size = 28;
+                this.description = "A plumed and painted vardanian plate armour decorated in the fashion of the noble house Vorcaneous.";
+                this.intForDes = 6;
+                this.intDescription = "This armour is worn by the most esteemed knights sworn to house Vorcaneous.";
+            }
+            else if (this.type == "morrowPlateArmour")
+            {
+                this.identity = "Vorcaneous Plate Armour";
+                this.weight = 80;
+                this.size = 28;
+                this.description = "A painted vardanian plate armour decorated in the fashion of the noble house Vorcaneous.";
+                this.intForDes = 6;
+                this.intDescription = "This armour is worn by knights sworn to house Vorcaneous.";
+            }
+            else if (this.type == "boroyePlateArmour")
+            {
+                this.identity = "Steel Plate Armour";
+                this.weight = 84;
+                this.size = 28;
+                this.description = "A painted vardanian plate armour decorated in the fashion of the noble house Krovhyuzka.";
+                this.intForDes = 6;
+                this.intDescription = "This armour is worn by knights sworn to house Krovhyuzka.";
+            }
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "armour";
+            //Utility Focused
+            //protections
+            if (this.type == "plumedBoroyePlateArmour" || this.type == "plumedMorrowPlateArmour")
+            {
+                this.protection = 15 * ((player.toughness / 100) + 1);
+            }
+            else
+            {
+                this.protection = 14.5 * ((player.toughness / 100) + 1);
+            }
+            this.toughnessRequirement = 14;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 1;
+            this.thirstRetention = -0.3;
+            this.shockResist = -9;
+            //Main Stat Bonuses
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            if (this.type == "plumedBoroyePlateArmour" || this.type == "plumedMorrowPlateArmour")
+            {
+                this.staminaBonus = 1;
+                this.constitutionBonus = 1;
+                this.strengthBonus = 1;
+                this.charismaBonus = 29;
+            }
+            else
+            {
+                this.strengthBonus = 0;
+                this.charismaBonus = 24;
+                this.constitutionBonus = 0;
+                this.staminaBonus = 0;
+            }
+            this.rangedBonus = -14;
+            this.dexterityBonus = -32;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 2;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            if (player.strength >= 30 && player.dexterity >= 15)
+            {
+                this.ability = "none";
+            }
+            else if (player.strength >= 20 && player.dexterity >= 10)
+            {
+                this.ability = "hefty";
+            }
+            else
+            {
+                this.ability = "heavy";
+            }
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 50;
+            if (this.type == "plumedBoroyePlateArmour" || this.type == "plumedMorrowPlateArmour")
+            {
+                this.ingredients = [["Steel", 22], ["Aketon", 1], ["Varonoi Feather", 3]];
+            }
+            else
+            {
+                this.ingredients = [["Steel", 22], ["Aketon", 1]];
+            }
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2600 - Math.floor(player.getCharisma() / 1); // at max, buy for 2550.
+            this.sellValue = 2500 + Math.floor(player.getCharisma() / 1); // at max, sell for 2550.
         }
         else if (this.type == "vardanianPlateArmour")
         {
@@ -44854,6 +45148,127 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 10200 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 10000.
             this.sellValue = 9800 + Math.floor(player.getCharisma() / 0.25); // at max, sell for 10000.
+        }
+        else if (this.type == "boroyeNobleOutfit")
+        {
+            //For All Items
+            this.identity = "Noble Krovhyuzka Suit";
+            this.weight = 3.75;
+            this.size = 26;
+            this.description = "A white and black checkered suit of motylinka with a tall pearl-embellished cap.";
+            this.intForDes = 1;
+            this.intDescription = "House Krovhyuzka has ruled the great Vardanian city of Boroye for centuries...";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 2.2;
+            this.thirstRetention = -0.2;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 43;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 20;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            // this.yield = 1;
+            // this.intForCraft = 50;
+            // this.ingredients = [["Motylinka", 6], ["Velvet", 7], ["Silk", 4], ["Pearl", 62]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 9200 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 9000.
+            this.sellValue = 8800 + Math.floor(player.getCharisma() / 0.25); // at max, sell for 9000.
+        }
+        else if (this.type == "boroyeNobleDress")
+        {
+            //For All Items
+            this.identity = "Noble Krovhyuzka Dress";
+            this.weight = 14;
+            this.size = 26;
+            this.description = "An exquisite dress of motylinka, a gold embroidered shawl, and a headdress with elegant floral patterns.";
+            this.intForDes = 9;
+            this.intDescription = "Countess Katyusha of Boroye is the sister of the northern count, Count Gruzblou.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 2.75;
+            this.thirstRetention = -0.4;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            if (player.gender == "Male")
+            {
+                this.charismaBonus = -50;
+            }
+            else
+            {
+                this.charismaBonus = 39;
+            }
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 33;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "heavy";
+
+            // this.yield = 1;
+            // this.intForCraft = 50;
+            // this.ingredients = [["Motylinka", 12], ["Velvet", 6], ["Silk", 8], ["Gold", 3]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 4800 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 4600.
+            this.sellValue = 4400 + Math.floor(player.getCharisma() / 0.25); // at max, sell for 4600.
         }
         else if (this.type == "vardanianRoyalDress")
         {
@@ -47725,6 +48140,122 @@ function Item(type, x, y)
             this.buyValue = 4; // at max, buy for 4.
             this.sellValue = 3 + Math.floor(player.getCharisma() / 50); // at max, sell for 4.
         }
+        else if (this.type == "motylinkaBoots" || this.type == "redMotylinkaBoots")
+        {
+            //For All Items
+            this.identity = "Motylinka Lined Boots";
+            this.weight = 2;
+            this.size = 10;
+            this.description = "Boots sewn from bovine hide and lined throughout with motylinka.";
+            this.intForDes = 0;
+            this.intDescription = "These boots are very warm and comfortable.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "boots";
+            //Utility Focused
+            //protections
+            this.protection = 0.05 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0.4;
+            this.thirstRetention = -0.05;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 3;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 18;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 5;
+            this.intForCraft = 46;
+            this.ingredients = [["Motylinka", 1], ["Bovine Hide", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 36; // at max, buy for 36.
+            this.sellValue = 11 + Math.floor(player.getCharisma() / 2); // at max, sell for 36.
+        }
+        else if (this.type == "motylinkaGloves" || this.type == "redMotylinkaGloves")
+        {
+            //For All Items
+            this.identity = "Motylinka Lined Gloves";
+            this.weight = 1;
+            this.size = 10;
+            this.description = "Bovine leather gloves lined throughout with motylinka.";
+            this.intForDes = 0;
+            this.intDescription = "The gloves are very warm and comfortable.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "gloves";
+            //Utility Focused
+            //protections
+            this.protection = 0.03 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0.2;
+            this.thirstRetention = -0.01;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 2;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 7;
+            this.intForCraft = 45;
+            this.ingredients = [["Motylinka", 1], ["Bovine Hide", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 16; // at max, buy for 16.
+            this.sellValue = 8 + Math.floor(player.getCharisma() / 6); // at max, sell for 16.
+        }
         else if (this.type == "hideBoots")
         {
             //For All Items
@@ -47956,6 +48487,122 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 13; // at max, buy for 13.
             this.sellValue = 13; // at max, sell for 13.
+        }
+        else if (this.type == "longElkBoots")
+        {
+            //For All Items
+            this.identity = "Long Elk Boots";
+            this.weight = 2.2;
+            this.size = 11;
+            this.description = "Long boots sewn from elk pelt.";
+            this.intForDes = 0;
+            this.intDescription = "The boots are durable and well-fitted.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "boots";
+            //Utility Focused
+            //protections
+            this.protection = 0.03 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0.3;
+            this.thirstRetention = 0;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 1;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 2;
+            this.rangedBonus = 1;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 2;
+            //Extra Stat Bonuses
+            this.sleepBonus = 5;
+            this.hungerBonus = 1;
+            this.thirstBonus = 0;
+            this.warmthBonus = 6;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 3;
+            this.intForCraft = 47;
+            this.ingredients = [["Elk Pelt", 2]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 24; // at max, buy for 24.
+            this.sellValue = 24; // at max, sell for 24.
+        }
+        else if (this.type == "longElkGloves")
+        {
+            //For All Items
+            this.identity = "Long Elk Gloves";
+            this.weight = 1.4;
+            this.size = 11;
+            this.description = "Long gloves sewn from elk pelt.";
+            this.intForDes = 0;
+            this.intDescription = "The gloves cover the forearms which makes them ideal for archery.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "gloves";
+            //Utility Focused
+            //protections
+            this.protection = 0.02 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0.15;
+            this.thirstRetention = -0.05;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 0;
+            this.rangedBonus = 2;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 1;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 4;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 3;
+            this.intForCraft = 46;
+            this.ingredients = [["Elk Pelt", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 20; // at max, buy for 20.
+            this.sellValue = 20; // at max, sell for 20.
         }
         else if (this.type == "zetianGloves")
         {
@@ -49265,6 +49912,615 @@ function Item(type, x, y)
             this.buyValue = 90 - Math.floor(player.getCharisma() / 10); // at max, buy for 85.
             this.sellValue = 70 + Math.floor(player.getCharisma() / 3); // at max, sell for 85.
         }
+        else if (this.type == "vardanianGentryOutfitTan" || this.type == "vardanianGentryTanOutfit" || this.type == "vardanianGentryOutfitGrey" || this.type == "vardanianGentryGreyOutfit" || this.type == "vardanianGentryOutfitGreen" || this.type == "vardanianGentryGreenOutfit")
+        {
+            //For All Items
+            this.identity = "Fine Vardanian Outfit";
+            this.weight = 2.25;
+            this.size = 26;
+            this.description = "Extravagant clothing sewn from motylinka. This outfit is meant for men.";
+            this.intForDes = 0;
+            this.intDescription = "This sort of outfit is worn by wealthy Vardanian merchants and highfolk.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 2.5;
+            this.thirstRetention = -0.25;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            if (player.gender == "Male")
+            {
+                this.intelligenceBonus = 3;
+                this.charismaBonus = 20;
+            }
+            else
+            {
+                this.intelligenceBonus = 0;
+                this.charismaBonus = -50;
+            }
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 20;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "resistDisease";
+
+            this.yield = 1;
+            this.intForCraft = 40;
+            this.ingredients = [["Motylinka", 2]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 145 - Math.floor(player.getCharisma() / 5); // at max, buy for 135.
+            this.sellValue = 125 + Math.floor(player.getCharisma() / 5); // at max, sell for 135.
+        }
+        else if (this.type == "motylinkaCloak" || this.type == "redMotylinkaCloak")
+        {
+            //For All Items
+            this.identity = "Fine Vardanian Cloak";
+            this.weight = 3;
+            this.size = 26;
+            if (this.type == "redMotylinkaCloak")
+            {
+                this.description = "An extravagant cloak made of red dyed motylinka. This outfit is meant for women.";
+            }
+            else
+            {
+                this.description = "An extravagant cloak made of motylinka. This outfit is meant for women.";
+            }
+            this.intForDes = 0;
+            this.intDescription = "Such cloaks are mainly worn by wealthy merchants and highfolk.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 2.65;
+            this.thirstRetention = -0.3;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            if (player.gender == "Female")
+            {
+                if (this.type == "redMotylinkaCloak")
+                {
+                    this.intelligenceBonus = 0;
+                    this.rangedBonus = 2;
+                    this.dexterityBonus = 3;
+                    this.charismaBonus = 24;
+                }
+                else
+                {
+                    this.intelligenceBonus = 1;
+                    this.rangedBonus = 2;
+                    this.dexterityBonus = 3;
+                    this.charismaBonus = 20;
+                }
+            }
+            else
+            {
+                this.intelligenceBonus = 0;
+                this.rangedBonus = 0;
+                this.dexterityBonus = 0;
+                this.charismaBonus = -50;
+            }
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 10;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 19;
+            this.ingredients = [["Varn Pelt", 3]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 40 - Math.floor(player.getCharisma() / 10); // at max, buy for 35.
+            this.sellValue = 30 + Math.floor(player.getCharisma() / 10); // at max, sell for 35.
+        }
+        else if (this.type == "koivayaFurClothing")
+        {
+            //For All Items
+            this.identity = "Koivaya Fur Clothing";
+            this.weight = 1.25;
+            this.size = 26;
+            this.description = "Clothing sewn from the pelts of koivayas.";
+            this.intForDes = 2;
+            this.intDescription = "Koivaya clothing is mostly worn by the commonfolk of Vardania.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 2.25;
+            this.thirstRetention = -0.4;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 1;
+            this.rangedBonus = 1;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 1;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 10;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 19;
+            this.ingredients = [["Varn Pelt", 3]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 40 - Math.floor(player.getCharisma() / 10); // at max, buy for 35.
+            this.sellValue = 30 + Math.floor(player.getCharisma() / 10); // at max, sell for 35.
+        }
+        else if (this.type == "elkFurClothing")
+        {
+            //For All Items
+            this.identity = "Elk Fur Clothing";
+            this.weight = 1.1;
+            this.size = 25;
+            this.description = "Clothing sewn from cloth and the pelt of an elk.";
+            this.intForDes = 3;
+            this.intDescription = "Elk fur clothing is worn by all manner of lowborne vardanfolk.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 2.1;
+            this.thirstRetention = -0.2;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 2;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 4;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 14;
+            this.ingredients = [["Cloth", 1], ["Elk Pelt", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 27 - Math.floor(player.getCharisma() / 25); // at max, buy for 25.
+            this.sellValue = 20 + Math.floor(player.getCharisma() / 10); // at max, sell for 25.
+        }
+        else if (this.type == "varminFurClothing")
+        {
+            //For All Items
+            this.identity = "Varmin Fur Clothing";
+            this.weight = 1.5;
+            this.size = 24;
+            this.description = "Clothing sewn from the pelt of a varmin.";
+            this.intForDes = 0;
+            this.intDescription = "Varmin fur clothing is regarded as filthy, cheap, and low class.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 2;
+            this.thirstRetention = -0.32;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = -6;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 1;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 3;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 6;
+            this.ingredients = [["Varmin Pelt", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 8 - Math.floor(player.getCharisma() / 25); // at max, buy for 6.
+            this.sellValue = 5 + Math.floor(player.getCharisma() / 50); // at max, sell for 6.
+        }
+        else if (this.type == "redClawThugOutfit")
+        {
+            //For All Items
+            this.identity = "Red Hand Outfit";
+            this.weight = 1.6;
+            this.size = 25;
+            this.description = "The standard outfit worn by low ranking members of The Red Hand Resistance.";
+            this.intForDes = 1;
+            this.intDescription = "Some might see the Red Hand as a resistance movement, others view it as just another brutal gang.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 2.1;
+            this.thirstRetention = -0.24;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 3;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 1;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 3;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 5;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 19 - Math.floor(player.getCharisma() / 10); // at max, buy for 14.
+            this.sellValue = 12 + Math.floor(player.getCharisma() / 25); // at max, sell for 14.
+        }
+        else if (this.type == "redClaw")
+        {
+            //For All Items
+            this.identity = "Red Claw's Armour";
+            this.weight = 19;
+            this.size = 27;
+            this.description = "The masked uniform worn by the leader of The Red Hand Resistance.";
+            this.intForDes = 1;
+            this.intDescription = "Red Claw was a commander of the Vardanian rebel forces but deserted after realizing that neither side of the war was fighting for the people.";
+            this.smallText = true;
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "armour";
+            //Utility Focused
+            //protections
+            this.protection = 9 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 6;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 2.5;
+            this.thirstRetention = -0.15;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 2;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 16;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 6;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 9;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 9;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 102 - Math.floor(player.getCharisma() / 8); // at max, buy for 96.
+            this.sellValue = 90 + Math.floor(player.getCharisma() / 8); // at max, sell for 96.
+        }
+        else if (this.type == "redClawArmour")
+        {
+            //For All Items
+            this.identity = "Red Hand Armour";
+            this.weight = 26;
+            this.size = 27;
+            this.description = "A partial set of plate armour paired with elk hide armour. This armour is worn by members of The Red Hand Resistance.";
+            this.intForDes = 2;
+            this.intDescription = "The helmet has a mask of chainmail and thick cloth that protects the wearer from disease and toxic swamp air.";
+            this.smallText = true;
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "armour";
+            //Utility Focused
+            //protections
+            this.protection = 10 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 9;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 1.5;
+            this.thirstRetention = -0.1;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 2;
+            this.enduranceBonus = 1;
+            this.toughnessBonus = 1;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 7;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 1;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 6;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 2;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "resistDisease";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 88 - Math.floor(player.getCharisma() / 25); // at max, buy for 86.
+            this.sellValue = 80 + Math.floor(player.getCharisma() / 8); // at max, sell for 86.
+        }
+        else if (this.type == "pinkVardanianDupatta")
+        {
+            //For All Items
+            this.identity = "Pink Floral Vardanian Headscarf";
+            this.weight = 0.9;
+            this.size = 26;
+            this.description = "A slender green dress with a pink floral patterned headscarf.";
+            this.intForDes = 1;
+            this.intDescription = "In Vardanian society decent women are expected to wear head coverings in public.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 1.4;
+            this.thirstRetention = 0.15;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            if (player.gender == "Male")
+            {
+                this.charismaBonus = -50;
+            }
+            else
+            {
+                this.charismaBonus = 5;
+            }
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 2;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 14;
+            this.ingredients = [["Cloth", 3]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 33 - Math.floor(player.getCharisma() / 15); // at max, buy for 30.
+            this.sellValue = 25 + Math.floor(player.getCharisma() / 10); // at max, sell for 30.
+        }
+        else if (this.type == "cianVardanianDupatta")
+        {
+            //For All Items
+            this.identity = "Cian Floral Vardanian Headscarf";
+            this.weight = 0.9;
+            this.size = 26;
+            this.description = "A slender magenta dress with a cian floral patterned headscarf.";
+            this.intForDes = 1;
+            this.intDescription = "In Vardanian society decent women are expected to wear head coverings in public.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 1.4;
+            this.thirstRetention = 0.15;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            if (player.gender == "Male")
+            {
+                this.charismaBonus = -50;
+            }
+            else
+            {
+                this.charismaBonus = 6;
+            }
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 2;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 14;
+            this.ingredients = [["Cloth", 3]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 39 - Math.floor(player.getCharisma() / 15); // at max, buy for 36.
+            this.sellValue = 31 + Math.floor(player.getCharisma() / 10); // at max, sell for 36.
+        }
         else if (this.type == "varnFurClothing")
         {
             //For All Items
@@ -49442,6 +50698,70 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 33 - Math.floor(player.getCharisma() / 8); // at max, buy for 27.
             this.sellValue = 17 + Math.floor(player.getCharisma() / 5); // at max, sell for 27.
+        }
+        else if (this.type == "koivayaFurDress")
+        {
+            //For All Items
+            this.identity = "Koivaya Fur Dress";
+            this.weight = 1;
+            this.size = 26;
+            this.description = "A dress sewn from floral cloth and koivaya fur.";
+            this.intForDes = 3;
+            this.intDescription = "This outfit is worn by the ladies of the Vardanian middle class.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 1.45;
+            this.thirstRetention = -0.2;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            if (player.gender == "Male")
+            {
+                this.charismaBonus = -50;
+            }
+            else
+            {
+                this.charismaBonus = 7;
+            }
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = -10;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 10;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "hefty";
+
+            this.yield = 1;
+            this.intForCraft = 25;
+            this.ingredients = [["Cloth", 4], ["Koivaya Pelt", 2]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 58 - Math.floor(player.getCharisma() / 10); // at max, buy for 53.
+            this.sellValue = 38 + Math.floor(player.getCharisma() / 3); // at max, sell for 53.
         }
         else if (this.type == "zetianOutfitM")
         {
@@ -53368,6 +54688,171 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "muon")
+        {
+            XXX.beginPath();
+            XXX.drawImage(blud, 685, 578, 51, 31, X - this.X + (1/2 * CCC.width) - (1/2 * 51 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 31 * 1), 51 * 1, 31 * 1);
+        }
+        else if (this.type == "muonShell")
+        {
+            XXX.beginPath();
+            XXX.drawImage(blud, 685, 610, 51, 31, X - this.X + (1/2 * CCC.width) - (1/2 * 51 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 31 * 1), 51 * 1, 31 * 1);
+        }
+        else if (this.type == "muonFruit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(blud, 686, 637, 51, 31, X - this.X + (1/2 * CCC.width) - (1/2 * 51 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 31 * 1), 51 * 1, 31 * 1);
+        }
+        else if (this.type == "longElkGloves")
+        {
+            XXX.beginPath();
+            XXX.drawImage(negro, 420, 15, 54, 60, X - this.X + (1/2 * CCC.width) - (1/2 * 54 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 60 * 1), 54 * 1, 60 * 1);
+        }
+        else if (this.type == "longElkBoots")
+        {
+            XXX.beginPath();
+            XXX.drawImage(negro, 477, 15, 54, 60, X - this.X + (1/2 * CCC.width) - (1/2 * 54 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 60 * 1), 54 * 1, 60 * 1);
+        }
+        else if (this.type == "motylinkaBoots")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moth, 549, 144, 48, 32, X - this.X + (1/2 * CCC.width) - (1/2 * 48 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 32 * 1), 48 * 1, 32 * 1);
+        }
+        else if (this.type == "motylinkaGloves")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moth, 552, 175, 44, 40, X - this.X + (1/2 * CCC.width) - (1/2 * 44 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 40 * 1), 44 * 1, 40 * 1);
+        }
+        else if (this.type == "redMotylinkaBoots")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mawt, 549, 144, 48, 32, X - this.X + (1/2 * CCC.width) - (1/2 * 48 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 32 * 1), 48 * 1, 32 * 1);
+        }
+        else if (this.type == "redMotylinkaGloves")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mawt, 552, 175, 44, 40, X - this.X + (1/2 * CCC.width) - (1/2 * 44 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 40 * 1), 44 * 1, 40 * 1);
+        }
+        else if (this.type == "boroyeNobleDress")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moth, 973, 21, 58, 131, X - this.X + (1/2 * CCC.width) - (1/2 * 58 * 0.9), Y - this.Y + (1/2 * CCC.height) - (1/2 * 131 * 0.9), 58 * 0.9, 131 * 0.9);
+        }
+        else if (this.type == "boroyeNobleOutfit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moth, 899, 16, 58, 131, X - this.X + (1/2 * CCC.width) - (1/2 * 58 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 131 * 1), 58 * 1, 131 * 1);
+        }
+        else if (this.type == "redMotylinkaCloak")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mawt, 685, 25, 55, 93, X - this.X + (1/2 * CCC.width) - (1/2 * 55 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 93 * 1), 55 * 1, 93 * 1);
+        }
+        else if (this.type == "motylinkaCloak")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moth, 685, 25, 55, 93, X - this.X + (1/2 * CCC.width) - (1/2 * 55 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 93 * 1), 55 * 1, 93 * 1);
+        }
+        else if (this.type == "vardanianGentryOutfitTan")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mawt, 1578, 355, 77, 191, X - this.X + (1/2 * CCC.width) - (1/2 * 77 * 0.65), Y - this.Y + (1/2 * CCC.height) - (1/2 * 191 * 0.65), 77 * 0.65, 191 * 0.65);
+        }
+        else if (this.type == "vardanianGentryTanOutfit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mawt, 1663, 355, 77, 191, X - this.X + (1/2 * CCC.width) - (1/2 * 77 * 0.65), Y - this.Y + (1/2 * CCC.height) - (1/2 * 191 * 0.65), 77 * 0.65, 191 * 0.65);
+        }
+        else if (this.type == "vardanianGentryOutfitGreen")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mawt, 1577, 552, 77, 191, X - this.X + (1/2 * CCC.width) - (1/2 * 77 * 0.65), Y - this.Y + (1/2 * CCC.height) - (1/2 * 191 * 0.65), 77 * 0.65, 191 * 0.65);
+        }
+        else if (this.type == "vardanianGentryGreenOutfit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mawt, 1664, 553, 77, 191, X - this.X + (1/2 * CCC.width) - (1/2 * 77 * 0.65), Y - this.Y + (1/2 * CCC.height) - (1/2 * 191 * 0.65), 77 * 0.65, 191 * 0.65);
+        }
+        else if (this.type == "vardanianGentryOutfitGrey")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mawt, 1575, 744, 77, 191, X - this.X + (1/2 * CCC.width) - (1/2 * 77 * 0.65), Y - this.Y + (1/2 * CCC.height) - (1/2 * 191 * 0.65), 77 * 0.65, 191 * 0.65);
+        }
+        else if (this.type == "vardanianGentryGreyOutfit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mawt, 1662, 743, 77, 191, X - this.X + (1/2 * CCC.width) - (1/2 * 77 * 0.65), Y - this.Y + (1/2 * CCC.height) - (1/2 * 191 * 0.65), 77 * 0.65, 191 * 0.65);
+        }
+        else if (this.type == "blackBearMediumArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mawt, 1611, 214, 54, 107, X - this.X + (1/2 * CCC.width) - (1/2 * 54 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 107 * 1), 54 * 1, 107 * 1);
+        }
+        else if (this.type == "plumedBoroyePlateArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moth, 826, 19, 50, 125, X - this.X + (1/2 * CCC.width) - (1/2 * 50 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 125 * 1), 50 * 1, 125 * 1);
+        }
+        else if (this.type == "plumedMorrowPlateArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mawt, 826, 19, 50, 125, X - this.X + (1/2 * CCC.width) - (1/2 * 50 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 125 * 1), 50 * 1, 125 * 1);
+        }
+        else if (this.type == "boroyePlateArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moth, 757, 22, 50, 125, X - this.X + (1/2 * CCC.width) - (1/2 * 50 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 125 * 1), 50 * 1, 125 * 1);
+        }
+        else if (this.type == "morrowPlateArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mawt, 757, 22, 50, 125, X - this.X + (1/2 * CCC.width) - (1/2 * 50 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 125 * 1), 50 * 1, 125 * 1);
+        }
+        else if (this.type == "redClawArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(negro, 335, 7, 68, 123, X - this.X + (1/2 * CCC.width) - (1/2 * 68 * 1.05), Y - this.Y + (1/2 * CCC.height) - (1/2 * 123 * 1.05), 68 * 1.05, 123 * 1.05);
+        }
+        else if (this.type == "pinkVardanianDupatta")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ruin, 521, 126, 66, 122, X - this.X + (1/2 * CCC.width) - (1/2 * 66 * 0.9), Y - this.Y + (1/2 * CCC.height) - (1/2 * 122 * 0.9), 66 * 0.9, 122 * 0.9);
+        }
+        else if (this.type == "cianVardanianDupatta")
+        {
+            XXX.beginPath();
+            XXX.drawImage(negro, 178, 28, 68, 123, X - this.X + (1/2 * CCC.width) - (1/2 * 68 * 0.9), Y - this.Y + (1/2 * CCC.height) - (1/2 * 123 * 0.9), 68 * 0.9, 123 * 0.9);
+        }
+        else if (this.type == "elkFurClothing")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ruin, 432, 126, 66, 122, X - this.X + (1/2 * CCC.width) - (1/2 * 66 * 0.96), Y - this.Y + (1/2 * CCC.height) - (1/2 * 122 * 0.96), 66 * 0.96, 122 * 0.96);
+        }
+        else if (this.type == "varminFurClothing")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ruin, 122, 117, 66, 122, X - this.X + (1/2 * CCC.width) - (1/2 * 66 * 1.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 122 * 1.3), 66 * 1.3, 122 * 1.3);
+        }
+        else if (this.type == "redClawThugOutfit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ruin, 187, 114, 66, 122, X - this.X + (1/2 * CCC.width) - (1/2 * 66 * 1.05), Y - this.Y + (1/2 * CCC.height) - (1/2 * 122 * 1.05), 66 * 1.05, 122 * 1.05);
+        }
+        else if (this.type == "redClaw")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ruin, 314, 126, 66, 122, X - this.X + (1/2 * CCC.width) - (1/2 * 66 * 0.93), Y - this.Y + (1/2 * CCC.height) - (1/2 * 122 * 0.93), 66 * 0.93, 122 * 0.93);
+        }
+        else if (this.type == "koivayaFurClothing")
+        {
+            XXX.beginPath();
+            XXX.drawImage(trea, 637, 1769, 51, 90, X - this.X + (1/2 * CCC.width) - (1/2 * 51 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 90 * 1), 51 * 1, 90 * 1);
+        }
+        else if (this.type == "koivayaFurDress")
+        {
+            XXX.beginPath();
+            XXX.drawImage(trea, 638, 1881, 51, 98, X - this.X + (1/2 * CCC.width) - (1/2 * 51 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 98 * 1), 51 * 1, 98 * 1);
+        }
         else if (this.type == "zetianGloves")
         {
             XXX.beginPath();
@@ -56258,7 +57743,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(tomb, 530, 538, 43, 36, X - this.X + (1/2 * CCC.width) - (1/2 * 43 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 36 * 1), 43 * 1, 36 * 1);
         }
-        else if (this.type == "ameloyPerfume" || this.type == "poegroonOil")
+        else if (this.type == "ameloyPerfume" || this.type == "muonPerfume" || this.type == "poegroonOil")
         {
             XXX.beginPath();
             XXX.drawImage(oldverse, 1735, 201, 10, 15, X - this.X + (1/2 * CCC.width) - (1/2 * 10 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 15 * 1), 10 * 1, 15 * 1);
@@ -60310,6 +61795,171 @@ function Item(type, x, y)
         {
             LXX.beginPath();
             LXX.drawImage(candlewic, 61, 201, 27, 29, this.invX - (1/2 * 27 * 1.5), this.invY - (1/2 * 29 * 1.5), 27 * 1.5, 29 * 1.5);
+        }
+        else if (this.type == "muon")
+        {
+            LXX.beginPath();
+            LXX.drawImage(blud, 685, 578, 51, 31, this.invX - (1/2 * 51 * 1), this.invY - (1/2 * 31 * 1), 51 * 1, 31 * 1);
+        }
+        else if (this.type == "muonShell")
+        {
+            LXX.beginPath();
+            LXX.drawImage(blud, 685, 610, 51, 31, this.invX - (1/2 * 51 * 1), this.invY - (1/2 * 31 * 1), 51 * 1, 31 * 1);
+        }
+        else if (this.type == "muonFruit")
+        {
+            LXX.beginPath();
+            LXX.drawImage(blud, 686, 637, 51, 31, this.invX - (1/2 * 51 * 1), this.invY - (1/2 * 31 * 1), 51 * 1, 31 * 1);
+        }
+        else if (this.type == "longElkGloves")
+        {
+            LXX.beginPath();
+            LXX.drawImage(negro, 420, 15, 54, 60, this.invX - (1/2 * 54 * 0.9), this.invY - (1/2 * 60 * 0.9), 54 * 0.9, 60 * 0.9);
+        }
+        else if (this.type == "longElkBoots")
+        {
+            LXX.beginPath();
+            LXX.drawImage(negro, 477, 15, 54, 60, this.invX - (1/2 * 54 * 0.9), this.invY - (1/2 * 60 * 0.9), 54 * 0.9, 60 * 0.9);
+        }
+        else if (this.type == "motylinkaBoots")
+        {
+            LXX.beginPath();
+            LXX.drawImage(moth, 549, 144, 48, 32, this.invX - (1/2 * 48 * 0.9), this.invY - (1/2 * 32 * 0.9), 48 * 0.9, 32 * 0.9);
+        }
+        else if (this.type == "motylinkaGloves")
+        {
+            LXX.beginPath();
+            LXX.drawImage(moth, 552, 175, 44, 40, this.invX - (1/2 * 44 * 0.9), this.invY - (1/2 * 40 * 0.9), 44 * 0.9, 40 * 0.9);
+        }
+        else if (this.type == "redMotylinkaBoots")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mawt, 549, 144, 48, 32, this.invX - (1/2 * 48 * 0.9), this.invY - (1/2 * 32 * 0.9), 48 * 0.9, 32 * 0.9);
+        }
+        else if (this.type == "redMotylinkaGloves")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mawt, 552, 175, 44, 40, this.invX - (1/2 * 44 * 0.9), this.invY - (1/2 * 40 * 0.9), 44 * 0.9, 40 * 0.9);
+        }
+        else if (this.type == "boroyeNobleDress")
+        {
+            LXX.beginPath();
+            LXX.drawImage(moth, 973, 21, 58, 131, this.invX - (1/2 * 58 * 0.55), this.invY - (1/2 * 131 * 0.55), 58 * 0.55, 131 * 0.55);
+        }
+        else if (this.type == "boroyeNobleOutfit")
+        {
+            LXX.beginPath();
+            LXX.drawImage(moth, 899, 16, 58, 131, this.invX - (1/2 * 58 * 0.55), this.invY - (1/2 * 131 * 0.55), 58 * 0.55, 131 * 0.55);
+        }
+        else if (this.type == "redMotylinkaCloak")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mawt, 685, 25, 55, 93, this.invX - (1/2 * 55 * 0.7), this.invY - (1/2 * 93 * 0.7), 55 * 0.7, 93 * 0.7);
+        }
+        else if (this.type == "motylinkaCloak")
+        {
+            LXX.beginPath();
+            LXX.drawImage(moth, 685, 25, 55, 93, this.invX - (1/2 * 55 * 0.7), this.invY - (1/2 * 93 * 0.7), 55 * 0.7, 93 * 0.7);
+        }
+        else if (this.type == "vardanianGentryOutfitTan")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mawt, 1578, 355, 77, 191, this.invX - (1/2 * 77 * 0.45), this.invY - (1/2 * 191 * 0.45), 77 * 0.45, 191 * 0.45);
+        }
+        else if (this.type == "vardanianGentryTanOutfit")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mawt, 1663, 355, 77, 191, this.invX - (1/2 * 77 * 0.45), this.invY - (1/2 * 191 * 0.45), 77 * 0.45, 191 * 0.45);
+        }
+        else if (this.type == "vardanianGentryOutfitGreen")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mawt, 1577, 552, 77, 191, this.invX - (1/2 * 77 * 0.45), this.invY - (1/2 * 191 * 0.45), 77 * 0.45, 191 * 0.45);
+        }
+        else if (this.type == "vardanianGentryGreenOutfit")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mawt, 1664, 553, 77, 191, this.invX - (1/2 * 77 * 0.45), this.invY - (1/2 * 191 * 0.45), 77 * 0.45, 191 * 0.45);
+        }
+        else if (this.type == "vardanianGentryOutfitGrey")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mawt, 1575, 744, 77, 191, this.invX - (1/2 * 77 * 0.45), this.invY - (1/2 * 191 * 0.45), 77 * 0.45, 191 * 0.45);
+        }
+        else if (this.type == "vardanianGentryGreyOutfit")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mawt, 1662, 743, 77, 191, this.invX - (1/2 * 77 * 0.45), this.invY - (1/2 * 191 * 0.45), 77 * 0.45, 191 * 0.45);
+        }
+        else if (this.type == "blackBearMediumArmour")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mawt, 1611, 214, 54, 107, this.invX - (1/2 * 54 * 0.75), this.invY - (1/2 * 107 * 0.75), 54 * 0.75, 107 * 0.75);
+        }
+        else if (this.type == "plumedBoroyePlateArmour")
+        {
+            LXX.beginPath();
+            LXX.drawImage(moth, 826, 19, 50, 125, this.invX - (1/2 * 50 * 0.7), this.invY - (1/2 * 125 * 0.7), 50 * 0.7, 125 * 0.7);
+        }
+        else if (this.type == "plumedMorrowPlateArmour")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mawt, 826, 19, 50, 125, this.invX - (1/2 * 50 * 0.7), this.invY - (1/2 * 125 * 0.7), 50 * 0.7, 125 * 0.7);
+        }
+        else if (this.type == "boroyePlateArmour")
+        {
+            LXX.beginPath();
+            LXX.drawImage(moth, 757, 22, 50, 125, this.invX - (1/2 * 50 * 0.75), this.invY - (1/2 * 125 * 0.75), 50 * 0.75, 125 * 0.75);
+        }
+        else if (this.type == "morrowPlateArmour")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mawt, 757, 22, 50, 125, this.invX - (1/2 * 50 * 0.75), this.invY - (1/2 * 125 * 0.75), 50 * 0.75, 125 * 0.75);
+        }
+        else if (this.type == "redClawArmour")
+        {
+            LXX.beginPath();
+            LXX.drawImage(negro, 335, 7, 68, 123, this.invX - (1/2 * 68 * 0.7), this.invY - (1/2 * 123 * 0.7), 68 * 0.7, 123 * 0.7);
+        }
+        else if (this.type == "pinkVardanianDupatta")
+        {
+            LXX.beginPath();
+            LXX.drawImage(ruin, 521, 126, 66, 122, this.invX - (1/2 * 66 * 0.65), this.invY - (1/2 * 122 * 0.65), 66 * 0.65, 122 * 0.65);
+        }
+        else if (this.type == "cianVardanianDupatta")
+        {
+            LXX.beginPath();
+            LXX.drawImage(negro, 178, 28, 68, 123, this.invX - (1/2 * 68 * 0.65), this.invY - (1/2 * 123 * 0.65), 68 * 0.65, 123 * 0.65);
+        }
+        else if (this.type == "elkFurClothing")
+        {
+            LXX.beginPath();
+            LXX.drawImage(ruin, 432, 126, 66, 122, this.invX - (1/2 * 66 * 0.75), this.invY - (1/2 * 122 * 0.75), 66 * 0.75, 122 * 0.75);
+        }
+        else if (this.type == "varminFurClothing")
+        {
+            LXX.beginPath();
+            LXX.drawImage(ruin, 122, 117, 66, 122, this.invX - (1/2 * 66 * 1.05), this.invY - (1/2 * 122 * 1.05), 66 * 1.05, 122 * 1.05);
+        }
+        else if (this.type == "redClawThugOutfit")
+        {
+            LXX.beginPath();
+            LXX.drawImage(ruin, 187, 114, 66, 122, this.invX - (1/2 * 66 * 0.8), this.invY - (1/2 * 122 * 0.8), 66 * 0.8, 122 * 0.8);
+        }
+        else if (this.type == "redClaw")
+        {
+            LXX.beginPath();
+            LXX.drawImage(ruin, 314, 126, 66, 122, this.invX - (1/2 * 66 * 0.68), this.invY - (1/2 * 122 * 0.68), 66 * 0.68, 122 * 0.68);
+        }
+        else if (this.type == "koivayaFurClothing")
+        {
+            LXX.beginPath();
+            LXX.drawImage(trea, 637, 1769, 51, 90, this.invX - (1/2 * 51 * 0.75), this.invY - (1/2 * 90 * 0.75), 51 * 0.75, 90 * 0.75);
+        }
+        else if (this.type == "koivayaFurDress")
+        {
+            LXX.beginPath();
+            LXX.drawImage(trea, 638, 1881, 51, 98, this.invX - (1/2 * 51 * 0.75), this.invY - (1/2 * 98 * 0.75), 51 * 0.75, 98 * 0.75);
         }
         else if (this.type == "zetianGloves")
         {
@@ -67230,6 +68880,171 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "muon")
+        {
+            XXX.beginPath();
+            XXX.drawImage(blud, 685, 578, 51, 31, this.invX - (1/2 * 51 * 1), this.invY - (1/2 * 31 * 1), 51 * 1, 31 * 1);
+        }
+        else if (this.type == "muonShell")
+        {
+            XXX.beginPath();
+            XXX.drawImage(blud, 685, 610, 51, 31, this.invX - (1/2 * 51 * 1), this.invY - (1/2 * 31 * 1), 51 * 1, 31 * 1);
+        }
+        else if (this.type == "muonFruit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(blud, 686, 637, 51, 31, this.invX - (1/2 * 51 * 1), this.invY - (1/2 * 31 * 1), 51 * 1, 31 * 1);
+        }
+        else if (this.type == "longElkGloves")
+        {
+            XXX.beginPath();
+            XXX.drawImage(negro, 420, 15, 54, 60, this.invX - (1/2 * 54 * 0.9), this.invY - (1/2 * 60 * 0.9), 54 * 0.9, 60 * 0.9);
+        }
+        else if (this.type == "longElkBoots")
+        {
+            XXX.beginPath();
+            XXX.drawImage(negro, 477, 15, 54, 60, this.invX - (1/2 * 54 * 0.9), this.invY - (1/2 * 60 * 0.9), 54 * 0.9, 60 * 0.9);
+        }
+        else if (this.type == "motylinkaBoots")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moth, 549, 144, 48, 32, this.invX - (1/2 * 48 * 0.9), this.invY - (1/2 * 32 * 0.9), 48 * 0.9, 32 * 0.9);
+        }
+        else if (this.type == "motylinkaGloves")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moth, 552, 175, 44, 40, this.invX - (1/2 * 44 * 0.9), this.invY - (1/2 * 40 * 0.9), 44 * 0.9, 40 * 0.9);
+        }
+        else if (this.type == "redMotylinkaBoots")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mawt, 549, 144, 48, 32, this.invX - (1/2 * 48 * 0.9), this.invY - (1/2 * 32 * 0.9), 48 * 0.9, 32 * 0.9);
+        }
+        else if (this.type == "redMotylinkaGloves")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mawt, 552, 175, 44, 40, this.invX - (1/2 * 44 * 0.9), this.invY - (1/2 * 40 * 0.9), 44 * 0.9, 40 * 0.9);
+        }
+        else if (this.type == "boroyeNobleDress")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moth, 973, 21, 58, 131, this.invX - (1/2 * 58 * 0.55), this.invY - (1/2 * 131 * 0.55), 58 * 0.55, 131 * 0.55);
+        }
+        else if (this.type == "boroyeNobleOutfit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moth, 899, 16, 58, 131, this.invX - (1/2 * 58 * 0.55), this.invY - (1/2 * 131 * 0.55), 58 * 0.55, 131 * 0.55);
+        }
+        else if (this.type == "redMotylinkaCloak")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mawt, 685, 25, 55, 93, this.invX - (1/2 * 55 * 0.7), this.invY - (1/2 * 93 * 0.7), 55 * 0.7, 93 * 0.7);
+        }
+        else if (this.type == "motylinkaCloak")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moth, 685, 25, 55, 93, this.invX - (1/2 * 55 * 0.7), this.invY - (1/2 * 93 * 0.7), 55 * 0.7, 93 * 0.7);
+        }
+        else if (this.type == "vardanianGentryOutfitTan")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mawt, 1578, 355, 77, 191, this.invX - (1/2 * 77 * 0.45), this.invY - (1/2 * 191 * 0.45), 77 * 0.45, 191 * 0.45);
+        }
+        else if (this.type == "vardanianGentryTanOutfit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mawt, 1663, 355, 77, 191, this.invX - (1/2 * 77 * 0.45), this.invY - (1/2 * 191 * 0.45), 77 * 0.45, 191 * 0.45);
+        }
+        else if (this.type == "vardanianGentryOutfitGreen")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mawt, 1577, 552, 77, 191, this.invX - (1/2 * 77 * 0.45), this.invY - (1/2 * 191 * 0.45), 77 * 0.45, 191 * 0.45);
+        }
+        else if (this.type == "vardanianGentryGreenOutfit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mawt, 1664, 553, 77, 191, this.invX - (1/2 * 77 * 0.45), this.invY - (1/2 * 191 * 0.45), 77 * 0.45, 191 * 0.45);
+        }
+        else if (this.type == "vardanianGentryOutfitGrey")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mawt, 1575, 744, 77, 191, this.invX - (1/2 * 77 * 0.45), this.invY - (1/2 * 191 * 0.45), 77 * 0.45, 191 * 0.45);
+        }
+        else if (this.type == "vardanianGentryGreyOutfit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mawt, 1662, 743, 77, 191, this.invX - (1/2 * 77 * 0.45), this.invY - (1/2 * 191 * 0.45), 77 * 0.45, 191 * 0.45);
+        }
+        else if (this.type == "blackBearMediumArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mawt, 1611, 214, 54, 107, this.invX - (1/2 * 54 * 0.75), this.invY - (1/2 * 107 * 0.75), 54 * 0.75, 107 * 0.75);
+        }
+        else if (this.type == "plumedBoroyePlateArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moth, 826, 19, 50, 125, this.invX - (1/2 * 50 * 0.7), this.invY - (1/2 * 125 * 0.7), 50 * 0.7, 125 * 0.7);
+        }
+        else if (this.type == "plumedMorrowPlateArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mawt, 826, 19, 50, 125, this.invX - (1/2 * 50 * 0.7), this.invY - (1/2 * 125 * 0.7), 50 * 0.7, 125 * 0.7);
+        }
+        else if (this.type == "boroyePlateArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moth, 757, 22, 50, 125, this.invX - (1/2 * 50 * 0.75), this.invY - (1/2 * 125 * 0.75), 50 * 0.75, 125 * 0.75);
+        }
+        else if (this.type == "morrowPlateArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mawt, 757, 22, 50, 125, this.invX - (1/2 * 50 * 0.75), this.invY - (1/2 * 125 * 0.75), 50 * 0.75, 125 * 0.75);
+        }
+        else if (this.type == "redClawArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(negro, 335, 7, 68, 123, this.invX - (1/2 * 68 * 0.7), this.invY - (1/2 * 123 * 0.7), 68 * 0.7, 123 * 0.7);
+        }
+        else if (this.type == "pinkVardanianDupatta")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ruin, 521, 126, 66, 122, this.invX - (1/2 * 66 * 0.65), this.invY - (1/2 * 122 * 0.65), 66 * 0.65, 122 * 0.65);
+        }
+        else if (this.type == "cianVardanianDupatta")
+        {
+            XXX.beginPath();
+            XXX.drawImage(negro, 178, 28, 68, 123, this.invX - (1/2 * 68 * 0.65), this.invY - (1/2 * 123 * 0.65), 68 * 0.65, 123 * 0.65);
+        }
+        else if (this.type == "elkFurClothing")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ruin, 432, 126, 66, 122, this.invX - (1/2 * 66 * 0.75), this.invY - (1/2 * 122 * 0.75), 66 * 0.75, 122 * 0.75);
+        }
+        else if (this.type == "varminFurClothing")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ruin, 122, 117, 66, 122, this.invX - (1/2 * 66 * 1.05), this.invY - (1/2 * 122 * 1.05), 66 * 1.05, 122 * 1.05);
+        }
+        else if (this.type == "redClawThugOutfit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ruin, 187, 114, 66, 122, this.invX - (1/2 * 66 * 0.8), this.invY - (1/2 * 122 * 0.8), 66 * 0.8, 122 * 0.8);
+        }
+        else if (this.type == "redClaw")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ruin, 314, 126, 66, 122, this.invX - (1/2 * 66 * 0.68), this.invY - (1/2 * 122 * 0.68), 66 * 0.68, 122 * 0.68);
+        }
+        else if (this.type == "koivayaFurClothing")
+        {
+            XXX.beginPath();
+            XXX.drawImage(trea, 637, 1769, 51, 90, this.invX - (1/2 * 51 * 0.75), this.invY - (1/2 * 90 * 0.75), 51 * 0.75, 90 * 0.75);
+        }
+        else if (this.type == "koivayaFurDress")
+        {
+            XXX.beginPath();
+            XXX.drawImage(trea, 638, 1881, 51, 98, this.invX - (1/2 * 51 * 0.75), this.invY - (1/2 * 98 * 0.75), 51 * 0.75, 98 * 0.75);
         }
         else if (this.type == "zetianGloves")
         {

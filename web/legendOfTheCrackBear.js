@@ -4742,6 +4742,30 @@ function theLegend()
     allWorn.push(new Item("ratKingRegalia", false)); //182
     allWorn.push(new Item("vardanianInformerUniform", false)); //183
     allWorn.push(new Item("zetianGloves", false)); //184
+    allWorn.push(new Item("koivayaFurDress", false)); //185
+    allWorn.push(new Item("koivayaFurClothing", false)); //186
+    allWorn.push(new Item("elkFurClothing", false)); //187
+    allWorn.push(new Item("pinkVardanianDupatta", false)); //188
+    allWorn.push(new Item("cianVardanianDupatta", false)); //189
+    allWorn.push(new Item("redClaw", false)); //190
+    allWorn.push(new Item("redClawThugOutfit", false)); //191
+    allWorn.push(new Item("varminFurClothing", false)); //192
+    allWorn.push(new Item("redClawArmour", false)); //193
+    allWorn.push(new Item("plumedBoroyePlateArmour", false)); //194
+    allWorn.push(new Item("plumedMorrowPlateArmour", false)); //195
+    allWorn.push(new Item("morrowPlateArmour", false)); //196
+    allWorn.push(new Item("boroyePlateArmour", false)); //197
+    allWorn.push(new Item("blackBearMediumArmour", false)); //198
+    allWorn.push(new Item("vardanianGentryTanOutfit", false)); //199
+    allWorn.push(new Item("redMotylinkaCloak", false)); //200
+    allWorn.push(new Item("motylinkaCloak", false)); //201
+    allWorn.push(new Item("boroyeNobleDress", false)); //202
+    allWorn.push(new Item("boroyeNobleOutfit", false)); //203
+    allWorn.push(new Item("redMotylinkaGloves", false)); //204
+    allWorn.push(new Item("longElkGloves", false)); //205
+    allWorn.push(new Item("redMotylinkaBoots", false)); //206
+    allWorn.push(new Item("longElkBoots", false)); //207
+
 
     scenicList = [];
 
@@ -4900,6 +4924,11 @@ function theLegend()
     smithing.push(new Item("cephrianRapier", false));
     smithing.push(new Item("zetianWarriorArmour", false));
     smithing.push(new Item("cephrianPaladinArmour", false));
+    smithing.push(new Item("plumedBoroyePlateArmour", false));
+    smithing.push(new Item("plumedMorrowPlateArmour", false));
+    smithing.push(new Item("morrowPlateArmour", false));
+    smithing.push(new Item("boroyePlateArmour", false));
+    smithing.push(new Item("blackBearMediumArmour", false));
 
 //Foods (Items cooked at either a stove, an oven, or a campfire)
     foods = [];
@@ -5242,6 +5271,26 @@ function theLegend()
     tailoring.push(new Item("zetianOutfitF", false));
     tailoring.push(new Item("motylinka", false));
     tailoring.push(new Item("zetianGloves", false));
+    tailoring.push(new Item("koivayaFurClothing", false));
+    tailoring.push(new Item("koivayaFurDress", false));
+    tailoring.push(new Item("elkFurClothing", false));
+    tailoring.push(new Item("varminFurClothing", false));
+    tailoring.push(new Item("pinkVardanianDubatta", false));
+    tailoring.push(new Item("cianVardanianDubatta", false));
+    tailoring.push(new Item("vardanianGentryOutfitTan", false));
+    tailoring.push(new Item("vardanianGentryTanOutfit", false));
+    tailoring.push(new Item("vardanianGentryGreenOutfit", false));
+    tailoring.push(new Item("vardanianGentryOutfitGreen", false));
+    tailoring.push(new Item("vardanianGentryGreyOutfit", false));
+    tailoring.push(new Item("vardanianGentryOutfitGrey", false));
+    tailoring.push(new Item("redMotylinkaCloak", false));
+    tailoring.push(new Item("motylinkaCloak", false));
+    tailoring.push(new Item("motylinkaBoots", false));
+    tailoring.push(new Item("motylinkaGloves", false));
+    tailoring.push(new Item("redMotylinkaBoots", false));
+    tailoring.push(new Item("redMotylinkaGloves", false));
+    tailoring.push(new Item("longElkBoots", false));
+    tailoring.push(new Item("longElkGloves", false));
 
 //Jewelry (Items crafted at a jewler's station, rings, necklaces, cutting gems, glassblowing etc.)
     jewelry = [];
@@ -5330,6 +5379,7 @@ function theLegend()
     alchemy.push(new Item("fermentedVodkapaSpleen", false));
     alchemy.push(new Item("spellOil", false));
     alchemy.push(new Item("antiMothfearPotion", false));
+    alchemy.push(new Item("muonPerfume", false));
 
 //Brewing (alcohols, liquid fermentation, etc.)
     brewing = [];
@@ -5528,6 +5578,7 @@ function theLegend()
     handcrafted.push(new Item("despinedMaweHunk", false));
     handcrafted.push(new Item("despinedAnjayCactus", false));
     handcrafted.push(new Item("chapulCactusPaste", false));
+    handcrafted.push(new Item("muonFruit", false));
 
     //Activate Important Game Functions Here:
     itemPlacer();

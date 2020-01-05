@@ -2195,13 +2195,17 @@ function Adventurer()
                 {
                     if (this.gender != "Male")
                     {
-                        if (this.perfume == "ogard")
+                        if (this.perfume == "ameloy")
+                        {
+                            this.perfumeCHA = 6;
+                        }
+                        else if (this.perfume == "ogard")
                         {
                             this.perfumeCHA = 4;
                         }
-                        else if (this.perfume == "ameloy")
+                        else if (this.perfume == "muon")
                         {
-                            this.perfumeCHA = 6;
+                            this.perfumeCHA = 3;
                         }
                         else if (this.perfume == "palgga")
                         {
@@ -8923,6 +8927,82 @@ function Adventurer()
         {
             outfit = allWorn[183];
         }
+        else if (this.outfitEquipped == "koivayaFurDress")
+        {
+            outfit = allWorn[185];
+        }
+        else if (this.outfitEquipped == "koivayaFurClothing")
+        {
+            outfit = allWorn[186];
+        }
+        else if (this.outfitEquipped == "elkFurClothing")
+        {
+            outfit = allWorn[187];
+        }
+        else if (this.outfitEquipped == "pinkVardanianDupatta")
+        {
+            outfit = allWorn[188];
+        }
+        else if (this.outfitEquipped == "cianVardanianDupatta")
+        {
+            outfit = allWorn[189];
+        }
+        else if (this.outfitEquipped == "redClaw")
+        {
+            outfit = allWorn[190];
+        }
+        else if (this.outfitEquipped == "redClawThugOutfit")
+        {
+            outfit = allWorn[191];
+        }
+        else if (this.outfitEquipped == "varminFurClothing")
+        {
+            outfit = allWorn[192];
+        }
+        else if (this.outfitEquipped == "redClawArmour")
+        {
+            outfit = allWorn[193];
+        }
+        else if (this.outfitEquipped == "plumedBoroyePlateArmour")
+        {
+            outfit = allWorn[194];
+        }
+        else if (this.outfitEquipped == "plumedMorrowPlateArmour")
+        {
+            outfit = allWorn[195];
+        }
+        else if (this.outfitEquipped == "morrowPlateArmour")
+        {
+            outfit = allWorn[196];
+        }
+        else if (this.outfitEquipped == "boroyePlateArmour")
+        {
+            outfit = allWorn[197];
+        }
+        else if (this.outfitEquipped == "blackBearMediumArmour")
+        {
+            outfit = allWorn[198];
+        }
+        else if (this.outfitEquipped == "vardanianGentryOutfitTan" || this.outfitEquipped == "vardanianGentryTanOutfit" || this.outfitEquipped == "vardanianGentryOutfitGrey" || this.outfitEquipped == "vardanianGentryGreyOutfit" || this.outfitEquipped == "vardanianGentryOutfitGreen" || this.outfitEquipped == "vardanianGentryGreenOutfit")
+        {
+            outfit = allWorn[199];
+        }
+        else if (this.outfitEquipped == "redMotylinkaCloak")
+        {
+            outfit = allWorn[200];
+        }
+        else if (this.outfitEquipped == "motylinkaCloak")
+        {
+            outfit = allWorn[201];
+        }
+        else if (this.outfitEquipped == "boroyeNobleDress")
+        {
+            outfit = allWorn[202];
+        }
+        else if (this.outfitEquipped == "boroyeNobleOutfit")
+        {
+            outfit = allWorn[203];
+        }
         else
         {
             outfit = allWorn[0];
@@ -8982,6 +9062,14 @@ function Adventurer()
         {
             gloves = allWorn[184];
         }
+        else if (this.glovesEquipped == "motylinkaGloves" || this.glovesEquipped == "redMotylinkaGloves")
+        {
+            gloves = allWorn[204];
+        }
+        else if (this.glovesEquipped == "longElkGloves")
+        {
+            gloves = allWorn[205];
+        }
         else
         {
             gloves = allWorn[0];
@@ -9036,6 +9124,14 @@ function Adventurer()
         else if (this.bootsEquipped == "thenganHose")
         {
             boots = allWorn[158];
+        }
+        else if (this.bootsEquipped == "motylinkaBoots" || this.bootsEquipped == "redMotylinkaBoots")
+        {
+            boots = allWorn[206];
+        }
+        else if (this.bootsEquipped == "longElkBoots")
+        {
+            boots = allWorn[207];
         }
         else
         {
@@ -9689,6 +9785,149 @@ function Adventurer()
             XXX.drawImage(beets, 13, 255, 49, 41, -(1 / 2 * 49 * 0.85) + 0, -(1 / 2 * 41 * 0.85) - 0, 49 * 0.85, 41 * 0.85);
             XXX.restore();
         }
+        else if (this.outfitEquipped == "blackBearMediumArmour")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(mawt, 1494, 409, 47, 50, -(1 / 2 * 47 * 0.95) + 1, -(1 / 2 * 50 * 0.95) - 0, 47 * 0.95, 50 * 0.95);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "vardanianGentryOutfitTan" || this.outfitEquipped == "vardanianGentryTanOutfit")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(mawt, 1421, 581, 82, 46, -(1 / 2 * 82 * 0.95) + 0, -(1 / 2 * 46 * 0.95) - 0, 82 * 0.95, 46 * 0.95);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "vardanianGentryOutfitGreen" || this.outfitEquipped == "vardanianGentryGreenOutfit")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(mawt, 1421, 534, 82, 46, -(1 / 2 * 82 * 0.95) + 0, -(1 / 2 * 46 * 0.95) - 0, 82 * 0.95, 46 * 0.95);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "vardanianGentryOutfitGrey" || this.outfitEquipped == "vardanianGentryGreyOutfit")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(mawt, 1421, 630, 82, 46, -(1 / 2 * 82 * 0.95) + 0, -(1 / 2 * 46 * 0.95) - 0, 82 * 0.95, 46 * 0.95);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "boroyeNobleOutfit")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(moth, 799, 164, 46, 35, -(1 / 2 * 46 * 1.1) + 0, -(1 / 2 * 35 * 1.1) - 0, 46 * 1.1, 35 * 1.1);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "motylinkaCloak")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(moth, 1442, 382, 31, 57, -(1 / 2 * 31 * 0.8) - 4, -(1 / 2 * 57 * 0.8) - 0, 31 * 0.8, 57 * 0.8);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "redMotylinkaCloak")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(mawt, 1494, 477, 31, 48, -(1 / 2 * 31 * 0.81) - 4, -(1 / 2 * 48 * 0.81) - 0, 31 * 0.81, 48 * 0.81);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "plumedBoroyePlateArmour")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(moth, 711, 159, 67, 47, -(1 / 2 * 67 * 1) + 0, -(1 / 2 * 47 * 1) - 0, 67 * 1, 47 * 1);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "plumedMorrowPlateArmour")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(mawt, 711, 159, 67, 47, -(1 / 2 * 67 * 1) + 0, -(1 / 2 * 47 * 1) - 0, 67 * 1, 47 * 1);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "boroyePlateArmour")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(moth, 709, 212, 67, 47, -(1 / 2 * 67 * 1) + 0, -(1 / 2 * 47 * 1) - 0, 67 * 1, 47 * 1);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "morrowPlateArmour")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(mawt, 709, 212, 67, 47, -(1 / 2 * 67 * 1) + 0, -(1 / 2 * 47 * 1) - 0, 67 * 1, 47 * 1);
+            XXX.restore();
+        }
         else if (this.outfitEquipped == "vardanianSoldierOutfit")
         {
             this.outfitZ = true;
@@ -10132,6 +10371,34 @@ function Adventurer()
                     XXX.globalAlpha = 0.4;
                 }
                 XXX.drawImage(abanico, 10, 364, 65, 84, -(1 / 2 * 65 * 1.56) + 0, -(1 / 2 * 84 * 1.56) + 0, 65 * 1.56, 84 * 1.56);
+                XXX.restore();
+            }
+        }
+        else if (this.outfitEquipped == "boroyeNobleDress")
+        {
+            this.outfitZ = false;
+            if (this.movingType == 0 || this.movingType == 4 || this.movingType == 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation - 1/2 * Math.PI);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(moth, 1061, 106, 98, 78, -(1 / 2 * 98 * 0.9) - 8, -(1 / 2 * 78 * 0.9) + 0, 98 * 0.9, 78 * 0.9);
+                XXX.restore();
+            }
+            else
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation - 1/2 * Math.PI);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(moth, 1062, 20, 98, 78, -(1 / 2 * 98 * 0.9) - 8, -(1 / 2 * 78 * 0.9) + 0, 98 * 0.9, 78 * 0.9);
                 XXX.restore();
             }
         }
@@ -11283,6 +11550,126 @@ function Adventurer()
             XXX.drawImage(furr, 289, 493, 29, 22, -(1 / 2 * 29 * 1.5) + 0, -(1 / 2 * 22 * 1.5) - 0.25, 29 * 1.5, 22 * 1.5);
             XXX.restore();
         }
+        else if (this.outfitEquipped == "koivayaFurClothing")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - 1/2*Math.PI);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(trea, 642, 1723, 43, 45, -(1 / 2 * 43) - 0, -(1 / 2 * 45) - 0, 43, 45);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "koivayaFurDress")
+        {
+            this.outfitZ = false;
+            if (this.movingType == 0 || this.movingType == 4 || this.movingType == 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation - 1/2*Math.PI);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(trea, 570, 1780, 43, 45, -(1 / 2 * 43 * 0.8) - 0, -(1 / 2 * 45 * 0.8) - 0, 43 * 0.8, 45 * 0.8);
+                XXX.restore();
+            }
+            else
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation - 1/2*Math.PI);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(trea, 570, 1780, 43, 45, -(1 / 2 * 43 * 0.8) - 0, -(1 / 2 * 45 * 0.8) - 0, 43 * 0.8, 45 * 0.8);
+                XXX.drawImage(trea, 578, 1730, 53, 45, -(1 / 2 * 53 * 0.85) - 0, -(1 / 2 * 45 * 0.85) - 0, 53 * 0.85, 45 * 0.85);
+                XXX.restore();
+            }
+        }
+        else if (this.outfitEquipped == "elkFurClothing")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - 1/2*Math.PI);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(ruin, 390, 138, 53, 44, -(1 / 2 * 53) + 1, -(1 / 2 * 44) - 0, 53, 44);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "pinkVardanianDupatta")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - 1/2*Math.PI);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(ruin, 388, 186, 53, 44, -(1 / 2 * 53 * 0.85) + 0.5, -(1 / 2 * 44 * 0.85) - 0, 53 * 0.85, 44 * 0.85);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "cianVardanianDupatta")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - 1/2*Math.PI);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(negro, 269, 23, 53, 44, -(1 / 2 * 53 * 0.85) + 0.5, -(1 / 2 * 44 * 0.85) - 0, 53 * 0.85, 44 * 0.85);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "varminFurClothing")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - 1/2*Math.PI);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(ruin, 370, 53, 76, 69, -(1 / 2 * 76 * 0.54) + 1, -(1 / 2 * 69 * 0.54) - 0, 76 * 0.54, 69 * 0.54);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "redClawThugOutfit")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - 1/2*Math.PI);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(ruin, 444, 54, 76, 69, -(1 / 2 * 76 * 0.5) + 1, -(1 / 2 * 69 * 0.5) - 0, 76 * 0.5, 69 * 0.5);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "redClaw")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - 1/2*Math.PI);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(ruin, 256, 132, 56, 46, -(1 / 2 * 56 * 1.05) + 0, -(1 / 2 * 46 * 1.05) - 0, 56 * 1.05, 46 * 1.05);
+            XXX.restore();
+        }
         else if (this.outfitEquipped == "varnFurClothing" || this.outfitEquipped == "varnFurCloak")
         {
             this.outfitZ = true;
@@ -11561,6 +11948,76 @@ function Adventurer()
             else if (this.outfitState == 1)
             {
                 this.flashAnimate(250, this.rotation - 1/2 * Math.PI, translucence, [{image: bloat, imgX: 206, imgY: 582.5, portionW: 68, portionH: 21, adjX: -(1 / 2 * 68 * szx) - 0, adjY: -(1 / 2 * 21 * szx) - 0, width: 68 * szx, height: 21 * szx}, {image: bloat, imgX: 206, imgY: 605.5, portionW: 68, portionH: 21, adjX: -(1 / 2 * 68 * szx) - 0, adjY: -(1 / 2 * 21 * szx) - 0, width: 68 * szx, height: 21 * szx}]);
+            }
+        }
+        else if (this.outfitEquipped == "redClawArmour")
+        {
+            var translucence = 1;
+            if (this.subtlety)
+            {
+                translucence = 0.4;
+            }
+            this.outfitZ = true;
+            if (this.movingType == 0 || this.movingType == 1 || this.movingType == 4 || this.freeze > 1.5 || this.movingType == 3)
+            {
+                if (this.outfitState == 1)
+                {
+                    if (this.flashAnimate(250, this.rotation - 1/2 * Math.PI, translucence, [{image: negro, imgX: 494, imgY: 79, portionW: 59, portionH: 57, adjX: -(1 / 2 * 59 * 1) - 0, adjY: -(1 / 2 * 57 * 1) - 0, width: 59 * 1, height: 57 * 1}, {image: negro, imgX: 545, imgY: 25, portionW: 59, portionH: 57, adjX: -(1 / 2 * 59 * 1) - 0, adjY: -(1 / 2 * 57 * 1) - 0, width: 59 * 1, height: 57 * 1}], true))
+                    {
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation - 1/2 * Math.PI);
+                        if (this.subtlety)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
+                        XXX.drawImage(negro, 545, 25, 59, 57, -(1 / 2 * 59 * 1) - 0, -(1 / 2 * 57 * 1) - 0, 59 * 1, 57 * 1);
+                        XXX.restore();
+                        this.outfitState = 0;
+                    }
+                }
+                else
+                {
+                    this.outfitState = 0;
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - 1/2 * Math.PI);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(negro, 545, 25, 59, 57, -(1 / 2 * 59 * 1) - 0, -(1 / 2 * 57 * 1) - 0, 59 * 1, 57 * 1);
+                    XXX.restore();
+                }
+            }
+            else if (this.outfitState == 0)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation - 1/2 * Math.PI);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(negro, 545, 25, 59, 57, -(1 / 2 * 59 * 1) - 0, -(1 / 2 * 57 * 1) - 0, 59 * 1, 57 * 1);
+                XXX.restore();
+                this.outfitState = 1;
+            }
+            else if (this.outfitState == 1)
+            {
+                this.flashAnimate(120, this.rotation - 1/2 * Math.PI, translucence, [{image: negro, imgX: 494, imgY: 79, portionW: 59, portionH: 57, adjX: -(1 / 2 * 59 * 1) - 0, adjY: -(1 / 2 * 57 * 1) - 0, width: 59 * 1, height: 57 * 1}, {image: negro, imgX: 423, imgY: 78, portionW: 59, portionH: 57, adjX: -(1 / 2 * 59 * 1) - 0, adjY: -(1 / 2 * 57 * 1) - 0, width: 59 * 1, height: 57 * 1}, {image: negro, imgX: 558, imgY: 79, portionW: 59, portionH: 57, adjX: -(1 / 2 * 59 * 1) - 0, adjY: -(1 / 2 * 57 * 1) - 0, width: 59 * 1, height: 57 * 1}]);
+            }
+            else
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation - 1/2 * Math.PI);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(negro, 545, 25, 59, 57, -(1 / 2 * 59 * 1) - 0, -(1 / 2 * 57 * 1) - 0, 59 * 1, 57 * 1);
+                XXX.restore();
             }
         }
         else if (this.outfitEquipped == "thenganHunterOutfit")
@@ -40044,6 +40501,12 @@ function Adventurer()
                                 this.perfumeTime = 660;
                                 this.perfumeStoreTime = new Date().getTime();
                             }
+                            else if (Inventory[i][0].ability == "muonPerfume") //This makes you smell good therefore enchanting those you interact with to like you more and give you better deals... that is if you are not a man.
+                            {
+                                this.perfume = "muon";
+                                this.perfumeTime = 290;
+                                this.perfumeStoreTime = new Date().getTime();
+                            }
                             else if (Inventory[i][0].ability == "rawThuegTripe") //this effect makes the player vomit and lose 22 hunger.
                             {
                                 if (this.timeSinceBadFoodEaten == 0)
@@ -43339,6 +43802,154 @@ function Adventurer()
                         }
                     }
                 }
+                else if (this.outfitEquipped == "motylinkaCloak")
+                {
+                    if (this.movingType == 2 && this.energy > 0 && this.freeze <= 2)
+                    {
+                        this.wasCapeFlapping = true; //this lets the cape know it was showing so when the player slows down or stops moving the cape will ease back.
+                        this.capeFlappiness += 3; //this is a variable that determines what costume the cape will be.
+                        if (this.capeFlappiness > 100)
+                        {
+                            this.capeFlappiness = 0;
+                        }
+
+                        if (this.capeFlappiness <= 12.5 || this.capeFlappiness > 25 && this.capeFlappiness <= 37.5 || this.capeFlappiness > 50 && this.capeFlappiness <= 62.5 || this.capeFlappiness > 75 && this.capeFlappiness <= 87.5)
+                        {
+                            XXX.save();
+                            XXX.translate(this.myScreenX, this.myScreenY);
+                            XXX.rotate(this.rotation);
+                            if (this.subtlety)
+                            {
+                                XXX.globalAlpha = 0.4;
+                            }
+                            XXX.drawImage(moth, 596, 144, 41, 70, -(1 / 2 * 41 * 1) - 1, -(1 / 2 * 70 * 1) + 26, 41 * 1, 70 * 1);
+                            XXX.restore();
+                        }
+                        else if (this.capeFlappiness > 12.5 && this.capeFlappiness <= 25 || this.capeFlappiness > 37.5 && this.capeFlappiness <= 50 || this.capeFlappiness > 62.5 && this.capeFlappiness <= 75 || this.capeFlappiness > 87.5)
+                        {
+                            XXX.save();
+                            XXX.translate(this.myScreenX, this.myScreenY);
+                            XXX.rotate(this.rotation);
+                            if (this.subtlety)
+                            {
+                                XXX.globalAlpha = 0.4;
+                            }
+                            XXX.drawImage(moth, 639, 147, 41, 70, -(1 / 2 * 41 * 1) - 1, -(1 / 2 * 70 * 1) + 26, 41 * 1, 70 * 1);
+                            XXX.restore();
+                        }
+                    }
+                    else if (this.wasCapeFlapping == true)
+                    {
+                        this.capeFlappiness = 70;
+                        this.wasCapeFlapping = "gooblebunches";
+                        //display the cape while codey stuff happens...
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation);
+                        if (this.subtlety)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
+                        XXX.drawImage(moth, 596, 144, 41, 70, -(1 / 2 * 41 * 1) - 1, -(1 / 2 * 70 * 1) + 26, 41 * 1, 70 * 1);
+                        XXX.restore();
+                    }
+                    else if (this.wasCapeFlapping == "gooblebunches")
+                    {
+                        this.capeFlappiness -= 2; //this time cape flappiness referrs to the cape flapping down on its way out of being displayed.
+                        if (this.capeFlappiness < 1)
+                        {
+                            this.capeFlappiness = 0;
+                            this.wasCapeFlapping = false;
+                        }
+
+                        if (this.capeFlappiness > 27)
+                        {
+                            XXX.save();
+                            XXX.translate(this.myScreenX, this.myScreenY);
+                            XXX.rotate(this.rotation);
+                            if (this.subtlety)
+                            {
+                                XXX.globalAlpha = 0.4;
+                            }
+                            XXX.drawImage(moth, 596, 144, 41, 70, -(1 / 2 * 41 * 1) - 1, -(1 / 2 * 70 * 1) + 26, 41 * 1, this.capeFlappiness);
+                            XXX.restore();
+                        }
+                    }
+                }
+                else if (this.outfitEquipped == "redMotylinkaCloak")
+                {
+                    if (this.movingType == 2 && this.energy > 0 && this.freeze <= 2)
+                    {
+                        this.wasCapeFlapping = true; //this lets the cape know it was showing so when the player slows down or stops moving the cape will ease back.
+                        this.capeFlappiness += 3; //this is a variable that determines what costume the cape will be.
+                        if (this.capeFlappiness > 100)
+                        {
+                            this.capeFlappiness = 0;
+                        }
+
+                        if (this.capeFlappiness <= 12.5 || this.capeFlappiness > 25 && this.capeFlappiness <= 37.5 || this.capeFlappiness > 50 && this.capeFlappiness <= 62.5 || this.capeFlappiness > 75 && this.capeFlappiness <= 87.5)
+                        {
+                            XXX.save();
+                            XXX.translate(this.myScreenX, this.myScreenY);
+                            XXX.rotate(this.rotation);
+                            if (this.subtlety)
+                            {
+                                XXX.globalAlpha = 0.4;
+                            }
+                            XXX.drawImage(mawt, 596, 144, 41, 70, -(1 / 2 * 41 * 1) - 1, -(1 / 2 * 70 * 1) + 26, 41 * 1, 70 * 1);
+                            XXX.restore();
+                        }
+                        else if (this.capeFlappiness > 12.5 && this.capeFlappiness <= 25 || this.capeFlappiness > 37.5 && this.capeFlappiness <= 50 || this.capeFlappiness > 62.5 && this.capeFlappiness <= 75 || this.capeFlappiness > 87.5)
+                        {
+                            XXX.save();
+                            XXX.translate(this.myScreenX, this.myScreenY);
+                            XXX.rotate(this.rotation);
+                            if (this.subtlety)
+                            {
+                                XXX.globalAlpha = 0.4;
+                            }
+                            XXX.drawImage(mawt, 639, 147, 41, 70, -(1 / 2 * 41 * 1) - 1, -(1 / 2 * 70 * 1) + 26, 41 * 1, 70 * 1);
+                            XXX.restore();
+                        }
+                    }
+                    else if (this.wasCapeFlapping == true)
+                    {
+                        this.capeFlappiness = 70;
+                        this.wasCapeFlapping = "gooblebunches";
+                        //display the cape while codey stuff happens...
+                        XXX.save();
+                        XXX.translate(this.myScreenX, this.myScreenY);
+                        XXX.rotate(this.rotation);
+                        if (this.subtlety)
+                        {
+                            XXX.globalAlpha = 0.4;
+                        }
+                        XXX.drawImage(mawt, 596, 144, 41, 70, -(1 / 2 * 41 * 1) - 1, -(1 / 2 * 70 * 1) + 26, 41 * 1, 70 * 1);
+                        XXX.restore();
+                    }
+                    else if (this.wasCapeFlapping == "gooblebunches")
+                    {
+                        this.capeFlappiness -= 2; //this time cape flappiness referrs to the cape flapping down on its way out of being displayed.
+                        if (this.capeFlappiness < 1)
+                        {
+                            this.capeFlappiness = 0;
+                            this.wasCapeFlapping = false;
+                        }
+
+                        if (this.capeFlappiness > 27)
+                        {
+                            XXX.save();
+                            XXX.translate(this.myScreenX, this.myScreenY);
+                            XXX.rotate(this.rotation);
+                            if (this.subtlety)
+                            {
+                                XXX.globalAlpha = 0.4;
+                            }
+                            XXX.drawImage(mawt, 596, 144, 41, 70, -(1 / 2 * 41 * 1) - 1, -(1 / 2 * 70 * 1) + 26, 41 * 1, this.capeFlappiness);
+                            XXX.restore();
+                        }
+                    }
+                }
                 else if (this.outfitEquipped == "varnFurCloak")
                 {
                     if (this.movingType == 2 && this.energy > 0 && this.freeze <= 2)
@@ -44182,6 +44793,18 @@ function Adventurer()
                     XXX.drawImage(verse, 3228, 215, 33, 15, -(1 / 2 * 38) + 2.7, -(1 / 2 * 42) + 12.5, 33, 15);
                     XXX.restore();
                 }
+                else if (this.outfitEquipped == "koivayaFurDress")
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(trea, 569, 1830, 53, 45, -(1 / 2 * 53 * 1) - 0, -(1 / 2 * 45 * 1) + 0.5, 53 * 1, 45 * 1);
+                    XXX.restore();
+                }
                 else if (this.outfitEquipped == "cephrianNomadDress")
                 {
                     XXX.save();
@@ -44214,6 +44837,18 @@ function Adventurer()
                         XXX.globalAlpha = 0.4;
                     }
                     XXX.drawImage(abanico, 887, 88, 68, 62, -(1 / 2 * 68 * 0.7) + 0, -(1 / 2 * 62 * 0.7) + 0, 68 * 0.7, 62 * 0.7);
+                    XXX.restore();
+                }
+                else if (this.outfitEquipped == "boroyeNobleDress")
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation - (1/2 * Math.PI));
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(moth, 857, 158, 52, 47, -(1 / 2 * 52 * 0.65) + 0, -(1 / 2 * 47 * 0.65) + 0, 52 * 0.65, 47 * 0.65);
                     XXX.restore();
                 }
                 else if (this.outfitEquipped == "vardanianRoyalAttireF")

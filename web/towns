@@ -26,10 +26,12 @@ NIRWADEN
 Genoca (Hamlet) {house: Altezor}
 
 VARDANIA
-TBA Morrow (city) {house: Vorcaneous}
+IP Morrow (city) {house: Vorcaneous}
 Voza (village) {house: Vorcaneous}
-TBA Boroye (city) {house: Krovhyuzka}
+IP Boroye (city) {house: Krovhyuzka}
 IP Moct (village) {house: Krovhyuzka}
+TBA Norivka (city) {house: Gruzblou}
+
 
 CEPHRITE
 IP Holuim (town) {house: Anset}

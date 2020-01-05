@@ -8075,6 +8075,51 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(carillo, 82, 471, 68, 57, -(1/2 * 68 * 1 * this.information), -(1/2 * 57 * 1 * this.information), 68 * 1 * this.information, 57 * 1 * this.information);
                 XXX.restore();
             }
+            else if (this.temporary == 72)//motylinka pillow
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(moth, 630, 46, 23, 29, -(1/2 * 23 * 1 * this.information), -(1/2 * 29 * 1 * this.information), 23 * 1 * this.information, 29 * 1 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 73)//red motylinka pillow
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(mawt, 630, 46, 23, 29, -(1/2 * 23 * 1 * this.information), -(1/2 * 29 * 1 * this.information), 23 * 1 * this.information, 29 * 1 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 74)//small motylinka pillow
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(moth, 628, 93, 23, 29, -(1/2 * 23 * 1 * this.information), -(1/2 * 29 * 1 * this.information), 23 * 1 * this.information, 29 * 1 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 75)//small red motylinka pillow
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(mawt, 628, 93, 23, 29, -(1/2 * 23 * 1 * this.information), -(1/2 * 29 * 1 * this.information), 23 * 1 * this.information, 29 * 1 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 76)//zebra pillow
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(mawt, 406, 154, 58, 30, -(1/2 * 58 * 1 * this.information), -(1/2 * 30 * 1 * this.information), 58 * 1 * this.information, 30 * 1 * this.information);
+                XXX.restore();
+            }
 
             //INTERACTION
             if (this.activate == true)
@@ -26534,7 +26579,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                     XXX.rotate(this.rotation);
-                    XXX.drawImage(gul, 245, 349, 97, 84, -(1/2 * 97 * this.size * 1.5), -(1/2 * 84 * this.size * 1.5), 97 * this.size * 1.5, 84 * this.size * 1.5);
+                    XXX.drawImage(gul, 245, 349, 97, 84, -(1/2 * 97 * this.size * 1), -(1/2 * 84 * this.size * 1), 97 * this.size * 1, 84 * this.size * 1);
                     XXX.restore();
                 }
                 else if (this.temporary[0] == "Koivaya")

@@ -605,6 +605,33 @@ function screenCover()
         XXX.restore();
     }
 
+    if (player.mothfear)
+    {
+        XXX.save();
+        XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+        XXX.rotate(Math.random()*Math.PI*2);
+        XXX.globalAlpha = 0.4;
+        XXX.drawImage(atal, 436, 576, 81, 77, - (1/2 * 81 * 22), - (1/2 * 77 * 22), 81 * 22, 77 * 22);
+        XXX.restore();
+
+        XXX.save();
+        XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+        XXX.rotate(Math.random()*Math.PI*2);
+        XXX.globalAlpha = 0.4;
+        XXX.drawImage(atal, 436, 576, 81, 77, - (1/2 * 81 * 26), - (1/2 * 77 * 26), 81 * 26, 77 * 26);
+        XXX.restore();
+
+        for (var mahhti = 0; mahhti < 200; mahhti++)
+        {
+            XXX.save();
+            XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+            XXX.rotate(Math.random()*Math.PI*2);
+            XXX.globalAlpha = 0.6;
+            XXX.drawImage(mawt, 1179, 6, 150, 136, -1/2 * 150 * 1.7 + Math.cos(mahhti / 50) * (360 + 150 * Math.floor(mahhti / 50)), -1/2 * 136 * 1.7 + Math.sin(mahhti / 50) * (360 + 150 * Math.floor(mahhti / 50)), 150 * 1.7, 136 * 1.7);
+            XXX.restore();
+        }
+    }
+
     if (player.anjayTime > 0)
     {
         anjayRot += 61/360 * Math.PI;

@@ -11676,6 +11676,14 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(milm, 276, 1269, 43, 32, -(1/2 * 43 * this.information * 1), -(1/2 * 32 * this.information * 1), 43 * this.information * 1, 32 * this.information * 1);
                 XXX.restore();
             }
+            else if (this.temporary == 18) //dead bovine
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(toad, 750, 528, 86, 39, -1/2 * 86 * this.information * 1.15, -1/2 * 39 * this.information * 1.15, 86 * this.information * 1.15 , 39 * this.information * 1.15);
+                XXX.restore();
+            }
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
             this.radius = 1;

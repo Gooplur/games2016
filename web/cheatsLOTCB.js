@@ -2215,13 +2215,13 @@ function cheats()
                     buildClase += 1;
                 }
 
-                if (buildClase > 17)
+                if (buildClase > 18)
                 {
                     buildClase = 1;
                 }
                 else if ((buildClase < 1))
                 {
-                    buildClase = 17;
+                    buildClase = 18;
                 }
             }
 
@@ -6632,7 +6632,7 @@ function cheats()
             if (xKey)
             {
                 xKey = false;
-                console.log('scenicList.push(new Scenery("mimicry", ' + X + ', ' + Y + ', ' + buildRot + ', '+ buildPrompt + '));');
+                console.log('scenicList.push(new Scenery("mimicry", ' + X + ', ' + Y + ', ' + buildRot + ', "'+ buildPrompt + '"));');
 
                 if (shiftKey)
                 {

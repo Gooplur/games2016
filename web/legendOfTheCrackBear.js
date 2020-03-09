@@ -2739,6 +2739,7 @@ var buildPrompt = "";
 var buildPrompt2 = "";
 var dOS = 0;
 var anjayRot = 0;
+var escapeKey = false;
 
 //This sets the items that are in shops.
 function shopItemIDSetter()
@@ -3247,6 +3248,11 @@ function keyReleased(event)
     {
         pKey = false;
     }
+
+    if (key == 27)
+    {
+        escapeKey = false;
+    }
 }
 //when a key is held down
 function keyHeld(event)
@@ -3416,6 +3422,11 @@ function keyHeld(event)
     if (key == 80)
     {
         pKey = true;
+    }
+
+    if (key == 27)
+    {
+        escapeKey = true;
     }
 }
 
@@ -3775,7 +3786,8 @@ function theLegend()
         imbadorr: ["Imbadorr", 0],
         hresha: ["Hresha", 0],
         zhal: ["Zhal", 0],
-        ekhzam: ["Ekhzam", 0]
+        ekhzam: ["Ekhzam", 0],
+        modig: ["Modig", 0]
     };
 
 //time Tracker Variables
@@ -4046,7 +4058,8 @@ function theLegend()
         imbadorrLDS: true,
         hreshaLDS: true,
         zhalLDS: true,
-        ekhzamLDS: true
+        ekhzamLDS: true,
+        modigLDS: true
     };
 //QUESTS
     quests =

@@ -1036,6 +1036,58 @@ function Item(type, x, y)
             this.spellKnowledgeRequirement = 6;
             this.spellRange = "Self";
         }
+        else if (this.type == "shadowCrow")
+        {
+            //For All Items
+            if (player.getKnowledge() >= 12)
+            {
+                this.identity = "Scroll of Shadow Crow";
+                this.description = "Studying this scroll will teach you how to magically project shadowy crows at your foes.";
+                this.intForDes = 0;
+                this.intDescription = "The more concentration the caster has, the more shadow crows can be summoned.";
+                this.buyValue = 630 - Math.floor(player.getCharisma() / 1); // at max, buy for 580.
+                this.sellValue = 530 + Math.floor(player.getCharisma() / 1); // at max, sell for 580.
+            }
+            else
+            {
+                this.identity = "Scroll";
+                this.description = "The markings on this scroll are incomprehensible; what a waste of paper!";
+                this.intForDes = 2;
+                this.intDescription = "Scrolls are supposed to be used for storing knowledge or sending messages, it looks like this one wasn't used for either.";
+                this.buyValue = 630 - Math.floor(player.getCharisma() / 1); // at max, buy for 580.
+                this.sellValue = 1; // at max, sell for 1.
+            }
+            this.weight = 0.02;
+            this.size = 12;
+
+            //Define Utility
+            this.utility = "spell";
+
+            //ability
+            this.ability = "none";
+
+            //Utility Focused
+            this.damages = false;
+
+            this.spellCost = Math.max(1, 4 + 14 / 50 * player.getConcentration() - (8 / 50) * player.getEminence());
+
+            this.spellGroup = "Form";
+            this.spellGenre = "Nechromancy";
+            this.spellName = "Shadow Crow";
+            this.spellID = "shadowCrow";
+            this.spellEXP = 7 * ((50 + player.getMemory()) / 50);
+            this.spellCooldown = Math.max(14, 30 + (10/50) * player.getConcentration() - (20/50) * player.getEminence());
+            if (player.getConcentration() >= 5)
+            {
+                this.spellDescription = "A shadowy rift through which crows of shadow fly forth.";
+            }
+            else
+            {
+                this.spellDescription = "A shadowy rift through which a crow of shadow flies forth.";
+            }
+            this.spellKnowledgeRequirement = 12;
+            this.spellRange = "Medium";
+        }
         else if (this.type == "summonFrich")
         {
             //For All Items
@@ -6717,8 +6769,16 @@ function Item(type, x, y)
             //Crafting
             this.yield = 1;
             this.intForCraft = 0;
-            this.ingredients = [["Muon", 1], ["Hammer", 1]];
-            this.biproducts = [[new Item("hammer", false), 1], [new Item("muonShell", false), 1]];
+            if (player.raceName == "Zetian")
+            {
+                this.ingredients = [["Muon", 1], ["zetianWarPick", 1]];
+                this.biproducts = [[new Item("zetianWarPick", false), 1], [new Item("muonShell", false), 1]];
+            }
+            else
+            {
+                this.ingredients = [["Muon", 1], ["Hammer", 1]];
+                this.biproducts = [[new Item("hammer", false), 1], [new Item("muonShell", false), 1]];
+            }
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 14; // at max, buy for 14.
@@ -6792,6 +6852,7 @@ function Item(type, x, y)
             this.weight = 1.86;
             this.size = 8;
             this.description = "Three tender, glistening golden-yellow slices of sonja fruit seasoned with zaf spice.";
+            this.smallText = true;
 
             if (player.raceName == "Kel" || player.raceName == "Nirwaden" || player.raceName == "Orgell" || player.raceName == "Cephrite" || player.raceName == "Zetian")
             {
@@ -8898,7 +8959,7 @@ function Item(type, x, y)
 
             //Utility Focused
             this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
-            this.hunger = 9; //satisfies hunger.
+            this.hunger = 8; //satisfies hunger.
             this.thirst = 0; //quenches thirst.
             this.warmth = 4; //warms player.
             this.heal = 0; //heals health.
@@ -8914,8 +8975,8 @@ function Item(type, x, y)
             this.ingredients = [["Raw Vreck Flesh", 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
-            this.buyValue = 8 - Math.floor(player.getCharisma() / 50); // at max, buy for 7.
-            this.sellValue = 6 + Math.floor(player.getCharisma() / 50); // at max, sell for 7.
+            this.buyValue = 7 - Math.floor(player.getCharisma() / 50); // at max, buy for 7.
+            this.sellValue = 5 + Math.floor(player.getCharisma() / 50); // at max, sell for 7.
         }
         else if (this.type == "rawVreckFlesh")
         {
@@ -28304,7 +28365,7 @@ function Item(type, x, y)
         {
             //For All Items
             this.identity = "Barbol Skin";
-            this.weight = 7;
+            this.weight = 10.5;
             this.size = 17;
             this.description = "The thick scaley hide of a barbol.";
             this.intForDes = 7;
@@ -28712,7 +28773,7 @@ function Item(type, x, y)
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 70 - Math.floor(player.getCharisma() / 5); // at max, buy for 60.
-            this.sellValue = 40 + Math.floor(player.getCharisma() / 0.4); // at max, sell for 60.
+            this.sellValue = 40 + Math.floor(player.getCharisma() / 2.5); // at max, sell for 60.
         }
         else if (this.type == "firetrapEmpty")
         {
@@ -30775,6 +30836,7 @@ function Item(type, x, y)
             this.description = "A whole giant killer termite stuffed with eggplant, onions, zaf spice, saffron, and marinated termite meat.";
             this.intForDes = 0;
             this.intDescription = "The meat is moist, tender and has a smooth texture; it has soft meaty spicy flavour with a buggy aftertaste.";
+            this.smallText = true;
 
             //Define Utility
             this.utility = "food";
@@ -31042,6 +31104,7 @@ function Item(type, x, y)
             this.description = "A whole roasted eggplant stuffed with giraffe meat, chopped onion, and artichoke. It is seasoned with zaf spice and saffron.";
             this.intForDes = 0;
             this.intDescription = "It has a rich poignant spicy flavour with a slightly insecty aftertaste; it is very tender.";
+            this.smallText = true;
 
             //Define Utility
             this.utility = "food";
@@ -34404,6 +34467,7 @@ function Item(type, x, y)
             this.description = "A smoked Vardanian crustacean that has been delimbed and decapitated for your eating pleasure...";
             this.intForDes = 0;
             this.intDescription = "The meat has a moist, tender and stringy mouthfeel, and its smokey tasting flesh has a tinge of sweetness to it.";
+            this.smallText = true;
 
             //Define Utility
             this.utility = "food";
@@ -37572,6 +37636,7 @@ function Item(type, x, y)
             }
             else
             {
+                this.identity = "Raw Whip Scorpion Flesh";
                 this.weight = 15;
                 this.size = 20;
                 this.description = "The large fleshy tail of a whip scorpion.";
@@ -37654,7 +37719,7 @@ function Item(type, x, y)
             if (player.raceName == "Zetian")
             {
                 this.intForCraft = 22;
-                this.ingredients = [["Raw Arachnis Flesh", 1];
+                this.ingredients = [["Raw Arachnis Flesh", 1]];
             }
             else
             {
@@ -55928,12 +55993,12 @@ function Item(type, x, y)
         else if (this.type == "scorpionClaw")
         {
             XXX.beginPath();
-            XXX.drawImage(ion, 92, 3, 56, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 56 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 1), 56 * 1, 44 * 1);
+            XXX.drawImage(ion, 92, 3, 56, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 56 * 1.15), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 1.15), 56 * 1.15, 44 * 1.15);
         }
         else if (this.type == "scorpionClawFeast")
         {
             XXX.beginPath();
-            XXX.drawImage(ion, 87, 71, 56, 48, X - this.X + (1/2 * CCC.width) - (1/2 * 56 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 48 * 1), 56 * 1, 48 * 1);
+            XXX.drawImage(ion, 87, 71, 56, 48, X - this.X + (1/2 * CCC.width) - (1/2 * 56 * 1.15), Y - this.Y + (1/2 * CCC.height) - (1/2 * 48 * 1.15), 56 * 1.15, 48 * 1.15);
         }
         else if (this.type == "scorpionMeat")
         {
@@ -62071,7 +62136,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 1967, 67, 33, 26, X - this.X + (1/2 * CCC.width) - (1/2 * 33), Y - this.Y + (1/2 * CCC.height) - (1/2 * 26), 33, 26);
         }
-        else if (this.type == "repel" || this.type == "minorVortex" || this.type == "lifeTap" || this.type == "electricBolt" || this.type == "chargedTouch" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "summonFrich" || this.type == "shadowSwitch" || this.type == "corporalityWard")
+        else if (this.type == "repel" || this.type == "minorVortex" || this.type == "lifeTap" || this.type == "electricBolt" || this.type == "chargedTouch" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "summonFrich" || this.type == "shadowSwitch" || this.type == "corporalityWard" || this.type == "shadowCrow")
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1922, 4, 23, 32, X - this.X + (1/2 * CCC.width) - (1/2 * 23), Y - this.Y + (1/2 * CCC.height) - (1/2 * 32), 23, 32);
@@ -63291,7 +63356,7 @@ function Item(type, x, y)
         else if (this.type == "barbolSkin")
         {
             LXX.beginPath();
-            LXX.drawImage(scorp, 715, 175, 130, 82, this.invX - (1/2 * 130 * 0.9), this.invY - (1/2 * 82 * 0.9), 130 * 0.9, 82 * 0.9);
+            LXX.drawImage(scorp, 715, 175, 130, 82, this.invX - (1/2 * 130 * 0.65), this.invY - (1/2 * 82 * 0.65), 130 * 0.65, 82 * 0.65);
         }
         else if (this.type == "rawBarbolFlesh")
         {
@@ -69452,7 +69517,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(polypol, 1859, 36, 22, 27, this.invX - (1/2 * 22), this.invY - (1/2 * 27), 22, 27);
         }
-        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind" || this.type == "iceBlast" || this.type == "healingPsalms" || this.type == "summonGriffin" || this.type == "summonDemon" || this.type == "slowTimeI" || this.type == "slowTimeII" || this.type == "slowTimeIII" || this.type == "slowTimeIV" || this.type == "slowTimeV" || this.type == "slowTimeVI" || this.type == "doppelganger" || this.type == "shadowSwitch" || this.type == "eruption" || this.type == "drakeBreath" || this.type == "undyingWard" || this.type == "potatoInvisibility" || this.type == "flamingMissiles" || this.type == "despell" || this.type == "powerDraw" || this.type == "arcaneOrbs" || this.type == "corporalityWard" || this.type == "windBlast" || this.type == "scroll" || this.type == "spiritBear")
+        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind" || this.type == "iceBlast" || this.type == "healingPsalms" || this.type == "summonGriffin" || this.type == "summonDemon" || this.type == "slowTimeI" || this.type == "slowTimeII" || this.type == "slowTimeIII" || this.type == "slowTimeIV" || this.type == "slowTimeV" || this.type == "slowTimeVI" || this.type == "doppelganger" || this.type == "shadowSwitch" || this.type == "eruption" || this.type == "drakeBreath" || this.type == "undyingWard" || this.type == "potatoInvisibility" || this.type == "flamingMissiles" || this.type == "despell" || this.type == "powerDraw" || this.type == "arcaneOrbs" || this.type == "corporalityWard" || this.type == "windBlast" || this.type == "scroll" || this.type == "spiritBear" || this.type == "shadowCrow")
         {
             LXX.beginPath();
             LXX.drawImage(polypol, 1738, 4, 33, 26, this.invX - (1/2 * 33), this.invY - (1/2 * 26), 33, 26);
@@ -70576,7 +70641,7 @@ function Item(type, x, y)
         else if (this.type == "barbolSkin")
         {
             XXX.beginPath();
-            XXX.drawImage(scorp, 715, 175, 130, 82, this.invX - (1/2 * 130 * 0.9), this.invY - (1/2 * 82 * 0.9), 130 * 0.9, 82 * 0.9);
+            XXX.drawImage(scorp, 715, 175, 130, 82, this.invX - (1/2 * 130 * 0.65), this.invY - (1/2 * 82 * 0.65), 130 * 0.65, 82 * 0.65);
         }
         else if (this.type == "rawBarbolFlesh")
         {
@@ -76730,7 +76795,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(polypol, 1859, 36, 22, 27, this.invX - (1/2 * 22), this.invY - (1/2 * 27), 22, 27);
         }
-        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind" || this.type == "iceBlast" || this.type == "healingPsalms" || this.type == "summonGriffin" || this.type == "summonDemon" || this.type == "slowTimeI" || this.type == "slowTimeII" || this.type == "slowTimeIII" || this.type == "slowTimeIV" || this.type == "slowTimeV" || this.type == "slowTimeVI" || this.type == "doppelganger" || this.type == "shadowSwitch" || this.type == "eruption" || this.type == "drakeBreath" || this.type == "undyingWard" || this.type == "potatoInvisibility" || this.type == "flamingMissiles" || this.type == "despell" || this.type == "powerDraw" || this.type == "arcaneOrbs" || this.type == "corporalityWard" || this.type == "windBlast" || this.type == "scroll" || this.type == "spiritBear")
+        else if (this.type == "surge" || this.type == "embers" || this.type == "fireballI" || this.type == "electricBolt" || this.type == "flyingColours" || this.type == "iceSpikes" || this.type == "frostWind" || this.type == "repel" || this.type == "lifeTap" || this.type == "drainingI" || this.type == "vivification" || this.type == "chasingLights" || this.type == "fireHands" || this.type == "freezingGrasp" || this.type == "chargedTouch" || this.type == "sorcerer'sRaincoat" || this.type == "shieldingI" || this.type == "shieldingII" || this.type == "shieldingIII" || this.type == "shieldingIV" || this.type == "shieldingV" || this.type == "summonFrich" || this.type == "summonWolf" || this.type == "charm" || this.type == "sanctuary" || this.type == "repellingWard" || this.type == "iceberg" || this.type == "magicMissiles" || this.type == "minorVortex" || this.type == "mark" || this.type == "entanglement" || this.type == "whirlwind" || this.type == "iceBlast" || this.type == "healingPsalms" || this.type == "summonGriffin" || this.type == "summonDemon" || this.type == "slowTimeI" || this.type == "slowTimeII" || this.type == "slowTimeIII" || this.type == "slowTimeIV" || this.type == "slowTimeV" || this.type == "slowTimeVI" || this.type == "doppelganger" || this.type == "shadowSwitch" || this.type == "eruption" || this.type == "drakeBreath" || this.type == "undyingWard" || this.type == "potatoInvisibility" || this.type == "flamingMissiles" || this.type == "despell" || this.type == "powerDraw" || this.type == "arcaneOrbs" || this.type == "corporalityWard" || this.type == "windBlast" || this.type == "scroll" || this.type == "spiritBear" || this.type == "shadowCrow")
         {
             XXX.beginPath();
             XXX.drawImage(polypol, 1738, 4, 33, 26, this.invX - (1/2 * 33), this.invY - (1/2 * 26), 33, 26);

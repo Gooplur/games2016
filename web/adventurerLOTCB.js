@@ -12364,7 +12364,10 @@ function Adventurer()
         //POWER ATTACK INITIATOR
         if (eKey == true && this.getCanAttack())
         {
-            this.weapon.setItemID();
+            if (this.spell == "none")
+            {
+                this.weapon.setItemID();
+            }
             if (player.form == "werewolf" || player.form == "vampire" || player.form == "wendigo") //werewolves use power attack as one of their normal attacks
             {
                 if (new Date().getTime() - this.attackCooldown >= 15 * this.weapon.rate)
@@ -14473,6 +14476,77 @@ function Adventurer()
                 }
                 XXX.drawImage(polpol, 165, 450, 57, 37, -1/2 * 57 * 1.25, -1/2 * 37 * 1.25, 57 * 1.25, 37 * 1.25);
                 XXX.restore();
+            }
+        }
+
+        //Shadow Crow Form
+        if (this.spell.ID == "shadowCrow")
+        {
+            this.stageEngine(4, 0.20, false);
+
+            //ATTACK
+            if (Math.floor(this.stage) <= 0)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(cypher, 222, 148, 66, 57, -1/2 * 66 * 1, -1/2 * 57 * 1, 66 * 1, 57 * 1);
+                XXX.restore();
+                this.doMagic = true;
+            }
+            else if (Math.floor(this.stage) <= 1)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(cypher, 221, 202, 66, 57, -1/2 * 66 * 1, -1/2 * 57 * 1, 66 * 1, 57 * 1);
+                XXX.restore();
+                this.doMagic = true;
+            }
+            else if (Math.floor(this.stage) <= 2)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(cypher, 219, 262, 66, 57, -1/2 * 66 * 1, -1/2 * 57 * 1, 66 * 1, 57 * 1);
+                XXX.restore();
+                if (this.doMagic)
+                {
+                    this.doMagic = false;
+                    this.will -= this.spell.cost;
+                    this.magicalExperience += this.spell.EXP;
+                    this.castedSpell = true;
+                    magicList.push(new Magic(player.spell, true, 1));
+                }
+            }
+            else if (Math.floor(this.stage) >= 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(cypher, 219, 262, 66, 57, -1/2 * 66 * 1, -1/2 * 57 * 1, 66 * 1, 57 * 1);
+                XXX.restore();
+                if (this.castedSpell == true)
+                {
+                    this.castedSpell = false;
+                    this.castingCooldown = new Date().getTime();
+                }
             }
         }
 

@@ -2877,6 +2877,1161 @@ function interaction(me)
                         }
                     }
 
+                    if (self.ID == "Modig the Jester" || self.ID == "Modig the Vagabond" || conversationID[0] == "Modig")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Modig";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Good day.", false, "a"], ["Good sir what was your trade prior to wandering?", false, "b"], ["What are you doing here you lazy lout, too lazy for a job?", false, "c"], ["You there! Surely you have heard of my exploits!?", false, "e"], ["I see you all around town, Are you following me?", false, "f"]];
+
+                                if (player.title == "Nobility" || player.title == "Royalty")
+                                {
+                                    if (player.title == "Nobility" && player.raceName == "Vardan")
+                                    {
+                                        player.dialogueOptions.push(["You seem to possess an actors traits, Would thou wish to become a Jester under my family's employ?", false, "g"]);
+                                    }
+                                    else if (player.title == "Nobility" && player.raceName == "Nirwaden")
+                                    {
+                                        player.dialogueOptions.push(["Though now you are dressed in rags, a comedians traits thou doth posess. I offer thee a position in my esteemed court as a jester?", false, "g"]);
+                                    }
+                                    else if (player.title == "Royalty" && player.raceName == "Vardan")
+                                    {
+                                        player.dialogueOptions.push(["Rejoice coy jester the war is over justice doth have returned! Take the fruit of this bounty and join my fathers court!", false, "g"]);
+                                    }
+                                    else
+                                    {
+                                        player.dialogueOptions.push(["Thou art quite an odd one.", false, "g"]);
+                                    }
+                                }
+
+                                if (player.inquisitionRank != "none" && player.inquisitionRank != "Initiate")
+                                {
+                                    player.dialogueOptions.push(["Dare you look at my visage and not tremble at his majesty's inquisition! Thou foul street rat!", false, "j"]);
+                                }
+
+                                if (player.getCharisma() >= 5)
+                                {
+                                    player.dialogueOptions.push(["Why doth thy face bear upon it such a glum countenance?", false, "d"]);
+                                }
+
+                                if (have("coins", 5))
+                                {
+                                    player.dialogueOptions.unshift(["Here, Hope this helps [give 5 coins]", false, "i"]);
+                                }
+
+                                if (have("coins", 1))
+                                {
+                                    player.dialogueOptions.unshift(["Here [give 1 coin]", false, "h"]);
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0e";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "f")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0f";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "g")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0g";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "h")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0h";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "i")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0i";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "j")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "0j";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            setMsg("Indeed, as fair as any day can be in trying times...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0b")
+                        {
+                            //text dialogue
+                            setMsg("Before? well long ago I was in an acting troupe. My lads did theater, songs, puppet shows and such. We traveled across all Vardania cheering children and courts alike, not much difference if you ask me! Both just want a laugh, and they tend to shout! I plyed my ways to and fro with jokes and my miniscule wits until a rather vicious band of thugs buchered half my troupe and my beloved, luckily if you can call it that, the good counts soldiers piked those dogs through not too much later. So now I wander with no troupe to play with... Ha! and what a lovley yet lonely trade that is to wander with the wind at your back...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0c")
+                        {
+                            //text dialogue
+                            setMsg("Oh you know, the usual. Foul sorcery, evil plots, stealing that bowl of milk you swore you left out that morning, the usual.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            setMsg("Ah alas your statement rings quite true. Glumness takes its utmost control of my spirit today; I feel barely as happy as I used to when I was younger. I know that I will not find love again... but alas... ah nevermind forget about it.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0e")
+                        {
+                            //text dialogue
+                            if (player.fame >= 20)
+                            {
+                                setMsg("Yes I have heard of thee. But you dont need an old fool like me to repeat them for you.");
+                            }
+                            else
+                            {
+                                setMsg("Oh you? of course I have heard of thou, tis said that when your feet tread on the earth the ground quakes in fear. And that dragons shudder and hide at your might... No who are you?");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0f")
+                        {
+                            //text dialogue
+                            setMsg("To be quite honest I thought you were following me!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0g")
+                        {
+                            if (player.title == "Nobility" && player.raceName == "Vardan")
+                            {
+                                //text dialogue
+                                setMsg("Well i'm honored to be offered such an employ. I'm sure your family will be justly compensated... to the court of morrow i go then!");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                            else if (player.title == "Nobility" && player.raceName == "Nirwaden")
+                            {
+                                //text dialogue
+                                setMsg("Thats quite a long travel oh illustrious one thou I doubt that compensation would be an issue for one such as thee... I would require a fee for the travels...");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 2;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                            else if (player.title == "Royalty" && player.raceName == "Vardan")
+                            {
+                                //text dialogue
+                                setMsg("Such an offer as this I would surely be a fool to deny then I see, i'll make my way straight for the capital and tell the gaurds you sent me.");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                            else
+                            {
+                                //text dialogue
+                                setMsg("I'll take that as a complement then.");
+
+                                //on ended text dialogue
+                                if (tellMessage == "reset")
+                                {
+                                    msgReset();
+
+                                    playersTurnToSpeak = true;
+                                    player.dialoguePosition = 0;
+                                    conversationID[1] = 0;
+                                    self.SC();
+                                }
+                                else
+                                {
+                                    self.SC();
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0h")
+                        {
+                            //text dialogue
+                            setMsg("Thank you, have peace on your travels.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                take("coins", 1);
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0i")
+                        {
+                            //text dialogue
+                            setMsg("Thank thee kindly for thy generosity! Tis a rare sight these days!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                take("coins", 5);
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0j")
+                        {
+                            //text dialogue
+                            if (player.outfitEquipped == "witchHunterOutfit")
+                            {
+                                setMsg("Oh pointy beaked one, I do not tremble for I am not cold, but I appreciate your concern for my well being.");
+                            }
+                            else
+                            {
+                                setMsg("Oh, you're in the inquisition? I did not realize... Where is your chicken outfit?");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 1)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Thou art a fool surely for I have plotted this long ago, tis fortold in ancient prophecy!", false, "a"], ["Though you surely jest I meant not to sound as if to damage your character, im sorry!", false, "b"], ["Ah your useless...", false, "c"], ["You sniveling rat I should flog ya.", false, "c"]];
+
+                                if (player.title == "Nobility")
+                                {
+                                    player.dialogueOptions.push(["If thou were in my lands I'd have your hand on the block for thievery.", false, "d"]);
+                                }
+
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1d";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1a")
+                        {
+                            //text dialogue
+                            setMsg("Ha! I like you.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1b")
+                        {
+                            //text dialogue
+                            setMsg("Oh woe doth be my sorry state at your venomous words! Im so utterly and deeply distraught, my well of grief and pity is boundless as the inky black of the night sky!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1c")
+                        {
+                            //text dialogue
+                            setMsg("Oh indeed? Only now your realizing that?");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1d")
+                        {
+                            //text dialogue
+                            setMsg("Tis only a jest my lord. The thieving trade is not one I dare ply. Nor have I ever even considered it.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 2)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Though I understand that the travel to my kingdom and treacherous... You will receive no coin that you have not rightfully earned.", false, "c"]];
+
+                                if (player.getCharisma() >= 30)
+                                {
+                                    player.dialogueOptions.unshift(["To come to my family's land where the fields are verdant and the fruit bountiful, and your pay exorbitant, is incentive enough...", false, "b"]);
+                                }
+                                if (have("coins", 150))
+                                {
+                                    player.dialogueOptions.unshift(["Here you are... [pay 150 coins]", false, "a"]);
+                                }
+                                else
+                                {
+                                    player.dialogueOptions.unshift(["I don't have that amount of coin on me at this time...", false, "c"]);
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "2a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "2b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "2c";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "2a")
+                        {
+                            //text dialogue
+                            setMsg("Lovely! Well then I'll set off as soon as possible!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                take("coins", 150);
+                                if (player.raceName == "Nirwaden")
+                                {
+                                    quests.modigHired = "atalin";
+                                    player.blinded = true;
+                                    player.blindedStoreTime = new Date().getTime();
+                                    player.blindedTime = 1;
+                                }
+                                else if (player.title == "Royalty")
+                                {
+                                    quests.modigHired = "royal";
+                                    player.blinded = true;
+                                    player.blindedStoreTime = new Date().getTime();
+                                    player.blindedTime = 1;
+                                }
+                                else
+                                {
+                                    quests.modigHired = "morrow";
+                                    player.blinded = true;
+                                    player.blindedStoreTime = new Date().getTime();
+                                    player.blindedTime = 1;
+                                }
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 3;
+                                self.SC();
+
+                                reiniciar();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "2b")
+                        {
+                            //text dialogue
+                            setMsg("If it must be so, you will find me there, though the travel will be hard. And I fear may not make it there alive...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                if (player.raceName == "Nirwaden")
+                                {
+                                    quests.modigHired = "atalin";
+                                    player.blinded = true;
+                                    player.blindedStoreTime = new Date().getTime();
+                                    player.blindedTime = 1;
+                                }
+                                else if (player.title == "Royalty")
+                                {
+                                    quests.modigHired = "royal";
+                                    player.blinded = true;
+                                    player.blindedStoreTime = new Date().getTime();
+                                    player.blindedTime = 1;
+                                }
+                                else
+                                {
+                                    quests.modigHired = "morrow";
+                                    player.blinded = true;
+                                    player.blindedStoreTime = new Date().getTime();
+                                    player.blindedTime = 1;
+                                }
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 3;
+                                self.SC();
+
+                                reiniciar();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "2c")
+                        {
+                            //text dialogue
+                            setMsg("I understand, well i'll be back to my daily duties of ambling, I'm late as it is...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 3)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["How do you like it here at court?", false, "d"]];
+
+                                var rnd = Math.random();
+                                if (rnd > 0.75)
+                                {
+                                    player.dialogueOptions.push(["I long to hear a poem.", false, "k"]);
+                                }
+                                else if (rnd > 0.5)
+                                {
+                                    player.dialogueOptions.push(["I long to hear a poem.", false, "l"]);
+                                }
+                                else if (rnd > 0.25)
+                                {
+                                    player.dialogueOptions.push(["I long to hear a poem.", false, "m"]);
+                                }
+                                else
+                                {
+                                    player.dialogueOptions.push(["I long to hear a poem.", false, "n"]);
+                                }
+
+                                var rnd = Math.random();
+                                if (rnd > 0.5)
+                                {
+                                    player.dialogueOptions.unshift(["Tell me a tale.", false, "c"]);
+                                }
+                                else
+                                {
+                                    player.dialogueOptions.unshift(["Tell me a tale.", false, "f"]);
+                                }
+
+                                var rnd = Math.random();
+                                if (rnd > 0.5)
+                                {
+                                    player.dialogueOptions.unshift(["Sing me a song!", false, "b"]);
+                                }
+                                else
+                                {
+                                    player.dialogueOptions.unshift(["Sing me a song!", false, "e"]);
+                                }
+
+                                var rnd = Math.random();
+                                if (rnd > 0.8)
+                                {
+                                    player.dialogueOptions.unshift(["Tell me a joke.", false, "a"]);
+                                }
+                                else if (rnd > 0.6)
+                                {
+                                    player.dialogueOptions.unshift(["Tell me a joke.", false, "g"]);
+                                }
+                                else if (rnd > 0.4)
+                                {
+                                    player.dialogueOptions.unshift(["Tell me a joke.", false, "h"]);
+                                }
+                                else if (rnd > 0.2)
+                                {
+                                    player.dialogueOptions.unshift(["Tell me a joke.", false, "i"]);
+                                }
+                                else
+                                {
+                                    player.dialogueOptions.unshift(["Tell me a joke.", false, "j"]);
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "3a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "3b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "3c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "3d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "3e";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "f")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "3f";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "g")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "3g";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "h")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "3h";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "i")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "3i";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "j")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "3j";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "k")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "3k";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "l")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "3l";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "m")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "3m";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "n")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "3n";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "3a")
+                        {
+                            //text dialogue
+                            setMsg("Today was a day most wretched. My ex lover got hit by a carriage, and I lost my job as a carriage driver...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 3;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "3b")
+                        {
+                            //text dialogue
+                            setMsg("Edge of the world, im living at the edge, where nights are as dark, as the the dark side of the moon. And everyday is as sweltering as a thegol thorns gloom!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 3;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "3c")
+                        {
+                            //text dialogue
+                            setMsg("The sun danced on the black pine needles, like the hair of a fair maiden on a autumn morn. And sweet berries plump and firm did blush clear coated in the early dew, white pretty flowers dotted the forest floor going and dithering to and fro. Upon the high throne of rock in this gentle wood lie its king. One who proudly unleashed with a powerful stroke its large pearlescent wings shimmering and gleaming luxuriously in the lights rays, for all the forests inhabitant's to witness and gaze in wonder of its power and influence. From Bat to Ghoul all bowed their head unto their rightful king. But as the king did make his display three boys were wandering into the woods against their mothers approval. When the King O' the Woods saw them enter his forest he was sent into a frightful rage and grew twice as big as before towering above any tree and boomed through the forest furious that they dared to enter his domain! One of the boys tried to run away like a coward and was crushed, another bowed in fealty to this worldly master hoping for mercy from the king and was cast against a tree but the third boy was pious and prayed to the Eternal Spirit and just when the King O' the Woods lifted his mighty limbs to crush the boy, a bright light in the distance blinded the king who cowered in fear and fled towards the light being both blinded with love of the eternal spirit yet also full of spite and hatred and thus was driven to madness. The boy came home and told his mother everything and then lived to become a priest most humble and helpful to those in need");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 3;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "3d")
+                        {
+                            //text dialogue
+                            if (player.title == "Royalty")
+                            {
+                                setMsg("It exceeds the humble streets surely in its wealth and majesty Your Grace. And in the occasion that i'm not needed I walk the paths of the blood woods, and eat to my hearts content at your graces table most fair.");
+                            }
+                            else if (player.gender == "Male" && player.raceName == "Vardan")
+                            {
+                                setMsg("It exceeds the humble streets surely in its wealth and majesty. My Count.");
+                            }
+                            else if (player.raceName == "Vardan")
+                            {
+                                setMsg("It exceeds the humble streets surely in its wealth and majesty. My Countess.");
+                            }
+                            else if (player.gender == "Male" && player.raceName == "Nirwaden")
+                            {
+                                setMsg("It exceeds the humble streets surely in its wealth and majesty. My Lord.");
+                            }
+                            else
+                            {
+                                setMsg("It exceeds the humble streets surely in its wealth and majesty. My Dame.");
+                            }
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 3;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "3e")
+                        {
+                            //text dialogue
+                            setMsg("One fell day a man in a long black cloak rode into town, they say he bore a tongue of silver, and he swore that fair haired maiden he would claim, she who bore the black flower upon her gown! Upon his black horse darker than night he rode, he said I will love you yon forever, i’ll give to thee fleets of silver and gold this he claimed to one whom’s hair did glow. She did not wait for family nor preacher, he softly wove words of silk and silver, his vile empty serpent tongue did pierce her. so she fell then for this wicked creature! And in the morning she woke her bed was cold, her soul claimed by the man in the long black cloak,so remember all ye whether old or fair, give not purity for mere pleasure nor gold!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 3;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "3f")
+                        {
+                            //text dialogue
+                            setMsg("What's crimson and bad for thy teeth? A brick.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 3;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "3g")
+                        {
+                            //text dialogue
+                            setMsg("It's quite important to have a good vocabulary. If I had known the difference between the words 'antidote' and 'anecdote,' one of my good friends would still be alive.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 3;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "3h")
+                        {
+                            //text dialogue
+                            setMsg("Give a man a tinder box, and he'll be warm for a few hours. Set a man on fire, and he will be warm for the rest of his life.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 3;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "3i")
+                        {
+                            //text dialogue
+                            setMsg("A man walks with a young boy into the woods. The boy turned to him and said, 'Good sirrah, it's getting quite dark and I must admit that I am quite scared.' The man doth replied, 'How do you think I feel? I have to walk back alone.'");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 3;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "3j")
+                        {
+                            //text dialogue
+                            setMsg("I visited upon a friend of mine at his new house. He told unto me to make myself at home. So I threw him out. I hate having visitors.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 3;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "3k")
+                        {
+                            //text dialogue
+                            setMsg("Somber we are, as is the crows song. Worry not, the cold shall draw them far away. The dead are weary, from their ceaseless stabbing deeper into the chasm of their hearts, desperately seeking warmth from this cruel dark world. Don’t fear death, for death follows kings and beggers alike, no matter how far you wander upon this trembling earth.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 3;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "3l")
+                        {
+                            //text dialogue
+                            setMsg("Sometimes the world is but a craven screaming black void of death and madness. It's an endless cawing to murders of crows. Yet even more horrid nightmares stand beyond unseen, unknown. These horrors claw at the brinks of our dwindling hope, And light is cast into blackened pits to never be seen again. Yet also there is beauty, that of the mother and the child, of the slopes and swaying lush deep grey grass. The rare days where all lie huddled by the fire singing songs of old, let no more this evil stay its hand upon your heart, keep to the old ways make truth and love your vigil to keep.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 3;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "3m")
+                        {
+                            //text dialogue
+                            setMsg("The gray hills are cold, yet immeasurably old. Drink and ale wrought down, I fear horrors yet unbound. May man yet prevail, o'er dark and shadowy veil? Therein lies dark desire, casted into fire. Not to drown in lust and gold, hearts of blackened mold");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 3;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "3n")
+                        {
+                            //text dialogue
+                            setMsg("There once was a man from Chesterskya, He liked to set his friends on fire, they called him mad and he was quite glad, for infamy was his perverted desire.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 3;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                    }
+
                     if (self.ID == "Uncle Ekhzam" || self.ID == "Beastmaster Ekhzam" || conversationID[0] == "Ekhzam")
                     {
                         lowBar = "dialogue";
@@ -3747,9 +4902,9 @@ function interaction(me)
                                 player.dialoguePosition = 0;
                                 conversationID[1] = 0;
                                 take("coins", 700);
+                                self.SC();
                                 reiniciar();
                                 change = "morrowMare";
-                                self.SC();
                             }
                             else
                             {
@@ -3770,9 +4925,9 @@ function interaction(me)
                                 player.dialoguePosition = 0;
                                 conversationID[1] = 0;
                                 take("coins", 825);
+                                self.SC();
                                 reiniciar();
                                 change = "morrowStallion";
-                                self.SC();
                             }
                             else
                             {

@@ -1781,6 +1781,122 @@ function worldBuilder()
             outlineBuilder(34, 34, "vardanianGrass", -1176, 388);
             outlineBuilder(34, 1, "vardanianStone", -1159, 388);
         }
+        //mapS12W35
+        if (Y > -126325 && Y < -115546 && X < 364713 && X > 353021) //X-34
+        {
+            elevation = 0;
+            region = "s12w35";
+            campout = true;
+            outlineBuilder(34, 34, "vardanianGrass", -1210, 388);
+
+            outlineBuilder(3, 2, "vardanianWetland", -1195, 400);
+            outlineBuilder(1, 2, "vardanianWetland", -1197, 401);
+            outlineBuilder(4, 1, "vardanianWetland", -1198, 401);
+            outlineBuilder(2, 1, "vardanianWetland", -1199, 402);
+            outlineBuilder(1, 1, "vardanianWetland", -1196, 400);
+            outlineBuilder(3, 1, "vardanianWetland", -1197, 403);
+            outlineBuilder(1, 2, "vardanianWetland", -1196, 405);
+            outlineBuilder(1, 3, "vardanianWetland", -1196, 404);
+            outlineBuilder(6, 1, "vardanianWetland", -1193, 401);
+            outlineBuilder(3, 1, "vardanianWetland", -1192, 402);
+            outlineBuilder(1, 1, "vardanianWetland", -1191, 403);
+            outlineBuilder(3, 1, "vardanianWetland", -1190, 403);
+            outlineBuilder(2, 1, "vardanianWetland", -1191, 405);
+            outlineBuilder(2, 1, "vardanianWetland", -1192, 406);
+            outlineBuilder(1, 1, "vardanianWetland", -1194, 406);
+            outlineBuilder(1, 3, "vardanianWetland", -1197, 407);
+            outlineBuilder(3, 1, "vardanianWetland", -1193, 407);
+            outlineBuilder(3, 1, "vardanianWetland", -1198, 408);
+            outlineBuilder(2, 1, "vardanianWetland", -1197, 409);
+            outlineBuilder(1, 2, "vardanianWetland", -1196, 410);
+            outlineBuilder(4, 1, "vardanianWetland", -1194, 409);
+            outlineBuilder(1, 1, "vardanianWetland", -1198, 411);
+            outlineBuilder(1, 3, "vardanianWetland", -1197, 412);
+            outlineBuilder(1, 2, "vardanianWetland", -1196, 413);
+            outlineBuilder(2, 1, "vardanianWetland", -1199, 409);
+            outlineBuilder(5, 7, "vardanianWetland", -1188, 400);
+            outlineBuilder(1, 4, "vardanianWetland", -1186, 399);
+            outlineBuilder(2, 1, "vardanianWetland", -1181, 401);
+            outlineBuilder(2, 4, "vardanianWetland", -1187, 405);
+            outlineBuilder(2, 1, "vardanianWetland", -1182, 405);
+            outlineBuilder(1, 1, "vardanianWetland", -1181, 406);
+            outlineBuilder(6, 1, "vardanianWetland", -1180, 403);
+            outlineBuilder(1, 1, "vardanianWetland", -1179, 405);
+            outlineBuilder(1, 2, "vardanianWetland", -1179, 406);
+            outlineBuilder(1, 1, "vardanianWetland", -1177, 407);
+            outlineBuilder(2, 2, "vardanianWetland", -1179, 408);
+            outlineBuilder(1, 1, "vardanianWetland", -1181, 407);
+            outlineBuilder(1, 2, "vardanianWetland", -1186, 407);
+            outlineBuilder(5, 3, "vardanianWetland", -1187, 408);
+            outlineBuilder(3, 1, "vardanianWetland", -1188, 409);
+            outlineBuilder(4, 2, "vardanianWetland", -1185, 410);
+            outlineBuilder(1, 2, "vardanianWetland", -1191, 412);
+            outlineBuilder(4, 3, "vardanianWetland", -1191, 413);
+            outlineBuilder(1, 4, "vardanianWetland", -1190, 417);
+            outlineBuilder(1, 2, "vardanianWetland", -1188, 418);
+            outlineBuilder(1, 2, "vardanianWetland", -1188, 414);
+            outlineBuilder(1, 3, "vardanianWetland", -1186, 415);
+            outlineBuilder(1, 3, "vardanianWetland", -1187, 416);
+            outlineBuilder(2, 1, "vardanianWetland", -1192, 413);
+            outlineBuilder(5, 1, "vardanianWetland", -1205, 396);
+            outlineBuilder(1, 1, "vardanianWetland", -1206, 396);
+            outlineBuilder(1, 2, "vardanianWetland", -1207, 395);
+            outlineBuilder(2, 2, "vardanianWetland", -1204, 400);
+            outlineBuilder(3, 1, "vardanianWetland", -1207, 400);
+            outlineBuilder(1, 2, "vardanianWetland", -1208, 401);
+            outlineBuilder(2, 1, "vardanianWetland", -1206, 402);
+            outlineBuilder(2, 1, "vardanianWetland", -1205, 403);
+            outlineBuilder(2, 1, "vardanianWetland", -1204, 402);
+            outlineBuilder(1, 1, "vardanianWetland", -1204, 399);
+            outlineBuilder(1, 2, "vardanianWetland", -1204, 396);
+            outlineBuilder(1, 1, "vardanianWetland", -1204, 397);
+            outlineBuilder(2, 1, "vardanianWetland", -1208, 396);
+            outlineBuilder(1, 1, "vardanianWetland", -1207, 398);
+            outlineBuilder(2, 1, "vardanianWetland", -1208, 399);
+            outlineBuilder(1, 1, "vardanianWetland", -1202, 400);
+            outlineBuilder(3, 1, "vardanianWetland", -1201, 397);
+            outlineBuilder(1, 1, "vardanianWetland", -1202, 397);
+            outlineBuilder(1, 1, "vardanianWetland", -1200, 398);
+
+            outlineBuilder(1, 1, "swampTR", -1204, 399);
+
+            outlineBuilder(1, 2, "swamp", -1197, 402);
+            outlineBuilder(1, 3, "swamp", -1196, 403);
+            outlineBuilder(1, 1, "swamp", -1192, 405);
+            outlineBuilder(2, 1, "swamp", -1194, 407);
+            outlineBuilder(1, 3, "swamp", -1197, 411);
+            outlineBuilder(2, 2, "swamp", -1190, 414);
+            outlineBuilder(1, 2, "swamp", -1186, 411);
+            outlineBuilder(3, 1, "swamp", -1181, 403);
+            outlineBuilder(1, 2, "swamp", -1179, 407);
+            outlineBuilder(1, 1, "swamp", -1197, 408);
+            outlineBuilder(2, 2, "swamp", -1196, 408);
+            outlineBuilder(2, 1, "swamp", -1186, 409);
+            outlineBuilder(1, 1, "swamp", -1187, 410);
+            outlineBuilder(1, 1, "swamp", -1191, 404);
+            outlineBuilder(1, 2, "swamp", -1187, 402);
+            outlineBuilder(2, 1, "swamp", -1186, 403);
+            outlineBuilder(2, 2, "swamp", -1185, 402);
+            outlineBuilder(2, 2, "swamp", -1184, 401);
+            outlineBuilder(2, 1, "swamo", -1182, 404);
+            outlineBuilder(1, 2, "swamp", -1188, 415);
+            outlineBuilder(1, 2, "swamp", -1189, 416);
+            outlineBuilder(2, 1, "swamp", -1205, 401);
+            outlineBuilder(5, 1, "swamp", -1206, 397);
+            outlineBuilder(1, 1, "swamp", -1204, 398);
+            outlineBuilder(3, 1, "swamp", -1203, 397);
+            outlineBuilder(2, 1, "swamp", -1202, 398);
+            outlineBuilder(2, 1, "swamp", -1207, 396);
+            outlineBuilder(1, 1, "swamp", -1207, 399);
+        }
+        //mapS12W36
+        if (Y > -126325 && Y < -115546 && X < 374956 && X > 363245) //X-34
+        {
+            elevation = 0;
+            region = "s12w36";
+            campout = true;
+            outlineBuilder(34, 34, "vardanianGrass", -1244, 388);
+        }
         //Layer -11 (temperate region): elev -1 | (cold region) past w-28: elev 0
         //mapS11
         if (Y > -116103 && Y < -105338 && X < 7687 && X > - 3901) //X0
@@ -3789,6 +3905,15 @@ function worldBuilder()
             outlineBuilder( 1, 2, "muckgrass", 23, 99);
             outlineBuilder( 2, 14, "muckgrass", 30, 86);
             //outlineBuilder( 1, 1, "muckgrass", 8, 104);
+        }
+        //mapS3E6
+        if (Y > -34556 && Y < -23654 && X < -53489.88731544383 && X > -65110.798814782334) //X6
+        {
+            elevation = 0;
+            region = "s3e6";
+            campout = true;
+            outlineBuilder( 34, 34, "brightGrass", 184, 82);
+
         }
         //Layer -2 (cold region): elev 0
         //mapS2E6

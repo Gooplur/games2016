@@ -2213,6 +2213,52 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
             }
         }
 
+        //Summoning
+        if (this.spellType == "summonFrich" || this.spellType == "summonWolf" || this.spellType == "summonGriffin" || this.spellType == "adminSummon")
+        {
+            this.spin = ((Math.random() * 11) - 5) / 25;
+            var rdxn = Math.floor(Math.random() * 8);
+
+            if (instructions == 1)
+            {
+                this.orientToCaster(19, 1 / 2 * Math.PI);
+            }
+            else if (instructions == 2)
+            {
+                this.orientToCaster(16 + rdxn, 4 / 6 * Math.PI );
+            }
+            else if (instructions == 3)
+            {
+                this.orientToCaster(16 + rdxn, 2 / 6 * Math.PI );
+            }
+            else if (instructions == 4)
+            {
+                this.orientToCaster(16 + rdxn, 3 / 6 * Math.PI );
+            }
+            else if (instructions == 5)
+            {
+                this.orientToCaster(16 + rdxn, 1.6 / 6 * Math.PI );
+            }
+            else if (instructions == 6)
+            {
+                this.orientToCaster(16 + rdxn, 0.6 / 6 * Math.PI );
+            }
+            else if (instructions == 7)
+            {
+                this.orientToCaster(16 + rdxn, 4 / 6 * Math.PI );
+            }
+            else
+            {
+                this.orientToCaster(19, 1 / 2 * Math.PI);
+            }
+        }
+
+        //SHADOW CROW
+        if (this.spellType == "shadowCrow")
+        {
+            this.orientToCaster(30, 0.7 / 2 * Math.PI);
+        }
+
         //CHARMING
         if (this.spellType == "charm")
         {
@@ -2507,6 +2553,139 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                 else
                 {
                     //todo add summoning spell for AI
+                }
+            }
+
+            //SHADOW CROW
+            if (this.spellType == "shadowCrow")
+            {
+                if (caster)
+                {
+                    if (this.cnx >= 45)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Crow", "shadow", "player"));
+                    }
+                    else if (this.cnx >= 40)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Crow", "shadow", "player"));
+                    }
+                    else if (this.cnx >= 30)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                    }
+                    else if (this.cnx >= 20)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Crow", "shadow", "player"));
+                    }
+                    else if (this.cnx >= 10)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Crow", "shadow", "player"));
+                    }
+                    else
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Crow", "shadow", "player"));
+                    }
+
+                    for (var i = 0; i < magicList.length; i++)
+                    {
+                        if (magicList[i] === this)
+                        {
+                            magicList.splice(i, 1);
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    if (this.cnx >= 45)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Crow", "shadow", "player"));
+                    }
+                    else if (this.cnx >= 40)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Crow", "shadow", "player"));
+                    }
+                    else if (this.cnx >= 30)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                    }
+                    else if (this.cnx >= 20)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Crow", "shadow", "player"));
+                    }
+                    else if (this.cnx >= 10)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(50), this.Y + spacer(50), "Crow", "shadow", "player"));
+                        ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Crow", "shadow", "player"));
+                    }
+                    else
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Crow", "shadow", "player"));
+                    }
+
+                    for (var i = 0; i < magicList.length; i++)
+                    {
+                        if (magicList[i] === this)
+                        {
+                            magicList.splice(i, 1);
+                            break;
+                        }
+                    }
                 }
             }
 

@@ -8,7 +8,7 @@
 //top priority
 
 //Image sheet ideas
-//todo orgish image sheet
+//todo orgish image sheet part II: Odachi, Yari, Kuzan (catfish shark), Snap-jaw (little glade alligator), giant koifish, sticky bug trap flower, molebear, cobra, hummingbird, toucan, panda bear, baboon
 //todo far north fish
 //todo furry snow beast
 //todo frost wyrm (with frost breath) (ridable)
@@ -1285,6 +1285,10 @@ function envPack()
     thatchEnv.src = ("images/thatchedKel.jpg");
     window.thatchEnv = thatchEnv;
 
+    var vardanFarmlandEnv = new Image();
+    vardanFarmlandEnv.src = ("images/vardanFarmland.png");
+    window.vardanFarmlandEnv = vardanFarmlandEnv;
+
     var jungleEnv = new Image();
     jungleEnv.src = ("images/jungle.png");
     window.jungleEnv = jungleEnv;
@@ -1582,6 +1586,30 @@ function bludPack()
     window.blud = blud;
 
     blud.onload = function()
+    {
+        olgPack();
+    };
+}
+
+function olgPack()
+{
+    var olg = new Image();
+    olg.src = ("images/olg.png");
+    window.olg = olg;
+
+    olg.onload = function()
+    {
+        yilPack();
+    };
+}
+
+function yilPack()
+{
+    var yil = new Image();
+    yil.src = ("images/yil.png");
+    window.yil = yil;
+
+    yil.onload = function()
     {
         pillPack();
     };

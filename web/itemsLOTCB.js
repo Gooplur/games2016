@@ -4753,6 +4753,58 @@ function Item(type, x, y)
             this.buyValue = 2; // at max, buy for 2.
             this.sellValue = 2; // at max, sell for 2.
         }
+        else if (this.type == "reshidTooth")
+        {
+            //For All Items
+            this.identity = "Reshid Tooth";
+            this.weight = 0.25;
+            this.size = 8;
+            this.description = "A glistening, long, hard, sharp tooth from a reshid.";
+            this.intForDes = 1;
+            this.intDescription = "This trophy is a testimate to having slain a reshid...";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "sutetchiLeg")
+        {
+            //For All Items
+            if (player.raceName == "Orgell" || player.raceName == "Cephrite" || player.raceName == "Aldrek" || player.raceName == "Kel" || player.raceName == "Sylkeem")
+            {
+                this.identity = "Sutetchi Leg";
+                this.weight = 5.4;
+                this.size = 16;
+                this.description = "The sharp pointed blade leg of a sutetchi.";
+                this.intForDes = 2;
+                this.intDescription = "Sutetchi use their legs to stab and slice at their prey.";
+            }
+            else
+            {
+                this.identity = "Jack Spider Leg";
+                this.weight = 5.4;
+                this.size = 16;
+                this.description = "The sharp pointed blade leg of a jack spider.";
+                this.intForDes = 2;
+                this.intDescription = "Jack spiders use their legs to stab and slice at their prey.";
+            }
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 2; // at max, sell for 2.
+        }
         else if (this.type == "tilkTentacle")
         {
             //For All Items
@@ -55990,6 +56042,16 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "sutetchiLeg")
+        {
+            XXX.beginPath();
+            XXX.drawImage(olg, 37, 298, 28, 28, X - this.X + (1/2 * CCC.width) - (1/2 * 28 * 2.1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 28 * 2.1), 28 * 2.1, 28 * 2.1);
+        }
+        else if (this.type == "reshidTooth")
+        {
+            XXX.beginPath();
+            XXX.drawImage(olg, 760, 156, 16, 6, X - this.X + (1/2 * CCC.width) - (1/2 * 16 * 1.9), Y - this.Y + (1/2 * CCC.height) - (1/2 * 6 * 1.9), 16 * 1.9, 6 * 1.9);
+        }
         else if (this.type == "scorpionClaw")
         {
             XXX.beginPath();
@@ -63298,6 +63360,16 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(candlewic, 61, 201, 27, 29, this.invX - (1/2 * 27 * 1.5), this.invY - (1/2 * 29 * 1.5), 27 * 1.5, 29 * 1.5);
         }
+        else if (this.type == "sutetchiLeg")
+        {
+            LXX.beginPath();
+            LXX.drawImage(olg, 37, 298, 28, 28, this.invX - (1/2 * 28 * 1.4), this.invY - (1/2 * 28 * 1.4), 28 * 1.4, 28 * 1.4);
+        }
+        else if (this.type == "reshidTooth")
+        {
+            LXX.beginPath();
+            LXX.drawImage(olg, 760, 156, 16, 6, this.invX - (1/2 * 16 * 1.4), this.invY - (1/2 * 6 * 1.4), 16 * 1.4, 6 * 1.4);
+        }
         else if (this.type == "scorpionClaw")
         {
             LXX.beginPath();
@@ -70582,6 +70654,16 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "sutetchiLeg")
+        {
+            XXX.beginPath();
+            XXX.drawImage(olg, 37, 298, 28, 28, this.invX - (1/2 * 28 * 1.4), this.invY - (1/2 * 28 * 1.4), 28 * 1.4, 28 * 1.4);
+        }
+        else if (this.type == "reshidTooth")
+        {
+            XXX.beginPath();
+            XXX.drawImage(olg, 760, 156, 16, 6, this.invX - (1/2 * 16 * 1.4), this.invY - (1/2 * 6 * 1.4), 16 * 1.4, 6 * 1.4);
         }
         else if (this.type == "scorpionClaw")
         {

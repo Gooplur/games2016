@@ -490,6 +490,7 @@ function Adventurer()
     this.bandagedStoreTime = new Date().getTime();
     this.bandagedTime = 0; //time limit for bandages
     this.bandaged = false; //this flag is true when your character has applied bandages which are still in effect.
+    this.acidVI = false;
     this.acidV = false;
     this.acidIV = false;
     this.acidIII = false;
@@ -3652,9 +3653,13 @@ function Adventurer()
         {
             if (new Date().getTime() <= this.acidTime)
             {
-                if (this.acidV == true)
+                if (this.acidVI == true)
                 {
-                    this.health -= Math.max(0, 0.05 * (TTD / 16.75) - (this.acidResistance / 1000));
+                    this.health -= Math.max(0, 0.14 * (TTD / 16.75) - (this.acidResistance / 1000));
+                }
+                else if (this.acidV == true)
+                {
+                    this.health -= Math.max(0, 0.06 * (TTD / 16.75) - (this.acidResistance / 1000));
                 }
                 else if (this.acidIV == true)
                 {
@@ -3683,6 +3688,7 @@ function Adventurer()
             }
             else
             {
+                this.acidVI = false;
                 this.acidV = false;
                 this.acidIV = false;
                 this.acidIII = false;
@@ -6795,7 +6801,7 @@ function Adventurer()
     //Acidic Notice Function
     this.acidicChecker = function()
     {
-        if (this.quarterAcid == true || this.halfAcid == true || this.acidI == true || this.acidII == true || this.acidIII == true || this.acidIV == true || this.acidV == true)
+        if (this.quarterAcid == true || this.halfAcid == true || this.acidI == true || this.acidII == true || this.acidIII == true || this.acidIV == true || this.acidV == true || this.acidVI == true)
         {
             // at this point the slot should be consistent so it should not have to check again to be entered into a position on the miniNoticeList.
             this.addNotice("Acidic");
@@ -40822,6 +40828,7 @@ function Adventurer()
                                 this.acidIII = false;
                                 this.acidIV = false;
                                 this.acidV = false;
+                                this.acidVI = false;
                                 this.petrified = false;
                                 this.fatigueI = false;
                                 this.fatigueII = false;

@@ -325,6 +325,16 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                         player.stunnedIII = true;
                         player.stunnedTime = 3;
                     }
+                    else if (effect == "yilotnyyAcid" && (Math.max(0, damage - Math.max(0, player.armourTotal - negate)) > 0))
+                    {
+                        player.acidVI = true;
+                        player.acidTime  = new Date().getTime() + 45000;
+                    }
+                    else if (effect == "superAcid" && (Math.max(0, damage - Math.max(0, player.armourTotal - negate)) > 0))
+                    {
+                        player.acidV = true;
+                        player.acidTime = new Date().getTime() + 22000;
+                    }
                 }
             }
         }
@@ -10719,6 +10729,18 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                             ArtificialIntelligenceAccess[j].stunTimer = 3;
                             ArtificialIntelligenceAccess[j].stunTime = new Date().getTime();
                         }
+                        else if (this.effect == "yilotnyyAcid" && (Math.max(0, (this.damage - Math.max(0, ArtificialIntelligenceAccess[j].armour - this.negate)))))
+                        {
+                            ArtificialIntelligenceAccess[j].acidVI = true;
+                            ArtificialIntelligenceAccess[j].acidTime = new Date().getTime() + 45000;
+                            ArtificialIntelligenceAccess[j].killNotByPlayer = true;
+                        }
+                        else if (this.effect == "superAcid" && (Math.max(0, (this.damage - Math.max(0, ArtificialIntelligenceAccess[j].armour - this.negate)))))
+                        {
+                            ArtificialIntelligenceAccess[j].acidV = true;
+                            ArtificialIntelligenceAccess[j].acidTime = new Date().getTime() + 22000;
+                            ArtificialIntelligenceAccess[j].killNotByPlayer = true;
+                        }
                     }
                 }
             }
@@ -17499,7 +17521,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
             this.radius = 90;
 
-            barrierCreator(this.X, this.Y); //for easily setting barriers when making buildings
+            //barrierCreator(this.X, this.Y); //for easily setting barriers when making buildings
 
             //INTERACTION
             if (this.activate == true)

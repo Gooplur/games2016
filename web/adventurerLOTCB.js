@@ -14556,6 +14556,65 @@ function Adventurer()
             }
         }
 
+        //Shadow Crow Form
+        if (this.spell.ID == "antherPlague")
+        {
+            this.stageEngine(3, 0.40, false);
+
+            //ATTACK
+            if (Math.floor(this.stage) <= 0)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(cypher, 221, 202, 66, 57, -1/2 * 66 * 1, -1/2 * 57 * 1, 66 * 1, 57 * 1);
+                XXX.restore();
+                this.doMagic = true;
+            }
+            else if (Math.floor(this.stage) <= 1)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(cypher, 219, 262, 66, 57, -1/2 * 66 * 1, -1/2 * 57 * 1, 66 * 1, 57 * 1);
+                XXX.restore();
+                if (this.doMagic)
+                {
+                    this.doMagic = false;
+                    this.will -= this.spell.cost;
+                    this.magicalExperience += this.spell.EXP;
+                    this.castedSpell = true;
+                    magicList.push(new Magic(player.spell, true, 1));
+                }
+            }
+            else if (Math.floor(this.stage) >= 2)
+            {
+                this.doMagic = true;
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(cypher, 219, 262, 66, 57, -1/2 * 66 * 1, -1/2 * 57 * 1, 66 * 1, 57 * 1);
+                XXX.restore();
+                if (this.castedSpell == true)
+                {
+                    this.castedSpell = false;
+                    this.castingCooldown = new Date().getTime();
+                }
+            }
+        }
+
         //Charm Form
         if (this.spell.ID == "charm")
         {

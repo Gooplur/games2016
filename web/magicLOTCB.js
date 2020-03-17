@@ -2259,6 +2259,12 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
             this.orientToCaster(30, 0.7 / 2 * Math.PI);
         }
 
+        //ANTHER PLAGUE
+        if (this.spellType == "antherPlague")
+        {
+            this.orientToCaster(30, 0.7 / 2 * Math.PI);
+        }
+
         //CHARMING
         if (this.spellType == "charm")
         {
@@ -2677,6 +2683,37 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                     {
                         ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Crow", "shadow", "player"));
                     }
+
+                    for (var i = 0; i < magicList.length; i++)
+                    {
+                        if (magicList[i] === this)
+                        {
+                            magicList.splice(i, 1);
+                            break;
+                        }
+                    }
+                }
+            }
+
+            //ANTHER PLAGUE
+            if (this.spellType == "antherPlague")
+            {
+                if (caster)
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "AntherFly", "shadow", "player"));
+
+                    for (var i = 0; i < magicList.length; i++)
+                    {
+                        if (magicList[i] === this)
+                        {
+                            magicList.splice(i, 1);
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "AntherFly", "shadow", "player"));
 
                     for (var i = 0; i < magicList.length; i++)
                     {

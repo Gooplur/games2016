@@ -24212,7 +24212,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             {
                 if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= this.radius + (3/4 * ArtificialIntelligenceAccess[j].sizeRadius) && !ArtificialIntelligenceAccess[j].underground && ArtificialIntelligenceAccess[j].dmx == this.dmx)
                 {
-                    if (ArtificialIntelligenceAccess[j].hazmatted != true)
+                    if (ArtificialIntelligenceAccess[j].hazmatted != true && ArtificialIntelligenceAccess[j].type != "Yilotnyy")
                     {
                         if (ArtificialIntelligenceAccess[j].resistDisease != true)
                         {
@@ -41072,7 +41072,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             //certain enemies break right through it
             for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
             {
-                if (ArtificialIntelligenceAccess[i].type == "BogTroll" || ArtificialIntelligenceAccess[i].type == "Hydra" || ArtificialIntelligenceAccess[i].type == "Vodkapa" || ArtificialIntelligenceAccess[i].healthMAX > 60)
+                if (ArtificialIntelligenceAccess[i].type == "BogTroll" || ArtificialIntelligenceAccess[i].type == "Hydra" || ArtificialIntelligenceAccess[i].type == "Vodkapa" || ArtificialIntelligenceAccess[i].type == "Yilotnyy" || ArtificialIntelligenceAccess[i].healthMAX > 60)
                 {
                     var disst = (this.X - ArtificialIntelligenceAccess[i].X)*(this.X - ArtificialIntelligenceAccess[i].X) + (this.Y - ArtificialIntelligenceAccess[i].Y)*(this.Y - ArtificialIntelligenceAccess[i].Y);
                     if (disst < (this.radius * 1.5) * (this.radius * 1.5) + ArtificialIntelligenceAccess[i].sizeRadius * ArtificialIntelligenceAccess[i].sizeRadius)

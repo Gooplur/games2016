@@ -1091,7 +1091,7 @@ function Item(type, x, y)
         else if (this.type == "antherPlague")
         {
             //For All Items
-            if (player.getKnowledge() >= 31)
+            if (player.getKnowledge() >= 32)
             {
                 this.identity = "Scroll of Anther Plague";
                 this.description = "Studying this scroll will teach you how to magically synthesize an anther fly.";
@@ -1124,13 +1124,13 @@ function Item(type, x, y)
             this.spellCost = Math.max(1, 2 + (1 / 50) * player.getConcentration() - (3 / 50) * player.getEminence());
 
             this.spellGroup = "Form";
-            this.spellGenre = "Conjuration";
+            this.spellGenre = "Nechromancy";
             this.spellName = "Anther Plague";
             this.spellID = "antherPlague";
             this.spellEXP = 0.2 * ((50 + player.getMemory()) / 50);
             this.spellCooldown = Math.max(0.2, 0.2);
             this.spellDescription = "Instantaneously synthesize an anther fly.";
-            this.spellKnowledgeRequirement = 31;
+            this.spellKnowledgeRequirement = 32;
             this.spellRange = "Medium";
         }
         else if (this.type == "summonFrich")
@@ -4572,6 +4572,46 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "yilotnyyPelt")
+        {
+            //For All Items
+            this.identity = "Yilotnyy Pelt";
+            this.weight = 7;
+            this.size = 18;
+            this.description = "Soft, thin, dark brown fur from a Yilotnyy.";
+            this.intForDes = 14;
+            this.intDescription = "Though yilotnyy are akin to giant lobster eels, they are indeed mammals that have fur and give birth to live young.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5; // at max, buy for 5.
+            this.sellValue = 5; // at max, sell for 5.
+        }
+        else if (this.type == "yilotnyyFangs")
+        {
+            //For All Items
+            this.identity = "Yilotnyy Fangs";
+            this.weight = 10;
+            this.size = 18;
+            this.description = "The thick boney fangs of an adult male yilotnyy.";
+            this.intForDes = 14;
+            this.intDescription = "Female yilotnyy have much smaller fangs, instead of chewing they use corrosive acid to melt their food for them.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 8; // at max, buy for 8.
+            this.sellValue = 8; // at max, sell for 8.
         }
         else if (this.type == "juniperBerries")
         {
@@ -56087,6 +56127,16 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "yilotnyyFangs")
+        {
+            XXX.beginPath();
+            XXX.drawImage(yil, 380, 308, 38, 33, X - this.X + (1/2 * CCC.width) - (1/2 * 38 * 0.65), Y - this.Y + (1/2 * CCC.height) - (1/2 * 33 * 0.65), 38 * 0.65, 33 * 0.65);
+        }
+        else if (this.type == "yilotnyyPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(yil, 52, 291, 59, 50, X - this.X + (1/2 * CCC.width) - (1/2 * 59 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 50 * 1.2), 59 * 1.2, 50 * 1.2);
+        }
         else if (this.type == "sutetchiLeg")
         {
             XXX.beginPath();
@@ -63405,6 +63455,16 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(candlewic, 61, 201, 27, 29, this.invX - (1/2 * 27 * 1.5), this.invY - (1/2 * 29 * 1.5), 27 * 1.5, 29 * 1.5);
         }
+        else if (this.type == "yilotnyyFangs")
+        {
+            LXX.beginPath();
+            LXX.drawImage(yil, 380, 308, 38, 33, this.invX - (1/2 * 38 * 0.65), this.invY - (1/2 * 33 * 0.65), 38 * 0.65, 33 * 0.65);
+        }
+        else if (this.type == "yilotnyyPelt")
+        {
+            LXX.beginPath();
+            LXX.drawImage(yil, 52, 291, 59, 50, this.invX - (1/2 * 59 * 0.9), this.invY - (1/2 * 50 * 0.9), 59 * 0.9, 50 * 0.9);
+        }
         else if (this.type == "sutetchiLeg")
         {
             LXX.beginPath();
@@ -70699,6 +70759,16 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "yilotnyyFangs")
+        {
+            XXX.beginPath();
+            XXX.drawImage(yil, 380, 308, 38, 33, this.invX - (1/2 * 38 * 0.65), this.invY - (1/2 * 33 * 0.65), 38 * 0.65, 33 * 0.65);
+        }
+        else if (this.type == "yilotnyyPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(yil, 52, 291, 59, 50, this.invX - (1/2 * 59 * 0.9), this.invY - (1/2 * 50 * 0.9), 59 * 0.9, 50 * 0.9);
         }
         else if (this.type == "sutetchiLeg")
         {

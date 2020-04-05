@@ -2764,6 +2764,17 @@ function worldBuilder()
             outlineBuilder(2, 2, "vardanianFarmland", -1144, 318);
             outlineBuilder(2, 1, "vardanianFarmland", -1152, 318);
             outlineBuilder(3, 3, "vardanianFarmland", -1175, 308);
+            outlineBuilder(2, 2, "vardanianFarmland", -1152, 310);
+            outlineBuilder(2, 1, "vardanianFarmland", -1150, 310);
+            outlineBuilder(2, 2, "vardanianFarmland", -1153, 316);
+            outlineBuilder(5, 1, "vardanianFarmland", -1151, 313);
+            outlineBuilder(4, 3, "vardanianFarmland", -1150, 313);
+            outlineBuilder(3, 1, "vardanianFarmland", -1147, 314);
+            outlineBuilder(2, 4, "vardanianFarmland", -1146, 316);
+            outlineBuilder(4, 3, "vardanianFarmland", -1157, 308);
+            outlineBuilder(3, 2, "vardanianFarmland", -1154, 309);
+            outlineBuilder(1, 2, "vardanianFarmland", -1164, 296);
+            outlineBuilder(2, 2, "vardanianFarmland", -1144, 292);
 
             outlineBuilder(1, 7, "brightGrass", -1151, 319); //vardanianWoods or forest
             outlineBuilder(1, 1, "brightGrass", -1146, 318);
@@ -2781,7 +2792,7 @@ function worldBuilder()
 
             outlineBuilder( 1, 15, "vardanianStone", -1176, 306);
             outlineBuilder(1, 8, "vardanianStone", -1162, 305);
-            outlineBuilder(1, 11, "vardanianStone", -1155, 306);
+            outlineBuilder(1, 13, "vardanianStone", -1155, 306);
         }
         //mapS9W35
         if (Y > -95730 && Y < -84938 && X < 364713 && X > 353021) //X-35
@@ -6068,6 +6079,16 @@ function worldBuilder()
         outlineBuilder( 1, 1, "rock", 0, 0);
         outlineBuilder( 1, 4, "rock", -4, -4);
         outlineBuilder( 2, 2, "rock", -5, -5);
+    }
+    else if (map == "testMap") //TESTING //TEST //TEST ROOM //TESTROOM //TESTMAP //TEST MAP
+    {
+        player.dmx = map;
+        player.underground = false;
+        elevation = -1;
+        region = "testMap";
+        campout = true;
+        //starting chamber
+        outlineBuilder(68,68, "outline", -34, -34);
     }
 }
 

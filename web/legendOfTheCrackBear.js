@@ -3815,7 +3815,20 @@ function theLegend()
         hresha: ["Hresha", 0],
         zhal: ["Zhal", 0],
         ekhzam: ["Ekhzam", 0],
-        modig: ["Modig", 0]
+        modig: ["Modig", 0],
+        rybolov: ["Rybolov", 0],
+        daufodde: ["Daufodde", 0],
+        yihagm: ["Yihagm", 0],
+        niljada: ["Niljada", 0],
+        elpama: ["Elpama", 0],
+        raham: ["Raham", 0],
+        chemadu: ["Chemadu", 0],
+        legiaz: ["Legiaz", 0],
+        naraleht: ["Naraleht", 0],
+        ilman: ["Ilman", 0],
+        hepnorite: ["Hepnorite", 0],
+        abbergaz: ["Abbergaz", 0],
+        ebau: ["Ebau", 0]
     };
 
 //time Tracker Variables
@@ -4087,7 +4100,20 @@ function theLegend()
         hreshaLDS: true,
         zhalLDS: true,
         ekhzamLDS: true,
-        modigLDS: true
+        modigLDS: true,
+        rybolovLDS: true,
+        daufoddeLDS: true,
+        yihagmLDS: true,
+        niljadaLDS: true,
+        elpamaLDS: true,
+        rahamLDS: true,
+        chamaduLDS: true,
+        legiazLDS: true,
+        naralehtLDS: true,
+        ilmanLDS: true,
+        hepnoriteLDS: true,
+        abbergazLDS: true,
+        ebauLDS: true
     };
 //QUESTS
     quests =
@@ -4116,6 +4142,7 @@ function theLegend()
         sairchArmadiiPaid: false,
         sairchArachnisPaid: false,
         zetianUncleMood: 0,
+        rybolov: 0,
 
         //TAXES
         taxTime: new Date().getTime(),
@@ -4127,6 +4154,7 @@ function theLegend()
         flamingBones: [],
         atalinStoragePurchased: false,
         venningStoragePurchased: false,
+        holuimStoragePurchased: false,
         orjovBeseeched: false,
         killedStambjordHeir: false,
         rannukThreatened: false,
@@ -4144,6 +4172,8 @@ function theLegend()
         venningHomeOwned: false,
         atalinHomeOwned: false,
         atalinShopOwned: false,
+        holuimShopOwned: false,
+        holuimHomeOwned: false,
         vozaHomeOwned: false,
         sairchHomeOwned: false,
 
@@ -5365,6 +5395,8 @@ function theLegend()
     alchemy.push(new Item("energyPotionI", false));
     alchemy.push(new Item("energyPotionII", false));
     alchemy.push(new Item("speedPotionI", false));
+    alchemy.push(new Item("speedPotionII", false));
+    alchemy.push(new Item("speedPotionIII", false));
     alchemy.push(new Item("energilPotionI", false));
     alchemy.push(new Item("energilPotionII", false));
     alchemy.push(new Item("mindPotionI", false));

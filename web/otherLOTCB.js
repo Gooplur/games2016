@@ -1388,6 +1388,17 @@ function doPlayerShops()
             }
         }
     }
+    if (quests.holuimShopOwned == true)
+    {
+        for (var j = storageList.length - 1; j >= 0; j--)
+        {
+            if (storageList[j][0] == "holuimShopPot" && storageList[j][2].length > 0)
+            {
+                shopzList.push(j);
+                break;
+            }
+        }
+    }
 
     for (var j = 0; j < shopzList.length; j++)
     {

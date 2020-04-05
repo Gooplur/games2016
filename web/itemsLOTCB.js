@@ -23477,6 +23477,42 @@ function Item(type, x, y)
             this.buyValue = 325 - Math.floor(player.getCharisma() / 1); // at max, buy for 275.
             this.sellValue = 195 + Math.floor(player.getCharisma() / 2); // at max, sell for 220.
         }
+        else if (this.type == "speedPotionIII")
+        {
+            //For All Items
+            this.identity = "Elixer of Dexterity III";
+            this.weight = 0.4;
+            this.size = 5;
+            this.description = "A glimmering yellow liquid swirls around rapidly in the glass as if it itself is restless.";
+            this.intForDes = 0;
+            this.intDescription = "This potion magically enhances your dexterity.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["potionGlass", 1]];
+
+            //Utility Focused
+            this.isRegenerative = true; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "speedIII";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 36;
+            this.ingredients = [["Vial of Water", 1], ["Raw Wolf Liver", 1], ["Tylun Flower", 2], ["Viper Snake Skin", 1], ["Honey", 1], ["Fermented Narthwarp Mouth", 1], ["Cruorcca Needle", 5]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 600 - Math.floor(player.getCharisma() / 1); // at max, buy for 550.
+            this.sellValue = 500 + Math.floor(player.getCharisma() / 1); // at max, sell for 550.
+        }
         else if (this.type == "reconstructionPotion")
         {
             //For All Items
@@ -58722,7 +58758,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(humpa, 610, 215, 13, 11, X - this.X + (1/2 * CCC.width) - (1/2 * 13 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 11 * 1), 13 * 1, 11 * 1);
         }
-        else if (this.type == "cephrianTincturePot" || this.type == "cephrianTincturePotOfungicideTincture" || this.type == "capturedJinn")
+        else if (this.type == "cephrianTincturePot" || this.type == "cephrianTincturePotOfFungicideTincture" || this.type == "capturedJinn")
         {
             XXX.beginPath();
             XXX.drawImage(humpa, 595, 176, 42, 21, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21 * 1), 42 * 1, 21 * 1);
@@ -62848,7 +62884,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(verse, 38, 267, 10, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 10), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17), 10, 17);
         }
-        else if (this.type == "speedPotionI" || this.type == "speedPotionII")
+        else if (this.type == "speedPotionI" || this.type == "speedPotionII" || this.type == "speedPotionIII")
         {
             XXX.beginPath();
             XXX.drawImage(verse, 86, 134, 10, 17, X - this.X + (1/2 * CCC.width) - (1/2 * 10), Y - this.Y + (1/2 * CCC.height) - (1/2 * 17), 10, 17);
@@ -66047,7 +66083,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(gul, 1080, 407, 12, 15, this.invX - (1/2 * 12 * 1), this.invY - (1/2 * 15 * 1), 12 * 1, 15 * 1);
         }
-        else if (this.type == "cephrianTincturePot" || this.type == "cephrianTincturePotOfungicideTincture" || this.type == "capturedJinn")
+        else if (this.type == "cephrianTincturePot" || this.type == "cephrianTincturePotOfFungicideTincture" || this.type == "capturedJinn")
         {
             LXX.beginPath();
             LXX.drawImage(humpa, 595, 143, 42, 21, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 21 * 1), 42 * 1, 21 * 1);
@@ -70179,7 +70215,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(verse, 38, 267, 10, 17, this.invX - (1/2 * 10), this.invY - (1/2 * 17), 10, 17);
         }
-        else if (this.type == "speedPotionI" || this.type == "speedPotionII")
+        else if (this.type == "speedPotionI" || this.type == "speedPotionII" || this.type == "speedPotionIII")
         {
             LXX.beginPath();
             LXX.drawImage(verse, 86, 134, 10, 17, this.invX - (1/2 * 10), this.invY - (1/2 * 17), 10, 17);
@@ -73347,7 +73383,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(gul, 1080, 407, 12, 15, this.invX - (1/2 * 12 * 1), this.invY - (1/2 * 15 * 1), 12 * 1, 15 * 1);
         }
-        else if (this.type == "cephrianTincturePot" || this.type == "cephrianTincturePotOfungicideTincture" || this.type == "capturedJinn")
+        else if (this.type == "cephrianTincturePot" || this.type == "cephrianTincturePotOfFungicideTincture" || this.type == "capturedJinn")
         {
             XXX.beginPath();
             XXX.drawImage(humpa, 595, 143, 42, 21, this.invX - (1/2 * 42 * 1), this.invY - (1/2 * 21 * 1), 42 * 1, 21 * 1);
@@ -77473,7 +77509,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(verse, 38, 267, 10, 17, this.invX - (1/2 * 10), this.invY - (1/2 * 17), 10, 17);
         }
-        else if (this.type == "speedPotionI" || this.type == "speedPotionII")
+        else if (this.type == "speedPotionI" || this.type == "speedPotionII" || this.type == "speedPotionIII")
         {
             XXX.beginPath();
             XXX.drawImage(verse, 86, 134, 10, 17, this.invX - (1/2 * 10), this.invY - (1/2 * 17), 10, 17);

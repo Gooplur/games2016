@@ -144,6 +144,10 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
         {
             this.massive = true;
         }
+        else if (this.type == "cephrianBuilding12" || this.type == "cephrianBuilding14")
+        {
+            this.massive = true;
+        }
         else if (this.type == "damageBubble")
         {
             this.massive = true;
@@ -16777,6 +16781,911 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                     barrierList.push(new Barrier((this.X + 57.88862700754544 * this.temporary), (this.Y + -53.34379811832332 * this.temporary), 110 * this.temporary, 20 * this.temporary, true));
                     barrierList.push(new Barrier((this.X + -81.11137299245456 * this.temporary), (this.Y + -50.34379811832332 * this.temporary), 40 * this.temporary, 20 * this.temporary, true));
                     barrierList.push(new Barrier((this.X + -73.11137299245456 * this.temporary), (this.Y + 23.65620188167668 * this.temporary), 30 * this.temporary, 20 * this.temporary, true));
+                }
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //barrierCreator(this.X, this.Y); //for easily setting barriers when making buildings
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "cephrianBuilding10")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 135;
+
+            //DRAWSELF
+            if (this.rotation == 1/2 * Math.PI || this.rotation == -1/2 * Math.PI)
+            {
+                if (X > (this.X + 173.0217458717866 * this.temporary) - 345 * this.temporary && X < (this.X + 173.0217458717866 * this.temporary) && Y > (this.Y + 189.35284627235342 * this.temporary) - 368 * this.temporary && Y < (this.Y + 189.35284627235342 * this.temporary))
+                {
+                    this.zIndex = 1;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    if (this.rotation == 1/2 * Math.PI)
+                    {
+                        XXX.rotate(1/2 * Math.PI);
+                    }
+                    else if (this.rotation == -1/2 * Math.PI)
+                    {
+                        XXX.rotate(-1/2 * Math.PI);
+                    }
+                    XXX.drawImage(cef, 33, 1125, 405, 432, -(1/2 * 405 * this.temporary), -(1/2 * 432 * this.temporary), 405 * this.temporary, 432 * this.temporary);
+                    XXX.restore();
+                }
+                else
+                {
+                    this.zIndex = 6;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+
+                    if (this.rotation == 1/2 * Math.PI)
+                    {
+                        XXX.rotate(1/2 * Math.PI);
+                    }
+                    else if (this.rotation == -1/2 * Math.PI)
+                    {
+                        XXX.rotate(-1/2 * Math.PI);
+                    }
+                    XXX.drawImage(cef, 33, 1125, 405, 432, -(1/2 * 405 * this.temporary), -(1/2 * 432 * this.temporary), 405 * this.temporary, 432 * this.temporary);
+                    XXX.restore();
+                    //roof
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    if (this.rotation == 1/2 * Math.PI)
+                    {
+                        XXX.rotate(1/2 * Math.PI);
+                    }
+                    else if (this.rotation == -1/2 * Math.PI)
+                    {
+                        XXX.rotate(-1/2 * Math.PI);
+                    }
+                    XXX.drawImage(cef, 491, 1116, 405, 432, -(1/2 * 405 * this.temporary), -(1/2 * 432 * this.temporary), 405 * this.temporary, 432 * this.temporary);
+                    XXX.restore();
+                }
+            }
+            else
+            {
+                if (X > (this.X + 173.0217458717866 * this.temporary) - 345 * this.temporary && X < (this.X + 173.0217458717866 * this.temporary) && Y > (this.Y + 189.35284627235342 * this.temporary) - 368 * this.temporary && Y < (this.Y + 189.35284627235342 * this.temporary))
+                {
+                    this.zIndex = 1;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    if (this.rotation == 0 * Math.PI)
+                    {
+                        XXX.rotate(0);
+                    }
+                    else if (this.rotation == 1 * Math.PI)
+                    {
+                        XXX.rotate(Math.PI);
+                    }
+                    XXX.drawImage(cef, 33, 1125, 405, 432, -(1/2 * 405 * this.temporary), -(1/2 * 432 * this.temporary), 405 * this.temporary, 432 * this.temporary);
+                    XXX.restore();
+                }
+                else
+                {
+                    this.zIndex = 6;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+
+                    if (this.rotation == 0 * Math.PI)
+                    {
+                        XXX.rotate(0);
+                    }
+                    else if (this.rotation == 1 * Math.PI)
+                    {
+                        XXX.rotate(Math.PI);
+                    }
+                    XXX.drawImage(cef, 33, 1125, 405, 432, -(1/2 * 405 * this.temporary), -(1/2 * 432 * this.temporary), 405 * this.temporary, 432 * this.temporary);
+                    XXX.restore();
+                    //roof
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    if (this.rotation == 0 * Math.PI)
+                    {
+                        XXX.rotate(0);
+                    }
+                    else if (this.rotation == 1 * Math.PI)
+                    {
+                        XXX.rotate(Math.PI);
+                    }
+                    XXX.drawImage(cef, 491, 1116, 405, 432, -(1/2 * 405 * this.temporary), -(1/2 * 432 * this.temporary), 405 * this.temporary, 432 * this.temporary);
+                    XXX.restore();
+                }
+            }
+
+            //BARRIERS
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+
+                if (this.rotation == Math.PI)
+                {
+                    barrierList.push(new Barrier((this.X + -77.24914659551371 * this.temporary), (this.Y + -207.01479362477437 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 26.750853404486406 * this.temporary), (this.Y + -208.01479362477437 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 51.750853404486406 * this.temporary), (this.Y + -191.01479362477437 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -105.24914659551371 * this.temporary), (this.Y + -196.01479362477437 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -137.2491465955137 * this.temporary), (this.Y + -181.01479362477437 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -153.2491465955137 * this.temporary), (this.Y + -169.01479362477437 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -170.2491465955137 * this.temporary), (this.Y + -156.01479362477437 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -189.2491465955137 * this.temporary), (this.Y + -142.01479362477437 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -182.2491465955137 * this.temporary), (this.Y + -124.01479362477437 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -209.2491465955137 * this.temporary), (this.Y + -109.01479362477437 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -213.2491465955137 * this.temporary), (this.Y + -91.01479362477437 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -217.2491465955137 * this.temporary), (this.Y + -72.01479362477437 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -222.2491465955137 * this.temporary), (this.Y + -52.01479362477437 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -224.2491465955137 * this.temporary), (this.Y + -34.01479362477437 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -211.2491465955137 * this.temporary), (this.Y + -22.01479362477437 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -227.2491465955137 * this.temporary), (this.Y + -8.01479362477437 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -226.2491465955137 * this.temporary), (this.Y + 5.98520637522563 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -225.2491465955137 * this.temporary), (this.Y + 19.98520637522563 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -223.2491465955137 * this.temporary), (this.Y + 34.985206375225516 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -221.2491465955137 * this.temporary), (this.Y + 50.985206375225516 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -220.2491465955137 * this.temporary), (this.Y + 67.98520637522552 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -200.2491465955137 * this.temporary), (this.Y + 81.98520637522552 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -202.21644116908703 * this.temporary), (this.Y + 98.17602198998293 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -193.21644116908703 * this.temporary), (this.Y + 112.17602198998293 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -182.21644116908703 * this.temporary), (this.Y + 124.17602198998293 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -169.21644116908703 * this.temporary), (this.Y + 136.17602198998293 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -155.21644116908703 * this.temporary), (this.Y + 149.17602198998293 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -151.9240750686173 * this.temporary), (this.Y + 152.3797976759413 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -127.9240750686173 * this.temporary), (this.Y + 156.3797976759413 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -126.9240750686173 * this.temporary), (this.Y + 170.3797976759413 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -95.9240750686173 * this.temporary), (this.Y + 175.3797976759413 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -68.9240750686173 * this.temporary), (this.Y + 180.3797976759413 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -42.9240750686173 * this.temporary), (this.Y + 179.3797976759413 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -9.924075068617299 * this.temporary), (this.Y + 182.3797976759413 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 27.075924931382815 * this.temporary), (this.Y + 178.3797976759413 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 59.075924931382815 * this.temporary), (this.Y + 171.3797976759413 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 79.07592493138281 * this.temporary), (this.Y + 154.3797976759413 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 109.07592493138281 * this.temporary), (this.Y + 145.3797976759413 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 117.07592493138281 * this.temporary), (this.Y + 130.3797976759413 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 134.07592493138281 * this.temporary), (this.Y + 119.37979767594129 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 147.07592493138281 * this.temporary), (this.Y + 105.37979767594129 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 152.07592493138281 * this.temporary), (this.Y + 82.37979767594129 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 168.07592493138281 * this.temporary), (this.Y + 64.37979767594129 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 173.07592493138281 * this.temporary), (this.Y + 43.37979767594129 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 173.07592493138281 * this.temporary), (this.Y + 25.37979767594129 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 177.07592493138281 * this.temporary), (this.Y + 6.37979767594129 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 175.07592493138281 * this.temporary), (this.Y + -9.62020232405871 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 159.07592493138281 * this.temporary), (this.Y + -23.62020232405871 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 174.07592493138281 * this.temporary), (this.Y + -39.62020232405871 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 171.07592493138281 * this.temporary), (this.Y + -61.62020232405871 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 165.07592493138281 * this.temporary), (this.Y + -77.62020232405871 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 158.07592493138281 * this.temporary), (this.Y + -100.62020232405871 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 132.07592493138281 * this.temporary), (this.Y + -121.62020232405871 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 138.07592493138281 * this.temporary), (this.Y + -141.6202023240587 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 124.77305041760565 * this.temporary), (this.Y + -154.38310991427647 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 103.77305041760565 * this.temporary), (this.Y + -168.38310991427647 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 76.77305041760565 * this.temporary), (this.Y + -186.38310991427647 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 54.773050417605646 * this.temporary), (this.Y + -192.38310991427647 * this.temporary), 22 * this.temporary, 49 * this.temporary, true));
+                }
+                else if (this.rotation == 1/2 * Math.PI)
+                {
+                    barrierList.push(new Barrier((this.X + -123.09571749604413 * this.temporary), (this.Y + 161.1649917719044 * this.temporary), 28 * this.temporary, 236 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -125.09571749604413 * this.temporary), (this.Y + -187.8350082280956 * this.temporary), 28 * this.temporary, 236 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 171.90428250395598 * this.temporary), (this.Y + -123.8350082280956 * this.temporary), 236 * this.temporary, 28 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 154.90428250395598 * this.temporary), (this.Y + 89.1649917719044 * this.temporary), 25 * this.temporary, 59 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 140.90428250395598 * this.temporary), (this.Y + 107.1649917719044 * this.temporary), 25 * this.temporary, 59 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 126.90428250395598 * this.temporary), (this.Y + 126.1649917719044 * this.temporary), 25 * this.temporary, 59 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 108.90428250395598 * this.temporary), (this.Y + 137.1649917719044 * this.temporary), 25 * this.temporary, 59 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 81.90428250395598 * this.temporary), (this.Y + 151.1649917719044 * this.temporary), 25 * this.temporary, 59 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -160.09571749604413 * this.temporary), (this.Y + 134.1649917719044 * this.temporary), 25 * this.temporary, 59 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -190.09571749604413 * this.temporary), (this.Y + 124.1649917719044 * this.temporary), 25 * this.temporary, 59 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -202.09571749604413 * this.temporary), (this.Y + 110.1649917719044 * this.temporary), 25 * this.temporary, 59 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -210.09571749604413 * this.temporary), (this.Y + 93.1649917719044 * this.temporary), 25 * this.temporary, 59 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -224.09571749604413 * this.temporary), (this.Y + 79.1649917719044 * this.temporary), 25 * this.temporary, 59 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -205.09571749604413 * this.temporary), (this.Y + 26.164991771904397 * this.temporary), 59 * this.temporary, 25 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -208.09571749604413 * this.temporary), (this.Y + -85.8350082280956 * this.temporary), 59 * this.temporary, 25 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -226.09571749604413 * this.temporary), (this.Y + -81.8350082280956 * this.temporary), 25 * this.temporary, 59 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -224.09571749604413 * this.temporary), (this.Y + -106.8350082280956 * this.temporary), 25 * this.temporary, 59 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -208.09571749604413 * this.temporary), (this.Y + -123.8350082280956 * this.temporary), 25 * this.temporary, 59 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -196.09571749604413 * this.temporary), (this.Y + -140.8350082280956 * this.temporary), 25 * this.temporary, 59 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -182.09571749604413 * this.temporary), (this.Y + -160.8350082280956 * this.temporary), 25 * this.temporary, 59 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -165.09571749604413 * this.temporary), (this.Y + -161.8350082280956 * this.temporary), 25 * this.temporary, 59 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 152.04787200612873 * this.temporary), (this.Y + -101.20259120440642 * this.temporary), 25 * this.temporary, 45 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 149.04787200612873 * this.temporary), (this.Y + -127.20259120440642 * this.temporary), 25 * this.temporary, 45 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 140.04787200612873 * this.temporary), (this.Y + -140.20259120440642 * this.temporary), 25 * this.temporary, 45 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 123.04787200612873 * this.temporary), (this.Y + -154.20259120440642 * this.temporary), 25 * this.temporary, 45 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 109.04787200612873 * this.temporary), (this.Y + -170.20259120440642 * this.temporary), 25 * this.temporary, 45 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 83.04787200612873 * this.temporary), (this.Y + -174.20259120440642 * this.temporary), 25 * this.temporary, 45 * this.temporary, true));
+                }
+                else if (this.rotation == -1/2 * Math.PI)
+                {
+                    barrierList.push(new Barrier((this.X + 184.33842803603102 * this.temporary), (this.Y + -69.38735013223516 * this.temporary), 50 * this.temporary, 20 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 186.33842803603102 * this.temporary), (this.Y + 16.612649867764844 * this.temporary), 50 * this.temporary, 20 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -197.66157196396887 * this.temporary), (this.Y + -98.38735013223516 * this.temporary), 200 * this.temporary, 23 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -107.66157196396887 * this.temporary), (this.Y + -183.38735013223516 * this.temporary), 23 * this.temporary, 235 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -107.66157196396887 * this.temporary), (this.Y + 163.61264986776496 * this.temporary), 23 * this.temporary, 235 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 161.33842803603102 * this.temporary), (this.Y + 48.61264986776496 * this.temporary), 23 * this.temporary, 45 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 167.33842803603102 * this.temporary), (this.Y + 65.61264986776496 * this.temporary), 23 * this.temporary, 45 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 161.33842803603102 * this.temporary), (this.Y + 83.61264986776496 * this.temporary), 23 * this.temporary, 45 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 149.33842803603102 * this.temporary), (this.Y + 98.61264986776496 * this.temporary), 23 * this.temporary, 45 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 128.33842803603102 * this.temporary), (this.Y + 125.61264986776496 * this.temporary), 23 * this.temporary, 45 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 104.33842803603102 * this.temporary), (this.Y + 133.61264986776496 * this.temporary), 23 * this.temporary, 45 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 97.33842803603102 * this.temporary), (this.Y + 150.61264986776496 * this.temporary), 23 * this.temporary, 45 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 70.33842803603102 * this.temporary), (this.Y + 160.61264986776496 * this.temporary), 23 * this.temporary, 45 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -127.66157196396887 * this.temporary), (this.Y + 148.61264986776496 * this.temporary), 23 * this.temporary, 45 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -155.66157196396887 * this.temporary), (this.Y + 140.61264986776496 * this.temporary), 23 * this.temporary, 45 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -168.66157196396887 * this.temporary), (this.Y + 125.61264986776496 * this.temporary), 23 * this.temporary, 45 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -182.66157196396887 * this.temporary), (this.Y + 111.61264986776496 * this.temporary), 23 * this.temporary, 45 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -200.66157196396887 * this.temporary), (this.Y + 97.61264986776496 * this.temporary), 23 * this.temporary, 45 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -195.66157196396887 * this.temporary), (this.Y + 77.61264986776496 * this.temporary), 23 * this.temporary, 45 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -194.66157196396887 * this.temporary), (this.Y + -101.38735013223516 * this.temporary), 23 * this.temporary, 45 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -202.66157196396887 * this.temporary), (this.Y + -119.38735013223516 * this.temporary), 23 * this.temporary, 45 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -187.66157196396887 * this.temporary), (this.Y + -133.38735013223516 * this.temporary), 23 * this.temporary, 45 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -172.66157196396887 * this.temporary), (this.Y + -148.38735013223516 * this.temporary), 23 * this.temporary, 45 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -156.66157196396887 * this.temporary), (this.Y + -164.38735013223516 * this.temporary), 23 * this.temporary, 45 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -127.66157196396887 * this.temporary), (this.Y + -173.38735013223516 * this.temporary), 23 * this.temporary, 45 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 99.33842803603102 * this.temporary), (this.Y + -160.38735013223516 * this.temporary), 23 * this.temporary, 45 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 128.33842803603102 * this.temporary), (this.Y + -148.38735013223516 * this.temporary), 23 * this.temporary, 45 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 139.33842803603102 * this.temporary), (this.Y + -137.38735013223516 * this.temporary), 23 * this.temporary, 45 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 147.33842803603102 * this.temporary), (this.Y + -123.38735013223516 * this.temporary), 23 * this.temporary, 45 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 157.33842803603102 * this.temporary), (this.Y + -108.38735013223516 * this.temporary), 23 * this.temporary, 45 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 170.33842803603102 * this.temporary), (this.Y + -94.38735013223516 * this.temporary), 23 * this.temporary, 45 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 163.33842803603102 * this.temporary), (this.Y + -77.38735013223516 * this.temporary), 23 * this.temporary, 45 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 142.64721768148752 * this.temporary), (this.Y + 116.36597055728339 * this.temporary), 20 * this.temporary, 24 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -186.35278231851248 * this.temporary), (this.Y + -26.63402944271661 * this.temporary), 20 * this.temporary, 24 * this.temporary, true));
+                }
+                else
+                {
+                    barrierList.push(new Barrier((this.X + -191.00635022362133 * this.temporary), (this.Y + -100.00347216706768 * this.temporary), 212 * this.temporary, 20 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 171.9936497763788 * this.temporary), (this.Y + -103.00347216706768 * this.temporary), 212 * this.temporary, 20 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -104.00635022362133 * this.temporary), (this.Y + -196.00347216706768 * this.temporary), 20 * this.temporary, 212 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 82.99364977637879 * this.temporary), (this.Y + -176.00347216706768 * this.temporary), 20 * this.temporary, 47 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -124.00635022362133 * this.temporary), (this.Y + -179.00347216706768 * this.temporary), 20 * this.temporary, 47 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -155.00635022362133 * this.temporary), (this.Y + -162.00347216706768 * this.temporary), 20 * this.temporary, 47 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -177.00635022362133 * this.temporary), (this.Y + -146.00347216706768 * this.temporary), 20 * this.temporary, 47 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -191.00635022362133 * this.temporary), (this.Y + -129.00347216706768 * this.temporary), 20 * this.temporary, 47 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -206.00635022362133 * this.temporary), (this.Y + -109.00347216706768 * this.temporary), 20 * this.temporary, 47 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 106.99364977637879 * this.temporary), (this.Y + -159.00347216706768 * this.temporary), 20 * this.temporary, 47 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 119.99364977637879 * this.temporary), (this.Y + -147.00347216706768 * this.temporary), 20 * this.temporary, 47 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 138.9936497763788 * this.temporary), (this.Y + -129.00347216706768 * this.temporary), 20 * this.temporary, 47 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 148.9936497763788 * this.temporary), (this.Y + -109.00347216706768 * this.temporary), 20 * this.temporary, 47 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 169.9936497763788 * this.temporary), (this.Y + -98.00347216706768 * this.temporary), 47 * this.temporary, 20 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -190.00635022362133 * this.temporary), (this.Y + -104.00347216706768 * this.temporary), 47 * this.temporary, 20 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 156.9936497763788 * this.temporary), (this.Y + 74.99652783293232 * this.temporary), 47 * this.temporary, 20 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -175.00635022362133 * this.temporary), (this.Y + 81.99652783293232 * this.temporary), 47 * this.temporary, 20 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -179.00635022362133 * this.temporary), (this.Y + 119.99652783293232 * this.temporary), 20 * this.temporary, 47 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -159.00635022362133 * this.temporary), (this.Y + 137.99652783293232 * this.temporary), 20 * this.temporary, 47 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -139.00635022362133 * this.temporary), (this.Y + 150.99652783293232 * this.temporary), 20 * this.temporary, 47 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -123.00635022362133 * this.temporary), (this.Y + 163.99652783293232 * this.temporary), 20 * this.temporary, 47 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -101.00635022362133 * this.temporary), (this.Y + 172.99652783293232 * this.temporary), 20 * this.temporary, 47 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -73.00635022362133 * this.temporary), (this.Y + 185.99652783293232 * this.temporary), 20 * this.temporary, 47 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 132.9936497763788 * this.temporary), (this.Y + 106.99652783293232 * this.temporary), 20 * this.temporary, 47 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 129.9936497763788 * this.temporary), (this.Y + 124.99652783293232 * this.temporary), 20 * this.temporary, 47 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 113.99364977637879 * this.temporary), (this.Y + 136.99652783293232 * this.temporary), 20 * this.temporary, 47 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 97.99364977637879 * this.temporary), (this.Y + 150.99652783293232 * this.temporary), 20 * this.temporary, 47 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 82.99364977637879 * this.temporary), (this.Y + 163.99652783293232 * this.temporary), 20 * this.temporary, 47 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 56.99364977637879 * this.temporary), (this.Y + 171.99652783293232 * this.temporary), 20 * this.temporary, 47 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 25.99364977637879 * this.temporary), (this.Y + 185.99652783293232 * this.temporary), 20 * this.temporary, 47 * this.temporary, true));
+                }
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //barrierCreator(this.X, this.Y); //for easily setting barriers when making buildings
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "cephrianBuilding11")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 135;
+
+            //DRAWSELF
+            if (this.rotation == 1/2 * Math.PI || this.rotation == -1/2 * Math.PI)
+            {
+                if (X > (this.X + 233.32246568128335 * this.temporary) - 468 * this.temporary && X < (this.X + 233.32246568128335 * this.temporary) && Y > (this.Y + 81.67572823584624 * this.temporary) - 162 * this.temporary && Y < (this.Y + 81.67572823584624 * this.temporary))
+                {
+                    this.zIndex = 1;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    if (this.rotation == 1/2 * Math.PI)
+                    {
+                        XXX.rotate(1/2 * Math.PI);
+                    }
+                    else if (this.rotation == -1/2 * Math.PI)
+                    {
+                        XXX.rotate(-1/2 * Math.PI);
+                    }
+                    XXX.drawImage(cef, 1028, 4, 201, 506, -(1/2 * 201 * this.temporary), -(1/2 * 506 * this.temporary), 201 * this.temporary, 506 * this.temporary);
+                    XXX.restore();
+                }
+                else
+                {
+                    this.zIndex = 6;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+
+                    if (this.rotation == 1/2 * Math.PI)
+                    {
+                        XXX.rotate(1/2 * Math.PI);
+                    }
+                    else if (this.rotation == -1/2 * Math.PI)
+                    {
+                        XXX.rotate(-1/2 * Math.PI);
+                    }
+                    XXX.drawImage(cef, 1028, 4, 201, 506, -(1/2 * 201 * this.temporary), -(1/2 * 506 * this.temporary), 201 * this.temporary, 506 * this.temporary);
+                    XXX.restore();
+                    //roof
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    if (this.rotation == 1/2 * Math.PI)
+                    {
+                        XXX.rotate(1/2 * Math.PI);
+                    }
+                    else if (this.rotation == -1/2 * Math.PI)
+                    {
+                        XXX.rotate(-1/2 * Math.PI);
+                    }
+                    XXX.drawImage(cef, 1246, 5, 204, 511, -(1/2 * 204 * this.temporary), -(1/2 * 511 * this.temporary), 204 * this.temporary, 511 * this.temporary);
+                    XXX.restore();
+                }
+            }
+            else
+            {
+                if (X > (this.X + 75.49752782219139 * this.temporary) - 151 * this.temporary && X < (this.X + 75.49752782219139 * this.temporary) && Y > (this.Y + 229.39337237061454 * this.temporary) - 465 * this.temporary && Y < (this.Y + 229.39337237061454 * this.temporary))
+                {
+                    this.zIndex = 1;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    if (this.rotation == 0 * Math.PI)
+                    {
+                        XXX.rotate(0);
+                    }
+                    else if (this.rotation == 1 * Math.PI)
+                    {
+                        XXX.rotate(Math.PI);
+                    }
+                    XXX.drawImage(cef, 1028, 4, 201, 506, -(1/2 * 201 * this.temporary), -(1/2 * 506 * this.temporary), 201 * this.temporary, 506 * this.temporary);
+                    XXX.restore();
+                }
+                else
+                {
+                    this.zIndex = 6;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+
+                    if (this.rotation == 0 * Math.PI)
+                    {
+                        XXX.rotate(0);
+                    }
+                    else if (this.rotation == 1 * Math.PI)
+                    {
+                        XXX.rotate(Math.PI);
+                    }
+                    XXX.drawImage(cef, 1028, 4, 201, 506, -(1/2 * 201 * this.temporary), -(1/2 * 506 * this.temporary), 201 * this.temporary, 506 * this.temporary);
+                    XXX.restore();
+                    //roof
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    if (this.rotation == 0 * Math.PI)
+                    {
+                        XXX.rotate(0);
+                    }
+                    else if (this.rotation == 1 * Math.PI)
+                    {
+                        XXX.rotate(Math.PI);
+                    }
+                    XXX.drawImage(cef, 1246, 5, 204, 511, -(1/2 * 204 * this.temporary), -(1/2 * 511 * this.temporary), 204 * this.temporary, 511 * this.temporary);
+                    XXX.restore();
+                }
+            }
+
+            //BARRIERS
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+
+                if (this.rotation == Math.PI)
+                {
+                    barrierList.push(new Barrier((this.X + -85.50247217780861 * this.temporary), (this.Y + -248.60662762938546 * this.temporary), 25 * this.temporary, 175 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -88.50247217780861 * this.temporary), (this.Y + 219.39337237061454 * this.temporary), 25 * this.temporary, 175 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 68.49752782219139 * this.temporary), (this.Y + -241.60662762938546 * this.temporary), 485 * this.temporary, 25 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -91.50247217780861 * this.temporary), (this.Y + -246.60662762938546 * this.temporary), 490 * this.temporary, 25 * this.temporary, true));
+                }
+                else if (this.rotation == 1/2 * Math.PI)
+                {
+                    barrierList.push(new Barrier((this.X + -241.981732097512 * this.temporary), (this.Y + 67.67572823584624 * this.temporary), 25 * this.temporary, 485 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -241.981732097512 * this.temporary), (this.Y + -92.32427176415388 * this.temporary), 25 * this.temporary, 485 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -247.981732097512 * this.temporary), (this.Y + -91.32427176415388 * this.temporary), 180 * this.temporary, 25 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 219.01826790248788 * this.temporary), (this.Y + -88.32427176415388 * this.temporary), 180 * this.temporary, 25 * this.temporary, true));
+                }
+                else if (this.rotation == -1/2 * Math.PI)
+                {
+                    barrierList.push(new Barrier((this.X + -241.981732097512 * this.temporary), (this.Y + 67.67572823584624 * this.temporary), 25 * this.temporary, 485 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -241.981732097512 * this.temporary), (this.Y + -92.32427176415388 * this.temporary), 25 * this.temporary, 485 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -247.981732097512 * this.temporary), (this.Y + -91.32427176415388 * this.temporary), 180 * this.temporary, 25 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 219.01826790248788 * this.temporary), (this.Y + -88.32427176415388 * this.temporary), 180 * this.temporary, 25 * this.temporary, true));
+                }
+                else
+                {
+                    barrierList.push(new Barrier((this.X + -85.50247217780861 * this.temporary), (this.Y + -248.60662762938546 * this.temporary), 25 * this.temporary, 175 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -88.50247217780861 * this.temporary), (this.Y + 219.39337237061454 * this.temporary), 25 * this.temporary, 175 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 68.49752782219139 * this.temporary), (this.Y + -241.60662762938546 * this.temporary), 485 * this.temporary, 25 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -91.50247217780861 * this.temporary), (this.Y + -246.60662762938546 * this.temporary), 490 * this.temporary, 25 * this.temporary, true));
+                }
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //barrierCreator(this.X, this.Y); //for easily setting barriers when making buildings
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "cephrianBuilding12")
+        {
+            this.massive = true;
+
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 135;
+
+            //DRAWSELF
+            if (this.rotation == 1/2 * Math.PI || this.rotation == -1/2 * Math.PI)
+            {
+                if (X > (this.X + 519.6477362673777 * this.temporary) - 1044 * this.temporary && X < (this.X + 519.6477362673777 * this.temporary) && Y > (this.Y + 76.22370127076647 * this.temporary) - 156 * this.temporary && Y < (this.Y + 76.22370127076647 * this.temporary))
+                {
+                    this.zIndex = 1;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    if (this.rotation == 1/2 * Math.PI)
+                    {
+                        XXX.rotate(1/2 * Math.PI);
+                    }
+                    else if (this.rotation == -1/2 * Math.PI)
+                    {
+                        XXX.rotate(-1/2 * Math.PI);
+                    }
+                    XXX.drawImage(cef, 1837, 534, 211, 1116, -(1/2 * 211 * this.temporary), -(1/2 * 1116 * this.temporary), 211 * this.temporary, 1116 * this.temporary);
+                    XXX.restore();
+                }
+                else
+                {
+                    this.zIndex = 6;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+
+                    if (this.rotation == 1/2 * Math.PI)
+                    {
+                        XXX.rotate(1/2 * Math.PI);
+                    }
+                    else if (this.rotation == -1/2 * Math.PI)
+                    {
+                        XXX.rotate(-1/2 * Math.PI);
+                    }
+                    XXX.drawImage(cef, 1837, 534, 211, 1116, -(1/2 * 211 * this.temporary), -(1/2 * 1116 * this.temporary), 211 * this.temporary, 1116 * this.temporary);
+                    XXX.restore();
+                    //roof
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    if (this.rotation == 1/2 * Math.PI)
+                    {
+                        XXX.rotate(1/2 * Math.PI);
+                    }
+                    else if (this.rotation == -1/2 * Math.PI)
+                    {
+                        XXX.rotate(-1/2 * Math.PI);
+                    }
+                    XXX.drawImage(cef, 2066, 532, 211, 1116, -(1/2 * 211 * this.temporary), -(1/2 * 1116 * this.temporary), 211 * this.temporary, 1116 * this.temporary);
+                    XXX.restore();
+                }
+            }
+            else
+            {
+                if (X > (this.X + 76.22370127076647 * this.temporary) - 156 * this.temporary && X < (this.X + 76.22370127076647 * this.temporary) && Y > (this.Y + 519.6477362673777 * this.temporary) - 1044 * this.temporary && Y < (this.Y + 519.6477362673777 * this.temporary))
+                {
+                    this.zIndex = 1;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    if (this.rotation == 0 * Math.PI)
+                    {
+                        XXX.rotate(0);
+                    }
+                    else if (this.rotation == 1 * Math.PI)
+                    {
+                        XXX.rotate(Math.PI);
+                    }
+                    XXX.drawImage(cef, 1837, 534, 211, 1116, -(1/2 * 211 * this.temporary), -(1/2 * 1116 * this.temporary), 211 * this.temporary, 1116 * this.temporary);
+                    XXX.restore();
+                }
+                else
+                {
+                    this.zIndex = 6;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+
+                    if (this.rotation == 0 * Math.PI)
+                    {
+                        XXX.rotate(0);
+                    }
+                    else if (this.rotation == 1 * Math.PI)
+                    {
+                        XXX.rotate(Math.PI);
+                    }
+                    XXX.drawImage(cef, 1837, 534, 211, 1116, -(1/2 * 211 * this.temporary), -(1/2 * 1116 * this.temporary), 211 * this.temporary, 1116 * this.temporary);
+                    XXX.restore();
+                    //roof
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    if (this.rotation == 0 * Math.PI)
+                    {
+                        XXX.rotate(0);
+                    }
+                    else if (this.rotation == 1 * Math.PI)
+                    {
+                        XXX.rotate(Math.PI);
+                    }
+                    XXX.drawImage(cef, 2066, 532, 211, 1116, -(1/2 * 211 * this.temporary), -(1/2 * 1116 * this.temporary), 211 * this.temporary, 1116 * this.temporary);
+                    XXX.restore();
+                }
+            }
+
+            //BARRIERS
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+
+                if (this.rotation == Math.PI)
+                {
+                    barrierList.push(new Barrier((this.X + -91.35025955058745 * this.temporary), (this.Y + -538.289036423117 * this.temporary), 1075 * this.temporary, 35 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 52.64974044941255 * this.temporary), (this.Y + -537.289036423117 * this.temporary), 1075 * this.temporary, 35 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -86.73401867499263 * this.temporary), (this.Y + 497.46938095092423 * this.temporary), 35 * this.temporary, 172 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -86.75593079268549 * this.temporary), (this.Y + -537.5472772125404 * this.temporary), 35 * this.temporary, 172 * this.temporary, true));
+                }
+                else if (this.rotation == 1/2 * Math.PI)
+                {
+                    barrierList.push(new Barrier((this.X + 504.17142714966894 * this.temporary), (this.Y + -90.38085397988709 * this.temporary), 180 * this.temporary, 35 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -541.828572850331 * this.temporary), (this.Y + -90.38085397988709 * this.temporary), 180 * this.temporary, 35 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -538.828572850331 * this.temporary), (this.Y + -88.38085397988709 * this.temporary), 35 * this.temporary, 1075 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -535.828572850331 * this.temporary), (this.Y + 53.61914602011302 * this.temporary), 35 * this.temporary, 1075 * this.temporary, true));
+                }
+                else if (this.rotation == -1/2 * Math.PI)
+                {
+                    barrierList.push(new Barrier((this.X + 504.17142714966894 * this.temporary), (this.Y + -90.38085397988709 * this.temporary), 180 * this.temporary, 35 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -541.828572850331 * this.temporary), (this.Y + -90.38085397988709 * this.temporary), 180 * this.temporary, 35 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -538.828572850331 * this.temporary), (this.Y + -88.38085397988709 * this.temporary), 35 * this.temporary, 1075 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -535.828572850331 * this.temporary), (this.Y + 53.61914602011302 * this.temporary), 35 * this.temporary, 1075 * this.temporary, true));
+                }
+                else
+                {
+                    barrierList.push(new Barrier((this.X + -91.35025955058745 * this.temporary), (this.Y + -538.289036423117 * this.temporary), 1075 * this.temporary, 35 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 52.64974044941255 * this.temporary), (this.Y + -537.289036423117 * this.temporary), 1075 * this.temporary, 35 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -86.73401867499263 * this.temporary), (this.Y + 497.46938095092423 * this.temporary), 35 * this.temporary, 172 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -86.75593079268549 * this.temporary), (this.Y + -537.5472772125404 * this.temporary), 35 * this.temporary, 172 * this.temporary, true));
+                }
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //barrierCreator(this.X, this.Y); //for easily setting barriers when making buildings
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "cephrianBuilding13")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 135;
+
+            //DRAWSELF
+            this.zIndex = 6;
+
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            if (this.rotation == 0 * Math.PI)
+            {
+                XXX.rotate(0);
+            }
+            else if (this.rotation == 1 * Math.PI)
+            {
+                XXX.rotate(Math.PI);
+            }
+            else if (this.rotation == 1/2 * Math.PI)
+            {
+                XXX.rotate(1/2 * Math.PI);
+            }
+            else if (this.rotation == -1/2 * Math.PI)
+            {
+                XXX.rotate(-1/2 * Math.PI);
+            }
+            XXX.drawImage(cef, 2295, 523, 285, 1116, -(1/2 * 285 * this.temporary), -(1/2 * 1116 * this.temporary), 285 * this.temporary, 1116 * this.temporary);
+            XXX.restore();
+
+            //BARRIERS
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+
+                if (this.rotation == Math.PI)
+                {
+                    barrierList.push(new Barrier((this.X + -85.69509794544331 * this.temporary), (this.Y + -540.5350416779509 * this.temporary), 405 * this.temporary, 175 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -85.63116151777353 * this.temporary), (this.Y + 143.91302042750476 * this.temporary), 400 * this.temporary, 175 * this.temporary, true));
+                }
+                else if (this.rotation == 1/2 * Math.PI)
+                {
+                    barrierList.push(new Barrier((this.X + 146.57399348692866 * this.temporary), (this.Y + -91.27754178859482 * this.temporary), 180 * this.temporary, 390 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -542.4260065130713 * this.temporary), (this.Y + -91.27754178859482 * this.temporary), 180 * this.temporary, 390 * this.temporary, true));
+                }
+                else if (this.rotation == -1/2 * Math.PI)
+                {
+                    barrierList.push(new Barrier((this.X + 146.57399348692866 * this.temporary), (this.Y + -91.27754178859482 * this.temporary), 180 * this.temporary, 390 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -542.4260065130713 * this.temporary), (this.Y + -91.27754178859482 * this.temporary), 180 * this.temporary, 390 * this.temporary, true));
+                }
+                else
+                {
+                    barrierList.push(new Barrier((this.X + -85.69509794544331 * this.temporary), (this.Y + -540.5350416779509 * this.temporary), 405 * this.temporary, 175 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -85.63116151777353 * this.temporary), (this.Y + 143.91302042750476 * this.temporary), 400 * this.temporary, 175 * this.temporary, true));
+                }
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 90;
+
+            //barrierCreator(this.X, this.Y); //for easily setting barriers when making buildings
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                dClick = true;
+                this.activate = false;
+            }
+        }
+        else if (this.type == "cephrianBuilding14")
+        {
+            this.massive = true;
+
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 135;
+
+            //DRAWSELF
+            if (this.rotation == 1/2 * Math.PI)
+            {
+                if (X > (this.X + 259.47818349631416 * this.temporary) - 286 * this.temporary && X < (this.X + 259.47818349631416 * this.temporary) && Y > (this.Y + 179.77438693739987 * this.temporary) - 215 * this.temporary && Y < (this.Y + 179.77438693739987 * this.temporary) || X > (this.X + 530.4781834963142 * this.temporary) - 1060 * this.temporary && X < (this.X + 530.4781834963142 * this.temporary) && Y > (this.Y + -18.225613062600132 * this.temporary) - 155 * this.temporary && Y < (this.Y + -18.225613062600132 * this.temporary))
+                {
+                    this.zIndex = 1;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    if (this.rotation == 1/2 * Math.PI)
+                    {
+                        XXX.rotate(1/2 * Math.PI);
+                    }
+                    XXX.drawImage(cef, 977, 531, 437, 1114, -(1/2 * 437 * this.temporary), -(1/2 * 1114 * this.temporary), 437 * this.temporary, 1114 * this.temporary);
+                    XXX.restore();
+                }
+                else
+                {
+                    this.zIndex = 6;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+
+                    if (this.rotation == 1/2 * Math.PI)
+                    {
+                        XXX.rotate(1/2 * Math.PI);
+                    }
+                    XXX.drawImage(cef, 977, 531, 437, 1114, -(1/2 * 437 * this.temporary), -(1/2 * 1114 * this.temporary), 437 * this.temporary, 1114 * this.temporary);
+                    XXX.restore();
+                    //roof
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    if (this.rotation == 1/2 * Math.PI)
+                    {
+                        XXX.rotate(1/2 * Math.PI);
+                    }
+                    XXX.drawImage(cef, 1402, 527, 437, 1114, -(1/2 * 437 * this.temporary), -(1/2 * 1114 * this.temporary), 437 * this.temporary, 1114 * this.temporary);
+                    XXX.restore();
+                }
+            }
+            else if (this.rotation == -1/2 * Math.PI)
+            {
+                if (X > (this.X + 24.93359120882087 * this.temporary) - 288 * this.temporary && X < (this.X + 24.93359120882087 * this.temporary) && Y > (this.Y + 35.28395241557769 * this.temporary) - 216 * this.temporary && Y < (this.Y + 35.28395241557769 * this.temporary) || X > (this.X + 528.9335912088209 * this.temporary) - 1064 * this.temporary && X < (this.X + 528.9335912088209 * this.temporary) && Y > (this.Y + 172.2839524155777 * this.temporary) - 157 * this.temporary && Y < (this.Y + 172.2839524155777 * this.temporary))
+                {
+                    this.zIndex = 1;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    if (this.rotation == -1/2 * Math.PI)
+                    {
+                        XXX.rotate(-1/2 * Math.PI);
+                    }
+                    XXX.drawImage(cef, 977, 531, 437, 1114, -(1/2 * 437 * this.temporary), -(1/2 * 1114 * this.temporary), 437 * this.temporary, 1114 * this.temporary);
+                    XXX.restore();
+                }
+                else
+                {
+                    this.zIndex = 6;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+
+                    if (this.rotation == -1/2 * Math.PI)
+                    {
+                        XXX.rotate(-1/2 * Math.PI);
+                    }
+                    XXX.drawImage(cef, 977, 531, 437, 1114, -(1/2 * 437 * this.temporary), -(1/2 * 1114 * this.temporary), 437 * this.temporary, 1114 * this.temporary);
+                    XXX.restore();
+                    //roof
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    if (this.rotation == -1/2 * Math.PI)
+                    {
+                        XXX.rotate(-1/2 * Math.PI);
+                    }
+                    XXX.drawImage(cef, 1402, 527, 437, 1114, -(1/2 * 437 * this.temporary), -(1/2 * 1114 * this.temporary), 437 * this.temporary, 1114 * this.temporary);
+                    XXX.restore();
+                }
+            }
+            else if (this.rotation == 0 * Math.PI)
+            {
+                if (X > (this.X + 178.2607964565691 * this.temporary) - 212 * this.temporary && X < (this.X + 178.2607964565691 * this.temporary) && Y > (this.Y + 27.05326966687744 * this.temporary) - 289 * this.temporary && Y < (this.Y + 27.05326966687744 * this.temporary) || X > (this.X + -11.452755092940947 * this.temporary) - 164 * this.temporary && X < (this.X + -11.452755092940947 * this.temporary) && Y > (this.Y + 530.1390506834291 * this.temporary) - 1063 * this.temporary && Y < (this.Y + 530.1390506834291 * this.temporary))
+                {
+                    this.zIndex = 1;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    if (this.rotation == 0 * Math.PI)
+                    {
+                        XXX.rotate(0);
+                    }
+                    XXX.drawImage(cef, 977, 531, 437, 1114, -(1/2 * 437 * this.temporary), -(1/2 * 1114 * this.temporary), 437 * this.temporary, 1114 * this.temporary);
+                    XXX.restore();
+                }
+                else
+                {
+                    this.zIndex = 6;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+
+                    if (this.rotation == 0 * Math.PI)
+                    {
+                        XXX.rotate(0);
+                    }
+                    XXX.drawImage(cef, 977, 531, 437, 1114, -(1/2 * 437 * this.temporary), -(1/2 * 1114 * this.temporary), 437 * this.temporary, 1114 * this.temporary);
+                    XXX.restore();
+                    //roof
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    if (this.rotation == 0 * Math.PI)
+                    {
+                        XXX.rotate(0);
+                    }
+                    XXX.drawImage(cef, 1402, 527, 437, 1114, -(1/2 * 437 * this.temporary), -(1/2 * 1114 * this.temporary), 437 * this.temporary, 1114 * this.temporary);
+                    XXX.restore();
+                }
+            }
+            else
+            {
+                if (X > (this.X + 44.69334777523113 * this.temporary) - 228 * this.temporary && X < (this.X + 44.69334777523113 * this.temporary) && Y > (this.Y + 265.4437243619277 * this.temporary) - 297 * this.temporary && Y < (this.Y + 265.4437243619277 * this.temporary) || X > (this.X + 173.8679479097184 * this.temporary) - 160 * this.temporary && X < (this.X + 173.8679479097184 * this.temporary) && Y > (this.Y + 529.1134513985141 * this.temporary) - 1059 * this.temporary && Y < (this.Y + 529.1134513985141 * this.temporary))
+                {
+                    this.zIndex = 1;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    if (this.rotation == 1 * Math.PI)
+                    {
+                        XXX.rotate(Math.PI);
+                    }
+                    XXX.drawImage(cef, 977, 531, 437, 1114, -(1/2 * 437 * this.temporary), -(1/2 * 1114 * this.temporary), 437 * this.temporary, 1114 * this.temporary);
+                    XXX.restore();
+                }
+                else
+                {
+                    this.zIndex = 6;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+
+                    if (this.rotation == 1 * Math.PI)
+                    {
+                        XXX.rotate(Math.PI);
+                    }
+                    XXX.drawImage(cef, 977, 531, 437, 1114, -(1/2 * 437 * this.temporary), -(1/2 * 1114 * this.temporary), 437 * this.temporary, 1114 * this.temporary);
+                    XXX.restore();
+                    //roof
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    if (this.rotation == 1 * Math.PI)
+                    {
+                        XXX.rotate(Math.PI);
+                    }
+                    XXX.drawImage(cef, 1402, 527, 437, 1114, -(1/2 * 437 * this.temporary), -(1/2 * 1114 * this.temporary), 437 * this.temporary, 1114 * this.temporary);
+                    XXX.restore();
+                }
+            }
+
+            //BARRIERS
+            if (this.putBarriers)
+            {
+                this.putBarriers = false;
+
+                if (this.rotation == Math.PI)
+                {
+                    barrierList.push(new Barrier((this.X + -188.8711581972085 * this.temporary), (this.Y + 251.38506324950936 * this.temporary), 35 * this.temporary, 215 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -187.8711581972085 * this.temporary), (this.Y + -49.61493675049064 * this.temporary), 35 * this.temporary, 215 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -131.8711581972085 * this.temporary), (this.Y + 49.38506324950936 * this.temporary), 215 * this.temporary, 35 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -4.871158197208501 * this.temporary), (this.Y + 119.38506324950936 * this.temporary), 215 * this.temporary, 35 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -6.8749784225242365 * this.temporary), (this.Y + -149.56144611733248 * this.temporary), 215 * this.temporary, 35 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -199.87497842252424 * this.temporary), (this.Y + -37.56144611733248 * this.temporary), 224 * this.temporary, 35 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -132.87497842252424 * this.temporary), (this.Y + -38.56144611733248 * this.temporary), 34 * this.temporary, 35 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -197.87497842252424 * this.temporary), (this.Y + 238.43855388266752 * this.temporary), 34 * this.temporary, 35 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -7.236200160591011 * this.temporary), (this.Y + 254.83046258946706 * this.temporary), 289 * this.temporary, 35 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -0.2362001605910109 * this.temporary), (this.Y + 517.8304625894671 * this.temporary), 35 * this.temporary, 189 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -5.292580265153674 * this.temporary), (this.Y + -541.9852162523853 * this.temporary), 524 * this.temporary, 35 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -2.292580265153674 * this.temporary), (this.Y + -543.9852162523853 * this.temporary), 35 * this.temporary, 184 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 156.87719057590357 * this.temporary), (this.Y + -537.7352534409972 * this.temporary), 1085 * this.temporary, 35 * this.temporary, true));
+                }
+                else if (this.rotation == 1/2 * Math.PI)
+                {
+                    barrierList.push(new Barrier((this.X + -540.5218165036857 * this.temporary), (this.Y + -195.22561306260013 * this.temporary), 40 * this.temporary, 1090 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -544.5218165036857 * this.temporary), (this.Y + -28.225613062600132 * this.temporary), 30 * this.temporary, 609 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 118.47818349631416 * this.temporary), (this.Y + -29.225613062600132 * this.temporary), 30 * this.temporary, 424 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -39.52181650368573 * this.temporary), (this.Y + 167.77438693739987 * this.temporary), 24 * this.temporary, 229 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 251.47818349631416 * this.temporary), (this.Y + -27.225613062600132 * this.temporary), 219 * this.temporary, 24 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -40.52181650368573 * this.temporary), (this.Y + -26.225613062600132 * this.temporary), 219 * this.temporary, 24 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 46.47818349631416 * this.temporary), (this.Y + 100.77438693739987 * this.temporary), 24 * this.temporary, 219 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 119.47818349631416 * this.temporary), (this.Y + -26.225613062600132 * this.temporary), 24 * this.temporary, 219 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -154.52181650368573 * this.temporary), (this.Y + -28.225613062600132 * this.temporary), 24 * this.temporary, 219 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -541.5218165036857 * this.temporary), (this.Y + -184.22561306260013 * this.temporary), 184 * this.temporary, 24 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 519.4781834963142 * this.temporary), (this.Y + -187.22561306260013 * this.temporary), 184 * this.temporary, 24 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 239.47818349631416 * this.temporary), (this.Y + 168.77438693739987 * this.temporary), 24 * this.temporary, 34 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -24.521816503685727 * this.temporary), (this.Y + 103.77438693739987 * this.temporary), 20 * this.temporary, 20 * this.temporary, true));
+                }
+                else if (this.rotation == -1/2 * Math.PI)
+                {
+                    barrierList.push(new Barrier((this.X + -274.4564818586683), (this.Y + -125.07567527042158), 25, 226, true));
+                    barrierList.push(new Barrier((this.X + -343.4564818586683), (this.Y + -0.07567527042158417), 25, 226, true));
+                    barrierList.push(new Barrier((this.X + -63.456481858668326), (this.Y + 2.924324729578416), 25, 226, true));
+                    barrierList.push(new Barrier((this.X + -188.45648185866833), (this.Y + -191.07567527042158), 25, 226, true));
+                    barrierList.push(new Barrier((this.X + 16.543518141331674), (this.Y + -185.07567527042158), 211, 25, true));
+                    barrierList.push(new Barrier((this.X + -278.4564818586683), (this.Y + -186.07567527042158), 211, 25, true));
+                    barrierList.push(new Barrier((this.X + -267.4564818586683), (this.Y + -189.07567527042158), 26, 25, true));
+                    barrierList.push(new Barrier((this.X + 7.543518141331674), (this.Y + -127.07567527042158), 26, 25, true));
+                    barrierList.push(new Barrier((this.X + 6.543518141331674), (this.Y + 1.9243247295784158), 25, 536, true));
+                    barrierList.push(new Barrier((this.X + -543.4564818586683), (this.Y + 160.92432472957853), 30, 1086, true));
+                    barrierList.push(new Barrier((this.X + -546.4564818586683), (this.Y + 1.9243247295784158), 30, 291, true));
+                    barrierList.push(new Barrier((this.X + -542.4564818586683), (this.Y + 1.9243247295784158), 186, 30, true));
+                    barrierList.push(new Barrier((this.X + 513.5435181413318), (this.Y + -2.075675270421584), 186, 30, true));
+                }
+                else
+                {
+                    barrierList.push(new Barrier((this.X + 170.53236027673552 * this.temporary), (this.Y + -186.69020021793995 * this.temporary), 225 * this.temporary, 24 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 101.53236027673552 * this.temporary), (this.Y + -271.69020021793995 * this.temporary), 228 * this.temporary, 24 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -25.467639723264483 * this.temporary), (this.Y + -275.69020021793995 * this.temporary), 24 * this.temporary, 217 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -24.467639723264483 * this.temporary), (this.Y + -335.69020021793995 * this.temporary), 217 * this.temporary, 24 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -26.467639723264483 * this.temporary), (this.Y + -64.69020021793995 * this.temporary), 217 * this.temporary, 24 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 101.53236027673552 * this.temporary), (this.Y + 7.309799782060054 * this.temporary), 32 * this.temporary, 24 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + 168.53236027673552 * this.temporary), (this.Y + -273.69020021793995 * this.temporary), 32 * this.temporary, 24 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -24.325227016410736 * this.temporary), (this.Y + 31.27596728200092 * this.temporary), 517 * this.temporary, 24 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -185.32522701641074 * this.temporary), (this.Y + 29.27596728200092 * this.temporary), 517 * this.temporary, 24 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -184.74657320929725 * this.temporary), (this.Y + 509.49081116102775 * this.temporary), 34 * this.temporary, 176 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -30.23934409293065 * this.temporary), (this.Y + -546.744692240636 * this.temporary), 428 * this.temporary, 35 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -193.03473533832107 * this.temporary), (this.Y + -539.1512220259594 * this.temporary), 603 * this.temporary, 35 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -185.92153470395488 * this.temporary), (this.Y + -539.9672149230169 * this.temporary), 35 * this.temporary, 178 * this.temporary, true));
+                    barrierList.push(new Barrier((this.X + -5.21283740181002 * this.temporary), (this.Y + 18.09283971779837 * this.temporary), 30 * this.temporary, 195 * this.temporary, true));
                 }
             }
 

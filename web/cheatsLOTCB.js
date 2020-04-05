@@ -3137,13 +3137,13 @@ function cheats()
                     buildClase += 1;
                 }
 
-                if (buildClase > 9)
+                if (buildClase > 14)
                 {
                     buildClase = 1;
                 }
                 else if ((buildClase < 1))
                 {
-                    buildClase = 9;
+                    buildClase = 14;
                 }
             }
 
@@ -7775,6 +7775,13 @@ function cheats()
         else if (cheatcode.toLowerCase() == "getfistdamage")
         {
             alert(player.getFistDamage());
+        }
+        else if (cheatcode.toLowerCase() == "testmap" || cheatcode.toLowerCase() == "testroom")
+        {
+            region = "testMap";
+            map = "testMap";
+            X = 0;
+            Y = 0;
         }
         else if (cheatcode == "4444444444444444")
         {

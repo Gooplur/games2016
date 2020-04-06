@@ -92,6 +92,15 @@ function worldBuilder()
             outlineBuilder( 34, 34, "prairy", -122, 1170);
         }
         //Layer 34 (hot tropical region): elev -4
+        //mapS34E2
+        if (Y > -350716 && Y < -339932 && X < -2423 && X < -12680) //X2
+        {
+            elevation = -4;
+            region = "s34e2";
+            campout = true;
+            outlineBuilder( 34, 34, "prairy", 48, 1136);
+            outlineBuilder(1, 34, "cephrianRoad", 48, 1143);
+        }
         //mapS34E1
         if (Y > -350716 && Y < -339932 && X < - 2490 && X > -14114) //X1
         {
@@ -6043,10 +6052,63 @@ function worldBuilder()
         outlineBuilder( 2, 1, "lab", -28, 772);
         outlineBuilder( 2, 2, "woods", -27, 772);
 
-        //changeling containment cell
+        //Changeling containment cell
         outlineBuilder( 1, 1, "lab", -31, 773);
         outlineBuilder( 2, 1, "lab", -32, 772);
         outlineBuilder( 2, 2, "forest", -34, 772);
+
+        //Boggart containment cell
+        outlineBuilder(1, 1, "lab", -31, 768);
+        outlineBuilder(2, 1, "lab", -32, 767);
+        outlineBuilder(2, 1, "nirRoad", -34, 767);
+        outlineBuilder(2, 1, "brightGrass", -33, 767);
+
+        //StoneGolem containment cell
+        outlineBuilder(1, 1, "lab", -29, 768);
+        outlineBuilder(2, 1, "lab", -28, 767);
+        outlineBuilder(2, 2, "crag", -27, 767);
+
+        //Skriatok containment cell
+        outlineBuilder(1, 1, "lab", -31, 800);
+        outlineBuilder(2, 1, "lab", -32, 800);
+        outlineBuilder(2, 2, "mistywoods", -34, 800);
+
+        //AncientCrawler containment cell
+        outlineBuilder(1, 1, "lab", -29, 800);
+        outlineBuilder(2, 1, "lab", -28, 800);
+        outlineBuilder(2, 2, "molten", -27, 800);
+
+        //Wendigo containment cell
+        outlineBuilder(1, 1, "lab", -31, 805);
+        outlineBuilder(2, 1, "lab", -32, 805);
+        outlineBuilder(2, 2, "vardanianWoods", -34, 805);
+
+        //Glassworm containment cell
+        outlineBuilder(1, 1, "lab", -29, 805);
+        outlineBuilder(2, 1, "lab", -28, 805);
+        outlineBuilder(2, 2, "cephrianTile", -27, 805);
+
+        //Gargoyle containment cell
+        outlineBuilder(1, 1, "lab", -31, 810);
+        outlineBuilder(2, 1, "lab", -32, 810);
+        outlineBuilder(2, 1, "boroStone", -34, 810);
+        outlineBuilder(1, 1, "boroStone", -33, 810);
+        outlineBuilder(1, 1, "vardanianGrass", -33, 811);
+
+        //Werewolf containment cell
+        outlineBuilder(1, 1, "lab", -29, 810);
+        outlineBuilder(2, 1, "lab", -28, 810);
+        outlineBuilder(2, 2, "mistywoods",  -27, 810);
+
+        //Beholder containment cell
+        outlineBuilder(1, 1, "lab", -31, 815);
+        outlineBuilder(2, 1, "lab", -32, 815);
+        outlineBuilder(2, 2, "prairy", -34, 815);
+
+        //Chupacabras containment cell
+        outlineBuilder(1, 1, "lab", -29, 815);
+        outlineBuilder(2, 1, "lab", -28, 815);
+        outlineBuilder(2, 2, "brightGrass", -27, 815);
     }
     else if (map == "venningMineshaft")
     {

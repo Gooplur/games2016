@@ -1372,7 +1372,7 @@ function interaction(me)
                     if (self.ID == "Anset Paladin" && player.cephriteFaction >= 0 && self.team != "player" && player.raceName == "Cephrite" && player.title == "Nobility" || self.ID == "Anset Captain" && player.cephriteFaction >= 0 && self.team != "player" && player.raceName == "Cephrite" && player.title == "Nobility" || self.ID == "Anset Soldier" && player.cephriteFaction >= 0 && self.team != "player" && player.raceName == "Cephrite" && player.title == "Nobility" || self.ID == "Blackwood Soldier" && player.cephriteFaction >= 0 && self.team != "player" && player.raceName == "Cephrite" && player.title == "Nobility" || self.ID == "Blackwood Captain" && player.cephriteFaction >= 0 && self.team != "player" && player.raceName == "Cephrite" && player.title == "Nobility" || self.ID == "Blackwood Paladin" && player.cephriteFaction >= 0 && self.team != "player" && player.raceName == "Cephrite" && player.title == "Nobility")
                     {
                         lowBar = "dialogue";
-                        conversationID[0] = "Beulingerr";
+                        conversationID[0] = "Anset";
 
                         if (clickReleased)
                         {
@@ -1409,6 +1409,197 @@ function interaction(me)
                             player.dialoguePosition = 0;
                             conversationID[1] = 0;
                             self.SC();
+                        }
+                    }
+
+                    if (self.ID == "Anset Soldier" && player.raceName == "Cephrite" && player.title != "Nobility" && player.title != "Royalty" || self.ID == "Anset Soldier" && player.raceName != "Cephrite")
+                    {
+                        lowBar = "dialogue";
+                        conversationID[0] = "Anset";
+
+                        if (clickReleased)
+                        {
+                            self.RC();
+                        }
+
+                        //CONVERSATION
+                        if (conversationID[1] == 0)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [];
+                                if (quests.magicalDissertationQuest == true)
+                                {
+                                    player.dialogueOptions.push(["I would like to report a crime... The sorceress, Niljada has torn asunder the fabric of reality.", false, "a"]);
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = true;
+                                            conversationID[1] = "0a";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "0a")
+                        {
+                            //text dialogue
+                            setMsg("...That is a big assertion to make. Do you have any evidence?");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 1)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["I'll come back with more evidence then.", false, "c"]];
+                                if (quests.magicalDissertationRiftSeen == true)
+                                {
+                                    if (player.title == "Highfolk" || player.title == "Nobility" || player.title == "Royalty")
+                                    {
+                                        player.dialogueOptions.push(["I have seen it! Just north of here, reality itself bends and atrocities unknown to this world are escaping from it!", false, "b"]);
+                                    }
+                                    else
+                                    {
+                                        player.dialogueOptions.push(["I have seen it! Just north of here, reality itself bends and atrocities unknown to this world are escaping from it!", false, "a"]);
+                                    }
+                                }
+                                if (have("beholderStrands", 1))
+                                {
+                                    player.dialogueOptions.push(["These are the electrified tentacle-like appendages from one of the many monstrosities that has escaped the rift. Is this evidence enough?", false, "b"]);
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = true;
+                                            conversationID[1] = "1a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = true;
+                                            conversationID[1] = "1b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = true;
+                                            conversationID[1] = "1c";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1a")
+                        {
+                            //text dialogue
+                            setMsg("For all I know you are a raving lunatic... bring evidence, then I will consider reporting this to my superior.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1b")
+                        {
+                            //text dialogue
+                            setMsg("This evidence is sufficient. I will report this to my superior officer. Surely the punishment for tearing holes in reality is decapitation. That tends to be the punishment for most major crimes...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+
+                                quests.magicalDissertationCompletionStyle = "report";
+                                quests.magicalDissertationQuest = "complete";
+                                quests.completeQuests.push({name: "Magical Dissertation", description: "You obtained evidence of Niljada the Sorceress's crime of tearing the fabric of reality and reported it to the guards."});
+                                player.cephriteFaction += 25;
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                {
+                                    player.magicalExperience += 65;
+                                }
+                                else
+                                {
+                                    player.experience += 125;
+                                }
+
+                                X = 1370.471177057857;
+                                Y = -343864.11823386524;
+                                reiniciar();
+                                change = "niljadaExecution";
+                                quests.guillotine = true;
+                                uniqueChars.niljadaLDS = false;
+
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1c")
+                        {
+                            //text dialogue
+                            setMsg("Be diligent.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
                         }
                     }
 
@@ -3258,7 +3449,16 @@ function interaction(me)
                         {
                             if (player.dialogueChoiceMade == false)
                             {
-                                player.dialogueOptions = [["...", false, "a"], ["How did a highborn sorceress such as yourself end up running a potions shop?", false, "b"], ["What sort of sorcery do you do?", false, "c"], ["How's business?", false, "d"]];
+                                player.dialogueOptions = [["How did a highborn sorceress such as yourself end up running a potions shop?", false, "b"], ["How is business?", false, "d"]];
+
+                                if (quests.magicalDissertationQuest == false)
+                                {
+                                    player.dialogueOptions.unshift(["What sort of sorcery do you do?", false, "c"]);
+                                }
+                                if (player.fame > 10 && player.cephriteFaction >= 25 && quests.magicalDissertationQuest == false || player.title == "Nobility"  && quests.magicalDissertationQuest == false || player.title == "Royalty" && quests.magicalDissertationQuest == false)
+                                {
+                                    player.dialogueOptions.unshift(["...", false, "a"]);
+                                }
                             }
                             else if (player.dialogueChoiceMade == true)
                             {
@@ -3298,7 +3498,7 @@ function interaction(me)
                         else if (conversationID[1] == "0a")
                         {
                             //text dialogue
-                            setMsg("Oh good day to you too! It's just lovely don't you think?");
+                            setMsg("Hello there... you wouldn't be " + player.name + " by chance, would you? I recognize you from a book that I read at The Magi College, which detailed the exploits of various current-day notables. What a coincidence that you would find yourself in my shop just as I am experiencing one of the most devastating failiures of my entire magi education.");
 
                             //on ended text dialogue
                             if (tellMessage == "reset")
@@ -3307,7 +3507,7 @@ function interaction(me)
 
                                 playersTurnToSpeak = true;
                                 player.dialoguePosition = 0;
-                                conversationID[1] = 0;
+                                conversationID[1] = 1;
                                 self.SC();
                             }
                             else
@@ -3318,7 +3518,7 @@ function interaction(me)
                         else if (conversationID[1] == "0b")
                         {
                             //text dialogue
-                            setMsg("Just cleanin' the furs. You got to clean 'em before you can make 'em into something.");
+                            setMsg("I've always loved alchemy, and my family left me with a good deal of money. I know it is peculiar for someone of my birth to work in the market, but I really enjoy having the time to myself to study and experiment.");
 
                             //on ended text dialogue
                             if (tellMessage == "reset")
@@ -3338,7 +3538,34 @@ function interaction(me)
                         else if (conversationID[1] == "0c")
                         {
                             //text dialogue
-                            setMsg("Oh you know... A bit o' cleaning a bit o' stitchin', mostly cleanin' though.");
+                            setMsg("I study the ways of the cosmos, the arcane magical forces that govern the universe which are at the core of all magic... In fact, I am currently working on my dissertation so that I can be a fully fledged sorceress in this discipline. Unfortunately, my dissertation is going terribly. So terribly in fact that I may lose my head...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 1;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "0d")
+                        {
+                            //text dialogue
+                            if (quests.magicalDissertationQuest != "complete")
+                            {
+                                setMsg("I am not doing this work for the money, it is an educational experience... I would be much happier if nobody came in here at all to buy my wares, since every time somebody steps in I imagine that it will be a soldier coming to cut off my head.");
+                            }
+                            else
+                            {
+                                setMsg("I am not doing this work for the money, it is an educational experience really... and it is also nice to get to know the locals here! Have you tried Elpama's Stuffed eggplant? It is to die for...");
+                            }
 
                             //on ended text dialogue
                             if (tellMessage == "reset")
@@ -3355,10 +3582,62 @@ function interaction(me)
                                 self.SC();
                             }
                         }
-                        else if (conversationID[1] == "0d")
+                        else if (conversationID[1] == 1)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Do tell more.", false, "a"], ["Go on.", false, "a"], ["Why? What happened?", false, "a"], ["Well that's too bad...", false, "b"], ["Sorry, no time to chat.", false, "b"], ["Don't talk to me.", false, "b"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1b";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1a")
                         {
                             //text dialogue
-                            setMsg("Business is hard work youngin'. When I was a girl I had four sisters, and we'd all help my ma' with the sowing. Now it's just me. I'll tell you, this work is not as easy as it seems...");
+                            setMsg("My dissertation on arcane magics has revolved around exploring a sort of magical universal fabric. My intention was to formulate a new spell that tapped into this discovery I made. The idea was to cut the fabric in a manner of speaking, to let the deep arcane energies flow out of the cosmic wound and then tap into that power in order to amplify spells beyond known parameters. But my calculations were off slightly, when I cut this proverbial fabric it was a much larger cut that I intended to make... And, well... I sort of tore a hole in reality. This is the sort of thing that people get executed for, if anyone notices the giant rift just north of here, I could lose my head. And I don't mean figuratively. I know we are practically total strangers, but I sort of need a hand here with this whole cosmic rift thing.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.magicalDissertationQuest = true;
+                                quests.activeQuests.push({name: "Magical Dissertation", description: "Niljada the Sorceress has 'accidentally' punctured the very fabric of reality."});
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 2;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1b")
+                        {
+                            //text dialogue
+                            setMsg("Sorry, I don't know why I just started telling you my problems assuming that you could fix them. I don't even know you! Maybe I'm going crazy...");
 
                             //on ended text dialogue
                             if (tellMessage == "reset")
@@ -3369,6 +3648,291 @@ function interaction(me)
                                 player.dialoguePosition = 0;
                                 conversationID[1] = 0;
                                 self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 2)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["What can I do?", false, "b"], ["Where is this cosmic rift again?", false, "c"], ["How will I be rewarded if I help you?", false, "d"]];
+
+                                if (quests.magicalDissertationArcaneMonstrositiesKilled >= 9)
+                                {
+                                    player.dialogueOptions.unshift(["I fought back the arcane monstrosities... What now?", false, "a"]);
+                                }
+                                if (player.title == "Nobility" && player.raceName == "Cephrite" || player.title == "Royalty" && player.raceName == "Cephrite")
+                                {
+                                    player.dialogueOptions.unshift(["So you are worried that we will have you beheaded for creating a tear in the fabric of reality?", false, "e"]);
+                                }
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "2a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "2b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "2c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "2d";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "e")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "2e";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "2a")
+                        {
+                            //text dialogue
+                            setMsg("Actually, while you were out there fighting off freakish absurdities, I came to a realization about the nature of the cosmos, through further experimentation and research, that I am going to write into my dissertation thesis... the cosmos cannot remain wounded because like a human, or perhaps a better example would be a black troll, the cosmos can regenerate its wounds. The arcane lifeforms leaking from the tear were holding it open, but thanks to you, the cosmos will be able to sew itself back up again in no time. Thank you by the way! Here is a spell that I wrote as part of my dissertation, and here is some money, just in case spells aren't your thing.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.magicalDissertationCompletionStyle = "closeRift";
+                                quests.magicalDissertationQuest = "complete";
+                                give("coins", 250);
+                                give("beholderRift", 1);
+
+                                quests.completeQuests.push({name: "Magical Dissertation", description: "You have slain the arcane monstrosities that were escaping the cosmic aether, allowing the cosmos to regenerate itself."});
+                                player.cephriteFaction += 35;
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                {
+                                    player.magicalExperience += 250;
+                                }
+                                else
+                                {
+                                    player.magicalExperience += 50;
+                                    player.experience += 350;
+                                }
+                                player.fame += 1;
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "2b")
+                        {
+                            //text dialogue
+                            setMsg("Well I didn't quite tell you the full story... when I tore a hole in reality absurd monstrosities began to escape from the ether. My theory is that either they were trapped in the very fabric of the cosmos, or they are a sort of spontaneous creation of life formed from the leaking magical energy, cosmic energy is the source of all life, so it seems plausible that a reality leak could cause spontaneous order and life to emerge. Oh, but enough about why they formed, the problem is that they formed at all. These freakish entities were completely impervious to my magic and they killed everything around them. I fear that if we don't act fast, they could present a danger to Holuim. If you could dispatch as many of these absurd and freakish monstrosities as you can I would be extremely grateful!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 2;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "2c")
+                        {
+                            //text dialogue
+                            setMsg("Just north of here outside of the city walls. At the very least, I was cautious enough to think to cut the fabric of reality outside of city limits...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 2;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "2d")
+                        {
+                            //text dialogue
+                            setMsg("Rewarded... Oh right, of course! So... don't be freaked out or anything but I didn't stop my dissertation research after tearing the fabric of reality... I, well, cut reality a few more times to perfect a spell good enough to finish my dissertation. I can give you a copy of the spell I wrote if you help me with this. Or, if spells aren't really your thing, I can pay you 250 coins. Howabout, actually, I'll just give you both... I really need your help with this! Please help me!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 2;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "2e")
+                        {
+                            //text dialogue
+                            setMsg("Well, yes, actually! The tear in reality could be a good thing even, new magically resistant biodiversity in the prairy can't hurt... Well it can, but what would really hurt is having my head cut off. So yes, that is the problem exactly, I am scared to death of being executed for this tiny little miniscule mistake.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 3;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 3)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["In that case you are pardoned. It would be unseemly to execute such a brilliant mind as yourself.", false, "a"], ["Then worry no longer, I pardon you for your folly.", false, "a"], ["You are the most irresponsible mage I have ever known. I will have your head. [execute]", false, "b"], ["How should I put this... Off with your head! [execute]", false, "b"], ["You are raving mad and clearly very gifted with arcane magics... this combination is dangerous to public wellbeing. [execute]", false, "b"], ["Pick a last meal and eat well. Your head comes off before the next light. [execute", false, "b"], ["Alright then, let's go back to figuring out how to solve the problem you created...", false, "c"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "3a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "3b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "3c";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "3a")
+                        {
+                            //text dialogue
+                            setMsg("Thank you! Thank you so much! I cannot thank you enough! You have no idea how stressed this whole ordeal had me. A tear in the cosmos couldn't be that big of a deal anyway... maybe I was just overreacting. You are amazing! I know you probably don't need it but here, take this money... It is the least I can do to repay you!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                quests.magicalDissertationCompletionStyle = "pardon";
+                                quests.magicalDissertationQuest = "complete";
+                                give("coins", 250);
+
+                                quests.completeQuests.push({name: "Magical Dissertation", description: "As Cephrian of high political station, you pardoned Niljada for tearing a hole in reality."});
+                                player.cephriteFaction += 2;
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                {
+                                    player.magicalExperience += 10;
+                                }
+                                else
+                                {
+                                    player.experience += 25;
+                                }
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "3b")
+                        {
+                            //text dialogue
+                            setMsg("...No wait, no you can't please! [Niljada sobs uncontrollably]");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+
+                                quests.magicalDissertationCompletionStyle = "execute";
+                                quests.magicalDissertationQuest = "complete";
+                                quests.completeQuests.push({name: "Magical Dissertation", description: "As Cephrian of high political station, you sentenced Niljada the Sorceress to die for tearing a rift in the fabric of reality."});
+                                player.cephriteFaction += 25;
+                                if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")
+                                {
+                                    player.magicalExperience += 50;
+                                }
+                                else
+                                {
+                                    player.experience += 100;
+                                }
+
+                                X = 1370.471177057857;
+                                Y = -343864.11823386524;
+                                reiniciar();
+                                change = "niljadaExecution";
+                                quests.guillotine = true;
+                                uniqueChars.niljadaLDS = false;
+
                             }
                             else
                             {

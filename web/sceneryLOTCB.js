@@ -164,6 +164,10 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
         {
             this.massive = true;
         }
+        else if (this.type == "arcaneRift")
+        {
+            this.massive = true;
+        }
         else if (this.type == "vodkapaHome")
         {
             this.massive = true;
@@ -31390,6 +31394,204 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             XXX.rotate(this.rotation);
             XXX.drawImage(verse, 3080, 90, 71, 48, -(1/2 * 71 * this.size), -(1/2 * 48 * this.size), 71 * this.size, 48 * this.size);
             XXX.restore();
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 1;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+        }
+        else if (this.type == "arcaneRift")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+            if (this.runOneTime)
+            {
+                this.runOneTime = false;
+                this.size = this.temporary;
+                this.sizeM = this.size;
+                this.me = this.information;
+                this.tic = 0;
+                this.particleX = 0;
+                this.particleY = 0;
+                this.spin = spacer(0.4);
+                this.rot = 0;
+                this.zIndex = 6;
+                this.creature = 28;
+                this.dooSpawn = true;
+            }
+
+            //DRAWSELF
+            this.tic += 1;
+
+            if (this.me == true)
+            {
+                this.rot += 2*this.spin;
+                if (this.tic % 2 == 0)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(zapa, 346, 116, 81, 76, -(1/2 * 181 * this.size), -(1/2 * 76 * this.size), 181 * this.size, 76 * this.size);
+                    XXX.restore();
+
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rot);
+                    XXX.drawImage(zapa, 346, 116, 81, 76, -(1/2 * 181 * 1.5 * this.size), -(1/2 * 76 * 1.5 * this.size), 181 * 1.5 * this.size, 76 * 1.5 * this.size);
+                    XXX.restore();
+                }
+                else
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(zapa, 441, 119, 81, 76, -(1/2 * 181 * this.size), -(1/2 * 76 * this.size), 181 * this.size, 76 * this.size);
+                    XXX.restore();
+
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rot);
+                    XXX.drawImage(zapa, 441, 119, 81, 76, -(1/2 * 181 * 1.5 * this.size), -(1/2 * 76 * 1.5 * this.size), 181 * 1.5 * this.size, 76 * 1.5 * this.size);
+                    XXX.restore();
+                }
+
+                if (this.tic % 14)
+                {
+                    this.particleX = this.X + spacer(200);
+                    this.particleY = this.Y + spacer(200);
+                    scenicList.push(new Scenery("arcaneRift", this.particleX, this.particleY, 2*Math.PI*Math.random(), 1 + 4 * Math.random(), false));
+                }
+
+                if (this.tic % 49 == 0 && this.creature > 0)
+                {
+                    this.particleX = this.X + spacer(1900);
+                    this.particleY = this.Y + spacer(1900);
+                    scenicList.push(new Scenery("arcaneRift", this.particleX, this.particleY, 2*Math.PI*Math.random(), 1 + 6 * Math.random(), "dud"));
+                    this.particleX = this.X + spacer(1900);
+                    this.particleY = this.Y + spacer(1900);
+                    scenicList.push(new Scenery("arcaneRift", this.particleX, this.particleY, 2*Math.PI*Math.random(), 1 + 6 * Math.random(), "dud"));
+                    this.particleX = this.X + spacer(1900);
+                    this.particleY = this.Y + spacer(1900);
+                    scenicList.push(new Scenery("arcaneRift", this.particleX, this.particleY, 2*Math.PI*Math.random(), 1 + 6 * Math.random(), "dud"));
+                    this.particleX = this.X + spacer(1900);
+                    this.particleY = this.Y + spacer(1900);
+                    scenicList.push(new Scenery("arcaneRift", this.particleX, this.particleY, 2*Math.PI*Math.random(), 1 + 6 * Math.random(), "dud"));
+                    this.particleX = this.X + spacer(1900);
+                    this.particleY = this.Y + spacer(1900);
+                    scenicList.push(new Scenery("arcaneRift", this.particleX, this.particleY, 2*Math.PI*Math.random(), 1 + 6 * Math.random(), "dud"));
+                    this.particleX = this.X + spacer(1900);
+                    this.particleY = this.Y + spacer(1900);
+                    scenicList.push(new Scenery("arcaneRift", this.particleX, this.particleY, 2*Math.PI*Math.random(), 1 + 6 * Math.random(), "dud"));
+                    this.particleX = this.X + spacer(1900);
+                    this.particleY = this.Y + spacer(1900);
+                    scenicList.push(new Scenery("arcaneRift", this.particleX, this.particleY, 2*Math.PI*Math.random(), 1 + 6 * Math.random(), "dud"));
+                    this.particleX = this.X + spacer(1900);
+                    this.particleY = this.Y + spacer(1900);
+                    scenicList.push(new Scenery("arcaneRift", this.particleX, this.particleY, 2*Math.PI*Math.random(), 1 + 6 * Math.random(), "dud"));
+                }
+                else if (this.tic % 99 == 0 && this.creature <= 0)
+                {
+                    this.size -= 0.04;
+                    if (this.size <= 0.2)
+                    {
+                        scenicList.splice(scenicList.indexOf(this), 1);
+                    }
+                }
+
+                if (this.tic % 228 == 0 && this.creature > 0)
+                {
+                    this.creature -= 1;
+                    this.particleX = this.X + spacer(1900);
+                    this.particleY = this.Y + spacer(1900);
+                    scenicList.push(new Scenery("arcaneRift", this.particleX, this.particleY, 2*Math.PI*Math.random(), 1 + 6 * Math.random(), "spawn"));
+                    this.particleX = this.X + spacer(1900);
+                    this.particleY = this.Y + spacer(1900);
+                    scenicList.push(new Scenery("arcaneRift", this.particleX, this.particleY, 2*Math.PI*Math.random(), 1 + 6 * Math.random(), "spawn"));
+                    this.particleX = this.X + spacer(1900);
+                    this.particleY = this.Y + spacer(1900);
+                    scenicList.push(new Scenery("arcaneRift", this.particleX, this.particleY, 2*Math.PI*Math.random(), 1 + 6 * Math.random(), "spawn"));
+                    this.particleX = this.X + spacer(1900);
+                    this.particleY = this.Y + spacer(1900);
+                    scenicList.push(new Scenery("arcaneRift", this.particleX, this.particleY, 2*Math.PI*Math.random(), 1 + 6 * Math.random(), "spawn"));
+                }
+
+                if (this.playerer <= 950)
+                {
+                    quests.magicalDissertationRiftSeen = true;
+                }
+            }
+            else if (this.me == "dud")
+            {
+                this.size -= 0.1;
+                this.rotation += this.spin;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.globalAlpha = this.size / this.sizeM;
+                XXX.drawImage(zapa, 343, 40, 37, 36, -(1/2 * 37 * this.size), -(1/2 * 36 * this.size), 37 * this.size, 36 * this.size);
+                XXX.restore();
+
+                if (this.size <= 0.2)
+                {
+                    scenicList.splice(scenicList.indexOf(this), 1);
+                }
+
+            }
+            else if (this.me == "spawn")
+            {
+                var rnd = Math.random();
+                if (this.dooSpawn == true && rnd >= 0.94)
+                {
+                    this.dooSpawn = false;
+                    ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Rifter", false, "Swish"));
+                }
+                else if (this.dooSpawn == true && rnd <= 0.24)
+                {
+                    this.dooSpawn = false;
+                    ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Beholder", false, "Swoosh"));
+                }
+                else
+                {
+                    this.dooSpawn = false;
+                }
+
+                this.size -= 0.1;
+                this.rotation += this.spin;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.globalAlpha = this.size / this.sizeM;
+                XXX.drawImage(zapa, 343, 40, 37, 36, -(1/2 * 37 * this.size), -(1/2 * 36 * this.size), 37 * this.size, 36 * this.size);
+                XXX.restore();
+
+                if (this.size <= 0.2)
+                {
+                    scenicList.splice(scenicList.indexOf(this), 1);
+                }
+
+            }
+            else
+            {
+                this.size -= 0.1;
+                this.rotation += this.spin;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.globalAlpha = this.size / this.sizeM;
+                XXX.drawImage(stic, 23, 350, 73, 56, -(1/2 * 73 * this.size), -(1/2 * 56 * this.size), 73 * this.size, 56 * this.size);
+                XXX.restore();
+
+                if (this.size <= 0.2)
+                {
+                    scenicList.splice(scenicList.indexOf(this), 1);
+                }
+
+            }
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
             this.radius = 1;

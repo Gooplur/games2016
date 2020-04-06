@@ -14179,7 +14179,7 @@ function Adventurer()
         }
 
         //Summoning Form
-        if (this.spell.ID == "summonFrich" || this.spell.ID == "summonWolf")
+        if (this.spell.ID == "summonFrich" || this.spell.ID == "summonWolf" || this.spell.ID == "summonBeholder")
         {
             this.stageEngine(7, 0.20, false);
 

@@ -1671,6 +1671,42 @@ function milmPack()
 
     milm.onload = function()
     {
+        moonberryPack();
+    };
+}
+
+function moonberryPack()
+{
+    var moonberry = new Image();
+    moonberry.src = ("images/moonberry.png");
+    window.moonberry = moonberry;
+
+    moonberry.onload = function()
+    {
+        marcasPack();
+    };
+}
+
+function marcasPack()
+{
+    var marcas = new Image();
+    marcas.src = ("images/marcas.png");
+    window.marcas = marcas;
+
+    marcas.onload = function()
+    {
+        bambooPack();
+    };
+}
+
+function bambooPack()
+{
+    var mboo = new Image();
+    mboo.src = ("images/mboo.png");
+    window.mboo = mboo;
+
+    mboo.onload = function()
+    {
         oasisPack();
     };
 }
@@ -4238,6 +4274,12 @@ function theLegend()
         hanzChild: false,
         hanzChildName: "Gelna",
 
+        //QUEST: Magical Dissertation ----- given by Niljada the Sorceress
+        magicalDissertationQuest: false,
+        magicalDissertationCompletionStyle: false,
+        magicalDissertationArcaneMonstrositiesKilled: 0,
+        magicalDissertationRiftSeen: false,
+
         //QUEST: Lowlife ---- given by
         lowlifeQuest: false,
         lowlifeCompletionStyle: false,
@@ -4493,7 +4535,7 @@ function theLegend()
     Inventory = [];
 
     //All of the spells in the game -----------> except [new Item("potatoInvisibility", false, false), 1],  which is exclusive to a Jinn wish.
-    allSpells = [[new Item("embers", false, false), 1], [new Item("fireballI", false, false), 1], [new Item("iceClaymore", false, false), 1], [new Item("iceSpikes", false, false), 1], [new Item("flyingColours", false, false), 1], [new Item("frostWind", false, false), 1], [new Item("repel", false, false), 1], [new Item("lifeTap", false, false), 1], [new Item("drainingI", false, false), 1], [new Item("vivification", false, false), 1], [new Item("chasingLights", false, false), 1], [new Item("electricBolt", false, false), 1], [new Item("surge", false, false), 1], [new Item("fireHands", false, false), 1], [new Item("chargedTouch", false, false), 1], [new Item("freezingGrasp", false, false), 1], [new Item("leechingTouch", false, false), 1], [new Item("sorcerer'sRaincoat", false, false), 1], [new Item("shieldingI", false, false), 1], [new Item("shieldingII", false, false), 1], [new Item("shieldingIII", false, false), 1], [new Item("shieldingIV", false, false), 1], [new Item("shieldingV", false, false), 1], [new Item("summonFrich", false, false), 1], [new Item("summonWolf", false, false), 1], [new Item("charm", false, false), 1], [new Item("sanctuary", false, false), 1], [new Item("repellingWard", false, false), 1], [new Item("iceberg", false, false), 1], [new Item("magicMissiles", false, false), 1], [new Item("minorVortex", false, false), 1], [new Item("mark", false, false), 1], [new Item("entanglement", false, false), 1], [new Item("whirlwind", false, false), 1], [new Item("iceBlast", false, false), 1], [new Item("shadowport", false, false), 1], [new Item("healingPsalms", false, false), 1], [new Item("summonGriffin", false, false), 1], [new Item("summonDemon", false, false), 1], [new Item("slowTimeI", false, false), 1], [new Item("slowTimeII", false, false), 1], [new Item("slowTimeIII", false, false), 1], [new Item("slowTimeIV", false, false), 1], [new Item("slowTimeV", false, false), 1], [new Item("slowTimeVI", false, false), 1], [new Item("doppelganger", false, false), 1], [new Item("shadowSwitch", false, false), 1], [new Item("eruption", false, false), 1], [new Item("drakeBreath", false, false), 1], [new Item("undyingWard", false, false), 1], [new Item("flamingMissiles", false, false), 1], [new Item("arcaneOrbs", false, false), 1], [new Item("despell", false, false), 1], [new Item("powerDraw", false, false), 1], [new Item("theFrozenWord", false, false), 1], [new Item("shell", false, false), 1], [new Item("corporalityWard", false, false), 1], [new Item("windBlast", false, false), 1], [new Item("spiritBear", false, false), 1], [new Item("shadowCrow", false, false), 1], [new Item("antherSwarm", false, false), 1]];
+    allSpells = [[new Item("embers", false, false), 1], [new Item("fireballI", false, false), 1], [new Item("iceClaymore", false, false), 1], [new Item("iceSpikes", false, false), 1], [new Item("flyingColours", false, false), 1], [new Item("frostWind", false, false), 1], [new Item("repel", false, false), 1], [new Item("lifeTap", false, false), 1], [new Item("drainingI", false, false), 1], [new Item("vivification", false, false), 1], [new Item("chasingLights", false, false), 1], [new Item("electricBolt", false, false), 1], [new Item("surge", false, false), 1], [new Item("fireHands", false, false), 1], [new Item("chargedTouch", false, false), 1], [new Item("freezingGrasp", false, false), 1], [new Item("leechingTouch", false, false), 1], [new Item("sorcerer'sRaincoat", false, false), 1], [new Item("shieldingI", false, false), 1], [new Item("shieldingII", false, false), 1], [new Item("shieldingIII", false, false), 1], [new Item("shieldingIV", false, false), 1], [new Item("shieldingV", false, false), 1], [new Item("summonFrich", false, false), 1], [new Item("summonWolf", false, false), 1], [new Item("charm", false, false), 1], [new Item("sanctuary", false, false), 1], [new Item("repellingWard", false, false), 1], [new Item("iceberg", false, false), 1], [new Item("magicMissiles", false, false), 1], [new Item("minorVortex", false, false), 1], [new Item("mark", false, false), 1], [new Item("entanglement", false, false), 1], [new Item("whirlwind", false, false), 1], [new Item("iceBlast", false, false), 1], [new Item("shadowport", false, false), 1], [new Item("healingPsalms", false, false), 1], [new Item("summonGriffin", false, false), 1], [new Item("summonDemon", false, false), 1], [new Item("slowTimeI", false, false), 1], [new Item("slowTimeII", false, false), 1], [new Item("slowTimeIII", false, false), 1], [new Item("slowTimeIV", false, false), 1], [new Item("slowTimeV", false, false), 1], [new Item("slowTimeVI", false, false), 1], [new Item("doppelganger", false, false), 1], [new Item("shadowSwitch", false, false), 1], [new Item("eruption", false, false), 1], [new Item("drakeBreath", false, false), 1], [new Item("undyingWard", false, false), 1], [new Item("flamingMissiles", false, false), 1], [new Item("arcaneOrbs", false, false), 1], [new Item("despell", false, false), 1], [new Item("powerDraw", false, false), 1], [new Item("theFrozenWord", false, false), 1], [new Item("shell", false, false), 1], [new Item("corporalityWard", false, false), 1], [new Item("windBlast", false, false), 1], [new Item("spiritBear", false, false), 1], [new Item("shadowCrow", false, false), 1], [new Item("antherPlague", false, false), 1], [new Item("beholderRift", false, false), 1]];
 //Test Spells
     primarySpells = [];
     secondarySpells = [];

@@ -2174,7 +2174,7 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
             this.orientToCaster(19, 1 / 2 * Math.PI);
         }
         //Summoning
-        if (this.spellType == "summonFrich" || this.spellType == "summonWolf" || this.spellType == "summonGriffin" || this.spellType == "adminSummon")
+        if (this.spellType == "summonFrich" || this.spellType == "summonWolf" || this.spellType == "summonGriffin" || this.spellType == "summonBeholder" || this.spellType == "adminSummon")
         {
             this.spin = ((Math.random() * 11) - 5) / 25;
             var rdxn = Math.floor(Math.random() * 8);
@@ -2435,7 +2435,7 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
             }
 
             //SUMMONING
-            if (this.spellType == "summonFrich" || this.spellType == "summonWolf" || this.spellType == "summonGriffin" || this.spellType == "adminSummon")
+            if (this.spellType == "summonFrich" || this.spellType == "summonWolf" || this.spellType == "summonGriffin" || this.spellType == "summonBeholder" || this.spellType == "adminSummon")
             {
                 this.turn += this.spin;
                 if (caster)
@@ -2520,6 +2520,28 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                         {
                             ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Griffin", false, "summonedGriffin"));
                         }
+
+                        for (var i = 0; i < magicList.length; i++)
+                        {
+                            if (magicList[i] === this)
+                            {
+                                magicList.splice(i, 1);
+                                break;
+                            }
+                        }
+                    }
+                    else if (this.spellType == "summonBeholder" && this.alert)
+                    {
+                        var alph = (Math.random() * 100) + 1;
+                        if (alph <= 1 + (this.cnx / 5))
+                        {
+                            alph = true;
+                        }
+                        else
+                        {
+                            alph = false
+                        }
+                        ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "Beholder", alph, "player"));
 
                         for (var i = 0; i < magicList.length; i++)
                         {

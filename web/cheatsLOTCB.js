@@ -7977,6 +7977,10 @@ function cheats()
         {
             sleep();
         }
+        else if (cheatcode.toLowerCase() == "happykel")
+        {
+            player.kelFaction += 5;
+        }
         else if (cheatcode.toLowerCase() == "coords")
         {
             if (tellCoords == true)

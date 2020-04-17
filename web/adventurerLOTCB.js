@@ -633,6 +633,8 @@ function Adventurer()
     this.dragonFireMult = 0;
     this.anjayTime = 0;
     this.voaiiHost = 0;
+    this.sticky = false;
+    this.nonStick = false;
 
         //faction variables
     this.factionToggle = false;
@@ -963,11 +965,6 @@ function Adventurer()
             if (this.decay < 0)
             {
                 this.decay = 0;
-            }
-
-            if (this.decay > this.healthMAX)
-            {
-                this.decay = this.healthMAX;
             }
         };
         this.onDecay();
@@ -19839,6 +19836,224 @@ function Adventurer()
                 XXX.restore();
             }
         }
+        //YARI
+        if (this.weaponEquipped == "yari")
+        {
+            this.stageEngine(8, 0.19, true); //This cycles through the stages of the attack for four stages (ending at five) and at a rate of 4 * 16.75 miliseconds
+
+            //ATTACK ANIMATION
+            if (Math.floor(this.stage) <= 0)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(moonberry, 150, 256, 187, 165, -1/2 * 187, -1/2 * 165, 187, 165);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 1)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(moonberry, 299, 237, 187, 197, -1/2 * 187, -1/2 * 197, 187, 197);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 2)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(moonberry, 445, 238, 187, 197, -1/2 * 187, -1/2 * 197, 187, 197);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(moonberry, 568, 238, 187, 197, -1/2 * 187, -1/2 * 197, 187, 197);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 4)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(moonberry, 695, 241, 187, 197, -1/2 * 187, -1/2 * 197, 187, 197);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 5)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(moonberry, 825, 222, 187, 235, -1/2 * 187, -1/2 * 235, 187, 235);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) >= 6)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(moonberry, 964, 218, 187, 235, -1/2 * 187, -1/2 * 235, 187, 235);
+                XXX.restore();
+            }
+        }
+        //KAMA
+        if (this.weaponEquipped == "kama")
+        {
+            this.stageEngine(10, 0.32, true); //This cycles through the stages of the attack for four stages (ending at five) and at a rate of 4 * 16.75 miliseconds
+
+            //ATTACK ANIMATION
+            if (Math.floor(this.stage) <= 0)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(moonberry, -7, 616, 96, 81, -1/2 * 96, -1/2 * 81, 96, 81);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 1)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(moonberry, 99, 617, 100, 81, -1/2 * 100, -1/2 * 81, 100, 81);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 2)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(moonberry, 205, 618, 100, 81, -1/2 * 100, -1/2 * 81, 100, 81);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 3)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(moonberry, -6, 715, 100, 67, -1/2 * 100, -1/2 * 67, 100, 67);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 4)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(moonberry, 104, 708, 100, 67, -1/2 * 100, -1/2 * 67 - 9, 100, 67);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 5)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(moonberry, 213, 697, 100, 80, -1/2 * 100, -1/2 * 80 - 11, 100, 80);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 6)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(moonberry, -4, 782, 100, 93, -1/2 * 100, -1/2 * 93, 100, 93);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 7)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(moonberry, 111, 777, 100, 93, -1/2 * 100, -1/2 * 93, 100, 93);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) <= 8)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(moonberry, 224, 772, 100, 93, -1/2 * 100, -1/2 * 93, 100, 93);
+                XXX.restore();
+            }
+            else if (Math.floor(this.stage) >= 9)
+            {
+                XXX.save();
+                XXX.translate(this.myScreenX, this.myScreenY);
+                XXX.rotate(this.rotation);
+                if (this.subtlety)
+                {
+                    XXX.globalAlpha = 0.4;
+                }
+                XXX.drawImage(moonberry, 3, 853, 100, 93, -1/2 * 100, -1/2 * 93, 100, 93);
+                XXX.restore();
+            }
+        }
         //CEPHRIAN BLADE
         if (this.weaponEquipped == "cephrianBlade")
         {
@@ -30231,14 +30446,23 @@ function Adventurer()
             this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.41 / 5 * Math.PI) * (this.mySize + 75);
             this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.41 / 5 * Math.PI) * (this.mySize + 75);
         }
-        else if (this.weaponEquipped == "vardanianPolehammer" && player.powerAttack == false)
+        else if (this.weaponEquipped == "kama")
         {
-            this.weapon = allWeapons[120];
+            this.weapon = allWeapons[121];
 
             //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
-            this.bubbleOfDamageX = X - Math.cos(this.rotation - 1.9 / 5 * Math.PI) * (this.mySize + 34);
-            this.bubbleOfDamageY = Y - Math.sin(this.rotation - 1.9 / 5 * Math.PI) * (this.mySize + 34);
+            this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.8 / 5 * Math.PI) * (this.mySize + 10);
+            this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.8 / 5 * Math.PI) * (this.mySize + 10);
         }
+        else if (this.weaponEquipped == "yari")
+        {
+            this.weapon = allWeapons[122];
+
+            //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+            this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.55 / 5 * Math.PI) * (this.mySize + 86);
+            this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.55 / 5 * Math.PI) * (this.mySize + 86);
+        }
+
     };
 
     //BLOCKING FUNCTION

@@ -10245,6 +10245,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             if (playerPos <= this.radius)
             {
                 player.land = true;
+                player.nonStick = true;
             }
                 //units
             var unitPos;
@@ -10254,6 +10255,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 if (unitPos <= this.radius)
                 {
                     ArtificialIntelligenceAccess[i].land = true;
+                    ArtificialIntelligenceAccess[i].nonStick = true;
                 }
             }
 
@@ -10408,6 +10410,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 if (unitPos <= (this.radius * this.radius) && ArtificialIntelligenceAccess[i].healthMAX <= 7 || unitPos <= (this.radius * this.radius) && ArtificialIntelligenceAccess[i].type == "Anter" || unitPos <= (this.radius * this.radius) && ArtificialIntelligenceAccess[i].type == "LeafCutterAnter")
                 {
                     ArtificialIntelligenceAccess[i].land = true;
+                    ArtificialIntelligenceAccess[i].nonStick = true;
                 }
             }
 
@@ -13751,6 +13754,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 if (ArtificialIntelligenceAccess[i].X > (this.X + 51.88690083067377) - 107 && ArtificialIntelligenceAccess[i].X < (this.X + 51.88690083067377) && ArtificialIntelligenceAccess[i].Y > (this.Y + 46.01944117860512) - 96 && ArtificialIntelligenceAccess[i].Y < (this.Y + 46.01944117860512))
                 {
                     ArtificialIntelligenceAccess[i].land = true;
+                    ArtificialIntelligenceAccess[i].nonStick = true;
                 }
             }
 
@@ -13764,6 +13768,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(mimi, 572, 53, 140, 136, -(1/2 * 140 * 1), -(1/2 * 136 * 1), 140 * 1, 136 * 1);
                 XXX.restore();
                 player.land = true;
+                player.nonStick = true;
             }
             else
             {
@@ -13818,6 +13823,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 if (ArtificialIntelligenceAccess[i].X > (this.X + 51.88690083067377) - 107 && ArtificialIntelligenceAccess[i].X < (this.X + 51.88690083067377) && ArtificialIntelligenceAccess[i].Y > (this.Y + 46.01944117860512) - 96 && ArtificialIntelligenceAccess[i].Y < (this.Y + 46.01944117860512))
                 {
                     ArtificialIntelligenceAccess[i].land = true;
+                    ArtificialIntelligenceAccess[i].nonStick = true;
                 }
             }
 
@@ -13831,6 +13837,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(mimi, 572, 53, 140, 136, -(1/2 * 140 * 1), -(1/2 * 136 * 1), 140 * 1, 136 * 1);
                 XXX.restore();
                 player.land = true;
+                player.nonStick = true;
             }
             else
             {
@@ -13885,6 +13892,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 if (ArtificialIntelligenceAccess[i].X > (this.X + 51.88690083067377) - 107 && ArtificialIntelligenceAccess[i].X < (this.X + 51.88690083067377) && ArtificialIntelligenceAccess[i].Y > (this.Y + 46.01944117860512) - 96 && ArtificialIntelligenceAccess[i].Y < (this.Y + 46.01944117860512))
                 {
                     ArtificialIntelligenceAccess[i].land = true;
+                    ArtificialIntelligenceAccess[i].nonStick = true;
                 }
             }
 
@@ -13898,6 +13906,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(mimi, 572, 53, 140, 136, -(1/2 * 140 * 1), -(1/2 * 136 * 1), 140 * 1, 136 * 1);
                 XXX.restore();
                 player.land = true;
+                player.nonStick = true;
             }
             else
             {
@@ -13952,6 +13961,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 if (ArtificialIntelligenceAccess[i].X > (this.X + 51.88690083067377) - 107 && ArtificialIntelligenceAccess[i].X < (this.X + 51.88690083067377) && ArtificialIntelligenceAccess[i].Y > (this.Y + 46.01944117860512) - 96 && ArtificialIntelligenceAccess[i].Y < (this.Y + 46.01944117860512))
                 {
                     ArtificialIntelligenceAccess[i].land = true;
+                    ArtificialIntelligenceAccess[i].nonStick = true;
                 }
             }
 
@@ -13965,6 +13975,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(mimi, 572, 53, 140, 136, -(1/2 * 140 * 1), -(1/2 * 136 * 1), 140 * 1, 136 * 1);
                 XXX.restore();
                 player.land = true;
+                player.nonStick = true;
             }
             else
             {
@@ -14019,6 +14030,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 if (ArtificialIntelligenceAccess[i].X > (this.X + 78.42930398944463) - 160 && ArtificialIntelligenceAccess[i].X < (this.X + 78.42930398944463) && ArtificialIntelligenceAccess[i].Y > (this.Y + 69.38525144702407) - 144 && ArtificialIntelligenceAccess[i].Y < (this.Y + 69.38525144702407))
                 {
                     ArtificialIntelligenceAccess[i].land = true;
+                    ArtificialIntelligenceAccess[i].nonStick = true;
                 }
             }
 
@@ -14032,6 +14044,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(mimi, 572, 53, 140, 136, -(1/2 * 140 * 1.5), -(1/2 * 136 * 1.5), 140 * 1.5, 136 * 1.5);
                 XXX.restore();
                 player.land = true;
+                player.nonStick = true;
             }
             else
             {
@@ -14086,6 +14099,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 if (ArtificialIntelligenceAccess[i].X > (this.X + 78.42930398944463) - 160 && ArtificialIntelligenceAccess[i].X < (this.X + 78.42930398944463) && ArtificialIntelligenceAccess[i].Y > (this.Y + 69.38525144702407) - 144 && ArtificialIntelligenceAccess[i].Y < (this.Y + 69.38525144702407))
                 {
                     ArtificialIntelligenceAccess[i].land = true;
+                    ArtificialIntelligenceAccess[i].nonStick = true;
                 }
             }
 
@@ -14099,6 +14113,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(mimi, 572, 53, 140, 136, -(1/2 * 140 * 1.5), -(1/2 * 136 * 1.5), 140 * 1.5, 136 * 1.5);
                 XXX.restore();
                 player.land = true;
+                player.nonStick = true;
             }
             else
             {
@@ -14153,6 +14168,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 if (ArtificialIntelligenceAccess[i].X > (this.X + 78.42930398944463) - 160 && ArtificialIntelligenceAccess[i].X < (this.X + 78.42930398944463) && ArtificialIntelligenceAccess[i].Y > (this.Y + 69.38525144702407) - 144 && ArtificialIntelligenceAccess[i].Y < (this.Y + 69.38525144702407))
                 {
                     ArtificialIntelligenceAccess[i].land = true;
+                    ArtificialIntelligenceAccess[i].nonStick = true;
                 }
             }
 
@@ -14166,6 +14182,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(mimi, 572, 53, 140, 136, -(1/2 * 140 * 1.5), -(1/2 * 136 * 1.5), 140 * 1.5, 136 * 1.5);
                 XXX.restore();
                 player.land = true;
+                player.nonStick = true;
             }
             else
             {
@@ -14220,6 +14237,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 if (ArtificialIntelligenceAccess[i].X > (this.X + 78.42930398944463) - 160 && ArtificialIntelligenceAccess[i].X < (this.X + 78.42930398944463) && ArtificialIntelligenceAccess[i].Y > (this.Y + 69.38525144702407) - 144 && ArtificialIntelligenceAccess[i].Y < (this.Y + 69.38525144702407))
                 {
                     ArtificialIntelligenceAccess[i].land = true;
+                    ArtificialIntelligenceAccess[i].nonStick = true;
                 }
             }
 
@@ -14233,6 +14251,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(mimi, 572, 53, 140, 136, -(1/2 * 140 * 1.5), -(1/2 * 136 * 1.5), 140 * 1.5, 136 * 1.5);
                 XXX.restore();
                 player.land = true;
+                player.nonStick = true;
             }
             else
             {
@@ -14287,6 +14306,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 if (ArtificialIntelligenceAccess[i].X > (this.X + 50.168907715307796 * this.temporary) - 100 * this.temporary && ArtificialIntelligenceAccess[i].X < (this.X + 50.168907715307796 * this.temporary) && ArtificialIntelligenceAccess[i].Y > (this.Y + 48.107098850859074 * this.temporary) - 97 * this.temporary && ArtificialIntelligenceAccess[i].Y < (this.Y + 48.107098850859074 * this.temporary))
                 {
                     ArtificialIntelligenceAccess[i].land = true;
+                    ArtificialIntelligenceAccess[i].nonStick = true;
                 }
             }
 
@@ -14315,6 +14335,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(mimi, 730, 523, 140, 136, -(1/2 * 140 * this.temporary), -(1/2 * 136 * this.temporary), 140 * this.temporary, 136 * this.temporary);
                 XXX.restore();
                 player.land = true;
+                player.nonStick = true;
             }
             else
             {
@@ -14426,6 +14447,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 if (ArtificialIntelligenceAccess[i].X > (this.X + 50.168907715307796 * this.temporary) - 100 * this.temporary && ArtificialIntelligenceAccess[i].X < (this.X + 50.168907715307796 * this.temporary) && ArtificialIntelligenceAccess[i].Y > (this.Y + 48.107098850859074 * this.temporary) - 97 * this.temporary && ArtificialIntelligenceAccess[i].Y < (this.Y + 48.107098850859074 * this.temporary))
                 {
                     ArtificialIntelligenceAccess[i].land = true;
+                    ArtificialIntelligenceAccess[i].nonStick = true;
                 }
             }
 
@@ -14454,6 +14476,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(mimi, 1022, 526, 140, 136, -(1/2 * 140 * this.temporary), -(1/2 * 136 * this.temporary), 140 * this.temporary, 136 * this.temporary);
                 XXX.restore();
                 player.land = true;
+                player.nonStick = true;
             }
             else
             {
@@ -18954,6 +18977,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                         {
                             ArtificialIntelligenceAccess[i].land = true;
                             ArtificialIntelligenceAccess[i].water = false;
+                            ArtificialIntelligenceAccess[i].nonStick = true;
                         }
                     }
                     else
@@ -18962,6 +18986,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                         {
                             ArtificialIntelligenceAccess[i].land = true;
                             ArtificialIntelligenceAccess[i].water = false;
+                            ArtificialIntelligenceAccess[i].nonStick = true;
                         }
                     }
                 }
@@ -18973,6 +18998,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                         {
                             ArtificialIntelligenceAccess[i].land = true;
                             ArtificialIntelligenceAccess[i].water = false;
+                            ArtificialIntelligenceAccess[i].nonStick = true;
                         }
                     }
                     else
@@ -18981,6 +19007,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                         {
                             ArtificialIntelligenceAccess[i].land = true;
                             ArtificialIntelligenceAccess[i].water = false;
+                            ArtificialIntelligenceAccess[i].nonStick = true;
                         }
                     }
                 }
@@ -18992,6 +19019,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                         {
                             ArtificialIntelligenceAccess[i].land = true;
                             ArtificialIntelligenceAccess[i].water = false;
+                            ArtificialIntelligenceAccess[i].nonStick = true;
                         }
                     }
                     else
@@ -19000,6 +19028,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                         {
                             ArtificialIntelligenceAccess[i].land = true;
                             ArtificialIntelligenceAccess[i].water = false;
+                            ArtificialIntelligenceAccess[i].nonStick = true;
                         }
                     }
                 }
@@ -19011,6 +19040,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                         {
                             ArtificialIntelligenceAccess[i].land = true;
                             ArtificialIntelligenceAccess[i].water = false;
+                            ArtificialIntelligenceAccess[i].nonStick = true;
                         }
                     }
                     else
@@ -19019,6 +19049,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                         {
                             ArtificialIntelligenceAccess[i].land = true;
                             ArtificialIntelligenceAccess[i].water = false;
+                            ArtificialIntelligenceAccess[i].nonStick = true;
                         }
                     }
                 }
@@ -19030,6 +19061,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                         {
                             ArtificialIntelligenceAccess[i].land = true;
                             ArtificialIntelligenceAccess[i].water = false;
+                            ArtificialIntelligenceAccess[i].nonStick = true;
                         }
                     }
                     else
@@ -19038,6 +19070,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                         {
                             ArtificialIntelligenceAccess[i].land = true;
                             ArtificialIntelligenceAccess[i].water = false;
+                            ArtificialIntelligenceAccess[i].nonStick = true;
                         }
                     }
                 }
@@ -19049,6 +19082,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                         {
                             ArtificialIntelligenceAccess[i].land = true;
                             ArtificialIntelligenceAccess[i].water = false;
+                            ArtificialIntelligenceAccess[i].nonStick = true;
                         }
                     }
                     else
@@ -19057,6 +19091,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                         {
                             ArtificialIntelligenceAccess[i].land = true;
                             ArtificialIntelligenceAccess[i].water = false;
+                            ArtificialIntelligenceAccess[i].nonStick = true;
                         }
                     }
                 }
@@ -19070,6 +19105,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                     {
                         player.land = true;
                         player.water = false;
+                        player.nonStick = true;
                     }
                 }
                 else
@@ -19078,6 +19114,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                     {
                         player.land = true;
                         player.water = false;
+                        player.nonStick = true;
                     }
                 }
             }
@@ -19089,6 +19126,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                     {
                         player.land = true;
                         player.water = false;
+                        player.nonStick = true;
                     }
                 }
                 else
@@ -19097,6 +19135,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                     {
                         player.land = true;
                         player.water = false;
+                        player.nonStick = true;
                     }
                 }
             }
@@ -19108,6 +19147,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                     {
                         player.land = true;
                         player.water = false;
+                        player.nonStick = true;
                     }
                 }
                 else
@@ -19116,6 +19156,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                     {
                         player.land = true;
                         player.water = false;
+                        player.nonStick = true;
                     }
                 }
             }
@@ -19127,6 +19168,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                     {
                         player.land = true;
                         player.water = false;
+                        player.nonStick = true;
                     }
                 }
                 else
@@ -19135,6 +19177,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                     {
                         player.land = true;
                         player.water = false;
+                        player.nonStick = true;
                     }
                 }
             }
@@ -19146,6 +19189,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                     {
                         player.land = true;
                         player.water = false;
+                        player.nonStick = true;
                     }
                 }
                 else
@@ -19154,6 +19198,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                     {
                         player.land = true;
                         player.water = false;
+                        player.nonStick = true;
                     }
                 }
             }
@@ -19165,6 +19210,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                     {
                         player.land = true;
                         player.water = false;
+                        player.nonStick = true;
                     }
                 }
                 else
@@ -19173,6 +19219,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                     {
                         player.land = true;
                         player.water = false;
+                        player.nonStick = true;
                     }
                 }
             }
@@ -27764,6 +27811,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 if (distToPlat <= 150 * this.size * 150 * this.size)
                 {
                     player.land = true;
+                    player.nonStick = true;
                 }
 
                 distToPlat = 1000000000000000;
@@ -27774,6 +27822,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                     if (distToPlat <= 150 * this.size * 150 * this.size)
                     {
                         ArtificialIntelligenceAccess[i].land = true;
+                        ArtificialIntelligenceAccess[i].nonStick = true;
                     }
                 }
             }
@@ -27798,6 +27847,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 if (distToPlat <= 140 * this.size * 140 * this.size)
                 {
                     player.land = true;
+                    player.nonStick = true;
                 }
 
                 distToPlat = 1000000000000000;
@@ -27808,6 +27858,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                     if (distToPlat <= 140 * this.size * 140 * this.size)
                     {
                         ArtificialIntelligenceAccess[i].land = true;
+                        ArtificialIntelligenceAccess[i].nonStick = true;
                     }
                 }
             }
@@ -27832,6 +27883,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 if (distToPlat <= 83 * this.size * 83 * this.size)
                 {
                     player.land = true;
+                    player.nonStick = true;
                 }
 
                 distToPlat = 1000000000000000;
@@ -27842,6 +27894,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                     if (distToPlat <= 83 * this.size * 83 * this.size)
                     {
                         ArtificialIntelligenceAccess[i].land = true;
+                        ArtificialIntelligenceAccess[i].nonStick = true;
                     }
                 }
             }
@@ -27866,6 +27919,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 if (distToPlat <= 49 * this.size * 49 * this.size)
                 {
                     player.land = true;
+                    player.nonStick = true;
                 }
 
                 distToPlat = 1000000000000000;
@@ -27876,6 +27930,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                     if (distToPlat <= 49 * this.size * 49 * this.size)
                     {
                         ArtificialIntelligenceAccess[i].land = true;
+                        ArtificialIntelligenceAccess[i].nonStick = true;
                     }
                 }
             }
@@ -27900,6 +27955,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 if (distToPlat <= 60 * this.size * 60 * this.size)
                 {
                     player.land = true;
+                    player.nonStick = true;
                 }
 
                 distToPlat = 1000000000000000;
@@ -27910,6 +27966,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                     if (distToPlat <= 60 * this.size * 60 * this.size)
                     {
                         ArtificialIntelligenceAccess[i].land = true;
+                        ArtificialIntelligenceAccess[i].nonStick = true;
                     }
                 }
             }
@@ -27934,6 +27991,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 if (distToPlat <= 42 * this.size * 42 * this.size)
                 {
                     player.land = true;
+                    player.nonStick = true;
                 }
 
                 distToPlat = 1000000000000000;
@@ -27944,6 +28002,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                     if (distToPlat <= 42 * this.size * 42 * this.size)
                     {
                         ArtificialIntelligenceAccess[i].land = true;
+                        ArtificialIntelligenceAccess[i].nonStick = true;
                     }
                 }
             }
@@ -27968,6 +28027,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 if (distToPlat <= 45 * this.size * 45 * this.size)
                 {
                     player.land = true;
+                    player.nonStick = true;
                 }
 
                 distToPlat = 1000000000000000;
@@ -27978,6 +28038,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                     if (distToPlat <= 45 * this.size * 45 * this.size)
                     {
                         ArtificialIntelligenceAccess[i].land = true;
+                        ArtificialIntelligenceAccess[i].nonStick = true;
                     }
                 }
             }
@@ -28002,6 +28063,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 if (distToPlat <= 77 * this.size * 77 * this.size)
                 {
                     player.land = true;
+                    player.nonStick = true;
                 }
 
                 distToPlat = 1000000000000000;
@@ -28012,6 +28074,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                     if (distToPlat <= 77 * this.size * 77 * this.size)
                     {
                         ArtificialIntelligenceAccess[i].land = true;
+                        ArtificialIntelligenceAccess[i].nonStick = true;
                     }
                 }
             }
@@ -28061,6 +28124,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 if (distToPlat <= 150 * this.size * 150 * this.size)
                 {
                     player.land = true;
+                    player.nonStick = true;
                 }
 
                 distToPlat = 1000000000000000;
@@ -28071,6 +28135,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                     if (distToPlat <= 150 * this.size * 150 * this.size)
                     {
                         ArtificialIntelligenceAccess[i].land = true;
+                        ArtificialIntelligenceAccess[i].nonStick = true;
                     }
                 }
             }
@@ -28095,6 +28160,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 if (distToPlat <= 140 * this.size * 140 * this.size)
                 {
                     player.land = true;
+                    player.nonStick = true;
                 }
 
                 distToPlat = 1000000000000000;
@@ -28105,6 +28171,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                     if (distToPlat <= 140 * this.size * 140 * this.size)
                     {
                         ArtificialIntelligenceAccess[i].land = true;
+                        ArtificialIntelligenceAccess[i].nonStick = true;
                     }
                 }
             }
@@ -28129,6 +28196,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 if (distToPlat <= 83 * this.size * 83 * this.size)
                 {
                     player.land = true;
+                    player.nonStick = true;
                 }
 
                 distToPlat = 1000000000000000;
@@ -28139,6 +28207,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                     if (distToPlat <= 83 * this.size * 83 * this.size)
                     {
                         ArtificialIntelligenceAccess[i].land = true;
+                        ArtificialIntelligenceAccess[i].nonStick = true;
                     }
                 }
             }
@@ -28163,6 +28232,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 if (distToPlat <= 49 * this.size * 49 * this.size)
                 {
                     player.land = true;
+                    player.nonStick = true;
                 }
 
                 distToPlat = 1000000000000000;
@@ -28173,6 +28243,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                     if (distToPlat <= 49 * this.size * 49 * this.size)
                     {
                         ArtificialIntelligenceAccess[i].land = true;
+                        ArtificialIntelligenceAccess[i].nonStick = true;
                     }
                 }
             }
@@ -28197,6 +28268,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 if (distToPlat <= 60 * this.size * 60 * this.size)
                 {
                     player.land = true;
+                    player.nonStick = true;
                 }
 
                 distToPlat = 1000000000000000;
@@ -28207,6 +28279,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                     if (distToPlat <= 60 * this.size * 60 * this.size)
                     {
                         ArtificialIntelligenceAccess[i].land = true;
+                        ArtificialIntelligenceAccess[i].nonStick = true;
                     }
                 }
             }
@@ -28231,6 +28304,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 if (distToPlat <= 42 * this.size * 42 * this.size)
                 {
                     player.land = true;
+                    player.nonStick = true;
                 }
 
                 distToPlat = 1000000000000000;
@@ -28241,6 +28315,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                     if (distToPlat <= 42 * this.size * 42 * this.size)
                     {
                         ArtificialIntelligenceAccess[i].land = true;
+                        ArtificialIntelligenceAccess[i].nonStick = true;
                     }
                 }
             }
@@ -28265,6 +28340,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 if (distToPlat <= 45 * this.size * 45 * this.size)
                 {
                     player.land = true;
+                    player.nonStick = true;
                 }
 
                 distToPlat = 1000000000000000;
@@ -28275,6 +28351,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                     if (distToPlat <= 45 * this.size * 45 * this.size)
                     {
                         ArtificialIntelligenceAccess[i].land = true;
+                        ArtificialIntelligenceAccess[i].nonStick = true;
                     }
                 }
             }
@@ -28299,6 +28376,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 if (distToPlat <= 77 * this.size * 77 * this.size)
                 {
                     player.land = true;
+                    player.nonStick = true;
                 }
 
                 distToPlat = 1000000000000000;
@@ -28309,6 +28387,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                     if (distToPlat <= 77 * this.size * 77 * this.size)
                     {
                         ArtificialIntelligenceAccess[i].land = true;
+                        ArtificialIntelligenceAccess[i].nonStick = true;
                     }
                 }
             }
@@ -28570,6 +28649,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             if (distToPlat <= 118 * 118) // && player.movingType != "swimming"
             {
                 player.land = true;
+                player.nonStick = true;
             }
 
             distToPlat = 1000000000000000;
@@ -28580,6 +28660,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 if (distToPlat <= 118 * 118)
                 {
                     ArtificialIntelligenceAccess[i].land = true;
+                    ArtificialIntelligenceAccess[i].nonStick = true;
                 }
             }
 
@@ -28623,6 +28704,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             if (distToPlat <= 30 * 30 && player.weaponEquipped != "swimming" && player.weaponEquipped != "boat")
             {
                 player.land = true;
+                player.nonStick = true;
             }
 
             distToPlat = 1000000000000000;
@@ -28633,6 +28715,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 if (distToPlat <= 30 * 30)
                 {
                     ArtificialIntelligenceAccess[i].land = true;
+                    ArtificialIntelligenceAccess[i].nonStick = true;
                 }
             }
 
@@ -28676,6 +28759,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             if (distToPlat <= 30 * 30 && player.movingType != "swimming")
             {
                 player.land = true;
+                player.nonStick = true;
             }
 
             distToPlat = 1000000000000000;
@@ -28686,6 +28770,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 if (distToPlat <= 30 * 30)
                 {
                     ArtificialIntelligenceAccess[i].land = true;
+                    ArtificialIntelligenceAccess[i].nonStick = true;
                 }
             }
 
@@ -28729,6 +28814,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             if (distToPlat <= 30 * 30 && player.movingType != "swimming")
             {
                 player.land = true;
+                player.nonStick = true;
             }
 
             distToPlat = 1000000000000000;
@@ -28739,6 +28825,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 if (distToPlat <= 30 * 30)
                 {
                     ArtificialIntelligenceAccess[i].land = true;
+                    ArtificialIntelligenceAccess[i].nonStick = true;
                 }
             }
 
@@ -28783,6 +28870,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             if (distToPlat <= 6 * 6 && player.movingType != "swimming" && player.getDexterity() >= 3)
             {
                 player.land = true;
+                player.nonStick = true;
             }
 
             distToPlat = 1000000000000000;
@@ -28793,6 +28881,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 if (distToPlat <= 6 * 6)
                 {
                     ArtificialIntelligenceAccess[i].land = true;
+                    ArtificialIntelligenceAccess[i].nonStick = true;
                 }
             }
 
@@ -28838,6 +28927,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             if (distToPlat <= 10 * 10 && player.movingType != "swimming")
             {
                 player.land = true;
+                player.nonStick = true;
             }
 
             distToPlat = 1000000000000000;
@@ -28848,6 +28938,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 if (distToPlat <= 10 * 10)
                 {
                     ArtificialIntelligenceAccess[i].land = true;
+                    ArtificialIntelligenceAccess[i].nonStick = true;
                 }
             }
 
@@ -28923,6 +29014,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             if (distToPlat <= 23 * 23 && player.movingType != "swimming" && this.health >= 2.5)
             {
                 player.land = true;
+                player.nonStick = true;
 
                 if (this.temporary == false)
                 {
@@ -28965,6 +29057,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 if (distToPlat <= 23 * 23 && this.health >= 2.5)
                 {
                     ArtificialIntelligenceAccess[i].land = true;
+                    ArtificialIntelligenceAccess[i].nonStick = true;
 
                     if (this.temporary == false)
                     {
@@ -31309,6 +31402,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 if (distToPlat <= 77 * this.size * 77 * this.size)
                 {
                     player.land = true;
+                    player.nonStick = true;
                 }
 
                 distToPlat = 1000000000000000;
@@ -31319,6 +31413,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                     if (distToPlat <= 77 * this.size * 77 * this.size)
                     {
                         ArtificialIntelligenceAccess[i].land = true;
+                        ArtificialIntelligenceAccess[i].nonStick = true;
                     }
                 }
             }

@@ -6150,7 +6150,7 @@ function worldBuilder()
         region = "testMap";
         campout = true;
         //starting chamber
-        outlineBuilder(68,68, "outline", -34, -34);
+        outlineBuilder(68,68, "lab", -34, -34);
     }
 }
 
@@ -6434,6 +6434,21 @@ function outlineBuilder(width, length, terrain, extraX, extraY)
                 {
                     XXX.drawImage(prairyEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
                 }
+                else if (terrain == "shallowSouthbog")
+                {
+                    over("landing", j, i, extraX, extraY);
+                    XXX.drawImage(southbog, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "southbogMud")
+                {
+                    over("sticky", j, i, extraX, extraY);
+                    XXX.drawImage(southbogMud, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "southbog")
+                {
+                    over("sea", j, i, extraX, extraY);
+                    XXX.drawImage(southbog, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
                 else if (terrain == "vardanianMire")
                 {
                     XXX.drawImage(vardanianMire, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
@@ -6629,9 +6644,39 @@ function outlineBuilder(width, length, terrain, extraX, extraY)
                         XXX.restore();
                     }
                 }
-                else if (terrain == "swamp")
+                else if (terrain == "hollowDirt")
+                {
+                    XXX.drawImage(hollowDirt, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "hollowGrass")
+                {
+                    XXX.drawImage(hollowGrass, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "gladeGrass")
+                {
+                    XXX.drawImage(gladeGrass, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "shallowGlade")
+                {
+                    over("landing", j, i, extraX, extraY);
+
+                    XXX.drawImage(glade, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "glade")
                 {
                     over("sea", j, i, extraX, extraY);
+
+                    XXX.drawImage(glade, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "hollow")
+                {
+                    over("hollow", j, i, extraX, extraY);
+
+                    XXX.drawImage(hollow, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
+                }
+                else if (terrain == "swamp")
+                {
+                    over("swamp", j, i, extraX, extraY);
 
                     XXX.drawImage(swampEnv, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
                 }

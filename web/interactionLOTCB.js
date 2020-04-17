@@ -15727,7 +15727,7 @@ function interaction(me)
                         else if (conversationID[1] == "0e")
                         {
                             //text dialogue
-                            setMsg("[tears well in his eyes] I can't believe she's dead... I know that she died honourably... but I... I can't believe shes dead! [cries out in pain]");
+                            setMsg("[tears well in his eyes] I can't believe she's dead... I know that she died honourably... but I... I can't believe she's dead! [cries out in pain]");
 
                             //on ended text dialogue
                             if (tellMessage == "reset")
@@ -15739,6 +15739,7 @@ function interaction(me)
                                 player.experience += 25;
                                 quests.lostHuntressCompletionStyle = "foundherdead";
                                 quests.lostHuntressQuest = "complete";
+                                player.kelFaction += 5;
                                 if (player.title != "Nobility" || player.gender != "Female" || player.raceName != "Kel")
                                 {
                                     worldItems.push([new Item("coins", X, Y), 15]);

@@ -9335,7 +9335,7 @@ function Item(type, x, y)
             this.identity = "Giraffe Pelt";
             this.weight = 18;
             this.size = 30;
-            this.description = "The thich yellow and brown spotted pelt of a giraffe.";
+            this.description = "The thick yellow and brown spotted pelt of a giraffe.";
             this.intForDes = 1;
             this.intDescription = "Giraffe pelts are a sought after material used to make decorations, rugs, and fine clothing.";
 
@@ -15803,7 +15803,7 @@ function Item(type, x, y)
             this.size = 5;
             this.description = "The thickly petalled orange flower of an anjay cactus.";
             this.intForDes = 5;
-            this.intDescription = "Anjay flower has a psychoactive compound that causes one's body to have vivid hallucinations and a wildly increased heart rate and body temperature.";
+            this.intDescription = "Anjay flower has a psychoactive compound that causes vivid hallucinations, and a wildly increased heart rate and body temperature.";
 
             //Define Utility
             this.utility = "food";
@@ -39658,6 +39658,74 @@ function Item(type, x, y)
             this.buyValue = 95 - Math.floor(player.getCharisma() / 3); // at max, buy for 80.
             this.sellValue = 65 + Math.floor(player.getCharisma() / 3); // at max, sell for 80.
         }
+        else if (this.type == "yari")
+        {
+            //For All Items
+            this.identity = "Yari";
+            this.weight = 3;
+            this.size = 18;
+            this.description = "A bamboo shafted spear of orgish design.";
+            this.intForDes = 2;
+            this.intDescription = "This is a weapon meant to be used to fight against cavalry.";
+
+            //Define Utility
+            this.utility = "weapon";
+
+            //Utility Focused
+            this.energyCost = 4;
+            this.distance = 86 + (this.range * 7);
+            this.range = 2 + 4/7;
+            this.rate = (130 - 4/5 * player.getDexterity());
+            this.damage = (4 - this.damageHandicap) * (this.leveledDamageMultiple / 25) + ((7/50) * player.getStrength());
+            this.magicalDamage = 0;
+            this.negateArmour = 8 + ((2/50) * player.getStrength());
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 30;
+            this.ingredients = [["Bamboo", 1], ["Steel", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 41 - Math.floor(player.getCharisma() / 5); // at max, buy for 31.
+            this.sellValue = 17 + Math.floor(player.getCharisma() / 5); // at max, sell for 27.
+        }
+        else if (this.type == "kama")
+        {
+            //For All Items
+            this.identity = "Kama";
+            this.weight = 1;
+            this.size = 7;
+            this.description = "A bamboo shafted sickle of orgish design.";
+            this.intForDes = 1;
+            this.intDescription = "This weapon's primary use is reaping crops.";
+
+            //Define Utility
+            this.utility = "weapon";
+
+            //Utility Focused
+            this.energyCost = 1;
+            this.distance = 10 + (this.range * 7);
+            this.range = 4 + 1/7;
+            this.rate = (100 - 1/2 * player.getDexterity());
+            this.damage = ((2.25 - this.damageHandicap) * (this.leveledDamageMultiple / 25) + ((3/50) * player.getDexterity()) + ((1/50) * player.getStrength())) * (1 + 0.6 * this.superStealthNum(1));
+            this.magicalDamage = 0;
+            this.negateArmour = 0.75 + this.superStealthNum(1);
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 3;
+            this.intForCraft = 32;
+            this.ingredients = [["Bamboo", 1], ["Steel", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 17 - Math.floor(player.getCharisma() / 10); // at max, buy for 12.
+            this.sellValue = 9 + Math.floor(player.getCharisma() / 15); // at max, sell for 12.
+        }
         else if (this.type == "rasper")
         {
             //For All Items
@@ -47725,7 +47793,7 @@ function Item(type, x, y)
             this.toughnessBonus = 2;
             this.intelligenceBonus = 0;
             this.charismaBonus = 25;
-            this.rangedBonus = 6;
+            this.rangedBonus = 4;
             this.constitutionBonus = 0;
             this.staminaBonus = 2;
             this.dexterityBonus = 2;
@@ -56228,6 +56296,16 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "yari")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moonberry, 72, 410, 47, 149, X - this.X + (1/2 * CCC.width) - (1/2 * 47 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 149 * 1), 47 * 1, 149 * 1);
+        }
+        else if (this.type == "kama")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moonberry, 69, 569, 39, 38, X - this.X + (1/2 * CCC.width) - (1/2 * 39 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 38 * 1), 39 * 1, 38 * 1);
+        }
         else if (this.type == "beholderStrands")
         {
             XXX.beginPath();
@@ -63561,6 +63639,24 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(candlewic, 61, 201, 27, 29, this.invX - (1/2 * 27 * 1.5), this.invY - (1/2 * 29 * 1.5), 27 * 1.5, 29 * 1.5);
         }
+        else if (this.type == "yari")
+        {
+            LXX.beginPath();
+            LXX.drawImage(moonberry, 72, 410, 47, 149, this.invX - (1/2 * 47 * 0.55), this.invY - (1/2 * 149 * 0.55), 47 * 0.55, 149 * 0.55);
+        }
+        else if (this.type == "kama")
+        {
+            if (this.equipped == true)
+            {
+                LXX.beginPath();
+                LXX.drawImage(moonberry, 118, 572, 36, 38, this.invX - (1/2 * 36 * 1), this.invY - (1/2 * 38 * 1), 36 * 1, 38 * 1);
+            }
+            else
+            {
+                LXX.beginPath();
+                LXX.drawImage(moonberry, 70, 571, 36, 38, this.invX - (1/2 * 36 * 1), this.invY - (1/2 * 38 * 1), 36 * 1, 38 * 1);
+            }
+        }
         else if (this.type == "beholderStrands")
         {
             LXX.beginPath();
@@ -70870,6 +70966,24 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "yari")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moonberry, 72, 410, 47, 149, this.invX - (1/2 * 47 * 0.55), this.invY - (1/2 * 149 * 0.55), 47 * 0.55, 149 * 0.55);
+        }
+        else if (this.type == "kama")
+        {
+            if (this.equipped == true)
+            {
+                XXX.beginPath();
+                XXX.drawImage(moonberry, 118, 572, 36, 38, this.invX - (1/2 * 36 * 1), this.invY - (1/2 * 38 * 1), 36 * 1, 38 * 1);
+            }
+            else
+            {
+                XXX.beginPath();
+                XXX.drawImage(moonberry, 70, 571, 36, 38, this.invX - (1/2 * 36 * 1), this.invY - (1/2 * 38 * 1), 36 * 1, 38 * 1);
+            }
         }
         else if (this.type == "beholderStrands")
         {

@@ -147,6 +147,8 @@ function gameloopOfDestiny(time)
     playerJuju = false; //a flag that magical things cast by the player can trigger so that others know that the player is up to some sort of magical juju
     player.land = true;
     player.water = false;
+    player.sticky = false;
+    player.nonStick = false;
     player.toll = false;
     player.freeze = 1;
     wornAbilities();
@@ -164,6 +166,8 @@ function gameloopOfDestiny(time)
             //reset landscape variables
             ArtificialIntelligenceAccess[k].water = false;
             ArtificialIntelligenceAccess[k].land = true;
+            ArtificialIntelligenceAccess[k].sticky = false;
+            ArtificialIntelligenceAccess[k].nonStick = false;
         }
     }
 

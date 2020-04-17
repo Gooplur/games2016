@@ -1,5 +1,5 @@
 /**
- * Created by skyeguy on 12/17/15.
+ * Created by skyeguy on 12/17/2015.
  */
 
 //look up TEST to find tests in the code
@@ -14,6 +14,7 @@
 //todo frost wyrm (with frost breath) (ridable)
 //todo ship
 //todo kraken
+//todo fire breathing hearth mimic
 
 //flash protection
 
@@ -1181,6 +1182,34 @@ function envPack()
     farmground.src = ("images/farmingland.png");
     window.farmground = farmground;
 
+    var glade = new Image();
+    glade.src = ("images/glade.png");
+    window.glade = glade;
+
+    var gladeGrass = new Image();
+    gladeGrass.src = ("images/orgishGrass.png");
+    window.gladeGrass = gladeGrass;
+
+    var hollowDirt = new Image();
+    hollowDirt.src = ("images/hollowDirt.png");
+    window.hollowDirt = hollowDirt;
+
+    var hollowGrass = new Image();
+    hollowGrass.src = ("images/hollowGrass.png");
+    window.hollowGrass = hollowGrass;
+
+    var hollow = new Image();
+    hollow.src = ("images/hollow.png");
+    window.hollow = hollow;
+
+    var southbog = new Image();
+    southbog.src = ("images/southbog.png");
+    window.southbog = southbog;
+
+    var southbogMud = new Image();
+    southbogMud.src = ("images/southbogMud.png");
+    window.southbogMud = southbogMud;
+
     var kellStone = new Image();
     kellStone.src = ("images/puterRocks.jpg");
     window.kellStone = kellStone;
@@ -1706,6 +1735,18 @@ function bambooPack()
     window.mboo = mboo;
 
     mboo.onload = function()
+    {
+        oculPack();
+    };
+}
+
+function oculPack()
+{
+    var ocul = new Image();
+    ocul.src = ("images/ocul.png");
+    window.ocul = ocul;
+
+    ocul.onload = function()
     {
         oasisPack();
     };
@@ -3504,7 +3545,7 @@ function over(kind, j, i, extraX, extraY)
     //PLAYER LANDSCAPE SENSING
     if (-X < tileX + 300 && -X > tileX && -Y < tileY + 300 && -Y > tileY)
     {
-        if (kind == "sea" || kind == "sewer")
+        if (kind == "sea" || kind == "sewer" || kind == "swamp"  || kind == "hollow")
         {
             if (player.form != "vampire" || wKey != true)
             {
@@ -3517,12 +3558,39 @@ function over(kind, j, i, extraX, extraY)
                         player.skinWorms = true;
                     }
                 }
+                else if (kind == "swamp" && player.weaponEquipped == "swimming")
+                {
+                    if (Math.random() < 0.0001 && player.raceName != "Vardan" || Math.random() < 0.00001 && player.raceName == "Vardan")
+                    {
+                        if (this.internalWarts == false)
+                        {
+                            this.internalWarts = true;
+                            this.internalWartGrowth = 0;
+                        }
+                    }
+                }
+                else if (kind == "hollow" && player.weaponEquipped == "swimming")
+                {
+                    player.decay += 0.06;
+                }
             }
         }
         else if (kind == "landing")
         {
             player.land = true;
             player.water = true;
+        }
+        else if (kind == "sticky")
+        {
+            if (this.nonStick == false)
+            {
+                player.sticky = true;
+                if (player.form != "vampire" || wKey != true)
+                {
+                    player.stunnedTime = 2;
+                    player.stunnedI = true;
+                }
+            }
         }
         else if (kind == "tollBridge")
         {
@@ -3537,10 +3605,23 @@ function over(kind, j, i, extraX, extraY)
     {
         if (-ArtificialIntelligenceAccess[i].X < tileX + 300 && -ArtificialIntelligenceAccess[i].X > tileX && -ArtificialIntelligenceAccess[i].Y < tileY + 300 && -ArtificialIntelligenceAccess[i].Y > tileY)
         {
-            if (kind == "sea" || kind == "sewer")
+            if (kind == "sea" || kind == "sewer" || kind == "swamp" || kind == "hollow")
             {
                 ArtificialIntelligenceAccess[i].water = true;
                 ArtificialIntelligenceAccess[i].land = false;
+                if (kind == "hollow" && ArtificialIntelligenceAccess[i].flying != true && ArtificialIntelligenceAccess[i].resistances.indexOf("hollow") == -1)
+                {
+                    ArtificialIntelligenceAccess[i].healthMAX -= 0.06;
+                    ArtificialIntelligenceAccess[i].killNotByPlayer = true;
+                }
+            }
+            else if (kind == "sticky")
+            {
+                ArtificialIntelligenceAccess[i].sticky = true;
+                if (ArtificialIntelligenceAccess[i].flying != true && ArtificialIntelligenceAccess[i].resistances.indexOf("sticky") == -1)
+                {
+                    ArtificialIntelligenceAccess[i].stunned = 0.4;
+                }
             }
             else if (kind == "landing" || kind == "tollBridge")
             {
@@ -4664,6 +4745,8 @@ function theLegend()
     allWeapons.push(new Item("cephrianRapier"));//118
     allWeapons.push(new Item("spellOil"));//119
     allWeapons.push(new Item("vardanianPolehammer"));//120
+    allWeapons.push(new Item("kama"));//121
+    allWeapons.push(new Item("yari"));//122
 
 
 
@@ -5042,6 +5125,8 @@ function theLegend()
     smithing.push(new Item("morrowPlateArmour", false));
     smithing.push(new Item("boroyePlateArmour", false));
     smithing.push(new Item("blackBearMediumArmour", false));
+    smithing.push(new Item("kama", false));
+    smithing.push(new Item("yari", false));
 
 //Foods (Items cooked at either a stove, an oven, or a campfire)
     foods = [];

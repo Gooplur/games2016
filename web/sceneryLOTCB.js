@@ -24800,6 +24800,117 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 this.activate = false;
             }
         }
+        else if (this.type == "skarabausSpores")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+            this.zIndex = 6;
+
+            if (this.runOneTime == true)
+            {
+                this.runOneTime = false;
+                this.tac = 99;
+                this.spin = 0;
+                this.rotation = Math.random() * 2*Math.PI;
+                this.size = this.temporary;
+                if (Math.random() > 0.6)
+                {
+                    this.speed = 1;
+                }
+                else
+                {
+                    this.speed = 0.74;
+                }
+            }
+            this.tac -= 0.4;
+            this.spin += 0.07;
+            this.size += 0.006;
+
+
+            //DRAWSELF
+            XXX.save();
+            XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+            XXX.rotate(this.rotation + this.spin);
+            if (this.tac < 0)
+            {
+                XXX.globalAlpha = 0;
+            }
+            else
+            {
+                XXX.globalAlpha = this.tac * 0.01;
+            }
+            XXX.drawImage(moonberry, 364, 454, 225, 231, -(1/2 * 225) * this.size, -(1/2 * 231) * this.size, 225 * this.size, 231 * this.size);
+            XXX.restore();
+
+            if (this.tac <= 0)
+            {
+                scenicList.splice(scenicList.indexOf(this), 1);
+            }
+
+            this.X += Math.cos(this.rotation) * this.speed;
+            this.Y += Math.sin(this.rotation) * this.speed;
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 106 * this.size;
+
+            //infect
+            if (player.resistDisease == false)
+            {
+                if (this.dst(X, Y) <= this.radius)
+                {
+                    if (player.energy >= 3)
+                    {
+                        player.energy -= 3;
+                    }
+                    else
+                    {
+                        player.energy = 0;
+                    }
+
+                    if (player.will >= 0.25)
+                    {
+                        player.will -= 0.25;
+                    }
+                    else
+                    {
+                        player.will = 0;
+                    }
+
+                    player.health -= 0.05;
+
+                    player.energilTime = Math.max(player.energilTime, 60);
+                    player.fatigueIII = true;
+                }
+            }
+
+            for (var j = 0; j < ArtificialIntelligenceAccess.length; j++)
+            {
+                if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= this.radius + (3/4 * ArtificialIntelligenceAccess[j].sizeRadius) && !ArtificialIntelligenceAccess[j].underground && ArtificialIntelligenceAccess[j].dmx == this.dmx)
+                {
+                    if (ArtificialIntelligenceAccess[j].resistDisease != true)
+                    {
+                        ArtificialIntelligenceAccess[j].buffoutTime = new Date().getTime();
+                        ArtificialIntelligenceAccess[j].buffoutTimer = 20;
+                        ArtificialIntelligenceAccess[j].initBuffout = 0.5;
+                        ArtificialIntelligenceAccess[j].subBuffoutToggle = true;
+
+                        ArtificialIntelligenceAccess[j].stunTime = new Date().getTime();
+                        ArtificialIntelligenceAccess[j].stunTimer = 20;
+                        ArtificialIntelligenceAccess[j].stunI = true;
+
+                        ArtificialIntelligenceAccess[j].health -= 0.05;
+                        ArtificialIntelligenceAccess[j].killNotByPlayer = true;
+                    }
+                }
+            }
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+        }
         else if (this.type == "xiumSpores")
         {
             //TRAITS

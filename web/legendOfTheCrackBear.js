@@ -4961,6 +4961,12 @@ function theLegend()
     allWorn.push(new Item("longElkGloves", false)); //205
     allWorn.push(new Item("redMotylinkaBoots", false)); //206
     allWorn.push(new Item("longElkBoots", false)); //207
+    allWorn.push(new Item("ashigaruArmour", false)); //208
+    allWorn.push(new Item("greyAshigaruArmour", false)); //209
+    allWorn.push(new Item("purpleAshigaruArmour", false)); //210
+    allWorn.push(new Item("blueKimono", false)); //211
+    allWorn.push(new Item("pinkKimono", false)); //212
+    allWorn.push(new Item("redKimono", false)); //213
 
 
     scenicList = [];
@@ -5127,6 +5133,9 @@ function theLegend()
     smithing.push(new Item("blackBearMediumArmour", false));
     smithing.push(new Item("kama", false));
     smithing.push(new Item("yari", false));
+    smithing.push(new Item("ashigaruArmour", false));
+    smithing.push(new Item("greyAshigaruArmour", false));
+    smithing.push(new Item("purpleAshigaruArmour", false));
 
 //Foods (Items cooked at either a stove, an oven, or a campfire)
     foods = [];
@@ -5501,6 +5510,9 @@ function theLegend()
     tailoring.push(new Item("redMotylinkaGloves", false));
     tailoring.push(new Item("longElkBoots", false));
     tailoring.push(new Item("longElkGloves", false));
+    tailoring.push(new Item("blueKimono", false));
+    tailoring.push(new Item("pinkKimono", false));
+    tailoring.push(new Item("redKimono", false));
 
 //Jewelry (Items crafted at a jewler's station, rings, necklaces, cutting gems, glassblowing etc.)
     jewelry = [];

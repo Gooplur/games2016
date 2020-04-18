@@ -45995,6 +45995,180 @@ function Item(type, x, y)
             this.buyValue = 55 - Math.floor(player.getCharisma() / 12.5); // at max, buy for 51.
             this.sellValue = 45 + Math.floor(player.getCharisma() / 8); // at max, sell for 51.
         }
+        else if (this.type == "ashigaruArmour")
+        {
+            //For All Items
+            this.identity = "Orgish Soldier Armour";
+            this.weight = 10;
+            this.size = 26;
+            this.description = "Orgish armour worn by common soldiers.";
+            this.intForDes = 3;
+            this.intDescription = "The red, gold, and black design represents the royal dynasty of orgell.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "armour";
+            //Utility Focused
+            //protections
+            this.protection = 9 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 8;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0.2;
+            this.thirstRetention = 0.55;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 1;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 5;
+            this.rangedBonus = 3;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 1;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 28;
+            this.ingredients = [["Iron", 4], ["Cloth", 7]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 45 - Math.floor(player.getCharisma() / 10); // at max, buy for 40.
+            this.sellValue = 38 + Math.floor(player.getCharisma() / 25); // at max, sell for 40.
+        }
+        else if (this.type == "purpleAshigaruArmour")
+        {
+            //For All Items
+            this.identity = "Orgish Soldier Armour";
+            this.weight = 10;
+            this.size = 26;
+            this.description = "Orgish armour worn by common soldiers.";
+            this.intForDes = 3;
+            this.intDescription = "The purple, pink, and salmon-coloured design represents the royal dynasty of orgell.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "armour";
+            //Utility Focused
+            //protections
+            this.protection = 9 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 8;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0.2;
+            this.thirstRetention = 0.55;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 1;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 6;
+            this.rangedBonus = 2;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 1;
+            this.dexterityBonus = 1;
+            this.survivalismBonus = 1;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 27;
+            this.ingredients = [["Iron", 4], ["Cloth", 7]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 44 - Math.floor(player.getCharisma() / 10); // at max, buy for 39.
+            this.sellValue = 37 + Math.floor(player.getCharisma() / 25); // at max, sell for 39.
+        }
+        else if (this.type == "greyAshigaruArmour")
+        {
+            //For All Items
+            this.identity = "Orgish Soldier Armour";
+            this.weight = 13;
+            this.size = 26;
+            this.description = "Orgish armour worn by common soldiers.";
+            this.intForDes = 3;
+            this.intDescription = "The grey and black design represents house hanzai.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "armour";
+            //Utility Focused
+            //protections
+            this.protection = 10 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 9;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0.2;
+            this.thirstRetention = 0.55;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 1;
+            this.enduranceBonus = 2;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 4;
+            this.rangedBonus = 1;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 2;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 29;
+            this.ingredients = [["Iron", 6], ["Cloth", 7]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 48 - Math.floor(player.getCharisma() / 10); // at max, buy for 43.
+            this.sellValue = 41 + Math.floor(player.getCharisma() / 25); // at max, sell for 43.
+        }
         else if (this.type == "freydicRoyalDress")
         {
             //For All Items
@@ -48817,6 +48991,241 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 15 - Math.floor(player.getCharisma() / 15); // at max, buy for 12.
             this.sellValue = 9 + Math.floor(player.getCharisma() / 15); // at max, sell for 12.
+        }
+        else if (this.type == "blueKimono")
+        {
+            //For All Items
+            this.identity = "Blue Kimono";
+            this.weight = 2;
+            this.size = 26;
+            this.description = "A fine kimono of equisite blue-dyed silk.";
+            this.intForDes = 2;
+            this.intDescription = "Kimonos of this fashion are tailored for the elite ladies of Orgell.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0.1;
+            this.thirstRetention = 0.7;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            if (player.gender == "Female")
+            {
+                this.intelligenceBonus = 1;
+                this.charismaBonus = 40;
+            }
+            else
+            {
+                this.intelligenceBonus = 0;
+                this.charismaBonus = -50;
+            }
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = -24;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            if (player.gender == "Female")
+            {
+                this.thirstBonus = 5;
+            }
+            else
+            {
+                this.thirstBonus = 0;
+            }
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            if (player.getEminence() >= 2 && player.gender == "Female")
+            {
+                this.memoryBonus = 2;
+            }
+            else
+            {
+                this.memoryBonus = 0;
+            }
+
+            //ability
+            this.ability = "hefty";
+
+            this.yield = 1;
+            this.intForCraft = 50;
+            this.ingredients = [["Silk", 20], ["Silver", 1], ["Aquamarine", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2810 - Math.floor(player.getCharisma() / 5); // at max, buy for 2800.
+            this.sellValue = 2790 + Math.floor(player.getCharisma() / 5); // at max, sell for 2800.
+        }
+        else if (this.type == "pinkKimono")
+        {
+            //For All Items
+            this.identity = "Pink Kimono";
+            this.weight = 2;
+            this.size = 26;
+            this.description = "A fine kimono of equisite pink-dyed silk.";
+            this.intForDes = 2;
+            this.intDescription = "Kimonos of this fashion are tailored for the elite ladies of Orgell.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0.1;
+            this.thirstRetention = 0.7;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            if (player.gender == "Female")
+            {
+                this.charismaBonus = 41;
+            }
+            else
+            {
+                this.charismaBonus = -50;
+            }
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = -25;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            if (player.gender == "Female")
+            {
+                this.thirstBonus = 5;
+            }
+            else
+            {
+                this.thirstBonus = 0;
+            }
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            if (player.getEminence() >= 2 && player.gender == "Female")
+            {
+                this.memoryBonus = 1;
+            }
+            else
+            {
+                this.memoryBonus = 0;
+            }
+
+            //ability
+            this.ability = "hefty";
+
+            this.yield = 1;
+            this.intForCraft = 50;
+            this.ingredients = [["Silk", 20], ["Silver", 1], ["Aquamarine", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2850 - Math.floor(player.getCharisma() / 5); // at max, buy for 2840.
+            this.sellValue = 2830 + Math.floor(player.getCharisma() / 5); // at max, sell for 2840.
+        }
+        else if (this.type == "redKimono")
+        {
+            //For All Items
+            this.identity = "Red Kimono";
+            this.weight = 2.5;
+            this.size = 26;
+            this.description = "A luxurious kimono of the finest and most exquisite red-dyed silk.";
+            this.intForDes = 2;
+            this.intDescription = "Red kimonos are the most prestigious and expensive fashion worn by the elite ladies of Orgell.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0.1;
+            this.thirstRetention = 0.71;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            if (player.gender == "Female")
+            {
+                this.charismaBonus = 45;
+            }
+            else
+            {
+                this.charismaBonus = -50;
+            }
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = -26;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 0;
+            if (player.gender == "Female")
+            {
+                this.thirstBonus = 7;
+            }
+            else
+            {
+                this.thirstBonus = 0;
+            }
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            if (player.getEminence() >= 2 && player.gender == "Female")
+            {
+                this.memoryBonus = 3;
+            }
+            else
+            {
+                this.memoryBonus = 0;
+            }
+
+            //ability
+            this.ability = "hefty";
+
+            this.yield = 1;
+            this.intForCraft = 50;
+            this.ingredients = [["Silk", 25], ["Gold", 1], ["Jade", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5850 - Math.floor(player.getCharisma() / 5); // at max, buy for 5840.
+            this.sellValue = 5830 + Math.floor(player.getCharisma() / 5); // at max, sell for 5840.
         }
         else if (this.type == "alemanWWI")
         {
@@ -56296,6 +56705,36 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "blueKimono")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moonberry, 948, 11, 124, 140, X - this.X + (1/2 * CCC.width) - (1/2 * 124 * 0.73), Y - this.Y + (1/2 * CCC.height) - (1/2 * 140 * 0.73), 124 * 0.73, 140 * 0.73);
+        }
+        else if (this.type == "pinkKimono")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moonberry, 1228, 10, 124, 140, X - this.X + (1/2 * CCC.width) - (1/2 * 124 * 0.73), Y - this.Y + (1/2 * CCC.height) - (1/2 * 140 * 0.73), 124 * 0.73, 140 * 0.73);
+        }
+        else if (this.type == "redKimono")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moonberry, 1089, 10, 124, 140, X - this.X + (1/2 * CCC.width) - (1/2 * 124 * 0.73), Y - this.Y + (1/2 * CCC.height) - (1/2 * 140 * 0.73), 124 * 0.73, 140 * 0.73);
+        }
+        else if (this.type == "ashigaruArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moonberry, 331, 9, 67, 146, X - this.X + (1/2 * CCC.width) - (1/2 * 67 * 0.73), Y - this.Y + (1/2 * CCC.height) - (1/2 * 146 * 0.73), 67 * 0.73, 146 * 0.73);
+        }
+        else if (this.type == "greyAshigaruArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moonberry, 557, 9, 67, 146, X - this.X + (1/2 * CCC.width) - (1/2 * 67 * 0.73), Y - this.Y + (1/2 * CCC.height) - (1/2 * 146 * 0.73), 67 * 0.73, 146 * 0.73);
+        }
+        else if (this.type == "purpleAshigaruArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moonberry, 772, 4, 67, 146, X - this.X + (1/2 * CCC.width) - (1/2 * 67 * 0.73), Y - this.Y + (1/2 * CCC.height) - (1/2 * 146 * 0.73), 67 * 0.73, 146 * 0.73);
+        }
         else if (this.type == "yari")
         {
             XXX.beginPath();
@@ -63639,6 +64078,36 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(candlewic, 61, 201, 27, 29, this.invX - (1/2 * 27 * 1.5), this.invY - (1/2 * 29 * 1.5), 27 * 1.5, 29 * 1.5);
         }
+        else if (this.type == "blueKimono")
+        {
+            LXX.beginPath();
+            LXX.drawImage(moonberry, 948, 11, 124, 140, this.invX - (1/2 * 124 * 0.5), this.invY - (1/2 * 140 * 0.5), 124 * 0.5, 140 * 0.5);
+        }
+        else if (this.type == "pinkKimono")
+        {
+            LXX.beginPath();
+            LXX.drawImage(moonberry, 1228, 10, 124, 140, this.invX - (1/2 * 124 * 0.5), this.invY - (1/2 * 140 * 0.5), 124 * 0.5, 140 * 0.5);
+        }
+        else if (this.type == "redKimono")
+        {
+            LXX.beginPath();
+            LXX.drawImage(moonberry, 1089, 10, 124, 140, this.invX - (1/2 * 124 * 0.5), this.invY - (1/2 * 140 * 0.5), 124 * 0.5, 140 * 0.5);
+        }
+        else if (this.type == "ashigaruArmour")
+        {
+            LXX.beginPath();
+            LXX.drawImage(moonberry, 331, 9, 67, 146, this.invX - (1/2 * 67 * 0.5), this.invY - (1/2 * 146 * 0.5), 67 * 0.5, 146 * 0.5);
+        }
+        else if (this.type == "greyAshigaruArmour")
+        {
+            LXX.beginPath();
+            LXX.drawImage(moonberry, 557, 9, 67, 146, this.invX - (1/2 * 67 * 0.5), this.invY - (1/2 * 146 * 0.5), 67 * 0.5, 146 * 0.5);
+        }
+        else if (this.type == "purpleAshigaruArmour")
+        {
+            LXX.beginPath();
+            LXX.drawImage(moonberry, 772, 4, 67, 146, this.invX - (1/2 * 67 * 0.5), this.invY - (1/2 * 146 * 0.5), 67 * 0.5, 146 * 0.5);
+        }
         else if (this.type == "yari")
         {
             LXX.beginPath();
@@ -70966,6 +71435,36 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "blueKimono")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moonberry, 948, 11, 124, 140, this.invX - (1/2 * 124 * 0.5), this.invY - (1/2 * 140 * 0.5), 124 * 0.5, 140 * 0.5);
+        }
+        else if (this.type == "pinkKimono")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moonberry, 1228, 10, 124, 140, this.invX - (1/2 * 124 * 0.5), this.invY - (1/2 * 140 * 0.5), 124 * 0.5, 140 * 0.5);
+        }
+        else if (this.type == "redKimono")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moonberry, 1089, 10, 124, 140, this.invX - (1/2 * 124 * 0.5), this.invY - (1/2 * 140 * 0.5), 124 * 0.5, 140 * 0.5);
+        }
+        else if (this.type == "ashigaruArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moonberry, 331, 9, 67, 146, this.invX - (1/2 * 67 * 0.5), this.invY - (1/2 * 146 * 0.5), 67 * 0.5, 146 * 0.5);
+        }
+        else if (this.type == "greyAshigaruArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moonberry, 557, 9, 67, 146, this.invX - (1/2 * 67 * 0.5), this.invY - (1/2 * 146 * 0.5), 67 * 0.5, 146 * 0.5);
+        }
+        else if (this.type == "purpleAshigaruArmour")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moonberry, 772, 4, 67, 146, this.invX - (1/2 * 67 * 0.5), this.invY - (1/2 * 146 * 0.5), 67 * 0.5, 146 * 0.5);
         }
         else if (this.type == "yari")
         {

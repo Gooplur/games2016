@@ -9006,6 +9006,18 @@ function Adventurer()
         {
             outfit = allWorn[203];
         }
+        else if (this.bootsEquipped == "ashigaruArmour")
+        {
+            outfit = allWorn[208];
+        }
+        else if (this.bootsEquipped == "greyAshigaruArmour")
+        {
+            outfit = allWorn[209];
+        }
+        else if (this.bootsEquipped == "purpleAshigaruArmour")
+        {
+            outfit = allWorn[210];
+        }
         else
         {
             outfit = allWorn[0];
@@ -10176,6 +10188,45 @@ function Adventurer()
                 XXX.globalAlpha = 0.4;
             }
             XXX.drawImage(chupa, 51, 24, 28, 39, -1/2 * 28 * 1.61 - 1.5, -1/2 * 39 * 1.61 + 4.4, 28 * 1.61, 39 * 1.61);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "ashigaruArmour")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(moonberry, 280, 23, 37, 34, -1/2 * 37 * 1.2 - 1, -1/2 * 34 * 1.2 + 0.25, 37 * 1.2, 34 * 1.2);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "greyAshigaruArmour")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(moonberry, 506, 24, 37, 34, -1/2 * 37 * 1.2 - 1, -1/2 * 34 * 1.2 - 0.5, 37 * 1.2, 34 * 1.2);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "purpleAshigaruArmour")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(moonberry, 721, 20, 37, 34, -1/2 * 37 * 1.2 - 1, -1/2 * 34 * 1.2 + 0, 37 * 1.2, 34 * 1.2);
             XXX.restore();
         }
         else if (this.outfitEquipped == "barracoPlateArmour")
@@ -11684,6 +11735,45 @@ function Adventurer()
                 XXX.globalAlpha = 0.4;
             }
             XXX.drawImage(verse, 2140, 29, 25, 20, -(1 / 2 * 25) - 1.75, -(1 / 2 * 20) - 4, 31, 27.2);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "blueKimono")
+        {
+            this.outfitZ = "mid";
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(moonberry, 1435, 17, 47, 29, -(1 / 2 * 47 * 1) + 0, -(1 / 2 * 29 * 1) + 0, 47 * 1, 29 * 1);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "pinkKimono")
+        {
+            this.outfitZ = "mid";
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(moonberry, 1435, 90, 47, 29, -(1 / 2 * 47 * 1) + 0, -(1 / 2 * 29 * 1) + 0, 47 * 1, 29 * 1);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "redKimono")
+        {
+            this.outfitZ = "mid";
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation);
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(moonberry, 1435, 53, 47, 29, -(1 / 2 * 47 * 1) + 0, -(1 / 2 * 29 * 1) + 0, 47 * 1, 29 * 1);
             XXX.restore();
         }
         else if (this.outfitEquipped == "varnFurDress")
@@ -44005,12 +44095,17 @@ function Adventurer()
                 }
 
                 //this is rare, but some weapons draw below the body layer.
-                if (this.wepLayer == "under" || this.weaponEquipped == "swimming" || this.weaponEquipped == "boat" || this.weaponEquipped == "blunderbuss" || this.weaponEquipped == "musket" || this.weaponEquipped == "cutlass" || this.weaponEquipped == "freydicSword" || this.weaponEquipped == "freydicGreatSword" || this.weaponEquipped == "theNorthernGem" || this.weaponEquipped == "longbow" || this.weaponEquipped == "crossbow" || this.weaponEquipped == "nirineseSpear" || this.weaponEquipped == "iceBlade" || this.weaponEquipped == "kellishClaymore" || this.weaponEquipped == "smashStick" || this.weaponEquipped == "burningSmashStick" || this.weaponEquipped == "lightningCorseque" || this.weaponEquipped == "staff" || this.weaponEquipped == "estoc" || this.weaponEquipped == "scimitar" || this.weaponEquipped == "nirwadenLance" || this.weaponEquipped == "vardanianHalberd" || this.weaponEquipped == "shotgun" || this.weaponEquipped == "sickle" || this.weaponEquipped == "vardanianCrossbow" || this.weaponEquipped == "throwingStar" || this.weaponEquipped == "pitchfork" || this.weaponEquipped == "cultistScythe" || this.weaponEquipped == "sceptreOfRadiance" || this.weaponEquipped == "longBone" || this.weaponEquipped == "theWendigosCleaver" || this.weaponEquipped == "beulingerrPike" || this.weaponEquipped == "sackmansSword" || this.weaponEquipped == "throwingKnife" || this.weaponEquipped == "poisonCoatedThrowingKnife" || this.weaponEquipped == "cephrianPikeAndShield" || this.weaponEquipped == "cephrianBlade" || this.weaponEquipped == "cephrianDagger" || this.weaponEquipped == "cephrianRapier") //add more cases for more overhead weapons.
+                if (this.outfitZ == "mid" || this.wepLayer == "under" || this.weaponEquipped == "swimming" || this.weaponEquipped == "boat" || this.weaponEquipped == "blunderbuss" || this.weaponEquipped == "musket" || this.weaponEquipped == "cutlass" || this.weaponEquipped == "freydicSword" || this.weaponEquipped == "freydicGreatSword" || this.weaponEquipped == "theNorthernGem" || this.weaponEquipped == "longbow" || this.weaponEquipped == "crossbow" || this.weaponEquipped == "nirineseSpear" || this.weaponEquipped == "iceBlade" || this.weaponEquipped == "kellishClaymore" || this.weaponEquipped == "smashStick" || this.weaponEquipped == "burningSmashStick" || this.weaponEquipped == "lightningCorseque" || this.weaponEquipped == "staff" || this.weaponEquipped == "estoc" || this.weaponEquipped == "scimitar" || this.weaponEquipped == "nirwadenLance" || this.weaponEquipped == "vardanianHalberd" || this.weaponEquipped == "shotgun" || this.weaponEquipped == "sickle" || this.weaponEquipped == "vardanianCrossbow" || this.weaponEquipped == "throwingStar" || this.weaponEquipped == "pitchfork" || this.weaponEquipped == "cultistScythe" || this.weaponEquipped == "sceptreOfRadiance" || this.weaponEquipped == "longBone" || this.weaponEquipped == "theWendigosCleaver" || this.weaponEquipped == "beulingerrPike" || this.weaponEquipped == "sackmansSword" || this.weaponEquipped == "throwingKnife" || this.weaponEquipped == "poisonCoatedThrowingKnife" || this.weaponEquipped == "cephrianPikeAndShield" || this.weaponEquipped == "cephrianBlade" || this.weaponEquipped == "cephrianDagger" || this.weaponEquipped == "cephrianRapier") //add more cases for more overhead weapons.
                 {
                     if (this.weaponEquipped != "cephrianPikeAndShield" || !altKey && !sKey || this.outfitEquipped != "none")
                     {
                         this.drawArms();
                     }
+                }
+
+                if (this.outfitZ == "mid" && player.form == false && player.hide != true && player.guillotine != true)
+                {
+                    this.drawOutfit();
                 }
 
                 //For specific outfits there will be parts under and above so extra stuf will draw here for outfits. CAPES AND STUFF LIKE THAT...
@@ -45134,7 +45229,7 @@ function Adventurer()
                 }
 
                 //most weapons draw beneath the armour layer.
-                if (this.wepLayer == "standard" || this.wepLayer != "under" && this.wepLayer != "over" && this.weaponEquipped != "swimming" && this.weaponEquipped != "boat" && this.weaponEquipped != "blunderbuss" && this.weaponEquipped != "musket" && this.weaponEquipped != "cutlass" && this.weaponEquipped != "nirineseSabre" && this.weaponEquipped != "longSpikedMorningStar" && this.weaponEquipped != "freydicSword" && this.weaponEquipped != "freydicGreatSword" && this.weaponEquipped != "theNorthernGem" && this.weaponEquipped != "longbow" && this.weaponEquipped != "crossbow" && this.weaponEquipped != "nirineseSpear" && this.weaponEquipped != "iceBlade" && this.weaponEquipped != "kellishClaymore" && this.weaponEquipped != "smashStick" && this.weaponEquipped != "burningSmashStick" && this.weaponEquipped != "lightningCorseque" && this.weaponEquipped != "staff" && this.weaponEquipped != "estoc" && this.weaponEquipped != "scimitar" && this.weaponEquipped != "nirwadenLance" && this.weaponEquipped != "vardanianHalberd" && this.weaponEquipped != "shotgun" && this.weaponEquipped != "sickle" && this.weaponEquipped != "vardanianCrossbow" && this.weaponEquipped != "throwingStar" && this.weaponEquipped != "pitchfork" && this.weaponEquipped != "cultistScythe" && this.weaponEquipped != "sceptreOfRadiance" && this.weaponEquipped != "longBone" && this.weaponEquipped != "theWendigosCleaver" && this.weaponEquipped != "beulingerrPike" && this.weaponEquipped != "sackmansSword" && this.weaponEquipped != "throwingKnife" && this.weaponEquipped != "poisonCoatedThrowingKnife" && this.weaponEquipped != "cephrianPikeAndShield" && this.weaponEquipped != "cephrianBlade" && this.weaponEquipped != "cephrianDagger" && this.weaponEquipped != "cephrianRapier") //add more cases for more overhead weapons.
+                if (this.outfitZ != "mid" && this.wepLayer == "standard" || this.outfitZ != "mid" && this.wepLayer != "under" && this.wepLayer != "over" && this.weaponEquipped != "swimming" && this.weaponEquipped != "boat" && this.weaponEquipped != "blunderbuss" && this.weaponEquipped != "musket" && this.weaponEquipped != "cutlass" && this.weaponEquipped != "nirineseSabre" && this.weaponEquipped != "longSpikedMorningStar" && this.weaponEquipped != "freydicSword" && this.weaponEquipped != "freydicGreatSword" && this.weaponEquipped != "theNorthernGem" && this.weaponEquipped != "longbow" && this.weaponEquipped != "crossbow" && this.weaponEquipped != "nirineseSpear" && this.weaponEquipped != "iceBlade" && this.weaponEquipped != "kellishClaymore" && this.weaponEquipped != "smashStick" && this.weaponEquipped != "burningSmashStick" && this.weaponEquipped != "lightningCorseque" && this.weaponEquipped != "staff" && this.weaponEquipped != "estoc" && this.weaponEquipped != "scimitar" && this.weaponEquipped != "nirwadenLance" && this.weaponEquipped != "vardanianHalberd" && this.weaponEquipped != "shotgun" && this.weaponEquipped != "sickle" && this.weaponEquipped != "vardanianCrossbow" && this.weaponEquipped != "throwingStar" && this.weaponEquipped != "pitchfork" && this.weaponEquipped != "cultistScythe" && this.weaponEquipped != "sceptreOfRadiance" && this.weaponEquipped != "longBone" && this.weaponEquipped != "theWendigosCleaver" && this.weaponEquipped != "beulingerrPike" && this.weaponEquipped != "sackmansSword" && this.weaponEquipped != "throwingKnife" && this.weaponEquipped != "poisonCoatedThrowingKnife" && this.weaponEquipped != "cephrianPikeAndShield" && this.weaponEquipped != "cephrianBlade" && this.weaponEquipped != "cephrianDagger" && this.weaponEquipped != "cephrianRapier") //add more cases for more overhead weapons.
                 {
                     this.drawArms();
                 }
@@ -45179,6 +45274,30 @@ function Adventurer()
                         XXX.globalAlpha = 0.4;
                     }
                     XXX.drawImage(salem, 571, 702, 59, 49, -(1 / 2 * 59 * 0.95) - 2, -(1 / 2 * 49 * 0.95) - 0, 59 * 0.95, 49 * 0.95);
+                    XXX.restore();
+                }
+                else if (this.outfitEquipped == "blueKimono" || this.outfitEquipped == "pinkKimono")
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(moonberry, 1376, 52, 47, 29, -(1 / 2 * 47 * 1.15) + -0.7, -(1 / 2 * 29 * 1.15) + 2.2, 47 * 1.15, 29 * 1.15);
+                    XXX.restore();
+                }
+                else if (this.outfitEquipped == "redKimono")
+                {
+                    XXX.save();
+                    XXX.translate(this.myScreenX, this.myScreenY);
+                    XXX.rotate(this.rotation);
+                    if (this.subtlety)
+                    {
+                        XXX.globalAlpha = 0.4;
+                    }
+                    XXX.drawImage(moonberry, 1377, 14, 47, 29, -(1 / 2 * 47 * 1.15) + 0, -(1 / 2 * 29 * 1.15) + 2, 47 * 1.15, 29 * 1.15);
                     XXX.restore();
                 }
                 else if (this.outfitEquipped == "beulingerrDress")
@@ -45378,7 +45497,10 @@ function Adventurer()
                 {
                     if (this.weaponEquipped != "cephrianPikeAndShield" || altKey && this.outfitEquipped == "none" || sKey && this.outfitEquipped == "none")
                     {
-                        this.drawArms();
+                        if (this.outfitZ != "mid")
+                        {
+                            this.drawArms();
+                        }
                     }
                 }
 

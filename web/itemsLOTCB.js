@@ -31672,7 +31672,7 @@ function Item(type, x, y)
             this.identity = "Swamp Lily";
             this.weight = 0.12;
             this.size = 9;
-            this.description = "Swamp Lilies grow from the lilypads in the Vardanian Swamplands.";
+            this.description = "Swamp lilies grow from the lilypads in the Vardanian Swamplands.";
             this.intForDes = 9;
             this.intDescription = "Aside from being stunning in appearance, they are also a changer in alchemy.";
 
@@ -31685,6 +31685,46 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 6 - Math.floor(player.getCharisma() / 25); // at max, buy for 4.
             this.sellValue = 3 + Math.floor(player.getCharisma() / 50); // at max, sell for 4.
+        }
+        else if (this.type == "gladeLily")
+        {
+            //For All Items
+            this.identity = "Glade Lily";
+            this.weight = 0.21;
+            this.size = 9;
+            this.description = "Glade lilies grow from the lilypads in the Orgish glades.";
+            this.intForDes = 0;
+            this.intDescription = "A beautiful and delicate flower decorated in pinks.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3 - Math.floor(player.getCharisma() / 50); // at max, buy for 2.
+            this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+        }
+        else if (this.type == "omlaiJaw")
+        {
+            //For All Items
+            this.identity = "Omlai Jaw";
+            this.weight = 1.82;
+            this.size = 9;
+            this.description = "The needle toothed jaw of an omlai.";
+            this.intForDes = 0;
+            this.intDescription = "Omlai hide amongst the glade lilypads, and eat whatever unfortunate critters go near them...";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 2; // at max, sell for 2.
         }
         else if (this.type == "carrot")
         {
@@ -32731,6 +32771,35 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "junFungus")
+        {
+            //For All Items
+            this.identity = "Jun Fungus";
+            this.weight = 0.34;
+            this.size = 7;
+            this.description = "A pink three flapped fungus with a pale round whitish pasty center. They feel slick, smooth, and tender.";
+            this.intForDes = 8;
+            this.intDescription = "They are very poisonous to eat.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 3; //satisfies hunger.
+            this.thirst = 0.5; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "poisonIV";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5; // at max, buy for 5.
+            this.sellValue = 5; // at max, sell for 5.
         }
         else if (this.type == "maleotMushroom")
         {
@@ -56705,6 +56774,21 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "junFungus")
+        {
+            XXX.beginPath();
+            XXX.drawImage(olg, 674, 264, 18, 26, X - this.X + (1/2 * CCC.width) - (1/2 * 18 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 26 * 1.4), 18 * 1.4, 26 * 1.4);
+        }
+        else if (this.type == "omlaiJaw")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mboo, 2424, 814, 49, 25, X - this.X + (1/2 * CCC.width) - (1/2 * 49 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 25 * 1), 49 * 1, 25 * 1);
+        }
+        else if (this.type == "gladeLily")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mboo, 1523, 1085, 29, 40, X - this.X + (1/2 * CCC.width) - (1/2 * 29 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 40 * 1), 29 * 1, 40 * 1);
+        }
         else if (this.type == "blueKimono")
         {
             XXX.beginPath();
@@ -64078,6 +64162,21 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(candlewic, 61, 201, 27, 29, this.invX - (1/2 * 27 * 1.5), this.invY - (1/2 * 29 * 1.5), 27 * 1.5, 29 * 1.5);
         }
+        else if (this.type == "junFungus")
+        {
+            LXX.beginPath();
+            LXX.drawImage(olg, 674, 264, 18, 26, this.invX - (1/2 * 18 * 1.4), this.invY - (1/2 * 26 * 1.4), 18 * 1.4, 26 * 1.4);
+        }
+        else if (this.type == "omlaiJaw")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mboo, 2424, 814, 49, 25, this.invX - (1/2 * 49 * 1), this.invY - (1/2 * 25 * 1), 49 * 1, 25 * 1);
+        }
+        else if (this.type == "gladeLily")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mboo, 1523, 1085, 29, 40, this.invX - (1/2 * 29 * 1), this.invY - (1/2 * 40 * 1), 29 * 1, 40 * 1);
+        }
         else if (this.type == "blueKimono")
         {
             LXX.beginPath();
@@ -71435,6 +71534,21 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "junFungus")
+        {
+            XXX.beginPath();
+            XXX.drawImage(olg, 674, 264, 18, 26, this.invX - (1/2 * 18 * 1.4), this.invY - (1/2 * 26 * 1.4), 18 * 1.4, 26 * 1.4);
+        }
+        else if (this.type == "omlaiJaw")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mboo, 2424, 814, 49, 25, this.invX - (1/2 * 49 * 1), this.invY - (1/2 * 25 * 1), 49 * 1, 25 * 1);
+        }
+        else if (this.type == "gladeLily")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mboo, 1523, 1085, 29, 40, this.invX - (1/2 * 29 * 1), this.invY - (1/2 * 40 * 1), 29 * 1, 40 * 1);
         }
         else if (this.type == "blueKimono")
         {

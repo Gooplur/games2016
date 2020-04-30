@@ -16,7 +16,18 @@ function mainMenuLoop()
     addEventListener("keyup", keyReleased); //This enables key release sensing.
     addEventListener("keydown", keyHeld); //This enables key press sensing.
     addEventListener("dblclick", doubleClicker); //This enables double clicking.
-    theme.play();
+    var menuCheckTime = new Date().getUTCHours();
+    console.log(menuCheckTime - 7);
+    if (menuCheckTime - 7 >= 21 || menuCheckTime - 7 <= 5)
+    {
+        theme.pause();
+        shreek.play();
+    }
+    else
+    {
+        shreek.pause();
+        theme.play();
+    }
 
     //The Main Menu
     if (gameState == "mainMenu") //Main Menu Mode
@@ -1605,6 +1616,7 @@ function applySelectionsButton()
 
         //Actually start the game here.
         theme.pause();
+        nightTheme.pause();
         gameState = "active";
         requestAnimationFrame(gameloopOfDestiny, CCC);
     }

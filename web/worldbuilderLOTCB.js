@@ -6150,7 +6150,7 @@ function worldBuilder()
         region = "testMap";
         campout = true;
         //starting chamber
-        outlineBuilder(68,68, "lab", -34, -34);
+        outlineBuilder(68,68, "southbogMud", -34, -34);
     }
 }
 

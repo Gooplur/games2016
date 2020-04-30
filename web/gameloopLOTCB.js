@@ -43,6 +43,21 @@ function gameloopOfDestiny(time)
     //Different parts of the world load at different Y values. // maps are 34 by 34 tiles and for somereason the maps are -20 to the left. and + 14 down.
     worldBuilder();
 
+    //Reverse-Communication Landscape Variables
+    player.nonStick = false;
+
+    if (gameLoopNumber % 25 == 0)
+    {
+        for (var k = 0; k < ArtificialIntelligenceAccess.length; k++)
+        {
+            if (ArtificialIntelligenceAccess[k].dmx == map)
+            {
+                //reset variables reverse-communication landscape variables
+                ArtificialIntelligenceAccess[k].nonStick = false;
+            }
+        }
+    }
+
     //EVENT SENSING
     addEventListener("mousemove", getMousePositionOnWindow); //This enables the sensing of mouse movement for the window.
     LCC.addEventListener("mousemove", findMouse); //This enables the sensing of mouse movement for the lower canvas.
@@ -148,7 +163,6 @@ function gameloopOfDestiny(time)
     player.land = true;
     player.water = false;
     player.sticky = false;
-    player.nonStick = false;
     player.toll = false;
     player.freeze = 1;
     wornAbilities();

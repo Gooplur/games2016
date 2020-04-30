@@ -24911,6 +24911,125 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 this.activate = false;
             }
         }
+        else if (this.type == "junSpores")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+            this.zIndex = 6;
+
+            if (this.runOneTime == true)
+            {
+                this.runOneTime = false;
+                this.tac = 99;
+                this.spin = 0;
+                this.rotation = Math.random() * 2*Math.PI;
+                this.size = this.temporary;
+                if (Math.random() > 0.6)
+                {
+                    this.speed = 0.03;
+                }
+                else
+                {
+                    this.speed = 0.04;
+                }
+            }
+            this.tac -= 0.6;
+            this.spin -= 0.005;
+            this.size += 0.012;
+
+
+            //DRAWSELF
+            if (this.tac > 98)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation + this.spin);
+                if (this.tac < 0)
+                {
+                    XXX.globalAlpha = 0;
+                }
+                else
+                {
+                    XXX.globalAlpha = this.tac * 0.01;
+                }
+                XXX.drawImage(olg, 720, 207, 54, 56, -(1/2 * 54) * this.size, -(1/2 * 56) * this.size, 54 * this.size, 56 * this.size);
+                XXX.restore();
+            }
+            else if (this.tac > 97)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation + this.spin);
+                if (this.tac < 0)
+                {
+                    XXX.globalAlpha = 0;
+                }
+                else
+                {
+                    XXX.globalAlpha = this.tac * 0.01;
+                }
+                XXX.drawImage(olg, 722, 265, 54, 56, -(1/2 * 54) * this.size, -(1/2 * 56) * this.size, 54 * this.size, 56 * this.size);
+                XXX.restore();
+            }
+            else
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation + this.spin);
+                if (this.tac < 0)
+                {
+                    XXX.globalAlpha = 0;
+                }
+                else
+                {
+                    XXX.globalAlpha = this.tac * 0.01;
+                }
+                XXX.drawImage(olg, 723, 322, 55, 59, -(1/2 * 55) * this.size, -(1/2 * 59) * this.size, 55 * this.size, 59 * this.size);
+                XXX.restore();
+            }
+
+            if (this.tac <= 0)
+            {
+                scenicList.splice(scenicList.indexOf(this), 1);
+            }
+
+            this.X += Math.cos(this.rotation) * this.speed;
+            this.Y += Math.sin(this.rotation) * this.speed;
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 43 * this.size;
+
+            //infect
+            if (player.resistDisease == false)
+            {
+                if (this.dst(X, Y) <= this.radius)
+                {
+                    player.health -= 0.02;
+                    player.poisonIV = true;
+                }
+            }
+
+            for (var j = 0; j < ArtificialIntelligenceAccess.length; j++)
+            {
+                if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= this.radius + (3/4 * ArtificialIntelligenceAccess[j].sizeRadius) && !ArtificialIntelligenceAccess[j].underground && ArtificialIntelligenceAccess[j].dmx == this.dmx)
+                {
+                    if (ArtificialIntelligenceAccess[j].resistDisease != true)
+                    {
+                        ArtificialIntelligenceAccess[j].acidIV = true;
+                        ArtificialIntelligenceAccess[j].acidTime = new Date().getTime() + 90000;
+                        ArtificialIntelligenceAccess[j].health -= 0.02;
+                        ArtificialIntelligenceAccess[j].killNotByPlayer = true;
+                    }
+                }
+            }
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+        }
         else if (this.type == "xiumSpores")
         {
             //TRAITS
@@ -27366,6 +27485,56 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
                 XXX.rotate(this.rotation);
                 XXX.drawImage(toad, 332, 5, 92, 90, -(1/2 * 92 * this.size), -(1/2 * 90 * this.size), 92 * this.size, 90 * this.size);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 1;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+        }
+        else if (this.type == "gladeLilypads")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+            this.size = 1;
+
+            //DRAWSELF
+            if (this.temporary == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(mboo, 2296, 877, 289, 323, -(1/2 * 289 * this.size), -(1/2 * 323 * this.size), 289 * this.size, 323 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 1)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(mboo, 2020, 697, 227, 309, -(1/2 * 277 * this.size), -(1/2 * 309 * this.size), 277 * this.size, 309 * this.size);
+                XXX.restore();
+            }
+            else if (this.temporary == 2)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(mboo, 2039, 1034, 239, 166, -(1/2 * 239 * this.size), -(1/2 * 166 * this.size), 239 * this.size, 166 * this.size);
+                XXX.restore();
+            }
+            else
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(mboo, 1781, 973, 239, 227, -(1/2 * 239 * this.size), -(1/2 * 227 * this.size), 239 * this.size, 227 * this.size);
                 XXX.restore();
             }
 
@@ -36272,6 +36441,66 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 if (hits == Inventory.length)
                 {
                     Inventory.push([new Item("neprilneBerries", false, false), 1]);
+                }
+            }
+        }
+        else if (this.type == "junPlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.subVariety = "fungi";
+            this.nectar(2);
+            this.solid = false;
+            this.interactionRange = 80;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                this.popped = false;
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(olg, 664, 219, 44, 40, -(1/2 * 44 * 1.4), -(1/2 * 40 * 1.4), 44 * 1.4, 40 * 1.4);
+                XXX.restore();
+            }
+            else if (this.phase == "picked")
+            {
+                if (this.popped == false)
+                {
+                    this.popped = true;
+                    scenicList.push(new Scenery("junSpores", this.X, this.Y, Math.random() * 2 * Math.PI, 1.4));
+                }
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(olg, 608, 216, 44, 40, -(1/2 * 44 * 1.4), -(1/2 * 40 * 1.4), 44 * 1.4, 40 * 1.4);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 14;
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0)
+            {
+                this.activate = false;
+                this.phase = "picked";
+                var hits = 0;
+                for (var i = 0; i < Inventory.length; i ++)
+                {
+                    if (Inventory[i][0].type == "junFungus")
+                    {
+                        Inventory[i][1] += 1 + Math.floor(Math.random()*4);
+                        break;
+                    }
+                    else
+                    {
+                        hits += 1;
+                    }
+                }
+                if (hits == Inventory.length)
+                {
+                    Inventory.push([new Item("junFungus", false, false), 1 + Math.floor(Math.random()*4)]);
                 }
             }
         }
@@ -46308,6 +46537,61 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 if (hits == Inventory.length)
                 {
                     Inventory.push([new Item("swampLily", false, false), 1]);
+                }
+            }
+        }
+        else if (this.type == "gladeLilyPlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+
+            this.solid = false;
+            this.interactionRange = 85;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                this.nectar(5);
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(mboo, 1415, 1059, 88, 84, -(1/2 * 88 * 1), -(1/2 * 84 * 1), 88 * 1, 84 * 1);
+                XXX.restore();
+            }
+            else if (this.phase == "picked")
+            {
+                this.nectar(0);
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(mboo, 1318, 1061, 88, 84, -(1/2 * 88 * 1), -(1/2 * 84 * 1), 88 * 1, 84 * 1);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 23;
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0)
+            {
+                this.activate = false;
+                this.phase = "picked";
+                var hits = 0;
+                for (var i = 0; i < Inventory.length; i ++)
+                {
+                    if (Inventory[i][0].type == "gladeLily")
+                    {
+                        Inventory[i][1] += 1;
+                        break;
+                    }
+                    else
+                    {
+                        hits += 1;
+                    }
+                }
+                if (hits == Inventory.length)
+                {
+                    Inventory.push([new Item("gladeLily", false, false), 1]);
                 }
             }
         }

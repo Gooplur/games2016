@@ -111,6 +111,9 @@ function legendaryPrerequisites()
     var theme = new Audio("sounds/polyLandTheme.wav");
     window.theme = theme;
 
+    var nightTheme = new Audio("sounds/polyLandNightTheme.mp3");
+    window.nightTheme = nightTheme;
+
     //action sounds
     var carbineShot = new Audio("sounds/polySounds/carbineShot.wav");
     window.carbineShot = carbineShot;
@@ -1562,13 +1565,24 @@ function envPack()
     kolumIMG.src = ("images/kolumIMG.png");
     window.kolumIMG = kolumIMG;
 
+    // var themeIMG = new Image();
+    // themeIMG.src = ("images/aKnightsDestiny.png");
+    // window.themeIMG = themeIMG;
+
     var themeIMG = new Image();
-    themeIMG.src = ("images/aKnightsDestiny.png");
+    themeIMG.src = ("images/knightsDestiny.png");
     window.themeIMG = themeIMG;
+
+    var nightThemeIMG = new Image();
+    nightThemeIMG.src = ("images/nightsDestiny.png");
+    window.nightThemeIMG = nightThemeIMG;
 
     themeIMG.onload = function()
     {
-        polypolypolyPack();
+        nightThemeIMG.onload = function()
+        {
+            polypolypolyPack();
+        };
     };
 }
 
@@ -1627,6 +1641,30 @@ function olgPack()
     window.olg = olg;
 
     olg.onload = function()
+    {
+        sitePack();
+    };
+}
+
+function sitePack()
+{
+    var site = new Image();
+    site.src = ("images/site.png");
+    window.site = site;
+
+    site.onload = function()
+    {
+        scragPack();
+    };
+}
+
+function scragPack()
+{
+    var scrag = new Image();
+    scrag.src = ("images/scrag.png");
+    window.scrag = scrag;
+
+    scrag.onload = function()
     {
         yilPack();
     };
@@ -3571,7 +3609,10 @@ function over(kind, j, i, extraX, extraY)
                 }
                 else if (kind == "hollow" && player.weaponEquipped == "swimming")
                 {
-                    player.decay += 0.06;
+                    if (player.vamprism != true)
+                    {
+                        player.decay += 0.06;
+                    }
                 }
             }
         }
@@ -3582,7 +3623,7 @@ function over(kind, j, i, extraX, extraY)
         }
         else if (kind == "sticky")
         {
-            if (this.nonStick == false)
+            if (player.nonStick == false)
             {
                 player.sticky = true;
                 if (player.form != "vampire" || wKey != true)

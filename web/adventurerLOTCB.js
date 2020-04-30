@@ -9006,17 +9006,29 @@ function Adventurer()
         {
             outfit = allWorn[203];
         }
-        else if (this.bootsEquipped == "ashigaruArmour")
+        else if (this.outfitEquipped == "ashigaruArmour")
         {
             outfit = allWorn[208];
         }
-        else if (this.bootsEquipped == "greyAshigaruArmour")
+        else if (this.outfitEquipped == "greyAshigaruArmour")
         {
             outfit = allWorn[209];
         }
-        else if (this.bootsEquipped == "purpleAshigaruArmour")
+        else if (this.outfitEquipped == "purpleAshigaruArmour")
         {
             outfit = allWorn[210];
+        }
+        else if (this.outfitEquipped == "blueKimono")
+        {
+            outfit = allWorn[211];
+        }
+        else if (this.outfitEquipped == "pinkKimono")
+        {
+            outfit = allWorn[212];
+        }
+        else if (this.outfitEquipped == "redKimono")
+        {
+            outfit = allWorn[213];
         }
         else
         {

@@ -17,7 +17,7 @@ function mainMenuLoop()
     addEventListener("keydown", keyHeld); //This enables key press sensing.
     addEventListener("dblclick", doubleClicker); //This enables double clicking.
 
-    if (menuCheckTime - 7 >= 21 || menuCheckTime - 7 <= 5)
+    if (menuCheckTime - 7 <= 5 && menuCheckTime - 7 > -3)
     {
         theme.pause();
         nightTheme.play();
@@ -40,7 +40,7 @@ function mainMenuLoop()
         XXX.fillRect(0, 0, 1400, 550);
 
         //Draw the background image
-        if (menuCheckTime - 7 >= 21 || menuCheckTime - 7 <= 5)
+        if (menuCheckTime - 7 <= 5 && menuCheckTime - 7 > -3)
         {
             XXX.drawImage(nightThemeIMG, 0, 0);
         }

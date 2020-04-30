@@ -3656,10 +3656,13 @@ function over(kind, j, i, extraX, extraY)
             }
             else if (kind == "sticky")
             {
-                ArtificialIntelligenceAccess[i].sticky = true;
-                if (ArtificialIntelligenceAccess[i].flying != true && ArtificialIntelligenceAccess[i].resistances.indexOf("sticky") == -1)
+                if (ArtificialIntelligenceAccess[i].nonStick == false)
                 {
-                    ArtificialIntelligenceAccess[i].stunned = 0.4;
+                    ArtificialIntelligenceAccess[i].sticky = true;
+                    if (ArtificialIntelligenceAccess[i].flying != true && ArtificialIntelligenceAccess[i].resistances.indexOf("sticky") == -1)
+                    {
+                        ArtificialIntelligenceAccess[i].stunned = 0.3;
+                    }
                 }
             }
             else if (kind == "landing" || kind == "tollBridge")

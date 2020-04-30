@@ -21,11 +21,11 @@ function mainMenuLoop()
     if (menuCheckTime - 7 >= 21 || menuCheckTime - 7 <= 5)
     {
         theme.pause();
-        shreek.play();
+        nightTheme.play();
     }
     else
     {
-        shreek.pause();
+        nightTheme.pause();
         theme.play();
     }
 
@@ -39,7 +39,14 @@ function mainMenuLoop()
         XXX.fillRect(0, 0, 1400, 550);
 
         //Draw the background image
-        XXX.drawImage(themeIMG, 0, 0);
+        if (menuCheckTime - 7 >= 21 || menuCheckTime - 7 <= 5)
+        {
+            XXX.drawImage(nightThemeIMG, 0, 0);
+        }
+        else
+        {
+            XXX.drawImage(themeIMG, 0, 0);
+        }
 
         //set background for lower canvas
         LXX.beginPath();

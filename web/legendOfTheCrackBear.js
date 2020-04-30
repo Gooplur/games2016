@@ -1579,10 +1579,7 @@ function envPack()
 
     themeIMG.onload = function()
     {
-        nightThemeIMG.onload = function()
-        {
-            polypolypolyPack();
-        };
+        polypolypolyPack();
     };
 }
 
@@ -2883,6 +2880,7 @@ var buildPrompt2 = "";
 var dOS = 0;
 var anjayRot = 0;
 var escapeKey = false;
+var menuCheckTime = new Date().getUTCHours();
 
 //This sets the items that are in shops.
 function shopItemIDSetter()

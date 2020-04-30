@@ -16,8 +16,7 @@ function mainMenuLoop()
     addEventListener("keyup", keyReleased); //This enables key release sensing.
     addEventListener("keydown", keyHeld); //This enables key press sensing.
     addEventListener("dblclick", doubleClicker); //This enables double clicking.
-    var menuCheckTime = new Date().getUTCHours();
-    console.log(menuCheckTime - 7);
+
     if (menuCheckTime - 7 >= 21 || menuCheckTime - 7 <= 5)
     {
         theme.pause();
@@ -32,6 +31,8 @@ function mainMenuLoop()
     //The Main Menu
     if (gameState == "mainMenu") //Main Menu Mode
     {
+        menuCheckTime = new Date().getUTCHours();
+
         //Draw the main menu
         //set background for main canvas
         XXX.beginPath();
@@ -155,6 +156,7 @@ function mainMenuLoop()
                             //Click to load into the game
                             if (clicked == true)
                             {
+                                nightTheme.pause();
                                 theme.pause();
                                 clicked = false;
                                 //loadType = loadNumber;
@@ -187,6 +189,7 @@ function mainMenuLoop()
 
                     if (clicked == true)
                     {
+                        nightTheme.pause();
                         theme.pause();
                         clicked = false;
                         loadType = loadNumber;
@@ -1622,8 +1625,8 @@ function applySelectionsButton()
         player.spawnY = Y;
 
         //Actually start the game here.
-        theme.pause();
         nightTheme.pause();
+        theme.pause();
         gameState = "active";
         requestAnimationFrame(gameloopOfDestiny, CCC);
     }

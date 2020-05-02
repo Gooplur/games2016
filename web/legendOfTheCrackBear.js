@@ -8,7 +8,7 @@
 //top priority
 
 //Image sheet ideas
-//todo orgish image sheet part II: Odachi, Yari, Kuzan (catfish shark), Snap-jaw (little glade alligator), giant koifish, sticky bug trap flower, molebear, cobra, hummingbird, toucan, panda bear, baboon
+//todo orgish image sheet part II: Odachi, Kuzan (catfish shark), Snap-jaw (little glade alligator), giant koifish, sticky bug trap flower, molebear, cobra, hummingbird, toucan, panda bear, baboon, tiger, pink pig, cocain leaf
 //todo far north fish
 //todo furry snow beast
 //todo frost wyrm (with frost breath) (ridable)
@@ -1639,6 +1639,18 @@ function olgPack()
 
     olg.onload = function()
     {
+        ggellPack();
+    };
+}
+
+function ggellPack()
+{
+    var ggell = new Image();
+    ggell.src = ("images/ggell.png");
+    window.ggell = ggell;
+
+    ggell.onload = function()
+    {
         sitePack();
     };
 }
@@ -1662,6 +1674,18 @@ function scragPack()
     window.scrag = scrag;
 
     scrag.onload = function()
+    {
+        boshPack();
+    };
+}
+
+function boshPack()
+{
+    var bosh = new Image();
+    bosh.src = ("images/bosh.png");
+    window.bosh = bosh;
+
+    bosh.onload = function()
     {
         yilPack();
     };
@@ -3648,9 +3672,10 @@ function over(kind, j, i, extraX, extraY)
             {
                 ArtificialIntelligenceAccess[i].water = true;
                 ArtificialIntelligenceAccess[i].land = false;
-                if (kind == "hollow" && ArtificialIntelligenceAccess[i].flying != true && ArtificialIntelligenceAccess[i].resistances.indexOf("hollow") == -1)
+                if (kind == "hollow" && ArtificialIntelligenceAccess[i].flying != true && ArtificialIntelligenceAccess[i].resistances.indexOf("hollow") == -1 && ArtificialIntelligenceAccess[i].nonStick != true)
                 {
                     ArtificialIntelligenceAccess[i].healthMAX -= 0.06;
+                    ArtificialIntelligenceAccess[i].health -= 0.06;
                     ArtificialIntelligenceAccess[i].killNotByPlayer = true;
                 }
             }
@@ -5408,6 +5433,8 @@ function theLegend()
     foods.push(new Item("barbolMeat", false));
     foods.push(new Item("roastedArmadiiLeg", false));
     foods.push(new Item("whipScorpionMeat", false));
+    foods.push(new Item("roastedCapulLeg", false));
+    foods.push(new Item("mudStriderMeat", false));
 
 //Tailoring (Items crafted at a weaving, sewing, dying, etc. tailor's work bench thing)
     tailoring = [];

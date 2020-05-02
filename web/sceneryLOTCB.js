@@ -35872,6 +35872,56 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 }
             }
         }
+        else if (this.type == "ukuvaTree")
+        {
+            //TRAITS
+            this.tree = true;
+            this.variety = "plant";
+            this.nectar(0);
+            this.solid = true;
+            this.interactionRange = 75;
+            this.size = this.temporary;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                if (this.playerer < 59 * this.size)
+                {
+                    this.zIndex = 6;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(negro, 46, 195, 171, 166, -(1/2 * 171 * this.size), -(1/2 * 166 * this.size), 171 * this.size, 166 * this.size);
+                    XXX.restore();
+
+                    XXX.globalAlpha = 0.7;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(negro, 235, 195, 171, 166, -(1/2 * 171 * this.size), -(1/2 * 166 * this.size), 171 * this.size, 166 * this.size);
+                    XXX.restore();
+                    XXX.globalAlpha = 1;
+                }
+                else
+                {
+                    this.zIndex = 6;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(negro, 235, 195, 171, 166, -(1/2 * 171 * this.size), -(1/2 * 166 * this.size), 171 * this.size, 166 * this.size);
+                    XXX.restore();
+                }
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 26;
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0)
+            {
+                this.activate = false;
+            }
+        }
         else if (this.type == "appleTree")
         {
             //TRAITS

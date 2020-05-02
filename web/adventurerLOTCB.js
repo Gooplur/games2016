@@ -40536,6 +40536,18 @@ function Adventurer()
                             {
                                 this.anjayTime = 400;
                             }
+                            else if (Inventory[i][0].ability == "decayI")
+                            {
+                                this.decay += 5;
+                            }
+                            else if (Inventory[i][0].ability == "decayII")
+                            {
+                                this.decay += 16;
+                            }
+                            else if (Inventory[i][0].ability == "decayIII")
+                            {
+                                this.decay += 49;
+                            }
                             else if (Inventory[i][0].ability == "antiPixi")
                             {
                                 this.pixiDusted = false;

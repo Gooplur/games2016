@@ -10445,6 +10445,69 @@ function Item(type, x, y)
             this.buyValue = 2; // at max, buy for 2.
             this.sellValue = 1; // at max, sell for 1.
         }
+        else if (this.type == "rawMudStriderFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Mud Strider Flesh";
+            this.weight = 25;
+            this.size = 17;
+            this.description = "The raw flesh from a mud strider.";
+            this.intForDes = 9;
+            this.intDescription = "Mud striders are extremely strong such that they can carry their own massive weight with ease.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 4; //satisfies hunger.
+            this.thirst = 0.3; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -6; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5; // at max, buy for 5.
+            this.sellValue = 5; // at max, sell for 5.
+        }
+        else if (this.type == "mudStriderMeat")
+        {
+            //For All Items
+            this.identity = "Mud Strider Meat";
+            this.weight = 24;
+            this.size = 17;
+            this.description = "The cooked meat of a mud strider.";
+            this.intForDes = 0;
+            this.intDescription = "It has a somewhat soggy chewiness to it and a boggy musk in its aftertaste, otherwise it's food.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 15; //satisfies hunger.
+            this.thirst = 0.2; //quenches thirst.
+            this.warmth = 4; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -2; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 7;
+            this.ingredients = [["Raw Mud Strider", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 8; // at max, buy for 8.
+            this.sellValue = 8; // at max, sell for 8.
+        }
         else if (this.type == "rawFrichFlesh")
         {
             //For All Items
@@ -10473,6 +10536,64 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "rawModerrLeg")
+        {
+            //For All Items
+            this.identity = "Raw Moder Leg";
+            this.weight = 4;
+            this.size = 13;
+            this.description = "The raw leg of a moderr.";
+            this.intForDes = 4;
+            this.intDescription = "It is unsafe to eat raw since residual flesh-eating hollow bacteria remain in the moist flesh.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 2.5; //satisfies hunger.
+            this.thirst = 1.5; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "decayI";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 2; // at max, sell for 2.
+        }
+        else if (this.type == "roastedModerrLeg")
+        {
+            //For All Items
+            this.identity = "Roasted Moderr Leg";
+            this.weight = 3.75;
+            this.size = 13;
+            this.description = "The roasted leg of a moderr.";
+            this.intForDes = 0;
+            this.intDescription = "The meat is mild tasting with a a sharp prickly aftertaste.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 11.5; //satisfies hunger.
+            this.thirst = 1; //quenches thirst.
+            this.warmth = 4.5; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.05; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 14; // at max, buy for 14.
+            this.sellValue = 12; // at max, sell for 12.
         }
         else if (this.type == "rawVarminHaunch")
         {
@@ -37786,6 +37907,60 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
         }
+        else if (this.type == "rawCapulLeg")
+        {
+            //For All Items
+            this.identity = "Capul Leg";
+            this.weight = 0.6;
+            this.size = 4;
+            this.description = "The leg of a capul; capuls are bog dwelling isopods.";
+            this.intForDes = 1;
+            this.intDescription = "This can be roasted and eaten as a small crunchy snack.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "roastedCapulLeg")
+        {
+            //For All Items
+            this.identity = "Roasted Capul Leg";
+            this.weight = 0.6;
+            this.size = 4;
+            this.description = "The crispy roasted leg of a capul.";
+            this.intForDes = 1;
+            this.intDescription = "It is crunchy and tastes strongly of minerals.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 2; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 1.5; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -1; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 2;
+            this.ingredients = [["Capul Leg", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
         else if (this.type == "armadiiLeg")
         {
             //For All Items
@@ -52141,7 +52316,7 @@ function Item(type, x, y)
 
             this.yield = 1;
             this.intForCraft = 19;
-            this.ingredients = [["Varn Pelt", 3]];
+            this.ingredients = [["Motylinka", 3]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 40 - Math.floor(player.getCharisma() / 10); // at max, buy for 35.
@@ -56773,6 +56948,36 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
+        }
+        else if (this.type == "rawModerrLeg")
+        {
+            XXX.beginPath();
+            XXX.drawImage(negro, 412, 175, 45, 67, X - this.X + (1/2 * CCC.width) - (1/2 * 45 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 67 * 1.2), 45 * 1.2, 67 * 1.2);
+        }
+        else if (this.type == "roastedModerrLeg")
+        {
+            XXX.beginPath();
+            XXX.drawImage(negro, 412, 247, 45, 67, X - this.X + (1/2 * CCC.width) - (1/2 * 45 * 1.2), Y - this.Y + (1/2 * CCC.height) - (1/2 * 67 * 1.2), 45 * 1.2, 67 * 1.2);
+        }
+        else if (this.type == "rawCapulLeg")
+        {
+            XXX.beginPath();
+            XXX.drawImage(pill, 522, 472, 25, 47, X - this.X + (1/2 * CCC.width) - (1/2 * 25 * 0.65), Y - this.Y + (1/2 * CCC.height) - (1/2 * 47 * 0.65), 25 * 0.65, 47 * 0.65);
+        }
+        else if (this.type == "capulLeg")
+        {
+            XXX.beginPath();
+            XXX.drawImage(pill, 547, 473, 25, 47, X - this.X + (1/2 * CCC.width) - (1/2 * 25 * 0.65), Y - this.Y + (1/2 * CCC.height) - (1/2 * 47 * 0.65), 25 * 0.65, 47 * 0.65);
+        }
+        else if (this.type == "rawMudStriderFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(pill, 566, 161, 49, 43, X - this.X + (1/2 * CCC.width) - (1/2 * 49 * 1.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 43 * 1.3), 49 * 1.3, 43 * 1.3);
+        }
+        else if (this.type == "mudStriderMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(pill, 624, 164, 49, 43, X - this.X + (1/2 * CCC.width) - (1/2 * 49 * 1.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 43 * 1.3), 49 * 1.3, 43 * 1.3);
         }
         else if (this.type == "junFungus")
         {
@@ -64162,6 +64367,36 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(candlewic, 61, 201, 27, 29, this.invX - (1/2 * 27 * 1.5), this.invY - (1/2 * 29 * 1.5), 27 * 1.5, 29 * 1.5);
         }
+        else if (this.type == "rawModerrLeg")
+        {
+            LXX.beginPath();
+            LXX.drawImage(negro, 412, 175, 45, 67, this.invX - (1/2 * 45 * 1.2), this.invY - (1/2 * 67 * 1.2), 45 * 1.2, 67 * 1.2);
+        }
+        else if (this.type == "roastedModerrLeg")
+        {
+            LXX.beginPath();
+            LXX.drawImage(negro, 412, 247, 45, 67, this.invX - (1/2 * 45 * 1.2), this.invY - (1/2 * 67 * 1.2), 45 * 1.2, 67 * 1.2);
+        }
+        else if (this.type == "rawCapulLeg")
+        {
+            LXX.beginPath();
+            LXX.drawImage(pill, 522, 472, 25, 47, this.invX - (1/2 * 25 * 0.65), this.invY - (1/2 * 47 * 0.65), 25 * 0.65, 47 * 0.65);
+        }
+        else if (this.type == "capulLeg")
+        {
+            LXX.beginPath();
+            LXX.drawImage(pill, 547, 473, 25, 47, this.invX - (1/2 * 25 * 0.65), this.invY - (1/2 * 47 * 0.65), 25 * 0.65, 47 * 0.65);
+        }
+        else if (this.type == "rawMudStriderFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(pill, 566, 161, 49, 43, this.invX - (1/2 * 49 * 1.1), this.invY - (1/2 * 43 * 1.1), 49 * 1.1, 43 * 1.1);
+        }
+        else if (this.type == "mudStriderMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(pill, 624, 164, 49, 43, this.invX - (1/2 * 49 * 1.1), this.invY - (1/2 * 43 * 1.1), 49 * 1.1, 43 * 1.1);
+        }
         else if (this.type == "junFungus")
         {
             LXX.beginPath();
@@ -71534,6 +71769,36 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "rawModerrLeg")
+        {
+            XXX.beginPath();
+            XXX.drawImage(negro, 412, 175, 45, 67, this.invX - (1/2 * 45 * 1.2), this.invY - (1/2 * 67 * 1.2), 45 * 1.2, 67 * 1.2);
+        }
+        else if (this.type == "roastedModerrLeg")
+        {
+            XXX.beginPath();
+            XXX.drawImage(negro, 412, 247, 45, 67, this.invX - (1/2 * 45 * 1.2), this.invY - (1/2 * 67 * 1.2), 45 * 1.2, 67 * 1.2);
+        }
+        else if (this.type == "rawCapulLeg")
+        {
+            XXX.beginPath();
+            XXX.drawImage(pill, 522, 472, 25, 47, this.invX - (1/2 * 25 * 0.65), this.invY - (1/2 * 47 * 0.65), 25 * 0.65, 47 * 0.65);
+        }
+        else if (this.type == "capulLeg")
+        {
+            XXX.beginPath();
+            XXX.drawImage(pill, 547, 473, 25, 47, this.invX - (1/2 * 25 * 0.65), this.invY - (1/2 * 47 * 0.65), 25 * 0.65, 47 * 0.65);
+        }
+        else if (this.type == "rawMudStriderFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(pill, 566, 161, 49, 43, this.invX - (1/2 * 49 * 1.1), this.invY - (1/2 * 43 * 1.1), 49 * 1.1, 43 * 1.1);
+        }
+        else if (this.type == "mudStriderMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(pill, 624, 164, 49, 43, this.invX - (1/2 * 49 * 1.1), this.invY - (1/2 * 43 * 1.1), 49 * 1.1, 43 * 1.1);
         }
         else if (this.type == "junFungus")
         {

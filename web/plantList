@@ -48,6 +48,7 @@ GreatPineTree - A large variety of pine tree that grows in Thengaria, and in som
 YeolTree - A tree that grows in the savannah and that drops pods that contain 'yeol nuts'
 AshaiTree - A temperate black Vardanian tree that has white wood. //scenicList.push(new Scenery("ashaiTree", x, y, rotation, size));
 AcaciaTree - A far-southern variety of savannah tree (use longevity to adjust its size: 0.7min - 1.9max)
+UkuvaTree - A tree that grows in the hollows, it is not used for anything as its wood is too soft to make structures and too brittle to use for artisanry. (use longevity to adjust its size: 0.8min - 1.7max)
 Grushweed - A thick bushy temperate plant that grows in the kellish plains
 Neprilne - A temperate woodland plant that has little blue berries that grow along the outer edges of its leaves
 Glin - A brown poisonous temperate woodland mushroom that can be eaten if boiled for a large amount of time

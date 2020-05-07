@@ -1639,6 +1639,18 @@ function olgPack()
 
     olg.onload = function()
     {
+        gelPack();
+    };
+}
+
+function gelPack()
+{
+    var gel = new Image();
+    gel.src = ("images/gel.png");
+    window.gel = gel;
+
+    gel.onload = function()
+    {
         ggellPack();
     };
 }
@@ -1650,6 +1662,30 @@ function ggellPack()
     window.ggell = ggell;
 
     ggell.onload = function()
+    {
+        howPack();
+    };
+}
+
+function howPack()
+{
+    var how = new Image();
+    how.src = ("images/how.png");
+    window.how = how;
+
+    how.onload = function()
+    {
+        sabezPack();
+    };
+}
+
+function sabezPack()
+{
+    var sabez = new Image();
+    sabez.src = ("images/sabez.png");
+    window.sabez = sabez;
+
+    sabez.onload = function()
     {
         sitePack();
     };
@@ -3631,7 +3667,7 @@ function over(kind, j, i, extraX, extraY)
                 }
                 else if (kind == "hollow" && player.weaponEquipped == "swimming")
                 {
-                    if (player.vamprism != true)
+                    if (player.vamprism != true && player.antidecay != true)
                     {
                         player.decay += 0.06;
                     }
@@ -3826,7 +3862,7 @@ function theLegend()
     secondarySpells = [];
     tertiarySpells = [];
 //Well List
-    wellConversionList = [["pintGlass", "waterPintGlass"], ["barrel", "barrelOfWater"], ["ashwoodBarrel", "ashwoodBarrelOfWater"], ["walrusLeatherWaterskin", "walrusLeatherWaterskinFull"], ["bucket", "bucketOfWater"], ["potionGlass", "vialOfWater"], ["kellishClayPot", "kellishClayPotOfWater"], ["glassBottle", "glassBottleOfWater"], ["naapridDrinkinghorn", "naapridDrinkinghornFull"], ["vardanianBowl", "vardanianBowlOfWater"], ["vardanianPot", "vardanianPotOfWater"], ["grailOfEternity", "theGrailOfEternity"]];
+    wellConversionList = [["pintGlass", "waterPintGlass"], ["barrel", "barrelOfWater"], ["ashwoodBarrel", "ashwoodBarrelOfWater"], ["walrusLeatherWaterskin", "walrusLeatherWaterskinFull"], ["bucket", "bucketOfWater"], ["potionGlass", "vialOfWater"], ["kellishClayPot", "kellishClayPotOfWater"], ["glassBottle", "glassBottleOfWater"], ["naapridDrinkinghorn", "naapridDrinkinghornFull"], ["vardanianBowl", "vardanianBowlOfWater"], ["vardanianPot", "vardanianPotOfWater"], ["glassJar", "jarOfWater"], ["grailOfEternity", "theGrailOfEternity"]];
 //Milking/Juicing/Sapping Lists
     naapridConversionList = [["bucket", "bucketOfNaapridMilk"], ["kellishClayPot", "kellishClayPotOfNaapridMilk"], ["naapridDrinkinghorn", "naapridMilkhornFull"], ["vardanianBowl", "vardanianBowlOfNaapridMilk"], ["vardanianPot", "vardanianPotOfNaapridMilk"], ["grailOfEternity", "theGrailOfEternity"]];
     waantiConversionList = [["bucket", "bucketOfWaantiMilk"], ["kellishClayPot", "kellishClayPotOfWaantiMilk"], ["vardanianBowl", "vardanianBowlOfWaantiMilk"], ["vardanianPot", "vardanianPotOfWaantiMilk"], ["grailOfEternity", "theGrailOfEternity"]];
@@ -4012,7 +4048,12 @@ function theLegend()
         ilman: ["Ilman", 0],
         hepnorite: ["Hepnorite", 0],
         abbergaz: ["Abbergaz", 0],
-        ebau: ["Ebau", 0]
+        ebau: ["Ebau", 0],
+        gusmich: ["Gusmich", 0],
+        kozh: ["Kozh", 0],
+        abrahm: ["Abrahm", 0],
+        antov: ["Antov", 0],
+        kolstov: ["Kolstov", 0]
     };
 
 //time Tracker Variables
@@ -4297,7 +4338,12 @@ function theLegend()
         ilmanLDS: true,
         hepnoriteLDS: true,
         abbergazLDS: true,
-        ebauLDS: true
+        ebauLDS: true,
+        gusmichLDS: true,
+        kozhLDS: true,
+        abrahmLDS: true,
+        antovLDS: true,
+        kolstovLDS: true
     };
 //QUESTS
     quests =
@@ -5034,6 +5080,9 @@ function theLegend()
     allWorn.push(new Item("blueKimono", false)); //211
     allWorn.push(new Item("pinkKimono", false)); //212
     allWorn.push(new Item("redKimono", false)); //213
+    allWorn.push(new Item("blackwoodSorceressRobe", false)); //214
+    allWorn.push(new Item("blackwoodSorcererRobe", false)); //215
+
 
 
     scenicList = [];

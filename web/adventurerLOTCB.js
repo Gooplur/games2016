@@ -635,6 +635,7 @@ function Adventurer()
     this.voaiiHost = 0;
     this.sticky = false;
     this.nonStick = false;
+    this.antidecay = false;
 
         //faction variables
     this.factionToggle = false;
@@ -944,22 +945,25 @@ function Adventurer()
 
         this.onDecay = function()
         {
-            if (new Date().getTime() - this.decayTime <= 30000 && (1.2 - this.magicalResistance) > 0)
+            if (this.antidecay != true)
             {
-                this.flashAnimate(90, this.rotation, 0.86, [{image: tomb, imgX: 598, imgY: 253, portionW: 56, portionH: 59, adjX: -1 / 2 * ((56 / 1.4)/10) * this.mySize, adjY: -1 / 2 * ((59 /1.4)/10) * this.mySize, width: ((56 / 1.4)/10) * this.mySize, height: ((59 /1.4)/10) * this.mySize}, {image: tomb, imgX: 503, imgY: 238, portionW: 86, portionH: 91, adjX: -1 / 2 * ((86 / 2.6)/10) * this.mySize, adjY: -1 / 2 * ((91 / 2.6)/10) * this.mySize, width: ((86 / 2.6)/10) * this.mySize, height: ((91 / 2.6)/10) * this.mySize}, {image: tomb, imgX: 402, imgY: 231, portionW: 96, portionH: 97, adjX: -1 / 2 * ((96 / 2.7)/10) * this.mySize, adjY: -1 / 2 * ((97 / 2.7)/10) * this.mySize, width: ((96 / 2.7)/10) * this.mySize, height: ((97 / 2.7)/10) * this.mySize}]);
-                if (new Date().getTime() - this.decayTime2 >= 200)
+                if (new Date().getTime() - this.decayTime <= 30000 && (1.2 - this.magicalResistance) > 0)
                 {
-                    this.decayTime2 = new Date().getTime();
-                    this.health -= Math.max(0, 0.3 - (this.magicalResistance / 50));
-                    if (Math.max(0, 0.3 - (this.magicalResistance / 50)) > 0)
+                    this.flashAnimate(90, this.rotation, 0.86, [{image: tomb, imgX: 598, imgY: 253, portionW: 56, portionH: 59, adjX: -1 / 2 * ((56 / 1.4)/10) * this.mySize, adjY: -1 / 2 * ((59 /1.4)/10) * this.mySize, width: ((56 / 1.4)/10) * this.mySize, height: ((59 /1.4)/10) * this.mySize}, {image: tomb, imgX: 503, imgY: 238, portionW: 86, portionH: 91, adjX: -1 / 2 * ((86 / 2.6)/10) * this.mySize, adjY: -1 / 2 * ((91 / 2.6)/10) * this.mySize, width: ((86 / 2.6)/10) * this.mySize, height: ((91 / 2.6)/10) * this.mySize}, {image: tomb, imgX: 402, imgY: 231, portionW: 96, portionH: 97, adjX: -1 / 2 * ((96 / 2.7)/10) * this.mySize, adjY: -1 / 2 * ((97 / 2.7)/10) * this.mySize, width: ((96 / 2.7)/10) * this.mySize, height: ((97 / 2.7)/10) * this.mySize}]);
+                    if (new Date().getTime() - this.decayTime2 >= 200)
                     {
-                        this.decay += 0.05;
+                        this.decayTime2 = new Date().getTime();
+                        this.health -= Math.max(0, 0.3 - (this.magicalResistance / 50));
+                        if (Math.max(0, 0.3 - (this.magicalResistance / 50)) > 0)
+                        {
+                            this.decay += 0.05;
+                        }
                     }
                 }
-            }
-            else if (this.skinWorms != true)
-            {
-                this.decay = Math.max(0, this.decay - (0.0005 + ((0.0015 / 50) * player.getEndurance())));
+                else if (this.skinWorms != true)
+                {
+                    this.decay = Math.max(0, this.decay - (0.0005 + ((0.0015 / 50) * player.getEndurance())));
+                }
             }
 
             if (this.decay < 0)
@@ -1338,6 +1342,8 @@ function Adventurer()
             var fearIIIFlag = false;
             var treeManaFlag = false;
             var holuimFlag = false;
+            var blackwoodFlag = false;
+            var antidecayFlag = false;
 
             //search worn ability list for abilities
             for (var i = 0; i < this.AdAbility.length; i++)
@@ -1346,6 +1352,11 @@ function Adventurer()
                 {
                     cyborgFlag = true;
                     radResFlag = true;
+                }
+                if (this.AdAbility[i] == "blackwood")
+                {
+                    resistDiseaseFlag = true;
+                    antidecayFlag = true;
                 }
                 if (this.AdAbility[i] == "airFilter")
                 {
@@ -1446,6 +1457,16 @@ function Adventurer()
                         map = "world";
                     }
                 }
+            }
+
+            //antiDecay
+            if (antidecayFlag)
+            {
+                this.antidecay = true;
+            }
+            else
+            {
+                this.antidecay = false;
             }
 
             //treeMana
@@ -3716,7 +3737,7 @@ function Adventurer()
                 this.health -= 0.000012 * (TTD / 16.75);
             }
 
-            if (this.skinWorms == true && new Date().getTime() - this.timeSinceLastSkinWorm >= 75)
+            if (this.skinWorms == true && new Date().getTime() - this.timeSinceLastSkinWorm >= 75 && this.antidecay != true)
             {
                 //reset the timer for the flesh worms decaying flesh.
                 this.timeSinceLastSkinWorm = new Date().getTime();
@@ -9030,6 +9051,14 @@ function Adventurer()
         {
             outfit = allWorn[213];
         }
+        else if (this.outfitEquipped == "blackwoodSorceressRobe")
+        {
+            outfit = allWorn[214];
+        }
+        else if (this.outfitEquipped == "blackwoodSorcererRobe")
+        {
+            outfit = allWorn[215];
+        }
         else
         {
             outfit = allWorn[0];
@@ -9875,6 +9904,32 @@ function Adventurer()
                 XXX.globalAlpha = 0.4;
             }
             XXX.drawImage(moth, 799, 164, 46, 35, -(1 / 2 * 46 * 1.1) + 0, -(1 / 2 * 35 * 1.1) - 0, 46 * 1.1, 35 * 1.1);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "blackwoodSorcererRobe")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(ocul, 1282, 252, 83, 74, -(1 / 2 * 83 * 0.72) + 0, -(1 / 2 * 74 * 0.72) - 0, 83 * 0.72, 74 * 0.72);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "blackwoodSorceressRobe")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            XXX.drawImage(ocul, 1155, 252, 83, 74, -(1 / 2 * 83 * 0.72) + 0, -(1 / 2 * 74 * 0.72) - 0, 83 * 0.72, 74 * 0.72);
             XXX.restore();
         }
         else if (this.outfitEquipped == "motylinkaCloak")
@@ -30634,7 +30689,7 @@ function Adventurer()
                             if (this.armourPerfect == true || foePerfectArmour == true || ArtificialIntelligenceAccess[i].perfectDefense == true || Math.max(0, (this.weapon.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance) > (this.weapon.damage / 35))
                             {
                                 ArtificialIntelligenceAccess[i].health -= Math.max(0, (this.weapon.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
-                                console.log("You Dealt " + (Math.max(0, this.weapon.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour)) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance)) + " damage!");
+                                console.log("You dealt " + (Math.max(0, this.weapon.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour)) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance)) + " damage!");
                                 justDealt = Math.max(0, this.weapon.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour)) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
                             }
                             else
@@ -30648,7 +30703,7 @@ function Adventurer()
                             if (this.armourPerfect == true || foePerfectArmour == true || ArtificialIntelligenceAccess[i].perfectDefense == true || Math.max(0, (Math.min(3, (this.weapon.damage / 5)) - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance) > ((this.weapon.damage / 5) / 35))
                             {
                                 ArtificialIntelligenceAccess[i].health -= Math.max(0, (Math.min(3, (this.weapon.damage / 5)) - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
-                                console.log("Weak Attack: " + Math.max(0, (this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance) + " Damage!");
+                                console.log("Weak Attack: You dealt " + (Math.max(0, (Math.min(3, (this.weapon.damage / 5)) - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance)) + " damage!");
                                 justDealt = Math.max(0, (this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
                             }
                             else
@@ -30662,7 +30717,7 @@ function Adventurer()
                             if (this.armourPerfect == true || foePerfectArmour == true || ArtificialIntelligenceAccess[i].perfectDefense == true || Math.max(0, (Math.min(5, (this.weapon.damage / 4)) - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance) > ((this.weapon.damage / 4) / 35))
                             {
                                 ArtificialIntelligenceAccess[i].health -= Math.max(0, (Math.min(5, (this.weapon.damage / 4)) - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
-                                console.log("Weakened Attack: " + Math.max(0, (this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance) + " Damage!");
+                                console.log("Weakened Attack: You dealt " + (Math.max(0, (Math.min(5, (this.weapon.damage / 4)) - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance)) + " damage!");
                                 justDealt = Math.max(0, (this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
                             }
                             else
@@ -30676,7 +30731,7 @@ function Adventurer()
                             if (this.armourPerfect == true || foePerfectArmour == true || ArtificialIntelligenceAccess[i].perfectDefense == true || Math.max(0, ((this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5)))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance) > ((this.weapon.damage * 1.5) / 35))
                             {
                                 ArtificialIntelligenceAccess[i].health -= Math.max(0, ((this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5)))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
-                                console.log("Power Attack: " + Math.max(0, (this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance) + " Damage!");
+                                console.log("Power Attack: You dealt " + (Math.max(0, (this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance)) + " damage!");
                                 justDealt = Math.max(0, (this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
                             }
                             else
@@ -40538,15 +40593,24 @@ function Adventurer()
                             }
                             else if (Inventory[i][0].ability == "decayI")
                             {
-                                this.decay += 5;
+                                if (this.antidecay != true)
+                                {
+                                    this.decay += 5;
+                                }
                             }
                             else if (Inventory[i][0].ability == "decayII")
                             {
-                                this.decay += 16;
+                                if (this.antidecay != true)
+                                {
+                                    this.decay += 16;
+                                }
                             }
                             else if (Inventory[i][0].ability == "decayIII")
                             {
-                                this.decay += 49;
+                                if (this.antidecay != true)
+                                {
+                                    this.decay += 49;
+                                }
                             }
                             else if (Inventory[i][0].ability == "antiPixi")
                             {

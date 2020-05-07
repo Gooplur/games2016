@@ -28681,6 +28681,632 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 this.activate = false;
             }
         }
+        else if (this.type == "gladeIsla")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+            if (typeof(this.information) == "undefined")
+            {
+                this.size = 1;
+            }
+            else
+            {
+                this.size = this.information;
+            }
+
+
+            if (this.temporary == 0) //big square
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(gel, 30, 561, 305, 316, -(1/2 * 305 * this.size), -(1/2 * 316 * this.size), 305 * this.size, 316 * this.size);
+
+                //XXX.beginPath();
+                //XXX.lineWidth = 300 * this.size;
+                //XXX.strokeStyle = "black";
+                //XXX.moveTo(0 + Math.cos(0) * 40 * this.size, 0);
+                //XXX.lineTo(0 + Math.cos(Math.PI) * 40 * this.size, 0);
+                //XXX.stroke();
+
+                XXX.restore();
+
+                var distToPlat = pDist(X, Y, this.X + Math.cos(0 + this.rotation) * 40 * this.size, this.Y + Math.sin(0 + this.rotation) * 40 * this.size, this.X + Math.cos(Math.PI + this.rotation) * 40 * this.size, this.Y + Math.sin(Math.PI + this.rotation) * 40 * this.size);
+                if (distToPlat <= 150 * this.size * 150 * this.size)
+                {
+                    player.land = true;
+                    player.nonStick = true;
+                }
+
+                distToPlat = 1000000000000000;
+
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    distToPlat = pDist(ArtificialIntelligenceAccess[i].X, ArtificialIntelligenceAccess[i].Y, this.X + Math.cos(0 + this.rotation) * 40 * this.size, this.Y + Math.sin(0 + this.rotation) * 40 * this.size, this.X + Math.cos(Math.PI + this.rotation) * 40 * this.size, this.Y + Math.sin(Math.PI + this.rotation) * 40 * this.size);
+                    if (distToPlat <= 150 * this.size * 150 * this.size)
+                    {
+                        ArtificialIntelligenceAccess[i].land = true;
+                        ArtificialIntelligenceAccess[i].nonStick = true;
+                    }
+                }
+            }
+            else if (this.temporary == 1) //big circle
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(gel, 442, 557, 305, 316, -(1/2 * 305 * this.size), -(1/2 * 316 * this.size), 305 * this.size, 316 * this.size);
+
+                //XXX.beginPath();
+                //XXX.lineWidth = 280* this.size;
+                //XXX.strokeStyle = "black";
+                //XXX.moveTo(0 + Math.cos(0) * 30 * this.size, 0);
+                //XXX.lineTo(0 + Math.cos(Math.PI) * 30 * this.size, 0);
+                //XXX.stroke();
+
+                XXX.restore();
+
+                var distToPlat = pDist(X, Y, this.X + Math.cos(0 + this.rotation) * 30 * this.size, this.Y + Math.sin(0 + this.rotation) * 30 * this.size, this.X + Math.cos(Math.PI + this.rotation) * 30 * this.size, this.Y + Math.sin(Math.PI + this.rotation) * 30 * this.size);
+                if (distToPlat <= 140 * this.size * 140 * this.size)
+                {
+                    player.land = true;
+                    player.nonStick = true;
+                }
+
+                distToPlat = 1000000000000000;
+
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    distToPlat = pDist(ArtificialIntelligenceAccess[i].X, ArtificialIntelligenceAccess[i].Y, this.X + Math.cos(0 + this.rotation) * 30 * this.size, this.Y + Math.sin(0 + this.rotation) * 30 * this.size, this.X + Math.cos(Math.PI + this.rotation) * 30 * this.size, this.Y + Math.sin(Math.PI + this.rotation) * 30 * this.size);
+                    if (distToPlat <= 140 * this.size * 140 * this.size)
+                    {
+                        ArtificialIntelligenceAccess[i].land = true;
+                        ArtificialIntelligenceAccess[i].nonStick = true;
+                    }
+                }
+            }
+            else if (this.temporary == 2) //half large square
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation + 1/2 * Math.PI);
+                XXX.drawImage(gel, 591, 873, 181, 303, -(1/2 * 181 * this.size), -(1/2 * 303 * this.size), 181 * this.size, 303 * this.size);
+
+                //XXX.beginPath();
+                //XXX.lineWidth = 166 * this.size;
+                //XXX.strokeStyle = "black";
+                //XXX.moveTo(0 + Math.cos(0) * 80 * this.size, 0);
+                //XXX.lineTo(0 + Math.cos(Math.PI) * 80 * this.size, 0);
+                //XXX.stroke();
+
+                XXX.restore();
+
+                var distToPlat = pDist(X, Y, this.X + Math.cos(0 + this.rotation) * 80 * this.size, this.Y + Math.sin(0 + this.rotation) * 80 * this.size, this.X + Math.cos(Math.PI + this.rotation) * 80 * this.size, this.Y + Math.sin(Math.PI + this.rotation) * 80 * this.size);
+                if (distToPlat <= 83 * this.size * 83 * this.size)
+                {
+                    player.land = true;
+                    player.nonStick = true;
+                }
+
+                distToPlat = 1000000000000000;
+
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    distToPlat = pDist(ArtificialIntelligenceAccess[i].X, ArtificialIntelligenceAccess[i].Y, this.X + Math.cos(0 + this.rotation) * 80 * this.size, this.Y + Math.sin(0 + this.rotation) * 80 * this.size, this.X + Math.cos(Math.PI + this.rotation) * 80 * this.size, this.Y + Math.sin(Math.PI + this.rotation) * 80 * this.size);
+                    if (distToPlat <= 83 * this.size * 83 * this.size)
+                    {
+                        ArtificialIntelligenceAccess[i].land = true;
+                        ArtificialIntelligenceAccess[i].nonStick = true;
+                    }
+                }
+            }
+            else if (this.temporary == 3) //long fourth of large square
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(gel, 24, 938, 321, 119, -(1/2 * 321 * this.size), -(1/2 * 119 * this.size) + 9, 321 * this.size, 119 * this.size);
+
+                //XXX.beginPath();
+                //XXX.lineWidth = 98 * this.size;
+                //XXX.strokeStyle = "black";
+                //XXX.moveTo(0 + Math.cos(0) * 110 * this.size, 0);
+                //XXX.lineTo(0 + Math.cos(Math.PI) * 110 * this.size, 0);
+                //XXX.stroke();
+
+                XXX.restore();
+
+                var distToPlat = pDist(X, Y, this.X + Math.cos(0 + this.rotation) * 110 * this.size, this.Y + Math.sin(0 + this.rotation) * 110 * this.size, this.X + Math.cos(Math.PI + this.rotation) * 110 * this.size, this.Y + Math.sin(Math.PI + this.rotation) * 110 * this.size);
+                if (distToPlat <= 49 * this.size * 49 * this.size)
+                {
+                    player.land = true;
+                    player.nonStick = true;
+                }
+
+                distToPlat = 1000000000000000;
+
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    distToPlat = pDist(ArtificialIntelligenceAccess[i].X, ArtificialIntelligenceAccess[i].Y, this.X + Math.cos(0 + this.rotation) * 110 * this.size, this.Y + Math.sin(0 + this.rotation) * 110 * this.size, this.X + Math.cos(Math.PI + this.rotation) * 110 * this.size, this.Y + Math.sin(Math.PI + this.rotation) * 110 * this.size);
+                    if (distToPlat <= 49 * this.size * 49 * this.size)
+                    {
+                        ArtificialIntelligenceAccess[i].land = true;
+                        ArtificialIntelligenceAccess[i].nonStick = true;
+                    }
+                }
+            }
+            else if (this.temporary == 4) //small rectangle
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(gel, 79, 1054, 211, 138, -(1/2 * 211 * this.size), -(1/2 * 138 * this.size), 211 * this.size, 138 * this.size);
+
+                //XXX.beginPath();
+                //XXX.lineWidth = 120 * this.size;
+                //XXX.strokeStyle = "black";
+                //XXX.moveTo(0 + Math.cos(0) * 70 * this.size, 0);
+                //XXX.lineTo(0 + Math.cos(Math.PI) * 70 * this.size, 0);
+                //XXX.stroke();
+
+                XXX.restore();
+
+                var distToPlat = pDist(X, Y, this.X + Math.cos(0 + this.rotation) * 70 * this.size, this.Y + Math.sin(0 + this.rotation) * 70 * this.size, this.X + Math.cos(Math.PI + this.rotation) * 70 * this.size, this.Y + Math.sin(Math.PI + this.rotation) * 70 * this.size);
+                if (distToPlat <= 60 * this.size * 60 * this.size)
+                {
+                    player.land = true;
+                    player.nonStick = true;
+                }
+
+                distToPlat = 1000000000000000;
+
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    distToPlat = pDist(ArtificialIntelligenceAccess[i].X, ArtificialIntelligenceAccess[i].Y, this.X + Math.cos(0 + this.rotation) * 70 * this.size, this.Y + Math.sin(0 + this.rotation) * 70 * this.size, this.X + Math.cos(Math.PI + this.rotation) * 70 * this.size, this.Y + Math.sin(Math.PI + this.rotation) * 70 * this.size);
+                    if (distToPlat <= 60 * this.size * 60 * this.size)
+                    {
+                        ArtificialIntelligenceAccess[i].land = true;
+                        ArtificialIntelligenceAccess[i].nonStick = true;
+                    }
+                }
+            }
+            else if (this.temporary == 5) //small circle
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(gel, 473, 1080, 110, 106, -(1/2 * 110 * this.size), -(1/2 * 106 * this.size), 110 * this.size, 106 * this.size);
+
+                //XXX.beginPath();
+                //XXX.lineWidth = 84 * this.size;
+                //XXX.strokeStyle = "black";
+                //XXX.moveTo(0 + Math.cos(0) * 15 * this.size, 0);
+                //XXX.lineTo(0 + Math.cos(Math.PI) * 15 * this.size, 0);
+                //XXX.stroke();
+
+                XXX.restore();
+
+                var distToPlat = pDist(X, Y, this.X + Math.cos(0 + this.rotation) * 15 * this.size, this.Y + Math.sin(0 + this.rotation) * 15 * this.size, this.X + Math.cos(Math.PI + this.rotation) * 15 * this.size, this.Y + Math.sin(Math.PI + this.rotation) * 15 * this.size);
+                if (distToPlat <= 42 * this.size * 42 * this.size)
+                {
+                    player.land = true;
+                    player.nonStick = true;
+                }
+
+                distToPlat = 1000000000000000;
+
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    distToPlat = pDist(ArtificialIntelligenceAccess[i].X, ArtificialIntelligenceAccess[i].Y, this.X + Math.cos(0 + this.rotation) * 15 * this.size, this.Y + Math.sin(0 + this.rotation) * 15 * this.size, this.X + Math.cos(Math.PI + this.rotation) * 15 * this.size, this.Y + Math.sin(Math.PI + this.rotation) * 15 * this.size);
+                    if (distToPlat <= 42 * this.size * 42 * this.size)
+                    {
+                        ArtificialIntelligenceAccess[i].land = true;
+                        ArtificialIntelligenceAccess[i].nonStick = true;
+                    }
+                }
+            }
+            else if (this.temporary == 6) //small particle square
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(gel, 343, 1083, 115, 106, -(1/2 * 115 * this.size), -(1/2 * 106 * this.size), 115 * this.size, 106 * this.size);
+
+                //XXX.beginPath();
+                //XXX.lineWidth = 90 * this.size;
+                //XXX.strokeStyle = "black";
+                //XXX.moveTo(0 + Math.cos(0) * 20 * this.size, 0);
+                //XXX.lineTo(0 + Math.cos(Math.PI) * 20 * this.size, 0);
+                //XXX.stroke();
+
+                XXX.restore();
+
+                var distToPlat = pDist(X, Y, this.X + Math.cos(0 + this.rotation) * 20 * this.size, this.Y + Math.sin(0 + this.rotation) * 20 * this.size, this.X + Math.cos(Math.PI + this.rotation) * 20 * this.size, this.Y + Math.sin(Math.PI + this.rotation) * 20 * this.size);
+                if (distToPlat <= 45 * this.size * 45 * this.size)
+                {
+                    player.land = true;
+                    player.nonStick = true;
+                }
+
+                distToPlat = 1000000000000000;
+
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    distToPlat = pDist(ArtificialIntelligenceAccess[i].X, ArtificialIntelligenceAccess[i].Y, this.X + Math.cos(0 + this.rotation) * 20 * this.size, this.Y + Math.sin(0 + this.rotation) * 20 * this.size, this.X + Math.cos(Math.PI + this.rotation) * 20 * this.size, this.Y + Math.sin(Math.PI + this.rotation) * 20 * this.size);
+                    if (distToPlat <= 45 * this.size * 45 * this.size)
+                    {
+                        ArtificialIntelligenceAccess[i].land = true;
+                        ArtificialIntelligenceAccess[i].nonStick = true;
+                    }
+                }
+            }
+            else if (this.temporary == 7) //medium particle circle
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(gel, 375, 903, 195, 172, -(1/2 * 195 * this.size), -(1/2 * 172 * this.size), 195 * this.size, 172 * this.size);
+
+                //XXX.beginPath();
+                //XXX.lineWidth = 154 * this.size;
+                //XXX.strokeStyle = "black";
+                //XXX.moveTo(0 + Math.cos(0) * 30 * this.size, 0);
+                //XXX.lineTo(0 + Math.cos(Math.PI) * 30 * this.size, 0);
+                //XXX.stroke();
+
+                XXX.restore();
+
+                var distToPlat = pDist(X, Y, this.X + Math.cos(0 + this.rotation) * 30 * this.size, this.Y + Math.sin(0 + this.rotation) * 30 * this.size, this.X + Math.cos(Math.PI + this.rotation) * 30 * this.size, this.Y + Math.sin(Math.PI + this.rotation) * 30 * this.size);
+                if (distToPlat <= 77 * this.size * 77 * this.size)
+                {
+                    player.land = true;
+                    player.nonStick = true;
+                }
+
+                distToPlat = 1000000000000000;
+
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    distToPlat = pDist(ArtificialIntelligenceAccess[i].X, ArtificialIntelligenceAccess[i].Y, this.X + Math.cos(0 + this.rotation) * 30 * this.size, this.Y + Math.sin(0 + this.rotation) * 30 * this.size, this.X + Math.cos(Math.PI + this.rotation) * 30 * this.size, this.Y + Math.sin(Math.PI + this.rotation) * 30 * this.size);
+                    if (distToPlat <= 77 * this.size * 77 * this.size)
+                    {
+                        ArtificialIntelligenceAccess[i].land = true;
+                        ArtificialIntelligenceAccess[i].nonStick = true;
+                    }
+                }
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 1;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+        }
+        else if (this.type == "hollowsIsla")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+            if (typeof(this.information) == "undefined")
+            {
+                this.size = 1;
+            }
+            else
+            {
+                this.size = this.information;
+            }
+
+
+            if (this.temporary == 0) //big square
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(how, 30, 561, 305, 316, -(1/2 * 305 * this.size), -(1/2 * 316 * this.size), 305 * this.size, 316 * this.size);
+
+                //XXX.beginPath();
+                //XXX.lineWidth = 300 * this.size;
+                //XXX.strokeStyle = "black";
+                //XXX.moveTo(0 + Math.cos(0) * 40 * this.size, 0);
+                //XXX.lineTo(0 + Math.cos(Math.PI) * 40 * this.size, 0);
+                //XXX.stroke();
+
+                XXX.restore();
+
+                var distToPlat = pDist(X, Y, this.X + Math.cos(0 + this.rotation) * 40 * this.size, this.Y + Math.sin(0 + this.rotation) * 40 * this.size, this.X + Math.cos(Math.PI + this.rotation) * 40 * this.size, this.Y + Math.sin(Math.PI + this.rotation) * 40 * this.size);
+                if (distToPlat <= 150 * this.size * 150 * this.size)
+                {
+                    player.land = true;
+                    player.nonStick = true;
+                }
+
+                distToPlat = 1000000000000000;
+
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    distToPlat = pDist(ArtificialIntelligenceAccess[i].X, ArtificialIntelligenceAccess[i].Y, this.X + Math.cos(0 + this.rotation) * 40 * this.size, this.Y + Math.sin(0 + this.rotation) * 40 * this.size, this.X + Math.cos(Math.PI + this.rotation) * 40 * this.size, this.Y + Math.sin(Math.PI + this.rotation) * 40 * this.size);
+                    if (distToPlat <= 150 * this.size * 150 * this.size)
+                    {
+                        ArtificialIntelligenceAccess[i].land = true;
+                        ArtificialIntelligenceAccess[i].nonStick = true;
+                    }
+                }
+            }
+            else if (this.temporary == 1) //big circle
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(how, 424, 532, 301, 292, -(1/2 * 301 * this.size), -(1/2 * 292 * this.size), 301 * this.size, 292 * this.size);
+
+                //XXX.beginPath();
+                //XXX.lineWidth = 280* this.size;
+                //XXX.strokeStyle = "black";
+                //XXX.moveTo(0 + Math.cos(0) * 30 * this.size, 0);
+                //XXX.lineTo(0 + Math.cos(Math.PI) * 30 * this.size, 0);
+                //XXX.stroke();
+
+                XXX.restore();
+
+                var distToPlat = pDist(X, Y, this.X + Math.cos(0 + this.rotation) * 30 * this.size, this.Y + Math.sin(0 + this.rotation) * 30 * this.size, this.X + Math.cos(Math.PI + this.rotation) * 30 * this.size, this.Y + Math.sin(Math.PI + this.rotation) * 30 * this.size);
+                if (distToPlat <= 140 * this.size * 140 * this.size)
+                {
+                    player.land = true;
+                    player.nonStick = true;
+                }
+
+                distToPlat = 1000000000000000;
+
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    distToPlat = pDist(ArtificialIntelligenceAccess[i].X, ArtificialIntelligenceAccess[i].Y, this.X + Math.cos(0 + this.rotation) * 30 * this.size, this.Y + Math.sin(0 + this.rotation) * 30 * this.size, this.X + Math.cos(Math.PI + this.rotation) * 30 * this.size, this.Y + Math.sin(Math.PI + this.rotation) * 30 * this.size);
+                    if (distToPlat <= 140 * this.size * 140 * this.size)
+                    {
+                        ArtificialIntelligenceAccess[i].land = true;
+                        ArtificialIntelligenceAccess[i].nonStick = true;
+                    }
+                }
+            }
+            else if (this.temporary == 2) //half large square
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation + 1/2 * Math.PI);
+                XXX.drawImage(how, 563, 835, 191, 306, -(1/2 * 191 * this.size), -(1/2 * 306 * this.size), 191 * this.size, 306 * this.size);
+
+                //XXX.beginPath();
+                //XXX.lineWidth = 166 * this.size;
+                //XXX.strokeStyle = "black";
+                //XXX.moveTo(0 + Math.cos(0) * 80 * this.size, 0);
+                //XXX.lineTo(0 + Math.cos(Math.PI) * 80 * this.size, 0);
+                //XXX.stroke();
+
+                XXX.restore();
+
+                var distToPlat = pDist(X, Y, this.X + Math.cos(0 + this.rotation) * 80 * this.size, this.Y + Math.sin(0 + this.rotation) * 80 * this.size, this.X + Math.cos(Math.PI + this.rotation) * 80 * this.size, this.Y + Math.sin(Math.PI + this.rotation) * 80 * this.size);
+                if (distToPlat <= 83 * this.size * 83 * this.size)
+                {
+                    player.land = true;
+                    player.nonStick = true;
+                }
+
+                distToPlat = 1000000000000000;
+
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    distToPlat = pDist(ArtificialIntelligenceAccess[i].X, ArtificialIntelligenceAccess[i].Y, this.X + Math.cos(0 + this.rotation) * 80 * this.size, this.Y + Math.sin(0 + this.rotation) * 80 * this.size, this.X + Math.cos(Math.PI + this.rotation) * 80 * this.size, this.Y + Math.sin(Math.PI + this.rotation) * 80 * this.size);
+                    if (distToPlat <= 83 * this.size * 83 * this.size)
+                    {
+                        ArtificialIntelligenceAccess[i].land = true;
+                        ArtificialIntelligenceAccess[i].nonStick = true;
+                    }
+                }
+            }
+            else if (this.temporary == 3) //long fourth of large square
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(how, 12, 902, 309, 118, -(1/2 * 309 * this.size), -(1/2 * 118 * this.size), 309 * this.size, 118 * this.size);
+
+                //XXX.beginPath();
+                //XXX.lineWidth = 98 * this.size;
+                //XXX.strokeStyle = "black";
+                //XXX.moveTo(0 + Math.cos(0) * 110 * this.size, 0);
+                //XXX.lineTo(0 + Math.cos(Math.PI) * 110 * this.size, 0);
+                //XXX.stroke();
+
+                XXX.restore();
+
+                var distToPlat = pDist(X, Y, this.X + Math.cos(0 + this.rotation) * 110 * this.size, this.Y + Math.sin(0 + this.rotation) * 110 * this.size, this.X + Math.cos(Math.PI + this.rotation) * 110 * this.size, this.Y + Math.sin(Math.PI + this.rotation) * 110 * this.size);
+                if (distToPlat <= 49 * this.size * 49 * this.size)
+                {
+                    player.land = true;
+                    player.nonStick = true;
+                }
+
+                distToPlat = 1000000000000000;
+
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    distToPlat = pDist(ArtificialIntelligenceAccess[i].X, ArtificialIntelligenceAccess[i].Y, this.X + Math.cos(0 + this.rotation) * 110 * this.size, this.Y + Math.sin(0 + this.rotation) * 110 * this.size, this.X + Math.cos(Math.PI + this.rotation) * 110 * this.size, this.Y + Math.sin(Math.PI + this.rotation) * 110 * this.size);
+                    if (distToPlat <= 49 * this.size * 49 * this.size)
+                    {
+                        ArtificialIntelligenceAccess[i].land = true;
+                        ArtificialIntelligenceAccess[i].nonStick = true;
+                    }
+                }
+            }
+            else if (this.temporary == 4) //small rectangle
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(how, 54, 1014, 217, 146, -(1/2 * 217 * this.size), -(1/2 * 146 * this.size), 217 * this.size, 146 * this.size);
+
+                //XXX.beginPath();
+                //XXX.lineWidth = 120 * this.size;
+                //XXX.strokeStyle = "black";
+                //XXX.moveTo(0 + Math.cos(0) * 70 * this.size, 0);
+                //XXX.lineTo(0 + Math.cos(Math.PI) * 70 * this.size, 0);
+                //XXX.stroke();
+
+                XXX.restore();
+
+                var distToPlat = pDist(X, Y, this.X + Math.cos(0 + this.rotation) * 70 * this.size, this.Y + Math.sin(0 + this.rotation) * 70 * this.size, this.X + Math.cos(Math.PI + this.rotation) * 70 * this.size, this.Y + Math.sin(Math.PI + this.rotation) * 70 * this.size);
+                if (distToPlat <= 60 * this.size * 60 * this.size)
+                {
+                    player.land = true;
+                    player.nonStick = true;
+                }
+
+                distToPlat = 1000000000000000;
+
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    distToPlat = pDist(ArtificialIntelligenceAccess[i].X, ArtificialIntelligenceAccess[i].Y, this.X + Math.cos(0 + this.rotation) * 70 * this.size, this.Y + Math.sin(0 + this.rotation) * 70 * this.size, this.X + Math.cos(Math.PI + this.rotation) * 70 * this.size, this.Y + Math.sin(Math.PI + this.rotation) * 70 * this.size);
+                    if (distToPlat <= 60 * this.size * 60 * this.size)
+                    {
+                        ArtificialIntelligenceAccess[i].land = true;
+                        ArtificialIntelligenceAccess[i].nonStick = true;
+                    }
+                }
+            }
+            else if (this.temporary == 5) //small circle
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(how, 451, 1048, 109, 97, -(1/2 * 109 * this.size), -(1/2 * 97 * this.size), 109 * this.size, 97 * this.size);
+
+                //XXX.beginPath();
+                //XXX.lineWidth = 84 * this.size;
+                //XXX.strokeStyle = "black";
+                //XXX.moveTo(0 + Math.cos(0) * 15 * this.size, 0);
+                //XXX.lineTo(0 + Math.cos(Math.PI) * 15 * this.size, 0);
+                //XXX.stroke();
+
+                XXX.restore();
+
+                var distToPlat = pDist(X, Y, this.X + Math.cos(0 + this.rotation) * 15 * this.size, this.Y + Math.sin(0 + this.rotation) * 15 * this.size, this.X + Math.cos(Math.PI + this.rotation) * 15 * this.size, this.Y + Math.sin(Math.PI + this.rotation) * 15 * this.size);
+                if (distToPlat <= 42 * this.size * 42 * this.size)
+                {
+                    player.land = true;
+                    player.nonStick = true;
+                }
+
+                distToPlat = 1000000000000000;
+
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    distToPlat = pDist(ArtificialIntelligenceAccess[i].X, ArtificialIntelligenceAccess[i].Y, this.X + Math.cos(0 + this.rotation) * 15 * this.size, this.Y + Math.sin(0 + this.rotation) * 15 * this.size, this.X + Math.cos(Math.PI + this.rotation) * 15 * this.size, this.Y + Math.sin(Math.PI + this.rotation) * 15 * this.size);
+                    if (distToPlat <= 42 * this.size * 42 * this.size)
+                    {
+                        ArtificialIntelligenceAccess[i].land = true;
+                        ArtificialIntelligenceAccess[i].nonStick = true;
+                    }
+                }
+            }
+            else if (this.temporary == 6) //small particle square
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(how, 316, 1042, 123, 116, -(1/2 * 123 * this.size), -(1/2 * 116 * this.size), 123 * this.size, 116 * this.size);
+
+                //XXX.beginPath();
+                //XXX.lineWidth = 90 * this.size;
+                //XXX.strokeStyle = "black";
+                //XXX.moveTo(0 + Math.cos(0) * 20 * this.size, 0);
+                //XXX.lineTo(0 + Math.cos(Math.PI) * 20 * this.size, 0);
+                //XXX.stroke();
+
+                XXX.restore();
+
+                var distToPlat = pDist(X, Y, this.X + Math.cos(0 + this.rotation) * 20 * this.size, this.Y + Math.sin(0 + this.rotation) * 20 * this.size, this.X + Math.cos(Math.PI + this.rotation) * 20 * this.size, this.Y + Math.sin(Math.PI + this.rotation) * 20 * this.size);
+                if (distToPlat <= 45 * this.size * 45 * this.size)
+                {
+                    player.land = true;
+                    player.nonStick = true;
+                }
+
+                distToPlat = 1000000000000000;
+
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    distToPlat = pDist(ArtificialIntelligenceAccess[i].X, ArtificialIntelligenceAccess[i].Y, this.X + Math.cos(0 + this.rotation) * 20 * this.size, this.Y + Math.sin(0 + this.rotation) * 20 * this.size, this.X + Math.cos(Math.PI + this.rotation) * 20 * this.size, this.Y + Math.sin(Math.PI + this.rotation) * 20 * this.size);
+                    if (distToPlat <= 45 * this.size * 45 * this.size)
+                    {
+                        ArtificialIntelligenceAccess[i].land = true;
+                        ArtificialIntelligenceAccess[i].nonStick = true;
+                    }
+                }
+            }
+            else if (this.temporary == 7) //medium particle circle
+            {
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(how, 352, 858, 198, 187, -(1/2 * 198 * this.size), -(1/2 * 187 * this.size), 198 * this.size, 187 * this.size);
+
+                //XXX.beginPath();
+                //XXX.lineWidth = 154 * this.size;
+                //XXX.strokeStyle = "black";
+                //XXX.moveTo(0 + Math.cos(0) * 30 * this.size, 0);
+                //XXX.lineTo(0 + Math.cos(Math.PI) * 30 * this.size, 0);
+                //XXX.stroke();
+
+                XXX.restore();
+
+                var distToPlat = pDist(X, Y, this.X + Math.cos(0 + this.rotation) * 30 * this.size, this.Y + Math.sin(0 + this.rotation) * 30 * this.size, this.X + Math.cos(Math.PI + this.rotation) * 30 * this.size, this.Y + Math.sin(Math.PI + this.rotation) * 30 * this.size);
+                if (distToPlat <= 77 * this.size * 77 * this.size)
+                {
+                    player.land = true;
+                    player.nonStick = true;
+                }
+
+                distToPlat = 1000000000000000;
+
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    distToPlat = pDist(ArtificialIntelligenceAccess[i].X, ArtificialIntelligenceAccess[i].Y, this.X + Math.cos(0 + this.rotation) * 30 * this.size, this.Y + Math.sin(0 + this.rotation) * 30 * this.size, this.X + Math.cos(Math.PI + this.rotation) * 30 * this.size, this.Y + Math.sin(Math.PI + this.rotation) * 30 * this.size);
+                    if (distToPlat <= 77 * this.size * 77 * this.size)
+                    {
+                        ArtificialIntelligenceAccess[i].land = true;
+                        ArtificialIntelligenceAccess[i].nonStick = true;
+                    }
+                }
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 1;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+        }
         else if (this.type == "vardanianSpike")
         {
             //TRAITS
@@ -32292,6 +32918,33 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
 
                 this.radius = 10 * this.information;
                 this.solid = true;
+            }
+            else if (this.temporary == 31)//burnt barrel overturned
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(moonberry, 1678, 40, 42, 60, -(1/2 * 42 * this.information), -(1/2 * 60 * this.information), 42 * this.information, 60 * this.information);
+                XXX.restore();
+
+                this.radius = 28 * this.information;
+                this.solid = true;
+            }
+            else if (this.temporary == 32)//burnt stool
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(moonberry, 1738, 54, 33, 36, -(1/2 * 33 * this.information), -(1/2 * 36 * this.information), 33 * this.information, 36 * this.information);
+                XXX.restore();
+            }
+            else if (this.temporary == 33)//burnt table
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(moonberry, 1790, 44, 59, 54, -(1/2 * 59 * this.information), -(1/2 * 54 * this.information), 59 * this.information, 54 * this.information);
+                XXX.restore();
             }
 
             //INTERACTION

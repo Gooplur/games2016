@@ -10,22 +10,10 @@ OgoTree - A tropical tree that bears energizing ogo fruits
 AppleTree - A temperate tree that yields apples; apple trees grow almost exclusively in Thengaria
 DesertPoppy - A poppy plant that grows in the far south in the burning desert; its seeds can be made into opium
 Heyol - A freydic berry bush that hosts small green berries that are bitter and medicinal
-Pasha - A flat cactus native to the zetian desert
-Trubka - A long stalked red tube plant a smooth pore covered pod at the top. The stalk of the plant is slick and moist and poisonous to touch.
 Krogi - A black ringdome-capped mushroom that grows in the Vardanian Hollows and the Cephrian region of Black Lake eating this mushroom raw causes near-permanent paralysis, cooking it breaks down those enzymes enough that it becomes edible, though eating it numbs your whole body for a while...
-Eisyncryne - A spined membrane curtain plant that hides a rich fruit in its depths. It is native to the dark woods of southern Vardania.
-Cauw - A black plant with white speckled leaves that grows in southern Vardanian forests. In the season of bounty the leaves are just coming in and have not matured yet, in order to protect its immature leaves the plant's young leaves are poisonous to consume.
-Hesk - A Vardanian swamp fungus that grows as a thick underground mycelium that forms fist sized bubbles that contain swamp gas. The swamp gas stored in the thousands of bubbles throughout the mycelium release their gas through the primary fungal pod associated with the mycelium when a creature that is deemed nutritious enough passes it by. The gas kills the creatures in the vecinity and their nutrients soak into the muddy mire and the mycelium below.
-Royla - A water plant that grows in shallow water in the Vardanian floodplains. Its long roots stretch out loosely holding the plant in place and giving it stability in the water.
-Toadstool - A Vardanian mushroom that grows in the central and southern swamps of the east of the kingdom
-Thimblecap - A tiny Vardanian mushroom that glows. They grow in the central and southern swamps of Vardania
-VardanianMardyl - A common swamp plant in the central and southern swamps of Vardania
-OrgishMardyl - A common swamp plant that grows primarily in the Orgish Glades, but that has also overgrown into the southern most swamp of Vardania
-OstryyGrass - A tall grey type of Vardanian wild grass that's blades of grass are literally as sharp as a blade.
-Mawe - A desert cactus with a aromatic blue flower and quenching blue watery flesh.
-Naib - Actually spelled Na'ib. A spineless cactus that has several long thick arms. It can be processed to make a cactus based alcohol.
-Inum - A desert bush thats grass-like blade leaves can be chewed for their slight sourness.
-Anjay - A cactus that is native to the Zetian desert. A psychoactive/hallucinagenic cactus that has white creamy flesh and a large orange flower that holds the majority of the cactus's psychoactive hallucinagenic compound.
+OrgishMardyl - A common swamp plant that grows primarily in the southern most bog of Vardania
+UkuvaTree - A tree that grows in the hollows, it is not used for anything as its wood is too soft to make structures and too brittle to use for artisanry. (use longevity to adjust its size: 0.8min - 1.7max)
+//todo Thruum - A fungus that grows in the hollows that extends out fungal branches to soak in nutrients from the air. When it has soaked in enough, it closes its fungal branches together and forms a pasty substance that it uses to grow its mycelium underground.
 
 //ALREADY IN GAME (to create a plant with the scenery class these plants must be made all lowercase)
     //FARM
@@ -48,7 +36,6 @@ GreatPineTree - A large variety of pine tree that grows in Thengaria, and in som
 YeolTree - A tree that grows in the savannah and that drops pods that contain 'yeol nuts'
 AshaiTree - A temperate black Vardanian tree that has white wood. //scenicList.push(new Scenery("ashaiTree", x, y, rotation, size));
 AcaciaTree - A far-southern variety of savannah tree (use longevity to adjust its size: 0.7min - 1.9max)
-UkuvaTree - A tree that grows in the hollows, it is not used for anything as its wood is too soft to make structures and too brittle to use for artisanry. (use longevity to adjust its size: 0.8min - 1.7max)
 Grushweed - A thick bushy temperate plant that grows in the kellish plains
 Neprilne - A temperate woodland plant that has little blue berries that grow along the outer edges of its leaves
 Glin - A brown poisonous temperate woodland mushroom that can be eaten if boiled for a large amount of time
@@ -161,3 +148,17 @@ Elche - A bushy razor edge leaved bush that grows at a rapid pace. Its leaves ca
 Xium - A large light blue jungle mushroom that has sticky spore pods that it shoots off in order to spread. They infect jungle trees such as selva and sonja and use them as hosts to release yet more spores.
 Saug - A long tuber plant that has some light hair-like fibers that protrude from the ground
 Kozlyak - A small edible vardanian mushroom that blends in with the dark forest floor upon which it grows
+OstryyGrass - A tall grey type of Vardanian wild grass that's blades of grass are literally as sharp as a blade.
+Mawe - A desert cactus with a aromatic blue flower and quenching blue watery flesh.
+Naib - Actually spelled Na'ib. A spineless cactus that has several long thick arms. It can be processed to make a cactus based alcohol.
+Inum - A desert bush thats grass-like blade leaves can be chewed for their slight sourness.
+Anjay - A cactus that is native to the Zetian desert. A psychoactive/hallucinagenic cactus that has white creamy flesh and a large orange flower that holds the majority of the cactus's psychoactive hallucinagenic compound.
+Eisyncryne - A spined membrane curtain plant that hides a rich fruit in its depths. It is native to the dark woods of southern Vardania.
+Cauw - A black plant with white speckled leaves that grows in southern Vardanian forests. In the season of bounty the leaves are just coming in and have not matured yet, in order to protect its immature leaves the plant's young leaves are poisonous to consume.
+Hesk - A Vardanian swamp fungus that grows as a thick underground mycelium that forms fist sized bubbles that contain swamp gas. The swamp gas stored in the thousands of bubbles throughout the mycelium release their gas through the primary fungal pod associated with the mycelium when a creature that is deemed nutritious enough passes it by. The gas kills the creatures in the vecinity and their nutrients soak into the muddy mire and the mycelium below.
+Royla - A water plant that grows in shallow water in the Vardanian floodplains. Its long roots stretch out loosely holding the plant in place and giving it stability in the water.
+Toadstool - A Vardanian mushroom that grows in the central and southern swamps of the east of the kingdom
+Thimblecap - A tiny Vardanian mushroom that glows. They grow in the central and southern swamps of Vardania
+VardanianMardyl - A common swamp plant in the central swamps of Vardania
+Pasha - A flat cactus native to the zetian desert
+Trubka - A long stalked red tube plant with a smooth pore covered pod at the top. The stalk of the plant is slick and moist and poisonous to touch.

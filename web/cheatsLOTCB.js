@@ -6425,13 +6425,13 @@ function cheats()
                     buildClase += 1;
                 }
 
-                if (buildClase > 30)
+                if (buildClase > 33)
                 {
                     buildClase = 0;
                 }
                 else if ((buildClase < 0))
                 {
-                    buildClase = 30;
+                    buildClase = 33;
                 }
             }
 

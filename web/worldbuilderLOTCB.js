@@ -327,6 +327,19 @@ function worldBuilder()
             outlineBuilder( 1, 3, "savannahDirt", 8, 742);
             outlineBuilder( 1, 1, "savannahDirt", 3, 735);
         }
+        //mapS22w33
+        if (Y > -228312 && Y < -217520 && X < 344333 && X > 332640) //X33
+        {
+            elevation = -2;
+            region = "s22w33";
+            campout = true;
+            outlineBuilder( 34, 34, "vardanianGrass", -1142, 728);
+
+            outlineBuilder(2, 3, "vardanianFarmland", -1132, 742);
+            outlineBuilder(1, 1, "vardanianFarmland", -1125, 753);
+
+            outlineBuilder(1, 34, "vardanianStone", -1142, 748);
+        }
         //Layer -21 (warm region): elev -2
         //mapS21
         if (Y > -218110 && Y < -207328 && X < 7687 && X > - 3901) //X0
@@ -341,6 +354,77 @@ function worldBuilder()
             outlineBuilder( 1, 1, "savannahDirt", -17, 720);
             outlineBuilder( 1, 1, "savannahDirt", -14, 717);
             outlineBuilder( 1, 1, "savannahDirt", -7, 718);
+        }
+        //mapS21W33 //Boroye (city)
+        if (Y > -218110 && Y < -207328 && X < 344333 && X > 332640) //X33
+        {
+            elevation = -1;
+            region = "s21w33";
+            campout = false;
+            outlineBuilder(34, 34, "vardanianGrass", -1142, 694);
+
+            //outlineBuilder(3, 5, "boroStone", -1119, 691);
+            outlineBuilder(1, 2, "boroStone", -1138, 702);
+            outlineBuilder(1, 4, "boroStone", -1138, 703);
+            outlineBuilder(1, 12, "boroStone", -1124, 694);
+            outlineBuilder(7, 16, "boroStone", -1124, 695);
+            outlineBuilder(2, 21, "boroStone", -1129, 702);
+            outlineBuilder(3, 30, "boroStone", -1138, 704);
+            outlineBuilder(11, 32, "boroStone", -1140, 707);
+            outlineBuilder(2, 31, "boroStone", -1139, 718);
+            outlineBuilder(3, 30, "boroStone", -1138, 720);
+            outlineBuilder(1, 29, "boroStone", -1137, 723);
+            outlineBuilder(1, 22, "boroStone", -1130, 724);
+            outlineBuilder(1, 16, "boroStone", -1130, 725);
+
+            outlineBuilder(1, 4, "burntBoroStone", -1112, 694);
+            outlineBuilder(7, 1, "burntBoroStone", -1125, 719);
+            outlineBuilder(7, 1, "burntBoroStone", -1126, 719);
+            outlineBuilder(2, 1, "burntBoroStone", -1124, 724);
+            outlineBuilder(2, 1, "burntBoroStone", -1122, 721);
+            outlineBuilder(3, 1, "burntBoroStone", -1121, 721);
+            outlineBuilder(2, 3, "burntBoroStone", -1120, 722);
+            outlineBuilder(6, 1, "burntBoroStone", -1127, 720);
+            outlineBuilder(4, 1, "burntBoroStone", -1123, 721);
+            outlineBuilder(5, 1, "burntBoroStone", -1128, 721);
+            outlineBuilder(1, 3, "burntBoroStone", -1133, 722);
+            outlineBuilder(1, 4, "burntBoroStone", -1134, 723);
+            outlineBuilder(5, 2, "burntBoroStone", -1130, 721);
+            outlineBuilder(2, 2, "burntBoroStone", -1132, 724);
+            outlineBuilder(1, 9, "burntBoroStone", -1130, 726);
+
+            outlineBuilder(2, 2, "vardanianGrass", -1128, 723);
+
+            outlineBuilder(26, 1, "vardanianStone", -1132, 694);
+            outlineBuilder(1, 4, "vardanianStone", -1136, 711);
+            outlineBuilder(1, 5, "vardanianStone", -1137, 717);
+            outlineBuilder(1, 13, "vardanianStone", -1131, 714);
+            outlineBuilder(4, 1, "vardanianStone", -1127, 710);
+            outlineBuilder(1, 7, "vardanianStone", -1126, 705);
+            outlineBuilder(24, 1, "vardanianStone", -1119, 696);
+            outlineBuilder(1, 16, "vardanianStone", -1124, 720);
+            outlineBuilder(3, 1, "vardanianStone", -1124, 721);
+            outlineBuilder(1, 4, "vardanianStone", -1118, 707);
+            outlineBuilder(1, 10, "vardanianStone", -1118, 712);
+            outlineBuilder(1, 5, "vardanianStone", -1118, 699);
+            outlineBuilder(7, 1, "vardanianStone", -1111, 713);
+            outlineBuilder(4, 1, "vardanianStone", -1115, 704);
+            outlineBuilder(1, 7, "vardanianStone", -1115, 703);
+            outlineBuilder(4, 1, "vardanianStone", -1114, 695);
+            outlineBuilder(1, 6, "vardanianStone", -1114, 695);
+            outlineBuilder(8, 1, "vardanianStone", -1110, 696);
+            outlineBuilder(1, 1, "vardanianStone", -1109, 702);
+            outlineBuilder(3, 1, "vardanianStone", -1127, 715);
+        }
+        //mapS21W34
+        if (Y > -218110 && Y < -207328 && X < 354544 && X > 342860) //X-34
+        {
+            elevation = 0;
+            region = "s21w34";
+            campout = true;
+            outlineBuilder(34, 34, "vardanianGrass", -1176, 694);
+            outlineBuilder(1, 1, "vardanianFarmland", -1155, 718);
+            outlineBuilder(1, 1, "vardanianFarmland", -1155, 706);
         }
         //mapS21W35
         if (Y > -218110 && Y < -207328 && X < 364713 && X > 353021) //X-35
@@ -6150,7 +6234,7 @@ function worldBuilder()
         region = "testMap";
         campout = true;
         //starting chamber
-        outlineBuilder(68,68, "glade", -34, -34);
+        outlineBuilder(68,68, "hollow", -34, -34);
     }
 }
 

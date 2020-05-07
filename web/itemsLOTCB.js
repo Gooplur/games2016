@@ -19059,6 +19059,70 @@ function Item(type, x, y)
             this.buyValue = 20 - Math.floor(player.getCharisma() / 15); // at max, buy for 17.
             this.sellValue = 14 + Math.floor(player.getCharisma() / 15); // at max, sell for 17.
         }
+        else if (this.type == "jarOfWater")
+        {
+            //For All Items
+            this.identity = "Jar of Water";
+            this.weight = 3.2;
+            this.size = 6;
+            this.description = "The watery and wet liquid known as liquid stored in a glass jar.";
+            this.intForDes = 1;
+            this.intDescription = "Be careful not to spill this on yourself if you value your dryness...";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["glassJar", 1]];
+
+            //Utility Focused
+            this.isRegenerative = true; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0; //satisfies hunger.
+            this.thirst = 10; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+            this.cooling = 7.5;
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 45 - Math.floor(player.getCharisma() / 3); // at max, buy for 30.
+            this.sellValue = 15 + Math.floor(player.getCharisma() / 3); // at max, sell for 30.
+        }
+        else if (this.type == "jarOfThruumPaste")
+        {
+            //For All Items
+            this.identity = "Jar of Thruum Paste";
+            this.weight = 9;
+            this.size = 6;
+            this.description = "The thick pasty blood-like nectar of a thruum fungus.";
+            this.intForDes = 1;
+            this.intDescription = "This sweet, metallic tasting ingredient has use as a former and is the principal ingredient in a potent cure for decay.";
+
+            //Define Utility
+            this.utility = "food";
+            this.subUtility = "reusable";
+            this.refund = [["glassJar", 1]];
+
+            //Utility Focused
+            this.isRegenerative = true; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 3; //satisfies hunger.
+            this.thirst = 5; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0.2; //heals health.
+            this.generation = -2; //recoops lost energy.
+            this.replenish = 0; //restores will.
+            this.cooling = 1;
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 60 - Math.floor(player.getCharisma() / 5); // at max, buy for 50.
+            this.sellValue = 35 + Math.floor(player.getCharisma() / 3); // at max, sell for 50.
+        }
         else if (this.type == "jarOfUlgoyNectar")
         {
             //For All Items
@@ -51824,6 +51888,147 @@ function Item(type, x, y)
             this.buyValue = 50 - Math.floor(player.getCharisma() / 10); // at max, buy for 45.
             this.sellValue = 42 + Math.floor(player.getCharisma() / 15); // at max, sell for 45.
         }
+        else if (this.type == "blackwoodSorcererRobe")
+        {
+            //For All Items
+            this.identity = "Blackwood Sorcerer Robe";
+            this.weight = 4;
+            this.size = 26;
+            this.description = "The noble robes of the mysterious Cephrian House of Blackwood.";
+            this.intForDes = 9;
+            this.intDescription = "This robe is enchanted with the power to resist both disease and decay, though one must have enough eminence to harness it.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 8;
+            this.magicalProtection = 3;
+            this.warmthRetention = 1;
+            this.thirstRetention = 0.36;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 3;
+            this.charismaBonus = 30;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = -8;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 30;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 5;
+            //Magical Stat Bonuses
+            if (player.getEminence() >= 8)
+            {
+                this.eminenceBonus = 0;
+                this.willpowerBonus = 2;
+                this.knowledgeBonus = 0;
+                this.concentrationBonus = 5;
+                this.memoryBonus = 3;
+
+                //ability
+                this.ability = "blackwood";
+            }
+            else
+            {
+                this.eminenceBonus = 0;
+                this.willpowerBonus = 0;
+                this.knowledgeBonus = 0;
+                this.concentrationBonus = 0;
+                this.memoryBonus = 0;
+
+                //ability
+                this.ability = "resistDisease";
+            }
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 9300 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 9100.
+            this.sellValue = 8900 + Math.floor(player.getCharisma() / 0.25); // at max, sell for 9100.
+        }
+        else if (this.type == "blackwoodSorceressRobe")
+        {
+            //For All Items
+            this.identity = "Blackwood Sorceress Robe";
+            this.weight = 4;
+            this.size = 26;
+            this.description = "The noble robes of the mysterious Cephrian House of Blackwood.";
+            this.intForDes = 9;
+            this.intDescription = "This robe is enchanted with the power to resist both disease and decay, though one must have enough eminence to harness it.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 6;
+            this.magicalProtection = 2;
+            this.warmthRetention = 1;
+            this.thirstRetention = 0.36;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            if (player.gender == "Female")
+            {
+                this.charismaBonus = 34;
+            }
+            else
+            {
+                this.charismaBonus = -50;
+            }
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = -8;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 20;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 4;
+            //Magical Stat Bonuses
+            if (player.getEminence() >= 6)
+            {
+                this.eminenceBonus = 0;
+                this.willpowerBonus = 1;
+                this.knowledgeBonus = 0;
+                this.concentrationBonus = 4;
+                this.memoryBonus = 3;
+
+                //ability
+                this.ability = "blackwood";
+            }
+            else
+            {
+                this.eminenceBonus = 0;
+                this.willpowerBonus = 0;
+                this.knowledgeBonus = 0;
+                this.concentrationBonus = 0;
+                this.memoryBonus = 0;
+
+                //ability
+                this.ability = "resistDisease";
+            }
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 9300 - Math.floor(player.getCharisma() / 0.25); // at max, buy for 9100.
+            this.sellValue = 8900 + Math.floor(player.getCharisma() / 0.25); // at max, sell for 9100.
+        }
         else if (this.type == "lichRobe")
         {
             //For All Items
@@ -56948,6 +57153,26 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
+        }
+        else if (this.type == "blackwoodSorcererRobe")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ocul, 1264, 17, 108, 220, X - this.X + (1/2 * CCC.width) - (1/2 * 108 * 0.45), Y - this.Y + (1/2 * CCC.height) - (1/2 * 220 * 0.45), 108 * 0.45, 220 * 0.45);
+        }
+        else if (this.type == "blackwoodSorceressRobe")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ocul, 1139, 16, 108, 220, X - this.X + (1/2 * CCC.width) - (1/2 * 108 * 0.45), Y - this.Y + (1/2 * CCC.height) - (1/2 * 220 * 0.45), 108 * 0.45, 220 * 0.45);
+        }
+        else if (this.type == "jarOfWater")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bosh, 344, 139, 9, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 9 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16 * 1.5), 9 * 1.5, 16 * 1.5);
+        }
+        else if (this.type == "jarOfThruumPaste")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bosh, 359, 139, 9, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 9 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16 * 1.5), 9 * 1.5, 16 * 1.5);
         }
         else if (this.type == "rawModerrLeg")
         {
@@ -64367,6 +64592,26 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(candlewic, 61, 201, 27, 29, this.invX - (1/2 * 27 * 1.5), this.invY - (1/2 * 29 * 1.5), 27 * 1.5, 29 * 1.5);
         }
+        else if (this.type == "blackwoodSorcererRobe")
+        {
+            LXX.beginPath();
+            LXX.drawImage(ocul, 1264, 17, 108, 220, this.invX - (1/2 * 108 * 0.31), this.invY - (1/2 * 220 * 0.31), 108 * 0.31, 220 * 0.31);
+        }
+        else if (this.type == "blackwoodSorceressRobe")
+        {
+            LXX.beginPath();
+            LXX.drawImage(ocul, 1139, 16, 108, 220, this.invX - (1/2 * 108 * 0.31), this.invY - (1/2 * 220 * 0.31), 108 * 0.31, 220 * 0.31);
+        }
+        else if (this.type == "jarOfWater")
+        {
+            LXX.beginPath();
+            LXX.drawImage(bosh, 344, 139, 9, 16, this.invX - (1/2 * 9 * 1.5), this.invY - (1/2 * 16 * 1.5), 9 * 1.5, 16 * 1.5);
+        }
+        else if (this.type == "jarOfThruumPaste")
+        {
+            LXX.beginPath();
+            LXX.drawImage(bosh, 359, 139, 9, 16, this.invX - (1/2 * 9 * 1.5), this.invY - (1/2 * 16 * 1.5), 9 * 1.5, 16 * 1.5);
+        }
         else if (this.type == "rawModerrLeg")
         {
             LXX.beginPath();
@@ -71769,6 +72014,26 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "blackwoodSorcererRobe")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ocul, 1264, 17, 108, 220, this.invX - (1/2 * 108 * 0.31), this.invY - (1/2 * 220 * 0.31), 108 * 0.31, 220 * 0.31);
+        }
+        else if (this.type == "blackwoodSorceressRobe")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ocul, 1139, 16, 108, 220, this.invX - (1/2 * 108 * 0.31), this.invY - (1/2 * 220 * 0.31), 108 * 0.31, 220 * 0.31);
+        }
+        else if (this.type == "jarOfWater")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bosh, 344, 139, 9, 16, this.invX - (1/2 * 9 * 1.5), this.invY - (1/2 * 16 * 1.5), 9 * 1.5, 16 * 1.5);
+        }
+        else if (this.type == "jarOfThruumPaste")
+        {
+            XXX.beginPath();
+            XXX.drawImage(bosh, 359, 139, 9, 16, this.invX - (1/2 * 9 * 1.5), this.invY - (1/2 * 16 * 1.5), 9 * 1.5, 16 * 1.5);
         }
         else if (this.type == "rawModerrLeg")
         {

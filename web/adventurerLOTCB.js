@@ -3407,6 +3407,11 @@ function Adventurer()
                 }
             }
 
+            if (this.movingType == "swimming" && this.water == true && player.form != "vampire" || this.movingType == "swimming" && this.water == true && wKey != true)
+            {
+                this.heat = Math.max(0, this.heat - 1);
+            }
+
             //HEAT EXHAUSTION
             if (this.heat > this.heatTolerance)
             {

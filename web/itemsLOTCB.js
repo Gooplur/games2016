@@ -9109,6 +9109,229 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 0; // at max, sell for 0.
         }
+        else if (this.type == "roastedPork")
+        {
+            //For All Items
+            this.identity = "Roasted Pork";
+            this.weight = 20;
+            this.size = 12;
+            this.description = "The roasted meat of a pig.";
+            this.intForDes = 0;
+            this.intDescription = "The meat is rich and fatty with a flavorful umami taste.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 30; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 17; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.2; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "satiate";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 19;
+            this.ingredients = [["Raw Pork", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 35 - Math.floor(player.getCharisma() / 10); // at max, buy for 30.
+            this.sellValue = 27 + Math.floor(player.getCharisma() / 15); // at max, sell for 30.
+        }
+        else if (this.type == "choppedPork")
+        {
+            //For All Items
+            this.identity = "Chopped Roasted Pork";
+            this.weight = 10;
+            this.size = 11;
+            this.description = "The chopped roasted meat of a pig.";
+            this.intForDes = 0;
+            this.intDescription = "The meat is rich and fatty with a flavorful umami taste.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 16; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 9; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.15; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "satiate";
+
+            //Crafting
+            this.yield = 2;
+            this.intForCraft = 0;
+            this.ingredients = [["Roasted Pork", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 18 - Math.floor(player.getCharisma() / 25); // at max, buy for 16.
+            this.sellValue = 14 + Math.floor(player.getCharisma() / 25); // at max, sell for 16.
+        }
+        else if (this.type == "roastedPigFoot")
+        {
+            //For All Items
+            this.identity = "Roasted Pig Foot";
+            this.weight = 1.15;
+            this.size = 8;
+            this.description = "The roasted ankle and hoof of a pig.";
+            this.intForDes = 0;
+            this.intDescription = "The meat is really tough to eat but still tastes good...";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 5; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 1; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -1.5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 3;
+            this.ingredients = [["Raw Pig Foot", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 4 - Math.floor(player.getCharisma() / 50); // at max, buy for 3.
+            this.sellValue = 2 + Math.floor(player.getCharisma() / 50); // at max, sell for 3.
+        }
+        else if (this.type == "rawPigFoot")
+        {
+            //For All Items
+            this.identity = "Raw Pig Foot";
+            this.weight = 1.25;
+            this.size = 8;
+            this.description = "The severed ankle and hoof of a pig.";
+            this.intForDes = 0;
+            this.intDescription = "Pig feet are used to flavour stews and they are eaten by the peasants who often can't afford better cuts of meat.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 6; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 3; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -2.5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3 - Math.floor(player.getCharisma() / 50); // at max, buy for 2.
+            this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+        }
+        else if (this.type == "rawPork")
+        {
+            //For All Items
+            this.identity = "Raw Pork";
+            this.weight = 22;
+            this.size = 12;
+            this.description = "The raw flesh of a pig.";
+            this.intForDes = 2;
+            this.intDescription = "The flesh is well marbled with fat.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 7; //satisfies hunger.
+            this.thirst = 1.4; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "gutWorms";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 17 - Math.floor(player.getCharisma() / 15); // at max, buy for 14.
+            this.sellValue = 12 + Math.floor(player.getCharisma() / 25); // at max, sell for 14.
+        }
+        else if (this.type == "rawPigHead")
+        {
+            //For All Items
+            this.identity = "Raw Pig Head";
+            this.weight = 25;
+            this.size = 13;
+            this.description = "The severed head of a pig.";
+            this.intForDes = 1;
+            this.intDescription = "When cooked pig heads are used to adorn Orgish feast tables.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 3; //satisfies hunger.
+            this.thirst = 0.3; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "gutWorms";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 8 - Math.floor(player.getCharisma() / 25); // at max, buy for 6.
+            this.sellValue = 4 + Math.floor(player.getCharisma() / 25); // at max, sell for 6.
+        }
+        else if (this.type == "roastedPigHead")
+        {
+            //For All Items
+            this.identity = "Roasted Pig Head";
+            this.weight = 24;
+            this.size = 13;
+            this.description = "The roasted head of a pig.";
+            this.intForDes = 0;
+            this.intDescription = "The cheeks and neck are the bulk of the meat that is traditionally eaten, the rest is fed to the pigs with the rest of the scraps.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 10; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 10; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 13;
+            this.ingredients = [["Raw Pig Head", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 16 - Math.floor(player.getCharisma() / 25); // at max, buy for 14.
+            this.sellValue = 11 + Math.floor(player.getCharisma() / 15); // at max, sell for 14.
+        }
         else if (this.type == "arcticFoxPelt")
         {
             //For All Items
@@ -10645,11 +10868,11 @@ function Item(type, x, y)
 
             //Utility Focused
             this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
-            this.hunger = 4; //satisfies hunger.
-            this.thirst = 0.3; //quenches thirst.
+            this.hunger = 18; //satisfies hunger.
+            this.thirst = 5.3; //quenches thirst.
             this.warmth = 0; //warms player.
             this.heal = 0; //heals health.
-            this.generation = -6; //recoops lost energy.
+            this.generation = -30; //recoops lost energy.
             this.replenish = 0; //restores will.
 
             //ability
@@ -10667,18 +10890,18 @@ function Item(type, x, y)
             this.size = 17;
             this.description = "The cooked meat of a mud strider.";
             this.intForDes = 0;
-            this.intDescription = "It has a somewhat soggy chewiness to it and a boggy musk in its aftertaste, otherwise it's food.";
+            this.intDescription = "It has an uncomfortably soggy chewiness to it and a boggy musk in its aftertaste, otherwise it's food.";
 
             //Define Utility
             this.utility = "food";
 
             //Utility Focused
             this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
-            this.hunger = 15; //satisfies hunger.
+            this.hunger = 35; //satisfies hunger.
             this.thirst = 0.2; //quenches thirst.
-            this.warmth = 4; //warms player.
+            this.warmth = 13; //warms player.
             this.heal = 0; //heals health.
-            this.generation = -2; //recoops lost energy.
+            this.generation = -20; //recoops lost energy.
             this.replenish = 0; //restores will.
 
             //ability
@@ -10687,7 +10910,7 @@ function Item(type, x, y)
             //Crafting
             this.yield = 1;
             this.intForCraft = 7;
-            this.ingredients = [["Raw Mud Strider", 1]];
+            this.ingredients = [["Raw Mud Strider Flesh", 1]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 8; // at max, buy for 8.
@@ -12315,6 +12538,224 @@ function Item(type, x, y)
             this.buyValue = 3; // at max, buy for 3.
             this.sellValue = 2 + Math.floor(player.getCharisma() / 50); // at max, sell for 3.
         }
+        else if (this.type == "rawSagroTailSml")
+        {
+            //For All Items
+            this.identity = "Raw Sagro Tail";
+            this.weight = 7;
+            this.size = 10;
+            this.description = "The tail of a sagro.";
+            this.intForDes = 3;
+            this.intDescription = "It is unsafe to eat raw due to parasites.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 3; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "fleshMites";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "rawSagroTailLrg")
+        {
+            //For All Items
+            this.identity = "Large Raw Sagro Tail";
+            this.weight = 9;
+            this.size = 14;
+            this.description = "The tail of a large sagro.";
+            this.intForDes = 3;
+            this.intDescription = "It is unsafe to eat raw due to parasites.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 7; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -7.5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "fleshMites";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 4; // at max, buy for 4.
+            this.sellValue = 3; // at max, sell for 3.
+        }
+        else if (this.type == "roastedSagroTailSml")
+        {
+            //For All Items
+            this.identity = "Roasted Sagro Tail";
+            this.weight = 7;
+            this.size = 10;
+            this.description = "The roasted tail of a sagro.";
+            this.intForDes = 0;
+            this.intDescription = "The meat is thick and fairly chewy, with a muskiness to its flavor.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 10; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 4; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -2; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 6;
+            this.ingredients = [["Raw Sagro Tail", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 9; // at max, buy for 9.
+            this.sellValue = 5; // at max, sell for 5.
+        }
+        else if (this.type == "roastedSagroTailLrg")
+        {
+            //For All Items
+            this.identity = "Large Roasted Sagro Tail";
+            this.weight = 9;
+            this.size = 10;
+            this.description = "The roasted tail of a large sagro.";
+            this.intForDes = 0;
+            this.intDescription = "The meat is thick and fairly chewy, with a muskiness to its flavor.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 16; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 8; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -4; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 7;
+            this.ingredients = [["Large Raw Sagro Tail", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 14; // at max, buy for 14.
+            this.sellValue = 9; // at max, sell for 9.
+        }
+        else if (this.type == "sagroKidney")
+        {
+            //For All Items
+            this.identity = "Sagro Kidney";
+            this.weight = 8;
+            this.size = 10;
+            this.description = "The kidney of a sagro.";
+            this.intForDes = 7;
+            this.intDescription = "The kidney is the organ for filtering out harmful substances, better not eat it.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 6; //satisfies hunger.
+            this.thirst = 0.5; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = -4; //restores will.
+
+            //ability
+            this.ability = "foodPoisoning";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 9; // at max, buy for 9.
+            this.sellValue = 8; // at max, sell for 8.
+        }
+        else if (this.type == "rawSagroFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Sagro Flesh";
+            this.weight = 9;
+            this.size = 12;
+            this.description = "The raw flesh of a sagro.";
+            this.intForDes = 3;
+            this.intDescription = "It is unsafe to eat raw do to parasites.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 4; //satisfies hunger.
+            this.thirst = 0.25; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -3; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "fleshMites";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3; // at max, buy for 3.
+            this.sellValue = 2; // at max, sell for 2.
+        }
+        else if (this.type == "sagroMeat")
+        {
+            //For All Items
+            this.identity = "Sagro Meat";
+            this.weight = 9;
+            this.size = 12;
+            this.description = "The cooked meat of a sagro.";
+            this.intForDes = 3;
+            this.intDescription = "The meat is thick and somewhat chewy, with a muskiness to its flavor.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 13; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 5; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -0.5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 8;
+            this.ingredients = [["Raw Sagro Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 11; // at max, buy for 11.
+            this.sellValue = 7; // at max, sell for 7.
+        }
         else if (this.type == "rawGhoulFlesh")
         {
             //For All Items
@@ -13600,6 +14041,47 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 39 - Math.floor(player.getCharisma() / 25); // at max, buy for 37.
             this.sellValue = 29 + Math.floor(player.getCharisma() / 6); // at max, sell for 37.
+        }
+        else if (this.type == "sagroHide")
+        {
+            //For All Items
+            this.identity = "Sagro Hide";
+            this.weight = 8.66;
+            this.size = 20;
+            this.description = "The thick brown leathery hide of a sagro.";
+            this.intForDes = 0;
+            this.intDescription = "Sagro hide is smooth and slick when wet.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 13 - Math.floor(player.getCharisma() / 50); // at max, buy for 12.
+            this.sellValue = 9 + Math.floor(player.getCharisma() / 15); // at max, sell for 12.
+        }
+        else if (this.type == "skarabaus")
+        {
+            //For All Items
+            this.identity = "Skarabaus";
+            this.weight = 2.3;
+            this.size = 20;
+            this.description = "A sticky, fleshy, stringy, bloody stalk with a lumpy, rough, grey fungal cap to hold the spores.";
+            this.intForDes = 28;
+            this.intDescription = "Skarabaus fungus is a rare occurrence of a natural simbiosis between fungus and flesh where both fungus and animal cells work together at the cellular level.";
+            this.smallText = "tiny";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 4 - Math.floor(player.getCharisma() / 50); // at max, buy for 3.
+            this.sellValue = 2 + Math.floor(player.getCharisma() / 50); // at max, sell for 3.
         }
         else if (this.type == "basiliskScale")
         {
@@ -27901,6 +28383,135 @@ function Item(type, x, y)
             this.buyValue = 8 - Math.floor(player.getCharisma() / 25); // at max, buy for 6.
             this.sellValue = 2 + Math.floor(player.getCharisma() / 15); // at max, sell for 5.
         }
+        else if (this.type == "rawBogWaspFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Bog Wasp Flesh";
+            this.weight = 4.5;
+            this.size = 10;
+            this.description = "The raw dark pink flesh of a bog wasp.";
+            this.intForDes = 5;
+            this.intDescription = "this type of meat can be safely eaten raw; it has a slightly sweet but meaty, and yet oddly bug-like flavour.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 14; //satisfies hunger.
+            this.thirst = 1.5; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+            this.cooling = 0.2; //cools player.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 12; // at max, buy for 12.
+            this.sellValue = 8 + Math.floor(player.getCharisma() / 12.5); // at max, sell for 12.
+        }
+        else if (this.type == "bogWaspMeat")
+        {
+            //For All Items
+            this.identity = "Bog Wasp Meat";
+            this.weight = 4.5;
+            this.size = 10;
+            this.description = "The cooked meat of a bog wasp.";
+            this.intForDes = 0;
+            this.intDescription = "It has a mildly meaty flavour, and a chewy texture.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 16; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 7; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -1; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 5;
+            this.ingredients = [["Raw Bog Wasp Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 12; // at max, buy for 12.
+            this.sellValue = 8 + Math.floor(player.getCharisma() / 12.5); // at max, sell for 12.
+        }
+        else if (this.type == "rawGladeWaspFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Glade Wasp Flesh";
+            this.weight = 1.55;
+            this.size = 8;
+            this.description = "The raw pink flesh of a glade wasp.";
+            this.intForDes = 5;
+            this.intDescription = "this type of meat can be safely eaten raw; it has a somewhat sour, meaty, and oddly bug-like flavour.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 8; //satisfies hunger.
+            this.thirst = 0.5; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+            this.cooling = 0.1; //cools player.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 6; // at max, buy for 6.
+            this.sellValue = 4 + Math.floor(player.getCharisma() / 25); // at max, sell for 6.
+        }
+        else if (this.type == "gladeWaspMeat")
+        {
+            //For All Items
+            this.identity = "Glade Wasp Meat";
+            this.weight = 1.55;
+            this.size = 8;
+            this.description = "The cooked meat of a glade wasp.";
+            this.intForDes = 0;
+            this.intDescription = "It has a mildly meaty flavour and a moderately chewy texture.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 10.5; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 4; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -0.5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+            this.cooling = 0; //cools player.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 8;
+            this.ingredients = [["Raw Glade Wasp Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 8; // at max, buy for 8.
+            this.sellValue = 5 + Math.floor(player.getCharisma() / 15); // at max, sell for 8.
+        }
         else if (this.type == "humptyChalaza")
         {
             //For All Items
@@ -29906,6 +30517,161 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 16 - Math.floor(player.getCharisma() / 50); // at max, buy for 15.
             this.sellValue = 11 + Math.floor(player.getCharisma() / 12); // at max, sell for 15.
+        }
+        else if (this.type == "gelatin")
+        {
+            //For All Items
+            this.identity = "Gelatin";
+            this.weight = 0.4;
+            this.size = 5;
+            this.description = "It is pale and has a thin, powdery consistency.";
+            this.intForDes = 4;
+            this.intDescription = "When gelatin is boiled with a liquid and then allowed to cool, the liquid thickens.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 2;
+            this.intForCraft = 14;
+            this.ingredients = [["Raw Pig Foot", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 4 - Math.floor(player.getCharisma() / 50); // at max, buy for 3.
+            this.sellValue = 3; // at max, sell for 3.
+        }
+        else if (this.type == "gladeWaspWing")
+        {
+            //For All Items
+            this.identity = "Glade Wasp Wing";
+            this.weight = 0.7;
+            this.size = 13;
+            this.description = "The thin but durable papery-leather wing of a glade wasp.";
+            this.intForDes = 6;
+            this.intDescription = "This is no more than a trophy from having slain a glade wasp.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "gladeWaspStinger")
+        {
+            //For All Items
+            this.identity = "Glade Wasp Stinger";
+            this.weight = 1.45;
+            this.size = 9;
+            this.description = "The long curved and pointed stinger of a glade wasp.";
+            this.intForDes = 8;
+            this.intDescription = "Glade wasp stingers can be fermented to make a useful alchemical ingredient.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3; // at max, buy for 3.
+            this.sellValue = 3; // at max, sell for 3.
+        }
+        else if (this.type == "fermentedGladeWaspStinger")
+        {
+            //For All Items
+            this.identity = "Glade Wasp Stinger";
+            this.weight = 1.7;
+            this.size = 10;
+            this.description = "The potent sour smelling fermented stinger of a glade wasp.";
+            this.intForDes = 18;
+            this.intDescription = "Fermented Glade wasp stingers are used in alchemy as a former and as a changer.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 20;
+            this.ingredients = [["Glade Wasp Stinger", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 8; // at max, buy for 8.
+            this.sellValue = 7; // at max, sell for 7.
+        }
+        else if (this.type == "bogWaspStinger")
+        {
+            //For All Items
+            this.identity = "Bog Wasp Stinger";
+            this.weight = 4.6;
+            this.size = 13;
+            this.description = "The long curved and pointed stinger of a bog wasp.";
+            this.intForDes = 15;
+            this.intDescription = "bog wasp stingers can be fermented to make an alchemically usefull ingredient.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 2; // at max, sell for 2.
+        }
+        else if (this.type == "fermentedBogWaspStinger")
+        {
+            //For All Items
+            this.identity = "Fermented Bog Wasp Stinger";
+            this.weight = 3.8;
+            this.size = 14;
+            this.description = "The sour smelling fermented stinger of a bog wasp.";
+            this.intForDes = 17;
+            this.intDescription = "This serves as a changer in alchemy and is most known for its use in producing an antidote to weak poisons.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 15;
+            this.ingredients = [["Bog Wasp Stinger", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 6; // at max, buy for 6.
+            this.sellValue = 4; // at max, sell for 4.
+        }
+        else if (this.type == "bogWaspWing")
+        {
+            //For All Items
+            this.identity = "Bog Wasp Wing";
+            this.weight = 1.6;
+            this.size = 18;
+            this.description = "The thin but durable leathery wing of a bog wasp.";
+            this.intForDes = 6;
+            this.intDescription = "Bog wasp wing has no alchemic purpose but it does make for a cool trophy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 2; // at max, sell for 2.
         }
         else if (this.type == "coal")
         {
@@ -38428,6 +39194,7 @@ function Item(type, x, y)
             }
             else
             {
+                this.identity = "Whip Scorpion Meat";
                 this.weight = 14.5;
                 this.size = 20;
                 this.description = "The large roasted meaty tail of a whip scorpion.";
@@ -57344,6 +58111,141 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "rawPork")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ggell, 106, 84, 36, 27, X - this.X + (1/2 * CCC.width) - (1/2 * 36 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 27 * 1), 36 * 1, 27 * 1);
+        }
+        else if (this.type == "roastedPork")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ggell, 105, 110, 36, 27, X - this.X + (1/2 * CCC.width) - (1/2 * 36 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 27 * 1), 36 * 1, 27 * 1);
+        }
+        else if (this.type == "choppedPork")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ggell, 65, 76, 36, 27, X - this.X + (1/2 * CCC.width) - (1/2 * 36 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 27 * 1), 36 * 1, 27 * 1);
+        }
+        else if (this.type == "roastedPigHead")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ggell, 55, 108, 36, 27, X - this.X + (1/2 * CCC.width) - (1/2 * 36 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 27 * 1), 36 * 1, 27 * 1);
+        }
+        else if (this.type == "rawPigHead")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ggell, 3, 107, 36, 27, X - this.X + (1/2 * CCC.width) - (1/2 * 36 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 27 * 1), 36 * 1, 27 * 1);
+        }
+        else if (this.type == "gelatin")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ggell, 117, 37, 24, 18, X - this.X + (1/2 * CCC.width) - (1/2 * 24 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 18 * 1), 24 * 1, 18 * 1);
+        }
+        else if (this.type == "rawPigFoot")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ggell, 118, 55, 24, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 24 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16 * 1), 24 * 1, 16 * 1);
+        }
+        else if (this.type == "roastedPigFoot")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ggell, 118, 69, 24, 16, X - this.X + (1/2 * CCC.width) - (1/2 * 24 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 16 * 1), 24 * 1, 16 * 1);
+        }
+        else if (this.type == "sagroKidney")
+        {
+            XXX.beginPath();
+            XXX.drawImage(scrag, 804, 2, 38, 27, X - this.X + (1/2 * CCC.width) - (1/2 * 38 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 27 * 1), 38 * 1, 27 * 1);
+        }
+        else if (this.type == "rawSagroFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(scrag, 790, 32, 66, 39, X - this.X + (1/2 * CCC.width) - (1/2 * 66 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 39 * 1), 66 * 1, 39 * 1);
+        }
+        else if (this.type == "sagroMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(scrag, 792, 78, 66, 39, X - this.X + (1/2 * CCC.width) - (1/2 * 66 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 39 * 1), 66 * 1, 39 * 1);
+        }
+        else if (this.type == "rawSagroTailSml")
+        {
+            XXX.beginPath();
+            XXX.drawImage(scrag, 874, 28, 66, 39, X - this.X + (1/2 * CCC.width) - (1/2 * 66 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 39 * 1), 66 * 1, 39 * 1);
+        }
+        else if (this.type == "rawSagroTailLrg")
+        {
+            XXX.beginPath();
+            XXX.drawImage(scrag, 874, 28, 66, 39, X - this.X + (1/2 * CCC.width) - (1/2 * 66 * 1.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 39 * 1.3), 66 * 1.3, 39 * 1.3);
+        }
+        else if (this.type == "roastedSagroTailSml")
+        {
+            XXX.beginPath();
+            XXX.drawImage(scrag, 875, 116, 66, 39, X - this.X + (1/2 * CCC.width) - (1/2 * 66 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 39 * 1), 66 * 1, 39 * 1);
+        }
+        else if (this.type == "roastedSagroTailLrg")
+        {
+            XXX.beginPath();
+            XXX.drawImage(scrag, 875, 116, 66, 39, X - this.X + (1/2 * CCC.width) - (1/2 * 66 * 1.3), Y - this.Y + (1/2 * CCC.height) - (1/2 * 39 * 1.3), 66 * 1.3, 39 * 1.3);
+        }
+        else if (this.type == "sagroHide")
+        {
+            XXX.beginPath();
+            XXX.drawImage(scrag, 975, 23, 99, 52, X - this.X + (1/2 * CCC.width) - (1/2 * 99 * 1.15), Y - this.Y + (1/2 * CCC.height) - (1/2 * 52 * 1.15), 99 * 1.15, 52 * 1.15);
+        }
+        else if (this.type == "skarabaus")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moonberry, 635, 619, 39, 37, X - this.X + (1/2 * CCC.width) - (1/2 * 39 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 37 * 1), 39 * 1, 37 * 1);
+        }
+        else if (this.type == "gladeWaspWing")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moonberry, 504, 1116, 60, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 60 * 1.16), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 1.16), 60 * 1.16, 24 * 1.16);
+        }
+        else if (this.type == "bogWaspWing")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mboo, 504, 1116, 60, 24, X - this.X + (1/2 * CCC.width) - (1/2 * 60 * 1.7), Y - this.Y + (1/2 * CCC.height) - (1/2 * 24 * 1.7), 60 * 1.7, 24 * 1.7);
+        }
+        else if (this.type == "fermentedGladeWaspStinger")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moonberry, 580, 1112, 39, 26, X - this.X + (1/2 * CCC.width) - (1/2 * 39 * 1.16), Y - this.Y + (1/2 * CCC.height) - (1/2 * 26 * 1.16), 39 * 1.16, 26 * 1.16);
+        }
+        else if (this.type == "fermentedBogWaspStinger")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mboo, 580, 1112, 39, 26, X - this.X + (1/2 * CCC.width) - (1/2 * 39 * 1.7), Y - this.Y + (1/2 * CCC.height) - (1/2 * 26 * 1.7), 39 * 1.7, 26 * 1.7);
+        }
+        else if (this.type == "gladeWaspStinger")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moonberry, 458, 1116, 39, 26, X - this.X + (1/2 * CCC.width) - (1/2 * 39 * 1.16), Y - this.Y + (1/2 * CCC.height) - (1/2 * 26 * 1.16), 39 * 1.16, 26 * 1.16);
+        }
+        else if (this.type == "bogWaspStinger")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mboo, 458, 1116, 39, 26, X - this.X + (1/2 * CCC.width) - (1/2 * 39 * 1.7), Y - this.Y + (1/2 * CCC.height) - (1/2 * 26 * 1.7), 39 * 1.7, 26 * 1.7);
+        }
+        else if (this.type == "rawGladeWaspFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moonberry, 460, 1086, 39, 26, X - this.X + (1/2 * CCC.width) - (1/2 * 39 * 1.16), Y - this.Y + (1/2 * CCC.height) - (1/2 * 26 * 1.16), 39 * 1.16, 26 * 1.16);
+        }
+        else if (this.type == "gladeWaspMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moonberry, 492, 1087, 39, 26, X - this.X + (1/2 * CCC.width) - (1/2 * 39 * 1.16), Y - this.Y + (1/2 * CCC.height) - (1/2 * 26 * 1.16), 39 * 1.16, 26 * 1.16);
+        }
+        else if (this.type == "rawBogWaspFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mboo, 460, 1086, 39, 26, X - this.X + (1/2 * CCC.width) - (1/2 * 39 * 1.7), Y - this.Y + (1/2 * CCC.height) - (1/2 * 26 * 1.7), 39 * 1.7, 26 * 1.7);
+        }
+        else if (this.type == "bogWaspMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mboo, 492, 1087, 39, 26, X - this.X + (1/2 * CCC.width) - (1/2 * 39 * 1.7), Y - this.Y + (1/2 * CCC.height) - (1/2 * 26 * 1.7), 39 * 1.7, 26 * 1.7);
+        }
         else if (this.type == "rawTigerFlesh")
         {
             XXX.beginPath();
@@ -57397,12 +58299,12 @@ function Item(type, x, y)
         else if (this.type == "rawCapulLeg")
         {
             XXX.beginPath();
-            XXX.drawImage(pill, 522, 472, 25, 47, X - this.X + (1/2 * CCC.width) - (1/2 * 25 * 0.65), Y - this.Y + (1/2 * CCC.height) - (1/2 * 47 * 0.65), 25 * 0.65, 47 * 0.65);
+            XXX.drawImage(pill, 522, 472, 25, 47, X - this.X + (1/2 * CCC.width) - (1/2 * 25 * 0.675), Y - this.Y + (1/2 * CCC.height) - (1/2 * 47 * 0.675), 25 * 0.675, 47 * 0.675);
         }
-        else if (this.type == "capulLeg")
+        else if (this.type == "roastedCapulLeg")
         {
             XXX.beginPath();
-            XXX.drawImage(pill, 547, 473, 25, 47, X - this.X + (1/2 * CCC.width) - (1/2 * 25 * 0.65), Y - this.Y + (1/2 * CCC.height) - (1/2 * 47 * 0.65), 25 * 0.65, 47 * 0.65);
+            XXX.drawImage(pill, 547, 473, 25, 47, X - this.X + (1/2 * CCC.width) - (1/2 * 25 * 0.675), Y - this.Y + (1/2 * CCC.height) - (1/2 * 47 * 0.675), 25 * 0.675, 47 * 0.675);
         }
         else if (this.type == "rawMudStriderFlesh")
         {
@@ -64802,6 +65704,141 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(candlewic, 61, 201, 27, 29, this.invX - (1/2 * 27 * 1.5), this.invY - (1/2 * 29 * 1.5), 27 * 1.5, 29 * 1.5);
         }
+        else if (this.type == "rawPork")
+        {
+            LXX.beginPath();
+            LXX.drawImage(ggell, 106, 84, 36, 27, this.invX - (1/2 * 36 * 1), this.invY - (1/2 * 27 * 1), 36 * 1, 27 * 1);
+        }
+        else if (this.type == "roastedPork")
+        {
+            LXX.beginPath();
+            LXX.drawImage(ggell, 105, 110, 36, 27, this.invX - (1/2 * 36 * 1), this.invY - (1/2 * 27 * 1), 36 * 1, 27 * 1);
+        }
+        else if (this.type == "choppedPork")
+        {
+            LXX.beginPath();
+            LXX.drawImage(ggell, 65, 76, 36, 27, this.invX - (1/2 * 36 * 1), this.invY - (1/2 * 27 * 1), 36 * 1, 27 * 1);
+        }
+        else if (this.type == "roastedPigHead")
+        {
+            LXX.beginPath();
+            LXX.drawImage(ggell, 55, 108, 36, 27, this.invX - (1/2 * 36 * 1), this.invY - (1/2 * 27 * 1), 36 * 1, 27 * 1);
+        }
+        else if (this.type == "rawPigHead")
+        {
+            LXX.beginPath();
+            LXX.drawImage(ggell, 3, 107, 36, 27, this.invX - (1/2 * 36 * 1), this.invY - (1/2 * 27 * 1), 36 * 1, 27 * 1);
+        }
+        else if (this.type == "gelatin")
+        {
+            LXX.beginPath();
+            LXX.drawImage(ggell, 117, 37, 24, 18, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 18 * 1), 24 * 1, 18 * 1);
+        }
+        else if (this.type == "rawPigFoot")
+        {
+            LXX.beginPath();
+            LXX.drawImage(ggell, 118, 55, 24, 16, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 16 * 1), 24 * 1, 16 * 1);
+        }
+        else if (this.type == "roastedPigFoot")
+        {
+            LXX.beginPath();
+            LXX.drawImage(ggell, 118, 69, 24, 16, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 16 * 1), 24 * 1, 16 * 1);
+        }
+        else if (this.type == "sagroKidney")
+        {
+            LXX.beginPath();
+            LXX.drawImage(scrag, 804, 2, 38, 27, this.invX - (1/2 * 38 * 1), this.invY - (1/2 * 27 * 1), 38 * 1, 27 * 1);
+        }
+        else if (this.type == "rawSagroFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(scrag, 790, 32, 66, 39, this.invX - (1/2 * 66 * 1), this.invY - (1/2 * 39 * 1), 66 * 1, 39 * 1);
+        }
+        else if (this.type == "sagroMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(scrag, 792, 78, 66, 39, this.invX - (1/2 * 66 * 1), this.invY - (1/2 * 39 * 1), 66 * 1, 39 * 1);
+        }
+        else if (this.type == "rawSagroTailSml")
+        {
+            LXX.beginPath();
+            LXX.drawImage(scrag, 874, 28, 66, 39, this.invX - (1/2 * 66 * 1), this.invY - (1/2 * 39 * 1), 66 * 1, 39 * 1);
+        }
+        else if (this.type == "rawSagroTailLrg")
+        {
+            LXX.beginPath();
+            LXX.drawImage(scrag, 874, 28, 66, 39, this.invX - (1/2 * 66 * 1.2), this.invY - (1/2 * 39 * 1.2), 66 * 1.2, 39 * 1.2);
+        }
+        else if (this.type == "roastedSagroTailSml")
+        {
+            LXX.beginPath();
+            LXX.drawImage(scrag, 875, 116, 66, 39, this.invX - (1/2 * 66 * 1), this.invY - (1/2 * 39 * 1), 66 * 1, 39 * 1);
+        }
+        else if (this.type == "roastedSagroTailLrg")
+        {
+            LXX.beginPath();
+            LXX.drawImage(scrag, 875, 116, 66, 39, this.invX - (1/2 * 66 * 1.2), this.invY - (1/2 * 39 * 1.2), 66 * 1.2, 39 * 1.2);
+        }
+        else if (this.type == "sagroHide")
+        {
+            LXX.beginPath();
+            LXX.drawImage(scrag, 975, 23, 99, 52, this.invX - (1/2 * 99 * 0.75), this.invY - (1/2 * 52 * 0.75), 99 * 0.75, 52 * 0.75);
+        }
+        else if (this.type == "skarabaus")
+        {
+            LXX.beginPath();
+            LXX.drawImage(moonberry, 635, 619, 39, 37, this.invX - (1/2 * 39 * 1), this.invY - (1/2 * 37 * 1), 39 * 1, 37 * 1);
+        }
+        else if (this.type == "gladeWaspWing")
+        {
+            LXX.beginPath();
+            LXX.drawImage(moonberry, 504, 1116, 60, 24, this.invX - (1/2 * 60 * 1.16), this.invY - (1/2 * 24 * 1.16), 60 * 1.16, 24 * 1.16);
+        }
+        else if (this.type == "bogWaspWing")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mboo, 504, 1116, 60, 24, this.invX - (1/2 * 60 * 1.2), this.invY - (1/2 * 24 * 1.2), 60 * 1.2, 24 * 1.2);
+        }
+        else if (this.type == "fermentedGladeWaspStinger")
+        {
+            LXX.beginPath();
+            LXX.drawImage(moonberry, 580, 1112, 39, 26, this.invX - (1/2 * 39 * 1.16), this.invY - (1/2 * 26 * 1.16), 39 * 1.16, 26 * 1.16);
+        }
+        else if (this.type == "fermentedBogWaspStinger")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mboo, 580, 1112, 39, 26, this.invX - (1/2 * 39 * 1.7), this.invY - (1/2 * 26 * 1.7), 39 * 1.7, 26 * 1.7);
+        }
+        else if (this.type == "gladeWaspStinger")
+        {
+            LXX.beginPath();
+            LXX.drawImage(moonberry, 458, 1116, 39, 26, this.invX - (1/2 * 39 * 1.16), this.invY - (1/2 * 26 * 1.16), 39 * 1.16, 26 * 1.16);
+        }
+        else if (this.type == "bogWaspStinger")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mboo, 458, 1116, 39, 26, this.invX - (1/2 * 39 * 1.7), this.invY - (1/2 * 26 * 1.7), 39 * 1.7, 26 * 1.7);
+        }
+        else if (this.type == "rawGladeWaspFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(moonberry, 460, 1086, 39, 26, this.invX - (1/2 * 39 * 1.16), this.invY - (1/2 * 26 * 1.16), 39 * 1.16, 26 * 1.16);
+        }
+        else if (this.type == "gladeWaspMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(moonberry, 492, 1087, 39, 26, this.invX - (1/2 * 39 * 1.16), this.invY - (1/2 * 26 * 1.16), 39 * 1.16, 26 * 1.16);
+        }
+        else if (this.type == "rawBogWaspFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mboo, 460, 1086, 39, 26, this.invX - (1/2 * 39 * 1.7), this.invY - (1/2 * 26 * 1.7), 39 * 1.7, 26 * 1.7);
+        }
+        else if (this.type == "bogWaspMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mboo, 492, 1087, 39, 26, this.invX - (1/2 * 39 * 1.7), this.invY - (1/2 * 26 * 1.7), 39 * 1.7, 26 * 1.7);
+        }
         else if (this.type == "rawTigerFlesh")
         {
             LXX.beginPath();
@@ -64857,7 +65894,7 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(pill, 522, 472, 25, 47, this.invX - (1/2 * 25 * 0.65), this.invY - (1/2 * 47 * 0.65), 25 * 0.65, 47 * 0.65);
         }
-        else if (this.type == "capulLeg")
+        else if (this.type == "roastedCapulLeg")
         {
             LXX.beginPath();
             LXX.drawImage(pill, 547, 473, 25, 47, this.invX - (1/2 * 25 * 0.65), this.invY - (1/2 * 47 * 0.65), 25 * 0.65, 47 * 0.65);
@@ -72245,6 +73282,141 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
         }
+        else if (this.type == "rawPork")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ggell, 106, 84, 36, 27, this.invX - (1/2 * 36 * 1), this.invY - (1/2 * 27 * 1), 36 * 1, 27 * 1);
+        }
+        else if (this.type == "roastedPork")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ggell, 105, 110, 36, 27, this.invX - (1/2 * 36 * 1), this.invY - (1/2 * 27 * 1), 36 * 1, 27 * 1);
+        }
+        else if (this.type == "choppedPork")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ggell, 65, 76, 36, 27, this.invX - (1/2 * 36 * 1), this.invY - (1/2 * 27 * 1), 36 * 1, 27 * 1);
+        }
+        else if (this.type == "roastedPigHead")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ggell, 55, 108, 36, 27, this.invX - (1/2 * 36 * 1), this.invY - (1/2 * 27 * 1), 36 * 1, 27 * 1);
+        }
+        else if (this.type == "rawPigHead")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ggell, 3, 107, 36, 27, this.invX - (1/2 * 36 * 1), this.invY - (1/2 * 27 * 1), 36 * 1, 27 * 1);
+        }
+        else if (this.type == "gelatin")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ggell, 117, 37, 24, 18, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 18 * 1), 24 * 1, 18 * 1);
+        }
+        else if (this.type == "rawPigFoot")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ggell, 118, 55, 24, 16, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 16 * 1), 24 * 1, 16 * 1);
+        }
+        else if (this.type == "roastedPigFoot")
+        {
+            XXX.beginPath();
+            XXX.drawImage(ggell, 118, 69, 24, 16, this.invX - (1/2 * 24 * 1), this.invY - (1/2 * 16 * 1), 24 * 1, 16 * 1);
+        }
+        else if (this.type == "sagroKidney")
+        {
+            XXX.beginPath();
+            XXX.drawImage(scrag, 804, 2, 38, 27, this.invX - (1/2 * 38 * 1), this.invY - (1/2 * 27 * 1), 38 * 1, 27 * 1);
+        }
+        else if (this.type == "rawSagroFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(scrag, 790, 32, 66, 39, this.invX - (1/2 * 66 * 1), this.invY - (1/2 * 39 * 1), 66 * 1, 39 * 1);
+        }
+        else if (this.type == "sagroMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(scrag, 792, 78, 66, 39, this.invX - (1/2 * 66 * 1), this.invY - (1/2 * 39 * 1), 66 * 1, 39 * 1);
+        }
+        else if (this.type == "rawSagroTailSml")
+        {
+            XXX.beginPath();
+            XXX.drawImage(scrag, 874, 28, 66, 39, this.invX - (1/2 * 66 * 1), this.invY - (1/2 * 39 * 1), 66 * 1, 39 * 1);
+        }
+        else if (this.type == "rawSagroTailLrg")
+        {
+            XXX.beginPath();
+            XXX.drawImage(scrag, 874, 28, 66, 39, this.invX - (1/2 * 66 * 1.2), this.invY - (1/2 * 39 * 1.2), 66 * 1.2, 39 * 1.2);
+        }
+        else if (this.type == "roastedSagroTailSml")
+        {
+            XXX.beginPath();
+            XXX.drawImage(scrag, 875, 116, 66, 39, this.invX - (1/2 * 66 * 1), this.invY - (1/2 * 39 * 1), 66 * 1, 39 * 1);
+        }
+        else if (this.type == "roastedSagroTailLrg")
+        {
+            XXX.beginPath();
+            XXX.drawImage(scrag, 875, 116, 66, 39, this.invX - (1/2 * 66 * 1.2), this.invY - (1/2 * 39 * 1.2), 66 * 1.2, 39 * 1.2);
+        }
+        else if (this.type == "sagroHide")
+        {
+            XXX.beginPath();
+            XXX.drawImage(scrag, 975, 23, 99, 52, this.invX - (1/2 * 99 * 0.75), this.invY - (1/2 * 52 * 0.75), 99 * 0.75, 52 * 0.75);
+        }
+        else if (this.type == "skarabaus")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moonberry, 635, 619, 39, 37, this.invX - (1/2 * 39 * 1), this.invY - (1/2 * 37 * 1), 39 * 1, 37 * 1);
+        }
+        else if (this.type == "gladeWaspWing")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moonberry, 504, 1116, 60, 24, this.invX - (1/2 * 60 * 1.16), this.invY - (1/2 * 24 * 1.16), 60 * 1.16, 24 * 1.16);
+        }
+        else if (this.type == "bogWaspWing")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mboo, 504, 1116, 60, 24, this.invX - (1/2 * 60 * 1.2), this.invY - (1/2 * 24 * 1.2), 60 * 1.2, 24 * 1.2);
+        }
+        else if (this.type == "fermentedGladeWaspStinger")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moonberry, 580, 1112, 39, 26, this.invX - (1/2 * 39 * 1.16), this.invY - (1/2 * 26 * 1.16), 39 * 1.16, 26 * 1.16);
+        }
+        else if (this.type == "fermentedBogWaspStinger")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mboo, 580, 1112, 39, 26, this.invX - (1/2 * 39 * 1.7), this.invY - (1/2 * 26 * 1.7), 39 * 1.7, 26 * 1.7);
+        }
+        else if (this.type == "gladeWaspStinger")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moonberry, 458, 1116, 39, 26, this.invX - (1/2 * 39 * 1.16), this.invY - (1/2 * 26 * 1.16), 39 * 1.16, 26 * 1.16);
+        }
+        else if (this.type == "bogWaspStinger")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mboo, 458, 1116, 39, 26, this.invX - (1/2 * 39 * 1.7), this.invY - (1/2 * 26 * 1.7), 39 * 1.7, 26 * 1.7);
+        }
+        else if (this.type == "rawGladeWaspFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moonberry, 460, 1086, 39, 26, this.invX - (1/2 * 39 * 1.16), this.invY - (1/2 * 26 * 1.16), 39 * 1.16, 26 * 1.16);
+        }
+        else if (this.type == "gladeWaspMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(moonberry, 492, 1087, 39, 26, this.invX - (1/2 * 39 * 1.16), this.invY - (1/2 * 26 * 1.16), 39 * 1.16, 26 * 1.16);
+        }
+        else if (this.type == "rawBogWaspFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mboo, 460, 1086, 39, 26, this.invX - (1/2 * 39 * 1.7), this.invY - (1/2 * 26 * 1.7), 39 * 1.7, 26 * 1.7);
+        }
+        else if (this.type == "bogWaspMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mboo, 492, 1087, 39, 26, this.invX - (1/2 * 39 * 1.7), this.invY - (1/2 * 26 * 1.7), 39 * 1.7, 26 * 1.7);
+        }
         else if (this.type == "rawTigerFlesh")
         {
             XXX.beginPath();
@@ -72300,7 +73472,7 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(pill, 522, 472, 25, 47, this.invX - (1/2 * 25 * 0.65), this.invY - (1/2 * 47 * 0.65), 25 * 0.65, 47 * 0.65);
         }
-        else if (this.type == "capulLeg")
+        else if (this.type == "roastedCapulLeg")
         {
             XXX.beginPath();
             XXX.drawImage(pill, 547, 473, 25, 47, this.invX - (1/2 * 25 * 0.65), this.invY - (1/2 * 47 * 0.65), 25 * 0.65, 47 * 0.65);

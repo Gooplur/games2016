@@ -1603,6 +1603,18 @@ function fectPack()
 
     fect.onload = function()
     {
+        harpPack();
+    };
+}
+
+function harpPack()
+{
+    var harp = new Image();
+    harp.src = ("images/harp.png");
+    window.harp = harp;
+
+    harp.onload = function()
+    {
         gnollPack();
     };
 }

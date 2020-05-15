@@ -15525,6 +15525,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             //DRAWSELF
             if (X > (this.X + 50.3367903492757 * this.temporary) - 104 * this.temporary && X < (this.X + 50.3367903492757 * this.temporary) && Y > (this.Y + 46.29432712501148 * this.temporary) - 94 * this.temporary && Y < (this.Y + 46.29432712501148 * this.temporary))
             {
+                player.shelter = true;
                 this.zIndex = 1;
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -15651,6 +15652,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             {
                 if (X > (this.X + 113.67941731765603 * this.temporary) - 226 * this.temporary && X < (this.X + 113.67941731765603 * this.temporary) && Y > (this.Y + 76.25398626498645 * this.temporary) - 155 * this.temporary && Y < (this.Y + 76.25398626498645 * this.temporary))
                 {
+                    player.shelter = true;
                     this.zIndex = 1;
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -15700,6 +15702,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             {
                 if (X > (this.X + 75.3717661821168 * this.temporary) - 154 * this.temporary && X < (this.X + 75.3717661821168 * this.temporary) && Y > (this.Y + 112.0059588465374 * this.temporary) - 227 * this.temporary && Y < (this.Y + 112.0059588465374 * this.temporary))
                 {
+                    player.shelter = true;
                     this.zIndex = 1;
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -15807,6 +15810,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             {
                 if (X > (this.X + 73.22549011487541 * this.temporary) - 154 * this.temporary && X < (this.X + 73.22549011487541 * this.temporary) && Y > (this.Y + 48.804914214415476 * this.temporary) - 101 * this.temporary && Y < (this.Y + 48.804914214415476 * this.temporary))
                 {
+                    player.shelter = true;
                     this.zIndex = 1;
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -15856,6 +15860,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             {
                 if (X > (this.X + 48.62396176559918 * this.temporary) - 99 * this.temporary && X < (this.X + 48.62396176559918 * this.temporary) && Y > (this.Y + 73.98512308584759 * this.temporary) - 155 * this.temporary && Y < (this.Y + 73.98512308584759 * this.temporary))
                 {
+                    player.shelter = true;
                     this.zIndex = 1;
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -15959,6 +15964,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             {
                 if (X > (this.X + 191 * this.temporary) - 380 * this.temporary && X < (this.X + 191 * this.temporary) && Y > (this.Y + 139.5 * this.temporary) - 287 * this.temporary && Y < (this.Y + 139.5 * this.temporary))
                 {
+                    player.shelter = true;
                     this.zIndex = 1;
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -16008,6 +16014,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             {
                 if (X > (this.X + 143.74449525182172 * this.temporary) - 287 * this.temporary && X < (this.X + 143.74449525182172 * this.temporary) && Y > (this.Y + 191 * this.temporary) - 384 * this.temporary && Y < (this.Y + 191 * this.temporary))
                 {
+                    player.shelter = true;
                     this.zIndex = 1;
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -16024,6 +16031,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 }
                 else
                 {
+                    player.shelter = true;
                     this.zIndex = 6;
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -16131,6 +16139,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             {
                 if (X > (this.X + 109.67 * this.temporary) - 225 * this.temporary && X < (this.X + 109.67 * this.temporary) && Y > (this.Y + 156.279 * this.temporary) - 318 * this.temporary && Y < (this.Y + 156.279 * this.temporary))
                 {
+                    player.shelter = true;
                     this.zIndex = 1;
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -16180,6 +16189,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             {
                 if (X > (this.X + 160.91571100249894 * this.temporary) - 320 * this.temporary && X < (this.X + 160.91571100249894 * this.temporary) && Y > (this.Y + 109.46952519353545 * this.temporary) - 227 * this.temporary && Y < (this.Y + 109.46952519353545 * this.temporary))
                 {
+                    player.shelter = true;
                     this.zIndex = 1;
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -16291,6 +16301,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             {
                 if (X > (this.X + 64.30159525962335 * this.temporary) - 114 * this.temporary && X < (this.X + 64.30159525962335 * this.temporary) && Y > (this.Y + 53.44783899921458 * this.temporary) - 108 * this.temporary && Y < (this.Y + 53.44783899921458 * this.temporary))
                 {
+                    player.shelter = true;
                     this.zIndex = 1;
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -16340,6 +16351,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             {
                 if (X > (this.X + 50.613190235727416 * this.temporary) - 107 * this.temporary && X < (this.X + 50.613190235727416 * this.temporary) && Y > (this.Y + 57.64800051605562 * this.temporary) - 119 * this.temporary && Y < (this.Y + 57.64800051605562 * this.temporary))
                 {
+                    player.shelter = true;
                     this.zIndex = 1;
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -16434,6 +16446,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             //DRAWSELF
             if (X > (this.X + 19.14770782768028 * this.temporary) - 45 * this.temporary && X < (this.X + 19.14770782768028 * this.temporary) && Y > (this.Y + 19.14770782768028 * this.temporary) - 45 * this.temporary && Y < (this.Y + 19.14770782768028 * this.temporary))
             {
+                player.shelter = true;
                 this.zIndex = 1;
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -16554,6 +16567,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             //DRAWSELF
             if (X > (this.X + 19.14770782768028 * this.temporary) - 45 * this.temporary && X < (this.X + 19.14770782768028 * this.temporary) && Y > (this.Y + 19.14770782768028 * this.temporary) - 45 * this.temporary && Y < (this.Y + 19.14770782768028 * this.temporary))
             {
+                player.shelter = true;
                 this.zIndex = 1;
                 XXX.save();
                 XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -16834,6 +16848,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             {
                 if (X > (this.X + 173.0217458717866 * this.temporary) - 345 * this.temporary && X < (this.X + 173.0217458717866 * this.temporary) && Y > (this.Y + 189.35284627235342 * this.temporary) - 368 * this.temporary && Y < (this.Y + 189.35284627235342 * this.temporary))
                 {
+                    player.shelter = true;
                     this.zIndex = 1;
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -16883,6 +16898,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             {
                 if (X > (this.X + 173.0217458717866 * this.temporary) - 345 * this.temporary && X < (this.X + 173.0217458717866 * this.temporary) && Y > (this.Y + 189.35284627235342 * this.temporary) - 368 * this.temporary && Y < (this.Y + 189.35284627235342 * this.temporary))
                 {
+                    player.shelter = true;
                     this.zIndex = 1;
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -17120,6 +17136,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             {
                 if (X > (this.X + 233.32246568128335 * this.temporary) - 468 * this.temporary && X < (this.X + 233.32246568128335 * this.temporary) && Y > (this.Y + 81.67572823584624 * this.temporary) - 162 * this.temporary && Y < (this.Y + 81.67572823584624 * this.temporary))
                 {
+                    player.shelter = true;
                     this.zIndex = 1;
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -17169,6 +17186,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             {
                 if (X > (this.X + 75.49752782219139 * this.temporary) - 151 * this.temporary && X < (this.X + 75.49752782219139 * this.temporary) && Y > (this.Y + 229.39337237061454 * this.temporary) - 465 * this.temporary && Y < (this.Y + 229.39337237061454 * this.temporary))
                 {
+                    player.shelter = true;
                     this.zIndex = 1;
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -17275,6 +17293,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             {
                 if (X > (this.X + 519.6477362673777 * this.temporary) - 1044 * this.temporary && X < (this.X + 519.6477362673777 * this.temporary) && Y > (this.Y + 76.22370127076647 * this.temporary) - 156 * this.temporary && Y < (this.Y + 76.22370127076647 * this.temporary))
                 {
+                    player.shelter = true;
                     this.zIndex = 1;
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -17324,6 +17343,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             {
                 if (X > (this.X + 76.22370127076647 * this.temporary) - 156 * this.temporary && X < (this.X + 76.22370127076647 * this.temporary) && Y > (this.Y + 519.6477362673777 * this.temporary) - 1044 * this.temporary && Y < (this.Y + 519.6477362673777 * this.temporary))
                 {
+                    player.shelter = true;
                     this.zIndex = 1;
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -17499,6 +17519,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             {
                 if (X > (this.X + 259.47818349631416 * this.temporary) - 286 * this.temporary && X < (this.X + 259.47818349631416 * this.temporary) && Y > (this.Y + 179.77438693739987 * this.temporary) - 215 * this.temporary && Y < (this.Y + 179.77438693739987 * this.temporary) || X > (this.X + 530.4781834963142 * this.temporary) - 1060 * this.temporary && X < (this.X + 530.4781834963142 * this.temporary) && Y > (this.Y + -18.225613062600132 * this.temporary) - 155 * this.temporary && Y < (this.Y + -18.225613062600132 * this.temporary))
                 {
+                    player.shelter = true;
                     this.zIndex = 1;
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -17536,6 +17557,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             {
                 if (X > (this.X + 24.93359120882087 * this.temporary) - 288 * this.temporary && X < (this.X + 24.93359120882087 * this.temporary) && Y > (this.Y + 35.28395241557769 * this.temporary) - 216 * this.temporary && Y < (this.Y + 35.28395241557769 * this.temporary) || X > (this.X + 528.9335912088209 * this.temporary) - 1064 * this.temporary && X < (this.X + 528.9335912088209 * this.temporary) && Y > (this.Y + 172.2839524155777 * this.temporary) - 157 * this.temporary && Y < (this.Y + 172.2839524155777 * this.temporary))
                 {
+                    player.shelter = true;
                     this.zIndex = 1;
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -17573,6 +17595,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             {
                 if (X > (this.X + 178.2607964565691 * this.temporary) - 212 * this.temporary && X < (this.X + 178.2607964565691 * this.temporary) && Y > (this.Y + 27.05326966687744 * this.temporary) - 289 * this.temporary && Y < (this.Y + 27.05326966687744 * this.temporary) || X > (this.X + -11.452755092940947 * this.temporary) - 164 * this.temporary && X < (this.X + -11.452755092940947 * this.temporary) && Y > (this.Y + 530.1390506834291 * this.temporary) - 1063 * this.temporary && Y < (this.Y + 530.1390506834291 * this.temporary))
                 {
+                    player.shelter = true;
                     this.zIndex = 1;
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
@@ -17610,6 +17633,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             {
                 if (X > (this.X + 44.69334777523113 * this.temporary) - 228 * this.temporary && X < (this.X + 44.69334777523113 * this.temporary) && Y > (this.Y + 265.4437243619277 * this.temporary) - 297 * this.temporary && Y < (this.Y + 265.4437243619277 * this.temporary) || X > (this.X + 173.8679479097184 * this.temporary) - 160 * this.temporary && X < (this.X + 173.8679479097184 * this.temporary) && Y > (this.Y + 529.1134513985141 * this.temporary) - 1059 * this.temporary && Y < (this.Y + 529.1134513985141 * this.temporary))
                 {
+                    player.shelter = true;
                     this.zIndex = 1;
                     XXX.save();
                     XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);

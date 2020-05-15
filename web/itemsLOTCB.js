@@ -7131,8 +7131,8 @@ function Item(type, x, y)
             this.ability = "none";
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
-            this.buyValue = 15; // at max, buy for 15.
-            this.sellValue = 15; // at max, sell for 15.
+            this.buyValue = 34; // at max, buy for 34.
+            this.sellValue = 30 + Math.floor(player.getCharisma() / 12.5); // at max, sell for 34.
         }
         else if (this.type == "sonjaSlice")
         {
@@ -33078,8 +33078,8 @@ function Item(type, x, y)
             this.ingredients = [["Sonja", 1], ["Sonja Slice", 3], ["Tchafula Half", 6]];
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
-            this.buyValue = 42; // at max, buy for 42.
-            this.sellValue = 42; // at max, sell for 42.
+            this.buyValue = 61; // at max, buy for 61.
+            this.sellValue = 61; // at max, sell for 61.
         }
         else if (this.type == "tchafula")
         {
@@ -54399,7 +54399,7 @@ function Item(type, x, y)
             this.eminenceRequirement = 0;
             this.magicalProtection = 0;
             this.warmthRetention = 1.6;
-            this.thirstRetention = 0;
+            this.thirstRetention = 0.25;
             this.shockResist = 0;
             //Main Stat Bonuses
             this.strengthBonus = 0;

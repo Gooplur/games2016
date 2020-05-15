@@ -7613,6 +7613,10 @@ function cheats()
             uniqueChars.elmaLDS = true;
             uniqueChars.ebaroLDS = true;
         }
+        else if (cheatcode == "drodro")
+        {
+            uniqueChars.drohforLDS = true;
+        }
         else if (cheatcode.toLowerCase() == "greaty")
         {
             var lesky = Y;

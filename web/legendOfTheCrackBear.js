@@ -1603,6 +1603,18 @@ function fectPack()
 
     fect.onload = function()
     {
+        nalPack();
+    };
+}
+
+function nalPack()
+{
+    var nal = new Image();
+    nal.src = ("images/nal.png");
+    window.nal = nal;
+
+    nal.onload = function()
+    {
         harpPack();
     };
 }

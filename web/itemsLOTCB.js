@@ -25012,6 +25012,26 @@ function Item(type, x, y)
             this.buyValue = 4 - Math.floor(player.getCharisma() / 50); // at max, buy for 3.
             this.sellValue = 1 + Math.floor(player.getCharisma() / 25); // at max, sell for 3.
         }
+        else if (this.type == "atsuiBambooLeaf")
+        {
+            //For All Items
+            this.identity = "Atsui Bamboo Leaf";
+            this.weight = 0.01;
+            this.size = 4;
+            this.description = "The light green leaf from an atsui bamboo plant.";
+            this.intForDes = 15;
+            this.intDescription = "There is a slight amount of a substance in this leaf that can serve as an alchemical changer when extracted.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0; // at max, sell for 0.
+        }
         else if (this.type == "lorkWeed")
         {
             //For All Items
@@ -30111,6 +30131,28 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 7 - Math.floor(player.getCharisma() / 25); // at max, buy for 5.
             this.sellValue = 3 + Math.floor(player.getCharisma() / 25); // at max, sell for 5.
+        }
+        else if (this.type == "atsuiBamboo")
+        {
+            //For All Items
+            this.identity = "Atsui Bamboo";
+            this.weight = 4.6;
+            this.size = 19;
+            this.description = "Chopped hard green stalks of atsui bamboo.";
+            this.intForDes = 4;
+            this.intDescription = "Atsui bamboo is not sturdy enough to make into large structures, but it is often used for artisanry.";
+
+            //Define Utility
+            this.utility = "material";
+            //subUtility
+            this.subUtility = "atsuiBambooCampfire";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 7 - Math.floor(player.getCharisma() / 25); // at max, buy for 5.
+            this.sellValue = 4 + Math.floor(player.getCharisma() / 50); // at max, sell for 5.
         }
         else if (this.type == "wood") //woodwood
         {
@@ -58111,6 +58153,11 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "atsuiBamboo")
+        {
+            XXX.beginPath();
+            XXX.drawImage(olg, 409, -7, 48, 49, X - this.X + (1/2 * CCC.width) - (1/2 * 48 * 1.5), Y - this.Y + (1/2 * CCC.height) - (1/2 * 49 * 1.5), 48 * 1.5, 49 * 1.5);
+        }
         else if (this.type == "rawPork")
         {
             XXX.beginPath();
@@ -65704,6 +65751,11 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(candlewic, 61, 201, 27, 29, this.invX - (1/2 * 27 * 1.5), this.invY - (1/2 * 29 * 1.5), 27 * 1.5, 29 * 1.5);
         }
+        else if (this.type == "atsuiBamboo")
+        {
+            LXX.beginPath();
+            LXX.drawImage(olg, 409, -7, 48, 49, this.invX - (1/2 * 48 * 1), this.invY - (1/2 * 49 * 1), 48 * 1, 49 * 1);
+        }
         else if (this.type == "rawPork")
         {
             LXX.beginPath();
@@ -73281,6 +73333,11 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "atsuiBamboo")
+        {
+            XXX.beginPath();
+            XXX.drawImage(olg, 409, -7, 48, 49, this.invX - (1/2 * 48 * 1), this.invY - (1/2 * 49 * 1), 48 * 1, 49 * 1);
         }
         else if (this.type == "rawPork")
         {

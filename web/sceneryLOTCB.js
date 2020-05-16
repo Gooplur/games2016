@@ -37171,6 +37171,189 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 }
             }
         }
+        else if (this.type == "atsuiBambooPlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            if (this.temporary != 2)
+            {
+                this.solid = true;
+            }
+            else
+            {
+                this.solid = false;
+            }
+            this.interactionRange = 100;
+
+            if (this.treeHealth == 120)
+            {
+                this.treeHealth = 11;
+            }
+
+            if (this.phase == 0 && this.temporary == 2)
+            {
+                this.webbed = [];
+                if (this.playerer <= this.radius)
+                {
+                    player.webbedNum = 3;
+                    player.webbedTime = new Date().getTime();
+                    if (quenHere == false)
+                    {
+                        this.webbed.push(player);
+                    }
+                }
+                for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
+                {
+                    var unitDist = Math.sqrt((ArtificialIntelligenceAccess[i].X - this.X)*(ArtificialIntelligenceAccess[i].X - this.X) + (ArtificialIntelligenceAccess[i].Y - this.Y)*(ArtificialIntelligenceAccess[i].Y - this.Y));
+                    if (unitDist <= this.radius)
+                    {
+                        ArtificialIntelligenceAccess[i].webbedNum = 3;
+                        ArtificialIntelligenceAccess[i].webbedTime = new Date().getTime();
+                        this.webbed.push(ArtificialIntelligenceAccess[i]);
+                    }
+                }
+            }
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                if (this.temporary == 2) //web
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(olg, 224, 84, 75, 72, -(1/2 * 75 * 1.5), -(1/2 * 72 * 1.5), 75 * 1.5, 72 * 1.5);
+                    XXX.restore();
+                }
+                else if (this.temporary == 1) //bugs
+                {
+                    this.buggified = true;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(olg, 319, 83, 75, 72, -(1/2 * 75 * 1.5), -(1/2 * 72 * 1.5), 75 * 1.5, 72 * 1.5);
+                    XXX.restore();
+                }
+                else
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(olg, 230, 1, 75, 72, -(1/2 * 75 * 1.5), -(1/2 * 72 * 1.5), 75 * 1.5, 72 * 1.5);
+                    XXX.restore();
+                }
+            }
+            else if (this.phase == 1)
+            {
+                if (this.temporary == 2) //web
+                {
+                    this.temporary = 0;
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(olg, 315, 1, 75, 72, -(1/2 * 75 * 1.5), -(1/2 * 72 * 1.5), 75 * 1.5, 72 * 1.5);
+                    XXX.restore();
+                }
+                else if (this.temporary == 1) //bugs
+                {
+                    this.temporary = 0;
+                    if (this.buggified)
+                    {
+                        this.buggified = false;
+                        for (var bugi = 0; bugi < 10; bugi++)
+                        {
+                            ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(80), this.Y + spacer(80), "Ha", Math.round(Math.random())));
+                        }
+                    }
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(olg, 315, 1, 75, 72, -(1/2 * 75 * 1.5), -(1/2 * 72 * 1.5), 75 * 1.5, 72 * 1.5);
+                    XXX.restore();
+                }
+                else
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(olg, 315, 1, 75, 72, -(1/2 * 75 * 1.5), -(1/2 * 72 * 1.5), 75 * 1.5, 72 * 1.5);
+                    XXX.restore();
+                }
+            }
+            else if (this.phase == "picked")
+            {
+                if (this.buggified)
+                {
+                    this.buggified = false;
+                    for (var bugi = 0; bugi < 10; bugi++)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(80), this.Y + spacer(80), "Ha", Math.round(Math.random())));
+                    }
+                }
+
+                if (this.temporary == -1)
+                {
+                    scenicList.push(new Scenery("item", this.X, this.Y, 0, false, ["atsuiBamboo", 2, 0]));
+                }
+                //self delete
+                scenicList.splice(scenicList.indexOf(this), 1);
+            }
+
+            if (this.temporary == 1 && this.playerer < 100)
+            {
+                this.phase = 1;
+                if (this.buggified)
+                {
+                    this.buggified = false;
+                    for (var bugi = 0; bugi < 10; bugi++)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(this.X + spacer(80), this.Y + spacer(80), "Ha", Math.round(Math.random())));
+                    }
+                }
+            }
+
+            if (player.cutcut == true && this.playerer < 170)
+            {
+                var distFromCutCut = Math.sqrt((this.X - X)*(this.X - X) + (this.Y - Y)*(this.Y - Y));
+                //console.log(distFromCutCut);
+                if (distFromCutCut <= player.weapon.range * 7 + 107)
+                {
+                    this.treeHealth -= player.weapon.damage;
+                }
+
+                if (this.treeHealth <= 0)
+                {
+                    this.temporary = -1;
+                    this.phase = "picked";
+                }
+            }
+
+        //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 46;
+
+            //INTERACTION
+            if (this.activate == true && this.phase == 0 && this.temporary != 2)
+            {
+                this.activate = false;
+                this.phase = 1;
+                var hits = 0;
+                for (var i = 0; i < Inventory.length; i ++)
+                {
+                    if (Inventory[i][0].type == "atsuiBambooLeaf")
+                    {
+                        Inventory[i][1] += 10;
+                        break;
+                    }
+                    else
+                    {
+                        hits += 1;
+                    }
+                }
+                if (hits == Inventory.length)
+                {
+                    Inventory.push([new Item("atsuiBambooLeaf", false, false), 10]);
+                }
+            }
+        }
         else if (this.type == "junPlant")
         {
             //TRAITS
@@ -53510,6 +53693,167 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
             this.radius = 19;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+
+                if (this.lit == false && this.burnt == false || this.lit == false && this.temporary == true)
+                {
+                    for (var i = 0; i < Inventory.length; i++)
+                    {
+                        if (Inventory[i][0].identity == "Fire-Starter")
+                        {
+                            this.gotFireStarter = true;
+                        }
+                    }
+
+                    if (this.gotFireStarter)
+                    {
+                        this.burntTime = 0;
+                        this.lit = true;
+                    }
+                }
+                else if (this.lit == true && this.burnt == false)
+                {
+                    player.craftPosition = 0;
+                    craftScroll = 0;
+                    crafting = "foods";
+                    lowBar = "crafting";
+                    gameState = "paused";
+                }
+            }
+        }
+        else if (this.type == "atsuiBambooCampfire")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 55;
+
+            if (this.temporary == "permaLit")
+            {
+                this.campFireTime = 0;
+                this.lit = true;
+                this.burnt = false;
+            }
+
+            //animate
+            if (this.lit == true)
+            {
+                lights.push({X:this.X, Y: this.Y, size: 160, extraStops: true, GRD: 0.5, Alpha: 0.4, showMe: false});
+                this.fireCostume += 1;
+                this.campFireTime += 1;
+
+                //die out over time
+                if (this.campFireTime >= 3000)
+                {
+                    this.campFireTime = 0;
+                    this.lit = false;
+                    this.burnt = true;
+                }
+            }
+
+            if (this.burnt == true)
+            {
+                this.burntTime += 1;
+
+                if (this.burntTime >= 2000)
+                {
+                    this.burntTime = 0;
+                    if (this.temporary == false)
+                    {
+                        for (var i = 0; i < scenicList.length; i++)
+                        {
+                            if (scenicList[i] === this)
+                            {
+                                scenicList.splice(i, 1);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+
+            //DRAWSELF
+            if (this.lit == false)
+            {
+                if (this.burnt == false)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(olg, 487, 5, 48, 49, -(1/2 * 48 * 1.5), -(1/2 * 49 * 1.5), 48 * 1.5, 49 * 1.5);
+                    XXX.restore();
+                }
+                else
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    XXX.rotate(this.rotation);
+                    XXX.drawImage(nal, 387, 844, 45, 40, -(1/2 * 45 * 1.5), -(1/2 * 40 * 1.5), 45 * 1.5, 40 * 1.5);
+                    XXX.restore();
+                }
+            }
+            else if (this.fireCostume <= 14)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(olg, 559, 5, 48, 49, -(1/2 * 48 * 1.5), -(1/2 * 49 * 1.5), 48 * 1.5, 49 * 1.5);
+                XXX.restore();
+            }
+            else if (this.fireCostume > 14 && this.fireCostume <= 28)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(olg, 628, 5, 48, 49, -(1/2 * 48 * 1.5), -(1/2 * 49 * 1.5), 48 * 1.5, 49 * 1.5);
+                XXX.restore();
+            }
+            else if (this.fireCostume > 28 && this.fireCostume <= 42)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(olg, 698, 5, 48, 49, -(1/2 * 48 * 1.5), -(1/2 * 49 * 1.5), 48 * 1.5, 49 * 1.5);
+                XXX.restore();
+            }
+            else if (this.fireCostume > 42)
+            {
+                this.fireCostume = 0;
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(olg, 698, 5, 48, 49, -(1/2 * 48 * 1.5), -(1/2 * 49 * 1.5), 48 * 1.5, 49 * 1.5);
+                XXX.restore();
+            }
+
+            if (this.playerer <= this.radius && this.lit == true) //fire burns the player but heat resistance can reduce the damage it does.
+            {
+                if (player.mageShield > 0)
+                {
+                    player.mageShield -= 0.125;
+                    player.warmth += Math.max(0, (1 - (player.heatResistance / 200)));
+                }
+                else
+                {
+                    player.health += player.mageShield;
+                    player.mageShield = 0;
+
+                    player.health -= Math.max(0, (0.125 - (player.heatResistance / 200)));
+                    player.warmth += Math.max(0, (1 - (player.heatResistance / 200)));
+                    player.burningTime = new Date().getTime();
+                }
+            }
+            else if (this.playerer <= 50 && this.lit == true)
+            {
+                player.warmth += Math.max(0, (0.25 - (player.heatResistance / 200)));
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 28;
 
             //INTERACTION
             if (this.activate == true)

@@ -10945,6 +10945,133 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
         }
+        else if (this.type == "rawDaggerFishFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Daggerfish Flesh";
+            this.weight = 3.5;
+            this.size = 11;
+            this.description = "The raw flesh from a daggerfish.";
+            this.intForDes = 2;
+            this.intDescription = "This would taste alright once cooked, but it is not safe to eat raw due to toxins and worms.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 2; //satisfies hunger.
+            this.thirst = 0.6; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = -6; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "gutWorms";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 2; // at max, sell for 2.
+        }
+        else if (this.type == "daggerFishMeat")
+        {
+            //For All Items
+            this.identity = "Seared Daggerfish";
+            this.weight = 3.5;
+            this.size = 11;
+            this.description = "The cooked meat of a daggerfish.";
+            this.intForDes = 0;
+            this.intDescription = "The white flesh is firm with a mild flavour and a slightly bitter aftertaste that pricks at your throat.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 9; //satisfies hunger.
+            this.thirst = 0.5; //quenches thirst.
+            this.warmth = 4; //warms player.
+            this.heal = -1; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 3;
+            this.ingredients = [["Raw Daggerfish Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 6 - Math.floor(player.getCharisma() / 25); // at max, buy for 4.
+            this.sellValue = 3 + Math.floor(player.getCharisma() / 50); // at max, sell for 4.
+        }
+        else if (this.type == "rawMarnica")
+        {
+            //For All Items
+            this.identity = "Marnica";
+            this.weight = 0.9;
+            this.size = 5;
+            this.description = "A whole raw marnica, tentacles and all.";
+            this.intForDes = 9;
+            this.intDescription = "Marnica secrete a compound that causes their host to lose feeling in the area where they are latched on, it causes the host to produce copious amounts of blood which the marnica sucks out.";
+            this.smallText = "tiny";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1; //satisfies hunger.
+            this.thirst = 0.5; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = -2; //heals health.
+            this.generation = -0.5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "foodPoisoning";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "roastedMarnica")
+        {
+            //For All Items
+            this.identity = "Roasted Marnica";
+            this.weight = 0.85;
+            this.size = 5;
+            this.description = "A whole roasted marnica, tentacles and all.";
+            this.intForDes = 0;
+            this.intDescription = "It is slightly rubbery and has a strong taste of iron.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 6; //satisfies hunger.
+            this.thirst = 0.1; //quenches thirst.
+            this.warmth = 2; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -0.25; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 4;
+            this.ingredients = [["Marnica", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3; // at max, buy for 3.
+            this.sellValue = 2; // at max, sell for 2.
+        }
         else if (this.type == "rawModerrLeg")
         {
             //For All Items
@@ -58153,6 +58280,31 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "rawDaggerFishFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nal, 52, 927, 49, 42, X - this.X + (1/2 * CCC.width) - (1/2 * 49 * 0.75), Y - this.Y + (1/2 * CCC.height) - (1/2 * 42 * 0.75), 49 * 0.75, 42 * 0.75);
+        }
+        else if (this.type == "daggerFishMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nal, 123, 926, 49, 42, X - this.X + (1/2 * CCC.width) - (1/2 * 49 * 0.75), Y - this.Y + (1/2 * CCC.height) - (1/2 * 42 * 0.75), 49 * 0.75, 42 * 0.75);
+        }
+        else if (this.type == "pandaPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(how, 652, 2, 51, 28, X - this.X + (1/2 * CCC.width) - (1/2 * 51 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 28 * 1), 51 * 1, 28 * 1);
+        }
+        else if (this.type == "rawMarnica")
+        {
+            XXX.beginPath();
+            XXX.drawImage(scrag, 1048, 208, 38, 30, X - this.X + (1/2 * CCC.width) - (1/2 * 38 * 0.95), Y - this.Y + (1/2 * CCC.height) - (1/2 * 30 * 0.95), 38 * 0.95, 30 * 0.95);
+        }
+        else if (this.type == "roastedMarnica")
+        {
+            XXX.beginPath();
+            XXX.drawImage(scrag, 1049, 179, 38, 30, X - this.X + (1/2 * CCC.width) - (1/2 * 38 * 0.95), Y - this.Y + (1/2 * CCC.height) - (1/2 * 30 * 0.95), 38 * 0.95, 30 * 0.95);
+        }
         else if (this.type == "atsuiBamboo")
         {
             XXX.beginPath();
@@ -65751,6 +65903,31 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(candlewic, 61, 201, 27, 29, this.invX - (1/2 * 27 * 1.5), this.invY - (1/2 * 29 * 1.5), 27 * 1.5, 29 * 1.5);
         }
+        else if (this.type == "rawDaggerFishFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nal, 52, 927, 49, 42, this.invX - (1/2 * 49 * 0.75), this.invY - (1/2 * 42 * 0.75), 49 * 0.75, 42 * 0.75);
+        }
+        else if (this.type == "daggerFishMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nal, 123, 926, 49, 42, this.invX - (1/2 * 49 * 0.75), this.invY - (1/2 * 42 * 0.75), 49 * 0.75, 42 * 0.75);
+        }
+        else if (this.type == "pandaPelt")
+        {
+            LXX.beginPath();
+            LXX.drawImage(how, 652, 2, 51, 28, this.invX - (1/2 * 51 * 0.85), this.invY - (1/2 * 28 * 0.85), 51 * 0.85, 28 * 0.85);
+        }
+        else if (this.type == "rawMarnica")
+        {
+            LXX.beginPath();
+            LXX.drawImage(scrag, 1048, 208, 38, 30, this.invX - (1/2 * 38 * 0.95), this.invY - (1/2 * 30 * 0.95), 38 * 0.95, 30 * 0.95);
+        }
+        else if (this.type == "roastedMarnica")
+        {
+            LXX.beginPath();
+            LXX.drawImage(scrag, 1049, 179, 38, 30, this.invX - (1/2 * 38 * 0.95), this.invY - (1/2 * 30 * 0.95), 38 * 0.95, 30 * 0.95);
+        }
         else if (this.type == "atsuiBamboo")
         {
             LXX.beginPath();
@@ -73333,6 +73510,31 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "rawDaggerFishFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nal, 52, 927, 49, 42, this.invX - (1/2 * 49 * 0.75), this.invY - (1/2 * 42 * 0.75), 49 * 0.75, 42 * 0.75);
+        }
+        else if (this.type == "daggerFishMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nal, 123, 926, 49, 42, this.invX - (1/2 * 49 * 0.75), this.invY - (1/2 * 42 * 0.75), 49 * 0.75, 42 * 0.75);
+        }
+        else if (this.type == "pandaPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(how, 652, 2, 51, 28, this.invX - (1/2 * 51 * 0.85), this.invY - (1/2 * 28 * 0.85), 51 * 0.85, 28 * 0.85);
+        }
+        else if (this.type == "rawMarnica")
+        {
+            XXX.beginPath();
+            XXX.drawImage(scrag, 1048, 208, 38, 30, this.invX - (1/2 * 38 * 0.95), this.invY - (1/2 * 30 * 0.95), 38 * 0.95, 30 * 0.95);
+        }
+        else if (this.type == "roastedMarnica")
+        {
+            XXX.beginPath();
+            XXX.drawImage(scrag, 1049, 179, 38, 30, this.invX - (1/2 * 38 * 0.95), this.invY - (1/2 * 30 * 0.95), 38 * 0.95, 30 * 0.95);
         }
         else if (this.type == "atsuiBamboo")
         {

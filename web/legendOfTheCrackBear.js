@@ -1615,6 +1615,18 @@ function nalPack()
 
     nal.onload = function()
     {
+        mrolPack();
+    };
+}
+
+function mrolPack()
+{
+    var mrol = new Image();
+    mrol.src = ("images/mrol.png");
+    window.mrol = mrol;
+
+    mrol.onload = function()
+    {
         harpPack();
     };
 }
@@ -5512,6 +5524,8 @@ function theLegend()
     foods.push(new Item("whipScorpionMeat", false));
     foods.push(new Item("roastedCapulLeg", false));
     foods.push(new Item("mudStriderMeat", false));
+    foods.push(new Item("roastedMarnica", false));
+    foods.push(new Item("daggerFishMeat", false));
     foods.push(new Item("roastedModerrLeg", false));
     foods.push(new Item("tigerMeat", false));
     foods.push(new Item("gladeWaspMeat", false));

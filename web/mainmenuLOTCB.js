@@ -797,6 +797,31 @@ function applySelectionsButton()
             }
 
         }
+        else if (player.title == "Nobility" && player.raceName == "Noth")
+        {
+            player.kelFaction = 0; //green (kellish) Chieftain Har
+            player.thengarFaction = 25; //brown (thengan) King Wolthgar
+            player.freynorFaction = 0; //blue (freydic) King Jirdun
+            player.aldrekFaction = -10; //red (aldrekii) Evaraxii Zoteff
+            player.orgellFaction = 0; //yellow (orgish) King Lysander
+            player.vardanFaction = 400; //black (vardanian) High Count Arlod
+            player.cephriteFaction = 0; //purple (cephrian) Arch Magus Eferous and the grand council of the magi
+            player.nirwadenFaction = 0; //orange (nirinese) Queen Lelaine
+
+            player.vardanRebelFaction = -500;
+            if (player.gender == "Male")
+            {
+                player.endurance = 9;
+                //Inventory.push([new Item("vardanianRoyalAttireM", false, false), 1]);
+            }
+            else
+            {
+                player.endurance = 0;
+                player.skillPoints = 0;
+                player.charisma = 20;
+                //Inventory.push([new Item("vardanianRoyalAttireF", false, false), 1]);
+            }
+        }
         else if (player.title == "Nobility" && player.raceName == "Cephrite" || player.title == "Royalty" && player.raceName == "Cephrite")
         {
             player.kelFaction = 20; //green (kellish) Chieftain Har
@@ -887,6 +912,38 @@ function applySelectionsButton()
             if (player.title != "Tradefolk" && player.title != "Vagabond")
             {
                 Inventory.unshift([new Item("selkieSkin", false, false), 1]);
+            }
+        }
+
+        if (player.raceName == "Sylkeem")
+        {
+            player.extraSkillPoints = 1;
+
+            if (player.class == "Sage")
+            {
+                player.extraMagicPoints = 3;
+            }
+            else
+            {
+                player.extraMagicPoints = 0;
+            }
+
+            if (player.title == "Nobility")
+            {
+                if (player.gender != "Male")
+                {
+                    player.extraSkillPoints = 20;
+                }
+                else
+                {
+                    player.extraSkillPoints = 9;
+                }
+            }
+
+            if (this.title == "Vagabond")
+            {
+                player.vardanFaction = -100;
+                player.vardanRebelFaction = -55;
             }
         }
 
@@ -1715,7 +1772,7 @@ function Selector(bX, bY, type, selNumMAX)
                     LXX.fillStyle = "black";
                     LXX.font = "12px Book Antiqua";
                     LXX.textAlign = "left";
-                    LXX.fillText("Men of the realm tend to be more priveledged in their opportunities.", 5, (LCC.height / 2) + 4);
+                    LXX.fillText("Men of the realm tend on average to be more priveledged in their opportunities, though ultimately this determination is culturally specific.", 5, (LCC.height / 2) + 4);
                 }
             }
             else if (selectNumber == 2)
@@ -1741,20 +1798,41 @@ function Selector(bX, bY, type, selNumMAX)
         {
             if (selectNumber == 0)
             {
-                //Combat Style: Fighter
-                XXX.fillStyle = "black";
-                XXX.font = "20px Impact";
-                XXX.textAlign = "center";
-                XXX.fillText("Fighter", bX + 105, bY + 23);
-                //attributes:
-                player.class = "Fighter";
-                //combat style low bar description
-                if (mouseX >= bX && mouseX <= bX + 210 && mouseY > bY && mouseY < bY + 30)
+                if (player.raceName != "Noth" || player.gender == "Male")
                 {
-                    LXX.fillStyle = "black";
-                    LXX.font = "12px Book Antiqua";
-                    LXX.textAlign = "left";
-                    LXX.fillText("Fighters specialize in close quarters combat with weapons like swords, daggers, axes, hammers, spears, etc. This class will allow your character to start out with a close quarters weapon appropriate to your culture and status.", 5, (LCC.height / 2) + 4);
+                    //Combat Style: Fighter
+                    XXX.fillStyle = "black";
+                    XXX.font = "20px Impact";
+                    XXX.textAlign = "center";
+                    XXX.fillText("Fighter", bX + 105, bY + 23);
+                    //attributes:
+                    player.class = "Fighter";
+                    //combat style low bar description
+                    if (mouseX >= bX && mouseX <= bX + 210 && mouseY > bY && mouseY < bY + 30)
+                    {
+                        LXX.fillStyle = "black";
+                        LXX.font = "12px Book Antiqua";
+                        LXX.textAlign = "left";
+                        LXX.fillText("Noth men are expected to take up arms to slay beasts, hunt, and serve as soldiers for the royal Kund.", 5, (LCC.height / 2) + 4);
+                    }
+                }
+                else if (player.raceName == "Noth" && player.gender != "Male")
+                {
+                    //Combat Style: Fighter
+                    XXX.fillStyle = "black";
+                    XXX.font = "20px Impact";
+                    XXX.textAlign = "center";
+                    XXX.fillText("Ranger", bX + 105, bY + 23);
+                    //attributes:
+                    player.class = "Ranger";
+                    //combat style low bar description
+                    if (mouseX >= bX && mouseX <= bX + 210 && mouseY > bY && mouseY < bY + 30)
+                    {
+                        LXX.fillStyle = "black";
+                        LXX.font = "12px Book Antiqua";
+                        LXX.textAlign = "left";
+                        LXX.fillText("Noth women are expected to learn archery to defend their children and to defend the village from beasts.", 5, (LCC.height / 2) + 4);
+                    }
                 }
             }
             else if (selectNumber == 1)
@@ -1777,7 +1855,7 @@ function Selector(bX, bY, type, selNumMAX)
             }
             else if (selectNumber == 2)
             {
-                if (player.raceName != "Nirwaden" && player.raceName != "Aldrek" && player.raceName != "Sylkeem" && player.raceName != "Zetian")
+                if (player.raceName != "Nirwaden" && player.raceName != "Aldrek" && player.raceName != "Sylkeem" && player.raceName != "Zetian" && player.raceName != "Noth")
                 {
                     //Combat Style: Mage
                     XXX.fillStyle = "black";
@@ -1829,6 +1907,52 @@ function Selector(bX, bY, type, selNumMAX)
                         LXX.font = "12px Book Antiqua";
                         LXX.textAlign = "left";
                         LXX.fillText("Fighters specialize in close quarters combat with weapons like swords, daggers, axes, hammers, spears, etc. This class will allow your character to start out with a close quarters weapon appropriate to your culture and status.", 5, (LCC.height / 2) + 4);
+                    }
+                }
+                else if (player.raceName == "Noth" && player.gender == "Male")
+                {
+                    //Combat Style: Fighter
+                    XXX.fillStyle = "black";
+                    XXX.font = "20px Impact";
+                    XXX.textAlign = "center";
+                    XXX.fillText("Sage", bX + 105, bY + 23);
+                    //attributes:
+                    player.class = "Sage";
+                    //combat style low bar description
+                    if (mouseX >= bX && mouseX <= bX + 210 && mouseY > bY && mouseY < bY + 30)
+                    {
+                        LXX.fillStyle = "black";
+                        LXX.font = "12px Book Antiqua";
+                        LXX.textAlign = "left";
+                        LXX.fillText("Though the Noth are supposedly all faithful members of the church of Vardania, they scarcely attend church, rather they recieve tradition religious blessings and rituals from sages.", 5, (LCC.height / 2) + 4);
+
+                        LXX.fillStyle = "black";
+                        LXX.font = "12px Book Antiqua";
+                        LXX.textAlign = "left";
+                        LXX.fillText("In reality their spiritual practice are more in line with the Orgish beliefs about the spirit world, reincarnation, and the nature of the everlasting spirit. They do, however, concede", 5, (LCC.height / 2) + 16);
+
+                        LXX.fillStyle = "black";
+                        LXX.font = "12px Book Antiqua";
+                        LXX.textAlign = "left";
+                        LXX.fillText("that there is a god of evil that counter balances the everlasting spirit, and they are not in full agreement with the Orgish about the necessity for balance between good and evil.", 5, (LCC.height / 2) + 28);
+                    }
+                }
+                else if (player.raceName == "Noth" && player.gender != "Male")
+                {
+                    //Combat Style: Fighter
+                    XXX.fillStyle = "black";
+                    XXX.font = "20px Impact";
+                    XXX.textAlign = "center";
+                    XXX.fillText("Ranger", bX + 105, bY + 23);
+                    //attributes:
+                    player.class = "Ranger";
+                    //combat style low bar description
+                    if (mouseX >= bX && mouseX <= bX + 210 && mouseY > bY && mouseY < bY + 30)
+                    {
+                        LXX.fillStyle = "black";
+                        LXX.font = "12px Book Antiqua";
+                        LXX.textAlign = "left";
+                        LXX.fillText("Noth women are expected to learn archery to defend their children and to defend the village from beasts.", 5, (LCC.height / 2) + 4);
                     }
                 }
                 else
@@ -1889,6 +2013,22 @@ function Selector(bX, bY, type, selNumMAX)
                         LXX.font = "12px Book Antiqua";
                         LXX.textAlign = "left";
                         LXX.fillText("you have never been outside of your seal skin before. You feel bare and exposed. A sudden and fearful shock rattles through your bones as you realize that you have lost your seal skin...", 5, (LCC.height / 2) + 16);
+                    }
+                }
+                else if (player.raceName == "Noth")
+                {
+                    //class low bar description
+                    if (mouseX >= bX && mouseX <= bX + 210 && mouseY > bY && mouseY < bY + 30)
+                    {
+                        LXX.fillStyle = "black";
+                        LXX.font = "12px Book Antiqua";
+                        LXX.textAlign = "left";
+                        LXX.fillText("You have committed some sort of action deemed unredeemable and have been banished by the Noth. Perhaps you broke the Noth code, perhaps you murdered somebody outside of a fair duel, or perhaps you simply offended the Kund or his wife. Whatever the case may be, ", 5, (LCC.height / 2) + 4);
+
+                        LXX.fillStyle = "black";
+                        LXX.font = "12px Book Antiqua";
+                        LXX.textAlign = "left";
+                        LXX.fillText("since the royal Kund is a Vardanian count, he has formally branded you a criminal and enemy of the realm. You can never return to your homeland again, under pain of death... You pull yourself from the muddy ground and grab your weapon, which you were permitted to bring. ", 5, (LCC.height / 2) + 16);
                     }
                 }
                 else if (player.raceName == "Zetian")
@@ -1956,6 +2096,27 @@ function Selector(bX, bY, type, selNumMAX)
                         LXX.font = "12px Book Antiqua";
                         LXX.textAlign = "left";
                         LXX.fillText("A ceremonial skin lets you connect with nature in the most intimate and original way possible. Only a person of Sylkeem blood can access the power of a ceremonial skin.", 5, (LCC.height / 2) + 16);
+                    }
+                }
+                else if (player.raceName == "Noth")
+                {
+                    Inventory = [];
+                    Inventory.push([new Item("coins", false, false), 8]);
+                    player.hunger = 7/11 * player.hungerMAX;
+                    player.satiated = false;
+
+                    //class low bar description
+                    if (mouseX >= bX && mouseX <= bX + 210 && mouseY > bY && mouseY < bY + 30)
+                    {
+                        LXX.fillStyle = "black";
+                        LXX.font = "12px Book Antiqua";
+                        LXX.textAlign = "left";
+                        LXX.fillText("For whatever reason, be it that your father was a known coward or your mother was pitifully ugly, or both, you were born with very little social status among the Noth.", 5, (LCC.height / 2) + 4);
+
+                        LXX.fillStyle = "black";
+                        LXX.font = "12px Book Antiqua";
+                        LXX.textAlign = "left";
+                        LXX.fillText("Luckily there is nowhere to go but up from here, your social status could not be worse... Well it could, you could be banished and hated by all, but luckily for you you are not!", 5, (LCC.height / 2) + 16);
                     }
                 }
                 else if (player.raceName == "Zetian")
@@ -2046,6 +2207,32 @@ function Selector(bX, bY, type, selNumMAX)
                         LXX.font = "12px Book Antiqua";
                         LXX.textAlign = "left";
                         LXX.fillText("A ceremonial skin lets you connect with nature in the most intimate and original way possible. Only a person of Sylkeem blood can access the power of a ceremonial skin.", 5, (LCC.height / 2) + 16);
+                    }
+                }
+                else if (player.raceName == "Noth")
+                {
+                    Inventory = [];
+                    Inventory.push([new Item("coins", false, false), 16]);
+                    player.hunger = 9 / 11 * player.hungerMAX;
+                    player.satiated = false;
+
+                    //class low bar description
+                    if (mouseX >= bX && mouseX <= bX + 210 && mouseY > bY && mouseY < bY + 30)
+                    {
+                        if (player.gender == "Male")
+                        {
+                            LXX.fillStyle = "black";
+                            LXX.font = "12px Book Antiqua";
+                            LXX.textAlign = "left";
+                            LXX.fillText("As a common man of Noth you are expected to either make your living as a hunter or by taking up arms and becoming a soldier of the royal Kund.", 5, (LCC.height / 2) + 4);
+                        }
+                        else
+                        {
+                            LXX.fillStyle = "black";
+                            LXX.font = "12px Book Antiqua";
+                            LXX.textAlign = "left";
+                            LXX.fillText("As a common woman of Noth you are expected to marry and either contribute to your family income as a farmer or by taking up archery and defending the village.", 5, (LCC.height / 2) + 4);
+                        }
                     }
                 }
                 else if (player.raceName == "Zetian")
@@ -2141,6 +2328,22 @@ function Selector(bX, bY, type, selNumMAX)
                         LXX.font = "12px Book Antiqua";
                         LXX.textAlign = "left";
                         LXX.fillText("Now the civil war has passed and trade is starting to come back to Vardania your family gives you what little they can and you set off to make your fortune.", 5, (LCC.height / 2) + 16);
+                    }
+                }
+                else if (player.raceName == "Noth")
+                {
+                    Inventory = [];
+                    Inventory.push([new Item("coins", false, false), 41]);
+                    player.hunger = player.hungerMAX;
+                    player.satiated = true;
+
+                    //class low bar description
+                    if (mouseX >= bX && mouseX <= bX + 210 && mouseY > bY && mouseY < bY + 30)
+                    {
+                        LXX.fillStyle = "black";
+                        LXX.font = "12px Book Antiqua";
+                        LXX.textAlign = "left";
+                        LXX.fillText("You are from a family that has grown wealthy crafting and trading supplies. The position of the County of Noth has especially promoted business for your family since both Orgish and Vardanian traders pass through for inter-kingdom commerse.", 5, (LCC.height / 2) + 4);
                     }
                 }
                 else if (player.raceName == "Sylkeem")
@@ -2257,6 +2460,27 @@ function Selector(bX, bY, type, selNumMAX)
                         LXX.font = "12px Book Antiqua";
                         LXX.textAlign = "left";
                         LXX.fillText("After purchasing status your family's wealth dropped significantly, but by the time you were old enough to make your own living your family had enough money to give you a sizable bag of coins for your venture.", 5, (LCC.height / 2) + 16);
+                    }
+                }
+                else if (player.raceName == "Noth")
+                {
+                    Inventory = [];
+                    Inventory.push([new Item("coins", false, false), 75]);
+                    player.hunger = player.hungerMAX;
+                    player.satiated = true;
+
+                    //class low bar description
+                    if (mouseX >= bX && mouseX <= bX + 210 && mouseY > bY && mouseY < bY + 30)
+                    {
+                        LXX.fillStyle = "black";
+                        LXX.font = "12px Book Antiqua";
+                        LXX.textAlign = "left";
+                        LXX.fillText("Your family has built up its wealth and status and is in a position to be considered eligible to marry into power when the Kund passes on to the next life. This being your families ultimate goal for you you are", 5, (LCC.height / 2) + 4);
+
+                        LXX.fillStyle = "black";
+                        LXX.font = "12px Book Antiqua";
+                        LXX.textAlign = "left";
+                        LXX.fillText("expected to prepare, in order to marry into power women practice their singing, dancing, and needlework to impress a male suitor, and men will train to be ready to complete the four impossible tasks. Ready yourself!", 5, (LCC.height / 2) + 16);
                     }
                 }
                 else if (player.raceName == "Sylkeem")
@@ -2513,12 +2737,17 @@ function Selector(bX, bY, type, selNumMAX)
                         LXX.fillStyle = "black";
                         LXX.font = "12px Book Antiqua";
                         LXX.textAlign = "left";
-                        LXX.fillText("Your parents were both in The Grand Magus Council for your entire childhood, they were quite old when they had you but they were able to express to you the importance of magical study. So study you did, and by the time they had died around the time you came", 5, (LCC.height / 2) + 4);
+                        LXX.fillText("Your mother is High Magus Anset of the ancient noble Anset family which has ruled in the heart of Cephrite for millenia. As her child you are to inheret her position on the grand council of Cephrite. Though you have been afforded", 5, (LCC.height / 2) + 4);
 
                         LXX.fillStyle = "black";
                         LXX.font = "12px Book Antiqua";
                         LXX.textAlign = "left";
-                        LXX.fillText("of age you were granted a seat on the council in their place. As a councilor of Cephrite you decided it was your duty to learn more about the world so that you could make more educated decisions on the council. So you set off!", 5, (LCC.height / 2) + 16);
+                        LXX.fillText("many luxuries in your position, your mother expects you to develop your magical expertise so that you can advance your family's status and power by discovering new research into the nature of magic. Each Noble ruling family", 5, (LCC.height / 2) + 16);
+
+                        LXX.fillStyle = "black";
+                        LXX.font = "12px Book Antiqua";
+                        LXX.textAlign = "left";
+                        LXX.fillText("hoards and covets magics which they have discovered. Part of discovering new magics is going on what is known as a sabbatical, which is a journey to distant lands to find and claim new magics to further empower your noble household.", 5, (LCC.height / 2) + 28);
                     }
                 }
                 else if (player.raceName == "Outlander")
@@ -2563,6 +2792,84 @@ function Selector(bX, bY, type, selNumMAX)
                         LXX.fillText("against an unsupsecting Kellish tribe you slipped on slick mud and nearly got stabbed through. Luckily a Thengan soldier was their to see your disgrace and she dragged you out of the battle as an excuse to retreat, she was killed of course to hide the shame you brought your family.", 5, (LCC.height / 2) + 16);
                     }
                 }
+                else if (player.raceName == "Noth")
+                {
+                    XXX.fillText("Nobility", bX + 105, bY + 23);
+                    player.title = "Nobility";
+
+                    Inventory.push([new Item("coins", false, false), 2000]);
+                    player.hunger = player.hungerMAX;
+                    player.satiated = true;
+
+                    //class low bar description
+                    if (mouseX >= bX && mouseX <= bX + 210 && mouseY > bY && mouseY < bY + 30)
+                    {
+                        LXX.fillStyle = "black";
+                        LXX.font = "12px Book Antiqua";
+                        LXX.textAlign = "left";
+                        LXX.fillText("You grew up in a palace on top of a hill surrounded by bog lands. Your father Batzorig Kund is the count that rules over the county of Noth under the rule", 5, (LCC.height / 2) + 4);
+
+                        if (player.gender == "Male")
+                        {
+                            LXX.fillStyle = "black";
+                            LXX.font = "12px Book Antiqua";
+                            LXX.textAlign = "left";
+                            LXX.fillText("of the high count Arlod of the crown of Vardania, but he is also a Kund, which makes his the surpreme leader of Noth. You will succeed him as Kund", 5, (LCC.height / 2) + 16);
+
+                            LXX.fillStyle = "black";
+                            LXX.font = "12px Book Antiqua";
+                            LXX.textAlign = "left";
+                            LXX.fillText("when you come of age and when he steps down as you are the Kundun, the male heir and successor of the kund. From a young age you were taught the values of self-sufficiency and strength. A Kund", 5, (LCC.height / 2) + 28);
+
+                            LXX.fillStyle = "black";
+                            LXX.font = "12px Book Antiqua";
+                            LXX.textAlign = "left";
+                            LXX.fillText("of Noth should never grow fat from feasts or be too fancifully decorated. A Kund should be powerful and should exude strength, bravery, and should always be an exemplar of the code of Noth.", 5, (LCC.height / 2) + 40);
+
+                            LXX.fillStyle = "black";
+                            LXX.font = "12px Book Antiqua";
+                            LXX.textAlign = "left";
+                            LXX.fillText("The Noth never kill women or children, rather, they adopt them into their society, Noth men are expected to meet any challenge to a duel they are presented if it is balanced,", 5, (LCC.height / 2) + 52);
+
+                            LXX.fillStyle = "black";
+                            LXX.font = "12px Book Antiqua";
+                            LXX.textAlign = "left";
+                            LXX.fillText("Women are expected to work the fields and become skilled archers to defend the children from beasts, while men are expected to hunt for meat, slay beasts that pose a threat, and fight in war whenever necessary.", 5, (LCC.height / 2) + 64);
+                        }
+                        else
+                        {
+                            LXX.fillStyle = "black";
+                            LXX.font = "12px Book Antiqua";
+                            LXX.textAlign = "left";
+                            LXX.fillText("of the high count Arlod of the crown of Vardania, but he is also a Kund, which makes his the surpreme leader of Noth. Since your father has no male heir as the Kundyala you will be the ruling Kundya who will", 5, (LCC.height / 2) + 16);
+
+                            LXX.fillStyle = "black";
+                            LXX.font = "12px Book Antiqua";
+                            LXX.textAlign = "left";
+                            LXX.fillText("be married to whoever wins in a challenge to complete four impossible tasks. Your father was married into power this way when he defeated a mud troll. As the Kundyala you are expected to act like a decoration,", 5, (LCC.height / 2) + 28);
+
+                            LXX.fillStyle = "black";
+                            LXX.font = "12px Book Antiqua";
+                            LXX.textAlign = "left";
+                            LXX.fillText("you are not to fight, nor speak to commoners, and you should always agree with your father and when you are married and become the Kundya you should be perfectly compliant with your husband's wishes, and teach", 5, (LCC.height / 2) + 40);
+
+                            LXX.fillStyle = "black";
+                            LXX.font = "12px Book Antiqua";
+                            LXX.textAlign = "left";
+                            LXX.fillText("your daughters to be good kundyala as you will have been. Until the kundya is married, which she is expected to be promptly if the daughter of a kund is to succeed him, she will be granted the privilege to speak and make leadership", 5, (LCC.height / 2) + 52);
+
+                            LXX.fillStyle = "black";
+                            LXX.font = "12px Book Antiqua";
+                            LXX.textAlign = "left";
+                            LXX.fillText("decisions until she is wed, and a new Kund is named. If your husband dies before you and you have no children you will be expected to take another husband. But if you have a male child he will become a child kund and will lead", 5, (LCC.height / 2) + 64);
+
+                            LXX.fillStyle = "black";
+                            LXX.font = "12px Book Antiqua";
+                            LXX.textAlign = "left";
+                            LXX.fillText("with your support as a regent. If your husband dies and you have only daughters she will be expected to marry at a young age to the man who completes the four impossible tasks. You will then be required to step down from power.", 5, (LCC.height / 2) + 64);
+                        }
+                    }
+                }
             }
             else if (selectNumber == 6)
             {
@@ -2570,12 +2877,12 @@ function Selector(bX, bY, type, selNumMAX)
                 XXX.fillStyle = "black";
                 XXX.font = "20px Impact";
                 XXX.textAlign = "center";
-                if (player.raceName != "Zetian")
+                if (player.raceName != "Zetian" && player.raceName != "Noth")
                 {
                     XXX.fillText("Royalty", bX + 105, bY + 23);
                     player.title = "Royalty";
                 }
-                else
+                else if (player.raceName == "Zetian")
                 {
                     XXX.fillText("Peasant", bX + 105, bY + 23);
                     player.title = "Peasant";
@@ -2597,6 +2904,84 @@ function Selector(bX, bY, type, selNumMAX)
                         LXX.font = "12px Book Antiqua";
                         LXX.textAlign = "left";
                         LXX.fillText("culture: you know how to live off the land.", 5, (LCC.height / 2) + 16);
+                    }
+                }
+                else if (player.raceName == "Noth")
+                {
+                    XXX.fillText("Nobility", bX + 105, bY + 23);
+                    player.title = "Nobility";
+
+                    Inventory.push([new Item("coins", false, false), 2000]);
+                    player.hunger = player.hungerMAX;
+                    player.satiated = true;
+
+                    //class low bar description
+                    if (mouseX >= bX && mouseX <= bX + 210 && mouseY > bY && mouseY < bY + 30)
+                    {
+                        LXX.fillStyle = "black";
+                        LXX.font = "12px Book Antiqua";
+                        LXX.textAlign = "left";
+                        LXX.fillText("You grew up in a palace on top of a hill surrounded by bog lands. Your father Batzorig Kund is the count that rules over the county of Noth under the rule", 5, (LCC.height / 2) + 4);
+
+                        if (player.gender == "Male")
+                        {
+                            LXX.fillStyle = "black";
+                            LXX.font = "12px Book Antiqua";
+                            LXX.textAlign = "left";
+                            LXX.fillText("of the high count Arlod of the crown of Vardania, but he is also a Kund, which makes his the surpreme leader of Noth. You will succeed him as Kund", 5, (LCC.height / 2) + 16);
+
+                            LXX.fillStyle = "black";
+                            LXX.font = "12px Book Antiqua";
+                            LXX.textAlign = "left";
+                            LXX.fillText("when you come of age and when he steps down as you are the Kundun, the male heir and successor of the kund. From a young age you were taught the values of self-sufficiency and strength. A Kund", 5, (LCC.height / 2) + 28);
+
+                            LXX.fillStyle = "black";
+                            LXX.font = "12px Book Antiqua";
+                            LXX.textAlign = "left";
+                            LXX.fillText("of Noth should never grow fat from feasts or be too fancifully decorated. A Kund should be powerful and should exude strength, bravery, and should always be an exemplar of the code of Noth.", 5, (LCC.height / 2) + 40);
+
+                            LXX.fillStyle = "black";
+                            LXX.font = "12px Book Antiqua";
+                            LXX.textAlign = "left";
+                            LXX.fillText("The Noth never kill women or children, rather, they adopt them into their society, Noth men are expected to meet any challenge to a duel they are presented if it is balanced,", 5, (LCC.height / 2) + 52);
+
+                            LXX.fillStyle = "black";
+                            LXX.font = "12px Book Antiqua";
+                            LXX.textAlign = "left";
+                            LXX.fillText("Women are expected to work the fields and become skilled archers to defend the children from beasts, while men are expected to hunt for meat, slay beasts that pose a threat, and fight in war whenever necessary.", 5, (LCC.height / 2) + 64);
+                        }
+                        else
+                        {
+                            LXX.fillStyle = "black";
+                            LXX.font = "12px Book Antiqua";
+                            LXX.textAlign = "left";
+                            LXX.fillText("of the high count Arlod of the crown of Vardania, but he is also a Kund, which makes his the surpreme leader of Noth. Since your father has no male heir as the Kundyala you will be the ruling Kundya who will", 5, (LCC.height / 2) + 16);
+
+                            LXX.fillStyle = "black";
+                            LXX.font = "12px Book Antiqua";
+                            LXX.textAlign = "left";
+                            LXX.fillText("be married to whoever wins in a challenge to complete four impossible tasks. Your father was married into power this way when he defeated a mud troll. As the Kundyala you are expected to act like a decoration,", 5, (LCC.height / 2) + 28);
+
+                            LXX.fillStyle = "black";
+                            LXX.font = "12px Book Antiqua";
+                            LXX.textAlign = "left";
+                            LXX.fillText("you are not to fight, nor speak to commoners, and you should always agree with your father and when you are married and become the Kundya you should be perfectly compliant with your husband's wishes, and teach", 5, (LCC.height / 2) + 40);
+
+                            LXX.fillStyle = "black";
+                            LXX.font = "12px Book Antiqua";
+                            LXX.textAlign = "left";
+                            LXX.fillText("your daughters to be good kundyala as you will have been. Until the kundya is married, which she is expected to be promptly if the daughter of a kund is to succeed him, she will be granted the privilege to speak and make leadership", 5, (LCC.height / 2) + 52);
+
+                            LXX.fillStyle = "black";
+                            LXX.font = "12px Book Antiqua";
+                            LXX.textAlign = "left";
+                            LXX.fillText("decisions until she is wed, and a new Kund is named. If your husband dies before you and you have no children you will be expected to take another husband. But if you have a male child he will become a child kund and will lead", 5, (LCC.height / 2) + 64);
+
+                            LXX.fillStyle = "black";
+                            LXX.font = "12px Book Antiqua";
+                            LXX.textAlign = "left";
+                            LXX.fillText("with your support as a regent. If your husband dies and you have only daughters she will be expected to marry at a young age to the man who completes the four impossible tasks. You will then be required to step down from power.", 5, (LCC.height / 2) + 64);
+                        }
                     }
                 }
                 //attributes:
@@ -2805,12 +3190,13 @@ function Selector(bX, bY, type, selNumMAX)
                         LXX.fillStyle = "black";
                         LXX.font = "12px Book Antiqua";
                         LXX.textAlign = "left";
-                        LXX.fillText("Arch Magus Eferous has raised you to be a great and powerful mage like himself, he has already ensured you a spot on The Grand Magus Council, and you've been highly successful in your magical studies.", 5, (LCC.height / 2) + 4);
+                        LXX.fillText("Your parents were both in The Grand Magus Council for your entire childhood, first your father, then when he died, your mother. They were quite old when they had you but they were able to express to you the importance of magical study. So study you did, and by the time", 5, (LCC.height / 2) + 4);
 
                         LXX.fillStyle = "black";
                         LXX.font = "12px Book Antiqua";
                         LXX.textAlign = "left";
-                        LXX.fillText("All that remains is for you to go out into the world to hone your magical ability so that when you come back maybe you will be powerful enough to be elected to your father's seat as arch magus.", 5, (LCC.height / 2) + 16);
+                        LXX.fillText("they had died around the time you came of age you succeeded them to your family's seat on the council. As a councilor of Cephrite you decided it was your duty to learn more about the world so that you could make more educated decisions on the council. So you set off!", 5, (LCC.height / 2) + 16);
+
                     }
                 }
                 else if (player.raceName == "Outlander")
@@ -3221,7 +3607,7 @@ function Selector(bX, bY, type, selNumMAX)
                 player.orgellFaction = 0; //yellow (orgish) King Lysander
                 player.vardanFaction = 75; //black (vardanian) High Count Arlod
                 player.cephriteFaction = 0; //purple (cephrian) Arch Magus Eferous and the grand council of the magi
-                player.nirwadenFaction = -10; //orange (nirinese) Queen Lelaine
+                player.nirwadenFaction = 25; //orange (nirinese) Queen Lelaine
 
                 //skill bonus
                 player.constitution = 0;
@@ -3261,6 +3647,78 @@ function Selector(bX, bY, type, selNumMAX)
             }
             else if (selectNumber == 7)
             {
+                //race: Noth
+                XXX.fillStyle = "black";
+                XXX.font = "20px Impact";
+                XXX.textAlign = "center";
+                XXX.fillText("Noth", bX + 105, bY + 23);
+                //race attributes
+                //colour and race name
+                player.raceName = "Noth";
+                player.race = "#757575";
+                //faction relations
+                player.kelFaction = 10; //green (kellish) Chieftain Har
+                player.thengarFaction = -5; //brown (thengan) King Wolthgar
+                player.freynorFaction = 0; //blue (freydic) King Jirdun
+                player.aldrekFaction = 0; //red (aldrekii) Evaraxii Zoteff
+                player.orgellFaction = -15; //yellow (orgish) King Lysander
+                player.vardanFaction = 50; //black (vardanian) High Count Arlod
+                player.cephriteFaction = 0; //purple (cephrian) Arch Magus Eferous and the grand council of the magi
+                player.nirwadenFaction = -10; //orange (nirinese) Queen Lelaine
+
+                //skill bonus
+                player.constitution = 0;
+                player.strength = 0;
+                player.stamina = 0;
+                player.dexterity = 0;
+                player.ranged = 0;
+                player.survivalism = 0;
+                player.intelligence = 0;
+                player.endurance = 6;
+                player.toughness = 0;
+                player.charisma = 0;
+                player.willpower = 0;
+                player.knowledge = 0;
+                player.concentration = 0;
+                player.memory = 0;
+                player.eminence = 0;
+                player.skillPoints = 4 + extraSkillPoints;
+                //low bar race description
+                if (mouseX >= bX && mouseX <= bX + 210 && mouseY > bY && mouseY < bY + 30)
+                {
+                    LXX.fillStyle = "black";
+                    LXX.font = "12px Book Antiqua";
+                    LXX.textAlign = "left";
+                    LXX.fillText("The Noth live in a region known as the County of Noth which is a vassal state of Vardania. Approximately 1200 years ago Noth was its own nation ruled by Gaanirmet Kund. Being surrounded by Vardania to the north and by Orgell on the south", 5, (LCC.height / 2) + -8);
+
+                    LXX.fillStyle = "black";
+                    LXX.font = "12px Book Antiqua";
+                    LXX.textAlign = "left";
+                    LXX.fillText("Noth was constantly pressured by both kingdoms as they both sought to gain the land to be able to trade with one another more easily without having to bother with the terrifs of passing through a sovereign nation. Also Noth represented a", 5, (LCC.height / 2) + 4);
+
+                    LXX.fillStyle = "black";
+                    LXX.font = "12px Book Antiqua";
+                    LXX.textAlign = "left";
+                    LXX.fillText("largely untapped source of mineral wealth. After some incedents where orgish merchants were attacked for attempting to evade terrifs, Orgell began to send military reinforcements which resulted in a few skirmishes when they continued to", 5, (LCC.height / 2) + 16);
+
+                    LXX.fillStyle = "black";
+                    LXX.font = "12px Book Antiqua";
+                    LXX.textAlign = "left";
+                    LXX.fillText("evade Nothian tarrifs, and as a result some skirmishes ensued which led to Orgell sending an invading force to take Noth. The Orgish forces vastly outnumbered the Noth, but Noth spies reported back in time for Gaanirmet Kund", 5, (LCC.height / 2) + 28);
+
+                    LXX.fillStyle = "black";
+                    LXX.font = "12px Book Antiqua";
+                    LXX.textAlign = "left";
+                    LXX.fillText("to send a rider in the night to contact the High Count of Vardania. He offered to swear fealty to Vardania as an untaxed vassal state, and offered to help Vardanian Merchants cross their lands safely in exchange for protection from Orgell.", 5, (LCC.height / 2) + 40);
+
+                    LXX.fillStyle = "black";
+                    LXX.font = "12px Book Antiqua";
+                    LXX.textAlign = "left";
+                    LXX.fillText("The noth are a tough people that know how to weather the treacherous mud flats and boglands of their homeland, they are resourceful and value strength, valor, and wit. When they fight they are not burdened by battle honor, though they do follow a code of their own.", 5, (LCC.height / 2) + 52);
+                }
+            }
+            else if (selectNumber == 8)
+            {
                 //race: Cephrite
                 XXX.fillStyle = "black";
                 XXX.font = "20px Impact";
@@ -3275,7 +3733,7 @@ function Selector(bX, bY, type, selNumMAX)
                 player.thengarFaction = 0; //brown (thengan) King Wolthgar
                 player.freynorFaction = 0; //blue (freydic) King Jirdun
                 player.aldrekFaction = -200; //red (aldrekii) Evaraxii Zoteff
-                player.orgellFaction = -25; //yellow (orgish) King Lysander
+                player.orgellFaction = -5; //yellow (orgish) King Lysander
                 player.vardanFaction = -49; //black (vardanian) High Count Arlod
                 player.cephriteFaction = 75; //purple (cephrian) Arch Magus Eferous and the grand council of the magi
                 player.nirwadenFaction = -45; //orange (nirinese) Queen Lelaine
@@ -3307,7 +3765,7 @@ function Selector(bX, bY, type, selNumMAX)
                     LXX.fillText("Centuries ago the cephrian people gained the understanding of the magical arts and since then their culture has evolved around it. They believe that no power exists except for the spirit of magic itself which they believe can be tamed and harnessed to their will.", 5, (LCC.height / 2) + 4);
                 }
             }
-            else if (selectNumber == 8)
+            else if (selectNumber == 9)
             {
                 //race: Zetian
                 XXX.fillStyle = "black";
@@ -3323,7 +3781,7 @@ function Selector(bX, bY, type, selNumMAX)
                 player.thengarFaction = -15; //brown (thengan) King Wolthgar
                 player.freynorFaction = 0; //blue (freydic) King Jirdun
                 player.aldrekFaction = -40; //red (aldrekii) Evaraxii Zoteff
-                player.orgellFaction = -40; //yellow (orgish) King Lysander
+                player.orgellFaction = 0; //yellow (orgish) King Lysander
                 player.vardanFaction = 0; //black (vardanian) High Count Arlod
                 player.cephriteFaction = 20; //purple (cephrian) Arch Magus Eferous and the grand council of the magi
                 player.nirwadenFaction = -20; //orange (nirinese) Queen Lelaine
@@ -3368,7 +3826,7 @@ function Selector(bX, bY, type, selNumMAX)
                     LXX.fillText("rules, and the prosperity chief, that was tasked with working out differences between the tribe in favour of a degree of unity between them. The ancient Zetians believed that the god Asar crafted them all out of a sacred sand, and that they are all spiritually one.", 5, (LCC.height / 2) + 28);
                 }
             }
-            else if (selectNumber == 9)
+            else if (selectNumber == 10)
             {
                 //race: Nirwaden
                 XXX.fillStyle = "black";
@@ -3385,7 +3843,7 @@ function Selector(bX, bY, type, selNumMAX)
                 player.freynorFaction = 0; //blue (freydic) King Jirdun
                 player.aldrekFaction = -200; //red (aldrekii) Evaraxii Zoteff
                 player.orgellFaction = -10; //yellow (orgish) King Lysander
-                player.vardanFaction = -10; //black (vardanian) High Count Arlod
+                player.vardanFaction = 25; //black (vardanian) High Count Arlod
                 player.cephriteFaction = -10; //purple (cephrian) Arch Magus Eferous and the grand council of the magi
                 player.nirwadenFaction = 75; //orange (nirinese) Queen Lelaine
 
@@ -3417,7 +3875,7 @@ function Selector(bX, bY, type, selNumMAX)
                     LXX.fillText("The Nirinese people have honed their skills in metalwork, craftsmanship, and warfare, and now they seek to expand their dominion across the land, not only to profit from their conquests, but also to spread their righteous faith in The Everlasting Spirit.", 5, (LCC.height / 2) + 4);
                 }
             }
-            else if (selectNumber == 10)
+            else if (selectNumber == 11)
             {
                 //race: Outlander
                 XXX.fillStyle = "black";

@@ -4751,7 +4751,7 @@ function theLegend()
     exampleGuyList.push(new drawExampleCharacter(1/2 * CCC.width, 1/2 * CCC.height - 115, 0));
 //this list stores the Selector Bar Class for the character builder.
     selectorList = [];
-    selectorList.push(new Selector(1/2 * CCC.width - 105, 260, "race", 10)); // 0 == race selector
+    selectorList.push(new Selector(1/2 * CCC.width - 105, 260, "race", 11)); // 0 == race selector
     selectorList.push(new Selector(1/2 * CCC.width - 105, 300, "gender", 2)); // 1 == gender selector
     selectorList.push(new Selector(1/2 * CCC.width - 105, 340, "class", 6)); // 2 == wealth and social class selector
     selectorList.push(new Selector(1/2 * CCC.width - 105, 380, "style", 2)); // 3 == combat style selector

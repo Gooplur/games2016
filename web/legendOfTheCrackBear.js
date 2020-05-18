@@ -3756,7 +3756,7 @@ function over(kind, j, i, extraX, extraY)
                 if (ArtificialIntelligenceAccess[i].nonStick == false)
                 {
                     ArtificialIntelligenceAccess[i].sticky = true;
-                    if (ArtificialIntelligenceAccess[i].flying != true && ArtificialIntelligenceAccess[i].resistances.indexOf("sticky") == -1)
+                    if (ArtificialIntelligenceAccess[i].underground != true && ArtificialIntelligenceAccess[i].flying != true && ArtificialIntelligenceAccess[i].resistances.indexOf("sticky") == -1)
                     {
                         ArtificialIntelligenceAccess[i].stunned = 0.3;
                     }

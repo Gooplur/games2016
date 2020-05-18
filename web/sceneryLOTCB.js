@@ -343,6 +343,54 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                         player.acidV = true;
                         player.acidTime = new Date().getTime() + 22000;
                     }
+                    else if (effect == "leftSmashI" && (Math.max(0, damage - Math.max(0, player.armourTotal - negate)) > 0))
+                    {
+                        var twrdsUnit = Math.atan2(this.Y - Y, this.X - X);
+                        X -= Math.cos(twrdsUnit - 1/3 * Math.PI) * 30;
+                        Y -= Math.sin(twrdsUnit - 1/3 * Math.PI) * 30;
+                        player.stunnedIII = true;
+                        player.stunnedTime = 2;
+                    }
+                    else if (effect == "rightSmashI" && (Math.max(0, damage - Math.max(0, player.armourTotal - negate)) > 0))
+                    {
+                        var twrdsUnit = Math.atan2(this.Y - Y, this.X - X);
+                        X -= Math.cos(twrdsUnit + 1/3 * Math.PI) * 110;
+                        Y -= Math.sin(twrdsUnit + 1/3 * Math.PI) * 110;
+                        player.stunnedIII = true;
+                        player.stunnedTime = 3;
+                    }
+                    else if (effect == "leftSmashII" && (Math.max(0, damage - Math.max(0, player.armourTotal - negate)) > 0))
+                    {
+                        var twrdsUnit = Math.atan2(this.Y - Y, this.X - X);
+                        X -= Math.cos(twrdsUnit - 1/3 * Math.PI) * 40;
+                        Y -= Math.sin(twrdsUnit - 1/3 * Math.PI) * 40;
+                        player.stunnedIII = true;
+                        player.stunnedTime = 3;
+                    }
+                    else if (effect == "rightSmashII" && (Math.max(0, damage - Math.max(0, player.armourTotal - negate)) > 0))
+                    {
+                        var twrdsUnit = Math.atan2(this.Y - Y, this.X - X);
+                        X -= Math.cos(twrdsUnit + 1/3 * Math.PI) * 150;
+                        Y -= Math.sin(twrdsUnit + 1/3 * Math.PI) * 150;
+                        player.stunnedIII = true;
+                        player.stunnedTime = 4;
+                    }
+                    else if (effect == "leftSmashIII" && (Math.max(0, damage - Math.max(0, player.armourTotal - negate)) > 0))
+                    {
+                        var twrdsUnit = Math.atan2(this.Y - Y, this.X - X);
+                        X -= Math.cos(twrdsUnit - 1/3 * Math.PI) * 60;
+                        Y -= Math.sin(twrdsUnit - 1/3 * Math.PI) * 60;
+                        player.stunnedIII = true;
+                        player.stunnedTime = 4;
+                    }
+                    else if (effect == "rightSmashIII" && (Math.max(0, damage - Math.max(0, player.armourTotal - negate)) > 0))
+                    {
+                        var twrdsUnit = Math.atan2(this.Y - Y, this.X - X);
+                        X -= Math.cos(twrdsUnit + 1/3 * Math.PI) * 220;
+                        Y -= Math.sin(twrdsUnit + 1/3 * Math.PI) * 220;
+                        player.stunnedIII = true;
+                        player.stunnedTime = 5;
+                    }
                 }
             }
         }
@@ -10751,6 +10799,60 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                             ArtificialIntelligenceAccess[j].acidV = true;
                             ArtificialIntelligenceAccess[j].acidTime = new Date().getTime() + 22000;
                             ArtificialIntelligenceAccess[j].killNotByPlayer = true;
+                        }
+                        else if (this.effect == "leftSmashI" && (Math.max(0, (this.damage - Math.max(0, ArtificialIntelligenceAccess[j].armour - this.negate)))))
+                        {
+                            var twrdsUnit = Math.atan2(this.Y - ArtificialIntelligenceAccess[j].Y, this.X - ArtificialIntelligenceAccess[j].X);
+                            ArtificialIntelligenceAccess[j].X -= Math.cos((twrdsUnit - 1/4 * Math.PI)) * 30;
+                            ArtificialIntelligenceAccess[j].Y -= Math.sin((twrdsUnit - 1/4 * Math.PI)) * 30;
+                            ArtificialIntelligenceAccess[j].stunIII = true;
+                            ArtificialIntelligenceAccess[j].stunTimer = 2;
+                            ArtificialIntelligenceAccess[j].stunTime = new Date().getTime();
+                        }
+                        else if (this.effect == "rightSmashI" && (Math.max(0, (this.damage - Math.max(0, ArtificialIntelligenceAccess[j].armour - this.negate)))))
+                        {
+                            var twrdsUnit = Math.atan2(this.Y - ArtificialIntelligenceAccess[j].Y, this.X - ArtificialIntelligenceAccess[j].X);
+                            ArtificialIntelligenceAccess[j].X -= Math.cos((twrdsUnit + 1/3 * Math.PI)) * 110;
+                            ArtificialIntelligenceAccess[j].Y -= Math.sin((twrdsUnit + 1/3 * Math.PI)) * 110;
+                            ArtificialIntelligenceAccess[j].stunIII = true;
+                            ArtificialIntelligenceAccess[j].stunTimer = 3;
+                            ArtificialIntelligenceAccess[j].stunTime = new Date().getTime();
+                        }
+                        else if (this.effect == "leftSmashII" && (Math.max(0, (this.damage - Math.max(0, ArtificialIntelligenceAccess[j].armour - this.negate)))))
+                        {
+                            var twrdsUnit = Math.atan2(this.Y - ArtificialIntelligenceAccess[j].Y, this.X - ArtificialIntelligenceAccess[j].X);
+                            ArtificialIntelligenceAccess[j].X -= Math.cos((twrdsUnit - 1/3 * Math.PI)) * 40;
+                            ArtificialIntelligenceAccess[j].Y -= Math.sin((twrdsUnit - 1/3 * Math.PI)) * 40;
+                            ArtificialIntelligenceAccess[j].stunIII = true;
+                            ArtificialIntelligenceAccess[j].stunTimer = 3;
+                            ArtificialIntelligenceAccess[j].stunTime = new Date().getTime();
+                        }
+                        else if (this.effect == "rightSmashII" && (Math.max(0, (this.damage - Math.max(0, ArtificialIntelligenceAccess[j].armour - this.negate)))))
+                        {
+                            var twrdsUnit = Math.atan2(this.Y - ArtificialIntelligenceAccess[j].Y, this.X - ArtificialIntelligenceAccess[j].X);
+                            ArtificialIntelligenceAccess[j].X -= Math.cos((twrdsUnit + 1/3 * Math.PI)) * 150;
+                            ArtificialIntelligenceAccess[j].Y -= Math.sin((twrdsUnit + 1/3 * Math.PI)) * 150;
+                            ArtificialIntelligenceAccess[j].stunIII = true;
+                            ArtificialIntelligenceAccess[j].stunTimer = 4;
+                            ArtificialIntelligenceAccess[j].stunTime = new Date().getTime();
+                        }
+                        else if (this.effect == "leftSmashIII" && (Math.max(0, (this.damage - Math.max(0, ArtificialIntelligenceAccess[j].armour - this.negate)))))
+                        {
+                            var twrdsUnit = Math.atan2(this.Y - ArtificialIntelligenceAccess[j].Y, this.X - ArtificialIntelligenceAccess[j].X);
+                            ArtificialIntelligenceAccess[j].X -= Math.cos((twrdsUnit - 1/3 * Math.PI)) * 60;
+                            ArtificialIntelligenceAccess[j].Y -= Math.sin((twrdsUnit - 1/3 * Math.PI)) * 60;
+                            ArtificialIntelligenceAccess[j].stunIII = true;
+                            ArtificialIntelligenceAccess[j].stunTimer = 4;
+                            ArtificialIntelligenceAccess[j].stunTime = new Date().getTime();
+                        }
+                        else if (this.effect == "rightSmashIII" && (Math.max(0, (this.damage - Math.max(0, ArtificialIntelligenceAccess[j].armour - this.negate)))))
+                        {
+                            var twrdsUnit = Math.atan2(this.Y - ArtificialIntelligenceAccess[j].Y, this.X - ArtificialIntelligenceAccess[j].X);
+                            ArtificialIntelligenceAccess[j].X -= Math.cos((twrdsUnit + 1/3 * Math.PI)) * 220;
+                            ArtificialIntelligenceAccess[j].Y -= Math.sin((twrdsUnit + 1/3 * Math.PI)) * 220;
+                            ArtificialIntelligenceAccess[j].stunIII = true;
+                            ArtificialIntelligenceAccess[j].stunTimer = 5;
+                            ArtificialIntelligenceAccess[j].stunTime = new Date().getTime();
                         }
                     }
                 }

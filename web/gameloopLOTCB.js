@@ -44,11 +44,11 @@ function gameloopOfDestiny(time)
     worldBuilder();
 
     //Reverse-Communication Landscape Variables
-    player.nonStick = false;
-    player.sticky = false;
-
     if (gameLoopNumber % 25 == 0)
     {
+        player.nonStick = false;
+        player.sticky = false;
+
         for (var k = 0; k < ArtificialIntelligenceAccess.length; k++)
         {
             if (ArtificialIntelligenceAccess[k].dmx == map)

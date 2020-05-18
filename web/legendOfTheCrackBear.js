@@ -1615,6 +1615,18 @@ function nalPack()
 
     nal.onload = function()
     {
+        nulgPack();
+    };
+}
+
+function nulgPack()
+{
+    var nulg = new Image();
+    nulg.src = ("images/nulg.png");
+    window.nulg = nulg;
+
+    nulg.onload = function()
+    {
         mrolPack();
     };
 }

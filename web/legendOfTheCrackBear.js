@@ -8,7 +8,7 @@
 //top priority
 
 //Image sheet ideas
-//todo orgish image sheet part II: Odachi, Kuzan (catfish shark), Snap-jaw (little glade alligator), giant koifish, sticky bug trap flower, molebear, cobra, hummingbird, toucan, panda bear, baboon, tiger, pink pig, cocain leaf
+//todo orgish image sheet part II: Odachi, Snap-jaw (little glade alligator), sticky bug trap flower, molebear, cobra, hummingbird, toucan, baboon, cocain leaf
 //todo far north fish
 //todo furry snow beast
 //todo frost wyrm (with frost breath) (ridable)
@@ -1626,6 +1626,18 @@ function nulgPack()
     window.nulg = nulg;
 
     nulg.onload = function()
+    {
+        mudmPack();
+    };
+}
+
+function mudmPack()
+{
+    var mudm = new Image();
+    mudm.src = ("images/mudm.png");
+    window.mudm = mudm;
+
+    mudm.onload = function()
     {
         mrolPack();
     };

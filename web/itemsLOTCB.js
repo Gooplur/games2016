@@ -34185,13 +34185,15 @@ function Item(type, x, y)
             if (player.areGlovesEquipped == true)
             {
                 this.description = "The coarse and stringy textured dried mushrooms are drenched in a whitish coloured oil.";
+                this.smallText = false;
             }
             else
             {
-                this.description = "Grey speccled mushrooms with lighter stringy grey stalks. It stings your fingers to touch their greesy, slick, leathery mushroom caps.";
+                this.description = "Grey speckled mushrooms with lighter stringy grey stalks. It stings your fingers to touch their greesy, slick, leathery mushroom caps.";
+                this.smallText = true;
             }
             this.intForDes = 10;
-            this.intDescription = "They oil they produce is valued as an alchemical ingredient; it is used as a base..";
+            this.intDescription = "The oil they produce is valued as an alchemical ingredient; it is used as a base..";
 
             //Define Utility
             this.utility = "material";

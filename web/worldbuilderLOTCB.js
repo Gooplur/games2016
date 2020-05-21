@@ -355,6 +355,50 @@ function worldBuilder()
             outlineBuilder( 1, 1, "savannahDirt", -14, 717);
             outlineBuilder( 1, 1, "savannahDirt", -7, 718);
         }
+        //mapS21W32 //Boroye (city)
+        if (Y > -218110 && Y < -207328 && X < 334130 && X > 322464) //X32
+        {
+            elevation = -1;
+            region = "s21w32";
+            campout = false;
+            outlineBuilder(34, 34, "boroStone", -1108, 694);
+
+            outlineBuilder(1, 2, "burntBoroStone", -1108, 694);
+
+            outlineBuilder(34, 2, "vardanianGrass", -1076, 694);
+            outlineBuilder(19, 3, "vardanianGrass", -1079, 709);
+            outlineBuilder(13, 2, "vardanianGrass", -1081, 715);
+            outlineBuilder(9, 2, "vardanianGrass", -1083, 719);
+            outlineBuilder(7, 8, "vardanianGrass", -1091, 721);
+            outlineBuilder(6, 15, "vardanianGrass", -1106, 722);
+            outlineBuilder(3, 2, "vardanianGrass", -1108, 725);
+
+            //tree or garden to the castle
+            outlineBuilder(1, 2, "vardanianGrass", -1108, 704);
+            outlineBuilder(1, 4, "vardanianGrass", -1108, 701);
+            outlineBuilder(1, 1, "vardanianGrass", -1105, 704);
+
+            outlineBuilder(7, 5, "vardanianGrass", -1108, 705);
+
+            outlineBuilder(1, 10, "vardanianStone", -1108, 720);
+            outlineBuilder(9, 1, "vardanianStone", -1098, 719);
+            outlineBuilder(1, 9, "vardanianStone", -1097, 719);
+            outlineBuilder(6, 1, "vardanianStone", -1088, 714);
+            outlineBuilder(1, 3, "vardanianStone", -1086, 714);
+            outlineBuilder(6, 1, "vardanianStone", -1087, 709);
+            outlineBuilder(4, 1, "vardanianStone", -1083, 711);
+            outlineBuilder(1, 2, "vardanianStone", -1082, 711);
+            outlineBuilder(1, 3, "vardanianStone", -1108, 712);
+            outlineBuilder(2, 17, "vardanianStone", -1108, 702);
+            outlineBuilder(8, 1, "vardanianStone", -1106, 704);
+            outlineBuilder(1, 5, "vardanianStone", -1108, 695);
+            outlineBuilder(1, 1, "vardanianStone", -1104, 694);
+            outlineBuilder(4, 1, "vardanianStone", -1100, 694);
+            outlineBuilder(10, 2, "vardanianStone", -1091, 694);
+            outlineBuilder(6, 1, "vardanianStone", -1082, 694);
+            outlineBuilder(1, 1, "vardanianStone", -1081, 699);
+            outlineBuilder(13, 1, "vardanianStone", -1080, 699);
+        }
         //mapS21W33 //Boroye (city)
         if (Y > -218110 && Y < -207328 && X < 344333 && X > 332640) //X33
         {
@@ -6234,7 +6278,7 @@ function worldBuilder()
         region = "testMap";
         campout = true;
         //starting chamber
-        outlineBuilder(68,68, "crag", -34, -34);
+        outlineBuilder(68,68, "southbog", -34, -34);
     }
 }
 

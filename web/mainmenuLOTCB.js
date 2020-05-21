@@ -1503,6 +1503,11 @@ function applySelectionsButton()
             }
 
         }
+        else if (player.raceName == "Noth")
+        {
+            X = 330240.4050199153;
+            Y = -217778.84692034996;
+        }
         else if (player.raceName == "Cephrite")
         {
             if (player.title == "Nobility")
@@ -2797,6 +2802,7 @@ function Selector(bX, bY, type, selNumMAX)
                     XXX.fillText("Nobility", bX + 105, bY + 23);
                     player.title = "Nobility";
 
+                    Inventory = [];
                     Inventory.push([new Item("coins", false, false), 2000]);
                     player.hunger = player.hungerMAX;
                     player.satiated = true;

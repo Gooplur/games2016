@@ -636,8 +636,13 @@ function Adventurer()
     this.sticky = false;
     this.nonStick = false;
     this.antidecay = false;
+    this.eneojiTime = 0;
+    this.eneojiDependence = false;
+    this.eneojiTolerance = 0;
+    this.ketsueki = false;
+    this.ketsuekiBlood = 0.001;
 
-        //faction variables
+    //faction variables
     this.factionToggle = false;
     this.kelPeace = true;
     this.thengarPeace = true;
@@ -4176,7 +4181,7 @@ function Adventurer()
             {
                 this.dexBoost = 65;
             }
-            else if (this.speedIII == true && new Date().getTime() - this.dexTime < 25000)
+            else if (this.speedIII == true && new Date().getTime() - this.dexTime < 25000 || this.eneojiTime > 0)
             {
                 this.dexBoost = 55;
             }
@@ -5003,6 +5008,55 @@ function Adventurer()
                 this.haeflowerTrip = false;
             }
 
+            //Eneoji Rush
+            if (this.eneojiTime > 0)
+            {
+                this.eneojiTime -= 0.01 * (TTD / 16.75);
+                this.energy += 0.01 * (TTD / 16.75);
+            }
+            else if (this.eneojiDependence == true && this.eneojiTime < -125)
+            {
+                this.eneojiTime -= 0.01 * (TTD / 16.75);
+                if (this.energy > 1/10 * this.energyMAX)
+                {
+                    this.energy -= 0.02 * (TTD / 16.75);
+                }
+                this.hunger -= 0.002 * (TTD / 16.75);
+                this.eneojiTolerance = Math.max(0, this.eneojiTolerance - 0.025);
+                if (this.eneojiTime <= -550)
+                {
+                    this.eneojiDependence = false;
+                    this.eneojiTime = 0;
+                    this.eneojiTolerance = 0;
+                }
+            }
+            else if (this.eneojiDependence == true)
+            {
+                this.eneojiTime -= 0.01 * (TTD / 16.75);
+            }
+
+            //ketsueki fungus
+            if (this.ketsueki == true)
+            {
+                this.ketsuekiBlood += 1/20 * this.ketsuekiBlood;
+                if (this.ketsuekiBlood >= 0.6)
+                {
+                    scenicList.push(new Scenery("blood", X, Y, 2*Math.random()*Math.PI, 1, Math.min(Math.max(0.50, this.ketsuekiBlood / 20), 2)));
+                    X = ketsuekiX;
+                    Y = ketsuekiY;
+                }
+                else
+                {
+                    ketsuekiX = X;
+                    ketsuekiY = Y;
+                }
+                this.health -= this.ketsuekiBlood;
+            }
+            else
+            {
+                this.ketsuekiBlood = 0.001;
+            }
+
             //Anjay Drug Trip
             if (this.anjayTime > 0)
             {
@@ -5616,6 +5670,7 @@ function Adventurer()
         //Vamprism
         if (this.vamprism && this.venandi < 400 && this.wendigo == false)
         {
+            this.ketsueki = false;
             this.heat = 0;
             this.venandi = 0;
             this.decay = 0;
@@ -6138,6 +6193,10 @@ function Adventurer()
         {
             return Math.max(0, Math.min(86, (this.dexterity + this.AdDexterity + this.dexBoost + this.swollenDEX) / 10));
         }
+        else if (this.eneojiTime > 0)
+        {
+            return Math.max(0, Math.min(110, (this.dexterity + this.AdDexterity + this.dexBoost + this.swollenDEX) / 10));
+        }
         else // returns the normal amount.
         {
             return Math.max(0, Math.min(86, (this.dexterity + this.AdDexterity + this.dexBoost + this.swollenDEX)));
@@ -6448,6 +6507,50 @@ function Adventurer()
         {
             //at this point the slot will have been cleared so next time the effect shows up it should have to check again to be entered into a position on the miniNoticeList.
             this.removeNotice("Sweating");
+        }
+    };
+
+    //Eneoji Notice Function
+    this.eneojiChecker = function()
+    {
+        if (this.eneojiTime > 0)
+        {
+            // at this point the slot should be consistent so it should not have to check again to be entered into a position on the miniNoticeList.
+            this.addNotice("Eneoji Rush");
+            //red background
+            XXX.beginPath();
+            XXX.fillStyle = "#FD8D59";
+            XXX.lineWidth = 1;
+            XXX.strokeStyle = "black";
+            XXX.rect(this.arrangeNotices("Eneoji Rush"), 413, 20, 20);
+            XXX.fill();
+            XXX.stroke();
+            XXX.drawImage(bosh, 530, 249, 71, 69, this.arrangeNotices("Eneoji Rush"), 412.5, 20, 20);
+        }
+        else
+        {
+            //at this point the slot will have been cleared so next time the effect shows up it should have to check again to be entered into a position on the miniNoticeList.
+            this.removeNotice("Eneoji Rush");
+        }
+
+        if (this.eneojiTime < -125 && this.eneojiDependence)
+        {
+            // at this point the slot should be consistent so it should not have to check again to be entered into a position on the miniNoticeList.
+            this.addNotice("Eneoji Withdrawal");
+            //red background
+            XXX.beginPath();
+            XXX.fillStyle = "#2C0E00";
+            XXX.lineWidth = 1;
+            XXX.strokeStyle = "black";
+            XXX.rect(this.arrangeNotices("Eneoji Withdrawal"), 413, 20, 20);
+            XXX.fill();
+            XXX.stroke();
+            XXX.drawImage(bosh, 450, 259, 51, 53, this.arrangeNotices("Eneoji Withdrawal"), 412.5, 20, 20);
+        }
+        else
+        {
+            //at this point the slot will have been cleared so next time the effect shows up it should have to check again to be entered into a position on the miniNoticeList.
+            this.removeNotice("Eneoji Withdrawal");
         }
     };
 
@@ -7868,6 +7971,7 @@ function Adventurer()
         this.pixiVenomChecker();
         this.pixiDustChecker();
         this.voaiiChecker();
+        this.eneojiChecker();
     };
 
     //MOVEMENT ANIMATION
@@ -41078,6 +41182,26 @@ function Adventurer()
                                 this.fatigueII = true;
                                 this.experience += 40;
                             }
+                            else if (Inventory[i][0].ability == "healthyI") //this effect makes the player vomit and lose 22 hunger.
+                            {
+                                this.experience += 1;
+                            }
+                            else if (Inventory[i][0].ability == "healthyII") //this effect makes the player vomit and lose 22 hunger.
+                            {
+                                this.experience += 5;
+                            }
+                            else if (Inventory[i][0].ability == "healthyIII") //this effect makes the player vomit and lose 22 hunger.
+                            {
+                                this.experience += 10;
+                            }
+                            else if (Inventory[i][0].ability == "healthyIV") //this effect makes the player vomit and lose 22 hunger.
+                            {
+                                this.experience += 20;
+                            }
+                            else if (Inventory[i][0].ability == "healthyV") //this effect makes the player vomit and lose 22 hunger.
+                            {
+                                this.experience += 50;
+                            }
                             else if (Inventory[i][0].ability == "speedI") //This is for enhancing dexterity.
                             {
                                 this.dexTime = new Date().getTime();
@@ -41102,6 +41226,18 @@ function Adventurer()
                             {
                                 this.dexTime = new Date().getTime();
                                 this.speedV = true;
+                            }
+                            else if (Inventory[i][0].ability == "ketsueki") //This is for enhancing dexterity.
+                            {
+                                this.ketsueki = true;
+                            }
+                            else if (Inventory[i][0].ability == "eneoji")
+                            {
+                                this.dexTime = new Date().getTime();
+                                this.speedIV = true;
+                                this.eneojiDependence = true;
+                                this.eneojiTime = Math.max(225, 999 - this.eneojiTolerance);
+                                this.eneojiTolerance += 88;
                             }
                             else if (Inventory[i][0].ability == "mindI") //This is for enhancing dexterity.
                             {
@@ -41172,6 +41308,7 @@ function Adventurer()
                                     this.venandi = 0;
                                 }
                                 this.fungalFever = false;
+                                this.ketsueki = false;
                             }
                             else if (Inventory[i][0].ability == "antiSilver")
                             {
@@ -41189,6 +41326,7 @@ function Adventurer()
                                     this.venandi = 0;
                                 }
                                 this.fungalFever = false;
+                                this.ketsueki = false;
                                 this.decay -= 2;
 
                                 //breaks down drug compounds
@@ -41196,6 +41334,7 @@ function Adventurer()
                                 this.haeflowerTime = 0;
                                 this.bahabTime = 0;
                                 this.anjayTime = 0;
+                                this.eneojiTime = Math.min(-125, this.eneojiTime);
                                 this.inebriation = 0;
 
                                 this.radiation = Math.max(0, this.radiation - 5);

@@ -37273,6 +37273,264 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 }
             }
         }
+        else if (this.type == "greyScretilPlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.nectar(3);
+            this.solid = false;
+            this.interactionRange = 100;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(site, 461, 285, 129, 124, -(1/2 * 129 * 0.6), -(1/2 * 124 * 0.6), 129 * 0.6, 124 * 0.6);
+                XXX.restore();
+            }
+            else if (this.phase == 1)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(site, 597, 283, 129, 124, -(1/2 * 129 * 0.6), -(1/2 * 124 * 0.6), 129 * 0.6, 124 * 0.6);
+                XXX.restore();
+            }
+            else if (this.phase == "picked")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(site, 704, 276, 129, 124, -(1/2 * 129 * 0.6), -(1/2 * 124 * 0.6), 129 * 0.6, 124 * 0.6);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 13;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                if (this.phase == 0)
+                {
+                    this.activate = false;
+                    this.phase = 1;
+                    var hits = 0;
+                    for (var i = 0; i < Inventory.length; i ++)
+                    {
+                        if (Inventory[i][0].type == "greyScretilLeaf")
+                        {
+                            Inventory[i][1] += 1;
+                            break;
+                        }
+                        else
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == Inventory.length)
+                    {
+                        Inventory.push([new Item("greyScretilLeaf", false, false), 1 + Math.floor(Math.random() * 8)]);
+                    }
+                }
+                else if (this.phase == 1)
+                {
+                    this.activate = false;
+                    this.phase = "picked";
+                    var hits = 0;
+                    for (var i = 0; i < Inventory.length; i ++)
+                    {
+                        if (Inventory[i][0].type == "greyScretilSeedPods")
+                        {
+                            Inventory[i][1] += 1;
+                            break;
+                        }
+                        else
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == Inventory.length)
+                    {
+                        Inventory.push([new Item("greyScretilSeedPods", false, false), 1]);
+                    }
+                }
+            }
+        }
+        else if (this.type == "scretilPlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.nectar(4);
+            this.solid = false;
+            this.interactionRange = 100;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(site, 460, 129, 129, 124, -(1/2 * 129), -(1/2 * 124), 129, 124);
+                XXX.restore();
+            }
+            else if (this.phase == 1)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(site, 594, 132, 129, 124, -(1/2 * 129), -(1/2 * 124), 129, 124);
+                XXX.restore();
+            }
+            else if (this.phase == "picked")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(site, 703, 130, 129, 124, -(1/2 * 129), -(1/2 * 124), 129, 124);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 20;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                if (this.phase == 0)
+                {
+                    this.activate = false;
+                    this.phase = 1;
+                    var hits = 0;
+                    for (var i = 0; i < Inventory.length; i ++)
+                    {
+                        if (Inventory[i][0].type == "scretilLeaf")
+                        {
+                            Inventory[i][1] += 1;
+                            break;
+                        }
+                        else
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == Inventory.length)
+                    {
+                        Inventory.push([new Item("scretilLeaf", false, false), 1 + Math.floor(Math.random() * 8)]);
+                    }
+                }
+                else if (this.phase == 1)
+                {
+                    this.activate = false;
+                    this.phase = "picked";
+                    var hits = 0;
+                    for (var i = 0; i < Inventory.length; i ++)
+                    {
+                        if (Inventory[i][0].type == "scretilSeedPods")
+                        {
+                            Inventory[i][1] += 1;
+                            break;
+                        }
+                        else
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == Inventory.length)
+                    {
+                        Inventory.push([new Item("scretilSeedPods", false, false), 1]);
+                    }
+                }
+            }
+        }
+        else if (this.type == "pinkScretilPlant")
+        {
+            //TRAITS
+            this.variety = "plant";
+            this.nectar(5);
+            this.solid = false;
+            this.interactionRange = 100;
+
+            //DRAWSELF
+            if (this.phase == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(site, 460, -3, 129, 124, -(1/2 * 129 * 1.2), -(1/2 * 124 * 1.2), 129 * 1.2, 124 * 1.2);
+                XXX.restore();
+            }
+            else if (this.phase == 1)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(site, 591, 0, 129, 124, -(1/2 * 129 * 1.2), -(1/2 * 124 * 1.2), 129 * 1.2, 124 * 1.2);
+                XXX.restore();
+            }
+            else if (this.phase == "picked")
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(site, 700, 3, 129, 124, -(1/2 * 129 * 1.2), -(1/2 * 124 * 1.2), 129 * 1.2, 124 * 1.2);
+                XXX.restore();
+            }
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 24;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                if (this.phase == 0)
+                {
+                    this.activate = false;
+                    this.phase = 1;
+                    var hits = 0;
+                    for (var i = 0; i < Inventory.length; i ++)
+                    {
+                        if (Inventory[i][0].type == "pinkScretilLeaf")
+                        {
+                            Inventory[i][1] += 1;
+                            break;
+                        }
+                        else
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == Inventory.length)
+                    {
+                        Inventory.push([new Item("pinkScretilLeaf", false, false), 1 + Math.floor(Math.random() * 8)]);
+                    }
+                }
+                else if (this.phase == 1)
+                {
+                    this.activate = false;
+                    this.phase = "picked";
+                    var hits = 0;
+                    for (var i = 0; i < Inventory.length; i ++)
+                    {
+                        if (Inventory[i][0].type == "pinkScretilFruit")
+                        {
+                            Inventory[i][1] += 1;
+                            break;
+                        }
+                        else
+                        {
+                            hits += 1;
+                        }
+                    }
+                    if (hits == Inventory.length)
+                    {
+                        Inventory.push([new Item("pinkScretilFruit", false, false), 1]);
+                    }
+                }
+            }
+        }
         else if (this.type == "atsuiBambooPlant")
         {
             //TRAITS

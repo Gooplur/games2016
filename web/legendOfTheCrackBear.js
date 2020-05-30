@@ -3001,6 +3001,8 @@ var dOS = 0;
 var anjayRot = 0;
 var escapeKey = false;
 var menuCheckTime = new Date().getUTCHours();
+var ketsuekiX;
+var ketsuekiY;
 
 //This sets the items that are in shops.
 function shopItemIDSetter()
@@ -5703,6 +5705,7 @@ function theLegend()
     tailoring.push(new Item("blueKimono", false));
     tailoring.push(new Item("pinkKimono", false));
     tailoring.push(new Item("redKimono", false));
+    tailoring.push(new Item("nothBrushString", false));
 
 //Jewelry (Items crafted at a jewler's station, rings, necklaces, cutting gems, glassblowing etc.)
     jewelry = [];
@@ -5798,6 +5801,7 @@ function theLegend()
     alchemy.push(new Item("voaiiSponge", false));
     alchemy.push(new Item("fermentedGladeWaspStinger", false));
     alchemy.push(new Item("gelatin", false));
+    alchemy.push(new Item("jarOfIloptheoraSap", false));
 
 //Brewing (alcohols, liquid fermentation, etc.)
     brewing = [];
@@ -6005,6 +6009,8 @@ function theLegend()
     handcrafted.push(new Item("rawScorpionFlesh", false));
     handcrafted.push(new Item("rawWhipScorpionFlesh", false));
     handcrafted.push(new Item("choppedPork", false));
+    handcrafted.push(new Item("driedNothBrush", false));
+    handcrafted.push(new Item("packedEneoji", false));
 
 
     //Activate Important Game Functions Here:

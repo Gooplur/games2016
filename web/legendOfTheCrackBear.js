@@ -5549,15 +5549,21 @@ function theLegend()
     foods.push(new Item("roastedArmadiiLeg", false));
     foods.push(new Item("whipScorpionMeat", false));
     foods.push(new Item("roastedCapulLeg", false));
-    foods.push(new Item("mudStriderMeat", false));
+    foods.push(new Item("roastedUdnalFlipper", false));
+    foods.push(new Item("udnalMeat", false));
     foods.push(new Item("roastedMarnica", false));
+    foods.push(new Item("nulgaMeat", false));
     foods.push(new Item("daggerFishMeat", false));
+    foods.push(new Item("mudStriderMeat", false));
+    foods.push(new Item("vodmenaMeat", false));
     foods.push(new Item("roastedModerrLeg", false));
     foods.push(new Item("tigerMeat", false));
     foods.push(new Item("gladeWaspMeat", false));
     foods.push(new Item("roastedPork", false));
     foods.push(new Item("roastedPigHead", false));
     foods.push(new Item("roastedPigFoot", false));
+    foods.push(new Item("koiFishMeat", false));
+    foods.push(new Item("kuzanMeat", false));
 
 //Tailoring (Items crafted at a weaving, sewing, dying, etc. tailor's work bench thing)
     tailoring = [];
@@ -6010,6 +6016,7 @@ function theLegend()
     handcrafted.push(new Item("rawWhipScorpionFlesh", false));
     handcrafted.push(new Item("choppedPork", false));
     handcrafted.push(new Item("driedNothBrush", false));
+    handcrafted.push(new Item("nulgaFeathers", false));
     handcrafted.push(new Item("packedEneoji", false));
 
 

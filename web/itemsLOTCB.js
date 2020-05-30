@@ -5363,7 +5363,7 @@ function Item(type, x, y)
             this.size = 10;
             this.description = "The raw flesh of a grib.";
             this.intForDes = 1;
-            this.intDescription = "Raw grib meat is often infested with flesh mites.";
+            this.intDescription = "Raw grib flesh is often infested with flesh mites.";
 
             //Define Utility
             this.utility = "food";
@@ -5384,6 +5384,70 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 7 - Math.floor(player.getCharisma() / 15); // at max, buy for 4.
             this.sellValue = 1 + Math.floor(player.getCharisma() / 15); // at max, sell for 4.
+        }
+        else if (this.type == "rawNulgaFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Nulga Flesh";
+            this.weight = 1.75;
+            this.size = 13;
+            this.description = "The raw flesh of a nulga.";
+            this.intForDes = 5;
+            this.intDescription = "Raw nulga flesh is often home to throat ticks.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 1; //satisfies hunger.
+            this.thirst = 0.25; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -0.75; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+
+            //ability
+            this.ability = "throatTicks";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "nulgaMeat")
+        {
+            //For All Items
+            this.identity = "Nulga Meat";
+            this.weight = 1.6;
+            this.size = 13;
+            this.description = "The cooked meat of a nulga.";
+            this.intForDes = 0;
+            this.intDescription = "It has a gamey, muddy, meaty flavour...";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 8.5; //satisfies hunger.
+            this.thirst = 0.05; //quenches thirst.
+            this.warmth = 3.5; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 9;
+            this.ingredients = [["Raw Nulga Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 8 - Math.floor(player.getCharisma() / 25); // at max, buy for 6.
+            this.sellValue = 5 + Math.floor(player.getCharisma() / 50); // at max, sell for 6.
         }
         else if (this.type == "gribMeat")
         {
@@ -5438,6 +5502,71 @@ function Item(type, x, y)
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 2 - Math.floor(player.getCharisma() / 50); // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "nulgaFeathers")
+        {
+            //For All Items
+            this.identity = "Nulga Feathers";
+            this.weight = 0.25;
+            this.size = 10;
+            this.description = "The reddish-brown tail feathers of a nulga.";
+            this.intForDes = 1;
+            this.intDescription = "They are not real feathers, rather they are thin boney spines that have numerous reddish-brown hairs along their length.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 2;
+            this.intForCraft = 4;
+            this.ingredients = [["Nulga Tail", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "nulgaTail")
+        {
+            //For All Items
+            this.identity = "Nulga Tail";
+            this.weight = 1.4;
+            this.size = 12;
+            this.description = "The reddish-brown feathered and thick grey furred tail of a nulga.";
+            this.intForDes = 2;
+            this.intDescription = "Nulga tail feathers are used for adorning Nothian apparel.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3 - Math.floor(player.getCharisma() / 50); // at max, buy for 2.
+            this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+        }
+        else if (this.type == "nulgaPelt")
+        {
+            //For All Items
+            this.identity = "Nulga Pelt";
+            this.weight = 0.8;
+            this.size = 9;
+            this.description = "The thick grey pelt of a nulga.";
+            this.intForDes = 1;
+            this.intDescription = "Nulga pelts are used to make Nothian clothing and apparel.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
         }
         else if (this.type == "tigerPelt")
@@ -5685,6 +5814,100 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "vodmenaSpleen")
+        {
+            //For All Items
+            this.identity = "Vodmena Spleen";
+            this.weight = 10;
+            this.size = 14;
+            this.description = "The spleen of a vodmena.";
+            this.intForDes = 20;
+            this.intDescription = "Vodmenas spleens are valuable in alchemy for their use as a catalyst.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 8; //satisfies hunger.
+            this.thirst = 3; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -5; //recoops lost energy.
+            this.replenish = -5; //restores will.
+
+
+            //ability
+            this.ability = "foodPoisoning";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 26; // at max, buy for 26.
+            this.sellValue = 26; // at max, sell for 26.
+        }
+        else if (this.type == "rawVodmenaFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Vodmena Flesh";
+            this.weight = 45;
+            this.size = 25;
+            this.description = "The raw flesh of a vodmena.";
+            this.intForDes = 6;
+            this.intDescription = "Eating this raw may infect you with flesh mites.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 26; //satisfies hunger.
+            this.thirst = 5; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -9; //recoops lost energy.
+            this.replenish = -4; //restores will.
+
+
+            //ability
+            this.ability = "fleshMites";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5; // at max, buy for 5.
+            this.sellValue = 5; // at max, sell for 5.
+        }
+        else if (this.type == "vodmenaMeat")
+        {
+            //For All Items
+            this.identity = "Vodmena Meat";
+            this.weight = 40;
+            this.size = 25;
+            this.description = "The cooked meat of a vodmena.";
+            this.intForDes = 6;
+            this.intDescription = "It has a sourness to it and a pungent aftertaste.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 40; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -6; //recoops lost energy.
+            this.replenish = -2; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 25;
+            this.ingredients = [["Raw Vodmena Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 35; // at max, buy for 35.
+            this.sellValue = 35; // at max, sell for 35.
         }
         else if (this.type == "toadHide")
         {
@@ -34625,6 +34848,46 @@ function Item(type, x, y)
             this.buyValue = 57 - Math.floor(player.getCharisma() / 12.5); // at max, buy for 53.
             this.sellValue = 50 + Math.floor(player.getCharisma() / 15); // at max, sell for 53.
         }
+        else if (this.type == "udnalTail")
+        {
+            //For All Items
+            this.identity = "Udnal Tail";
+            this.weight = 22;
+            this.size = 26;
+            this.description = "The heavy leathery tail of an udnal.";
+            this.intForDes = 0;
+            this.intDescription = "This is a trophy that many like to use as a decoration. The thicker leathery skin of the tail is also used to make apparel.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 22 - Math.floor(player.getCharisma() / 12); // at max, buy for 18.
+            this.sellValue = 13 + Math.floor(player.getCharisma() / 10); // at max, sell for 18.
+        }
+        else if (this.type == "udnalPelt")
+        {
+            //For All Items
+            this.identity = "Udnal Pelt";
+            this.weight = 5.2;
+            this.size = 21;
+            this.description = "The furry, leathery pelt of an udnal.";
+            this.intForDes = 7;
+            this.intDescription = "This is used to make Nothian clothing and apparel as well as bedding, carpets, home insulation, and more...";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 26 - Math.floor(player.getCharisma() / 12); // at max, buy for 22.
+            this.sellValue = 20 + Math.floor(player.getCharisma() / 25); // at max, sell for 22.
+        }
         else if (this.type == "haeflower")
         {
             //For All Items
@@ -37057,6 +37320,258 @@ function Item(type, x, y)
             this.buyValue = 10; // at max, buy for 10.
             this.sellValue = 9; // at max, sell for 9.
         }
+        else if (this.type == "rawUdnalFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Udnal Flesh";
+            this.weight = 3.5;
+            this.size = 11;
+            this.description = "The raw flesh of an udnal.";
+            this.intForDes = 5;
+            this.intDescription = "Udnal flesh is not safe to eat raw as it may contain flesh mites.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 2.5; //satisfies hunger.
+            this.thirst = 0.3; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "fleshMites";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 6 - Math.floor(player.getCharisma() / 25); // at max, buy for 4.
+            this.sellValue = 3 + Math.floor(player.getCharisma() / 50); // at max, sell for 4.
+        }
+        else if (this.type == "udnalMeat")
+        {
+            //For All Items
+            this.identity = "Udnal Meat";
+            this.weight = 3.5;
+            this.size = 11;
+            this.description = "The cooked meat of an udnal.";
+            this.intForDes = 0;
+            this.intDescription = "Udnal meat is well marbled, fatty, and has a nice meatiness to it.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 15; //satisfies hunger.
+            this.thirst = 0.6; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.02; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "satiate";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 13;
+            this.ingredients = [["Raw Udnal Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 15 - Math.floor(player.getCharisma() / 50); // at max, buy for 14.
+            this.sellValue = 13 + Math.floor(player.getCharisma() / 50); // at max, sell for 14.
+        }
+        else if (this.type == "rawUdnalFlipper")
+        {
+            //For All Items
+            this.identity = "Raw Udnal Flipper";
+            this.weight = 3.75;
+            this.size = 11;
+            this.description = "The meaty raw flipper of an udnal.";
+            this.intForDes = 5;
+            this.intDescription = "Udnal flesh is not safe to eat raw as it may contain flesh mites.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 2; //satisfies hunger.
+            this.thirst = 0.5; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "fleshMites";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5 - Math.floor(player.getCharisma() / 25); // at max, buy for 3.
+            this.sellValue = 2 + Math.floor(player.getCharisma() / 50); // at max, sell for 3.
+        }
+        else if (this.type == "roastedUdnalFlipper")
+        {
+            //For All Items
+            this.identity = "Roasted Udnal Flipper";
+            this.weight = 3.65;
+            this.size = 11;
+            this.description = "The roasted meaty flipper of an udnal.";
+            this.intForDes = 0;
+            this.intDescription = "It has a firm meaty flavour and a moderately chewy texture.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 9; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 5; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 3;
+            this.ingredients = [["Raw Udnal Flipper", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 9 - Math.floor(player.getCharisma() / 25); // at max, buy for 7.
+            this.sellValue = 5 + Math.floor(player.getCharisma() / 25); // at max, sell for 7.
+        }
+        else if (this.type == "rawKuzanFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Kuzan Flesh";
+            this.weight = 3;
+            this.size = 14;
+            this.description = "The thick white flesh of a kuzan.";
+            this.intForDes = 5;
+            this.intDescription = "Kuzan flesh is not safe to eat raw since it is often riddled with gut worms.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 9.5; //satisfies hunger.
+            this.thirst = 3.5; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "gutWorms";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 9 - Math.floor(player.getCharisma() / 25); // at max, buy for 7.
+            this.sellValue = 6 + Math.floor(player.getCharisma() / 50); // at max, sell for 7.
+        }
+        else if (this.type == "kuzanMeat")
+        {
+            //For All Items
+            this.identity = "Kuzan Meat";
+            this.weight = 3;
+            this.size = 14;
+            this.description = "The well cooked meat of a kuzan.";
+            this.intForDes = 5;
+            this.intDescription = "The meat has a thick texture and a mild but fishy flavour.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 13; //satisfies hunger.
+            this.thirst = 1; //quenches thirst.
+            this.warmth = 4; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 5;
+            this.ingredients = [["Raw Kuzan Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 13 - Math.floor(player.getCharisma() / 50); // at max, buy for 12.
+            this.sellValue = 11 + Math.floor(player.getCharisma() / 50); // at max, sell for 12.
+        }
+        else if (this.type == "rawKoiFishFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Giant Koi Flesh";
+            this.weight = 4;
+            this.size = 15;
+            this.description = "The tender light flesh of a giant koi fish.";
+            this.intForDes = 5;
+            this.intDescription = "The flesh is clean and is safe to eat raw. It tastes smooth and creamy.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 12; //satisfies hunger.
+            this.thirst = 5; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 13 - Math.floor(player.getCharisma() / 15); // at max, buy for 10.
+            this.sellValue = 8 + Math.floor(player.getCharisma() / 25); // at max, sell for 10.
+        }
+        else if (this.type == "koiFishMeat")
+        {
+            //For All Items
+            this.identity = "Giant Koi Meat";
+            this.weight = 3.5;
+            this.size = 15;
+            this.description = "The seared tender flesh of a giant koi fish.";
+            this.intForDes = 0;
+            this.intDescription = "It has a crispness to it and it has a thick creamy texture.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 19; //satisfies hunger.
+            this.thirst = 3; //quenches thirst.
+            this.warmth = 6; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.05; //recoops lost energy.
+            this.replenish = 0.05; //restores will.
+
+            //ability
+            this.ability = "satiate";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 12;
+            this.ingredients = [["Raw Giant Koi Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 22 - Math.floor(player.getCharisma() / 25); // at max, buy for 20.
+            this.sellValue = 16 + Math.floor(player.getCharisma() / 12); // at max, sell for 20.
+        }
         else if (this.type == "dyedMufCloth")
         {
             //For All Items
@@ -37583,6 +38098,26 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 106 - Math.floor(player.getCharisma() / 8); // at max, buy for 100.
             this.sellValue = 90 + Math.floor(player.getCharisma() / 5); // at max, sell for 100.
+        }
+        else if (this.type == "mudTrollHide")
+        {
+            //For All Items
+            this.identity = "Mud Troll Hide";
+            this.weight = 15.5;
+            this.size = 30;
+            this.description = "Large thick flakes of hard smooth troll skin that come together cohesively to make a strong hide.";
+            this.intForDes = 8;
+            this.intDescription = "Mud troll hide is strong enough to make into armour.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 91 - Math.floor(player.getCharisma() / 10); // at max, buy for 86.
+            this.sellValue = 71 + Math.floor(player.getCharisma() / 3); // at max, sell for 86.
         }
         else if (this.type == "massiveWinterWolfPelt")
         {
@@ -59096,6 +59631,101 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "udnalMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nal, 219, 765, 37, 35, X - this.X + (1/2 * CCC.width) - (1/2 * 37 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 35 * 1), 37 * 1, 35 * 1);
+        }
+        else if (this.type == "rawUdnalFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nal, 180, 763, 37, 35, X - this.X + (1/2 * CCC.width) - (1/2 * 37 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 35 * 1), 37 * 1, 35 * 1);
+        }
+        else if (this.type == "roastedUdnalFlipper")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nal, 217, 808, 37, 35, X - this.X + (1/2 * CCC.width) - (1/2 * 37 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 35 * 1), 37 * 1, 35 * 1);
+        }
+        else if (this.type == "rawUdnalFlipper")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nal, 181, 808, 37, 35, X - this.X + (1/2 * CCC.width) - (1/2 * 37 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 35 * 1), 37 * 1, 35 * 1);
+        }
+        else if (this.type == "udnalPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nal, 175, 851, 85, 42, X - this.X + (1/2 * CCC.width) - (1/2 * 85 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 42 * 1), 85 * 1, 42 * 1);
+        }
+        else if (this.type == "udnalTail")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nal, 60, 770, 85, 81, X - this.X + (1/2 * CCC.width) - (1/2 * 85 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 81 * 1), 85 * 1, 81 * 1);
+        }
+        else if (this.type == "vodmenaSpleen")
+        {
+            XXX.beginPath();
+            XXX.drawImage(site, 269, 262, 53, 52, X - this.X + (1/2 * CCC.width) - (1/2 * 53 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 52 * 1), 53 * 1, 52 * 1);
+        }
+        else if (this.type == "vodmenaMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(site, 123, 270, 53, 52, X - this.X + (1/2 * CCC.width) - (1/2 * 53 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 52 * 1), 53 * 1, 52 * 1);
+        }
+        else if (this.type == "rawVodmenaFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(site, 24, 276, 53, 52, X - this.X + (1/2 * CCC.width) - (1/2 * 53 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 52 * 1), 53 * 1, 52 * 1);
+        }
+        else if (this.type == "nulgaPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nulg, 184, 11, 43, 38, X - this.X + (1/2 * CCC.width) - (1/2 * 43 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 38 * 1), 43 * 1, 38 * 1);
+        }
+        else if (this.type == "rawNulgaFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nulg, 231, 12, 43, 38, X - this.X + (1/2 * CCC.width) - (1/2 * 43 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 38 * 1), 43 * 1, 38 * 1);
+        }
+        else if (this.type == "nulgaMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nulg, 272, 12, 43, 38, X - this.X + (1/2 * CCC.width) - (1/2 * 43 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 38 * 1), 43 * 1, 38 * 1);
+        }
+        else if (this.type == "nulgaFeathers")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nulg, 119, 6, 58, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 58 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 1), 58 * 1, 44 * 1);
+        }
+        else if (this.type == "nulgaTail")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nulg, 62, 7, 58, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 58 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 1), 58 * 1, 44 * 1);
+        }
+        else if (this.type == "mudTrollHide")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mrol, 155, 651, 102, 64, X - this.X + (1/2 * CCC.width) - (1/2 * 102 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 64 * 1), 102 * 1, 64 * 1);
+        }
+        else if (this.type == "kuzanMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(how, 314, 2, 33, 28, X - this.X + (1/2 * CCC.width) - (1/2 * 33 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 28 * 1), 33 * 1, 28 * 1);
+        }
+        else if (this.type == "rawKuzanFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(how, 281, 4, 33, 28, X - this.X + (1/2 * CCC.width) - (1/2 * 33 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 28 * 1), 33 * 1, 28 * 1);
+        }
+        else if (this.type == "rawKoiFishFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(how, 196, 1, 33, 28, X - this.X + (1/2 * CCC.width) - (1/2 * 33 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 28 * 1), 33 * 1, 28 * 1);
+        }
+        else if (this.type == "koiFishMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(how, 237, 0, 33, 28, X - this.X + (1/2 * CCC.width) - (1/2 * 33 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 28 * 1), 33 * 1, 28 * 1);
+        }
         else if (this.type == "milsanPods")
         {
             XXX.beginPath();
@@ -66889,6 +67519,101 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(candlewic, 61, 201, 27, 29, this.invX - (1/2 * 27 * 1.5), this.invY - (1/2 * 29 * 1.5), 27 * 1.5, 29 * 1.5);
         }
+        else if (this.type == "udnalMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nal, 219, 765, 37, 35, this.invX - (1/2 * 37 * 1), this.invY - (1/2 * 35 * 1), 37 * 1, 35 * 1);
+        }
+        else if (this.type == "rawUdnalFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nal, 180, 763, 37, 35, this.invX - (1/2 * 37 * 1), this.invY - (1/2 * 35 * 1), 37 * 1, 35 * 1);
+        }
+        else if (this.type == "roastedUdnalFlipper")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nal, 217, 808, 37, 35, this.invX - (1/2 * 37 * 1), this.invY - (1/2 * 35 * 1), 37 * 1, 35 * 1);
+        }
+        else if (this.type == "rawUdnalFlipper")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nal, 181, 808, 37, 35, this.invX - (1/2 * 37 * 1), this.invY - (1/2 * 35 * 1), 37 * 1, 35 * 1);
+        }
+        else if (this.type == "udnalPelt")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nal, 175, 851, 85, 42, this.invX - (1/2 * 85 * 0.7), this.invY - (1/2 * 42 * 0.7), 85 * 0.7, 42 * 0.7);
+        }
+        else if (this.type == "udnalTail")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nal, 60, 770, 85, 81, this.invX - (1/2 * 85 * 0.65), this.invY - (1/2 * 81 * 0.65), 85 * 0.65, 81 * 0.65);
+        }
+        else if (this.type == "vodmenaSpleen")
+        {
+            LXX.beginPath();
+            LXX.drawImage(site, 269, 262, 53, 52, this.invX - (1/2 * 53 * 1), this.invY - (1/2 * 52 * 1), 53 * 1, 52 * 1);
+        }
+        else if (this.type == "vodmenaMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(site, 123, 270, 53, 52, this.invX - (1/2 * 53 * 0.8), this.invY - (1/2 * 52 * 0.8), 53 * 0.8, 52 * 0.8);
+        }
+        else if (this.type == "rawVodmenaFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(site, 24, 276, 53, 52, this.invX - (1/2 * 53 * 0.8), this.invY - (1/2 * 52 * 0.8), 53 * 0.8, 52 * 0.8);
+        }
+        else if (this.type == "nulgaPelt")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nulg, 184, 11, 43, 38, this.invX - (1/2 * 43 * 1), this.invY - (1/2 * 38 * 1), 43 * 1, 38 * 1);
+        }
+        else if (this.type == "rawNulgaFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nulg, 231, 12, 43, 38, this.invX - (1/2 * 43 * 1), this.invY - (1/2 * 38 * 1), 43 * 1, 38 * 1);
+        }
+        else if (this.type == "nulgaMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nulg, 272, 12, 43, 38, this.invX - (1/2 * 43 * 1), this.invY - (1/2 * 38 * 1), 43 * 1, 38 * 1);
+        }
+        else if (this.type == "nulgaFeathers")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nulg, 119, 6, 58, 44, this.invX - (1/2 * 58 * 1), this.invY - (1/2 * 44 * 1), 58 * 1, 44 * 1);
+        }
+        else if (this.type == "nulgaTail")
+        {
+            LXX.beginPath();
+            LXX.drawImage(nulg, 62, 7, 58, 44, this.invX - (1/2 * 58 * 0.9), this.invY - (1/2 * 44 * 0.9), 58 * 0.9, 44 * 0.9);
+        }
+        else if (this.type == "mudTrollHide")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mrol, 155, 651, 102, 64, this.invX - (1/2 * 102 * 0.4), this.invY - (1/2 * 64 * 0.4), 102 * 0.4, 64 * 0.4);
+        }
+        else if (this.type == "kuzanMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(how, 314, 2, 33, 28, this.invX - (1/2 * 33 * 1), this.invY - (1/2 * 28 * 1), 33 * 1, 28 * 1);
+        }
+        else if (this.type == "rawKuzanFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(how, 281, 4, 33, 28, this.invX - (1/2 * 33 * 1), this.invY - (1/2 * 28 * 1), 33 * 1, 28 * 1);
+        }
+        else if (this.type == "rawKoiFishFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(how, 196, 1, 33, 28, this.invX - (1/2 * 33 * 1), this.invY - (1/2 * 28 * 1), 33 * 1, 28 * 1);
+        }
+        else if (this.type == "koiFishMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(how, 237, 0, 33, 28, this.invX - (1/2 * 33 * 1), this.invY - (1/2 * 28 * 1), 33 * 1, 28 * 1);
+        }
         else if (this.type == "milsanPods")
         {
             LXX.beginPath();
@@ -74666,6 +75391,101 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "udnalMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nal, 219, 765, 37, 35, this.invX - (1/2 * 37 * 1), this.invY - (1/2 * 35 * 1), 37 * 1, 35 * 1);
+        }
+        else if (this.type == "rawUdnalFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nal, 180, 763, 37, 35, this.invX - (1/2 * 37 * 1), this.invY - (1/2 * 35 * 1), 37 * 1, 35 * 1);
+        }
+        else if (this.type == "roastedUdnalFlipper")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nal, 217, 808, 37, 35, this.invX - (1/2 * 37 * 1), this.invY - (1/2 * 35 * 1), 37 * 1, 35 * 1);
+        }
+        else if (this.type == "rawUdnalFlipper")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nal, 181, 808, 37, 35, this.invX - (1/2 * 37 * 1), this.invY - (1/2 * 35 * 1), 37 * 1, 35 * 1);
+        }
+        else if (this.type == "udnalPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nal, 175, 851, 85, 42, this.invX - (1/2 * 85 * 0.7), this.invY - (1/2 * 42 * 0.7), 85 * 0.7, 42 * 0.7);
+        }
+        else if (this.type == "udnalTail")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nal, 60, 770, 85, 81, this.invX - (1/2 * 85 * 0.65), this.invY - (1/2 * 81 * 0.65), 85 * 0.65, 81 * 0.65);
+        }
+        else if (this.type == "vodmenaSpleen")
+        {
+            XXX.beginPath();
+            XXX.drawImage(site, 269, 262, 53, 52, this.invX - (1/2 * 53 * 1), this.invY - (1/2 * 52 * 1), 53 * 1, 52 * 1);
+        }
+        else if (this.type == "vodmenaMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(site, 123, 270, 53, 52, this.invX - (1/2 * 53 * 0.8), this.invY - (1/2 * 52 * 0.8), 53 * 0.8, 52 * 0.8);
+        }
+        else if (this.type == "rawVodmenaFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(site, 24, 276, 53, 52, this.invX - (1/2 * 53 * 0.8), this.invY - (1/2 * 52 * 0.8), 53 * 0.8, 52 * 0.8);
+        }
+        else if (this.type == "nulgaPelt")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nulg, 184, 11, 43, 38, this.invX - (1/2 * 43 * 1), this.invY - (1/2 * 38 * 1), 43 * 1, 38 * 1);
+        }
+        else if (this.type == "rawNulgaFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nulg, 231, 12, 43, 38, this.invX - (1/2 * 43 * 1), this.invY - (1/2 * 38 * 1), 43 * 1, 38 * 1);
+        }
+        else if (this.type == "nulgaMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nulg, 272, 12, 43, 38, this.invX - (1/2 * 43 * 1), this.invY - (1/2 * 38 * 1), 43 * 1, 38 * 1);
+        }
+        else if (this.type == "nulgaFeathers")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nulg, 119, 6, 58, 44, this.invX - (1/2 * 58 * 1), this.invY - (1/2 * 44 * 1), 58 * 1, 44 * 1);
+        }
+        else if (this.type == "nulgaTail")
+        {
+            XXX.beginPath();
+            XXX.drawImage(nulg, 62, 7, 58, 44, this.invX - (1/2 * 58 * 0.9), this.invY - (1/2 * 44 * 0.9), 58 * 0.9, 44 * 0.9);
+        }
+        else if (this.type == "mudTrollHide")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mrol, 155, 651, 102, 64, this.invX - (1/2 * 102 * 0.4), this.invY - (1/2 * 64 * 0.4), 102 * 0.4, 64 * 0.4);
+        }
+        else if (this.type == "kuzanMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(how, 314, 2, 33, 28, this.invX - (1/2 * 33 * 1), this.invY - (1/2 * 28 * 1), 33 * 1, 28 * 1);
+        }
+        else if (this.type == "rawKuzanFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(how, 281, 4, 33, 28, this.invX - (1/2 * 33 * 1), this.invY - (1/2 * 28 * 1), 33 * 1, 28 * 1);
+        }
+        else if (this.type == "rawKoiFishFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(how, 196, 1, 33, 28, this.invX - (1/2 * 33 * 1), this.invY - (1/2 * 28 * 1), 33 * 1, 28 * 1);
+        }
+        else if (this.type == "koiFishMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(how, 237, 0, 33, 28, this.invX - (1/2 * 33 * 1), this.invY - (1/2 * 28 * 1), 33 * 1, 28 * 1);
         }
         else if (this.type == "milsanPods")
         {

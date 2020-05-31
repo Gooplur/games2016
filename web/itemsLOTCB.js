@@ -25592,7 +25592,7 @@ function Item(type, x, y)
         {
             //For All Items
             this.identity = "Qiao Protuberance";
-            this.weight = 4.5;
+            this.weight = 6.8;
             this.size = 18;
             this.description = "One of the several warped, twisted protuberances of the qiao.";
             this.intForDes = 2;
@@ -25605,8 +25605,8 @@ function Item(type, x, y)
             this.ability = "qiaoCampfire";
 
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
-            this.buyValue = 6; // at max, buy for 6.
-            this.sellValue = 4; // at max, sell for 4.
+            this.buyValue = 8; // at max, buy for 8.
+            this.sellValue = 6; // at max, sell for 6.
         }
         else if (this.type == "krolocArm")
         {
@@ -26000,7 +26000,7 @@ function Item(type, x, y)
         {
             //For All Items
             this.identity = "Acretia";
-            this.weight = 0.55;
+            this.weight = 0.75;
             this.size = 6;
             this.description = "A Nothian water plant that floats upon the surface of the bog.";
             this.intForDes = 15;
@@ -26011,7 +26011,7 @@ function Item(type, x, y)
 
             //Utility Focused
             this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
-            this.hunger = 2.5; //satisfies hunger.
+            this.hunger = 4.5; //satisfies hunger.
             this.thirst = 0.5; //quenches thirst.
             this.warmth = 0; //warms player.
             this.heal = 0.05; //heals health.
@@ -26099,7 +26099,7 @@ function Item(type, x, y)
         {
             //For All Items
             this.identity = "Stepov Branch";
-            this.weight = 0.18;
+            this.weight = 1.18;
             this.size = 7;
             this.description = "A branch from a stepov tree.";
             this.intForDes = 10;
@@ -59774,7 +59774,7 @@ function Item(type, x, y)
         else if (this.type == "acretia")
         {
             XXX.beginPath();
-            XXX.drawImage(scrag, 17, 17, 83, 74, X - this.X + (1/2 * CCC.width) - (1/2 * 83 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 74 * 1), 83 * 1, 74 * 1);
+            XXX.drawImage(scrag, 17, 17, 83, 74, X - this.X + (1/2 * CCC.width) - (1/2 * 83 * 0.85), Y - this.Y + (1/2 * CCC.height) - (1/2 * 74 * 0.85), 83 * 0.85, 74 * 0.85);
         }
         else if (this.type == "unlinLeaf")
         {
@@ -59829,22 +59829,22 @@ function Item(type, x, y)
         else if (this.type == "yellowNothBrush")
         {
             XXX.beginPath();
-            XXX.drawImage(mudm, 686, 3, 74, 68, X - this.X + (1/2 * CCC.width) - (1/2 * 74 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 68 * 1), 74 * 1, 68 * 1);
+            XXX.drawImage(mudm, 686, 3, 74, 68, X - this.X + (1/2 * CCC.width) - (1/2 * 74 * 0.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 68 * 0.6), 74 * 0.6, 68 * 0.6);
         }
         else if (this.type == "blackNothBrush")
         {
             XXX.beginPath();
-            XXX.drawImage(mudm, 770, 4, 74, 68, X - this.X + (1/2 * CCC.width) - (1/2 * 74 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 68 * 1), 74 * 1, 68 * 1);
+            XXX.drawImage(mudm, 770, 4, 74, 68, X - this.X + (1/2 * CCC.width) - (1/2 * 74 * 0.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 68 * 0.6), 74 * 0.6, 68 * 0.6);
         }
         else if (this.type == "greenNothBrush")
         {
             XXX.beginPath();
-            XXX.drawImage(mudm, 859, 3, 74, 68, X - this.X + (1/2 * CCC.width) - (1/2 * 74 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 68 * 1), 74 * 1, 68 * 1);
+            XXX.drawImage(mudm, 859, 3, 74, 68, X - this.X + (1/2 * CCC.width) - (1/2 * 74 * 0.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 68 * 0.6), 74 * 0.6, 68 * 0.6);
         }
         else if (this.type == "driedNothBrush")
         {
             XXX.beginPath();
-            XXX.drawImage(mudm, 612, 1, 74, 68, X - this.X + (1/2 * CCC.width) - (1/2 * 74 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 68 * 1), 74 * 1, 68 * 1);
+            XXX.drawImage(mudm, 612, 1, 74, 68, X - this.X + (1/2 * CCC.width) - (1/2 * 74 * 0.6), Y - this.Y + (1/2 * CCC.height) - (1/2 * 68 * 0.6), 74 * 0.6, 68 * 0.6);
         }
         else if (this.type == "nothBrushString")
         {
@@ -59859,12 +59859,12 @@ function Item(type, x, y)
         else if (this.type == "lightStepovBranch")
         {
             XXX.beginPath();
-            XXX.drawImage(mudm, 459, 182, 74, 68, X - this.X + (1/2 * CCC.width) - (1/2 * 74 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 68 * 1), 74 * 1, 68 * 1);
+            XXX.drawImage(mudm, 459, 182, 74, 68, X - this.X + (1/2 * CCC.width) - (1/2 * 74 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 68 * 0.8), 74 * 0.8, 68 * 0.8);
         }
         else if (this.type == "darkStepovBranch")
         {
             XXX.beginPath();
-            XXX.drawImage(mudm, 458, 117, 74, 68, X - this.X + (1/2 * CCC.width) - (1/2 * 74 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 68 * 1), 74 * 1, 68 * 1);
+            XXX.drawImage(mudm, 458, 117, 74, 68, X - this.X + (1/2 * CCC.width) - (1/2 * 74 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 68 * 0.8), 74 * 0.8, 68 * 0.8);
         }
         else if (this.type == "pinkScretilLeaf")
         {
@@ -67592,7 +67592,7 @@ function Item(type, x, y)
         else if (this.type == "mudTrollHide")
         {
             LXX.beginPath();
-            LXX.drawImage(mrol, 155, 651, 102, 64, this.invX - (1/2 * 102 * 0.4), this.invY - (1/2 * 64 * 0.4), 102 * 0.4, 64 * 0.4);
+            LXX.drawImage(mrol, 155, 651, 102, 64, this.invX - (1/2 * 102 * 0.65), this.invY - (1/2 * 64 * 0.65), 102 * 0.65, 64 * 0.65);
         }
         else if (this.type == "kuzanMeat")
         {
@@ -67662,7 +67662,7 @@ function Item(type, x, y)
         else if (this.type == "acretia")
         {
             LXX.beginPath();
-            LXX.drawImage(scrag, 17, 17, 83, 74, this.invX - (1/2 * 83 * 1), this.invY - (1/2 * 74 * 1), 83 * 1, 74 * 1);
+            LXX.drawImage(scrag, 17, 17, 83, 74, this.invX - (1/2 * 83 * 0.85), this.invY - (1/2 * 74 * 0.85), 83 * 0.85, 74 * 0.85);
         }
         else if (this.type == "unlinLeaf")
         {
@@ -67712,27 +67712,27 @@ function Item(type, x, y)
         else if (this.type == "qiaoProtuberance")
         {
             LXX.beginPath();
-            LXX.drawImage(bosh, 29, 378, 50, 99, this.invX - (1/2 * 50 * 1), this.invY - (1/2 * 99 * 1), 50 * 1, 99 * 1);
+            LXX.drawImage(bosh, 29, 378, 50, 99, this.invX - (1/2 * 50 * 0.8), this.invY - (1/2 * 99 * 0.8), 50 * 0.8, 99 * 0.8);
         }
         else if (this.type == "yellowNothBrush")
         {
             LXX.beginPath();
-            LXX.drawImage(mudm, 686, 3, 74, 68, this.invX - (1/2 * 74 * 1), this.invY - (1/2 * 68 * 1), 74 * 1, 68 * 1);
+            LXX.drawImage(mudm, 686, 3, 74, 68, this.invX - (1/2 * 74 * 0.6), this.invY - (1/2 * 68 * 0.6), 74 * 0.6, 68 * 0.6);
         }
         else if (this.type == "blackNothBrush")
         {
             LXX.beginPath();
-            LXX.drawImage(mudm, 770, 4, 74, 68, this.invX - (1/2 * 74 * 1), this.invY - (1/2 * 68 * 1), 74 * 1, 68 * 1);
+            LXX.drawImage(mudm, 770, 4, 74, 68, this.invX - (1/2 * 74 * 0.6), this.invY - (1/2 * 68 * 0.6), 74 * 0.6, 68 * 0.6);
         }
         else if (this.type == "greenNothBrush")
         {
             LXX.beginPath();
-            LXX.drawImage(mudm, 859, 3, 74, 68, this.invX - (1/2 * 74 * 1), this.invY - (1/2 * 68 * 1), 74 * 1, 68 * 1);
+            LXX.drawImage(mudm, 859, 3, 74, 68, this.invX - (1/2 * 74 * 0.6), this.invY - (1/2 * 68 * 0.6), 74 * 0.6, 68 * 0.6);
         }
         else if (this.type == "driedNothBrush")
         {
             LXX.beginPath();
-            LXX.drawImage(mudm, 612, 1, 74, 68, this.invX - (1/2 * 74 * 1), this.invY - (1/2 * 68 * 1), 74 * 1, 68 * 1);
+            LXX.drawImage(mudm, 612, 1, 74, 68, this.invX - (1/2 * 74 * 0.6), this.invY - (1/2 * 68 * 0.6), 74 * 0.6, 68 * 0.6);
         }
         else if (this.type == "nothBrushString")
         {
@@ -67747,12 +67747,12 @@ function Item(type, x, y)
         else if (this.type == "lightStepovBranch")
         {
             LXX.beginPath();
-            LXX.drawImage(mudm, 459, 182, 74, 68, this.invX - (1/2 * 74 * 1), this.invY - (1/2 * 68 * 1), 74 * 1, 68 * 1);
+            LXX.drawImage(mudm, 459, 182, 74, 68, this.invX - (1/2 * 74 * 0.8), this.invY - (1/2 * 68 * 0.8), 74 * 0.8, 68 * 0.8);
         }
         else if (this.type == "darkStepovBranch")
         {
             LXX.beginPath();
-            LXX.drawImage(mudm, 458, 117, 74, 68, this.invX - (1/2 * 74 * 1), this.invY - (1/2 * 68 * 1), 74 * 1, 68 * 1);
+            LXX.drawImage(mudm, 458, 117, 74, 68, this.invX - (1/2 * 74 * 0.8), this.invY - (1/2 * 68 * 0.8), 74 * 0.8, 68 * 0.8);
         }
         else if (this.type == "pinkScretilLeaf")
         {
@@ -75465,7 +75465,7 @@ function Item(type, x, y)
         else if (this.type == "mudTrollHide")
         {
             XXX.beginPath();
-            XXX.drawImage(mrol, 155, 651, 102, 64, this.invX - (1/2 * 102 * 0.4), this.invY - (1/2 * 64 * 0.4), 102 * 0.4, 64 * 0.4);
+            XXX.drawImage(mrol, 155, 651, 102, 64, this.invX - (1/2 * 102 * 0.65), this.invY - (1/2 * 64 * 0.65), 102 * 0.65, 64 * 0.65);
         }
         else if (this.type == "kuzanMeat")
         {
@@ -75535,7 +75535,7 @@ function Item(type, x, y)
         else if (this.type == "acretia")
         {
             XXX.beginPath();
-            XXX.drawImage(scrag, 17, 17, 83, 74, this.invX - (1/2 * 83 * 1), this.invY - (1/2 * 74 * 1), 83 * 1, 74 * 1);
+            XXX.drawImage(scrag, 17, 17, 83, 74, this.invX - (1/2 * 83 * 0.85), this.invY - (1/2 * 74 * 0.85), 83 * 0.85, 74 * 0.85);
         }
         else if (this.type == "unlinLeaf")
         {
@@ -75585,27 +75585,27 @@ function Item(type, x, y)
         else if (this.type == "qiaoProtuberance")
         {
             XXX.beginPath();
-            XXX.drawImage(bosh, 29, 378, 50, 99, this.invX - (1/2 * 50 * 1), this.invY - (1/2 * 99 * 1), 50 * 1, 99 * 1);
+            XXX.drawImage(bosh, 29, 378, 50, 99, this.invX - (1/2 * 50 * 0.8), this.invY - (1/2 * 99 * 0.8), 50 * 0.8, 99 * 0.8);
         }
         else if (this.type == "yellowNothBrush")
         {
             XXX.beginPath();
-            XXX.drawImage(mudm, 686, 3, 74, 68, this.invX - (1/2 * 74 * 1), this.invY - (1/2 * 68 * 1), 74 * 1, 68 * 1);
+            XXX.drawImage(mudm, 686, 3, 74, 68, this.invX - (1/2 * 74 * 0.6), this.invY - (1/2 * 68 * 0.6), 74 * 0.6, 68 * 0.6);
         }
         else if (this.type == "blackNothBrush")
         {
             XXX.beginPath();
-            XXX.drawImage(mudm, 770, 4, 74, 68, this.invX - (1/2 * 74 * 1), this.invY - (1/2 * 68 * 1), 74 * 1, 68 * 1);
+            XXX.drawImage(mudm, 770, 4, 74, 68, this.invX - (1/2 * 74 * 0.6), this.invY - (1/2 * 68 * 0.6), 74 * 0.6, 68 * 0.6);
         }
         else if (this.type == "greenNothBrush")
         {
             XXX.beginPath();
-            XXX.drawImage(mudm, 859, 3, 74, 68, this.invX - (1/2 * 74 * 1), this.invY - (1/2 * 68 * 1), 74 * 1, 68 * 1);
+            XXX.drawImage(mudm, 859, 3, 74, 68, this.invX - (1/2 * 74 * 0.6), this.invY - (1/2 * 68 * 0.6), 74 * 0.6, 68 * 0.6);
         }
         else if (this.type == "driedNothBrush")
         {
             XXX.beginPath();
-            XXX.drawImage(mudm, 612, 1, 74, 68, this.invX - (1/2 * 74 * 1), this.invY - (1/2 * 68 * 1), 74 * 1, 68 * 1);
+            XXX.drawImage(mudm, 612, 1, 74, 68, this.invX - (1/2 * 74 * 0.6), this.invY - (1/2 * 68 * 0.6), 74 * 0.6, 68 * 0.6);
         }
         else if (this.type == "nothBrushString")
         {
@@ -75620,12 +75620,12 @@ function Item(type, x, y)
         else if (this.type == "lightStepovBranch")
         {
             XXX.beginPath();
-            XXX.drawImage(mudm, 459, 182, 74, 68, this.invX - (1/2 * 74 * 1), this.invY - (1/2 * 68 * 1), 74 * 1, 68 * 1);
+            XXX.drawImage(mudm, 459, 182, 74, 68, this.invX - (1/2 * 74 * 0.8), this.invY - (1/2 * 68 * 0.8), 74 * 0.8, 68 * 0.8);
         }
         else if (this.type == "darkStepovBranch")
         {
             XXX.beginPath();
-            XXX.drawImage(mudm, 458, 117, 74, 68, this.invX - (1/2 * 74 * 1), this.invY - (1/2 * 68 * 1), 74 * 1, 68 * 1);
+            XXX.drawImage(mudm, 458, 117, 74, 68, this.invX - (1/2 * 74 * 0.8), this.invY - (1/2 * 68 * 0.8), 74 * 0.8, 68 * 0.8);
         }
         else if (this.type == "pinkScretilLeaf")
         {

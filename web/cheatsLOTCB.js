@@ -14,8 +14,8 @@ function cheats()
     }
     if (buildMode == true)
     {
-        var buildList = ["coords", "Selva Tree", "Sonja Tree", "Gallosh Plant", "Vorlym Plant", "Thueg", "Conejo", "Boulchom", "Great Pine Tree", "Pine Tree", "Snowy Great Pine Tree", "Snowy Pine Tree", "Ashai Tree", "Ghoul", "Ribback", "Vreck", "Dalger", "Varonoi", "Stovol Beetle", "Thegol Thorn", "Elk", "Black Beruln", "Mekle Plant", "Black Bear", "Turkey", "Skol", "Deer", "Fox", "Badger", "Hoffalgre", "Crow", "Silter", "Scilt Plant", "Korsk Beetle", "Cheshire", "Grizzly Bear", "Borgal", "Lizard", "Koivaya (loner)", "Koivaya (breeder)", "Cranberry Plant", "Eyewort Plant", "Korceida Plant", "Laumin Plant", "Jolle Plant", "Porstol Plant", "Fallory Plant", "Palgga Plant", "Bleeding Heart Plant", "Aberdom Plant", "Beunum Plant", "Ciprin Plant", "Marigold Plant", "Hoil Plant", "Callop Plant", "Darb Plant", "Kofke Plant", "Steugiurne Plant", "Web", "Etna Egg Sack", "Etna", "Mustard Plant", "Carrot Plant", "Potato Plant", "Cabbage Plant", "Harst Plant", "Santh Plant", "Wheat Plant", "Suuli Plant", "Lilypads", "Swamp Brush", "Swamp Lily Plant", "Borsht Plant", "Cattail Plant", "Mandrake Plant", "Leech", "Mud Toad", "Ker", "Palinsyda", "GhoulFly", "Toad", "Hydra", "Bat", "Vecher Bug", "Bog Troll", "Cerebris Mycelium I", "Cerebris Mycelium II", "Swamp Island", "Xuim Mycelium I", "Xuim Mycelium II", "Saffron", "Murdered Vardanians", "Blood", "Skeleton", "Bones", "Scuffle Marks", "West Furniture", "Floor Decorations", "South Furniture", "Nirwaden Furniture", "Nirwaden Goods", "Vardanian Spikes", "Pike Wall", "Cephrian Buidling", "Hyena", "Giraffe", "Lion", "Wild Dog", "Gazelle", "Zarbu", "Termite Mound", "Empty Termite Mound", "Acacia Tree", "Zwaleim Plant", "Glaza Plant", "Nupala Plant", "Tchalta Plant", "Tchafula Plant", "Gnoll", "Thengan Buildings", "Freydic Buildings", "Nirwaden Buildings", "Vardanian Buildings", "Vardanian Fencing", "Prison Bars", "Door", "Crate", "Sign", "Item", "Bed", "Fine Bed", "Vardanian Bed", "South Bed", "Angler", "Trubka Plant", "Eisyncryne Plant", "Cauw Plant", "Hesk Fungus", "Toadstools", "Thimblecap Mushrooms", "Royla Plant", "Vardanian Mardyl Plant", "Orgish Mardyl Plant", "Forest Thadine Plant", "Danzig Plant", "Chyoul Plant", "Ameloy Plant", "Laicaum Plant", "Plains Thadine Plant", "Saug Plant", "Kozlyak Mushrooms", "Maleot Mushrooms", "Gribnoy Mushroom", "Poegroon Mushrooms", "Iod Fungus", "Chervstrakha", "Motylekh", "Shrieking Bloodworm", "Pokinutyy", "Swamp Walks", "Vardanian Utilities", "Tents", "mireIsla", "Rat", "Varmin", "Fegil", "Lyagushka", "Lyagushka Egg Cluster", "Ostryy Grass Plant", "Mornid", "Grey Horse", "Brain Fly Hive", "Cirmusid", "Spitting Mud Fly", "Mud Beetle", "Raed Beetle", "Scorpion", "Whip Scorpion", "Barbol", "Desert Lizard", "Rattler", "Pasha Plant", "Anjay Plant", "Inum Plant", "Naib Plant", "Mawe Plant", "Voaii", "Xerocole", "Zetian Well", "Zetian Oven", "Chapul Plant", "Armadii", "Burnt Vardanian Assets", "Carts", "Mimicry", "Mimic", "Capul"];
-        //                  0           1              2               3                4          5        6           7              8               9                  10                    11              12         13         14       15        16        17             18              19         20          21              22            23          24       25      26      27      28          29        30       31          32             33             34             35         36         37            38                  39                   40                41               42                43             44              45               46               47                 48                   49              50               51               52             53             54             55            56                57            58         59           60           61              62               63              64              65            66             67              68           69            70               71                72               73                74           75        76       77        78           79        80      81      82         83           84                 85                    86                   87               88                  89              90              91               92        93         94           95               96                  97                 98                   99                  100               101               102             103            104       105       106      107         108       109          110                  111               112              113            114             115             116               117          118            119                 120                   121                    122                    123               124       125      126      127     128    129       130           131             132        133         134               135               136           137           138                 139                 140                 141                     142                     143                 144             145             146             147                 148                 149             150                   151                152                   153               154            155           156             157                158           159                160              161      162       163      164      165        166                 167                    168             169        170              171            172            173              174            175           176           177           178          179           180          181            182            183          184            185        186        187          188           189              190          191              192                193       194       195      196
+        var buildList = ["coords", "Selva Tree", "Sonja Tree", "Gallosh Plant", "Vorlym Plant", "Thueg", "Conejo", "Boulchom", "Great Pine Tree", "Pine Tree", "Snowy Great Pine Tree", "Snowy Pine Tree", "Ashai Tree", "Ghoul", "Ribback", "Vreck", "Dalger", "Varonoi", "Stovol Beetle", "Thegol Thorn", "Elk", "Black Beruln", "Mekle Plant", "Black Bear", "Turkey", "Skol", "Deer", "Fox", "Badger", "Hoffalgre", "Crow", "Silter", "Scilt Plant", "Korsk Beetle", "Cheshire", "Grizzly Bear", "Borgal", "Lizard", "Koivaya (loner)", "Koivaya (breeder)", "Cranberry Plant", "Eyewort Plant", "Korceida Plant", "Laumin Plant", "Jolle Plant", "Porstol Plant", "Fallory Plant", "Palgga Plant", "Bleeding Heart Plant", "Aberdom Plant", "Beunum Plant", "Ciprin Plant", "Marigold Plant", "Hoil Plant", "Callop Plant", "Darb Plant", "Kofke Plant", "Steugiurne Plant", "Web", "Etna Egg Sack", "Etna", "Mustard Plant", "Carrot Plant", "Potato Plant", "Cabbage Plant", "Harst Plant", "Santh Plant", "Wheat Plant", "Suuli Plant", "Lilypads", "Swamp Brush", "Swamp Lily Plant", "Borsht Plant", "Cattail Plant", "Mandrake Plant", "Leech", "Mud Toad", "Ker", "Palinsyda", "GhoulFly", "Toad", "Hydra", "Bat", "Vecher Bug", "Bog Troll", "Cerebris Mycelium I", "Cerebris Mycelium II", "Swamp Island", "Xuim Mycelium I", "Xuim Mycelium II", "Saffron", "Murdered Vardanians", "Blood", "Skeleton", "Bones", "Scuffle Marks", "West Furniture", "Floor Decorations", "South Furniture", "Nirwaden Furniture", "Nirwaden Goods", "Vardanian Spikes", "Pike Wall", "Cephrian Buidling", "Hyena", "Giraffe", "Lion", "Wild Dog", "Gazelle", "Zarbu", "Termite Mound", "Empty Termite Mound", "Acacia Tree", "Zwaleim Plant", "Glaza Plant", "Nupala Plant", "Tchalta Plant", "Tchafula Plant", "Gnoll", "Thengan Buildings", "Freydic Buildings", "Nirwaden Buildings", "Vardanian Buildings", "Vardanian Fencing", "Prison Bars", "Door", "Crate", "Sign", "Item", "Bed", "Fine Bed", "Vardanian Bed", "South Bed", "Angler", "Trubka Plant", "Eisyncryne Plant", "Cauw Plant", "Hesk Fungus", "Toadstools", "Thimblecap Mushrooms", "Royla Plant", "Vardanian Mardyl Plant", "Orgish Mardyl Plant", "Forest Thadine Plant", "Danzig Plant", "Chyoul Plant", "Ameloy Plant", "Laicaum Plant", "Plains Thadine Plant", "Saug Plant", "Kozlyak Mushrooms", "Maleot Mushrooms", "Gribnoy Mushroom", "Poegroon Mushrooms", "Iod Fungus", "Chervstrakha", "Motylekh", "Shrieking Bloodworm", "Pokinutyy", "Swamp Walks", "Vardanian Utilities", "Tents", "mireIsla", "Rat", "Varmin", "Fegil", "Lyagushka", "Lyagushka Egg Cluster", "Ostryy Grass Plant", "Mornid", "Grey Horse", "Brain Fly Hive", "Cirmusid", "Spitting Mud Fly", "Mud Beetle", "Raed Beetle", "Scorpion", "Whip Scorpion", "Barbol", "Desert Lizard", "Rattler", "Pasha Plant", "Anjay Plant", "Inum Plant", "Naib Plant", "Mawe Plant", "Voaii", "Xerocole", "Zetian Well", "Zetian Oven", "Chapul Plant", "Armadii", "Burnt Vardanian Assets", "Carts", "Mimicry", "Mimic", "Capul", "Noth Brush", "Stepov Tree", "Rona Plant", "Rulma Plant", "Iloptheora Plant", "Bosk Plant", "Qiao Plant", "Acretia Plant", "Kroloc Plant", "Grey Scretil", "Udnal", "Mud Troll", "Nulga", "Vodmena", "Dagger Fish", "Marnica", "Bogwasp", "Sagro", "Mud Strider", "Crilm Bug"];
+        //                  0           1              2               3                4          5        6           7              8               9                  10                    11              12         13         14       15        16        17             18              19         20          21              22            23          24       25      26      27      28          29        30       31          32             33             34             35         36         37            38                  39                   40                41               42                43             44              45               46               47                 48                   49              50               51               52             53             54             55            56                57            58         59           60           61              62               63              64              65            66             67              68           69            70               71                72               73                74           75        76       77        78           79        80      81      82         83           84                 85                    86                   87               88                  89              90              91               92        93         94           95               96                  97                 98                   99                  100               101               102             103            104       105       106      107         108       109          110                  111               112              113            114             115             116               117          118            119                 120                   121                    122                    123               124       125      126      127     128    129       130           131             132        133         134               135               136           137           138                 139                 140                 141                     142                     143                 144             145             146             147                 148                 149             150                   151                152                   153               154            155           156             157                158           159                160              161      162       163      164      165        166                 167                    168             169        170              171            172            173              174            175           176           177           178          179           180          181            182            183          184            185        186        187          188           189              190          191              192                193       194       195      196         197           198            199           200               201             202            203            204              205             206         207        208        209       210           211         212        213       214         215            216
         if (tKey)
         {
             tKey = false;
@@ -6425,13 +6425,13 @@ function cheats()
                     buildClase += 1;
                 }
 
-                if (buildClase > 33)
+                if (buildClase > 36)
                 {
                     buildClase = 0;
                 }
                 else if ((buildClase < 0))
                 {
-                    buildClase = 33;
+                    buildClase = 36;
                 }
             }
 
@@ -6723,6 +6723,611 @@ function cheats()
                 XXX.save();
                 XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
                 XXX.drawImage(pill, 654, 458, 66, 80, -1/2 * 66 * 0.65, -1/2 * 80 * 0.65, 66 * 0.65, 80 * 0.65);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 197)
+        {
+            if (fKey)
+            {
+                fKey = false;
+                if (shiftKey)
+                {
+                    buildRot += 1/16 * Math.PI;
+                }
+                else
+                {
+                    buildRot += 1/32 * Math.PI;
+                }
+            }
+            if (cKey)
+            {
+                cKey = false;
+                if (shiftKey)
+                {
+                    buildRot -= 1/16 * Math.PI;
+                }
+                else
+                {
+                    buildRot -= 1/32 * Math.PI;
+                }
+            }
+            if (gKey)
+            {
+                gKey = false;
+                if (shiftKey)
+                {
+                    buildSize += 0.1;
+                }
+                else
+                {
+                    buildSize += 0.02;
+                }
+            }
+            if (vKey)
+            {
+                vKey = false;
+                if (shiftKey)
+                {
+                    buildSize -= 0.1;
+                }
+                else
+                {
+                    buildSize -= 0.02;
+                }
+                if (buildSize <= 0)
+                {
+                    buildSize = 0.1;
+                }
+            }
+
+            if (zKey)
+            {
+                zKey = false;
+                if (shiftKey)
+                {
+                    buildClase -= 1;
+                }
+                else
+                {
+                    buildClase += 1;
+                }
+
+                if (buildClase > 1)
+                {
+                    buildClase = 0;
+                }
+                else if ((buildClase < 0))
+                {
+                    buildClase = 1;
+                }
+            }
+
+            if (xKey)
+            {
+                var rand = Math.floor(Math.random()*3);
+                xKey = false;
+                console.log('scenicList.push(new Scenery("nothBrush", ' + X + ', ' + Y + ', ' + buildRot + ', ' + rand + ', ' + buildClase +', ' + buildSize +'));');
+                scenicList.push(new Scenery("nothBrush", X, Y, buildRot, rand, buildClase, buildSize));
+            }
+
+            var islonDDDD = new Scenery("nothBrush", X, Y, buildRot, 0, buildClase, buildSize);
+            islonDDDD.operations();
+        }
+        else if (buildToggle == 198)
+        {
+            if (fKey)
+            {
+                fKey = false;
+                if (shiftKey)
+                {
+                    buildRot += 1/16 * Math.PI;
+                }
+                else
+                {
+                    buildRot += 1/32 * Math.PI;
+                }
+            }
+            if (cKey)
+            {
+                cKey = false;
+                if (shiftKey)
+                {
+                    buildRot -= 1/16 * Math.PI;
+                }
+                else
+                {
+                    buildRot -= 1/32 * Math.PI;
+                }
+            }
+            if (gKey)
+            {
+                gKey = false;
+                if (shiftKey)
+                {
+                    buildSize += 0.1;
+                }
+                else
+                {
+                    buildSize += 0.02;
+                }
+            }
+            if (vKey)
+            {
+                vKey = false;
+                if (shiftKey)
+                {
+                    buildSize -= 0.1;
+                }
+                else
+                {
+                    buildSize -= 0.02;
+                }
+                if (buildSize <= 0)
+                {
+                    buildSize = 0.1;
+                }
+            }
+
+            if (xKey)
+            {
+                var rand = Math.floor(Math.random()*3);
+                var rando = Math.round(Math.random());
+                xKey = false;
+                console.log('scenicList.push(new Scenery("stepovTree", ' + X + ', ' + Y + ', ' + buildRot + ', ' + rand + ', ' + rando +', ' + buildSize +'));');
+                scenicList.push(new Scenery("stepovTree", X, Y, buildRot, rand, rando, buildSize));
+            }
+
+            var islonDDDD = new Scenery("stepovTree", X, Y, buildRot, 0, 0, buildSize);
+            islonDDDD.operations();
+        }
+        else if (buildToggle == 199)
+        {
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("ronaPlant", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', true));');
+                worldItems.push([new Item("plantMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(sabez, 498, 858, 41, 42, -(1/2 * 41 * 1.3), -(1/2 * 42 * 1.3), 41 * 1.3, 42 * 1.3);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 200)
+        {
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("rulmaPlant", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', true));');
+                worldItems.push([new Item("plantMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(sabez, 503, 1129, 41, 42, -(1/2 * 41 * 0.9), -(1/2 * 42 * 0.9), 41 * 0.9, 42 * 0.9);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 201)
+        {
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("iloptheoraPlant", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', true));');
+                worldItems.push([new Item("plantMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(bosh, 0, 232, 107, 97, -(1/2 * 107), -(1/2 * 97), 107, 97);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 202)
+        {
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("boskPlant", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', true));');
+                worldItems.push([new Item("plantMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(bosh, 512, 26, 69, 66, -(1/2 * 69 * 0.65), -(1/2 * 66 * 0.65), 69 * 0.65, 66 * 0.65);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 203)
+        {
+            if (fKey)
+            {
+                fKey = false;
+                if (shiftKey)
+                {
+                    buildRot += 1/16 * Math.PI;
+                }
+                else
+                {
+                    buildRot += 1/32 * Math.PI;
+                }
+            }
+            if (cKey)
+            {
+                cKey = false;
+                if (shiftKey)
+                {
+                    buildRot -= 1/16 * Math.PI;
+                }
+                else
+                {
+                    buildRot -= 1/32 * Math.PI;
+                }
+            }
+
+            if (zKey && buildClase == 0)
+            {
+                buildClase = 1;
+            }
+            else if (zKey)
+            {
+                buildClase = 0;
+            }
+
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("qiaoPlant", ' + X + ', ' + Y + ', ' + buildRot + ', ' + buildClase + '));');
+                scenicList.push(new Scenery("qiaoPlant", X, Y, buildRot, buildClase));
+            }
+
+            var islonDDDD = new Scenery("qiaoPlant", X, Y, buildRot, buildClase);
+            islonDDDD.operations();
+        }
+        else if (buildToggle == 204)
+        {
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("acretiaPlant", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', true));');
+                worldItems.push([new Item("plantMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(scrag, 82, 21, 80, 72, -(1/2 * 80 * 0.85), -(1/2 * 72 * 0.85), 80 * 0.85, 72 * 0.85);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 205)
+        {
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("krolocPlant", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', true));');
+                worldItems.push([new Item("plantMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(scrag, 6, 94, 186, 174, -(1/2 * 186), -(1/2 * 174), 186, 174);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 206)
+        {
+            if (xKey)
+            {
+                xKey = false;
+                console.log('scenicList.push(new Scenery("greyScretilPlant", ' + X + ', ' + Y + ', ' + (Math.random()*2*Math.PI) + ', true));');
+                worldItems.push([new Item("plantMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.rotate(0);
+                XXX.drawImage(site, 461, 285, 129, 124, -(1/2 * 129 * 0.6), -(1/2 * 124 * 0.6), 129 * 0.6, 124 * 0.6);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 207)
+        {
+            if (xKey)
+            {
+                var alphon = Math.random();
+                if (alphon > 0.76)
+                {
+                    alphon = true;
+                }
+                else
+                {
+                    alphon = false;
+                }
+
+                xKey = false;
+                console.log('ArtificialIntelligenceAccess.push(new Unit(' + X +', ' + Y + ', "Udnal", ' + alphon + ', "preBuilt"));');
+                worldItems.push([new Item("unitMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.drawImage(nal, 665, -3, 304, 271, -1/2 * 304 * 1, -1/2 * 271 * 1, 304 * 1, 271 * 1);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 208)
+        {
+            if (xKey)
+            {
+                var alphon = Math.random();
+                if (alphon > 0.95)
+                {
+                    alphon = true;
+                }
+                else if (alphon > 0.3)
+                {
+                    alphon = '"small"';
+                }
+                else
+                {
+                    alphon = false;
+                }
+
+                xKey = false;
+                console.log('ArtificialIntelligenceAccess.push(new Unit(' + X +', ' + Y + ', "MudTroll", ' + alphon + ', "preBuilt"));');
+                worldItems.push([new Item("unitMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.drawImage(mrol, -5, 66, 220, 151, -1/2 * 220 * 1, -1/2 * 151 * 1, 220 * 1, 151 * 1);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 209)
+        {
+            if (xKey)
+            {
+                var alphon = Math.random();
+                if (alphon > 0.67)
+                {
+                    alphon = true;
+                }
+                else if (alphon > 0.57)
+                {
+                    alphon = '"massive"';
+                }
+                else
+                {
+                    alphon = false;
+                }
+
+                xKey = false;
+                console.log('ArtificialIntelligenceAccess.push(new Unit(' + X +', ' + Y + ', "Nulga", ' + alphon + ', "preBuilt"));');
+                worldItems.push([new Item("unitMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.drawImage(nulg, 8, 73, 143, 63, -1/2 * 143 * 1, -1/2 * 63 * 1, 143 * 1, 63 * 1);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 210)
+        {
+            if (xKey)
+            {
+                var alphon = Math.random();
+                if (alphon > 0.72)
+                {
+                    alphon = true;
+                }
+                else
+                {
+                    alphon = false;
+                }
+
+                xKey = false;
+                console.log('ArtificialIntelligenceAccess.push(new Unit(' + X +', ' + Y + ', "Vodmena", ' + alphon + ', "preBuilt"));');
+                worldItems.push([new Item("unitMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.drawImage(site, -29, 444, 300, 224, -1/2 * 300 * 1, -1/2 * 224 * 1, 300 * 1, 224 * 1);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 211)
+        {
+            if (xKey)
+            {
+                var alphon = Math.random();
+                if (alphon > 0.59)
+                {
+                    alphon = true;
+                }
+                else
+                {
+                    alphon = false;
+                }
+
+                xKey = false;
+                console.log('ArtificialIntelligenceAccess.push(new Unit(' + X +', ' + Y + ', "DaggerFish", ' + alphon + ', "preBuilt"));');
+                worldItems.push([new Item("unitMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.drawImage(nal, 616, 816, 233, 109, -1/2 * 233 * 1, -1/2 * 109 * 1, 233 * 1, 109 * 1);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 212)
+        {
+            if (xKey)
+            {
+                var alphon = Math.random();
+                if (alphon > 0.52)
+                {
+                    alphon = true;
+                }
+                else
+                {
+                    alphon = false;
+                }
+
+                xKey = false;
+                console.log('ArtificialIntelligenceAccess.push(new Unit(' + X +', ' + Y + ', "Marnica", ' + alphon + ', "preBuilt"));');
+                worldItems.push([new Item("unitMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.drawImage(scrag, 1016, 243, 38, 30, -1/2 * 38 * 1, -1/2 * 30 * 1, 38 * 1, 30 * 1);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 213)
+        {
+            if (xKey)
+            {
+                var alphon = Math.random();
+                if (alphon > 0.52)
+                {
+                    alphon = true;
+                }
+                else
+                {
+                    alphon = false;
+                }
+
+                xKey = false;
+                console.log('ArtificialIntelligenceAccess.push(new Unit(' + X +', ' + Y + ', "BogWasp", ' + alphon + ', "preBuilt"));');
+                worldItems.push([new Item("unitMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.drawImage(mboo, 1162, 754, 128, 112, -1/2 * 128 * 1, -1/2 * 112 * 1, 128 * 1, 112 * 1);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 214)
+        {
+            if (xKey)
+            {
+                var alphon = Math.random();
+                if (alphon > 0.75)
+                {
+                    alphon = true;
+                }
+                else
+                {
+                    alphon = false;
+                }
+
+                xKey = false;
+                console.log('ArtificialIntelligenceAccess.push(new Unit(' + X +', ' + Y + ', "Sagro", ' + alphon + ', "preBuilt"));');
+                worldItems.push([new Item("unitMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.drawImage(scrag, 642, 347, 213, 98, -1/2 * 213 * 1, -1/2 * 98 * 1, 213 * 1, 98 * 1);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 215)
+        {
+            if (xKey)
+            {
+                var alphon = Math.random();
+                if (alphon > 0.75)
+                {
+                    alphon = true;
+                }
+                else
+                {
+                    alphon = false;
+                }
+
+                xKey = false;
+                console.log('ArtificialIntelligenceAccess.push(new Unit(' + X +', ' + Y + ', "MudStrider", ' + alphon + ', "preBuilt"));');
+                worldItems.push([new Item("unitMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.drawImage(pill, 411, 705, 288, 204, -1/2 * 288 * 1, -1/2 * 204 * 1, 288 * 1, 204 * 1);
+                XXX.restore();
+            }
+        }
+        else if (buildToggle == 216)
+        {
+            if (xKey)
+            {
+                var alphon = Math.random();
+                if (alphon > 0.6)
+                {
+                    alphon = true;
+                }
+                else
+                {
+                    alphon = false;
+                }
+
+                xKey = false;
+                console.log('ArtificialIntelligenceAccess.push(new Unit(' + X +', ' + Y + ', "CrilmBug", ' + alphon + ', "preBuilt"));');
+                worldItems.push([new Item("unitMarker", X, Y), 1]);
+            }
+
+            if (rKey)
+            {
+                XXX.save();
+                XXX.translate(1/2 * CCC.width, 1/2 * CCC.height);
+                XXX.drawImage(yil, 358, 15, 35, 33, -1/2 * 35 * 5, -1/2 * 33 * 5, 35 * 5, 33 * 5);
                 XXX.restore();
             }
         }

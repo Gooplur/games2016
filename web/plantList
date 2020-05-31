@@ -13,10 +13,25 @@ Heyol - A freydic berry bush that hosts small green berries that are bitter and 
 Krogi - A black ringdome-capped mushroom that grows in the Vardanian Hollows and the Cephrian region of Black Lake eating this mushroom raw causes near-permanent paralysis, cooking it breaks down those enzymes enough that it becomes edible, though eating it numbs your whole body for a while...
 OrgishMardyl - A common swamp plant that grows primarily in the southern most bog of Vardania
 UkuvaTree - A tree that grows in the hollows, it is not used for anything as its wood is too soft to make structures and too brittle to use for artisanry. (use longevity to adjust its size: 0.8min - 1.7max)
+AtsuiBamboo - A variety of bamboo that grows in the Orgish Jungles. This type of bamboo is a favorite food for Panda bears, and it can be a home to Ha bugs. (longevity: 2 = webbed, 1 = Ha bugs, else = normal)
 GreyScretil - A southern Vardanian plant that grows primarily in the rocky highlands of the County of Noth.
 PinkScretil - The largest form of scretil, this grows in the Orgish bamboo jungles. This is also the only form of scretil that bears an edible fruit.
 Scretil - A faded green variety of scretil that grows in the Orgish bamboo jungles.
-//todo Thruum - A fungus that grows in the hollows that extends out fungal branches to soak in nutrients from the air. When it has soaked in enough, it closes its fungal branches together and forms a pasty substance that it uses to grow its mycelium underground.
+Olmhaka - A green and blue water plant native to the Orgish Glades, it is known for its distinctive orb-like, protrusiony flower.
+Kroloc - A large brown mud plant with frog-foot-like appendages that grows in the Southern Vardanian Boglands in the county of Noth
+Unlin - A bright blue and green water plant native to the Orgish Glades that is extremely poisonous
+Acretia - A small brownish-reddish-green water plant that grows in the bogs of The County of Noth in southern Vardania
+Ketsueki - A white fungus with red liquid filled bubbles all over it. If eaten it will cause its consumer to overproduce blood and die. (longevity: true = small version, false = larger version)
+StepovTree - A leafless tree that grows in The County of Noth in the boglands of Southern Vardania (longevity: true = light, false = dark) (information: 0, 1, 2) (extra: size)
+Qiao - A warped and twisted woody, leafy, bush covered in large, flexible, hard, tubular outgrowths. Qiao is native to northern Orgell in the Orgish jungles, as well as The County of Noth in the boglands of the southernmost part of Vardania.
+Thruum - A fungus that grows in the hollows that extends out fungal branches to soak in nutrients from the air. When it has soaked in enough, it closes its fungal branches together and forms a pasty substance that it uses to grow its mycelium underground.
+Bosk - A small bog plant native to The County of Noth in Southern Vardania that has a soft fibrous material that it produces which can be collected and woven into clothing and apparel.
+Iloptheora - A plant that is native to the Southern boglands of Vardania in The County of Noth. It produces a thick sticky sap that can harden into an extremely durable substance called ilop.
+Eneoji - A pink bush covered in delicate petal-like golden-pink leaves that contain a compound that is extremely addictive that enhances its consumer's speed and energy, but causes them to burn through their body's fat stores at a dangerous rate.
+Milsan - An orange flower that grows in the Orgish jungle and that has poisonous green filtration pods
+Rulma - A red flower that grows in the boglands of The County of Noth and it has baige filtration pods
+Rona - A red flower that grows in the depths of the deep mud of the boglands in The County of Noth, it has orange filtration pods and it is an important ingredient in alchemy.
+NothBrush - Several varieties of swamp brush that are native to the boglands of The County of Noth in Southern Vardania. It is strong and fibrous and its leaves can be woven into string or even rope. (longevity: 0 = yellowgreen 1 = green 2 = blackgreen)(information: true = alive, false = dead) (extra: size)
 
 //ALREADY IN GAME (to create a plant with the scenery class these plants must be made all lowercase)
     //FARM

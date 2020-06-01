@@ -37973,7 +37973,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 if (ArtificialIntelligenceAccess[i].type == "Sagro" || ArtificialIntelligenceAccess[i].type == "Vodmena" || ArtificialIntelligenceAccess[i].type == "Udnal" || ArtificialIntelligenceAccess[i].type == "Nulga" && ArtificialIntelligenceAccess[i].alpha == "massive" || ArtificialIntelligenceAccess[i].type == "MudTroll" || ArtificialIntelligenceAccess[i].type == "BogTroll" || ArtificialIntelligenceAccess[i].type == "Hydra" || ArtificialIntelligenceAccess[i].type == "Vodkapa" || ArtificialIntelligenceAccess[i].type == "Yilotnyy" || ArtificialIntelligenceAccess[i].healthMAX > 60)
                 {
                     var disst = (this.X - ArtificialIntelligenceAccess[i].X)*(this.X - ArtificialIntelligenceAccess[i].X) + (this.Y - ArtificialIntelligenceAccess[i].Y)*(this.Y - ArtificialIntelligenceAccess[i].Y);
-                    if (disst < (this.radius * 1.5) * (this.radius * 1.5) + ArtificialIntelligenceAccess[i].sizeRadius * ArtificialIntelligenceAccess[i].sizeRadius)
+                    if (disst < (this.radius * 1.5 * this.size) * (this.radius * 1.5 * this.size) + ArtificialIntelligenceAccess[i].sizeRadius * ArtificialIntelligenceAccess[i].sizeRadius)
                     {
                         this.treeHealth = 0;
                         this.phase = "picked";

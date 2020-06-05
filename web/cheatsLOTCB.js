@@ -8229,7 +8229,7 @@ function cheats()
             {
                 if (scenicList[i].Y > lesky)
                 {
-                    console.log('scenicList.push(new Scenery("' + scenicList[i].type +'", ' + scenicList[i].X + ', ' + scenicList[i].Y + ',' + scenicList[i].rotation + ', ' + scenicList[i].temporary +', ' + scenicList[i].information + ')); //copied ' + region);
+                    console.log('scenicList.push(new Scenery("' + scenicList[i].type +'", ' + scenicList[i].X + ', ' + scenicList[i].Y + ',' + scenicList[i].rotation + ', ' + scenicList[i].temporary +', ' + scenicList[i].information + ', ' + scenicList[i].extra + ')); //copied ' + region);
                 }
             }
         }
@@ -8240,7 +8240,7 @@ function cheats()
             {
                 if (scenicList[i].Y < lesky)
                 {
-                    console.log('scenicList.push(new Scenery("' + scenicList[i].type +'", ' + scenicList[i].X + ', ' + scenicList[i].Y + ',' + scenicList[i].rotation + ', ' + scenicList[i].temporary +', ' + scenicList[i].information + ')); //copied ' + region);
+                    console.log('scenicList.push(new Scenery("' + scenicList[i].type +'", ' + scenicList[i].X + ', ' + scenicList[i].Y + ',' + scenicList[i].rotation + ', ' + scenicList[i].temporary +', ' + scenicList[i].information + ', ' + scenicList[i].extra + ')); //copied ' + region);
                 }
             }
         }
@@ -8251,7 +8251,7 @@ function cheats()
             {
                 if (scenicList[i].X < lesky)
                 {
-                    console.log('scenicList.push(new Scenery("' + scenicList[i].type +'", ' + scenicList[i].X + ', ' + scenicList[i].Y + ',' + scenicList[i].rotation + ', ' + scenicList[i].temporary +', ' + scenicList[i].information + ')); //copied ' + region);
+                    console.log('scenicList.push(new Scenery("' + scenicList[i].type +'", ' + scenicList[i].X + ', ' + scenicList[i].Y + ',' + scenicList[i].rotation + ', ' + scenicList[i].temporary +', ' + scenicList[i].information + ', ' + scenicList[i].extra + ')); //copied ' + region);
                 }
             }
         }
@@ -8262,7 +8262,7 @@ function cheats()
             {
                 if (scenicList[i].X > lesky)
                 {
-                    console.log('scenicList.push(new Scenery("' + scenicList[i].type +'", ' + scenicList[i].X + ', ' + scenicList[i].Y + ',' + scenicList[i].rotation + ', ' + scenicList[i].temporary +', ' + scenicList[i].information + ')); //copied ' + region);
+                    console.log('scenicList.push(new Scenery("' + scenicList[i].type +'", ' + scenicList[i].X + ', ' + scenicList[i].Y + ',' + scenicList[i].rotation + ', ' + scenicList[i].temporary +', ' + scenicList[i].information + ', ' + scenicList[i].extra +')); //copied ' + region);
                 }
             }
         }

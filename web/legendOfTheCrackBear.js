@@ -1879,6 +1879,18 @@ function marcasPack()
 
     marcas.onload = function()
     {
+        carnPack();
+    };
+}
+
+function carnPack()
+{
+    var carn = new Image();
+    carn.src = ("images/carn.png");
+    window.carn = carn;
+
+    carn.onload = function()
+    {
         bambooPack();
     };
 }

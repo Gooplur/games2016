@@ -1879,6 +1879,30 @@ function marcasPack()
 
     marcas.onload = function()
     {
+        crocPack();
+    };
+}
+
+function crocPack()
+{
+    var croc = new Image();
+    croc.src = ("images/croc.png");
+    window.croc = croc;
+
+    croc.onload = function()
+    {
+        crocoPack();
+    };
+}
+
+function crocoPack()
+{
+    var croco = new Image();
+    croco.src = ("images/croco.png");
+    window.croco = croco;
+
+    croco.onload = function()
+    {
         carnPack();
     };
 }

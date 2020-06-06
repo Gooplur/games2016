@@ -124,6 +124,10 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
         {
             this.massive = true;
         }
+        else if (this.type == "eemegMound")
+        {
+            this.massive = true;
+        }
         else if (this.type == "ghoulEggs")
         {
             this.massive = true;
@@ -32521,6 +32525,229 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             XXX.rotate(this.rotation);
             XXX.drawImage(verse, 3080, 90, 71, 48, -(1/2 * 71 * this.size), -(1/2 * 48 * this.size), 71 * this.size, 48 * this.size);
             XXX.restore();
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 1;
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+            }
+        }
+        else if (this.type == "eemegMound")
+        {
+            //TRAITS
+            this.solid = false;
+            this.interactionRange = 1;
+            if (typeof(this.owned) != "null" && typeof(this.owned) != "boolean")
+            {
+                this.size = this.owned;
+            }
+            else
+            {
+                this.size = 1;
+            }
+            this.zIndex = 1;
+
+            if (this.temporary <= 1.2)
+            {
+                this.size = 1;
+            }
+            else
+            {
+                this.size = 1.4;
+            }
+
+            if (this.runOneTime == true)
+            {
+                this.runOneTime = false;
+                this.myId = this.extra;
+                this.entered = false;
+                this.spawned = true;
+                if (this.information == false)
+                {
+                    this.stage = 0;
+                }
+                else
+                {
+                    this.stage = 2;
+                }
+                this.paso = 0;
+                this.healthMAX;
+                this.speed;
+                this.alpha;
+                this.id;
+                this.team;
+                this.pasoDevi = 30 * Math.random();
+                this.fade = 1;
+            }
+
+            //DRAWSELF
+            if (this.stage == 0)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(carn, 219, 682, 169, 167, -(1/2 * 169 * this.size), -(1/2 * 167 * this.size), 169 * this.size, 167 * this.size);
+                XXX.restore();
+                this.paso += 1;
+                if (this.paso > 65)
+                {
+                    this.stage += 1;
+                    this.paso = 0;
+                }
+            }
+            else if (this.stage == 1)
+            {
+                if (this.entered == false)
+                {
+                    for (var hivdude = 0; hivdude < ArtificialIntelligenceAccess.length; hivdude++)
+                    {
+                        if (ArtificialIntelligenceAccess[hivdude].barcode == this.myId && ArtificialIntelligenceAccess[hivdude].type == "Eemeg")
+                        {
+                            this.healthMAX = ArtificialIntelligenceAccess[hivdude].healthMAX;
+                            this.speed = ArtificialIntelligenceAccess[hivdude].speed;
+                            this.alpha = ArtificialIntelligenceAccess[hivdude].alpha;
+                            this.id = ArtificialIntelligenceAccess[hivdude].ID;
+                            this.team = ArtificialIntelligenceAccess[hivdude].baseTeam;
+
+                            ArtificialIntelligenceAccess.splice(hivdude, 1);
+                            this.entered = true;
+                            break;
+                        }
+                    }
+                }
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(carn, 638, 685, 169, 167, -(1/2 * 169 * this.size), -(1/2 * 167 * this.size), 169 * this.size, 167 * this.size);
+                XXX.restore();
+
+                this.paso += 1;
+                if (this.paso > 65)
+                {
+                    this.stage += 1;
+                    this.paso = 0;
+                }
+            }
+            else if (this.stage == 2)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(carn, 26, 681, 169, 167, -(1/2 * 169 * this.size), -(1/2 * 167 * this.size), 169 * this.size, 167 * this.size);
+                XXX.restore();
+
+                if (this.playerer <= 555)
+                {
+                    this.paso += 1;
+                }
+
+                for (var eemi = 0; eemi < ArtificialIntelligenceAccess.length; eemi++)
+                {
+                    if (ArtificialIntelligenceAccess[eemi].type != "MudTroll" && ArtificialIntelligenceAccess[eemi].alpha == true || ArtificialIntelligenceAccess[eemi].type != "MudTroll" && ArtificialIntelligenceAccess[eemi].healthMAX < 47)
+                    {
+                        if (ArtificialIntelligenceAccess[eemi].type != "Marnica" && ArtificialIntelligenceAccess[eemi].type != "Eemeg")
+                        {
+                            var unitDist = (ArtificialIntelligenceAccess[eemi].X - this.X)*(ArtificialIntelligenceAccess[eemi].X - this.X) + (ArtificialIntelligenceAccess[eemi].Y - this.Y)*(ArtificialIntelligenceAccess[eemi].Y - this.Y);
+                            if (unitDist <= 550*550)
+                            {
+                                this.paso += 1;
+                            }
+                        }
+                    }
+                }
+
+                if (this.paso > (120 - this.pasoDevi))
+                {
+                    this.stage += 1;
+                    this.paso = 0;
+                }
+            }
+            else if (this.stage == 3)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(carn, 417, 687, 169, 167, -(1/2 * 169 * this.size), -(1/2 * 167 * this.size), 169 * this.size, 167 * this.size);
+                XXX.restore();
+                this.paso += 1;
+                if (this.paso > 20)
+                {
+                    this.stage += 1;
+                    this.paso = 0;
+                }
+            }
+            else if (this.stage == 4)
+            {
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(carn, 638, 685, 169, 167, -(1/2 * 169 * this.size), -(1/2 * 167 * this.size), 169 * this.size, 167 * this.size);
+                XXX.restore();
+
+                this.paso += 1;
+                if (this.paso > 20)
+                {
+                    this.stage += 1;
+                    this.paso = 0;
+                }
+                this.fade = 1;
+            }
+            else
+            {
+                if (this.spawned == true)
+                {
+                    if (this.entered == true)
+                    {
+                        var eemegSpawn = new Unit(this.X, this.Y, "Eemeg", this.alpha, this.id);
+                        eemegSpawn.speed = this.speed;
+                        eemegSpawn.healthMAX = this.healthMAX;
+                        eemegSpawn.baseTeam = this.team;
+                        eemegSpawn.barcode = this.extra;
+                        eemegSpawn.newRotation = this.rotation;
+                        eemegSpawn.rotation = this.rotation;
+
+                        ArtificialIntelligenceAccess.push(eemegSpawn);
+                    }
+                    else
+                    {
+                        if (this.temporary <= 1.2)
+                        {
+                            var eemegSpawn = new Unit(this.X, this.Y, "Eemeg", false, "earwig");
+                            eemegSpawn.newRotation = this.rotation;
+                            eemegSpawn.rotation = this.rotation;
+                            ArtificialIntelligenceAccess.push(eemegSpawn);
+                        }
+                        else
+                        {
+                            var eemegSpawn = new Unit(this.X, this.Y, "Eemeg", true, "earwig");
+                            eemegSpawn.newRotation = this.rotation;
+                            eemegSpawn.rotation = this.rotation;
+                            ArtificialIntelligenceAccess.push(eemegSpawn);
+                        }
+                    }
+                    this.spawned = false;
+                }
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.globalAlpha = this.fade;
+                XXX.drawImage(carn, 219, 682, 169, 167, -(1/2 * 169 * this.size), -(1/2 * 167 * this.size), 169 * this.size, 167 * this.size);
+                XXX.restore();
+                this.paso += 1;
+                if (this.paso > 230)
+                {
+                    this.fade -= 0.01;
+                    if (this.fade < 0.02)
+                    {
+                        scenicList.splice(scenicList.indexOf(this), 1);
+                    }
+                }
+            }
 
             //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
             this.radius = 1;

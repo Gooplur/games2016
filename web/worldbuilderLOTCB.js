@@ -411,6 +411,155 @@ function worldBuilder()
             outlineBuilder(1, 3, "southbogMud", -1116, 793);
             outlineBuilder(1, 1, "southbogMud", -1116, 792);
         }
+        //mapS23w34
+        if (Y > -238507 && Y < -227726 && X < 354544 && X > 342860) //X34
+        {
+            elevation = -2;
+            region = "s23w34";
+            campout = true;
+            outlineBuilder( 34, 34, "vardanianWetlands", -1176, 762); //vardanianWetlands
+            outlineBuilder(1, 3, "vardanianGrass", -1145, 762); //vardanianGrass
+            outlineBuilder(1, 5, "vardanianGrass", -1147, 763);
+            outlineBuilder(4, 4, "vardanianGrass", -1146, 764);
+            outlineBuilder(1, 3, "vardanianGrass", -1145, 768);
+            outlineBuilder(2, 1, "vardanianGrass", -1143, 769);
+            outlineBuilder(6, 1, "vardanianStone", -1159, 762);
+            outlineBuilder(1, 2, "vardanianStone", -1161, 767);
+            outlineBuilder(4, 1, "vardanianStone", -1162, 767);
+            outlineBuilder(1, 1, "vardanianStone", -1163, 770);
+            outlineBuilder(1, 10, "vardanianStone", -1172, 771);
+            outlineBuilder(1, 1, "vardanianStone", -1172, 772);
+            outlineBuilder(9, 1, "vardanianStone", -1173, 772);
+            outlineBuilder(1, 3, "vardanianStone", -1173, 781);
+            outlineBuilder(1, 7, "vardanianStone", -1171, 782);
+            outlineBuilder(2, 1, "vardanianStone", -1165, 783);
+            outlineBuilder(1, 16, "vardanianStone", -1165, 785);
+            outlineBuilder(10, 1, "vardanianStone", -1150, 786);
+            outlineBuilder(3, 1, "crag", -1151, 772);
+            outlineBuilder(3, 1, "crag", -1150, 773);
+            outlineBuilder(3, 1, "crag", -1149, 774);
+            outlineBuilder(2, 1, "crag", -1148, 774);
+            outlineBuilder(1, 1, "crag", -1147, 775);
+            outlineBuilder(4, 1, "crag", -1145, 770);
+            outlineBuilder(1, 1, "crag", -1146, 771);
+            outlineBuilder(3, 1, "crag", -1144, 772);
+            outlineBuilder(4, 1, "crag", -1170, 788);
+            outlineBuilder(2, 1, "crag", -1171, 789);
+            outlineBuilder(3, 1, "crag", -1169, 789);
+            outlineBuilder(1, 1, "crag", -1168, 791);
+            outlineBuilder(3, 1, "crag", -1161, 791);
+            outlineBuilder(3, 1, "crag", -1162, 792);
+            outlineBuilder(1, 1, "crag", -1163, 793);
+            outlineBuilder(3, 2, "crag", -1160, 792);
+            outlineBuilder(2, 1, "crag", -1158, 792);
+            outlineBuilder(2, 1, "crag", -1166, 766);
+            outlineBuilder(1, 1, "crag", -1167, 767);
+            outlineBuilder(1, 12, "southbog", -1174, 762); //southbog
+            outlineBuilder(1, 12, "southbog", -1173, 763);
+            outlineBuilder(1, 4, "southbog", -1171, 764);
+            outlineBuilder(1, 5, "southbog", -1173, 765);
+            outlineBuilder(1, 5, "southbog", -1174, 766);
+            outlineBuilder(1, 7, "southbog", -1175, 767);
+            outlineBuilder(1, 5, "southbog", -1174, 768);
+            outlineBuilder(1, 1, "southbog", -1171, 769);
+            outlineBuilder(1, 1, "southbog", -1173, 769);
+            outlineBuilder(1, 2, "southbog", -1163, 764);
+            outlineBuilder(1, 2, "southbog", -1162, 765);
+            outlineBuilder(1, 1, "southbog", -1170, 773);
+            outlineBuilder(1, 3, "southbog", -1171, 774);
+            outlineBuilder(1, 2, "southbog", -1171, 775);
+            outlineBuilder(1, 8, "southbog", -1171, 776);
+            outlineBuilder(2, 7, "southbog", -1171, 777);
+            outlineBuilder(1, 5, "southbog", -1170, 779);
+            outlineBuilder(1, 1, "southbog", -1168, 780);
+            outlineBuilder(1, 1, "southbog", -1166, 780);
+            outlineBuilder(1, 13, "southbog", -1167, 774);
+            outlineBuilder(1, 15, "southbog", -1168, 775);
+            outlineBuilder(1, 10, "southbog", -1162, 776);
+            outlineBuilder(1, 10, "southbog", -1164, 773);
+            outlineBuilder(1, 2, "southbog", -1159, 769);
+            outlineBuilder(1, 3, "southbog", -1159, 770);
+            outlineBuilder(1, 4, "southbog", -1160, 771);
+            outlineBuilder(1, 8, "southbog", -1161, 772);
+            outlineBuilder(1, 2, "southbog", -1154, 771);
+            outlineBuilder(1, 8, "southbog", -1160, 777);
+            outlineBuilder(1, 5, "southbog", -1158, 778);
+            outlineBuilder(1, 4, "southbog", -1157, 779);
+            outlineBuilder(6, 1, "southbog", -1152, 778);
+            outlineBuilder(3, 1, "southbog", -1151, 778);
+            outlineBuilder(3, 1, "southbog", -1153, 780);
+            outlineBuilder(1, 1, "southbog", -1151, 783);
+            outlineBuilder(1, 2, "southbog", -1146, 777);
+            outlineBuilder(1, 1, "southbog", -1145, 778);
+            outlineBuilder(1, 1, "southbog", -1143, 778);
+            outlineBuilder(2, 3, "southbog", -1145, 779);
+            outlineBuilder(1, 1, "southbog", -1148, 779);
+            outlineBuilder(1, 3, "southbog", -1149, 780);
+            outlineBuilder(1, 8, "southbog", -1150, 781);
+            outlineBuilder(1, 7, "southbog", -1149, 782);
+            outlineBuilder(2, 6, "southbog", -1148, 783);
+            outlineBuilder(2, 5, "southbog", -1147, 785);
+            outlineBuilder(8, 1, "southbog", -1176, 778);
+            outlineBuilder(1, 1, "southbog", -1175, 779);
+            outlineBuilder(7, 1, "southbog", -1175, 781);
+            outlineBuilder(6, 1, "southbog", -1174, 783);
+            outlineBuilder(2, 3, "southbog", -1145, 787);
+            outlineBuilder(1, 3, "southbog", -1146, 789);
+            outlineBuilder(1, 4, "southbog", -1147, 790);
+            outlineBuilder(1, 3, "southbog", -1147, 791);
+            outlineBuilder(1, 3, "southbog", -1148, 792);
+            outlineBuilder(1, 3, "southbog", -1147, 793);
+            outlineBuilder(1, 1, "southbog", -1147, 794);
+            outlineBuilder(4, 1, "southbog", -1173, 785);
+            outlineBuilder(4, 1, "southbog", -1172, 784);
+            outlineBuilder(2, 1, "southbog", -1171, 785);
+            outlineBuilder(1, 1, "southbog", -1170, 785);
+            outlineBuilder(4, 1, "southbog", -1168, 784);
+            outlineBuilder(1, 1, "southbog", -1169, 786);
+            outlineBuilder(4, 1, "southbog", -1167, 785);
+            outlineBuilder(1, 1, "southbog", -1166, 787);
+            outlineBuilder(1, 1, "southbog", -1161, 787);
+            outlineBuilder(1, 1, "southbog", -1163, 789);
+            outlineBuilder(1, 9, "southbog", -1162, 788);
+            outlineBuilder(1, 9, "southbog", -1161, 789);
+            outlineBuilder(1, 4, "southbog", -1159, 787);
+            outlineBuilder(1, 1, "southbog", -1159, 790);
+            outlineBuilder(1, 5, "southbog", -1157, 790);
+            outlineBuilder(3, 5, "southbog", -1156, 791);
+            outlineBuilder(1, 3, "southbog", -1155, 794);
+            outlineBuilder(1, 5, "southbog", -1157, 795);
+            outlineBuilder(2, 1, "southbog", -1143, 776);
+            outlineBuilder(1, 7, "southbogMud", -1156, 762); //southbogMud
+            outlineBuilder(1, 4, "southbogMud", -1156, 763);
+            outlineBuilder(1, 4, "southbogMud", -1155, 764);
+            outlineBuilder(1, 6, "southbogMud", -1154, 765);
+            outlineBuilder(1, 1, "southbogMud", -1150, 764);
+            outlineBuilder(1, 7, "southbogMud", -1156, 766);
+            outlineBuilder(1, 9, "southbogMud", -1157, 767);
+            outlineBuilder(1, 8, "southbogMud", -1155, 768);
+            outlineBuilder(1, 2, "southbogMud", -1154, 769);
+            outlineBuilder(1, 1, "southbogMud", -1148, 769);
+            outlineBuilder(1, 2, "southbogMud", -1151, 769);
+            outlineBuilder(1, 1, "southbogMud", -1150, 770);
+            outlineBuilder(6, 1, "southbogMud", -1176, 769);
+            outlineBuilder(3, 1, "southbogMud", -1175, 771);
+            outlineBuilder(1, 5, "southbogMud", -1165, 779);
+            outlineBuilder(1, 2, "southbogMud", -1163, 778);
+            outlineBuilder(1, 7, "southbogMud", -1164, 780);
+            outlineBuilder(1, 7, "southbogMud", -1163, 781);
+            outlineBuilder(1, 8, "southbogMud", -1162, 782);
+            outlineBuilder(1, 5, "southbogMud", -1161, 783);
+            outlineBuilder(7, 1, "southbogMud", -1176, 789);
+            outlineBuilder(6, 1, "southbogMud", -1175, 790);
+            outlineBuilder(5, 1, "southbogMud", -1174, 791);
+            outlineBuilder(6, 2, "southbogMud", -1173, 790);
+            outlineBuilder(5, 1, "southbogMud", -1171, 791);
+            outlineBuilder(1, 2, "southbogMud", -1170, 792);
+            outlineBuilder(1, 5, "southbogMud", -1170, 794);
+            outlineBuilder(1, 4, "southbogMud", -1170, 795);
+            outlineBuilder(1, 2, "southbogMud", -1168, 793);
+            outlineBuilder(1, 2, "southbogMud", -1165, 795);
+        }
 
         //Layer -22 (warm region): elev -2
         //mapS22
@@ -436,6 +585,80 @@ function worldBuilder()
             outlineBuilder(1, 1, "vardanianFarmland", -1125, 753);
 
             outlineBuilder(1, 34, "vardanianStone", -1142, 748);
+        }
+        //mapS22w34
+        if (Y > -228312 && Y < -217520 && X < 354544 && X > 342860) //X34
+        {
+            elevation = -2;
+            region = "s22w34";
+            campout = true;
+            outlineBuilder( 34, 34, "vardanianGrass", -1176, 728); //vardanianGrass
+
+            outlineBuilder(1, 34, "vardanianStone", -1176, 748);
+            outlineBuilder(13, 1, "vardanianStone", -1159, 749);
+            outlineBuilder(6, 2, "vardanianWetlands", -1176, 756);
+            outlineBuilder(1, 2, "vardanianWetlands", -1174, 760);
+            outlineBuilder(2, 1, "vardanianWetlands", -1174, 755);
+            outlineBuilder(2, 1, "vardanianWetlands", -1173, 754);
+            outlineBuilder(1, 2, "vardanianWetlands", -1172, 754);
+            outlineBuilder(3, 1, "vardanianWetlands", -1170, 754);
+            outlineBuilder(2, 1, "vardanianWetlands", -1169, 756);
+            outlineBuilder(1, 1, "vardanianWetlands", -1168, 757);
+            outlineBuilder(2, 2, "vardanianWetlands", -1169, 753);
+            outlineBuilder(3, 1, "vardanianWetlands", -1167, 753);
+            outlineBuilder(2, 1, "vardanianWetlands", -1166, 754);
+            outlineBuilder(4, 1, "vardanianWetlands", -1165, 753);
+            outlineBuilder(4, 1, "vardanianWetlands", -1164, 752);
+            outlineBuilder(3, 1, "vardanianWetlands", -1163, 752);
+            outlineBuilder(2, 1, "vardanianWetlands", -1162, 752);
+            outlineBuilder(3, 1, "vardanianWetlands", -1161, 753);
+            outlineBuilder(11, 1, "vardanianWetlands", -1160, 751);
+            outlineBuilder(2, 1, "vardanianWetlands", -1161, 760);
+            outlineBuilder(1, 1, "vardanianWetlands", -1162, 761);
+            outlineBuilder(10, 1, "vardanianWetlands", -1158, 752);
+            outlineBuilder(3, 1, "vardanianWetlands", -1157, 752);
+            outlineBuilder(2, 1, "vardanianWetlands", -1156, 753);
+            outlineBuilder(3, 3, "vardanianWetlands", -1155, 753);
+            outlineBuilder(4, 2, "vardanianWetlands", -1152, 754);
+            outlineBuilder(3, 1, "vardanianWetlands", -1150, 756);
+            outlineBuilder(4, 1, "vardanianWetlands", -1149, 757);
+            outlineBuilder(4, 1, "vardanianWetlands", -1148, 757);
+            outlineBuilder(4, 1, "vardanianWetlands", -1147, 758);
+            outlineBuilder(3, 1, "vardanianWetlands", -1146, 759);
+            outlineBuilder(1, 1, "vardanianWetlands", -1145, 761);
+            outlineBuilder(1, 3, "vardanianWetlands", -1148, 756);
+            outlineBuilder(1, 3, "vardanianWetlands", -1147, 757);
+            outlineBuilder(4, 1, "vardanianWetlands", -1157, 756);
+            outlineBuilder(1, 1, "vardanianWetlands", -1156, 757);
+            outlineBuilder(1, 1, "vardanianWetlands", -1150, 755);
+            outlineBuilder(1, 2, "vardanianWetlands", -1152, 753);
+            outlineBuilder(1, 3, "vardanianWetlands", -1154, 752);
+            outlineBuilder(3, 1, "crag", -1174, 757);
+            outlineBuilder(4, 1, "crag", -1173, 756);
+            outlineBuilder(5, 1, "crag", -1172, 755);
+            outlineBuilder(4, 1, "crag", -1171, 755);
+            outlineBuilder(2, 1, "crag", -1170, 757);
+            outlineBuilder(1, 1, "crag", -1150, 754);
+            outlineBuilder(3, 1, "crag", -1149, 754);
+            outlineBuilder(1, 1, "crag", -1148, 755);
+            outlineBuilder(1, 12, "southbog", -1174, 761);
+            outlineBuilder(1, 11, "southbog", -1172, 760);
+            outlineBuilder(1, 11, "southbog", -1171, 759);
+            outlineBuilder(1, 9, "southbog", -1169, 758);
+            outlineBuilder(1, 7, "southbog", -1167, 757);
+            outlineBuilder(1, 3, "southbog", -1168, 756);
+            outlineBuilder(1, 2, "southbog", -1169, 755);
+            outlineBuilder(1, 4, "southbog", -1164, 756);
+            outlineBuilder(1, 2, "southbog", -1163, 755);
+            outlineBuilder(1, 1, "southbog", -1162, 754);
+            outlineBuilder(1, 10, "southbogMud", -1157, 761);
+            outlineBuilder(1, 9, "southbogMud", -1157, 760);
+            outlineBuilder(1, 8, "southbogMud", -1156, 759);
+            outlineBuilder(1, 6, "southbogMud", -1156, 758);
+            outlineBuilder(1, 2, "southbogMud", -1157, 755);
+            outlineBuilder(1, 5, "southbogMud", -1156, 756);
+            outlineBuilder(1, 3, "southbogMud", -1155, 757);
+            outlineBuilder(1, 2, "southbogMud", -1153, 755);
         }
         //Layer -21 (warm region): elev -2
         //mapS21
@@ -6375,7 +6598,7 @@ function worldBuilder()
         region = "testMap";
         campout = true;
         //starting chamber
-        outlineBuilder(68,68, "southbog", -34, -34);
+        outlineBuilder(68,68, "southbogMud", -34, -34);
     }
 }
 

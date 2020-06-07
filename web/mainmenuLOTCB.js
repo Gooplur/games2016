@@ -2917,6 +2917,7 @@ function Selector(bX, bY, type, selNumMAX)
                     XXX.fillText("Nobility", bX + 105, bY + 23);
                     player.title = "Nobility";
 
+                    Inventory = [];
                     Inventory.push([new Item("coins", false, false), 2000]);
                     player.hunger = player.hungerMAX;
                     player.satiated = true;

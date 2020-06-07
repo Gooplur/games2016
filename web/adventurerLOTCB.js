@@ -30712,6 +30712,14 @@ function Adventurer()
             this.bubbleOfDamageX = X - Math.cos(this.rotation - 2.41 / 5 * Math.PI) * (this.mySize + 75);
             this.bubbleOfDamageY = Y - Math.sin(this.rotation - 2.41 / 5 * Math.PI) * (this.mySize + 75);
         }
+        else if (this.weaponEquipped == "vardanianPolehammer" && player.powerAttack != true)
+        {
+            this.weapon = allWeapons[120];
+
+            //keep the angle at this.rotation if you intend for it to go to the right, otherwise you can change the damage radius center by listing a different rotation.
+            this.bubbleOfDamageX = X - Math.cos(this.rotation - 1.9 / 5 * Math.PI) * (this.mySize + 34);
+            this.bubbleOfDamageY = Y - Math.sin(this.rotation - 1.9 / 5 * Math.PI) * (this.mySize + 34);
+        }
         else if (this.weaponEquipped == "kama")
         {
             this.weapon = allWeapons[121];

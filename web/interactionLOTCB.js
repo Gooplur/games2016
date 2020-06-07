@@ -168,7 +168,7 @@ function interaction(me)
     {
         //Interaction with...
         var dtp = self.DTP();
-        if (dtp < 200 && player.druidBear != true)
+        if (dtp < 200 && player.druidBear != true && player.ethereal == self.ethereal || dtp < 200 && player.druidBear != true && player.ethereal == "avatar")
         {
             var dtm = self.DTM();
 

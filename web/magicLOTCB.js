@@ -44,12 +44,14 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
         {
             this.castor = unitSelf;
             this.casterTeam = unitSelf.team;
+            this.ethereal = unitSelf.ethereal;
             this.unitRotation = unitSelf.rotation + Math.PI;
         }
         else
         {
             this.castor = false;
             this.casterTeam = false;
+            this.ethereal = player.ethereal;
         }
         this.damagesPlayer = damagesPlayer;
         this.stage = 0; // this can be used by whichever spell but shall not be used in functions.
@@ -414,161 +416,164 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
 
                 if (distanceToPlayer <= radius + player.mySize && player.dmx == this.dmx)
                 {
-                    if (whatDoIDo == "drainOrb")
+                    if (player.ethereal == this.ethereal || player.ethereal == "avatar")
                     {
-                        if (caster != true)
+                        if (whatDoIDo == "drainOrb")
                         {
-                            player.health += damage;
-                        }
-                    }
-                    else if (whatDoIDo == "fire")
-                    {
-                        this.shieldFactoring(Math.max(0, (damage - (player.heatResistance))));
-                        if (player.mageShield <= 0)
-                        {
-                            player.thirst -= Math.max(0, damage - player.heatResistance);
-                            player.burningTime = new Date().getTime();
-                        }
-                    }
-                    else if (whatDoIDo == "iceSpike")
-                    {
-                        player.health -= Math.max(0, 4 + (4/50 * this.cnx) - Math.max(0, player.armourTotal - Math.max(0, 100 - 19 * player.magicalResistanceTotal)));
-                    }
-                    else if (whatDoIDo == "soulOrb")
-                    {
-                        player.skillPoints += 1;
-                        player.extraSkillPoints += 1;
-                    }
-                    else if (whatDoIDo == "bonk")
-                    {
-                        this.shieldFactoring(Math.max(0, damage - Math.max(0, player.armourTotal - negate)));
-                        if (player.mageShield <= 0)
-                        {
-                            player.stunnedIII = true;
-                            player.stunnedTime = 2;
-                        }
-                    }
-                    else if (whatDoIDo == "boreaSpitI")
-                    {
-                        this.shieldFactoring(Math.max(0, (damage / 4) - Math.max(0, player.armourTotal - negate))); //borea spit does 4x less damage to shields
-                        if (player.mageShield <= 0)
-                        {
-                            player.strongWebbedNum = 14;
-                            player.strongWebbedTime = new Date().getTime();
-                            if (damage + negate > player.armourTotal)
+                            if (caster != true)
                             {
-                                player.acidII = true;
-                                player.acidTime = new Date().getTime() + 8000;
+                                player.health += damage;
                             }
                         }
-                    }
-                    else if (whatDoIDo == "boreaSpitII")
-                    {
-                        this.shieldFactoring(Math.max(0, (damage / 4) - Math.max(0, player.armourTotal - negate))); //borea spit does 4x less damage to shields
-                        if (player.mageShield <= 0)
+                        else if (whatDoIDo == "fire")
                         {
-                            player.strongWebbedNum = 22;
-                            player.strongWebbedTime = new Date().getTime();
-                            if (damage + negate > player.armourTotal)
+                            this.shieldFactoring(Math.max(0, (damage - (player.heatResistance))));
+                            if (player.mageShield <= 0)
                             {
-                                player.acidII = true;
-                                player.acidTime = new Date().getTime() + 8000;
+                                player.thirst -= Math.max(0, damage - player.heatResistance);
+                                player.burningTime = new Date().getTime();
                             }
                         }
-                    }
-                    else if (whatDoIDo == "quarterAcid")
-                    {
-                        this.shieldFactoring(Math.max(0, damage - Math.max(0, player.armourTotal - negate)));
-                        if (player.mageShield <= 0)
+                        else if (whatDoIDo == "iceSpike")
                         {
-                            if (damage + negate > player.armourTotal)
+                            player.health -= Math.max(0, 4 + (4/50 * this.cnx) - Math.max(0, player.armourTotal - Math.max(0, 100 - 19 * player.magicalResistanceTotal)));
+                        }
+                        else if (whatDoIDo == "soulOrb")
+                        {
+                            player.skillPoints += 1;
+                            player.extraSkillPoints += 1;
+                        }
+                        else if (whatDoIDo == "bonk")
+                        {
+                            this.shieldFactoring(Math.max(0, damage - Math.max(0, player.armourTotal - negate)));
+                            if (player.mageShield <= 0)
                             {
-                                player.quarterAcid = true;
-                                player.acidTime = new Date().getTime() + 5000;
+                                player.stunnedIII = true;
+                                player.stunnedTime = 2;
                             }
                         }
-                    }
-                    else if (whatDoIDo == "acidI")
-                    {
-                        this.shieldFactoring(Math.max(0, damage - Math.max(0, player.armourTotal - negate)));
-                        if (player.mageShield <= 0)
+                        else if (whatDoIDo == "boreaSpitI")
                         {
-                            if (damage + negate > player.armourTotal)
+                            this.shieldFactoring(Math.max(0, (damage / 4) - Math.max(0, player.armourTotal - negate))); //borea spit does 4x less damage to shields
+                            if (player.mageShield <= 0)
                             {
-                                player.acidI = true;
-                                player.acidTime = new Date().getTime() + 5000;
+                                player.strongWebbedNum = 14;
+                                player.strongWebbedTime = new Date().getTime();
+                                if (damage + negate > player.armourTotal)
+                                {
+                                    player.acidII = true;
+                                    player.acidTime = new Date().getTime() + 8000;
+                                }
                             }
                         }
-                    }
-                    else if (whatDoIDo == "acidII")
-                    {
-                        this.shieldFactoring(Math.max(0, damage - Math.max(0, player.armourTotal - negate)));
-                        if (player.mageShield <= 0)
+                        else if (whatDoIDo == "boreaSpitII")
                         {
-                            if (damage + negate > player.armourTotal)
+                            this.shieldFactoring(Math.max(0, (damage / 4) - Math.max(0, player.armourTotal - negate))); //borea spit does 4x less damage to shields
+                            if (player.mageShield <= 0)
                             {
-                                player.acidII = true;
-                                player.acidTime = new Date().getTime() + 5000;
+                                player.strongWebbedNum = 22;
+                                player.strongWebbedTime = new Date().getTime();
+                                if (damage + negate > player.armourTotal)
+                                {
+                                    player.acidII = true;
+                                    player.acidTime = new Date().getTime() + 8000;
+                                }
                             }
                         }
-                    }
-                    else if (whatDoIDo == "acidIII")
-                    {
-                        this.shieldFactoring(Math.max(0, damage - Math.max(0, player.armourTotal - negate)));
-                        if (player.mageShield <= 0)
+                        else if (whatDoIDo == "quarterAcid")
                         {
-                            if (damage + negate > player.armourTotal)
+                            this.shieldFactoring(Math.max(0, damage - Math.max(0, player.armourTotal - negate)));
+                            if (player.mageShield <= 0)
                             {
-                                player.acidIII = true;
-                                player.acidTime = new Date().getTime() + 5000;
+                                if (damage + negate > player.armourTotal)
+                                {
+                                    player.quarterAcid = true;
+                                    player.acidTime = new Date().getTime() + 5000;
+                                }
                             }
                         }
-                    }
-                    else if (whatDoIDo == "electricity")
-                    {
-                        this.shieldFactoring(Math.max(0, damage - ((player.totalShockResist * 3) + (19 * player.magicalResistanceTotal))));
-                        if (player.mageShield <= 0)
+                        else if (whatDoIDo == "acidI")
                         {
-                            if (Math.max(0, damage -  (19 * player.magicalResistanceTotal)) > 0)
+                            this.shieldFactoring(Math.max(0, damage - Math.max(0, player.armourTotal - negate)));
+                            if (player.mageShield <= 0)
                             {
-                                player.shockedTime = new Date().getTime();
-                                player.shockedTime2 = new Date().getTime();
+                                if (damage + negate > player.armourTotal)
+                                {
+                                    player.acidI = true;
+                                    player.acidTime = new Date().getTime() + 5000;
+                                }
                             }
                         }
-                    }
-                    else if (whatDoIDo == "draining")
-                    {
-                        this.shieldFactoring(Math.max(0, damage - player.magicalResistanceTotal));
+                        else if (whatDoIDo == "acidII")
+                        {
+                            this.shieldFactoring(Math.max(0, damage - Math.max(0, player.armourTotal - negate)));
+                            if (player.mageShield <= 0)
+                            {
+                                if (damage + negate > player.armourTotal)
+                                {
+                                    player.acidII = true;
+                                    player.acidTime = new Date().getTime() + 5000;
+                                }
+                            }
+                        }
+                        else if (whatDoIDo == "acidIII")
+                        {
+                            this.shieldFactoring(Math.max(0, damage - Math.max(0, player.armourTotal - negate)));
+                            if (player.mageShield <= 0)
+                            {
+                                if (damage + negate > player.armourTotal)
+                                {
+                                    player.acidIII = true;
+                                    player.acidTime = new Date().getTime() + 5000;
+                                }
+                            }
+                        }
+                        else if (whatDoIDo == "electricity")
+                        {
+                            this.shieldFactoring(Math.max(0, damage - ((player.totalShockResist * 3) + (19 * player.magicalResistanceTotal))));
+                            if (player.mageShield <= 0)
+                            {
+                                if (Math.max(0, damage -  (19 * player.magicalResistanceTotal)) > 0)
+                                {
+                                    player.shockedTime = new Date().getTime();
+                                    player.shockedTime2 = new Date().getTime();
+                                }
+                            }
+                        }
+                        else if (whatDoIDo == "draining")
+                        {
+                            this.shieldFactoring(Math.max(0, damage - player.magicalResistanceTotal));
 
-                        var orbsAllowed = Math.max(0, damage - player.magicalResistanceTotal);
+                            var orbsAllowed = Math.max(0, damage - player.magicalResistanceTotal);
 
-                        for (var j = 0; j < orbsAllowed; j++)
-                        {
-                            magicList.push(new Magic({ID: "drainOrb", CNX: this.cnx}, true, unitSelf, {X: X, Y: Y}, false));
-                        }
-                        if (unitSelf.extraDraining == true)
-                        {
-                            for (var j = 0; j < 5; j++)
+                            for (var j = 0; j < orbsAllowed; j++)
                             {
                                 magicList.push(new Magic({ID: "drainOrb", CNX: this.cnx}, true, unitSelf, {X: X, Y: Y}, false));
                             }
-                        }
-                    }
-
-                    if (extra != "alert")
-                    {
-                        for (var j = 0; j < magicList.length; j++)
-                        {
-                            if (magicList[j] === this)
+                            if (unitSelf.extraDraining == true)
                             {
-                                magicList.splice(j, 1);
-                                break;
+                                for (var j = 0; j < 5; j++)
+                                {
+                                    magicList.push(new Magic({ID: "drainOrb", CNX: this.cnx}, true, unitSelf, {X: X, Y: Y}, false));
+                                }
                             }
                         }
-                    }
-                    else
-                    {
-                        this.alert = true;
+
+                        if (extra != "alert")
+                        {
+                            for (var j = 0; j < magicList.length; j++)
+                            {
+                                if (magicList[j] === this)
+                                {
+                                    magicList.splice(j, 1);
+                                    break;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            this.alert = true;
+                        }
                     }
                 }
             }
@@ -579,469 +584,472 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
 
                 if (this.dmx == ArtificialIntelligenceAccess[i].dmx && ArtificialIntelligenceAccess[i].team != this.casterTeam)
                 {
-                    if (distanceToEnemy <= radius + ArtificialIntelligenceAccess[i].sizeRadius && !ArtificialIntelligenceAccess[i].underground && !ArtificialIntelligenceAccess[i].flying || distanceToEnemy <= radius + ArtificialIntelligenceAccess[i].sizeRadius && !ArtificialIntelligenceAccess[i].underground && ArtificialIntelligenceAccess[i].flying && whatDoIDo != "earthDamage" && whatDoIDo != "magicalEarthDamage" || distanceToEnemy <= radius + ArtificialIntelligenceAccess[i].sizeRadius && whatDoIDo == "earthDamage" && ArtificialIntelligenceAccess[i].underground || distanceToEnemy <= radius + ArtificialIntelligenceAccess[i].sizeRadius && whatDoIDo == "magicalEarthDamage" && ArtificialIntelligenceAccess[i].underground)
+                    if (this.ethereal == ArtificialIntelligenceAccess[i].ethereal || ArtificialIntelligenceAccess[i].ethereal == "avatar")
                     {
-                        if (whatDoIDo == "soulOrb")
+                        if (distanceToEnemy <= radius + ArtificialIntelligenceAccess[i].sizeRadius && !ArtificialIntelligenceAccess[i].underground && !ArtificialIntelligenceAccess[i].flying || distanceToEnemy <= radius + ArtificialIntelligenceAccess[i].sizeRadius && !ArtificialIntelligenceAccess[i].underground && ArtificialIntelligenceAccess[i].flying && whatDoIDo != "earthDamage" && whatDoIDo != "magicalEarthDamage" || distanceToEnemy <= radius + ArtificialIntelligenceAccess[i].sizeRadius && whatDoIDo == "earthDamage" && ArtificialIntelligenceAccess[i].underground || distanceToEnemy <= radius + ArtificialIntelligenceAccess[i].sizeRadius && whatDoIDo == "magicalEarthDamage" && ArtificialIntelligenceAccess[i].underground)
                         {
-                            ArtificialIntelligenceAccess[i].health = Math.min(ArtificialIntelligenceAccess[i].healthMAX, ArtificialIntelligenceAccess[i].health + 55);
-                        }
-                        else if (whatDoIDo == "drainOrb")
-                        {
-                            if (caster == true)
+                            if (whatDoIDo == "soulOrb")
                             {
-                                if (instructions == ArtificialIntelligenceAccess[i])
+                                ArtificialIntelligenceAccess[i].health = Math.min(ArtificialIntelligenceAccess[i].healthMAX, ArtificialIntelligenceAccess[i].health + 55);
+                            }
+                            else if (whatDoIDo == "drainOrb")
+                            {
+                                if (caster == true)
                                 {
-                                    ArtificialIntelligenceAccess[i].health += damage;
+                                    if (instructions == ArtificialIntelligenceAccess[i])
+                                    {
+                                        ArtificialIntelligenceAccess[i].health += damage;
+                                    }
                                 }
                             }
-                        }
-                        else if (whatDoIDo == "fire")
-                        {
-                            ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].heatResistance);
-                            ArtificialIntelligenceAccess[i].burningTime = new Date().getTime();
-                            ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
-                            if (caster == true)
+                            else if (whatDoIDo == "fire")
                             {
-                                ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
-                            }
-                        }
-                        else if (whatDoIDo == "bonk")
-                        {
-                            ArtificialIntelligenceAccess[i].stunIII = true;
-                            ArtificialIntelligenceAccess[i].stunTimer = Math.max(ArtificialIntelligenceAccess[i].stunTimer, 2);
-                            ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
-                        }
-                        else if (whatDoIDo == "blinding")
-                        {
-                            ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
-                            ArtificialIntelligenceAccess[i].blindedTime = new Date().getTime() + (1000 * (this.cnx / 5));
-                        }
-                        else if (whatDoIDo == "blindingGlow") //this is a type of physical damaging
-                        {
-                            ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - negate));
-                            ArtificialIntelligenceAccess[i].blindedTime = new Date().getTime() - 1500;
-                            if (caster == true)
-                            {
-                                ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
-                            }
-                            var claimTaken = false;
-                            for (var ll = 0; ll < magicList.length; ll++)
-                            {
-                                if (magicList[ll].spellType == "chasingLights" && magicList[ll].claim === ArtificialIntelligenceAccess[i])
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].heatResistance);
+                                ArtificialIntelligenceAccess[i].burningTime = new Date().getTime();
+                                ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
+                                if (caster == true)
                                 {
-                                    claimTaken = true;
-                                    break;
+                                    ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
                                 }
                             }
-                            if (!claimTaken)
+                            else if (whatDoIDo == "bonk")
                             {
-                                magicList.push(new Magic({ID: "chasingLights", CNX: 50}, true, ["glowDust", this.X, this.Y]));
+                                ArtificialIntelligenceAccess[i].stunIII = true;
+                                ArtificialIntelligenceAccess[i].stunTimer = Math.max(ArtificialIntelligenceAccess[i].stunTimer, 2);
+                                ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
                             }
-                        }
-                        else if (whatDoIDo == "physicalDamage")
-                        {
-                            ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - negate));
-                            ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
-                            if (caster == true)
+                            else if (whatDoIDo == "blinding")
                             {
-                                ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                ArtificialIntelligenceAccess[i].blindedTime = new Date().getTime() + (1000 * (this.cnx / 5));
                             }
-                        }
-                        else if (whatDoIDo == "earthDamage" && !ArtificialIntelligenceAccess[i].flying)
-                        {
-                            ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - negate));
-                            ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
-                            if (caster == true)
+                            else if (whatDoIDo == "blindingGlow") //this is a type of physical damaging
                             {
-                                ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - negate));
+                                ArtificialIntelligenceAccess[i].blindedTime = new Date().getTime() - 1500;
+                                if (caster == true)
+                                {
+                                    ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                }
+                                var claimTaken = false;
+                                for (var ll = 0; ll < magicList.length; ll++)
+                                {
+                                    if (magicList[ll].spellType == "chasingLights" && magicList[ll].claim === ArtificialIntelligenceAccess[i])
+                                    {
+                                        claimTaken = true;
+                                        break;
+                                    }
+                                }
+                                if (!claimTaken)
+                                {
+                                    magicList.push(new Magic({ID: "chasingLights", CNX: 50}, true, ["glowDust", this.X, this.Y]));
+                                }
                             }
-                        }
-                        else if (whatDoIDo == "magicalDamage")
-                        {
-                            ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].magicalResistance));
-                            ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
-                            if (caster == true)
+                            else if (whatDoIDo == "physicalDamage")
                             {
-                                ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - negate));
+                                ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
+                                if (caster == true)
+                                {
+                                    ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                }
                             }
-                        }
-                        else if (whatDoIDo == "magicalEarthDamage" && !ArtificialIntelligenceAccess[i].flying)
-                        {
-                            ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].magicalResistance));
-                            ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
-                            if (caster == true)
+                            else if (whatDoIDo == "earthDamage" && !ArtificialIntelligenceAccess[i].flying)
                             {
-                                ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - negate));
+                                ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
+                                if (caster == true)
+                                {
+                                    ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                }
                             }
-                        }
-                        else if (whatDoIDo == "switch")
-                        {
-                            ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].magicalResistance));
-                            ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
-                            if (caster == true)
+                            else if (whatDoIDo == "magicalDamage")
                             {
-                                ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].magicalResistance));
+                                ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
+                                if (caster == true)
+                                {
+                                    ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                }
                             }
+                            else if (whatDoIDo == "magicalEarthDamage" && !ArtificialIntelligenceAccess[i].flying)
+                            {
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].magicalResistance));
+                                ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
+                                if (caster == true)
+                                {
+                                    ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                }
+                            }
+                            else if (whatDoIDo == "switch")
+                            {
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].magicalResistance));
+                                ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
+                                if (caster == true)
+                                {
+                                    ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                }
 
-                            if (Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].magicalResistance)) > 0)
-                            {
-                                ArtificialIntelligenceAccess[i].X = X;
-                                ArtificialIntelligenceAccess[i].Y = Y;
-                                X = this.X;
-                                Y = this.Y;
+                                if (Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].magicalResistance)) > 0)
+                                {
+                                    ArtificialIntelligenceAccess[i].X = X;
+                                    ArtificialIntelligenceAccess[i].Y = Y;
+                                    X = this.X;
+                                    Y = this.Y;
+                                }
                             }
-                        }
-                        else if (whatDoIDo == "iceSpike")
-                        {
-                            ArtificialIntelligenceAccess[i].health -= Math.max(0, 4 + (4/50 * this.cnx) - Math.max(0, ArtificialIntelligenceAccess[i].armour - Math.max(0, 100 - 19 * ArtificialIntelligenceAccess[i].magicalResistance)));
-                            ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
-                            if (caster == true)
+                            else if (whatDoIDo == "iceSpike")
                             {
-                                ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, 4 + (4/50 * this.cnx) - Math.max(0, ArtificialIntelligenceAccess[i].armour - Math.max(0, 100 - 19 * ArtificialIntelligenceAccess[i].magicalResistance)));
+                                ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
+                                if (caster == true)
+                                {
+                                    ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                }
                             }
-                        }
-                        else if (whatDoIDo == "iceBlast")
-                        {
-                            ArtificialIntelligenceAccess[i].health -= Math.max(0, 7 + (2/50 * this.cnx) - Math.max(0, ArtificialIntelligenceAccess[i].armour - Math.max(0, 100 - 19 * ArtificialIntelligenceAccess[i].magicalResistance)));
-                            ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
-                            if (caster == true)
+                            else if (whatDoIDo == "iceBlast")
                             {
-                                ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, 7 + (2/50 * this.cnx) - Math.max(0, ArtificialIntelligenceAccess[i].armour - Math.max(0, 100 - 19 * ArtificialIntelligenceAccess[i].magicalResistance)));
+                                ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
+                                if (caster == true)
+                                {
+                                    ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                }
                             }
-                        }
-                        else if (whatDoIDo == "boreaSpitI")
-                        {
-                            if (ArtificialIntelligenceAccess[i].type != "Borea")
+                            else if (whatDoIDo == "boreaSpitI")
                             {
-                                ArtificialIntelligenceAccess[i].strongWebbedNum = 15;
-                                ArtificialIntelligenceAccess[i].strongWebbedTime = new Date().getTime();
+                                if (ArtificialIntelligenceAccess[i].type != "Borea")
+                                {
+                                    ArtificialIntelligenceAccess[i].strongWebbedNum = 15;
+                                    ArtificialIntelligenceAccess[i].strongWebbedTime = new Date().getTime();
+                                    if (damage + negate > ArtificialIntelligenceAccess[i].armour)
+                                    {
+                                        ArtificialIntelligenceAccess[i].acidII = true;
+                                        ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 8000;
+                                    }
+                                }
+                            }
+                            else if (whatDoIDo == "boreaSpitII")
+                            {
+                                if (ArtificialIntelligenceAccess[i].type != "Borea")
+                                {
+                                    ArtificialIntelligenceAccess[i].strongWebbedNum = 24;
+                                    ArtificialIntelligenceAccess[i].strongWebbedTime = new Date().getTime();
+                                    if (damage + negate > ArtificialIntelligenceAccess[i].armour)
+                                    {
+                                        player.acidII = true;
+                                        player.acidTime = new Date().getTime() + 8000;
+                                    }
+                                }
+                            }
+                            else if (whatDoIDo == "quarterAcid")
+                            {
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - negate));
+                                if (damage + negate > ArtificialIntelligenceAccess[i].armour)
+                                {
+                                    ArtificialIntelligenceAccess[i].quarterAcid = true;
+                                    ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 5000;
+                                    ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
+                                    if (caster == true)
+                                    {
+                                        ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                    }
+                                }
+                            }
+                            else if (whatDoIDo == "acidI")
+                            {
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - negate));
+                                if (damage + negate > ArtificialIntelligenceAccess[i].armour)
+                                {
+                                    ArtificialIntelligenceAccess[i].acidI = true;
+                                    ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 5000;
+                                    ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
+                                    if (caster == true)
+                                    {
+                                        ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                    }
+                                }
+                            }
+                            else if (whatDoIDo == "acidII")
+                            {
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - negate));
                                 if (damage + negate > ArtificialIntelligenceAccess[i].armour)
                                 {
                                     ArtificialIntelligenceAccess[i].acidII = true;
-                                    ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 8000;
-                                }
-                            }
-                        }
-                        else if (whatDoIDo == "boreaSpitII")
-                        {
-                            if (ArtificialIntelligenceAccess[i].type != "Borea")
-                            {
-                                ArtificialIntelligenceAccess[i].strongWebbedNum = 24;
-                                ArtificialIntelligenceAccess[i].strongWebbedTime = new Date().getTime();
-                                if (damage + negate > ArtificialIntelligenceAccess[i].armour)
-                                {
-                                    player.acidII = true;
-                                    player.acidTime = new Date().getTime() + 8000;
-                                }
-                            }
-                        }
-                        else if (whatDoIDo == "quarterAcid")
-                        {
-                            ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - negate));
-                            if (damage + negate > ArtificialIntelligenceAccess[i].armour)
-                            {
-                                ArtificialIntelligenceAccess[i].quarterAcid = true;
-                                ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 5000;
-                                ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
-                                if (caster == true)
-                                {
-                                    ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
-                                }
-                            }
-                        }
-                        else if (whatDoIDo == "acidI")
-                        {
-                            ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - negate));
-                            if (damage + negate > ArtificialIntelligenceAccess[i].armour)
-                            {
-                                ArtificialIntelligenceAccess[i].acidI = true;
-                                ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 5000;
-                                ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
-                                if (caster == true)
-                                {
-                                    ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
-                                }
-                            }
-                        }
-                        else if (whatDoIDo == "acidII")
-                        {
-                            ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - negate));
-                            if (damage + negate > ArtificialIntelligenceAccess[i].armour)
-                            {
-                                ArtificialIntelligenceAccess[i].acidII = true;
-                                ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 5000;
-                                ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
-                                if (caster == true)
-                                {
-                                    ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
-                                }
-                            }
-                        }
-                        else if (whatDoIDo == "acidIII")
-                        {
-                            ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - negate));
-                            if (damage + negate > ArtificialIntelligenceAccess[i].armour)
-                            {
-                                ArtificialIntelligenceAccess[i].acidIII = true;
-                                ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 5000;
-                                ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
-                                if (caster == true)
-                                {
-                                    ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
-                                }
-                            }
-                        }
-                        else if (whatDoIDo == "acidIV")
-                        {
-                            ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - negate));
-                            if (damage + negate > ArtificialIntelligenceAccess[i].armour)
-                            {
-                                ArtificialIntelligenceAccess[i].acidIV = true;
-                                ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 5000;
-                                ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
-                                if (caster == true)
-                                {
-                                    ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
-                                }
-                            }
-                        }
-                        else if (whatDoIDo == "acidV")
-                        {
-                            ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - negate));
-                            if (damage + negate > ArtificialIntelligenceAccess[i].armour)
-                            {
-                                ArtificialIntelligenceAccess[i].acidV = true;
-                                if (extra == "pimber")
-                                {
-                                    ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 10000;
-                                    ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime() + 8500;
-                                }
-                                else
-                                {
                                     ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 5000;
                                     ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
-                                }
-                                if (caster == true)
-                                {
-                                    ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                    if (caster == true)
+                                    {
+                                        ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                    }
                                 }
                             }
-                        }
-                        else if (whatDoIDo == "alter")
-                        {
-                            ArtificialIntelligenceAccess[i].buffoutTime = new Date().getTime();
-                            ArtificialIntelligenceAccess[i].buffoutTimer = negate;
-                            ArtificialIntelligenceAccess[i].initBuffout = damage;
-                            ArtificialIntelligenceAccess[i].subBuffoutToggle = true;
+                            else if (whatDoIDo == "acidIII")
+                            {
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - negate));
+                                if (damage + negate > ArtificialIntelligenceAccess[i].armour)
+                                {
+                                    ArtificialIntelligenceAccess[i].acidIII = true;
+                                    ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 5000;
+                                    ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
+                                    if (caster == true)
+                                    {
+                                        ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                    }
+                                }
+                            }
+                            else if (whatDoIDo == "acidIV")
+                            {
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - negate));
+                                if (damage + negate > ArtificialIntelligenceAccess[i].armour)
+                                {
+                                    ArtificialIntelligenceAccess[i].acidIV = true;
+                                    ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 5000;
+                                    ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
+                                    if (caster == true)
+                                    {
+                                        ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                    }
+                                }
+                            }
+                            else if (whatDoIDo == "acidV")
+                            {
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - negate));
+                                if (damage + negate > ArtificialIntelligenceAccess[i].armour)
+                                {
+                                    ArtificialIntelligenceAccess[i].acidV = true;
+                                    if (extra == "pimber")
+                                    {
+                                        ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 10000;
+                                        ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime() + 8500;
+                                    }
+                                    else
+                                    {
+                                        ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 5000;
+                                        ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
+                                    }
+                                    if (caster == true)
+                                    {
+                                        ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                    }
+                                }
+                            }
+                            else if (whatDoIDo == "alter")
+                            {
+                                ArtificialIntelligenceAccess[i].buffoutTime = new Date().getTime();
+                                ArtificialIntelligenceAccess[i].buffoutTimer = negate;
+                                ArtificialIntelligenceAccess[i].initBuffout = damage;
+                                ArtificialIntelligenceAccess[i].subBuffoutToggle = true;
 
-                            if (damage < 1)
-                            {
-                                console.log(ArtificialIntelligenceAccess[i].buffout);
-                                if (caster == true)
+                                if (damage < 1)
                                 {
-                                    ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                    console.log(ArtificialIntelligenceAccess[i].buffout);
+                                    if (caster == true)
+                                    {
+                                        ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                    }
                                 }
-                            }
 
-                            if (extra == "iril")
+                                if (extra == "iril")
+                                {
+                                    ArtificialIntelligenceAccess[i].stunIII = true;
+                                    ArtificialIntelligenceAccess[i].stunTimer = 5;
+                                    ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
+                                    if (caster == true)
+                                    {
+                                        ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                    }
+                                }
+                            }
+                            else if (whatDoIDo == "charm")
                             {
-                                ArtificialIntelligenceAccess[i].stunIII = true;
-                                ArtificialIntelligenceAccess[i].stunTimer = 5;
-                                ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
+                                if (ArtificialIntelligenceAccess[i].magicalResistance < 3 + 1/10 * this.cnx && ArtificialIntelligenceAccess[i].healthMAX <= 25 + 2 * this.cnx && !ArtificialIntelligenceAccess[i].marked)
+                                {
+                                    ArtificialIntelligenceAccess[i].charmedTeam = "player";
+                                    ArtificialIntelligenceAccess[i].charmedTime = new Date().getTime() + 45000;
+                                    if (caster == true)
+                                    {
+                                        ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                    }
+                                }
+                            }
+                            else if (whatDoIDo == "mark")
+                            {
+                                if (ArtificialIntelligenceAccess[i].magicalResistance < 3 + 1/10 * this.cnx && ArtificialIntelligenceAccess[i].healthMAX <= 25 + 2 * this.cnx)
+                                {
+                                    ArtificialIntelligenceAccess[i].charmedTeam = (Math.random() * 1.7888888889);
+                                    ArtificialIntelligenceAccess[i].charmedTime = new Date().getTime() + 25000;
+                                    if (extra == "shome")
+                                    {
+                                        ArtificialIntelligenceAccess[i].marked = "shome";
+                                    }
+                                    else
+                                    {
+                                        ArtificialIntelligenceAccess[i].marked = true;
+                                    }
+                                    if (caster == true)
+                                    {
+                                        ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                    }
+
+                                }
+                            }
+                            else if (whatDoIDo == "electricity")
+                            {
+                                this.doDelete = false;
+                                if (instructions != "aftershock" && instructions != "aftershocked")
+                                {
+                                    this.doDelete = true;
+                                    ArtificialIntelligenceAccess[i].health -= Math.max(0, damage -  (19 * ArtificialIntelligenceAccess[i].magicalResistance));
+                                    if (Math.max(0, damage -  (19 * ArtificialIntelligenceAccess[i].magicalResistance)) > 0)
+                                    {
+                                        ArtificialIntelligenceAccess[i].shockedTime = new Date().getTime();
+                                        ArtificialIntelligenceAccess[i].shockedTime2 = new Date().getTime();
+                                        ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
+                                        if (caster == true)
+                                        {
+                                            ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                        }
+                                    }
+
+                                    if (this.cnx >= 65)
+                                    {
+                                        magicList.push(new Magic({ID: "electricBolt", CNX: this.cnx}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
+                                        magicList.push(new Magic({ID: "electricBolt", CNX: this.cnx}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
+                                        magicList.push(new Magic({ID: "electricBolt", CNX: this.cnx}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
+                                        magicList.push(new Magic({ID: "electricBolt", CNX: this.cnx}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
+                                        magicList.push(new Magic({ID: "electricBolt", CNX: this.cnx}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
+                                        magicList.push(new Magic({ID: "electricBolt", CNX: this.cnx}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
+                                        magicList.push(new Magic({ID: "electricBolt", CNX: this.cnx}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
+                                        magicList.push(new Magic({ID: "electricBolt", CNX: this.cnx}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
+                                        magicList.push(new Magic({ID: "electricBolt", CNX: this.cnx}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
+                                        magicList.push(new Magic({ID: "electricBolt", CNX: this.cnx}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
+                                        magicList.push(new Magic({ID: "electricBolt", CNX: this.cnx}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
+                                        magicList.push(new Magic({ID: "electricBolt", CNX: this.cnx}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
+                                        magicList.push(new Magic({ID: "electricBolt", CNX: this.cnx}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
+                                        magicList.push(new Magic({ID: "electricBolt", CNX: this.cnx}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
+                                        magicList.push(new Magic({ID: "electricBolt", CNX: this.cnx}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
+                                        magicList.push(new Magic({ID: "electricBolt", CNX: this.cnx}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
+                                    }
+                                    else if (this.cnx >= 50)
+                                    {
+                                        magicList.push(new Magic({ID: "electricBolt", CNX: this.cnx}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
+                                        magicList.push(new Magic({ID: "electricBolt", CNX: this.cnx}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
+                                        magicList.push(new Magic({ID: "electricBolt", CNX: this.cnx}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
+                                        magicList.push(new Magic({ID: "electricBolt", CNX: this.cnx}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
+                                        magicList.push(new Magic({ID: "electricBolt", CNX: this.cnx}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
+                                    }
+                                    else if (this.cnx >= 35)
+                                    {
+                                        magicList.push(new Magic({ID: "electricBolt", CNX: this.cnx}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
+                                        magicList.push(new Magic({ID: "electricBolt", CNX: this.cnx}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
+                                        magicList.push(new Magic({ID: "electricBolt", CNX: this.cnx}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
+                                    }
+                                }
+                                else if (unitSelf[3] !== ArtificialIntelligenceAccess[i]) // && this.orders != "aftershocked"
+                                {
+                                    this.doDelete = true;
+                                    ArtificialIntelligenceAccess[i].health -= Math.max(0, damage -  (19 * ArtificialIntelligenceAccess[i].magicalResistance));
+                                    if (Math.max(0, damage -  (19 * ArtificialIntelligenceAccess[i].magicalResistance)) > 0)
+                                    {
+                                        ArtificialIntelligenceAccess[i].shockedTime = new Date().getTime();
+                                        ArtificialIntelligenceAccess[i].shockedTime2 = new Date().getTime();
+                                        ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
+                                        if (caster == true)
+                                        {
+                                            ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                        }
+                                    }
+
+                                    //magicList.push(new Magic({ID: "electricBolt"}, true, "aftershocked", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
+                                }
+                                else if (instructions == "aftershocked" && unitSelf[3] !== ArtificialIntelligenceAccess[i])
+                                {
+                                    this.doDelete = true;
+                                    ArtificialIntelligenceAccess[i].health -= Math.max(0, damage -  (19 * ArtificialIntelligenceAccess[i].magicalResistance));
+                                    if (Math.max(0, damage -  (19 * ArtificialIntelligenceAccess[i].magicalResistance)) > 0)
+                                    {
+                                        ArtificialIntelligenceAccess[i].shockedTime = new Date().getTime();
+                                        ArtificialIntelligenceAccess[i].shockedTime2 = new Date().getTime();
+                                        ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
+                                        if (caster == true)
+                                        {
+                                            ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                        }
+                                    }
+                                }
+                            }
+                            else if (whatDoIDo == "draining")
+                            {
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
+
+                                var counterOrbCount = 0;
+                                if (ArtificialIntelligenceAccess[i].health < 0)
+                                {
+                                    counterOrbCount = Math.round(- ArtificialIntelligenceAccess[i].health);
+                                }
+                                var orbsAllowed = Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance - counterOrbCount);
+
                                 if (caster == true)
                                 {
                                     ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
-                                }
-                            }
-                        }
-                        else if (whatDoIDo == "charm")
-                        {
-                            if (ArtificialIntelligenceAccess[i].magicalResistance < 3 + 1/10 * this.cnx && ArtificialIntelligenceAccess[i].healthMAX <= 25 + 2 * this.cnx && !ArtificialIntelligenceAccess[i].marked)
-                            {
-                                ArtificialIntelligenceAccess[i].charmedTeam = "player";
-                                ArtificialIntelligenceAccess[i].charmedTime = new Date().getTime() + 45000;
-                                if (caster == true)
-                                {
-                                    ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
-                                }
-                            }
-                        }
-                        else if (whatDoIDo == "mark")
-                        {
-                            if (ArtificialIntelligenceAccess[i].magicalResistance < 3 + 1/10 * this.cnx && ArtificialIntelligenceAccess[i].healthMAX <= 25 + 2 * this.cnx)
-                            {
-                                ArtificialIntelligenceAccess[i].charmedTeam = (Math.random() * 1.7888888889);
-                                ArtificialIntelligenceAccess[i].charmedTime = new Date().getTime() + 25000;
-                                if (extra == "shome")
-                                {
-                                    ArtificialIntelligenceAccess[i].marked = "shome";
+                                    for (var j = 0; j < orbsAllowed; j++)
+                                    {
+                                        magicList.push(new Magic({ID: "drainOrb", CNX: this.cnx}, false, 0, ArtificialIntelligenceAccess[i]));
+                                    }
+                                    if (player.extraDraining)
+                                    {
+                                        for (var j = 0; j < 5; j++)
+                                        {
+                                            magicList.push(new Magic({ID: "drainOrb", CNX: this.cnx}, false, 0, ArtificialIntelligenceAccess[i]));
+                                        }
+                                    }
                                 }
                                 else
                                 {
-                                    ArtificialIntelligenceAccess[i].marked = true;
-                                }
-                                if (caster == true)
-                                {
-                                    ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
-                                }
-
-                            }
-                        }
-                        else if (whatDoIDo == "electricity")
-                        {
-                            this.doDelete = false;
-                            if (instructions != "aftershock" && instructions != "aftershocked")
-                            {
-                                this.doDelete = true;
-                                ArtificialIntelligenceAccess[i].health -= Math.max(0, damage -  (19 * ArtificialIntelligenceAccess[i].magicalResistance));
-                                if (Math.max(0, damage -  (19 * ArtificialIntelligenceAccess[i].magicalResistance)) > 0)
-                                {
-                                    ArtificialIntelligenceAccess[i].shockedTime = new Date().getTime();
-                                    ArtificialIntelligenceAccess[i].shockedTime2 = new Date().getTime();
-                                    ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
-                                    if (caster == true)
+                                    for (var j = 0; j < orbsAllowed; j++)
                                     {
-                                        ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                        magicList.push(new Magic({ID: "drainOrb", CNX: this.cnx}, true, unitSelf, ArtificialIntelligenceAccess[i]));
                                     }
-                                }
-
-                                if (this.cnx >= 65)
-                                {
-                                    magicList.push(new Magic({ID: "electricBolt", CNX: this.cnx}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
-                                    magicList.push(new Magic({ID: "electricBolt", CNX: this.cnx}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
-                                    magicList.push(new Magic({ID: "electricBolt", CNX: this.cnx}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
-                                    magicList.push(new Magic({ID: "electricBolt", CNX: this.cnx}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
-                                    magicList.push(new Magic({ID: "electricBolt", CNX: this.cnx}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
-                                    magicList.push(new Magic({ID: "electricBolt", CNX: this.cnx}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
-                                    magicList.push(new Magic({ID: "electricBolt", CNX: this.cnx}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
-                                    magicList.push(new Magic({ID: "electricBolt", CNX: this.cnx}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
-                                    magicList.push(new Magic({ID: "electricBolt", CNX: this.cnx}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
-                                    magicList.push(new Magic({ID: "electricBolt", CNX: this.cnx}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
-                                    magicList.push(new Magic({ID: "electricBolt", CNX: this.cnx}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
-                                    magicList.push(new Magic({ID: "electricBolt", CNX: this.cnx}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
-                                    magicList.push(new Magic({ID: "electricBolt", CNX: this.cnx}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
-                                    magicList.push(new Magic({ID: "electricBolt", CNX: this.cnx}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
-                                    magicList.push(new Magic({ID: "electricBolt", CNX: this.cnx}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
-                                    magicList.push(new Magic({ID: "electricBolt", CNX: this.cnx}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
-                                }
-                                else if (this.cnx >= 50)
-                                {
-                                    magicList.push(new Magic({ID: "electricBolt", CNX: this.cnx}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
-                                    magicList.push(new Magic({ID: "electricBolt", CNX: this.cnx}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
-                                    magicList.push(new Magic({ID: "electricBolt", CNX: this.cnx}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
-                                    magicList.push(new Magic({ID: "electricBolt", CNX: this.cnx}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
-                                    magicList.push(new Magic({ID: "electricBolt", CNX: this.cnx}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
-                                }
-                                else if (this.cnx >= 35)
-                                {
-                                    magicList.push(new Magic({ID: "electricBolt", CNX: this.cnx}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
-                                    magicList.push(new Magic({ID: "electricBolt", CNX: this.cnx}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
-                                    magicList.push(new Magic({ID: "electricBolt", CNX: this.cnx}, true, "aftershock", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
-                                }
-                            }
-                            else if (unitSelf[3] !== ArtificialIntelligenceAccess[i]) // && this.orders != "aftershocked"
-                            {
-                                this.doDelete = true;
-                                ArtificialIntelligenceAccess[i].health -= Math.max(0, damage -  (19 * ArtificialIntelligenceAccess[i].magicalResistance));
-                                if (Math.max(0, damage -  (19 * ArtificialIntelligenceAccess[i].magicalResistance)) > 0)
-                                {
-                                    ArtificialIntelligenceAccess[i].shockedTime = new Date().getTime();
-                                    ArtificialIntelligenceAccess[i].shockedTime2 = new Date().getTime();
-                                    ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
-                                    if (caster == true)
+                                    if (this.castor.extraDraining == true)
                                     {
-                                        ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
-                                    }
-                                }
-
-                                //magicList.push(new Magic({ID: "electricBolt"}, true, "aftershocked", [Math.random() * (2 * Math.PI), this.X, this.Y, ArtificialIntelligenceAccess[i]]));
-                            }
-                            else if (instructions == "aftershocked" && unitSelf[3] !== ArtificialIntelligenceAccess[i])
-                            {
-                                this.doDelete = true;
-                                ArtificialIntelligenceAccess[i].health -= Math.max(0, damage -  (19 * ArtificialIntelligenceAccess[i].magicalResistance));
-                                if (Math.max(0, damage -  (19 * ArtificialIntelligenceAccess[i].magicalResistance)) > 0)
-                                {
-                                    ArtificialIntelligenceAccess[i].shockedTime = new Date().getTime();
-                                    ArtificialIntelligenceAccess[i].shockedTime2 = new Date().getTime();
-                                    ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
-                                    if (caster == true)
-                                    {
-                                        ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                        for (var j = 0; j < 5; j++)
+                                        {
+                                            magicList.push(new Magic({ID: "drainOrb", CNX: this.cnx}, true, unitSelf, ArtificialIntelligenceAccess[i]));
+                                        }
                                     }
                                 }
                             }
-                        }
-                        else if (whatDoIDo == "draining")
-                        {
-                            ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
-                            ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
-
-                            var counterOrbCount = 0;
-                            if (ArtificialIntelligenceAccess[i].health < 0)
-                            {
-                                counterOrbCount = Math.round(- ArtificialIntelligenceAccess[i].health);
-                            }
-                            var orbsAllowed = Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance - counterOrbCount);
 
                             if (caster == true)
                             {
-                                ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
-                                for (var j = 0; j < orbsAllowed; j++)
+                                ArtificialIntelligenceAccess[i].killNotByPlayer = false;
+                            }
+
+                            if (caster != true)
+                            {
+                                ArtificialIntelligenceAccess[i].killNotByPlayer = true;
+                            }
+
+                            if (extra != "alert")
+                            {
+                                if (this.doDelete)
                                 {
-                                    magicList.push(new Magic({ID: "drainOrb", CNX: this.cnx}, false, 0, ArtificialIntelligenceAccess[i]));
-                                }
-                                if (player.extraDraining)
-                                {
-                                    for (var j = 0; j < 5; j++)
+                                    for (var j=0; j < magicList.length; j++)
                                     {
-                                        magicList.push(new Magic({ID: "drainOrb", CNX: this.cnx}, false, 0, ArtificialIntelligenceAccess[i]));
+                                        if (magicList[j] === this)
+                                        {
+                                            magicList.splice(j, 1);
+                                            break;
+                                        }
                                     }
                                 }
                             }
                             else
                             {
-                                for (var j = 0; j < orbsAllowed; j++)
-                                {
-                                    magicList.push(new Magic({ID: "drainOrb", CNX: this.cnx}, true, unitSelf, ArtificialIntelligenceAccess[i]));
-                                }
-                                if (this.castor.extraDraining == true)
-                                {
-                                    for (var j = 0; j < 5; j++)
-                                    {
-                                        magicList.push(new Magic({ID: "drainOrb", CNX: this.cnx}, true, unitSelf, ArtificialIntelligenceAccess[i]));
-                                    }
-                                }
+                                this.alert = true;
                             }
-                        }
-
-                        if (caster == true)
-                        {
-                            ArtificialIntelligenceAccess[i].killNotByPlayer = false;
-                        }
-
-                        if (caster != true)
-                        {
-                            ArtificialIntelligenceAccess[i].killNotByPlayer = true;
-                        }
-
-                        if (extra != "alert")
-                        {
-                            if (this.doDelete)
-                            {
-                                for (var j=0; j < magicList.length; j++)
-                                {
-                                    if (magicList[j] === this)
-                                    {
-                                        magicList.splice(j, 1);
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                        else
-                        {
-                            this.alert = true;
                         }
                     }
                 }
@@ -1056,7 +1064,6 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
             {
                 if (new Date().getTime() - this.contactDamageTime >= frequency)
                 {
-
                     this.contactDamageTime = new Date().getTime();
 
                     for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
@@ -1065,94 +1072,97 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
 
                         if (distanceToEnemy <= radius + ArtificialIntelligenceAccess[i].sizeRadius && !ArtificialIntelligenceAccess[i].underground && this.dmx == ArtificialIntelligenceAccess[i].dmx)
                         {
-                            if (kind == "fire")
+                            if (this.ethereal == ArtificialIntelligenceAccess[i].ethereal || ArtificialIntelligenceAccess[i].ethereal == "avatar")
                             {
-                                ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].heatResistance);
-                                ArtificialIntelligenceAccess[i].burningTime = new Date().getTime();
-                            }
-                            else if (kind == "decay")
-                            {
-                                ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
-                                ArtificialIntelligenceAccess[i].decayTime = new Date().getTime();
-                                ArtificialIntelligenceAccess[i].decayTime2 = new Date().getTime();
-                            }
-                            else if (kind == "electricity")
-                            {
-                                ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - (19 * ArtificialIntelligenceAccess[i].magicalResistance));
-                                if (Math.max(0, damage - (19 * ArtificialIntelligenceAccess[i].magicalResistance)) > 0)
+                                if (kind == "fire")
                                 {
-                                    ArtificialIntelligenceAccess[i].shockedTime = new Date().getTime();
-                                    ArtificialIntelligenceAccess[i].shockedTime2 = new Date().getTime();
-                                    ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
-                                    ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                    ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].heatResistance);
+                                    ArtificialIntelligenceAccess[i].burningTime = new Date().getTime();
                                 }
-                            }
-                            else if (kind == "frostwind")
-                            {
-                                ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
-                                ArtificialIntelligenceAccess[i].frozenTime = new Date().getTime() + 4000;
-                                ArtificialIntelligenceAccess[i].X -= ((6 * this.cnx) / 50) * Math.cos(this.playerRotation - 1 / 2 * Math.PI);
-                                ArtificialIntelligenceAccess[i].Y -= ((6 * this.cnx) / 50) * Math.sin(this.playerRotation - 1 / 2 * Math.PI);
-                            }
-                            else if (kind == "airFreeze")
-                            {
-                                ArtificialIntelligenceAccess[i].frozenTime = new Date().getTime() + (80 * this.cnx);
-                            }
-                            else if (kind == "force")
-                            {
-                                ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
-                                ArtificialIntelligenceAccess[i].X -= (2 + 4 * ArtificialIntelligenceAccess[i].speed) * Math.cos(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
-                                ArtificialIntelligenceAccess[i].Y -= (2 + 4 * ArtificialIntelligenceAccess[i].speed) * Math.sin(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
-                            }
-                            else if (kind == "windI")
-                            {
-                                ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
-                                ArtificialIntelligenceAccess[i].X -= ((3 + 4 * ArtificialIntelligenceAccess[i].speed) / Math.max(1, (ArtificialIntelligenceAccess[i].healthMAX / 45))) * Math.cos(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
-                                ArtificialIntelligenceAccess[i].Y -= ((3 + 4 * ArtificialIntelligenceAccess[i].speed) / Math.max(1, (ArtificialIntelligenceAccess[i].healthMAX / 45))) * Math.sin(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
-                            }
-                            else if (kind == "windII")
-                            {
-                                ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
-                                ArtificialIntelligenceAccess[i].X -= ((6 + 4 * ArtificialIntelligenceAccess[i].speed) / Math.max(1, (ArtificialIntelligenceAccess[i].healthMAX / 50))) * Math.cos(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
-                                ArtificialIntelligenceAccess[i].Y -= ((6 + 4 * ArtificialIntelligenceAccess[i].speed) / Math.max(1, (ArtificialIntelligenceAccess[i].healthMAX / 50))) * Math.sin(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
-                            }
-                            else if (kind == "windIII")
-                            {
-                                ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
-                                ArtificialIntelligenceAccess[i].X -= ((10 + 4 * ArtificialIntelligenceAccess[i].speed) / Math.max(1, (ArtificialIntelligenceAccess[i].healthMAX / 55))) * Math.cos(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
-                                ArtificialIntelligenceAccess[i].Y -= ((10 + 4 * ArtificialIntelligenceAccess[i].speed) / Math.max(1, (ArtificialIntelligenceAccess[i].healthMAX / 55))) * Math.sin(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
-                            }
-                            else if (kind == "windIV")
-                            {
-                                ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
-                                ArtificialIntelligenceAccess[i].X -= ((14 + 4 * ArtificialIntelligenceAccess[i].speed) / Math.max(1, (ArtificialIntelligenceAccess[i].healthMAX / 65))) * Math.cos(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
-                                ArtificialIntelligenceAccess[i].Y -= ((14 + 4 * ArtificialIntelligenceAccess[i].speed) / Math.max(1, (ArtificialIntelligenceAccess[i].healthMAX / 65))) * Math.sin(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
-                            }
-                            else if (kind == "magic")
-                            {
-                                ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
-                            }
-                            else if (kind == "blinding")
-                            {
-                                ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
-                                ArtificialIntelligenceAccess[i].blindedTime = new Date().getTime() + (1000 * (this.cnx / 5));
-                            }
-                            if (kind != "blinding" )
-                            {
-                                ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
+                                else if (kind == "decay")
+                                {
+                                    ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                    ArtificialIntelligenceAccess[i].decayTime = new Date().getTime();
+                                    ArtificialIntelligenceAccess[i].decayTime2 = new Date().getTime();
+                                }
+                                else if (kind == "electricity")
+                                {
+                                    ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - (19 * ArtificialIntelligenceAccess[i].magicalResistance));
+                                    if (Math.max(0, damage - (19 * ArtificialIntelligenceAccess[i].magicalResistance)) > 0)
+                                    {
+                                        ArtificialIntelligenceAccess[i].shockedTime = new Date().getTime();
+                                        ArtificialIntelligenceAccess[i].shockedTime2 = new Date().getTime();
+                                        ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
+                                        ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                    }
+                                }
+                                else if (kind == "frostwind")
+                                {
+                                    ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                    ArtificialIntelligenceAccess[i].frozenTime = new Date().getTime() + 4000;
+                                    ArtificialIntelligenceAccess[i].X -= ((6 * this.cnx) / 50) * Math.cos(this.playerRotation - 1 / 2 * Math.PI);
+                                    ArtificialIntelligenceAccess[i].Y -= ((6 * this.cnx) / 50) * Math.sin(this.playerRotation - 1 / 2 * Math.PI);
+                                }
+                                else if (kind == "airFreeze")
+                                {
+                                    ArtificialIntelligenceAccess[i].frozenTime = new Date().getTime() + (80 * this.cnx);
+                                }
+                                else if (kind == "force")
+                                {
+                                    ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                    ArtificialIntelligenceAccess[i].X -= (2 + 4 * ArtificialIntelligenceAccess[i].speed) * Math.cos(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
+                                    ArtificialIntelligenceAccess[i].Y -= (2 + 4 * ArtificialIntelligenceAccess[i].speed) * Math.sin(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
+                                }
+                                else if (kind == "windI")
+                                {
+                                    ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                    ArtificialIntelligenceAccess[i].X -= ((3 + 4 * ArtificialIntelligenceAccess[i].speed) / Math.max(1, (ArtificialIntelligenceAccess[i].healthMAX / 45))) * Math.cos(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
+                                    ArtificialIntelligenceAccess[i].Y -= ((3 + 4 * ArtificialIntelligenceAccess[i].speed) / Math.max(1, (ArtificialIntelligenceAccess[i].healthMAX / 45))) * Math.sin(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
+                                }
+                                else if (kind == "windII")
+                                {
+                                    ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                    ArtificialIntelligenceAccess[i].X -= ((6 + 4 * ArtificialIntelligenceAccess[i].speed) / Math.max(1, (ArtificialIntelligenceAccess[i].healthMAX / 50))) * Math.cos(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
+                                    ArtificialIntelligenceAccess[i].Y -= ((6 + 4 * ArtificialIntelligenceAccess[i].speed) / Math.max(1, (ArtificialIntelligenceAccess[i].healthMAX / 50))) * Math.sin(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
+                                }
+                                else if (kind == "windIII")
+                                {
+                                    ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                    ArtificialIntelligenceAccess[i].X -= ((10 + 4 * ArtificialIntelligenceAccess[i].speed) / Math.max(1, (ArtificialIntelligenceAccess[i].healthMAX / 55))) * Math.cos(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
+                                    ArtificialIntelligenceAccess[i].Y -= ((10 + 4 * ArtificialIntelligenceAccess[i].speed) / Math.max(1, (ArtificialIntelligenceAccess[i].healthMAX / 55))) * Math.sin(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
+                                }
+                                else if (kind == "windIV")
+                                {
+                                    ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                    ArtificialIntelligenceAccess[i].X -= ((14 + 4 * ArtificialIntelligenceAccess[i].speed) / Math.max(1, (ArtificialIntelligenceAccess[i].healthMAX / 65))) * Math.cos(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
+                                    ArtificialIntelligenceAccess[i].Y -= ((14 + 4 * ArtificialIntelligenceAccess[i].speed) / Math.max(1, (ArtificialIntelligenceAccess[i].healthMAX / 65))) * Math.sin(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
+                                }
+                                else if (kind == "magic")
+                                {
+                                    ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                }
+                                else if (kind == "blinding")
+                                {
+                                    ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                    ArtificialIntelligenceAccess[i].blindedTime = new Date().getTime() + (1000 * (this.cnx / 5));
+                                }
+                                if (kind != "blinding" )
+                                {
+                                    ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
+                                    if (caster == true)
+                                    {
+                                        ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                    }
+                                }
+
                                 if (caster == true)
                                 {
-                                    ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                    ArtificialIntelligenceAccess[i].killNotByPlayer = false;
                                 }
-                            }
-
-                            if (caster == true)
-                            {
-                                ArtificialIntelligenceAccess[i].killNotByPlayer = false;
-                            }
-                            if (caster != true)
-                            {
-                                ArtificialIntelligenceAccess[i].killNotByPlayer = true;
+                                if (caster != true)
+                                {
+                                    ArtificialIntelligenceAccess[i].killNotByPlayer = true;
+                                }
                             }
                         }
 
@@ -1162,75 +1172,77 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
 
                             if (distanceToPlayer <= radius + player.mySize && this.dmx == player.dmx)
                             {
-
-                                if (kind == "fire")
+                                if (this.ethereal == player.ethereal || player.ethereal == "avatar")
                                 {
-                                    this.shieldFactoring(Math.max(0, damage - player.heatResistance));
-                                    player.thirst -= Math.max(0, damage - player.heatResistance);
-                                    player.burningTime = new Date().getTime();
-                                }
-                                else if (kind == "decay")
-                                {
-                                    this.shieldFactoring(Math.max(0, damage - player.magicalResistanceTotal));
-                                    player.decayTime = new Date().getTime();
-                                    player.decayTime2 = new Date().getTime();
-                                }
-                                else if (kind == "electricity")
-                                {
-                                    this.shieldFactoring(Math.max(0, damage - ((player.totalShockResist * 3) + (19 * player.magicalResistanceTotal))));
-                                    if (Math.max(0, damage - (19 * player.magicalResistanceTotal)) > 0)
+                                    if (kind == "fire")
                                     {
-                                        player.shockedTime = new Date().getTime();
-                                        player.shockedTime2 = new Date().getTime();
+                                        this.shieldFactoring(Math.max(0, damage - player.heatResistance));
+                                        player.thirst -= Math.max(0, damage - player.heatResistance);
+                                        player.burningTime = new Date().getTime();
                                     }
-                                }
-                                else if (kind == "frostwind")
-                                {
-                                    this.shieldFactoring(Math.max(0, damage - player.warmthProtection));
-                                    player.warmth -= Math.max(0, 5 - player.warmthProtection);
-                                    var twrdsUnit = Math.atan2(this.Y - Y, this.X - X);
-                                    X -= Math.cos(twrdsUnit) * 125;
-                                    Y -= Math.sin(twrdsUnit) * 125;
-                                }
-                                else if (kind == "magic")
-                                {
-                                    this.shieldFactoring(Math.max(0, damage - player.magicalResistanceTotal));
-                                }
-                                else if (kind == "blinding")
-                                {
-                                    player.blinded = true;
-                                    player.blindedStoreTime = new Date().getTime();
-                                    player.blindedTime = 2;
-                                }
-                                else if (kind == "ChokingII")
-                                {
-                                    player.asfixiationTime = 0.9;
-                                    player.asfixiationII = true;
-                                }
-                                else if (kind == "ChokingI")
-                                {
-                                    player.asfixiationTime = 0.9;
-                                    player.asfixiationI = true;
-                                }
-                                else if (kind == "blindingChokeII")
-                                {
-                                    player.blinded = true;
-                                    player.blindedStoreTime = new Date().getTime();
-                                    player.blindedTime = 2;
-                                    player.asfixiationTime = 0.9;
-                                    player.asfixiationII = true;
-                                }
-                                else if (kind == "blindingChokeI")
-                                {
-                                    player.blinded = true;
-                                    player.blindedStoreTime = new Date().getTime();
-                                    player.blindedTime = 2;
-                                    player.asfixiationTime = 0.9;
-                                    player.asfixiationI = true;
-                                }
+                                    else if (kind == "decay")
+                                    {
+                                        this.shieldFactoring(Math.max(0, damage - player.magicalResistanceTotal));
+                                        player.decayTime = new Date().getTime();
+                                        player.decayTime2 = new Date().getTime();
+                                    }
+                                    else if (kind == "electricity")
+                                    {
+                                        this.shieldFactoring(Math.max(0, damage - ((player.totalShockResist * 3) + (19 * player.magicalResistanceTotal))));
+                                        if (Math.max(0, damage - (19 * player.magicalResistanceTotal)) > 0)
+                                        {
+                                            player.shockedTime = new Date().getTime();
+                                            player.shockedTime2 = new Date().getTime();
+                                        }
+                                    }
+                                    else if (kind == "frostwind")
+                                    {
+                                        this.shieldFactoring(Math.max(0, damage - player.warmthProtection));
+                                        player.warmth -= Math.max(0, 5 - player.warmthProtection);
+                                        var twrdsUnit = Math.atan2(this.Y - Y, this.X - X);
+                                        X -= Math.cos(twrdsUnit) * 125;
+                                        Y -= Math.sin(twrdsUnit) * 125;
+                                    }
+                                    else if (kind == "magic")
+                                    {
+                                        this.shieldFactoring(Math.max(0, damage - player.magicalResistanceTotal));
+                                    }
+                                    else if (kind == "blinding")
+                                    {
+                                        player.blinded = true;
+                                        player.blindedStoreTime = new Date().getTime();
+                                        player.blindedTime = 2;
+                                    }
+                                    else if (kind == "ChokingII")
+                                    {
+                                        player.asfixiationTime = 0.9;
+                                        player.asfixiationII = true;
+                                    }
+                                    else if (kind == "ChokingI")
+                                    {
+                                        player.asfixiationTime = 0.9;
+                                        player.asfixiationI = true;
+                                    }
+                                    else if (kind == "blindingChokeII")
+                                    {
+                                        player.blinded = true;
+                                        player.blindedStoreTime = new Date().getTime();
+                                        player.blindedTime = 2;
+                                        player.asfixiationTime = 0.9;
+                                        player.asfixiationII = true;
+                                    }
+                                    else if (kind == "blindingChokeI")
+                                    {
+                                        player.blinded = true;
+                                        player.blindedStoreTime = new Date().getTime();
+                                        player.blindedTime = 2;
+                                        player.asfixiationTime = 0.9;
+                                        player.asfixiationI = true;
+                                    }
 
-                                this.contactDamageTime = new Date().getTime();
+                                    this.contactDamageTime = new Date().getTime();
 
+                                }
                             }
                         }
                     }

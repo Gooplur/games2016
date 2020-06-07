@@ -283,7 +283,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
 
     this.damagePlayer = function(damage, negate, effect)
     {
-        if (player.dmx == this.dmx)
+        if (player.dmx == this.dmx && player.ethereal != true)
         {
             if (quenHere == true)
             {
@@ -32640,16 +32640,19 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 XXX.drawImage(carn, 26, 681, 169, 167, -(1/2 * 169 * this.size), -(1/2 * 167 * this.size), 169 * this.size, 167 * this.size);
                 XXX.restore();
 
-                if (this.playerer <= 555)
+                if (this.playerer <= 555 && player.ethereal != true)
                 {
-                    this.paso += 1;
+                    if (player.form != "vampire" || wKey != true)
+                    {
+                        this.paso += 1;
+                    }
                 }
 
                 for (var eemi = 0; eemi < ArtificialIntelligenceAccess.length; eemi++)
                 {
                     if (ArtificialIntelligenceAccess[eemi].type != "MudTroll" && ArtificialIntelligenceAccess[eemi].alpha == true || ArtificialIntelligenceAccess[eemi].type != "MudTroll" && ArtificialIntelligenceAccess[eemi].healthMAX < 47)
                     {
-                        if (ArtificialIntelligenceAccess[eemi].type != "Marnica" && ArtificialIntelligenceAccess[eemi].type != "Eemeg")
+                        if (ArtificialIntelligenceAccess[eemi].type != "Marnica" && ArtificialIntelligenceAccess[eemi].type != "Eemeg" && ArtificialIntelligenceAccess[eemi].insect != true && ArtificialIntelligenceAccess[eemi].dmx == this.dmx && ArtificialIntelligenceAccess[eemi].ethereal != true && ArtificialIntelligenceAccess[eemi].underground != true && ArtificialIntelligenceAccess[eemi].nonDetect != true && ArtificialIntelligenceAccess[eemi].flying != true)
                         {
                             var unitDist = (ArtificialIntelligenceAccess[eemi].X - this.X)*(ArtificialIntelligenceAccess[eemi].X - this.X) + (ArtificialIntelligenceAccess[eemi].Y - this.Y)*(ArtificialIntelligenceAccess[eemi].Y - this.Y);
                             if (unitDist <= 550*550)

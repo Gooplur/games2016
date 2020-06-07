@@ -16,6 +16,15 @@ function gameloopOfDestiny(time)
     //this resets the variable that determines whether or not to light the inv desciption box.
     itemDescriptionBox = false;
 
+    if (player.ethereal == true)
+    {
+        LXX.globalAlpha = 0.4;
+    }
+    else
+    {
+        LXX.globalAlpha = 1;
+    }
+
     //this fixes the noticed box geting stuck sometimes
     if (gameLoopNumber % 50 == 0)
     {

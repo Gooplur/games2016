@@ -51,7 +51,7 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
                 this.distanceFromStart = Math.sqrt((this.X - startX)*(this.X - startX)+(this.Y - startY)*(this.Y - startY));
                 if (this.distanceFromStart < range)
                 {
-                    if (typeof(nonPlayer) == "undefined")
+                    if (typeof(this.notShotByPlayer) == "undefined")
                     {
                         this.X += (Math.cos(this.rotation + (1/2 * Math.PI)) * this.speed) * (TTD / 16.75) * timeSpeed;
                         this.Y += (Math.sin(this.rotation + (1/2 * Math.PI)) * this.speed) * (TTD / 16.75) * timeSpeed;
@@ -165,234 +165,237 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
                         //bullets do half damage against large enough non-human creatures. All others damage always remains the same.
                         if (ArtificialIntelligenceAccess[i].team != this.team && this.dmx == ArtificialIntelligenceAccess[i].dmx)
                         {
-                            if (type == "bullet" && ArtificialIntelligenceAccess[i].healthMAX > 100 && ArtificialIntelligenceAccess[i].type != "Person" && ArtificialIntelligenceAccess[i].type != "Soldier")
+                            if (this.isPlayerProjectile == true && player.ethereal == ArtificialIntelligenceAccess[i].ethereal || player.ethereal == "avatar" || !this.isPlayerProjectile || this.notShotByPlayer == true)
                             {
-                                ArtificialIntelligenceAccess[i].health -= Math.max(0, (this.damage / 3) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.negateArmour / 2))) + Math.max(0, this.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
-                            }
-                            else if (type == "5.56MMRound" && ArtificialIntelligenceAccess[i].healthMAX > 90 && ArtificialIntelligenceAccess[i].type != "Person" && ArtificialIntelligenceAccess[i].type != "Soldier" || type == "shotgunRound" && ArtificialIntelligenceAccess[i].healthMAX > 90 && ArtificialIntelligenceAccess[i].type != "Person" && ArtificialIntelligenceAccess[i].type != "Soldier")
-                            {
-                                if (ArtificialIntelligenceAccess[i].healthMAX <= 160)
+                                if (type == "bullet" && ArtificialIntelligenceAccess[i].healthMAX > 100 && ArtificialIntelligenceAccess[i].type != "Person" && ArtificialIntelligenceAccess[i].type != "Soldier")
                                 {
-                                    ArtificialIntelligenceAccess[i].health -= Math.max(0, (this.damage / 10) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.negateArmour / 20))) + Math.max(0, this.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                    ArtificialIntelligenceAccess[i].health -= Math.max(0, (this.damage / 3) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.negateArmour / 2))) + Math.max(0, this.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                }
+                                else if (type == "5.56MMRound" && ArtificialIntelligenceAccess[i].healthMAX > 90 && ArtificialIntelligenceAccess[i].type != "Person" && ArtificialIntelligenceAccess[i].type != "Soldier" || type == "shotgunRound" && ArtificialIntelligenceAccess[i].healthMAX > 90 && ArtificialIntelligenceAccess[i].type != "Person" && ArtificialIntelligenceAccess[i].type != "Soldier")
+                                {
+                                    if (ArtificialIntelligenceAccess[i].healthMAX <= 160)
+                                    {
+                                        ArtificialIntelligenceAccess[i].health -= Math.max(0, (this.damage / 10) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.negateArmour / 20))) + Math.max(0, this.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                    }
+                                    else
+                                    {
+                                        ArtificialIntelligenceAccess[i].health -= Math.max(0, (this.damage / 20) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.negateArmour / 20))) + Math.max(0, this.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                    }
                                 }
                                 else
                                 {
-                                    ArtificialIntelligenceAccess[i].health -= Math.max(0, (this.damage / 20) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.negateArmour / 20))) + Math.max(0, this.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                    ArtificialIntelligenceAccess[i].health -= Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) + Math.max(0, this.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
                                 }
-                            }
-                            else
-                            {
-                                ArtificialIntelligenceAccess[i].health -= Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) + Math.max(0, this.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
-                            }
 
-                            if (nonPlayer && ArtificialIntelligenceAccess[i].health <= 0) //booble if this works then delete this message
-                            {
-                                ArtificialIntelligenceAccess[i].killNotByPlayer = true;
-                            }
-                            ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
-                            ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
-                            ArtificialIntelligenceAccess[i].hurtByPlayer = true;
+                                if (this.notShotByPlayer && ArtificialIntelligenceAccess[i].health <= 0) //booble if this works then delete this message
+                                {
+                                    ArtificialIntelligenceAccess[i].killNotByPlayer = true;
+                                }
+                                ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
+                                ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                ArtificialIntelligenceAccess[i].hurtByPlayer = true;
 
-                            //Effects
-                            if (ArtificialIntelligenceAccess[i].health <= 0 && this.isPlayerProjectile)
-                            {
-                                ArtificialIntelligenceAccess[i].killNotByPlayer = false;
-                            }
+                                //Effects
+                                if (ArtificialIntelligenceAccess[i].health <= 0 && this.isPlayerProjectile)
+                                {
+                                    ArtificialIntelligenceAccess[i].killNotByPlayer = false;
+                                }
 
-                            if (this.ability == "stunI")
-                            {
-                                if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
+                                if (this.ability == "stunI")
                                 {
-                                    ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
-                                    ArtificialIntelligenceAccess[i].stunTimer = 5;
-                                    ArtificialIntelligenceAccess[i].stunI = true;
-                                }
-                            }
-                            else if (this.ability == "stunII")
-                            {
-                                if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
-                                {
-                                    ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
-                                    ArtificialIntelligenceAccess[i].stunTimer = 5;
-                                    ArtificialIntelligenceAccess[i].stunII = true;
-                                }
-                            }
-                            else if (this.ability == "stunIII")
-                            {
-                                if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
-                                {
-                                    ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
-                                    ArtificialIntelligenceAccess[i].stunTimer = 5;
-                                    ArtificialIntelligenceAccess[i].stunIII = true;
-                                }
-                            }
-                            else if (this.ability == "stunIV")
-                            {
-                                if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
-                                {
-                                    ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
-                                    ArtificialIntelligenceAccess[i].stunTimer = 5;
-                                    ArtificialIntelligenceAccess[i].stunIV = true;
-                                }
-                            }
-                            else if (this.ability == "stunV")
-                            {
-                                if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
-                                {
-                                    ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
-                                    ArtificialIntelligenceAccess[i].stunTimer = 5;
-                                    ArtificialIntelligenceAccess[i].stunV = true;
-                                }
-                            }
-                            else if (this.ability == "knockbackI")
-                            {
-                                if (Math.max(0, this.magicalDamage - Math.max(0, ArtificialIntelligenceAccess[i].magicalResistance)) > 0)
-                                {
-                                    var twrdsUnit = Math.atan2(Y - ArtificialIntelligenceAccess[i].Y, X - ArtificialIntelligenceAccess[i].X);
-                                    ArtificialIntelligenceAccess[i].X -= Math.cos(twrdsUnit) * 50;
-                                    ArtificialIntelligenceAccess[i].Y -= Math.sin(twrdsUnit) * 50;
-                                    ArtificialIntelligenceAccess[i].stunIII = true;
-                                    ArtificialIntelligenceAccess[i].stunTimer = 1;
-                                    ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
-                                }
-                            }
-                            else if (this.ability == "knockbackII")
-                            {
-                                if (Math.max(0, this.magicalDamage - Math.max(0, ArtificialIntelligenceAccess[i].magicalResistance)) > 0)
-                                {
-                                    var twrdsUnit = Math.atan2(Y - ArtificialIntelligenceAccess[i].Y, X - ArtificialIntelligenceAccess[i].X);
-                                    ArtificialIntelligenceAccess[i].X -= Math.cos(twrdsUnit) * 100;
-                                    ArtificialIntelligenceAccess[i].Y -= Math.sin(twrdsUnit) * 100;
-                                    ArtificialIntelligenceAccess[i].stunIII = true;
-                                    ArtificialIntelligenceAccess[i].stunTimer = 2;
-                                    ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
-                                }
-                            }
-                            else if (this.ability == "knockbackIII")
-                            {
-                                if (Math.max(0, this.magicalDamage - Math.max(0, ArtificialIntelligenceAccess[i].magicalResistance)) > 0)
-                                {
-                                    var twrdsUnit = Math.atan2(Y - ArtificialIntelligenceAccess[i].Y, X - ArtificialIntelligenceAccess[i].X);
-                                    ArtificialIntelligenceAccess[i].X -= Math.cos(twrdsUnit) * 100;
-                                    ArtificialIntelligenceAccess[i].Y -= Math.sin(twrdsUnit) * 100;
-                                    ArtificialIntelligenceAccess[i].stunIII = true;
-                                    ArtificialIntelligenceAccess[i].stunTimer = 3;
-                                    ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
-                                }
-                            }
-                            else if (this.ability == "freeze")
-                            {
-                                if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
-                                {
-                                    ArtificialIntelligenceAccess[i].frozenTime = new Date().getTime();
-                                }
-                            }
-                            else if (this.ability == "sowt")
-                            {
-                                if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
-                                {
-                                    ArtificialIntelligenceAccess[i].acidI = true;
-                                    ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 90000;
-                                    if (nonPlayer)
+                                    if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
                                     {
-                                        ArtificialIntelligenceAccess[i].killNotByPlayer = true;
-                                    }
-                                    ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
-                                    ArtificialIntelligenceAccess[i].stunTimer = 7;
-                                    ArtificialIntelligenceAccess[i].stunIV = true;
-                                }
-                            }
-                            else if (this.ability == "poisonI")
-                            {
-                                if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
-                                {
-                                    ArtificialIntelligenceAccess[i].acidI = true;
-                                    ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 90000;
-                                    if (nonPlayer)
-                                    {
-                                        ArtificialIntelligenceAccess[i].killNotByPlayer = true;
+                                        ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
+                                        ArtificialIntelligenceAccess[i].stunTimer = 5;
+                                        ArtificialIntelligenceAccess[i].stunI = true;
                                     }
                                 }
-                            }
-                            else if (this.ability == "poisonII")
-                            {
-                                if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
+                                else if (this.ability == "stunII")
                                 {
-                                    ArtificialIntelligenceAccess[i].acidII = true;
-                                    ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 90000;
-                                    if (nonPlayer)
+                                    if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
                                     {
-                                        ArtificialIntelligenceAccess[i].killNotByPlayer = true;
+                                        ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
+                                        ArtificialIntelligenceAccess[i].stunTimer = 5;
+                                        ArtificialIntelligenceAccess[i].stunII = true;
                                     }
                                 }
-                            }
-                            else if (this.ability == "poisonIII")
-                            {
-                                if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
+                                else if (this.ability == "stunIII")
                                 {
-                                    ArtificialIntelligenceAccess[i].acidIII = true;
-                                    ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 90000;
-                                    if (nonPlayer)
+                                    if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
                                     {
-                                        ArtificialIntelligenceAccess[i].killNotByPlayer = true;
+                                        ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
+                                        ArtificialIntelligenceAccess[i].stunTimer = 5;
+                                        ArtificialIntelligenceAccess[i].stunIII = true;
                                     }
                                 }
-                            }
-                            else if (this.ability == "poisonIV")
-                            {
-                                if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
+                                else if (this.ability == "stunIV")
                                 {
-                                    ArtificialIntelligenceAccess[i].acidIV = true;
-                                    ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 90000;
-                                    if (nonPlayer)
+                                    if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
                                     {
-                                        ArtificialIntelligenceAccess[i].killNotByPlayer = true;
+                                        ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
+                                        ArtificialIntelligenceAccess[i].stunTimer = 5;
+                                        ArtificialIntelligenceAccess[i].stunIV = true;
                                     }
                                 }
-                            }
-                            else if (this.ability == "burning")
-                            {
-                                if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
+                                else if (this.ability == "stunV")
                                 {
-                                    ArtificialIntelligenceAccess[i].burningTime = new Date().getTime();
+                                    if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
+                                    {
+                                        ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
+                                        ArtificialIntelligenceAccess[i].stunTimer = 5;
+                                        ArtificialIntelligenceAccess[i].stunV = true;
+                                    }
                                 }
-                            }
-                            else if (this.ability == "longBurning")
-                            {
-                                ArtificialIntelligenceAccess[i].burningTime = new Date().getTime() + 5000;
-                            }
-                            else if (this.ability == "leach")
-                            {
-                                if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
+                                else if (this.ability == "knockbackI")
                                 {
-                                    ArtificialIntelligenceAccess[i].health -= Math.max(0, 12 - ArtificialIntelligenceAccess[i].magicalResistance);
+                                    if (Math.max(0, this.magicalDamage - Math.max(0, ArtificialIntelligenceAccess[i].magicalResistance)) > 0)
+                                    {
+                                        var twrdsUnit = Math.atan2(Y - ArtificialIntelligenceAccess[i].Y, X - ArtificialIntelligenceAccess[i].X);
+                                        ArtificialIntelligenceAccess[i].X -= Math.cos(twrdsUnit) * 50;
+                                        ArtificialIntelligenceAccess[i].Y -= Math.sin(twrdsUnit) * 50;
+                                        ArtificialIntelligenceAccess[i].stunIII = true;
+                                        ArtificialIntelligenceAccess[i].stunTimer = 1;
+                                        ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
+                                    }
+                                }
+                                else if (this.ability == "knockbackII")
+                                {
+                                    if (Math.max(0, this.magicalDamage - Math.max(0, ArtificialIntelligenceAccess[i].magicalResistance)) > 0)
+                                    {
+                                        var twrdsUnit = Math.atan2(Y - ArtificialIntelligenceAccess[i].Y, X - ArtificialIntelligenceAccess[i].X);
+                                        ArtificialIntelligenceAccess[i].X -= Math.cos(twrdsUnit) * 100;
+                                        ArtificialIntelligenceAccess[i].Y -= Math.sin(twrdsUnit) * 100;
+                                        ArtificialIntelligenceAccess[i].stunIII = true;
+                                        ArtificialIntelligenceAccess[i].stunTimer = 2;
+                                        ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
+                                    }
+                                }
+                                else if (this.ability == "knockbackIII")
+                                {
+                                    if (Math.max(0, this.magicalDamage - Math.max(0, ArtificialIntelligenceAccess[i].magicalResistance)) > 0)
+                                    {
+                                        var twrdsUnit = Math.atan2(Y - ArtificialIntelligenceAccess[i].Y, X - ArtificialIntelligenceAccess[i].X);
+                                        ArtificialIntelligenceAccess[i].X -= Math.cos(twrdsUnit) * 100;
+                                        ArtificialIntelligenceAccess[i].Y -= Math.sin(twrdsUnit) * 100;
+                                        ArtificialIntelligenceAccess[i].stunIII = true;
+                                        ArtificialIntelligenceAccess[i].stunTimer = 3;
+                                        ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
+                                    }
+                                }
+                                else if (this.ability == "freeze")
+                                {
+                                    if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
+                                    {
+                                        ArtificialIntelligenceAccess[i].frozenTime = new Date().getTime();
+                                    }
+                                }
+                                else if (this.ability == "sowt")
+                                {
+                                    if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
+                                    {
+                                        ArtificialIntelligenceAccess[i].acidI = true;
+                                        ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 90000;
+                                        if (this.notShotByPlayer)
+                                        {
+                                            ArtificialIntelligenceAccess[i].killNotByPlayer = true;
+                                        }
+                                        ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
+                                        ArtificialIntelligenceAccess[i].stunTimer = 7;
+                                        ArtificialIntelligenceAccess[i].stunIV = true;
+                                    }
+                                }
+                                else if (this.ability == "poisonI")
+                                {
+                                    if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
+                                    {
+                                        ArtificialIntelligenceAccess[i].acidI = true;
+                                        ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 90000;
+                                        if (this.notShotByPlayer)
+                                        {
+                                            ArtificialIntelligenceAccess[i].killNotByPlayer = true;
+                                        }
+                                    }
+                                }
+                                else if (this.ability == "poisonII")
+                                {
+                                    if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
+                                    {
+                                        ArtificialIntelligenceAccess[i].acidII = true;
+                                        ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 90000;
+                                        if (this.notShotByPlayer)
+                                        {
+                                            ArtificialIntelligenceAccess[i].killNotByPlayer = true;
+                                        }
+                                    }
+                                }
+                                else if (this.ability == "poisonIII")
+                                {
+                                    if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
+                                    {
+                                        ArtificialIntelligenceAccess[i].acidIII = true;
+                                        ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 90000;
+                                        if (this.notShotByPlayer)
+                                        {
+                                            ArtificialIntelligenceAccess[i].killNotByPlayer = true;
+                                        }
+                                    }
+                                }
+                                else if (this.ability == "poisonIV")
+                                {
+                                    if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
+                                    {
+                                        ArtificialIntelligenceAccess[i].acidIV = true;
+                                        ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 90000;
+                                        if (this.notShotByPlayer)
+                                        {
+                                            ArtificialIntelligenceAccess[i].killNotByPlayer = true;
+                                        }
+                                    }
+                                }
+                                else if (this.ability == "burning")
+                                {
+                                    if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
+                                    {
+                                        ArtificialIntelligenceAccess[i].burningTime = new Date().getTime();
+                                    }
+                                }
+                                else if (this.ability == "longBurning")
+                                {
+                                    ArtificialIntelligenceAccess[i].burningTime = new Date().getTime() + 5000;
+                                }
+                                else if (this.ability == "leach")
+                                {
+                                    if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
+                                    {
+                                        ArtificialIntelligenceAccess[i].health -= Math.max(0, 12 - ArtificialIntelligenceAccess[i].magicalResistance);
 
-                                    var counterOrbCount = 0;
-                                    if (ArtificialIntelligenceAccess[i].health < 0)
-                                    {
-                                        counterOrbCount = Math.round(- ArtificialIntelligenceAccess[i].health);
-                                    }
-                                    var orbsAllowed = Math.max(0, 12 - ArtificialIntelligenceAccess[i].magicalResistance - counterOrbCount);
-                                    for (var j = 0; j < orbsAllowed; j++)
-                                    {
-                                        magicList.push(new Magic({ID: "drainOrb"}, false, 0, ArtificialIntelligenceAccess[i]));
+                                        var counterOrbCount = 0;
+                                        if (ArtificialIntelligenceAccess[i].health < 0)
+                                        {
+                                            counterOrbCount = Math.round(- ArtificialIntelligenceAccess[i].health);
+                                        }
+                                        var orbsAllowed = Math.max(0, 12 - ArtificialIntelligenceAccess[i].magicalResistance - counterOrbCount);
+                                        for (var j = 0; j < orbsAllowed; j++)
+                                        {
+                                            magicList.push(new Magic({ID: "drainOrb"}, false, 0, ArtificialIntelligenceAccess[i]));
+                                        }
                                     }
                                 }
-                            }
 
-                            if (this.thrown == true && this.isPlayerProjectile == true && this.thrownID != "none")
-                            {
-                                scenicList.push(new Scenery(this.thrownID, this.X, this.Y, this.thrownRotation, false));
-                            }
-
-                            //Self Delete Projectile
-                            for (var j = list.length - 1; j > -1; j--)
-                            {
-                                if (list[j] == this)
+                                if (this.thrown == true && this.isPlayerProjectile == true && this.thrownID != "none")
                                 {
-                                    list.splice(j, 1);
-                                    this.doNada = true;
-                                    break;
+                                    scenicList.push(new Scenery(this.thrownID, this.X, this.Y, this.thrownRotation, false));
+                                }
+
+                                //Self Delete Projectile
+                                for (var j = list.length - 1; j > -1; j--)
+                                {
+                                    if (list[j] == this)
+                                    {
+                                        list.splice(j, 1);
+                                        this.doNada = true;
+                                        break;
+                                    }
                                 }
                             }
                         }
@@ -403,7 +406,7 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
             {
                 //Unit arrows can harm the player!
                 var distanceFromPlayer = Math.sqrt((this.X - X)*(this.X - X)+(this.Y - Y)*(this.Y - Y));
-                if (distanceFromPlayer <= player.mySize + 1)
+                if (distanceFromPlayer <= player.mySize + 1 && this.dmx == player.dmx && player.ethereal != true)
                 {
                     if (player.mageShield > 0)
                     {

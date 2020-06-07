@@ -10,7 +10,8 @@ function Adventurer()
     //gamespeed
     this.slowItDown = false;
     //Location
-    this.dmx = map;
+    this.dmx = map; //dimension
+    this.ethereal = false; //co-existing realms within a single dimension (spirit world / physical world / limbo)
     //Leveling
     this.level = 1;
     this.experience = 0;
@@ -641,6 +642,8 @@ function Adventurer()
     this.eneojiTolerance = 0;
     this.ketsueki = false;
     this.ketsuekiBlood = 0.001;
+    this.etherealizeKeeper = new Date().getTime();
+    this.etherealizeTime = 0;
 
     //faction variables
     this.factionToggle = false;
@@ -4887,6 +4890,21 @@ function Adventurer()
                 {
                     this.energy = this.energyMAX;
                 }
+            }
+
+            if (this.etherealizeTime > 0)
+            {
+                if (new Date().getTime() - this.etherealizeKeeper > 1000)
+                {
+                    this.etherealizeKeeper = new Date().getTime();
+                    this.etherealizeTime -= 1;
+                }
+                this.ethereal = true;
+            }
+            else
+            {
+                this.ethereal = false;
+                this.etherealizeTime = 0;
             }
 
             //This enables the poisoned mini notice if any type of any category of poison is in effect.
@@ -30800,302 +30818,305 @@ function Adventurer()
 
                     if (dfu <= this.weapon.range * 7 && this.finalAttackStage == true && !ArtificialIntelligenceAccess[i].underground && ArtificialIntelligenceAccess[i].dmx == this.dmx && ArtificialIntelligenceAccess[i].mounted != true && !ArtificialIntelligenceAccess[i].playerProof)
                     {
-                        var justDealt = 0; //this stores the damage that was just dealt
-                        if (this.powerAttack == false || this.weapon.multiATK == true && this.powerAttack == true)
+                        if (this.ethereal == ArtificialIntelligenceAccess[i].ethereal || this.ethereal == "avatar" || ArtificialIntelligenceAccess[i].ethereal == "avatar")
                         {
-                            if (this.armourPerfect == true || foePerfectArmour == true || ArtificialIntelligenceAccess[i].perfectDefense == true || Math.max(0, (this.weapon.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance) > (this.weapon.damage / 35))
+                            var justDealt = 0; //this stores the damage that was just dealt
+                            if (this.powerAttack == false || this.weapon.multiATK == true && this.powerAttack == true)
                             {
-                                ArtificialIntelligenceAccess[i].health -= Math.max(0, (this.weapon.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
-                                console.log("You dealt " + (Math.max(0, this.weapon.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour)) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance)) + " damage!");
-                                justDealt = Math.max(0, this.weapon.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour)) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
-                            }
-                            else
-                            {
-                                ArtificialIntelligenceAccess[i].health -= (this.weapon.damage / 35);
-                                justDealt = Math.max(0, this.weapon.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour)) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
-                            }
-                        }
-                        else if (this.powerAttack == "weak")
-                        {
-                            if (this.armourPerfect == true || foePerfectArmour == true || ArtificialIntelligenceAccess[i].perfectDefense == true || Math.max(0, (Math.min(3, (this.weapon.damage / 5)) - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance) > ((this.weapon.damage / 5) / 35))
-                            {
-                                ArtificialIntelligenceAccess[i].health -= Math.max(0, (Math.min(3, (this.weapon.damage / 5)) - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
-                                console.log("Weak Attack: You dealt " + (Math.max(0, (Math.min(3, (this.weapon.damage / 5)) - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance)) + " damage!");
-                                justDealt = Math.max(0, (this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
-                            }
-                            else
-                            {
-                                ArtificialIntelligenceAccess[i].health -= ((this.weapon.damage / 5) / 35);
-                                justDealt = Math.max(0, (this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
-                            }
-                        }
-                        else if (this.powerAttack == "weakened")
-                        {
-                            if (this.armourPerfect == true || foePerfectArmour == true || ArtificialIntelligenceAccess[i].perfectDefense == true || Math.max(0, (Math.min(5, (this.weapon.damage / 4)) - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance) > ((this.weapon.damage / 4) / 35))
-                            {
-                                ArtificialIntelligenceAccess[i].health -= Math.max(0, (Math.min(5, (this.weapon.damage / 4)) - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
-                                console.log("Weakened Attack: You dealt " + (Math.max(0, (Math.min(5, (this.weapon.damage / 4)) - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance)) + " damage!");
-                                justDealt = Math.max(0, (this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
-                            }
-                            else
-                            {
-                                ArtificialIntelligenceAccess[i].health -= ((this.weapon.damage / 4) / 35);
-                                justDealt = Math.max(0, (this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
-                            }
-                        }
-                        else
-                        {
-                            if (this.armourPerfect == true || foePerfectArmour == true || ArtificialIntelligenceAccess[i].perfectDefense == true || Math.max(0, ((this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5)))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance) > ((this.weapon.damage * 1.5) / 35))
-                            {
-                                ArtificialIntelligenceAccess[i].health -= Math.max(0, ((this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5)))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
-                                console.log("Power Attack: You dealt " + (Math.max(0, (this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance)) + " damage!");
-                                justDealt = Math.max(0, (this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
-                            }
-                            else
-                            {
-                                ArtificialIntelligenceAccess[i].health -= ((this.weapon.damage * 1.5) / 35);
-                                justDealt = Math.max(0, (this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
-                            }
-                        }
-
-                        //console.log(this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
-                        ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
-                        ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
-                        ArtificialIntelligenceAccess[i].hurtByPlayer = true;
-
-                        //effects
-                        if (ArtificialIntelligenceAccess[i].health <= 0 && ArtificialIntelligenceAccess[i].vamprism == true && ArtificialIntelligenceAccess[i].vampKill == false)
-                        {
-                            ArtificialIntelligenceAccess[i].vampirify = true;
-                        }
-
-                        //if the player kills the enemy it is marked as being killed by the player
-                        if (ArtificialIntelligenceAccess[i].health <= 0)
-                        {
-                            if (this.form == "werewolf")
-                            {
-                                ArtificialIntelligenceAccess[i].killNotByPlayer = true; //werewolves do not lose faction relation for killing
-                            }
-                            else if (this.form == "wendigo")
-                            {
-                                ArtificialIntelligenceAccess[i].killNotByPlayer = true; //wendigos do not lose faction relation for killing
-                            }
-                            else if (this.form == "vampire")
-                            {
-                                ArtificialIntelligenceAccess[i].killNotByPlayer = true; //vampires do not lose faction relation for killing
-                            }
-                            else if (this.form == "venandi")
-                            {
-                                ArtificialIntelligenceAccess[i].killNotByPlayer = true; //venandi do not lose faction relation for killing
-                            }
-                            else
-                            {
-                                ArtificialIntelligenceAccess[i].killNotByPlayer = false;
-                            }
-                        }
-
-                        //abilities
-                        if (ArtificialIntelligenceAccess[i].corporial == true && ArtificialIntelligenceAccess[i].spirit == true)
-                        {
-                            ArtificialIntelligenceAccess[i].health -= (1 / Math.max(11, 36 - this.weapon.damage)) * ArtificialIntelligenceAccess[i].healthMAX;
-                        }
-
-                        if (this.weapon.ability == "freeze")
-                        {
-                            ArtificialIntelligenceAccess[i].frozenTime = new Date().getTime();
-                        }
-                        else if (this.weapon.ability == "burning")
-                        {
-                            ArtificialIntelligenceAccess[i].burningTime = new Date().getTime();
-                        }
-                        else if (this.weapon.ability == "venandi")
-                        {
-                            if (ArtificialIntelligenceAccess[i].health < 1/3 * ArtificialIntelligenceAccess[i].healthMAX || ArtificialIntelligenceAccess[i].resistDisease == false)
-                            {
-                                if (ArtificialIntelligenceAccess[i].type == "Person" || ArtificialIntelligenceAccess[i].type == "Soldier" || ArtificialIntelligenceAccess[i].type == "Etyr" || ArtificialIntelligenceAccess[i].type == "Aranea")
+                                if (this.armourPerfect == true || foePerfectArmour == true || ArtificialIntelligenceAccess[i].perfectDefense == true || Math.max(0, (this.weapon.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance) > (this.weapon.damage / 35))
                                 {
-                                    if (ArtificialIntelligenceAccess[i].venandi <= 0)
+                                    ArtificialIntelligenceAccess[i].health -= Math.max(0, (this.weapon.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                    console.log("You dealt " + (Math.max(0, this.weapon.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour)) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance)) + " damage!");
+                                    justDealt = Math.max(0, this.weapon.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour)) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                }
+                                else
+                                {
+                                    ArtificialIntelligenceAccess[i].health -= (this.weapon.damage / 35);
+                                    justDealt = Math.max(0, this.weapon.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour)) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                }
+                            }
+                            else if (this.powerAttack == "weak")
+                            {
+                                if (this.armourPerfect == true || foePerfectArmour == true || ArtificialIntelligenceAccess[i].perfectDefense == true || Math.max(0, (Math.min(3, (this.weapon.damage / 5)) - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance) > ((this.weapon.damage / 5) / 35))
+                                {
+                                    ArtificialIntelligenceAccess[i].health -= Math.max(0, (Math.min(3, (this.weapon.damage / 5)) - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                    console.log("Weak Attack: You dealt " + (Math.max(0, (Math.min(3, (this.weapon.damage / 5)) - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance)) + " damage!");
+                                    justDealt = Math.max(0, (this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                }
+                                else
+                                {
+                                    ArtificialIntelligenceAccess[i].health -= ((this.weapon.damage / 5) / 35);
+                                    justDealt = Math.max(0, (this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                }
+                            }
+                            else if (this.powerAttack == "weakened")
+                            {
+                                if (this.armourPerfect == true || foePerfectArmour == true || ArtificialIntelligenceAccess[i].perfectDefense == true || Math.max(0, (Math.min(5, (this.weapon.damage / 4)) - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance) > ((this.weapon.damage / 4) / 35))
+                                {
+                                    ArtificialIntelligenceAccess[i].health -= Math.max(0, (Math.min(5, (this.weapon.damage / 4)) - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                    console.log("Weakened Attack: You dealt " + (Math.max(0, (Math.min(5, (this.weapon.damage / 4)) - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance)) + " damage!");
+                                    justDealt = Math.max(0, (this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                }
+                                else
+                                {
+                                    ArtificialIntelligenceAccess[i].health -= ((this.weapon.damage / 4) / 35);
+                                    justDealt = Math.max(0, (this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                }
+                            }
+                            else
+                            {
+                                if (this.armourPerfect == true || foePerfectArmour == true || ArtificialIntelligenceAccess[i].perfectDefense == true || Math.max(0, ((this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5)))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance) > ((this.weapon.damage * 1.5) / 35))
+                                {
+                                    ArtificialIntelligenceAccess[i].health -= Math.max(0, ((this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5)))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                    console.log("Power Attack: You dealt " + (Math.max(0, (this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance)) + " damage!");
+                                    justDealt = Math.max(0, (this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                }
+                                else
+                                {
+                                    ArtificialIntelligenceAccess[i].health -= ((this.weapon.damage * 1.5) / 35);
+                                    justDealt = Math.max(0, (this.weapon.damage * 1.5) - Math.max(0, ArtificialIntelligenceAccess[i].armour - (this.weapon.negateArmour * 1.5))) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                }
+                            }
+
+                            //console.log(this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance);
+                            ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
+                            ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                            ArtificialIntelligenceAccess[i].hurtByPlayer = true;
+
+                            //effects
+                            if (ArtificialIntelligenceAccess[i].health <= 0 && ArtificialIntelligenceAccess[i].vamprism == true && ArtificialIntelligenceAccess[i].vampKill == false)
+                            {
+                                ArtificialIntelligenceAccess[i].vampirify = true;
+                            }
+
+                            //if the player kills the enemy it is marked as being killed by the player
+                            if (ArtificialIntelligenceAccess[i].health <= 0)
+                            {
+                                if (this.form == "werewolf")
+                                {
+                                    ArtificialIntelligenceAccess[i].killNotByPlayer = true; //werewolves do not lose faction relation for killing
+                                }
+                                else if (this.form == "wendigo")
+                                {
+                                    ArtificialIntelligenceAccess[i].killNotByPlayer = true; //wendigos do not lose faction relation for killing
+                                }
+                                else if (this.form == "vampire")
+                                {
+                                    ArtificialIntelligenceAccess[i].killNotByPlayer = true; //vampires do not lose faction relation for killing
+                                }
+                                else if (this.form == "venandi")
+                                {
+                                    ArtificialIntelligenceAccess[i].killNotByPlayer = true; //venandi do not lose faction relation for killing
+                                }
+                                else
+                                {
+                                    ArtificialIntelligenceAccess[i].killNotByPlayer = false;
+                                }
+                            }
+
+                            //abilities
+                            if (ArtificialIntelligenceAccess[i].corporial == true && ArtificialIntelligenceAccess[i].spirit == true)
+                            {
+                                ArtificialIntelligenceAccess[i].health -= (1 / Math.max(11, 36 - this.weapon.damage)) * ArtificialIntelligenceAccess[i].healthMAX;
+                            }
+
+                            if (this.weapon.ability == "freeze")
+                            {
+                                ArtificialIntelligenceAccess[i].frozenTime = new Date().getTime();
+                            }
+                            else if (this.weapon.ability == "burning")
+                            {
+                                ArtificialIntelligenceAccess[i].burningTime = new Date().getTime();
+                            }
+                            else if (this.weapon.ability == "venandi")
+                            {
+                                if (ArtificialIntelligenceAccess[i].health < 1/3 * ArtificialIntelligenceAccess[i].healthMAX || ArtificialIntelligenceAccess[i].resistDisease == false)
+                                {
+                                    if (ArtificialIntelligenceAccess[i].type == "Person" || ArtificialIntelligenceAccess[i].type == "Soldier" || ArtificialIntelligenceAccess[i].type == "Etyr" || ArtificialIntelligenceAccess[i].type == "Aranea")
                                     {
-                                        ArtificialIntelligenceAccess[i].venandi = 1;
+                                        if (ArtificialIntelligenceAccess[i].venandi <= 0)
+                                        {
+                                            ArtificialIntelligenceAccess[i].venandi = 1;
+                                        }
                                     }
                                 }
                             }
-                        }
-                        else if (this.weapon.ability == "silvered" && (Math.max(0, this.weapon.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour)) > 0))
-                        {
-                            ArtificialIntelligenceAccess[i].silvered = true;
-                        }
-                        else if (this.weapon.ability == "lycanthropy" && (Math.max(0, this.weapon.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour)) > 0))
-                        {
-                            if (ArtificialIntelligenceAccess[i].silvered == false && ArtificialIntelligenceAccess[i].resistances.indexOf("lycanthropy") == -1)
+                            else if (this.weapon.ability == "silvered" && (Math.max(0, this.weapon.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour)) > 0))
                             {
-                                ArtificialIntelligenceAccess[i].lycanthropyTime = new Date().getTime();
+                                ArtificialIntelligenceAccess[i].silvered = true;
                             }
-                            else if (ArtificialIntelligenceAccess[i].silvered == true)
+                            else if (this.weapon.ability == "lycanthropy" && (Math.max(0, this.weapon.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour)) > 0))
                             {
-                                this.silvered = true;
-                            }
-                        }
-                        else if (this.weapon.ability == "vampireCurse" && (Math.max(0, this.weapon.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour)) > 0))
-                        {
-                            if (ArtificialIntelligenceAccess[i].silvered == true)
-                            {
-                                this.silvered = true;
-                            }
-                        }
-                        else if (this.weapon.ability == "maybeblind")
-                        {
-                            if (Math.random() > 0.677)
-                            {
-                                ArtificialIntelligenceAccess[i].blindedTime = new Date().getTime() + (1000);
-                            }
-                        }
-                        else if (this.weapon.ability == "radiate")
-                        {
-                            if (ArtificialIntelligenceAccess[i].radProof != true)
-                            {
-                                ArtificialIntelligenceAccess[i].radiation += 10;
-                            }
-                        }
-                        else if (this.weapon.ability == "leeching")
-                        {
-                            var dmgDealt = Math.ceil(Math.max(0, this.weapon.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour)) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance));
-                            if (dmgDealt > 0)
-                            {
-                                var counterOrbCount = 0;
-                                if (ArtificialIntelligenceAccess[i].health < 0)
+                                if (ArtificialIntelligenceAccess[i].silvered == false && ArtificialIntelligenceAccess[i].resistances.indexOf("lycanthropy") == -1)
                                 {
-                                    counterOrbCount = Math.round(-ArtificialIntelligenceAccess[i].health);
+                                    ArtificialIntelligenceAccess[i].lycanthropyTime = new Date().getTime();
                                 }
-                                var orbsAllowed = Math.max(0, dmgDealt - ArtificialIntelligenceAccess[i].magicalResistance - counterOrbCount);
-                                for (var j = 0; j < orbsAllowed; j++)
+                                else if (ArtificialIntelligenceAccess[i].silvered == true)
                                 {
-                                    magicList.push(new Magic({ID: "drainOrb"}, false, 0, ArtificialIntelligenceAccess[i]));
+                                    this.silvered = true;
                                 }
-                                if (this.extraDraining)
+                            }
+                            else if (this.weapon.ability == "vampireCurse" && (Math.max(0, this.weapon.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour)) > 0))
+                            {
+                                if (ArtificialIntelligenceAccess[i].silvered == true)
                                 {
-                                    for (var j = 0; j < 3; j++)
+                                    this.silvered = true;
+                                }
+                            }
+                            else if (this.weapon.ability == "maybeblind")
+                            {
+                                if (Math.random() > 0.677)
+                                {
+                                    ArtificialIntelligenceAccess[i].blindedTime = new Date().getTime() + (1000);
+                                }
+                            }
+                            else if (this.weapon.ability == "radiate")
+                            {
+                                if (ArtificialIntelligenceAccess[i].radProof != true)
+                                {
+                                    ArtificialIntelligenceAccess[i].radiation += 10;
+                                }
+                            }
+                            else if (this.weapon.ability == "leeching")
+                            {
+                                var dmgDealt = Math.ceil(Math.max(0, this.weapon.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.weapon.negateArmour)) + Math.max(0, this.weapon.magicalDamage - ArtificialIntelligenceAccess[i].magicalResistance));
+                                if (dmgDealt > 0)
+                                {
+                                    var counterOrbCount = 0;
+                                    if (ArtificialIntelligenceAccess[i].health < 0)
+                                    {
+                                        counterOrbCount = Math.round(-ArtificialIntelligenceAccess[i].health);
+                                    }
+                                    var orbsAllowed = Math.max(0, dmgDealt - ArtificialIntelligenceAccess[i].magicalResistance - counterOrbCount);
+                                    for (var j = 0; j < orbsAllowed; j++)
                                     {
                                         magicList.push(new Magic({ID: "drainOrb"}, false, 0, ArtificialIntelligenceAccess[i]));
                                     }
+                                    if (this.extraDraining)
+                                    {
+                                        for (var j = 0; j < 3; j++)
+                                        {
+                                            magicList.push(new Magic({ID: "drainOrb"}, false, 0, ArtificialIntelligenceAccess[i]));
+                                        }
+                                    }
                                 }
                             }
-                        }
-                        else if (this.weapon.ability == "freezingStun")
-                        {
-                            ArtificialIntelligenceAccess[i].frozenTime = new Date().getTime();
-                            ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
-                            ArtificialIntelligenceAccess[i].stunTimer = 5;
-                            ArtificialIntelligenceAccess[i].stunIV = true;
-                        }
-                        else if (this.weapon.ability == "knockbackI" && justDealt > 0)
-                        {
-                            var twrdsUnit = Math.atan2(Y - ArtificialIntelligenceAccess[i].Y, X - ArtificialIntelligenceAccess[i].X);
-                            ArtificialIntelligenceAccess[i].X -= Math.cos(twrdsUnit) * 50;
-                            ArtificialIntelligenceAccess[i].Y -= Math.sin(twrdsUnit) * 50;
-                            ArtificialIntelligenceAccess[i].stunIII = true;
-                            ArtificialIntelligenceAccess[i].stunTimer = 3;
-                            ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
-                        }
-                        else if (this.weapon.ability == "knockbackII" && justDealt > 0)
-                        {
-                            var twrdsUnit = Math.atan2(Y - ArtificialIntelligenceAccess[i].Y, X - ArtificialIntelligenceAccess[i].X);
-                            ArtificialIntelligenceAccess[i].X -= Math.cos(twrdsUnit) * 100;
-                            ArtificialIntelligenceAccess[i].Y -= Math.sin(twrdsUnit) * 100;
-                            ArtificialIntelligenceAccess[i].stunIII = true;
-                            ArtificialIntelligenceAccess[i].stunTimer = 4;
-                            ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
-                        }
-                        else if (this.weapon.ability == "knockbackIII" && justDealt > 0)
-                        {
-                            var twrdsUnit = Math.atan2(Y - ArtificialIntelligenceAccess[i].Y, X - ArtificialIntelligenceAccess[i].X);
-                            ArtificialIntelligenceAccess[i].X -= Math.cos(twrdsUnit) * 150;
-                            ArtificialIntelligenceAccess[i].Y -= Math.sin(twrdsUnit) * 150;
-                            ArtificialIntelligenceAccess[i].stunIII = true;
-                            ArtificialIntelligenceAccess[i].stunTimer = 4;
-                            ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
-                        }
-                        else if (this.weapon.ability == "knockbackIV" && justDealt > 0)
-                        {
-                            var twrdsUnit = Math.atan2(Y - ArtificialIntelligenceAccess[i].Y, X - ArtificialIntelligenceAccess[i].X);
-                            ArtificialIntelligenceAccess[i].X -= Math.cos(twrdsUnit) * 150;
-                            ArtificialIntelligenceAccess[i].Y -= Math.sin(twrdsUnit) * 150;
-                            ArtificialIntelligenceAccess[i].stunIV = true;
-                            ArtificialIntelligenceAccess[i].stunTimer = 4;
-                            ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
-                        }
-                        else if (this.weapon.ability == "knockbackV" && justDealt > 0)
-                        {
-                            var twrdsUnit = Math.atan2(Y - ArtificialIntelligenceAccess[i].Y, X - ArtificialIntelligenceAccess[i].X);
-                            ArtificialIntelligenceAccess[i].X -= Math.cos(twrdsUnit) * 160;
-                            ArtificialIntelligenceAccess[i].Y -= Math.sin(twrdsUnit) * 160;
-                            ArtificialIntelligenceAccess[i].stunIV = true;
-                            ArtificialIntelligenceAccess[i].stunTimer = 5;
-                            ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
-                        }
-                        else if (this.weapon.ability == "shock")
-                        {
-                            ArtificialIntelligenceAccess[i].shockedTime = new Date().getTime();
-                            ArtificialIntelligenceAccess[i].shockedTime2 = new Date().getTime();
-                        }
-                        else if (this.weapon.ability == "poisonI" && justDealt > 0)
-                        {
-                            ArtificialIntelligenceAccess[i].acidI = true;
-                            ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 90000;
-                        }
-                        else if (this.weapon.ability == "poisonII" && justDealt > 0)
-                        {
-                            ArtificialIntelligenceAccess[i].acidII = true;
-                            ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 90000;
-                        }
-                        else if (this.weapon.ability == "poisonIII" && justDealt > 0)
-                        {
-                            ArtificialIntelligenceAccess[i].acidIII = true;
-                            ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 90000;
-                        }
-                        else if (this.weapon.ability == "poisonIV" && justDealt > 0)
-                        {
-                            ArtificialIntelligenceAccess[i].acidIV = true;
-                            ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 90000;
-                        }
-                        else if (this.weapon.ability == "poisonV" && justDealt > 0)
-                        {
-                            ArtificialIntelligenceAccess[i].acidV = true;
-                            ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 90000;
-                        }
-                        else if (this.weapon.ability == "stunI")
-                        {
-                            ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
-                            ArtificialIntelligenceAccess[i].stunTimer = 5;
-                            ArtificialIntelligenceAccess[i].stunI = true;
-                        }
-                        else if (this.weapon.ability == "stunII")
-                        {
-                            ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
-                            ArtificialIntelligenceAccess[i].stunTimer = 5;
-                            ArtificialIntelligenceAccess[i].stunII = true;
-                        }
-                        else if (this.weapon.ability == "stunIII")
-                        {
-                            ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
-                            ArtificialIntelligenceAccess[i].stunTimer = 5;
-                            ArtificialIntelligenceAccess[i].stunIII = true;
-                        }
-                        else if (this.weapon.ability == "stunIV")
-                        {
-                            ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
-                            ArtificialIntelligenceAccess[i].stunTimer = 5;
-                            ArtificialIntelligenceAccess[i].stunIV = true;
-                        }
-                        else if (this.weapon.ability == "stunV")
-                        {
-                            ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
-                            ArtificialIntelligenceAccess[i].stunTimer = 5;
-                            ArtificialIntelligenceAccess[i].stunV = true;
-                        }
-                        else if (this.weapon.ability == "undying" && ArtificialIntelligenceAccess[i].health <= 0)
-                        {
-                            ArtificialIntelligenceAccess[i].undeath = true;
+                            else if (this.weapon.ability == "freezingStun")
+                            {
+                                ArtificialIntelligenceAccess[i].frozenTime = new Date().getTime();
+                                ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
+                                ArtificialIntelligenceAccess[i].stunTimer = 5;
+                                ArtificialIntelligenceAccess[i].stunIV = true;
+                            }
+                            else if (this.weapon.ability == "knockbackI" && justDealt > 0)
+                            {
+                                var twrdsUnit = Math.atan2(Y - ArtificialIntelligenceAccess[i].Y, X - ArtificialIntelligenceAccess[i].X);
+                                ArtificialIntelligenceAccess[i].X -= Math.cos(twrdsUnit) * 50;
+                                ArtificialIntelligenceAccess[i].Y -= Math.sin(twrdsUnit) * 50;
+                                ArtificialIntelligenceAccess[i].stunIII = true;
+                                ArtificialIntelligenceAccess[i].stunTimer = 3;
+                                ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
+                            }
+                            else if (this.weapon.ability == "knockbackII" && justDealt > 0)
+                            {
+                                var twrdsUnit = Math.atan2(Y - ArtificialIntelligenceAccess[i].Y, X - ArtificialIntelligenceAccess[i].X);
+                                ArtificialIntelligenceAccess[i].X -= Math.cos(twrdsUnit) * 100;
+                                ArtificialIntelligenceAccess[i].Y -= Math.sin(twrdsUnit) * 100;
+                                ArtificialIntelligenceAccess[i].stunIII = true;
+                                ArtificialIntelligenceAccess[i].stunTimer = 4;
+                                ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
+                            }
+                            else if (this.weapon.ability == "knockbackIII" && justDealt > 0)
+                            {
+                                var twrdsUnit = Math.atan2(Y - ArtificialIntelligenceAccess[i].Y, X - ArtificialIntelligenceAccess[i].X);
+                                ArtificialIntelligenceAccess[i].X -= Math.cos(twrdsUnit) * 150;
+                                ArtificialIntelligenceAccess[i].Y -= Math.sin(twrdsUnit) * 150;
+                                ArtificialIntelligenceAccess[i].stunIII = true;
+                                ArtificialIntelligenceAccess[i].stunTimer = 4;
+                                ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
+                            }
+                            else if (this.weapon.ability == "knockbackIV" && justDealt > 0)
+                            {
+                                var twrdsUnit = Math.atan2(Y - ArtificialIntelligenceAccess[i].Y, X - ArtificialIntelligenceAccess[i].X);
+                                ArtificialIntelligenceAccess[i].X -= Math.cos(twrdsUnit) * 150;
+                                ArtificialIntelligenceAccess[i].Y -= Math.sin(twrdsUnit) * 150;
+                                ArtificialIntelligenceAccess[i].stunIV = true;
+                                ArtificialIntelligenceAccess[i].stunTimer = 4;
+                                ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
+                            }
+                            else if (this.weapon.ability == "knockbackV" && justDealt > 0)
+                            {
+                                var twrdsUnit = Math.atan2(Y - ArtificialIntelligenceAccess[i].Y, X - ArtificialIntelligenceAccess[i].X);
+                                ArtificialIntelligenceAccess[i].X -= Math.cos(twrdsUnit) * 160;
+                                ArtificialIntelligenceAccess[i].Y -= Math.sin(twrdsUnit) * 160;
+                                ArtificialIntelligenceAccess[i].stunIV = true;
+                                ArtificialIntelligenceAccess[i].stunTimer = 5;
+                                ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
+                            }
+                            else if (this.weapon.ability == "shock")
+                            {
+                                ArtificialIntelligenceAccess[i].shockedTime = new Date().getTime();
+                                ArtificialIntelligenceAccess[i].shockedTime2 = new Date().getTime();
+                            }
+                            else if (this.weapon.ability == "poisonI" && justDealt > 0)
+                            {
+                                ArtificialIntelligenceAccess[i].acidI = true;
+                                ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 90000;
+                            }
+                            else if (this.weapon.ability == "poisonII" && justDealt > 0)
+                            {
+                                ArtificialIntelligenceAccess[i].acidII = true;
+                                ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 90000;
+                            }
+                            else if (this.weapon.ability == "poisonIII" && justDealt > 0)
+                            {
+                                ArtificialIntelligenceAccess[i].acidIII = true;
+                                ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 90000;
+                            }
+                            else if (this.weapon.ability == "poisonIV" && justDealt > 0)
+                            {
+                                ArtificialIntelligenceAccess[i].acidIV = true;
+                                ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 90000;
+                            }
+                            else if (this.weapon.ability == "poisonV" && justDealt > 0)
+                            {
+                                ArtificialIntelligenceAccess[i].acidV = true;
+                                ArtificialIntelligenceAccess[i].acidTime = new Date().getTime() + 90000;
+                            }
+                            else if (this.weapon.ability == "stunI")
+                            {
+                                ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
+                                ArtificialIntelligenceAccess[i].stunTimer = 5;
+                                ArtificialIntelligenceAccess[i].stunI = true;
+                            }
+                            else if (this.weapon.ability == "stunII")
+                            {
+                                ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
+                                ArtificialIntelligenceAccess[i].stunTimer = 5;
+                                ArtificialIntelligenceAccess[i].stunII = true;
+                            }
+                            else if (this.weapon.ability == "stunIII")
+                            {
+                                ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
+                                ArtificialIntelligenceAccess[i].stunTimer = 5;
+                                ArtificialIntelligenceAccess[i].stunIII = true;
+                            }
+                            else if (this.weapon.ability == "stunIV")
+                            {
+                                ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
+                                ArtificialIntelligenceAccess[i].stunTimer = 5;
+                                ArtificialIntelligenceAccess[i].stunIV = true;
+                            }
+                            else if (this.weapon.ability == "stunV")
+                            {
+                                ArtificialIntelligenceAccess[i].stunTime = new Date().getTime();
+                                ArtificialIntelligenceAccess[i].stunTimer = 5;
+                                ArtificialIntelligenceAccess[i].stunV = true;
+                            }
+                            else if (this.weapon.ability == "undying" && ArtificialIntelligenceAccess[i].health <= 0)
+                            {
+                                ArtificialIntelligenceAccess[i].undeath = true;
+                            }
                         }
                     }
                 }

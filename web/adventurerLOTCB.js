@@ -644,6 +644,9 @@ function Adventurer()
     this.ketsuekiBlood = 0.001;
     this.etherealizeKeeper = new Date().getTime();
     this.etherealizeTime = 0;
+    this.boundTimer = new Date().getTime();
+    this.boundTime = 0;
+    this.bound = false;
 
     //faction variables
     this.factionToggle = false;
@@ -3882,6 +3885,20 @@ function Adventurer()
                 this.stunnedXV = false; //fully paralyzed and cannot attack
                 this.wobea = false;
             }
+
+            if (this.boundTime >= 1)
+            {
+                this.bound = true;
+                if (new Date().getTime() - this.boundTimer >= 1000)
+                {
+                    this.boundTimer = new Date().getTime();
+                    this.boundTime -= 1;
+                }
+            }
+            if (this.boundTime <= 0)
+            {
+                this.bound = false;
+            }
         };
 
         this.webbedTimer = function()
@@ -6023,6 +6040,10 @@ function Adventurer()
             return false;
         }
         else if (this.stunnedXV == true)
+        {
+            return false;
+        }
+        else if (this.bound == true)
         {
             return false;
         }

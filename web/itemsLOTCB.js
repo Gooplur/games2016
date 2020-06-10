@@ -43215,6 +43215,71 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
         }
+        else if (this.type == "mudmanHand")
+        {
+            //For All Items
+            this.identity = "Mudman Hand";
+            this.weight = 0.26;
+            this.size = 11;
+            if (player.raceName == "Noth")
+            {
+                this.description = "The severed hand of a mudman.";
+                this.intForDes = 0;
+                this.intDescription = "Mud-people are the cursed ancestors of the Noth who had fallen in battle and whose fury and will to defend Noth could not be extinguished even by death...";
+            }
+            else
+            {
+                this.description = "The hand of a mudman.";
+                this.intForDes = 5;
+                this.intDescription = "In Nothian folklore, mud-people are the cursed ancestors of the Noth who had fallen in battle and whose fury and will to defend Noth could not be extinguished even by death...";
+            }
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 0; // at max, buy for 0.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "mudmanTeeth")
+        {
+            //For All Items
+            this.identity = "Mudman Teeth";
+            this.weight = 0.11;
+            this.size = 7;
+            if (player.raceName == "Noth")
+            {
+                this.description = "The teeth of a mudman.";
+                this.intForDes = 10;
+                this.intDescription = "Mudman teeth are a changer in alchemy. Some hypothesize that mudmen are a goblinoid race, though folkloric curses have not been ruled out...";
+            }
+            else
+            {
+                this.description = "The hand of a mudman.";
+                this.intForDes = 5;
+                if (player.getIntelligence() >= 10)
+                {
+                    this.intDescription = "Mudman teeth are a changer in alchemy. Some hypothesize that mudmen are a goblinoid race, though folkloric curses have not been ruled out...";
+                }
+                else
+                {
+                    this.intDescription = "Some hypothesize that mudmen are a goblinoid race endemic to Noth, though folkloric curses have not been ruled out...";
+                }
+            }
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 2; // at max, sell for 2.
+        }
         else if (this.type == "zetianBlowgun")
         {
             //For All Items
@@ -44248,6 +44313,69 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 16 - Math.floor(player.getCharisma() / 6); // at max, buy for 8.
             this.sellValue = 3 + Math.floor(player.getCharisma() / 15); // at max, sell for 6.
+        }
+        else if (this.type == "mudteethNecklace")
+        {
+            //For All Items
+            this.identity = "Mudteeth Necklace";
+            this.weight = 0.13;
+            this.size = 11;
+            this.description = "A necklace made with the teeth of a mudman.";
+            this.intForDes = 1;
+            this.intDescription = "In Noth folklore it is thought that wearing the teeth of mudmen will grant the wearer some of their residual ancestral power.";
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "necklace";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.eminenceRequirement = 0;
+            this.magicalProtection = 0;
+            this.warmthRetention = 0;
+            this.thirstRetention = 0;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 1;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 1;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 0;
+            this.hungerBonus = 1;
+            this.thirstBonus = 0;
+            this.warmthBonus = 0;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            if (this.raceName == "Noth")
+            {
+                this.intForCraft = 3;
+            }
+            else
+            {
+                this.intForCraft = 17;
+            }
+            this.ingredients = [["Noth String", 1], ["Mudman Teeth", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 13 - Math.floor(player.getCharisma() / 25); // at max, buy for 11.
+            this.sellValue = 6 + Math.floor(player.getCharisma() / 10); // at max, sell for 11.
         }
         else if (this.type == "rabbitFootNecklace")
         {
@@ -59631,6 +59759,21 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "mudteethNecklace")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mudm, 1036, 3046, 37, 39, X - this.X + (1/2 * CCC.width) - (1/2 * 37 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 39 * 1), 37 * 1, 39 * 1);
+        }
+        else if (this.type == "mudmanTeeth")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mudm, 1036, 3085, 37, 39, X - this.X + (1/2 * CCC.width) - (1/2 * 37 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 39 * 1), 37 * 1, 39 * 1);
+        }
+        else if (this.type == "mudmanHand")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mudm, 67, 11, 37, 39, X - this.X + (1/2 * CCC.width) - (1/2 * 37 * 0.77), Y - this.Y + (1/2 * CCC.height) - (1/2 * 39 * 0.77), 37 * 0.77, 39 * 0.77);
+        }
         else if (this.type == "udnalMeat")
         {
             XXX.beginPath();
@@ -67519,6 +67662,21 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(candlewic, 61, 201, 27, 29, this.invX - (1/2 * 27 * 1.5), this.invY - (1/2 * 29 * 1.5), 27 * 1.5, 29 * 1.5);
         }
+        else if (this.type == "mudteethNecklace")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mudm, 1036, 3046, 37, 39, this.invX - (1/2 * 37 * 1), this.invY - (1/2 * 39 * 1), 37 * 1, 39 * 1);
+        }
+        else if (this.type == "mudmanTeeth")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mudm, 1036, 3085, 37, 39, this.invX - (1/2 * 37 * 1), this.invY - (1/2 * 39 * 1), 37 * 1, 39 * 1);
+        }
+        else if (this.type == "mudmanHand")
+        {
+            LXX.beginPath();
+            LXX.drawImage(mudm, 67, 11, 37, 39, this.invX - (1/2 * 37 * 0.77), this.invY - (1/2 * 39 * 0.77), 37 * 0.77, 39 * 0.77);
+        }
         else if (this.type == "udnalMeat")
         {
             LXX.beginPath();
@@ -75391,6 +75549,21 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "mudteethNecklace")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mudm, 1036, 3046, 37, 39, this.invX - (1/2 * 37 * 1), this.invY - (1/2 * 39 * 1), 37 * 1, 39 * 1);
+        }
+        else if (this.type == "mudmanTeeth")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mudm, 1036, 3085, 37, 39, this.invX - (1/2 * 37 * 1), this.invY - (1/2 * 39 * 1), 37 * 1, 39 * 1);
+        }
+        else if (this.type == "mudmanHand")
+        {
+            XXX.beginPath();
+            XXX.drawImage(mudm, 67, 11, 37, 39, this.invX - (1/2 * 37 * 0.77), this.invY - (1/2 * 39 * 0.77), 37 * 0.77, 39 * 0.77);
         }
         else if (this.type == "udnalMeat")
         {

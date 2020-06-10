@@ -5180,6 +5180,7 @@ function theLegend()
     allWorn.push(new Item("redKimono", false)); //213
     allWorn.push(new Item("blackwoodSorceressRobe", false)); //214
     allWorn.push(new Item("blackwoodSorcererRobe", false)); //215
+    allWorn.push(new Item("mudteethNecklace", false)); //216
 
 
 
@@ -5759,6 +5760,7 @@ function theLegend()
     jewelry.push(new Item("berulnToothNecklace", false));
     jewelry.push(new Item("mofuFive", false));
     jewelry.push(new Item("rabbitFootNecklace", false));
+    jewelry.push(new Item("mudteethNecklace", false));
 
 //Alchemy (Potions and mixtures crafted at an alchemy lab station)
     alchemy = [];

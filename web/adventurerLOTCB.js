@@ -9360,6 +9360,10 @@ function Adventurer()
         {
             necklace = allWorn[180];
         }
+        else if (this.necklaceEquipped == "mudteethNecklace")
+        {
+            necklace = allWorn[216];
+        }
         else
         {
             necklace = allWorn[0];
@@ -12449,7 +12453,7 @@ function Adventurer()
                     }
                 }
             }
-            else if (this.weaponIsRanged == true && this.spell == "none")
+            else if (this.weaponIsRanged == true && this.spell == "none" && this.getCanAttack())
             {
                 for (var i = Inventory.length - 1; i > -1; i--)
                 {
@@ -12639,7 +12643,7 @@ function Adventurer()
                     }
                 }
             }
-            else if (this.weaponEquipped == "none" && this.spell != "none")
+            else if (this.weaponEquipped == "none" && this.spell != "none" && this.getCanAttack())
             {
                 if (this.casting == false && this.will >= this.spell.cost && new Date().getTime() - this.castingCooldown >= (this.spell.cooldown * 1000))
                 {

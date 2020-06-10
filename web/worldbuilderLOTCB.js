@@ -700,6 +700,8 @@ function worldBuilder()
 
             outlineBuilder(7, 5, "vardanianGrass", -1108, 705);
 
+            outlineBuilder(1, 5, "vardanianGrass", -1099, 710);
+
             outlineBuilder(1, 10, "vardanianStone", -1108, 720);
             outlineBuilder(9, 1, "vardanianStone", -1098, 719);
             outlineBuilder(1, 9, "vardanianStone", -1097, 719);

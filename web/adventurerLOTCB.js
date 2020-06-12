@@ -647,6 +647,7 @@ function Adventurer()
     this.boundTimer = new Date().getTime();
     this.boundTime = 0;
     this.bound = false;
+    this.flying = false;
 
     //faction variables
     this.factionToggle = false;
@@ -31315,7 +31316,7 @@ function Adventurer()
                         {
                             if (focusUnit.healthMAX >= 72 && this.form == "wendigo" || this.form != "wendigo")
                             {
-                                if (this.form != "vampire")
+                                if (this.form != "vampire" && this.flying != true)
                                 {
                                     if (focusUnit.insect == false && focusUnit.meek == false)
                                     {
@@ -31340,7 +31341,7 @@ function Adventurer()
                 {
                     if (this.form != "werewolf")
                     {
-                        if (this.form != "vampire")
+                        if (this.form != "vampire" && this.flying != true)
                         {
                             return true; //d == this.sizeRadius + focusUnit.sizeRadius :: this is the point at which the two units would be exactly touching eachother with no overlap.
                         }

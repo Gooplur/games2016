@@ -25,6 +25,16 @@ function gameloopOfDestiny(time)
         LXX.globalAlpha = 1;
     }
 
+    //player flying
+    if (player.form == "vampire" && wKey)
+    {
+        player.flying = true;
+    }
+    else
+    {
+        player.flying = false;
+    }
+
     //this fixes the noticed box geting stuck sometimes
     if (gameLoopNumber % 50 == 0)
     {

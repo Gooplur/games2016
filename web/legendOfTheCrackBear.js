@@ -3741,7 +3741,7 @@ function over(kind, j, i, extraX, extraY)
     {
         if (kind == "sea" || kind == "sewer" || kind == "swamp"  || kind == "hollow")
         {
-            if (player.form != "vampire" || wKey != true)
+            if (!player.flying)
             {
                 player.land = false;
                 player.water = true;
@@ -3782,7 +3782,7 @@ function over(kind, j, i, extraX, extraY)
             if (player.nonStick == false)
             {
                 player.sticky = true;
-                if (player.form != "vampire" || wKey != true)
+                if (!player.flying)
                 {
                     player.stunnedTime = 2;
                     player.stunnedI = true;

@@ -1460,6 +1460,19 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
         {
             this.orientToCaster(10, - 1 / 2 * Math.PI);
         }
+        //AVATAR ESSENCE
+        if (this.spellType == "avatarEssence" || this.spellType == "avatarEssenceBig")
+        {
+            this.orientToCaster(0, 0);
+            this.rotation = 2*Math.random()*Math.PI;
+            this.size = 1;
+            this.fade = 0.94
+            this.zIndex = 2;
+            if (this.spellType == "avatarEssenceBig")
+            {
+                this.size = 2.2
+            }
+        }
         //DUSTS
         if (this.spellType == "glowDust" || this.spellType == "vrezinDust" || this.spellType == "irilDust" || this.spellType == "pimberDust" || this.spellType == "shomeDust")
         {
@@ -4935,6 +4948,40 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                 else
                 {
                     //todo add farting for AI
+                }
+            }
+
+            if (this.spellType == "avatarEssence" || this.spellType == "avatarEssenceBig")
+            {
+                if (caster)
+                {
+                    XXX.save();
+                    XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                    this.spin += 0.145;
+                    this.turn += this.spin;
+                    this.size -= 0.01;
+                    if (this.spellType == "avatarEssenceBig")
+                    {
+                        this.size -= 0.014;
+                    }
+                    this.fade -= 0.02;
+                    XXX.globalAlpha = this.fade;
+                    XXX.rotate(this.turn);
+                    XXX.drawImage(gel, 130, 7, 23, 30, - (1/2 * 23 * this.size), - (1/2 * 30 * this.size), 23 * this.size, 30 * this.size);
+                    XXX.restore();
+                    if (this.spellType == "avatarEssenceBig")
+                    {
+                        this.project(this.rotation, 3400, 1, false);
+                    }
+                    else
+                    {
+                        this.project(this.rotation, 2200, 1, false);
+                    }
+                    this.spellTimer(3);
+                }
+                else
+                {
+                    //todo add avatarEssence for AI
                 }
             }
 

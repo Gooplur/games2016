@@ -648,6 +648,10 @@ function Adventurer()
     this.boundTime = 0;
     this.bound = false;
     this.flying = false;
+    this.avatarPhase = false;
+    this.avatar = false;
+    this.avatarFly = false;
+    this.avatarKeepWep = "none";
 
     //faction variables
     this.factionToggle = false;
@@ -1356,6 +1360,7 @@ function Adventurer()
             var holuimFlag = false;
             var blackwoodFlag = false;
             var antidecayFlag = false;
+            var avatarFlag = false;
 
             //search worn ability list for abilities
             for (var i = 0; i < this.AdAbility.length; i++)
@@ -1364,6 +1369,10 @@ function Adventurer()
                 {
                     cyborgFlag = true;
                     radResFlag = true;
+                }
+                if (this.AdAbility[i] == "avatar")
+                {
+                    avatarFlag = true;
                 }
                 if (this.AdAbility[i] == "blackwood")
                 {
@@ -1469,6 +1478,77 @@ function Adventurer()
                         map = "world";
                     }
                 }
+            }
+
+            //avatar
+            if (avatarFlag == true)
+            {
+                this.avatar = true;
+                if (shiftKey)
+                {
+                    eKey = false;
+                    spaceKey = false;
+                    qKey = false;
+                    if (this.weaponEquipped != "avatar")
+                    {
+                        this.avatarKeepWep = this.weaponEquipped;
+                        this.avatarFly = true;
+                    }
+                    this.weaponEquipped = "avatar";
+                    magicList.push(new Magic({ID:"avatarEssenceBig"}, true));
+                    magicList.push(new Magic({ID:"avatarEssenceBig"}, true));
+                }
+                else if (this.avatarFly == true)
+                {
+                    this.avatarFly = false;
+                    this.weaponEquipped = this.avatarKeepWep;
+                    this.avatarKeepWep = "none";
+                }
+
+                if (zKey == true)
+                {
+                    magicList.push(new Magic({ID:"avatarEssence"}, true));
+                    magicList.push(new Magic({ID:"avatarEssence"}, true));
+                    magicList.push(new Magic({ID:"avatarEssence"}, true));
+                    magicList.push(new Magic({ID:"avatarEssence"}, true));
+                    magicList.push(new Magic({ID:"avatarEssence"}, true));
+                    magicList.push(new Magic({ID:"avatarEssence"}, true));
+                    magicList.push(new Magic({ID:"avatarEssence"}, true));
+                    magicList.push(new Magic({ID:"avatarEssence"}, true));
+                    magicList.push(new Magic({ID:"avatarEssence"}, true));
+                    magicList.push(new Magic({ID:"avatarEssence"}, true));
+                    magicList.push(new Magic({ID:"avatarEssence"}, true));
+                    magicList.push(new Magic({ID:"avatarEssence"}, true));
+                    magicList.push(new Magic({ID:"avatarEssence"}, true));
+                    magicList.push(new Magic({ID:"avatarEssence"}, true));
+                    magicList.push(new Magic({ID:"avatarEssence"}, true));
+                    magicList.push(new Magic({ID:"avatarEssence"}, true));
+                    magicList.push(new Magic({ID:"avatarEssence"}, true));
+                    magicList.push(new Magic({ID:"avatarEssence"}, true));
+                    magicList.push(new Magic({ID:"avatarEssence"}, true));
+                    magicList.push(new Magic({ID:"avatarEssence"}, true));
+
+                    zKey = false;
+                    if (this.avatarPhase == true)
+                    {
+                        this.avatarPhase = false;
+                    }
+                    else
+                    {
+                        this.avatarPhase = true;
+                    }
+                }
+            }
+            else
+            {
+                if (this.avatarFly == true)
+                {
+                    this.avatarFly = false;
+                    this.weaponEquipped = this.avatarKeepWep;
+                    this.avatarKeepWep = "none";
+                }
+                this.avatar = false;
+                this.avatarPhase = false;
             }
 
             //antiDecay
@@ -4910,19 +4990,48 @@ function Adventurer()
                 }
             }
 
-            if (this.etherealizeTime > 0)
+            if (this.avatar != true)
             {
-                if (new Date().getTime() - this.etherealizeKeeper > 1000)
+                if (this.etherealizeTime > 0)
                 {
-                    this.etherealizeKeeper = new Date().getTime();
-                    this.etherealizeTime -= 1;
+                    if (new Date().getTime() - this.etherealizeKeeper > 1000)
+                    {
+                        this.etherealizeKeeper = new Date().getTime();
+                        this.etherealizeTime -= 1;
+                    }
+                    this.ethereal = true;
                 }
-                this.ethereal = true;
+                else
+                {
+                    this.ethereal = false;
+                    this.etherealizeTime = 0;
+                }
             }
             else
             {
-                this.ethereal = false;
                 this.etherealizeTime = 0;
+                if (this.avatarPhase == true)
+                {
+                    if (gameLoopNumber % 3 == 0)
+                    {
+                        magicList.push(new Magic({ID:"avatarEssence"}, true));
+                        magicList.push(new Magic({ID:"avatarEssence"}, true));
+                        magicList.push(new Magic({ID:"avatarEssence"}, true));
+                        magicList.push(new Magic({ID:"avatarEssence"}, true));
+                        magicList.push(new Magic({ID:"avatarEssence"}, true));
+                        magicList.push(new Magic({ID:"avatarEssence"}, true));
+                        magicList.push(new Magic({ID:"avatarEssence"}, true));
+                        magicList.push(new Magic({ID:"avatarEssence"}, true));
+                        magicList.push(new Magic({ID:"avatarEssence"}, true));
+                        magicList.push(new Magic({ID:"avatarEssence"}, true));
+                    }
+
+                    this.ethereal = true;
+                }
+                else
+                {
+                    this.ethereal = "avatar";
+                }
             }
 
             //This enables the poisoned mini notice if any type of any category of poison is in effect.
@@ -6207,6 +6316,10 @@ function Adventurer()
             {
                 return 300;
             }
+        }
+        else if (this.weaponEquipped == "avatar")
+        {
+            return 250;
         }
         else if (this.gojiiPoisoned == true) //increases health a lot!!!
         {
@@ -8018,7 +8131,7 @@ function Adventurer()
     //walking, running, sneaking, etc.
     this.movement = function ()
     {
-        if (this.land || this.water && this.waterwalking)
+        if (this.land && this.form == false && this.weaponEquipped != "avatar" || this.water && this.waterwalking && this.form == false && this.weaponEquipped != "avatar")
         {
             // self = this because apparently you can not use this in a setTimeout which I needed to use to pace the walking animation speed.
             var self = this;
@@ -9207,6 +9320,10 @@ function Adventurer()
         else if (this.outfitEquipped == "blackwoodSorcererRobe")
         {
             outfit = allWorn[215];
+        }
+        else if (this.outfitEquipped == "avatarOutfit")
+        {
+            outfit = allWorn[217];
         }
         else
         {
@@ -11091,6 +11208,26 @@ function Adventurer()
                 XXX.globalAlpha = 0.4;
             }
             XXX.drawImage(polypol, 622, 3, 23, 22, -(1 / 2 * 23 * 1.4) - 0, -(1 / 2 * 22 * 1.4) + 0, 23 * 1.4, 22 * 1.4);
+            XXX.restore();
+        }
+        else if (this.outfitEquipped == "avatarOutfit")
+        {
+            this.outfitZ = true;
+            XXX.save();
+            XXX.translate(this.myScreenX, this.myScreenY);
+            XXX.rotate(this.rotation - (1 / 2 * Math.PI));
+            if (this.subtlety)
+            {
+                XXX.globalAlpha = 0.4;
+            }
+            if (this.avatar == true && shiftKey)
+            {
+                XXX.drawImage(gel, 5, 1, 51, 50, -(1 / 2 * 51 * 2) - 0, -(1 / 2 * 50 * 2) + 0, 51 * 2, 50 * 2);
+            }
+            else
+            {
+                XXX.drawImage(gel, 5, 1, 51, 50, -(1 / 2 * 51 * 1.2) - 0, -(1 / 2 * 50 * 1.2) + 0, 51 * 1.2, 50 * 1.2);
+            }
             XXX.restore();
         }
         else if (this.outfitEquipped == "freydicRoyalDress")
@@ -16676,6 +16813,11 @@ function Adventurer()
 
 
         //ARM VARIANTS (player weapon types)
+        //AVATAR FORM
+        if (this.weaponEquipped == "avatar")
+        {
+
+        }
         //FISTS
         if (this.weaponEquipped == "none" && this.spell == "none" && this.hide != true && this.guillotine != true)
         {
@@ -21409,7 +21551,7 @@ function Adventurer()
                     this.attackManual = true;
 
                     //throw on this frame
-                    playerProjectiles.push(new Projectile(this.weaponEquipped, X + Math.cos(this.rotation + Math.PI) * (this.projectileX + this.projXAd), Y + Math.sin(this.rotation + Math.PI) * (this.projectileY + this.projYAd), this.rotation + Math.PI, this.weapon.speed, this.weapon.range, this.weapon.negateArmour, playerProjectiles, this.weapon.damage, this.weapon.magicalDamage, "none", false));
+                    playerProjectiles.push(new Projectile(this.weaponEquipped, X + Math.cos(this.rotation + Math.PI) * (this.projectileX + this.projXAd), Y + Math.sin(this.rotation + Math.PI) * (this.projectileY + this.projYAd), this.rotation + Math.PI, this.weapon.speed, this.weapon.range, this.weapon.negateArmour, playerProjectiles, this.weapon.damage, this.weapon.magicalDamage, "none", false, "Player", this.ethereal));
                 }
             }
             else if (Math.floor(this.stage) >= 6)
@@ -21548,7 +21690,7 @@ function Adventurer()
                     this.attackManual = true;
 
                     //throw on this frame
-                    playerProjectiles.push(new Projectile(this.weaponEquipped, X + Math.cos(this.rotation + Math.PI) * (this.projectileX + this.projXAd), Y + Math.sin(this.rotation + Math.PI) * (this.projectileY + this.projYAd), this.rotation + Math.PI, this.weapon.speed, this.weapon.range, this.weapon.negateArmour, playerProjectiles, this.weapon.damage, this.weapon.magicalDamage, "none", false));
+                    playerProjectiles.push(new Projectile(this.weaponEquipped, X + Math.cos(this.rotation + Math.PI) * (this.projectileX + this.projXAd), Y + Math.sin(this.rotation + Math.PI) * (this.projectileY + this.projYAd), this.rotation + Math.PI, this.weapon.speed, this.weapon.range, this.weapon.negateArmour, playerProjectiles, this.weapon.damage, this.weapon.magicalDamage, "none", false, "Player", this.ethereal));
                 }
             }
             else if (Math.floor(this.stage) >= 8)
@@ -21744,7 +21886,7 @@ function Adventurer()
                         this.attackManual = true;
 
                         //throw on this frame
-                        playerProjectiles.push(new Projectile(this.weaponEquipped, X + Math.cos(this.rotation + Math.PI) * (this.projectileX + this.projXAd), Y + Math.sin(this.rotation + Math.PI) * (this.projectileY + this.projYAd), this.rotation + Math.PI, this.weapon.speed, this.weapon.range, this.weapon.negateArmour, playerProjectiles, this.weapon.damage, this.weapon.magicalDamage, "none", false));
+                        playerProjectiles.push(new Projectile(this.weaponEquipped, X + Math.cos(this.rotation + Math.PI) * (this.projectileX + this.projXAd), Y + Math.sin(this.rotation + Math.PI) * (this.projectileY + this.projYAd), this.rotation + Math.PI, this.weapon.speed, this.weapon.range, this.weapon.negateArmour, playerProjectiles, this.weapon.damage, this.weapon.magicalDamage, "none", false, "Player", this.ethereal));
                     }
 
                     if (Math.floor(this.stage) >= 6)
@@ -21929,7 +22071,7 @@ function Adventurer()
                         this.attackManual = true;
 
                         //throw on this frame
-                        playerProjectiles.push(new Projectile(this.weaponEquipped, X + Math.cos(this.rotation + Math.PI) * (this.projectileX + this.projXAd), Y + Math.sin(this.rotation + Math.PI) * (this.projectileY + this.projYAd), this.rotation + Math.PI, this.weapon.speed, this.weapon.range, this.weapon.negateArmour, playerProjectiles, this.weapon.damage, this.weapon.magicalDamage, "none", false));
+                        playerProjectiles.push(new Projectile(this.weaponEquipped, X + Math.cos(this.rotation + Math.PI) * (this.projectileX + this.projXAd), Y + Math.sin(this.rotation + Math.PI) * (this.projectileY + this.projYAd), this.rotation + Math.PI, this.weapon.speed, this.weapon.range, this.weapon.negateArmour, playerProjectiles, this.weapon.damage, this.weapon.magicalDamage, "none", false, "Player", this.ethereal));
                     }
 
                     if (Math.floor(this.stage) >= 6)
@@ -22040,7 +22182,7 @@ function Adventurer()
                     this.attackManual = true;
 
                     //throw on this frame
-                    playerProjectiles.push(new Projectile(this.weaponEquipped, X + Math.cos(this.rotation + Math.PI) * (this.projectileX + this.projXAd), Y + Math.sin(this.rotation + Math.PI) * (this.projectileY + this.projYAd), this.rotation + Math.PI, this.weapon.speed, this.weapon.range, this.weapon.negateArmour, playerProjectiles, this.weapon.damage, this.weapon.magicalDamage, "none", false));
+                    playerProjectiles.push(new Projectile(this.weaponEquipped, X + Math.cos(this.rotation + Math.PI) * (this.projectileX + this.projXAd), Y + Math.sin(this.rotation + Math.PI) * (this.projectileY + this.projYAd), this.rotation + Math.PI, this.weapon.speed, this.weapon.range, this.weapon.negateArmour, playerProjectiles, this.weapon.damage, this.weapon.magicalDamage, "none", false, "Player", this.ethereal));
                 }
             }
             else if (Math.floor(this.stage) >= 4)
@@ -31209,7 +31351,7 @@ function Adventurer()
                     crossbowGun.volume = 0.25;
                     crossbowGun.currentTime = 0;
                     crossbowGun.play();
-                    playerProjectiles.push(new Projectile("cheatMachineGunBullet", X + Math.cos(this.rotation) * (this.projectileX + this.projXAd), Y + Math.sin(this.rotation) * (this.projectileY + this.projYAd), this.rotation, 18, 5000, 250, playerProjectiles));
+                    playerProjectiles.push(new Projectile("cheatMachineGunBullet", X + Math.cos(this.rotation) * (this.projectileX + this.projXAd), Y + Math.sin(this.rotation) * (this.projectileY + this.projYAd), this.rotation, 18, 5000, 250, playerProjectiles, false, false, "none", false, "Player", this.ethereal));
                 }
                 else
                 {
@@ -31225,7 +31367,7 @@ function Adventurer()
                         blunder.play();
                         for (var k = 0; k < 5; k++)
                         {
-                            playerProjectiles.push(new Projectile(loaded.type, X + Math.cos(this.rotation) * (this.projectileX + this.projXAd), Y + Math.sin(this.rotation) * (this.projectileY + this.projYAd), this.rotation + (Math.random() * ((Math.PI / 360) * 50)) - ((Math.PI / 360) * 25), projector.speed, projector.range, projector.negateArmour, playerProjectiles));
+                            playerProjectiles.push(new Projectile(loaded.type, X + Math.cos(this.rotation) * (this.projectileX + this.projXAd), Y + Math.sin(this.rotation) * (this.projectileY + this.projYAd), this.rotation + (Math.random() * ((Math.PI / 360) * 50)) - ((Math.PI / 360) * 25), projector.speed, projector.range, projector.negateArmour, playerProjectiles, false, false, "none", false, "Player", this.ethereal));
                         }
                     }
                     else if (player.weaponEquipped == "m16Carbine")
@@ -31234,21 +31376,21 @@ function Adventurer()
                         crossbowGun.volume = 0.5;
                         carbineShot.currentTime = 0;
                         carbineShot.play();
-                        playerProjectiles.push(new Projectile("5.56MMRound", X + Math.cos(this.rotation) * (this.projectileX + this.projXAd), Y + Math.sin(this.rotation) * (this.projectileY + this.projYAd), this.rotation, projector.speed, projector.range, projector.negateArmour, playerProjectiles));
+                        playerProjectiles.push(new Projectile("5.56MMRound", X + Math.cos(this.rotation) * (this.projectileX + this.projXAd), Y + Math.sin(this.rotation) * (this.projectileY + this.projYAd), this.rotation, projector.speed, projector.range, projector.negateArmour, playerProjectiles, false, false, "none", false, "Player", this.ethereal));
                     }
                     else if (player.weaponEquipped == "shotgun")
                     {
                         shotgunShot.currentTime = 0;
                         shotgunShot.play();
-                        playerProjectiles.push(new Projectile("shotgunRound", X + Math.cos(this.rotation) * (this.projectileX + this.projXAd), Y + Math.sin(this.rotation) * (this.projectileY + this.projYAd), this.rotation, projector.speed + Math.random(), projector.range, projector.negateArmour, playerProjectiles));
+                        playerProjectiles.push(new Projectile("shotgunRound", X + Math.cos(this.rotation) * (this.projectileX + this.projXAd), Y + Math.sin(this.rotation) * (this.projectileY + this.projYAd), this.rotation, projector.speed + Math.random(), projector.range, projector.negateArmour, playerProjectiles, false, false, "none", false, "Player", this.ethereal));
                         for (var k = 0; k < 10; k++)
                         {
-                            playerProjectiles.push(new Projectile("shotgunRound", X + Math.cos(this.rotation) * (this.projectileX + this.projXAd), Y + Math.sin(this.rotation) * (this.projectileY + this.projYAd), this.rotation + (Math.random() * ((Math.PI / 360) * 20)) - ((Math.PI / 360) * 10), projector.speed + Math.random(), projector.range, projector.negateArmour, playerProjectiles));
+                            playerProjectiles.push(new Projectile("shotgunRound", X + Math.cos(this.rotation) * (this.projectileX + this.projXAd), Y + Math.sin(this.rotation) * (this.projectileY + this.projYAd), this.rotation + (Math.random() * ((Math.PI / 360) * 20)) - ((Math.PI / 360) * 10), projector.speed + Math.random(), projector.range, projector.negateArmour, playerProjectiles, false, false, "none", false, "Player", this.ethereal));
                         }
                     }
                     else
                     {
-                        playerProjectiles.push(new Projectile(loaded.type, X + Math.cos(this.rotation) * (this.projectileX + this.projXAd), Y + Math.sin(this.rotation) * (this.projectileY + this.projYAd), this.rotation, projector.speed, projector.range, projector.negateArmour, playerProjectiles));
+                        playerProjectiles.push(new Projectile(loaded.type, X + Math.cos(this.rotation) * (this.projectileX + this.projXAd), Y + Math.sin(this.rotation) * (this.projectileY + this.projYAd), this.rotation, projector.speed, projector.range, projector.negateArmour, playerProjectiles, false, false, "none", false, "Player", this.ethereal));
                     }
                 }
 
@@ -40755,6 +40897,17 @@ function Adventurer()
                             {
                                 this.anjayTime = 400;
                             }
+                            else if (Inventory[i][0].ability == "puffer")
+                            {
+                                if (this.vamprism != true)
+                                {
+                                    this.stunnedXV = true;
+                                    this.stunnedTime = Math.max(240, this.stunnedTime);
+                                    this.blinded = true;
+                                    this.blindedStoreTime = new Date().getTime();
+                                    this.blindedTime = Math.max(player.blindedTime, 240);
+                                }
+                            }
                             else if (Inventory[i][0].ability == "decayI")
                             {
                                 if (this.antidecay != true)
@@ -40791,7 +40944,7 @@ function Adventurer()
                             else if (Inventory[i][0].ability == "krogiNumb") //stuns the player for 8 seconds of stunII
                             {
                                 this.stunnedIII = true;
-                                this.stunnedTime = 9;
+                                this.stunnedTime = Math.max(9, this.stunnedTime);
                             }
                             else if (Inventory[i][0].ability == "blind1/2") //Stuns the player for 6 seconds of stunI
                             {
@@ -42939,6 +43092,7 @@ function Adventurer()
                             if (canPlace == true)
                             {
                                 scenicList.push(new Scenery("bearTrap", inFrontX, inFrontY, (this.rotation), false));
+                                scenicList[scenicList.length - 1].ethereal = this.ethereal;
 
                                 if (Inventory[i][1] - 1 <= 0)
                                 {
@@ -42977,6 +43131,7 @@ function Adventurer()
                             if (canPlace == true)
                             {
                                 scenicList.push(new Scenery("floorTrap", inFrontX, inFrontY, (this.rotation), false));
+                                scenicList[scenicList.length - 1].ethereal = this.ethereal;
 
                                 if (Inventory[i][1] - 1 <= 0)
                                 {
@@ -43015,6 +43170,7 @@ function Adventurer()
                             if (canPlace == true)
                             {
                                 scenicList.push(new Scenery("fireTrap", inFrontX, inFrontY, (this.rotation), false));
+                                scenicList[scenicList.length - 1].ethereal = this.ethereal;
 
                                 if (Inventory[i][1] - 1 <= 0)
                                 {
@@ -43053,6 +43209,7 @@ function Adventurer()
                             if (canPlace == true)
                             {
                                 scenicList.push(new Scenery("clawTrap", inFrontX, inFrontY, (this.rotation), false));
+                                scenicList[scenicList.length - 1].ethereal = this.ethereal;
 
                                 if (Inventory[i][1] - 1 <= 0)
                                 {
@@ -43091,6 +43248,7 @@ function Adventurer()
                             if (canPlace == true)
                             {
                                 scenicList.push(new Scenery("jacks", inFrontX, inFrontY, (this.rotation), false));
+                                scenicList[scenicList.length - 1].ethereal = this.ethereal;
 
                                 if (Inventory[i][1] - 1 <= 0)
                                 {
@@ -43129,6 +43287,7 @@ function Adventurer()
                             if (canPlace == true)
                             {
                                 scenicList.push(new Scenery("spindleTrap", inFrontX, inFrontY, (this.rotation), false));
+                                scenicList[scenicList.length - 1].ethereal = this.ethereal;
 
                                 if (Inventory[i][1] - 1 <= 0)
                                 {

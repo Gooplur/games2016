@@ -5181,6 +5181,7 @@ function theLegend()
     allWorn.push(new Item("blackwoodSorceressRobe", false)); //214
     allWorn.push(new Item("blackwoodSorcererRobe", false)); //215
     allWorn.push(new Item("mudteethNecklace", false)); //216
+    allWorn.push(new Item("avatarOutfit", false)); //217
 
 
 
@@ -5593,6 +5594,7 @@ function theLegend()
     foods.push(new Item("daggerFishMeat", false));
     foods.push(new Item("mudStriderMeat", false));
     foods.push(new Item("vodmenaMeat", false));
+    foods.push(new Item("nothianSnapjawMeat", false));
     foods.push(new Item("roastedModerrLeg", false));
     foods.push(new Item("tigerMeat", false));
     foods.push(new Item("gladeWaspMeat", false));
@@ -5601,6 +5603,9 @@ function theLegend()
     foods.push(new Item("roastedPigFoot", false));
     foods.push(new Item("koiFishMeat", false));
     foods.push(new Item("kuzanMeat", false));
+    foods.push(new Item("pufferfishMeat", false));
+    foods.push(new Item("taintedPufferfishMeat", false));
+    foods.push(new Item("snapjawMeat", false));
 
 //Tailoring (Items crafted at a weaving, sewing, dying, etc. tailor's work bench thing)
     tailoring = [];
@@ -5749,6 +5754,7 @@ function theLegend()
     tailoring.push(new Item("pinkKimono", false));
     tailoring.push(new Item("redKimono", false));
     tailoring.push(new Item("nothBrushString", false));
+    tailoring.push(new Item("avatarOutfit", false));
 
 //Jewelry (Items crafted at a jewler's station, rings, necklaces, cutting gems, glassblowing etc.)
     jewelry = [];

@@ -12888,6 +12888,295 @@ function Item(type, x, y)
             this.buyValue = 3; // at max, buy for 3.
             this.sellValue = 2 + Math.floor(player.getCharisma() / 50); // at max, sell for 3.
         }
+        else if (this.type == "rawSnapjawFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Snapjaw Flesh";
+            this.weight = 0.7;
+            this.size = 7;
+            this.description = "The raw flesh from a snapjaw.";
+            this.intForDes = 4;
+            this.intDescription = "It is not safe to eat raw because of gutworms.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0.5; //satisfies hunger.
+            this.thirst = 0.1; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -0.5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "gutWorms";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0 + Math.floor(player.getCharisma() / 50); // at max, sell for 1.
+        }
+        else if (this.type == "rawNothianSnapjawFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Nothian Snapjaw Flesh";
+            this.weight = 1;
+            this.size = 9;
+            this.description = "The raw flesh from a Nothian snapjaw.";
+            this.intForDes = 4;
+            this.intDescription = "It is not safe to eat raw because of gutworms.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0.9; //satisfies hunger.
+            this.thirst = 0.1; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -0.8; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "gutWorms";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 0 + Math.floor(player.getCharisma() / 50); // at max, sell for 1.
+        }
+        else if (this.type == "nothianSnapjawMeat")
+        {
+            //For All Items
+            this.identity = "Nothian Snapjaw Meat";
+            this.weight = 1;
+            this.size = 9;
+            this.description = "The cooked meat of a Nothian snapjaw.";
+            this.intForDes = 0;
+            this.intDescription = "It is bland with a rubbery texture and a slightly muddy taste.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 8; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 2; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -0.5; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 5;
+            this.ingredients = [["Raw Nothian Snapjaw Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 7; // at max, buy for 7.
+            this.sellValue = 5 + Math.floor(player.getCharisma() / 25); // at max, sell for 7.
+        }
+        else if (this.type == "snapjawMeat")
+        {
+            //For All Items
+            this.identity = "Snapjaw Meat";
+            this.weight = 0.7;
+            this.size = 7;
+            this.description = "The cooked meat of a snapjaw.";
+            this.intForDes = 0;
+            this.intDescription = "It is bland with a slightly rubbery texture.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 6; //satisfies hunger.
+            this.thirst = 0.2; //quenches thirst.
+            this.warmth = 2; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = -0.2; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 4;
+            this.ingredients = [["Raw Snapjaw Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 6; // at max, buy for 7.
+            this.sellValue = 3 + Math.floor(player.getCharisma() / 15); // at max, sell for 6.
+        }
+        else if (this.type == "pufferfishVenomGland")
+        {
+            //For All Items
+            this.identity = "Pufferfish Venom Sac";
+            this.weight = 0.11;
+            this.size = 4;
+            this.description = "The venom sac from a pufferfish.";
+            this.intForDes = 1;
+            this.intDescription = "Pufferfish venom causes its victim's heart rate to slow so much that they appear dead, while affected the victim is unconscious but alive.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 0.4; //satisfies hunger.
+            this.thirst = 0.04; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "puffer";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 9 - Math.floor(player.getCharisma() / 50); // at max, buy for 8.
+            this.sellValue = 6 + Math.floor(player.getCharisma() / 25); // at max, sell for 8.
+        }
+        else if (this.type == "rawPufferfishFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Pufferfish Flesh";
+            this.weight = 0.5;
+            this.size = 6;
+            this.description = "The raw flesh from a pufferfish.";
+            this.intForDes = 1;
+            this.intDescription = "Pufferfish flesh is an Orgish delicacy.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 4; //satisfies hunger.
+            this.thirst = 0.6; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.1; //recoops lost energy.
+            this.replenish = 0.05; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 4 - Math.floor(player.getCharisma() / 50); // at max, buy for 3.
+            this.sellValue = 2 + Math.floor(player.getCharisma() / 50); // at max, sell for 3.
+        }
+        else if (this.type == "pufferfishMeat")
+        {
+            //For All Items
+            this.identity = "Pufferfish Flesh";
+            this.weight = 0.5;
+            this.size = 6;
+            this.description = "The cooked flesh of a pufferfish.";
+            this.intForDes = 2;
+            this.intDescription = "Pufferfish flesh is better raw, but it tastes alright cooked.";
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 4; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 1; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "none";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 2;
+            this.ingredients = [["Raw Pufferfish Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3 - Math.floor(player.getCharisma() / 50); // at max, buy for 2.
+            this.sellValue = 1 + Math.floor(player.getCharisma() / 50); // at max, sell for 2.
+        }
+        else if (this.type == "rawTaintedPufferfishFlesh")
+        {
+            //For All Items
+            this.identity = "Raw Tainted Pufferfish Flesh";
+            this.weight = 0.5;
+            this.size = 6;
+            this.description = "The raw flesh from a pufferfish.";
+            this.intForDes = 1;
+            this.intDescription = "Pufferfish flesh is an Orgish delicacy.";
+            if (player.getIntelligence() >= 12)
+            {
+                this.intDescription = "This pufferfish flesh was improperly cut and as a result the pufferfish venom sac was ruptured causes venom to leak into the flesh.";
+            }
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 4; //satisfies hunger.
+            this.thirst = 0.6; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0.1; //recoops lost energy.
+            this.replenish = 0.05; //restores will.
+
+            //ability
+            this.ability = "puffer";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 4 - Math.floor(player.getCharisma() / 50); // at max, buy for 3.
+            this.sellValue = 0; // at max, sell for 0.
+        }
+        else if (this.type == "taintedPufferfishMeat")
+        {
+            //For All Items
+            this.identity = "Tainted Pufferfish Flesh";
+            this.weight = 0.5;
+            this.size = 6;
+            this.description = "The cooked flesh of a pufferfish.";
+            this.intForDes = 2;
+            this.intDescription = "Pufferfish flesh is better raw, but it tastes alright cooked.";
+            if (player.getIntelligence() >= 12)
+            {
+                this.intDescription = "This pufferfish flesh was improperly cut and as a result the pufferfish venom sac was ruptured causes venom to leak into the flesh.";
+            }
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 4; //satisfies hunger.
+            this.thirst = 0; //quenches thirst.
+            this.warmth = 1; //warms player.
+            this.heal = 0; //heals health.
+            this.generation = 0; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "puffer";
+
+            //Crafting
+            this.yield = 1;
+            this.intForCraft = 2;
+            this.ingredients = [["Raw Tainted Pufferfish Flesh", 1]];
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3 - Math.floor(player.getCharisma() / 50); // at max, buy for 2.
+            this.sellValue = 0; // at max, sell for 0.
+        }
         else if (this.type == "rawSagroTailSml")
         {
             //For All Items
@@ -43215,6 +43504,186 @@ function Item(type, x, y)
             this.buyValue = 1; // at max, buy for 1.
             this.sellValue = 1; // at max, sell for 1.
         }
+        else if (this.type == "eemegFeeler")
+        {
+            //For All Items
+            this.identity = "Eemeg Feeler";
+            this.weight = 0.18;
+            this.size = 10;
+            this.description = "The long feeler of an eemeg.";
+            this.intForDes = 6;
+            this.intDescription = "Eemeg feelers are a changer in alchemy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 5; // at max, buy for 5.
+            this.sellValue = 5; // at max, sell for 5.
+        }
+        else if (this.type == "eemegClaw")
+        {
+            //For All Items
+            this.identity = "Eemeg Claw";
+            this.weight = 1.1;
+            this.size = 10;
+            this.description = "one of the two sharply pointed claws from a the abdomen of an eemeg.";
+            this.intForDes = 2;
+            this.intDescription = "Eemeg claws can be used as a material for making things.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 2; // at max, sell for 2.
+        }
+        else if (this.type == "snapjawHide")
+        {
+            //For All Items
+            this.identity = "Snapjaw Hide";
+            this.weight = 1.4;
+            this.size = 12;
+            this.description = "The bumpy green scaley hide of a snapjaw.";
+            this.intForDes = 3;
+            this.intDescription = "This can be used to make apparel or decorations.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 1; // at max, buy for 1.
+            this.sellValue = 1; // at max, sell for 1.
+        }
+        else if (this.type == "nothianSnapjawHide")
+        {
+            //For All Items
+            this.identity = "Nothian Snapjaw Hide";
+            this.weight = 2.3;
+            this.size = 15;
+            this.description = "The rough bumpy green scaley hide of a Nothian snapjaw.";
+            this.intForDes = 3;
+            this.intDescription = "This can be used to make apparel or decorations.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 2; // at max, buy for 2.
+            this.sellValue = 2; // at max, sell for 2.
+        }
+        else if (this.type == "swanFeather")
+        {
+            //For All Items
+            this.identity = "Swan Feather";
+            this.weight = 0.01;
+            this.size = 5;
+            this.description = "The light white tail feather of a swan tipped with a red and a gold stripe.";
+            this.intForDes = 12;
+            this.intDescription = "Swan feathers are used to stuff Orgish cushions, and they are used to decorate some apparel.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 4; // at max, buy for 4.
+            this.sellValue = 4; // at max, sell for 4.
+        }
+        else if (this.type == "yongFeather")
+        {
+            //For All Items
+            this.identity = "Yong Feather";
+            this.weight = 0;
+            this.size = 8;
+            this.description = "The weightless feather from a flighted spirit being known as a yong.";
+            this.intForDes = 14;
+            this.intDescription = "These act as a powerful former in alchemy.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 14; // at max, buy for 14.
+            this.sellValue = 14; // at max, sell for 14.
+        }
+        else if (this.type == "yongStinger")
+        {
+            //For All Items
+            this.identity = "Yong Stinger";
+            this.weight = 25;
+            this.size = 10;
+            this.description = "The golden two pronged stinger of a yong, apparently embedded with jade and rubies.";
+            this.intForDes = 25;
+            this.intDescription = "The venom of a yong transports physical beings into the spirit world temporarily.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 215; // at max, buy for 215.
+            this.sellValue = 215; // at max, sell for 215.
+        }
+        else if (this.type == "yongHead")
+        {
+            //For All Items
+            this.identity = "Yong Head";
+            this.weight = 60;
+            this.size = 17;
+            this.description = "The elaborate and decorated head of a yong.";
+            this.intForDes = 25;
+            this.intDescription = "If one crafts an outfit from this, it will allow them to step between the ethereal realm and the physical realm at will.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 290; // at max, buy for 290.
+            this.sellValue = 290; // at max, sell for 290.
+        }
+        else if (this.type == "needlewormNeedle")
+        {
+            //For All Items
+            this.identity = "Needleworm Needle";
+            this.weight = 0.5;
+            this.size = 8;
+            this.description = "The proboscis of a needleworm.";
+            this.intForDes = 16;
+            this.intDescription = "This can be used in alchemy as a changer.";
+
+            //Define Utility
+            this.utility = "material";
+
+            //ability
+            this.ability = "none";
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 3; // at max, buy for 3.
+            this.sellValue = 3; // at max, sell for 3.
+        }
         else if (this.type == "mudmanHand")
         {
             //For All Items
@@ -49381,6 +49850,92 @@ function Item(type, x, y)
             //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
             this.buyValue = 1000; // at max, buy for 1000.
             this.sellValue = 900 + Math.floor(player.getCharisma() / 0.5); // at max, sell for 1000.
+        }
+        else if (this.type == "avatarOutfit")
+        {
+            //For All Items
+            this.identity = "Avatar Outfit";
+            this.weight = 5;
+            this.size = 28;
+            this.description = "An outfit made from the head and feathers of a spirit world gatekeeper known as a yong.";
+            this.intForDes = 5;
+            this.intDescription = "In Orgish culture this sort of outfit signifies a high level of spiritual attunement, such that the sage who wears it can walk freely between the holy spirit realm and the mortal plane.";
+            if (player.getIntelligence() >= 5)
+            {
+                this.smallText = true;
+            }
+            else
+            {
+                this.smallText = false;
+            }
+
+            //Define Utility
+            this.utility = "worn";
+            //the type of armour/clothing it is...
+            this.subUtility = "clothing";
+            //Utility Focused
+            //protections
+            this.protection = 0 * ((player.toughness / 100) + 1);
+            this.toughnessRequirement = 0;
+            this.eminenceRequirement = 9;
+            this.magicalProtection = 4;
+            this.warmthRetention = 1.5;
+            this.thirstRetention = 0.5;
+            this.shockResist = 0;
+            //Main Stat Bonuses
+            this.strengthBonus = 0;
+            this.enduranceBonus = 0;
+            this.toughnessBonus = 0;
+            this.intelligenceBonus = 0;
+            this.charismaBonus = 19;
+            this.rangedBonus = 0;
+            this.constitutionBonus = 0;
+            this.staminaBonus = 0;
+            this.dexterityBonus = 0;
+            this.survivalismBonus = 0;
+            //Extra Stat Bonuses
+            this.sleepBonus = 240;
+            this.hungerBonus = 0;
+            this.thirstBonus = 0;
+            this.warmthBonus = 2;
+            //Magical Stat Bonuses
+            this.eminenceBonus = 0;
+            this.willpowerBonus = 0;
+            this.knowledgeBonus = 0;
+            this.concentrationBonus = 0;
+            this.memoryBonus = 0;
+
+            //ability
+            this.ability = "none";
+
+            this.yield = 1;
+            this.intForCraft = 25;
+            this.ingredients = [["Yong Head", 1], ["Yong Feather", 14]];
+
+            if (player.getEminence() >= 9)
+            {
+                this.smallText = false;
+
+                this.eminenceBonus = 0;
+                this.willpowerBonus = 10;
+                this.knowledgeBonus = 0;
+                this.concentrationBonus = 0;
+                this.memoryBonus = 0;
+
+                //ability
+                this.ability = "avatar";
+
+                this.yield = 1;
+                this.intForCraft = 4;
+                this.ingredients = [["Yong Head", 1], ["Yong Feather", 14]];
+
+                this.intForDes = 0;
+                this.intDescription = "This outfit allows you to step between the ethereal realm and the physical realm.";
+            }
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 345; // at max, buy for 345.
+            this.sellValue = 330 + Math.floor(player.getCharisma() / 3); // at max, sell for 345.
         }
         else if (this.type == "beulingerrOutfit")
         {
@@ -59759,6 +60314,101 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "avatarOutfit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gel, 2, 71, 46, 101, X - this.X + (1/2 * CCC.width) - (1/2 * 46 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 101 * 1), 46 * 1, 101 * 1);
+        }
+        else if (this.type == "swanFeather")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gel, 295, -3, 34, 40, X - this.X + (1/2 * CCC.width) - (1/2 * 34 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 40 * 1), 34 * 1, 40 * 1);
+        }
+        else if (this.type == "yongFeather")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gel, 124, 3, 34, 40, X - this.X + (1/2 * CCC.width) - (1/2 * 34 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 40 * 1), 34 * 1, 40 * 1);
+        }
+        else if (this.type == "yongStinger")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gel, 504, -2, 34, 40, X - this.X + (1/2 * CCC.width) - (1/2 * 34 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 40 * 1), 34 * 1, 40 * 1);
+        }
+        else if (this.type == "yongHead")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gel, 1, 1, 51, 50, X - this.X + (1/2 * CCC.width) - (1/2 * 51 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 50 * 1), 51 * 1, 50 * 1);
+        }
+        else if (this.type == "pufferfishVenomGland")
+        {
+            XXX.beginPath();
+            XXX.drawImage(how, 629, 9, 17, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 14 * 1), 17 * 1, 14 * 1);
+        }
+        else if (this.type == "rawTaintedPufferfishFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(how, 587, 10, 17, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 14 * 1), 17 * 1, 14 * 1);
+        }
+        else if (this.type == "taintedPufferfishMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(how, 608, 10, 17, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 14 * 1), 17 * 1, 14 * 1);
+        }
+        else if (this.type == "pufferfishMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(how, 565, 9, 17, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 14 * 1), 17 * 1, 14 * 1);
+        }
+        else if (this.type == "rawPufferfishFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(how, 542, 10, 17, 14, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 14 * 1), 17 * 1, 14 * 1);
+        }
+        else if (this.type == "needlewormNeedle")
+        {
+            XXX.beginPath();
+            XXX.drawImage(site, 1084, 179, 32, 35, X - this.X + (1/2 * CCC.width) - (1/2 * 32 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 35 * 1), 32 * 1, 35 * 1);
+        }
+        else if (this.type == "nothianSnapjawHide")
+        {
+            XXX.beginPath();
+            XXX.drawImage(croco, 949, 773, 49, 21, X - this.X + (1/2 * CCC.width) - (1/2 * 49 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21 * 1.4), 49 * 1.4, 21 * 1.4);
+        }
+        else if (this.type == "rawNothianSnapjawFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(croco, 109, 239, 17, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19 * 1.4), 17 * 1.4, 19 * 1.4);
+        }
+        else if (this.type == "nothianSnapjawMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(croco, 140, 239, 17, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 1.4), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19 * 1.4), 17 * 1.4, 19 * 1.4);
+        }
+        else if (this.type == "snapjawHide")
+        {
+            XXX.beginPath();
+            XXX.drawImage(croc, 949, 773, 49, 21, X - this.X + (1/2 * CCC.width) - (1/2 * 49 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21 * 1), 49 * 1, 21 * 1);
+        }
+        else if (this.type == "rawSnapjawFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(croc, 109, 239, 17, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19 * 1), 17 * 1, 19 * 1);
+        }
+        else if (this.type == "snapjawMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(croc, 140, 239, 17, 19, X - this.X + (1/2 * CCC.width) - (1/2 * 17 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 19 * 1), 17 * 1, 19 * 1);
+        }
+        else if (this.type == "eemegClaw")
+        {
+            XXX.beginPath();
+            XXX.drawImage(carn, 949, 773, 49, 21, X - this.X + (1/2 * CCC.width) - (1/2 * 49 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21 * 1), 49 * 1, 21 * 1);
+        }
+        else if (this.type == "eemegFeeler")
+        {
+            XXX.beginPath();
+            XXX.drawImage(carn, 938, 751, 49, 21, X - this.X + (1/2 * CCC.width) - (1/2 * 49 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 21 * 1), 49 * 1, 21 * 1);
+        }
         else if (this.type == "mudteethNecklace")
         {
             XXX.beginPath();
@@ -67662,6 +68312,101 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(candlewic, 61, 201, 27, 29, this.invX - (1/2 * 27 * 1.5), this.invY - (1/2 * 29 * 1.5), 27 * 1.5, 29 * 1.5);
         }
+        else if (this.type == "avatarOutfit")
+        {
+            LXX.beginPath();
+            LXX.drawImage(gel, 2, 71, 46, 101, this.invX - (1/2 * 46 * 0.74), this.invY - (1/2 * 101 * 0.74), 46 * 0.74, 101 * 0.74);
+        }
+        else if (this.type == "swanFeather")
+        {
+            LXX.beginPath();
+            LXX.drawImage(gel, 295, -3, 34, 40, this.invX - (1/2 * 34 * 1), this.invY - (1/2 * 40 * 1), 34 * 1, 40 * 1);
+        }
+        else if (this.type == "yongFeather")
+        {
+            LXX.beginPath();
+            LXX.drawImage(gel, 124, 3, 34, 40, this.invX - (1/2 * 34 * 1), this.invY - (1/2 * 40 * 1), 34 * 1, 40 * 1);
+        }
+        else if (this.type == "yongStinger")
+        {
+            LXX.beginPath();
+            LXX.drawImage(gel, 504, -2, 34, 40, this.invX - (1/2 * 34 * 1), this.invY - (1/2 * 40 * 1), 34 * 1, 40 * 1);
+        }
+        else if (this.type == "yongHead")
+        {
+            LXX.beginPath();
+            LXX.drawImage(gel, 1, 1, 51, 50, this.invX - (1/2 * 51 * 1), this.invY - (1/2 * 50 * 1), 51 * 1, 50 * 1);
+        }
+        else if (this.type == "pufferfishVenomGland")
+        {
+            LXX.beginPath();
+            LXX.drawImage(how, 629, 9, 17, 14, this.invX - (1/2 * 17 * 1), this.invY - (1/2 * 14 * 1), 17 * 1, 14 * 1);
+        }
+        else if (this.type == "rawTaintedPufferfishFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(how, 587, 10, 17, 14, this.invX - (1/2 * 17 * 1), this.invY - (1/2 * 14 * 1), 17 * 1, 14 * 1);
+        }
+        else if (this.type == "taintedPufferfishMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(how, 608, 10, 17, 14, this.invX - (1/2 * 17 * 1), this.invY - (1/2 * 14 * 1), 17 * 1, 14 * 1);
+        }
+        else if (this.type == "pufferfishMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(how, 565, 9, 17, 14, this.invX - (1/2 * 17 * 1), this.invY - (1/2 * 14 * 1), 17 * 1, 14 * 1);
+        }
+        else if (this.type == "rawPufferfishFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(how, 542, 10, 17, 14, this.invX - (1/2 * 17 * 1), this.invY - (1/2 * 14 * 1), 17 * 1, 14 * 1);
+        }
+        else if (this.type == "needlewormNeedle")
+        {
+            LXX.beginPath();
+            LXX.drawImage(site, 1084, 179, 32, 35, this.invX - (1/2 * 32 * 1), this.invY - (1/2 * 35 * 1), 32 * 1, 35 * 1);
+        }
+        else if (this.type == "nothianSnapjawHide")
+        {
+            LXX.beginPath();
+            LXX.drawImage(croco, 949, 773, 49, 21, this.invX - (1/2 * 49 * 1.4), this.invY - (1/2 * 21 * 1.4), 49 * 1.4, 21 * 1.4);
+        }
+        else if (this.type == "rawNothianSnapjawFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(croco, 109, 239, 17, 19, this.invX - (1/2 * 17 * 1.4), this.invY - (1/2 * 19 * 1.4), 17 * 1.4, 19 * 1.4);
+        }
+        else if (this.type == "nothianSnapjawMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(croco, 140, 239, 17, 19, this.invX - (1/2 * 17 * 1.4), this.invY - (1/2 * 19 * 1.4), 17 * 1.4, 19 * 1.4);
+        }
+        else if (this.type == "snapjawHide")
+        {
+            LXX.beginPath();
+            LXX.drawImage(croc, 949, 773, 49, 21, this.invX - (1/2 * 49 * 1), this.invY - (1/2 * 21 * 1), 49 * 1, 21 * 1);
+        }
+        else if (this.type == "rawSnapjawFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(croc, 109, 239, 17, 19, this.invX - (1/2 * 17 * 1), this.invY - (1/2 * 19 * 1), 17 * 1, 19 * 1);
+        }
+        else if (this.type == "snapjawMeat")
+        {
+            LXX.beginPath();
+            LXX.drawImage(croc, 140, 239, 17, 19, this.invX - (1/2 * 17 * 1), this.invY - (1/2 * 19 * 1), 17 * 1, 19 * 1);
+        }
+        else if (this.type == "eemegClaw")
+        {
+            LXX.beginPath();
+            LXX.drawImage(carn, 949, 773, 49, 21, this.invX - (1/2 * 49 * 1), this.invY - (1/2 * 21 * 1), 49 * 1, 21 * 1);
+        }
+        else if (this.type == "eemegFeeler")
+        {
+            LXX.beginPath();
+            LXX.drawImage(carn, 938, 751, 49, 21, this.invX - (1/2 * 49 * 1), this.invY - (1/2 * 21 * 1), 49 * 1, 21 * 1);
+        }
         else if (this.type == "mudteethNecklace")
         {
             LXX.beginPath();
@@ -75549,6 +76294,101 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "avatarOutfit")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gel, 2, 71, 46, 101, this.invX - (1/2 * 46 * 0.74), this.invY - (1/2 * 101 * 0.74), 46 * 0.74, 101 * 0.74);
+        }
+        else if (this.type == "swanFeather")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gel, 295, -3, 34, 40, this.invX - (1/2 * 34 * 1), this.invY - (1/2 * 40 * 1), 34 * 1, 40 * 1);
+        }
+        else if (this.type == "yongFeather")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gel, 124, 3, 34, 40, this.invX - (1/2 * 34 * 1), this.invY - (1/2 * 40 * 1), 34 * 1, 40 * 1);
+        }
+        else if (this.type == "yongStinger")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gel, 504, -2, 34, 40, this.invX - (1/2 * 34 * 1), this.invY - (1/2 * 40 * 1), 34 * 1, 40 * 1);
+        }
+        else if (this.type == "yongHead")
+        {
+            XXX.beginPath();
+            XXX.drawImage(gel, 1, 1, 51, 50, this.invX - (1/2 * 51 * 1), this.invY - (1/2 * 50 * 1), 51 * 1, 50 * 1);
+        }
+        else if (this.type == "pufferfishVenomGland")
+        {
+            XXX.beginPath();
+            XXX.drawImage(how, 629, 9, 17, 14, this.invX - (1/2 * 17 * 1), this.invY - (1/2 * 14 * 1), 17 * 1, 14 * 1);
+        }
+        else if (this.type == "rawTaintedPufferfishFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(how, 587, 10, 17, 14, this.invX - (1/2 * 17 * 1), this.invY - (1/2 * 14 * 1), 17 * 1, 14 * 1);
+        }
+        else if (this.type == "taintedPufferfishMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(how, 608, 10, 17, 14, this.invX - (1/2 * 17 * 1), this.invY - (1/2 * 14 * 1), 17 * 1, 14 * 1);
+        }
+        else if (this.type == "pufferfishMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(how, 565, 9, 17, 14, this.invX - (1/2 * 17 * 1), this.invY - (1/2 * 14 * 1), 17 * 1, 14 * 1);
+        }
+        else if (this.type == "rawPufferfishFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(how, 542, 10, 17, 14, this.invX - (1/2 * 17 * 1), this.invY - (1/2 * 14 * 1), 17 * 1, 14 * 1);
+        }
+        else if (this.type == "needlewormNeedle")
+        {
+            XXX.beginPath();
+            XXX.drawImage(site, 1084, 179, 32, 35, this.invX - (1/2 * 32 * 1), this.invY - (1/2 * 35 * 1), 32 * 1, 35 * 1);
+        }
+        else if (this.type == "nothianSnapjawHide")
+        {
+            XXX.beginPath();
+            XXX.drawImage(croco, 949, 773, 49, 21, this.invX - (1/2 * 49 * 1.4), this.invY - (1/2 * 21 * 1.4), 49 * 1.4, 21 * 1.4);
+        }
+        else if (this.type == "rawNothianSnapjawFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(croco, 109, 239, 17, 19, this.invX - (1/2 * 17 * 1.4), this.invY - (1/2 * 19 * 1.4), 17 * 1.4, 19 * 1.4);
+        }
+        else if (this.type == "nothianSnapjawMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(croco, 140, 239, 17, 19, this.invX - (1/2 * 17 * 1.4), this.invY - (1/2 * 19 * 1.4), 17 * 1.4, 19 * 1.4);
+        }
+        else if (this.type == "snapjawHide")
+        {
+            XXX.beginPath();
+            XXX.drawImage(croc, 949, 773, 49, 21, this.invX - (1/2 * 49 * 1), this.invY - (1/2 * 21 * 1), 49 * 1, 21 * 1);
+        }
+        else if (this.type == "rawSnapjawFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(croc, 109, 239, 17, 19, this.invX - (1/2 * 17 * 1), this.invY - (1/2 * 19 * 1), 17 * 1, 19 * 1);
+        }
+        else if (this.type == "snapjawMeat")
+        {
+            XXX.beginPath();
+            XXX.drawImage(croc, 140, 239, 17, 19, this.invX - (1/2 * 17 * 1), this.invY - (1/2 * 19 * 1), 17 * 1, 19 * 1);
+        }
+        else if (this.type == "eemegClaw")
+        {
+            XXX.beginPath();
+            XXX.drawImage(carn, 949, 773, 49, 21, this.invX - (1/2 * 49 * 1), this.invY - (1/2 * 21 * 1), 49 * 1, 21 * 1);
+        }
+        else if (this.type == "eemegFeeler")
+        {
+            XXX.beginPath();
+            XXX.drawImage(carn, 938, 751, 49, 21, this.invX - (1/2 * 49 * 1), this.invY - (1/2 * 21 * 1), 49 * 1, 21 * 1);
         }
         else if (this.type == "mudteethNecklace")
         {

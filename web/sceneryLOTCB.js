@@ -11,6 +11,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
     this.X = x;
     this.Y = y;
     this.dmx = map;
+    this.ethereal = false;
     this.radius = 1;
     this.information = information;
     this.rotation = rotation;
@@ -283,7 +284,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
 
     this.damagePlayer = function(damage, negate, effect)
     {
-        if (player.dmx == this.dmx && player.ethereal != true)
+        if (player.dmx == this.dmx && player.ethereal == this.ethereal || player.dmx == this.dmx && player.ethereal == "avatar" || player.dmx == this.dmx && this.ethereal == "avatar")
         {
             if (quenHere == true)
             {
@@ -1507,18 +1508,21 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             this.radius = 13.5;
 
             //spring trap
-            if (this.dst(X, Y) <= this.radius && this.stage == 1)
+            if (player.flying != true && this.dst(X, Y) <= this.radius && this.stage == 1)
             {
-                if (longevity == false)
+                if (player.dmx == this.dmx && player.ethereal == this.ethereal || player.dmx == this.dmx && player.ethereal == "avatar" || player.dmx == this.dmx && this.ethereal == "avatar")
                 {
-                    this.damagePlayer(5 + 30/50 * player.getSurvivalism(), 1);
+                    if (longevity == false)
+                    {
+                        this.damagePlayer(5 + 30/50 * player.getSurvivalism(), 1);
+                    }
+                    else
+                    {
+                        this.damagePlayer(20, 1);
+                    }
+                    this.stage = 2;
+                    this.snapShut = true;
                 }
-                else
-                {
-                    this.damagePlayer(20, 1);
-                }
-                this.stage = 2;
-                this.snapShut = true;
             }
             if (this.stage == 1)
             {
@@ -1526,23 +1530,26 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 {
                     if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= this.radius + (3/4 * ArtificialIntelligenceAccess[j].sizeRadius) && !ArtificialIntelligenceAccess[j].underground && !ArtificialIntelligenceAccess[j].flying && ArtificialIntelligenceAccess[j].dmx == this.dmx)
                     {
-                        if (longevity == false)
+                        if (this.ethereal == ArtificialIntelligenceAccess[j].ethereal || this.ethereal == "avatar" || ArtificialIntelligenceAccess[j].ethereal == "avatar")
                         {
-                            ArtificialIntelligenceAccess[j].health -= Math.max(0, (5 + 30/50 * player.getSurvivalism()) - Math.max(0, ArtificialIntelligenceAccess[j].armour - 1));
-                            //player.experience += 8 * (1 + player.getIntelligence() / 50); //the player gets experience for successful trapping.
-                            ArtificialIntelligenceAccess[j].healthShownTime = new Date().getTime();
-                            ArtificialIntelligenceAccess[j].disturbedTime = new Date().getTime();
-                            if (ArtificialIntelligenceAccess[j].health <= 0)
+                            if (longevity == false)
                             {
-                                ArtificialIntelligenceAccess[j].killNotByPlayer = false;
+                                ArtificialIntelligenceAccess[j].health -= Math.max(0, (5 + 30/50 * player.getSurvivalism()) - Math.max(0, ArtificialIntelligenceAccess[j].armour - 1));
+                                //player.experience += 8 * (1 + player.getIntelligence() / 50); //the player gets experience for successful trapping.
+                                ArtificialIntelligenceAccess[j].healthShownTime = new Date().getTime();
+                                ArtificialIntelligenceAccess[j].disturbedTime = new Date().getTime();
+                                if (ArtificialIntelligenceAccess[j].health <= 0)
+                                {
+                                    ArtificialIntelligenceAccess[j].killNotByPlayer = false;
+                                }
                             }
+                            else
+                            {
+                                ArtificialIntelligenceAccess[j].health -= Math.max(0, 20 - Math.max(0, ArtificialIntelligenceAccess[j].armour - 1));
+                            }
+                            this.stage = 2;
+                            this.snapShut = true;
                         }
-                        else
-                        {
-                            ArtificialIntelligenceAccess[j].health -= Math.max(0, 20 - Math.max(0, ArtificialIntelligenceAccess[j].armour - 1));
-                        }
-                        this.stage = 2;
-                        this.snapShut = true;
                     }
                 }
             }
@@ -1708,36 +1715,9 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             {
                 if (this.stage == 1)
                 {
-                    if (this.dst(X, Y) <= 21) //sensitivity range
+                    if (player.flying != true && this.dst(X, Y) <= 21) //sensitivity range
                     {
-                        if (this.triggered != "ended")
-                        {
-                            this.triggered = true;
-                        }
-                    }
-                }
-                if (this.stage == 0 && this.triggered != "ended")
-                {
-                    if (this.dst(X, Y) <= 25) //sensitivity range
-                    {
-                        this.triggered = "ended";
-                        if (longevity == false)
-                        {
-                            this.damagePlayer(15 + 40 / 50 * player.getSurvivalism(), 5);
-                        }
-                        else
-                        {
-                            this.damagePlayer(50, 5);
-                        }
-                    }
-                }
-
-
-                for (var j = 0; j < ArtificialIntelligenceAccess.length; j++)
-                {
-                    if (this.stage == 1)
-                    {
-                        if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= 21 + (3/4 * ArtificialIntelligenceAccess[j].sizeRadius) && !ArtificialIntelligenceAccess[j].underground && !ArtificialIntelligenceAccess[j].flying && ArtificialIntelligenceAccess[j].dmx == this.dmx)
+                        if (player.dmx == this.dmx && player.ethereal == this.ethereal || player.dmx == this.dmx && player.ethereal == "avatar" || player.dmx == this.dmx && this.ethereal == "avatar")
                         {
                             if (this.triggered != "ended")
                             {
@@ -1745,25 +1725,61 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                             }
                         }
                     }
-                    if (this.stage == 0 && this.triggered != "ended")
+                }
+                if (this.stage == 0 && this.triggered != "ended")
+                {
+                    if (player.flying != true && this.dst(X, Y) <= 25) //sensitivity range
                     {
-                        if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= 25 + (3/4 * ArtificialIntelligenceAccess[j].sizeRadius) && !ArtificialIntelligenceAccess[j].underground && !ArtificialIntelligenceAccess[j].flying && ArtificialIntelligenceAccess[j].dmx == this.dmx)
+                        if (player.dmx == this.dmx && player.ethereal == this.ethereal || player.dmx == this.dmx && player.ethereal == "avatar" || player.dmx == this.dmx && this.ethereal == "avatar")
                         {
                             this.triggered = "ended";
                             if (longevity == false)
                             {
-                                ArtificialIntelligenceAccess[j].health -= Math.max(0, (15 + 40 / 50 * player.getSurvivalism()) - Math.max(0, ArtificialIntelligenceAccess[j].armour - 5));
-                                //player.experience += 9 * (1 + player.getIntelligence() / 50); //the player gets experience for successful trapping.
-                                ArtificialIntelligenceAccess[j].healthShownTime = new Date().getTime();
-                                ArtificialIntelligenceAccess[j].disturbedTime = new Date().getTime();
-                                if (ArtificialIntelligenceAccess[j].health <= 0)
-                                {
-                                    ArtificialIntelligenceAccess[j].killNotByPlayer = false;
-                                }
+                                this.damagePlayer(15 + 40 / 50 * player.getSurvivalism(), 5);
                             }
                             else
                             {
-                                ArtificialIntelligenceAccess[j].health -= Math.max(0, 50 - Math.max(0, ArtificialIntelligenceAccess[j].armour - 5));
+                                this.damagePlayer(50, 5);
+                            }
+                        }
+                    }
+                }
+
+
+                for (var j = 0; j < ArtificialIntelligenceAccess.length; j++)
+                {
+                    if (this.ethereal == ArtificialIntelligenceAccess[j].ethereal || this.ethereal == "avatar" || ArtificialIntelligenceAccess[j].ethereal == "avatar")
+                    {
+                        if (this.stage == 1)
+                        {
+                            if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= 21 + (3/4 * ArtificialIntelligenceAccess[j].sizeRadius) && !ArtificialIntelligenceAccess[j].underground && !ArtificialIntelligenceAccess[j].flying && ArtificialIntelligenceAccess[j].dmx == this.dmx)
+                            {
+                                if (this.triggered != "ended")
+                                {
+                                    this.triggered = true;
+                                }
+                            }
+                        }
+                        if (this.stage == 0 && this.triggered != "ended")
+                        {
+                            if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= 25 + (3/4 * ArtificialIntelligenceAccess[j].sizeRadius) && !ArtificialIntelligenceAccess[j].underground && !ArtificialIntelligenceAccess[j].flying && ArtificialIntelligenceAccess[j].dmx == this.dmx)
+                            {
+                                this.triggered = "ended";
+                                if (longevity == false)
+                                {
+                                    ArtificialIntelligenceAccess[j].health -= Math.max(0, (15 + 40 / 50 * player.getSurvivalism()) - Math.max(0, ArtificialIntelligenceAccess[j].armour - 5));
+                                    //player.experience += 9 * (1 + player.getIntelligence() / 50); //the player gets experience for successful trapping.
+                                    ArtificialIntelligenceAccess[j].healthShownTime = new Date().getTime();
+                                    ArtificialIntelligenceAccess[j].disturbedTime = new Date().getTime();
+                                    if (ArtificialIntelligenceAccess[j].health <= 0)
+                                    {
+                                        ArtificialIntelligenceAccess[j].killNotByPlayer = false;
+                                    }
+                                }
+                                else
+                                {
+                                    ArtificialIntelligenceAccess[j].health -= Math.max(0, 50 - Math.max(0, ArtificialIntelligenceAccess[j].armour - 5));
+                                }
                             }
                         }
                     }
@@ -1909,43 +1925,9 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             {
                 if (this.stage == 1)
                 {
-                    if (this.dst(X, Y) <= 20) //sensitivity range
+                    if (player.flying != true && this.dst(X, Y) <= 20) //sensitivity range
                     {
-                        if (this.triggered != "ended")
-                        {
-                            this.triggered = true;
-                        }
-                    }
-                }
-                else
-                {
-                    if (this.triggered == true)
-                    {
-                        if (this.dst(X, Y) <= 23) //sensitivity range
-                        {
-                            if (player.mageShield > 0)
-                            {
-                                player.mageShield -= 0.125;
-                                player.warmth += Math.max(0, (1 - (player.heatResistance / 200)));
-                            }
-                            else
-                            {
-                                player.health += player.mageShield;
-                                player.mageShield = 0;
-
-                                player.health -= Math.max(0, (0.125 - (player.heatResistance / 200)));
-                                player.warmth += Math.max(0, (1 - (player.heatResistance / 200)));
-                                player.burningTime = new Date().getTime();
-                            }
-                        }
-                    }
-                }
-
-                for (var j = 0; j < ArtificialIntelligenceAccess.length; j++)
-                {
-                    if (this.stage == 1)
-                    {
-                        if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= 20 + (3/4 * ArtificialIntelligenceAccess[j].sizeRadius) && !ArtificialIntelligenceAccess[j].underground && !ArtificialIntelligenceAccess[j].flying && ArtificialIntelligenceAccess[j].dmx == this.dmx)
+                        if (player.dmx == this.dmx && player.ethereal == this.ethereal || player.dmx == this.dmx && player.ethereal == "avatar" || player.dmx == this.dmx && this.ethereal == "avatar")
                         {
                             if (this.triggered != "ended")
                             {
@@ -1953,11 +1935,54 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                             }
                         }
                     }
-                    else if (this.triggered == true)
+                }
+                else
+                {
+                    if (this.triggered == true)
                     {
-                        if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= 23 + (3/4 * ArtificialIntelligenceAccess[j].sizeRadius) && !ArtificialIntelligenceAccess[j].underground && !ArtificialIntelligenceAccess[j].flying && ArtificialIntelligenceAccess[j].dmx == this.dmx)
+                        if (player.flying != true && this.dst(X, Y) <= 23) //sensitivity range
                         {
-                            ArtificialIntelligenceAccess[j].burningTime = new Date().getTime();
+                            if (player.dmx == this.dmx && player.ethereal == this.ethereal || player.dmx == this.dmx && player.ethereal == "avatar" || player.dmx == this.dmx && this.ethereal == "avatar")
+                            {
+                                if (player.mageShield > 0)
+                                {
+                                    player.mageShield -= 0.125;
+                                    player.warmth += Math.max(0, (1 - (player.heatResistance / 200)));
+                                }
+                                else
+                                {
+                                    player.health += player.mageShield;
+                                    player.mageShield = 0;
+
+                                    player.health -= Math.max(0, (0.125 - (player.heatResistance / 200)));
+                                    player.warmth += Math.max(0, (1 - (player.heatResistance / 200)));
+                                    player.burningTime = new Date().getTime();
+                                }
+                            }
+                        }
+                    }
+                }
+
+                for (var j = 0; j < ArtificialIntelligenceAccess.length; j++)
+                {
+                    if (this.ethereal == ArtificialIntelligenceAccess[j].ethereal || this.ethereal == "avatar" || ArtificialIntelligenceAccess[j].ethereal == "avatar")
+                    {
+                        if (this.stage == 1)
+                        {
+                            if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= 20 + (3/4 * ArtificialIntelligenceAccess[j].sizeRadius) && !ArtificialIntelligenceAccess[j].underground && !ArtificialIntelligenceAccess[j].flying && ArtificialIntelligenceAccess[j].dmx == this.dmx)
+                            {
+                                if (this.triggered != "ended")
+                                {
+                                    this.triggered = true;
+                                }
+                            }
+                        }
+                        else if (this.triggered == true)
+                        {
+                            if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= 23 + (3/4 * ArtificialIntelligenceAccess[j].sizeRadius) && !ArtificialIntelligenceAccess[j].underground && !ArtificialIntelligenceAccess[j].flying && ArtificialIntelligenceAccess[j].dmx == this.dmx)
+                            {
+                                ArtificialIntelligenceAccess[j].burningTime = new Date().getTime();
+                            }
                         }
                     }
                 }
@@ -2108,36 +2133,9 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             {
                 if (this.stage == 1)
                 {
-                    if (this.dst(X, Y) <= 14) //sensitivity range
+                    if (player.flying != true && this.dst(X, Y) <= 14) //sensitivity range
                     {
-                        if (this.triggered != "ended")
-                        {
-                            this.triggered = true;
-                        }
-                    }
-                }
-                if (this.stage == 1 && this.triggered == true)
-                {
-                    if (this.dst(X, Y) <= 22) //sensitivity range
-                    {
-                        this.triggered = "ended";
-                        if (longevity == false)
-                        {
-                            this.damagePlayer(9 + 34 / 50 * player.getSurvivalism(), 3);
-                        }
-                        else
-                        {
-                            this.damagePlayer(34, 3);
-                        }
-                    }
-                }
-
-
-                for (var j = 0; j < ArtificialIntelligenceAccess.length; j++)
-                {
-                    if (this.stage == 1)
-                    {
-                        if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= 14 + (3/4 * ArtificialIntelligenceAccess[j].sizeRadius) && !ArtificialIntelligenceAccess[j].underground && !ArtificialIntelligenceAccess[j].flying && ArtificialIntelligenceAccess[j].dmx == this.dmx)
+                        if (player.dmx == this.dmx && player.ethereal == this.ethereal || player.dmx == this.dmx && player.ethereal == "avatar" || player.dmx == this.dmx && this.ethereal == "avatar")
                         {
                             if (this.triggered != "ended")
                             {
@@ -2145,25 +2143,61 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                             }
                         }
                     }
-                    if (this.stage == 1 && this.triggered == true)
+                }
+                if (this.stage == 1 && this.triggered == true)
+                {
+                    if (player.flying != true && this.dst(X, Y) <= 22) //sensitivity range
                     {
-                        if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= 22 + (3/4 * ArtificialIntelligenceAccess[j].sizeRadius) && !ArtificialIntelligenceAccess[j].underground && !ArtificialIntelligenceAccess[j].flying && ArtificialIntelligenceAccess[j].dmx == this.dmx)
+                        if (player.dmx == this.dmx && player.ethereal == this.ethereal || player.dmx == this.dmx && player.ethereal == "avatar" || player.dmx == this.dmx && this.ethereal == "avatar")
                         {
                             this.triggered = "ended";
                             if (longevity == false)
                             {
-                                ArtificialIntelligenceAccess[j].health -= Math.max(0, (9 + 34 / 50 * player.getSurvivalism()) - Math.max(0, ArtificialIntelligenceAccess[j].armour - 3));
-                                //player.experience += 9 * (1 + player.getIntelligence() / 50); //the player gets experience for successful trapping.
-                                ArtificialIntelligenceAccess[j].healthShownTime = new Date().getTime();
-                                ArtificialIntelligenceAccess[j].disturbedTime = new Date().getTime();
-                                if (ArtificialIntelligenceAccess[j].health <= 0)
-                                {
-                                    ArtificialIntelligenceAccess[j].killNotByPlayer = false;
-                                }
+                                this.damagePlayer(9 + 34 / 50 * player.getSurvivalism(), 3);
                             }
                             else
                             {
-                                ArtificialIntelligenceAccess[j].health -= Math.max(0, 34 - Math.max(0, ArtificialIntelligenceAccess[j].armour - 3));
+                                this.damagePlayer(34, 3);
+                            }
+                        }
+                    }
+                }
+
+
+                for (var j = 0; j < ArtificialIntelligenceAccess.length; j++)
+                {
+                    if (this.ethereal == ArtificialIntelligenceAccess[j].ethereal || this.ethereal == "avatar" || ArtificialIntelligenceAccess[j].ethereal == "avatar")
+                    {
+                        if (this.stage == 1)
+                        {
+                            if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= 14 + (3/4 * ArtificialIntelligenceAccess[j].sizeRadius) && !ArtificialIntelligenceAccess[j].underground && !ArtificialIntelligenceAccess[j].flying && ArtificialIntelligenceAccess[j].dmx == this.dmx)
+                            {
+                                if (this.triggered != "ended")
+                                {
+                                    this.triggered = true;
+                                }
+                            }
+                        }
+                        if (this.stage == 1 && this.triggered == true)
+                        {
+                            if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= 22 + (3/4 * ArtificialIntelligenceAccess[j].sizeRadius) && !ArtificialIntelligenceAccess[j].underground && !ArtificialIntelligenceAccess[j].flying && ArtificialIntelligenceAccess[j].dmx == this.dmx)
+                            {
+                                this.triggered = "ended";
+                                if (longevity == false)
+                                {
+                                    ArtificialIntelligenceAccess[j].health -= Math.max(0, (9 + 34 / 50 * player.getSurvivalism()) - Math.max(0, ArtificialIntelligenceAccess[j].armour - 3));
+                                    //player.experience += 9 * (1 + player.getIntelligence() / 50); //the player gets experience for successful trapping.
+                                    ArtificialIntelligenceAccess[j].healthShownTime = new Date().getTime();
+                                    ArtificialIntelligenceAccess[j].disturbedTime = new Date().getTime();
+                                    if (ArtificialIntelligenceAccess[j].health <= 0)
+                                    {
+                                        ArtificialIntelligenceAccess[j].killNotByPlayer = false;
+                                    }
+                                }
+                                else
+                                {
+                                    ArtificialIntelligenceAccess[j].health -= Math.max(0, 34 - Math.max(0, ArtificialIntelligenceAccess[j].armour - 3));
+                                }
                             }
                         }
                     }
@@ -2216,37 +2250,43 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             this.radius = 25;
 
             //spring trap
-            if (this.dst(X, Y) <= this.radius) //sensitivity range
+            if (player.flying != true && this.dst(X, Y) <= this.radius) //sensitivity range
             {
-                this.triggered = true;
-                if (longevity == false)
+                if (player.dmx == this.dmx && player.ethereal == this.ethereal || player.dmx == this.dmx && player.ethereal == "avatar" || player.dmx == this.dmx && this.ethereal == "avatar")
                 {
-                    this.damagePlayer(1 + 3 / 50 * player.getSurvivalism(), 1);
-                }
-                else
-                {
-                    this.damagePlayer(3, 1);
+                    this.triggered = true;
+                    if (longevity == false)
+                    {
+                        this.damagePlayer(1 + 3 / 50 * player.getSurvivalism(), 1);
+                    }
+                    else
+                    {
+                        this.damagePlayer(3, 1);
+                    }
                 }
             }
             for (var j = 0; j < ArtificialIntelligenceAccess.length; j++)
             {
                 if (this.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= this.radius + (3 / 4 * ArtificialIntelligenceAccess[j].sizeRadius) && !ArtificialIntelligenceAccess[j].underground && !ArtificialIntelligenceAccess[j].flying && ArtificialIntelligenceAccess[j].dmx == this.dmx)
                 {
-                    this.triggered = true;
-                    if (longevity == false)
+                    if (this.ethereal == ArtificialIntelligenceAccess[j].ethereal || this.ethereal == "avatar" || ArtificialIntelligenceAccess[j].ethereal == "avatar")
                     {
-                        ArtificialIntelligenceAccess[j].health -= Math.max(0, (1 + 3 / 50 * player.getSurvivalism()) - Math.max(0, ArtificialIntelligenceAccess[j].armour - 1));
-                        //player.experience += 1 * (1 + player.getIntelligence() / 50); //the player gets experience for successful trapping.
-                        ArtificialIntelligenceAccess[j].healthShownTime = new Date().getTime();
-                        ArtificialIntelligenceAccess[j].disturbedTime = new Date().getTime();
-                        if (ArtificialIntelligenceAccess[j].health <= 0)
+                        this.triggered = true;
+                        if (longevity == false)
                         {
-                            ArtificialIntelligenceAccess[j].killNotByPlayer = false;
+                            ArtificialIntelligenceAccess[j].health -= Math.max(0, (1 + 3 / 50 * player.getSurvivalism()) - Math.max(0, ArtificialIntelligenceAccess[j].armour - 1));
+                            //player.experience += 1 * (1 + player.getIntelligence() / 50); //the player gets experience for successful trapping.
+                            ArtificialIntelligenceAccess[j].healthShownTime = new Date().getTime();
+                            ArtificialIntelligenceAccess[j].disturbedTime = new Date().getTime();
+                            if (ArtificialIntelligenceAccess[j].health <= 0)
+                            {
+                                ArtificialIntelligenceAccess[j].killNotByPlayer = false;
+                            }
                         }
-                    }
-                    else
-                    {
-                        ArtificialIntelligenceAccess[j].health -= Math.max(0, 3 - Math.max(0, ArtificialIntelligenceAccess[j].armour - 1));
+                        else
+                        {
+                            ArtificialIntelligenceAccess[j].health -= Math.max(0, 3 - Math.max(0, ArtificialIntelligenceAccess[j].armour - 1));
+                        }
                     }
                 }
             }
@@ -2306,35 +2346,41 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             this.springTrap = function()
             {
                 self.tiic += 1;
-                if (self.dst(X, Y) <= self.radius) //sensitivity range
+                if (player.flying != true && self.dst(X, Y) <= self.radius) //sensitivity range
                 {
-                    if (self.temporary == false)
+                    if (player.dmx == this.dmx && player.ethereal == this.ethereal || player.dmx == this.dmx && player.ethereal == "avatar" || player.dmx == this.dmx && this.ethereal == "avatar")
                     {
-                        self.damagePlayer(1 + 3 / 50 * player.getSurvivalism(), 13);
-                    }
-                    else
-                    {
-                        self.damagePlayer(3.5, 13);
+                        if (self.temporary == false)
+                        {
+                            self.damagePlayer(1 + 3 / 50 * player.getSurvivalism(), 13);
+                        }
+                        else
+                        {
+                            self.damagePlayer(3.5, 13);
+                        }
                     }
                 }
                 for (var j = 0; j < ArtificialIntelligenceAccess.length; j++)
                 {
-                    if (self.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= self.radius + (3 / 4 * ArtificialIntelligenceAccess[j].sizeRadius) && !ArtificialIntelligenceAccess[j].underground && !ArtificialIntelligenceAccess[j].flying && ArtificialIntelligenceAccess[j].dmx == self.dmx)
+                    if (this.ethereal == ArtificialIntelligenceAccess[j].ethereal || this.ethereal == "avatar" || ArtificialIntelligenceAccess[j].ethereal == "avatar")
                     {
-                        if (self.temporary == false)
+                        if (self.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= self.radius + (3 / 4 * ArtificialIntelligenceAccess[j].sizeRadius) && !ArtificialIntelligenceAccess[j].underground && !ArtificialIntelligenceAccess[j].flying && ArtificialIntelligenceAccess[j].dmx == self.dmx)
                         {
-                            ArtificialIntelligenceAccess[j].health -= Math.max(0, (1 + 3 / 50 * player.getSurvivalism()) - Math.max(0, ArtificialIntelligenceAccess[j].armour - 13));
-                            //player.experience += 0.15 * (1 + player.getIntelligence() / 50); //the player gets experience for successful trapping.
-                            ArtificialIntelligenceAccess[j].healthShownTime = new Date().getTime();
-                            ArtificialIntelligenceAccess[j].disturbedTime = new Date().getTime();
-                            if (ArtificialIntelligenceAccess[j].health <= 0)
+                            if (self.temporary == false)
                             {
-                                ArtificialIntelligenceAccess[j].killNotByPlayer = false;
+                                ArtificialIntelligenceAccess[j].health -= Math.max(0, (1 + 3 / 50 * player.getSurvivalism()) - Math.max(0, ArtificialIntelligenceAccess[j].armour - 13));
+                                //player.experience += 0.15 * (1 + player.getIntelligence() / 50); //the player gets experience for successful trapping.
+                                ArtificialIntelligenceAccess[j].healthShownTime = new Date().getTime();
+                                ArtificialIntelligenceAccess[j].disturbedTime = new Date().getTime();
+                                if (ArtificialIntelligenceAccess[j].health <= 0)
+                                {
+                                    ArtificialIntelligenceAccess[j].killNotByPlayer = false;
+                                }
                             }
-                        }
-                        else
-                        {
-                            ArtificialIntelligenceAccess[j].health -= Math.max(0, 3.5 - Math.max(0, ArtificialIntelligenceAccess[j].armour - 13));
+                            else
+                            {
+                                ArtificialIntelligenceAccess[j].health -= Math.max(0, 3.5 - Math.max(0, ArtificialIntelligenceAccess[j].armour - 13));
+                            }
                         }
                     }
                 }
@@ -30781,19 +30827,22 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 }
                 if (this.playerer <= this.radius) //fire burns the player but heat resistance can reduce the damage it does.
                 {
-                    if (player.form != "vampire" || wKey != true)
+                    if (player.flying != true)
                     {
-                        if (player.mageShield <= 0)
+                        if (player.dmx == this.dmx && player.ethereal == this.ethereal || player.dmx == this.dmx && player.ethereal == "avatar" || player.dmx == this.dmx && this.ethereal == "avatar")
                         {
-                            this.ignited = true;
-                            player.shockedTime = new Date().getTime();
-                            player.shockedTime2 = new Date().getTime();
+                            if (player.mageShield <= 0)
+                            {
+                                this.ignited = true;
+                                player.shockedTime = new Date().getTime();
+                                player.shockedTime2 = new Date().getTime();
 
-                            player.mageShield = 0;
+                                player.mageShield = 0;
 
-                            player.health -= Math.max(0, (0.55 - (player.heatResistance / 100)));
-                            player.warmth += Math.max(0, (5 - (player.heatResistance / 100)));
-                            player.burningTime = new Date().getTime();
+                                player.health -= Math.max(0, (0.55 - (player.heatResistance / 100)));
+                                player.warmth += Math.max(0, (5 - (player.heatResistance / 100)));
+                                player.burningTime = new Date().getTime();
+                            }
                         }
                     }
                 }
@@ -30801,16 +30850,19 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 {
                     if (ArtificialIntelligenceAccess[i].flying == false && ArtificialIntelligenceAccess[i].underground == false && ArtificialIntelligenceAccess[i].dmx == this.dmx)
                     {
-                        if (this.dst(ArtificialIntelligenceAccess[i].X, ArtificialIntelligenceAccess[i].Y) < this.radius)
+                        if (this.ethereal == ArtificialIntelligenceAccess[i].ethereal || this.ethereal == "avatar" || ArtificialIntelligenceAccess[i].ethereal == "avatar")
                         {
-                            ArtificialIntelligenceAccess[i].shockedTime = new Date().getTime();
-                            ArtificialIntelligenceAccess[i].shockedTime2 = new Date().getTime();
-
-                            ArtificialIntelligenceAccess[i].health -= Math.max(0, (0.55 - (ArtificialIntelligenceAccess[i].heatResistance / 100)));
-                            ArtificialIntelligenceAccess[i].burningTime = new Date().getTime();
-                            if (this.temporary == true)
+                            if (this.dst(ArtificialIntelligenceAccess[i].X, ArtificialIntelligenceAccess[i].Y) < this.radius)
                             {
-                                ArtificialIntelligenceAccess[i].killNotByPlayer = true;
+                                ArtificialIntelligenceAccess[i].shockedTime = new Date().getTime();
+                                ArtificialIntelligenceAccess[i].shockedTime2 = new Date().getTime();
+
+                                ArtificialIntelligenceAccess[i].health -= Math.max(0, (0.55 - (ArtificialIntelligenceAccess[i].heatResistance / 100)));
+                                ArtificialIntelligenceAccess[i].burningTime = new Date().getTime();
+                                if (this.temporary == true)
+                                {
+                                    ArtificialIntelligenceAccess[i].killNotByPlayer = true;
+                                }
                             }
                         }
                     }
@@ -30820,15 +30872,18 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
             {
                 if (this.playerer <= this.radius) //fire burns the player but heat resistance can reduce the damage it does.
                 {
-                    if (player.form != "vampire" || wKey != true)
+                    if (player.flying != true)
                     {
-                        if (player.mageShield <= 0)
+                        if (player.dmx == this.dmx && player.ethereal == this.ethereal || player.dmx == this.dmx && player.ethereal == "avatar" || player.dmx == this.dmx && this.ethereal == "avatar")
                         {
-                            this.ignited = true;
-                            player.shockedTime = new Date().getTime();
-                            player.shockedTime2 = new Date().getTime();
+                            if (player.mageShield <= 0)
+                            {
+                                this.ignited = true;
+                                player.shockedTime = new Date().getTime();
+                                player.shockedTime2 = new Date().getTime();
 
-                            player.mageShield = 0;
+                                player.mageShield = 0;
+                            }
                         }
                     }
                 }
@@ -30836,15 +30891,18 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 {
                     if (ArtificialIntelligenceAccess[i].flying == false && ArtificialIntelligenceAccess[i].underground == false && ArtificialIntelligenceAccess[i].dmx == this.dmx)
                     {
-                        if (this.dst(ArtificialIntelligenceAccess[i].X, ArtificialIntelligenceAccess[i].Y) < this.radius)
+                        if (this.ethereal == ArtificialIntelligenceAccess[i].ethereal || this.ethereal == "avatar" || ArtificialIntelligenceAccess[i].ethereal == "avatar")
                         {
-                            this.ignited = true;
-                            ArtificialIntelligenceAccess[i].shockedTime = new Date().getTime();
-                            ArtificialIntelligenceAccess[i].shockedTime2 = new Date().getTime();
-
-                            if (this.temporary == true)
+                            if (this.dst(ArtificialIntelligenceAccess[i].X, ArtificialIntelligenceAccess[i].Y) < this.radius)
                             {
-                                ArtificialIntelligenceAccess[i].killNotByPlayer = true;
+                                this.ignited = true;
+                                ArtificialIntelligenceAccess[i].shockedTime = new Date().getTime();
+                                ArtificialIntelligenceAccess[i].shockedTime2 = new Date().getTime();
+
+                                if (this.temporary == true)
+                                {
+                                    ArtificialIntelligenceAccess[i].killNotByPlayer = true;
+                                }
                             }
                         }
                     }
@@ -30937,6 +30995,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
 
                 this.health = 1000;
                 scenicList.push(new Scenery("spilledSpellOil", this.X, this.Y, Math.random()*Math.PI*2, false));
+                scenicList[scenicList.length - 1].ethereal = this.ethereal;
             }
 
             this.health -= 0.444;
@@ -32642,7 +32701,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
 
                 if (this.playerer <= 555 && player.ethereal != true)
                 {
-                    if (player.form != "vampire" || wKey != true)
+                    if (player.flying != true)
                     {
                         this.paso += 1;
                     }

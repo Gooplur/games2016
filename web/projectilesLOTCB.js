@@ -2,7 +2,7 @@
  * Created by skyeguy on 1/22/17.
  */
 
-function Projectile(type, startX, startY, startAngle, speed, range, negation, list, damage, magicDamage, ability, nonPlayer, team)
+function Projectile(type, startX, startY, startAngle, speed, range, negation, list, damage, magicDamage, ability, nonPlayer, team, ether)
 {
     this.X = startX;
     this.Y = startY;
@@ -23,6 +23,7 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
     this.doNada = false;
     this.notShotByPlayer = nonPlayer;
     this.tipo = type;
+    this.ethereal = ether;
 
     this.timeSinceShot = new Date().getTime();
 
@@ -51,7 +52,7 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
                 this.distanceFromStart = Math.sqrt((this.X - startX)*(this.X - startX)+(this.Y - startY)*(this.Y - startY));
                 if (this.distanceFromStart < range)
                 {
-                    if (typeof(this.notShotByPlayer) == "undefined")
+                    if (typeof(this.notShotByPlayer) == "undefined" || this.isPlayerProjectile == true && this.thrown != true)
                     {
                         this.X += (Math.cos(this.rotation + (1/2 * Math.PI)) * this.speed) * (TTD / 16.75) * timeSpeed;
                         this.Y += (Math.sin(this.rotation + (1/2 * Math.PI)) * this.speed) * (TTD / 16.75) * timeSpeed;
@@ -67,6 +68,7 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
                     if (this.thrown == true && this.isPlayerProjectile == true && this.thrownID != "none")
                     {
                         scenicList.push(new Scenery(this.thrownID, this.X, this.Y, this.thrownRotation, false));
+                        scenicList[scenicList.length - 1].ethereal = this.ethereal;
                     }
 
                     for (var i = list.length - 1; i > -1; i--)
@@ -165,7 +167,7 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
                         //bullets do half damage against large enough non-human creatures. All others damage always remains the same.
                         if (ArtificialIntelligenceAccess[i].team != this.team && this.dmx == ArtificialIntelligenceAccess[i].dmx)
                         {
-                            if (this.isPlayerProjectile == true && player.ethereal == ArtificialIntelligenceAccess[i].ethereal || player.ethereal == "avatar" || !this.isPlayerProjectile || this.notShotByPlayer == true)
+                            if (this.ethereal == ArtificialIntelligenceAccess[i].ethereal || this.ethereal == "avatar" || ArtificialIntelligenceAccess[i].ethereal == "avatar")
                             {
                                 if (type == "bullet" && ArtificialIntelligenceAccess[i].healthMAX > 100 && ArtificialIntelligenceAccess[i].type != "Person" && ArtificialIntelligenceAccess[i].type != "Soldier")
                                 {
@@ -406,86 +408,89 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
             {
                 //Unit arrows can harm the player!
                 var distanceFromPlayer = Math.sqrt((this.X - X)*(this.X - X)+(this.Y - Y)*(this.Y - Y));
-                if (distanceFromPlayer <= player.mySize + 1 && this.dmx == player.dmx && player.ethereal != true)
+                if (distanceFromPlayer <= player.mySize + 1 && this.dmx == player.dmx)
                 {
-                    if (player.mageShield > 0)
+                    if (this.ethereal == player.ethereal || this.ethereal == "avatar" || player.ethereal == "avatar")
                     {
-                        player.mageShield -= Math.max(0, this.damage + Math.max(0, (2/3 * this.magicalDamage) - (2 * player.magicalResistance)));
-                    }
-                    else
-                    {
-                        player.health += player.mageShield;
-                        player.mageShield = 0;
+                        if (player.mageShield > 0)
+                        {
+                            player.mageShield -= Math.max(0, this.damage + Math.max(0, (2/3 * this.magicalDamage) - (2 * player.magicalResistance)));
+                        }
+                        else
+                        {
+                            player.health += player.mageShield;
+                            player.mageShield = 0;
 
-                        player.health -= Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) + Math.max(0, this.magicalDamage - player.magicalResistance) + player.mageShield;
+                            player.health -= Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) + Math.max(0, this.magicalDamage - player.magicalResistance) + player.mageShield;
 
-                        if (this.ability == "stunI")
-                        {
-                            if (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                            if (this.ability == "stunI")
                             {
-                                player.stunnedI = true;
-                                player.stunnedTime = 5;
+                                if (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                                {
+                                    player.stunnedI = true;
+                                    player.stunnedTime = 5;
+                                }
+                            }
+                            else if (this.ability == "burning")
+                            {
+                                if (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                                {
+                                    player.burningTime = new Date().getTime();
+                                }
+                            }
+                            else if (this.ability == "freeze")
+                            {
+                                if (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                                {
+                                    player.frozenTime = new Date().getTime();
+                                }
+                            }
+                            else if (this.ability == "sowt")
+                            {
+                                if (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                                {
+                                    player.poisonI = true;
+                                    player.stunnedIII = true;
+                                    player.stunnedTime = 5;
+                                    player.energilTime = Math.max(player.energilTime, 555);
+                                    player.fatigueIII = true;
+                                }
+                            }
+                            else if (this.ability == "poisonI")
+                            {
+                                if (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                                {
+                                    player.poisonI = true;
+                                }
+                            }
+                            else if (this.ability == "poisonII")
+                            {
+                                if (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                                {
+                                    player.poisonII = true;
+                                }
+                            }
+                            else if (this.ability == "poisonIII")
+                            {
+                                if (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                                {
+                                    player.poisonIII = true;
+                                }
+                            }
+                            else if (this.ability == "longBurning")
+                            {
+                                player.burningTime = new Date().getTime() + 5000;
                             }
                         }
-                        else if (this.ability == "burning")
-                        {
-                            if (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
-                            {
-                                player.burningTime = new Date().getTime();
-                            }
-                        }
-                        else if (this.ability == "freeze")
-                        {
-                            if (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
-                            {
-                                player.frozenTime = new Date().getTime();
-                            }
-                        }
-                        else if (this.ability == "sowt")
-                        {
-                            if (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
-                            {
-                                player.poisonI = true;
-                                player.stunnedIII = true;
-                                player.stunnedTime = 5;
-                                player.energilTime = Math.max(player.energilTime, 555);
-                                player.fatigueIII = true;
-                            }
-                        }
-                        else if (this.ability == "poisonI")
-                        {
-                            if (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
-                            {
-                                player.poisonI = true;
-                            }
-                        }
-                        else if (this.ability == "poisonII")
-                        {
-                            if (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
-                            {
-                                player.poisonII = true;
-                            }
-                        }
-                        else if (this.ability == "poisonIII")
-                        {
-                            if (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
-                            {
-                                player.poisonIII = true;
-                            }
-                        }
-                        else if (this.ability == "longBurning")
-                        {
-                            player.burningTime = new Date().getTime() + 5000;
-                        }
-                    }
 
-                    for (var j = list.length - 1; j > -1; j--)
-                    {
-                        if (list[j] == this)
+                        for (var j = list.length - 1; j > -1; j--)
                         {
-                            list.splice(j, 1);
-                            this.doNada = true;
-                            break;
+                            if (list[j] == this)
+                            {
+                                list.splice(j, 1);
+                                this.doNada = true;
+                                break;
+                            }
                         }
                     }
                 }
@@ -497,7 +502,7 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
     this.projectileBuilder = function()
     {
         //If the player is the source of this projectile then the projectile lets the players shots avoid hitting the players allies while also informing the class that it is the player's projectile.
-        if (typeof(this.team) == "undefined")
+        if (typeof(this.team) == "undefined" || this.team == "Player")
         {
             this.team = "player";
             this.isPlayerProjectile = true;

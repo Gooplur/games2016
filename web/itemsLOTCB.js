@@ -49877,7 +49877,7 @@ function Item(type, x, y)
             //protections
             this.protection = 0 * ((player.toughness / 100) + 1);
             this.toughnessRequirement = 0;
-            this.eminenceRequirement = 9;
+            this.eminenceRequirement = 22;
             this.magicalProtection = 4;
             this.warmthRetention = 1.5;
             this.thirstRetention = 0.5;
@@ -49912,7 +49912,7 @@ function Item(type, x, y)
             this.intForCraft = 25;
             this.ingredients = [["Yong Head", 1], ["Yong Feather", 14]];
 
-            if (player.getEminence() >= 9)
+            if (player.getEminence() >= 22)
             {
                 this.smallText = false;
 
@@ -49926,7 +49926,7 @@ function Item(type, x, y)
                 this.ability = "avatar";
 
                 this.yield = 1;
-                this.intForCraft = 4;
+                this.intForCraft = 0;
                 this.ingredients = [["Yong Head", 1], ["Yong Feather", 14]];
 
                 this.intForDes = 0;

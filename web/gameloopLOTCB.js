@@ -26,7 +26,7 @@ function gameloopOfDestiny(time)
     }
 
     //player flying
-    if (player.form == "vampire" && wKey || player.avatar && shiftKey)
+    if (player.form == "vampire" && wKey || player.avatar && shiftKey && player.mounted != true)
     {
         player.flying = true;
     }

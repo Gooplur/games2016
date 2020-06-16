@@ -1783,6 +1783,42 @@ function boshPack()
 
     bosh.onload = function()
     {
+        gremPack();
+    };
+}
+
+function gremPack()
+{
+    var grem = new Image();
+    grem.src = ("images/grem.png");
+    window.grem = grem;
+
+    grem.onload = function()
+    {
+        hoadPack();
+    };
+}
+
+function hoadPack()
+{
+    var hoad = new Image();
+    hoad.src = ("images/hoad.png");
+    window.hoad = hoad;
+
+    hoad.onload = function()
+    {
+        guskPack();
+    };
+}
+
+function guskPack()
+{
+    var gusk = new Image();
+    gusk.src = ("images/gusk.png");
+    window.gusk = gusk;
+
+    gusk.onload = function()
+    {
         yilPack();
     };
 }
@@ -3729,15 +3765,15 @@ function keyHeld(event)
     }
 }
 
-function over(kind, j, i, extraX, extraY)
+function over(kind, j, l, extraX, extraY)
 {
     //console.log("( " + ((j - 1) * 300 + (extraX * 300) - 1/2 * CCC.width) + ", " + ((i - 1) * 300 + (extraY * 300) - 1/2 * CCC.height) + " )");
     var tileX = ((j - 1) * 300 + (extraX * 300) - 1/2 * CCC.width);
-    var tileY = ((i - 1) * 300 + (extraY * 300) - 1/2 * CCC.height);
+    var tileY = ((l - 1) * 300 + (extraY * 300) - 1/2 * CCC.height);
     //XXX.drawImage(sea, (j - 1) * 300 + (extraX * 300) + X, (i - 1) * 300 + (extraY * 300) + Y, 300, 300);
 
     //PLAYER LANDSCAPE SENSING
-    if (-X < tileX + 300 && -X > tileX && -Y < tileY + 300 && -Y > tileY)
+    if (-X <= tileX + 300 && -X > tileX && -Y <= tileY + 300 && -Y > tileY)
     {
         if (kind == "sea" || kind == "sewer" || kind == "swamp"  || kind == "hollow")
         {
@@ -3800,12 +3836,13 @@ function over(kind, j, i, extraX, extraY)
     //UNIT LANDSCAPE SENSING
     for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
     {
-        if (-ArtificialIntelligenceAccess[i].X < tileX + 300 && -ArtificialIntelligenceAccess[i].X > tileX && -ArtificialIntelligenceAccess[i].Y < tileY + 300 && -ArtificialIntelligenceAccess[i].Y > tileY)
+        if (-ArtificialIntelligenceAccess[i].X <= tileX + 300 && -ArtificialIntelligenceAccess[i].X > tileX && -ArtificialIntelligenceAccess[i].Y <= tileY + 300 && -ArtificialIntelligenceAccess[i].Y > tileY)
         {
             if (kind == "sea" || kind == "sewer" || kind == "swamp" || kind == "hollow")
             {
                 ArtificialIntelligenceAccess[i].water = true;
                 ArtificialIntelligenceAccess[i].land = false;
+
                 if (kind == "hollow" && ArtificialIntelligenceAccess[i].flying != true && ArtificialIntelligenceAccess[i].resistances.indexOf("hollow") == -1 && ArtificialIntelligenceAccess[i].nonStick != true)
                 {
                     ArtificialIntelligenceAccess[i].healthMAX -= 0.06;
@@ -6062,6 +6099,7 @@ function theLegend()
     handcrafted.push(new Item("driedNothBrush", false));
     handcrafted.push(new Item("nulgaFeathers", false));
     handcrafted.push(new Item("packedEneoji", false));
+    handcrafted.push(new Item("avatarOutfit", false));
 
 
     //Activate Important Game Functions Here:

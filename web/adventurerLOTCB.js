@@ -1484,7 +1484,7 @@ function Adventurer()
             if (avatarFlag == true)
             {
                 this.avatar = true;
-                if (shiftKey)
+                if (shiftKey && this.mounted != true)
                 {
                     eKey = false;
                     spaceKey = false;
@@ -11220,7 +11220,7 @@ function Adventurer()
             {
                 XXX.globalAlpha = 0.4;
             }
-            if (this.avatar == true && shiftKey)
+            if (this.avatar == true && shiftKey && player.mounted != true)
             {
                 XXX.drawImage(gel, 5, 1, 51, 50, -(1 / 2 * 51 * 2) - 0, -(1 / 2 * 50 * 2) + 0, 51 * 2, 50 * 2);
             }

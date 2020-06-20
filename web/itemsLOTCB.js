@@ -13395,6 +13395,67 @@ function Item(type, x, y)
             this.buyValue = 11; // at max, buy for 11.
             this.sellValue = 7; // at max, sell for 7.
         }
+        else if (this.type == "shenqianshouFlesh")
+        {
+            //For All Items
+            this.identity = "Shenqianshou Flesh";
+            this.weight = 3.2;
+            this.size = 11;
+            this.description = "The bright glowing greenish yellow flesh of a shenqianshou beetle.";
+            this.intForDes = 18;
+            if (player.getIntelligence() >= 25)
+            {
+                this.intDescription = "It is a catalyst former in alchemy. Due to the occasional consumption of certain types of soil there is a certain glow to the flesh.";
+            }
+            else
+            {
+                this.intDescription = "The flesh contains an enzyme which makes it a great catalyst and former in alchemy.";
+            }
+
+            //Define Utility
+            this.utility = "food";
+
+            //Utility Focused
+            this.isRegenerative = false; //if this is true heal, generation, and restore show up in the item's description.
+            this.hunger = 4; //satisfies hunger.
+            this.thirst = 1; //quenches thirst.
+            this.warmth = 0; //warms player.
+            this.heal = -4; //heals health.
+            this.generation = -6; //recoops lost energy.
+            this.replenish = 0; //restores will.
+
+            //ability
+            this.ability = "radiateII";
+
+            //radioactive in world
+            if (this.X !== false)
+            {
+                if (player.radProof != true)
+                {
+                    var pluyaDista = (X - this.X) * (X - this.X) + (Y - this.Y) * (Y - this.Y);
+                    if (pluyaDista <= (83 * 83))
+                    {
+                        player.radiation += 0.005;
+                    }
+                }
+
+                for (var iiiii = 0; iiiii < ArtificialIntelligenceAccess.length; iiiii++)
+                {
+                    if (ArtificialIntelligenceAccess[iiiii].radProof != true)
+                    {
+                        var pluyaDista = (ArtificialIntelligenceAccess[iiiii].X - this.X) * (ArtificialIntelligenceAccess[iiiii].X - this.X) + (ArtificialIntelligenceAccess[iiiii].Y - this.Y) * (ArtificialIntelligenceAccess[iiiii].Y - this.Y);
+                        if (pluyaDista <= (83 * 83))
+                        {
+                            ArtificialIntelligenceAccess[iiiii].radiation += 0.005;
+                        }
+                    }
+                }
+            }
+
+            //Prices (these are standards and do not necessarily represent the exact amount every shop will trade them for)
+            this.buyValue = 6; // at max, buy for 6.
+            this.sellValue = 6; // at max, sell for 6.
+        }
         else if (this.type == "rawGhoulFlesh")
         {
             //For All Items
@@ -60314,6 +60375,15 @@ function Item(type, x, y)
             XXX.beginPath();
             XXX.drawImage(toad, 752, 316, 42, 44, X - this.X + (1/2 * CCC.width) - (1/2 * 42 * 0.8), Y - this.Y + (1/2 * CCC.height) - (1/2 * 44 * 0.8), 42 * 0.8, 44 * 0.8);
         }
+        else if (this.type == "shenqianshouFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(grem, 905, 4, 32, 28, X - this.X + (1/2 * CCC.width) - (1/2 * 32 * 1), Y - this.Y + (1/2 * CCC.height) - (1/2 * 28 * 1), 32 * 1, 28 * 1);
+            if (timeOfDay != "Day" || player.underground == true)
+            {
+                lights.push({X:this.X, Y: this.Y, size: 34, extraStops: true, GRD: 0.2, Alpha: 0.4, showMe: false});
+            }
+        }
         else if (this.type == "avatarOutfit")
         {
             XXX.beginPath();
@@ -68312,6 +68382,11 @@ function Item(type, x, y)
             LXX.beginPath();
             LXX.drawImage(candlewic, 61, 201, 27, 29, this.invX - (1/2 * 27 * 1.5), this.invY - (1/2 * 29 * 1.5), 27 * 1.5, 29 * 1.5);
         }
+        else if (this.type == "shenqianshouFlesh")
+        {
+            LXX.beginPath();
+            LXX.drawImage(grem, 905, 4, 32, 28, this.invX - (1/2 * 32 * 1), this.invY - (1/2 * 28 * 1), 32 * 1, 28 * 1);
+        }
         else if (this.type == "avatarOutfit")
         {
             LXX.beginPath();
@@ -76294,6 +76369,11 @@ function Item(type, x, y)
         {
             XXX.beginPath();
             XXX.drawImage(toad, 648, 328, 37, 54, this.invX - (1/2 * 37 * 0.7), this.invY - (1/2 * 54 * 0.7), 37 * 0.7, 54 * 0.7);
+        }
+        else if (this.type == "shenqianshouFlesh")
+        {
+            XXX.beginPath();
+            XXX.drawImage(grem, 905, 4, 32, 28, this.invX - (1/2 * 32 * 1), this.invY - (1/2 * 28 * 1), 32 * 1, 28 * 1);
         }
         else if (this.type == "avatarOutfit")
         {

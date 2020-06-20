@@ -312,6 +312,36 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
                                             ArtificialIntelligenceAccess[i].frozenTime = new Date().getTime();
                                         }
                                     }
+                                    else if (this.ability == "shenqianshouI")
+                                    {
+                                        if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
+                                        {
+                                            if (ArtificialIntelligenceAccess[i].radProof != true)
+                                            {
+                                                ArtificialIntelligenceAccess[i].radiation += 0.1;
+                                            }
+                                        }
+                                    }
+                                    else if (this.ability == "shenqianshouII")
+                                    {
+                                        if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
+                                        {
+                                            if (ArtificialIntelligenceAccess[i].radProof != true)
+                                            {
+                                                ArtificialIntelligenceAccess[i].radiation += 0.25;
+                                            }
+                                        }
+                                    }
+                                    else if (this.ability == "shenqianshouIII")
+                                    {
+                                        if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
+                                        {
+                                            if (ArtificialIntelligenceAccess[i].radProof != true)
+                                            {
+                                                ArtificialIntelligenceAccess[i].radiation += 0.5;
+                                            }
+                                        }
+                                    }
                                     else if (this.ability == "sowt")
                                     {
                                         if (Math.max(0, this.damage - Math.max(0, ArtificialIntelligenceAccess[i].armour - this.negateArmour)) > 0)
@@ -510,6 +540,36 @@ function Projectile(type, startX, startY, startAngle, speed, range, negation, li
                                         player.stunnedTime = 5;
                                         player.energilTime = Math.max(player.energilTime, 555);
                                         player.fatigueIII = true;
+                                    }
+                                }
+                                else if (this.ability == "shenqianshouI")
+                                {
+                                    if (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                                    {
+                                        if (player.radProof != true)
+                                        {
+                                            player.radiation += 0.1;
+                                        }
+                                    }
+                                }
+                                else if (this.ability == "shenqianshouII")
+                                {
+                                    if (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                                    {
+                                        if (player.radProof != true)
+                                        {
+                                            player.radiation += 0.25;
+                                        }
+                                    }
+                                }
+                                else if (this.ability == "shenqianshouIII")
+                                {
+                                    if (Math.max(0, this.damage - Math.max(0, player.armourTotal - this.negateArmour)) > 0)
+                                    {
+                                        if (player.radProof != true)
+                                        {
+                                            player.radiation += 0.5;
+                                        }
                                     }
                                 }
                                 else if (this.ability == "poisonI")

@@ -859,6 +859,13 @@ function Adventurer()
                     player.radiation += 0.01;
                 }
             }
+            else if (Inventory[iiiiii][0].type == "shenqianshouFlesh") //radioactive ooze remains
+            {
+                if (player.radProof != true)
+                {
+                    player.radiation += 0.005;
+                }
+            }
             else if (Inventory[iiiiii][0].type == "sceptreOfRadiance") //radioactive sceptre
             {
                 if (player.radProof != true)
@@ -4715,6 +4722,7 @@ function Adventurer()
             {
                 if (xKey)
                 {
+                    ArtificialIntelligenceAccess.push(new Unit(X + Math.cos(this.rotation + 1/2 * Math.PI) * 60, Y + Math.sin(this.rotation + 1/2 * Math.PI) * 60, "ToadHuskling", Math.round(Math.random()), "huskly"));
                     playerProjectiles.push(new Projectile("blackNeedleMed", X, Y, this.rotation, 6, 1050, 9, playerProjectiles, 6, 0, "none", false, "Player", this.ethereal));
                 }
             }
@@ -41530,6 +41538,31 @@ function Adventurer()
                             {
                                 //Removes silver from the blood
                                 this.silvered = false;
+                            }
+                            else if (Inventory[i][0].ability == "radiateI")
+                            {
+                                //Removes silver from the blood
+                                this.radiation += 1;
+                            }
+                            else if (Inventory[i][0].ability == "radiateII")
+                            {
+                                //Removes silver from the blood
+                                this.radiation += 3;
+                            }
+                            else if (Inventory[i][0].ability == "radiateIII")
+                            {
+                                //Removes silver from the blood
+                                this.radiation += 5;
+                            }
+                            else if (Inventory[i][0].ability == "radiateIV")
+                            {
+                                //Removes silver from the blood
+                                this.radiation += 10;
+                            }
+                            else if (Inventory[i][0].ability == "radiateV")
+                            {
+                                //Removes silver from the blood
+                                this.radiation += 20;
                             }
                             else if (Inventory[i][0].ability == "mj")
                             {

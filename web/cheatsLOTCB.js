@@ -8297,6 +8297,13 @@ function cheats()
                 player.gender = "Gooplitor";
             }
         }
+        else if (cheatcode == "SPINE")
+        {
+            if (player.name == "Gooplur" && player.gender == "Goop" && player.race == "#336600")
+            {
+                player.gender = "Gooplis";
+            }
+        }
         else if (cheatcode == "MEDUSA")
         {
             if (player.name == "Gooplur" && player.gender == "Gooplon" && player.race == "#336600")

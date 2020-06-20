@@ -4711,6 +4711,14 @@ function Adventurer()
                 this.watered = true;
             }
 
+            if (player.name == "Gooplur" && player.gender == "Gooplis" && player.race == "#336600")
+            {
+                if (xKey)
+                {
+                    playerProjectiles.push(new Projectile("blackNeedleMed", X, Y, this.rotation, 6, 1050, 9, playerProjectiles, 6, 0, "none", false, "Player", this.ethereal));
+                }
+            }
+
             if (player.name == "Gooplur" && player.gender == "Gooplitor" && player.race == "#336600" || this.chosenOne == true)
             {
                 if (xKey)

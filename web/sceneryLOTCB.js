@@ -2458,6 +2458,110 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
 
             }
         }
+        else if (this.type == "marksmanEgg" || this.type == "shenqianshouEgg")
+        {
+            //TRAITS
+            this.solid = false;
+
+            //SIZE //a radius that the player cannot walk through and that when clicked will trigger the scenery object.
+            this.radius = 7;
+
+            //HATCHING
+            if (this.phase == 0)
+            {
+                this.interactionRange = 60;
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.drawImage(grem, 1018, 315, 60, 42, -(1/2 * 60), -(1/2 * 42), 60, 42);
+                XXX.restore();
+
+                this.fade = 1;
+                this.tillFadeOut = 0;
+                this.eggHatchTimer += 1 * (TTD / 16.75);
+                if (this.eggHatchTimer >= 6000 + 7000 * Math.random())
+                {
+                    this.eggHatchTimer = -100000000;
+                    if (this.temporary == true)
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "ShenqianshouBeetle", "baby", "marksman"));
+                    }
+                    else
+                    {
+                        ArtificialIntelligenceAccess.push(new Unit(this.X, this.Y, "ShenqianshouBeetle", "baby", "Generic Shenqianshou"));
+                    }
+                    this.phase = 1;
+                }
+            }
+            else if (this.phase == 1) //hatch
+            {
+                this.interactionRange = 1;
+                this.tillFadeOut += 1 * (TTD / 16.75);
+                if (this.tillFadeOut > 700)
+                {
+                    this.fade -= 0.01;
+                }
+
+                //DRAWSELF
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.globalAlpha = this.fade;
+                XXX.drawImage(grem, 1141, 316, 60, 42, -(1/2 * 60), -(1/2 * 42), 60, 42);
+                XXX.restore();
+
+                if (this.fade <= 0.02)
+                {
+                    for (var i = 0; i < scenicList.length; i++)
+                    {
+                        if (scenicList[i] === this)
+                        {
+                            scenicList.splice(i, 1);
+                            break;
+                        }
+                    }
+                }
+            }
+            else //break
+            {
+                this.interactionRange = 1;
+                this.tillFadeOut += 1 * (TTD / 16.75);
+                if (this.tillFadeOut > 500)
+                {
+                    this.fade -= 0.02;
+                }
+
+                XXX.save();
+                XXX.translate(X - this.X + 1/2 * CCC.width, Y - this.Y + 1/2 * CCC.height);
+                XXX.rotate(this.rotation);
+                XXX.globalAlpha = this.fade;
+                XXX.drawImage(grem, 1085, 315, 60, 42, -(1/2 * 60), -(1/2 * 42), 60, 42);
+                XXX.restore();
+
+                if (this.fade <= 0.03)
+                {
+                    for (var i = 0; i < scenicList.length; i++)
+                    {
+                        if (scenicList[i] === this)
+                        {
+                            scenicList.splice(i, 1);
+                            break;
+                        }
+                    }
+                }
+            }
+
+            //INTERACTION
+            if (this.activate == true)
+            {
+                this.activate = false;
+                if (this.phase == 0)
+                {
+                    this.phase = 2;
+                }
+            }
+        }
         else if (this.type == "fertilizedMofuEgg")
         {
             //TRAITS

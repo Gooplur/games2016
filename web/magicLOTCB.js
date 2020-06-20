@@ -412,9 +412,9 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
         {
             if (affectPlayer == true)
             {
-                var distanceToPlayer = Math.sqrt((X - this.X)*(X - this.X) + (Y - this.Y)*(Y - this.Y));
+                var distanceToPlayer = ((X - this.X)*(X - this.X) + (Y - this.Y)*(Y - this.Y));
 
-                if (distanceToPlayer <= radius + player.mySize && player.dmx == this.dmx)
+                if (distanceToPlayer <= (radius + player.mySize)*(radius + player.mySize) && player.dmx == this.dmx)
                 {
                     if (player.ethereal == this.ethereal || player.ethereal == "avatar")
                     {
@@ -580,13 +580,13 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
 
             for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
             {
-                var distanceToEnemy = Math.sqrt((ArtificialIntelligenceAccess[i].X - this.X)*(ArtificialIntelligenceAccess[i].X - this.X) + (ArtificialIntelligenceAccess[i].Y - this.Y)*(ArtificialIntelligenceAccess[i].Y - this.Y));
+                var distanceToEnemy = ((ArtificialIntelligenceAccess[i].X - this.X)*(ArtificialIntelligenceAccess[i].X - this.X) + (ArtificialIntelligenceAccess[i].Y - this.Y)*(ArtificialIntelligenceAccess[i].Y - this.Y));
 
                 if (this.dmx == ArtificialIntelligenceAccess[i].dmx && ArtificialIntelligenceAccess[i].team != this.casterTeam)
                 {
-                    if (this.ethereal == ArtificialIntelligenceAccess[i].ethereal || ArtificialIntelligenceAccess[i].ethereal == "avatar")
+                    if (this.ethereal == ArtificialIntelligenceAccess[i].ethereal || ArtificialIntelligenceAccess[i].ethereal == "avatar" || this.ethereal == "avatar")
                     {
-                        if (distanceToEnemy <= radius + ArtificialIntelligenceAccess[i].sizeRadius && !ArtificialIntelligenceAccess[i].underground && !ArtificialIntelligenceAccess[i].flying || distanceToEnemy <= radius + ArtificialIntelligenceAccess[i].sizeRadius && !ArtificialIntelligenceAccess[i].underground && ArtificialIntelligenceAccess[i].flying && whatDoIDo != "earthDamage" && whatDoIDo != "magicalEarthDamage" || distanceToEnemy <= radius + ArtificialIntelligenceAccess[i].sizeRadius && whatDoIDo == "earthDamage" && ArtificialIntelligenceAccess[i].underground || distanceToEnemy <= radius + ArtificialIntelligenceAccess[i].sizeRadius && whatDoIDo == "magicalEarthDamage" && ArtificialIntelligenceAccess[i].underground)
+                        if (distanceToEnemy <= (radius + ArtificialIntelligenceAccess[i].sizeRadius)*(radius + ArtificialIntelligenceAccess[i].sizeRadius) && !ArtificialIntelligenceAccess[i].underground && !ArtificialIntelligenceAccess[i].flying || distanceToEnemy <= (radius + ArtificialIntelligenceAccess[i].sizeRadius)*(radius + ArtificialIntelligenceAccess[i].sizeRadius) && !ArtificialIntelligenceAccess[i].underground && ArtificialIntelligenceAccess[i].flying && whatDoIDo != "earthDamage" && whatDoIDo != "magicalEarthDamage" || distanceToEnemy <= (radius + ArtificialIntelligenceAccess[i].sizeRadius)*(radius + ArtificialIntelligenceAccess[i].sizeRadius) && whatDoIDo == "earthDamage" && ArtificialIntelligenceAccess[i].underground || distanceToEnemy <= (radius + ArtificialIntelligenceAccess[i].sizeRadius)*(radius + ArtificialIntelligenceAccess[i].sizeRadius) && whatDoIDo == "magicalEarthDamage" && ArtificialIntelligenceAccess[i].underground)
                         {
                             if (whatDoIDo == "soulOrb")
                             {
@@ -1068,11 +1068,11 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
 
                     for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
                     {
-                        var distanceToEnemy = Math.sqrt((ArtificialIntelligenceAccess[i].X - this.X) * (ArtificialIntelligenceAccess[i].X - this.X) + (ArtificialIntelligenceAccess[i].Y - this.Y) * (ArtificialIntelligenceAccess[i].Y - this.Y));
+                        var distanceToEnemy = ((ArtificialIntelligenceAccess[i].X - this.X) * (ArtificialIntelligenceAccess[i].X - this.X) + (ArtificialIntelligenceAccess[i].Y - this.Y) * (ArtificialIntelligenceAccess[i].Y - this.Y));
 
-                        if (distanceToEnemy <= radius + ArtificialIntelligenceAccess[i].sizeRadius && !ArtificialIntelligenceAccess[i].underground && this.dmx == ArtificialIntelligenceAccess[i].dmx)
+                        if (distanceToEnemy <= (radius + ArtificialIntelligenceAccess[i].sizeRadius)*(radius + ArtificialIntelligenceAccess[i].sizeRadius) && !ArtificialIntelligenceAccess[i].underground && this.dmx == ArtificialIntelligenceAccess[i].dmx)
                         {
-                            if (this.ethereal == ArtificialIntelligenceAccess[i].ethereal || ArtificialIntelligenceAccess[i].ethereal == "avatar")
+                            if (this.ethereal == ArtificialIntelligenceAccess[i].ethereal || ArtificialIntelligenceAccess[i].ethereal == "avatar" || this.ethereal == "avatar")
                             {
                                 if (kind == "fire")
                                 {
@@ -1168,11 +1168,11 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
 
                         if (i == 0)
                         {
-                            var distanceToPlayer = Math.sqrt((X - this.X) * (X - this.X) + (Y - this.Y) * (Y - this.Y));
+                            var distanceToPlayer = ((X - this.X) * (X - this.X) + (Y - this.Y) * (Y - this.Y));
 
-                            if (distanceToPlayer <= radius + player.mySize && this.dmx == player.dmx)
+                            if (distanceToPlayer <= (radius + player.mySize)*(radius + player.mySize) && this.dmx == player.dmx)
                             {
-                                if (this.ethereal == player.ethereal || player.ethereal == "avatar")
+                                if (this.ethereal == player.ethereal || player.ethereal == "avatar" || this.ethereal == "avatar")
                                 {
                                     if (kind == "fire")
                                     {
@@ -1257,92 +1257,95 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                         this.contactDamageTime = new Date().getTime();
                         for (var i = 0; i < ArtificialIntelligenceAccess.length; i++)
                         {
-                            var distanceToEnemy = Math.sqrt((ArtificialIntelligenceAccess[i].X - this.X) * (ArtificialIntelligenceAccess[i].X - this.X) + (ArtificialIntelligenceAccess[i].Y - this.Y) * (ArtificialIntelligenceAccess[i].Y - this.Y));
-
-                            if (distanceToEnemy <= radius + ArtificialIntelligenceAccess[i].sizeRadius && !ArtificialIntelligenceAccess[i].underground && this.dmx == ArtificialIntelligenceAccess[i].dmx)
+                            if (this.ethereal == ArtificialIntelligenceAccess[i].ethereal || ArtificialIntelligenceAccess[i].ethereal == "avatar" || this.ethereal == "avatar")
                             {
-                                if (kind == "fire")
+                                var distanceToEnemy = ((ArtificialIntelligenceAccess[i].X - this.X) * (ArtificialIntelligenceAccess[i].X - this.X) + (ArtificialIntelligenceAccess[i].Y - this.Y) * (ArtificialIntelligenceAccess[i].Y - this.Y));
+
+                                if (distanceToEnemy <= (radius + ArtificialIntelligenceAccess[i].sizeRadius)*(radius + ArtificialIntelligenceAccess[i].sizeRadius) && !ArtificialIntelligenceAccess[i].underground && this.dmx == ArtificialIntelligenceAccess[i].dmx)
                                 {
-                                    ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].heatResistance);
-                                    ArtificialIntelligenceAccess[i].burningTime = new Date().getTime();
-                                }
-                                else if (kind == "decay")
-                                {
-                                    ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
-                                    ArtificialIntelligenceAccess[i].decayTime = new Date().getTime();
-                                    ArtificialIntelligenceAccess[i].decayTime2 = new Date().getTime();
-                                }
-                                else if (kind == "electricity")
-                                {
-                                    ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - (19 * ArtificialIntelligenceAccess[i].magicalResistance));
-                                    if (Math.max(0, damage - (19 * ArtificialIntelligenceAccess[i].magicalResistance)) > 0)
+                                    if (kind == "fire")
                                     {
-                                        ArtificialIntelligenceAccess[i].shockedTime = new Date().getTime();
-                                        ArtificialIntelligenceAccess[i].shockedTime2 = new Date().getTime();
+                                        ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].heatResistance);
+                                        ArtificialIntelligenceAccess[i].burningTime = new Date().getTime();
+                                    }
+                                    else if (kind == "decay")
+                                    {
+                                        ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                        ArtificialIntelligenceAccess[i].decayTime = new Date().getTime();
+                                        ArtificialIntelligenceAccess[i].decayTime2 = new Date().getTime();
+                                    }
+                                    else if (kind == "electricity")
+                                    {
+                                        ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - (19 * ArtificialIntelligenceAccess[i].magicalResistance));
+                                        if (Math.max(0, damage - (19 * ArtificialIntelligenceAccess[i].magicalResistance)) > 0)
+                                        {
+                                            ArtificialIntelligenceAccess[i].shockedTime = new Date().getTime();
+                                            ArtificialIntelligenceAccess[i].shockedTime2 = new Date().getTime();
+                                            ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
+                                            ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
+                                        }
+                                    }
+                                    else if (kind == "frostwind")
+                                    {
+                                        ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                        ArtificialIntelligenceAccess[i].frozenTime = new Date().getTime();
+                                        ArtificialIntelligenceAccess[i].X -= ((6 * this.cnx) / 50) * Math.cos(this.playerRotation - 1 / 2 * Math.PI);
+                                        ArtificialIntelligenceAccess[i].Y -= ((6 * this.cnx) / 50) * Math.sin(this.playerRotation - 1 / 2 * Math.PI);
+                                    }
+                                    else if (kind == "airFreeze")
+                                    {
+                                        ArtificialIntelligenceAccess[i].frozenTime = new Date().getTime() + (80 * this.cnx);
+                                    }
+                                    else if (kind == "force")
+                                    {
+                                        ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                        ArtificialIntelligenceAccess[i].X -= (2 + 4 * ArtificialIntelligenceAccess[i].speed) * Math.cos(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
+                                        ArtificialIntelligenceAccess[i].Y -= (2 + 4 * ArtificialIntelligenceAccess[i].speed) * Math.sin(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
+                                    }
+                                    else if (kind == "windI")
+                                    {
+                                        ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                        ArtificialIntelligenceAccess[i].X -= ((3 + 4 * ArtificialIntelligenceAccess[i].speed) / Math.max(1, (ArtificialIntelligenceAccess[i].healthMAX / 45))) * Math.cos(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
+                                        ArtificialIntelligenceAccess[i].Y -= ((3 + 4 * ArtificialIntelligenceAccess[i].speed) / Math.max(1, (ArtificialIntelligenceAccess[i].healthMAX / 45))) * Math.sin(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
+                                    }
+                                    else if (kind == "windII")
+                                    {
+                                        ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                        ArtificialIntelligenceAccess[i].X -= ((6 + 4 * ArtificialIntelligenceAccess[i].speed) / Math.max(1, (ArtificialIntelligenceAccess[i].healthMAX / 50))) * Math.cos(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
+                                        ArtificialIntelligenceAccess[i].Y -= ((6 + 4 * ArtificialIntelligenceAccess[i].speed) / Math.max(1, (ArtificialIntelligenceAccess[i].healthMAX / 50))) * Math.sin(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
+                                    }
+                                    else if (kind == "windIII")
+                                    {
+                                        ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                        ArtificialIntelligenceAccess[i].X -= ((10 + 4 * ArtificialIntelligenceAccess[i].speed) / Math.max(1, (ArtificialIntelligenceAccess[i].healthMAX / 55))) * Math.cos(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
+                                        ArtificialIntelligenceAccess[i].Y -= ((10 + 4 * ArtificialIntelligenceAccess[i].speed) / Math.max(1, (ArtificialIntelligenceAccess[i].healthMAX / 55))) * Math.sin(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
+                                    }
+                                    else if (kind == "windIV")
+                                    {
+                                        ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                        ArtificialIntelligenceAccess[i].X -= ((14 + 4 * ArtificialIntelligenceAccess[i].speed) / Math.max(1, (ArtificialIntelligenceAccess[i].healthMAX / 65))) * Math.cos(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
+                                        ArtificialIntelligenceAccess[i].Y -= ((14 + 4 * ArtificialIntelligenceAccess[i].speed) / Math.max(1, (ArtificialIntelligenceAccess[i].healthMAX / 65))) * Math.sin(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
+                                    }
+                                    else if (kind == "magic")
+                                    {
+                                        ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                    }
+                                    else if (kind == "blinding" || kind == "blindingChokeII" || kind == "blindingChokeI")
+                                    {
+                                        ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
+                                        ArtificialIntelligenceAccess[i].blindedTime = new Date().getTime() + (1000 * (this.cnx / 5));
+                                    }
+
+                                    if (kind != "blinding" && kind != "blindingChokeII" && kind != "blindingChokeI")
+                                    {
                                         ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
                                         ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
                                     }
-                                }
-                                else if (kind == "frostwind")
-                                {
-                                    ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
-                                    ArtificialIntelligenceAccess[i].frozenTime = new Date().getTime();
-                                    ArtificialIntelligenceAccess[i].X -= ((6 * this.cnx) / 50) * Math.cos(this.playerRotation - 1 / 2 * Math.PI);
-                                    ArtificialIntelligenceAccess[i].Y -= ((6 * this.cnx) / 50) * Math.sin(this.playerRotation - 1 / 2 * Math.PI);
-                                }
-                                else if (kind == "airFreeze")
-                                {
-                                    ArtificialIntelligenceAccess[i].frozenTime = new Date().getTime() + (80 * this.cnx);
-                                }
-                                else if (kind == "force")
-                                {
-                                    ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
-                                    ArtificialIntelligenceAccess[i].X -= (2 + 4 * ArtificialIntelligenceAccess[i].speed) * Math.cos(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
-                                    ArtificialIntelligenceAccess[i].Y -= (2 + 4 * ArtificialIntelligenceAccess[i].speed) * Math.sin(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
-                                }
-                                else if (kind == "windI")
-                                {
-                                    ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
-                                    ArtificialIntelligenceAccess[i].X -= ((3 + 4 * ArtificialIntelligenceAccess[i].speed) / Math.max(1, (ArtificialIntelligenceAccess[i].healthMAX / 45))) * Math.cos(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
-                                    ArtificialIntelligenceAccess[i].Y -= ((3 + 4 * ArtificialIntelligenceAccess[i].speed) / Math.max(1, (ArtificialIntelligenceAccess[i].healthMAX / 45))) * Math.sin(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
-                                }
-                                else if (kind == "windII")
-                                {
-                                    ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
-                                    ArtificialIntelligenceAccess[i].X -= ((6 + 4 * ArtificialIntelligenceAccess[i].speed) / Math.max(1, (ArtificialIntelligenceAccess[i].healthMAX / 50))) * Math.cos(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
-                                    ArtificialIntelligenceAccess[i].Y -= ((6 + 4 * ArtificialIntelligenceAccess[i].speed) / Math.max(1, (ArtificialIntelligenceAccess[i].healthMAX / 50))) * Math.sin(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
-                                }
-                                else if (kind == "windIII")
-                                {
-                                    ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
-                                    ArtificialIntelligenceAccess[i].X -= ((10 + 4 * ArtificialIntelligenceAccess[i].speed) / Math.max(1, (ArtificialIntelligenceAccess[i].healthMAX / 55))) * Math.cos(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
-                                    ArtificialIntelligenceAccess[i].Y -= ((10 + 4 * ArtificialIntelligenceAccess[i].speed) / Math.max(1, (ArtificialIntelligenceAccess[i].healthMAX / 55))) * Math.sin(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
-                                }
-                                else if (kind == "windIV")
-                                {
-                                    ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
-                                    ArtificialIntelligenceAccess[i].X -= ((14 + 4 * ArtificialIntelligenceAccess[i].speed) / Math.max(1, (ArtificialIntelligenceAccess[i].healthMAX / 65))) * Math.cos(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
-                                    ArtificialIntelligenceAccess[i].Y -= ((14 + 4 * ArtificialIntelligenceAccess[i].speed) / Math.max(1, (ArtificialIntelligenceAccess[i].healthMAX / 65))) * Math.sin(Math.atan2(ArtificialIntelligenceAccess[i].Y - Y, ArtificialIntelligenceAccess[i].X - X) - Math.PI);
-                                }
-                                else if (kind == "magic")
-                                {
-                                    ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
-                                }
-                                else if (kind == "blinding" || kind == "blindingChokeII" || kind == "blindingChokeI")
-                                {
-                                    ArtificialIntelligenceAccess[i].health -= Math.max(0, damage - ArtificialIntelligenceAccess[i].magicalResistance);
-                                    ArtificialIntelligenceAccess[i].blindedTime = new Date().getTime() + (1000 * (this.cnx / 5));
-                                }
 
-                                if (kind != "blinding" && kind != "blindingChokeII" && kind != "blindingChokeI")
-                                {
-                                    ArtificialIntelligenceAccess[i].healthShownTime = new Date().getTime();
-                                    ArtificialIntelligenceAccess[i].disturbedTime = new Date().getTime();
-                                }
-
-                                if (caster == true && ArtificialIntelligenceAccess[i].health <= 0)
-                                {
-                                    ArtificialIntelligenceAccess[i].killNotByPlayer = false;
+                                    if (caster == true && ArtificialIntelligenceAccess[i].health <= 0)
+                                    {
+                                        ArtificialIntelligenceAccess[i].killNotByPlayer = false;
+                                    }
                                 }
                             }
                         }
@@ -1350,89 +1353,92 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                 }
                 else
                 {
-                    var distanceToPlayer = Math.sqrt((X - this.X)*(X - this.X) + (Y - this.Y)*(Y - this.Y));
-
-                    if (distanceToPlayer <= radius + player.mySize && this.dmx == player.dmx)
+                    if (this.ethereal == player.ethereal || player.ethereal == "avatar" || this.ethereal == "avatar")
                     {
-                        if (new Date().getTime() - this.contactDamageTime >= frequency)
-                        {
-                            this.contactDamageTime = new Date().getTime();
+                        var distanceToPlayer = ((X - this.X)*(X - this.X) + (Y - this.Y)*(Y - this.Y));
 
-                            if (kind == "fire")
+                        if (distanceToPlayer <= (radius + player.mySize)*(radius + player.mySize) && this.dmx == player.dmx)
+                        {
+                            if (new Date().getTime() - this.contactDamageTime >= frequency)
                             {
-                                player.health -= Math.max(0, damage - player.heatResistance);
-                                player.thirst -= Math.max(0, damage - player.heatResistance);
-                                player.burningTime = new Date().getTime();
-                            }
-                            else if (kind == "decay")
-                            {
-                                this.shieldFactoring(Math.max(0, damage - player.magicalResistanceTotal));
-                                player.decayTime = new Date().getTime();
-                                player.decayTime2 = new Date().getTime();
-                            }
-                            else if (kind == "electricity")
-                            {
-                                player.health -= Math.max(0, damage - ((player.totalShockResist * 3) + (19 * player.magicalResistanceTotal)));
-                                if (Math.max(0, damage - (19 * player.magicalResistanceTotal)) > 0)
+                                this.contactDamageTime = new Date().getTime();
+
+                                if (kind == "fire")
                                 {
-                                    player.shockedTime = new Date().getTime();
-                                    player.shockedTime2 = new Date().getTime();
+                                    player.health -= Math.max(0, damage - player.heatResistance);
+                                    player.thirst -= Math.max(0, damage - player.heatResistance);
+                                    player.burningTime = new Date().getTime();
                                 }
-                            }
-                            else if (kind == "frostwind")
-                            {
-                                player.health -= Math.max(0, damage - player.warmthProtection);
-                                player.warmth -= Math.max(0, 5 - player.warmthProtection);
-                                var twrdsUnit = Math.atan2(this.Y - Y, this.X - X);
-                                X -= Math.cos(twrdsUnit) * 125;
-                                Y -= Math.sin(twrdsUnit) * 125;
-                            }
-                            else if (kind == "magic")
-                            {
-                                player.health -= Math.max(0, damage - player.magicalResistanceTotal);
-                            }
-                            else if (kind == "blinding")
-                            {
-                                player.blinded = true;
-                                player.blindedStoreTime = new Date().getTime();
-                                player.blindedTime = 2;
-                            }
-                            else if (kind == "ChokingII")
-                            {
-                                if (player.airFilter != true)
+                                else if (kind == "decay")
                                 {
-                                    player.asfixiationTime = 0.9;
-                                    player.asfixiationII = true;
+                                    this.shieldFactoring(Math.max(0, damage - player.magicalResistanceTotal));
+                                    player.decayTime = new Date().getTime();
+                                    player.decayTime2 = new Date().getTime();
                                 }
-                            }
-                            else if (kind == "ChokingI")
-                            {
-                                if (player.airFilter != true)
+                                else if (kind == "electricity")
                                 {
-                                    player.asfixiationTime = 0.9;
-                                    player.asfixiationI = true;
+                                    player.health -= Math.max(0, damage - ((player.totalShockResist * 3) + (19 * player.magicalResistanceTotal)));
+                                    if (Math.max(0, damage - (19 * player.magicalResistanceTotal)) > 0)
+                                    {
+                                        player.shockedTime = new Date().getTime();
+                                        player.shockedTime2 = new Date().getTime();
+                                    }
                                 }
-                            }
-                            else if (kind == "blindingChokeII")
-                            {
-                                if (player.airFilter != true)
+                                else if (kind == "frostwind")
+                                {
+                                    player.health -= Math.max(0, damage - player.warmthProtection);
+                                    player.warmth -= Math.max(0, 5 - player.warmthProtection);
+                                    var twrdsUnit = Math.atan2(this.Y - Y, this.X - X);
+                                    X -= Math.cos(twrdsUnit) * 125;
+                                    Y -= Math.sin(twrdsUnit) * 125;
+                                }
+                                else if (kind == "magic")
+                                {
+                                    player.health -= Math.max(0, damage - player.magicalResistanceTotal);
+                                }
+                                else if (kind == "blinding")
                                 {
                                     player.blinded = true;
                                     player.blindedStoreTime = new Date().getTime();
                                     player.blindedTime = 2;
-                                    player.asfixiationTime = 0.9;
-                                    player.asfixiationII = true;
                                 }
-                            }
-                            else if (kind == "blindingChokeI")
-                            {
-                                if (player.airFilter != true)
+                                else if (kind == "ChokingII")
                                 {
-                                    player.blinded = true;
-                                    player.blindedStoreTime = new Date().getTime();
-                                    player.blindedTime = 2;
-                                    player.asfixiationTime = 0.9;
-                                    player.asfixiationI = true;
+                                    if (player.airFilter != true)
+                                    {
+                                        player.asfixiationTime = 0.9;
+                                        player.asfixiationII = true;
+                                    }
+                                }
+                                else if (kind == "ChokingI")
+                                {
+                                    if (player.airFilter != true)
+                                    {
+                                        player.asfixiationTime = 0.9;
+                                        player.asfixiationI = true;
+                                    }
+                                }
+                                else if (kind == "blindingChokeII")
+                                {
+                                    if (player.airFilter != true)
+                                    {
+                                        player.blinded = true;
+                                        player.blindedStoreTime = new Date().getTime();
+                                        player.blindedTime = 2;
+                                        player.asfixiationTime = 0.9;
+                                        player.asfixiationII = true;
+                                    }
+                                }
+                                else if (kind == "blindingChokeI")
+                                {
+                                    if (player.airFilter != true)
+                                    {
+                                        player.blinded = true;
+                                        player.blindedStoreTime = new Date().getTime();
+                                        player.blindedTime = 2;
+                                        player.asfixiationTime = 0.9;
+                                        player.asfixiationI = true;
+                                    }
                                 }
                             }
                         }
@@ -3431,8 +3437,8 @@ function Magic(spellInfo, caster, instructions, unitSelf, damagesPlayer) //caste
                     }
 
                     //Restores player's energy and health
-                    var distanceToPlayer = Math.sqrt((X - this.X)*(X - this.X) + (Y - this.Y)*(Y - this.Y));
-                    if (distanceToPlayer <= 75 + player.mySize)
+                    var distanceToPlayer = ((X - this.X)*(X - this.X) + (Y - this.Y)*(Y - this.Y));
+                    if (distanceToPlayer <= (75 + player.mySize)*(75 + player.mySize))
                     {
                         if (this.cnx >= 50)
                         {

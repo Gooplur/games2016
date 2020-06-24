@@ -4722,7 +4722,7 @@ function Adventurer()
             {
                 if (xKey)
                 {
-                    ArtificialIntelligenceAccess.push(new Unit(X + Math.cos(this.rotation + 1/2 * Math.PI) * 60, Y + Math.sin(this.rotation + 1/2 * Math.PI) * 60, "ToadHuskling", Math.round(Math.random()), "huskly"));
+                    //ArtificialIntelligenceAccess.push(new Unit(X + Math.cos(this.rotation + 1/2 * Math.PI) * 60, Y + Math.sin(this.rotation + 1/2 * Math.PI) * 60, "GhoulHuskling", Math.round(Math.random()), "huskly"));
                     playerProjectiles.push(new Projectile("blackNeedleMed", X, Y, this.rotation, 6, 1050, 9, playerProjectiles, 6, 0, "none", false, "Player", this.ethereal));
                 }
             }
@@ -27207,6 +27207,7 @@ function Adventurer()
             //ATTACK
             if (Math.floor(this.stage) <= 0)
             {
+                this.attackManual = false;
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
@@ -27219,6 +27220,7 @@ function Adventurer()
             }
             else if (Math.floor(this.stage) <= 1)
             {
+                this.attackManual = false;
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
@@ -27231,6 +27233,7 @@ function Adventurer()
             }
             else if (Math.floor(this.stage) <= 2)
             {
+                this.attackManual = false;
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);
@@ -27243,6 +27246,7 @@ function Adventurer()
             }
             else if (Math.floor(this.stage) <= 3)
             {
+                this.attackManual = false;
                 XXX.save();
                 XXX.translate(this.myScreenX, this.myScreenY);
                 XXX.rotate(this.rotation);

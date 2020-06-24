@@ -2348,7 +2348,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 self.tiic += 1;
                 if (player.flying != true && self.dst(X, Y) <= self.radius) //sensitivity range
                 {
-                    if (player.dmx == this.dmx && player.ethereal == this.ethereal || player.dmx == this.dmx && player.ethereal == "avatar" || player.dmx == this.dmx && this.ethereal == "avatar")
+                    if (player.dmx == self.dmx && player.ethereal == self.ethereal || player.dmx == self.dmx && player.ethereal == "avatar" || player.dmx == self.dmx && self.ethereal == "avatar")
                     {
                         if (self.temporary == false)
                         {
@@ -2362,7 +2362,7 @@ function Scenery(type, x, y, rotation, longevity, information, extra) //longevit
                 }
                 for (var j = 0; j < ArtificialIntelligenceAccess.length; j++)
                 {
-                    if (this.ethereal == ArtificialIntelligenceAccess[j].ethereal || this.ethereal == "avatar" || ArtificialIntelligenceAccess[j].ethereal == "avatar")
+                    if (self.ethereal == ArtificialIntelligenceAccess[j].ethereal || self.ethereal == "avatar" || ArtificialIntelligenceAccess[j].ethereal == "avatar")
                     {
                         if (self.dst(ArtificialIntelligenceAccess[j].X, ArtificialIntelligenceAccess[j].Y) <= self.radius + (3 / 4 * ArtificialIntelligenceAccess[j].sizeRadius) && !ArtificialIntelligenceAccess[j].underground && !ArtificialIntelligenceAccess[j].flying && ArtificialIntelligenceAccess[j].dmx == self.dmx)
                         {

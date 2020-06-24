@@ -24511,7 +24511,7 @@ function interaction(me)
                                     }
                                     else
                                     {
-                                        quests.completeQuests.push({name: "A Feast for Fewer", description: "You reported a rogue soldier to the proper authorities who executed her for poisoning the high lord."});
+                                        quests.completeQuests.push({name: "A Feast for Fewer", description: "You reported a rogue soldier to the proper authorities who executed him for poisoning the high lord."});
                                     }
                                     player.nirwadenFaction += 55;
                                     if (player.class == "Mage" || player.class == "Priest" || player.class == "Shaman")

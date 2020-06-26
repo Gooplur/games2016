@@ -3083,7 +3083,7 @@ function interaction(me)
                         {
                             if (player.dialogueChoiceMade == false)
                             {
-                                if (player.raceName == "Kel")
+                                if (player.raceName != "Kel")
                                 {
                                     if (quests.theDeermenAndTheWendigoQuest == false)
                                     {

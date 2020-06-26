@@ -4511,6 +4511,10 @@ function interaction(me)
                                     {
                                         player.dialogueOptions = [["The chieftain of the cannibals who called himself The Wendigo is dead, as are his cannibalistic minions, and so is the sackman who was delivering them children to eat.", false, "f"]];
                                     }
+                                    else if (quests.theDeermenAndTheWendigoSackmanNote == "told")
+                                    {
+                                        player.dialogueOptions = [];
+                                    }
                                     else if (quests.theDeermenAndTheWendigoSackmanNote == true)
                                     {
                                         player.dialogueOptions = [["You were right about the sackman, but he wasn't alone, he was feeding the kids to cannibalistic bandits for gold.", false, "d"]];
@@ -4980,6 +4984,26 @@ function interaction(me)
                                         self.SC();
                                     }
                                 }
+                                else
+                                {
+                                    //text dialogue
+                                    setMsg("I'm glad to hear that, it is nice that someone is starting to do something about this!");
+
+                                    //on ended text dialogue
+                                    if (tellMessage == "reset")
+                                    {
+                                        msgReset();
+
+                                        playersTurnToSpeak = true;
+                                        player.dialoguePosition = 0;
+                                        conversationID[1] = 0;
+                                        self.SC();
+                                    }
+                                    else
+                                    {
+                                        self.SC();
+                                    }
+                                }
                             }
                             else
                             {
@@ -5126,7 +5150,7 @@ function interaction(me)
                                     quests.theDeermenAndTheWendigoGertrudeSentMe = true;
                                     playersTurnToSpeak = true;
                                     player.dialoguePosition = 0;
-                                    conversationID[1] = 0;
+                                    conversationID[1] = 1;
                                     self.SC();
                                 }
                                 else
@@ -5137,14 +5161,13 @@ function interaction(me)
                             else
                             {
                                 //text dialogue
-                                setMsg("There is something wrong about you. You shouldn't be here!");
+                                setMsg("Oh, its you again.");
 
                                 //on ended text dialogue
                                 if (tellMessage == "reset")
                                 {
                                     msgReset();
 
-                                    quests.theDeermenAndTheWendigoGertrudeSentMe = true;
                                     playersTurnToSpeak = true;
                                     player.dialoguePosition = 0;
                                     conversationID[1] = 0;
@@ -5177,7 +5200,7 @@ function interaction(me)
 
                                     playersTurnToSpeak = true;
                                     player.dialoguePosition = 0;
-                                    conversationID[1] = 0;
+                                    conversationID[1] = 1;
                                     self.SC();
                                 }
                                 else
@@ -5188,7 +5211,7 @@ function interaction(me)
                             else
                             {
                                 //text dialogue
-                                setMsg("There is something wrong about you. You shouldn't be here!");
+                                setMsg("Oh, its you again.");
 
                                 //on ended text dialogue
                                 if (tellMessage == "reset")
@@ -5227,7 +5250,7 @@ function interaction(me)
 
                                     playersTurnToSpeak = true;
                                     player.dialoguePosition = 0;
-                                    conversationID[1] = 0;
+                                    conversationID[1] = 1;
                                     self.SC();
                                 }
                                 else
@@ -5238,14 +5261,13 @@ function interaction(me)
                             else
                             {
                                 //text dialogue
-                                setMsg("There is something wrong about you. You shouldn't be here!");
+                                setMsg("Oh, its you again.");
 
                                 //on ended text dialogue
                                 if (tellMessage == "reset")
                                 {
                                     msgReset();
 
-                                    quests.theDeermenAndTheWendigoGertrudeSentMe = true;
                                     playersTurnToSpeak = true;
                                     player.dialoguePosition = 0;
                                     conversationID[1] = 0;

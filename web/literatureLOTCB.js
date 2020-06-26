@@ -102,7 +102,7 @@ function findLiterature(itemType)
     }
     else if (itemType == "sackmanNote")
     {
-        reading = [["^|Mr. Sackman, ||I want you to get more kids for us to eat. They taste good and we got gold for you to give us more of them from raiding merchants. Merchants taste good too, and so do people who break deals with me. So I better see you here soon with more kids. My deermen are hungry, don't keep us waiting. Remember we will be camped out south of the road right as you enter the woods. I urge you to eat break giant bread with us if you know what I mean, you would make a good deerman. ||Yours Truly, The Wendigo."]];
+        reading = [["^|Mr. Sackman, ||I want you to get more kids for us to eat. They taste good and we got gold for you to give us more of them from raiding merchants. Merchants taste good too, and so do people who break deals with me. So I better see you here soon with more kids. My deermen are hungry, don't keep us waiting. Remember we will be camped out south of the road right as you enter the woods. I urge you to break giant bread with us if you know what I mean, you would make a good deerman. ||Yours Truly, The Wendigo."]];
         if (quests.theDeermenAndTheWendigoSackmanNote == false)
         {
             quests.theDeermenAndTheWendigoSackmanNote = true;

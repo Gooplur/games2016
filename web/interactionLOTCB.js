@@ -3616,14 +3616,6 @@ function interaction(me)
                             //on ended text dialogue
                             if (tellMessage == "reset")
                             {
-                                if (uniqueChars.grettelLDS == false)
-                                {
-
-                                }
-                                else
-                                {
-
-                                }
                                 msgReset();
 
                                 if (uniqueChars.grettelLDS == false)
@@ -3708,7 +3700,15 @@ function interaction(me)
                         {
                             if (player.dialogueChoiceMade == false)
                             {
-                                player.dialogueOptions = [["Good day.", false, "a"], ["What is in that sack of yours?", false, "b"], ["What do you do around here?", false, "c"]];
+                                if (quests.theDeermenAndTheWendigoTurkey == true)
+                                {
+                                    player.dialogueOptions = [["Good day.", false, "a"], ["What do you do around here?", false, "c"]];
+                                }
+                                else
+                                {
+                                    player.dialogueOptions = [["Good day.", false, "a"], ["What is in that sack of yours?", false, "b"], ["What do you do around here?", false, "c"]];
+                                }
+
                                 if (quests.theDeermenAndTheWendigoQuest == true)
                                 {
                                     player.dialogueOptions.unshift(["Do you know anything about the children that have been going missing?", false, "d"]);
@@ -3772,7 +3772,18 @@ function interaction(me)
                         else if (conversationID[1] == "0b")
                         {
                             //text dialogue
-                            setMsg("A live turkey.");
+                            if (quests.theDeermenAndTheWendigoSackOpened != true)
+                            {
+                                setMsg("A live turkey.");
+                            }
+                            else if (have("coins", 32))
+                            {
+                                setMsg("Nothing anymore... do you find it amusing to set my catch free? Because you made me have to kill it early, which will cost me. Perhaps you would be gracious enough to buy the turkey that you so carelessly set free. It will cost you 32 coins, what do you say?");
+                            }
+                            else
+                            {
+                                setMsg("Nothing anymore... do you find it amusing to set my catch free? Because I do not.");
+                            }
 
                             //on ended text dialogue
                             if (tellMessage == "reset")
@@ -3781,7 +3792,18 @@ function interaction(me)
 
                                 playersTurnToSpeak = true;
                                 player.dialoguePosition = 0;
-                                conversationID[1] = 0;
+                                if (quests.theDeermenAndTheWendigoSackOpened != true)
+                                {
+                                    conversationID[1] = 0;
+                                }
+                                else if (have("coins", 32))
+                                {
+                                    conversationID[1] = 1;
+                                }
+                                else
+                                {
+                                    conversationID[1] = 0;
+                                }
                                 self.SC();
                             }
                             else
@@ -3813,6 +3835,135 @@ function interaction(me)
                         {
                             //text dialogue
                             setMsg("I wish I could help. I don't think I know anything that would be helpful though, I spend most of my time catching turkeys to sell.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == 1)
+                        {
+                            if (player.dialogueChoiceMade == false)
+                            {
+                                player.dialogueOptions = [["Sure I'll buy it (pay 32 coins), sorry about that.", false, "a"], ["I thought you a fraud since you weren't responsive to my attempts to buy from you. Letting the turkey out got your attention. (pay 32 coins)", false, "b"], ["I'm sorry, my suspicions were unfounded. I already regret my actions... I will pay you for it. (pay 32 coins)", false, "c"], ["I'm sorry, my suspicions were unfounded. I already regret my actions... but I must apologize again because I will not buy your turkey.", false, "d"], ["No thank you.", false, "d"], ["No.", false, "d"]];
+                            }
+                            else if (player.dialogueChoiceMade == true)
+                            {
+                                player.dialogueChoiceMade = false;
+                                for (var i = 0; i < player.dialogueOptions.length; i++)
+                                {
+                                    if (player.dialogueOptions[i][1] == true)
+                                    {
+                                        if (player.dialogueOptions[i][2] == "a")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1a";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "b")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1b";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "c")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1c";
+                                        }
+                                        else if (player.dialogueOptions[i][2] == "d")
+                                        {
+                                            tellMessage = false;
+                                            playersTurnToSpeak = false;
+                                            conversationID[1] = "1d";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (conversationID[1] == "1a")
+                        {
+                            //text dialogue
+                            setMsg("No problem at all, 'twas a pleasure doing business with you!");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+                                give("rawTurkeyFlesh", 1);
+                                take("coins", 32);
+                                quests.theDeermenAndTheWendigoTurkey = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1b")
+                        {
+                            //text dialogue
+                            setMsg("Though your methods have proven successful in this case, I will have you know that I had another buyer already lined up for this bird, and that I will now have to go catch another one in a hurry because of your antics...");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                give("rawTurkeyFlesh", 1);
+                                take("coins", 32);
+                                quests.theDeermenAndTheWendigoTurkey = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1c")
+                        {
+                            //text dialogue
+                            setMsg("I understand that a man wearing clothes such as mine in a neighborhood such as this may be offputting to some, I stand out less in the slums is another way to put it. But I assure you that my cloak is clean, and that my living is honest. Thank you for your business.");
+
+                            //on ended text dialogue
+                            if (tellMessage == "reset")
+                            {
+                                msgReset();
+
+                                give("rawTurkeyFlesh", 1);
+                                take("coins", 32);
+                                quests.theDeermenAndTheWendigoTurkey = true;
+                                playersTurnToSpeak = true;
+                                player.dialoguePosition = 0;
+                                conversationID[1] = 0;
+                                self.SC();
+                            }
+                            else
+                            {
+                                self.SC();
+                            }
+                        }
+                        else if (conversationID[1] == "1d")
+                        {
+                            //text dialogue
+                            setMsg("I hope that you understand that you have gravely inconvenienced me... I had a buyer lined up for this bird, and I promised that the meat would be fresh, now I will have to catch another turkey in a rush.");
 
                             //on ended text dialogue
                             if (tellMessage == "reset")

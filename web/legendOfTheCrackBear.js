@@ -4649,6 +4649,7 @@ function theLegend()
         theDeermenAndTheWendigoSaved: "none",
         theDeermenAndTheWendigoGertrudeSentMe: false,
         theDeermenAndTheWendigoSackmanNote: false,
+        theDeermenAndTheWendigoTurkey: false,
 
         //QUEST: The Cult of Radiant Spirit ---- given by discovering Morrow City
         theCultOfTheRadiantSpiritQuest: false,
